@@ -41,7 +41,7 @@ class MainAbility extends Ability {
  })
  ```
  
- FA模型context的具体获取方法参见[FA模型](js-apis-Context.md#Context模块)。
+ FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
 ## fileio.stat
 
@@ -1276,7 +1276,7 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 
 ## fileio.ftruncate<sup>7+</sup>
 
-ftruncate(fd: number, len: number, callback: AsyncCallback&lt;void&gt;): void
+ftruncate(fd: number, len?: number, callback: AsyncCallback&lt;void&gt;): void
 
 基于文件描述符截断文件，使用callback异步回调。
 
@@ -1363,7 +1363,7 @@ truncate(path: string, len?: number): Promise&lt;void&gt;
 
 ## fileio.truncate<sup>7+</sup>
 
-truncate(path: string, len: number, callback: AsyncCallback&lt;void&gt;): void
+truncate(path: string, len?: number, callback: AsyncCallback&lt;void&gt;): void
 
 基于文件路径截断文件，使用callback异步回调。
 

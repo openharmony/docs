@@ -14,7 +14,7 @@ Ability模块提供对Ability生命周期、上下文环境等调用管理的能
 
 ## 导入模块
 
-```
+```ts
 import Ability from '@ohos.application.Ability';
 ```
 
@@ -22,11 +22,11 @@ import Ability from '@ohos.application.Ability';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| context | [AbilityContext](js-apis-ability-context.md) | 是 | 否 | 上下文。 | 
-| launchWant | [Want](js-apis-application-Want.md) | 是 | 否 | Ability启动时的参数。 | 
-| lastRequestWant | [Want](js-apis-application-Want.md) | 是 | 否 | Ability最后请求时的参数。| 
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 是 | 否 | 上下文。 | 
+| launchWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | Ability启动时的参数。 | 
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | Ability最后请求时的参数。| 
 | callee | [Callee](#callee) | 是 | 否 | 调用Stub（桩）服务对象。| 
 
 ## Ability.onCreate
@@ -41,7 +41,7 @@ Ability创建时回调，执行初始化业务逻辑操作。
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-Want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 | 
+  | want | [Want](js-apis-app-ability-want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 | 
   | param | AbilityConstant.LaunchParam | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 | 
 
 **示例：**
@@ -227,7 +227,7 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-Want.md) | 是 | Want类型参数，如ability名称，包名等。 | 
+  | want | [Want](js-apis-application-want.md) | 是 | Want类型参数，如ability名称，包名等。 | 
   | launchParams | AbilityConstant.LaunchParam | 是 | Ability启动的原因、上次异常退出的原因信息。 |
 
 **示例：**
@@ -240,27 +240,26 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
   }
   ```
 
-
 ## Ability.onConfigurationUpdated
 
 onConfigurationUpdated(config: Configuration): void;
 
-当系统配置更新时调用。
+环境变化通知接口，发生全局配置变更时回调。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-configuration.md) | 是 | 表示需要更新的配置信息。 | 
+  | config | [Configuration](js-apis-application-configuration.md) | 是 | 发生全局配置变更时触发回调，当前全局配置包括系统语言、深浅色模式。 | 
 
 **示例：**
     
   ```ts
   class myAbility extends Ability {
       onConfigurationUpdated(config) {
-          console.log('onConfigurationUpdated, config:' + JSON.stringify(config));
+          console.log('onConfigurationUpdated, language:' + config.language);
       }
   }
   ```
@@ -314,7 +313,6 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
   }
   ```
 
-
 ## Ability.onSaveState
 
 onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any}): AbilityConstant.OnSaveResult;
@@ -338,7 +336,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any})
 
 **示例：**
 
-  ```js
+  ```ts
 import AbilityConstant from '@ohos.application.AbilityConstant'
 
 class myAbility extends Ability {
@@ -390,7 +388,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import Ability from '@ohos.application.Ability';
   class MyMessageAble{ // 自定义的Sequenceable数据结构
     name:""
     str:""
@@ -474,7 +472,7 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
 **示例：**
 
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import Ability from '@ohos.application.Ability';
   class MyMessageAble{
     name:""
     str:""
@@ -546,7 +544,7 @@ release(): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import Ability from '@ohos.application.Ability';
   var caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
@@ -570,10 +568,9 @@ release(): void;
   }
   ```
 
+## Caller.onRelease
 
-## Caller.on
-
- on(type: "release", callback: OnReleaseCallback): void;
+ onRelease(callback: OnReleaseCallBack): void;
 
 注册通用组件服务端Stub（桩）断开监听通知。
 
@@ -583,21 +580,12 @@ release(): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 监听releaseCall事件，固定为'release'。 | 
   | callback | OnReleaseCallBack | 是 | 返回onRelease回调结果。 | 
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
 
 **示例：**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import Ability from '@ohos.application.Ability';
   var caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
@@ -608,7 +596,7 @@ release(): void;
       }).then((obj) => {
           caller = obj;
           try {
-            caller.on("release", (str) => {
+            caller.onRelease((str) => {
                 console.log(' Caller OnRelease CallBack is called ' + str);
             });
           } catch (error) {
@@ -654,7 +642,7 @@ on(method: string, callback: CalleeCallBack): void;
 **示例：**
 
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import Ability from '@ohos.application.Ability';
   class MyMessageAble{
       name:""
       str:""
@@ -679,9 +667,9 @@ on(method: string, callback: CalleeCallBack): void;
   var method = 'call_Function';
   function funcCallBack(pdata) {
       console.log('Callee funcCallBack is called ' + pdata);
-      let msg = new MyMessageAble(0, "");
+      let msg = new MyMessageAble("test", "");
       pdata.readSequenceable(msg);
-      return new MyMessageAble(10, "Callee test");
+      return new MyMessageAble("test1", "Callee test");
   }
   export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
@@ -722,7 +710,7 @@ off(method: string): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import Ability from '@ohos.application.Ability';
   var method = 'call_Function';
   export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
@@ -736,23 +724,23 @@ off(method: string): void;
     }
   }
   ```
-
-## OnReleaseCallback
+  
+## OnReleaseCallBack
 
 (msg: string): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | (msg: string) | function | 是 | 否 | 调用者注册的侦听器函数接口的原型。 | 
 
-## CalleeCallback
+## CalleeCallBack
 
 (indata: rpc.MessageParcel): rpc.Sequenceable;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | (indata: rpc.MessageParcel) | rpc.Sequenceable | 是 | 否 | 被调用方注册的消息侦听器函数接口的原型。 | 

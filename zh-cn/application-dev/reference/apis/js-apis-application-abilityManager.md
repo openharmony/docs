@@ -9,7 +9,7 @@ AbilityManager模块提供对Ability相关信息和状态信息进行获取、�
 
 ## 导入模块
 
-```js
+```ts
 import AbilityManager from '@ohos.application.abilityManager'
 ```
 
@@ -41,14 +41,14 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
  
 **参数**：
 
-| 名称        | 类型                                       | 必填   | 描述             |
+| 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | [Configuration](js-apis-configuration.md)   | 是    | 新的配置项。 |
+| config    | [Configuration](js-apis-application-configuration.md)   | 是    | 新的配置项。 |
 | callback  | AsyncCallback\<void>                   | 是    | 被指定的回调方法。      |
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 var config = {
@@ -72,9 +72,9 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 **参数**：
 
-| 名称        | 类型                                       | 必填   | 描述             |
+| 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | [Configuration](js-apis-configuration.md)   | 是    | 新的配置项。 |
+| config    | [Configuration](js-apis-application-configuration.md)   | 是    | 新的配置项。 |
 
 **返回值：**
 
@@ -84,7 +84,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 var config = {
@@ -110,13 +110,13 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 **参数**：
 
-| 名称        | 类型                                       | 必填   | 描述             |
+| 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | callback  | AsyncCallback\<Array\<AbilityRunningInfo>>  | 是    | 被指定的回调方法。      |
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 abilitymanager.getAbilityRunningInfos((err,data) => { 
@@ -142,7 +142,7 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
  
 abilitymanager.getAbilityRunningInfos().then((data) => {
@@ -164,14 +164,14 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 **参数**：
 
-| 名称        | 类型                                       | 必填   | 描述             |
+| 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | upperLimit | number                                   | 是 | 获取消息数量的最大限制。 |
 | callback  | AsyncCallback\<Array\<AbilityRunningInfo>>  | 是    | 被指定的回调方法。      |
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 var upperLimit = 0;
@@ -193,7 +193,7 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 **参数**：
 
-| 名称        | 类型                                       | 必填   | 描述             |
+| 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | upperLimit | number                                   | 是 | 获取消息数量的最大限制。 |
 
@@ -205,7 +205,7 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 var upperLimit = 0;
@@ -227,13 +227,13 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 
 **参数**：
 
-| 名称        | 类型                                       | 必填   | 描述             |
+| 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | callback  | AsyncCallback\<ElementName>  | 是    | 被指定的回调方法。      |
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 abilitymanager.getTopAbility((err,data) => { 
@@ -257,7 +257,7 @@ getTopAbility(): Promise\<ElementName>;
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 abilitymanager.getTopAbility().then((data) => {

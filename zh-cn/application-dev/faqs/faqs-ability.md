@@ -60,7 +60,7 @@ build() {
 
 Ability配置中缺少startWindowIcon属性配置，需要在module.json5中abilities中配置startWindowIcon。
 
-参考文档：[Stage模型配置文件](../quick-start/stage-structure.md)
+参考文档：[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)
 
 示例：
 
@@ -95,7 +95,7 @@ Ability配置中缺少startWindowIcon属性配置，需要在module.json5中abil
 
 ## 如何在应用A中去获取应用B的Hap包的安装路径
 
-适用于：OpenHarmony SDK 3..0以上版本， API9 Stage模型
+适用于：OpenHarmony SDK 3.0以上版本， API9 Stage模型
 
 首先需要申请系统权限，具体参看文档：[自动化签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)。导入bundle模块，通过调用bundle.getApplicationInfo()接口，通过包名获取应用信息。然后通过application.moduleSourceDirs获取应用存储路径。
 
@@ -109,7 +109,7 @@ Ability配置中缺少startWindowIcon属性配置，需要在module.json5中abil
 
 适用于：OpenHarmony SDK 3.2.5.5版本, API8 FA模型
 
-服务卡片在添加卡片后就触发了oncreat()生命周期，在不启用app的情况下也可以显示相关的用户信息-静默登录，但服务卡片目前要在app安装之后手动添加。
+服务卡片在添加卡片后就触发了oncreate()生命周期，在不启用app的情况下也可以显示相关的用户信息-静默登录，但服务卡片目前要在app安装之后手动添加。
 
 ## 如何获取context
 
@@ -203,7 +203,7 @@ listener.on('change', onPortrait)
 
 适用：OpenHarmony SDK 3.2.5.5版本
 
-使用featureAbility.getWant()和featureAbility.getContext()在json文件中router跳转发送数据，在js文件中用featureAblity方法接收
+使用featureAbility.getWant()和featureAbility.getContext()在json文件中router跳转发送数据，在js文件中用featureAbility方法接收
 
 ## router.disableAlertBeforeBackPage和router.enableAlertBeforeBackPage怎么触发
 

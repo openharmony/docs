@@ -487,7 +487,7 @@ async function createTonePlayerBefore(){
 
 ## AudioSamplingRate<sup>8+</sup>
 
-枚举，音频采样率，具体设备支持的采样率规格可能不同。
+枚举，音频采样率，具体设备支持的采样率规格会存在差异。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -772,7 +772,7 @@ async function createTonePlayerBefore(){
 
 音频采集器选项信息。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Capturer
 
 | 名称         | 类型                                    | 必填 | 说明             |
 | ------------ | --------------------------------------- | ---- | ---------------- |
@@ -1360,10 +1360,6 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
 
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
-
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -1394,10 +1390,6 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
-
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3819,8 +3811,8 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 let outputAudioRendererFilter = {
   uid : 20010041,
   rendererInfo : {
-    contentType : audio.ContentType.CONTENT_TYPE_MUSIC,
-    streamUsage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0 },
   rendererId : 0 };
   
@@ -3877,8 +3869,8 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 let outputAudioRendererFilter = {
   uid : 20010041,
   rendererInfo : {
-    contentType : audio.ContentType.CONTENT_TYPE_MUSIC,
-    streamUsage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0 },
   rendererId : 0 };
 
@@ -4864,9 +4856,9 @@ setVolume(volume: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名     | 类型     | 必填   | 说明        |
-| ---------- | ------- | ------ | ---------- |
-| volume     | number  | 是     | 音量值。  |
+| 参数名     | 类型    | 必填   | 说明                 |
+| ---------- | ------- | ------ | ------------------- |
+| volume     | number  | 是     | 音量值范围为0.0-1.0。 |
 
 **返回值：**
 
@@ -4877,7 +4869,7 @@ setVolume(volume: number): Promise&lt;void&gt;
 **示例：**
 
 ```js
-audioRenderer.setVolume(10).then(data=>{
+audioRenderer.setVolume(0.5).then(data=>{
   console.info('setVolume Success!');
 }).catch((err) => {
   console.error(`setVolume Fail: ${err}`);
@@ -4893,15 +4885,15 @@ setVolume(volume: number, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型       | 必填   | 说明            |
-| ------- | -----------| ------ | -------------- |
-|volume   | number     | 是     | 音量值。|
+| 参数名  | 类型       | 必填   | 说明                 |
+| ------- | -----------| ------ | ------------------- |
+|volume   | number     | 是     | 音量值范围为0.0-1.0。 |
 |callback | AsyncCallback\<void> | 是     |回调返回执行结果。|
 
 **示例：**
 
 ```js
-audioRenderer.setVolume(10, (err, data)=>{
+audioRenderer.setVolume(0.5, (err, data)=>{
   if(err){
     console.error(`setVolume Fail: ${err}`);
   }

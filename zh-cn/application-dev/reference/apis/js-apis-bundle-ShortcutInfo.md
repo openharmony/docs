@@ -7,13 +7,13 @@
 
 
 
-应用配置文件中定义的快捷方式信息，FA模型配置在[config.json](../../quick-start/package-structure.md)文件中进行配置，Stage模型配置参考[ shortcuts对象内部结构](../../quick-start/stage-structure.md#shortcuts对象内部结构)
+应用配置文件中定义的快捷方式信息，FA模型配置在[config.json](../../quick-start/application-configuration-file-overview-fa.md)文件中进行配置，Stage模型在开发视图的resources/base/profile下面定义配置文件即可。
 
 
 
 ## ShortcutWant<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[ShortcutWant](js-apis-bundleManager-shortcutInfo.md)替代
+> 从API version 9开始不再维护，建议使用[bundleManager-ShortcutWant](js-apis-bundleManager-shortcutInfo.md)替代
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
@@ -26,7 +26,7 @@
 
 ## ShortcutInfo<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)替代。
 
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework

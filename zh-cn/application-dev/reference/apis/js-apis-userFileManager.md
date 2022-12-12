@@ -26,7 +26,7 @@ getUserFileMgr(context: Context): UserFileManager
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-Context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](js-apis-inner-app-context.md) | 是   | 传入Ability实例的Context。 |
 
 **返回值：**
 

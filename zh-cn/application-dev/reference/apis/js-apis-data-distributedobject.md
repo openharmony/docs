@@ -25,7 +25,7 @@ create(context: Context, source: object): DistributedObjectV9
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+  | context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
   | source | object | 是 | 设置分布式数据对象的属性。 |
   
 **返回值：**
@@ -560,15 +560,15 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
 
 **示例：**
 
-```js
+FA模型示例
+```ts
 import distributedObject from '@ohos.data.distributedDataObject';
 import featureAbility from '@ohos.ability.featureAbility';
 // 获取context
 let context = featureAbility.getContext();
 let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.save("local", (status, result) => {
-    console.log("save status = " + status);
+g_object.save("local", (result) => {
     console.log("save callback");
     console.info("save sessionId: " + result.sessionId);
     console.info("save version: " + result.version);
@@ -576,7 +576,8 @@ g_object.save("local", (status, result) => {
 });
 ```
 
-```js
+Stage模型示例
+```ts
 import distributedObject from '@ohos.data.distributedDataObject';
 import Ability from '@ohos.application.Ability';
 // 获取context
@@ -588,8 +589,7 @@ class MainAbility extends Ability{
 }
 let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.save("local", (status, result) => {
-    console.log("save status = " + status);
+g_object.save("local", (result) => {
     console.log("save callback");
     console.info("save sessionId: " + result.sessionId);
     console.info("save version: " + result.version);
@@ -694,13 +694,17 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.save("local").then((result) => {
+// 持久化数据
+g_object.save("local", (result) => {
     console.log("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
-}, () => {
-    console.error("save failed");
+});
+// 删除持久化保存的数据
+g_object.revokeSave((result) => {
+  console.log("revokeSave callback");
+  console.log("revokeSave sessionId " + result.sessionId);
 });
 ```
 
@@ -711,15 +715,24 @@ import distributedObject from '@ohos.data.distributedDataObject';
 import Ability from '@ohos.application.Ability';
 // 获取context
 let context;
-class MainAbility extends Ability{
-    onWindowStageCreate(windowStage){
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
         context = this.context
     }
 }
 let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.revokeSave((result, data) => {
+// 持久化数据
+g_object.save("local", (result) => {
+    console.log("save callback");
+    console.info("save sessionId " + result.sessionId);
+    console.info("save version " + result.version);
+    console.info("save deviceId " + result.deviceId);
+});
+// 删除持久化保存的数据
+g_object.revokeSave((result) => {
   console.log("revokeSave callback");
+  console.log("revokeSave sessionId " + result.sessionId);
 });
 ```
 
@@ -744,13 +757,23 @@ revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt;
 
 FA模型示例
 
-```js
+```ts
 import distributedObject from '@ohos.data.distributedDataObject';
 import featureAbility from '@ohos.ability.featureAbility';
 // 获取context
 let context = featureAbility.getContext();
 let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
+// 持久化数据
+g_object.save("local").then((result) => {
+    console.log("save callback");
+    console.info("save sessionId " + result.sessionId);
+    console.info("save version " + result.version);
+    console.info("save deviceId " + result.deviceId);
+}, () => {
+    console.error("save failed");
+});
+// 删除持久化保存的数据
 g_object.revokeSave().then((result) => {
     console.log("revokeSave callback");
     console.log("sessionId" + result.sessionId);
@@ -766,8 +789,8 @@ import distributedObject from '@ohos.data.distributedDataObject';
 import Ability from '@ohos.application.Ability';
 // 获取context
 let context;
-class MainAbility extends Ability{
-    onWindowStageCreate(windowStage){
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
         context = this.context
     }
 }
@@ -780,6 +803,14 @@ g_object.save("local").then((result) => {
     console.info("save deviceId " + result.deviceId);
 }, () => {
     console.error("save failed");
+});
+
+// 删除持久化保存的数据
+g_object.revokeSave().then((result) => {
+    console.log("revokeSave callback");
+    console.log("sessionId" + result.sessionId);
+}, () => {
+    console.error("revokeSave failed");
 });
 ```
 

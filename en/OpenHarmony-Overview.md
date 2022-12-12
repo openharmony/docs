@@ -146,7 +146,7 @@ The following table describes the subsystems of OpenHarmony. For details about t
 
 ## Supported Development Boards
 
-Currently, the OpenHarmony community supports 17 types of development boards, which are listed in [Development Boards Supported](device-dev/dev-board-on-the-master.md). The following table describes three of them, which are the first three integrated into the OpenHarmony master.  You can visit http://ci.openharmony.cn/dailys/dailybuilds to obtain daily builds. 
+Currently, the OpenHarmony community supports 22 types of development boards, which are listed in [Development Boards Supported](device-dev/dev-board-on-the-master.md). The following table describes three of them, which are the first three integrated into the OpenHarmony master.  You can visit http://ci.openharmony.cn/dailys/dailybuilds to obtain daily builds. 
 
 | System Type| Board Model| Chip Model| <div style="width:200pt">Function Description and Use Case</div> | Application Scenario| Code Repository |
 | -------- | -------- | -------- | -------- | -------- | -------- |
@@ -159,8 +159,6 @@ Currently, the OpenHarmony community supports 17 types of development boards, wh
 - [Getting Started for Device Development](device-dev/quick-start/quickstart-overview.md)
 - [Getting Started for Application Development](application-dev/quick-start/start-overview.md)
 
-
-
 ## Code Repository Addresses
 
 OpenHarmony project: [https://gitee.com/openharmony](https://gitee.com/openharmony)
@@ -172,6 +170,8 @@ OpenHarmony third-party components: [https://gitee.com/openharmony-tpc](https://
 OpenHarmony archived projects: [https://gitee.com/openharmony-retired](https://gitee.com/openharmony-retired)
 
 ## OpenHarmony Documentation
+
+[Official website](https://www.openharmony.cn/)
 
 [Chinese version](https://gitee.com/openharmony/docs/tree/master/zh-cn)
 
@@ -197,7 +197,7 @@ For details about how to contribute, see [How to contribute](contribute/how-to-c
 
 OpenHarmony complies with Apache License Version 2.0. For details, see the LICENSE in each repository.
 
-OpenHarmony uses third-party open-source software and licenses. For details, see [Third-Party Open-Source Software](https://gitee.com/openharmony/docs/blob/master/en/contribute/open-source-software-and-license-notice.md).
+OpenHarmony uses third-party open-source software and licenses. For details, see [Open Source Software and License Notice](https://gitee.com/openharmony/docs/blob/master/en/contribute/open-source-software-and-license-notice.md).
 
 ## Contact Info
 

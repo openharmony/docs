@@ -713,9 +713,10 @@ for (var value of searchParams.values()) {
 
 
 ### [Symbol.iterator]<sup>(deprecated)</sup>
+
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.[Symbol.iterator]<sup>9+</sup>](#symbol.iterator9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[[Symbol.iterator]<sup>9+</sup>](#symboliterator9)替代。
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
@@ -741,7 +742,7 @@ for (const [name, value] of paramsObject) {
 ### tostring<sup>(deprecated)</sup>
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.tostring<sup>9+</sup>](#tostring9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[tostring<sup>9+</sup>](#tostring9)替代。
 
 toString(): string
 
@@ -782,7 +783,7 @@ console.log(params.toString());
 | port | string | 是 | 是 | 获取和设置URL的端口部分。 |
 | protocol | string | 是 | 是 | 获取和设置URL的协议部分。 |
 | search | string | 是 | 是 | 获取和设置URL的序列化查询部分。 |
-| searchParams | URLsearchParams | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。 |
+| searchParams | URLSearchParams | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。 |
 | URLParams | URLParams | 是 | 否 | 获取URLParams表示URL查询参数的对象。 |
 | username | string | 是 | 是 | 获取和设置URL的用户名部分。 |
 
@@ -790,7 +791,7 @@ console.log(params.toString());
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[parseURL<sup>9+</sup>](#parseURL9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[parseURL<sup>9+</sup>](#parseurl9)替代。
 
 constructor(url: string, base?: string | URL)
 

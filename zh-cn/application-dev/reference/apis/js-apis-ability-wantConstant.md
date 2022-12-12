@@ -4,11 +4,11 @@ wantConstant模块提供want中操作want常数和解释Flags说明的能力。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 6开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.wantConstant](js-apis-app-ability-wantConstant.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
-```js
+```ts
 import wantConstant from '@ohos.ability.wantConstant';
 ```
 
@@ -18,7 +18,7 @@ want操作的常数。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称      | 值          | 描述     |
+| 名称      | 值          | 说明     |
 | ------------ | ------------------ | ---------------------- |
 | ACTION_HOME                                 | ohos.want.action.home                    | 指示返回原点的操作。                                        |
 | ACTION_DIAL                                 | ohos.want.action.dial                    | 指示启动显示小键盘的页面功能的操作                           |
@@ -46,6 +46,7 @@ want操作的常数。
 |  ACTION_FILE_SELECT<sup>7+</sup>            | ohos.action.fileSelect                   | 指示选择文件的操作。                                          |
 |  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | 指示发送数据时与目标关联的数据流的URI                          |
 |  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | 指示提供oauth服务的操作。                                     |
+|  ACTION_APP_ACCOUNT_AUTH <sup>9+</sup>     | account.appAccount.action.auth     | 指示提供auth服务的操作。                                      |
 |  ACTION_MARKET_DOWNLOAD <sup>9+</sup>    | ohos.want.action.marketDownload     | 表示从应用程序市场下载应用程序的的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 |  ACTION_MARKET_CROWDTEST <sup>9+</sup>    | ohos.want.action.marketCrowdTest     | 指示从应用程序市场众测应用程序的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 |   DLP_PARAMS_SANDBOX<sup>9+</sup>    |ohos.dlp.params.sandbox  | 指示沙盒标志的参数的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
@@ -60,7 +61,7 @@ want实体的常数。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称      | 值          | 描述     |
+| 名称      | 值          | 说明     |
 | ------------ | ------------------ | ---------------------- |
 | ENTITY_DEFAULT                             | entity.system.default                    | 指示默认实体，如果未指定该实体，则使用该实体。        |
 | ENTITY_HOME                                | entity.system.home                       | 指示主屏幕实体。                                    |
@@ -75,7 +76,7 @@ Flags说明。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称                                 | 值       | 描述                                                         |
+| 名称                                 | 值       | 说明                                                         |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权。                                  |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权。                                  |

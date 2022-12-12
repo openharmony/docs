@@ -373,9 +373,9 @@ power.isScreenOn()
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
-| 名称                    | 默认值 | 描述                   |
-| ----------------------- | ------ | ---------------------- |
-| MODE_NORMAL             | 600    | 表示标准模式，默认值。 |
-| MODE_POWER_SAVE         | 601    | 表示省电模式。         |
-| MODE_PERFORMANCE        | 602    | 表示性能模式。         |
-| MODE_EXTREME_POWER_SAVE | 603    | 表示超级省电模式。     |
+| 名称                    | 值   | 说明                   |
+| ----------------------- | ---- | ---------------------- |
+| MODE_NORMAL             | 600  | 表示标准模式，默认值。 |
+| MODE_POWER_SAVE         | 601  | 表示省电模式。         |
+| MODE_PERFORMANCE        | 602  | 表示性能模式。         |
+| MODE_EXTREME_POWER_SAVE | 603  | 表示超级省电模式。     |

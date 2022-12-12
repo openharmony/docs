@@ -125,9 +125,9 @@ getNfcATag(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 获取NFC A类型Tag对象，通过该对象可访问NfcA技术类型的Tag。
 
-**需要权限**：ohos.permission.NFC_TAG
+**需要权限：** ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -141,9 +141,9 @@ getNfcBTag(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
 获取NFC B类型Tag对象，通过该对象可访问NfcB技术类型的Tag。
 
-**需要权限**：ohos.permission.NFC_TAG
+**需要权限：** ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -157,9 +157,9 @@ getNfcFTag(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 获取NFC F类型Tag对象，通过该对象可访问NfcF技术类型的Tag。
 
-**需要权限**：ohos.permission.NFC_TAG
+**需要权限：** ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -173,9 +173,9 @@ getNfcVTag(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 获取NFC V类型Tag对象，通过该对象可访问NfcV技术类型的Tag。
 
-**需要权限**：ohos.permission.NFC_TAG
+**需要权限：** ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -189,7 +189,7 @@ getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTa
 
 获取IsoDep类型Tag对象，通过该对象可访问支持IsoDep技术类型的Tag。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -209,7 +209,7 @@ getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTa
 
 | 错误码ID | 错误信息|
 | ------- | -------|
-| 3100201 | Tag running state of service is abnormal. |
+| 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getNdef<sup>9+</sup>
 
@@ -217,7 +217,7 @@ getNdef(tagInfo: [TagInfo](#taginfo)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 
 获取NDEF类型Tag对象，通过该对象可访问支持NDEF技术类型的Tag。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -237,7 +237,7 @@ getNdef(tagInfo: [TagInfo](#taginfo)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 
 | 错误码ID | 错误信息|
 | ------- | -------|
-| 3100201 | Tag running state of service is abnormal. |
+| 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getMifareClassic<sup>9+</sup>
 
@@ -245,7 +245,7 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 
 获取MIFARE Classic类型Tag对象，通过该对象访问支持MIFARE Classic技术类型的Tag。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -265,7 +265,7 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 
 | 错误码ID | 错误信息|
 | ------- | -------|
-| 3100201 | Tag running state of service is abnormal. |
+| 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getMifareUltralight<sup>9+</sup>
 
@@ -273,7 +273,7 @@ getMifareUltralight(tagInfo: [TagInfo](#taginfo)): [MifareUltralightTag](js-apis
 
 获取MIFARE Ultralight类型Tag对象，通过该对象可访问支持MIFARE Ultralight技术类型的Tag。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名       | 类型                        | 必填   | 说明                                       |
@@ -292,7 +292,7 @@ getMifareUltralight(tagInfo: [TagInfo](#taginfo)): [MifareUltralightTag](js-apis
 
 | 错误码ID | 错误信息|
 | ------- | -------|
-| 3100201 | Tag running state of service is abnormal. |
+| 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getNdefFormatable<sup>9+</sup>
 
@@ -300,7 +300,7 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 获取NDEF Formatable类型Tag对象，通过该对象可访问支持NDEF Formatable技术类型的Tag。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -314,21 +314,21 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 | 错误码ID | 错误信息|
 | ------- | -------|
-| 3100201 | Tag running state of service is abnormal. |
+| 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getTagInfo<sup>9+</sup>
 
-getTagInfo(want: [Want](js-apis-application-Want.md#Want)): [TagInfo](#taginfo)
+getTagInfo(want: [Want](js-apis-app-ability-want.md#Want)): [TagInfo](#taginfo)
 
 从Want中获取TagInfo，Want是被NFC服务初始化，包含了TagInfo所需的属性值。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
 | 参数名       | 类型                        | 必填   | 说明                                       |
 | --------- | ------------------------- | ---- | ---------------------------------------- |
-| want      | [Want](js-apis-application-Want.md#Want)                   | 是    | 分发Ability时，在系统onCreate入口函数的参数中获取。                              |
+| want      | [Want](js-apis-app-ability-want.md#Want)                   | 是    | 分发Ability时，在系统onCreate入口函数的参数中获取。                              |
 
 **返回值：**
 
@@ -343,7 +343,7 @@ makeUriRecord(uri: string): [NdefRecord](#ndefrecord9);
 
 根据输入的URI，构建NDEF标签的Record数据对象。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -382,7 +382,7 @@ makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9);
 
 根据输入的文本数据和编码类型，构建NDEF标签的Record。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -424,7 +424,7 @@ makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
 
 根据输入的MIME数据和类型，构建NDEF标签的Record。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -464,7 +464,7 @@ makeExternalRecord(domainName: string, type: string, externalData: number[]): [N
 
 根据应用程序特定的外部数据，构建NDEF标签的Record。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -507,7 +507,7 @@ messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): num
 
 把输入的NDEF消息数据对象，转换为字节格式的数据。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -548,7 +548,7 @@ createNdefMessage(data: number[]): [NdefMessage](js-apis-nfctech.md#ndefmessage9
 
 使用原始字节数据创建NDEF标签的Message。该数据必须符合NDEF Record数据格式，如果不符合格式，则返回的NdeMessage数据对象，所包含的NDE Record列表会为空。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -582,7 +582,7 @@ createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](js-apis-nfctech.md#n
 
 使用NDEF Records列表，创建NDEF Message。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -617,22 +617,22 @@ try {
 
 NFC服务在读取到标签时给出的对象，通过改对象属性，应用知道该标签支持哪些技术类型，并使用匹配的技术类型来调用相关接口。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
-**需要权限**：ohos.permission.NFC_TAG
+**需要权限：** ohos.permission.NFC_TAG
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | uid<sup>9+</sup> | number[] | 是 | 否 | 标签的uid，每个number值是十六进制表示，范围是0x00~0xFF。|
 | technology<sup>9+</sup> | number[] | 是 | 否 | 支持的技术类型，每个number值表示所支持技术类型的常量值。 |
 | supportedProfiles | number[] | 是 | 否 |  支持的技术类型，从API9开始不支持，使用[tag.TagInfo#technology](#taginfo)替代。|
-| extrasData | [PacMap](js-apis-dataAbilityHelper.md#pacmap)[] | 是 | 否 |  此属性为系统属性，仅限内部使用。标签所支持技术的扩展属性值。|
-| tagRfDiscId | number | 是 | 否 |  此属性为系统属性，仅限内部使用。标签发现时分配的ID值。|
-| remoteTagService | [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | 是 | 否 | 此属性为系统属性，仅限内部使用。NFC服务进程的远端对象，用于客户端和服务之间的接口通信。|
+| extrasData<sup>9+</sup> | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)[] | 是 | 否 |  标签所支持技术的扩展属性值。<br>**系统接口：** 此接口为系统接口。|
+| tagRfDiscId<sup>9+</sup> | number | 是 | 否 |  标签发现时分配的ID值。<br>**系统接口：** 此接口为系统接口。|
+| remoteTagService<sup>9+</sup> | [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | 是 | 否 | NFC服务进程的远端对象，用于客户端和服务之间的接口通信。<br>**系统接口：** 此接口为系统接口。|
 ## NdefRecord<sup>9+</sup>
 NDEF标签Record属性的定义，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
@@ -644,7 +644,7 @@ NDEF标签Record属性的定义，参考NDEF标签技术规范《NFCForum-TS-NDE
 ## 技术类型定义
 NFC Tag有多种不同的技术类型，定义常量描述不同的技术类型。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 | **名称** | **值** |  **说明** |
 | -------- | -------- | -------- |
@@ -661,7 +661,7 @@ NFC Tag有多种不同的技术类型，定义常量描述不同的技术类型�
 ## TnfType<sup>9+</sup>
 NDEF Record的TNF(Type Name Field)类型值，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 | **名称** | **值** |  **说明** |
 | -------- | -------- | -------- |
@@ -676,7 +676,7 @@ NDEF Record的TNF(Type Name Field)类型值，参考NDEF标签技术规范《NFC
 ## NDEF Record RTD类型定义
 NDEF Record的RTD(Record Type Definition)类型值，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 | **名称** | **值** |  **说明** |
 | -------- | -------- | -------- |
@@ -686,7 +686,7 @@ NDEF Record的RTD(Record Type Definition)类型值，参考NDEF标签技术规�
 ## NfcForumType<sup>9+</sup>
 NFC Forum标准里面Tag类型的定义。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 | **名称** | **值** |  **说明** |
 | -------- | -------- | -------- |
@@ -699,7 +699,7 @@ NFC Forum标准里面Tag类型的定义。
 ## MifareClassicType<sup>9+</sup>
 MIFARE Classic标签类型的定义。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 | **名称** | **值** |  **说明** |
 | -------- | -------- | -------- |
@@ -711,7 +711,7 @@ MIFARE Classic标签类型的定义。
 ## MifareClassicSize<sup>9+</sup>
 MIFARE Classic标签存储大小的定义。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 | **名称** | **值** |  **说明** |
 | -------- | -------- | -------- |
@@ -723,7 +723,7 @@ MIFARE Classic标签存储大小的定义。
 ## MifareUltralightType<sup>9+</sup>
 MIFARE Ultralight标签类型的定义。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 | **名称** | **值** |  **说明** |
 | -------- | -------- | -------- |

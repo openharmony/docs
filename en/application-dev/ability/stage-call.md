@@ -2,9 +2,9 @@
 ## When to Use
 Ability call is an extension of the ability capability. It enables an ability to be invoked by and communicate with external systems. The ability invoked can be either started in the foreground or created and run in the background. You can use the ability call to implement data sharing between two abilities (caller ability and callee ability) through inter-process communication (IPC).
 
-The core API used for the ability call is `startAbilityByCall`, which differs from `startAbility` in the following ways:
- - `startAbilityByCall` supports ability startup in the foreground and background, whereas `startAbility` supports ability startup in the foreground only.
- - The caller ability can use the `Caller` object returned by `startAbilityByCall` to communicate with the callee ability, but `startAbility` does not provide the communication capability.
+The core API used for the ability call is **startAbilityByCall**, which differs from **startAbility** in the following ways:
+ - **startAbilityByCall** supports ability startup in the foreground and background, whereas **startAbility** supports ability startup in the foreground only.
+ - The caller ability can use the **Caller** object returned by **startAbilityByCall** to communicate with the callee ability, but **startAbility** does not provide the communication capability.
 
 Ability call is usually used in the following scenarios:
 - Communicating with the callee ability
@@ -15,17 +15,17 @@ Ability call is usually used in the following scenarios:
 |:------|:------|
 |Caller ability|Ability that triggers the ability call.|
 |Callee ability|Ability invoked by the ability call.|
-|Caller       |Object returned by `startAbilityByCall` and used by the caller ability to communicate with the callee ability.|
+|Caller       |Object returned by **startAbilityByCall** and used by the caller ability to communicate with the callee ability.|
 |Callee       |Object held by the callee ability to communicate with the caller ability.|
 |IPC          |Inter-process communication.|
 
 The ability call process is as follows:
- - The caller ability uses `startAbilityByCall` to obtain a `Caller` object and uses `call()` of the `Caller` object to send data to the callee ability.
- - The callee ability, which holds a `Callee` object, uses `on()` of the `Callee` object to register a callback. This callback is invoked when the callee ability receives data from the caller ability.
+ - The caller ability uses **startAbilityByCall** to obtain a **Caller** object and uses **call()** of the **Caller** object to send data to the callee ability.
+ - The callee ability, which holds a **Callee** object, uses **on()** of the **Callee** object to register a callback. This callback is invoked when the callee ability receives data from the caller ability.
 ![stage-call](figures/stage-call.png)
 
 > **NOTE**<br/>
-> The launch type of the callee ability must be `singleton`.
+> The launch type of the callee ability must be **singleton**.
 > Currently, only system applications can use the ability call.
 
 ## Available APIs
@@ -34,30 +34,29 @@ The table below describes the ability call APIs. For details, see [Ability](../r
 **Table 2** Ability call APIs
 |API|Description|
 |:------|:------|
-|startAbilityByCall(want: Want): Promise\<Caller>|Starts an ability in the foreground (through the `want` configuration) or background (default) and obtains the `Caller` object for communication with the ability. For details, see [AbilityContext](../reference/apis/js-apis-ability-context.md#abilitycontextstartabilitybycall) or [ServiceExtensionContext](../reference/apis/js-apis-service-extension-context.md#serviceextensioncontextstartabilitybycall).|
+|startAbilityByCall(want: Want): Promise\<Caller>|Starts an ability in the foreground (through the **want** configuration) or background (default) and obtains the **Caller** object for communication with the ability. For details, see [AbilityContext](../reference/apis/js-apis-ability-context.md#abilitycontextstartabilitybycall) or [ServiceExtensionContext](../reference/apis/js-apis-service-extension-context.md#serviceextensioncontextstartabilitybycall).|
 |on(method: string, callback: CalleeCallBack): void|Callback invoked when the callee ability registers a method.|
 |off(method: string): void|Callback invoked when the callee ability deregisters a method.|
 |call(method: string, data: rpc.Sequenceable): Promise\<void>|Sends agreed sequenceable data to the callee ability.|
 |callWithResult(method: string, data: rpc.Sequenceable): Promise\<rpc.MessageParcel>|Sends agreed sequenceable data to the callee ability and obtains the agreed sequenceable data returned by the callee ability.|
-|release(): void|Releases the `Caller` object.|
-|onRelease(callback: OnReleaseCallBack): void|Callback invoked when the `Caller` object is released.|
+|release(): void|Releases the **Caller** object.|
+|on(type: "release", callback: OnReleaseCallback): void|Callback invoked when the **Caller** object is released.|
 
 ## How to Develop
 The procedure for developing the ability call is as follows:
 1. Create a callee ability.
+
 2. Access the callee ability.
-> **NOTE**
->
-> The code snippets provided in the **How to Develop** section are used to show specific development steps. They may not be able to run independently.
+
 ### Creating a Callee Ability
-For the callee ability, implement the callback to receive data and the methods to marshal and unmarshal data. When data needs to be received, use `on()` to register a listener. When data does not need to be received, use `off()` to deregister the listener.
+For the callee ability, implement the callback to receive data and the methods to marshal and unmarshal data. When data needs to be received, use **on()** to register a listener. When data does not need to be received, use **off()** to deregister the listener.
 **1. Configure the ability launch type.**
 
-  Set `launchType` of the callee ability to `singleton` in the `module.json5` file.
+  Set **launchType** of the callee ability to **singleton** in the **module.json5** file.
 
 |JSON Field|Description|
 |:------|:------|
-|"launchType"|Ability launch type. Set this parameter to `singleton`.|
+|"launchType"|Ability launch type. Set this parameter to **singleton**.|
 
 An example of the ability configuration is as follows:
 ```json
@@ -73,7 +72,7 @@ An example of the ability configuration is as follows:
 ```
 **2. Import the Ability module.**
 ```ts
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 ```
 **3. Define the agreed sequenceable data.**
 
@@ -101,9 +100,9 @@ export default class MySequenceable {
     }
 }
 ```
-**4. Implement `Callee.on` and `Callee.off`.**
+**4. Implement Callee.on and Callee.off.**
 
-  The time to register a listener for the callee ability depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the `MSG_SEND_METHOD` listener is registered in `onCreate` of the ability and deregistered in `onDestroy`. After receiving sequenceable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The code snippet is as follows:
+  The time to register a listener for the callee ability depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate** of the ability and deregistered in **onDestroy**. After receiving sequenceable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The code snippet is as follows:
 ```ts
 const TAG: string = '[CalleeAbility]'
 const MSG_SEND_METHOD: string = 'CallSendMsg'
@@ -143,16 +142,16 @@ export default class CalleeAbility extends Ability {
 ### Accessing the Callee Ability
 **1. Import the Ability module.**
 ```ts
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 ```
-**2. Obtain the `Caller` object.**
+**2. Obtain the Caller object.**
 
-  The `context` attribute of the ability implements `startAbilityByCall` to obtain the `Caller` object for communication. The following example uses `this.context` to obtain the `context` attribute of the ability, uses `startAbilityByCall` to start the callee ability, obtain the `Caller` object, and register the `onRelease` listener of the caller ability. You need to implement processing based on service requirements. The code snippet is as follows:
+  The **context** attribute of the ability implements **startAbilityByCall** to obtain the **Caller** object for communication. The following example uses **this.context** to obtain the **context** attribute of the ability, uses **startAbilityByCall** to start the callee ability, obtain the **Caller** object, and register the **onRelease** listener of the caller ability. You need to implement processing based on service requirements. The code snippet is as follows:
 ```ts
 // Register the onRelease listener of the caller ability.
 private regOnRelease(caller) {
     try {
-        caller.onRelease((msg) => {
+        caller.on("release", (msg) => {
             console.log(`caller onRelease is called ${msg}`)
         })
         console.log('caller register OnRelease succeed')
@@ -193,7 +192,7 @@ async onButtonGetRemoteCaller() {
             caller = data
             console.log('get remote caller success')
             // Register the onRelease listener of the caller ability.
-            caller.onRelease((msg) => {
+            caller.on("release", (msg) => {
                 console.log(`remote caller onRelease is called ${msg}`)
             })
             console.log('remote caller register OnRelease succeed')
@@ -203,7 +202,7 @@ async onButtonGetRemoteCaller() {
     })
 }
 ```
-  Obtain the ID of the peer device from `DeviceManager`. Note that the `getTrustedDeviceListSync` API is open only to system applications. The code snippet is as follows:
+  Obtain the ID of the peer device from **DeviceManager**. Note that the **getTrustedDeviceListSync** API is open only to system applications. The code snippet is as follows:
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 var dmClass;
@@ -248,7 +247,7 @@ async onButtonCall() {
 }
 ```
 
-  In the following, `CallWithResult` is used to send data `originMsg` to the callee ability and assign the data processed by the `CallSendMsg` method to `backMsg`. The code snippet is as follows:
+  In the following, **CallWithResult** is used to send data **originMsg** to the callee ability and assign the data processed by the **CallSendMsg** method to **backMsg**. The code snippet is as follows:
 ```ts
 const MSG_SEND_METHOD: string = 'CallSendMsg'
 originMsg: string = ''
@@ -268,9 +267,9 @@ async onButtonCallWithResult(originMsg, backMsg) {
     }
 }
 ```
-**4. Release the `Caller` object.**
+**4. Release the Caller object.**
 
-  When the `Caller` object is no longer required, use `release()` to release it. The code snippet is as follows:
+  When the **Caller** object is no longer required, use **release()** to release it. The code snippet is as follows:
 ```ts
 releaseCall() {
     try {

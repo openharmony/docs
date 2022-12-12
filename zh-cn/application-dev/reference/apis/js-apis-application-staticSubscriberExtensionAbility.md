@@ -8,7 +8,7 @@ StaticSubscriberExtensionAbility模块提供静态订阅者ExtensionAbility的�
 > 本模块接口仅可在Stage模型下使用。
 ## 导入模块
 
-```
+```ts
 import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
 ```
 
@@ -30,7 +30,7 @@ onReceiveEvent(event: CommonEventData): void;
 
 **示例：**
     
-  ```js
+  ```ts
   var StaticSubscriberExtensionAbility = requireNapi("application.StaticSubscriberExtensionAbility")
   {
       onReceiveEvent(event){

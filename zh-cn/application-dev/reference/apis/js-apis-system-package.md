@@ -17,7 +17,7 @@ import package from '@system.package';
 
 
 ## package.hasInstalled<sup>(deprecated)</sup>
-> 从API version 9开始不再维护，推荐使用该模块[`@ohos.bundle.bundleManager`](js-apis-bundleManager.md)。
+> 从API version 9开始不再维护，推荐使用该模块[@ohos.bundle.bundleManager](js-apis-bundleManager.md)。
 
 hasInstalled(Object): void
 

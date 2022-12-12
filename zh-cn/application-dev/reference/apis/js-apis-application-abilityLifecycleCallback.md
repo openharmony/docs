@@ -4,13 +4,13 @@ AbilityLifecycleCallback模块提供应用上下文ApplicationContext的生命�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9 开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.AbilityLifecycleCallback](js-apis-app-ability-abilityLifecycleCallback.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
 
 ## 导入模块
 
-```js
+```ts
 import AbilityLifecycleCallback from "@ohos.application.AbilityLifecycleCallback";
 ```
 
@@ -43,7 +43,7 @@ onWindowStageCreate(ability: Ability, windowStage: window.WindowStage): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
-  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
 
 
 ## AbilityLifecycleCallback.onWindowStageActive
@@ -59,7 +59,7 @@ onWindowStageActive(ability: Ability, windowStage: window.WindowStage): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
-  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
 
 
 ## AbilityLifecycleCallback.onWindowStageInactive
@@ -75,7 +75,7 @@ onWindowStageInactive(ability: Ability, windowStage: window.WindowStage): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
-  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
 
 
 ## AbilityLifecycleCallback.onWindowStageDestroy
@@ -91,7 +91,7 @@ onWindowStageDestroy(ability: Ability, windowStage: window.WindowStage): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
-  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
 
 
 ## AbilityLifecycleCallback.onAbilityDestroy
@@ -156,7 +156,7 @@ onAbilityContinue(ability: Ability): void;
 **示例：**
     
 
-```js
+```ts
 import AbilityStage from "@ohos.application.AbilityStage";
 
 var lifecycleid;

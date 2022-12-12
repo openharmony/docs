@@ -33,7 +33,8 @@ JS FA应用的JS模块(entry/src/main/js/module)的典型开发目录结构如�
 - share目录用于配置多个实例共享的资源内容，比如：share中的图片和JSON文件可被default1和default2实例共享。
 
 > **说明：**
-> - i18n和resources是开发保留文件夹，不可重命名。
+>
+> - i18n和resources文件夹不可重命名。
 >
 >
 > - 如果share目录中的资源和实例(default)中的资源文件同名且目录一致时，实例中资源的优先级高于share中资源的优先级。

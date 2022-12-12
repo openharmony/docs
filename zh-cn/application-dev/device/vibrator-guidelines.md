@@ -22,7 +22,7 @@
 
 1. 控制设备上的振动器，需要申请权限ohos.permission.VIBRATE。具体配置方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。
 
-2. 根据指定振动效果和振动属性触发马达振动 。
+2. 根据指定振动效果和振动属性触发马达振动。
 
    ```js
    import vibrator from '@ohos.vibrator';
@@ -45,7 +45,7 @@
    }
    ```
 
-5.  按照指定模式停止马达的振动。 
+3. 按照指定模式停止马达的振动。 
 
    ```js
    import vibrator from '@ohos.vibrator';
@@ -61,7 +61,7 @@
    } catch (err) {
      console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
    }
-```
+   ```
    
    
 

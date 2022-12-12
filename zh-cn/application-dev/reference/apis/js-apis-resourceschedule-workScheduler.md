@@ -26,7 +26,7 @@ startWork(work: WorkInfo): void
 
 **参数**：
 
-| 名称  | 类型                    | 必填   | 说明             |
+| 参数名  | 类型                    | 必填   | 说明             |
 | ---- | --------------------- | ---- | -------------- |
 | work | [WorkInfo](#workinfo) | 是    | 指示要添加到执行队列的工作。 |
 
@@ -34,7 +34,7 @@ startWork(work: WorkInfo): void
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
@@ -77,7 +77,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 **参数**：
 
-| 名称        | 类型                    | 必填   | 说明         |
+| 参数名        | 类型                    | 必填   | 说明         |
 | ---------- | --------------------- | ---- | ---------- |
 | work       | [WorkInfo](#workinfo) | 是    | 指示要停止的工作。  |
 | needCancel | boolean               | 是    | 是否需要取消的工作。 |
@@ -86,7 +86,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
@@ -127,7 +127,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 **参数**：
 
-| 名称      | 类型                                    | 必填   | 说明                                       |
+| 参数名      | 类型                                    | 必填   | 说明                                       |
 | -------- | ------------------------------------- | ---- | ---------------------------------------- |
 | workId   | number                                | 是    | work的id。                                 |
 | callback | AsyncCallback\<[WorkInfo](#workinfo)> | 是    | 指定的callback回调方法。如果指定的工作Id有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。 |
@@ -136,7 +136,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
@@ -170,7 +170,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 **参数**：
 
-| 名称    | 类型     | 必填   | 说明       |
+| 参数名    | 类型     | 必填   | 说明       |
 | ------ | ------ | ---- | -------- |
 | workId | number | 是    | work的id。 |
 
@@ -184,7 +184,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
@@ -216,7 +216,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 **参数**：
 
-| 名称      | 类型                   | 必填   | 说明                              |
+| 参数名      | 类型                   | 必填   | 说明                              |
 | -------- | -------------------- | ---- | ------------------------------- |
 | callback | AsyncCallback\<void> | 是    | 指定的callback回调方法。返回与应用程序关联的所有工作。 |
 
@@ -230,7 +230,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
@@ -269,7 +269,7 @@ obtainAllWorks(): Promise<Array\<WorkInfo>>
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
@@ -300,7 +300,7 @@ stopAndClearWorks(): void
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
@@ -326,7 +326,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 **参数**：
 
-| 名称      | 类型                   | 必填   | 说明                                       |
+| 参数名      | 类型                   | 必填   | 说明                                       |
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | workId   | number               | 是    | work的id。                                 |
 | callback | AsyncCallback\<void> | 是    | 指定的callback回调方法。如果指定工作的最后一次执行是超时操作，则返回true；否则返回false。 |
@@ -341,7 +341,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
@@ -372,7 +372,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **参数**：
 
-| 名称    | 类型     | 必填   | 说明       |
+| 参数名    | 类型     | 必填   | 说明       |
 | ------ | ------ | ---- | -------- |
 | workId | number | 是    | work的id。 |
 
@@ -386,7 +386,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |

@@ -1,11 +1,26 @@
 # 性能打点跟踪开发指导
 
-## 场景介绍
+## 简介
 
-HiTraceMeter为开发者提供系统性能打点接口。开发者通过在自己的业务逻辑中的关键代码位置调用HiTraceMeter接口提供的API接口，能够有效跟踪进程轨迹、查看系统性能。
+hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自己的业务逻辑中的关键代码位置调用HiTraceMeter接口提供的API接口，能够有效跟踪进程轨迹、查看系统性能。
+
+## 基本概念
+
+- **hiTraceMeter Tag**
+
+  跟踪数据使用类别分类，称作hiTraceMeter Tag或hiTraceMeter Category，一般每个软件子系统对应一个Tag，该Tag在打点API中以类别Tag参数传入。hiTraceMeter命令行工具采集跟踪数据时，只采集给定的Tag类别选项指定的跟踪数据。
+
+## 实现原理
+
+- 应用程序通过hiTraceMeter函数接口进行打点，hiTraceMeter函数将跟踪数据通过内核sysfs文件接口输出到内核的ftrace数据缓冲区。
+- hiTraceMeter命令行工具读取内核ftrace缓冲区中的跟踪数据，将文本格式的跟踪数据保存到设备侧的文件中。
+
+## 约束与限制
+
+- 由于JS程序的异步IO特性，现在hiTraceMeter只提供了异步接口。
 
 ## 接口说明
- 
+
 性能打点跟踪接口由hiTraceMeter模块提供，详细API请参考[性能打点跟踪API参考](../reference/apis/js-apis-hitracemeter.md)。
 
 **性能打点跟踪接口功能介绍：**
@@ -65,5 +80,4 @@ HiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
    ```
 
 2. 运行项目，点击应用界面上的运行按钮，即可通过日志信息分析实际业务。
-
 

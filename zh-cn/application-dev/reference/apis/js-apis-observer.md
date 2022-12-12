@@ -531,9 +531,9 @@ SIM卡类型和状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.StateRegistry。
 
-| 名称            | 类型                  | 说明                                                         |
-| ----------------- | --------------------- | ------------------------------------------------------------ |
-| type  | [CardType](js-apis-sim.md#cardtype) | SIM卡类型，参考sim的[CardType](js-apis-sim.md#cardtype)。 |
-| state | [SimState](js-apis-sim.md#simstate) | SIM卡状态，参考sim的[SimState](js-apis-sim.md#simstate)。 |
-| reason<sup>8+</sup>       | [LockReason](#lockreason8) | SIM卡锁类型。 |
+|     名称            |                 类型                | 必填 | 说明                                                      |
+| ------------------- | ----------------------------------- | ---- | --------------------------------------------------------  |
+| type                | [CardType](js-apis-sim.md#cardtype) | 是   | SIM卡类型，参考sim的[CardType](js-apis-sim.md#cardtype)。 |
+| state               | [SimState](js-apis-sim.md#simstate) | 是   | SIM卡状态，参考sim的[SimState](js-apis-sim.md#simstate)。 |
+| reason<sup>8+</sup> | [LockReason](#lockreason8)          | 是   | SIM卡锁类型。                                             |
 

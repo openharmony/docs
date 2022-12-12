@@ -33,7 +33,7 @@
 
 故障管理是应用提升用户体验的重要手段。应用程序框架为开发者提供了故障监听、故障恢复、以及故障查询三种方式来管理应用的故障。
 
-- 故障监听指的是通过[errorManager](../reference/apis/js-apis-errorManager.md)注册[ErrorObserver](../reference/apis/js-apis-errorManager.md#errorobserver)，监听故障的发生，并通知到监听方。
+- 故障监听指的是通过[errorManager](../reference/apis/js-apis-application-errorManager.md)注册[ErrorObserver](../reference/apis/js-apis-application-errorManager.md#errorobserver)，监听故障的发生，并通知到监听方。
 
 - 故障恢复指的是[appRecovery](../reference/apis/js-apis-app-ability-appRecovery.md)，及故障发生后，将应用重启恢复到故障之前的状态。
 
@@ -41,8 +41,8 @@
 
 下图中并没有标记[faultLogger](../reference/apis/js-apis-faultLogger.md)的调用时机，开发者可以根据应用启动时传入的[LastExitReason](../reference/apis/js-apis-application-abilityConstant.md#abilityconstantlastexitreason)来决定是否调用[faultLogger](../reference/apis/js-apis-faultLogger.md)查询上次的故障信息。
 ![故障处理流程示意](./figures/20221106203527.png)
-这里建议应用开发者使用[errorManager](../reference/apis/js-apis-errorManager.md)对应用的异常进行处理，处理完成后开发者可以选择调用状态保存接口并主动重启应用。
-如果开发者没有注册[ErrorObserver](../reference/apis/js-apis-errorManager.md#errorobserver)也没有使能自动恢复，则按照系统的默认逻辑执行进程退出。用户可以选择从启动器再次打开应用。
+这里建议应用开发者使用[errorManager](../reference/apis/js-apis-application-errorManager.md)对应用的异常进行处理，处理完成后开发者可以选择调用状态保存接口并主动重启应用。
+如果开发者没有注册[ErrorObserver](../reference/apis/js-apis-application-errorManager.md#errorobserver)也没有使能自动恢复，则按照系统的默认逻辑执行进程退出。用户可以选择从启动器再次打开应用。
 如果开发者使能了自动恢复，框架会首先检查当前故障是否支持状态保存以及开发者是否配置了状态保存，如果支持则会回调[Ability](../reference/apis/js-apis-application-ability.md#ability)的[onSaveState](../reference/apis/js-apis-application-ability.md#abilityonsavestate)的接口。最后重启应用。
 
 ### 应用故障管理接口支持场景
@@ -94,7 +94,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant'
 
 #### 主动触发保存和恢复
 
-- 定义和注册[ErrorObserver](../reference/apis/js-apis-errorManager.md#errorobserver) callback
+- 定义和注册[ErrorObserver](../reference/apis/js-apis-application-errorManager.md#errorobserver) callback
 
 ```ts
   var registerId = -1;

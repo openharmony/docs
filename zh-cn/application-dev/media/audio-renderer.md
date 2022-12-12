@@ -255,8 +255,8 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
    let interruptMode : audio.InterruptMode = audio.InterruptMode.SHARE_MODE;
    await audioRenderer.setInterruptMode(interruptMode);
 
-   // 设置一个流的音量为10
-   let volume : number = 10;
+   // 设置一个流的音量为0.5
+   let volume : number = 0.5;
    await audioRenderer.setVolume(volume);
    ```
 

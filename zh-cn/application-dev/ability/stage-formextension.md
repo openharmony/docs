@@ -30,7 +30,7 @@ Stage卡片开发，即基于[Stage模型](stage-brief.md)的卡片提供方开�
 
 ## 接口说明
 
-FormExtension类拥有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-formextension.md)。
+FormExtension类拥有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formExtensionAbility.md)。
 
 **表1** FormExtension API接口功能介绍
 
@@ -44,7 +44,7 @@ FormExtension类拥有如下API接口，具体的API介绍详见[接口文档](.
 | onDestroy(formId: string): void                              | 卡片提供方接收销毁卡片的通知接口。           |
 | onConfigurationUpdated(config: Configuration): void;         | 当系统配置更新时调用。                       |
 
-FormExtension类还拥有成员context，为FormExtensionContext类，具体的API介绍详见[接口文档](../reference/apis/js-apis-formextensioncontext.md)。
+FormExtension类还拥有成员context，为FormExtensionContext类，具体的API介绍详见[接口文档](../reference/apis/js-apis-inner-application-formExtensionContext.md)。
 
 **表2** FormExtensionContext API接口功能介绍
 
@@ -53,7 +53,7 @@ FormExtension类还拥有成员context，为FormExtensionContext类，具体的A
 | startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void | 回调形式拉起一个卡片所属应用的Ability（系统接口，三方应用不支持调用）。 |
 | startAbility(want: Want): Promise&lt;void&gt;                | Promise形式拉起一个卡片所属应用的Ability（系统接口，三方应用不支持调用）。 |
 
-FormProvider类具体的API介绍详见[接口文档](../reference/apis/js-apis-formprovider.md)。
+FormProvider类具体的API介绍详见[接口文档](../reference/apis/js-apis-application-formProvider.md)。
 
 **表3** FormProvider API接口功能介绍
 

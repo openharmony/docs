@@ -32,7 +32,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **参数**：
 
-| 名称      | 类型                   | 必填   | 说明                             |
+| 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
 | reason   | string               | 是    | 延迟挂起申请的原因。                     |
 | callback | Callback&lt;void&gt; | 是    | 延迟即将超时的回调函数，一般在超时前6秒通过此回调通知应用。 |
@@ -47,7 +47,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
@@ -86,7 +86,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **参数**：
 
-| 名称       | 类型                          | 必填   | 说明                                       |
+| 参数名       | 类型                          | 必填   | 说明                                       |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
 | requestId | number                      | 是    | 延迟挂起的请求ID。                               |
 | callback  | AsyncCallback&lt;number&gt; | 是    | 指定的callback回调方法。用于返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
@@ -95,7 +95,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
@@ -137,7 +137,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **参数**：
 
-| 名称       | 类型     | 必填   | 说明         |
+| 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
 | requestId | number | 是    | 延迟挂起的请求ID。 |
 
@@ -151,7 +151,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
@@ -188,7 +188,7 @@ cancelSuspendDelay(requestId: number): void
 
 **参数**：
 
-| 名称       | 类型     | 必填   | 说明         |
+| 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
 | requestId | number | 是    | 延迟挂起的请求ID。 |
 
@@ -196,7 +196,7 @@ cancelSuspendDelay(requestId: number): void
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
@@ -231,9 +231,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **参数**：
 
-| 名称       | 类型                                 | 必填   | 说明                                       |
+| 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode) | 是    | 向系统申请的后台模式。                              |
 | wantAgent | [WantAgent](js-apis-wantAgent.md)  | 是    | 通知参数，用于指定长时任务通知点击后跳转的界面。                 |
 | callback  | AsyncCallback&lt;void&gt;          | 是    | callback形式返回启动长时任务的结果。                   |
@@ -242,7 +242,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
@@ -305,9 +305,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **参数**：
 
-| 名称       | 类型                                 | 必填   | 说明                                       |
+| 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode) | 是    | 向系统申请的后台模式。                              |
 | wantAgent | [WantAgent](js-apis-wantAgent.md)  | 是    | 通知参数，用于指定长时任务通知点击跳转的界面。                  |
 
@@ -321,7 +321,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
@@ -378,16 +378,16 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 **参数**：
 
-| 名称      | 类型                        | 必填   | 说明                                       |
+| 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback形式返回启动长时任务的结果。                   |
 
 **错误码**：
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
@@ -434,9 +434,9 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 **参数**：
 
-| 名称     | 类型      | 必填   | 说明                                       |
+| 参数名     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| context | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 
 **返回值**：
 
@@ -448,7 +448,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
@@ -492,7 +492,7 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 
 **参数**：
 
-| 名称     | 类型      | 必填   | 说明                                       |
+| 参数名     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
 | request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest) | 是    | 请求的必要信息。包括资源类型，超时时间等信息。详见[EfficiencyResourcesRequest](#efficiencyresourcesrequest)。 |
 
@@ -501,7 +501,7 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
@@ -544,7 +544,7 @@ resetAllEfficiencyResources(): void
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
@@ -580,7 +580,7 @@ try {
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| 名称                     | 值  | 描述                    |
+| 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
 | DATA_TRANSFER           | 1    | 数据传输。                  |
 | AUDIO_PLAYBACK          | 2    | 音频播放。                  |
@@ -617,7 +617,7 @@ try {
 
 **系统API**: 此接口为系统接口。
 
-| 名称                     | 值  | 描述                    |
+| 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
 | CPU                     | 1    | CPU资源，申请后不被挂起。             |
 | COMMON_EVENT            | 2    | 公共事件，申请后挂起状态下不被代理掉。  |

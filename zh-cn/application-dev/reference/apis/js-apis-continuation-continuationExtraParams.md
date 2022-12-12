@@ -12,7 +12,7 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.DistributedAbilityManager
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceType | Array\<string> | 是 | 是 | 表示设备类型。|
 | targetBundle | string | 是 | 是 | 表示目标包名。 |

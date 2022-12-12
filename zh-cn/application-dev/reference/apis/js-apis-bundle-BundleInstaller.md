@@ -27,7 +27,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名          | 类型                                                 | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| bundleFilePaths | Array&lt;string&gt;                                  | 是   | 指示存储hap包的沙箱路径。沙箱路径的获取方法参见[获取应用的沙箱路径](#获取应用的沙箱路径)|
+| bundleFilePaths | Array&lt;string&gt;                                  | 是   | 指示存储hap包的沙箱路径。沙箱路径的获取方法参见[获取应用的沙箱路径](#获取应用的沙箱路径)。|
 | param           | [InstallParam](#installparamdeprecated)                        | 是   | 指定安装所需的其他参数。                                     |
 | callback        | AsyncCallback&lt;[InstallStatus](#installstatusdeprecated)&gt; | 是   | 程序启动作为入参的回调函数，返回安装状态信息。               |
 
@@ -77,7 +77,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名     | 类型                                                 | 必填 | 说明                                           |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
-| bundleName | string                                               | 是   | 包名                                           |
+| bundleName | string                                               | 是   | 应用包名。                                           |
 | param      | [InstallParam](#installparamdeprecated)                        | 是   | 指定卸载所需的其他参数。                       |
 | callback   | AsyncCallback&lt;[InstallStatus](#installstatusdeprecated)&gt; | 是   | 程序启动作为入参的回调函数，返回安装状态信息。 |
 
@@ -183,7 +183,7 @@ bundle.getBundleInstaller().then(installer=>{
 | statusMessage | string                                                       | 是   | 否   | 表示安装或卸载的字符串结果信息。 |
 
 ## 获取应用的沙箱路径
-对于FA模型，应用的沙箱路径可以通过[Context](js-apis-Context.md)中的方法获取；对于Stage模型，应用的沙箱路径可以通过[Context](js-apis-ability-context.md#abilitycontext)中的属性获取。下面以获取沙箱文件路径为例。
+对于FA模型，应用的沙箱路径可以通过[Context](js-apis-inner-app-context.md)中的方法获取；对于Stage模型，应用的沙箱路径可以通过[Context](js-apis-ability-context.md#abilitycontext)中的属性获取。下面以获取沙箱文件路径为例。
 
 **示例：**
 ``` ts

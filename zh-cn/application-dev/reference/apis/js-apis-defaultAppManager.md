@@ -18,7 +18,7 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 | --------------------------------------- | ----------- | ---------------- |
 | ohos.permission.GET_DEFAULT_APPLICATION | system_core | 默认应用相关权限。 |
 
-权限等级参考[权限等级说明](../../security/accesstoken-overview.md#%E6%9D%83%E9%99%90%E7%AD%89%E7%BA%A7%E8%AF%B4%E6%98%8E)
+权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)
 
 
 ## defaultAppMgr.ApplicationType
@@ -29,14 +29,14 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 
 | 名称   | 值 | 说明                                   |
 | -------- | -------------------------------------- | -------------------------------------- |
-| BROWSER  | Web Browser | 默认浏览器。                            |
-| IMAGE    | Image Gallery | 默认图片查看器。                         |
-| AUDIO    | Audio Player | 默认音频播放器。                         |
-| VIDEO    | Video Player | 默认视频播放器。                         |
-| PDF      | PDF Viewer | 默认PDF文档查看器。                      |
-| WORD     | Word Viewer | 默认WORD文档查看器。                     |
-| EXCEL    | Excel Viewer | 默认EXCEL文档查看器。                    |
-| PPT      | PPT Viewer | 默认PPT文档查看器。                      |
+| BROWSER  | "Web Browser" | 默认浏览器。                            |
+| IMAGE    | "Image Gallery" | 默认图片查看器。                         |
+| AUDIO    | "Audio Player" | 默认音频播放器。                         |
+| VIDEO    | "Video Player" | 默认视频播放器。                         |
+| PDF      | "PDF Viewer" | 默认PDF文档查看器。                      |
+| WORD     | "Word Viewer" | 默认WORD文档查看器。                     |
+| EXCEL    | "Excel Viewer" | 默认EXCEL文档查看器。                    |
+| PPT      | "PPT Viewer" | 默认PPT文档查看器。                      |
 
 ## defaultAppMgr.isDefaultApplication
 

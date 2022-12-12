@@ -1,6 +1,9 @@
 # 启动一个Worker
 
 Worker是与主线程并行的独立线程。创建Worker的线程称之为宿主线程，Worker自身的线程称之为Worker线程。创建Worker传入的url文件在Worker线程中执行，可以处理耗时操作但不可以直接操作UI。
+
+Worker主要作用是为应用程序提供一个多线程的运行环境，可满足应用程序在执行过程中与主线程分离，在后台线程中运行一个脚本操作耗时操作，极大避免类似于计算密集型或高延迟的任务阻塞主线程的运行。由于Worker一旦被创建则不会主动被销毁，若不处于任务状态一直运行，在一定程度上会造成资源的浪费，应及时关闭空闲的Worker。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br/>
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -166,7 +169,7 @@ workerInstance.postMessage(buffer, [buffer]);
 
 on(type: string, listener: WorkerEventListener): void
 
-向Worker添加一个事件监听。
+向Worker添加一个事件监听，该接口与[addEventListener<sup>9+</sup>](#addeventlistener9)接口功能一致。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -216,7 +219,7 @@ workerInstance.once("alert", (e)=>{
 
 off(type: string, listener?: WorkerEventListener): void
 
-删除类型为type的事件监听。
+删除类型为type的事件监听，该接口与[removeEventListener<sup>9+</sup>](#removeeventlistener9)接口功能一致。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -231,6 +234,7 @@ off(type: string, listener?: WorkerEventListener): void
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
+//使用on接口、once接口或addEventListener接口创建“alert”事件，使用off接口删除事件。
 workerInstance.off("alert");
 ```
 
@@ -272,6 +276,13 @@ const workerInstance = new worker.ThreadWorker("workers/worker.js");
 workerInstance.onexit = function(e) {
     console.log("onexit");
 }
+
+//onexit被执行两种方式：
+//主线程：
+workerInstance.terminate();
+
+//worker线程：
+//parentPort.close()
 ```
 
 
@@ -318,7 +329,7 @@ Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worke
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
 workerInstance.onmessage = function(e) {
-    // e : MessageEvent<T>, 用法如下：
+    // e : MessageEvents, 用法如下：
     // let data = e.data;
     console.log("onmessage");
 }
@@ -355,7 +366,7 @@ workerInstance.onmessageerror= function(e) {
 
 addEventListener(type: string, listener: WorkerEventListener): void
 
-向Worker添加一个事件监听。
+向Worker添加一个事件监听，该接口与[on<sup>9+</sup>](#on9)接口功能一致。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -380,7 +391,7 @@ workerInstance.addEventListener("alert", (e)=>{
 
 removeEventListener(type: string, callback?: WorkerEventListener): void
 
-删除Worker的事件监听。
+删除Worker的事件监听，该接口与[off<sup>9+</sup>](#off9)接口功能一致。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -395,6 +406,9 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
+workerInstance.addEventListener("alert", (e)=>{
+    console.log("alert listener callback");
+})
 workerInstance.removeEventListener("alert");
 ```
 
@@ -423,7 +437,41 @@ dispatchEvent(event: Event): boolean
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
-workerInstance.dispatchEvent({type: "alert", timeStamp:0});
+//用法一:
+workerInstance.on("alert_on", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.once("alert_once", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.addEventListener("alert_add", (e)=>{
+    console.log("alert listener callback");
+})
+
+//once接口创建的事件执行一次便会删除。
+workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});
+//on接口创建的事件可以一直被分发，不能主动删除。
+workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
+workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
+//addEventListener接口创建的事件可以一直被分发，不能主动删除。
+workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
+workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
+
+//用法二:
+//event类型的type支持自定义，同时存在"message"/"messageerror"/"error"特殊类型，如下所示
+//当type = "message"，onmessage接口定义的方法同时会执行。
+//当type = "messageerror"，onmessageerror接口定义的方法同时会执行。
+//当type = "error"，onerror接口定义的方法同时会执行。
+//若调用removeEventListener接口或者off接口取消事件时，能且只能取消使用addEventListener/on/once创建的事件。
+
+workerInstance.addEventListener("message", (e)=>{
+    console.log("message listener callback");
+})
+workerInstance.onmessage = function(e) {
+    console.log("onmessage : message listener callback");
+}
+//调用dispatchEvent分发“message”事件，addEventListener和onmessage中定义的方法都会被执行。
+workerInstance.dispatchEvent({type:"message", timeStamp:0});
 ```
 
 
@@ -439,6 +487,9 @@ removeAllListener(): void
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
+workerInstance.addEventListener("alert", (e)=>{
+    console.log("alert listener callback");
+})
 workerInstance.removeAllListener();
 ```
 
@@ -515,7 +566,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessage<sup>9+</sup>
 
-onmessage?: (event: MessageEvents) =&gt; void
+onmessage?: (this: ThreadWorkerGlobalScope, event: MessageEvents) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -523,9 +574,10 @@ DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿
 
 **参数：**
 
-| 参数名 | 类型                             | 必填 | 说明                     |
-| ------ | -------------------------------- | ---- | ------------------------ |
-| event  | [MessageEvents](#messageevents9) | 是   | 收到宿主线程发送的数据。 |
+| 参数名 | 类型                                                 | 必填 | 说明                     |
+| ------ | ---------------------------------------------------- | ---- | ------------------------ |
+| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | 是   | 指向调用者对象。         |
+| event  | [MessageEvents](#messageevents9)                     | 是   | 收到宿主线程发送的数据。 |
 
 **示例：**
 
@@ -548,7 +600,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessageerror<sup>9+</sup>
 
-onmessageerror?: (event: MessageEvents) =&gt; void
+onmessageerror?: (this: ThreadWorkerGlobalScope, event: MessageEvents) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -558,6 +610,7 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 
 | 参数名 | 类型                             | 必填 | 说明       |
 | ------ | -------------------------------- | ---- | ---------- |
+| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | 是   | 指向调用者对象。         |
 | event  | [MessageEvents](#messageevents9) | 是   | 异常数据。 |
 
 **示例：**
@@ -572,7 +625,7 @@ const workerInstance = new worker.ThreadWorker("workers/worker.js");
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.workerPort;
-parentPort.onmessageerror= function(e) {
+parentPort.onmessageerror = function(e) {
     console.log("worker.js onmessageerror")
 }
 ```
@@ -796,7 +849,7 @@ workerInstance.postMessage(buffer, [buffer]);
 
 on(type: string, listener: EventListener): void
 
-向Worker添加一个事件监听。
+向Worker添加一个事件监听，该接口与[addEventListener<sup>(deprecated)</sup>](#addeventlistenerdeprecated)接口功能一致。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.on<sup>9+</sup>](#on9)替代。
@@ -852,7 +905,7 @@ workerInstance.once("alert", (e)=>{
 
 off(type: string, listener?: EventListener): void
 
-删除类型为type的事件监听。
+删除类型为type的事件监听，该接口与[removeEventListener<sup>(deprecated)</sup>](#removeeventlistenerdeprecated)接口功能一致。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.off<sup>9+</sup>](#off9)替代。
@@ -870,6 +923,7 @@ off(type: string, listener?: EventListener): void
 
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
+//使用on接口、once接口或addEventListener接口创建“alert”事件，使用off接口删除事件。
 workerInstance.off("alert");
 ```
 
@@ -917,6 +971,13 @@ const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.onexit = function(e) {
     console.log("onexit");
 }
+
+//onexit被执行两种方式：
+//主线程：
+workerInstance.terminate();
+
+//worker线程：
+//parentPort.close()
 ```
 
 
@@ -949,7 +1010,7 @@ workerInstance.onerror = function(e) {
 
 ### onmessage<sup>(deprecated)</sup>
 
-onmessage?: (event: MessageEvent\<T>) =&gt; void
+onmessage?: (event: MessageEvent) =&gt; void
 
 Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worker通过parentPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
 
@@ -960,16 +1021,16 @@ Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worke
 
 **参数：**
 
-| 参数名 | 类型                                    | 必填 | 说明                   |
-| ------ | --------------------------------------- | ---- | ---------------------- |
-| event  | [MessageEvent&lt;T&gt;](#messageeventt) | 是   | 收到的Worker消息数据。 |
+| 参数名 | 类型                           | 必填 | 说明                   |
+| ------ | ------------------------------ | ---- | ---------------------- |
+| event  | [MessageEvent](#messageeventt) | 是   | 收到的Worker消息数据。 |
 
 **示例：**
 
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.onmessage = function(e) {
-    // e : MessageEvent<T>, 用法如下：
+    // e : MessageEvent, 用法如下：
     // let data = e.data;
     console.log("onmessage");
 }
@@ -978,7 +1039,7 @@ workerInstance.onmessage = function(e) {
 
 ### onmessageerror<sup>(deprecated)</sup>
 
-onmessageerror?: (event: MessageEvent\<T>) =&gt; void
+onmessageerror?: (event: MessageEvent) =&gt; void
 
 Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
 
@@ -989,9 +1050,9 @@ Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被
 
 **参数：**
 
-| 参数名 | 类型                                    | 必填 | 说明       |
-| ------ | --------------------------------------- | ---- | ---------- |
-| event  | [MessageEvent&lt;T&gt;](#messageeventt) | 是   | 异常数据。 |
+| 参数名 | 类型                           | 必填 | 说明       |
+| ------ | ------------------------------ | ---- | ---------- |
+| event  | [MessageEvent](#messageeventt) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -1011,7 +1072,7 @@ workerInstance.onmessageerror= function(e) {
 
 addEventListener(type: string, listener: EventListener): void
 
-向Worker添加一个事件监听。
+向Worker添加一个事件监听，该接口与[on<sup>(deprecated)</sup>](#ondeprecated)接口功能一致。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[addEventListener<sup>9+</sup>](#addeventlistener9)替代。
@@ -1039,7 +1100,7 @@ workerInstance.addEventListener("alert", (e)=>{
 
 removeEventListener(type: string, callback?: EventListener): void
 
-删除Worker的事件监听。
+删除Worker的事件监听，该接口与[off<sup>(deprecated)</sup>](#offdeprecated)接口功能一致。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[removeEventListener<sup>9+</sup>](#removeeventlistener9)替代。
@@ -1057,6 +1118,9 @@ removeEventListener(type: string, callback?: EventListener): void
 
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.addEventListener("alert", (e)=>{
+    console.log("alert listener callback");
+})
 workerInstance.removeEventListener("alert");
 ```
 
@@ -1088,10 +1152,43 @@ dispatchEvent(event: Event): boolean
 
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
-workerInstance.dispatchEvent({type:"alert"});
+
+//用法一:
+workerInstance.on("alert_on", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.once("alert_once", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.addEventListener("alert_add", (e)=>{
+    console.log("alert listener callback");
+})
+
+//once接口创建的事件执行一次便会删除。
+workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});
+//on接口创建的事件可以一直被分发，不能主动删除。
+workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
+workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
+//addEventListener接口创建的事件可以一直被分发，不能主动删除。
+workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
+workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
+
+//用法二:
+//event类型的type支持自定义，同时存在"message"/"messageerror"/"error"特殊类型，如下所示
+//当type = "message"，onmessage接口定义的方法同时会执行。
+//当type = "messageerror"，onmessageerror接口定义的方法同时会执行。
+//当type = "error"，onerror接口定义的方法同时会执行。
+//若调用removeEventListener接口或者off接口取消事件时，能且只能取消使用addEventListener/on/once创建的事件。
+
+workerInstance.addEventListener("message", (e)=>{
+    console.log("message listener callback");
+})
+workerInstance.onmessage = function(e) {
+    console.log("onmessage : message listener callback");
+}
+//调用dispatchEvent分发“message”事件，addEventListener和onmessage中定义的方法都会被执行。
+workerInstance.dispatchEvent({type:"message", timeStamp:0});
 ```
-
-
 ### removeAllListener<sup>(deprecated)</sup>
 
 removeAllListener(): void
@@ -1107,6 +1204,9 @@ removeAllListener(): void
 
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.addEventListener("alert", (e)=>{
+    console.log("alert listener callback");
+})
 workerInstance.removeAllListener();
 ```
 
@@ -1189,7 +1289,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessage<sup>(deprecated)</sup>
 
-onmessage?: (event: MessageEvent\<T>) =&gt; void
+onmessage?: (this: DedicatedWorkerGlobalScope, event: MessageEvent) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -1200,9 +1300,10 @@ DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿
 
 **参数：**
 
-| 参数名 | 类型                                    | 必填 | 说明                     |
-| ------ | --------------------------------------- | ---- | ------------------------ |
-| event  | [MessageEvent&lt;T&gt;](#messageeventt) | 是   | 收到宿主线程发送的数据。 |
+| 参数名 | 类型                                                         | 必填 | 说明                     |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------ |
+| this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。         |
+| event  | [MessageEvent](#messageeventt)                               | 是   | 收到宿主线程发送的数据。 |
 
 **示例：**
 
@@ -1224,7 +1325,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessageerror<sup>(deprecated)</sup>
 
-onmessageerror?: (event: MessageEvent\<T>) =&gt; void
+onmessageerror?: (this: DedicatedWorkerGlobalScope, event: MessageEvent) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -1235,9 +1336,10 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 
 **参数：**
 
-| 参数名 | 类型                              | 必填 | 说明       |
-| ------ | --------------------------------- | ---- | ---------- |
-| event  | [MessageEvent&lt;T&gt;](#messageeventt) | 是   | 异常数据。 |
+| 参数名 | 类型                           | 必填 | 说明       |
+| ------ | ------------------------------ | ---- | ---------- |
+| this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。 |
+| event  | [MessageEvent](#messageeventt) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -1250,7 +1352,7 @@ const workerInstance = new worker.Worker("workers/worker.js");
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
-parentPort.onmessageerror= function(e) {
+parentPort.onmessageerror = function(e) {
     console.log("worker.js onmessageerror")
 }
 ```
@@ -1467,6 +1569,7 @@ Actor并发模型的交互原理：各个Actor并发地处理主线程任务，�
 - 主动销毁Worker可以调用新创建Worker对象的terminate()或parentPort.close()方法。
 - 自API version 9版本开始，若Worker处于已经销毁或正在销毁等非运行状态时，调用其功能接口，会抛出相应的BusinessError。
 - Worker的创建和销毁耗费性能，建议管理已创建的Worker并重复使用。
+- 创建Worker工程时，new worker.Worker构造函数和new worker.ThreadWorker构造函数不能同时使用，否则将导致工程中Worker的功能异常。自API version 9版本开始，建议使用[new worker.ThreadWorker](#constructor9)构造函数，在API version 8及之前的版本，建议使用[new worker.Worker](#constructordeprecated)构造函数。
 
 ## 完整示例
 > **说明：**<br/>
@@ -1596,3 +1699,4 @@ build-profile.json5 配置:
     }
   }
 ```
+<!--no_check-->

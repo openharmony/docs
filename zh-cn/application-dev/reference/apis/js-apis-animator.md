@@ -72,7 +72,7 @@ reset(options: AnimatorOptions): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | Internal error. |
+| 100001    | If no page is found for pageId or fail to get object property list. |
 
 
 **示例：**

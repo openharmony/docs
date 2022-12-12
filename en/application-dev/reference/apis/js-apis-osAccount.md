@@ -37,7 +37,7 @@ Enumerates the OS account types.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name  | Default Value| Description        |
+| Name  | Value| Description        |
 | ------ | ------ | ----------- |
 | ADMIN  | 0      | Administrator account|
 | NORMAL | 1      | Normal account  |
@@ -154,7 +154,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
 | Name  | Type                        | Mandatory| Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, multiple OS accounts are supported. If **false** is returned, multiple OS accounts are not supported.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
 
 **Error codes**
 
@@ -191,7 +191,7 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
 
 | Type                  | Description                                                       |
 | :--------------------- | :--------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, multiple OS accounts are supported. If **false** is returned, multiple OS accounts are not supported.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
 
 **Error codes**
 
@@ -220,7 +220,7 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
 
 Checks whether an OS account is activated. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -229,7 +229,7 @@ Checks whether an OS account is activated. This API uses an asynchronous callbac
 | Name  | Type                        | Mandatory| Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
 | localId  | number                       | Yes  | ID of the target OS account.                                            |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, the account is activated. If **false** is returned, the account is not activated.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the account is activated; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -277,7 +277,7 @@ Checks whether an OS account is activated. This API uses a promise to return the
 
 | Type                  | Description                                                      |
 | ---------------------- | ---------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the account is activated. If **false** is returned, the account is not activated.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the account is activated; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -309,7 +309,7 @@ checkConstraintEnabled(localId: number, constraint: string, callback: AsyncCallb
 
 Checks whether the specified constraint is enabled for an OS account. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -319,7 +319,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 | ---------- | ---------------------------- | ---- | ----------------------------------------------------------------- |
 | localId    | number                       | Yes  | ID of the target OS account.                                |
 | constraint | string                       | Yes  | [Constraint](#constraints) to check.                               |
-| callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, the constraint is enabled. If **false** is returned, the constraint is not enabled.|
+| callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -369,7 +369,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 | Type                  | Description                                                                 |
 | --------------------- | --------------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the constraint is enabled. If **false** is returned, the constraint is not enabled.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -408,7 +408,7 @@ Checks whether this OS account is a test account. This API uses an asynchronous 
 
 | Name  | Type                        | Mandatory| Description                                                                  |
 | -------- | ---------------------------- | ---- | --------------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, the account is a test account. If **false** is returned, the account is not a test account.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the account is a test account; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -445,7 +445,7 @@ Checks whether this OS account is a test account. This API uses a promise to ret
 
 | Type                  | Description                                                                     |
 | ---------------------- | ------------------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the account is a test account. If **false** is returned, the account is not a test account.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the account is a test account; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -482,7 +482,7 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
 
 | Name  | Type                        | Mandatory| Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, the account has been verified. If **false** is returned, the account has not been verified.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If true is returned, the current account has been verified. If false is returned, the current account has not been verified.|
 
 **Error codes**
 
@@ -523,8 +523,8 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 
 | Name  | Type                        | Mandatory| Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| localId  | number                       | No  | ID of the target OS account.                             |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, the account has been verified. If **false** is returned, the account has not been verified.|
+| localId  | number                       | Yes  | ID of the target OS account.                             |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -572,7 +572,7 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 | Type                  | Description                                                              |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the account has been verified. If **false** is returned, the account has not been verified.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -814,7 +814,7 @@ Sets a name for an OS account. This API uses an asynchronous callback to return 
 | Name   | Type                     | Mandatory| Description                                            |
 | :-------- | ------------------------- | ---- | ----------------------------------------------- |
 | localId   | number                    | Yes  | ID of the target OS account.              |
-| localName | string                    | Yes  | Account name to set. The value cannot exceed 1024 characters.                         |
+| localName | string                    | Yes  | Account name. The value cannot exceed 1024 characters.                         |
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1918,7 +1918,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 getOsAccountType(): Promise&lt;OsAccountType&gt;
 
-Obtains the type of the OS account to which the current process belongs. This API uses a promise to return the result.
+Obtains the type of the account to which the current process belongs. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -2130,7 +2130,7 @@ Sets a profile photo for an OS account. This API uses an asynchronous callback t
 | -------- | ------------------------- | ---- | ------------ |
 | localId  | number                    | Yes  | ID of the target OS account.|
 | photo    | string                    | Yes  | Profile photo information.  |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -2381,7 +2381,7 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 
 on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&gt;): void
 
-Subscribes to OS account changes. This API uses a callback to return the result.
+Subscribes to the OS account activation states, including the states of the account being activated and the account with activation completed. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2393,9 +2393,9 @@ Subscribes to OS account changes. This API uses a callback to return the result.
 
 | Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** means an event indicating that an OS account is activated, and **activating** means an event indicating that an OS account is being activated.|
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** indicates an event reported when the OS account activation is complete, and **activating** indicates an event reported when OS account is being activated.|
 | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes.          |
-| callback | Callback&lt;number&gt;     | Yes  | Callback invoked to return the OS account ID and status changes.   |
+| callback | Callback&lt;number&gt;     | Yes  | Callback invoked to return the ID of the OS account being activated or activated.   |
 
 **Error codes**
 
@@ -2423,7 +2423,7 @@ Subscribes to OS account changes. This API uses a callback to return the result.
 
 off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number&gt;): void
 
-Unsubscribes from OS account changes. This API uses a callback to return the result.
+Unsubscribes from the OS account activation states, including the states of the account being activated and the account with activation completed. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2437,7 +2437,7 @@ Unsubscribes from OS account changes. This API uses a callback to return the res
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'activate' \| 'activating' | Yes  | Type of the event to unsubscribe from. The value **activate** means an event indicating that an OS account is activated, and **activating** means an event indicating that an OS account is being activated.|
 | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes, and must be the same as the value passed by **on()**.|
-| callback | Callback&lt;number&gt;     | No  | Callback for OS account changes. By default, **0** is returned.                     |
+| callback | Callback&lt;number&gt;     | No  | Callback to unregister. By default, **0** is returned.                     |
 
 **Error codes**
 
@@ -2725,7 +2725,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
 | Name  | Type                        | Mandatory| Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, multiple OS accounts are supported. If **false** is returned, multiple OS accounts are not supported.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
 
 **Example**
 
@@ -2756,7 +2756,7 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
 
 | Type                  | Description                                                      |
 | :--------------------- | :--------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, multiple OS accounts are supported. If **false** is returned, multiple OS accounts are not supported.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
 
 **Example**
 
@@ -2789,7 +2789,7 @@ Checks whether an OS account is activated. This API uses an asynchronous callbac
 | Name  | Type                        | Mandatory| Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
 | localId  | number                       | Yes  | ID of the target OS account.                                           |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, the account is activated. If **false** is returned, the account is not activated.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the account is activated; the value **false** means the opposite.|
 
 **Example**: Check whether OS account 100 is activated.
 
@@ -2829,7 +2829,7 @@ Checks whether an OS account is activated. This API uses a promise to return the
 
 | Type                  | Description                                                       |
 | --------------------- | ----------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the account is activated. If **false** is returned, the account is not activated.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the account is activated; the value **false** means the opposite.|
 
 **Example**: Check whether OS account 100 is activated.
 
@@ -2863,7 +2863,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 | ---------- | ---------------------------- | ---- | ----------------------------------------------------------------- |
 | localId    | number                       | Yes  | ID of the target OS account.                                |
 | constraint | string                       | Yes  | [Constraint](#constraints) to check.                               |
-| callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, the constraint is enabled. If **false** is returned, the constraint is not enabled.|
+| callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite.|
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
@@ -2905,7 +2905,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 | Type                  | Description                                                                  |
 | ---------------------- | --------------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the constraint is enabled. If **false** is returned, the constraint is not enabled.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite.|
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
@@ -2936,7 +2936,7 @@ Checks whether this OS account is a test account. This API uses an asynchronous 
 
 | Name  | Type                        | Mandatory| Description                                                                  |
 | -------- | ---------------------------- | ---- | --------------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, the account is a test account. If **false** is returned, the account is not a test account.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the account is a test account; the value **false** means the opposite.|
 
 **Example**
 
@@ -2967,7 +2967,7 @@ Checks whether this OS account is a test account. This API uses a promise to ret
 
 | Type                  | Description                                                                     |
 | ---------------------- | ------------------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the account is a test account. If **false** is returned, the account is not a test account.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the account is a test account; the value **false** means the opposite.|
 
 **Example**
 
@@ -2998,7 +2998,7 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
 
 | Name  | Type                        | Mandatory| Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, the account has been verified. If **false** is returned, the account has not been verified.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
 
 **Example**
 
@@ -3031,8 +3031,8 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 
 | Name  | Type                        | Mandatory| Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| localId  | number                       | No  | ID of the target OS account.                            |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, the account has been verified. If **false** is returned, the account has not been verified.|
+| localId  | number                       | Yes  | ID of the target OS account.                            |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
 
 **Example**
 
@@ -3072,7 +3072,7 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 | Type                  | Description                                                              |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the account has been verified. If **false** is returned, the account has not been verified.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
 
 **Example**
 
@@ -3337,7 +3337,7 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 | Type                 | Description                                   |
 | :-------------------- | :------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the OS account ID obtained.|
+| Promise&lt;number&gt; | Promise used to return the ID of the OS account associated with the domain account.|
 
 **Example**
 
@@ -3985,7 +3985,7 @@ Obtains the executor property based on the request. This API uses a promise to r
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;): void;
+setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): void;
 
 Sets the property for the initialization algorithm. This API uses an asynchronous callback to return the result.
 
@@ -4000,7 +4000,7 @@ Sets the property for the initialization algorithm. This API uses an asynchronou
 | Name   | Type                                                 | Mandatory| Description                                                                   |
 | -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------------------------- |
 | request  | [SetPropertyRequest](#setpropertyrequest8)| Yes  | Request information, including the authentication credential type and the key value to set.                                  |
-| callback | AsyncCallback&lt;number&gt;                           | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a [result code](#resultcode8). Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;                           | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -4018,9 +4018,12 @@ Sets the property for the initialization algorithm. This API uses an asynchronou
     setInfo: new Uint8Array([0])
   };
   try {
-    userAuth.setProperty(request, (err, result) => {
-        console.log('setProperty error = ' + JSON.stringify(err));
-        console.log('setProperty result = ' + JSON.stringify(result));
+    userAuth.setProperty(request, (err) => {
+      if (err) {
+        console.log('setProperty failed, error = ' + JSON.stringify(err));
+      } else {
+        console.log('setProperty successfully');
+      }
     });
   } catch (e) {
     console.log('setProperty exception = ' + JSON.stringify(e));
@@ -4029,7 +4032,7 @@ Sets the property for the initialization algorithm. This API uses an asynchronou
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
+setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
 
 Sets the property for the initialization algorithm. This API uses a promise to return the result.
 
@@ -4049,7 +4052,7 @@ Sets the property for the initialization algorithm. This API uses a promise to r
 
 | Type                 | Description                                                          |
 | :-------------------- | :------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise used to return the [result code](#resultcode8).|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -4067,10 +4070,10 @@ Sets the property for the initialization algorithm. This API uses a promise to r
     setInfo: new Uint8Array([0])
   };
   try {
-    userAuth.setProperty(request).then((result) => {
-      console.log('setProperty result = ' + JSON.stringify(result));
+    userAuth.setProperty(request).then(() => {
+      console.log('setProperty successfully');
     }).catch((err) => {
-      console.log('setProperty error = ' + JSON.stringify(err));
+      console.log('setProperty failed, error = ' + JSON.stringify(err));
     });
   } catch (e) {
     console.log('setProperty exception = ' + JSON.stringify(e));
@@ -4081,7 +4084,7 @@ Sets the property for the initialization algorithm. This API uses a promise to r
 
 auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;
 
-Performs authentication for the current user. This API uses a callback to return the result.
+Performs authentication of the current user. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -4139,7 +4142,7 @@ Performs authentication for the current user. This API uses a callback to return
 
 authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;
 
-Performs authentication for a user. This API uses an asynchronous callback to return the result.
+Performs authentication of the specified user. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -4493,7 +4496,7 @@ Updates credential information. This API uses a callback to return the result.
 
 | Name          | Type                                 | Mandatory| Description                    |
 | --------------- | ------------------------------------- | --- | ------------------------- |
-| credentialInfo  | [CredentialInfo](#credentialinfo8)    | Yes | New credential information.                   |
+| credentialInfo  | [CredentialInfo](#credentialinfo8)    | Yes | New credential information.            |
 | callback        | [IIdmCallback](#iidmcallback8)        | Yes | Callback invoked to return the new credential information.|
 
 **Error codes**
@@ -4701,7 +4704,7 @@ Obtains authentication information. This API uses an asynchronous callback to re
 
 | Name   | Type                                                                    | Mandatory| Description                                                |
 | -------- | ------------------------------------------------------------------------ | ---- | --------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the credential information obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is information about all registered credentials of the user. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -4974,7 +4977,7 @@ Called to return the result code and request result information.
 | Name    | Type                                   | Mandatory| Description                    |
 | --------- | --------------------------------------- | ---- | ----------------------- |
 | result    | number                                  | Yes  | Authentication result code.   |
-| extraInfo | [AuthResult](#authresult8)  | Yes  | Specific information to be transferred.|
+| extraInfo | [RequestResult](#requestresult8)  | Yes  | Specific information to be transferred.|
 
 **Example**
   ```js
@@ -5124,7 +5127,7 @@ Enumerates the types of properties to obtain.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name          | Default Value| Description     |
+| Name          | Value| Description     |
 | ------------- | ------ | --------- |
 | AUTH_SUB_TYPE | 1      | Authentication credential subtype.|
 | REMAIN_TIMES  | 2      | Remaining time.  |
@@ -5138,7 +5141,7 @@ Enumerates the types of properties to set.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name          | Default Value| Description       |
+| Name          | Value| Description       |
 | -------------- | ----- | ----------- |
 | INIT_ALGORITHM | 1     | Initialization algorithm.|
 
@@ -5150,7 +5153,7 @@ Enumerates the authentication credential types.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name | Default Value| Description            |
+| Name | Value| Description            |
 | ----- | ----- | ---------------- |
 | PIN   | 1     | PIN authentication.|
 | FACE  | 2     | Facial authentication.|
@@ -5163,7 +5166,7 @@ Enumerates the authentication credential subtypes.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name      | Default Value| Description              |
+| Name      | Value| Description              |
 | ---------- | ----- | ------------------ |
 | PIN_SIX    | 10000 | Six-digit PIN.      |
 | PIN_NUMBER | 10001 | Custom PIN.|
@@ -5179,7 +5182,7 @@ Enumerates the trust levels of the authentication result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name | Default Value| Description       |
+| Name | Value| Description       |
 | ---- | ------ | ----------- |
 | ATL1 | 10000  | Trust level 1.|
 | ATL2 | 20000  | Trust level 2.|
@@ -5194,7 +5197,7 @@ Enumerates the modules from which information is obtained.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name      | Default Value| Description                    |
+| Name      | Value| Description                    |
 | --------- | ------ | ------------------------ |
 | FACE_AUTH | 1      | Facial authentication module.|
 
@@ -5206,7 +5209,7 @@ Enumerates the authentication result codes.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name                   | Default Value| Description                                    |
+| Name                   | Value| Description                                    |
 | ----------------------- | ----- | ---------------------------------------- |
 | SUCCESS                 | 0     | The authentication is successful or the authentication feature is supported.            |
 | FAIL                    | 1     | The authentication executor failed to identify the user.                  |
@@ -5228,7 +5231,7 @@ Enumerates the tip codes for facial authentication.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name                         | Default Value| Description                                    |
+| Name                         | Value| Description                                    |
 | ----------------------------- | ----- | ---------------------------------------- |
 | FACE_AUTH_TIP_TOO_BRIGHT      | 1     | The obtained face image is too bright.        |
 | FACE_AUTH_TIP_TOO_DARK        | 2     | The obtained face image is too dark.      |
@@ -5250,7 +5253,7 @@ Enumerates the tip codes for fingerprint authentication.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name                         | Default Value| Description                                           |
+| Name                         | Value| Description                                           |
 | ----------------------------- | ----- | ----------------------------------------------- |
 | FINGERPRINT_TIP_GOOD          | 0     | The captured image is clear.                             |
 | FINGERPRINT_TIP_IMAGER_DIRTY  | 1     | The fingerprint image has big noise due to dirt on the sensor.|
@@ -5381,10 +5384,9 @@ Enumerates the constraint sources.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name  | Default Value| Description        |
+| Name  | Value| Description        |
 | ------ | ------ | ------------ |
 | CONSTRAINT_NOT_EXIST  | 0      | The constraint does not exist.|
 | CONSTRAINT_TYPE_BASE | 1      | Constraint from system settings.  |
 | CONSTRAINT_TYPE_DEVICE_OWNER  | 2   | Constraint from the device owners' settings.  |
 | CONSTRAINT_TYPE_PROFILE_OWNER  | 3  | Constraint from the profile owners' settings.  |
-

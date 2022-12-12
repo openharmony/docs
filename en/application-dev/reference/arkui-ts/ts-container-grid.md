@@ -12,7 +12,7 @@ The **\<Grid>** component consists of cells formed by rows and columns. You can 
 This component contains the child component **[\<GridItem>](ts-container-griditem.md)**.
 
 
-## Interface
+## APIs
 
 Grid(scroller?: Scroller)
 
@@ -35,7 +35,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | scrollBarColor | string \| number \| Color              | Color of the scrollbar.|
 | scrollBarWidth | string \| number    | Width of the scrollbar.|
 | cachedCount | number                                   | Number of grid items to be preloaded. For details, see [Minimizing White Blocks During Swiping](../../ui/ui-ts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<br>Default value: **1**|
-| editMode <sup>8+</sup>                   | boolean | Whether to enter editing mode. In editing mode, the user can drag the **\<[GridItem](ts-container-griditem.md)>** in the **\<Grid>** component.<br>Default value: **false**|
+| editMode <sup>8+</sup>                   | boolean | Whether to enter editing mode. In editing mode, the user can drag the **[\<GridItem>](ts-container-griditem.md)** in the **\<Grid>** component.<br>Default value: **false** |
 | layoutDirection<sup>8+</sup>             | [GridDirection](#griddirection8) | Main axis direction of the grid.<br>Default value: **GridDirection.Row**|
 | maxCount<sup>8+</sup> | number  | When **layoutDirection** is **Row** or **RowReverse**: maximum number of columns that can be displayed.<br>When **layoutDirection** is **Column** or **ColumnReverse**: maximum number of rows that can be displayed.<br>Default value: **Infinity**|
 | minCount<sup>8+</sup> | number  | When **layoutDirection** is **Row** or **RowReverse**: minimum number of columns that can be displayed.<br>When **layoutDirection** is **Column** or **ColumnReverse**: maximum number of rows that can be displayed.<br>Default value: **1**|
@@ -47,21 +47,21 @@ Depending on the settings of the **rowsTemplate** and **columnsTemplate** attrib
 
 1. **rowsTemplate** and **columnsTemplate** are both set
 
-The **\<Grid>** displays only elements in a fixed number of rows and columns and cannot be scrolled. For example, if both **rowsTemplate** and **columnsTemplate** are set to **"1fr 1fr"**, only four elements (two rows and two columns) are displayed.
+   The **\<Grid>** displays only elements in a fixed number of rows and columns and cannot be scrolled. For example, if both **rowsTemplate** and **columnsTemplate** are set to **"1fr 1fr"**, only four elements (two rows and two columns) are displayed.
 
-In this mode, the following attributes do not take effect: **layoutDirection**, **maxCount**, minCount, and **cellLength**.
+   In this mode, the following attributes do not take effect: **layoutDirection**, **maxCount**, minCount, and **cellLength**.
 
 2. Either **rowsTemplate** or **columnsTemplate** is set
 
-The **\<Grid>** arranges elements in the specified direction and allows for scrolling to display excess elements. For example, if the **\<Grid>** has 10 elements and **columnsTemplate** is set to **"1fr 1fr 1fr"**, it contains three columns. The elements are arranged in the same direction as the main axis runs down the columns. Elements outside the **\<Grid>** area can be viewed through scrolling.
+   The **\<Grid>** arranges elements in the specified direction and allows for scrolling to display excess elements. For example, if the **\<Grid>** has 10 elements and **columnsTemplate** is set to **"1fr 1fr 1fr"**, it contains three columns. The elements are arranged in the same direction as the main axis runs down the columns. Elements outside the **\<Grid>** area can be viewed through scrolling.
 
-In this mode, the following attributes do not take effect: **layoutDirection**, **maxCount**, **minCount**, and **cellLength**.
+   In this mode, the following attributes do not take effect: **layoutDirection**, **maxCount**, **minCount**, and **cellLength**.
 
 3. Neither **rowsTemplate** nor **columnsTemplate** is set
 
-The **\<Grid>** arranges elements in the direction specified by **layoutDirection **. The number of columns is jointly determined by the grid width, width of the first element, **minCount**, **maxCount**, and **columnsGap**. The number of rows is jointly determined by the grid height, height of the first element, **cellLength**, and **rowsGap**. Elements outside the determined range of rows and columns are not displayed and cannot be viewed through scrolling.
+   The **\<Grid>** arranges elements in the direction specified by **layoutDirection **. The number of columns is jointly determined by the grid width, width of the first element, **minCount**, **maxCount**, and **columnsGap**. The number of rows is jointly determined by the grid height, height of the first element, **cellLength**, and **rowsGap**. Elements outside the determined range of rows and columns are not displayed and cannot be viewed through scrolling.
 
-In this mode, only the following attributes take effect: **layoutDirection**, **maxCount**, **minCount**, **cellLength**, **editMode**, **columnsGap**, and **rowsGap**.
+   In this mode, only the following attributes take effect: **layoutDirection**, **maxCount**, **minCount**, **cellLength**, **editMode**, **columnsGap**, and **rowsGap**.
 
 ## GridDirection<sup>8+</sup>
 

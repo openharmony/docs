@@ -32,7 +32,7 @@ showToast(options: ShowToastOptions): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | Internal error. |
+| 100001    | If UI execution context not found. |
 
 **示例：**
 
@@ -88,7 +88,7 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | Internal error. |
+| 100001    | If UI execution context not found. |
 
 **示例：**
 
@@ -142,7 +142,7 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | Internal error. |
+| 100001    | If UI execution context not found. |
 
 **示例：**
 
@@ -181,11 +181,11 @@ try {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                       | 必填   | 说明                                       |
-| ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title   | string\| [Resource](../arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 否    | 标题文本。                                    |
-| message | string\| [Resource](../arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 否    | 内容文本。                                    |
-| buttons | Array                                    | 否    | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-3个按钮。其中第一个为positiveButton；第二个为negativeButton；第三个为neutralButton。 |
+| 名称    | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| title   | string\| [Resource](../arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 否   | 标题文本。                                                   |
+| message | string\| [Resource](../arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 否   | 内容文本。                                                   |
+| buttons | [[Button](#button),[Button](#button)?,[Button](#button)?]    | 否   | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-3个按钮。其中第一个为positiveButton；第二个为negativeButton；第三个为neutralButton。 |
 
 ## ShowDialogSuccessResponse 
 
@@ -193,9 +193,9 @@ try {
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型     | 说明                  |
-| ----- | ------ | ------------------- |
-| index | number | 选中按钮在buttons数组中的索引。 |
+| 名称  | 类型   | 必填 | 说明                            |
+| ----- | ------ | ---- | ------------------------------- |
+| index | number | 否   | 选中按钮在buttons数组中的索引。 |
 
 ## promptAction.showActionMenu
 
@@ -218,7 +218,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | Internal error. |
+| 100001    | If UI execution context not found. |
 
 **示例：**
 
@@ -276,7 +276,7 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | Internal error. |
+| 100001    | If UI execution context not found. |
 
 **示例：**
 
@@ -314,10 +314,10 @@ try {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
-| 名称      | 类型                                       | 必填   | 说明                                       |
-| ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title   | string\| [Resource](../arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 否    | 标题文本。                                    |
-| buttons | Array&lt;[Button](#button)&gt;           | 是    | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
+| 名称    | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| title   | string\| [Resource](../arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 否   | 标题文本。                                                   |
+| buttons | [[Button](#button),[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?] | 是   | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
 
 ## ActionMenuSuccessResponse
 

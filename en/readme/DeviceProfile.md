@@ -2,7 +2,9 @@
 
 ## Introduction<a name="section11660541593"></a>
 
-DeviceProfile is used to manage device hardware capabilities and system software features. A typical device profile includes the device type, device name, OS type, and OS version. By allowing quick access to local and remote device profiles, DeviceProfile lays the foundation for initiating distributed services. It provides the following features:
+DeviceProfile is used to manage device hardware capabilities and system software features. A typical device profile includes the device type, device name, OS type, and OS version.
+
+By allowing quick access to local and remote device profiles, DeviceProfile lays the foundation for initiating distributed services. It provides the following features:
 
 -   Querying, inserting, and deleting local device profile information
 -   Querying remote device profile information
@@ -23,28 +25,28 @@ The main code directory structure of DeviceProfile is as follows:
 
 ```
 ├── interfaces
-│   └── innerkits
-│       └── distributeddeviceprofile            // Internal APIs
+│   └── innerkits
+│       └── distributeddeviceprofile            // innerkits APIs
 ├── ohos.build
 ├── sa_profile                                  // SAID profile
-│   ├── 6001.xml
-│   └── BUILD.gn
-├── services
-│   └── distributeddeviceprofile
-│       ├── BUILD.gn
-│       ├── include
-│       │   ├── contentsensor                   // Header file for content sensor data collection
-│       │   ├── dbstorage                       // Header file for database operations
-│       │   ├── devicemanager                   // Header file for device management
-│       │   └── subscribemanager                // Header file for subscription management
-│       ├── src
-│       │   ├── contentsensor                   // Implementation of content sensor data collection
-│       │   ├── dbstorage                       // Implementation of database operations
-│       │   ├── devicemanager                   // Implementation of device management
-│       │   ├── subscribemanager                // Implementation of subscription management
-│       └── test                                // Test cases
-└── tools
-    └── dp                                      // Auxiliary test tool
+│   ├── 6001.xml
+│   └── BUILD.gn
+└── services
+    └── distributeddeviceprofile
+        ├── BUILD.gn
+        ├── include
+        │   ├── authority                       // Permission verification
+        │   ├── contentsensor                   // Header file for content sensor data collection
+        │   ├── dbstorage                       // Header file for database operations
+        │   ├── devicemanager                   // Header file for device management
+        │   └── subscribemanager                // Header file for subscription management
+        ├── src
+        │   ├── authority                       // Permission verification
+        │   ├── contentsensor                   // Implementation of content sensor data collection
+        │   ├── dbstorage                       // Implementation of database operations
+        │   ├── devicemanager                   // Implementation of device management
+        │   └── subscribemanager                // Implementation of subscription management
+        └── test                                // Test cases
 ```
 
 ## Constraints<a name="section1718733212019"></a>
@@ -58,11 +60,11 @@ The main code directory structure of DeviceProfile is as follows:
 
 * Parameters of GetDeviceProfile
 
-| Name| Type| Mandatory| Description|
+| Name     | Type                         | Mandatory| Description                               |
 | --------- | ---------------------------- | ---- | ----------------------------------- |
-| deviceId  | std::string                  | Yes| ID of the device whose profile is to be queried. A null value indicates the local device.|
-| serviceId | std::string                  | Yes| Service ID (ID of the service data record).|
-| profile   | ServiceCharacteristicProfile | Yes| Return value.|
+| deviceId  | std::string                  | Yes  | ID of the device whose profile is to be queried. A null value indicates the local device.|
+| serviceId | std::string                  | Yes  | Service ID (ID of the service data record).   |
+| profile   | ServiceCharacteristicProfile | Yes  | Return value.                              |
 
 * Example
 
@@ -79,9 +81,9 @@ result.append("jsonData:" + jsonData + "\n");
 
 * Parameters of PutDeviceProfile
 
-| Name| Type| Mandatory| Description|
+| Name     | Type                         | Mandatory| Description                               |
 | --------- | ---------------------------- | ---- | ----------------------------------- |
-| profile   | ServiceCharacteristicProfile | Yes| Profile information to insert.|
+| profile   | ServiceCharacteristicProfile | Yes  | Profile information to insert.               |
 
 * Example
 
@@ -102,9 +104,9 @@ DistributedDeviceProfileClient::GetInstance().PutDeviceProfile(profile);
 
 * Parameters of DeleteDeviceProfile
 
-| Name| Type| Mandatory| Description|
+| Name     | Type                         | Mandatory| Description                               |
 | --------- | ---------------------------- | ---- | ----------------------------------- |
-| serviceId | std::string                  | Yes| ID of the service record to delete.|
+| serviceId | std::string                  | Yes  | ID of the service record to delete.             |
 
 * Example
 
@@ -119,10 +121,10 @@ DistributedDeviceProfileClient::GetInstance().DeleteDeviceProfile(serviceId);
 
 * Parameters of SyncDeviceProfile
 
-| Name| Type| Mandatory| Description|
+| Name     | Type                         | Mandatory| Description                               |
 | --------- | ---------------------------- | ---- | ----------------------------------- |
-| syncOption| SyncOption                   | Yes| Synchronization mode and range.|
-| syncCb    | IProfileEventCallback        | Yes| Callback used to return the synchronization result.|
+| syncOption| SyncOption                   | Yes  | Synchronization mode and range.                   |
+| syncCb    | IProfileEventCallback        | Yes  | Callback used to return the synchronization result.                        |
 
 * Example
 
@@ -142,11 +144,11 @@ DistributedDeviceProfileClient::GetInstance().SyncDeviceProfile(syncOption,
 
 * Parameters of SubscribeProfileEvents
 
-| Name| Type| Mandatory| Description|
+| Name          | Type                         | Mandatory| Description                               |
 | -------------- | ---------------------------- | ---- | ----------------------------------- |
-| subscribeInfos | SubscribeInfo                | Yes| Type of the event to subscribe to.|
-| eventCb        | IProfileEventCallback        | Yes| Callback for the subscribed event.|
-| failedEvents   | ProfileEvent                 | Yes| Failure event.|
+| subscribeInfos | SubscribeInfo                | Yes  | Type of the event to subscribe to.                   |
+| eventCb        | IProfileEventCallback        | Yes  | Callback for the subscribed event.                        |
+| failedEvents   | ProfileEvent                 | Yes  | Failure event.                            |
 
 * Example
 
@@ -178,7 +180,6 @@ profileEvents.emplace_back(ProfileEvent::EVENT_PROFILE_CHANGED);
 failedEvents.clear();
 // Cancel the subscription.
 DistributedDeviceProfileClient::GetInstance().UnsubscribeProfileEvents(profileEvents, callback, failedEvents);
-    callback, failedEvents);
 ```
 
 ## Repositories Involved<a name="section176111311166"></a>

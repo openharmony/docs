@@ -18,13 +18,13 @@
 
 首先，提供了支撑OpenHarmony应用的两个重要框架：
 
-- 应用程序的框架：[Ability开发](ability/fa-brief.md)
+- 应用程序的框架：[应用模型](application-models/application-model-composition.md)
 - UI的框架：[UI开发](ui/arkui-overview.md)
 
 所有应用都应该在这两个框架的基础之上进行功能的开发。
 
 在此基础上，还提供了如下功能的开发指导：
-- [公共事件与通知](notification/notification-brief.md)
+- [通知](notification/notification-overview.md)
 - [窗口管理](windowmanager/window-overview.md)
 - [WebGL](webgl/webgl-overview.md)
 - [媒体](media/audio-overview.md)
@@ -35,9 +35,9 @@
 - [任务管理](task-management/background-task-overview.md)
 - [设备管理](device/usb-overview.md)
 - [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)
-- [DFX](dfx/hiappevent-overview.md)
+- [DFX](dfx/hiappevent-guidelines.md)
 - [国际化](internationalization/international-overview.md)
-- [应用测试](application-test/Readme-CN.md)
+- [应用测试](application-test/arkxtest-guidelines.md)
 - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
 - [Native API的相关指导](napi/napi-guidelines.md)
 
@@ -63,7 +63,7 @@ API参考提供了OpenHarmony全量组件和接口的参考文档，可以帮助
 
 - [JS服务卡片UI组件参考](reference/js-service-widget-ui/Readme-CN.md)
 
-- [接口参考（JS及TS API）](reference/apis/js-apis-DataUriUtils.md)
+- [接口参考（JS及TS API）](reference/apis/js-apis-ability-dataUriUtils.md)
 
 - 接口参考（Native API）
     - [OpenHarmony Native API](reference/native-apis/_o_h___native_x_component.md)

@@ -28,11 +28,11 @@ class MainAbility extends Ability {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | abilityInfo | AbilityInfo | 是 | 否 | Abilityinfo相关信息 |
 | currentHapModuleInfo | HapModuleInfo | 是 | 否 | 当前hap包的信息 |
-| config | [Configuration](js-apis-configuration.md) | 是 | 否 | 表示配置信息。 |
+| config | [Configuration](js-apis-application-configuration.md) | 是 | 否 | 表示配置信息。 |
 
 ## AbilityContext.startAbility
 
@@ -46,32 +46,15 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -112,33 +95,16 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md)  | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动Ability所携带的参数。 |
+| want | [Want](js-apis-application-want.md)  | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](js-apis-application-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **错误码：**
 
-| 错误码ID | 错误信息
+| 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -182,8 +148,8 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](js-apis-application-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
@@ -195,25 +161,8 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -257,32 +206,15 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | 是 | 执行结果回调函数。 |
+| want |[Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -324,33 +256,16 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | 是 | 执行结果回调函数。 |
+| want |[Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](js-apis-application-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -396,39 +311,22 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](js-apis-application-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Promise形式返回执行结果。 |
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise形式返回执行结果。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -475,7 +373,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | callback | AsyncCallback\<AbilityResult\> | 是 | 启动Ability的回调函数，返回Ability结果。 |
 
@@ -483,26 +381,8 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -550,35 +430,17 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-application-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -629,9 +491,9 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-application-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
@@ -643,26 +505,8 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -709,25 +553,15 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -770,24 +604,14 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -832,7 +656,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
@@ -840,15 +664,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -894,26 +711,15 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -956,22 +762,15 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1014,21 +813,14 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1073,7 +865,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
@@ -1081,16 +873,8 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1136,23 +920,15 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1200,12 +976,8 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1241,12 +1013,8 @@ terminateSelf(): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1274,19 +1042,15 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| parameter | [AbilityResult](js-apis-featureAbility.md#abilityresult) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回停止结果。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1333,7 +1097,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| parameter | [AbilityResult](js-apis-featureAbility.md#abilityresult) | 是 | 返回给startAbilityForResult&nbsp;调用方的信息。 |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给startAbilityForResult&nbsp;调用方的信息。 |
 
 **返回值：**
 
@@ -1345,12 +1109,8 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 
 **示例：**
@@ -1399,8 +1159,8 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| options | [ConnectOptions](js-apis-featureAbility.md#connectoptions) | 否 | 远端对象实例。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | 远端对象实例。 |
 
 **返回值：**
 
@@ -1412,13 +1172,8 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1461,9 +1216,9 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| options | [ConnectOptions](js-apis-featureAbility.md#connectoptions) | 否 | 远端对象实例。 |
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | 远端对象实例。 |
 
 **返回值：**
 
@@ -1475,14 +1230,8 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000006 | Can not cross user operations. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1517,8 +1266,6 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1535,17 +1282,13 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000003 | Input error. The specified id does not exist. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
   ```ts
-  // connection为connectAbility中的返回值
+  // connection为connectServiceExtensionAbility中的返回值
   var connection = 1;
 
   try {
@@ -1574,8 +1317,6 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1587,12 +1328,8 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000003 | Input error. The specified id does not exist. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1626,11 +1363,13 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
+| want | [Want](js-apis-application-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
 
 **返回值：**
 
@@ -1721,7 +1460,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
@@ -1729,26 +1468,8 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1795,35 +1516,17 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。|
-| options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-application-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1873,34 +1576,16 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-application-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1946,7 +1631,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | permissions | Array&lt;string&gt; | 是 | 权限列表。 |
-| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **示例：**
 
@@ -1977,7 +1662,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;Permis
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;[PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)&gt; | 返回一个Promise，包含接口的结果。 |
 
 **示例：**
 
@@ -2148,7 +1833,7 @@ restoreWindowStage(localStorage: LocalStorage) : void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| localStorage | image.LocalStorage | 是 | 用于恢复window stage的存储数据。 |
+| localStorage | LocalStorage | 是 | 用于恢复window stage的存储数据。 |
 
 **示例：**
 

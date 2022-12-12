@@ -45,8 +45,8 @@ Called to initialize the service logic when an ability is created.
   | param | AbilityConstant.LaunchParam | Yes| Parameters for starting the ability, and the reason for the last abnormal exit.| 
 
 **Example**
-    
-  ```js
+
+  ```ts
   class myAbility extends Ability {
       onCreate(want, param) {
           console.log('onCreate, want:' + want.abilityName);
@@ -71,7 +71,7 @@ Called when a **WindowStage** is created for this ability.
 
 **Example**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onWindowStageCreate(windowStage) {
           console.log('onWindowStageCreate');
@@ -90,7 +90,7 @@ Called when the **WindowStage** is destroyed for this ability.
 
 **Example**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onWindowStageDestroy() {
           console.log('onWindowStageDestroy');
@@ -115,7 +115,7 @@ Called when the **WindowStage** is restored during the migration of this ability
 
 **Example**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onWindowStageRestore(windowStage) {
           console.log('onWindowStageRestore');
@@ -134,7 +134,7 @@ Called when this ability is destroyed to clear resources.
 
 **Example**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onDestroy() {
           console.log('onDestroy');
@@ -153,7 +153,7 @@ Called when this ability is switched from the background to the foreground.
 
 **Example**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onForeground() {
           console.log('onForeground');
@@ -172,7 +172,7 @@ Called when this ability is switched from the foreground to the background.
 
 **Example**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onBackground() {
           console.log('onBackground');
@@ -203,7 +203,7 @@ Called to save data during the ability migration preparation process.
 
 **Example**
     
-  ```js
+  ```ts
   import AbilityConstant from "@ohos.application.AbilityConstant"
   class myAbility extends Ability {
       onContinue(wantParams) {
@@ -232,7 +232,7 @@ Called when the ability startup mode is set to singleton.
 
 **Example**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onNewWant(want) {
           console.log('onNewWant, want:' + want.abilityName);
@@ -257,7 +257,7 @@ Called when the configuration of the environment where the ability is running is
 
 **Example**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onConfigurationUpdated(config) {
           console.log('onConfigurationUpdated, config:' + JSON.stringify(config));
@@ -281,7 +281,7 @@ Dumps client information.
 
 **Example**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       dump(params) {
           console.log('dump, params:' + JSON.stringify(params));
@@ -306,7 +306,7 @@ Called when the system has decided to adjust the memory level. For example, this
 
 **Example**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
     onMemoryLevel(level) {
         console.log('onMemoryLevel, level:' + JSON.stringify(level));
@@ -315,11 +315,46 @@ Called when the system has decided to adjust the memory level. For example, this
   ```
 
 
+## Ability.onSaveState
+
+onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any}): AbilityConstant.OnSaveResult;
+
+Called when the framework saves the ability state in the case of an application fault if automatic saving is enabled. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md).  
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | reason | [AbilityConstant.StateType](js-apis-application-abilityConstant.md#abilityconstantstatetype) | Yes| Reason for triggering the callback to save the ability state.|
+  | wantParam | {[key:&nbsp;string]:&nbsp;any} | Yes| **want** parameter.|
+
+**Return value**
+
+  | Type| Description|
+  | -------- | -------- |
+  | AbilityConstant.OnSaveResult | Whether the ability state is saved.|
+
+**Example**
+
+  ```js
+import AbilityConstant from '@ohos.application.AbilityConstant'
+
+class myAbility extends Ability {
+    onSaveState(reason, wantParam) {
+        console.log('onSaveState');
+        wantParam["myData"] = "my1234567";
+        return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
+    }
+}
+  ```
+
+
 
 ## Caller
 
 Implements sending of sequenceable data to the target ability when an ability (caller ability) invokes the target ability (callee ability).
-
 
 ## Caller.call
 
@@ -342,54 +377,65 @@ Sends sequenceable data to the target ability.
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return a response.| 
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16200002 | Callee invalid. The callee does not exist. |
+| 16000050 | Internal Error. |
+
 **Example**
     
-  ```js
-  import Ability from '@ohos.application.Ability';
+  ```ts
+  import Ability from '@ohos.app.ability.UIAbility';
   class MyMessageAble{ // Custom sequenceable data structure
-      name:""
-      str:""
-      num: 1
-      constructor(name, str) {
-        this.name = name;
-        this.str = str;
-      }
-      marshalling(messageParcel) {
-          messageParcel.writeInt(this.num);
-          messageParcel.writeString(this.str);
-          console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
-          return true;
-      }
-      unmarshalling(messageParcel) {
-          this.num = messageParcel.readInt();
-          this.str = messageParcel.readString();
-          console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
-          return true;
-      }
+    name:""
+    str:""
+    num: 1
+    constructor(name, str) {
+      this.name = name;
+      this.str = str;
+    }
+    marshalling(messageParcel) {
+      messageParcel.writeInt(this.num);
+      messageParcel.writeString(this.str);
+      console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
+      return true;
+    }
+    unmarshalling(messageParcel) {
+      this.num = messageParcel.readInt();
+      this.str = messageParcel.readString();
+      console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
+      return true;
+    }
   };
   var method = 'call_Function'; // Notification message string negotiated by the two abilities
   var caller;
   export default class MainAbility extends Ability {
-      onWindowStageCreate(windowStage) {
-        this.context.startAbilityByCall({
-            bundleName: "com.example.myservice",
-            abilityName: "MainAbility",
-            deviceId: ""
-        }).then((obj) => {
-            caller = obj;
-            let msg = new MyMessageAble(1, "world"); // See the definition of Sequenceable.
-            caller.call(method, msg)
-                .then(() => {
-                    console.log('Caller call() called');
-                }).catch((e) => {
-                console.log('Caller call() catch error ' + e);
-            });
-            console.log('Caller GetCaller Get ' + caller);
-        }).catch((e) => {
-            console.log('Caller GetCaller error ' + e);
-        });
-      }
-      
+    onWindowStageCreate(windowStage) {
+      this.context.startAbilityByCall({
+        bundleName: "com.example.myservice",
+        abilityName: "MainAbility",
+        deviceId: ""
+      }).then((obj) => {
+        caller = obj;
+        let msg = new MyMessageAble("msg", "world"); // See the definition of Sequenceable.
+        caller.call(method, msg)
+          .then(() => {
+            console.log('Caller call() called');
+          })
+          .catch((callErr) => {
+            console.log('Caller.call catch error, error.code: ' + JSON.stringify(callErr.code) +
+              ' error.message: ' + JSON.stringify(callErr.message));
+          });
+      }).catch((err) => {
+        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
+          ' error.message: ' + JSON.stringify(err.message));
+      });
+    }
   }
   ```
 
@@ -415,55 +461,67 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
   | -------- | -------- |
   | Promise&lt;rpc.MessageParcel&gt; | Promise used to return the sequenceable data from the target ability.| 
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16200002 | Callee invalid. The callee does not exist. |
+| 16000050 | Internal Error. |
+
 **Example**
-    
-  ```js
-  import Ability from '@ohos.application.Ability';
+
+  ```ts
+  import Ability from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
-      name:""
-      str:""
-      num: 1
-      constructor(name, str) {
-        this.name = name;
-        this.str = str;
-      }
-      marshalling(messageParcel) {
-          messageParcel.writeInt(this.num);
-          messageParcel.writeString(this.str);
-          console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
-          return true;
-      }
-      unmarshalling(messageParcel) {
-          this.num = messageParcel.readInt();
-          this.str = messageParcel.readString();
-          console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
-          return true;
-      }
+    name:""
+    str:""
+    num: 1
+    constructor(name, str) {
+      this.name = name;
+      this.str = str;
+    }
+    marshalling(messageParcel) {
+      messageParcel.writeInt(this.num);
+      messageParcel.writeString(this.str);
+      console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
+      return true;
+    }
+    unmarshalling(messageParcel) {
+      this.num = messageParcel.readInt();
+      this.str = messageParcel.readString();
+      console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
+      return true;
+    }
   };
   var method = 'call_Function';
   var caller;
   export default class MainAbility extends Ability {
-      onWindowStageCreate(windowStage) {
-        this.context.startAbilityByCall({
-            bundleName: "com.example.myservice",
-            abilityName: "MainAbility",
-            deviceId: ""
-        }).then((obj) => {
-            caller = obj;
-            let msg = new MyMessageAble(1, "world");
-            caller.callWithResult(method, msg)
-                .then((data) => {
-                    console.log('Caller callWithResult() called');
-                    let retmsg = new MyMessageAble(0, "");
-                    data.readSequenceable(retmsg);
-                }).catch((e) => {
-                console.log('Caller callWithResult() catch error ' + e);
-            });
-            console.log('Caller GetCaller Get ' + caller);
-        }).catch((e) => {
-            console.log('Caller GetCaller error ' + e);
-        });
-      }
+    onWindowStageCreate(windowStage) {
+      this.context.startAbilityByCall({
+        bundleName: "com.example.myservice",
+        abilityName: "MainAbility",
+        deviceId: ""
+      }).then((obj) => {
+        caller = obj;
+        let msg = new MyMessageAble(1, "world");
+        caller.callWithResult(method, msg)
+          .then((data) => {
+            console.log('Caller callWithResult() called');
+            let retmsg = new MyMessageAble(0, "");
+            data.readSequenceable(retmsg);
+          })
+          .catch((callErr) => {
+            console.log('Caller.callWithResult catch error, error.code: ' + JSON.stringify(callErr.code) +
+              ' error.message: ' + JSON.stringify(callErr.message));
+          });
+      }).catch((err) => {
+        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
+          ' error.message: ' + JSON.stringify(err.message));
+      });
+    }
   }
   ```
 
@@ -476,36 +534,46 @@ Releases the caller interface of the target ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | Invalid input parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16200002 | Callee invalid. The callee does not exist. |
+| 16000050 | Internal Error. |
+
 **Example**
     
-  ```js
-  import Ability from '@ohos.application.Ability';
+  ```ts
+  import Ability from '@ohos.app.ability.UIAbility';
   var caller;
   export default class MainAbility extends Ability {
-      onWindowStageCreate(windowStage) {
-        this.context.startAbilityByCall({
-            bundleName: "com.example.myservice",
-            abilityName: "MainAbility",
-            deviceId: ""
-        }).then((obj) => {
-            caller = obj;
-            try {
-                caller.release();
-            } catch (e) {
-                console.log('Caller Release error ' + e);
-            }
-            console.log('Caller GetCaller Get ' + caller);
-        }).catch((e) => {
-            console.log('Caller GetCaller error ' + e);
-        });
-      }
+    onWindowStageCreate(windowStage) {
+      this.context.startAbilityByCall({
+        bundleName: "com.example.myservice",
+        abilityName: "MainAbility",
+        deviceId: ""
+      }).then((obj) => {
+        caller = obj;
+        try {
+          caller.release();
+        } catch (releaseErr) {
+          console.log('Caller.release catch error, error.code: ' + JSON.stringify(releaseErr.code) +
+            ' error.message: ' + JSON.stringify(releaseErr.message));
+        }
+      }).catch((err) => {
+        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
+          ' error.message: ' + JSON.stringify(err.message));
+      });
+    }
   }
   ```
 
 
-## Caller.onRelease
+## Caller.on
 
-onRelease(callback: OnReleaseCallBack): void;
+ on(type: "release", callback: OnReleaseCallback): void;
 
 Registers a callback that is invoked when the stub on the target ability is disconnected.
 
@@ -515,33 +583,43 @@ Registers a callback that is invoked when the stub on the target ability is disc
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is fixed at **release**.| 
   | callback | OnReleaseCallBack | Yes| Callback used for the **onRelease** API.| 
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | Invalid input parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
 
 **Example**
     
-  ```js
-  import Ability from '@ohos.application.Ability';
+  ```ts
+  import Ability from '@ohos.app.ability.UIAbility';
   var caller;
   export default class MainAbility extends Ability {
-      onWindowStageCreate(windowStage) {
-        this.context.startAbilityByCall({
-            bundleName: "com.example.myservice",
-            abilityName: "MainAbility",
-            deviceId: ""
-        }).then((obj) => {
-            caller = obj;
-            try {
-                caller.onRelease((str) => {
-                    console.log(' Caller OnRelease CallBack is called ' + str);
-                });
-            } catch (e) {
-                console.log('Caller Release error ' + e);
-            }
-            console.log('Caller GetCaller Get ' + caller);
-        }).catch((e) => {
-            console.log('Caller GetCaller error ' + e);
-        });
-      }
+    onWindowStageCreate(windowStage) {
+      this.context.startAbilityByCall({
+        bundleName: "com.example.myservice",
+        abilityName: "MainAbility",
+        deviceId: ""
+      }).then((obj) => {
+          caller = obj;
+          try {
+            caller.on("release", (str) => {
+                console.log(' Caller OnRelease CallBack is called ' + str);
+            });
+          } catch (error) {
+            console.log('Caller.on catch error, error.code: ' + JSON.stringify(error.code) +
+              ' error.message: ' + JSON.stringify(error.message));
+          }
+      }).catch((err) => {
+        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
+          ' error.message: ' + JSON.stringify(err.message));
+      });
+    }
   }
   ```
 
@@ -549,7 +627,6 @@ Registers a callback that is invoked when the stub on the target ability is disc
 ## Callee
 
 Implements callbacks for caller notification registration and deregistration.
-
 
 ## Callee.on
 
@@ -566,10 +643,18 @@ Registers a caller notification callback, which is invoked when the target abili
   | method | string | Yes| Notification message string negotiated between the two abilities.| 
   | callback | CalleeCallBack | Yes| JS notification synchronization callback of the **rpc.MessageParcel** type. The callback must return at least one empty **rpc.Sequenceable** object. Otherwise, the function execution fails.| 
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | Invalid input parameter. |
+| 16200004 | Method registered. The method has registered. |
+| 16000050 | Internal Error. |
+
 **Example**
-    
-  ```js
-  import Ability from '@ohos.application.Ability';
+
+  ```ts
+  import Ability from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
       name:""
       str:""
@@ -599,13 +684,17 @@ Registers a caller notification callback, which is invoked when the target abili
       return new MyMessageAble(10, "Callee test");
   }
   export default class MainAbility extends Ability {
-      onCreate(want, launchParam) {
-          console.log('Callee onCreate is called');
-          this.callee.on(method, funcCallBack);
+    onCreate(want, launchParam) {
+      console.log('Callee onCreate is called');
+      try {
+        this.callee.on(method, funcCallBack);
+      } catch (error) {
+        console.log('Callee.on catch error, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
       }
+    }
   }
   ```
-
 
 ## Callee.off
 
@@ -621,20 +710,34 @@ Deregisters a caller notification callback, which is invoked when the target abi
   | -------- | -------- | -------- | -------- |
   | method | string | Yes| Registered notification message string.| 
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | Invalid input parameter. |
+| 16200005 | Method not registered. The method has not registered. |
+| 16000050 | Internal Error. |
+
+
 **Example**
     
-  ```js
-  import Ability from '@ohos.application.Ability';
+  ```ts
+  import Ability from '@ohos.app.ability.UIAbility';
   var method = 'call_Function';
   export default class MainAbility extends Ability {
-      onCreate(want, launchParam) {
-          console.log('Callee onCreate is called');
-          this.callee.off(method);
+    onCreate(want, launchParam) {
+      console.log('Callee onCreate is called');
+      try {
+        this.callee.off(method);
+      } catch (error) {
+        console.log('Callee.off catch error, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
       }
+    }
   }
   ```
 
-## OnReleaseCallBack
+## OnReleaseCallback
 
 (msg: string): void;
 
@@ -644,7 +747,7 @@ Deregisters a caller notification callback, which is invoked when the target abi
 | -------- | -------- | -------- | -------- | -------- |
 | (msg: string) | function | Yes| No| Prototype of the listener function registered by the caller.| 
 
-## CalleeCallBack
+## CalleeCallback
 
 (indata: rpc.MessageParcel): rpc.Sequenceable;
 
@@ -653,3 +756,5 @@ Deregisters a caller notification callback, which is invoked when the target abi
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
 | (indata: rpc.MessageParcel) | rpc.Sequenceable | Yes| No| Prototype of the listener function registered by the callee.| 
+
+<!--no_check-->

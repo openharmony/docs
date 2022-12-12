@@ -92,7 +92,7 @@
 | ohos.permission.MANAGE_WIFI_HOTSPOT                      | system_core  | system_grant | TRUE    | 允许应用开启或者关闭WLAN热点。                               |
 | ohos.permission.GET_ALL_APP_ACCOUNTS                     | system_core  | system_grant | FALSE   | 允许应用获取所有应用账户信息。                               |
 | ohos.permission.MANAGE_SECURE_SETTINGS                   | system_basic | system_grant | TRUE    | 允许应用修改安全类系统设置。                                 |
-| ohos.permission.READ_DFX_SYSEVENT                        | system_basic | system_grant | FALSE   | 允许获取所有应用账号信息。                                   |
+| ohos.permission.READ_DFX_SYSEVENT                        | system_basic | system_grant | TRUE   | 允许应用访问系统事件打点数据。                                   |
 | ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN           | system_core  | system_grant | TRUE    | 允许应用激活设备管理员应用。                                 |
 | ohos.permission.SET_ENTERPRISE_INFO                      | system_basic | system_grant | TRUE   | 允许设备管理员应用设置企业信息。                             |
 | ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT       | system_basic | system_grant | TRUE   | 允许设备管理员应用订阅管理事件。                             |
@@ -163,3 +163,4 @@
 | ohos.permission.BACKUP     | system_basic  | system_grant | TRUE    | 允许应用拥有备份恢复能力。                                |
 | ohos.permission.FILE_ACCESS_MANAGER     | system_basic  | system_grant | TRUE    | 允许文件管理类应用通过FAF框架访问公共数据文件。                  |
 | ohos.permission.MANAGE_AUDIO_CONFIG                      | system_basic        | system_grant | TRUE   | 允许应用进行全局麦克风静音等操作。           |
+| ohos.permission.ACCESS_SERVICE_DM      | system_basic  | system_grant | TRUE    | 允许系统应用获取分布式设备的认证组网能力。          |

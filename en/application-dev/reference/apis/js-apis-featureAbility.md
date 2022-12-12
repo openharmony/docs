@@ -1,6 +1,6 @@
 # FeatureAbility
 
-The **FeatureAbility** module provides a UI for interacting with users. You can use APIs of this module to start a new ability, obtain the **dataAbilityHelper**, set a Page ability, obtain the window corresponding to this ability, and connecting to a Service ability.
+The **FeatureAbility** module provides a UI for interacting with users. You can use APIs of this module to start a new ability, obtain the **dataAbilityHelper**, set a Page ability, obtain the window corresponding to this ability, and connect to a Service ability.
 
 > **NOTE**
 > 
@@ -14,7 +14,7 @@ APIs of the **FeatureAbility** module can be called only by Page abilities.
 ## Modules to Import
 
 ```
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 ```
 
 ## featureAbility.startAbility
@@ -35,8 +35,8 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-import wantConstant from '@ohos.ability.wantConstant'
+import featureAbility from '@ohos.ability.featureAbility';
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.startAbility(
     {
         want:
@@ -47,11 +47,14 @@ featureAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.myapplication",
-            /* In the FA model, abilityName consists of package and ability name. */
+            /* In the FA model, abilityName consists of package and ability names. */
             abilityName: "com.example.entry.secondAbility",
             uri: ""
         },
     },
+    (err, data) => {
+        console.info("startAbility err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+    }
 );
 ```
 
@@ -74,8 +77,8 @@ Starts an ability. This API uses a promise to return the result.
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-import wantConstant from '@ohos.ability.wantConstant'
+import featureAbility from '@ohos.ability.featureAbility';
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.startAbility(
     {
         want:
@@ -83,16 +86,16 @@ featureAbility.startAbility(
             action: "action.system.home",
             entities: ["entity.system.home"],
             type: "MIMETYPE",
-			flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
+            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.myapplication",
-            /* In the FA model, abilityName consists of package and ability name. */
+            /* In the FA model, abilityName consists of package and ability names. */
             abilityName: "com.example.entry.secondAbility",
             uri: ""
         },
     }
 ).then((data) => {
-	console.info("==========================>startAbility=======================>");
+    console.info("startAbility data: " + JSON.stringify(data));
 });
 ```
 
@@ -119,10 +122,10 @@ Obtains a **dataAbilityHelper** object.
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-featureAbility.acquireDataAbilityHelper(
+import featureAbility from '@ohos.ability.featureAbility';
+var dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
-)
+);
 ```
 
 ## featureAbility.startAbilityForResult<sup>7+</sup>
@@ -144,7 +147,7 @@ Starts an ability. This API uses an asynchronous callback to return the executio
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant'
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.startAbilityForResult(
    {
         want:
@@ -155,15 +158,15 @@ featureAbility.startAbilityForResult(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.myapplication",
-            /* In the FA model, abilityName consists of package and ability name. */
+            /* In the FA model, abilityName consists of package and ability names. */
             abilityName: "com.example.entry.secondAbility",
             uri:""
         },
     },
     (err, data) => {
-        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+        console.info("startAbilityForResult err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
     }
-)
+);
 ```
 
 ## featureAbility.startAbilityForResult<sup>7+</sup>
@@ -190,7 +193,7 @@ Starts an ability. This API uses a promise to return the execution result when t
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant'
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.startAbilityForResult(
     {
         want:
@@ -201,7 +204,7 @@ featureAbility.startAbilityForResult(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.myapplication",
-            /* In the FA model, abilityName consists of package and ability name. */
+            /* In the FA model, abilityName consists of package and ability names. */
             abilityName: "com.example.entry.secondAbility",
             uri:"",
             parameters:
@@ -218,7 +221,7 @@ featureAbility.startAbilityForResult(
         },
     },
 ).then((data) => {
-    console.info("==========================>startAbilityForResult=======================>");
+    console.info("startAbilityForResult data: " + JSON.stringify(data));
 });
 ```
 
@@ -234,14 +237,14 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 
 | Name       | Type                             | Mandatory  | Description            |
 | --------- | ------------------------------- | ---- | -------------- |
-| parameter | [AbilityResult](#abilityresult) | Yes   | Ability to start.|
+| parameter | [AbilityResult](#abilityresult) | Yes   | Ability to destroy.|
 | callback  | AsyncCallback\<void>            | Yes   | Callback used to return the result.     |
 
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-import wantConstant from '@ohos.ability.wantConstant'
+import featureAbility from '@ohos.ability.featureAbility';
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
@@ -253,7 +256,7 @@ featureAbility.terminateSelfWithResult(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.myapplication",
-            /* In the FA model, abilityName consists of package and ability name. */
+            /* In the FA model, abilityName consists of package and ability names. */
             abilityName: "com.example.entry.secondAbility",
             uri:"",
             parameters: {
@@ -268,6 +271,9 @@ featureAbility.terminateSelfWithResult(
             }
         },
     },
+    (err) => {
+        console.info("err: " + JSON.stringify(err))
+    }
 );
 ```
 
@@ -283,7 +289,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 
 | Name       | Type                             | Mandatory  | Description           |
 | --------- | ------------------------------- | ---- | ------------- |
-| parameter | [AbilityResult](#abilityresult) | Yes   | Ability to start.|
+| parameter | [AbilityResult](#abilityresult) | Yes   | Ability to destroy.|
 
 **Return value**
 
@@ -295,7 +301,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant'
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
@@ -307,7 +313,7 @@ featureAbility.terminateSelfWithResult(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.myapplication",
-            /* In the FA model, abilityName consists of package and ability name. */
+            /* In the FA model, abilityName consists of package and ability names. */
             abilityName: "com.example.entry.secondAbility",
             uri:"",
             parameters: {
@@ -345,7 +351,9 @@ Checks whether the main window of this ability has the focus. This API uses an a
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.hasWindowFocus()
+featureAbility.hasWindowFocus((err, data) => {
+    console.info("hasWindowFocus err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+});
 ```
 
 ## featureAbility.hasWindowFocus<sup>7+<sup>
@@ -367,7 +375,7 @@ Checks whether the main window of this ability has the focus. This API uses a pr
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus().then((data) => {
-    console.info("==========================>hasWindowFocus=======================>");
+    console.info("hasWindowFocus data: " + JSON.stringify(data));
 });
 ```
 
@@ -389,7 +397,9 @@ Obtains the **Want** object sent from this ability. This API uses an asynchronou
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.getWant()
+featureAbility.getWant((err, data) => {
+    console.info("getWant err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+});
 ```
 
 ## featureAbility.getWant
@@ -411,7 +421,7 @@ Obtains the **Want** object sent from this ability. This API uses a promise to r
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant().then((data) => {
-	console.info("==========================>getWantCallBack=======================>");
+    console.info("getWant data: " + JSON.stringify(data));
 });
 ```
 
@@ -427,14 +437,16 @@ Obtains the application context.
 
 | Type     | Description        |
 | ------- | ---------- |
-| Context | Application context returned.|
+| Context | Application context.|
 
 **Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext()
-context.getBundleName()
+context.getBundleName((err, data) => {
+    console.info("getBundleName err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+});
 ```
 
 ## featureAbility.terminateSelf<sup>7+</sup>
@@ -455,7 +467,11 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.terminateSelf()
+featureAbility.terminateSelf(
+    (err) => {
+        console.info("err: " + JSON.stringify(err))
+    }
+)
 ```
 
 ## featureAbility.terminateSelf<sup>7+</sup>
@@ -477,7 +493,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf().then((data) => {
-    console.info("==========================>terminateSelfCallBack=======================>");
+    console.info("==========================>terminateSelf=======================>");
 });
 ```
 
@@ -498,27 +514,27 @@ Connects this ability to a specific Service ability. This API uses an asynchrono
 
 ## ConnectOptions
 
-ConnectOptions
+Describes the connection options.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name          | Readable/Writable| Type      | Mandatory  | Description                       |
-| ------------ | ---- | -------- | ---- | ------------------------- |
-| onConnect<sup>7+</sup>    | Read-only  | function | Yes   | Callback invoked when the connection is successful.              |
-| onDisconnect<sup>7+</sup> | Read-only  | function | Yes   | Callback invoked when the connection fails.              |
-| onFailed<sup>7+</sup>     | Read-only  | function | Yes   | Callback invoked when **connectAbility** fails to be called.|
+| Name          | Readable|Writable| Type      | Mandatory  | Description                       |
+| ------------ | -- | -- | -------- | ---- | ------------------------- |
+| onConnect<sup>7+</sup>    | Yes|No  | function | Yes   | Callback invoked when the connection is successful.              |
+| onDisconnect<sup>7+</sup> | Yes|No  | function | Yes   | Callback invoked when the connection fails.              |
+| onFailed<sup>7+</sup>     | Yes|No  | function | Yes   | Callback invoked when **connectAbility** fails to be called.|
 
 **Return value**
 
 | Type    | Description                  |
 | ------ | -------------------- |
-| number | Returns the ID of the Service ability connected.|
+| number | ID of the Service ability connected.|
 
 **Example**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -528,7 +544,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         deviceId: "",
         bundleName: "com.ix.ServiceAbility",
@@ -560,8 +576,8 @@ Disconnects this ability from a specific Service ability. This API uses an async
 **Example**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -571,7 +587,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
@@ -582,9 +598,9 @@ var connId = featureAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = featureAbility.disconnectAbility(connId,
-    (error,data) => {
-        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code + " data: " + data)
+var result = featureAbility.disconnectAbility(connectId,
+    (error) => {
+        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code)
     },
 );
 ```
@@ -612,8 +628,8 @@ Disconnects this ability from a specific Service ability. This API uses a promis
 **Example**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -623,7 +639,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
@@ -635,7 +651,7 @@ var connId = featureAbility.connectAbility(
     },
 );
 
-featureAbility.disconnectAbility(connId).then((data) => {
+featureAbility.disconnectAbility(connectId).then((data) => {
     console.log('data : '  + data);
 }).catch((error)=>{
     console.log('featureAbilityTest result errCode : ' + error.code);
@@ -660,7 +676,9 @@ Obtains the window corresponding to this ability. This API uses an asynchronous 
 **Example**
 
 ```javascript
-featureAbility.getWindow()
+featureAbility.getWindow((err, data) => {
+    console.info("getWindow err: " + JSON.stringify(err) + "data: " + typeof(data));
+});
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>
@@ -681,7 +699,7 @@ Obtains the window corresponding to this ability. This API uses a promise to ret
 
 ```javascript
 featureAbility.getWindow().then((data) => {
-  console.info("=============getWindowPromise========== " +  JSON.stringify(data)); 
+    console.info("getWindow data: " + typeof(data));
 });
 ```
 
@@ -703,8 +721,8 @@ Callback invoked when the connection is successful.
 **Example**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -714,7 +732,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         deviceId: "",
         bundleName: "com.ix.ServiceAbility",
@@ -745,8 +763,8 @@ Callback invoked when the connection fails.
 **Example**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -756,7 +774,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         deviceId: "",
         bundleName: "com.ix.ServiceAbility",
@@ -787,8 +805,8 @@ Callback invoked when **connectAbility** fails to be called.
 **Example**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -798,7 +816,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         deviceId: "",
         bundleName: "com.ix.ServiceAbility",
@@ -828,7 +846,7 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-| Name                                      | Name  | Description                                      |
+| Name                                    | Value  | Description                                      |
 | ---------------------------------------- | ---- | ---------------------------------------- |
 | WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | The Page ability is in an undefined window display mode.|
 | WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | The Page ability is in full screen mode.   |
@@ -851,7 +869,7 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-| Name                          | Name             | Description                                      |
+| Name                          | Value             | Description                                      |
 | ---------------------------- | --------------- | ---------------------------------------- |
 | BOUNDS_KEY<sup>7+</sup>      | "abilityBounds" | Ability window size.|
 | WINDOW_MODE_KEY<sup>7+</sup> | "windowMode"    | Ability window display mode.|
@@ -863,7 +881,7 @@ Enumerates error codes.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-| Variable                            | Value   | Description                                      |
+| Name                            | Value   | Description                                      |
 | ------------------------------ | ---- | ---------------------------------------- |
 | NO_ERROR<sup>7+</sup>          | 0    | No error occurs.|
 | INVALID_PARAMETER<sup>7+</sup> | -1   | Invalid parameter.|
@@ -877,7 +895,7 @@ Enumerates operation types of the Data ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-| Variable                      | Value   | Description                                      |
+| Name                      | Value   | Description                                      |
 | ------------------------ | ---- | ---------------------------------------- |
 | TYPE_INSERT<sup>7+</sup> | 1    | Insert operation.|
 | TYPE_UPDATE<sup>7+</sup> | 2    | Update operation.|
@@ -890,25 +908,25 @@ Enumerates operation types of the Data ability.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name                     | Readable/Writable| Type           | Mandatory  | Description                                   |
-| ----------------------- | ---- | ------------- | ---- | ------------------------------------- |
-| resultCode<sup>7+</sup> | Read-only  | number        | Yes   | Result code returned after the ability is destroyed. The feature for defining error-specific result codes is coming soon.|
-| want<sup>7+</sup>       | Read-only  | [Want](js-apis-application-Want.md) | No   | Data returned after the ability is destroyed. You can define the data to be returned. This parameter can be **null**. |
+| Name                  |   Type  | Readable| Writable           | Mandatory  | Description                                   |
+| ---------------        |-------- | ------ | ------------- | ---- | ------------------------------------- |
+| resultCode<sup>7+</sup>| number| Yes  |    No    | Yes   | Result code returned after the ability is destroyed. The feature for defining error-specific result codes is coming soon.|
+| want<sup>7+</sup>      | [Want](js-apis-application-Want.md)| Yes  | No| No   | Data returned after the ability is destroyed. You can define the data to be returned. This parameter can be **null**. |
 
 ## StartAbilityParameter
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-| Name                 | Readable/Writable| Type                  | Mandatory  | Description                                    |
-| ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
-| want                | Read-only  | [Want](js-apis-application-Want.md)        | Yes   | Information about the ability to start.                    |
-| abilityStartSetting | Read-only  | {[key: string]: any} | No   | Special attribute of the ability to start. This attribute can be passed in the method call.|
+| Name              |   Type  | Readable| Writable           | Mandatory  | Description                                   |
+| ------------------- | -------- | -------------------- | ---- | -------------------------------------- |
+| want                | [Want](js-apis-application-Want.md)|   Yes  |   No     | Yes   | Information about the ability to start.                    |
+| abilityStartSetting | {[key: string]: any} |  Yes |No | No   | Special attribute of the ability to start. This attribute can be passed in the method call.|
 
 ## flags
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name                                  | Name        | Description                                      |
+| Name                                  | Value        | Description                                      |
 | ------------------------------------ | ---------- | ---------------------------------------- |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Indicates the permission to read the URI.                        |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Indicates the permission to write the URI.                        |

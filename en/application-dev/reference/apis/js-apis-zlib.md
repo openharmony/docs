@@ -26,8 +26,8 @@ Zips a file. This API uses a promise to return the result.
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
 | inFile  | string              | Yes  | Path of the folder or file to zip. For details about the path, see [FA Model](js-apis-Context.md) or [Stage Model](js-apis-application-context.md).|
-| outFile | string              | Yes  | Path of the zipped file. The file name extension is .zip.                   |
-| options | [Options](#options) | No  | Optional parameters for the zip operation.                                              |
+| outFile | string              | Yes  | Path of the zipped file. The file name extension is .zip.                 |
+| options | [Options](#options) | Yes  | Optional parameters for the zip operation.                                            |
 
 **Return value**
 
@@ -90,8 +90,8 @@ Unzips a file. This API uses a promise to return the result.
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
 | inFile  | string              | Yes  | Path of the folder or file to unzip. For details about the path, see [FA Model](js-apis-Context.md) or [Stage Model](js-apis-application-context.md).|
-| outFile | string              | Yes  | Path of the unzipped file.                                          |
-| options | [Options](#options) | No  | Optional parameters for the unzip operation.                                              |
+| outFile | string              | Yes  | Path of the unzipped file.                                        |
+| options | [Options](#options) | Yes  | Optional parameters for the unzip operation.                                            |
 
 **Return value**
 
@@ -138,17 +138,17 @@ Compresses a file. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
+For details about the error codes, see [zlib Error Codes](../errorcodes/errorcode-zlib.md).
 | ID| Error Message                              |
-| ------ | -------------------------------------- |
-| 401    | wrong param type                       |
-| 900001 | The Input source file is invalid.      |
-| 900002 | The Input destination file is invalid. |
+| -------- | --------------------------------------|
+| 900001   | The Input source file is invalid.      |
+| 900002   | The Input destination file is invalid. |
 
 **Example**
 
 ```typescript
 // Compress a file.
-// The path used in the code must be the application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through context.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through context.
 import zlib from '@ohos.zlib';
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
@@ -160,12 +160,12 @@ let options = {
 
 try {
     zlib.compressFile(inFile, outFile, options, (errData) => {
-        if (erData !== null) {
-            console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+        if (errData !== null) {
+            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -185,15 +185,16 @@ Compresses a file. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [zlib Error Codes](../errorcodes/errorcode-zlib.md).
+
 | ID| Error Message                              |
-| ------ | -------------------------------------- |
-| 401    | wrong param type                       |
-| 900001 | The Input source file is invalid.      |
-| 900002 | The Input destination file is invalid. |
+| -------- | ------------------------------------- |
+| 900001   | The Input source file is invalid.      |
+| 900002   | The Input destination file is invalid. |
 
 ```typescript
 // Compress a file.
-// The path used in the code must be the application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through context.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through context.
 import zlib from '@ohos.zlib';
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
@@ -207,10 +208,10 @@ try {
     zlib.compressFile(inFile, outFile, options).then((data) => {
         console.info('compressFile success');
     }).catch((errData) => {
-        console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -235,11 +236,12 @@ Decompresses a file. This API uses an asynchronous callback to return the result
 
 **Error codes**
 
-| ID| Error Message                              |
-| ------ | -------------------------------------- |
-| 401    | wrong param type                       |
-| 900001 | The Input source file is invalid.      |
-| 900002 | The Input destination file is invalid. |
+For details about the error codes, see [zlib Error Codes](../errorcodes/errorcode-zlib.md).
+
+| ID| Error Message
+| -------- | --------------------------------------|
+| 900001   | The Input source file is invalid.      |
+| 900002   | The Input destination file is invalid. |
 
 **Example**
 
@@ -257,12 +259,12 @@ let options = {
 
 try {
     zlib.decompressFile(inFile, outFile, options, (errData) => {
-        if (erData !== null) {
-            console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+        if (errData !== null) {
+            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -282,15 +284,16 @@ Decompress a file. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [zlib Error Codes](../errorcodes/errorcode-zlib.md).
+
 | ID| Error Message                              |
-| ------ | -------------------------------------- |
-| 401    | wrong param type                       |
+| ------ | ------------------------------------- |
 | 900001 | The Input source file is invalid.      |
 | 900002 | The Input destination file is invalid. |
 
 ```typescript
 // Decompress a file.
-// The path used in the code must be the application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through context.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through context.
 import zlib from '@ohos.zlib';
 let inFile = '/xx/xxx.zip';
 let outFile = '/xxx';
@@ -301,13 +304,13 @@ let options = {
 };
 
 try {
-    zlib.deCompressFile(inFile, outFile, options).then((data) => {
-        console.info('deCompressFile success');
+    zlib.decompressFile(inFile, outFile, options).then((data) => {
+        console.info('decompressFile success');
     }).catch((errData) => {
-        console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -315,11 +318,11 @@ try {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name  | Type            | Mandatory| Description                                                     |
-| -------- | ---------------- | ---- | --------------------------------------------------------- |
-| level    | CompressLeve     | No  | See [zip.CompressLevel](#zipcompresslevel).      |
-| memLevel | MemLevel         | No  | See [zip.MemLevel](#zipmemlevel).                |
-| strategy | CompressStrategy | No  | See [zip.CompressStrategy](#zipcompressstrategy).|
+| Name    | Type            | Readable| Writable| Description                                                      |
+| -------- | ---------------- | ---- | ---- | ---------------------------------------------------------- |
+| level    | CompressLevel     | Yes  | No  | See [zip.CompressLevel](#zipcompresslevel).      |
+| memLevel | MemLevel         | Yes  | No  | See [zip.MemLevel](#zipmemlevel).                |
+| strategy | CompressStrategy | Yes  | No  | See [zip.CompressStrategy](#zipcompressstrategy).|
 
 ## zip.CompressLevel
 

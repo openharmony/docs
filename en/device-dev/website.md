@@ -357,6 +357,7 @@
      - Related Operations
        - [Building a Subsystem](subsystems/subsys-build-subsystem.md)
        - [Building a Product](subsystems/subsys-build-product.md)
+       - [Building a Subsystem](subsystems/subsys-build-subsystem.md)
        - [Building a Component](subsystems/subsys-build-component.md)
        - [Building a Module](subsystems/subsys-build-module.md)
        - [Building a Chipset Solution](subsystems/subsys-build-chip_solution.md)
@@ -441,6 +442,7 @@
      - [HiLog Development](subsystems/subsys-dfx-hilog-rich.md)
      - [HiLog\_Lite Development](subsystems/subsys-dfx-hilog-lite.md)
      - [HiTraceChain Development](subsystems/subsys-dfx-hitracechain.md)
+     - [HiTraceMeter Development](subsystems/subsys-dfx-hitracemeter.md)
      - [HiCollie Development](subsystems/subsys-dfx-hicollie.md)
      - HiSysEvent Development
        - [HiSysEvent Overview](subsystems/subsys-dfx-hisysevent-overview.md)

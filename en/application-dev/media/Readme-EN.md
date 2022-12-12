@@ -10,11 +10,16 @@
   - [OpenSL ES Audio Playback Development](opensles-playback.md)
   - [OpenSL ES Audio Recording Development](opensles-capture.md)
   - [Audio Interruption Mode Development](audio-interruptmode.md)
+  - [Volume Management Development](audio-volume-manager.md)
+  - [Audio Routing and Device Management Development](audio-routing-manager.md)
 
 - Video
   - [Video Playback Development](video-playback.md)
   - [Video Recording Development](video-recorder.md)
 
+- AVSession
+  - [AVSession Overview](avsession-overview.md)
+  - [AVSession Development](avsession-guidelines.md)
 
 - Image
   - [Image Development](image.md)

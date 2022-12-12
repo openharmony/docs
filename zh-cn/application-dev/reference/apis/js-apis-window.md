@@ -46,17 +46,15 @@ import window from '@ohos.window';
 
 ## Configuration<sup>9+</sup>
 
-创建子窗口时的参数。
-
-当Context为[ServiceExtensionContext](js-apis-service-extension-context.md)时，创建系统窗口时，使用callback异步回调。
+创建子窗口或系统窗口时的参数。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称 | 类型 | 必填 | 说明 |
 | ---------- | -------------------------- | -- | ----------------------------------- |
-| name       | string                     | 是 | 子窗口名字。                         |
-| windowType | [WindowType](#windowtype7) | 是 | 子窗口类型。                         |
-| ctx        | BaseContext                | 否 | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-Context.md)。<br>Stage模型的Context定义见[Context](js-apis-service-extension-context.md)。不设置，则默认为空。      |
+| name       | string                     | 是 | 窗口名字。                         |
+| windowType | [WindowType](#windowtype7) | 是 | 窗口类型。                         |
+| ctx        | BaseContext                | 否 | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的Context定义见[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)。不设置，则默认为空。<br>当Context为[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)时，创建系统窗口。 |
 | displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1。 |
 | parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1。      |
 
@@ -302,7 +300,7 @@ import window from '@ohos.window';
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
-创建子窗口，使用callback异步回调。
+创建子窗口或者系统窗口，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -310,8 +308,8 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------------------------------------- | -- | --------------------------------- |
-| config   | [Configuration](#configuration9)       | 是 | 当前应用上下文信息。                |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | 是 | 回调函数。返回当前创建的子窗口对象。 |
+| config   | [Configuration](#configuration9)       | 是 | 创建窗口时的参数。   |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | 是 | 回调函数。返回当前创建的窗口对象。 |
 
 **错误码：**
 
@@ -346,7 +344,7 @@ try {
 
 createWindow(config: Configuration): Promise&lt;Window&gt;
 
-创建子窗口，使用Promise异步回调。
+创建子窗口或者系统窗口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -354,13 +352,13 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | -------------------------------- | -- | ------------------ |
-| config | [Configuration](#configuration9) | 是 | 当前应用上下文信息。 |
+| config | [Configuration](#configuration9) | 是 | 创建窗口时的参数。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------------------------------- | ------------------------------------ |
-| Promise&lt;[Window](#window)&gt; | Promise对象。返回当前创建的子窗口对象。 |
+| Promise&lt;[Window](#window)&gt; | Promise对象。返回当前创建的窗口对象。 |
 
 **错误码：**
 
@@ -393,7 +391,7 @@ try {
 
 findWindow(name: string): Window
 
-查找id所对应的窗口。
+查找name所对应的窗口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -432,7 +430,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
-| ctx      | BaseContext                            | 是 | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-Context.md)。<br>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
+| ctx      | BaseContext                            | 是 | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是 | 回调函数。返回当前应用内最后显示的窗口对象。 |
 
 **错误码：**
@@ -474,7 +472,7 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | 是   | 当前应用上下文信息。<br/>FA模型的Context定义见[Context](js-apis-Context.md)。<br/>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
+| ctx    | BaseContext | 是   | 当前应用上下文信息。<br/>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br/>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
 
 **返回值：**
 
@@ -899,9 +897,9 @@ promise.then((data)=> {
 
 create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-创建子窗口，使用callback异步回调，其中Context详见[Context](js-apis-Context.md)。
+创建子窗口，使用callback异步回调，其中Context详见[Context](js-apis-inner-app-context.md)。
 
-从API version 9开始，当Context为[ServiceExtensionContext](js-apis-service-extension-context.md)时，创建系统窗口，使用callback异步回调。
+从API version 9开始，当Context为[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)时，创建系统窗口，使用callback异步回调。
 
 > **说明：**
 > 
@@ -913,7 +911,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | 是   | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-Context.md)。<br>Stage模型的Context定义见[Context](js-apis-service-extension-context.md)。 |
+| ctx      | BaseContext                            | 是   | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的Context定义见[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)。 |
 | id       | string                                 | 是   | 窗口id。                                                     |
 | type     | [WindowType](#windowtype7)              | 是   | 窗口类型。                                                   |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前创建的子窗口对象。                         |
@@ -937,9 +935,9 @@ window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, 
 
 create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
-创建子窗口，使用Promise异步回调，其中Context详见[Context](js-apis-Context.md)。
+创建子窗口，使用Promise异步回调，其中Context详见[Context](js-apis-inner-app-context.md)。
 
-从API version 9开始，当Context为[ServiceExtensionContext](js-apis-service-extension-context.md)时，创建系统窗口，使用Promise异步回调。
+从API version 9开始，当Context为[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)时，创建系统窗口，使用Promise异步回调。
 
 > **说明：**
 > 
@@ -951,7 +949,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
 | 参数名 | 类型                      | 必填 | 说明                                                         |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext               | 是   | 当前应用上下文信息。<br/>FA模型的Context定义见[Context](js-apis-Context.md)。<br/>Stage模型的Context定义见[Context](js-apis-service-extension-context.md)。 |
+| ctx    | BaseContext               | 是   | 当前应用上下文信息。<br/>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br/>Stage模型的Context定义见[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)。 |
 | id     | string                    | 是   | 窗口id。                                                     |
 | type   | [WindowType](#windowtype7) | 是   | 窗口类型。                                                   |
 
@@ -1127,7 +1125,7 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | 是   | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-Context.md)。<br>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
+| ctx      | BaseContext                            | 是   | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前应用内最后显示的窗口对象。                 |
 
 **示例：**
@@ -1160,7 +1158,7 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | 是   | 当前应用上下文信息。<br/>FA模型的Context定义见[Context](js-apis-Context.md)。<br/>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
+| ctx    | BaseContext | 是   | 当前应用上下文信息。<br/>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br/>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
 
 **返回值：**
 

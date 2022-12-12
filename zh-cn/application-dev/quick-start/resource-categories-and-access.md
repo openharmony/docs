@@ -83,6 +83,7 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
 | ------- | ---------------------------------------- | ---------------------------------------- |
 | element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型<br/>-&nbsp;pattern，样式<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 | element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
 | media   | 表示媒体资源，包括图片、音频、视频等非文本格式的文件。              | 文件名可自定义，例如：icon.png。                     |
+| profile  | 表示自定义配置文件，其文件内容可[通过包管理接口](../reference/apis/js-apis-bundleManager.md#bundlemanagergetprofilebyability)获取       | 文件名可自定义，例如：test_profile.json。           |
 | rawfile | 表示其他类型文件，在应用构建为hap包后，以原始文件形式保存，不会被集成到resources.index文件中。 | 文件名可自定义。                                 |
 
 **媒体资源类型说明**

@@ -466,6 +466,7 @@
      - [HiLog开发指导](subsystems/subsys-dfx-hilog-rich.md)
      - [HiLog_Lite开发指导](subsystems/subsys-dfx-hilog-lite.md)
      - [HiTraceChain开发指导](subsystems/subsys-dfx-hitracechain.md)
+     - [HiTraceMeter开发指导](subsystems/subsys-dfx-hitracemeter.md)
      - [HiCollie开发指导](subsystems/subsys-dfx-hicollie.md)
      - HiSysEvent开发指导
        - [HiSysEvent概述](subsystems/subsys-dfx-hisysevent-overview.md)
