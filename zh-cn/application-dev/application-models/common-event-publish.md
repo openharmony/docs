@@ -16,7 +16,7 @@
 | 接口名 | 接口描述 |
 | -------- | -------- |
 | publish(event:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback) | 发布公共事件。 |
-| publish(event:&nbsp;string,&nbsp;options:&nbsp;[CommonEventPublishData](../reference/apis/js-apis-commonEvent.md#commoneventpublishdata),&nbsp;callback:&nbsp;AsyncCallback) | 指定发布信息并发布公共事件。 |
+| publish(event:&nbsp;string,&nbsp;options:&nbsp;[CommonEventPublishData](../reference/apis/js-apis-commonEventManager.md#commoneventpublishdata),&nbsp;callback:&nbsp;AsyncCallback) | 指定发布信息并发布公共事件。 |
 
 
 ## 发布不携带信息的公共事件
@@ -45,7 +45,7 @@
 
 ## 发布携带信息的公共事件
 
-携带信息的公共事件，可以发布为无序公共事件、有序公共事件和粘性事件，可以通过参数[CommonEventPublishData](../reference/apis/js-apis-commonEvent.md#commoneventpublishdata)的isOrdered、isSticky的字段进行设置。
+携带信息的公共事件，可以发布为无序公共事件、有序公共事件和粘性事件，可以通过参数[CommonEventPublishData](../reference/apis/js-apis-commonEventManager.md#commoneventpublishdata)的isOrdered、isSticky的字段进行设置。
 
 1. 导入CommonEvent模块。
    
