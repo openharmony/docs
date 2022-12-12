@@ -35,10 +35,10 @@ Describes a rectangle on the display.
 
 | Name  | Type| Readable| Writable| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | Yes  | Yes  | Left boundary of the rectangle.|
-| top    | number   | Yes  | Yes  | Top boundary of the rectangle.|
-| width  | number   | Yes  | Yes  | Width of the rectangle.  |
-| height | number   | Yes  | Yes  | Height of the rectangle.  |
+| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in pixels.|
+| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in pixels.|
+| width  | number   | Yes  | Yes  | Width of the rectangle, in pixels.  |
+| height | number   | Yes  | Yes  | Height of the rectangle, in pixels.  |
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
@@ -94,7 +94,7 @@ try {
     displayClass = display.getDefaultDisplaySync();
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## display.getAllDisplays<sup>9+</sup>
@@ -204,25 +204,24 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
+
+    let ret = undefined;
+    try {
+        ret = display.hasPrivateWindow(displayClass.id);
+    } catch (exception) {
+        console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
+    }
+    if (ret == undefined) {
+        console.log("Failed to check has privateWindow or not.");
+    }
+    if (ret) {
+        console.log("There has privateWindow.");
+    } else if (!ret) {
+        console.log("There has no privateWindow.");
+    }
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-    return;
-};
-
-let ret = undefined;
-try {
-    ret = display.hasPrivateWindow(displayClass.id);
-} catch (exception) {
-    console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
-};
-if (ret == undefined) {
-  console.log("Failed to check has privateWindow or not.");
 }
-if (ret) {
-  console.log("There has privateWindow.");
-} else if (!ret) {
-  console.log("There has no privateWindow.");
-};
 ```
 
 ## display.on('add'|'remove'|'change')
@@ -237,7 +236,7 @@ Subscribes to display changes.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event indicating that a display is connected to a PC.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected from a PC.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
+| type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event that a display is connected.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
 | callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display.|
 
 **Example**
@@ -250,7 +249,7 @@ try {
     display.on("add", callback);
 } catch (exception) {
     console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## display.off('add'|'remove'|'change')
@@ -265,7 +264,7 @@ Unsubscribes from display changes.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event indicating that a display is connected to a PC.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected from a PC.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
+| type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event that a display is connected.<br>- **remove**, indicating the display removal event. Example: event indicating that a display is disconnected.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
 | callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
 
 **Example**
@@ -275,7 +274,7 @@ try {
     display.off("remove");
 } catch (exception) {
     console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## display.getDefaultDisplay<sup>(deprecated)</sup>
@@ -434,7 +433,7 @@ Obtains the cutout information of the display. This API uses an asynchronous cal
 
 | Name     | Type                       | Mandatory| Description                                                        |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **CutoutInfo** object obtained. Otherwise, **err** is an error object.|
+| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | Yes  | Callback used to return the **CutoutInfo** object.|
 
 **Error codes**
 
@@ -450,17 +449,17 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
+
+    displayClass.getCutoutInfo((err, data) => {
+        if (err.code) {
+            console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
+    });
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-};
-
-displayClass.getCutoutInfo((err, data) => {
-    if (err.code) {
-        console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
-});
+}
 ```
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(): Promise&lt;CutoutInfo&gt;
@@ -489,12 +488,14 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
+
+    let promise = displayClass.getCutoutInfo();
+    promise.then((data) => {
+        console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
+    }).catch((err) => {
+        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    });
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-};
-
-let promise = displayClass.getCutoutInfo();
-promise.then((data) => {
-    console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
-});
+}
 ```
