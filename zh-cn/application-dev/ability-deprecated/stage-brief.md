@@ -109,7 +109,7 @@ OpenHarmony系统对于应用进程是有强管控策略的。对于开发者来
 
 Stage模型的应用包的工程目录结构，请参考[OpenHarmony工程介绍](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-project-overview-0000001218440650#section56487581904)。
 
-对Stage模型的应用包结构的配置说明，请参考[应用包结构说明（Stage模型）](../quick-start/stage-structure.md)。
+对Stage模型的应用包结构的配置说明，请参考[应用包结构说明（Stage模型）](../quick-start/application-configuration-file-overview-stage.md)。
 
 
 ## 相关实例
