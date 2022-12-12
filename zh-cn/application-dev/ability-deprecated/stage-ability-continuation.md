@@ -301,7 +301,7 @@
 
 ### 约束
 
-1.   迁移要求在同ability之间进行，也就是需要相同的bundleName、moduleName和abilityName，具体含义[应用包配置文件说明](../quick-start/stage-structure.md)。
+1.   迁移要求在同ability之间进行，也就是需要相同的bundleName、moduleName和abilityName，具体含义[应用包配置文件说明](../quick-start/module-configuration-file.md)。
 2.    当前应用只能实现迁移能力，但迁移的动作只能由系统发起。
 
 

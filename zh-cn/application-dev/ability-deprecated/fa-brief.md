@@ -38,7 +38,7 @@ Ability框架在API 8及更早版本仅支持FA模型。FA模型中Ability分为
 
 FA模型的应用包的工程目录结构，请参考[OpenHarmony工程介绍](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-project-overview-0000001218440650#section4154183910141)。
 
-对FA模型的应用包结构的配置说明，请参考[应用包结构说明（FA模型）](../quick-start/package-structure.md)。
+对FA模型的应用包结构的配置说明，请参考[应用包结构说明（FA模型）](../quick-start/application-configuration-file-overview-fa.md)。
 
 
 
