@@ -96,10 +96,10 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|-----|
-| FORM             | 0   | [FormExtensionAbility](../../ability/stage-formextension.md)：卡片扩展能力，提供卡片开发能力。 |
+| FORM             | 0   | [FormExtensionAbility](../../application-models/widget-development-stage.md)：卡片扩展能力，提供卡片开发能力。 |
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../../task-management/work-scheduler-dev-guide.md)：延时任务扩展能力，允许应用在系统闲时执行实时性不高的任务。 |
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md)：输入法扩展能力，用于开发输入法应用。 |
-| SERVICE          | 3   | [ServiceExtensionAbility](../../ability/stage-serviceextension.md)：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
+| SERVICE          | 3   | [ServiceExtensionAbility](../../application-models/serviceextensionability.md)：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
 | ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](js-apis-application-accessibilityExtensionAbility.md)：无障碍服务扩展能力，支持访问与操作前台界面。 |
 | DATA_SHARE       | 5   | [DataShareExtensionAbility](../../database/database-datashare-guidelines.md)：数据共享扩展能力，用于对外提供数据读写服务。 |
 | FILE_SHARE       | 6   | FileShareExtensionAbility：文件共享扩展能力，用于应用间的文件分享。预留能力，当前暂未支持。 |
@@ -2181,8 +2181,8 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName is not existed.                      |
-| 17700003 | The specified abilityName is not existed.                     |
+| 17700002 | The specified moduleName does not exist.                      |
+| 17700003 | The specified abilityName does not exist.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 | 17700029 | The specified ability is disabled.                            |
@@ -2236,8 +2236,8 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName is not existed.                      |
-| 17700003 | The specified abilityName is not existed.                     |
+| 17700002 | The specified moduleName does not exist.                      |
+| 17700003 | The specified abilityName does not exist.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 | 17700029 | The specified ability is disabled.                            |
@@ -2299,7 +2299,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName is not existed.                      |
+| 17700002 | The specified moduleName does not exist.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
@@ -2353,7 +2353,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName is not existed.                      |
+| 17700002 | The specified moduleName does not exist.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
