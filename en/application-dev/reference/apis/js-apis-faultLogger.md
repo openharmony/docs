@@ -8,14 +8,13 @@
 import faultLogger from '@ohos.faultLogger'
 ```
 
-
 ## FaultType
 
 Enumerates the fault types.
 
 **System capability**: SystemCapability.HiviewDFX.Hiview.FaultLogger
 
-| Name| Default Value| Description|
+| Name| Value| Description|
 | -------- | -------- | -------- |
 | NO_SPECIFIC | 0 | No specific fault type.|
 | CPP_CRASH | 2 | C++ program crash.|
@@ -28,16 +27,16 @@ Defines the data structure of the fault log information.
 
 **System capability**: SystemCapability.HiviewDFX.Hiview.FaultLogger
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| pid | number | Process ID of the faulty process.|
-| uid | number | User ID of the faulty process.|
-| type | [FaultType](#faulttype) | Fault type.|
-| timestamp | number | Second-level timestamp when the log was generated.|
-| reason | string | Reason for the fault.|
-| module | string | Module on which the fault occurred.|
-| summary | string | Summary of the fault.|
-| fullLog | string | Full log text.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pid | number | Yes| Process ID of the faulty process.|
+| uid | number | Yes| User ID of the faulty process.|
+| type | [FaultType](#faulttype) | Yes| Fault type.|
+| timestamp | number | Yes| Second-level timestamp when the log was generated.|
+| reason | string | Yes| Reason for the fault.|
+| module | string | Yes| Module on which the fault occurred.|
+| summary | string | Yes| Summary of the fault.|
+| fullLog | string | Yes| Full log text.|
 
 ## faultLogger.querySelfFaultLog<sup>(deprecated)</sup>
 
@@ -54,7 +53,7 @@ Obtains the fault information about the current process. This API uses an asynch
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | faultType | [FaultType](#faulttype) | Yes| Fault type.|
-| callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array.<br>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
+| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array.<br>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
 
 **Example**
 
@@ -139,11 +138,11 @@ Obtains the fault information about the current process. This API uses an asynch
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | faultType | [FaultType](#faulttype) | Yes| Fault type.|
-| callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array.<br>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
+| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array.<br>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
 
 **Error codes**
 
-For details about the error codes, see [faultLogger Error Codes](../errorcodes/errorcode-faultlogger.md).
+For details about the error codes, see [FaultLogger Error Codes](../errorcodes/errorcode-faultlogger.md).
 
 | ID| Error Message|
 | --- | --- |
@@ -200,7 +199,7 @@ Obtains the fault information about the current process. This API uses a promise
 
 **Error codes**
 
-For details about the error codes, see [faultLogger Error Codes](../errorcodes/errorcode-faultlogger.md).
+For details about the error codes, see [FaultLogger Error Codes](../errorcodes/errorcode-faultlogger.md).
 
 | ID| Error Message|
 | --- | --- |
