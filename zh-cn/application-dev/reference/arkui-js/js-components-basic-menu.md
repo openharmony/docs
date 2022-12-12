@@ -90,10 +90,10 @@
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   onMenuSelected(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: e.value
     })
   },

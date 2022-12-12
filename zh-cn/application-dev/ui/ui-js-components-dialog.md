@@ -119,22 +119,22 @@ button{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   canceldialog(e){
-    prompt.showToast({
+    promptAction.showToast({
       message: 'dialogCancel'
     })
   },
   opendialog(){
     this.$element('dialogId').show()
-     prompt.showToast({
+     promptAction.showToast({
       message: 'dialogShow'
     })
   },
   confirmClick(e) {
     this.$element('dialogId').close()
-    prompt.showToast({
+    promptAction.showToast({
       message: 'dialogClose'
     })
   },
@@ -266,8 +266,7 @@ export default {
 ```js
 // xxx.js
 var info = null;
-import prompt from '@system.prompt';
-import router from '@system.router';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     curYear:'',
@@ -290,7 +289,7 @@ export default {
     this.$element('datedialog').show()
   },
   canceldialog(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Event setting canceled.'
     })
   },
@@ -299,7 +298,7 @@ export default {
   },
   cancelschedule(e) {
     this.$element('datedialog').close()
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Event setting canceled.'
     })
   },

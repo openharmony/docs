@@ -95,10 +95,10 @@
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
 change(e){
-  prompt.showToast({
+  promptAction.showToast({
     message: 'value: ' + e.text + ', lines: ' + e.lines + ', height: ' + e.height,
     duration: 3000,
   });

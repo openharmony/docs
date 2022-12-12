@@ -137,7 +137,7 @@
           delay: 100, 
           onFinish: () => {
             setTimeout(() => {
-              router.replace({ url: "pages/FoodCategoryList" })
+              router.replaceUrl({ url: "pages/FoodCategoryList" })
             }, 1000);
           }
         }, () => {
@@ -201,7 +201,7 @@
              delay: 100,
              onFinish: () => {
                setTimeout(() => {
-                 router.replace({ url: "pages/FoodCategoryList" })
+                 router.replaceUrl({ url: "pages/FoodCategoryList" })
                }, 1000);
              }
            }, () => {
@@ -305,7 +305,7 @@
        .height(184)
        .width('100%')
        .onClick(() => {
-         router.push({ url: 'pages/FoodDetail', params: { foodData: this.foodItem } })
+         router.pushUrl({ url: 'pages/FoodDetail', params: { foodData: this.foodItem } })
        })
      }
    }
