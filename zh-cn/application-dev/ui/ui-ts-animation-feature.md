@@ -111,7 +111,7 @@
    }
    ```
 
-5. 闪屏动画播放结束后定格1s，进入FoodCategoryList页面。设置animateTo的onFinish回调接口，调用定时器Timer的setTimeout接口延时1s后，调用router.replace，显示FoodCategoryList页面。
+5. 闪屏动画播放结束后定格1s，进入FoodCategoryList页面。设置animateTo的onFinish回调接口，调用定时器Timer的setTimeout接口延时1s后，调用router.replaceUrl，显示FoodCategoryList页面。
 
    ```ts
    import router from '@ohos.router'
@@ -137,7 +137,7 @@
           delay: 100, 
           onFinish: () => {
             setTimeout(() => {
-              router.replace({ url: "pages/FoodCategoryList" })
+              router.replaceUrl({ url: "pages/FoodCategoryList" })
             }, 1000);
           }
         }, () => {
@@ -201,7 +201,7 @@
              delay: 100,
              onFinish: () => {
                setTimeout(() => {
-                 router.replace({ url: "pages/FoodCategoryList" })
+                 router.replaceUrl({ url: "pages/FoodCategoryList" })
                }, 1000);
              }
            }, () => {
@@ -305,7 +305,7 @@
        .height(184)
        .width('100%')
        .onClick(() => {
-         router.push({ url: 'pages/FoodDetail', params: { foodData: this.foodItem } })
+         router.pushUrl({ url: 'pages/FoodDetail', params: { foodData: this.foodItem } })
        })
      }
    }

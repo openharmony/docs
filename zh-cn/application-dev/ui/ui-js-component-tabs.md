@@ -181,10 +181,10 @@ tabs默认展示索引为index的标签及内容。通过设置vertical属性使
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   tabChange(e){
-    prompt.showToast({
+    promptAction.showToast({
       message: "Tab index: " + e.index
     })
   }
@@ -271,7 +271,7 @@ background-color:#F1F3F5;
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data() {
     return {

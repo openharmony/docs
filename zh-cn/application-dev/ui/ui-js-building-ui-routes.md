@@ -65,7 +65,7 @@ index和detail这两个页面均包含一个text组件和button组件：text组�
 import router from '@ohos.router';
 export default {
   launch() {
-    router.push ({
+    router.pushUrl ({
       url: 'pages/detail/detail',
     });
   },
