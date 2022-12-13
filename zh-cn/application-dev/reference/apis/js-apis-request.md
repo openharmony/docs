@@ -33,7 +33,7 @@ var config = {
 
 在开发stage模型下的应用程序时，不涉及属性标识 "cleartextTraffic"。
 
-下载服务器需要支持http协议的header方法，能够通过content-length获取下载数据大小，否则下载任务失败，可通过[on('fail')<sup>7+</sup>)](#onfail7)查看失败原因。
+下载服务器需要支持HTTP协议的head方法，能够通过Content-length获取下载数据大小，否则下载任务失败，可通过[on('fail')<sup>7+</sup>)](#onfail7)查看失败原因。
 
 
 ## 常量
@@ -82,7 +82,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | BaseContext | 是 | 基于应用程序的上下文。 |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
 
 
@@ -132,7 +132,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | BaseContext | 是 | 基于应用程序的上下文。 |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
 
@@ -265,7 +265,7 @@ upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | BaseContext | 是 | 基于应用程序的上下文。 |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
   
 
@@ -310,7 +310,7 @@ upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;Up
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | BaseContext | 是 | 基于应用程序的上下文。 |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
 
@@ -694,7 +694,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 资源地址。 |
-| header | Object | 是 | 添加要包含在上载请求中的HTTP或HTTPS标志头。 |
+| header | Object | 是 | 添加要包含在上传请求中的HTTP或HTTPS标志头。 |
 | method | string | 是 | 请求方法：POST、PUT。缺省为POST。 |
 | files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。请使用&nbsp;multipart/form-data提交。 |
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
@@ -750,7 +750,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | BaseContext | 是 | 基于应用程序的上下文。 |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
 
 **返回值：**
@@ -794,7 +794,7 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | BaseContext | 是 | 基于应用程序的上下文。 |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
   | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 是 | 下载接口的回调函数。 |
 
@@ -910,7 +910,7 @@ download(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | BaseContext | 是 | 基于应用程序的上下文。 |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
 
 **返回值：**
@@ -947,7 +947,7 @@ download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&l
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | BaseContext | 是 | 基于应用程序的上下文。 |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
   | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 是 | 下载接口的回调函数。 |
 
