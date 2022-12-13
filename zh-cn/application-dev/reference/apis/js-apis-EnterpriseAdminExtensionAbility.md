@@ -1,4 +1,4 @@
-# EnterpriseAdminExtensionAbility
+# @ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)
 
 本模块提供企业管理员应用拓展能力。
 

@@ -1,4 +1,4 @@
-# 数据请求
+# @ohos.net.http (数据请求)
 
 本模块提供HTTP数据请求能力。应用可以通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。
 
