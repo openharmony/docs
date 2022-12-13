@@ -1,6 +1,6 @@
 
 
-# Webview
+# @ohos.web.webview(Web)
 
 提供web控制能力。
 
