@@ -1,4 +1,4 @@
-# Configuration
+# @ohos.app.ability.Configuration (Configuration)
 
 定义环境变化信息。
 

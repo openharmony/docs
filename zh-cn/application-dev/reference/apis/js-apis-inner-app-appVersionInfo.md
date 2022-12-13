@@ -1,4 +1,4 @@
-# AppVersionInfo<sup>7+</sup>
+# AppVersionInfo
 
 定义应用版本信息。
 
