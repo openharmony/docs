@@ -353,7 +353,7 @@ Disables listening for screen hopping events.
 callback: function(event) {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
   return false;
-},
+}
 try {
   inputDeviceCooperate.on('cooperation', this.callback);
   inputDeviceCooperate.off("cooperation", this.callback);
@@ -366,7 +366,7 @@ try {
 callback: function(event) {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
   return false;
-},
+}
 try {
   inputDeviceCooperate.on('cooperation', this.callback);
   inputDeviceCooperate.off("cooperation");
