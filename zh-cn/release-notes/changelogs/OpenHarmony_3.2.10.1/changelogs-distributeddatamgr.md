@@ -5,7 +5,7 @@ OpenHarmony 3.2.10.1(Mr)版本相较于OpenHarmony 3.2.beta4版本，分布式�
 ## cl.distributeddatamgr.1 接口变更
 distributeddatamgr子系统kv_store组件接口存在变更：
 
-由于时间固定，createKVManager方法需要改为同步接口。因此旧的接口function createKVManager(config: KVManagerConfig): Promise\<KVManager\>; 与 function createKVManager(config: KVManagerConfig, callback: AsyncCallback<KVManager>): void; 改为 function createKVManager(config: KVManagerConfig): KVManager;
+由于执行时间固定且耗时短，不需要异步等待执行结果，createKVManager方法需要改为同步接口。因此旧的接口function createKVManager(config: KVManagerConfig): Promise\<KVManager\>; 与 function createKVManager(config: KVManagerConfig, callback: AsyncCallback<KVManager>): void; 改为 function createKVManager(config: KVManagerConfig): KVManager;
 
 开发者需要根据以下说明对应用进行适配。
 
