@@ -1,4 +1,4 @@
-# 手势触摸点
+# @ohos.accessibility.GesturePoint (手势触摸点)
 
 GesturePoint表示手势触摸点。
 

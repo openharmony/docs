@@ -1,4 +1,4 @@
-# ProcessInfo<sup>7+</sup>
+# ProcessInfo
 
 定义进程信息。
 

@@ -1,4 +1,4 @@
-# 标准NFC-Tag  TagSession
+# tagSession (标准NFC-Tag TagSession)
 
 本模块是对NFC TagSession的使用说明。
 

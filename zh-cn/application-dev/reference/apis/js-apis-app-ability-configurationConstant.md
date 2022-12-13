@@ -1,4 +1,4 @@
-# ConfigurationConstant
+# @ohos.app.ability.ConfigurationConstant (ConfigurationConstant)
 
 ConfigurationConstant模块提供配置信息枚举值定义的能力。
 

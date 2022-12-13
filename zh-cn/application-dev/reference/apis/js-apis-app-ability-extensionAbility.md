@@ -1,4 +1,4 @@
-# ExtensionAbility
+# @ohos.app.ability.ExtensionAbility (扩展能力基类)
 
 ExtensionAbility模块提供对ExtensionAbility生命周期、上下文环境等调用管理的能力，包括ExtensionAbility创建、销毁、转储客户端信息等。
 

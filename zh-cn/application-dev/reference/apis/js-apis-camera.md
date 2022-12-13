@@ -1,4 +1,4 @@
-# 相机管理
+# @ohos.multimedia.camera (相机管理)
 
 > **说明：**
 >

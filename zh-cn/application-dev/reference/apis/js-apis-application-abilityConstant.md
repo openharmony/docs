@@ -1,4 +1,4 @@
-# AbilityConstant
+# @ohos.application.AbilityConstant (AbilityConstant)
 
 AbilityConstant是启动参数的接口。
 

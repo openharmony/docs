@@ -1,4 +1,4 @@
-# DataAbilityHelper模块(JS端SDK接口)
+# DataAbilityHelper
 
 > **说明：**
 > 

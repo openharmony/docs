@@ -1,4 +1,4 @@
-# AbilityResult<sup>7+</sup>
+# AbilityResult
 
 定义ability拉起、销毁之后返回的结果码和数据。
 

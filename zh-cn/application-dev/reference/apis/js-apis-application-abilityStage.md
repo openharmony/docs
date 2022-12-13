@@ -1,4 +1,4 @@
-# AbilityStage
+# @ohos.application.AbilityStage (AbilityStage)
 
 AbilityStage是HAP包的运行时类。
 

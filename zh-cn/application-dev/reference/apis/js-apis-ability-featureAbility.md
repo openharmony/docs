@@ -1,4 +1,4 @@
-# FeatureAbility模块(JS端SDK接口)
+# @ohos.ability.featureAbility (FeatureAbility模块)
 
 FeatureAbility模块提供带有UI设计与用户交互的能力，包括启动新的ability、获取dataAbilityHelper、设置此Page Ability、获取当前Ability对应的窗口，连接服务等。
 

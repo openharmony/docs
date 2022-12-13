@@ -1,4 +1,4 @@
-# 输入监听
+# @ohos.multimodalInput.inputMonitor (输入监听)
 
 输入监听模块，提供了监听输入设备事件（当前支持触摸屏和鼠标）的能力。
 
