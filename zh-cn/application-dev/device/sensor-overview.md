@@ -57,4 +57,3 @@ OpenHarmony传感器包含如下四个模块：Sensor API、Sensor Framework、S
     | 心率计                       | ohos.permission.READ_HEALTH_DATA | user_grant   | 允许读取健康数据                |
     
 2. 传感器数据订阅和取消订阅接口成对调用，当不再需要订阅传感器数据时，开发者需要调用取消订阅接口停止数据上报。
-   
