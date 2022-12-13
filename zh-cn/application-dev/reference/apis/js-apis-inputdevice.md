@@ -238,7 +238,7 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 **示例**：
 
 ```js
-inputDevice.getDeviceList((error, ids) => {
+inputDevice.getDeviceIds((error, ids) => {
   if (error) {
     console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
     return;
@@ -266,7 +266,7 @@ getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 **示例**：
 
 ```js
-inputDevice.getDeviceList().then((ids) => {
+inputDevice.getDeviceIds().then((ids) => {
   console.log(`Device id list: ${JSON.stringify(ids)}`);
 });
 ```
@@ -292,7 +292,7 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 ```js
 // 获取输入设备id为1的设备信息。
-inputDevice.getDeviceInfo(1, (error, deviceData) => {
+inputDevice.getDevice(1, (error, deviceData) => {
   if (error) {
     console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
     return;
@@ -327,7 +327,7 @@ getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 ```js
 // 获取输入设备id为1的设备信息。
-inputDevice.getDeviceInfo(1).then((deviceData) => {
+inputDevice.getDevice(1).then((deviceData) => {
   console.log(`Device info: ${JSON.stringify(deviceData)}`);
 });
 ```
