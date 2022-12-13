@@ -1,4 +1,4 @@
-# ErrorManager
+# @ohos.app.ability.errorManager (ErrorManager)
 
 ErrorManager模块提供对错误观察器的注册和注销的能力。
 

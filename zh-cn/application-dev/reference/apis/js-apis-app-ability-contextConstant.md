@@ -1,4 +1,4 @@
-# ContextConstant
+# @ohos.app.ability.contextConstant (ContextConstant)
 
 ContextConstant模块提供数据加密等级定义的能力。
 

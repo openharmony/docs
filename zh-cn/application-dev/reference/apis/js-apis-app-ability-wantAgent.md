@@ -1,4 +1,4 @@
-# WantAgent模块
+# @ohos.app.ability.wantAgent (WantAgent模块)
 
 WantAgent模块提供了触发、取消、比较WantAgent实例和获取bundle名称的能力，包括创建WantAgent实例、获取实例的用户ID、获取want信息等。
 
