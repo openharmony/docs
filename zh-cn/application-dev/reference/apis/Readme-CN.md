@@ -82,7 +82,7 @@
       - [context (Context模块)](js-apis-inner-app-context.md)
       - [processInfo (ProcessInfo)](js-apis-inner-app-processInfo.md)
     - application
-      - [AbilityContext]
+      - [AbilityContext (AbilityContext)](js-apis-ability-context.md)
       - [abilityDelegator (AbilityDelegator)](js-apis-inner-application-abilityDelegator.md)
       - [abilityDelegatorArgs (AbilityDelegatorArgs)](js-apis-inner-application-abilityDelegatorArgs.md)
       - [abilityMonitor (AbilityMonitor)](js-apis-inner-application-abilityMonitor.md)
