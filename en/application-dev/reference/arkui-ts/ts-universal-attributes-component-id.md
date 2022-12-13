@@ -23,6 +23,8 @@ getInspectorByKey(id: string): string
 
 Obtains all attributes of the component with the specified ID, excluding the information about child components.
 
+This API is used only for test purposes.
+
 **Parameters**
 
 | Name  | Type     | Mandatory    | Description       |
@@ -41,6 +43,8 @@ getInspectorTree(): string
 
 Obtains the component tree and component attributes.
 
+This API is used only for test purposes.
+
 **Return value**
 
 | Type    | Description                           |
@@ -52,6 +56,8 @@ Obtains the component tree and component attributes.
 sendEventByKey(id: string, action: number, params: string): boolean
 
 Sends an event to the component with the specified ID.
+
+This API is used only for test purposes.
 
 **Parameters**
 
@@ -73,6 +79,8 @@ sendTouchEvent(event: TouchObject): boolean
 
 Sends a touch event.
 
+This API is used only for test purposes.
+
 **Parameters**
 
 | Name     | Type           | Mandatory | Description                                                        |
@@ -91,6 +99,8 @@ sendKeyEvent(event: KeyEvent): boolean
 
 Sends a key event.
 
+This API is used only for test purposes.
+
 **Parameters**
 
 | Name   | Type    | Mandatory     | Description                                                        |
@@ -108,6 +118,8 @@ Sends a key event.
 sendMouseEvent(event: MouseEvent): boolean
 
 Sends a mouse event.
+
+This API is used only for test purposes.
 
 **Parameters**
 
