@@ -44,6 +44,14 @@ constructor是URI的构造函数。
 | -------- | -------- | -------- | -------- |
 | uri | string | 是 | 入参对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200002 | Invalid uri string. |
+
 **示例：**
 
 ```js
@@ -79,13 +87,13 @@ result.toString()
 
 ### equals<sup>(deprecated)</sup>
 
-> **说明：**
->
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[equalsTo<sup>9+</sup>](#equalsto9)替代。
-
 equals(other: URI): boolean
 
 判断此URI是否与其他URI对象相等。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[equalsTo<sup>9+</sup>](#equalsto9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
