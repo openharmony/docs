@@ -1,4 +1,4 @@
-# 用户数据管理
+# @ohos.filemanagement.userFileManager (用户数据管理)
 
 该模块提供用户数据管理能力，包括访问、修改用户等用户公共媒体数据信息等常用功能。
 
