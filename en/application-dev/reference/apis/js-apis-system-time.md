@@ -453,7 +453,7 @@ Sets the system time zone. This API uses an asynchronous callback to return the 
 
 | Name  | Type             | Mandatory| Description                 |
 | -------- | ------------- | ---- | -------------------------- |
-| timezone | string                    | Yes  | System time zone to set.                                |
+| timezone | string                    | Yes  | System time zone to set. For details, see [Supported System Time Zones](#supported-system-time-zones).       |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
@@ -482,7 +482,7 @@ Sets the system time zone. This API uses a promise to return the result.
 
 | Name  | Type  | Mandatory| Description      |
 | -------- | ------ | ---- | ---------- |
-| timezone | string | Yes  | System time zone to set.|
+| timezone | string | Yes  | System time zone to set. For details, see [Supported System Time Zones](#supported-system-time-zones).|
 
 **Return value**
 
@@ -512,7 +512,7 @@ Obtains the system time zone. This API uses an asynchronous callback to return t
 
 | Name  | Type             | Mandatory| Description                |
 | -------- | --------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the system time zone.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the system time zone. For details, see [Supported System Time Zones](#supported-system-time-zones).|
 
 **Example**
 
@@ -538,7 +538,7 @@ Obtains the system time zone. This API uses a promise to return the result.
 
 | Type                 | Description                                 |
 | --------------------- | ------------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the system time zone.|
+| Promise&lt;string&gt; | Promise used to return the system time zone. For details, see [Supported System Time Zones](#supported-system-time-zones).|
 
 **Example**
 
@@ -549,3 +549,41 @@ systemTime.getTimezone().then((data) => {
     console.error(`Failed to get system time zone. Cause:` + JSON.stringify(error));
 });
 ```
+
+## Supported System Time Zones
+
+The following table lists the supported system time zones and the respective offset (unit: h) between each time zone and time zone 0.
+
+| Time Zone                          | Offset        |
+| ------------------------------ | --------------------- |
+| Antarctica/McMurdo             | 12                    |
+| America/Argentina/Buenos_Aires | -3                    |
+| Australia/Sydney               | 10                    |
+| America/Noronha                | -2                    |
+| America/St_Johns               | -3                    |
+| Africa/Kinshasa                | 1                     |
+| America/Santiago               | -3                    |
+| Asia/Shanghai                  | 8                     |
+| Asia/Nicosia                   | 3                     |
+| Europe/Berlin                  | 2                     |
+| America/Guayaquil              | -5                    |
+| Europe/Madrid                  | 2                     |
+| Pacific/Pohnpei                | 11                    |
+| America/Godthab                | -2                    |
+| Asia/Jakarta                   | 7                     |
+| Pacific/Tarawa                 | 12                    |
+| Asia/Almaty                    | 6                     |
+| Pacific/Majuro                 | 12                    |
+| Asia/Ulaanbaatar               | 8                     |
+| America/Mexico_City            | -5                    |
+| Asia/Kuala_Lumpur              | 8                     |
+| Pacific/Auckland               | 12                    |
+| Pacific/Tahiti                 | -10                   |
+| Pacific/Port_Moresby           | 10                    |
+| Asia/Gaza                      | 3                     |
+| Europe/Lisbon                  | 1                     |
+| Europe/Moscow                  | 3                     |
+| Europe/Kiev                    | 3                     |
+| Pacific/Wake                   | 12                    |
+| America/New_York               | -4                    |
+| Asia/Tashkent                  | 5                     |
