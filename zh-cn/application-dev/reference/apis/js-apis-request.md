@@ -336,7 +336,8 @@ upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;Up
 
 ## UploadTask
 
-上传任务，使用下列方法前，需要先获取UploadTask对象。
+上传任务，使用下列方法前，需要先获取UploadTask对象，promise形式通过[request.uploadFile<sup>9+</sup>](#requestuploadfile9)获取，callback形式通过[request.uploadFile<sup>9+</sup>](#requestuploadfile9-1)获取。
+
 
 
 ### on('progress')
@@ -968,7 +969,7 @@ download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&l
 
 ## DownloadTask
 
-下载任务。
+下载任务，使用下列方法前，需要先获取DownloadTask对象，promise形式通过[request.downloadFile<sup>9+</sup>](#requestdownloadfile9)获取，callback形式通过[request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1)获取。
 
 
 ### on('progress')
