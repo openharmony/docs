@@ -697,7 +697,7 @@ blockNetwork(block: boolean)
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .blockNetwork(this.blockNetwork)
+          .blockNetwork(this.block)
       }
     }
   }
