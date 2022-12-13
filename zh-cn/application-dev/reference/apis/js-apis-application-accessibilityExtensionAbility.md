@@ -1,4 +1,4 @@
-# 辅助功能扩展能力
+# @ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)
 
 **AccessibilityExtensionAbility**基于ExtensionAbility框架，提供辅助功能业务的能力。
 

@@ -1,4 +1,4 @@
-# 输入设备
+# @ohos.multimodalInput.inputDevice (输入设备)
 
 
 输入设备管理模块，用于监听输入设备连接和断开状态，查询输入设备相关信息。

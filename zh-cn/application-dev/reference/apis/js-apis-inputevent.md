@@ -1,4 +1,4 @@
-# 输入事件
+# @ohos.multimodalInput.inputEvent (输入事件)
 
 设备上报的基本事件。
 

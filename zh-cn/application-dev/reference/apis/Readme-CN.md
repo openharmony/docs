@@ -282,13 +282,13 @@
   - [@ohos.inputmethodengine (输入法服务)](js-apis-inputmethodengine.md)
   - [@ohos.inputmethodextensionability (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)
   - [@ohos.inputmethodextensioncontext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
-  - [@ohos.inputmethodsubtype(输入法子类型)](js-apis-inputmethod-subtype.md)
+  - [@ohos.inputmethodsubtype (输入法子类型)](js-apis-inputmethod-subtype.md)
   - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
   - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)
   - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
   - [@ohos.systemTimer(系统定时器)](js-apis-system-timer.md)
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
-  - [@ohos.web.webview(Web)](js-apis-webview.md)
+  - [@ohos.web.webview (Webview)](js-apis-webview.md)
   - [console (日志打印)](js-apis-logs.md)
   - [Timer (定时器)](js-apis-timer.md)
   - application
@@ -333,7 +333,7 @@
   - [@ohos.configPolicy (配置策略)](js-apis-configPolicy.md)
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
   - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
-  - [@ohos.enterprise.dateTimeManager（系统时间管理）](js-apis-enterprise-dateTimeManager.md)
+  - [@ohos.enterprise.dateTimeManager (系统时间管理)](js-apis-enterprise-dateTimeManager.md)
 
 - 语言基础类库
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)

@@ -1,7 +1,4 @@
-
-
-
-# 设备管理
+# @ohos.distributedHardware.deviceManager (设备管理)
 
 本模块提供分布式设备管理能力。
 

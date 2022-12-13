@@ -1,4 +1,4 @@
-# 组合按键
+# @ohos.multimodalInput.inputConsumer (组合按键)
 
 组合按键订阅模块，用于处理组合按键的订阅。
 
