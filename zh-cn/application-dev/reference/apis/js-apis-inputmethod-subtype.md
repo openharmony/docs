@@ -1,4 +1,4 @@
-# @ohos.inputmethodsubtype(输入法子类型)
+# @ohos.inputmethodsubtype (输入法子类型)
 
 本模块提供对输入法子类型的属性管理。输入法应用子类型的含义，如：输入法的中文版、英文版、大写模式、小写模式等都属于输入法的子类型。
 
