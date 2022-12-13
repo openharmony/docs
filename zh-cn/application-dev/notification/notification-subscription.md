@@ -9,7 +9,7 @@
 
 ## 接口说明
 
-通知订阅主要接口如下。详细接口介绍请参见[API参考](../reference/apis/js-apis-notification.md#notification%E6%A8%A1%E5%9D%97)。
+通知订阅主要接口如下。详细接口介绍请参见[API参考](../reference/apis/js-apis-notificationSubscribe.md)。
 
 **表1** 通知订阅接口介绍
 
@@ -35,7 +35,7 @@
 
 ## 开发步骤
 
-1. 申请`ohos.permission.NOTIFICATION_CONTROLLER`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage%E6%A8%A1%E5%9E%8B)。
+1. 申请`ohos.permission.NOTIFICATION_CONTROLLER`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
 
 2. 导入通知订阅模块。
    
