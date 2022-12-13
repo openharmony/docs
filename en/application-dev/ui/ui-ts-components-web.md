@@ -22,7 +22,7 @@ Create a **\<Web>** component in the .ets file under **main/ets/MainAbility/page
 
 ## Setting Styles and Attributes
 
-When using the **\<Web>** component, you need to specify the styles and attributes. The sample code is as follows.
+When using the **\<Web>** component, you must specify the styles and attributes. The sample code is as follows.
 
 ```ts
 // xxx.ets
@@ -151,6 +151,38 @@ Create an HTML file in **main/resources/rawfile**.
 </script>
 </html>
 ```
+
+## Enabling Web Debugging
+To debug web pages in the **\<Web>** component on a device, connect the device to a PC through the USB port, and then set the **webDebuggingAccess** attribute of the **\<Web>** component to **true** and enable port forwarding on the PC.
+
+The configuration procedure is as follows:
+
+1. Set the **webDebuggingAccess** attribute of the **\<Web>** component to **true**.
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webDebuggingAccess(true) // true means to enable web debugging.
+      }
+    }
+  }
+  ```
+
+2. Enable port forwarding on the PC and add a mapping for TCP port 9222.
+  ```ts
+  hdc fport tcp:9222 tcp:9222
+  ```
+  You can run the following command to view the existing mapping table:
+  ```ts
+  hdc fport ls
+  ```
+When you are done, you can debug a web page as follows: On the target device, open the **\<Web>** component in the application and access the web page to debug; on the PC, use the Chrome browser to access **http://localhost:9222** and start to debug the web page.
+
 ## Scenario Example
 
 In this example, you'll implement a **\<Web>** component where videos can be played dynamically. Embed a video resource into an HTML page, and then use the **\<Web>** component controller to invoke the **onActive** and **onInactive** methods to activate and pause page rendering, respectively. Upon clicking of the **onInactive** button, the **\<Web>** component stops rendering and the video playback pauses. Upon clicking of the **onActive** button, the **\<Web>** component is activated and the video playback resumes.
