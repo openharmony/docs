@@ -1,6 +1,6 @@
 
 
-# @ohos.web.webview (Web)
+# @ohos.web.webview (Webview)
 
 提供web控制能力。
 
@@ -11,6 +11,7 @@
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
 ## 需要权限
+
 访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
 
 ## 导入模块
