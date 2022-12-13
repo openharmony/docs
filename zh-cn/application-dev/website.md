@@ -1064,7 +1064,7 @@
       - [@ohos.pasteboard (剪贴板)](reference/apis/js-apis-pasteboard.md)
       - [@ohos.screenLock (锁屏管理)](reference/apis/js-apis-screen-lock.md)
       - [@ohos.systemTime (系统时间、时区)](reference/apis/js-apis-system-time.md)
-      - [@ohos.systemTimer(系统定时器)](reference/apis/js-apis-system-timer.md)
+      - [@ohos.systemTimer (系统定时器)](reference/apis/js-apis-system-timer.md)
       - [@ohos.wallpaper (壁纸)](reference/apis/js-apis-wallpaper.md)
       - [@ohos.web.webview (Webview)](reference/apis/js-apis-webview.md)
       - [console (日志打印)](reference/apis/js-apis-logs.md)

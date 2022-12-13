@@ -286,7 +286,7 @@
   - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
   - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)
   - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
-  - [@ohos.systemTimer(系统定时器)](js-apis-system-timer.md)
+  - [@ohos.systemTimer (系统定时器)](js-apis-system-timer.md)
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
   - [console (日志打印)](js-apis-logs.md)
