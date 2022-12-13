@@ -1,4 +1,4 @@
-# 手势路径
+# @ohos.accessibility.GesturePath (手势路径)
 
 GesturePath表示手势路径信息。
 

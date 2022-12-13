@@ -1,4 +1,4 @@
-# 鼠标输入事件
+# @ohos.multimodalInput.mouseEvent (鼠标输入事件)
 
 设备上报的鼠标事件。
 

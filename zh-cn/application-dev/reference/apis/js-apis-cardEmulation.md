@@ -1,4 +1,4 @@
-# 标准NFC-cardEmulation
+# @ohos.nfc.cardEmulation (标准NFC-cardEmulation)
 
 本模块主要提供NFC卡模拟业务，包括判断支持哪种卡模拟类型，HCE卡模拟的业务实现等。
 
