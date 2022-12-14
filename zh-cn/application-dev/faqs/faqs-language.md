@@ -16,7 +16,6 @@ TS语言的使用在生成器函数中存在以下限制：
 
 错误示例：
 
-
 ```
 build() {
   let a: number = 1 // invalid: variable declaration not allowed
@@ -54,7 +53,7 @@ build() {
 
 1. 通过resourceManager的RawFile接口获取Uint8Array格式数据。
 
-2. 通过String.fromCharCode将Uint8Array格式数据转化为String类型。快快快
+2. 通过String.fromCharCode将Uint8Array格式数据转化为String类型。
 
 参考文档：[资源管理](../reference/apis/js-apis-resource-manager.md)
 

@@ -44,7 +44,7 @@ HttpRequestOptions中的header是一个Object类型，可以直接在header里�
 
 适用于：OpenHarmony SDK 3.2.6.5版本，API9 Stage模型
 
-1. 鼠标移到extraData, ctrl+鼠标左键，跳转到sdk中，里面有关于extraData的传参说明。可以发现文档中对extraData的定义是这样的 extraData?: string | Object,也就是extraData支持string 和 Object两种类型。
+1. 鼠标移到extraData, ctrl+鼠标左键，跳转到sdk中，里面有关于extraData的传参说明。可以发现文档中对extraData的定义为 extraData?: string | Object，也就是extraData支持string 和 Object两种类型。
 
 2. 这两种写法都可以实现：
   a.extraData:"data to send"；
