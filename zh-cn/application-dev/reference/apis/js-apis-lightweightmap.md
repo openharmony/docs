@@ -43,7 +43,7 @@ LightWeightMap的构造函数。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -72,7 +72,7 @@ isEmpty(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -108,7 +108,7 @@ hasAll(map: LightWeightMap<K, V>): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -148,7 +148,7 @@ hasKey(key: K): boolean;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -187,7 +187,7 @@ hasValue(value: V): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -213,7 +213,7 @@ increaseCapacityTo(minimumCapacity: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -255,7 +255,7 @@ get(key: K): V
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -293,7 +293,7 @@ getIndexOfKey(key: K): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -331,7 +331,7 @@ getIndexOfValue(value: V): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -369,7 +369,7 @@ getKeyAt(index: number): K
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -402,7 +402,7 @@ setAll(map: LightWeightMap<K, V>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -441,7 +441,7 @@ set(key: K, value: V): Object
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -477,7 +477,7 @@ remove(key: K): V
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -515,7 +515,7 @@ removeAt(index: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -554,7 +554,7 @@ setValueAt(index: number, newValue: V): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -593,7 +593,7 @@ getValueAt(index: number): V
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -620,7 +620,7 @@ clear(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -652,7 +652,7 @@ keys(): IterableIterator&lt;K&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -689,7 +689,7 @@ values(): IterableIterator&lt;V&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -734,7 +734,7 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -768,7 +768,7 @@ entries(): IterableIterator<[K, V]>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -805,7 +805,7 @@ toString(): String
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -836,7 +836,7 @@ let iter = lightWeightMap.toString();
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
