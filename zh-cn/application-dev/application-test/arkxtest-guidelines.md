@@ -154,7 +154,9 @@ export default function abilityTest() {
 
 ## 执行测试脚本
 
-执行测试脚本可以直接在DevEco Studio中通过点击按钮执行，当前支持以下执行方式：
+### DevEco Studio执行
+
+通过点击按钮执行，当前支持以下执行方式：
 
 1、测试包级别执行即执行测试包内的全部用例。
 
