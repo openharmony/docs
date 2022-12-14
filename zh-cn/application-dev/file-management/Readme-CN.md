@@ -7,3 +7,4 @@
 
 - 文件访问框架
   - [用户公共文件访问框架概述](file-access-framework-overview.md)
+- [文件选择器使用指导](filepicker-guidelines.md)

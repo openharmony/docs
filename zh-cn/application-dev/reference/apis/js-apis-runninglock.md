@@ -1,8 +1,9 @@
-# RunningLock锁
+# @ohos.runningLock (Runninglock锁)
 
 该模块主要提供RunningLock锁相关操作的接口，包括创建、查询、持锁、释放锁等操作。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块

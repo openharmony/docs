@@ -1,4 +1,4 @@
-# 系统时间管理
+# @ohos.enterprise.dateTimeManager (系统时间管理)
 
 本模块提供系统时间管理能力。仅企业设备管理员应用才能调用。
 

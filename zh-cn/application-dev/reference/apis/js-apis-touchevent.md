@@ -1,4 +1,4 @@
-# 触摸输入事件
+# @ohos.multimodalInput.touchEvent (触摸输入事件)
 
 设备上报的触屏事件。
 

@@ -1,4 +1,4 @@
-# 振动
+# @ohos.vibrator (振动)
 
 vibrator模块提供控制马达振动启、停的能力。
 

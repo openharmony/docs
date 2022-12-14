@@ -1,8 +1,8 @@
-# 应用帐号管理
+# @ohos.account.appAccount (应用帐号管理)
 
 本模块提供应用帐号信息的添加、删除、修改和查询基础能力，并支持应用间鉴权和分布式数据同步功能。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
