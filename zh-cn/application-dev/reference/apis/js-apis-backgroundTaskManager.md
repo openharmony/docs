@@ -1,4 +1,4 @@
-# 后台任务管理
+# @ohos.backgroundTaskManager (后台任务管理)
 
 本模块提供后台任务管理能力。
 

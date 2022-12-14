@@ -1,4 +1,4 @@
-# FormExtensionAbility
+# @ohos.application.FormExtension (FormExtension)
 
 FormExtensionAbility模块提供了卡片扩展相关接口。
 
