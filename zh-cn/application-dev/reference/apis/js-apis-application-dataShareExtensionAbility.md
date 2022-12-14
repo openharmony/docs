@@ -1,4 +1,4 @@
-# 数据共享扩展能力
+# @ohos.application.DataShareExtensionAbility (数据共享扩展能力)
 
 **DataShareExtensionAbility**基于ExtensionAbility框架，提供支持数据共享业务的能力。
 

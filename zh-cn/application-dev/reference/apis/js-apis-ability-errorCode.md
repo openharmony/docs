@@ -1,4 +1,4 @@
-# ErrorCode
+# @ohos.ability.errorCode (ErrorCode)
 
 ErrorCode是定义启动功能时使用的错误代码。
 

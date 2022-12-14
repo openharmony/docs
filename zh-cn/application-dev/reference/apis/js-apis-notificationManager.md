@@ -1,4 +1,4 @@
-# NotificationManager模块
+# @ohos.notificationManager (NotificationManager模块)
 
 本模块提供通知管理的能力，包括发布、取消发布通知，创建、获取、移除通知通道，获取通知的使能状态、角标使能状态，获取通知的相关信息等。
 

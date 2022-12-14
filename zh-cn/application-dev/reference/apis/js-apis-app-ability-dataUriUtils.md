@@ -1,4 +1,4 @@
-# DataUriUtils模块
+# ohos.app.ability.dataUriUtils (DataUriUtils模块)
 
 DataUriUtils模块提供用于处理使用DataAbilityHelper方案的对象的实用程序类的能力，包括获取，添加，更新给定uri的路径末尾的ID。
 

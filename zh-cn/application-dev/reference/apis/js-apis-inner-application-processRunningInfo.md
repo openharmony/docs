@@ -1,4 +1,4 @@
-# application/[ProcessRunningInfo (ProcessRunningInfo)
+# ProcessRunningInfo
 
 本模块提供对进程运行信息进行设置和查询的能力。
 
