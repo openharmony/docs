@@ -425,8 +425,3 @@ UI测试用例执行失败，查看hilog日志发现日志中有“dose not exis
 **解决方法**
 
 重新执行UI测试用例。
-<style>
-    table th:nth-of-type(2) {
-        width: 200px;
-    }
-</style>
