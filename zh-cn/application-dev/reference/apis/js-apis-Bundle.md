@@ -1,4 +1,4 @@
-# Bundle模块(JS端SDK接口)
+# @ohos.bundle (Bundle模块)
 
 本模块提供应用信息查询能力，支持[包信息](js-apis-bundle-BundleInfo.md)、[应用信息](js-apis-bundle-ApplicationInfo.md)、[Ability组件信息](js-apis-bundle-AbilityInfo.md)等信息的查询，以及应用禁用状态的查询、设置等。
 
