@@ -1,4 +1,4 @@
-# TestRunner
+# @ohos.application.testRunner (TestRunner)
 
 TestRunner模块提供了框架测试的能力。包括准备单元测试环境、运行测试用例。
 
