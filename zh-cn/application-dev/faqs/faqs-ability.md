@@ -83,15 +83,13 @@ Ability配置中缺少startWindowIcon属性配置，需要在module.json5中abil
 
 使用Ability的onConfigurationUpdated回调实现，系统语言、颜色模式以及Display相关的参数，比如方向、Density，发生变化时触发该回调。
 
-参考文档：[Ability开发指导](../ability/stage-ability.md)
-
 ## Stage模型是否推荐用globalThis去获取Context
 
 适用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
 
 不推荐，Stage模型使用globalThis去获取Context是错误的使用方式。在Stage模型中，整个应用进程共用一个js虚拟机实例，其中可以运行多个Ability实例，共用一个global对象。在同一个js虚拟机内的不同的Ability中使用globalThis获取Context，存在被覆盖从而发生错误的风险。
 
-推荐使用方式参考：[Stage模型的Context详细介绍](../ability/context-userguide.md#stage模型的context详细介绍)。
+推荐使用方式参考：[Stage模型的Context详细介绍](../application-models/application-context-stage.md)。
 
 ## 如何在应用A中去获取应用B的Hap包的安装路径
 
