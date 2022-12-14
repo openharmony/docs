@@ -9,7 +9,7 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 ## 导入模块
 
 ```ts
-import app from '@ohos.application.appManager';
+import appManager from '@ohos.application.appManager';
 ```
 
 ## appManager.isRunningInStabilityTest<sup>8+</sup>
@@ -29,9 +29,9 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
     
   ```ts
-  import app from '@ohos.application.appManager';
-  app.isRunningInStabilityTest((err, flag) => {
-      console.log('startAbility result:' + JSON.stringify(err));
+  appManager.isRunningInStabilityTest((err, flag) => {
+    console.log('error:' + JSON.stringfy(err));
+    console.log('The result of isRunningInStabilityTest is:' + JSON.stringify(flag));
   })  
   ```
 
@@ -53,11 +53,10 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 **示例：**
     
   ```ts
-  import app from '@ohos.application.appManager';
-  app.isRunningInStabilityTest().then((flag) => {
-      console.log('success:' + JSON.stringify(flag));
+  appManager.isRunningInStabilityTest().then((flag) => {
+      console.log('The result of isRunningInStabilityTest is:' + JSON.stringify(flag));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
+      console.log('error:' + JSON.stringify(error));
   });
   ```
 
@@ -79,10 +78,10 @@ isRamConstrainedDevice(): Promise\<boolean>;
 **示例：**
     
   ```ts
-  app.isRamConstrainedDevice().then((data) => {
-      console.log('success:' + JSON.stringify(data));
+  appManager.isRamConstrainedDevice().then((data) => {
+      console.log('The result of isRamConstrainedDevice is:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
+      console.log('error:' + JSON.stringify(error));
   });
   ```
 
@@ -103,9 +102,9 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 **示例：**
     
   ```ts
-  app.isRamConstrainedDevice((err, data) => {
-      console.log('startAbility result failed:' + JSON.stringify(err));
-      console.log('startAbility result success:' + JSON.stringify(data));
+  appManager.isRamConstrainedDevice((err, data) => {
+      console.log('error:' + JSON.stringify(err));
+      console.log('The result of isRamConstrainedDevice is:' + JSON.stringify(data));
   })
   ```
 
@@ -126,10 +125,10 @@ getAppMemorySize(): Promise\<number>;
 **示例：**
     
   ```ts
-  app.getAppMemorySize().then((data) => {
-      console.log('success:' + JSON.stringify(data));
+  appManager.getAppMemorySize().then((data) => {
+      console.log('The size of app memory is:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
+      console.log('error:' + JSON.stringify(error));
   });
   ```
 
@@ -150,9 +149,9 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 **示例：**
     
   ```ts
-  app.getAppMemorySize((err, data) => {
-      console.log('startAbility result failed :' + JSON.stringify(err));
-      console.log('startAbility result success:' + JSON.stringify(data));
+  appManager.getAppMemorySize((err, data) => {
+      console.log('error:' + JSON.stringify(err));
+      console.log('The size of app memory is:' + JSON.stringify(data));
   })
   ```
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
@@ -176,10 +175,10 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 **示例：**
     
   ```ts
-  app.getProcessRunningInfos().then((data) => {
-      console.log('success:' + JSON.stringify(data));
+  appManager.getProcessRunningInfos().then((data) => {
+      console.log('The process running infos is:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
+      console.log('error:' + JSON.stringify(error));
   });
   ```
 
@@ -204,9 +203,9 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 **示例：**
     
   ```ts
-  app.getProcessRunningInfos((err, data) => {
-      console.log('startAbility result failed :' + JSON.stringify(err));
-      console.log('startAbility result success:' + JSON.stringify(data));
+  appManager.getProcessRunningInfos((err, data) => {
+      console.log('error:' + JSON.stringify(err));
+      console.log('The process running infos is:' + JSON.stringify(data));
   })
   ```
 
@@ -229,10 +228,10 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 **示例：**
     
   ```ts
-  app.getProcessRunningInformation().then((data) => {
-      console.log('success:' + JSON.stringify(data));
+  appManager.getProcessRunningInformation().then((data) => {
+      console.log('The process running info is:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
+      console.log('error:' + JSON.stringify(error));
   });
   ```
 
@@ -255,9 +254,9 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 **示例：**
     
   ```ts
-  app.getProcessRunningInformation((err, data) => {
-      console.log('startAbility result failed :' + JSON.stringify(err));
-      console.log('startAbility result success:' + JSON.stringify(data));
+  appManager.getProcessRunningInformation((err, data) => {
+      console.log('error:' + JSON.stringify(err));
+      console.log('The process running info is:' + JSON.stringify(data));
   })
   ```
 
@@ -299,7 +298,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
         console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
-  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
+  const observerCode = appManager.registerApplicationStateObserver(applicationStateObserver);
   console.log('-------- observerCode: ---------', observerCode);
   ```
 
@@ -343,7 +342,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
     }
   }
   var bundleNameList = ['bundleName1', 'bundleName2'];
-  const observerCode = app.registerApplicationStateObserver(applicationStateObserver, bundleNameList);
+  const observerCode = appManager.registerApplicationStateObserver(applicationStateObserver, bundleNameList);
   console.log('-------- observerCode: ---------', observerCode);
   ```
 ## appManager.unregisterApplicationStateObserver<sup>8+</sup>
@@ -375,7 +374,7 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
         console.log('------------ unregisterApplicationStateObserverCallback ------------', err);
     }
   }
-  app.unregisterApplicationStateObserver(observerId, unregisterApplicationStateObserverCallback);
+  appManager.unregisterApplicationStateObserver(observerId, unregisterApplicationStateObserverCallback);
   ```
 
 ## appManager.unregisterApplicationStateObserver<sup>8+</sup>
@@ -407,7 +406,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
   ```ts
   var observerId = 100;
 
-  app.unregisterApplicationStateObserver(observerId)
+  appManager.unregisterApplicationStateObserver(observerId)
   .then((data) => {
       console.log('----------- unregisterApplicationStateObserver success ----------', data);
   })
@@ -444,7 +443,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
         console.log('--------- getForegroundApplicationsCallback success ---------', data)
     }
   }
-  app.getForegroundApplications(getForegroundApplicationsCallback);
+  appManager.getForegroundApplications(getForegroundApplicationsCallback);
   ```
 
 ## appManager.getForegroundApplications<sup>8+</sup>
@@ -468,7 +467,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
 **示例：**
     
   ```ts
-  app.getForegroundApplications()
+  appManager.getForegroundApplications()
   .then((data) => {
       console.log('--------- getForegroundApplications success -------', data);
   })
@@ -501,7 +500,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 ```ts
 var bundleName = 'bundleName';
 var accountId = 0;
-app.killProcessWithAccount(bundleName, accountId)
+appManager.killProcessWithAccount(bundleName, accountId)
    .then((data) => {
        console.log('------------ killProcessWithAccount success ------------', data);
    })
@@ -543,7 +542,7 @@ function killProcessWithAccountCallback(err, data) {
        console.log('------------- killProcessWithAccountCallback success, data: --------------', data);
    }
 }
-app.killProcessWithAccount(bundleName, accountId, killProcessWithAccountCallback);
+appManager.killProcessWithAccount(bundleName, accountId, killProcessWithAccountCallback);
 ```
 
 ## appManager.killProcessesByBundleName<sup>8+</sup>
@@ -576,7 +575,7 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
         console.log('------------- killProcessesByBundleNameCallback success, data: --------------', data);
     }
   }
-  app.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
+  appManager.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
   ```
 
 ## appManager.killProcessesByBundleName<sup>8+</sup>
@@ -607,7 +606,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
     
   ```ts
   var bundleName = 'bundleName';
-  app.killProcessesByBundleName(bundleName)
+  appManager.killProcessesByBundleName(bundleName)
     .then((data) => {
         console.log('------------ killProcessesByBundleName success ------------', data);
     })
@@ -646,7 +645,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
         console.log('------------- clearUpApplicationDataCallback success, data: --------------', data);
     }
   }
-  app.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
+  appManager.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
   ```
 
 ## appManager.clearUpApplicationData<sup>8+</sup>
@@ -677,7 +676,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
     
   ```ts
   var bundleName = 'bundleName';
-  app.clearUpApplicationData(bundleName)
+  appManager.clearUpApplicationData(bundleName)
     .then((data) => {
         console.log('------------ clearUpApplicationData success ------------', data);
     })

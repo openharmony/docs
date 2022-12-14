@@ -30,7 +30,7 @@ onConfigurationUpdate(newConfig: Configuration): void;
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class MyAbility extends Ability {
       onConfigurationUpdate(config) {
           console.log('onConfigurationUpdate, config:' + JSON.stringify(config));
       }
@@ -54,7 +54,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class MyAbility extends Ability {
     onMemoryLevel(level) {
         console.log('onMemoryLevel, level:' + JSON.stringify(level));
     } 

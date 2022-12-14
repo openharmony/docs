@@ -28,7 +28,6 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 | callback | AsyncCallback\<WantAgent\> | 是   | 创建WantAgent的回调方法。 |
 
 **错误码：**
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -53,13 +52,12 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 
 **示例：**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
 //wantAgent对象
 var wantAgent;
 //WantAgentInfo对象
@@ -128,7 +126,6 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 | Promise\<WantAgent\> | 以Promise形式返回WantAgent。 |
 
 **错误码：**
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -153,13 +150,11 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
-
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
@@ -245,7 +240,6 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
 //wantAgent对象
 var wantAgent;
 //WantAgentInfo对象
@@ -327,7 +321,6 @@ getBundleName(agent: WantAgent): Promise\<string\>
 | Promise\<string\> | 以Promise形式返回获取WantAgent实例的包名。 |
 
 **错误码：**
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -352,12 +345,11 @@ getBundleName(agent: WantAgent): Promise\<string\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
  //wantAgent对象
 var wantAgent;
 //WantAgentInfo对象
@@ -430,7 +422,6 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 | callback | AsyncCallback\<number\> | 是   | 获取WantAgent实例的用户ID的回调方法。 |
 
 **错误码：**
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -455,6 +446,7 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -541,7 +533,6 @@ getUid(agent: WantAgent): Promise\<number\>
 | Promise\<number\> | 以Promise形式返回获取WantAgent实例的用户ID。 |
 
 **错误码：**
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -566,13 +557,12 @@ getUid(agent: WantAgent): Promise\<number\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
- //wantAgent对象
+//wantAgent对象
 var wantAgent;
 //WantAgentInfo对象
 var wantAgentInfo = {
@@ -645,7 +635,6 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 | callback | AsyncCallback\<Want\> | 是   | 获取WantAgent对象want的回调方法。 |
 
 **错误码：**
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 |错误码ID    |错误信息            |
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
@@ -671,11 +660,11 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
 //wantAgent对象
 var wantAgent;
 //WantAgentInfo对象
@@ -759,7 +748,6 @@ getWant(agent: WantAgent): Promise\<Want\>
 | Promise\<Want\> | 以Promise形式返回获取WantAgent对象的want。 |
 
 **错误码：**
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -784,13 +772,12 @@ getWant(agent: WantAgent): Promise\<Want\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
- //wantAgent对象
+//wantAgent对象
 var wantAgent;
 //WantAgentInfo对象
 var wantAgentInfo = {
@@ -862,7 +849,6 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\> | 是   | 取消WantAgent实例的回调方法。 |
 
 **错误码：**
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -887,11 +873,11 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
 //wantAgent对象
 var wantAgent;
 //WantAgentInfo对象
@@ -973,7 +959,6 @@ cancel(agent: WantAgent): Promise\<void\>
 | Promise\<void\> | 以Promise形式获取异步返回结果。 |
 
 **错误码：**
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -998,12 +983,11 @@ cancel(agent: WantAgent): Promise\<void\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
 //wantAgent对象
 var wantAgent;
 //WantAgentInfo对象
@@ -1079,7 +1063,6 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 | callback    | AsyncCallback\<CompleteData\> | 否   | 主动激发WantAgent实例的回调方法。 |
 
 **错误码：**
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -1104,11 +1087,11 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
 //wantAgent对象
 var wantAgent;
 // triggerInfo
@@ -1190,7 +1173,6 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 | callback   | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。 |
 
 **错误码：**
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -1215,11 +1197,11 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
 //wantAgent对象
 var wantAgent1;
 var wantAgent2;
@@ -1304,7 +1286,6 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 | Promise\<boolean\> | 以Promise形式返回获取判断两个WantAgent实例是否相等的结果。 |
 
 **错误码：**
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -1329,13 +1310,12 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
- //wantAgent对象
+//wantAgent对象
 var wantAgent1;
 var wantAgent2;
 //WantAgentInfo对象
@@ -1407,7 +1387,6 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 | callback   | AsyncCallback\<number> | 是   | 获取一个WantAgent的OperationType信息的回调方法。 |
 
 **错误码：**
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -1432,11 +1411,11 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
 //wantAgent对象
 var wantAgent;
 //WantAgentInfo对象
@@ -1516,7 +1495,6 @@ getOperationType(agent: WantAgent): Promise\<number>;
 | Promise\<number> | 以Promise形式返回获取operationType的结果。 |
 
 **错误码：**
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -1541,13 +1519,12 @@ getOperationType(agent: WantAgent): Promise\<number>;
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
- //wantAgent对象
+//wantAgent对象
 var wantAgent;
 //WantAgentInfo对象
 var wantAgentInfo = {

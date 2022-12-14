@@ -25,7 +25,7 @@ import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 | COLOR_MODE_LIGHT | 1 | 浅色模式。 | 
 
 
-## ConfigurationConstant.Direction<sup>9+</sup>
+## ConfigurationConstant.Direction
 
 使用时通过ConfigurationConstant.Direction获取。
 
@@ -38,7 +38,7 @@ import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 | DIRECTION_HORIZONTAL | 1 | 水平方向。 | 
 
 
-## ConfigurationConstant.ScreenDensity<sup>9+</sup>
+## ConfigurationConstant.ScreenDensity
 
 使用时通过ConfigurationConstant.ScreenDensity获取。
 
