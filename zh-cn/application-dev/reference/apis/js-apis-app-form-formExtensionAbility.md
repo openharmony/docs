@@ -207,7 +207,7 @@ onConfigurationUpdate(newConfig: Configuration): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| newConfig | [Configuration](js-apis-configuration.md) | 是 | 表示需要更新的配置信息。 |
+| newConfig | [Configuration](js-apis-application-configuration.md) | 是 | 表示需要更新的配置信息。 |
 
 **示例：**
 
