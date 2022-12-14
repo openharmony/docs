@@ -1,4 +1,4 @@
-# bundleManager模块(JS端SDK接口)
+# @ohos.bundle.bundleManager (bundleManager模块)
 
 本模块提供应用信息查询能力，支持BundleInfo、ApplicationInfo、Ability、ExtensionAbility等信息的查询
 

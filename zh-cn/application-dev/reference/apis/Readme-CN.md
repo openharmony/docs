@@ -135,7 +135,7 @@
     - [EventHub](js-apis-inner-application-eventHub.md)
 
 - 包管理
-  - [@ohos.bundle.appControl(appControl模块)](js-apis-appControl.md)
+  - [@ohos.bundle.appControl (appControl模块)](js-apis-appControl.md)
   - [@ohos.bundle.bundleManager (bundleManager模块)](js-apis-bundleManager.md)
   - [@ohos.bundle.bundleMonitor (bundleMonitor模块)](js-apis-bundleMonitor.md)
   - [@ohos.bundle.defaultAppManager (默认应用管理)](js-apis-defaultAppManager.md)
