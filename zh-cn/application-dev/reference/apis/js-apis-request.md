@@ -34,8 +34,9 @@ var config = {
 
 在开发stage模型下的应用程序时，不涉及属性标识 "cleartextTraffic"。
 
-下载服务器需要支持HTTP协议的head方法，能够通过Content-length获取下载数据大小，否则下载任务失败，可通过[on('fail')<sup>7+</sup>)](#onfail7)查看失败原因。
+下载服务器需要支持HTTP协议的head方法，能够通过Content-length获取下载数据大小，否则下载任务失败，可通过[on('fail')<sup>7+</sup>](#onfail7)查看失败原因。
 
+上传目前仅支持HTTP请求，不支持HTTPS。
 
 ## 常量
 
@@ -105,7 +106,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'https://patch',
+    url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -149,7 +150,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'https://patch',
+    url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -195,7 +196,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'https://patch',
+    url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -235,7 +236,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'https://patch',
+    url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -281,7 +282,7 @@ upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'https://patch',
+    url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -320,7 +321,7 @@ upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;Up
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'https://patch',
+    url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
