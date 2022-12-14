@@ -6,7 +6,7 @@
 
 ### Overview
 
-With the rapid development of device systems, it has become a critical challenge for device vendors to help their users to access system updates in a timely manner to experience the new features and improve the system stability and security.
+With the rapid development of device systems, it has become a critical challenge for device vendors to help their users to access system updates in a timely manner to experience the new features and improve the system stability and security
 
 Over the Air (OTA) answers this challenge with the support for remote updating of device systems. By providing unified update APIs externally, the update subsystem shields the differences of underlying chips. After secondary development based on the update APIs, device vendors can easily implement remote updating for their devices, such as IP cameras.
 
@@ -18,51 +18,48 @@ Over the Air (OTA) answers this challenge with the support for remote updating o
 - Differential package: an update package that packs the differential images between the source version and target version.
 
 
-### Implementation Principle
+### Principles
 
 To implement an OTA update, you first need to use the packaging tool to pack the build version into an update package and upload the update package to the OTA server. Devices integrating the OTA update capability can then detect the update package and download it to implement a remote update.
 
-<a href="#ab-update-scenario">A/B Update</a>: a typical application of OTA update. In this update mode, a device has a backup system B. When system A is running, system B is updated silently. After the update is successful, the device restarts and switches to the new system.
+<a href="#ab-update">A/B Update</a>: a typical application of OTA update. In this update mode, a device has a backup system B. When system A is running, system B is updated silently. After the update is successful, the device restarts and switches to the new system.
 
 
 ### Constraints
 
-- Only the open-source suites for devices powered by Hi3861, Hi3518E V300, and Hi3516D V300 are supported.
+- Only the open-source suites for devices powered by Hi3861, Hi3516D V300, and RK3568 are supported.
 
-- Devices developed based on Hi3518E V300 and Hi3516D V300 must support the SD card in the Virtual Festival of Aerobatic Teams (VFAT) format.
+- Devices developed based on Hi3516D V300 and RK3568 must support the SD card in the Virtual Festival of Aerobatic Teams (VFAT) format.
 
 - Generation of update packages can only be performed on the Linux system.
 
 - Currently, the mini and small systems support update using a full package, but not a differential package or an update package with partitions changed.
 
+- To implement an A/B update, ensure that the devices running the standard system support booting from partitions A and B.
 
-## Environment Preparation
+
+## Preparations
 
 - On Windows, download and install the OpenSSL tool and configure environment variables.
 - Prepare the packaging tool.
 - Build version images using the packaging tool.
-- On Linux, pack version images to generate the update package.
-- To implement an A/B update, ensure that the devices running the standard system support booting from partitions A and B.
 
 
-## OTA Update Guide
+## How to Develop
 
-
-### Development Procedure
-
-<a href="#generating-a-publicprivate-key-pair">1. Use the OpenSSL tool to generate a public/private key pair.
+<a href="#generating-a-public/private-key-pair">1. Use the OpenSSL tool to generate a public/private key pair.
 
 <a href="#making-an-update-package">2. Use the packaging tool to generate an update package.</a>
 
-&ensp;&ensp;<a href="#mini-and-small-systems">2.1 Mini and small systems</a>
+&ensp;&ensp;<a href="#mini-and-small systems">2.1 Mini and small systems</a>
 
-&ensp;&ensp;<a href="#standard-system">2.2 Standard system</a>
+&ensp;&ensp;<a href="#standard system">2.2 Standard system</a>
 
-<a href="#uploading-the-update-package">3. Upload the update package to the vendor's OTA server.</a>
+<a href="#uploading-the-update package">3. Upload the update package to the vendor's OTA server.</a>
 
 <a href="#downloading-the-update-package">4. Download the update package from the vendor's OTA server.</a>
 
-<a href="#integrating-ota-update-capabilities">5. Integrate the OTA update capability.
+<a href="#integrating-the-OTA-update-capability">5. Integrate the OTA update capability.
 
 &ensp;&ensp;<a href="#api-application-scenario-default">5.1 API application scenario (default)</a>
 
@@ -71,31 +68,33 @@ To implement an OTA update, you first need to use the packaging tool to pack the
 &ensp;&ensp;<a href="#ab-update-scenario">5.3 A/B update scenario</a>
 
 
-### How to Develop
+## How to Develop
 
 
-#### Generating a Public/Private Key Pair
+### Generating a Public/Private Key Pair
 1. Use the OpenSSL tool to generate a public/private key pair.
 
-3. Keep the private key file properly as this file stores the private key used to sign the update package. You need to specify the private key file in the command used for preparing the update package. The public key is used to verify the signature of the update package during the update. For the mini and small systems, the generated public key is preset in the code. You need to implement the **HotaHalGetPubKey** API to obtain the key. For the standard system, the generated public key is stored in the **./device/hisilicon/hi3516dv300/build/updater_config/signing_cert.crt** file.
+3. Keep the private key file properly as this file stores the private key used to sign the update package. You need to specify the private key file in the command used for preparing the update package. The public key is used to verify the signature of the update package during the update. For the mini and small systems, the generated public key is preset in the code. The vendor needs to implement the **HotaHalGetPubKey** API to obtain the key. For the standard system, the generated public key is stored in the **/hisilicon/hi3516dv300/build/updater\_config/signing\_cert.crt** file in the **device** or **vendor** directory.
 
-5. For the mini and small systems that use the Hi3518E V300 or Hi3516D V300 suite, use the content in **public\_arr.txt** to replace the content in **g\_pub\_key** in the **device\hisilicon\third_party\uboot\u-boot-2020.01\product\hiupdate\verify\update\_public\_key.c** file of the U-Boot module.
+5. For the mini and small systems that use the Hi3516D V300 suite, use the content in **third\_party\u-boot\u-boot-2020.01\product\hiupdate\verify\update\_public\_key.c** file of the U-Boot module.
    Example configuration:
 
    ```c
-   static unsigned char g_pub_key[PUBKEY_LEN] = {
+   static unsigned char g_pub_key[] = {
        0x30, 0x82, 0x01, 0x0A, 0x02, 0x82, 0x01, 0x01,
        0x00, 0xBF, 0xAA, 0xA5, 0xB3, 0xC2, 0x78, 0x5E,
    }
    ```
 
 
-#### Making an Update Package
+### Making an Update Package
 
 
-##### Mini and Small Systems
+#### Mini and Small Systems
 
 1. Create the **target\_package** folder with the following directory structure:
+
+   OTA.tag and config are not required for lightweight systems and small systems upgraded from AB.
      
    ```text
     target_package
@@ -103,16 +102,15 @@ To implement an OTA update, you first need to use the packaging tool to pack the
     ├── config
     ├── {component_1}
     ├── {component_2}
-    ├── ...
+    ├── ......
     ├── {component_N}
     └── updater_config
         └── updater_specified_config.xml
    ```
 
-2. Place the components to be updated, including the image file (for example, **rootfs.img**), as **{component\_N}** in the root directory of the **target\_package** folder.
+2. Place the components to be updated, including the image file (for example, **rootfs.img**), as the substitute of **{component\_N}** in the root directory of the **target\_package** folder.
 
 3. Configure the **updater\_specified\_config.xml** file in the **updater_config** folder.
-   
    Example configuration:
 
      
@@ -130,17 +128,16 @@ To implement an OTA update, you first need to use the packaging tool to pack the
    </package>
    ```
 
-
-   **Table 1** Description of nodes in the component configuration file
+     **Table 1** Description of nodes in the component configuration file
    
    | Type| Node Name| Node Label| Mandatory| Description| 
    | -------- | -------- | -------- | -------- | -------- |
    | Header information (head node)| info| / | Yes| Content of this node: head&nbsp;info| 
    | Header information (head node)| info| fileVersion | Yes| This field is reserved and does not affect the generation of the update package.| 
    | Header information (head node)| info| prdID | Yes| This field is reserved and does not affect the generation of the update package.| 
-   | Header information (head node)| info| softVersion | Yes| Software version number, that is, the version number of the update package. The version number must be within the range specified by **VERSION.mbn**. Otherwise, an update package will not be generated.| 
-   | Header information (head node)| info| date| Yes| Date when the update package is generated. This field is reserved and does not affect the generation of the update package.| 
-   | Header information (head node)| info| time| Yes| Time when the update package is generated. This field is reserved and does not affect the generation of the update package.| 
+   | Header information (head node)| info| softVersion | Yes| Software version number, that is, the version number of the update package. Ensure that the version number is later than the basic version number and OpenHarmony is not followed by any other letter. Otherwise, the update cannot be performed.| 
+   | Header information (head node)| info| *date* | Yes| Date when the update package is generated. This field is reserved and does not affect the generation of the update package.| 
+   | Header information (head node)| info| *time* | Yes| Time when the update package is generated. This field is reserved and does not affect the generation of the update package.|  
    | Component information (group node)| component| / | Yes| Content of this node: path of the component or image file to be packed into the update package. It is the root directory of the version package by default.| 
    | Component information (group node)| component| compAddr | Yes| Name of the partition corresponding to the component, for example, **system** or **vendor**.| 
    | Component information (group node)| component| compId | Yes| Component ID, which must be unique.| 
@@ -180,8 +177,7 @@ To implement an OTA update, you first need to use the packaging tool to pack the
    - -**nl2**: non-standard system mode
 
 
-##### Standard System
-
+#### Standard System
 1. Create the **target\_package** folder with the following directory structure:
 
      
@@ -189,7 +185,7 @@ To implement an OTA update, you first need to use the packaging tool to pack the
    target_package
    ├── {component_1}
    ├── {component_2}
-   ├── ...
+   ├── ......
    ├── {component_N}
    └── updater_config
            ├── BOARD.list
@@ -197,7 +193,11 @@ To implement an OTA update, you first need to use the packaging tool to pack the
            └── updater_specified_config.xml
    ```
 
-2. Place the components to be updated, including the image file (for example, **system.img**), as **{component\_N}** in the root directory of the **target\_package** folder.
+2. Place the components to be updated, including their image file and **updater_binary** file, as the substitute of **{component\_N}** in the root directory of the **target\_package** folder.
+
+   Take RK3568 as an example. Place the image file in the following build directory: out/rk3568/packages/phone/images/.
+
+   Place the **updater_binary** file in the following build directory: out/rk3568/packages/phone/system/bin/.
 
 3. Configure the component configuration file in the **updater\_config** folder.
 
@@ -208,8 +208,10 @@ To implement an OTA update, you first need to use the packaging tool to pack the
      
    ```text
    HI3516
-   HI3518
+   RK3568
    ```
+
+   Vendors can configure **Local BoardId** by calling **GetLocalBoardId()** in the **base/updater/updater/utils/utils.cpp** file. Ensure that **Local BoardId** configured in the **utils.cpp** file is present in **BOARD.list**. Otherwise, the update cannot be performed.
 
 5. Configure the versions supported by the current update package in **VERSION.mbn** in the **updater\_config** folder.
 
@@ -223,10 +225,11 @@ To implement an OTA update, you first need to use the packaging tool to pack the
    ```text
    Hi3516DV300-eng 10 QP1A.190711.001
    Hi3516DV300-eng 10 QP1A.190711.020
-   Hi3518DV300-eng 10 QP1A.190711.021
    ```
 
-6. For an update using the incremental (differential) package, also prepare a source version package (source\_package) in the same format as the target version package (target\_package), and then compress it as a **.zip** file, that is, **source\_package.zip**.
+   Ensure that the basic version number is contained in **VERSION.mbn**.
+
+6. For update using an incremental (differential) package, also prepare a source version package (source\_package) in the same format as the target version package (target\_package), and then compress it as a **.zip** file, that is, **source\_package.zip**.
 
 7. If you create an update package with partitions changed, also provide the partition table file named **partition\_file.xml**. You can specify the file using the **-pf** parameter. For details about the configuration nodes, see the description below.
 
@@ -243,8 +246,8 @@ To implement an OTA update, you first need to use the packaging tool to pack the
 
    **Table 2** Description of labels in the partition table
 
-   | Name | Description | 
-   | ---- | ----------- |
+     | Name| Description| 
+   | -------- | -------- |
    | Sel | Whether the partition is effective. The value **1** indicates that the partition is effective, and value **0** indicates the opposite.| 
    | PartitionName | Partition name, for example, **fastboot** or **boot**.| 
    | FlashType | Flash type, for example, **emmc** or **ufs**.| 
@@ -266,7 +269,7 @@ To implement an OTA update, you first need to use the packaging tool to pack the
 
    - **./target\_package/**: path of **target\_package**
    - **./output\_package/**: output path of the update package
-   - -**pk ./rsa\_private\_key3072.pem**: path of the private key file
+   - -**pk ./rsa\_private\_key2048.pem**: path of the private key file
 
    **Incremental (differential) package**
 
@@ -280,7 +283,7 @@ To implement an OTA update, you first need to use the packaging tool to pack the
    - **./target\_package/**: path of **target\_package**
    - **./output\_package/**: output path of the update package
    - -**s ./source\_package.zip**: path of the **source\_package.zip** file. For update using a differential package, use the **-s** parameter to specify the source version package.
-   - -**pk ./rsa\_private\_key3072.pem**: path of the private key file
+   - -**pk ./rsa\_private\_key2048.pem**: path of the private key file
 
    **Update package with partitions changed**
 
@@ -291,42 +294,42 @@ To implement an OTA update, you first need to use the packaging tool to pack the
    python build_update.py  ./target_package/ ./output_package/  -pk ./rsa_private_key2048.pem  -pf ./partition_file.xml
    ```
 
-   - **./target\_package/**: path of **target_package**
+   - **./target\_package/**: path of **target\_package**
    - **./output\_package/**: output path of the update package
-   - -**pk ./rsa\_private_key3072.pem**: path of the private key file
+   - -**pk ./rsa\_private\_key2048.pem**: path of the private key file
    - -**pf ./partition\_file.xml**: path of the partition table file
 
 
-#### **Uploading the Update Package**
+### Uploading the Update Package
 
 Upload the update package to the vendor's OTA server.
 
 
-#### **Downloading the Update Package**
+### **Downloading the Update Package**
 
 1. Download the update package from the OTA server.
 
-2. (Optional) Insert an SD card (with a capacity greater than 100 MB) if the device is developed based on Hi3518E V300 or Hi3516D V300.
+2. (Optional) Insert an SD card (with a capacity greater than 100 MB) if the device is developed based on Hi3516D V300.
 
 
-#### Integrating OTA Update Capabilities
+### Integrating OTA Update Capabilities
 
 1. For mini and small systems
 
-   - Call the dynamic library **libhota.so**. The corresponding header files **hota\_partition.h** and **hota\_updater.h** are located in **base\update\sys_installer_lite\interfaces\kits**.
-   - The **libhota.so** source code is located in **base\update\sys_installer_lite\frameworks\source**.
+   - Call the dynamic library **libhota.so**. The corresponding header files **hota\_partition.h** and **hota\_updater.h** are located in **base\update\sys\_installer\_lite\interfaces\kits\**.
+   - The **libhota.so** source code is located in **base\update\sys\_installer\_lite\frameworks\source**.
    - For details about how to use APIs, see *API Application Scenarios* and update APIs in *API Reference*.
-   - If the development board needs to be adapted, see the **base\update\sys_installer_lite\hals\hal\_hota\_board.h** file.
+   - If the development board needs to be adapted, see the **base\update\sys\_installer\_lite\hals\hal\_hota\_board.h** file.
 
 2. For the standard system, see the [JS API Reference](../../application-dev/reference/apis/js-apis-update.md) for details.
 
 
-##### API Application Scenario (Default)
+#### API Application Scenario (Default)
 
 The update package is generated by following the instructions provided in Generating a Public/Private Key Pair and Generating an Update Package.
 
 
-###### How to Develop
+##### How to Develop
 
 1. Download the update package for the current device, and then call the **HotaInit** function to initialize the OTA module.
 
@@ -335,7 +338,7 @@ The update package is generated by following the instructions provided in Genera
 3. Call the **HotaRestart** function to restart the system for the update to take effect. Call the **HotaCancel** function if you want to cancel the update.
 
 
-###### Sample Code
+##### Sample Code
 
   Perform an OTA update using the update package format and verification method provided by OpenHarmony.
   
@@ -390,12 +393,12 @@ int main(int argc, char **argv)
 ```
 
 
-##### API Application Scenario (Custom)
+#### API Application Scenario (Custom)
 
 The update package is generated in other ways instead of following the instructions provided in "Generating a Public/Private Key Pair" and "Generating an Update Package."
 
 
-###### How to Develop
+##### **How to Develop**
 
 1. Download the update package for the current device, and then call the **HotaInit** function to initialize the OTA module.
 
@@ -410,7 +413,7 @@ The update package is generated in other ways instead of following the instructi
 6. Call the **HotaRestart** function to restart the system for the update to take effect. Call the **HotaCancel** function if you want to cancel the update.
 
 
-###### Sample Code
+##### Sample Code
 
   Perform an OTA update using the update package format and verification method not provided by OpenHarmony.
   
@@ -482,11 +485,11 @@ int main(int argc, char **argv)
 ```
 
 
-###### System Updating
+##### Upgrading the System
 
 An application calls APIs of the OTA module to perform functions such as signature verification of the update package, anti-rollback, as well as burning and flushing to disk. After the update is complete, the system automatically restarts.
 
-For the mini and small systems that use the Hi3518E V300 or Hi3516D V300 open source suite, add the value of **LOCAL\_VERSION** to the version that needs to implement the anti-rollback function. For example, for **"ohos default 1.0"-&gt;"ohos default 1.1"**, add the value of **LOCAL\_VERSION** in **device\hisilicon\third\_party\uboot\u-boot-2020.01\product\hiupdate\ota\_update\ota\_local_info.c**.
+For the mini and small systems that use the Hi3516D V300 open source suite, add the value of **LOCAL\_VERSION** to the version that needs to implement the anti-rollback function. For example, for **"ohos default 1.0"-&gt;"ohos default 1.1"**, add the value of **LOCAL\_VERSION** in **device\hisilicon\third\_party\uboot\u-boot-2020.01\product\hiupdate\ota\_update\ota\_local_info.c**.
 
   Example configuration:
   
@@ -494,16 +497,15 @@ For the mini and small systems that use the Hi3518E V300 or Hi3516D V300 open so
 const char *get_local_version(void)
 {
 #if defined(CONFIG_TARGET_HI3516EV200) || \
-    defined(CONFIG_TARGET_HI3516DV300) || \
-    defined(CONFIG_TARGET_HI3518EV300)
+    defined(CONFIG_TARGET_HI3516DV300)
 #define LOCAL_VERSION "ohos default 1.0" /* increase: default release version */
 ```
 
 
-##### A/B Update Scenario
+#### A/B Update Scenario
 
 
-###### Development Procedure
+##### How to Develop
 
 1. Download the update package through the update application.
 2. Invoke update_service to start the system installation service through SAMGR.
@@ -511,7 +513,7 @@ const char *get_local_version(void)
 4. Activate the new version upon restarting.
 
 
-###### How to Develop
+##### How to Develop
 
 - Invoke update_service to call JS APIs to implement the related service logic in an A/B update.
 
@@ -530,7 +532,7 @@ const char *get_local_version(void)
    
    1. Start the system installation service and set up an IPC connection.
    ```cpp
-   int SysInstallerInit(void * callback)
+   int SysInstallerInit(void* callback)
    ```
    
    2. Install the A/B update package in the specified path.
@@ -540,7 +542,7 @@ const char *get_local_version(void)
    
    3. Set the update progress callback.
    ```cpp
-   int SetUpdateProgressCallback(void * callback)
+   int SetUpdateProgressCallback(void* callback)
    ```
    
    4. Obtain the installation status of the update package (0: not started; 1: installing; 2: installed).
@@ -572,7 +574,7 @@ const char *get_local_version(void)
    ```
 
 
-###### FAQs
+##### FAQs
 
 1. An exception occurs during installation of the update package.
 <br>The system keeps running with the current version. It will attempt a new update in the next package search period.
@@ -581,6 +583,6 @@ const char *get_local_version(void)
 <br>Perform a rollback and set the partition to the **unbootable** state so that the system does not boot from this partition.
 
 
-###### Verification
+##### Verification
 
 In normal cases, the device can download the update package from the OTA server in the background, perform a silent update, and then restart according to the preconfigured activation policy for the new version to take effect.

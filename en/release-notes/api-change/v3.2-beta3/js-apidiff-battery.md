@@ -37,3 +37,4 @@ The table below lists the APIs changes of the power management subsystem in Open
 | system.brightness | GetBrightnessOptions     | fail?: (data: string, code: number) => void;                    | Deprecated|
 | system.brightness | GetBrightnessOptions     | success?: (data: BrightnessResponse) => void;                   | Deprecated|
 | system.brightness | BrightnessResponse       | value: number;                                                  | Deprecated|
+| ohos.batteryInfo  | batteryInfo              | ohos.batteryinfo -> ohos.batteryInfo                            | Module name changed |
