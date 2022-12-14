@@ -1,4 +1,4 @@
-# Ability
+# @ohos.ability.ability
 
 The **Ability** module provides all level-2 module APIs for developers to export.
 
@@ -37,5 +37,3 @@ let abilityResult: ability.AbilityResult;
 let connectOptions: ability.ConnectOptions;  
 let startAbilityParameter: ability.StartAbilityParameter;
 ```
-
- <!--no_check--> 
