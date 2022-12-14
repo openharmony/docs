@@ -1,6 +1,6 @@
 # 数据管理开发常见问题
 
-## 如何将PixelMap的数据存储到数据库中。 
+## 如何将PixelMap的数据存储到数据库中
 
 适用于：OpenHarmony SDK 3.2.3.5版本
 
@@ -16,7 +16,6 @@ PixelMap应该被转换成相应的ArrayBuffer再放进数据库。
 
 示例：
 
-  
 ```
  hdc_std file recv /data/app/el2/100/database/com.xxxx.xxxx/entry/db/test.db ./test.db
 ```
