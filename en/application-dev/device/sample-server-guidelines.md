@@ -14,6 +14,8 @@ The sample server provides a package search server for checking update packages 
 	openssl req -newkey rsa:2048 -nodes -keyout serverKey.pem -x509 -days 365 -out serverCert.cer -subj "/C=CN/ST=GD/L=GZ/O=abc/OU=defg/CN=hijk/emailAddress=test.com"
 	```
 
+
+
 2. Modify the **bundle.json** file.
 
 	Add **sub_component** to the **build** field.
@@ -173,7 +175,7 @@ The sample server provides a package search server for checking update packages 
 			"\"descriptPackageId\": \"abcdefg1234567ABCDEFG\","
 		"}],"
 		"\"descriptInfo\": [{"
-			"\"descriptPackageId\": \"abcdefg1234567ABCDEFG\","
+			"\"descriptionType\": 0,"
 			"\"content\": \"This package message is used for sampleContent\""
 		"}]"
 	"}";
