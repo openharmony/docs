@@ -15,10 +15,9 @@ The time management module of the OpenHarmony LiteOS-M kernel provides time conv
 ## Time Unit
 
 - Cycle
-  
   Cycle is the minimum time unit in the system. The cycle duration is determined by the system clock frequency, that is, the number of cycles per second.
+
 - Tick
-  
   Tick is the basic time unit of the operating system and is determined by the number of ticks per second configured by the user.
 
 
@@ -40,9 +39,22 @@ The following table describes APIs available for OpenHarmony LiteOS-M time manag
 | API| Description|
 | -------- | -------- |
 | LOS_SysClockGet | Obtains the system clock.|
-| LOS_TickCountGet | Obtains the number of ticks since the system starts.|
-| LOS_CyclePerTickGet | Obtains the number of cycles for each tick.|
+| LOS_TickCountGet    | Obtains the number of ticks since the system starts.|
+| LOS_CyclePerTickGet | Obtains the number of cycles for each tick.  |
+| LOS_CurrNanosec     | Obtains the current time, in nanoseconds. |
 
+**Table 3** API for time registration
+
+| API               | Description                                          |
+| --------------------- | ---------------------------------------------- |
+| LOS_TickTimerRegister | Re-registers the timer of the system clock and the corresponding interrupt handler.|
+
+**Table 4** APIs for delay
+
+| API    | Description                    |
+| ---------- | ------------------------ |
+| LOS_MDelay | Delays a task, in ms.|
+| LOS_UDelay | Delays a task, in μs.|
 
 ## How to Develop
 
@@ -52,13 +64,12 @@ The typical development process of time management is as follows:
 
 2. Call the clock conversion and statistics APIs.
 
->![](../public_sys-resources/icon-note.gif) **NOTE**
->
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - The time management module depends on **OS_SYS_CLOCK** and **LOSCFG_BASE_CORE_TICK_PER_SECOND**.
 > 
 > - The number of system ticks is not counted when the interrupt feature is disabled. Therefore, the number of ticks cannot be used as the accurate time.
 > 
-> - The configuration options are maintained in the **target_config.h** file of the development board project.
+> - The preceding configuration is in the **target_config.h** file of the development board project. The default values of some configuration items are defined in the **los_config.h** file of the kernel.
 
 
 ## Development Example
@@ -68,14 +79,14 @@ The typical development process of time management is as follows:
 
 The following example describes basic time management methods, including:
 
-- Time conversion: convert milliseconds to ticks or convert ticks to milliseconds.
+1. Time conversion: convert milliseconds to ticks or convert ticks to milliseconds.
 
-- Time statistics: obtain the number of cycles per tick, number of ticks since system startup, and number of delayed ticks.
+2. Time statistics: obtain the number of cycles per tick, number of ticks since system startup, and number of delayed ticks.
 
 
 ### Sample Code
 
-Prerequisites
+**Prerequisites**
 
 - The default value of **LOSCFG_BASE_CORE_TICK_PER_SECOND** is **100**.
 
@@ -83,17 +94,22 @@ Prerequisites
 
 Time conversion:
 
+The sample code is compiled and verified in **./kernel/liteos_m/testsuites/src/osTest.c**. Call **ExampleTransformTime** and **ExampleGetTime** in **TestTaskEntry**.
+
 
 ```
-VOID Example_TransformTime(VOID)
+VOID ExampleTransformTime(VOID)
 {
     UINT32 ms;
     UINT32 tick;
 
-    tick = LOS_MS2Tick(10000);    // Convert 10000 ms into ticks.
-    dprintf("tick = %d \n", tick);
-    ms = LOS_Tick2MS(100);        // Convert 100 ticks into ms.
-    dprintf("ms = %d \n", ms);
+    /* Convert 10000 ms to ticks. */
+    tick = LOS_MS2Tick(10000);
+    printf("tick = %d \n", tick);
+
+    /* Convert 100 ticks to ms. */
+    ms = LOS_Tick2MS(100);
+    printf("ms = %d \n", ms);
 }
 ```
 
@@ -101,26 +117,21 @@ Time statistics and delay:
 
 
 ```
-VOID Example_GetTime(VOID)
+VOID ExampleGetTime(VOID)
 {
     UINT32 cyclePerTick;
-    UINT64 tickCount;
+    UINT64 tickCountBefore;
+    UINT64 tickCountAfter;
 
     cyclePerTick  = LOS_CyclePerTickGet();
-    if(0 != cyclePerTick) {
-        dprintf("LOS_CyclePerTickGet = %d \n", cyclePerTick);
+    if (0 != cyclePerTick) {
+        printf("LOS_CyclePerTickGet = %d \n", cyclePerTick);
     }
 
-    tickCount = LOS_TickCountGet();
-    if(0 != tickCount) {
-        dprintf("LOS_TickCountGet = %d \n", (UINT32)tickCount);
-    }
-
+    tickCountBefore = LOS_TickCountGet();
     LOS_TaskDelay(200);
-    tickCount = LOS_TickCountGet();
-    if(0 != tickCount) {
-        dprintf("LOS_TickCountGet after delay = %d \n", (UINT32)tickCount);
-    }
+    tickCountAfter = LOS_TickCountGet();
+    printf("LOS_TickCountGet after delay rising = %d \n", (UINT32)(tickCountAfter - tickCountBefore));
 }
 ```
 
@@ -140,8 +151,7 @@ ms = 1000
 Time statistics and delay:
 
 
-```
-LOS_CyclePerTickGet = 495000 
-LOS_TickCountGet = 1 
-LOS_TickCountGet after delay = 201
+``` 
+LOS_CyclePerTickGet = 250000 (The data may vary depending on the actual running environment.)
+LOS_TickCountGet after delay rising = 200
 ```

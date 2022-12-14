@@ -1,4 +1,4 @@
-#  Kernel
+# Kernel
 
 - Kernel
     - [Kernel Overview](kernel-overview.md)
@@ -13,7 +13,7 @@
                 - [Mutex](kernel-mini-basic-ipc-mutex.md)
                 - [Queue](kernel-mini-basic-ipc-queue.md)
                 - [Semaphore](kernel-mini-basic-ipc-sem.md)
-            - [Time Management](kernel-basic-mini-time.md)
+            - [Time Management](kernel-mini-basic-time.md)
             - [Software Timer](kernel-mini-basic-soft.md)
             - [Doubly Linked List](kernel-mini-basic-list.md)
         - Extended Components
