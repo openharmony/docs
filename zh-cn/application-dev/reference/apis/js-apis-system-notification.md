@@ -1,4 +1,4 @@
-# 通知消息
+# @system.notification (通知消息)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.notification`](js-apis-notification.md)。

@@ -1,4 +1,4 @@
-# HapModuleInfo
+# hapModuleInfo (HapModuleInfo)
 
 
 
