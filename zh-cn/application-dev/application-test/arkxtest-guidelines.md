@@ -163,13 +163,13 @@ export default function abilityTest() {
 
 3、测试方法级别执行即执行指定it方法也就是单条测试用例。
 
-![](https://gitee.com/lijialang/testfwk_arkxtest/raw/master/figures/Execute.png)
+![](figures/Execute.PNG)
 
 **查看测试结果**
 
 测试执行完毕后可直接在DevEco Studio中查看测试结果，如下图示例所示：
 
-![](https://gitee.com/lijialang/testfwk_arkxtest/raw/master/figures/TestResult.png)
+![](figures/TestResult.PNG)
 
 ### CMD执行
 
