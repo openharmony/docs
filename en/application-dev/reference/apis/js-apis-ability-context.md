@@ -32,7 +32,7 @@ class MainAbility extends Ability {
 | -------- | -------- | -------- | -------- | -------- |
 | abilityInfo | AbilityInfo | Yes| No| Ability information.|
 | currentHapModuleInfo | HapModuleInfo | Yes| No| Information about the current HAP.|
-| config | [Configuration](js-apis-configuration.md) | Yes| No| Configuration information.|
+| config | [Configuration](js-apis-application-configuration.md) | Yes| No| Configuration information.|
 
 ## AbilityContext.startAbility
 
@@ -46,15 +46,15 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -95,16 +95,16 @@ Starts an ability with the start options specified. This API uses an asynchronou
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md)  | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Parameters used for starting the ability.|
+| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -148,8 +148,8 @@ Starts an ability. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
 
@@ -161,8 +161,8 @@ Starts an ability. This API uses a promise to return the result.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -206,15 +206,15 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Yes| Callback used to return the result.|
+| want |[Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -248,7 +248,7 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-Starts an ability with start options specified. This API uses an asynchronous callback to return the result when the ability is terminated.
+Starts an ability with the start options specified. This API uses an asynchronous callback to return the result when the ability is terminated.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -256,16 +256,16 @@ Starts an ability with start options specified. This API uses an asynchronous ca
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Yes| Callback used to return the result.|
+| want |[Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | Yes| Parameters used for starting the ability.|
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -311,22 +311,22 @@ Starts an ability. This API uses a promise to return the result when the ability
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | No| Parameters used for starting the ability.|
 
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Promise used to return the result.|
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise used to return the result.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -373,7 +373,7 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<AbilityResult\> | Yes| Callback used to return the result.|
 
@@ -381,8 +381,8 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -418,7 +418,7 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
 
-Starts an ability with start options specified. This API uses an asynchronous callback to return the result when the account of the ability is destroyed.
+Starts an ability with the start options specified. This API uses an asynchronous callback to return the result when the account of the ability is destroyed.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -430,17 +430,17 @@ Starts an ability with start options specified. This API uses an asynchronous ca
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -479,7 +479,7 @@ Starts an ability with start options specified. This API uses an asynchronous ca
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>;
 
-Starts an ability with start options specified. This API uses a promise to return the result when the account of the ability is destroyed.
+Starts an ability with the start options specified. This API uses a promise to return the result when the account of the ability is destroyed.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -491,9 +491,9 @@ Starts an ability with start options specified. This API uses a promise to retur
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
 
@@ -505,8 +505,8 @@ Starts an ability with start options specified. This API uses a promise to retur
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -553,15 +553,15 @@ Starts a new Service Extension ability. This API uses an asynchronous callback t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -604,14 +604,14 @@ Starts a new Service Extension ability. This API uses a promise to return the re
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -656,7 +656,7 @@ Starts a new Service Extension ability with the account ID specified. This API u
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
@@ -664,8 +664,8 @@ Starts a new Service Extension ability with the account ID specified. This API u
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -711,15 +711,15 @@ Starts a new Service Extension ability with the account ID specified. This API u
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -762,15 +762,15 @@ Stops a Service Extension ability in the same application. This API uses an asyn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -813,14 +813,14 @@ Stops a Service Extension ability in the same application. This API uses a promi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -865,7 +865,7 @@ Stops a Service Extension ability in the same application with the account ID sp
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
@@ -873,8 +873,8 @@ Stops a Service Extension ability in the same application with the account ID sp
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -920,15 +920,15 @@ Stops a Service Extension ability in the same application with the account ID sp
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -976,8 +976,8 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1013,8 +1013,8 @@ Terminates this ability. This API uses a promise to return the result.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1042,15 +1042,15 @@ Terminates this ability. This API uses an asynchronous callback to return the ab
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| parameter | [AbilityResult](js-apis-featureAbility.md#abilityresult) | Yes| Information returned to the caller.|
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Information returned to the caller.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1097,7 +1097,7 @@ Terminates this ability. This API uses a promise to return the ability result in
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| parameter | [AbilityResult](js-apis-featureAbility.md#abilityresult) | Yes| Information returned to the caller.|
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Information returned to the caller.|
 
 **Return value**
 
@@ -1109,8 +1109,8 @@ Terminates this ability. This API uses a promise to return the ability result in
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 
 **Example**
@@ -1153,12 +1153,14 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template to connect this ability to
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
-| options | [ConnectOptions](js-apis-featureAbility.md#connectoptions) | Yes| Parameters for the connection.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Parameters for the connection.|
 
 **Return value**
 
@@ -1170,8 +1172,8 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template to connect this ability to
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1214,9 +1216,9 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| options | [ConnectOptions](js-apis-featureAbility.md#connectoptions) | Yes| Parameters for the connection.|
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Parameters for the connection.|
 
 **Return value**
 
@@ -1228,8 +1230,8 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1280,13 +1282,13 @@ Disconnects a connection. This API uses a promise to return the result.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
   ```ts
-  // connection is the return value of connectAbility.
+  // connection is the return value of connectServiceExtensionAbility.
   var connection = 1;
 
   try {
@@ -1326,8 +1328,8 @@ Disconnects a connection. This API uses an asynchronous callback to return the r
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1367,7 +1369,7 @@ Starts an ability in the foreground or background and obtains the caller object 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
+| want | [Want](js-apis-application-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
 
 **Return value**
 
@@ -1458,7 +1460,7 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
@@ -1466,8 +1468,8 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1514,17 +1516,17 @@ Starts an ability with the account ID and start options specified. This API uses
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1574,16 +1576,16 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| Other IDs| See [Ability Error Codes](../errorcodes/errorcode-ability.md).|
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1629,7 +1631,7 @@ Requests permissions from the user by displaying a dialog box. This API uses an 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | permissions | Array&lt;string&gt; | Yes| Permissions to request.|
-| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1660,7 +1662,7 @@ Requests permissions from the user by displaying a dialog box. This API uses a p
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Promise used to return the result.|
+| Promise&lt;[PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)&gt; | Promise used to return the result.|
 
 **Example**
 

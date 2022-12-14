@@ -1,10 +1,10 @@
-# ConfigurationConstant
+# @ohos.application.ConfigurationConstant
 
 The **ConfigurationConstant** module provides the enumerated values of the environment configuration information.
 
 > **NOTE**
 > 
-> The APIs of this module are supported since API version 8 and deprecated since API version 9. You are advised to use [@ohos.application.ConfigurationConstant](js-apis-app-ability-configurationConstant.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module are supported since API version 8 and deprecated since API version 9. You are advised to use [@ohos.app.ability.ConfigurationConstant](js-apis-app-ability-configurationConstant.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -53,5 +53,3 @@ You can obtain the value of this constant by calling the **ConfigurationConstant
 | SCREEN_DENSITY_XLDPI | 320 | The screen resolution is xldpi.| 
 | SCREEN_DENSITY_XXLDPI | 480 | The screen resolution is xxldpi.| 
 | SCREEN_DENSITY_XXXLDPI | 640 | The screen resolution is xxxldpi.| 
-
- <!--no_check--> 

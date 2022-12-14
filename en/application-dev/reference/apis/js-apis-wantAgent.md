@@ -1,10 +1,10 @@
-# WantAgent
+# @ohos.wantAgent
 
 The **WantAgent** module provides APIs for triggering, canceling, and comparing **WantAgent** objects. You can use the APIs to create a **WantAgent** object, and obtain the user ID, bundle name, and want information of the object.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module are supported since API version 7 and deprecated since API version 9. You are advised to use [@ohos.app.ability.wantAgent](js-apis-app-ability-wantAgent.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -22,10 +22,10 @@ Obtains a **WantAgent** object. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name    | Readable| Writable | Type                      | Mandatory| Description                   |
-| -------- | --- | ---- | -------------------------- | ---- | ----------------------- |
-| info     | Yes  | No  | WantAgentInfo              | Yes  | Information about the **WantAgent** object to obtain.          |
-| callback | Yes  | No  | AsyncCallback\<WantAgent\> | Yes  | Callback used to return the **WantAgent** object.|
+| Name    | Type                      | Mandatory| Description                   |
+| -------- | -------------------------- | ---- | ----------------------- |
+| info     | WantAgentInfo              | Yes  | Information about the **WantAgent** object to obtain.          |
+| callback | AsyncCallback\<WantAgent\> | Yes  | Callback used to return the **WantAgent** object.|
 
 **Example**
 
@@ -79,9 +79,9 @@ Obtains a **WantAgent** object. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Readable| Writable | Type         | Mandatory| Description         |
-| ---- | --- | ---- | ------------- | ---- | ------------- |
-| info | Yes  | No  | WantAgentInfo | Yes  | Information about the **WantAgent** object to obtain.|
+| Name| Type         | Mandatory| Description         |
+| ---- | ------------- | ---- | ------------- |
+| info | WantAgentInfo | Yes  | Information about the **WantAgent** object to obtain.|
 
 **Return value**
 
@@ -140,10 +140,10 @@ Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous
 
 **Parameters**
 
-| Name    | Readable| Writable | Type                   | Mandatory| Description                             |
-| -------- | --- | ---- | ----------------------- | ---- | --------------------------------- |
-| agent    | Yes  | No  | WantAgent               | Yes  | Target **WantAgent** object.                    |
-| callback | Yes  | No  | AsyncCallback\<string\> | Yes  | Callback used to return the bundle name.|
+| Name    | Type                   | Mandatory| Description                             |
+| -------- | ----------------------- | ---- | --------------------------------- |
+| agent    | WantAgent               | Yes  | Target **WantAgent** object.                    |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the bundle name.|
 
 **Example**
 
@@ -212,9 +212,9 @@ Obtains the bundle name of a **WantAgent** object. This API uses a promise to re
 
 **Parameters**
 
-| Name | Readable| Writable| Type     | Mandatory| Description         |
-| ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | Yes  | No | WantAgent | Yes  | Target **WantAgent** object.|
+| Name | Type     | Mandatory| Description         |
+| ----- | --------- | ---- | ------------- |
+| agent | WantAgent | Yes  | Target **WantAgent** object.|
 
 **Return value**
 
@@ -281,10 +281,10 @@ Obtains the user ID of a **WantAgent** object. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name    | Readable| Writable| Type                   | Mandatory| Description                               |
-| -------- | --- | ---- | ----------------------- | ---- | ----------------------------------- |
-| agent    | Yes  | No | WantAgent               | Yes  | Target **WantAgent** object.                      |
-| callback | Yes  | No | AsyncCallback\<number\> | Yes  | Callback used to return the user ID.|
+| Name    | Type                   | Mandatory| Description                               |
+| -------- | ----------------------- | ---- | ----------------------------------- |
+| agent    | WantAgent               | Yes  | Target **WantAgent** object.                      |
+| callback | AsyncCallback\<number\> | Yes  | Callback used to return the user ID.|
 
 **Example**
 
@@ -353,9 +353,9 @@ Obtains the user ID of a **WantAgent** object. This API uses a promise to return
 
 **Parameters**
 
-| Name | Readable| Writable| Type     | Mandatory| Description         |
-| ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | Yes  | No | WantAgent | Yes  | Target **WantAgent** object.|
+| Name | Type     | Mandatory| Description         |
+| ----- | --------- | ---- | ------------- |
+| agent | WantAgent | Yes  | Target **WantAgent** object.|
 
 **Return value**
 
@@ -424,10 +424,10 @@ Obtains the want in a **WantAgent** object. This API uses an asynchronous callba
 
 **Parameters**
 
-| Name    | Readable| Writable| Type                 | Mandatory| Description                           |
-| -------- | --- | ---- | --------------------- | ---- | ------------------------------- |
-| agent    | Yes  | No | WantAgent             | Yes  | Target **WantAgent** object.                  |
-| callback | Yes  | No | AsyncCallback\<Want\> | Yes  | Callback used to return the want.|
+| Name    | Type                 | Mandatory| Description                           |
+| -------- | --------------------- | ---- | ------------------------------- |
+| agent    | WantAgent             | Yes  | Target **WantAgent** object.                  |
+| callback | AsyncCallback\<Want\> | Yes  | Callback used to return the want.|
 
 **Example**
 
@@ -498,9 +498,9 @@ Obtains the want in a **WantAgent** object. This API uses a promise to return th
 
 **Parameters**
 
-| Name | Readable| Writable| Type     | Mandatory| Description         |
-| ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | Yes  | No | WantAgent | Yes  | Target **WantAgent** object.|
+| Name | Type     | Mandatory| Description         |
+| ----- | --------- | ---- | ------------- |
+| agent | WantAgent | Yes  | Target **WantAgent** object.|
 
 **Return value**
 
@@ -567,10 +567,10 @@ Cancels a **WantAgent** object. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name    | Readable| Writable| Type                 | Mandatory| Description                       |
-| -------- | --- | ---- | --------------------- | ---- | --------------------------- |
-| agent    | Yes  | No | WantAgent             | Yes  | Target **WantAgent** object.              |
-| callback | Yes  | No | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| Name    | Type                 | Mandatory| Description                       |
+| -------- | --------------------- | ---- | --------------------------- |
+| agent    | WantAgent             | Yes  | Target **WantAgent** object.              |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -639,9 +639,9 @@ Cancels a **WantAgent** object. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Readable| Writable| Type     | Mandatory| Description         |
-| ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | Yes  | No | WantAgent | Yes  | Target **WantAgent** object.|
+| Name | Type     | Mandatory| Description         |
+| ----- | --------- | ---- | ------------- |
+| agent | WantAgent | Yes  | Target **WantAgent** object.|
 
 **Return value**
 
@@ -708,11 +708,11 @@ Triggers a **WantAgent** object. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name       | Readable| Writable| Type                         | Mandatory| Description                           |
-| ----------- | --- | ---- | ----------------------------- | ---- | ------------------------------- |
-| agent       | Yes  | No | WantAgent                     | Yes  | Target **WantAgent** object.                  |
-| triggerInfo | Yes  | No | TriggerInfo                   | Yes  | **TriggerInfo** object.                |
-| callback    | Yes  | No | AsyncCallback\<CompleteData\> | Yes  | Callback used to return the result.|
+| Name       | Type                         | Mandatory| Description                           |
+| ----------- | ----------------------------- | ---- | ------------------------------- |
+| agent       | WantAgent                     | Yes  | Target **WantAgent** object.                  |
+| triggerInfo | TriggerInfo                   | Yes  | **TriggerInfo** object.                |
+| callback    | AsyncCallback\<CompleteData\> | No  | Callback used to return the result.|
 
 **Example**
 
@@ -785,11 +785,11 @@ Checks whether two **WantAgent** objects are equal. This API uses an asynchronou
 
 **Parameters**
 
-| Name      | Readable| Writable| Type                    | Mandatory| Description                                   |
-| ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
-| agent      | Yes  | No | WantAgent                | Yes  | The first **WantAgent** object.                          |
-| otherAgent | Yes  | No | WantAgent                | Yes  | The second **WantAgent** object.                          |
-| callback   | Yes  | No | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
+| Name      | Type                    | Mandatory| Description                                   |
+| ---------- | ------------------------ | ---- | --------------------------------------- |
+| agent      | WantAgent                | Yes  | The first **WantAgent** object.                          |
+| otherAgent | WantAgent                | Yes  | The second **WantAgent** object.                          |
+| callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -860,10 +860,10 @@ Checks whether two **WantAgent** objects are equal. This API uses a promise to r
 
 **Parameters**
 
-| Name      | Readable| Writable| Type     | Mandatory| Description         |
-| ---------- | --- | ---- | --------- | ---- | ------------- |
-| agent      | Yes  | No | WantAgent | Yes  | The first **WantAgent** object.|
-| otherAgent | Yes  | No | WantAgent | Yes  | The second **WantAgent** object.|
+| Name      | Type     | Mandatory| Description         |
+| ---------- | --------- | ---- | ------------- |
+| agent      | WantAgent | Yes  | The first **WantAgent** object.|
+| otherAgent | WantAgent | Yes  | The second **WantAgent** object.|
 
 **Return value**
 
@@ -930,10 +930,10 @@ Obtains the operation type of a **WantAgent** object. This API uses an asynchron
 
 **Parameters**
 
-| Name      | Readable| Writable| Type                    | Mandatory| Description                                   |
-| ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
-| agent      | Yes  | No | WantAgent                | Yes  | Target **WantAgent** object.                          |
-| callback   | Yes  | No | AsyncCallback\<number> | Yes  | Callback used to return the operation type.|
+| Name      | Type                    | Mandatory| Description                                   |
+| ---------- | ------------------------ | ---- | --------------------------------------- |
+| agent      | WantAgent                | Yes  | Target **WantAgent** object.                          |
+| callback   | AsyncCallback\<number> | Yes  | Callback used to return the operation type.|
 
 **Example**
 
@@ -991,9 +991,9 @@ Obtains the operation type of a **WantAgent** object. This API uses a promise to
 
 **Parameters**
 
-| Name      | Readable| Writable| Type     | Mandatory| Description         |
-| ---------- | --- | ---- | --------- | ---- | ------------- |
-| agent      | Yes  | No | WantAgent | Yes  | Target **WantAgent** object.|
+| Name      | Type     | Mandatory| Description         |
+| ---------- | --------- | ---- | ------------- |
+| agent      | WantAgent | Yes  | Target **WantAgent** object.|
 
 **Return value**
 
@@ -1050,39 +1050,22 @@ WantAgent.getOperationType(wantAgent).then((OperationType) => {
 ```
 
 
-
-## WantAgentInfo
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-| Name          | Readable| Writable| Type                           | Mandatory| Description                  |
-| -------------- | --- | ---- | ------------------------------- | ---- | ---------------------- |
-| wants          | Yes | Yes | Array\<Want\>                   | Yes  | Array of all **Want** objects.    |
-| operationType  | Yes | Yes | wantAgent.OperationType         | Yes  | Operation type.              |
-| requestCode    | Yes | Yes | number                          | Yes  | Request code defined by the user.|
-| wantAgentFlags | Yes | Yes | Array<wantAgent.WantAgentFlags> | No  | Array of flags for using the **WantAgent** object.          |
-| extraInfo      | Yes | Yes | {[key: string]: any}            | No  | Extra information.              |
-
-
-
 ## WantAgentFlags
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name               | Value            | Description                                                        |
 | ------------------- | -------------- | ------------------------------------------------------------ |
-| ONE_TIME_FLAG       | WantAgentFlags | The **WantAgent** object can be used only once.                                     |
-| NO_BUILD_FLAG       | WantAgentFlags | The **WantAgent** object does not exist and hence it is not created. In this case, **null** is returned.     |
-| CANCEL_PRESENT_FLAG | WantAgentFlags | The existing **WantAgent** object should be canceled before a new object is generated.|
-| UPDATE_PRESENT_FLAG | WantAgentFlags | Extra information of the existing **WantAgent** object is replaced with that of the new object.|
-| CONSTANT_FLAG       | WantAgentFlags | The **WantAgent** object is immutable.                                       |
-| REPLACE_ELEMENT     | WantAgentFlags | The **element** attribute of the current **Want** can be replaced by the **element** attribute of the **Want** in **WantAgent.trigger()**.|
-| REPLACE_ACTION      | WantAgentFlags | The **action** attribute of the current **Want** can be replaced by the **action** attribute of the **Want** in **WantAgent.trigger()**.|
-| REPLACE_URI         | WantAgentFlags | The **uri** attribute of the current **Want** can be replaced by the **uri** attribute of the **Want** in **WantAgent.trigger()**.|
-| REPLACE_ENTITIES    | WantAgentFlags | The **entities** attribute of the current **Want** can be replaced by the **entities** attribute of the **Want** in **WantAgent.trigger()**.|
-| REPLACE_BUNDLE      | WantAgentFlags | The **bundleName** attribute of the current **Want** can be replaced by the **bundleName** attribute of **Want** in **WantAgent.trigger()**.|
-
-
+| ONE_TIME_FLAG       | 0 | The **WantAgent** object can be used only once.                                     |
+| NO_BUILD_FLAG       | 1 | The **WantAgent** object does not exist and hence it is not created. In this case, **null** is returned.     |
+| CANCEL_PRESENT_FLAG | 2 | The existing **WantAgent** object should be canceled before a new object is generated.|
+| UPDATE_PRESENT_FLAG | 3 | Extra information of the existing **WantAgent** object is replaced with that of the new object.|
+| CONSTANT_FLAG       | 4 | The **WantAgent** object is immutable.                                       |
+| REPLACE_ELEMENT     | 5 | The **element** attribute of the current **Want** can be replaced by the **element** attribute of the **Want** in **WantAgent.trigger()**.|
+| REPLACE_ACTION      | 6 | The **action** attribute of the current **Want** can be replaced by the **action** attribute of the **Want** in **WantAgent.trigger()**.|
+| REPLACE_URI         | 7 | The **uri** attribute of the current **Want** can be replaced by the **uri** attribute of the **Want** in **WantAgent.trigger()**.|
+| REPLACE_ENTITIES    | 8 | The **entities** attribute of the current **Want** can be replaced by the **entities** attribute of the **Want** in **WantAgent.trigger()**.|
+| REPLACE_BUNDLE      | 9 | The **bundleName** attribute of the current **Want** can be replaced by the **bundleName** attribute of **Want** in **WantAgent.trigger()**.|
 
 ## OperationType
 
@@ -1090,35 +1073,20 @@ WantAgent.getOperationType(wantAgent).then((OperationType) => {
 
 | Name             | Value           | Description                     |
 | ----------------- | ------------- | ------------------------- |
-| UNKNOWN_TYPE      | OperationType | Unknown operation type.           |
-| START_ABILITY     | OperationType | Starts an ability with a UI.|
-| START_ABILITIES   | OperationType | Starts multiple abilities with a UI.|
-| START_SERVICE     | OperationType | Starts an ability without a UI.|
-| SEND_COMMON_EVENT | OperationType | Sends a common event.       |
-
-
+| UNKNOWN_TYPE      | 0 | Unknown operation type.           |
+| START_ABILITY     | 1 | Starts an ability with a UI.|
+| START_ABILITIES   | 2 | Starts multiple abilities with a UI.|
+| START_SERVICE     | 3 | Starts an ability without a UI.|
+| SEND_COMMON_EVENT | 4 | Sends a common event.       |
 
 ## CompleteData 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name          | Readable| Writable| Type                          | Mandatory| Description                   |
-| -------------- | --- | ---- | ------------------------------ | ---- | ---------------------- |
-| info           | Yes | Yes | WantAgent                       | Yes  | A triggered **WantAgent** object.      |
-| want           | Yes | Yes | Want                            | Yes  | An existing triggered **want**.    |
-| finalCode      | Yes | Yes | number                          | Yes  | Request code that triggers the **WantAgent** object.|
-| finalData      | Yes | Yes | string                          | No  | Final data collected by the common event. |
-| extraInfo      | Yes | Yes | {[key: string]: any}            | No  | Extra information.              |
-
-
-
-## TriggerInfo
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-| Name      | Readable| Writable| Type                | Mandatory| Description       |
-| ---------- | --- | ---- | -------------------- | ---- | ----------- |
-| code       | Yes | Yes | number               | Yes  | Result code.|
-| want       | Yes | Yes | Want                 | No  | Want.       |
-| permission | Yes | Yes | string               | No  | Permission.   |
-| extraInfo  | Yes | Yes | {[key: string]: any} | No  | Extra information.   |
+| Name          | Type                          | Mandatory| Description                   |
+| -------------- | ------------------------------ | ---- | ---------------------- |
+| info           | WantAgent                       | Yes  | A triggered **WantAgent** object.      |
+| want           | Want                            | Yes  | An existing triggered **want**.    |
+| finalCode      | number                          | Yes  | Request code that triggers the **WantAgent** object.|
+| finalData      | string                          | No  | Final data collected by the common event. |
+| extraInfo      | {[key: string]: any}            | No  | Extra information.              |

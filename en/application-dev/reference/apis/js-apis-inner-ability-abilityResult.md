@@ -1,4 +1,4 @@
-# AbilityResult<sup>7+</sup>
+# AbilityResult
 
 The **AbilityResult** module defines the result code and data returned when an ability is started or destroyed.
 
