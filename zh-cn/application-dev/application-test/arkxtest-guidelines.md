@@ -1,11 +1,11 @@
-# 自动化测试框架使用指南
+# 自动化测试框架使用指南 
 
 
 ## 概述
 
-为支撑OpenHarmony操作系统的自动化测试活动开展，我们提供支持JS/TS语言的单元及UI测试框架，支持开发者针对应用接口或系统接口进行单元测试，并且可基于模拟UI操作进行UI自动化脚本的编写。
+为支撑OpenHarmony操作系统的自动化测试活动开展，我们提供了支持JS/TS语言的单元及UI测试框架，支持开发者针对应用接口或系统接口进行单元测试，并且可基于UI操作进行UI自动化脚本的编写。
 
-本指南重点介绍自动化测试框架的主要功能，同时介绍单元/UI自动化测试脚本的编写方法以及执行过程。
+本指南重点介绍自动化测试框架的主要功能，同时介绍编写单元/UI自动化测试脚本的方法以及执行过程。
 
 
 ### 简介
@@ -21,11 +21,11 @@ OpenHarmony自动化测试框架arkxtest，作为OpenHarmony工具集的重要�
 
   单元测试框架是测试框架的基础底座，提供了最基本的用例识别、调度、执行及结果汇总的能力。主要功能如下图所示：
 
-  ![](https://gitee.com/lijialang/testfwk_arkxtest/raw/master/figures/kuangjia.png)
+  ![](figures/UnitTest.PNG)
 
-  单元测试脚本的基础运行流程如下图所示，依赖aa test命令作为执行入口。
+  单元测试脚本的基础运行流程如下图所示，依赖aa test命令作为执行入口，该命令可具体参考[对应指南。](../ability/ability-delegator.md)
 
-![](https://gitee.com/lijialang/testfwk_arkxtest/raw/master/figures/zhixxingliucheng.png)
+  ![](figures/TestFlow.PNG)
 
 - UI测试框架
 
@@ -33,11 +33,12 @@ OpenHarmony自动化测试框架arkxtest，作为OpenHarmony工具集的重要�
 
   UI测试框架的主要功能如下图所示：
 
-![](https://gitee.com/lijialang/testfwk_arkxtest/raw/master/figures/Uitest.png)
+  ![](figures/Uitest.PNG)
+
 
 ### 约束与限制
 
-- UI测试框架能力在OpenHarmony 3.1 release版本之后方可使用，历史版本不支持使用。
+- UI测试框架的能力在OpenHarmony 3.1 release版本之后方可使用，历史版本不支持使用。
 - 单元测试框架的部分能力与其版本有关，具体能力与版本匹配信息可见代码仓中的[文档介绍](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md)。
 
 
@@ -45,7 +46,7 @@ OpenHarmony自动化测试框架arkxtest，作为OpenHarmony工具集的重要�
 
 ### 环境要求
 
-OpenHarmony自动化脚本的编写主要基于DevEco Studio，建议使用3.0之后的版本进行脚本编写。
+OpenHarmony自动化脚本的编写主要基于DevEco Studio，并建议使用3.0之后的版本进行脚本编写。
 
 脚本执行需要PC连接OpenHarmony设备，如RK3568开发板等。
 
@@ -94,7 +95,7 @@ export default function abilityTest() {
 
 单元测试脚本需要包含如下基本元素：
 
-1、依赖导包，使用依赖的测试接口。
+1、依赖导包，以便使用依赖的测试接口。
 
 2、测试代码编写，主要编写测试代码的相关逻辑，如接口调用等。
 
@@ -104,13 +105,13 @@ export default function abilityTest() {
 
 UI测试脚本是在单元测试框架的基础上编写，主要就是增加了UI测试框架提供的接口调用，实现对应的测试逻辑。
 
-下面的示例代码是在上面的单元测试脚本基础上增量编写，首先需要增加依赖导包，如下示例代码所示：
+下面的示例代码是在上面的测试脚本基础上增量编写，首先需要增加依赖导包，如下示例代码所示：
 
 ```js
-import {Driver,ON,Component,MatchPattern} from '@ohos.uitest'
+import {UiDriver,BY,UiComponent,MatchPattern} from '@ohos.uitest'
 ```
 
-然后是具体UI测试代码编写，场景较为简单，在启动的应用页面上进行点击操作，然后检查点击效果。
+然后是具体测试代码编写，场景较为简单，就是在启动的应用页面上进行点击操作，然后增加检查点检查用例。
 
 ```js
 export default function abilityTest() {
@@ -130,11 +131,11 @@ export default function abilityTest() {
         expect(Ability.context.abilityInfo.name).assertEqual('MainAbility');
       })
       //ui test code
-      //init driver
-      var driver = await Driver.create();
+      //init uidriver
+      var driver = await UiDriver.create();
       await driver.delayMs(1000);
       //find button by text 'Next'
-      var button = await driver.findComponent(ON.text('Next'));
+      var button = await driver.findComponent(BY.text('Next'));
       //click button
       await button.click();
       await driver.delayMs(1000);
@@ -153,9 +154,7 @@ export default function abilityTest() {
 
 ## 执行测试脚本
 
-### DevEco Studio执行
-
-通过点击按钮执行，当前支持以下执行方式：
+执行测试脚本可以直接在DevEco Studio中通过点击按钮执行，当前支持以下执行方式：
 
 1、测试包级别执行即执行测试包内的全部用例。
 
