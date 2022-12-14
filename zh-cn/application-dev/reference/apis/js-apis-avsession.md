@@ -28,7 +28,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 | 参数名 | 类型                            | 必填 | 说明                           |
 | ------ | ------------------------------- | ---- | ------------------------------ |
-| context| [Context](../../ability/context-userguide.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。 |
+| context| [Context](../../reference/apis/js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。 |
 | tag    | string                          | 是   | 会话的自定义名称。             |
 | type   | [AVSessionType](#avsessiontype) | 是   | 会话类型，当前支持音频和视频。 |
 
@@ -76,7 +76,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context| [Context](../../ability/context-userguide.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。     |
+| context| [Context](../../reference/apis/js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。     |
 | tag      | string                                  | 是   | 会话的自定义名称。                                           |
 | type     | [AVSessionType](#avsessiontype)         | 是   | 会话类型，当前支持音频和视频。                               |
 | callback | AsyncCallback<[AVSession](#avsession)\> | 是   | 回调函数。回调返回会话实例对象，可用于获取会话ID，以及设置元数据、播放状态，发送按键事件等操作。 |
