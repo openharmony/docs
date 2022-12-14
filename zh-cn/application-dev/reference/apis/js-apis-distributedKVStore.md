@@ -258,7 +258,7 @@ createKVManager(config: KVManagerConfig): KVManager
 
 | 参数名 | 类型                      | 必填 | 说明                                                      |
 | ------ | ----------------------------- | ---- | --------------------------------------------------------- |
-| config | [KVManagerConfig](#kvmanager) | 是   | 提供KVManager实例的配置信息，包括调用方的包名和用户信息。 |
+| config | [KVManagerConfig](#kvmanagerConfig) | 是   | 提供KVManager实例的配置信息，包括调用方的包名和用户信息。 |
 
 **返回值：**
 
