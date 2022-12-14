@@ -70,25 +70,25 @@ FormExtensionAbility类拥有如下API接口，具体的API介绍详见[接口�
 
 FormExtensionAbility类还拥有成员context，为FormExtensionContext类，具体的API介绍详见[接口文档](../reference/apis/js-apis-inner-application-formExtensionContext.md)。
 
-  | 接口名 | 描述 | 
+| 接口名 | 描述 |
 | -------- | -------- |
-| startAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 回调形式拉起一个卡片所属应用的UIAbility（系统接口，三方应用不支持调用，需申请后台拉起权限）。 | 
-| startAbility(want:&nbsp;Want):&nbsp;Promise&lt;void&gt; | Promise形式拉起一个卡片所属应用的UIAbility（系统接口，三方应用不支持调用，需申请后台拉起权限）。 | 
+| startAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 回调形式拉起一个卡片所属应用的UIAbility（系统接口，三方应用不支持调用，需申请后台拉起权限）。 |
+| startAbility(want:&nbsp;Want):&nbsp;Promise&lt;void&gt; | Promise形式拉起一个卡片所属应用的UIAbility（系统接口，三方应用不支持调用，需申请后台拉起权限）。 |
 
 formProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formProvider.md)。
 
-  | 接口名 | 描述 | 
+| 接口名 | 描述 |
 | -------- | -------- |
-| setFormNextRefreshTime(formId:&nbsp;string,&nbsp;minute:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 设置指定卡片的下一次更新时间。 | 
-| setFormNextRefreshTime(formId:&nbsp;string,&nbsp;minute:&nbsp;number):&nbsp;Promise&lt;void&gt;; | 设置指定卡片的下一次更新时间，以promise方式返回。 | 
-| updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;FormBindingData,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 更新指定的卡片。 | 
-| updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;FormBindingData):&nbsp;Promise&lt;void&gt;; | 更新指定的卡片，以promise方式返回。 | 
+| setFormNextRefreshTime(formId:&nbsp;string,&nbsp;minute:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 设置指定卡片的下一次更新时间。 |
+| setFormNextRefreshTime(formId:&nbsp;string,&nbsp;minute:&nbsp;number):&nbsp;Promise&lt;void&gt;; | 设置指定卡片的下一次更新时间，以promise方式返回。 |
+| updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;FormBindingData,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 更新指定的卡片。 |
+| updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;FormBindingData):&nbsp;Promise&lt;void&gt;; | 更新指定的卡片，以promise方式返回。 |
 
 formBindingData类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formBindingData.md)。
 
-  | 接口名 | 描述 | 
+| 接口名 | 描述 |
 | -------- | -------- |
-| createFormBindingData(obj?:&nbsp;Object&nbsp;\|&nbsp;string):&nbsp;FormBindingData | 创建一个FormBindingData对象。 | 
+| createFormBindingData(obj?:&nbsp;Object&nbsp;\|&nbsp;string):&nbsp;FormBindingData | 创建一个FormBindingData对象。 |
 
 
 ## 开发步骤
@@ -208,22 +208,22 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
 2. 卡片的具体配置信息。在上述FormExtensionAbility的元信息（"metadata"配置项）中，可以指定卡片具体配置信息的资源索引。例如当resource指定为$profile:form_config时，会使用开发视图的resources/base/profile/目录下的form_config.json作为卡片profile配置文件。内部字段结构说明如下表所示。
      **表1** 卡片profile配置文件
    
-   | 属性名称 | 含义 | 数据类型 | 是否可缺省 | 
+   | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
    | -------- | -------- | -------- | -------- |
-   | name | 表示卡片的类名，字符串最大长度为127字节。 | 字符串 | 否 | 
-   | description | 表示卡片的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。字符串最大长度为255字节。 | 字符串 | 可缺省，缺省为空。 | 
-   | src | 表示卡片对应的UI代码的完整路径。 | 字符串 | 否 | 
-   | window | 用于定义与显示窗口相关的配置。 | 对象 | 可缺省 | 
-   | isDefault | 表示该卡片是否为默认卡片，每个Ability有且只有一个默认卡片。<br/>true：默认卡片。<br/>false：非默认卡片。 | 布尔值 | 否 | 
-   | colorMode | 表示卡片的主题样式，取值范围如下：<br/>auto：自适应。<br/>dark：深色主题。<br/>light：浅色主题。 | 字符串 | 可缺省，缺省值为“auto”。 | 
-   | supportDimensions | 表示卡片支持的外观规格，取值范围：<br/>1&nbsp;\*&nbsp;2：表示1行2列的二宫格。<br/>2&nbsp;\*&nbsp;2：表示2行2列的四宫格。<br/>2&nbsp;\*&nbsp;4：表示2行4列的八宫格。<br/>4&nbsp;\*&nbsp;4：表示4行4列的十六宫格。 | 字符串数组 | 否 | 
-   | defaultDimension | 表示卡片的默认外观规格，取值必须在该卡片supportDimensions配置的列表中。 | 字符串 | 否 | 
-   | updateEnabled | 表示卡片是否支持周期性刷新，取值范围：<br/>true：表示支持周期性刷新，可以在定时刷新（updateDuration）和定点刷新（scheduledUpdateTime）两种方式任选其一，优先选择定时刷新。<br/>false：表示不支持周期性刷新。 | 布尔类型 | 否 | 
-   | scheduledUpdateTime | 表示卡片的定点刷新的时刻，采用24小时制，精确到分钟。<br/>updateDuration参数优先级高于scheduledUpdateTime，两者同时配置时，以updateDuration配置的刷新时间为准。 | 字符串 | 可缺省，缺省值为“0:0”。 | 
-   | updateDuration | 表示卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br/>当取值为0时，表示该参数不生效。<br/>当取值为正整数N时，表示刷新周期为30\*N分钟。<br/>updateDuration参数优先级高于scheduledUpdateTime，两者同时配置时，以updateDuration配置的刷新时间为准。 | 数值 | 可缺省，缺省值为“0”。 | 
-   | formConfigAbility | 表示卡片的配置跳转链接，采用URI格式。 | 字符串 | 可缺省，缺省值为空。 | 
-   | formVisibleNotify | 标识是否允许卡片使用卡片可见性通知。 | 字符串 | 可缺省，缺省值为空。 | 
-   | metaData | 表示卡片的自定义信息，包含customizeData数组标签。 | 对象 | 可缺省，缺省值为空。 | 
+   | name | 表示卡片的类名，字符串最大长度为127字节。 | 字符串 | 否 |
+   | description | 表示卡片的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。字符串最大长度为255字节。 | 字符串 | 可缺省，缺省为空。 |
+   | src | 表示卡片对应的UI代码的完整路径。 | 字符串 | 否 |
+   | window | 用于定义与显示窗口相关的配置。 | 对象 | 可缺省 |
+   | isDefault | 表示该卡片是否为默认卡片，每个Ability有且只有一个默认卡片。<br/>true：默认卡片。<br/>false：非默认卡片。 | 布尔值 | 否 |
+   | colorMode | 表示卡片的主题样式，取值范围如下：<br/>auto：自适应。<br/>dark：深色主题。<br/>light：浅色主题。 | 字符串 | 可缺省，缺省值为“auto”。 |
+   | supportDimensions | 表示卡片支持的外观规格，取值范围：<br/>1&nbsp;\*&nbsp;2：表示1行2列的二宫格。<br/>2&nbsp;\*&nbsp;2：表示2行2列的四宫格。<br/>2&nbsp;\*&nbsp;4：表示2行4列的八宫格。<br/>4&nbsp;\*&nbsp;4：表示4行4列的十六宫格。 | 字符串数组 | 否 |
+   | defaultDimension | 表示卡片的默认外观规格，取值必须在该卡片supportDimensions配置的列表中。 | 字符串 | 否 |
+   | updateEnabled | 表示卡片是否支持周期性刷新，取值范围：<br/>true：表示支持周期性刷新，可以在定时刷新（updateDuration）和定点刷新（scheduledUpdateTime）两种方式任选其一，优先选择定时刷新。<br/>false：表示不支持周期性刷新。 | 布尔类型 | 否 |
+   | scheduledUpdateTime | 表示卡片的定点刷新的时刻，采用24小时制，精确到分钟。<br/>updateDuration参数优先级高于scheduledUpdateTime，两者同时配置时，以updateDuration配置的刷新时间为准。 | 字符串 | 可缺省，缺省值为“0:0”。 |
+   | updateDuration | 表示卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br/>当取值为0时，表示该参数不生效。<br/>当取值为正整数N时，表示刷新周期为30\*N分钟。<br/>updateDuration参数优先级高于scheduledUpdateTime，两者同时配置时，以updateDuration配置的刷新时间为准。 | 数值 | 可缺省，缺省值为“0”。 |
+   | formConfigAbility | 表示卡片的配置跳转链接，采用URI格式。 | 字符串 | 可缺省，缺省值为空。 |
+   | formVisibleNotify | 标识是否允许卡片使用卡片可见性通知。 | 字符串 | 可缺省，缺省值为空。 |
+   | metaData | 表示卡片的自定义信息，包含customizeData数组标签。 | 对象 | 可缺省，缺省值为空。 |
 
      配置示例如下：
    
@@ -452,7 +452,7 @@ onUpdateForm(formId) {
 
 ### 开发卡片事件
 
-卡片支持为组件设置交互事件（action），包括router事件和message事件，其中router事件用于Ability跳转，message事件用于卡片开发人员自定义点击事件。
+卡片支持为组件设置交互事件（action），包括**router**事件和**message**事件，其中router事件用于Ability跳转，message事件用于卡片开发人员自定义点击事件。
 
 关键步骤说明如下：
 
@@ -539,19 +539,60 @@ onUpdateForm(formId) {
         "action": "router",
         "abilityName": "EntryAbility",
         "params": {
-          "message": "add detail"
+          "info": "router info",
+          "message": "router message"
         }
       },
       "messageEvent": {
         "action": "message",
         "params": {
-          "message": "add detail"
+          "detail": "message detail"
         }
       }
     }
   }
   ```
 
+- 在UIAbility中接收router事件并获取参数
+
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility'
+  
+  export default class EntryAbility extends UIAbility {
+      onCreate(want, launchParam) {
+          // 获取router事件中传递的info参数
+          if (want.parameters.info === "router info") {
+              // do something
+              // console.log("router info:" + want.parameters.info)
+          }
+          // 获取router事件中传递的message参数
+          if (want.parameters.message === "router message") {
+              // do something
+              // console.log("router message:" + want.parameters.message)
+          }
+      }
+      // ...
+  };
+  ```
+
+- 在FormExtensionAbility中接收message事件并获取参数
+
+  ```ts
+  import FormExtension from '@ohos.app.form.FormExtensionAbility';
+  
+  export default class FormAbility extends FormExtension {
+      // ...
+      onFormEvent(formId, message) {
+          // 获取message事件中传递的detail参数
+          let msg = JSON.parse(message)
+          if (msg.params.detail === "message detail") {
+              // do something
+              // console.log("message info:" + msg.params.detail)
+          }
+      }
+      // ...
+  };
+  ```
 
 ## 相关实例
 
