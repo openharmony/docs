@@ -1,4 +1,4 @@
-# wantConstant
+# @ohos.app.ability.wantConstant (wantConstant)
 
 wantConstant模块提供want中操作want常数和解释Flags说明的能力。
 
