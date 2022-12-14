@@ -216,7 +216,7 @@ The HDF-based driver development process involves driver implementation, build, 
       >
       > - If you need to set **uid** and **gid** to **system** or **root** due to service requirements, contact security experts for review.
       >
-      > - The process UIDs are configured in **base/startup/init_lite/services/etc/passwd**, and the process GIDs are configured in **base/startup/init_lite/services/etc/group**. For details, see [Adding a System Service User Group]( https://gitee.com/openharmony/startup_init_lite/wikis).
+      > - The process UIDs are configured in **base/startup/init/services/etc/passwd**, and the process GIDs are configured in **base/startup/init/services/etc/group**. For details, see [Adding a System Service User Group]( https://gitee.com/openharmony/startup_init_lite/wikis).
       >
       > - If CAP_DAC_OVERRIDE needs to be configured for a service module, enter **caps = ["DAC_OVERRIDE"]** instead of **caps = ["CAP_DAC_OVERRIDE"]**.
 

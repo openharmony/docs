@@ -39,7 +39,7 @@ init进程启动时，首先完成系统初始化工作，然后开始解析配�
     标准系统下：
     ```
     ohos_prebuilt_etc("misc.cfg") {
-        source = "//base/startup/init_lite/services/etc/misc.cfg"
+        source = "//base/startup/init/services/etc/misc.cfg"
         relative_install_dir = "init"
         part_name = "init"
       }

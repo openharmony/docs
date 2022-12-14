@@ -245,16 +245,16 @@ startup_init_param=40960
     ​    	在标准系统上通过ohos_prebuilt_para模版安装配置文件到到/etc/param/目录下，GN脚本示例如下：
 
     ```go
-    import("//base/startup/init_lite/services/etc/param/param_fixer.gni")
+    import("//base/startup/init/services/etc/param/param_fixer.gni")
 
     ohos_prebuilt_para("ohos.para") {
-        source = "//base/startup/init_lite/services/etc/ohos.para"
+        source = "//base/startup/init/services/etc/ohos.para"
         part_name = "init"
         module_install_dir = "etc/param"
     }
 
     ohos_prebuilt_para("ohos.para.dac") {
-        source = "//base/startup/init_lite/services/etc/ohos.para.dac"
+        source = "//base/startup/init/services/etc/ohos.para.dac"
         part_name = "init"
         module_install_dir = "etc/param"
     }
@@ -263,24 +263,24 @@ startup_init_param=40960
     在小系统上，通过copy命令，把对应的系统参数定义文件拷贝到system/etc/param目录下
     ```go
     copy("ohos.para") {
-      sources = [ "//base/startup/init_lite/services/etc/param/ohos.para" ]
+      sources = [ "//base/startup/init/services/etc/param/ohos.para" ]
       outputs = [ "$root_out_dir/system/etc/param/ohos.para" ]
     }
     copy("ohos.para.dac") {
-      sources = [ "//base/startup/init_lite/services/etc/param/ohos.para.dac" ]
+      sources = [ "//base/startup/init/services/etc/param/ohos.para.dac" ]
       outputs = [ "$root_out_dir/system/etc/param/ohos.para.dac" ]
     }
     ```
     在mini系统上，通过action把所有定义的默认系统参数转化成头文件，并编译到系统中
     ```go
     action("lite_const_param_to") {
-      script = "//base/startup/init_lite/scripts/param_cfg_to_code.py"
+      script = "//base/startup/init/scripts/param_cfg_to_code.py"
       args = [
         "--source",
         rebase_path(
-            "//base/startup/init_lite/services/etc_lite/param/ohos_const/ohospara"),
+            "//base/startup/init/services/etc_lite/param/ohos_const/ohospara"),
         "--dest_dir",
-        rebase_path("$root_out_dir/gen/init_lite/"),
+        rebase_path("$root_out_dir/gen/init/"),
         "--priority",
         "0",
       ]
