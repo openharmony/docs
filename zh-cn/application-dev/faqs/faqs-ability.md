@@ -54,7 +54,7 @@ build() {
 
 方式二：使用箭头函数。
 
-## 如何解决must have required property 'startWindowIcon'报错 
+## 如何解决must have required property 'startWindowIcon'报错
 
 适用于：OpenHarmony SDK 3.2.3.5版本，API9 Stage模型
 
