@@ -3,7 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-本应用配置文件中定义的快捷方式信息，FA模型配置在[config.json](../../quick-start/package-structure.md)文件中进行配置，Stage模型配置参考[shortcuts对象内部结构](../../quick-start/stage-structure.md#shortcuts对象内部结构)
+本应用配置文件中定义的快捷方式信息，FA模型配置在[config.json文件中进行配置](../../quick-start/module-structure.md#表17-shortcuts对象的内部结构说明)，Stage模型配置参考[shortcuts对象内部结构](../../quick-start/module-configuration-file.md#shortcuts标签)。
 
 ## ShortcutWant
 

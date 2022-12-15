@@ -29,4 +29,4 @@ class MyAbilityStage extends AbilityStage {
 | 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | currentHapModuleInfo | HapModuleInfo | 是 | 否 | AbilityStage对应的ModuleInfo对象。 | 
-| config | [Configuration](js-apis-configuration.md) | 是 | 否 | 环境变化对象。 | 
+| config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 环境变化对象。 | 

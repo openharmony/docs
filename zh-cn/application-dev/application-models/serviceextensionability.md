@@ -26,7 +26,7 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 1. OpenHarmony当前不支持三方应用实现ServiceExtensionAbility。如果三方开发者想要实现后台处理相关事务的功能，可以使用后台任务，具体请参见[后台任务](../task-management/Readme-CN.md)。
+> 1. OpenHarmony当前不支持三方应用实现ServiceExtensionAbility。如果三方开发者想要实现后台处理相关事务的功能，可以使用后台任务，具体请参见[后台任务](../task-management/background-task-overview.md)。
 > 
 > 2. 三方应用的UIAbility组件可以通过Context连接系统提供的ServiceExtensionAbility。
 > 
