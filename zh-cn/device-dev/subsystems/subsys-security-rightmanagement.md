@@ -2,95 +2,26 @@
 
 ## 运作机制<a name="section193961322175011"></a>
 
-由于OpenHarmony允许安装三方应用，所以需要对三方应用的敏感权限调用进行管控，具体实现是应用在开发阶段就需要在profile.json中指明此应用在运行过程中可能会调用哪些敏感权限，这些权限包括静态权限和动态权限，静态权限表示只需要在安装阶段注册就可以，而动态权限一般表示获取用户的敏感信息，所以需要在运行时让用户确认才可以调用，授权方式包括系统设置应用手动授权等。除了运行时对应用调用敏感权限进行管控外，还需要利用应用签名管控手段确保应用安装包已经被设备厂商进行了确认。
+由于OpenHarmony允许安装三方应用，所以需要对三方应用的敏感权限调用进行管控，具体实现是应用在开发阶段就需要在应用配置文件（config.json）中指明此应用在运行过程中可能会调用哪些敏感权限，这些权限包括静态权限和动态权限，静态权限表示只需要在安装阶段注册就可以，而动态权限一般表示获取用户的敏感信息，所以需要在运行时让用户确认才可以调用，授权方式包括系统设置应用手动授权等。除了运行时对应用调用敏感权限进行管控外，还需要利用应用签名管控手段确保应用安装包已经被设备厂商进行了确认。
 
-**表 1**  OpenHarmony权限列表
+  **表1** **OpenHarmony系统权限列表**
+  
+  | **OpenHarmony系统权限** | **授权方式** | **权限说明** | 
+  | -------- | -------- | -------- |
+  | ohos.permission.LISTEN_BUNDLE_CHANGE | system_grant（静态权限） | 允许该应用获取应用变化消息。 | 
+  | ohos.permission.GET_BUNDLE_INFO | system_grant（静态权限） | 允许该应用获取应用信息。 | 
+  | ohos.permission.INSTALL_BUNDLE | system_grant（静态权限） | 允许该应用安装应用。 | 
+  | ohos.permission.CAMERA | user_grant（动态权限） | 此应用可随时使用相机拍摄照片和录制视频。 | 
+  | ohos.permission.MODIFY_AUDIO_SETTINGS | system_grant（静态权限） | 允许该应用修改全局音频设置，例如音量和用于输出的扬声器。 | 
+  | ohos.permission.READ_MEDIA | user_grant（动态权限） | 允许该应用读取您的视频收藏。 | 
+  | ohos.permission.MICROPHONE | user_grant（动态权限） | 此应用可随时使用麦克风进行录音。 | 
+  | ohos.permission.WRITE_MEDIA | user_grant（动态权限） | 允许该应用写入您的音乐收藏。 | 
+  | ohos.permission.DISTRIBUTED_DATASYNC | user_grant（动态权限） | 管控分布式数据传输能力。 | 
+  | ohos.permission.DISTRIBUTED_VIRTUALDEVICE | user_grant（动态权限） | 允许应用使用分布式虚拟能力 | 
 
-<a name="table058213105512"></a>
-<table><thead align="left"><tr id="row4583510656"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.2.4.1.1"><p id="p75834101518"><a name="p75834101518"></a><a name="p75834101518"></a><span id="text1659749759"><a name="text1659749759"></a><a name="text1659749759"></a>OpenHarmony</span>权限</p>
-</th>
-<th class="cellrowborder" valign="top" width="25.83258325832583%" id="mcps1.2.4.1.2"><p id="p1458351016516"><a name="p1458351016516"></a><a name="p1458351016516"></a>授权方式</p>
-</th>
-<th class="cellrowborder" valign="top" width="40.83408340834084%" id="mcps1.2.4.1.3"><p id="p105838101254"><a name="p105838101254"></a><a name="p105838101254"></a>权限说明</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row45831101153"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.2.4.1.1 "><p id="p155831510951"><a name="p155831510951"></a><a name="p155831510951"></a>ohos.permission.LISTEN_BUNDLE_CHANGE</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.83258325832583%" headers="mcps1.2.4.1.2 "><p id="p158301014512"><a name="p158301014512"></a><a name="p158301014512"></a>system_grant（静态权限）</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.83408340834084%" headers="mcps1.2.4.1.3 "><p id="p155835101512"><a name="p155835101512"></a><a name="p155835101512"></a>允许该应用获取应用变化消息。</p>
-</td>
-</tr>
-<tr id="row958316106513"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.2.4.1.1 "><p id="p1258313104515"><a name="p1258313104515"></a><a name="p1258313104515"></a>ohos.permission.GET_BUNDLE_INFO</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.83258325832583%" headers="mcps1.2.4.1.2 "><p id="p16583161014519"><a name="p16583161014519"></a><a name="p16583161014519"></a>system_grant（静态权限）</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.83408340834084%" headers="mcps1.2.4.1.3 "><p id="p11583910850"><a name="p11583910850"></a><a name="p11583910850"></a>允许该应用获取应用信息。</p>
-</td>
-</tr>
-<tr id="row458351013520"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.2.4.1.1 "><p id="p11583310757"><a name="p11583310757"></a><a name="p11583310757"></a>ohos.permission.INSTALL_BUNDLE</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.83258325832583%" headers="mcps1.2.4.1.2 "><p id="p95834109511"><a name="p95834109511"></a><a name="p95834109511"></a>system_grant（静态权限）</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.83408340834084%" headers="mcps1.2.4.1.3 "><p id="p858319108518"><a name="p858319108518"></a><a name="p858319108518"></a>允许该应用安装应用。</p>
-</td>
-</tr>
-<tr id="row139426341265"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.2.4.1.1 "><p id="p169421434164"><a name="p169421434164"></a><a name="p169421434164"></a>ohos.permission.CAMERA</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.83258325832583%" headers="mcps1.2.4.1.2 "><p id="p1594212341164"><a name="p1594212341164"></a><a name="p1594212341164"></a>user_grant（动态权限）</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.83408340834084%" headers="mcps1.2.4.1.3 "><p id="p1942334361"><a name="p1942334361"></a><a name="p1942334361"></a>此应用可随时使用相机拍摄照片和录制视频。</p>
-</td>
-</tr>
-<tr id="row114648235612"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.2.4.1.1 "><p id="p746502318619"><a name="p746502318619"></a><a name="p746502318619"></a>ohos.permission.MODIFY_AUDIO_SETTINGS</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.83258325832583%" headers="mcps1.2.4.1.2 "><p id="p6466223362"><a name="p6466223362"></a><a name="p6466223362"></a>system_grant（静态权限）</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.83408340834084%" headers="mcps1.2.4.1.3 "><p id="p8466323567"><a name="p8466323567"></a><a name="p8466323567"></a>允许该应用修改全局音频设置，例如音量和用于输出的扬声器。</p>
-</td>
-</tr>
-<tr id="row193133381266"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.2.4.1.1 "><p id="p1631315381568"><a name="p1631315381568"></a><a name="p1631315381568"></a>ohos.permission.READ_MEDIA</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.83258325832583%" headers="mcps1.2.4.1.2 "><p id="p1731320383610"><a name="p1731320383610"></a><a name="p1731320383610"></a>user_grant（动态权限）</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.83408340834084%" headers="mcps1.2.4.1.3 "><p id="p931303817611"><a name="p931303817611"></a><a name="p931303817611"></a>允许该应用读取您的视频收藏。</p>
-</td>
-</tr>
-<tr id="row738215284617"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.2.4.1.1 "><p id="p73824281363"><a name="p73824281363"></a><a name="p73824281363"></a>ohos.permission.MICROPHONE</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.83258325832583%" headers="mcps1.2.4.1.2 "><p id="p1138217281162"><a name="p1138217281162"></a><a name="p1138217281162"></a>user_grant（动态权限）</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.83408340834084%" headers="mcps1.2.4.1.3 "><p id="p1338214281661"><a name="p1338214281661"></a><a name="p1338214281661"></a>此应用可随时使用麦克风进行录音。</p>
-</td>
-</tr>
-<tr id="row1777413579619"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.2.4.1.1 "><p id="p1577415710613"><a name="p1577415710613"></a><a name="p1577415710613"></a>ohos.permission.WRITE_MEDIA</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.83258325832583%" headers="mcps1.2.4.1.2 "><p id="p14774175715612"><a name="p14774175715612"></a><a name="p14774175715612"></a>user_grant（动态权限）</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.83408340834084%" headers="mcps1.2.4.1.3 "><p id="p677419573612"><a name="p677419573612"></a><a name="p677419573612"></a>允许该应用写入您的音乐收藏。</p>
-</td>
-</tr>
-<tr id="row18922519719"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.2.4.1.1 "><p id="p1892954719"><a name="p1892954719"></a><a name="p1892954719"></a>ohos.permission.DISTRIBUTED_DATASYNC</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.83258325832583%" headers="mcps1.2.4.1.2 "><p id="p15892105875"><a name="p15892105875"></a><a name="p15892105875"></a>user_grant（动态权限）</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.83408340834084%" headers="mcps1.2.4.1.3 "><p id="p12892175879"><a name="p12892175879"></a><a name="p12892175879"></a>管控分布式数据传输能力。</p>
-</td>
-</tr>
-<tr id="row109781511376"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.2.4.1.1 "><p id="p797810117714"><a name="p797810117714"></a><a name="p797810117714"></a>ohos.permission.DISTRIBUTED_VIRTUALDEVICE</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.83258325832583%" headers="mcps1.2.4.1.2 "><p id="p109787110712"><a name="p109787110712"></a><a name="p109787110712"></a>user_grant（动态权限）</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.83408340834084%" headers="mcps1.2.4.1.3 "><p id="p19978813720"><a name="p19978813720"></a><a name="p19978813720"></a>允许应用使用分布式虚拟能力</p>
-</td>
-</tr>
-</tbody>
-</table>
-
->![](../public_sys-resources/icon-note.gif) **说明：** 
->静态权限：应用安装时由系统授予的权限，对应于权限敏感级别的system\_grant
->动态权限：应用在运行过程中需要用户授权的权限，对应于权限敏感级别的user\_grant
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 
+> 静态权限指应用安装时由系统授予的权限，对应于权限敏感级别的system_grant。动态权限指应用在运行过程中需要用户授权的权限，对应于权限敏感级别的user_grant。
 
 ## 场景介绍<a name="section18502174174019"></a>
 
