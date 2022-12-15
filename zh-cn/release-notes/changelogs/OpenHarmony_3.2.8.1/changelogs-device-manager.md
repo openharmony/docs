@@ -14,6 +14,7 @@
 
 **关键接口/组件变更**
 
+在以下接口增加错误码处理：
   - createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void;
   - release(): void;
   - getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
@@ -50,7 +51,7 @@
 
 异步接口以getTrustedDeviceList为例，示例代码如下：
 
-```js
+```ts
 import account_osAccount from "@ohos.distributedHardware.deviceManager"
 dmInstance.getTrustedDeviceList((err, data) => {
     console.log("getTrustedDeviceList err: " + JSON.stringify(err));
@@ -72,7 +73,7 @@ try {
 
 同步接口以startDeviceDiscovery为例，示例代码如下：
 
-```js
+```ts
 // 生成发现标识，随机数确保每次调用发现接口的标识不一致
 var subscribeId = Math.floor(Math.random() * 10000 + 1000);
 var subscribeInfo = {
