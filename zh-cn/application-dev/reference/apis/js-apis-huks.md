@@ -2510,7 +2510,7 @@ init操作密钥接口，使用Promise方式异步返回结果。huks.init, huks
 
 ## huks.update<sup>(deprecated)</sup>
 
-update(handle: number, token?: Uint8Array, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void
+update(handle: number, token?: Uint8Array, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
 update操作密钥接口，使用Callback回调异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
@@ -2529,7 +2529,7 @@ update操作密钥接口，使用Callback回调异步返回结果。huks.init, h
 
 ## huks.update<sup>(deprecated)</sup>
 
-update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise<HuksResult>;
+update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise\<HuksResult>;
 
 update操作密钥接口，使用Promise方式异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
