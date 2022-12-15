@@ -124,7 +124,7 @@ Failed to install the HAP because the HAP fails to be parsed.
 
 **处理步骤**<br/>
 1. 确认hap的格式是zip。
-2. 确认hap的配置文件满足[配置文件json格式](../../quick-start/stage-structure.md)。
+2. 确认hap的配置文件满足[配置文件json格式](../../quick-start/application-configuration-file-overview-stage.md)。
 3. 检查DevEco Studio编译hap时是否有错误提示，缺省字段时会有相应的报错。
 
 ## 17700011 签名校验失败导致应用安装失败
@@ -353,7 +353,7 @@ The specified ability is disabled.
 指定的ability被禁用。
 
 **处理步骤**<br/>
-确认指定的ability是否被禁用，可以使用[bm工具](../../../readme/%E5%8C%85%E7%AE%A1%E7%90%86%E5%AD%90%E7%B3%BB%E7%BB%9F.md#bm)命令查询对应的应用信息。
+确认指定的ability是否被禁用，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息。
 
 ## 17700030 指定的应用不支持清除缓存文件
 
@@ -367,5 +367,5 @@ The specified bundle does not support clearing of cache files.
 指定的应用为系统应用且在签名证书中配置了不能清除数据(AllowAppDataNotCleared)的字段。
 
 **处理步骤**<br/>
-1.确认指定的应用是否为系统应用，可以使用[bm工具](../../../readme/%E5%8C%85%E7%AE%A1%E7%90%86%E5%AD%90%E7%B3%BB%E7%BB%9F.md#bm)命令查询对应的应用信息，查看isSystemApp是否为true。
-2.确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具](../../../readme/%E5%8C%85%E7%AE%A1%E7%90%86%E5%AD%90%E7%B3%BB%E7%BB%9F.md#bm)命令查询对应的应用信息，查看userDataClearable是否为true。
+1.确认指定的应用是否为系统应用，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息，查看isSystemApp是否为true。
+2.确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息，查看userDataClearable是否为true。
