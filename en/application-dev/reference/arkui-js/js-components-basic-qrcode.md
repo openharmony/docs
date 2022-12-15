@@ -1,53 +1,60 @@
 # qrcode
 
+>  **NOTE**
+>
+>  This component is supported since API version 5. Updates will be marked with a superscript to indicate their earliest API version.
+
 The **\<qrcode>** component is used to generate and display a QR code.
 
 ## Required Permissions
 
 None
 
+
 ## Child Components
 
 Not supported
 
+
 ## Attributes
 
-In addition to the attributes in [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
 
+| Name   | Type    | Default Value | Mandatory  | Description                                      |
+| ----- | ------ | ---- | ---- | ---------------------------------------- |
+| value | string | -    | Yes   | Content used to generate the QR code.                             |
+| type  | string | rect | No   | QR code type. Available values are as follows:<br>- **rect**: rectangular QR code.<br>- **circle**: round QR code.|
 
-
-| Name  | Type   | Default Value | Mandatory | Description                                                  |
-| ----- | ------ | ------------- | --------- | ------------------------------------------------------------ |
-| value | string | -             | Yes       | Content used to generate the QR code                         |
-| type  | string | rect          | No        | QR code type. Available values are as follows:<br/>-**rect**: rectangular QR code<br/>-**circle**: round QR code<br/> |
 
 ## Styles
 
-In addition to the styles in [Universal Styles](js-components-common-styles.md), the following styles are supported.
+In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
 
+| Name              | Type           | Default Value     | Mandatory  | Description      |
+| ---------------- | ------------- | -------- | ---- | -------- |
+| color            | &lt;color&gt; | \#000000 | No   | Color of the QR code.  |
+| background-color | &lt;color&gt; | \#ffffff | No   | Background color of the QR code.|
 
-
-| Name             | Type    | Default Value | Mandatory | Description              |
-| ---------------- | ------- | ------------- | --------- | ------------------------ |
-| color            | \<color> | #000000       | No        | QR code color            |
-| background-color | \<color> | #ffffff       | No        | QR code background color |
-
-> ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/public_sys-resources/icon-note.gif) **NOTE:**
+>  **NOTE**
+>  - If the values of **width** and **height** are different, the smaller value is used as the length of the QR code. The generated QR code is centered.
 >
-> - If the values of **width** and **height** are different, the smaller value is used as the length of the QR code. The generated QR code is center displayed.
-> - If either **width** or **height** is set, the value is used as the length of the QR code. If neither of them is set, the default length is 200 px.
+>
+>  - If either **width** or **height** is set, the value is used as the length of the QR code. If neither of them is set, the default length 200 px is used.
+>
+
 
 ## Events
 
-Events in [Universal Events](js-components-common-events.md) are supported.
+The [universal events](../arkui-js/js-components-common-events.md) are supported.
 
 ## Methods
 
-Methods in [Universal Methods](js-components-common-methods.md) are supported.
+The [universal methods](../arkui-js/js-components-common-methods.md) are supported.
+
 
 ## Example
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <qrcode value="{{qr_value}}" type="{{qr_type}}"
@@ -63,6 +70,9 @@ Methods in [Universal Methods](js-components-common-methods.md) are supported.
     <option for="{{bcol_list}}" value="{{$item}}">{{$item}}</option>
   </select>
 </div>
+```
+
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -79,6 +89,9 @@ select{
   margin-top: 40px;
   margin-bottom: 40px;
 }
+```
+
+```js
 /* index.js */
 export default {
   data: {
@@ -96,9 +109,6 @@ export default {
       this.qr_type = 'circle'
     }
   },
-  setvalue(e) {
-    this.qr_value = e.newValue
-  },
   setcol(e) {
     this.qr_col = e.newValue
   },
@@ -108,4 +118,4 @@ export default {
 }
 ```
 
-![img](figures/12.gif)
+![12](figures/12.gif)

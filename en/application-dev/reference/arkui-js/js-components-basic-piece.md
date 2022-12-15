@@ -1,51 +1,60 @@
 # piece
 
-An entrance piece that can contain images and text. It is usually used to display receivers, for example, email recipients or message recipients.
+>  **NOTE**
+>
+>  This component is supported since API version 5. Updates will be marked with a superscript to indicate their earliest API version.
+
+The **\<piece>** component provides an entrance piece that can contain images and text. It is usually used to display receivers, for example, email recipients or message recipients.
 
 ## Child Components
 
-None
+Not supported
+
 
 ## Attributes
 
-In addition to the attributes in [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
 
+| Name    | Type   | Mandatory| Description                                                        |
+| -------- | ------- | ---- | ------------------------------------------------------------ |
+| content  | string  | Yes  | Text content of the operational piece.                                            |
+| closable | boolean | No  | Whether to display the delete icon for the operational piece. When users click the delete icon, it triggers the close event.<br>Default value: **false**|
+| icon     | string  | No  | URL of the delete icon for the operational piece. The value can be a local path.                         |
 
-
-| Name     | Type    | Default Value | Mandatory | Description                                                  |
-| -------- | ------- | ------------- | --------- | ------------------------------------------------------------ |
-| content  | string  | -             | Yes       | Text content of the operational piece.                       |
-| closable | boolean | false         | No        | Whether to display the delete icon for the operational piece. When users click the delete icon, it triggers the close event. |
-| icon     | string  | -             | No        | URL of the delete icon for the operational piece. The value can be a local path. |
 
 ## Styles
 
-Styles in [Universal Styles](js-components-common-styles.md) are supported.
+The [universal styles](../arkui-js/js-components-common-styles.md) are supported.
 
-> ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/public_sys-resources/icon-note.gif) **NOTE:** By default, text and images are placed in the middle of the **\<piece>** component.
+>  **NOTE**
+>
+>  By default, text and images are placed in the middle of the **\<piece>** component.
+
 
 ## Events
 
-In addition to the events in [Universal Events](js-components-common-events.md), the following events are supported.
+In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
 
+| Name   | Parameter  | Description                                 |
+| ----- | ---- | ----------------------------------- |
+| close | -    | Triggered when users click the delete icon of the operational piece. You can delete this component by using the **if** directive.|
 
+## Methods
 
-| Name  | Parameter | Description                                                  |
-| ----- | --------- | ------------------------------------------------------------ |
-| close | -         | Triggered when users click the delete icon of the operational piece. You can delete this component by using the **if** directive. |
+The [universal methods](../arkui-js/js-components-common-methods.md) are supported.
 
-## Method
-
-Methods in [Universal Methods](js-components-common-methods.md) are supported.
 
 ## Example
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container" >
   <piece if="{{first}}" content="example"></piece>
   <piece if="{{second}}" content="example" closable="true" onclose="closeSecond"></piece>
 </div>
+```
+
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -53,6 +62,9 @@ Methods in [Universal Methods](js-components-common-methods.md) are supported.
   align-items: center;
   justify-content: center;
 }
+```
+
+```js
 // xxx.js
 export default {
   data: {
@@ -65,4 +77,4 @@ export default {
 }
 ```
 
-![img](figures/11-5.gif)
+![11-5](figures/11-5.gif)
