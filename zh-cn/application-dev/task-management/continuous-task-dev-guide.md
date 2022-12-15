@@ -290,7 +290,7 @@ struct Index {
 }
 ```
 
-3、当需要跨设备或者跨应用在后台执行长时任务时，可以通过Call的方式在后台创建并运行Ability。使用方式参考[Call调用开发指导](../ability/stage-call.md)。
+3、当需要跨设备或者跨应用在后台执行长时任务时，可以通过Call的方式在后台创建并运行Ability。使用方式参考[Call调用开发指导](../ability-deprecated/stage-call.md)。
 
 ```ts
 import Ability from '@ohos.application.Ability'
