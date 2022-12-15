@@ -34,7 +34,7 @@
 | WindowStage | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void | 获取`WindowStage`实例下的主窗口。<br/>此接口仅可在`Stage`模型下使用。 |
 | WindowStage | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前`WindowStage`的主窗口加载具体页面。<br/>此接口仅可在`Stage`模型下使用。 |
 | WindowStage | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | 创建子窗口。<br/>此接口仅可在`Stage`模型下使用。 |
-| window静态方法 | createWindow(config: Configuration, callback: AsyncCallback<Window>): void | 创建系统窗口。<br/>-`config`：创建窗口时的参数。 |
+| window静态方法 | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | 创建系统窗口。<br/>-`config`：创建窗口时的参数。 |
 | Window | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面。 |
 | Window | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | 设置窗口的背景色。 |
 | Window | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。 |
