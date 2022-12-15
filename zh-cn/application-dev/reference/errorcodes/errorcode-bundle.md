@@ -370,3 +370,5 @@ The specified bundle does not support clearing of cache files.
 **处理步骤**<br/>
 1.确认指定的应用是否为系统应用，可以使用[bm工具命令](../../../readme/%E5%8C%85%E7%AE%A1%E7%90%86%E5%AD%90%E7%B3%BB%E7%BB%9F.md%23bm%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4)查询对应的应用信息，查看isSystemApp是否为true。
 2.确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具命令](../../../readme/%E5%8C%85%E7%AE%A1%E7%90%86%E5%AD%90%E7%B3%BB%E7%BB%9F.md%23bm%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4)查询对应的应用信息，查看userDataClearable是否为true。
+
+<!--no_check-->

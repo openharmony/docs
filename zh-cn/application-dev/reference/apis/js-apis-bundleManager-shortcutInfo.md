@@ -34,3 +34,5 @@
 | label                   | string                                     | 是   | 否   | 快捷方式的标签               |
 | labelId    | number                                     | 是   | 否   | 快捷方式的标签Id             |
 | wants                   | Array\<[ShortcutWant](#shortcutwant)> | 是   | 否   | 快捷方式所需要的信息         |
+
+<!--no_check-->
