@@ -1,4 +1,4 @@
-# @ohos.workScheduler (延迟任务调度)
+# @ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)
 
 本模块提供延迟任务回调能力。
 

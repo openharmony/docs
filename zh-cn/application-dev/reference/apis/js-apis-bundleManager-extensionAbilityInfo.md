@@ -1,5 +1,6 @@
 # ExtensionAbilityInfo
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+
+> **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ExtensionAbility信息，未做特殊说明的属性，均通过[getBundleInfo](js-apis-bundleManager.md)获取，flag使用[GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY](js-apis-bundleManager.md#bundleflag)获取

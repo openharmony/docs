@@ -1,4 +1,4 @@
-# 延迟任务调度
+# @ohos.resourceschedule.workScheduler (延迟任务调度)
 
 本模块提供延迟任务注册、取消、查询的能力。
 

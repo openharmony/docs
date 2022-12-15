@@ -1,8 +1,8 @@
-# 程序访问控制管理
+# @ohos.abilityAccessCtrl (程序访问控制管理)
 
 程序访问控制提供程序的权限管理能力，包括鉴权、授权和取消授权等。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
