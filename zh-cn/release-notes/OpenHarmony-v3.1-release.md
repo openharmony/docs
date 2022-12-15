@@ -190,7 +190,7 @@ repo forall -c 'git lfs pull'
 API变更请参考：
 
 
-_[API差异报告](api-change/v3.1-Release/Readme-CN.md)_
+_[API差异报告](api-diff/v3.1-Release/Readme-CN.md)_
 
 
 ### 芯片及开发板适配
