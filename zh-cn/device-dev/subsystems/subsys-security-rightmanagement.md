@@ -5,7 +5,20 @@
 
 由于OpenHarmony允许安装三方应用，所以需要对三方应用的敏感权限调用进行管控，具体实现是应用在开发阶段就需要在应用配置文件中指明此应用在运行过程中可能会调用哪些敏感权限，这些权限包括静态权限和动态权限，静态权限表示只需要在安装阶段注册就可以，而动态权限一般表示获取用户的敏感信息，所以需要在运行时让用户确认才可以调用，授权方式包括系统设置应用手动授权等。除了运行时对应用调用敏感权限进行管控外，还需要利用应用签名管控手段确保应用安装包已经被设备厂商进行了确认。
 
-OpenHarmony的系统权限列表请参考[应用权限列表](../../application-dev/security/permission-list.md)。
+    **表1** **OpenHarmony系统权限列表**
+  
+  | **OpenHarmony系统权限** | **授权方式** | **权限说明** | 
+  | -------- | -------- | -------- |
+  | ohos.permission.LISTEN_BUNDLE_CHANGE | system_grant（静态权限） | 允许该应用获取应用变化消息。 | 
+  | ohos.permission.GET_BUNDLE_INFO | system_grant（静态权限） | 允许该应用获取应用信息。 | 
+  | ohos.permission.INSTALL_BUNDLE | system_grant（静态权限） | 允许该应用安装应用。 | 
+  | ohos.permission.CAMERA | user_grant（动态权限） | 此应用可随时使用相机拍摄照片和录制视频。 | 
+  | ohos.permission.MODIFY_AUDIO_SETTINGS | system_grant（静态权限） | 允许该应用修改全局音频设置，例如音量和用于输出的扬声器。 | 
+  | ohos.permission.READ_MEDIA | user_grant（动态权限） | 允许该应用读取您的视频收藏。 | 
+  | ohos.permission.MICROPHONE | user_grant（动态权限） | 此应用可随时使用麦克风进行录音。 | 
+  | ohos.permission.WRITE_MEDIA | user_grant（动态权限） | 允许该应用写入您的音乐收藏。 | 
+  | ohos.permission.DISTRIBUTED_DATASYNC | user_grant（动态权限） | 管控分布式数据传输能力。 | 
+  | ohos.permission.DISTRIBUTED_VIRTUALDEVICE | user_grant（动态权限） | 允许应用使用分布式虚拟能力 | 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 
