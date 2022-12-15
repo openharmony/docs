@@ -58,6 +58,6 @@ JS服务卡片(entry/src/main/js/Widget)的典型开发目录结构如下：
 
 ## 配置文件
 
-FA卡片需要在应用配置文件config.json中进行配置。详细的配置内容请参考[FA卡片配置文件说明](../../ability/fa-formability.md#配置卡片配置文件)。
+FA卡片需要在应用配置文件config.json中进行配置。详细的配置内容请参考[FA卡片配置文件说明](../../application-models/widget-development-fa.md#配置卡片配置文件)。
 
-Stage卡片需要在应用配置文件module.json5中的extensionAbilities标签下，配置ExtensionAbility相关信息。详细的配置内容请参考[Stage卡片配置文件说明](../../ability/stage-formextension.md#配置卡片配置文件)。
+Stage卡片需要在应用配置文件module.json5中的extensionAbilities标签下，配置ExtensionAbility相关信息。详细的配置内容请参考[Stage卡片配置文件说明](../../application-models/widget-development-stage.md#配置卡片配置文件)。

@@ -6,11 +6,10 @@
 >
 > 该组件从API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-  
-
-
 ## 子组件
-  构造参数type为"surface"时不支持。\
+
+  构造参数type为"surface"时不支持。
+  
   从API version 9开始，构造参数type为"component"时可以包含子组件。
 
 ## 接口
@@ -19,12 +18,12 @@
 
 **参数:** 
 
-| 参数名       | 参数类型     | 必填   | 描述    |
-| --------- | ------ | ---- | ----- |
-| id  | string | 是    | 组件的唯一标识，支持最大的字符串长度128。 |
-| type      | string | 是    | 用于指定XComponent组件类型，可选值为：<br/>-"surface"：用于EGL/OpenGLES和媒体数据写入，组件内容单独送显，直接合成到屏幕。<br/>-"component"<sup>9+</sup> ：XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。 |
-| libraryname | string | 否    | 应用Native层编译输出动态库名称，仅XComponent类型为"surface"时有效。 |
-| controller   | [XComponentcontroller](#xcomponentcontroller) | 否    | 给组件绑定一个控制器，通过控制器调用组件方法，仅XComponent类型为"surface"时有效。 |
+| 参数名         | 参数类型                                     | 必填   | 描述                                       |
+| ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| id          | string                                   | 是    | 组件的唯一标识，支持最大的字符串长度128。                   |
+| type        | string                                   | 是    | 用于指定XComponent组件类型，可选值为：<br/>-"surface"：用于EGL/OpenGLES和媒体数据写入，组件内容单独送显，直接合成到屏幕。<br/>-"component"<sup>9+</sup> ：XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。 |
+| libraryname | string                                   | 否    | 应用Native层编译输出动态库名称，仅XComponent类型为"surface"时有效。 |
+| controller  | [XComponentcontroller](#xcomponentcontroller) | 否    | 给组件绑定一个控制器，通过控制器调用组件方法，仅XComponent类型为"surface"时有效。 |
 
 > **说明：**
 >
@@ -46,7 +45,7 @@
 
 ## 事件
 
-仅type为"surface"时以下事件有效。不支持[通用事件和手势](./Readme-CN.md)。
+仅type为"surface"时以下事件有效。不支持[通用事件](ts-universal-events-click.md)和[手势](ts-gesture-settings.md)。
 
 ### onLoad
 
@@ -56,9 +55,9 @@ onLoad(callback: (event?: object) => void )
 
 **参数:**
 
-| 参数名           | 参数类型   | 必填  | 描述                      |
-| ------------- | ------ | ---- | ----------------------- |
-| event  | object |   否  | 获取XComponent实例对象的context，context上挂载的方法由开发者在c++层定义。 |
+| 参数名   | 参数类型   | 必填   | 描述                                       |
+| ----- | ------ | ---- | ---------------------------------------- |
+| event | object | 否    | 获取XComponent实例对象的context，context上挂载的方法由开发者在c++层定义。 |
 
 ### onDestroy
 
@@ -99,7 +98,7 @@ setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): 
 
 **参数:**
 
-| 参数名           | 参数类型   | 必填  | 描述                      |
+| 参数名           | 参数类型   | 必填   | 描述                      |
 | ------------- | ------ | ---- | ----------------------- |
 | surfaceWidth  | number | 是    | XComponent持有Surface的宽度。 |
 | surfaceHeight | number | 是    | XComponent持有Surface的高度。 |
