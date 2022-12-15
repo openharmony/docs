@@ -139,4 +139,4 @@ export default {
 }
 ```
 
-![zh-cn_image1](figures/zh-cn_image1.PNG)
+![zh-cn_image1](figures/zh-cn_image1.png)
