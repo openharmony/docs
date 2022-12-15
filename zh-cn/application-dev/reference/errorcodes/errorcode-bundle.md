@@ -9,6 +9,7 @@ The specified bundle name is not found.
 调用查询等接口时，传入的bundleName不存在。
 
 **可能原因**<br/>
+
 1. 输入的bundleName有误。
 2. 系统中对应的应用没有安装。
 
@@ -124,7 +125,7 @@ Failed to install the HAP because the HAP fails to be parsed.
 
 **处理步骤**<br/>
 1. 确认hap的格式是zip。
-2. 确认hap的配置文件满足[配置文件json格式](../../quick-start/stage-structure.md)。
+2. 确认hap的配置文件满足[配置文件json格式](../../quick-start/application-configuration-file-overview-stage.md)。
 3. 检查DevEco Studio编译hap时是否有错误提示，缺省字段时会有相应的报错。
 
 ## 17700011 签名校验失败导致应用安装失败
