@@ -71,7 +71,7 @@
 
 ## 如何在不同设备上为Ability配置不同的启动模式
 
-应用由一个或多个Ability组成，Ability支持单实例、多实例和指定实例3种[启动模式](../../ability/stage-ability.md#启动模式)，启动模式可以在[配置文件（module.json5）](../../quick-start/stage-structure.md)中通过launchType字段配置。启动模式对应Ability被启动时的行为，对启动模式的详细说明如下：
+应用由一个或多个Ability组成，Ability支持单实例、多实例和指定实例3种[启动模式](../../application-models/uiability-launch-type.md)，启动模式可以在[配置文件（module.json5）](../../quick-start/module-configuration-file.md)中通过launchType字段配置。启动模式对应Ability被启动时的行为，对启动模式的详细说明如下：
 
   | 启动模式 | 描述 | 说明 | 
   | -------- | -------- | -------- |
