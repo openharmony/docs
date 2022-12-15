@@ -19,7 +19,7 @@
   - getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
   - getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void;
   - getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
-  - getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo);
+  - getLocalDeviceInfoSync(): DeviceInfo;
   - getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void;
   - getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
   - startDeviceDiscovery(subscribeInfo: SubscribeInfo): void;
