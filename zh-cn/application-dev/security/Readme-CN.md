@@ -8,7 +8,7 @@
 - 用户认证
   - [用户认证开发概述](userauth-overview.md)
   - [用户认证开发指导](userauth-guidelines.md)
-- 密钥管理
+- 通用密钥库
   - [通用密钥库开发概述](huks-overview.md)
   - [通用密钥库开发指导](huks-guidelines.md)
   - [通用密钥库密码算法规格](huks-appendix.md)
