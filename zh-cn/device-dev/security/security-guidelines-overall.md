@@ -190,9 +190,10 @@ HUKS本身不考虑多个应用同时调用的情况，因为HUKS只是一个lib
 
   OpenHarmony的系统权限列表请参考[应用权限列表](../../application-dev/security/permission-list.md)。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 
-> 不同应用模型的应用配置文件不同，FA模型为config.json，Stage模型为module.json5。应用模型相关解释可参考[应用模型解读](../../application-dev/application-models/application-model-description.md)。
 ### 推荐做法
 
 开发者在开发过程中需明确后续应用在运行时需要运行哪些权限，并在应用配置文件中进行注册，然后需要对应用进行签名，确保设备在安装这些应用时能对应用的完整性和来源进行校验。
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 
+> 不同应用模型的应用配置文件不同，FA模型为config.json，Stage模型为module.json5。应用模型相关解释可参考[应用模型解读](../../application-dev/application-models/application-model-description.md)。
