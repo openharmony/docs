@@ -36,7 +36,7 @@
 
 ### 基于FA模型
 
-基于FA的Service Ability使用，参考[ServiceAbility开发指导](../ability/fa-serviceability.md)。
+基于FA的Service Ability使用，参考[ServiceAbility开发指导](../ability-deprecated/fa-serviceability.md)。
 
 当不需要与后台执行的长时任务交互时，可以采用startAbility()方法启动Service Ability。并在Service Ability的onStart回调方法中，调用长时任务的申请接口，声明此服务需要在后台长时运行。当任务执行完，再调用长时任务取消接口，及时释放资源。
 
