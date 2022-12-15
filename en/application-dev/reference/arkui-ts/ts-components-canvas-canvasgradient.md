@@ -17,10 +17,10 @@ Adds a color stop for the **CanvasGradient** object based on the specified offse
 
 **Parameters**
 
-| Name    | Type    | Mandatory  | Default Value      | Description                          |
-| ------ | ------ | ---- | --------- | ---------------------------- |
-| offset | number | Yes   | 0         | Relative position of the gradient stop along the gradient vector. The value ranges from 0 to 1.|
-| color  | string | Yes   | '#ffffff' | Gradient color to set.                    |
+  | Name    | Type    | Mandatory  | Default Value      | Description                          |
+  | ------ | ------ | ---- | --------- | ---------------------------- |
+  | offset | number | Yes   | 0         | Relative position of the gradient stop along the gradient vector. The value ranges from 0 to 1.|
+  | color  | string | Yes   | '#ffffff' | Gradient color to set.                    |
 
 
 **Example**

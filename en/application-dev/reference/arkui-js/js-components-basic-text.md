@@ -1,74 +1,83 @@
 # text
 
-The **\<text>** component is used to display a piece of textual information.
-
-> ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/public_sys-resources/icon-note.gif) **NOTE:**
+>  **NOTE**
 >
-> - The text content must be written in the content area.
+>  - This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  - The text content must be written in the content area.
+
+The **\<text>** component is used to display a piece of textual information.
 
 ## Required Permissions
 
 None
 
-## Child Component
 
-**\<[span](js-components-basic-span.md)>** is supported.
+## Child Components
+
+Only the **[\<span>](../arkui-js/js-components-basic-span.md)** component is supported.
+
 
 ## Attributes
 
-Attributes in [Universal Attributes](js-components-common-attributes.md) are supported.
+The [universal attributes](../arkui-js/js-components-common-attributes.md) are supported.
+
 
 ## Styles
 
-In addition to the styles in [Universal Styles](js-components-common-styles.md), the following styles are supported.
+In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
 
+| Name                                | Type                                      | Default Value                                     | Mandatory  | Description                                      |
+| ---------------------------------- | ---------------------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| color                              | &lt;color&gt;                            | #e5000000                                | No   | Font color.                                |
+| font-size                          | &lt;length&gt;                           | 30px                                     | No   | Font size.                                |
+| allow-scale                        | boolean                                  | true                                     | No   | Whether the font size changes with the system's font size settings.<br>For details about how to make the configuration take effect dynamically, see the **config-changes** attribute in the **config.json** file.|
+| letter-spacing                     | &lt;length&gt;                           | 0px                                      | No   | Character spacing (px).                              |
+| word-spacing<sup>7+</sup>          | &lt;length&gt; \| &lt;percentage&gt; \| string | normal                                   | No   | Spacing between texts. If the input is a string, the options are as follows:<br>**normal**: default spacing.|
+| font-style                         | string                                   | normal                                   | No   | Font style. Available values are as follows:<br>- **normal**: standard font style<br>- **italic**: italic font style|
+| font-weight                        | number \| string               | normal                                   | No   | Font width. For the number type, the value ranges from 100 to 900. The default value is 400. A larger value indicates a larger font width. The value of the number type must be an integer multiple of 100.<br>The value of the string type can be **lighter**, **normal**, **bold**, or **bolder**.|
+| text-decoration                    | string                                   | none                                     | No   | Text decoration. Available values are as follows:<br>- **underline**: An underline is used.<br>- **line-through**: A strikethrough is used.<br>- **none**: The standard text is used.|
+| text-decoration-color<sup>7+</sup> | &lt;color&gt;                            | -                                        | No   | Color of the text decoration.                             |
+| text-align                         | string                                   | start<br>                              | No   | Text alignment mode. Available values are as follows:<br>- **left**: The text is left-aligned.<br>- **center**: The text is center-aligned.<br>- **right**: The text is right-aligned.<br>- **start**: The text is aligned with the direction in which the text is written.<br>- **end**: The text is aligned with the opposite direction in which the text is written.<br>If the text width is not specified, the alignment effect may not be obvious when the text width is the same as the width of the parent container.|
+| line-height                        | &lt;length&gt; \| &lt;percentage&gt;<sup>7+</sup> \| string<sup>7+</sup> | 0px<sup>1-6</sup><br>normal<sup>7+</sup> | No   | Text line height. When this parameter is set to **0px**, the text line height is not limited and the font size is adaptive. The value of the string type is as follows:<br>**normal**<sup>7+</sup>: default line height |
+| text-overflow                      | string                                   | clip                                     | No   | Display mode when the text is too long. This style takes effect when the maximum number of lines is specified. Available values are as follows:<br>- **clip**: The text is clipped and displayed based on the size of the parent container.<br>- **ellipsis**: The text is displayed based on the size of the parent container. The text that cannot be displayed is replaced with ellipsis. This style must be used together with **max-lines**.|
+| font-family                        | string                                   | sans-serif                               | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
+| max-lines                          | number \| string<sup>7+</sup>  | -                                        | No   | Maximum number of text lines. The value of the string type is as follows:<br>- **auto**<sup>7+</sup>: The number of text lines adapts to the container height. |
+| min-font-size                      | &lt;length&gt;                           | -                                        | No   | Minimum font size in the text. This style must be used together with **max-font-size**. The font size can be changed dynamically. After the maximum and minimum font sizes are set, **font-size** does not take effect.|
+| max-font-size                      | &lt;length&gt;                           | -                                        | No   | Maximum font size in the text. This style must be used together with **min-font-size**. The font size can be changed dynamically. After the maximum and minimum font sizes are set, **font-size** does not take effect.|
+| font-size-step                     | &lt;length&gt;                           | 1px                                      | No   | Step for dynamically adjusting the font size in the text. The minimum and maximum font sizes must be set.           |
+| prefer-font-sizes                  | &lt;array&gt;                            | -                                        | No   | Preset preferred font sizes. For dynamic font size adjustment, the preset sizes are used to match the maximum number of lines in the text. If the preferred font sizes were not set, the font size will be adjusted based on the maximum and minimum font sizes and the step you have set. If the maximum number of lines in the text cannot be met, **text-overflow** is used to truncate the text. If this parameter is set, **font-size**, **max-font-size**, **min-font-size**, and **font-size-step** do not take effect.<br>Example values: **12px,14px,16px**|
+| word-break<sup>6+</sup>            | string                                   | normal                                   | No   | Text line breaking mode. The options are as follows:<br>- **normal**: Allows text line breaks between words as appropriate to the relevant language writing systems. This is the default mode.<br>- **break-all**: Allows text line breaks between any characters for writing systems other than Chinese, Japanese, and Korean.<br>- **break-word**: Works in the same way as **break-all**, except that it does not break unbreakable words.|
+| text-indent<sup>7+</sup>           | &lt;length&gt;                           | -                                        | No   | Indentation of the first line.                                |
+| white-space<sup>7+</sup>           | string                                   | pre                                      | No   | Mode for processing blanks in the component. The options are as follows:<br>- **normal**: All spaces, carriage returns, and tabs are combined into one space, and the text is automatically wrapped.<br>- **nowrap**: All spaces, carriage returns, and tabs are combined into one space, and the text is not wrapped.<br>- **pre**: All contents are output as-is.<br>- **pre-wrap**: All contents are output as-is with line breaks.<br>- **pre-line**: All spaces and tabs are combined into one space, the carriage return remains unchanged, and the text is wrapped.|
+| adapt-height<sup>7+</sup>          | boolean                                  | false                                    | No   | Whether the text size adapts to the container height.<br>The settings take effect after font size auto-adaptation is configured.    |
 
-
-| Name                    | Type                                     | Default Value  | Mandatory | Description                                                  |
-| ----------------------- | ---------------------------------------- | -------------- | --------- | ------------------------------------------------------------ |
-| color                   | \<color>                                 | #e5000000      | No        | Text color.                                                  |
-| font-size               | \<length>                                | 30px           | No        | Font size (px).                                              |
-| allow-scale             | boolean                                  | true           | No        | Whether the font size changes with the system's font size settings.<br/>NOTE:<br/>For details about how to make the configuration take effect dynamically, see the **config-changes** attribute in the **config.json** file. |
-| letter-spacing          | \<length>                                | 0 px           | No        | Character spacing (px).                                      |
-| word-spacing7+          | \<length> \| \<percentage> \| string     | normal         | No        | Spacing between texts. The options are as follows:**normal**: default spacing. |
-| font-style              | string                                   | normal         | No        | Font style. Available values are as follows:<br/>-**normal**: standard font style<br/>-**italic**: italic font style |
-| font-weight             | number \| string                         | normal         | No        | Font width. For the number type, the value ranges from 100 to 900. The default value is 400. A larger value indicates a larger font width.NOTE:The value must be an integer multiple of 100.The value of the string type can be **lighter**, **normal**, **bold**, or **bolder**. |
-| text-decoration         | string                                   | none           | No        | Text decoration. Available values are as follows:<br/>-**underline**: An underline is used.<br/>-**line-through**: A strikethrough is used.<br/>-**none**: The standard text is used. |
-| text-decoration-color7+ | \<color>                                 | -              | No        | Color of the text decoration.                                |
-| text-align              | string                                   | start          | No        | Text alignment mode. Available values are as follows:<br/>-**left**: The text is left-aligned.<br/>-**center**: The text is center-aligned.<br/>-**right**: The text is right-aligned.<br/>-**start**: The text is aligned with the direction in which the text is written.<br/>-**end**: The text is aligned with the opposite direction in which the text is written.<br/>NOTE:<br/>If the text width is not specified, the alignment effect may not be obvious when the text width is the same as the width of the parent container. |
-| line-height             | \<length> \| \<percentage>7+ \| string7+ | 0px1-6normal7+ | No        | Text line height. When this parameter is set to **0px**, the text line height is not limited and the font size is adaptive. The **string** values are as follows:**normal**7+: default line height |
-| text-overflow           | string                                   | clip           | No        | Takes effect when the maximum number of lines is specified. Available values are as follows:<br/>-**clip**: The text is clipped and displayed based on the size of the parent container.<br/>-**ellipsis**: The text is displayed based on the size of the parent container. The text that cannot be displayed is replaced with ellipsis. This style must be used together with **max-lines**. |
-| font-family             | string                                   | sans-serif     | No        | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font that exists in the system or the font specified by [Custom Font Styles](js-components-common-customizing-font.md) in the family is selected as the font for the text. |
-| max-lines               | number \| string7+                       | -              | No        | Maximum number of text lines. The **string** values are as follows:<br/>-**auto**7+: The number of text lines adapts to the container height. |
-| min-font-size           | \<length>                                | -              | No        | Minimum font size in the text. This style must be used together with **max-font-size**. The font size can be changed dynamically. After the maximum and minimum font sizes are set, **font-size** does not take effect. |
-| max-font-size           | \<length>                                | -              | No        | Maximum font size in the text. This style must be used together with **min-font-size**. The font size can be changed dynamically. After the maximum and minimum font sizes are set, **font-size** does not take effect. |
-| font-size-step          | \<length>                                | 1px            | No        | Step for dynamically adjusting the font size in the text. The minimum and maximum font sizes must be set. |
-| prefer-font-sizes       | \<array>                                 | -              | No        | Preset preferred font sizes. For dynamic font size adjustment, the preset sizes are used to match the maximum number of lines in the text. If the preferred font sizes were not set, the font size will be adjusted based on the maximum and minimum font sizes and the step you have set. If the maximum number of lines in the text cannot be met, **text-overflow** is used to truncate the text. If this parameter is set, **font-size**, **max-font-size**, **min-font-size**, and **font-size-step** do not take effect.Example values: **12px,14px,16px** |
-| word-break6+            | string                                   | normal         | No        | Text line breaking mode. The options are as follows:<br/>-**normal**: Allows text line breaks between words as appropriate to the relevant language writing systems. This is the default mode.<br/>-**break-all**: Allows text line breaks between any characters for writing systems other than Chinese, Japanese, and Korean.<br/>-**break-word**: Has the same effect as **break-all**, except that it does not break unbreakable words. |
-| text-indent7+           | \<length>                                | -              | No        | Indentation of the first line.                               |
-| white-space7+           | string                                   | pre            | No        | Mode for processing blanks in the component. The options are as follows:<br/>-**normal**: All spaces, carriage returns, and tabs are combined into one space, and the text is automatically wrapped.<br/>-**nowrap**: All spaces, carriage returns, and tabs are combined into one space, and the text is not wrapped.<br/>-**pre**: All contents are output as-is.<br/>-**pre-wrap**: All contents are output as-is with line breaks.<br/>-**pre-line**: All spaces and tabs are combined into one space, the carriage return remains unchanged, and the text is wrapped. |
-| adapt-height7+          | boolean                                  | false          | No        | Whether the text size adapts to the container height.NOTE:The settings take effect after font size auto-adaptation is configured. |
-
-> ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/public_sys-resources/icon-note.gif) **NOTE:**
+>  **NOTE**
+>  - In dynamic font adjustment, both the preset size set and the minimum/maximum font sizes are used to adjust the font size to display the text within the maximum number of lines. The preset size set is checked from left to right, and the minimum/maximum font sizes are checked from large to small, to find a size meeting the requirement.
 >
-> - In dynamic font adjustment, both the preset size set and the minimum/maximum font sizes are used to adjust the font size to display the text within the maximum number of lines. The preset size set is checked from left to right, and the minimum/maximum font sizes are checked from large to small, to find a size meeting the requirement.
-> - Use the escape character **\r\n** for newline.
-> - The following escape characters are supported: **\a**, **\b**, **\f**, **\n**, **\r**, **\t**, **\v**, **\'**, **\"**, and **\0**.
-> - When you use **\<span>** as a child component to form a text paragraph, note that if a **\<span>** style is abnormal, the text paragraph cannot be displayed.
-> - The **letter-spacing**, **text-align**, **line-height**, **text-overflow**, and **max-lines** styles take effect on text content held by the **\<text>** component and its child components (**\<span>**).
-> - The **\<text>** component does not support the coexistence of the text content and **\<span>** subcomponents. (If both of them exist, only the content in **\<span>** is displayed.)
+>  - Use the escape character **\r\n** for newline.
+>
+>  - The following escape characters are supported: **\a**, **\b**, **\f**, **\n**, **\r**, **\t**, **\v**, **\'**, **\"**, and **\0**.
+>
+>  - When you use **\<span>** as a child component to form a text paragraph, note that if a **\<span>** style is abnormal, the text paragraph cannot be displayed.
+>
+>  - The **letter-spacing**, **text-align**, **line-height**, **text-overflow**, and **max-lines** styles take effect on text content held by the **\<text>** component and its child components (**\<span>**).
+>
+>  - The **\<text>** component cannot contain both the text and the child component **\<span>**. If both of them exist, only the content in **\<span>** is displayed.
+
 
 ## Events
 
-Events in [Universal Events](js-components-common-events.md) are supported.
+The [universal events](../arkui-js/js-components-common-events.md) are supported.
 
-## Method
+## Methods
 
-Methods in [Universal Methods](js-components-common-methods.md) are supported.
+The [universal methods](../arkui-js/js-components-common-methods.md) are supported.
 
-## Example Code
 
-```
+## Example
+
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="content">
@@ -77,6 +86,9 @@ Methods in [Universal Methods](js-components-common-methods.md) are supported.
     </text>
   </div>
 </div>
+```
+
+```css
 /* xxx.css */
 .container {
   display: flex;
@@ -94,6 +106,9 @@ Methods in [Universal Methods](js-components-common-methods.md) are supported.
   width: 400px;
   height: 400px;
 }
+```
+
+```js
 // xxx.js
 export default {
   data: {
@@ -102,9 +117,9 @@ export default {
 }
 ```
 
-![img](figures/3.png)
+![3](figures/3.png)
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <text class="text1">
@@ -114,6 +129,9 @@ export default {
     This is a passage
   </text>
 </div>
+```
+
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -138,4 +156,4 @@ export default {
 }
 ```
 
-![img](figures/2.png)
+![2](figures/2.png)
