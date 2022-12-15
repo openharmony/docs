@@ -216,7 +216,7 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
 ```js
 try {
-    let isSuccess = screenLock.onSystemEvent((event) => {
+    let isSuccess = screenlock.onSystemEvent((event) => {
         console.log(`Register the system event which related to screenlock successfully. eventType: ${event.eventType}`)
     });
 } catch (err) {
