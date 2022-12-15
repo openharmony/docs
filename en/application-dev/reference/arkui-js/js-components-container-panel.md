@@ -86,58 +86,63 @@ The following methods are supported.
 ```html
 <!-- xxx.hml -->
 <div class="doc-page">
-  <div class="btn-div">
-    <button type="capsule" value="Click here" onclick="showPanel"></button>
-  </div>
-  <panel id="simplepanel" type="foldable" mode="half" onsizechange="changeMode" miniheight="200px">
-    <div class="panel-div">
-      <div class="inner-txt">
-        <text class="txt">Simple panel in {{modeFlag}} mode</text>
-      </div>
-      <div class="inner-btn">
-        <button type="capsule" value="Close" onclick="closePanel"></button>
-      </div>
+    <div class="btn-div">
+        <button type="capsule" value="Click here" onclick="showPanel"></button>
     </div>
-  </panel>
+    <panel id="simplepanel" type="foldable" mode="half" onsizechange="changeMode" miniheight="200px">
+        <div class="panel-div">
+            <div class="inner-txt">
+                <text class="txt">Simple panel in {{ modeFlag }} mode</text>
+            </div>
+            <div class="inner-btn">
+                <button type="capsule" value="Close" onclick="closePanel"></button>
+            </div>
+        </div>
+    </panel>
 </div>
 ```
 
 ```css
 /* xxx.css */
 .doc-page {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
 .btn-div {
-  width: 100%;
-  height: 200px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    width: 100%;
+    height: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
 .txt {
-  color: #000000;
-  font-weight: bold;
-  font-size: 39px;
+    color: #000000;
+    font-weight: bold;
+    font-size: 39px;
 }
+
 .panel-div {
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
 }
+
 .inner-txt {
-  width: 100%;
-  height: 160px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    width: 100%;
+    height: 160px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
 .inner-btn {
-  width: 100%;
-  height: 120px;
-  justify-content: center;
-  align-items: center;
+    width: 100%;
+    height: 120px;
+    justify-content: center;
+    align-items: center;
 }
 ```
 
