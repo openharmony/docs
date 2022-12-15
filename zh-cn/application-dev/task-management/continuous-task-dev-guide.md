@@ -179,7 +179,7 @@ export default {
 
 ### 基于Stage模型
 
-Stage模型的相关信息参考[Stage模型综述](../ability/stage-brief.md)。
+Stage模型的相关信息参考[Stage模型综述](../ability-deprecated/stage-brief.md)。
 
 1、新建Api Version 9的工程后，在工程目录中右键选择“New” -> “Ability” 快速创建Ability组件。并在module.json5文件中配置长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING、后台模式类型。
 
