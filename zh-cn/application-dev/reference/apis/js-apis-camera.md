@@ -757,7 +757,7 @@ on(type: 'cameraMute', callback: AsyncCallback<boolean\>): void
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | 是   | 监听事件，固定为'cameraMute'，即禁用状态变化事件。 |
-| callback | AsyncCallback<boolean> | 是   | 回调函数，用于获取禁用状态变化信息。               |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数，用于获取禁用状态变化信息。               |
 
 **示例：**
 
