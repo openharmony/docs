@@ -1,6 +1,6 @@
 # Combined Gestures
 
-Continuous recognition, parallel recognition, and exclusive recognition are supported for A group of gestures.
+Continuous recognition, parallel recognition, and exclusive recognition are supported for a group of gestures.
 
 > **NOTE**
 >

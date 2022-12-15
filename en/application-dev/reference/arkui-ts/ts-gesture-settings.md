@@ -41,7 +41,7 @@ Use the following attributes to bind gesture recognition to a component. When a 
 
 ## Gesture Response Event
 
-The component uses the **gesture** method to bind the gesture object and uses the events provided in this object to respond to the gesture operation. For example, the **onAction** event of the **TapGesture** object can be used to respond to a click event. For details about the event definitions of other gestures, see the corresponding gesture sections.
+The component uses the **gesture** method to bind the gesture object and uses the events provided in this object to respond to the gesture operation. For example, the **onAction** event of the **TapGesture** object can be used to respond to a click event. For details about the event definitions of other gestures, see the corresponding gesture sections. To bind multiple gestures, use [combined gestures](ts-combined-gestures.md).
 
 - TapGesture
   | Name| Description|
