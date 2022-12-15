@@ -1,4 +1,5 @@
-# Window Extension Ability
+# @ohos.application.WindowExtensionAbility
+
 **WindowExtensionAbility** inherits from **ExtensionAbility**. The content in a **WindowExtensionAbility** object can be displayed as an ability component in other application windows.
 
 > **NOTE**
@@ -21,7 +22,7 @@ import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
 
 | Name     | Type| Readable| Writable| Description                     |
 | --------- | -------- | ---- | ---- | ------------------------- |
-| context      | [ExtensionContext](js-apis-extension-context.md)   | Yes  | No  | Context of an Extension ability.     |
+| context      | [ExtensionContext](js-apis-inner-application-extensionContext.md)   | Yes  | No  | Context of an Extension ability.     |
 
 ## WindowExtensionAbility.onConnect
 
@@ -35,7 +36,7 @@ Called when this Window Extension ability is connected to an ability for the fir
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name.|
+| want | [Want](js-apis-application-want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name.|
 
 **Example**
 
@@ -61,7 +62,7 @@ Called when this Window Extension ability is disconnected from all connected abi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name.|
+| want | [Want](js-apis-application-want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name.|
 
 
 **Example**

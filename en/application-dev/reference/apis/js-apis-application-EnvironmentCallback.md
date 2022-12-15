@@ -1,16 +1,16 @@
-# EnvironmentCallback
+# @ohos.application.EnvironmentCallback
 
 The **EnvironmentCallback** module provides the **onConfigurationUpdated** API for the application context to listen for system environment changes.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module are supported and deprecated since API version 9. You are advised to use [@ohos.app.ability.EnvironmentCallback](js-apis-app-ability-environmentCallback.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
 
 
 ## Modules to Import
 
-```js
+```ts
 import EnvironmentCallback from "@ohos.application.EnvironmentCallback";
 ```
 
@@ -25,21 +25,20 @@ Called when the system environment changes.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-configuration.md) | Yes| **Configuration** object after the change.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| config | [Configuration](js-apis-application-configuration.md) | Yes| **Configuration** object after the change.|
 
-**Example**
-    
+**Example**   
 
-  ```js
-import AbilityStage from "@ohos.application.AbilityStage";
+  ```ts
+import Ability from "@ohos.application.Ability";
 
 var callbackId;
 
-export default class MyAbilityStage extends AbilityStage {
+export default class MyAbility extends Ability {
     onCreate() {
-        console.log("MyAbilityStage onCreate")
+        console.log("MyAbility onCreate")
         globalThis.applicationContext = this.context.getApplicationContext();
         let EnvironmentCallback  =  {
             onConfigurationUpdated(config){
