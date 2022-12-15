@@ -484,7 +484,6 @@
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)
   - [系统能力SystemCapability列表](reference/syscap-list.md)
-  - [Syscap列表](reference/syscap-list.md)
   - 组件参考（基于ArkTS的声明式开发范式）
     - [组件导读](reference/arkui-ts/ts-components-summary.md)
     - 组件通用信息
