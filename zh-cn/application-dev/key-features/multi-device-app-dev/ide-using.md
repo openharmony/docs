@@ -75,7 +75,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 ### 修改Module类型及其设备类型
 
-通过修改每个模块中的配置文件（module.json5）对模块进行配置，配置文件中各字段含义详见[配置文件说明](../../quick-start/stage-structure.md)。
+通过修改每个模块中的配置文件（module.json5）对模块进行配置，配置文件中各字段含义详见[配置文件说明](../../quick-start/module-configuration-file.md)。
 
 - 将default模块的deviceTypes配置为["default", "tablet"]，同时将其type字段配置为entry。
   即default模块编译出的hap包在默认设备和平板上安装和运行。
