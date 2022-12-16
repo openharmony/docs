@@ -1,8 +1,8 @@
 # UIAbilityContext
 
-UIAbilityContext是Ability的上下文环境，继承自Context。
+UIAbilityContext是UIAbility的上下文环境，继承自Context。
 
-UIAbilityContext模块提供允许访问特定Ability的资源的能力，包括对Ability的启动、停止的设置、获取caller通信接口、拉起弹窗请求用户授权等。
+UIAbilityContext模块提供允许访问特定UIAbility的资源的能力，包括对UIAbility的启动、停止的设置、获取caller通信接口、拉起弹窗请求用户授权等。
 
 > **说明：**
 >
@@ -19,7 +19,7 @@ UIAbilityContext模块提供允许访问特定Ability的资源的能力，包括
 | currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前hap包的信息 |
 | config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 表示配置信息。 |
 
-## AbilityContext.startAbility
+## UIAbilityContext.startAbility
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
@@ -85,7 +85,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
   ```
 
 
-## AbilityContext.startAbility
+## UIAbilityContext.startAbility
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
 
@@ -103,7 +103,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 **错误码：**
 
-| 错误码ID | 错误信息
+| 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
 | 401 | Invalid input parameter. |
@@ -155,7 +155,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
   }
   ```
 
-## AbilityContext.startAbility
+## UIAbilityContext.startAbility
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
@@ -230,7 +230,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
   ```
 
 
-## AbilityContext.startAbilityForResult
+## UIAbilityContext.startAbilityForResult
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
@@ -297,7 +297,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
   }
   ```
 
-## AbilityContext.startAbilityForResult
+## UIAbilityContext.startAbilityForResult
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
@@ -369,7 +369,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
   ```
 
 
-## AbilityContext.startAbilityForResult
+## UIAbilityContext.startAbilityForResult
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
 
@@ -444,7 +444,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
   }
   ```
 
-## AbilityContext.startAbilityForResultWithAccount
+## UIAbilityContext.startAbilityForResultWithAccount
 
 startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void;
 
@@ -519,7 +519,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
   ```
 
 
-## AbilityContext.startAbilityForResultWithAccount
+## UIAbilityContext.startAbilityForResultWithAccount
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
 
@@ -598,7 +598,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
   ```
 
 
-## AbilityContext.startAbilityForResultWithAccount
+## UIAbilityContext.startAbilityForResultWithAccount
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>;
 
@@ -680,7 +680,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
-## AbilityContext.startServiceExtensionAbility
+## UIAbilityContext.startServiceExtensionAbility
 
 startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
@@ -741,7 +741,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
   }
   ```
 
-## AbilityContext.startServiceExtensionAbility
+## UIAbilityContext.startServiceExtensionAbility
 
 startServiceExtensionAbility(want: Want): Promise\<void>;
 
@@ -801,7 +801,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
   }
   ```
 
-## AbilityContext.startServiceExtensionAbilityWithAccount
+## UIAbilityContext.startServiceExtensionAbilityWithAccount
 
 startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
 
@@ -863,7 +863,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
   }
   ```
 
-## AbilityContext.startServiceExtensionAbilityWithAccount
+## UIAbilityContext.startServiceExtensionAbilityWithAccount
 
 startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
 
@@ -927,7 +927,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
-## AbilityContext.stopServiceExtensionAbility
+## UIAbilityContext.stopServiceExtensionAbility
 
 stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
@@ -985,7 +985,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
   }
   ```
 
-## AbilityContext.stopServiceExtensionAbility
+## UIAbilityContext.stopServiceExtensionAbility
 
 stopServiceExtensionAbility(want: Want): Promise\<void>;
 
@@ -1042,7 +1042,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
   }
   ```
 
-## AbilityContext.stopServiceExtensionAbilityWithAccount
+## UIAbilityContext.stopServiceExtensionAbilityWithAccount
 
 stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
 
@@ -1105,7 +1105,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
   }
   ```
 
-## AbilityContext.stopServiceExtensionAbilityWithAccount
+## UIAbilityContext.stopServiceExtensionAbilityWithAccount
 
 stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
 
@@ -1167,7 +1167,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
   }
   ```
 
-## AbilityContext.terminateSelf
+## UIAbilityContext.terminateSelf
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
@@ -1208,7 +1208,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
   ```
 
 
-## AbilityContext.terminateSelf
+## UIAbilityContext.terminateSelf
 
 terminateSelf(): Promise&lt;void&gt;;
 
@@ -1247,7 +1247,7 @@ terminateSelf(): Promise&lt;void&gt;;
   ```
 
 
-## AbilityContext.terminateSelfWithResult
+## UIAbilityContext.terminateSelfWithResult
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void;
 
@@ -1306,7 +1306,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
   ```
 
 
-## AbilityContext.terminateSelfWithResult
+## UIAbilityContext.terminateSelfWithResult
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
@@ -1370,7 +1370,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
   }
   ```
 
-## AbilityContext.connectServiceExtensionAbility
+## UIAbilityContext.connectServiceExtensionAbility
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
@@ -1430,7 +1430,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
   ```
 
 
-## AbilityContext.connectServiceExtensionAbilityWithAccount
+## UIAbilityContext.connectServiceExtensionAbilityWithAccount
 
 connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
 
@@ -1494,7 +1494,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
   }
   ```
 
-## AbilityContext.disconnectServiceExtensionAbility
+## UIAbilityContext.disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
@@ -1551,7 +1551,7 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
   }
   ```
 
-## AbilityContext.disconnectServiceExtensionAbility
+## UIAbilityContext.disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<void>): void;
 
@@ -1603,7 +1603,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
   }
   ```
 
-## AbilityContext.startAbilityByCall
+## UIAbilityContext.startAbilityByCall
 
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
@@ -1690,7 +1690,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   }
   ```
 
-## AbilityContext.startAbilityWithAccount
+## UIAbilityContext.startAbilityWithAccount
 
 startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void;
 
@@ -1764,7 +1764,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
   ```
 
 
-## AbilityContext.startAbilityWithAccount
+## UIAbilityContext.startAbilityWithAccount
 
 startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
 
@@ -1842,7 +1842,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
   ```
 
 
-## AbilityContext.startAbilityWithAccount
+## UIAbilityContext.startAbilityWithAccount
 
 startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>;
 
@@ -1918,7 +1918,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
   }
   ```
 
-## AbilityContext.requestPermissionsFromUser
+## UIAbilityContext.requestPermissionsFromUser
 
 requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void;
 
@@ -1944,7 +1944,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
   ```
 
 
-## AbilityContext.requestPermissionsFromUser
+## UIAbilityContext.requestPermissionsFromUser
 
 requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;PermissionRequestResult&gt;;
 
@@ -1977,7 +1977,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;Permis
   ```
 
 
-## AbilityContext.setMissionLabel
+## UIAbilityContext.setMissionLabel
 
 setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
@@ -2001,7 +2001,7 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
   ```
 
 
-## AbilityContext.setMissionLabel
+## UIAbilityContext.setMissionLabel
 
 setMissionLabel(label: string): Promise&lt;void&gt;;
 
@@ -2030,7 +2030,7 @@ setMissionLabel(label: string): Promise&lt;void&gt;;
       console.log('failed:' + JSON.stringify(error));
   });
   ```
-## AbilityContext.setMissionIcon
+## UIAbilityContext.setMissionIcon
 
 setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
@@ -2072,7 +2072,7 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
   ```
 
 
-## AbilityContext.setMissionIcon
+## UIAbilityContext.setMissionIcon
 
 setMissionIcon(icon: image.PixelMap): Promise\<void>;
 
@@ -2121,7 +2121,7 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
           console.log('-------------- setMissionIcon fail, err: -------------', err);
       });
   ```
-## AbilityContext.restoreWindowStage
+## UIAbilityContext.restoreWindowStage
 
 restoreWindowStage(localStorage: LocalStorage) : void;
 
@@ -2142,7 +2142,7 @@ restoreWindowStage(localStorage: LocalStorage) : void;
     this.context.restoreWindowStage(storage);
   ```
 
-## AbilityContext.isTerminating
+## UIAbilityContext.isTerminating
 
 isTerminating(): boolean;
 

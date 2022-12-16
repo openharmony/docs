@@ -1,6 +1,6 @@
 # AppVersionInfo
 
-定义应用版本信息。
+定义应用版本信息，可以通过[getAppVersionInfo](js-apis-inner-app-context.md#contextgetappversioninfo7)获取当前应用的版本信息。
 
 > **说明：**
 > 
@@ -14,15 +14,3 @@
 | versionCode | number | 是    | 否    | 模块描述信息。 |
 | versionName | string | 是    | 否    | 描述信息ID。 |
 
-**示例：**
-```ts
-let appName;
-let versionCode;
-let versionName;
-this.context.getAppVersionInfo((error, data) => {
-    console.info('getAppVersionInfo data is:' + JSON.stringify(data));
-    appName = data.appName;
-    versionCode = data.versionCode;
-    versionName = data.versionName;
-});
-```
