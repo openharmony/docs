@@ -290,7 +290,7 @@ struct Index {
 }
 ```
 
-3、当需要跨设备或者跨应用在后台执行长时任务时，可以通过Call的方式在后台创建并运行Ability。使用方式参考[Call调用开发指南（同设备）](../application-models/ability-intra-device-interaction.md#通过call调用实现uiability交互仅对系统应用开放)，[Call调用开发指南（跨设备）](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)。
+3、当需要跨设备或者跨应用在后台执行长时任务时，可以通过Call的方式在后台创建并运行Ability。使用方式参考[Call调用开发指南（同设备）](../application-models/uiability-intra-device-interaction.md#通过call调用实现uiability交互仅对系统应用开放)，[Call调用开发指南（跨设备）](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)。
 
 ```ts
 import Ability from '@ohos.application.Ability'
