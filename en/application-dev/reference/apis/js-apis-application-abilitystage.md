@@ -1,4 +1,4 @@
-# AbilityStage
+# @ohos.application.AbilityStage
 
 **AbilityStage** is a runtime class for HAP files.
 
@@ -6,12 +6,12 @@ The **AbilityStage** module notifies you of when you can perform HAP initializat
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module are supported and deprecated since API version 9. You are advised to use [@ohos.app.ability.AbilityStage](js-apis-app-ability-abilityStage.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
 
-```js
+```ts
 import AbilityStage from '@ohos.application.AbilityStage';
 ```
 
@@ -25,7 +25,7 @@ Called when the application is created.
 
 **Example**
     
-  ```js
+  ```ts
   class MyAbilityStage extends AbilityStage {
       onCreate() {
           console.log("MyAbilityStage.onCreate is called")
@@ -46,7 +46,7 @@ Called when a specified ability is started.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-Want.md) | Yes| Information about the ability to start, such as the ability name and bundle name.| 
+  | want | [Want](js-apis-application-want.md) | Yes| Information about the ability to start, such as the ability name and bundle name.| 
 
 **Return value**
 
@@ -56,7 +56,7 @@ Called when a specified ability is started.
 
 **Example**
     
-  ```js
+  ```ts
   class MyAbilityStage extends AbilityStage {
       onAcceptWant(want) {
           console.log("MyAbilityStage.onAcceptWant called");
@@ -78,11 +78,11 @@ Called when the global configuration is updated.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-configuration.md) | Yes| Callback invoked when the global configuration is updated. The global configuration indicates the configuration of the environment where the application is running and includes the language and color mode.| 
+  | config | [Configuration](js-apis-application-configuration.md) | Yes| Callback invoked when the global configuration is updated. The global configuration indicates the configuration of the environment where the application is running and includes the language and color mode.| 
 
 **Example**
     
-  ```js
+  ```ts
   class MyAbilityStage extends AbilityStage {
       onConfigurationUpdated(config) {
           console.log('onConfigurationUpdated, language:' + config.language);
@@ -106,7 +106,7 @@ Called when the system has decided to adjust the memory level. For example, this
 
 **Example**
     
-  ```js
+  ```ts
   class MyAbilityStage extends AbilityStage {
     onMemoryLevel(level) {
         console.log('onMemoryLevel, level:' + JSON.stringify(level));
@@ -124,4 +124,4 @@ Describes the configuration information about the context.
 
 | Name     | Type                       | Description                                                        |
 | ----------- | --------------------------- | ------------------------------------------------------------ |
-| context  | [AbilityStageContext](js-apis-abilitystagecontext.md) | Called when initialization is performed during ability startup.|
+| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | Called when initialization is performed during ability startup.|
