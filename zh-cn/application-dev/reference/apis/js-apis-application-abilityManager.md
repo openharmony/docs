@@ -4,13 +4,13 @@ AbilityManager模块提供对Ability相关信息和状态信息进行获取、�
 
 > **说明：**
 >
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 8开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.abilityManager](js-apis-app-ability-abilityManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口均为系统接口，三方应用不支持调用。
 
 ## 导入模块
 
 ```ts
-import AbilityManager from '@ohos.application.abilityManager'
+import abilityManager from '@ohos.application.abilityManager'
 ```
 
 ## AbilityState
@@ -49,13 +49,11 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.application.abilityManager';
-
 var config = {
   language: 'chinese' 
 }
 
-abilitymanager.updateConfiguration(config, () => {
+abilityManager.updateConfiguration(config, () => {
     console.log('------------ updateConfiguration -----------');
 })
 ```
@@ -85,13 +83,11 @@ updateConfiguration(config: Configuration): Promise\<void>
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.application.abilityManager';
-
 var config = {
   language: 'chinese' 
 }
 
-abilitymanager.updateConfiguration(config).then(() => {
+abilityManager.updateConfiguration(config).then(() => {
   console.log('updateConfiguration success');
 }).catch((err) => {
   console.log('updateConfiguration fail');
@@ -117,9 +113,7 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.application.abilityManager';
-
-abilitymanager.getAbilityRunningInfos((err,data) => { 
+abilityManager.getAbilityRunningInfos((err,data) => { 
     console.log("getAbilityRunningInfos err: "  + err + " data: " + JSON.stringify(data));
 });
 ```
@@ -143,9 +137,7 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.application.abilityManager';
- 
-abilitymanager.getAbilityRunningInfos().then((data) => {
+abilityManager.getAbilityRunningInfos().then((data) => {
     console.log("getAbilityRunningInfos  data: " + JSON.stringify(data))
 }).catch((err) => {
   console.log("getAbilityRunningInfos err: "  + err)
@@ -172,11 +164,9 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.application.abilityManager';
-
 var upperLimit = 0;
 
-abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => { 
+abilityManager.getExtensionRunningInfos(upperLimit, (err,data) => { 
     console.log("getExtensionRunningInfos err: "  + err + " data: " + JSON.stringify(data));
 });
 ```
@@ -206,11 +196,9 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.application.abilityManager';
-
 var upperLimit = 0;
 
-abilitymanager.getExtensionRunningInfos(upperLimit).then((data) => {
+abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
   console.log("getAbilityRunningInfos data: " + JSON.stringify(data));
 }).catch((err) => {
   console.log("getAbilityRunningInfos err: "  + err);
@@ -234,9 +222,7 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.application.abilityManager';
-
-abilitymanager.getTopAbility((err,data) => { 
+abilityManager.getTopAbility((err,data) => { 
     console.log("getTopAbility err: "  + err + " data: " + JSON.stringify(data));
 });
 ```
@@ -258,9 +244,7 @@ getTopAbility(): Promise\<ElementName>;
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.application.abilityManager';
-
-abilitymanager.getTopAbility().then((data) => {
+abilityManager.getTopAbility().then((data) => {
   console.log("getTopAbility data: " + JSON.stringify(data));
 }).catch((err) => {
   console.log("getTopAbility err: "  + err);

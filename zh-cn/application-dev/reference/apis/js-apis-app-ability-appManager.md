@@ -12,7 +12,7 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 import appManager from '@ohos.app.ability.appManager';
 ```
 
-## appManager.isRunningInStabilityTest<sup>9+</sup>
+## appManager.isRunningInStabilityTest
 
 static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -29,14 +29,14 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
     
   ```ts
-  import app from '@ohos.application.appManager';
-  app.isRunningInStabilityTest((err, flag) => {
-      console.log('startAbility result:' + JSON.stringify(err));
+  appManager.isRunningInStabilityTest((err, flag) => {
+      console.log('error:' + JSON.stringify(err));
+      console.log('The result of isRunningInStabilityTest is:' + JSON.stringify(flag));
   })  
   ```
 
 
-## appManager.isRunningInStabilityTest<sup>9+</sup>
+## appManager.isRunningInStabilityTest
 
 static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
@@ -53,11 +53,10 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 **示例：**
     
   ```ts
-  import app from '@ohos.application.appManager';
-  app.isRunningInStabilityTest().then((flag) => {
-      console.log('success:' + JSON.stringify(flag));
+  appManager.isRunningInStabilityTest().then((flag) => {
+      console.log('The result of isRunningInStabilityTest is:' + JSON.stringify(flag));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
+      console.log('error:' + JSON.stringify(error));
   });
   ```
 
@@ -79,10 +78,10 @@ isRamConstrainedDevice(): Promise\<boolean>;
 **示例：**
     
   ```ts
-  app.isRamConstrainedDevice().then((data) => {
-      console.log('success:' + JSON.stringify(data));
+  appManager.isRamConstrainedDevice().then((data) => {
+      console.log('The result of isRamConstrainedDevice is:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
+      console.log('error:' + JSON.stringify(error));
   });
   ```
 
@@ -103,9 +102,9 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 **示例：**
     
   ```ts
-  app.isRamConstrainedDevice((err, data) => {
-    console.log('startAbility result failed:' + JSON.stringify(err));
-    console.log('startAbility result success:' + JSON.stringify(data));
+  appManager.isRamConstrainedDevice((err, data) => {
+    console.log('error:' + JSON.stringify(err));
+    console.log('The result of isRamConstrainedDevice is:' + JSON.stringify(data));
   })
   ```
 
@@ -126,10 +125,10 @@ getAppMemorySize(): Promise\<number>;
 **示例：**
     
   ```ts
-  app.getAppMemorySize().then((data) => {
-      console.log('success:' + JSON.stringify(data));
+  appManager.getAppMemorySize().then((data) => {
+      console.log('The size of app memory is:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
+      console.log('error:' + JSON.stringify(error));
   });
   ```
 
@@ -150,9 +149,9 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 **示例：**
     
   ```ts
-  app.getAppMemorySize((err, data) => {
-      console.log('startAbility result failed :' + JSON.stringify(err));
-      console.log('startAbility result success:' + JSON.stringify(data));
+  appManager.getAppMemorySize((err, data) => {
+      console.log('error:' + JSON.stringify(err));
+      console.log('The size of app memory is:' + JSON.stringify(data));
   })
   ```
 
@@ -177,10 +176,10 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 **示例：**
     
   ```ts
-  app.getProcessRunningInformation().then((data) => {
-      console.log('success:' + JSON.stringify(data));
+  appManager.getProcessRunningInformation().then((data) => {
+      console.log('The process running infomation is:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
+      console.log('error:' + JSON.stringify(error));
   });
   ```
 
@@ -205,9 +204,9 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 **示例：**
     
   ```ts
-  app.getProcessRunningInformation((err, data) => {
-    console.log('startAbility result failed :' + JSON.stringify(err));
-    console.log('startAbility result success:' + JSON.stringify(data));
+  appManager.getProcessRunningInformation((err, data) => {
+    console.log('error :' + JSON.stringify(err));
+    console.log('The process running information is:' + JSON.stringify(data));
   })
   ```
 
@@ -251,7 +250,7 @@ on(type: "applicationState", observer: ApplicationStateObserver): number;
     }
   }
   try {
-    const observerCode = app.on(applicationStateObserver);
+    const observerCode = appManager.on(applicationStateObserver);
     console.log('-------- observerCode: ---------', observerCode);
   } catch (paramError) {
     console.log('error: ' + paramError.code + ', ' + paramError.message);
@@ -301,7 +300,7 @@ on(type: "applicationState", observer: ApplicationStateObserver, bundleNameList:
   }
   var bundleNameList = ['bundleName1', 'bundleName2'];
   try {
-    const observerCode = app.on("applicationState", applicationStateObserver, bundleNameList);
+    const observerCode = appManager.on("applicationState", applicationStateObserver, bundleNameList);
     console.log('-------- observerCode: ---------', observerCode);
   } catch (paramError) {
     console.log('error: ' + paramError.code + ', ' + paramError.message);
@@ -339,7 +338,7 @@ off(type: "applicationState", observerId: number,  callback: AsyncCallback\<void
       }
     }
     try {
-      app.off(observerId, unregisterApplicationStateObserverCallback);
+      appManager.off(observerId, unregisterApplicationStateObserverCallback);
     } catch (paramError) {
       console.log('error: ' + paramError.code + ', ' + paramError.message);
     }
@@ -376,7 +375,7 @@ off(type: "applicationState", observerId: number): Promise\<void>;
     var observerId = 100;
     
     try {
-      app.off(observerId)
+      appManager.off(observerId)
         .then((data) => {
           console.log('----------- unregisterApplicationStateObserver success ----------', data);
         })
@@ -409,14 +408,18 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 **示例：**
     
   ```js
-    function getForegroundApplicationsCallback(err, data) {
-      if (err) {
-          console.log('--------- getForegroundApplicationsCallback fail ---------', err.code + ': ' + err.message);
-      } else {
-          console.log('--------- getForegroundApplicationsCallback success ---------', data)
-      }
+  function getForegroundApplicationsCallback(err, data) {
+    if (err) {
+        console.log('--------- getForegroundApplicationsCallback fail ---------', err.code + ': ' + err.message);
+    } else {
+        console.log('--------- getForegroundApplicationsCallback success ---------', data)
     }
-    app.getForegroundApplications(getForegroundApplicationsCallback);
+  }
+  try {
+    appManager.getForegroundApplications(getForegroundApplicationsCallback);
+  } catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+  }
   ```
 
 unregisterApplicationStateObserver(observerId: number): Promise\<void>;
@@ -445,16 +448,20 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
     
   ```ts
   var observerId = 100;
-  app.unregisterApplicationStateObserver(observerId)
-  .then((data) => {
+  try {
+    appManager.unregisterApplicationStateObserver(observerId)
+    .then((data) => {
       console.log('----------- unregisterApplicationStateObserver success ----------', data);
-  })
-  .catch((err) => {
+    })
+    .catch((err) => {
       console.log('----------- unregisterApplicationStateObserver fail ----------', err);
-  })
+    })
+  } catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+  }
   ```
 
-## appManager.getForegroundApplications<sup>9+</sup>
+## appManager.getForegroundApplications
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
@@ -482,10 +489,14 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
         console.log('--------- getForegroundApplicationsCallback success ---------', data)
     }
   }
-  app.getForegroundApplications(getForegroundApplicationsCallback);
+  try {
+    appManager.getForegroundApplications(getForegroundApplicationsCallback);
+  } catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+  }
   ```
 
-## appManager.getForegroundApplications<sup>9+</sup>
+## appManager.getForegroundApplications
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>;
 
@@ -506,7 +517,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
 **示例：**
     
   ```ts
-  app.getForegroundApplications()
+  appManager.getForegroundApplications()
   .then((data) => {
       console.log('--------- getForegroundApplications success -------', data);
   })
@@ -515,7 +526,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
   })
   ```
 
-## appManager.killProcessWithAccount<sup>9+</sup>
+## appManager.killProcessWithAccount
 
 killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
@@ -539,17 +550,21 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 ```ts
 var bundleName = 'bundleName';
 var accountId = 0;
-app.killProcessWithAccount(bundleName, accountId)
+try {
+  appManager.killProcessWithAccount(bundleName, accountId)
    .then((data) => {
        console.log('------------ killProcessWithAccount success ------------', data);
    })
    .catch((err) => {
        console.log('------------ killProcessWithAccount fail ------------', err);
    })
+} catch (paramError) {
+  console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```
 
 
-## appManager.killProcessWithAccount<sup>9+</sup>
+## appManager.killProcessWithAccount
 
 killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCallback\<void\>): void
 
@@ -581,10 +596,10 @@ function killProcessWithAccountCallback(err, data) {
        console.log('------------- killProcessWithAccountCallback success, data: --------------', data);
    }
 }
-app.killProcessWithAccount(bundleName, accountId, killProcessWithAccountCallback);
+appManager.killProcessWithAccount(bundleName, accountId, killProcessWithAccountCallback);
 ```
 
-## appManager.killProcessesByBundleName<sup>9+</sup>
+## appManager.killProcessesByBundleName
 
 killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 
@@ -614,10 +629,14 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
         console.log('------------- killProcessesByBundleNameCallback success, data: --------------', data);
     }
   }
-  app.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
+  try {
+    appManager.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
+  } catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+  }
   ```
 
-## appManager.killProcessesByBundleName<sup>9+</sup>
+## appManager.killProcessesByBundleName
 
 killProcessesByBundleName(bundleName: string): Promise\<void>;
 
@@ -644,17 +663,21 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 **示例：**
     
   ```ts
-var bundleName = 'bundleName';
-app.killProcessesByBundleName(bundleName)
-   .then((data) => {
-       console.log('------------ killProcessesByBundleName success ------------', data);
-   })
-   .catch((err) => {
-       console.log('------------ killProcessesByBundleName fail ------------', err);
-   })
+  var bundleName = 'bundleName';
+  try {
+    appManager.killProcessesByBundleName(bundleName)
+    .then((data) => {
+         console.log('------------ killProcessesByBundleName success ------------', data);
+    })
+    .catch((err) => {
+         console.log('------------ killProcessesByBundleName fail ------------', err);
+    })
+  } catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+  }
   ```
 
-## appManager.clearUpApplicationData<sup>9+</sup>
+## appManager.clearUpApplicationData
 
 clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 
@@ -684,10 +707,14 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
         console.log('------------- clearUpApplicationDataCallback success, data: --------------', data);
     }
   }
-  app.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
+  try {
+    appManager.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
+  } catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+  }
   ```
 
-## appManager.clearUpApplicationData<sup>9+</sup>
+## appManager.clearUpApplicationData
 
 clearUpApplicationData(bundleName: string): Promise\<void>;
 
@@ -715,16 +742,20 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
     
   ```ts
   var bundleName = 'bundleName';
-  app.clearUpApplicationData(bundleName)
-    .then((data) => {
+  try {
+    appManager.clearUpApplicationData(bundleName)
+      .then((data) => {
         console.log('------------ clearUpApplicationData success ------------', data);
-    })
-    .catch((err) => {
+      })
+      .catch((err) => {
         console.log('------------ clearUpApplicationData fail ------------', err);
-    })
+      })
+  } catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+  }
   ```
 
-## ApplicationState<sup>9+</sup>
+## ApplicationState
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -738,7 +769,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 | STATE_BACKGROUND        | 4   |       当应用处于后台不可见时处于的状态。           |
 | STATE_DESTROY        | 5   |           当应用在销毁的时候处于的状态。       |
 
-## ProcessState<sup>9+</sup>
+## ProcessState
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
