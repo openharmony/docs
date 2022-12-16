@@ -84,14 +84,14 @@
 - 将天气主页划分为9个基础区域，如：
   ![home_full](figures/home_full.png)
 
-- 基础区域9仅在大设备上显示，基础区域1-8虽然在各设备上始终展示但其尺寸及区域内的布局基本保持不变，可以结合[自适应布局](adaptive-layout.md)能力以[自定义组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-component-based-component.md)的形式分别实现这9个基础区域。
+- 基础区域9仅在大设备上显示，基础区域1-8虽然在各设备上始终展示但其尺寸及区域内的布局基本保持不变，可以结合[自适应布局](adaptive-layout.md)能力以[自定义组件](../../ui/ts-component-based-component.md)的形式分别实现这9个基础区域。
     |  | 小设备 | 中设备 | 大设备 | 
   | -------- | -------- | -------- | -------- |
   | 主页 | ![Home_sm](figures/Home_sm.png) | ![Home_md_mark](figures/Home_md_mark.png) | ![Home_lg_mark](figures/Home_lg_mark.png) | 
 
 - 基础区域1-8之间的布局在不同设备上有较大差异，可以使用响应式布局中的[栅格布局](responsive-layout.md#栅格布局)能力实现组件间的布局效果。
 
-- 展开和隐藏侧边栏的功能可以通过[侧边栏组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-sidebarcontainer.md)来实现。侧边栏是大设备上独有的，借助响应式布局中的[媒体查询](responsive-layout.md#媒体查询)能力，控制仅在大设备上展示侧边栏即可。
+- 展开和隐藏侧边栏的功能可以通过[侧边栏组件](../../reference/arkui-ts/ts-container-sidebarcontainer.md)来实现。侧边栏是大设备上独有的，借助响应式布局中的[媒体查询](responsive-layout.md#媒体查询)能力，控制仅在大设备上展示侧边栏即可。
 
 
 ### 主页基础区域

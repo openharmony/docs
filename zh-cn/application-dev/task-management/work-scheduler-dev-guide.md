@@ -61,7 +61,7 @@ import workScheduler from '@ohos.resourceschedule.workScheduler';
 import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
 ```
 
-2、开发对应的ExtensionAbility，用于回调执行具体的延迟任务。关于ExtensionAbility的介绍，参考[ExtensionAbility机制](../ability-deprecated/stage-brief.md#extensionability机制)。
+2、开发对应的ExtensionAbility，用于回调执行具体的延迟任务。关于ExtensionAbility的介绍，参考[ExtensionAbility机制](../application-models/extensionability-overview.md)。
 
 ```ts
 import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
