@@ -130,16 +130,16 @@
 
 ##### 适配指导
 
-新增支持异常处理的接口也会返回对应的错误码，以MessageParcel中的create接口为例，示例代码如下：
+新增的接口以抛异常的方式返回错误码及对应的错误信息，以MessageParcel中的create接口为例，使用示例代码如下：
 ```js
 import rpc from '@ohos.rpc'
 
 try {
-       var data = rpc.MessageParcel.create();
-       data.reclaim();
-    } catch (error) {
-       console.info("create meassageParcel failed, errorCode = " + error.errCode);
-       console.info("create meassageParcel failed, errorMessage = " + error.errorMessage);
-  }
+    var data = rpc.MessageParcel.create();
+    data.reclaim();
+} catch (error) {
+    console.info("create meassageParcel failed, errorCode = " + error.errCode);
+    console.info("create meassageParcel failed, errorMessage = " + error.errorMessage);
+}
 ```
 更多接口的示例代码可参考[RPC通信API文档](../../../application-dev/reference/apis/js-apis-rpc.md)。
