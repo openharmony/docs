@@ -1,4 +1,4 @@
-# util工具函数
+# @ohos.util (util工具函数)
 
 该模块主要提供常用的工具函数，实现字符串编解码（TextEncoder，TextDecoder）、有理数运算（RationalNumber）、缓冲区管理（LruBuffer）、范围判断（Scope）、Base64编解码（Base64）、内置对象类型检查（Types）等功能。
 

@@ -107,5 +107,3 @@ export default class MyWindowExtensionAbility extends WindowExtensionAbility {
 
 }
 ```
-
- <!--no_check--> 

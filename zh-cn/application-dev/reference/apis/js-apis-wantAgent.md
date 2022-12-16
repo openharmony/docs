@@ -1,10 +1,10 @@
-# WantAgent模块
+# @ohos.wantAgent (WantAgent模块)
 
-WantAgent模块提供了触发、取消、比较WantAgent实例和获取bundle参数名的能力，包括创建WantAgent实例、获取实例的用户ID、获取want信息等。
+WantAgent模块提供了触发、取消、比较WantAgent实例和获取bundle名称的能力，包括创建WantAgent实例、获取实例的用户ID、获取want信息等。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 7开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.wantAgent](js-apis-app-ability-wantAgent.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 7开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.wantAgent](js-apis-app-ability-wantAgent.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 

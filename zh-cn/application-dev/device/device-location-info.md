@@ -10,12 +10,12 @@
 
 ## 接口说明
 
-获取设备的位置信息，所使用的接口说明参见：[位置服务](../reference/apis/js-apis-geolocation.md)。
+获取设备的位置信息，所使用的接口说明参见：[位置服务](../reference/apis/js-apis-geoLocationManager.md)。
 
 
 ## 开发步骤
 
-如需要获取设备位置相关接口信息，请参考[位置服务](../reference/apis/js-apis-geolocation.md)。
+如需要获取设备位置相关接口信息，请参考[位置服务](../reference/apis/js-apis-geoLocationManager.md)。
 
 1. 应用在使用系统能力前，需要检查是否已经获取用户授权访问设备位置信息。如未获得授权，可以向用户申请需要的位置权限，申请方式请参考下文。
      系统提供的定位权限有：
@@ -42,10 +42,10 @@
 
    开发者可以在应用配置文件中声明所需要的权限，具体可参考[授权申请指导](../security/accesstoken-guidelines.md)。
 
-2. 导入geolocation模块，所有与基础定位能力相关的功能API，都是通过该模块提供的。
+2. 导入geoLocationManager模块，所有与基础定位能力相关的功能API，都是通过该模块提供的。
    
-   ```
-   import geolocation from '@ohos.geolocation';
+   ```ts
+   import geoLocationManager from '@ohos.geoLocationManager';
    ```
 
 3. 实例化LocationRequest对象，用于告知系统该向应用提供何种类型的位置服务，以及位置结果上报的频率。<br/>
@@ -78,8 +78,8 @@
 
      以导航场景为例，实例化方式如下：
    
-   ```
-   var requestInfo = {'scenario': geolocation.LocationRequestScenario.NAVIGATION, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+   ```ts
+   var requestInfo = {'scenario': geoLocationManager.LocationRequestScenario.NAVIGATION, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
    ```
 
    **方式二：**
@@ -108,7 +108,7 @@
      以定位精度优先策略为例，实例化方式如下：
    
    ```ts
-   var requestInfo = {'priority': geolocation.LocationRequestPriority.ACCURACY, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+   var requestInfo = {'priority': geoLocationManager.LocationRequestPriority.ACCURACY, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
    ```
 
 4. 实例化Callback对象，用于向系统提供位置上报的途径。
@@ -123,25 +123,24 @@
 5. 启动定位。
    
    ```ts
-   geolocation.on('locationChange', requestInfo, locationChange);
+   geoLocationManager.on('locationChange', requestInfo, locationChange);
    ```
 
 6. （可选）结束定位。
    
    ```ts
-   geolocation.off('locationChange', locationChange);
+   geoLocationManager.off('locationChange', locationChange);
    ```
 
 如果应用使用场景不需要实时的设备位置，可以获取系统缓存的最近一次历史定位结果。
      
    ```ts
-   geolocation.getLastLocation((err, data) => {
-       if (err) {
-           console.log('getLastLocation: err: ' + JSON.stringify(err));
-       } else {
-           console.log('getLastLocation: data: ' + JSON.stringify(data));
-       }
-   });
+   import geoLocationManager from '@ohos.geoLocationManager';
+   try {
+       var location = geoLocationManager.getLastLocation();
+   } catch (err) {
+       console.error("errCode:" + err.code + ",errMessage:" + err.message);
+   }
    ```
 
    此接口的使用需要应用向用户申请ohos.permission.LOCATION权限。

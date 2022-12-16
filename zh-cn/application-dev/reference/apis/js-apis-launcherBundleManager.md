@@ -1,4 +1,4 @@
-# Bundle.launcherBundleManager模块
+# @ohos.bundle.launcherBundleManager (launcherBundleManager模块)
 
 本模块支持launcher应用所需的查询能力，支持[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)、[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)信息的查询。
 

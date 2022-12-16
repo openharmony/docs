@@ -1,4 +1,4 @@
-# 输入法服务
+# @ohos.inputmethodengine (输入法服务)
 
 本模块的作用是拉通输入法应用和其他三方应用（联系人、微信等），功能包括：将三方应用与输入法应用的服务进行绑定、三方应用通过输入法应用进行文本输入、三方应用对输入法应用进行显示键盘请求和隐藏键盘请求、三方应用对输入法应用当前状态进行监听等。
 
@@ -137,7 +137,7 @@ createKeyboardDelegate(): KeyboardDelegate
 **示例：**
 
 ```js
-let KeyboardDelegate = inputMethodEngine.createKeyboardDelegate();
+let keyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 ```
 
 ## InputMethodEngine
@@ -162,9 +162,9 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 **示例：**
 
 ```js
-inputMethodEngine.getInputMethodEngine().on('inputStart', (kbController, textInputClient) => {
-    KeyboardController = kbController;
-    TextInputClient = textInputClient;
+inputMethodEngine.getInputMethodEngine().on('inputStart', (kbController, textClient) => {
+    let keyboardController = kbController;
+    let textInputClient = textClient;
 });
 ```
 
@@ -235,12 +235,8 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 **示例：**
 
 ```js
-inputMethodEngine.getInputMethodEngine().off('keyboardShow', () => {
-    console.log('inputMethodEngine delete keyboardShow notification.');
-});
-inputMethodEngine.getInputMethodEngine().off('keyboardHide', () => {
-    console.log('inputMethodEngine delete keyboardHide notification.');
-});
+inputMethodEngine.getInputMethodEngine().off('keyboardShow');
+inputMethodEngine.getInputMethodEngine().off('keyboardHide');
 ```
 
 ## InputMethodAbility
@@ -265,9 +261,9 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient:
 **示例：**
 
 ```js
-inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, inputClient) => {
-    KeyboardController = kbController;
-    InputClient = inputClient;
+inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, client) => {
+    let keyboardController = kbController;
+    let inputClient = client;
 });
 ```
 
@@ -289,9 +285,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, inputClien
 **示例：**
 
 ```js
-inputMethodEngine.getInputMethodAbility().off('inputStart', (kbController, inputClient) => {
-    console.log('delete inputStart notification.');
-});
+inputMethodEngine.getInputMethodAbility().off('inputStart');
 ```
 
 ### on('inputStop')<sup>9+</sup>
@@ -492,7 +486,7 @@ inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
 
 on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
-订阅硬键盘事件。使用callback异步回调。
+订阅硬键盘（即物理键盘）事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -522,7 +516,7 @@ inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent) => {
 
 off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
-取消订阅硬键盘事件。使用callback异步回调。
+取消订阅硬键盘（即物理键盘）事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -602,14 +596,14 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-  **参数：**
+**参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 文本选择变化事件。<br/>-&nbsp;type为’selectionChange‘时，表示选择文本变化。 |
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 是   | 回调函数，返回文本选择信息。<br/>-&nbsp;oldBegin为变化之前被选中文本的起始下标。<br/>-&nbsp;oldEnd为变化之前被选中文本的终止下标。<br/>-&nbsp;newBegin为变化之后被选中文本的起始下标。<br/>-&nbsp;newEnd为变化之后被选中文本的终止下标。 |
 
-  **示例：**
+**示例：**
 
 ```js
 inputMethodEngine.getKeyboardDelegate().on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
@@ -652,14 +646,14 @@ on(type: 'textChange', callback: (text: string) => void): void
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-  **参数：**
+**参数：**
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为’textChange‘时，表示订阅文本变化事件。 |
 | callback | (text: string) => void | 是   | 回调函数，返回订阅的文本内容。                                   |
 
-  **示例：**
+**示例：**
 
 ```js
 inputMethodEngine.getKeyboardDelegate().on('textChange', (text) => {
@@ -719,12 +713,12 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-KeyboardController.hide((err) => {
-    if (err === undefined) {
-        console.error('hide err: ' + JSON.stringify(err));
+keyboardController.hide((err) => {
+    if (err !== undefined) {
+        console.error('Failed to hide keyboard: ' + JSON.stringify(err));
         return;
     }
-    console.log('hide success.');
+    console.log('Succeeded in hiding keyboard.');
 });
 ```
 
@@ -753,10 +747,10 @@ hide(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-KeyboardController.hide().then(() => {
-    console.info('hide success.');
+keyboardController.hide().then(() => {
+    console.info('Succeeded in hiding keyboard.');
 }).catch((err) => {
-    console.info('hide err: ' + JSON.stringify(err));
+    console.info('Failed to hide keyboard: ' + JSON.stringify(err));
 });
 ```
 
@@ -781,12 +775,12 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-KeyboardController.hideKeyboard((err) => {
-    if (err === undefined) {
-        console.error('hideKeyboard err: ' + JSON.stringify(err));
+keyboardController.hideKeyboard((err) => {
+    if (err !== undefined) {
+        console.error('Failed to hide Keyboard: ' + JSON.stringify(err));
         return;
     }
-    console.log('hideKeyboard success.');
+    console.log('Succeeded in hiding keyboard.');
 });
 ```
 
@@ -811,10 +805,10 @@ hideKeyboard(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-KeyboardController.hideKeyboard().then(() => {
-    console.info('hideKeyboard success.');
+keyboardController.hideKeyboard().then(() => {
+    console.info('Succeeded in hiding keyboard.');
 }).catch((err) => {
-    console.info('hideKeyboard err: ' + JSON.stringify(err));
+    console.info('Failed to hide Keyboard: ' + JSON.stringify(err));
 });
 ```
 
@@ -850,13 +844,13 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 ```js
 let action = 1;
 try {
-    InputClient.sendKeyFunction(action, (err, result) => {
-        if (err) {
-            console.error('sendKeyFunction err: ' + JSON.stringify(err));
+    inputClient.sendKeyFunction(action, (err, result) => {
+        if (err !== undefined) {
+            console.error('Failed to sendKeyFunction: ' + JSON.stringify(err));
             return;
         }
         if (result) {
-            console.info('Success to sendKeyFunction. ');
+            console.info('Succeeded in sending key function. ');
         } else {
             console.error('Failed to sendKeyFunction. ');
         }
@@ -899,17 +893,17 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 ```js
 let action = 1;
 try {
-    InputClient.sendKeyFunction(action).then((result) => {
+    inputClient.sendKeyFunction(action).then((result) => {
         if (result) {
-            console.info('Success to sendKeyFunction. ');
+            console.info('Succeeded in sending key function. ');
         } else {
             console.error('Failed to sendKeyFunction. ');
         }
     }).catch((err) => {
-        console.error('sendKeyFunction err:' + JSON.stringify(err));
+        console.error('Failed to sendKeyFunction:' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('sendKeyFunction err: ' + JSON.stringify(err));
+    console.error('Failed to sendKeyFunction: ' + JSON.stringify(err));
 }
 ```
 
@@ -942,15 +936,15 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 ```js
 let length = 1;
 try {
-    InputClient.getForward(length, (err, text) => {
-        if (err) {
-            console.error('getForward err: ' + JSON.stringify(err));
+    inputClient.getForward(length, (err, text) => {
+        if (err !== undefined) {
+            console.error('Failed to getForward: ' + JSON.stringify(err));
             return;
         }
-        console.log('getForward result: ' + text);
+        console.log('Succeeded in getting forward, text: ' + text);
     });
 } catch (err) {
-    console.error('getForward err: ' + JSON.stringify(err));
+    console.error('Failed to getForward: ' + JSON.stringify(err));
 }
 ```
 
@@ -988,13 +982,13 @@ getForward(length:number): Promise&lt;string&gt;
 ```js
 let length = 1;
 try {
-    InputClient.getForward(length).then((text) => {
-        console.info('getForward resul: ' + text);
+    inputClient.getForward(length).then((text) => {
+        console.info('Succeeded in getting forward, text: ' + text);
     }).catch((err) => {
-        console.error('getForward err: ' + JSON.stringify(err));
+        console.error('Failed to getForward: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('getForward err: ' + JSON.stringify(err));
+    console.error('Failed to getForward: ' + JSON.stringify(err));
 }
 ```
 
@@ -1027,15 +1021,15 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 ```js
 let length = 1;
 try {
-    InputClient.getBackward(length, (err, text) => {
-        if (err) {
-            console.error('getBackward result: ' + JSON.stringify(err));
+    inputClient.getBackward(length, (err, text) => {
+        if (err !== undefined) {
+            console.error('Failed to getForward: ' + JSON.stringify(err));
             return;
         }
-        console.log('getBackward result---text: ' + text);
+        console.log('Succeeded in getting backward, text: ' + text);
     });
 } catch (err) {
-    console.error('getBackward result: ' + JSON.stringify(err));
+    console.error('Failed to getForward: ' + JSON.stringify(err));
 }
 ```
 
@@ -1073,13 +1067,13 @@ getBackward(length:number): Promise&lt;string&gt;
 ```js
 let length = 1;
 try {
-    InputClient.getBackward(length).then((text) => {
-        console.info('getBackward result: ' + text);
+    inputClient.getBackward(length).then((text) => {
+        console.info('Succeeded in getting backward, text: ' + text);
     }).catch((err) => {
-        console.error('getBackward err: ' + JSON.stringify(err));
+        console.error('Failed to getForward: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('getBackward err: ' + JSON.stringify(err));
+    console.error('Failed to getForward: ' + JSON.stringify(err));
 }
 ```
 
@@ -1112,19 +1106,19 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 ```js
 let length = 1;
 try {
-    InputClient.deleteForward(length, (err, result) => {
-        if (err) {
-            console.error('deleteForward result: ' + JSON.stringify(err));
+    inputClient.deleteForward(length, (err, result) => {
+        if (err !== undefined) {
+            console.error('Failed to delete forward: ' + JSON.stringify(err));
             return;
         }
         if (result) {
-            console.info('Success to deleteForward. ');
+            console.info('Succeeded in deleting forward. ');
         } else {
-            console.error('Failed to deleteForward. ');
+            console.error('Failed to delete forward: ' + JSON.stringify(err));
         }
     });
 } catch (err) {
-    console.error('deleteForward result: ' + JSON.stringify(err));
+    console.error('Failed to delete forward: ' + JSON.stringify(err));
 }
 ```
 
@@ -1162,17 +1156,17 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 ```js
 let length = 1;
 try {
-    InputClient.deleteForward(length).then((result) => {
+    inputClient.deleteForward(length).then((result) => {
         if (result) {
-            console.info('Success to deleteForward. ');
+            console.info('Succeeded in deleting forward. ');
         } else {
-            console.error('Failed to deleteForward. ');
+            console.error('Failed to delete Forward. ');
         }
     }).catch((err) => {
-        console.error('deleteForward err: ' + JSON.stringify(err));
+        console.error('Failed to delete Forward: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('deleteForward err: ' + JSON.stringify(err));
+    console.error('Failed to delete Forward: ' + JSON.stringify(err));
 }
 ```
 
@@ -1205,15 +1199,15 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 ```js
 let length = 1;
 try {
-    InputClient.deleteBackward(length, (err, result) => {
-        if (err) {
-            console.error('deleteBackward err: ' + JSON.stringify(err));
+    inputClient.deleteBackward(length, (err, result) => {
+        if (err !== undefined) {
+            console.error('Failed to delete Backward: ' + JSON.stringify(err));
             return;
         }
         if (result) {
-            console.info('Success to deleteBackward. ');
+            console.info('Succeeded in deleting backward. ');
         } else {
-            console.error('Failed to deleteBackward. ');
+            console.error('Failed to delete Backward: ' + JSON.stringify(err));
         }
     });
 } catch (err) {
@@ -1254,14 +1248,14 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 ```js
 let length = 1;
-InputClient.deleteBackward(length).then((result) => {
+inputClient.deleteBackward(length).then((result) => {
     if (result) {
-        console.info('Success to deleteBackward. ');
+        console.info('Succeeded in deleting backward. ');
     } else {
         console.error('Failed to deleteBackward. ');
     }
 }).catch((err) => {
-    console.error('deleteBackward err: ' + JSON.stringify(err));
+    console.error('Failed to deleteBackward: ' + JSON.stringify(err));
 });
 ```
 
@@ -1292,13 +1286,13 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
-InputClient.insertText('test', (err, result) => {
-    if (err) {
-        console.error('insertText err: ' + JSON.stringify(err));
+inputClient.insertText('test', (err, result) => {
+    if (err !== undefined) {
+        console.error('Failed to insertText: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to insertText. ');
+        console.info('Succeeded in inserting text. ');
     } else {
         console.error('Failed to insertText. ');
     }
@@ -1338,17 +1332,17 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 ```js
 try {
-    InputClient.insertText('test').then((result) => {
+    inputClient.insertText('test').then((result) => {
         if (result) {
-            console.info('Success to insertText. ');
+            console.info('Succeeded in inserting text. ');
         } else {
             console.error('Failed to insertText. ');
         }
     }).catch((err) => {
-        console.error('insertText err: ' + JSON.stringify(err));
+        console.error('Failed to insertText: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('insertText err: ' + JSON.stringify(err));
+    console.error('Failed to insertText: ' + JSON.stringify(err));
 }
 ```
 
@@ -1377,9 +1371,9 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 **示例：**
 
 ```js
-InputClient.getEditorAttribute((err, editorAttribute) => {
-    if (err) {
-        console.error('getEditorAttribute err: ' + JSON.stringify(err));
+inputClient.getEditorAttribute((err, editorAttribute) => {
+    if (err !== undefined) {
+        console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
         return;
     }
     console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
@@ -1412,11 +1406,11 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 **示例：**
 
 ```js
-InputClient.getEditorAttribute().then((editorAttribute) => {
+inputClient.getEditorAttribute().then((editorAttribute) => {
     console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
     console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
 }).catch((err) => {
-    console.error('getEditorAttribute err: ' + JSON.stringify(err));
+    console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
 });
 ```
 
@@ -1447,15 +1441,15 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-    InputClient.moveCursor(inputMethodEngine.CURSOR_xxx, (err) => {
-        if (err) {
-            console.error('moveCursor err: ' + JSON.stringify(err));
+    inputClient.moveCursor(inputMethodEngine.CURSOR_UP, (err) => {
+        if (err !== undefined) {
+            console.error('Failed to moveCursor: ' + JSON.stringify(err));
             return;
         }
-        console.info('moveCursor success');
+        console.info('Succeeded in moving cursor.');
     });
 } catch (err) {
-    console.error('moveCursor err: ' + JSON.stringify(err));
+    console.error('Failed to moveCursor: ' + JSON.stringify(err));
 }
 ```
 
@@ -1491,13 +1485,13 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 ```js
 try {
-    InputClient.moveCursor(inputMethodEngine.CURSOR_UP).then(() => {
-        console.log('moveCursor success');
+    inputClient.moveCursor(inputMethodEngine.CURSOR_UP).then(() => {
+        console.log('Succeeded in moving cursor.');
     }).catch((err) => {
-        console.error('moveCursor success err: ' + JSON.stringify(err));
+        console.error('Failed to moveCursor: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.log('moveCursor err: ' + JSON.stringify(err));
+    console.log('Failed to moveCursor: ' + JSON.stringify(err));
 }
 ```
 
@@ -1554,12 +1548,12 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 ```js
 let length = 1;
-TextInputClient.getForward(length, (err, text) => {
-    if (err === undefined) {
-        console.error('getForward err: ' + JSON.stringify(err));
+textInputClient.getForward(length, (err, text) => {
+    if (err !== undefined) {
+        console.error('Failed to getForward: ' + JSON.stringify(err));
         return;
     }
-    console.log('getForward result---text: ' + text);
+    console.log('Succeeded in getting forward, text: ' + text);
 });
 ```
 
@@ -1591,10 +1585,10 @@ getForward(length:number): Promise&lt;string&gt;
 
 ```js
 let length = 1;
-TextInputClient.getForward(length).then((text) => {
-    console.info('getForward result: ' + JSON.stringify(text));
+textInputClient.getForward(length).then((text) => {
+    console.info('Succeeded in getting forward, text: ' + text);
 }).catch((err) => {
-    console.error('getForward err: ' + JSON.stringify(err));
+    console.error('Failed to getForward: ' + JSON.stringify(err));
 });
 ```
 
@@ -1621,12 +1615,12 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 ```js
 let length = 1;
-TextInputClient.getBackward(length, (err, text) => {
-    if (err === undefined) {
-        console.error('getBackward err: ' + JSON.stringify(err));
+textInputClient.getBackward(length, (err, text) => {
+    if (err !== undefined) {
+        console.error('Failed to getBackward: ' + JSON.stringify(err));
         return;
     }
-    console.log('getBackward result---text: ' + text);
+    console.log('Succeeded in getting borward, text: ' + text);
 });
 ```
 
@@ -1658,10 +1652,10 @@ getBackward(length:number): Promise&lt;string&gt;
 
 ```js
 let length = 1;
-TextInputClient.getBackward(length).then((text) => {
-    console.info('getBackward result: ' + JSON.stringify(text));
+textInputClient.getBackward(length).then((text) => {
+    console.info('Succeeded in getting backward: ' + JSON.stringify(text));
 }).catch((err) => {
-    console.error('getBackward err: ' + JSON.stringify(err));
+    console.error('Failed to getBackward: ' + JSON.stringify(err));
 });
 ```
 
@@ -1688,13 +1682,13 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 let length = 1;
-TextInputClient.deleteForward(length, (err, result) => {
-    if (err === undefined) {
-        console.error('deleteForward err: ' + JSON.stringify(err));
+textInputClient.deleteForward(length, (err, result) => {
+    if (err !== undefined) {
+        console.error('Failed to deleteForward: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to deleteForward. ');
+        console.info('Succeeded in deleting forward. ');
     } else {
         console.error('Failed to deleteForward. ');
     }
@@ -1729,14 +1723,14 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 ```js
 let length = 1;
-TextInputClient.deleteForward(length).then((result) => {
+textInputClient.deleteForward(length).then((result) => {
     if (result) {
-        console.info('Succeed in deleting forward. ');
+        console.info('Succeeded in deleting forward. ');
     } else {
         console.error('Failed to delete forward. ');
     }
 }).catch((err) => {
-    console.error('Failed to delete forward err: ' + JSON.stringify(err));
+    console.error('Failed to delete forward: ' + JSON.stringify(err));
 });
 ```
 
@@ -1763,13 +1757,13 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 let length = 1;
-TextInputClient.deleteBackward(length, (err, result) => {
-    if (err === undefined) {
-        console.error('deleteBackward err: ' + JSON.stringify(err));
+textInputClient.deleteBackward(length, (err, result) => {
+    if (err !== undefined) {
+        console.error('Failed to delete backward: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to deleteBackward. ');
+        console.info('Succeeded in deleting backward. ');
     } else {
         console.error('Failed to deleteBackward. ');
     }
@@ -1804,14 +1798,14 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 ```js
 let length = 1;
-TextInputClient.deleteBackward(length).then((result) => {
+textInputClient.deleteBackward(length).then((result) => {
     if (result) {
-        console.info('Success to deleteBackward. ');
+        console.info('Succeeded in deleting backward. ');
     } else {
         console.error('Failed to deleteBackward. ');
     }
 }).catch((err) => {
-    console.error('deleteBackward err: ' + JSON.stringify(err));
+    console.error('Failed to deleteBackward: ' + JSON.stringify(err));
 });
 ```
 ### sendKeyFunction<sup>(deprecated)</sup>
@@ -1837,13 +1831,13 @@ sendKeyFunction(action: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 let action = 1;
-TextInputClient.sendKeyFunction(action, (err, result) => {
-    if (err === undefined) {
-        console.error('sendKeyFunction err: ' + JSON.stringify(err));
+textInputClient.sendKeyFunction(action, (err, result) => {
+    if (err !== undefined) {
+        console.error('Failed to sendKeyFunction: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to sendKeyFunction. ');
+        console.info('Succeeded in sending key function. ');
     } else {
         console.error('Failed to sendKeyFunction. ');
     }
@@ -1878,14 +1872,14 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 
 ```js
 let action = 1;
-TextInputClient.sendKeyFunction(action).then((result) => {
+textInputClient.sendKeyFunction(action).then((result) => {
     if (result) {
-        console.info('Success to sendKeyFunction. ');
+        console.info('Succeeded in sending key function. ');
     } else {
         console.error('Failed to sendKeyFunction. ');
     }
 }).catch((err) => {
-    console.error('sendKeyFunction err:' + JSON.stringify(err));
+    console.error('Failed to sendKeyFunction:' + JSON.stringify(err));
 });
 ```
 
@@ -1911,13 +1905,13 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
-TextInputClient.insertText('test', (err, result) => {
-    if (err === undefined) {
-        console.error('insertText err: ' + JSON.stringify(err));
+textInputClient.insertText('test', (err, result) => {
+    if (err !== undefined) {
+        console.error('Failed to insertText: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to insertText. ');
+        console.info('Succeeded in inserting text. ');
     } else {
         console.error('Failed to insertText. ');
     }
@@ -1951,14 +1945,14 @@ insertText(text:string): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-TextInputClient.insertText('test').then((result) => {
+textInputClient.insertText('test').then((result) => {
     if (result) {
-        console.info('Success to insertText. ');
+        console.info('Succeeded in inserting text. ');
     } else {
         console.error('Failed to insertText. ');
     }
 }).catch((err) => {
-    console.error('insertText err: ' + JSON.stringify(err));
+    console.error('Failed to insertText: ' + JSON.stringify(err));
 });
 ```
 
@@ -1983,9 +1977,9 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 **示例：**
 
 ```js
-TextInputClient.getEditorAttribute((err, editorAttribute) => {
-    if (err === undefined) {
-        console.error('getEditorAttribute err: ' + JSON.stringify(err));
+textInputClient.getEditorAttribute((err, editorAttribute) => {
+    if (err !== undefined) {
+        console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
         return;
     }
     console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
@@ -2014,10 +2008,10 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 **示例：**
 
 ```js
-TextInputClient.getEditorAttribute().then((editorAttribute) => {
+textInputClient.getEditorAttribute().then((editorAttribute) => {
     console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
     console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
 }).catch((err) => {
-    console.error('getEditorAttribute err: ' + JSON.stringify(err));
+    console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
 });
 ```

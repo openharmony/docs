@@ -1,6 +1,7 @@
 # Media
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 The multimedia subsystem provides a set of simple and easy-to-use APIs for you to access the system and use media resources.
@@ -52,7 +53,7 @@ Creates a **VideoPlayer** instance. This API uses an asynchronous callback to re
 
 | Name  | Type                                       | Mandatory| Description                          |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | Yes  | Callback used to return the result. If the operation is successful, the **VideoPlayer** instance is returned; otherwise, **null** is returned. The instance can be used to manage and play video media.|
+| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | Yes  | Callback used to return the result. If the operation is successful, the **VideoPlayer** instance is returned; otherwise, **null** is returned. The instance can be used to manage and play video.|
 
 **Example**
 
@@ -81,7 +82,7 @@ Creates a **VideoPlayer** instance. This API uses a promise to return the result
 
 | Type                                 | Description                                                        |
 | ------------------------------------- | ------------------------------------------------------------ |
-| Promise<[VideoPlayer](#videoplayer8)> | Promise used to return the result. If the operation is successful, the **VideoPlayer** instance is returned; otherwise, **null** is returned. The instance can be used to manage and play video media.|
+| Promise<[VideoPlayer](#videoplayer8)> | Promise used to return the result. If the operation is successful, the **VideoPlayer** instance is returned; otherwise, **null** is returned. The instance can be used to manage and play video.|
 
 **Example**
 
@@ -113,7 +114,7 @@ Only one **AudioRecorder** instance can be created per device.
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| [AudioRecorder](#audiorecorder) | Returns the **AudioRecorder** instance if the operation is successful; returns **null** otherwise. The instance can be used to record audio media.|
+| [AudioRecorder](#audiorecorder) | Returns the **AudioRecorder** instance if the operation is successful; returns **null** otherwise. The instance can be used to record audio.|
 
 **Example**
 
@@ -130,11 +131,21 @@ Only one **AudioRecorder** instance can be created per device.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | Yes  | Callback used to return the result. If the operation is successful, the **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video media.|
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | Yes  | Callback used to return the result. If the operation is successful, the **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                      |
+| -------- | ------------------------------ |
+| 5400101  | No memory. Return by callback. |
 
 **Example**
 
@@ -160,11 +171,21 @@ Only one **AudioRecorder** instance can be created per device.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type                                     | Description                                                        |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the result. If the operation is successful, the **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video media.|
+| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the result. If the operation is successful, the **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                     |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Return by promise. |
 
 **Example**
 
@@ -277,7 +298,7 @@ For details about the audio playback demo, see [Audio Playback Development](../.
 | Name                           | Type                                                  | Readable| Writable| Description                                                        |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | src                             | string                                                 | Yes  | Yes  | Audio file URI. The mainstream audio formats (M4A, AAC, MPEG-3, OGG, and WAV) are supported.<br>**Examples of supported URI schemes**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.INTERNET|
-| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | Description of the audio file. This attribute is required when audio resources of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music resources consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>If the file is an independent music file, use **src=fd://xx**.<br>|
+| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | Description of the audio file. This attribute is required when audio resources of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music resources consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent music file, use **src=fd://xx**.<br>|
 | loop                            | boolean                                                | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode.                                              |
 | currentTime                     | number                                                 | Yes  | No  | Current audio playback position, in ms.                      |
@@ -338,7 +359,7 @@ audioPlayer.stop();
 
 reset(): void
 
-Switches the audio resource to be played.
+Resets the audio asset to be played.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -496,7 +517,7 @@ for (let i = 0; i < arrayDescription.length; i++) {
 
 on(type: 'bufferingUpdate', callback: (infoType: [BufferingInfoType](#bufferinginfotype8), value: number) => void): void
 
-Subscribes to the audio buffering update event. Only network playback supports this subscription.
+Subscribes to the audio buffering update event. This API works only under online playback.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -669,7 +690,7 @@ Describes audio and video file resources. It is used to specify a particular res
 
 ## VideoPlayer<sup>8+</sup>
 
-Provides APIs to manage and play video. Before calling an API of **VideoPlayer**, you must call [createVideoPlayer()](#mediacreatevideoplayer8) to create a [VideoPlayer](#videoplayer8) instance.
+Provides APIs to manage and play video. Before calling an API of **VideoPlayer**, you must use [createVideoPlayer()](#mediacreatevideoplayer8) to create a [VideoPlayer](#videoplayer8) instance.
 
 For details about the video playback demo, see [Video Playback Development](../../media/video-playback.md).
 
@@ -679,7 +700,7 @@ For details about the video playback demo, see [Video Playback Development](../.
 
 | Name                    | Type                              | Readable| Writable| Description                                                        |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>|
+| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>|
 | fdSrc<sup>9+</sup> | [AVFileDescriptor](#avfiledescriptor9) | Yes| Yes| Description of a video file. This attribute is required when video resources of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music resources consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>|
 | loop<sup>8+</sup>        | boolean                            | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
 | videoScaleType<sup>9+</sup>        | [VideoScaleType](#videoscaletype9)                   | Yes  | Yes  | Video scale type.      |
@@ -702,10 +723,10 @@ Sets **SurfaceId**. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name   | Type    | Mandatory| Description                     |
-| --------- | -------- | ---- | ------------------------- |
-| surfaceId | string   | Yes  | Surface ID to set.                |
-| callback  | function | Yes  | Callback used to return the result.|
+| Name   | Type                | Mandatory| Description                     |
+| --------- | -------------------- | ---- | ------------------------- |
+| surfaceId | string               | Yes  | Surface ID to set.                |
+| callback  | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -763,9 +784,9 @@ Prepares for video playback. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                    |
-| -------- | -------- | ---- | ------------------------ |
-| callback | function | Yes  | Callback used to return the result.|
+| Name  | Type                | Mandatory| Description                    |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -813,9 +834,9 @@ Starts to play video resources. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                    |
-| -------- | -------- | ---- | ------------------------ |
-| callback | function | Yes  | Callback used to return the result.|
+| Name  | Type                | Mandatory| Description                    |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -863,9 +884,9 @@ Pauses video playback. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                    |
-| -------- | -------- | ---- | ------------------------ |
-| callback | function | Yes  | Callback used to return the result.|
+| Name  | Type                | Mandatory| Description                    |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -913,9 +934,9 @@ Stops video playback. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                    |
-| -------- | -------- | ---- | ------------------------ |
-| callback | function | Yes  | Callback used to return the result.|
+| Name  | Type                | Mandatory| Description                    |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -957,15 +978,15 @@ videoPlayer.stop().then(() => {
 
 reset(callback: AsyncCallback\<void>): void
 
-Switches the video resource to be played. This API uses an asynchronous callback to return the result.
+Resets the video asset to be played. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                    |
-| -------- | -------- | ---- | ------------------------ |
-| callback | function | Yes  | Callback used to return the result.|
+| Name  | Type                | Mandatory| Description                    |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -983,7 +1004,7 @@ videoPlayer.reset((err) => {
 
 reset(): Promise\<void>
 
-Switches the video resource to be played. This API uses a promise to return the result.
+Resets the video asset to be played. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1013,10 +1034,10 @@ Seeks to the specified playback position. The next key frame at the specified po
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                                        |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| timeMs   | number   | Yes  | Position to seek to, in ms. The value range is [0, duration].|
-| callback | function | Yes  | Callback used to return the result.                              |
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| timeMs   | number                 | Yes  | Position to seek to, in ms. The value range is [0, duration].|
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result.                              |
 
 **Example**
 
@@ -1045,7 +1066,7 @@ Seeks to the specified playback position. This API uses an asynchronous callback
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | timeMs   | number                 | Yes  | Position to seek to, in ms. The value range is [0, duration].|
 | mode     | [SeekMode](#seekmode8) | Yes  | Seek mode.                                                  |
-| callback | function               | Yes  | Callback used to return the result.                              |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result.                              |
 
 **Example**
 
@@ -1080,7 +1101,7 @@ Seeks to the specified playback position. If **mode** is not specified, the next
 
 | Type          | Description                                       |
 | -------------- | ------------------------------------------- |
-| Promise\<number> | Promise used to return the playback position, in ms.|
+| Promise\<number>| Promise used to return the playback position, in ms.|
 
 **Example**
 
@@ -1110,10 +1131,10 @@ Sets the volume. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                                        |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| vol      | number   | Yes  | Relative volume. The value ranges from 0.00 to 1.00. The value **1** indicates the maximum volume (100%).|
-| callback | function | Yes  | Callback used to return the result.                                        |
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| vol      | number               | Yes  | Relative volume. The value ranges from 0.00 to 1.00. The value **1** indicates the maximum volume (100%).|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.                                        |
 
 **Example**
 
@@ -1169,9 +1190,9 @@ Releases the video playback resource. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                    |
-| -------- | -------- | ---- | ------------------------ |
-| callback | function | Yes  | Callback used to return the result.|
+| Name  | Type                | Mandatory| Description                    |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -1295,10 +1316,10 @@ Sets the video playback speed. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                                      |
-| -------- | -------- | ---- | ---------------------------------------------------------- |
-| speed    | number   | Yes  | Video playback speed. For details, see [PlaybackSpeed](#playbackspeed8).|
-| callback | function | Yes  | Callback used to return the result.                                  |
+| Name  | Type                  | Mandatory| Description                                                      |
+| -------- | ---------------------- | ---- | ---------------------------------------------------------- |
+| speed    | number                 | Yes  | Video playback speed. For details, see [PlaybackSpeed](#playbackspeed8).|
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result.                                  |
 
 **Example**
 
@@ -1333,7 +1354,7 @@ Sets the video playback speed. This API uses a promise to return the result.
 
 | Type            | Description                                                        |
 | ---------------- | ------------------------------------------------------------ |
-| Promise\<number> | Promise used to return playback speed. For details, see [PlaybackSpeed](#playbackspeed8).|
+| Promise\<number>| Promise used to return playback speed. For details, see [PlaybackSpeed](#playbackspeed8).|
 
 **Example**
 
@@ -1343,65 +1364,6 @@ let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 
 videoPlayer.setSpeed(speed).then(() => {
     console.info('setSpeed success');
-}).catch((error) => {
-   console.info(`video catchCallback, error:${error}`);
-});
-```
-
-### selectBitrate<sup>9+</sup>
-
-selectBitrate(bitrate:number, callback: AsyncCallback\<number>): void
-
-Selects a bit rate from available ones, which can be obtained by calling [availableBitratesCollect](#onavailablebitratescollect9). This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
-
-**Parameters**
-
-| Name  | Type                  | Mandatory| Description                                                      |
-| -------- | ---------------------- | ---- | ---------------------------------------------------------- |
-| bitrate  | number                 | Yes  | Bit rate to select, which is used in the HLS multi-bit rate scenario. The unit is bit/s.              |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the set value is returned, the operation is successful; otherwise, the operation fails.|
-
-**Example**
-
-```js
-let bitrate = 1024000;
-videoPlayer.selectBitrate(bitrate, (err, result) => {
-    if (err == null) {
-        console.info('selectBitrate success!');
-    } else {
-        console.info('selectBitrate fail!');
-    }
-});
-```
-
-### selectBitrate<sup>9+</sup>
-
-selectBitrate(bitrate:number): Promise\<number>
-
-Selects a bit rate from available ones, which can be obtained by calling [availableBitratesCollect](#onavailablebitratescollect9). This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
-
-**Parameters**
-
-| Name | Type  | Mandatory| Description                                        |
-| ------- | ------ | ---- | -------------------------------------------- |
-| bitrate | number | Yes  | Bit rate, which is used in the HLS multi-bit rate scenario. The unit is bit/s.|
-
-**Return value**
-
-| Type            | Description                       |
-| ---------------- | --------------------------- |
-| Promise\<number> | Promise used to return the bit rate.|
-
-**Example**
-
-```js
-let bitrate = 1024000;
-videoPlayer.selectBitrate(bitrate).then(() => {
-    console.info('selectBitrate success');
 }).catch((error) => {
    console.info(`video catchCallback, error:${error}`);
 });
@@ -1596,7 +1558,7 @@ Enumerates the video scale modes.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
-| Name                        | Default Value| Description      |
+| Name                        | Value| Description    |
 | ---------------------------- | ------ | ---------- |
 | VIDEO_SCALE_TYPE_FIT     | 0      | The video will be stretched to fit the window.|
 | VIDEO_SCALE_TYPE_FIT_CROP| 1      | The video will be stretched to fit the window, without changing its aspect ratio. The content may be cropped.    |
@@ -1630,7 +1592,7 @@ audioPlayer.getTrackDescription((error, arrList) => {
 
 ## AudioRecorder
 
-Implements audio recording. Before calling an API of **AudioRecorder**, you must call [createAudioRecorder()](#mediacreateaudiorecorder) to create an [AudioRecorder](#audiorecorder) instance.
+Implements audio recording. Before calling an API of **AudioRecorder**, you must use [createAudioRecorder()](#mediacreateaudiorecorder) to create an [AudioRecorder](#audiorecorder) instance.
 
 For details about the audio recording demo, see [Audio Recording Development](../../media/audio-recorder.md).
 
@@ -1890,13 +1852,13 @@ Enumerates the audio encoding formats.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
-| Name   | Default Value| Description                                                        |
-| ------- | ------ | ------------------------------------------------------------ |
-| DEFAULT | 0      | Default encoding format.<br>This API is defined but not implemented yet.|
-| AMR_NB  | 1      | AMR-NB.<br>This API is defined but not implemented yet.|
-| AMR_WB  | 2      | Adaptive Multi Rate-Wide Band Speech Codec (AMR-WB).<br>This API is defined but not implemented yet.|
-| AAC_LC  | 3      | Advanced Audio Coding Low Complexity (AAC-LC).|
-| HE_AAC  | 4      | High-Efficiency Advanced Audio Coding (HE_AAC).<br>This API is defined but not implemented yet.|
+| Name   | Value  | Description                                                        |
+| ------- | ---- | ------------------------------------------------------------ |
+| DEFAULT | 0    | Default encoding format.<br>This API is defined but not implemented yet.             |
+| AMR_NB  | 1    | AMR-NB.<br>This API is defined but not implemented yet.|
+| AMR_WB  | 2    | Adaptive Multi Rate-Wide Band Speech Codec (AMR-WB).<br>This API is defined but not implemented yet.|
+| AAC_LC  | 3    | Advanced Audio Coding Low Complexity (AAC-LC).|
+| HE_AAC  | 4    | High-Efficiency Advanced Audio Coding (HE_AAC).<br>This API is defined but not implemented yet.|
 
 
 ## AudioOutputFormat<sup>(deprecated)</sup>
@@ -1908,13 +1870,13 @@ Enumerates the audio output formats.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
-| Name    | Default Value| Description                                                        |
-| -------- | ------ | ------------------------------------------------------------ |
-| DEFAULT  | 0      | Default encapsulation format.<br>This API is defined but not implemented yet.|
-| MPEG_4   | 2      | MPEG-4.                                          |
-| AMR_NB   | 3      | AMR_NB.<br>This API is defined but not implemented yet.|
-| AMR_WB   | 4      | AMR_WB.<br>This API is defined but not implemented yet.|
-| AAC_ADTS | 6      | Audio Data Transport Stream (ADTS), which is a transport stream format of AAC-based audio.|
+| Name    | Value  | Description                                                        |
+| -------- | ---- | ------------------------------------------------------------ |
+| DEFAULT  | 0    | Default encapsulation format.<br>This API is defined but not implemented yet.             |
+| MPEG_4   | 2    | MPEG-4.                                          |
+| AMR_NB   | 3    | AMR_NB.<br>This API is defined but not implemented yet.         |
+| AMR_WB   | 4    | AMR_WB.<br>This API is defined but not implemented yet.         |
+| AAC_ADTS | 6    | Audio Data Transport Stream (ADTS), which is a transport stream format of AAC-based audio.|
 
 ## VideoRecorder<sup>9+</sup>
 
@@ -1925,6 +1887,8 @@ For details about the video recording demo, see [Video Recording Development](..
 ### Attributes
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+
+**System API**: This is a system API.
 
 | Name              | Type                                  | Readable| Writable| Description            |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
@@ -1940,12 +1904,25 @@ Sets video recording parameters. This API uses an asynchronous callback to retur
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name  | Type                                        | Mandatory| Description                               |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
 | config   | [VideoRecorderConfig](#videorecorderconfig9) | Yes  | Video recording parameters to set.           |
 | callback | AsyncCallback\<void>                         | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 201      | Permission denied. Return by callback.  |
+| 401      | Parameter error. Return by callback.    |
+| 5400102  | Operate not permit. Return by callback. |
+| 5400105  | Service died. Return by callback.       |
 
 **Example**
 
@@ -1992,6 +1969,8 @@ Sets video recording parameters. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name| Type                                        | Mandatory| Description                    |
@@ -2003,6 +1982,17 @@ Sets video recording parameters. This API uses a promise to return the result.
 | Type          | Description                                    |
 | -------------- | ---------------------------------------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 201      | Permission denied. Return by promise.  |
+| 401      | Parameter error. Return by promise.    |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
 
 **Example**
 
@@ -2049,11 +2039,23 @@ This API can be called only after [prepare()](#videorecorder_prepare1) is called
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
 | callback | AsyncCallback\<string> | Yes  | Callback used to obtain the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 5400102  | Operate not permit. Return by callback. |
+| 5400103  | IO error. Return by callback.           |
+| 5400105  | Service died. Return by callback.       |
 
 **Example**
 
@@ -2082,11 +2084,23 @@ This API can be called only after [prepare()](#videorecorder_prepare1) is called
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
 | Promise\<string> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
 
 **Example**
 
@@ -2111,11 +2125,23 @@ This API can be called only after [prepare()](#videorecorder_prepare1) and [getI
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 5400102  | Operate not permit. Return by callback. |
+| 5400103  | IO error. Return by callback.           |
+| 5400105  | Service died. Return by callback.       |
 
 **Example**
 
@@ -2140,11 +2166,23 @@ This API can be called only after [prepare()](#videorecorder_prepare1) and [getI
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type          | Description                                 |
 | -------------- | ------------------------------------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
 
 **Example**
 
@@ -2167,11 +2205,23 @@ This API can be called only after [start()](#videorecorder_start1) is called. Yo
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 5400102  | Operate not permit. Return by callback. |
+| 5400103  | IO error. Return by callback.           |
+| 5400105  | Service died. Return by callback.       |
 
 **Example**
 
@@ -2196,11 +2246,23 @@ This API can be called only after [start()](#videorecorder_start1) is called. Yo
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type          | Description                                 |
 | -------------- | ------------------------------------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
 
 **Example**
 
@@ -2221,11 +2283,23 @@ Resumes video recording. This API uses an asynchronous callback to return the re
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 5400102  | Operate not permit. Return by callback. |
+| 5400103  | IO error. Return by callback.           |
+| 5400105  | Service died. Return by callback.       |
 
 **Example**
 
@@ -2248,11 +2322,23 @@ Resumes video recording. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type          | Description                                 |
 | -------------- | ------------------------------------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
 
 **Example**
 
@@ -2275,11 +2361,23 @@ To start another recording, you must call [prepare()](#videorecorder_prepare1) a
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 5400102  | Operate not permit. Return by callback. |
+| 5400103  | IO error. Return by callback.           |
+| 5400105  | Service died. Return by callback.       |
 
 **Example**
 
@@ -2304,11 +2402,23 @@ To start another recording, you must call [prepare()](#videorecorder_prepare1) a
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type          | Description                                 |
 | -------------- | ------------------------------------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
 
 **Example**
 
@@ -2329,11 +2439,21 @@ Releases the video recording resource. This API uses an asynchronous callback to
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name  | Type                | Mandatory| Description                            |
 | -------- | -------------------- | ---- | -------------------------------- |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                         |
+| -------- | --------------------------------- |
+| 5400105  | Service died. Return by callback. |
 
 **Example**
 
@@ -2356,11 +2476,21 @@ Releases the video recording resource. This API uses a promise to return the res
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type          | Description                                     |
 | -------------- | ----------------------------------------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                         |
+| -------- | --------------------------------- |
+| 5400105  | Service died. Return by callback. |
 
 **Example**
 
@@ -2383,11 +2513,22 @@ To start another recording, you must call [prepare()](#videorecorder_prepare1) a
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                         |
+| -------- | --------------------------------- |
+| 5400103  | IO error. Return by callback.     |
+| 5400105  | Service died. Return by callback. |
 
 **Example**
 
@@ -2412,11 +2553,22 @@ To start another recording, you must call [prepare()](#videorecorder_prepare1) a
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type          | Description                                 |
 | -------------- | ------------------------------------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
 
 **Example**
 
@@ -2444,6 +2596,15 @@ Subscribes to video recording error events. After an error event is reported, yo
 | type     | string        | Yes  | Event type, which is **'error'** in this case.<br>The **'error'** event is triggered when an error occurs during video recording.|
 | callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.                                      |
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                         |
+| -------- | --------------------------------- |
+| 5400103  | IO error. Return by callback.     |
+| 5400105  | Service died. Return by callback. |
+
 **Example**
 
 ```js
@@ -2458,6 +2619,8 @@ videoRecorder.on('error', (error) => {                                  // Set t
 Enumerates the video recording states. You can obtain the state through the **state** attribute.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+
+**System API**: This is a system API.
 
 | Name    | Type  | Description                  |
 | -------- | ------ | ---------------------- |
@@ -2474,7 +2637,9 @@ Describes the video recording parameters.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
-| Name           | Type                                      | Mandatory| Description                                                        |
+**System API**: This is a system API.
+
+| Name           | Type                                          | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
 | audioSourceType | [AudioSourceType](#audiosourcetype9)           | Yes  | Type of the audio source for video recording.                                      |
 | videoSourceType | [VideoSourceType](#videosourcetype9)           | Yes  | Type of the video source for video recording.                                      |
@@ -2489,6 +2654,8 @@ Enumerates the audio source types for video recording.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 | Name                     | Value  | Description                  |
 | ------------------------- | ---- | ---------------------- |
 | AUDIO_SOURCE_TYPE_DEFAULT | 0    | Default audio input source.|
@@ -2499,6 +2666,8 @@ Enumerates the audio source types for video recording.
 Enumerates the video source types for video recording.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+
+**System API**: This is a system API.
 
 | Name                         | Value  | Description                           |
 | ----------------------------- | ---- | ------------------------------- |
@@ -2511,7 +2680,9 @@ Describes the video recording profile.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
-| Name            | Type                                    | Mandatory| Description            |
+**System API**: This is a system API.
+
+| Name            | Type                                        | Mandatory| Description            |
 | ---------------- | -------------------------------------------- | ---- | ---------------- |
 | audioBitrate     | number                                       | Yes  | Audio encoding bit rate.|
 | audioChannels    | number                                       | Yes  | Number of audio channels.|
@@ -2541,7 +2712,7 @@ Describes the geographical location of the recorded video.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
-| Name     | Type| Mandatory| Description            |
-| --------- | -------- | ---- | ---------------- |
-| latitude  | number   | Yes  | Latitude of the geographical location.|
-| longitude | number   | Yes  | Longitude of the geographical location.|
+| Name     | Type  | Mandatory| Description            |
+| --------- | ------ | ---- | ---------------- |
+| latitude  | number | Yes  | Latitude of the geographical location.|
+| longitude | number | Yes  | Longitude of the geographical location.|

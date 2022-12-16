@@ -1,11 +1,10 @@
-# Configuration
+# @ohos.application.Configuration
 
 The **Configuration** module defines environment change information.
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> This module is deprecated since API version 9. You are advised to use [@ohos.application.Configuration](js-apis-app-ability-configuration.md) instead.
+> This module is deprecated since API version 9. You are advised to use [@ohos.app.ability.Configuration](js-apis-app-ability-configuration.md) instead.
 
 ## Modules to Import
 
@@ -15,7 +14,7 @@ import Configuration from '@ohos.application.Configuration'
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name| Type| Readable| Writable| Description|
+  | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | language<sup>8+</sup> | string | Yes| Yes| Language of the application.|
 | colorMode<sup>8+</sup> | [ColorMode](js-apis-application-configurationConstant.md#configurationconstantcolormode) | Yes| Yes| Color mode, which can be **COLOR_MODE_LIGHT** or **COLOR_MODE_DARK**. The default value is **COLOR_MODE_LIGHT**.|
@@ -68,5 +67,3 @@ export default class MainAbility extends Ability {
     }
 }
   ```
-
- <!--no_check--> 

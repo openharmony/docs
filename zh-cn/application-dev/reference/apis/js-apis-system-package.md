@@ -1,4 +1,4 @@
-# 应用管理
+# @system.package (应用管理)
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**

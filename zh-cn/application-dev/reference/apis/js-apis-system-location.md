@@ -1,9 +1,8 @@
-# 地理位置
+# @system.geolocation (地理位置)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.geolocation`](js-apis-geolocation.md)。
-> 
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 从API Version 9开始，该接口不再维护，推荐使用新接口[geoLocationManager](js-apis-geoLocationManager.md)。
 
 
 ## 导入模块
@@ -19,11 +18,14 @@ import geolocation from '@system.geolocation';
 ohos.permission.LOCATION
 
 
-## geolocation.getLocation
+## geolocation.getLocation<sup>(deprecated) </sup>
 
 getLocation(Object): void
 
 获取设备的地理位置。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation)替代。
 
 **系统能力：** SystemCapability.Location.Location.Lite
 
@@ -75,11 +77,14 @@ export default {
 ```
 
 
-## geolocation.getLocationType
+## geolocation.getLocationType<sup>(deprecated) </sup>
 
 getLocationType(Object): void
 
 获取当前设备支持的定位类型。
+
+> **说明：**<br/>
+> 从API version 9开始废弃。
 
 **系统能力：** SystemCapability.Location.Location.Lite
 
@@ -115,11 +120,14 @@ export default {
 ```
 
 
-## geolocation.subscribe
+## geolocation.subscribe<sup>(deprecated) </sup>
 
 subscribe(Object): void
 
 订阅设备的地理位置信息。多次调用的话，只有最后一次的调用生效。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.on('locationChange')](js-apis-geoLocationManager.md#geolocationmanageronlocationchange)替代。
 
 **系统能力：** SystemCapability.Location.Location.Lite
 
@@ -167,11 +175,14 @@ export default {
 ```
 
 
-## geolocation.unsubscribe
+## geolocation.unsubscribe<sup>(deprecated) </sup>
 
 unsubscribe(): void
 
 取消订阅设备的地理位置信息。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.off('locationChange')](js-apis-geoLocationManager.md#geolocationmanagerofflocationchange)替代。
 
 **系统能力：** SystemCapability.Location.Location.Lite
 
@@ -186,11 +197,14 @@ export default {
 ```
 
 
-## geolocation.getSupportedCoordTypes
+## geolocation.getSupportedCoordTypes<sup>(deprecated) </sup>
 
 getSupportedCoordTypes(): Array&lt;string&gt;
 
 获取设备支持的坐标系类型。
+
+> **说明：**<br/>
+> 从API version 9开始废弃。
 
 **系统能力：** SystemCapability.Location.Location.Lite
 

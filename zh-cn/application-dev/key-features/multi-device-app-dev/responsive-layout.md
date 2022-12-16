@@ -45,7 +45,7 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
 
 通过窗口对象监听断点变化的核心是获取窗口对象及注册窗口尺寸变化的回调函数。
 
-1. 在Ability的[onWindowStageCreate](../../ability/stage-ability.md)生命周期回调中，获取并记录[窗口](../../reference/apis/js-apis-window.md)对象。
+1. 在Ability的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，获取并记录[窗口](../../reference/apis/js-apis-window.md)对象。
    
    ```
    // MainAbility.ts

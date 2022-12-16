@@ -2,9 +2,9 @@
 
 The **inputMethod** module provides an input method framework, which can be used to hide the keyboard, obtain the list of installed input methods, display the dialog box for input method selection, and more.
 
->  **NOTE**
+>**NOTE**
 >
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -13,16 +13,15 @@ The **inputMethod** module provides an input method framework, which can be used
 import inputMethod from '@ohos.inputmethod';
 ```
 
-## inputMethod<sup>8+</sup>
+## Constants<sup>8+</sup>
 
 Provides the constants.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| MAX_TYPE_NUM | number | Yes| No| Maximum number of supported input methods.|
-
+| Name| Type| Value| Description|
+| -------- | -------- | -------- | -------- |
+| MAX_TYPE_NUM | number | 128 | Maximum number of supported input methods.|
 
 ## InputMethodProperty<sup>8+</sup>
 
@@ -32,12 +31,18 @@ Describes the input method application attributes.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| packageName | string | Yes| No| Package name.|
-| methodId | string | Yes| No| Ability name.|
+| name<sup>9+</sup>  | string | Yes| No| Internal name of the input method.|
+| id<sup>9+</sup>    | string | Yes| No| Unique ID of the input method.|
+| label<sup>9+</sup>    | string | Yes| No| External display name of the input method.|
+| icon<sup>9+</sup>    | string | Yes| No| Icon of the input method.|
+| iconId<sup>9+</sup>    | number | Yes| No| Icon ID of the input method.|
+| extra<sup>9+</sup>    | object | Yes| No| Extra information about the input method.|
+| packageName<sup>(deprecated)</sup> | string | Yes| No| Name of the input method package.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **name**.|
+| methodId<sup>(deprecated)</sup> | string | Yes| No| Unique ID of the input method.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **id**.|
 
-## inputMethod.getInputMethodController
+## inputMethod.getController<sup>9+</sup>
 
-getInputMethodController(): InputMethodController
+getController(): InputMethodController
 
 Obtains an **[InputMethodController](#inputmethodcontroller)** instance.
 
@@ -49,15 +54,23 @@ Obtains an **[InputMethodController](#inputmethodcontroller)** instance.
 | ----------------------------------------------- | ------------------------ |
 | [InputMethodController](#inputmethodcontroller) | Current **InputMethodController** instance.|
 
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                    |
+| -------- | ------------------------------ |
+| 12800006 | Input method controller error. |
+
 **Example**
 
 ```js
-  var InputMethodController = inputMethod.getInputMethodController();
+let inputMethodController = inputMethod.getController();
 ```
 
-## inputMethod.getInputMethodSetting<sup>8+</sup>
+## inputMethod.getSetting<sup>9+</sup>
 
-getInputMethodSetting(): InputMethodSetting
+getSetting(): InputMethodSetting
 
 Obtains an **[InputMethodSetting](#inputmethodsetting8)** instance.
 
@@ -69,17 +82,27 @@ Obtains an **[InputMethodSetting](#inputmethodsetting8)** instance.
 | ----------------------------------------- | ---------------------------- |
 | [InputMethodSetting](#inputmethodsetting8) | Current **InputMethodSetting** instance.|
 
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800007 | Input method settings extension error. |
 
 **Example**
 
 ```js
-  var InputMethodSetting = inputMethod.getInputMethodSetting();
+let inputMethodSetting = inputMethod.getSetting();
 ```
+
 ## inputMethod.switchInputMethod<sup>9+</sup>
 
 switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolean&gt;): void
 
-Switches to another input method. This API can be used only in the stage model. It uses an asynchronous callback to return the result. If the required two parameters are not passed in, an exception is thrown.
+Switches to another input method. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -87,29 +110,43 @@ Switches to another input method. This API can be used only in the stage model. 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-|target | [InputmethodProperty](#inputmethodproperty8) | Yes| Input method to switch to.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the execution result.|
+| target | [InputMethodProperty](#inputmethodproperty8) | Yes| Input method to switch to.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
 
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800005 | Configuration persisting error.        |
+| 12800008 | Input method settings extension error. |
 
 **Example**
 
 ```js
-inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard'} ,(err,result) => {
-    if (err) {
-        console.error('switchInputMethod err: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Success to switchInputMethod.(callback)');
-    } else {
-        console.error('Failed to switchInputMethod.(callback)');
-    }
-});
+try{
+    inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard', extra: {}}, (err, result) => {
+        if (err) {
+            console.error('switchInputMethod err: ' + JSON.stringify(err));
+            return;
+        }
+        if (result) {
+            console.info('Success to switchInputMethod.(callback)');
+        } else {
+            console.error('Failed to switchInputMethod.(callback)');
+        }
+    });
+} catch(err) {
+    console.error('switchInputMethod err: ' + JSON.stringify(err));
+}
 ```
 ## inputMethod.switchInputMethod<sup>9+</sup>
 switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
-Switches to another input method. This API can be used only in the stage model. It uses a promise to return the result. If the required parameter is not passed in, an exception is thrown.
+Switches to another input method. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -117,28 +154,41 @@ Switches to another input method. This API can be used only in the stage model. 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-|target |  [InputmethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
+|target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
 
 **Return value**
 
 | Type                                     | Description                        |
 | ----------------------------------------- | ---------------------------- |
-| Promise\<boolean> | Promise used to return the execution result.|
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800005 | Configuration persisting error.        |
+| 12800008 | Input method settings extension error. |
 
 **Example**
 
-
 ```js
-inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard'}).then((result) => {
-    if (result) {
-        console.info('Success to switchInputMethod.(promise)');
-    } else {
-        console.error('Failed to switchInputMethod.(promise)');
-    }
-}).catch((err) => {
-    console.error('switchInputMethod promise err: ' + err);
-})
+try {
+    inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard', extra: {}}).then((result) => {
+        if (result) {
+            console.info('Success to switchInputMethod.');
+        } else {
+            console.error('Failed to switchInputMethod.');
+        }
+    }).catch((err) => {
+        console.error('switchInputMethod err: ' + JSON.stringify(err));
+    })
+} catch(err) {
+    console.error('switchInputMethod err: ' + JSON.stringify(err));
+}
 ```
+
 ## inputMethod.getCurrentInputMethod<sup>9+</sup>
 
 getCurrentInputMethod(): InputMethodProperty
@@ -151,24 +201,21 @@ Obtains the current input method. This API synchronously returns the **Inputmeth
 
 | Type                                        | Description                    |
 | -------------------------------------------- | ------------------------ |
-| [InputmethodProperty](#inputmethodproperty8) | **InputmethodProperty** instance of the current input method.|
+| [InputMethodProperty](#inputmethodproperty8) | **InputmethodProperty** instance of the current input method.|
 
 **Example**
 
-
 ```js
-var currentIme = inputMethod.getCurrentInputMethod();
+let currentIme = inputMethod.getCurrentInputMethod();
 ```
 
-## InputMethodController
+## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
 
-In the following API examples, you must first use **[getInputMethodController](#inputmethodgetinputmethodcontroller)** to obtain an **InputMethodController** instance, and then call the APIs using the obtained instance.
+switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
 
-### stopInput
+Switches to another subtype of the current input method. This API uses an asynchronous callback to return the result.
 
-stopInput(callback: AsyncCallback&lt;boolean&gt;): void
-
-Hides the keyboard. This API uses an asynchronous callback to return the result. If the required parameter is not passed in, an exception is thrown.
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -176,12 +223,560 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the keyboard is successfully hidden.|
+| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Input method subtype to switch to.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800005 | Configuration persisting error.        |
+| 12800008 | Input method settings extension error. |
 
 **Example**
 
 ```js
-InputMethodController.stopInput((error, result) => {
+let inputMethodSubtype = {
+    id: "com.example.kikakeyboard",
+    label: "ServiceExtAbility",
+    name: "",
+    mode: "upper",
+    locale: "",
+    language: "",
+    icon: "",
+    iconId: 0,
+    extra: {}
+}
+try {
+    inputMethod.switchCurrentInputMethodSubtype(inputMethodSubtype, (err, result) => {
+        if (err) {
+            console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+            return;
+        }
+        if (result) {
+            console.info('Success to switchCurrentInputMethodSubtype.(callback)');
+        } else {
+            console.error('Failed to switchCurrentInputMethodSubtype.(callback)');
+        }
+    });
+} catch(err) {
+    console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+}
+```
+
+## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
+
+switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&gt;
+
+Switches to another subtype of the current input method. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Input method subtype to switch to.|
+
+**Return value**
+
+| Type                                     | Description                        |
+| ----------------------------------------- | ---------------------------- |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800005 | Configuration persisting error.        |
+| 12800008 | Input method settings extension error. |
+
+**Example**
+
+```js
+let inputMethodSubtype = {
+    id: "com.example.kikakeyboard",
+    label: "ServiceExtAbility",
+    name: "",
+    mode: "upper",
+    locale: "",
+    language: "",
+    icon: "",
+    iconId: 0,
+    extra: {}
+}
+try {
+    inputMethod.switchCurrentInputMethodSubtype(inputMethodSubtype).then((result) => {
+        if (result) {
+            console.info('Success to switchCurrentInputMethodSubtype.');
+        } else {
+            console.error('Failed to switchCurrentInputMethodSubtype.');
+        }
+    }).catch((err) => {
+        console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+    })
+} catch(err) {
+    console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+}
+```
+
+## inputMethod.getCurrentInputMethodSubtype<sup>9+</sup>
+
+getCurrentInputMethodSubtype(): InputMethodSubtype
+
+Obtains the current input method subtype.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                                        | Description                    |
+| -------------------------------------------- | ------------------------ |
+| [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype) | Current input method subtype.|
+
+**Example**
+
+```js
+let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
+```
+
+## inputMethod.switchCurrentInputMethodAndSubtype<sup>9+</sup>
+
+switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
+
+Switches to a specified subtype of a specified input method. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+|inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Input method subtype to switch to.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800005 | Configuration persisting error.        |
+| 12800008 | Input method settings extension error. |
+
+**Example**
+
+```js
+let inputMethodProperty = {
+    packageName: "com.example.kikakeyboard",
+    methodId: "ServiceExtAbility",
+    extra: {}
+}
+let inputMethodSubProperty = {
+    id: "com.example.kikakeyboard",
+    label: "ServiceExtAbility",
+    name: "",
+    mode: "upper",
+    locale: "",
+    language: "",
+    icon: "",
+    iconId: 0,
+    extra: {}
+}
+try {
+    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, inputMethodSubProperty, (err,result) => {
+        if (err) {
+            console.error('switchCurrentInputMethodAndSubtype err: ' + JSON.stringify(err));
+            return;
+        }
+        if (result) {
+            console.info('Success to switchCurrentInputMethodAndSubtype.(callback)');
+        } else {
+            console.error('Failed to switchCurrentInputMethodAndSubtype.(callback)');
+        }
+    });
+} catch (err) {
+    console.error('switchCurrentInputMethodAndSubtype err: ' + JSON.stringify(err));
+}
+```
+
+## inputMethod.switchCurrentInputMethodAndSubtype<sup>9+</sup>
+
+switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype): Promise&lt;boolean&gt;
+
+Switches to a specified subtype of a specified input method. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+|inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Input method subtype to switch to.|
+
+**Return value**
+
+| Type                                     | Description                        |
+| ----------------------------------------- | ---------------------------- |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800005 | Configuration persisting error.        |
+| 12800008 | Input method settings extension error. |
+
+**Example**
+
+```js
+let inputMethodProperty = {
+    packageName: "com.example.kikakeyboard",
+    methodId: "ServiceExtAbility",
+    extra: {}
+}
+let inputMethodSubProperty = {
+    id: "com.example.kikakeyboard",
+    label: "ServiceExtAbility",
+    name: "",
+    mode: "upper",
+    locale: "",
+    language: "",
+    icon: "",
+    iconId: 0,
+    extra: {}
+}
+try {
+    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, inputMethodSubProperty).then((result) => {
+        if (result) {
+            console.info('Success to switchCurrentInputMethodAndSubtype.');
+        } else {
+            console.error('Failed to switchCurrentInputMethodAndSubtype.');
+        }
+    }).catch((err) => {
+        console.error('switchCurrentInputMethodAndSubtype err: ' + err);
+    })
+} catch(err) {
+    console.error('switchCurrentInputMethodAndSubtype err: ' + err);
+}
+```
+
+## inputMethod.getInputMethodController<sup>(deprecated)</sup>
+
+getInputMethodController(): InputMethodController
+
+Obtains an **[InputMethodController](#inputmethodcontroller)** instance.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getController()](#inputmethodgetcontroller9).
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                                           | Description                    |
+| ----------------------------------------------- | ------------------------ |
+| [InputMethodController](#inputmethodcontroller) | Current **InputMethodController** instance.|
+
+**Example**
+
+```js
+let inputMethodController = inputMethod.getInputMethodController();
+```
+
+## inputMethod.getInputMethodSetting<sup>(deprecated)</sup>
+
+getInputMethodSetting(): InputMethodSetting
+
+Obtains an **[InputMethodSetting](#inputmethodsetting8)** instance.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getSetting()](#inputmethodgetsetting9).
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                                     | Description                        |
+| ----------------------------------------- | ---------------------------- |
+| [InputMethodSetting](#inputmethodsetting8) | Current **InputMethodSetting** instance.|
+
+**Example**
+
+```js
+let inputMethodSetting = inputMethod.getInputMethodSetting();
+```
+
+## InputMethodController
+
+In the following API examples, you must first use [getController](#inputmethodgetcontroller9) to obtain an **InputMethodController** instance, and then call the APIs using the obtained instance.
+
+### stopInputSession<sup>9+</sup>
+
+stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
+
+Ends this input session. The invoking of this API takes effect only after the input session is enabled by clicking the text box. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800003 | Input method client error.             |
+| 12800008 | Input method settings extension error. |
+
+**Example**
+
+```js
+try {
+    inputMethodController.stopInputSession((error, result) => {
+        if (error) {
+            console.error('stopInputSession err: ' + JSON.stringify(error));
+            return;
+        }
+        if (result) {
+            console.info('Success to stopInputSession.(callback)');
+        } else {
+            console.error('Failed to stopInputSession.(callback)');
+        }
+    });
+} catch(error) {
+    console.error('stopInputSession err: ' + JSON.stringify(error));
+}
+```
+
+### stopInputSession<sup>9+</sup>
+
+stopInputSession(): Promise&lt;boolean&gt;
+
+Ends this input session. The invoking of this API takes effect only after the input session is enabled by clicking the text box. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the ending is successful, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800003 | Input method client error.             |
+| 12800008 | Input method settings extension error. |
+
+**Example**
+
+```js
+try {
+    inputMethodController.stopInputSession().then((result) => {
+        if (result) {
+            console.info('Success to stopInputSession.');
+        } else {
+            console.error('Failed to stopInputSession.');
+        }
+    }).catch((err) => {
+        console.error('stopInputSession err: ' + JSON.stringify(err));
+    })
+} catch(err) {
+    console.error('stopInputSession err: ' + JSON.stringify(err));
+}
+```
+
+### showSoftKeyboard<sup>9+</sup>
+
+showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
+
+Shows this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800003 | Input method client error.             |
+| 12800008 | Input method settings extension error. |
+
+**Example**
+
+```js
+inputMethodController.showSoftKeyboard((err) => {
+    if (err === undefined) {
+        console.info('showSoftKeyboard success');
+    } else {
+        console.error('showSoftKeyboard failed because : ' + JSON.stringify(err));
+    }
+})
+```
+
+### showSoftKeyboard<sup>9+</sup>
+
+showSoftKeyboard(): Promise&lt;void&gt;
+
+Shows this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800003 | Input method client error.             |
+| 12800008 | Input method settings extension error. |
+
+**Example**
+
+```js
+inputMethodController.showSoftKeyboard().then(async (err) => {
+    console.log('showSoftKeyboard success');
+}).catch((err) => {
+    console.error('showSoftKeyboard err: ' + JSON.stringify(err));
+});
+```
+
+### hideSoftKeyboard<sup>9+</sup>
+
+hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
+
+Hides this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800003 | Input method client error.             |
+| 12800008 | Input method settings extension error. |
+
+**Example**
+
+```js
+inputMethodController.hideSoftKeyboard((err) => {
+    if (err === undefined) {
+        console.info('hideSoftKeyboard success');
+    } else {
+        console.error('hideSoftKeyboard failed because : ' + JSON.stringify(err));
+    }
+})
+```
+
+### hideSoftKeyboard<sup>9+</sup>
+
+hideSoftKeyboard(): Promise&lt;void&gt;
+
+Hides this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800003 | Input method client error.             |
+| 12800008 | Input method settings extension error. |
+
+**Example**
+
+```js
+inputMethodController.hideSoftKeyboard().then(async (err) => {
+    console.log('hideSoftKeyboard success');
+}).catch((err) => {
+    console.error('hideSoftKeyboard err: ' + JSON.stringify(err));
+});
+```
+
+### stopInput<sup>(deprecated)</sup>
+
+stopInput(callback: AsyncCallback&lt;boolean&gt;): void
+
+Ends this input session. The invoking of this API takes effect only after the input session is enabled by clicking the text box. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [stopInputSession()](#stopinputsession9).
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+
+**Example**
+
+```js
+inputMethodController.stopInput((error, result) => {
     if (error) {
         console.error('failed to stopInput because: ' + JSON.stringify(error));
         return;
@@ -194,11 +789,15 @@ InputMethodController.stopInput((error, result) => {
 });
 ```
 
-### stopInput
+### stopInput<sup>(deprecated)</sup>
 
 stopInput(): Promise&lt;boolean&gt;
 
-Hides the keyboard. This API uses a promise to return the result. If any parameter is passed in, an exception is thrown.
+Ends this input session. The invoking of this API takes effect only after the input session is enabled by clicking the text box. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [stopInputSession()](#stopinputsession9).
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -206,134 +805,244 @@ Hides the keyboard. This API uses a promise to return the result. If any paramet
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return whether the keyboard is successfully hidden.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the hiding is successful, and **false** means the opposite.|
 
 **Example**
 
-
 ```js
-InputMethodController.stopInput().then((result) => {
+inputMethodController.stopInput().then((result) => {
     if (result) {
-        console.info('Success to stopInput.(promise)');
+        console.info('Success to stopInput.');
     } else {
-        console.error('Failed to stopInput.(promise)');
+        console.error('Failed to stopInput.');
     }
 }).catch((err) => {
-    console.error('stopInput promise err: ' + err);
+    console.error('stopInput err: ' + err);
 })
-```
-
-### showSoftKeyboard<sup>9+</sup> ###
-
-showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
-
-Shows this soft keyboard. This API uses an asynchronous callback to return the result. If the required parameter is not passed in, an exception is thrown.
-
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
-
-**Parameters**
-
-| Name  | Type                 | Mandatory| Description      |
-| -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.|
-
-**Example**
-
-```js
-InputMethodController.showSoftKeyboard((err) => {
-    if (err === undefined) {
-        console.info('showSoftKeyboard success');
-    } else {
-        console.error('showSoftKeyboard failed because : ' + JSON.stringify(err));
-    }
-})
-```
-
-
-### showSoftKeyboard<sup>9+</sup> ###
-
-showSoftKeyboard(): Promise&lt;void&gt;
-
-Shows this soft keyboard. This API uses a promise to return the result. If any parameter is passed in, an exception is thrown.
-
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
-
-**Return value**
-
-| Type               | Description                     |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Example**
-
-```js
-InputMethodController.showSoftKeyboard().then(async (err) => {
-    console.log('showSoftKeyboard success');
-}).catch((err) => {
-    console.error('showSoftKeyboard promise err: ' + JSON.stringify(err));
-});
-```
-
-### hideSoftKeyboard<sup>9+</sup> ###
-
-hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
-
-Hides this soft keyboard. This API uses an asynchronous callback to return the result. If the required parameter is not passed in, an exception is thrown.
-
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
-
-**Parameters**
-
-| Name  | Type                 | Mandatory| Description      |
-| -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.|
-
-**Example**
-
-```js
-InputMethodController.hideSoftKeyboard((err) => {
-    if (err === undefined) {
-        console.info('hideSoftKeyboard success');
-    } else {
-        console.error('hideSoftKeyboard failed because : ' + JSON.stringify(err));
-    }
-})
-```
-
-
-### hideSoftKeyboard<sup>9+</sup> ###
-
-hideSoftKeyboard(): Promise&lt;void&gt;
-
-Hides this soft keyboard. This API uses a promise to return the result. If any parameter is passed in, an exception is thrown.
-
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
-
-**Return value**
-
-| Type               | Description                     |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Example**
-
-```js
-InputMethodController.hideSoftKeyboard().then(async (err) => {
-    console.log('hideSoftKeyboard success');
-}).catch((err) => {
-    console.error('hideSoftKeyboard promise err: ' + JSON.stringify(err));
-});
 ```
 
 ## InputMethodSetting<sup>8+</sup>
 
-In the following API examples, you must first use **[getInputMethodSetting](#inputmethodgetinputmethodcontroller)** to obtain an **InputMethodSetting** instance, and then call the APIs using the obtained instance.
+In the following API examples, you must first use [getSetting](#inputmethodgetsetting9) to obtain an **InputMethodSetting** instance, and then call the APIs using the obtained instance.
 
-### listInputMethod<sup>9+</sup>
+### on('imeChange')<sup>9+</sup>
 
-listInputMethod(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;): void
+on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => void): void
 
-Obtains a list of activated or deactivated input methods. This API uses an asynchronous callback to return the result. If the required two parameters are not passed in, an exception is thrown.
+Enables listening for the input method and subtype change event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                           | Mandatory| Description                                                        |
+| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                        | Yes  | Listening type.<br>The value **'imeChange'** indicates the input method and subtype change event.|
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | Yes| Callback used to return the input method attributes and subtype.|
+
+**Example**
+
+```js
+inputMethodSetting.on('imeChange', (inputMethodProperty, inputMethodSubtype) => {
+    console.info('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
+});
+```
+
+### off('imeChange')<sup>9+</sup>
+
+off(type: 'imeChange', callback?: (inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => void): void
+
+Disables listening for the input method and subtype change event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                           | Mandatory| Description                                                        |
+| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                        | Yes  | Listening type.<br>The value **'imeChange'** indicates the input method and subtype change event.|
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | No| Callback used to return the input method attributes and subtype.|
+
+**Example**
+
+```js
+inputMethodSetting.off('imeChange');
+```
+
+### listInputMethodSubtype<sup>9+</sup>
+
+listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: AsyncCallback&lt;Array&lt;InputMethodSubtype&gt;&gt;): void
+
+Obtains all subtypes of a specified input method. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                                              | Mandatory| Description                  |
+| -------- | -------------------------------------------------- | ---- | ---------------------- |
+| inputMethodProperty | InputMethodProperty| Yes| Input method to which the subtypes belong.|
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | Yes| Callback used to return all subtypes of the specified input method.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800001 | Package manager error.                 |
+| 12800008 | Input method settings extension error. |
+
+**Example**
+
+```js
+let inputMethodProperty = {
+    packageName:'com.example.kikakeyboard',
+    methodId:'com.example.kikakeyboard',
+    extra:{}
+}
+try {
+    inputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err,data) => {
+        if (err) {
+            console.error('listInputMethodSubtype failed: ' + JSON.stringify(err));
+            return;
+        }
+        console.log('listInputMethodSubtype success');
+    });
+} catch (err) {
+    console.error('listInputMethodSubtype failed: ' + JSON.stringify(err));
+}
+```
+
+### listInputMethodSubtype<sup>9+</sup>
+
+listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
+
+Obtains all subtypes of a specified input method. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                                              | Mandatory| Description                  |
+| -------- | -------------------------------------------------- | ---- | ---------------------- |
+| inputMethodProperty | InputMethodProperty| Yes| Input method to which the subtypes belong.|
+
+**Return value**
+
+| Type                                                       | Description                  |
+| ----------------------------------------------------------- | ---------------------- |
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise used to return all subtypes of the specified input method.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800001 | Package manager error.                 |
+| 12800008 | Input method settings extension error. |
+
+**Example**
+
+```js
+let inputMethodProperty = {
+    packageName:'com.example.kikakeyboard',
+    methodId:'com.example.kikakeyboard',
+    extra:{}
+}
+try {
+    inputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data) => {
+        console.info('listInputMethodSubtype success');
+    }).catch((err) => {
+        console.error('listInputMethodSubtype err: ' + JSON.stringify(err));
+    })
+} catch(err) {
+    console.error('listInputMethodSubtype err: ' + JSON.stringify(err));
+}
+```
+
+### listCurrentInputMethodSubtype<sup>9+</sup>
+
+listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSubtype&gt;&gt;): void
+
+Obtains all subtypes of this input method. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                                              | Mandatory| Description                  |
+| -------- | -------------------------------------------------- | ---- | ---------------------- |
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | Yes  | Callback used to return all subtypes of the current input method.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800001 | Package manager error.                 |
+| 12800008 | Input method settings extension error. |
+
+**Example**
+
+```js
+try {
+    inputMethodSetting.listCurrentInputMethodSubtype((err, data) => {
+        if (err) {
+            console.error('listCurrentInputMethodSubtype failed: ' + JSON.stringify(err));
+            return;
+        }
+        console.log('listCurrentInputMethodSubtype success');
+    });
+} catch(err) {
+    console.error('listCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+}
+```
+
+### listCurrentInputMethodSubtype<sup>9+</sup>
+
+listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
+
+Obtains all subtypes of this input method. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                                                       | Description                  |
+| ----------------------------------------------------------- | ---------------------- |
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise used to return all subtypes of the current input method.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800001 | Package manager error.                 |
+| 12800008 | Input method settings extension error. |
+
+**Example**
+
+```js
+try {
+    inputMethodSetting.listCurrentInputMethodSubtype().then((data) => {
+        console.info('listCurrentInputMethodSubtype success');
+    }).catch((err) => {
+        console.error('listCurrentInputMethodSubtype err: ' + err);
+    })
+} catch(err) {
+    console.error('listCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+}
+```
+
+### getInputMethods<sup>9+</sup>
+
+getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;): void
+
+Obtains a list of activated or deactivated input methods. In the current version, an activated input method is the input method in use, and a deactivated one is any of the installed input methods except the one in use. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -342,25 +1051,38 @@ Obtains a list of activated or deactivated input methods. This API uses an async
 | Name  | Type                                               | Mandatory| Description                         |
 | -------- | --------------------------------------------------- | ---- | ----------------------------- |
 | enable   | boolean                                             | Yes  | Whether to return a list of activated input methods. The value **true** means to return a list of activated input methods, and **false** means to return a list of deactivated input methods.      |
-| callback | Array<[InputMethodProperty](#inputmethodproperty8)> | Yes  | Callback used to return a list of activated or deactivated input methods.|
+| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | Yes  | Callback used to return a list of activated or deactivated input methods.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800001 | Package manager error.                 |
+| 12800008 | Input method settings extension error. |
 
 **Example**
 
 ```js
-InputMethodSetting.listInputMethod(true, (err,data) => {
-    if (err) {
-        console.error('listInputMethod failed because: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('listInputMethod success');
- });
+try {
+    inputMethodSetting.getInputMethods(true, (err,data) => {
+        if (err) {
+            console.error('getInputMethods failed: ' + JSON.stringify(err));
+            return;
+        }
+        console.log('getInputMethods success');
+    });
+} catch (err) {
+    console.error('getInputMethods failed: ' + JSON.stringify(err));
+}
 ```
 
-### listInputMethod<sup>9+</sup>
+### getInputMethods<sup>9+</sup>
 
-listInputMethod(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
+getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
-Obtains a list of activated or deactivated input methods. This API uses a promise to return the result. If any parameter is passed in, an exception is thrown.
+Obtains a list of activated or deactivated input methods. In the current version, an activated input method is the input method in use, and a deactivated one is any of the installed input methods except the one in use. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -369,6 +1091,15 @@ Obtains a list of activated or deactivated input methods. This API uses a promis
 | Name| Type   | Mandatory| Description                   |
 | ------ | ------- | ---- | ----------------------- |
 | enable | boolean | Yes  | Whether to return a list of activated input methods. The value **true** means to return a list of activated input methods, and **false** means to return a list of deactivated input methods.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800001 | Package manager error.                 |
+| 12800008 | Input method settings extension error. |
 
 **Return value**
 
@@ -379,18 +1110,100 @@ Obtains a list of activated or deactivated input methods. This API uses a promis
 **Example**
 
 ```js
-InputMethodSetting.listInputMethod(true).then((data) => {
-    console.info('listInputMethod success');
+try {
+    inputMethodSetting.getInputMethods(true).then((data) => {
+        console.info('getInputMethods success');
+    }).catch((err) => {
+        console.error('getInputMethods err: ' + JSON.stringify(err));
+    })
+} catch(err) {
+    console.error('getInputMethods err: ' + JSON.stringify(err));
+}
+```
+
+### showOptionalInputMethods<sup>9+</sup>
+
+showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
+
+Displays a dialog box for selecting an input method. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800008 | Input method settings extension error. |
+
+**Example**
+
+```js
+try {
+    inputMethodSetting.showOptionalInputMethods((err, data) => {
+        if (err) {
+            console.error('showOptionalInputMethods failed: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('showOptionalInputMethods success');
+    });
+} catch (err) {
+    console.error('showOptionalInputMethods failed: ' + JSON.stringify(err));
+}
+```
+
+### showOptionalInputMethods<sup>9+</sup>
+
+showOptionalInputMethods(): Promise&lt;boolean&gt;
+
+Displays a dialog box for selecting an input method. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the operation is successful, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800008 | Input method settings extension error. |
+
+**Example**
+
+```js
+inputMethodSetting.showOptionalInputMethods().then((data) => {
+    console.info('displayOptionalInputMethod success.');
 }).catch((err) => {
-    console.error('listInputMethod promise err: ' + err);
+    console.error('displayOptionalInputMethod err: ' + err);
 })
 ```
 
-### listInputMethod
+### listInputMethod<sup>(deprecated)</sup>
 
 listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;): void
 
-Obtains a list of installed input methods. This API uses an asynchronous callback to return the result. If the required parameter is not passed in, an exception is thrown.
+Obtains a list of installed input methods. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getInputMethods](#getinputmethods9).
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -398,12 +1211,12 @@ Obtains a list of installed input methods. This API uses an asynchronous callbac
 
 | Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | Array<[InputMethodProperty](#inputmethodproperty8)> | Yes  | Callback used to return the list of installed input methods.|
+| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | Yes  | Callback used to return the list of installed input methods.|
 
 **Example**
 
 ```js
-InputMethodSetting.listInputMethod((err,data) => {
+inputMethodSetting.listInputMethod((err,data) => {
     if (err) {
         console.error('listInputMethod failed because: ' + JSON.stringify(err));
         return;
@@ -412,11 +1225,15 @@ InputMethodSetting.listInputMethod((err,data) => {
  });
 ```
 
-### listInputMethod
+### listInputMethod<sup>(deprecated)</sup>
 
 listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
-Obtains a list of installed input methods. This API uses a promise to return the result. If any parameter is passed in, an exception is thrown.
+Obtains a list of installed input methods. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getInputMethods](#getinputmethods9-1).
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -429,18 +1246,22 @@ Obtains a list of installed input methods. This API uses a promise to return the
 **Example**
 
 ```js
-InputMethodSetting.listInputMethod().then((data) => {
+inputMethodSetting.listInputMethod().then((data) => {
     console.info('listInputMethod success');
 }).catch((err) => {
-    console.error('listInputMethod promise err: ' + err);
+    console.error('listInputMethod err: ' + JSON.stringify(err));
 })
 ```
 
-### displayOptionalInputMethod
+### displayOptionalInputMethod<sup>(deprecated)</sup>
 
 displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
-Displays a dialog box for selecting an input method. This API uses an asynchronous callback to return the result. If the required parameter is not passed in, an exception is thrown.
+Displays a dialog box for selecting an input method. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [showOptionalInputMethods()](#showoptionalinputmethods9).
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -448,12 +1269,12 @@ Displays a dialog box for selecting an input method. This API uses an asynchrono
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Example**
 
 ```js
-InputMethodSetting.displayOptionalInputMethod((err) => {
+inputMethodSetting.displayOptionalInputMethod((err) => {
     if (err) {
         console.error('displayOptionalInputMethod failed because: ' + JSON.stringify(err));
         return;
@@ -462,13 +1283,17 @@ InputMethodSetting.displayOptionalInputMethod((err) => {
 });
 ```
 
-### displayOptionalInputMethod
+### displayOptionalInputMethod<sup>(deprecated)</sup>
 
-  displayOptionalInputMethod(): Promise&lt;void&gt;
+displayOptionalInputMethod(): Promise&lt;void&gt;
 
-  Displays a dialog box for selecting an input method. This API uses a promise to return the result. If any parameter is passed in, an exception is thrown.
+Displays a dialog box for selecting an input method. This API uses a promise to return the result.
 
-  **System capability**: SystemCapability.MiscServices.InputMethodFramework
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [showOptionalInputMethods()](#showoptionalinputmethods9-1).
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
@@ -479,9 +1304,9 @@ InputMethodSetting.displayOptionalInputMethod((err) => {
 **Example**
 
 ```js
-InputMethodSetting.displayOptionalInputMethod().then(() => {
-    console.info('displayOptionalInputMethod success.(promise)');
+inputMethodSetting.displayOptionalInputMethod().then(() => {
+    console.info('displayOptionalInputMethod success');
 }).catch((err) => {
-    console.error('displayOptionalInputMethod promise err: ' + err);
+    console.error('displayOptionalInputMethod err: ' + err);
 })
 ```

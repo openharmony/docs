@@ -1,4 +1,4 @@
-# FormInfo
+# @ohos.application.formInfo (FormInfo)
 
 FormInfo模块提供对卡片的相关卡片信息和状态进行设置和查询的能力。
 

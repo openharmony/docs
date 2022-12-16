@@ -1,6 +1,6 @@
-# WantAgent模块
+# @ohos.app.ability.wantAgent (WantAgent模块)
 
-WantAgent模块提供了触发、取消、比较WantAgent实例和获取bundle名称的能力，包括创建WantAgent实例、获取实例的用户ID、获取want信息等。
+app.ability.WantAgent模块提供了触发、取消、比较WantAgent实例和获取bundle名称的能力，包括创建WantAgent实例、获取实例的用户ID、获取want信息等。该模块将会取代[@ohos.wantAgent](js-apis-wantAgent.md)模块，建议优先使用本模块。
 
 > **说明：**
 > 
@@ -8,7 +8,7 @@ WantAgent模块提供了触发、取消、比较WantAgent实例和获取bundle�
 
 ## 导入模块
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
 ```
 
@@ -27,15 +27,41 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 | info     | WantAgentInfo              | 是   | WantAgent信息。           |
 | callback | AsyncCallback\<WantAgent\> | 是   | 创建WantAgent的回调方法。 |
 
+**错误码：**
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000001   | Input error. The specified ability name does not exist. |
+| 16000002   | Ability type error. The specified ability type is wrong.|
+| 16000003   | Input error. The specified id does not exist.|
+| 16000004   | Visibility verification failed.|
+| 16000006   | Can not cross user operations.|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000008   | Crowdtest App Expiration.|
+| 16000009   | Can not start ability in wukong mode.|
+| 16000010   | Can not operation with continue flag.|
+| 16000011   | Context does not exist.|
+| 16000050   | Internal Error.|
+| 16000051   | Network error. The network is abnormal.|
+| 16000052   | Free install not support. The applicaiotn dose not support free install.|
+| 16000053   | Not top ability. The application is not top ability.|
+| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
+| 16000055   | Free install timeout.|
+| 16000056   | Can not free install other ability.|
+| 16000057   | Not support cross device free install.|
+| 16000101   | execute shell command failed.|
+| 16000151   | Invalid wantagent object.|
+| 16000152   | wantAgent object not found.|
+| 16000153   | wangAgent object canceled.|
+
+
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
 
-//getWantAgent回调
-function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
-}
+//wantAgent对象
+var wantAgent;
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
@@ -64,10 +90,18 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err == undefined) {
+        wantAgent = data;
+    } else {
+        console.info('getWantAgent failed' + JSON.stringify(err));
+    }
+}
+try{
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch(err){
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
 
@@ -93,9 +127,36 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<WantAgent\> | 以Promise形式返回WantAgent。 |
 
+**错误码：**
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000001   | Input error. The specified ability name does not exist. |
+| 16000002   | Ability type error. The specified ability type is wrong.|
+| 16000003   | Input error. The specified id does not exist.|
+| 16000004   | Visibility verification failed.|
+| 16000006   | Can not cross user operations.|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000008   | Crowdtest App Expiration.|
+| 16000009   | Can not start ability in wukong mode.|
+| 16000010   | Can not operation with continue flag.|
+| 16000011   | Context does not exist.|
+| 16000050   | Internal Error.|
+| 16000051   | Network error. The network is abnormal.|
+| 16000052   | Free install not support. The applicaiotn dose not support free install.|
+| 16000053   | Not top ability. The application is not top ability.|
+| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
+| 16000055   | Free install timeout.|
+| 16000056   | Can not free install other ability.|
+| 16000057   | Not support cross device free install.|
+| 16000101   | execute shell command failed.|
+| 16000151   | Invalid wantagent object.|
+| 16000152   | wantAgent object not found.|
+| 16000153   | wangAgent object canceled.|
+
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
 
 
@@ -129,10 +190,12 @@ var wantAgentInfo = {
 
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
-    });
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    wantAgent = data;
+}).catch((err) => {
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+});
+} catch (err) {
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
 
@@ -153,24 +216,38 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 | agent    | WantAgent               | 是   | WantAgent对象。                     |
 | callback | AsyncCallback\<string\> | 是   | 获取WantAgent实例的包名的回调方法。 |
 
+**错误码：**
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000001   | Input error. The specified ability name does not exist. |
+| 16000002   | Ability type error. The specified ability type is wrong.|
+| 16000003   | Input error. The specified id does not exist.|
+| 16000004   | Visibility verification failed.|
+| 16000006   | Can not cross user operations.|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000008   | Crowdtest App Expiration.|
+| 16000009   | Can not start ability in wukong mode.|
+| 16000010   | Can not operation with continue flag.|
+| 16000011   | Context does not exist.|
+| 16000050   | Internal Error.|
+| 16000051   | Network error. The network is abnormal.|
+| 16000052   | Free install not support. The applicaiotn dose not support free install.|
+| 16000053   | Not top ability. The application is not top ability.|
+| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
+| 16000055   | Free install timeout.|
+| 16000056   | Can not free install other ability.|
+| 16000057   | Not support cross device free install.|
+| 16000101   | execute shell command failed.|
+| 16000151   | Invalid wantagent object.|
+| 16000152   | wantAgent object not found.|
+| 16000153   | wangAgent object canceled.|
+
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
-
-
 //wantAgent对象
 var wantAgent;
-
-//getWantAgent回调
-function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
-    if (err.code == 0) {
-    	wantAgent = data;
-    } else {
-        console.info('----getWantAgent failed!----');
-    }
-}
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
@@ -199,16 +276,31 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err == undefined) {
+        wantAgent = data;
+    } else {
+        console.info('getWantAgent failed' + JSON.stringify(wantAgent));
+    }
     //getBundleName回调
     function getBundleNameCallback(err, data) {
-	    console.info("==========================>getBundleNameCallback=======================>");
+        if(err) {
+            console.info('getBundleName failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        } else {
+            console.info('getBundleName ok!' + JSON.stringify(data));
+        }
     }
-    WantAgent.getBundleName(wantAgent, getBundleNameCallback)
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    try {
+        WantAgent.getBundleName(wantAgent, getBundleNameCallback);
+    } catch(err) {
+        console.info('getBundleName failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    }
+}
+try{
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch(err){
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
 
@@ -234,15 +326,40 @@ getBundleName(agent: WantAgent): Promise\<string\>
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<string\> | 以Promise形式返回获取WantAgent实例的包名。 |
 
+**错误码：**
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000001   | Input error. The specified ability name does not exist. |
+| 16000002   | Ability type error. The specified ability type is wrong.|
+| 16000003   | Input error. The specified id does not exist.|
+| 16000004   | Visibility verification failed.|
+| 16000006   | Can not cross user operations.|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000008   | Crowdtest App Expiration.|
+| 16000009   | Can not start ability in wukong mode.|
+| 16000010   | Can not operation with continue flag.|
+| 16000011   | Context does not exist.|
+| 16000050   | Internal Error.|
+| 16000051   | Network error. The network is abnormal.|
+| 16000052   | Free install not support. The applicaiotn dose not support free install.|
+| 16000053   | Not top ability. The application is not top ability.|
+| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
+| 16000055   | Free install timeout.|
+| 16000056   | Can not free install other ability.|
+| 16000057   | Not support cross device free install.|
+| 16000101   | execute shell command failed.|
+| 16000151   | Invalid wantagent object.|
+| 16000152   | wantAgent object not found.|
+| 16000153   | wangAgent object canceled.|
+
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
 
-
-//wantAgent对象
+ //wantAgent对象
 var wantAgent;
-
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
@@ -271,17 +388,27 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-try {
-    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err == undefined) {
         wantAgent = data;
-    });
-
-    WantAgent.getBundleName(wantAgent).then((data) => {
-	    console.info("==========================>getBundleNameCallback=======================>");
-    });
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    } else {
+        console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
+    }
+    try {
+        WantAgent.getBundleName(wantAgent).then((data)=>{
+            console.info('getBundleName ok!' + JSON.stringify(data));
+        }).catch((err)=>{
+            console.info('getBundleName failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        })
+    } catch(err){
+        console.info('getBundleName failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    }
+}
+try{
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch(err){
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
 
@@ -302,24 +429,39 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 | agent    | WantAgent               | 是   | WantAgent对象。                       |
 | callback | AsyncCallback\<number\> | 是   | 获取WantAgent实例的用户ID的回调方法。 |
 
+**错误码：**
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000001   | Input error. The specified ability name does not exist. |
+| 16000002   | Ability type error. The specified ability type is wrong.|
+| 16000003   | Input error. The specified id does not exist.|
+| 16000004   | Visibility verification failed.|
+| 16000006   | Can not cross user operations.|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000008   | Crowdtest App Expiration.|
+| 16000009   | Can not start ability in wukong mode.|
+| 16000010   | Can not operation with continue flag.|
+| 16000011   | Context does not exist.|
+| 16000050   | Internal Error.|
+| 16000051   | Network error. The network is abnormal.|
+| 16000052   | Free install not support. The applicaiotn dose not support free install.|
+| 16000053   | Not top ability. The application is not top ability.|
+| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
+| 16000055   | Free install timeout.|
+| 16000056   | Can not free install other ability.|
+| 16000057   | Not support cross device free install.|
+| 16000101   | execute shell command failed.|
+| 16000151   | Invalid wantagent object.|
+| 16000152   | wantAgent object not found.|
+| 16000153   | wangAgent object canceled.|
+
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
-
-
 //wantAgent对象
 var wantAgent;
-
-//getWantAgent回调
-function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
-    if (err.code == 0) {
-    	wantAgent = data;
-    } else {
-        console.info('----getWantAgent failed!----');
-    }
-}
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
@@ -348,16 +490,31 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err == undefined) {
+        wantAgent = data;
+    } else {
+        console.info('getWantAgent failed' + JSON.stringify(err));
+    }
     //getUid回调
     function getUidCallback(err, data) {
-	    console.info("==========================>getUidCallback=======================>");
+        if(err) {
+            console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        } else {
+            console.info('getUid ok!' + JSON.stringify(data));
+        }
     }
-    WantAgent.getUid(wantAgent, getUidCallback)
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    try {
+        WantAgent.getUid(wantAgent, getUidCallback);
+    } catch(err) {
+        console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    }
+}
+try{
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch(err){
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
 
@@ -383,15 +540,40 @@ getUid(agent: WantAgent): Promise\<number\>
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<number\> | 以Promise形式返回获取WantAgent实例的用户ID。 |
 
+**错误码：**
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000001   | Input error. The specified ability name does not exist. |
+| 16000002   | Ability type error. The specified ability type is wrong.|
+| 16000003   | Input error. The specified id does not exist.|
+| 16000004   | Visibility verification failed.|
+| 16000006   | Can not cross user operations.|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000008   | Crowdtest App Expiration.|
+| 16000009   | Can not start ability in wukong mode.|
+| 16000010   | Can not operation with continue flag.|
+| 16000011   | Context does not exist.|
+| 16000050   | Internal Error.|
+| 16000051   | Network error. The network is abnormal.|
+| 16000052   | Free install not support. The applicaiotn dose not support free install.|
+| 16000053   | Not top ability. The application is not top ability.|
+| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
+| 16000055   | Free install timeout.|
+| 16000056   | Can not free install other ability.|
+| 16000057   | Not support cross device free install.|
+| 16000101   | execute shell command failed.|
+| 16000151   | Invalid wantagent object.|
+| 16000152   | wantAgent object not found.|
+| 16000153   | wangAgent object canceled.|
+
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
 
-
-//wantAgent对象
+ //wantAgent对象
 var wantAgent;
-
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
@@ -420,20 +602,29 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-try {
-    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err == undefined) {
         wantAgent = data;
-    });
-
-    WantAgent.getUid(wantAgent).then((data) => {
-	    console.info("==========================>getUidCallback=======================>");
-    });
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    } else {
+        console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
+    }
+    try {
+        WantAgent.getUid(wantAgent).then((data)=>{
+            console.info('getUid ok!' + JSON.stringify(data));
+        }).catch((err)=>{
+            console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        })
+    } catch(err){
+        console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    }
+}
+try{
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch(err){
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
-
 
 
 ## WantAgent.getWant
@@ -453,24 +644,40 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 | agent    | WantAgent             | 是   | WantAgent对象。                   |
 | callback | AsyncCallback\<Want\> | 是   | 获取WantAgent对象want的回调方法。 |
 
+**错误码：**
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+|错误码ID    |错误信息            |
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000001   | Input error. The specified ability name does not exist. |
+| 16000002   | Ability type error. The specified ability type is wrong.|
+| 16000003   | Input error. The specified id does not exist.|
+| 16000004   | Visibility verification failed.|
+| 16000006   | Can not cross user operations.|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000008   | Crowdtest App Expiration.|
+| 16000009   | Can not start ability in wukong mode.|
+| 16000010   | Can not operation with continue flag.|
+| 16000011   | Context does not exist.|
+| 16000050   | Internal Error.|
+| 16000051   | Network error. The network is abnormal.|
+| 16000052   | Free install not support. The applicaiotn dose not support free install.|
+| 16000053   | Not top ability. The application is not top ability.|
+| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
+| 16000055   | Free install timeout.|
+| 16000056   | Can not free install other ability.|
+| 16000057   | Not support cross device free install.|
+| 16000101   | execute shell command failed.|
+| 16000151   | Invalid wantagent object.|
+| 16000152   | wantAgent object not found.|
+| 16000153   | wangAgent object canceled.|
+
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
-
-
 //wantAgent对象
 var wantAgent;
-
-//getWantAgent回调
-function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
-    if (err.code == 0) {
-    	wantAgent = data;
-    } else {
-        console.info('----getWantAgent failed!----');
-    }
-}
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
@@ -499,16 +706,31 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-    //getWant回调
-    function getWantCallback(err, data) {
-	    console.info("==========================>getWantCallback=======================>");
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err == undefined) {
+        wantAgent = data;
+    } else {
+        console.info('getWantAgent failed' + JSON.stringify(wantAgent));
     }
-    WantAgent.getWant(wantAgent, getWantCallback)
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    //getUid回调
+    function getWantCallback(err, data) {
+        if(err) {
+            console.info('getWant failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        } else {
+            console.info('getWant ok!' + JSON.stringify(data));
+        }
+    }
+    try {
+        WantAgent.getWant(wantAgent, getBundleNameCallback);
+    } catch(err) {
+        console.info('getWant failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    }
+}
+try{
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch(err){
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
 
@@ -536,15 +758,40 @@ getWant(agent: WantAgent): Promise\<Want\>
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<Want\> | 以Promise形式返回获取WantAgent对象的want。 |
 
+**错误码：**
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000001   | Input error. The specified ability name does not exist. |
+| 16000002   | Ability type error. The specified ability type is wrong.|
+| 16000003   | Input error. The specified id does not exist.|
+| 16000004   | Visibility verification failed.|
+| 16000006   | Can not cross user operations.|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000008   | Crowdtest App Expiration.|
+| 16000009   | Can not start ability in wukong mode.|
+| 16000010   | Can not operation with continue flag.|
+| 16000011   | Context does not exist.|
+| 16000050   | Internal Error.|
+| 16000051   | Network error. The network is abnormal.|
+| 16000052   | Free install not support. The applicaiotn dose not support free install.|
+| 16000053   | Not top ability. The application is not top ability.|
+| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
+| 16000055   | Free install timeout.|
+| 16000056   | Can not free install other ability.|
+| 16000057   | Not support cross device free install.|
+| 16000101   | execute shell command failed.|
+| 16000151   | Invalid wantagent object.|
+| 16000152   | wantAgent object not found.|
+| 16000153   | wangAgent object canceled.|
+
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
 
-
-//wantAgent对象
+ //wantAgent对象
 var wantAgent;
-
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
@@ -573,17 +820,27 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-try {
-    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err == undefined) {
         wantAgent = data;
-    });
-
-    WantAgent.getWant(wantAgent).then((data) => {
-	    console.info("==========================>getWantCallback=======================>");
-    });
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    } else {
+        console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
+    }
+    try {
+        WantAgent.getUid(wantAgent).then((data)=>{
+            console.info('getUid ok!' + JSON.stringify(data));
+        }).catch((err)=>{
+            console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        })
+    } catch(err){
+        console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    }
+}
+try{
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch(err){
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
 
@@ -604,24 +861,39 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 | agent    | WantAgent             | 是   | WantAgent对象。               |
 | callback | AsyncCallback\<void\> | 是   | 取消WantAgent实例的回调方法。 |
 
+**错误码：**
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000001   | Input error. The specified ability name does not exist. |
+| 16000002   | Ability type error. The specified ability type is wrong.|
+| 16000003   | Input error. The specified id does not exist.|
+| 16000004   | Visibility verification failed.|
+| 16000006   | Can not cross user operations.|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000008   | Crowdtest App Expiration.|
+| 16000009   | Can not start ability in wukong mode.|
+| 16000010   | Can not operation with continue flag.|
+| 16000011   | Context does not exist.|
+| 16000050   | Internal Error.|
+| 16000051   | Network error. The network is abnormal.|
+| 16000052   | Free install not support. The applicaiotn dose not support free install.|
+| 16000053   | Not top ability. The application is not top ability.|
+| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
+| 16000055   | Free install timeout.|
+| 16000056   | Can not free install other ability.|
+| 16000057   | Not support cross device free install.|
+| 16000101   | execute shell command failed.|
+| 16000151   | Invalid wantagent object.|
+| 16000152   | wantAgent object not found.|
+| 16000153   | wangAgent object canceled.|
+
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
-
-
 //wantAgent对象
 var wantAgent;
-
-//getWantAgent回调
-function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
-    if (err.code == 0) {
-    	wantAgent = data;
-    } else {
-        console.info('----getWantAgent failed!----');
-    }
-}
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
@@ -650,16 +922,31 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-    //cancel回调
-    function cancelCallback(err, data) {
-	    console.info("==========================>cancelCallback=======================>");
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err == undefined) {
+        wantAgent = data;
+    } else {
+        console.info('getWantAgent failed' + JSON.stringify(wantAgent));
     }
-    WantAgent.cancel(wantAgent, cancelCallback)
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    //getUid回调
+    function cancelCallback(err, data) {
+        if(err) {
+            console.info('cancel failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        } else {
+            console.info('cancel ok!');
+        }
+    }
+    try {
+        WantAgent.cancel(wantAgent, getBundleNameCallback);
+    } catch(err) {
+        console.info('cancel failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    }
+}
+try{
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch(err){
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
 
@@ -685,15 +972,40 @@ cancel(agent: WantAgent): Promise\<void\>
 | --------------- | ------------------------------- |
 | Promise\<void\> | 以Promise形式获取异步返回结果。 |
 
+**错误码：**
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000001   | Input error. The specified ability name does not exist. |
+| 16000002   | Ability type error. The specified ability type is wrong.|
+| 16000003   | Input error. The specified id does not exist.|
+| 16000004   | Visibility verification failed.|
+| 16000006   | Can not cross user operations.|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000008   | Crowdtest App Expiration.|
+| 16000009   | Can not start ability in wukong mode.|
+| 16000010   | Can not operation with continue flag.|
+| 16000011   | Context does not exist.|
+| 16000050   | Internal Error.|
+| 16000051   | Network error. The network is abnormal.|
+| 16000052   | Free install not support. The applicaiotn dose not support free install.|
+| 16000053   | Not top ability. The application is not top ability.|
+| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
+| 16000055   | Free install timeout.|
+| 16000056   | Can not free install other ability.|
+| 16000057   | Not support cross device free install.|
+| 16000101   | execute shell command failed.|
+| 16000151   | Invalid wantagent object.|
+| 16000152   | wantAgent object not found.|
+| 16000153   | wangAgent object canceled.|
+
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
-
 
 //wantAgent对象
 var wantAgent;
-
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
@@ -722,20 +1034,32 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-try {
-    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err == undefined) {
         wantAgent = data;
-    });
-
-    WantAgent.cancel(wantAgent).then((data) => {
-	    console.info("==========================>cancelCallback=======================>");
-    });
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    } else {
+        console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
+    }
+    try {
+        WantAgent.cancel(wantAgent).then((data)=>{
+            console.info('cancel ok!');
+        }).catch((err)=>{
+            console.info('cancel failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        })
+    } catch(err){
+        console.info('cancel failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    }
+}
+try{
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch(err){
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
 
+
+//TODO WantAgent.trigger Callback
 
 
 ## WantAgent.trigger
@@ -754,24 +1078,43 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 | triggerInfo | TriggerInfo                   | 是   | TriggerInfo对象。                 |
 | callback    | AsyncCallback\<CompleteData\> | 否   | 主动激发WantAgent实例的回调方法。 |
 
+**错误码：**
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000001   | Input error. The specified ability name does not exist. |
+| 16000002   | Ability type error. The specified ability type is wrong.|
+| 16000003   | Input error. The specified id does not exist.|
+| 16000004   | Visibility verification failed.|
+| 16000006   | Can not cross user operations.|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000008   | Crowdtest App Expiration.|
+| 16000009   | Can not start ability in wukong mode.|
+| 16000010   | Can not operation with continue flag.|
+| 16000011   | Context does not exist.|
+| 16000050   | Internal Error.|
+| 16000051   | Network error. The network is abnormal.|
+| 16000052   | Free install not support. The applicaiotn dose not support free install.|
+| 16000053   | Not top ability. The application is not top ability.|
+| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
+| 16000055   | Free install timeout.|
+| 16000056   | Can not free install other ability.|
+| 16000057   | Not support cross device free install.|
+| 16000101   | execute shell command failed.|
+| 16000151   | Invalid wantagent object.|
+| 16000152   | wantAgent object not found.|
+| 16000153   | wangAgent object canceled.|
+
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
-
-
 //wantAgent对象
 var wantAgent;
-
-//getWantAgent回调
-function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
-    if (err.code == 0) {
-    	wantAgent = data;
-    } else {
-        console.info('----getWantAgent failed!----');
+// triggerInfo
+var triggerInfo = {
+        code: 0
     }
-}
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
@@ -800,21 +1143,31 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-    //trigger回调
-    function triggerCallback(data) {
-	    console.info("==========================>triggerCallback=======================>");
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err == undefined) {
+        wantAgent = data;
+    } else {
+        console.info('getWantAgent failed' + JSON.stringify(wantAgent));
     }
-
-
-    var triggerInfo = {
-        code:0
+    //getUid回调
+    function triggerCallback(err, data) {
+        if(err) {
+            console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        } else {
+            console.info('getUid ok!' + JSON.stringify(data));
+        }
     }
-    WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    try {
+        WantAgent.trigger(wantAgent, triggerInfo, triggerCallback);
+    } catch(err) {
+        console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    }
+}
+try{
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch(err){
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
 
@@ -836,26 +1189,40 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 | otherAgent | WantAgent                | 是   | WantAgent对象。                           |
 | callback   | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。 |
 
+**错误码：**
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000001   | Input error. The specified ability name does not exist. |
+| 16000002   | Ability type error. The specified ability type is wrong.|
+| 16000003   | Input error. The specified id does not exist.|
+| 16000004   | Visibility verification failed.|
+| 16000006   | Can not cross user operations.|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000008   | Crowdtest App Expiration.|
+| 16000009   | Can not start ability in wukong mode.|
+| 16000010   | Can not operation with continue flag.|
+| 16000011   | Context does not exist.|
+| 16000050   | Internal Error.|
+| 16000051   | Network error. The network is abnormal.|
+| 16000052   | Free install not support. The applicaiotn dose not support free install.|
+| 16000053   | Not top ability. The application is not top ability.|
+| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
+| 16000055   | Free install timeout.|
+| 16000056   | Can not free install other ability.|
+| 16000057   | Not support cross device free install.|
+| 16000101   | execute shell command failed.|
+| 16000151   | Invalid wantagent object.|
+| 16000152   | wantAgent object not found.|
+| 16000153   | wangAgent object canceled.|
+
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
-
-
 //wantAgent对象
 var wantAgent1;
 var wantAgent2;
-
-//getWantAgent回调
-function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
-    if (err.code == 0) {
-    	wantAgent1 = data;
-        wantAgent2 = data;
-    } else {
-        console.info('----getWantAgent failed!----');
-    }
-}
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
@@ -884,16 +1251,32 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-    //equal回调
-    function equalCallback(err, data) {
-	    console.info("==========================>equalCallback=======================>");
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err == undefined) {
+        wantAgent1 = data;
+        wantAgent2 = data;
+    } else {
+        console.info('getWantAgent failed' + JSON.stringify(wantAgent));
     }
-    WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    //getUid回调
+    function equalCallback(err, data) {
+        if(err) {
+            console.info('equal failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        } else {
+            console.info('equal ok!' + JSON.stringify(data));
+        }
+    }
+    try {
+        WantAgent.equal(wantAgent1,wantAgent2,equalCallback);
+    } catch(err) {
+        console.info('equal failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    }
+}
+try{
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch(err){
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
 
@@ -920,16 +1303,41 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<boolean\> | 以Promise形式返回获取判断两个WantAgent实例是否相等的结果。 |
 
+**错误码：**
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000001   | Input error. The specified ability name does not exist. |
+| 16000002   | Ability type error. The specified ability type is wrong.|
+| 16000003   | Input error. The specified id does not exist.|
+| 16000004   | Visibility verification failed.|
+| 16000006   | Can not cross user operations.|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000008   | Crowdtest App Expiration.|
+| 16000009   | Can not start ability in wukong mode.|
+| 16000010   | Can not operation with continue flag.|
+| 16000011   | Context does not exist.|
+| 16000050   | Internal Error.|
+| 16000051   | Network error. The network is abnormal.|
+| 16000052   | Free install not support. The applicaiotn dose not support free install.|
+| 16000053   | Not top ability. The application is not top ability.|
+| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
+| 16000055   | Free install timeout.|
+| 16000056   | Can not free install other ability.|
+| 16000057   | Not support cross device free install.|
+| 16000101   | execute shell command failed.|
+| 16000151   | Invalid wantagent object.|
+| 16000152   | wantAgent object not found.|
+| 16000153   | wangAgent object canceled.|
+
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
 
-
-//wantAgent对象
+ //wantAgent对象
 var wantAgent1;
 var wantAgent2;
-
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
@@ -958,18 +1366,28 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-try {
-    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err == undefined) {
         wantAgent1 = data;
         wantAgent2 = data;
-    });
-
-    WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
-	    console.info("==========================>equalCallback=======================>");
-    });
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    } else {
+        console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
+    }
+    try {
+        WantAgent.equal(wantAgent1,wantAgent2).then((data)=>{
+            console.info('equal ok!' + JSON.stringify(data));
+        }).catch((err)=>{
+            console.info('equal failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        })
+    } catch(err){
+        console.info('equal failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    }
+}
+try{
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch(err){
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
 
@@ -988,14 +1406,39 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 | agent      | WantAgent                | 是   | WantAgent对象。                           |
 | callback   | AsyncCallback\<number> | 是   | 获取一个WantAgent的OperationType信息的回调方法。 |
 
+**错误码：**
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000001   | Input error. The specified ability name does not exist. |
+| 16000002   | Ability type error. The specified ability type is wrong.|
+| 16000003   | Input error. The specified id does not exist.|
+| 16000004   | Visibility verification failed.|
+| 16000006   | Can not cross user operations.|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000008   | Crowdtest App Expiration.|
+| 16000009   | Can not start ability in wukong mode.|
+| 16000010   | Can not operation with continue flag.|
+| 16000011   | Context does not exist.|
+| 16000050   | Internal Error.|
+| 16000051   | Network error. The network is abnormal.|
+| 16000052   | Free install not support. The applicaiotn dose not support free install.|
+| 16000053   | Not top ability. The application is not top ability.|
+| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
+| 16000055   | Free install timeout.|
+| 16000056   | Can not free install other ability.|
+| 16000057   | Not support cross device free install.|
+| 16000101   | execute shell command failed.|
+| 16000151   | Invalid wantagent object.|
+| 16000152   | wantAgent object not found.|
+| 16000153   | wangAgent object canceled.|
+
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
-
 //wantAgent对象
 var wantAgent;
-
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
@@ -1024,17 +1467,31 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-try {
-    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err == undefined) {
         wantAgent = data;
-    });
-
-    WantAgent.getOperationType(wantAgent, (OperationType) => {
-        console.log('----------- getOperationType ----------, OperationType: ' + OperationType);
-    })
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    } else {
+        console.info('getWantAgent failed' + JSON.stringify(wantAgent));
+    }
+    //getUid回调
+    function getOperationTypeCallback(err, data) {
+        if(err) {
+            console.info('getOperationType failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        } else {
+            console.info('getOperationType ok!' + JSON.stringify(data));
+        }
+    }
+    try {
+        WantAgent.getOperationTypeCallback(wantAgent, getBundleNameCallback);
+    } catch(err) {
+        console.info('getOperationTypeCallback failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    }
+}
+try{
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch(err){
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
 
@@ -1058,14 +1515,40 @@ getOperationType(agent: WantAgent): Promise\<number>;
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<number> | 以Promise形式返回获取operationType的结果。 |
 
+**错误码：**
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000001   | Input error. The specified ability name does not exist. |
+| 16000002   | Ability type error. The specified ability type is wrong.|
+| 16000003   | Input error. The specified id does not exist.|
+| 16000004   | Visibility verification failed.|
+| 16000006   | Can not cross user operations.|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000008   | Crowdtest App Expiration.|
+| 16000009   | Can not start ability in wukong mode.|
+| 16000010   | Can not operation with continue flag.|
+| 16000011   | Context does not exist.|
+| 16000050   | Internal Error.|
+| 16000051   | Network error. The network is abnormal.|
+| 16000052   | Free install not support. The applicaiotn dose not support free install.|
+| 16000053   | Not top ability. The application is not top ability.|
+| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
+| 16000055   | Free install timeout.|
+| 16000056   | Can not free install other ability.|
+| 16000057   | Not support cross device free install.|
+| 16000101   | execute shell command failed.|
+| 16000151   | Invalid wantagent object.|
+| 16000152   | wantAgent object not found.|
+| 16000153   | wangAgent object canceled.|
+
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
 
-//wantAgent对象
+ //wantAgent对象
 var wantAgent;
-
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
@@ -1094,19 +1577,27 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-try {
-    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err == undefined) {
         wantAgent = data;
-    });
-
-    WantAgent.getOperationType(wantAgent).then((OperationType) => {
-        console.log('getOperationType success, OperationType: ' + OperationType);
-    }).catch((err) => {
-        console.log('getOperationType fail, err: ' + err);
-    })
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    } else {
+        console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
+    }
+    try {
+        WantAgent.getOperationType(wantAgent).then((data)=>{
+            console.info('getOperationType ok!' + JSON.stringify(data));
+        }).catch((err)=>{
+            console.info('getOperationType failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        })
+    } catch(err){
+        console.info('getOperationType failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    }
+}
+try{
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch(err){
+    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
 

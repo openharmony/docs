@@ -1,4 +1,4 @@
-# ServiceExtensionAbility
+# @ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)
 
 ServiceExtensionAbility模块提供ServiceExtension服务扩展相关接口的能力。
 

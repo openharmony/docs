@@ -1,4 +1,4 @@
-# Ability
+# @ohos.app.ability.UIAbility (UIAbility)
 
 Ability模块提供对Ability生命周期、上下文环境等调用管理的能力，包括Ability创建、销毁、转储客户端信息等。
 

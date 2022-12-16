@@ -1,4 +1,4 @@
-# StaticSubscriberExtensionAbility
+# @ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)
 
 StaticSubscriberExtensionAbility模块提供静态订阅者ExtensionAbility的类别的能力。
 

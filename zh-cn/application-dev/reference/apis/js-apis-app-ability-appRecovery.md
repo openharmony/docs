@@ -1,4 +1,4 @@
-# appRecovery
+# @ohos.app.ability.appRecovery (appRecovery)
 
 appRecovery模块提供了应用在故障状态下的恢复能力。
 

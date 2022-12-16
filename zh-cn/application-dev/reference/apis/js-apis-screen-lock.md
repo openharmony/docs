@@ -1,4 +1,4 @@
-# 锁屏管理
+# @ohos.screenLock (锁屏管理)
 
 锁屏管理服务是OpenHarmony中的系统服务，为锁屏应用提供注册亮屏、灭屏、开启屏幕、结束休眠、退出动画、请求解锁结果监听，并提供回调结果给锁屏应用。锁屏管理服务向三方应用提供请求解锁、查询锁屏状态、查询是否设置锁屏密码的能力。
 
@@ -256,7 +256,7 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
 ```js
 try {
-    let isSuccess = screenLock.onSystemEvent((event) => {
+    let isSuccess = screenlock.onSystemEvent((event) => {
         console.log(`Register the system event which related to screenlock successfully. eventType: ${event.eventType}`)
     });
 } catch (err) {
@@ -343,7 +343,7 @@ isScreenLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始不再维护。建议使用[screenlock.isLocked<sup>9+</sup>](#screenlockislocked9)代替。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isLocked<sup>9+</sup>](#screenlockislocked9)代替。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -373,7 +373,7 @@ isScreenLocked(): Promise&lt;boolean&gt;
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始不再维护。建议使用[screenlock.isLocked<sup>9+</sup>](#screenlockislocked9)代替。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isLocked<sup>9+</sup>](#screenlockislocked9)代替。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -401,7 +401,7 @@ isSecureMode(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始不再维护。建议使用[screenlock.isSecure<sup>9+</sup>](#screenlockissecure9)代替。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isSecure<sup>9+</sup>](#screenlockissecure9)代替。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -431,7 +431,7 @@ isSecureMode(): Promise&lt;boolean&gt;
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始不再维护。建议使用[screenlock.isSecure<sup>9+</sup>](#screenlockissecure9)代替。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isSecure<sup>9+</sup>](#screenlockissecure9)代替。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -458,7 +458,7 @@ unlockScreen(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始不再维护。建议使用[screenlock.unlock<sup>9+</sup>](#screenlockunlock9)代替。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.unlock<sup>9+</sup>](#screenlockunlock9)代替。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -488,7 +488,7 @@ unlockScreen(): Promise&lt;void&gt;
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始不再维护。建议使用[screenlock.unlock<sup>9+</sup>](#screenlockunlock9)代替。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.unlock<sup>9+</sup>](#screenlockunlock9)代替。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 

@@ -1,4 +1,4 @@
-# StartOptions
+# @ohos.app.ability.StartOptions (StartOptions)
 
 StartOptions模块对系统的基本通信组件进行查询和设置的能力。
 

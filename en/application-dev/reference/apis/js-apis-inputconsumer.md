@@ -1,18 +1,18 @@
 # Input Consumer
 
-The Input Consumer module implements listening for key events.
+The Input Consumer module implements listening for combination key events.
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs of this module are system APIs and cannot be called by third-party applications.
+> - The APIs provided by this module are system APIs.
 
 
 ## Modules to Import
 
 
-```
+```js
 import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 ```
 
@@ -21,32 +21,29 @@ import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 
 on(type: "key", keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): void
 
-Enables listening for combination key events. When a combination key event that meets the specified conditions occurs, **keyOptions** will be passed as an input parameter to **callback**.
-
-This is a system API.
+Enables listening for combination key events. This API uses an asynchronous callback to return the combination key data when a combination key event that meets the specified condition occurs.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the key input event to listen for. Only **key** is supported.|
-| keyOptions | [keyOptions](#keyoptions) | Yes| Key option, which specifies the condition for combination key input.|
-| callback | Callback&lt;KeyOptions&gt; | Yes| Callback used to return the result.<br> When a key input event that meets the specified options occurs, **keyOptions** will be passed as an input parameter to **callback**.| 
+| Name        | Type                        | Mandatory  | Description                                      |
+| ---------- | -------------------------- | ---- | ---------------------------------------- |
+| type       | string                     | Yes   | Event type. Currently, only **key** is supported.                      |
+| keyOptions | [KeyOptions](#keyoptions)  | Yes   | Combination key options.                |
+| callback   | Callback&lt;KeyOptions&gt; | Yes   | Callback used to return the combination key data when a combination key event that meets the specified condition occurs.|
 
 **Example**
 
-```
-let keyOptions = { preKeys: [], finalKey: 18, isFinalKeyDown: true, finalKeyDownDuration: 0 }
-let callback = function (keyOptions) {
-  console.info("preKeys: " + keyOptions.preKeys, "finalKey: " + keyOptions.finalKey,
-    "isFinalKeyDown: " + keyOptions.isFinalKeyDown, "finalKeyDownDuration: " + keyOptions.finalKeyDownDuration)
-}
+```js
+let leftAltKey = 2045;
+let tabKey = 2049;
 try {
-  inputConsumer.on(inputConsumer.SubscribeType.KEY, keyOptions, callback);
+  inputConsumer.on("key", {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0}, keyOptions => {
+    console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
+  });
 } catch (error) {
-  console.info(`inputConsumer.on, error.code=${JSON.stringify(error.code)}, error.msg=${JSON.stringify(error.message)}`);
+  console.log(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -55,49 +52,63 @@ try {
 
 off(type: "key", keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;): void
 
-Stops listening for combination key events.
-
-This is a system API.
+Disables listening for combination key events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the key input event to listen for. Only **key** is supported.| 
-| keyOptions | [keyOptions](#keyoptions) | Yes| Key options passed to the key input event when listening starts.| 
-| callback | Callback&lt;KeyOptions&gt; | Yes| Callback function passed to the key input event with **keyOptions** when listening starts.| 
+| Name        | Type                        | Mandatory  | Description                             |
+| ---------- | -------------------------- | ---- | ------------------------------- |
+| type       | string                     | Yes   | Event type. Currently, only **key** is supported.             |
+| keyOptions | [KeyOptions](#keyoptions)  | Yes   | Combination key options.            |
+| callback   | Callback&lt;KeyOptions&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
 
 **Example**
 
-```
-let keyOptions = { preKeys: [], finalKey: 18, isFinalKeyDown: true, finalKeyDownDuration: 0 }
+```js
+let leftAltKey = 2045;
+let tabKey = 2049;
+// Disable listening for a single callback function.
 let callback = function (keyOptions) {
-  console.info("preKeys: " + keyOptions.preKeys, "finalKey: " + keyOptions.finalKey,
-    "isFinalKeyDown: " + keyOptions.isFinalKeyDown, "finalKeyDownDuration: " + keyOptions.finalKeyDownDuration)
+  console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
 }
+let keyOption = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
 try {
-  inputConsumer.off(inputConsumer.SubscribeType.KEY, keyOptions, callback);
+  inputConsumer.on("key", keyOption, callback);
+  inputConsumer.off("key", keyOption, callback);
+  console.log(`Unsubscribe success`);
 } catch (error) {
-  console.info(`inputConsumer.off, error.code=${JSON.stringify(error.code)}, error.msg=${JSON.stringify(error.message)}`);
+  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+```js
+let leftAltKey = 2045;
+let tabKey = 2049;
+// Disable listening for all callback functions.
+let callback = function (keyOptions) {
+  console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
+}
+let keyOption = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
+try {
+  inputConsumer.on("key", keyOption, callback);
+  inputConsumer.off("key", keyOption);
+  console.log(`Unsubscribe success`);
+} catch (error) {
+  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 
-## keyOptions
+## KeyOptions
 
-Defines the key options that are met when a combination key input event occurs.
-
-This is a system API.
+Represents combination key options.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
-**Parameters**
-
-| Name| Type| Mandatory| Description| 
-| -------- | -------- | -------- | -------- |
-| preKeys | Array | Yes| Array of precedent keys. This parameter can be left empty. There is no requirement on the sequence of precedent keys.| 
-| finalKey | Number | Yes| Final key in the combination key. This parameter cannot be left blank.| 
-| isFinalKeyDown | boolean | Yes| Whether the final key is pressed or released. By default, the final key is pressed.| 
-| finalKeyDownDuration | Number | Yes| Duration for pressing the final key. By default, there is no requirement on the duration.| 
+| Name       | Type  | Readable  | Writable  | Description     |
+| --------- | ------ | ---- | ---- | ------- |
+| preKeys              | Array\<number>   | Yes   | No| Front key set. The number of front keys ranges from 0 to 4. There is no requirement on the sequence of the keys.|
+| finalKey             | number  | Yes   |  No| Final key. This parameter is mandatory. A callback function is triggered by the final key.|
+| isFinalKeyDown       | boolean | Yes   |  No| Whether the final key is pressed.|
+| finalKeyDownDuration | number  | Yes   |  No| Duration within which the final key is pressed. If the value is **0**, the callback function is triggered immediately. If the value is greater than **0** and the value of **isFinalKeyDown** is **true**, the callback function is triggered when the key press duration is longer than the value of this parameter. If the value of **isFinalKeyDown** is **false**, the callback function is triggered when the duration from key press to key release is less than the value of this parameter.  |

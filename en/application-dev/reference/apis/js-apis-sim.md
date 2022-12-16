@@ -1155,6 +1155,8 @@ Obtains the lock status of the SIM card in the specified slot. This API uses an 
 
 **System API**: This is a system API.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CoreService
 
 **Parameters**
@@ -1181,6 +1183,8 @@ getLockState(slotId: number, lockType: LockType): Promise<LockState\>
 Obtains the lock status of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2238,7 +2242,6 @@ Adds contact numbers for the SIM card in the specified slot. This API uses an as
 let diallingNumbersInof = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
-    recordNumber: 123,
     pin2: "1234"
 };
 sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
@@ -2278,9 +2281,7 @@ Adds contact numbers for the SIM card in the specified slot. This API uses a pro
 ```js
 let diallingNumbersInof = {
     alphaTag: "alpha",
-    number: "138xxxxxxxx",
-    recordNumber: 123,
-    pin2: "1234"
+    number: "138xxxxxxxx"
 };
 let promise = sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
@@ -2316,9 +2317,7 @@ Deletes contact numbers from the SIM card in the specified slot. This API uses a
 ```js
 let diallingNumbersInof = {
     alphaTag: "alpha",
-    number: "138xxxxxxxx",
-    recordNumber: 123,
-    pin2: "1234"
+    number: "138xxxxxxxx"
 };
 sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -2357,9 +2356,7 @@ Deletes contact numbers from the SIM card in the specified slot. This API uses a
 ```js
 let diallingNumbersInof = {
     alphaTag: "alpha",
-    number: "138xxxxxxxx",
-    recordNumber: 123,
-    pin2: "1234"
+    number: "138xxxxxxxx"
 };
 let promise = sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
@@ -2395,9 +2392,7 @@ Updates contact numbers for the SIM card in the specified slot. This API uses an
 ```js
 let diallingNumbersInof = {
     alphaTag: "alpha",
-    number: "138xxxxxxxx",
-    recordNumber: 123,
-    pin2: "1234"
+    number: "138xxxxxxxx"
 };
 sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);

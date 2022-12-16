@@ -1,4 +1,4 @@
-# InputMethodExtensionAbility
+# @ohos.inputmethodextensionability (InputMethodExtensionAbility)
 
 开发者可通过继承本模块开发自己的输入法应用并管理输入法应用生命周期。
 

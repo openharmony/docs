@@ -75,7 +75,7 @@ repo forall -c 'git lfs pull'
 
 | 版本源码 | **版本信息** | **下载站点** | **SHA256校验码** |
 | -------- | -------- | -------- | -------- |
-| 全量代码（标准、轻量和小型系统） | 3.1.4&nbsp;Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/code-v3.1.4-Release.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/code-v3.1.4-Release.tar.gz.sha256) |
+| 全量代码（标准、轻量和小型系统） | 3.1.4&nbsp;Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/code-v3.1.4-Release-2022-12-12.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/code-v3.1.4-Release-2022-12-12.tar.gz.sha256) |
 | Hi3516标准系统解决方案（二进制） | 3.1.4&nbsp;Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/standard_hi3516.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/standard_hi3516.tar.gz.sha256) |
 | RK3568标准系统解决方案（二进制） | 3.1.4&nbsp;Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/standard_rk3568.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/standard_rk3568.tar.gz.sha256) |
 | Hi3861轻量系统解决方案（二进制） | 3.1.4&nbsp;Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/hispark_pegasus.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/hispark_pegasus.tar.gz.sha256) |

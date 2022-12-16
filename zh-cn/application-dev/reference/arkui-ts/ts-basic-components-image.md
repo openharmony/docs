@@ -37,7 +37,7 @@ Image(src: string | PixelMap | Resource)
 | --------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
 | alt                   | string \| [Resource](ts-types.md#resource类型) | 加载时显示的占位图，支持本地图片。                 |
 | objectFit             | [ImageFit](ts-appendix-enums.md#imagefit)                           | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover                  |
-| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | 设置图片的重复样式。<br/>默认值：NoRepeat<br/>**说明：**<br/>svg类型图源不支持该属性。 |
+| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | 设置图片的重复样式。<br/>默认值：ImageRepeat.NoRepeat<br/>**说明：**<br/>svg类型图源不支持该属性。 |
 | interpolation         | [ImageInterpolation](#imageinterpolation)               | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>默认值：ImageInterpolation.None<br/>**说明：**<br/>svg类型图源不支持该属性。<br/>PixelMap资源不支持该属性。 |
 | renderMode            | [ImageRenderMode](#imagerendermode)                     | 设置图片渲染的模式。<br/>默认值：ImageRenderMode.Original<br/>**说明：**<br/>svg类型图源不支持该属性。 |
 | sourceSize            | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | 设置图片裁剪尺寸，将原始图片解码成pixelMap，指定尺寸的图片，单位为px。<br/>**说明：**<br/>PixelMap资源不支持该属性。 |

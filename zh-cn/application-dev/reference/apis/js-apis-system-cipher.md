@@ -1,4 +1,4 @@
-# 加密算法
+# @system.cipher (加密算法)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >

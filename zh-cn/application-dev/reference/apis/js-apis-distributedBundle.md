@@ -1,4 +1,4 @@
-# distributedBundle模块(JS端SDK接口)
+# @ohos.bundle.distributedBundle (distributedBundle模块)
 
 本模块提供分布式包的管理能力
 

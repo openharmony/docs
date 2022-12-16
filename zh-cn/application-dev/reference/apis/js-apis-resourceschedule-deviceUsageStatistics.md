@@ -1,4 +1,4 @@
-# 设备使用信息统计
+# @ohos.resourceschedule.usageStatistics (设备使用信息统计)
 
 本模块提供设备使用信息统计能力。
 

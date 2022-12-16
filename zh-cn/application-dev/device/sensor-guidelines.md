@@ -31,16 +31,14 @@
 
    具体配置方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。
    
-2. 持续监听传感器数据变化。
+2. 以下场景以加速度传感器ACCELEROMETER为例。展示持续监听传感器接口的调用结果。
   
    ```js
    import sensor from "@ohos.sensor";
    sensor.on(sensor.SensorId.ACCELEROMETER, function(data){
-      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z);// 获取数据成功
+      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // 获取数据成功
    });
    ```
-   
-   以SensorId为ACCELEROMETER为例展示运行结果，持续监听传感器接口的结果如下图所示：
    
    ![171e6f30-a8d9-414c-bafa-b430340305fb](figures/171e6f30-a8d9-414c-bafa-b430340305fb.png)
 
@@ -51,8 +49,6 @@
    sensor.off(sensor.SensorId.ACCELEROMETER);
    ```
    
-   以SensorId为ACCELEROMETER为例展示运行结果，注销传感器成功结果如下图所示：
-   
    ![65d69983-29f6-4381-80a3-f9ef2ec19e53](figures/65d69983-29f6-4381-80a3-f9ef2ec19e53.png)
 
 4. 获取一次传感器数据变化。
@@ -60,11 +56,9 @@
    ```js
    import sensor from "@ohos.sensor";
    sensor.once(sensor.SensorId.ACCELEROMETER, function(data) {
-      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z);// 获取数据成功
+      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // 获取数据成功
    });
    ```
-   
-   以SensorId为ACCELEROMETER为例展示运行结果，获取数据成功日志如下图所示：
    
    ![db5d017d-6c1c-4a71-a2dd-f74b7f23239e](figures/db5d017d-6c1c-4a71-a2dd-f74b7f23239e.png)
 
@@ -74,10 +68,10 @@
    import sensor from "@ohos.sensor";
     try {
       sensor.once(sensor.SensorId.ACCELEROMETER, function(data) {
-          console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z);// 获取数据成功
+          console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // 获取数据成功
       });
     } catch (error) {
-      console.error("Get sensor data fail");
+      console.error("Get sensor data error. data:" + error.data, " msg:", error.message);
     }
     ```
 ## 相关实例
