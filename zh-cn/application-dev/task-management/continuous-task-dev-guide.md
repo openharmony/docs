@@ -179,7 +179,7 @@ export default {
 
 ### 基于Stage模型
 
-Stage模型的相关信息参考[Stage模型综述](../application-models/stage-model-development-overview.md)。
+Stage模型的相关信息参考[Stage开发概述](../application-models/stage-model-development-overview.md)。
 
 1、新建Api Version 9的工程后，在工程目录中右键选择“New” -> “Ability” 快速创建Ability组件。并在module.json5文件中配置长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING、后台模式类型。
 
@@ -201,7 +201,7 @@ Stage模型的相关信息参考[Stage模型综述](../application-models/stage-
 }
 ```
 
-2、在应用内执行长时任务时，由于元能力启动管控规则限制，不支持同应用通过startAbilityByCall的形式在后台创建并运行Ability。可以直接在page中，执行相应的代码。Stage模型的Ability使用参考[Ability开发指导](../application-models/uiability-overview.md)。
+2、在应用内执行长时任务时，由于元能力启动管控规则限制，不支持同应用通过startAbilityByCall的形式在后台创建并运行Ability。可以直接在page中，执行相应的代码。Stage模型的Ability使用参考[Stage模型开发指导-UIAbility组件](../application-models/uiability-overview.md)。
 
 ```ts
 import wantAgent from '@ohos.wantAgent';
