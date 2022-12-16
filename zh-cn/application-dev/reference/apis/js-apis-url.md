@@ -809,13 +809,13 @@ URL的构造函数。
 **示例：**
 
 ```js
-let mm = 'http://username:password@host:8080';
-let a = new Url.URL("/", mm); // Output 'http://username:password@host:8080/';
-let b = new Url.URL(mm); // Output 'http://username:password@host:8080/';
-new Url.URL('path/path1', b); // Output 'http://username:password@host:8080/path/path1';
-let c = new Url.URL('/path/path1', b);  // Output 'http://username:password@host:8080/path/path1'; 
-new Url.URL('/path/path1', c); // Output 'http://username:password@host:8080/path/path1';
-new Url.URL('/path/path1', a); // Output 'http://username:password@host:8080/path/path1';
+let mm = 'https://username:password@host:8080';
+let a = new Url.URL("/", mm); // Output 'https://username:password@host:8080/';
+let b = new Url.URL(mm); // Output 'https://username:password@host:8080/';
+new Url.URL('path/path1', b); // Output 'https://username:password@host:8080/path/path1';
+let c = new Url.URL('/path/path1', b);  // Output 'https://username:password@host:8080/path/path1'; 
+new Url.URL('/path/path1', c); // Output 'https://username:password@host:8080/path/path1';
+new Url.URL('/path/path1', a); // Output 'https://username:password@host:8080/path/path1';
 new Url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
 new Url.URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
 new Url.URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
@@ -841,8 +841,8 @@ URL静态成员函数。
 **示例：**
 
 ```js
-let mm = 'http://username:password@host:8080';
-Url.URL.parseURL(mm); // Output 'http://username:password@host:8080/';
+let mm = 'https://username:password@host:8080';
+Url.URL.parseURL(mm); // Output 'https://username:password@host:8080/';
 ```
 
 ### tostring
@@ -862,7 +862,7 @@ toString(): string
 **示例：**
 
 ```js
-const url = new Url.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const url = new Url.URL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 url.toString();
 ```
 
@@ -883,7 +883,7 @@ toJSON(): string
 
 **示例：**
 ```js
-const url = new Url.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const url = new Url.URL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 url.toJSON();
 ```
 <!--no_check-->
