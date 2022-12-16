@@ -201,7 +201,7 @@ Stage模型的相关信息参考[Stage模型综述](../ability-deprecated/stage-
 }
 ```
 
-2、在应用内执行长时任务时，由于元能力启动管控规则限制，不支持同应用通过startAbilityByCall的形式在后台创建并运行Ability。可以直接在page中，执行相应的代码。Stage模型的Ability使用参考[Ability开发指导](../ability/stage-ability.md)。
+2、在应用内执行长时任务时，由于元能力启动管控规则限制，不支持同应用通过startAbilityByCall的形式在后台创建并运行Ability。可以直接在page中，执行相应的代码。Stage模型的Ability使用参考[Ability开发指导](../ability-deprecated/stage-ability.md)。
 
 ```ts
 import wantAgent from '@ohos.wantAgent';
