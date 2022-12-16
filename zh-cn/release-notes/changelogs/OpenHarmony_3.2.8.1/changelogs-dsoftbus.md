@@ -128,7 +128,7 @@
 | Ashmem  | writeToAshmem(buf: number[], size: number, offset: number): boolean | NA | writeAshmem(buf: number[], size: number, offset: number): void |
 | Ashmem  | readFromAshmem(size: number, offset: number): number[] | NA | readAshmem(size: number, offset: number): number[] |
 
-##### 适配指导
+#### 适配指导
 
 新增的接口以抛异常的方式返回错误码及对应的错误信息，以MessageParcel中的create接口为例，使用示例代码如下：
 ```js
