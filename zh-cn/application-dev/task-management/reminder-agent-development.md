@@ -3,7 +3,7 @@
 
 ## 接口说明
 
-后台代理提醒功能主要提供后台提醒通知发布接口，开发者可调用这些接口创建定时提醒，包括倒计时、日历、闹钟三种提醒类型。[reminderAgentManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-reminderAgentManager.md)封装了发布、取消提醒通知的方法。
+后台代理提醒功能主要提供后台提醒通知发布接口，开发者可调用这些接口创建定时提醒，包括倒计时、日历、闹钟三种提醒类型。[reminderAgentManager](../reference/apis/js-apis-reminderAgentManager.md)封装了发布、取消提醒通知的方法。
 
   **表1** reminderAgentManager主要接口
 
@@ -19,7 +19,7 @@
 
 ## 开发步骤
 
-1. 申请`ohos.permission.PUBLISH_AGENT_REMINDER`权限，配置方式请参阅[访问控制授权申请指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-guidelines.md#stage%E6%A8%A1%E5%9E%8B)。
+1. 申请`ohos.permission.PUBLISH_AGENT_REMINDER`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
 
 2. [使能通知开关](../notification/notification-enable.md)，获得用户授权后，才能使用代理提醒功能。
 
@@ -160,7 +160,7 @@
 
    ![zh-cn_image_0000001416585578](figures/zh-cn_image_0000001416585578.png)
 
-6. 若需要删除提醒任务，可以通过调用[reminderAgentManager.cancelReminder()](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-reminderAgentManager.md#reminderagentmanagercancelreminder)方法来实现。
+6. 若需要删除提醒任务，可以通过调用[reminderAgentManager.cancelReminder()](../reference/apis/js-apis-reminderAgentManager.md#reminderagentmanagercancelreminder)方法来实现。
 
    ```js
    let reminderId = 0; // reminderId的值从发布提醒代理成功之后的回调中获得

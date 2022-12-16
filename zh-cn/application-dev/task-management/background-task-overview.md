@@ -20,7 +20,7 @@ OpenHarmony将后台任务分为四种类型，并提供了一个资源申请的
 
 ## 最佳后台任务选择
 
-![后台任务选择](public_sys-resources/bgtask_choice.png)
+![后台任务选择](figures/bgtask_choice.png)
 
 ## 短时任务
 
