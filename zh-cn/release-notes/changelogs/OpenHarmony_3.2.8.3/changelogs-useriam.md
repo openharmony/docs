@@ -54,3 +54,21 @@ try {
 ```
 
 更多接口的示例代码可参考[用户认证API文档](../../../application-dev/reference/apis/js-apis-useriam-userauth.md)和[人脸认证API文档](../../../application-dev/reference/apis/js-apis-useriam-faceauth.md)。
+
+## cl.useriam.2 接口调用权限变更
+
+用户IAM部分接口只允许被系统应用调起，需要做系统应用运行时鉴权。从API9开始作以下变更：
+
+人脸认证模块的setSurfaceId接口增加判别是否为系统应用的逻辑，非系统应用无法调用该接口。
+
+**变更影响**
+
+基于此版本以前开发的应用不受影响，以后的需要持有相应权限，否则无法正常调用接口。
+
+**关键接口/组件变更**
+
+setSurfaceId接口的实现中增加系统应用鉴权处理，非系统应用调用将返回202错误码。
+
+**适配指导**
+
+需要修改[应用签名](https://gitee.com/openharmony/developtools_hapsigner/tree/master/dist)相关文件UnsgnedReleasedProfileTemplate.json，其中的app-feature字段要改为"hos_system_app"，才可保证签名所得到的应用是系统应用。
