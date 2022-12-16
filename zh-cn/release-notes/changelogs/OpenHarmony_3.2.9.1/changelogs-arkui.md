@@ -48,3 +48,21 @@ arkui子系统xcomponent组件接口存在变更：
       - 指定返回值类型为Object
       - 开发者需要按照Object类型处理返回值
         
+## cl.arkui.2 弹窗类组件接口样式变更
+
+ArkUI子系统alertDialog, actionSheet, customDialog组件及prompt, promptAction接口存在样式变更：
+
+ - promptAction.showDialog, promptAction.showActionMenu, alertDialog, actionSheet, customDialog更新弹窗底板模糊效果
+
+**变更影响**
+
+默认弹窗底板模糊效果
+
+**关键的接口/组件变更**
+
+涉及接口: promptAction.showDialog, promptAction.showActionMenu;
+涉及组件: alertDialog, actionSheet, customDialog
+
+**适配指导**
+
+无需适配
