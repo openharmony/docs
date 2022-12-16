@@ -88,7 +88,7 @@ try {
 
 isActive(): boolean
 
-检测当前设备是否处于活动状态。
+检测当前设备是否处于活动状态。有屏的设备为亮屏状态，无屏的设备为非休眠状态。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
