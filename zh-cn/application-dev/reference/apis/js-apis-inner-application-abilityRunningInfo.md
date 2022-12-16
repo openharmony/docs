@@ -8,7 +8,7 @@ AbilityRunningInfo模块提供对Ability运行的相关信息和状态的定义�
 
 ## 使用说明
 
-通过abilityManager中getAbilityRunningInfos方法获取。
+通过abilityManager中[getAbilityRunningInfos](js-apis-app-ability-abilityManager.md#getabilityrunninginfos)方法获取。
 
 ## 属性
 

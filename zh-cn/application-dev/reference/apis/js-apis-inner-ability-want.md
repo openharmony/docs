@@ -1,6 +1,6 @@
 # Want
 
-Want是对象间信息传递的载体, 可以用于应用组件间的信息传递。 Want的使用场景之一是作为startAbility的参数, 其包含了指定的启动目标, 以及启动时需携带的相关数据, 如bundleName和abilityName字段分别指明目标Ability所在应用的包名以及对应包内的Ability名称。当Ability A需要启动Ability B并传入一些数据时, 可使用Want作为载体将这些数据传递给Ability B。
+Want是对象间信息传递的载体, 可以用于应用组件间的信息传递。 Want的使用场景之一是作为[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)的参数, 其包含了指定的启动目标, 以及启动时需携带的相关数据, 如bundleName和abilityName字段分别指明目标Ability所在应用的包名以及对应包内的Ability名称。当Ability A需要启动Ability B并传入一些数据时, 可使用Want作为载体将这些数据传递给Ability B。
 
 > **说明：**
 > 
@@ -23,43 +23,46 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
 
 **示例：**
 
-- 基础用法
+- 基础用法(在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象)
 
   ```ts
-    var want = {
-        "deviceId": "", // deviceId为空表示本设备
-        "bundleName": "com.extreme.test",
-        "abilityName": "MainAbility",
-        "moduleName": "entry" // moduleName非必选
-    };
-    this.context.startAbility(want, (error) => {
-        // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-        console.log("error.code = " + error.code)
-    })
+  let want = {
+      "deviceId": "", // deviceId为空表示本设备
+      "bundleName": "com.extreme.test",
+      "abilityName": "MainAbility",
+      "moduleName": "entry" // moduleName非必选
+  };
+  this.context.startAbility(want, (error) => {
+      // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
+      console.log("error.code = " + error.code)
+  })
   ```
 
-- 传递FD数据，FD表示文件描述符(FileDescriptor)
+- 传递FD(文件描述符)数据(在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象)
 
   ```ts
-    import fileio from '@ohos.fileio';
-    var fd;
-    try {
-        fd = fileio.openSync("/data/storage/el2/base/haps/pic.png");
-    } catch(e) {
-        console.log("openSync fail:" + JSON.stringify(e));
-    }
-    var want = {
-        "deviceId": "", // deviceId为空表示本设备
-        "bundleName": "com.extreme.test",
-        "abilityName": "MainAbility",
-        "moduleName": "entry", // moduleName非必选
-        "parameters": {
-            "keyFd":{"type":"FD", "value":fd}
-        }
-    };
-    this.context.startAbility(want, (error) => {
-        // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-        console.log("error.code = " + error.code)
-    })
+  import fileio from '@ohos.fileio';
+  
+  // ...
+  let fd;
+  try {
+      fd = fileio.openSync("/data/storage/el2/base/haps/pic.png");
+  } catch(e) {
+      console.log("openSync fail:" + JSON.stringify(e));
+  }
+  let want = {
+      "deviceId": "", // deviceId为空表示本设备
+      "bundleName": "com.extreme.test",
+      "abilityName": "MainAbility",
+      "moduleName": "entry", // moduleName非必选
+      "parameters": {
+          "keyFd":{"type":"FD", "value":fd}
+      }
+  };
+  this.context.startAbility(want, (error) => {
+      // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
+      console.log("error.code = " + error.code)
+  })
+  // ...
   ```
   <!--no_check-->
