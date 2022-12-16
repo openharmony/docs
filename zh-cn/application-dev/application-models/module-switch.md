@@ -8,7 +8,7 @@
 | FA标签 | 标签说明 | 对应的Stage标签 | 差异说明 |
 | -------- | -------- | -------- | -------- |
 | mainAbility | 服务中心图标露出的ability，常驻进程拉起时会启动mainAbility。 | mainElement | 标签名称变更，Stage模型不在使用.符号。 |
-| package | 标识HAP的包结构名称，在应用内保证唯一性。 | / | Stage模型使用name来保证应用唯一性。FA模型升级到Stage模型的场景，FA模型的package和Stage模型的name要保持一致。 |
+| package | 标识HAP的包结构名称，在应用内保证唯一性。 | / | Stage模型使用name来保证应用唯一性。```FA模型升级到Stage模型时，Stage模型的name需要和FA模型的package保持一致，否则会导致升级失败。``` |
 | name | 标识HAP的类名 | / | FA模型中实际未使能，Stage模型没有与之对应的标签。 |
 | supportedModes | 标识应用支持的运行模式，当前只定义了驾驶模式（drive） | / | Stage模型已废弃。 |
 | distro对象中的moduleName | 标识当前HAP的名称<br/>**distro对象**中的moduleName | name | 标签变更。 |
