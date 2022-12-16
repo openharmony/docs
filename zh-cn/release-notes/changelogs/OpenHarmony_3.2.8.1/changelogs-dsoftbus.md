@@ -130,6 +130,7 @@
 
 ##### 适配指导
 
+新增支持异常处理的接口也会返回对应的错误码，以MessageParcel中的create接口为例，示例代码如下：
 ```js
 import rpc from '@ohos.rpc'
 
