@@ -102,7 +102,7 @@ Starts screen hopping. This API uses an asynchronous callback to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Screen Hopping Error Codes](../errorcodes/errorcodes-multimodalinput.md).
+For details about the error codes, see [Screen Hopping Error Codes](../errorcodes/errorcode-multimodalinput.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -150,7 +150,7 @@ Starts screen hopping. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Screen Hopping Error Codes](../errorcodes/errorcodes-multimodalinput.md).
+For details about the error codes, see [Screen Hopping Error Codes](../errorcodes/errorcode-multimodalinput.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -353,7 +353,7 @@ Disables listening for screen hopping events.
 callback: function(event) {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
   return false;
-},
+}
 try {
   inputDeviceCooperate.on('cooperation', this.callback);
   inputDeviceCooperate.off("cooperation", this.callback);
@@ -366,7 +366,7 @@ try {
 callback: function(event) {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
   return false;
-},
+}
 try {
   inputDeviceCooperate.on('cooperation', this.callback);
   inputDeviceCooperate.off("cooperation");

@@ -137,6 +137,7 @@ struct TabContentExample {
 }
 ```
 
+![tabContent](figures/tabContent1.gif)
 
 示例2：
 
@@ -191,3 +192,5 @@ struct TabContentExample {
   }
 }
 ```
+
+![tabContent](figures/tabContent2.gif)

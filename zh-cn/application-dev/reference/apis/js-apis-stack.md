@@ -1,4 +1,4 @@
-# 线性容器Stack
+# @ohos.util.Stack (线性容器Stack)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -17,9 +17,6 @@ Stack和[Queue](js-apis-queue.md)相比，Queue基于循环队列实现，只能
 ```ts
 import Stack from '@ohos.util.Stack';  
 ```
-
-
-
 
 ## Stack
 
@@ -52,11 +49,6 @@ Stack的构造函数。
 
 ```ts
 let stack = new Stack();
-try {
-  let stack2 = Stack();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -98,11 +90,6 @@ let b = [1, 2, 3];
 let result2 = stack.push(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = stack.push(c);
-try {
-  stack.push.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### pop
@@ -137,11 +124,6 @@ stack.push(5);
 stack.push(2);
 stack.push(4);
 let result = stack.pop();
-try {
-  stack.pop.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### peek
@@ -175,11 +157,6 @@ stack.push(4);
 stack.push(5);
 stack.push(2);
 let result = stack.peek();
-try {
-  stack.peek.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### locate
@@ -219,16 +196,11 @@ stack.push(4);
 stack.push(5);
 stack.push(2);
 let result = stack.locate(2);
-try {
-  stack.locate.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
 thisArg?: Object): void
 
 通过回调函数来遍历Stack实例对象上的元素以及元素对应的下标。
@@ -239,7 +211,7 @@ thisArg?: Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -269,13 +241,6 @@ stack.push(4);
 stack.forEach((value, index) => {
  console.log("value:" + value, index);
 });
-try {
-  stack.forEach.bind({}, (value, index) => {
-    console.log("value:" + value, index);
-  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### isEmpty
@@ -309,11 +274,6 @@ stack.push(4);
 stack.push(5);
 stack.push(4);
 let result = stack.isEmpty();
-try {
-  stack.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### [Symbol.iterator]
@@ -357,10 +317,5 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-}
-try {
-  stack[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

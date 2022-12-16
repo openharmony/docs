@@ -1,4 +1,4 @@
-# 应用空间统计
+# @ohos.storageStatistics (应用空间统计)
 
 该模块提供空间查询相关的常用功能：包括对内外卡的空间查询，对应用分类数据统计的查询，对应用数据的查询等。
 
@@ -452,7 +452,7 @@ getSystemSize(callback: AsyncCallback&lt;number&gt;): void
 
 ## storageStatistics.getUserStorageStats<sup>9+</sup>
 
-getUserStorageStats(userId? : number): Promise&lt;StorageStats&gt;
+getUserStorageStats(userId?: number): Promise&lt;StorageStats&gt;
 
 异步获取用户各类别数据大小，以promise方式返回。
 
@@ -489,7 +489,7 @@ getUserStorageStats(userId? : number): Promise&lt;StorageStats&gt;
 
 ## storageStatistics.getUserStorageStats<sup>9+</sup>
 
-getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;): void
+getUserStorageStats(userId?: number, callback: AsyncCallback&lt;StorageStats&gt;): void
 
 异步获取用户各类别数据大小，以callback方式返回。
 

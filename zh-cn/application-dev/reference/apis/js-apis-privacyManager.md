@@ -1,4 +1,4 @@
-# 隐私管理
+# @ohos.privacyManager (隐私管理)
 
 本模块主要提供权限使用记录等隐私管理接口。
 
@@ -42,11 +42,14 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -89,11 +92,14 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -139,11 +145,14 @@ getPermissionUsedRecords(request: PermissionUsedRequest): Promise&lt;PermissionU
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100001 | The parameter is invalid. the value of flag in request is invalid. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -191,11 +200,14 @@ getPermissionUsedRecords(request: PermissionUsedRequest, callback: AsyncCallback
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100001 | The parameter is invalid. the value of flag in request is invalid. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -251,12 +263,15 @@ startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;v
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
-| 12100004 | The interface is not used together. |
+| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -296,12 +311,15 @@ startUsingPermission(tokenID: number, permissionName: Permissions, callback: Asy
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
-| 12100004 | The interface is not used together. |
+| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -324,7 +342,7 @@ try {
 
 ## privacyManager.stopUsingPermission
 
-stopUsingPermission(tokenID: number, permissionName: string): Promise&lt;void&gt;
+stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;void&gt;
 
 应用停止使用某项权限，与Start对应，由系统服务调用。使用Promise异步回调。
 
@@ -348,12 +366,15 @@ stopUsingPermission(tokenID: number, permissionName: string): Promise&lt;void&gt
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
-| 12100004 | The interface is not used together. |
+| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100004 | The interface is not used with |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -393,12 +414,15 @@ stopUsingPermission(tokenID: number, permissionName: Permissions, callback: Asyn
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
-| 12100004 | The interface is not used together. |
+| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100004 | The interface is not used with |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -434,26 +458,29 @@ on(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, call
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | 是   | 订阅事件类型，固定为'activeStateChange'，权限使用状态变更事件。   |
-| permissionNameList | Array&lt;Permissions&gt;   | 否   | 订阅的权限名列表，为空时表示订阅所有的权限使用状态变化。           |
+| permissionNameList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限使用状态变化。           |
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | 是 | 订阅指定权限使用状态变更事件的回调。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100004 | The interface is not used together. |
-| 12100005 | The number of listeners exceeds the limit. |
+| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100004 | The interface is called repeatedly with the same input. |
+| 12100005 | The registration time has exceeded the limitation. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
 ```js
 import privacyManager from '@ohos.privacyManager';
 
-let permissionNameList: Array<Permissions> = [];
+let permissionNameList = [];
 try {
-    atManager.on('activeStateChange', permissionNameList, (data) => {
+    privacyManager.on('activeStateChange', permissionNameList, (data) => {
         console.debug("receive permission state change, data:" + JSON.stringify(data));
     });
 } catch(err) {
@@ -476,23 +503,26 @@ off(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, cal
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | 是   | 订阅事件类型，固定为'activeStateChange'，权限使用状态变更事件。   |
-| permissionNameList | Array&lt;Permissions&gt;   | 否   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致。 |
+| permissionNameList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致。 |
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | 否 | 取消订阅指定tokenId与指定权限名状态变更事件的回调。|
 
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100004 | The interface is not used together. |
+| 12100001 | The parameter is invalid. The permissionName in list is all invalid or the list size is larger than 1024. |
+| 12100004 | The interface is not used with |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
 ```js
 import privacyManager from '@ohos.privacyManager';
 
-let permissionNameList: Array<Permissions> = [];
+let permissionNameList = [];
 try {
     privacyManager.off('activeStateChange', permissionNameList);
 }catch(err) {
@@ -506,7 +536,7 @@ try {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称                    | 值 | 描述                   |
+| 名称                    | 值 | 说明                   |
 | ----------------------- | ------ | ---------------------- |
 | FLAG_PERMISSION_USAGE_SUMMARY             | 0    | 表示查询总览数据。 |
 | FLAG_PERMISSION_USAGE_DETAIL         | 1    | 表示查询详细数据。         |
@@ -589,7 +619,7 @@ try {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称                      | 默认值 | 描述              |
+| 名称                      | 值     | 说明              |
 | ------------------------- | ------ | ---------------- |
 | PERM_INACTIVE             | 0      | 表示未使用权限。   |
 | PERM_ACTIVE_IN_FOREGROUND | 1      | 表示前台使用权限。 |

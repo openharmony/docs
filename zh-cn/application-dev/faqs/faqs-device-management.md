@@ -21,7 +21,7 @@ display.getDefaultDisplay((err, data) => {
 });
 ```
 
-## 如何获取当前运行设备类型（穿戴、平板等）
+## 如何获取当前运行设备类型
 
 适用于：OpenHarmony SDK 3.2.2.5版本，API9 Stage模型
 
@@ -39,9 +39,9 @@ display.getDefaultDisplay((err, data) => {
 
 适用于：OpenHarmony SDK3.0, API9 Stage模型
 
-1、如果想获取连接设备的udid，可使用 hdc shell bm get --udid命令；
+1. 如果想获取连接设备的udid，可使用 hdc shell bm get --udid命令；
 
-2、如果想在代码中获得，参考文档 [udid](../reference/apis/js-apis-device-info.md) 。
+2. 如果想在代码中获得，参考文档 [udid](../reference/apis/js-apis-device-info.md) 。
 
 ## 开发快捷键功能
 

@@ -46,7 +46,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-| Name       | Type                                                        | Mandatory| Description                                              |
+| Name     | Type                                                        | Mandatory| Description                                              |
 | ----------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementName | [ElementName](js-apis-bundle-ElementName.md)                 | Yes  | **ElementName**.                           |
 | callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)> | Yes  | Callback used to return the remote ability information.|
@@ -75,7 +75,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-| Name       | Type                                        | Mandatory| Description                   |
+| Name     | Type                                        | Mandatory| Description                   |
 | ----------- | -------------------------------------------- | ---- | ----------------------- |
 | elementName | [ElementName](js-apis-bundle-ElementName.md) | Yes  | **ElementName**.|
 
@@ -107,10 +107,10 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-| Name        | Type                                                        | Mandatory| Description                                              |
+| Name      | Type                                                        | Mandatory| Description                                              |
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)>          | Yes  | **ElementName** array, whose maximum length is 10.                  |
-| callback     | AsyncCallback< Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)>> | Yes  | Callback used to return the remote ability information.|
+| callback     | AsyncCallback< Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)>> | Yes  | Callback used to return an array of the remote ability information.|
 
 
 
@@ -136,7 +136,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-| Name        | Type                                               | Mandatory| Description                   |
+| Name     | Type                                               | Mandatory| Description                 |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
 | elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)> | Yes  | **ElementName** array, whose maximum length is 10.|
 

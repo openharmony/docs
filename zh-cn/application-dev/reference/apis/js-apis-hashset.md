@@ -1,4 +1,4 @@
-# 非线性容器HashSet 
+# @ohos.util.HashSet (非线性容器HashSet)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -60,11 +60,6 @@ HashSet的构造函数。
 
 ```ts
 let hashSet = new HashSet();
-try {
-  let hashSet2 = HashSet();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -95,11 +90,6 @@ isEmpty(): boolean
 ```ts
 const hashSet = new HashSet();
 let result = hashSet.isEmpty();
-try {
-  hashSet.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -138,11 +128,6 @@ let hashSet = new HashSet();
 let result = hashSet.has("squirrel");
 hashSet.add("squirrel");
 let result1 = hashSet.has("squirrel");
-try {
-  hashSet.has.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -179,11 +164,6 @@ add(value: T): boolean
 ```ts
 let hashSet = new HashSet();
 let result = hashSet.add("squirrel");
-try {
-  hashSet.add.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -222,11 +202,6 @@ let hashSet = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let result = hashSet.remove("sparrow");
-try {
-  hashSet.remove.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -253,11 +228,6 @@ let hashSet = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 hashSet.clear();
-try {
-  hashSet.remove.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -295,17 +265,12 @@ while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
 }
-try {
-  hashSet.values.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
 ### forEach
 
-forEach(callbackfn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
@@ -315,7 +280,7 @@ forEach(callbackfn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisAr
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -342,13 +307,6 @@ hashSet.add("squirrel");
 hashSet.forEach((value, key) => {
   console.log("value:" + value, key);
 });
-try {
-  hashSet.forEach.bind({}, (value, key) => {
-    console.log("value:" + value, key);
-  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -385,11 +343,6 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
-}
-try {
-  hashSet.entries.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -434,10 +387,5 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value: " + temp);
   temp = iter.next().value;
-}
-try {
-  hashSet[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

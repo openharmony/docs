@@ -1,6 +1,6 @@
-# 网络共享管理
+# @ohos.net.sharing (网络共享管理)
 
-网络共享管理分享设备已有网络给其他连接设备，支持Wi-Fi热点共享、蓝牙共享和USB共享，同时提供网络共享状态、共享流量查询功能。
+网络共享管理分享设备已有网络给其他连接设备，支持Wi-Fi热点共享和蓝牙共享，同时提供网络共享状态、共享流量查询功能。
 
 > **说明：**
 >
@@ -18,9 +18,11 @@ isSharingSupported(callback: AsyncCallback\<boolean>): void
 
 判断是否支持网络共享，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -43,9 +45,11 @@ isSharingSupported(): Promise\<boolean>
 
 判断是否支持网络共享，使用Promise方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **返回值：**
 
@@ -69,9 +73,11 @@ isSharing(callback: AsyncCallback\<boolean>): void
 
 获取当前网络共享状态，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -94,9 +100,11 @@ isSharing(): Promise\<boolean>
 
 获取当前网络共享状态，使用Promise方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **返回值：**
 
@@ -120,9 +128,11 @@ startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
 开启指定类型共享，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -146,9 +156,11 @@ startSharing(type: SharingIfaceType): Promise\<void>
 
 开启指定类型共享，使用Promise方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -179,9 +191,11 @@ stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
 关闭指定类型共享，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -205,9 +219,11 @@ stopSharing(type: SharingIfaceType): Promise\<void>
 
 关闭指定类型共享，使用Promise方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -238,9 +254,11 @@ getStatsRxBytes(callback: AsyncCallback\<number>): void
 
 获取共享网络接收数据量，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -263,9 +281,11 @@ getStatsRxBytes(): Promise\<number>
 
 获取共享网络接收数据量，使用Promise方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **返回值：**
 
@@ -289,9 +309,11 @@ getStatsTxBytes(callback: AsyncCallback\<number>): void
 
 获取共享网络发送数据量，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -314,9 +336,11 @@ getStatsTxBytes(): Promise\<number>
 
 获取共享网络发送数据量，使用Promise方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **返回值：**
 
@@ -340,9 +364,11 @@ getStatsTotalBytes(callback: AsyncCallback\<number>): void
 
 获取共享网络总数据量，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -365,9 +391,11 @@ getStatsTotalBytes(): Promise\<number>
 
 获取共享网络总数据量，使用Promise方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **返回值：**
 
@@ -391,15 +419,17 @@ getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<strin
 
 获取指定状态的网卡名称列表，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
-| state | state: [SharingIfaceState](#sharingifacestate) | 是   | 网络共享状态。 |
+| state    | [SharingIfaceState](#sharingifacestate) | 是   | 网络共享状态。 |
 | callback | AsyncCallback\<Array\<string>> | 是   | 回调函数，返回指定状态的网卡名称列表。 |
 
 **示例：**
@@ -418,15 +448,17 @@ getSharingIfaces(state: SharingIfaceState): Promise\<Array\<string>>
 
 获取指定状态的网卡名称列表，使用Promise方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
-| state | state: [SharingIfaceState](#sharingifacestate) | 是   | 网络共享状态。 |
+| state    | [SharingIfaceState](#sharingifacestate) | 是   | 网络共享状态。 |
 
 **返回值：**
 
@@ -451,9 +483,11 @@ getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceSta
 
 获取指定类型网络共享状态，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -465,7 +499,7 @@ getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceSta
 **示例：**
 
 ```js
-import SharingIfaceState from '@ohos.net.sharing'
+import SharingIfaceType from '@ohos.net.sharing'
 sharing.getSharingState(SharingIfaceType.SHARING_WIFI, (error, data) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
@@ -478,9 +512,11 @@ getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState>
 
 获取指定类型网络共享状态，使用Promise方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -498,7 +534,7 @@ getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState>
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.getSharingIfaces(SharingIfaceType.SHARING_WIFI).then(data => {
+sharing.getSharingState(SharingIfaceType.SHARING_WIFI).then(data => {
     console.log(JSON.stringify(data));
 }).catch(error => {
     console.log(JSON.stringify(error));
@@ -511,9 +547,11 @@ getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<strin
 
 获取指定类型网卡名称正则表达式列表，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -525,8 +563,8 @@ getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<strin
 **示例：**
 
 ```js
-import SharingIfaceState from '@ohos.net.sharing'
-sharing.getSharingState(SharingIfaceType.SHARING_WIFI, (error, data) => {
+import SharingIfaceType from '@ohos.net.sharing'
+sharing.getSharableRegexes(SharingIfaceType.SHARING_WIFI, (error, data) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
 });
@@ -538,9 +576,11 @@ getSharableRegexes(type: SharingIfaceType): Promise\<Array\<string>>
 
 获取指定类型网卡名称正则表达式列表，使用Promise方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -565,15 +605,17 @@ sharing.getSharableRegexes(SharingIfaceType.SHARING_WIFI).then(data => {
 });
 ```
 
-## on('sharingStateChange')
+## sharing.on('sharingStateChange')
 
 on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 
 注册网络共享状态变化事件，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -591,15 +633,17 @@ sharing.on('sharingStateChange', (error, data) => {
 });
 ```
 
-## off('sharingStateChange')
+## sharing.off('sharingStateChange')
 
 off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 
 注销网络共享状态变化事件，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -617,15 +661,17 @@ sharing.off('sharingStateChange', (error, data) => {
 });
 ```
 
-## on('interfaceSharingStateChange')
+## sharing.on('interfaceSharingStateChange')
 
 on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void
 
 注册网卡网络共享状态变化事件，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -643,21 +689,23 @@ sharing.on('interfaceSharingStateChange', (error, data) => {
 });
 ```
 
-## off('interfaceSharingStateChange')
+## sharing.off('interfaceSharingStateChange')
 
 off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void
 
 注销网卡网络共享状态变化事件，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
-| type | string | 否   | 事件名称。 |
+| type | string | 是   | 事件名称。 |
 | callback | AsyncCallback\<{ type: [SharingIfaceType](#sharingifacetype), iface: string, state: SharingIfaceState(#sharingifacestate) }> | 否   | 回调函数，注销指定网卡共享状态变化通知。 |
 
 **示例：**
@@ -669,15 +717,17 @@ sharing.off('interfaceSharingStateChange', (error, data) => {
 });
 ```
 
-## on('sharingUpstreamChange')
+## sharing.on('sharingUpstreamChange')
 
 on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 
 注册上行网络变化事件，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -695,15 +745,17 @@ sharing.on('sharingUpstreamChange', (error, data) => {
 });
 ```
 
-## off('sharingUpstreamChange')
+## sharing.off('sharingUpstreamChange')
 
 off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 
 注销上行网络变化事件，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
 **参数：**
 
@@ -725,9 +777,11 @@ sharing.off('sharingUpstreamChange', (error, data) => {
 
 网络共享状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统接口**：此接口为系统接口。
 
-| 参数名                  | 值   | 说明                   |
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
+
+| 名称                  | 值   | 说明                   |
 | ------------------------ | ---- | ---------------------- |
 | SHARING_NIC_SERVING    | 1 | 正在网络共享。 |
 | SHARING_NIC_CAN_SERVER | 2 | 可提供网络共享。 |
@@ -735,11 +789,13 @@ sharing.off('sharingUpstreamChange', (error, data) => {
 
 ## SharingIfaceType
 
-网络共享类型。
+网络共享类型（暂不支持USB共享）。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统接口**：此接口为系统接口。
 
-| 参数名                  | 值   | 说明                   |
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
+
+| 名称                  | 值   | 说明                   |
 | ------------------------ | ---- | ---------------------- |
 | SHARING_WIFI       | 0 | 网络共享类型Wi-Fi。 |
 | SHARING_USB     | 1 | 网络共享类型USB。 |

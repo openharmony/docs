@@ -1,4 +1,4 @@
-# 后台代理提醒
+# @ohos.reminderAgentManager (后台代理提醒)
 
 本模块提供后台代理提醒的能力。
 
@@ -35,9 +35,9 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
@@ -84,9 +84,9 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
@@ -126,9 +126,9 @@ cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 1700003    | The reminder does not exist. |
 | 1700004    | The bundle name does not exist. |
@@ -172,9 +172,9 @@ cancelReminder(reminderId: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 1700003    | The reminder does not exist. |
 | 1700004    | The bundle name does not exist. |
@@ -210,9 +210,9 @@ getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 1700004    | The bundle name does not exist. |
 
@@ -270,9 +270,9 @@ getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 1700004    | The bundle name does not exist. |
 
@@ -328,9 +328,9 @@ cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 1700004    | The bundle name does not exist. |
 
@@ -367,9 +367,9 @@ cancelAllReminders(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 1700004    | The bundle name does not exist. |
 
@@ -541,7 +541,7 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | ACTION_BUTTON_TYPE_CLOSE | 0 | 表示关闭提醒的按钮。 |
 | ACTION_BUTTON_TYPE_SNOOZE | 1 | 表示延迟提醒的按钮。 |
@@ -553,7 +553,7 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | REMINDER_TYPE_TIMER | 0 | 表示提醒类型：倒计时。 |
 | REMINDER_TYPE_CALENDAR | 1 | 表示提醒类型：日历。 |
@@ -566,7 +566,7 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | title | string | 是 | 按钮显示的标题。 |
 | type | [ActionButtonType](#actionbuttontype) | 是 | 按钮的类型。 |
@@ -578,7 +578,7 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | pkgName | string | 是 | 指明点击提醒通知栏后跳转的目标hap包名。 |
 | abilityName | string | 是 | 指明点击提醒通知栏后跳转的目标ability名称。 |
@@ -590,7 +590,7 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | pkgName | string | 是 | 指明提醒到达时自动拉起的目标hap包名（如果设备在使用中，则只弹出通知横幅框）。 |
 | abilityName | string | 是 | 指明提醒到达时自动拉起的目标ability名（如果设备在使用中，则只弹出通知横幅框）。 |
@@ -602,15 +602,15 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | 是 | 指明提醒类型。 |
 | actionButton | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮（参数可选，支持0/1/2个按钮）。 |
 | wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |
-| ringDuration | number | 否 | 指明响铃时长（单位：秒）。 |
-| snoozeTimes | number | 否 | 指明延迟提醒次数。 |
-| timeInterval | number | 否 | 执行延迟提醒间隔（单位：秒）。 |
+| ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
+| snoozeTimes | number | 否 | 指明延迟提醒次数，默认0次。 |
+| timeInterval | number | 否 | 执行延迟提醒间隔（单位：秒），默认0秒。 |
 | title | string | 否 | 指明提醒标题。 |
 | content | string | 否 | 指明提醒内容。 |
 | expiredContent | string | 否 | 指明提醒过期后需要显示的内容。 |
@@ -627,7 +627,7 @@ ReminderRequestCalendar extends ReminderRequest
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | dateTime | [LocalDateTime](#localdatetime) | 是 | 指明提醒的目标时间。 |
 | repeatMonths | Array&lt;number&gt; | 否 | 指明重复提醒的月份。 |
@@ -642,11 +642,11 @@ ReminderRequestAlarm extends ReminderRequest
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | hour | number | 是 | 指明提醒的目标时刻。 |
 | minute | number | 是 | 指明提醒的目标分钟。 |
-| daysOfWeek | Array&lt;number&gt; | 否 | 指明每周哪几天需要重复提醒。 |
+| daysOfWeek | Array&lt;number&gt; | 否 | 指明每周哪几天需要重复提醒。范围为周一到周末，对应数字为1到7。 |
 
 
 ## ReminderRequestTimer
@@ -657,7 +657,7 @@ ReminderRequestTimer extends ReminderRequest
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | triggerTimeInSeconds | number | 是 | 指明倒计时的秒数。 |
 
@@ -668,7 +668,7 @@ ReminderRequestTimer extends ReminderRequest
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | year | number | 是 | 年 |
 | month | number | 是 | 月 |

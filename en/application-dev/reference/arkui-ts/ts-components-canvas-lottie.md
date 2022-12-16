@@ -27,7 +27,7 @@ loadAnimation(
 
 path: string, container: object, render: string, loop: boolean, autoplay: boolean, name: string ): AnimationItem
 
-Loads an animation. Before calling this method, declare the **Animator('\__lottie\_ets')** object and check that the canvas layout is complete. This method can be used together with a lifecycle callback of the **Canvas** component, for example, **onAppear()** and **onPageShow()**.
+Loads an animation. Before calling this API, declare the **Animator('__lottie_ets')** object and check that the canvas layout is complete. This method can be used together with a lifecycle callback of the **Canvas** component, for example, **onAppear()** and **onPageShow()**.
 
 **Parameters**
 
@@ -37,8 +37,8 @@ Loads an animation. Before calling this method, declare the **Animator('\__lotti
 | container      | object                      | Yes   | Canvas drawing context. A **CanvasRenderingContext2D** object must be declared in advance.|
 | render         | string                      | Yes   | Rendering type. The value can only be **"canvas"**.                       |
 | loop           | boolean \| number | No   | If the value is of the Boolean type, this parameter indicates whether to repeat the animation cyclically after the animation ends; the default value is **true**. If the value is of the number type and is greater than or equal to 1, this parameter indicates the number of times the animation plays.|
-| autoplay       | boolean                     | No   | Whether to automatically play the animation. The default value is **true**.                       |
-| name           | string                      | No   | Custom animation name. In later versions, the name can be used to reference and control the animation. The default value is null.       |
+| autoplay       | boolean                     | No   | Whether to automatically play the animation.<br/>Default value: **true**                  |
+| name           | string                      | No   | Custom animation name. In later versions, the name can be used to reference and control the animation.<br/>Default value: null |
 | initialSegment | [number, number]       | No   | Start frame and end frame of the animation, respectively.                |
 
 
@@ -78,7 +78,7 @@ Destroys the animation. This method must be called when a page exits. This metho
         .width('30%')
         .height('20%')
         .backgroundColor('#0D9FFB')
-        .onAppear(() => {
+        .onReady(() => {
           console.log('canvas onAppear');
           this.animateItem = lottie.loadAnimation({
             container: this.controller,
@@ -411,7 +411,7 @@ Sets the animation to stop at the specified frame or time.
 | Name     | Type     | Mandatory  | Description                                      |
 | ------- | ------- | ---- | ---------------------------------------- |
 | value   | number  | Yes   | Frame ID (greater than or equal to 0) or time progress (ms) at which the animation will stop.                    |
-| isFrame | boolean | No   | Whether to set the animation to stop at the specified frame. The value **true** means to set the animation to stop at the specified frame, and **false** means to set the animation to stop at the specified time progress. The default value is **false**.|
+| isFrame | boolean | No   | Whether to set the animation to stop at the specified frame. The value **true** means to set the animation to stop at the specified frame, and **false** means to set the animation to stop at the specified time progress.<br/>Default value: **false** |
 | name    | string  | No   | Name of the target animation. By default, the value is null.                         |
 
 **Example**
@@ -435,7 +435,7 @@ Sets the animation to start from the specified frame or time progress.
 | Name     | Type     | Mandatory  | Description                                      |
 | ------- | ------- | ---- | ---------------------------------------- |
 | value   | number  | Yes   | Frame ID (greater than or equal to 0) or time progress (ms) at which the animation will start.                     |
-| isFrame | boolean | Yes   | Whether to set the animation to start from the specified frame. The value **true** means to set the animation to start from the specified frame, and **false** means to set the animation to start from the specified time progress. The default value is **false**.|
+| isFrame | boolean | Yes   | Whether to set the animation to start from the specified frame. The value **true** means to set the animation to start from the specified frame, and **false** means to set the animation to start from the specified time progress.<br>Default value: **false** |
 | name    | string  | No   | Name of the target animation. By default, the value is null.                         |
 
 **Example**
@@ -532,7 +532,7 @@ Obtains the duration (irrelevant to the playback speed) or number of frames for 
 
 | Name      | Type     | Mandatory  | Description                                      |
 | -------- | ------- | ---- | ---------------------------------------- |
-| inFrames | boolean | No   | Whether to obtain the duration or number of frames.<br>**true**: number of frames.<br>**false**: duration, in ms.<br>Default value: **false**|
+| inFrames | boolean | No   | Whether to obtain the duration or number of frames.<br>**true**: number of frames.<br>**false**: duration, in ms.<br/>Default value: **false** |
 
 **Example**
 

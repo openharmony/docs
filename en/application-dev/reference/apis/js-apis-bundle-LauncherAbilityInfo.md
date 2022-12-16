@@ -6,7 +6,9 @@ The **LauncherAbilityInfo** module provides information about the launcher abili
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## LauncherAbilityInfo
+## LauncherAbilityInfo<sup>(deprecated)<sup>
+
+> This API is deprecated since API version 9. You are advised to use [LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md) instead.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 

@@ -1,4 +1,4 @@
-# USB管理
+# @ohos.usb (USB管理)
 
 本模块主要提供管理USB设备的相关功能，包括查询USB设备列表、批量数据传输、控制命令传输、权限控制等。
 
@@ -350,7 +350,7 @@ let ret = usb.getFileDescriptor(devicepipe);
 
 ## usb.controlTransfer
 
-controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: number): Promise&lt;number&gt;
+controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout?: number): Promise&lt;number&gt;
 
 控制传输。
 
@@ -363,7 +363,7 @@ controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: nu
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
-| contrlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数。 |
+| controlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数。 |
 | timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。 |
 
 **返回值：**
@@ -640,16 +640,16 @@ let ret = usb.getSupportedModes(0);
 
 **系统能力：** SystemCapability.USB.USBManager
 
-| 名称            | 参数类型                                        | 说明            |
-| ------------- | ------------------------------------------- | ------------- |
-| address       | number                                      | 端点地址。         |
-| attributes    | number                                      | 端点属性。         |
-| interval      | number                                      | 端点间隔。         |
-| maxPacketSize | number                                      | 端点最大数据包大小。    |
-| direction     | [USBRequestDirection](#usbrequestdirection) | 端点的方向。        |
-| number        | number                                      | 端点号。          |
-| type          | number                                      | 端点类型。         |
-| interfaceId   | number                                      | 端点所属的接口的唯一标识。 |
+| 名称            | 类型                                        |   必填      | 说明            |
+| ------------- | ------------------------------------------- | ------------- |------------ |
+| address       | number                                      | 是   |端点地址。         |
+| attributes    | number                                      | 是   |端点属性。         |
+| interval      | number                                      | 是   |端点间隔。         |
+| maxPacketSize | number                                      | 是   |端点最大数据包大小。    |
+| direction     | [USBRequestDirection](#usbrequestdirection) | 是   |端点的方向。        |
+| number        | number                                      | 是   |端点号。          |
+| type          | number                                      | 是   |端点类型。         |
+| interfaceId   | number                                      | 是   |端点所属的接口的唯一标识。 |
 
 ## USBInterface
 
@@ -657,15 +657,15 @@ let ret = usb.getSupportedModes(0);
 
 **系统能力：** SystemCapability.USB.USBManager
 
-| 名称               | 参数类型                                     | 说明                    |
-| ---------------- | ---------------------------------------- | --------------------- |
-| id               | number                                   | 接口的唯一标识。              |
-| protocol         | number                                   | 接口的协议。                |
-| clazz            | number                                   | 设备类型。                 |
-| subClass         | number                                   | 设备子类。                 |
-| alternateSetting | number                                   | 在同一个接口中的多个描述符中进行切换设置。 |
-| name             | string                                   | 接口名称。                 |
-| endpoints        | Array&lt;[USBEndpoint](#usbendpoint)&gt; | 当前接口所包含的端点。           |
+| 名称               | 类型                                     |  必填      |说明                    |
+| ---------------- | ---------------------------------------- | ------------- |--------------------- |
+| id               | number                                   | 是   |接口的唯一标识。              |
+| protocol         | number                                   | 是   |接口的协议。                |
+| clazz            | number                                   | 是   |设备类型。                 |
+| subClass         | number                                   | 是   |设备子类。                 |
+| alternateSetting | number                                   | 是   |在同一个接口中的多个描述符中进行切换设置。 |
+| name             | string                                   | 是   |接口名称。                 |
+| endpoints        | Array&lt;[USBEndpoint](#usbendpoint)&gt; | 是   |当前接口所包含的端点。           |
 
 ## USBConfig
 
@@ -673,15 +673,15 @@ USB配置，一个[USBDevice](#usbdevice)中可以含有多个配置。
 
 **系统能力：** SystemCapability.USB.USBManager
 
-| 名称             | 参数类型                                             | 说明              |
-| -------------- | ------------------------------------------------ | --------------- |
-| id             | number                                           | 配置的唯一标识。        |
-| attributes     | number                                           | 配置的属性。          |
-| maxPower       | number                                           | 最大功耗，以毫安为单位。    |
-| name           | string                                           | 配置的名称，可以为空。     |
-| isRemoteWakeup | boolean                                          | 检查当前配置是否支持远程唤醒。 |
-| isSelfPowered  | boolean                                          | 检查当前配置是否支持独立电源。 |
-| interfaces     | Array&nbsp;&lt;[USBInterface](#usbinterface)&gt; | 配置支持的接口属性。      |
+| 名称             | 类型                                             | 必填   |说明              |
+| -------------- | ------------------------------------------------ | --------------- |----------- |
+| id             | number                                           | 是   |配置的唯一标识。        |
+| attributes     | number                                           | 是   |配置的属性。          |
+| maxPower       | number                                           | 是   |最大功耗，以毫安为单位。    |
+| name           | string                                           | 是   |配置的名称，可以为空。     |
+| isRemoteWakeup | boolean                                          | 是   |检查当前配置是否支持远程唤醒。 |
+| isSelfPowered  | boolean                                          | 是   |检查当前配置是否支持独立电源。 |
+| interfaces     | Array&nbsp;&lt;[USBInterface](#usbinterface)&gt; | 是   |配置支持的接口属性。      |
 
 ## USBDevice
 
@@ -689,21 +689,21 @@ USB设备信息。
 
 **系统能力：** SystemCapability.USB.USBManager
 
-| 名称               | 参数类型                                 | 说明         |
-| ---------------- | ------------------------------------ | ---------- |
-| busNum           | number                               | 总线地址。      |
-| devAddress       | number                               | 设备地址。      |
-| serial           | string                               | 序列号。       |
-| name             | string                               | 设备名字。      |
-| manufacturerName | string                               | 产商信息。      |
-| productName      | string                               | 产品信息。      |
-| version          | string                               | 版本。        |
-| vendorId         | number                               | 厂商ID。      |
-| productId        | number                               | 产品ID。      |
-| clazz            | number                               | 设备类。       |
-| subClass         | number                               | 设备子类。      |
-| protocol         | number                               | 设备协议码。     |
-| configs          | Array&lt;[USBConfig](#usbconfig)&gt; | 设备配置描述符信息。 |
+| 名称               | 类型                                 | 必填   |说明         |
+| ---------------- | ------------------------------------ | ---------- |---------- |
+| busNum           | number                               | 是   |总线地址。      |
+| devAddress       | number                               | 是   |设备地址。      |
+| serial           | string                               | 是   |序列号。       |
+| name             | string                               | 是   |设备名字。      |
+| manufacturerName | string                               | 是   |产商信息。      |
+| productName      | string                               | 是   |产品信息。      |
+| version          | string                               | 是   |版本。        |
+| vendorId         | number                               | 是   |厂商ID。      |
+| productId        | number                               | 是   |产品ID。      |
+| clazz            | number                               | 是   |设备类。       |
+| subClass         | number                               | 是   |设备子类。      |
+| protocol         | number                               | 是   |设备协议码。     |
+| configs          | Array&lt;[USBConfig](#usbconfig)&gt; | 是   |设备配置描述符信息。 |
 
 ## USBDevicePipe
 
@@ -711,10 +711,10 @@ USB设备消息传输通道，用于确定设备。
 
 **系统能力：** SystemCapability.USB.USBManager
 
-| 名称         | 参数类型   | 说明    |
-| ---------- | ------ | ----- |
-| busNum     | number | 总线地址。 |
-| devAddress | number | 设备地址。 |
+| 名称       | 类型   | 必填  |说明    |
+| ---------- | ------ | ----- |----- |
+| busNum     | number | 是   |总线地址。 |
+| devAddress | number | 是   |设备地址。 |
 
 ## USBControlParams
 
@@ -722,14 +722,14 @@ USB设备消息传输通道，用于确定设备。
 
 **系统能力：** SystemCapability.USB.USBManager
 
-| 名称      | 参数类型                                            | 说明               |
-| ------- | ----------------------------------------------- | ---------------- |
-| request | number                                          | 请求类型。            |
-| target  | [USBRequestTargetType](#usbrequesttargettype)   | 请求目标类型。          |
-| reqType | [USBControlRequestType](#usbcontrolrequesttype) | 请求控制类型。          |
-| value   | number                                          | 请求参数。            |
-| index   | number                                          | 请求参数value对应的索引值。 |
-| data    | Uint8Array                                      | 用于写入或读取的缓冲区。     |
+| 名称      | 类型                                            | 必填 |说明               |
+| ------- | ----------------------------------------------- | ---------------- |---------------- |
+| request | number                                          | 是   |请求类型。            |
+| target  | [USBRequestTargetType](#usbrequesttargettype)   | 是   |请求目标类型。          |
+| reqType | [USBControlRequestType](#usbcontrolrequesttype) | 是   |请求控制类型。          |
+| value   | number                                          | 是   |请求参数。            |
+| index   | number                                          | 是   |请求参数value对应的索引值。 |
+| data    | Uint8Array                                      | 是   |用于写入或读取的缓冲区。     |
 
 ## USBPort<sup>9+</sup>
 
@@ -739,11 +739,11 @@ USB设备端口。
 
 **系统能力：** SystemCapability.USB.USBManager
 
-| 名称           | 参数类型                         | 说明                                |
-| -------------- | -------------------------------- | ----------------------------------- |
-| id             | number                           | USB端口唯一标识。                   |
-| supportedModes | [PortModeType](#portmodetype9)   | USB端口所支持的模式的数字组合掩码。 |
-| status         | [USBPortStatus](#usbportstatus9) | USB端口角色。                       |
+| 名称           | 类型                         | 必填 |说明                                |
+| -------------- | -------------------------------- | -------------- |----------------------------------- |
+| id             | number                           | 是   |USB端口唯一标识。                   |
+| supportedModes | [PortModeType](#portmodetype9)   | 是   |USB端口所支持的模式的数字组合掩码。 |
+| status         | [USBPortStatus](#usbportstatus9) | 是   |USB端口角色。                       |
 
 ## USBPortStatus<sup>9+</sup>
 
@@ -753,11 +753,11 @@ USB设备端口角色信息。
 
 **系统能力：** SystemCapability.USB.USBManager
 
-| 名称             | 参数类型 | 说明                   |
-| ---------------- | -------- | ---------------------- |
-| currentMode      | number   | 当前的USB模式。        |
-| currentPowerRole | number   | 当前设备充电模式。     |
-| currentDataRole  | number   | 当前设备数据传输模式。 |
+| 名称             | 类型 | 必填 |说明                   |
+| ---------------- | -------- | ----------- |---------------------- |
+| currentMode      | number   | 是   |当前的USB模式。        |
+| currentPowerRole | number   | 是   |当前设备充电模式。     |
+| currentDataRole  | number   | 是   |当前设备数据传输模式。 |
 
 ## USBRequestTargetType
 

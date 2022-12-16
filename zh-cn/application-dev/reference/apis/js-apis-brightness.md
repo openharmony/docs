@@ -1,8 +1,8 @@
-# 屏幕亮度
+# @ohos.brightness (屏幕亮度)
 
 该模块提供屏幕亮度的设置接口。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >

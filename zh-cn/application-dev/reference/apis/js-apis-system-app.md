@@ -1,4 +1,4 @@
-# 应用上下文
+# @system.app (应用上下文)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 从API Version 7 开始，该接口不再维护，推荐使用新接口。
@@ -47,7 +47,7 @@ terminate(): void
 
 退出当前Ability。
 
-> **说明：** 从API Version 7开始，推荐使用[`@ohos.ability.featureAbility`](js-apis-featureAbility.md)。
+> **说明：** 从API Version 7开始，推荐使用[`@ohos.ability.featureAbility`](js-apis-ability-featureAbility.md)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 

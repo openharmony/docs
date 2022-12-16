@@ -1,4 +1,5 @@
-# 屏幕属性
+# @ohos.display (屏幕属性)
+
 屏幕属性提供管理显示设备的一些基础能力，包括获取默认显示设备的信息，获取所有显示设备的信息以及监听显示设备的插拔行为。
 
 > **说明：**
@@ -35,10 +36,10 @@ import display from '@ohos.display';
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度。   |
-| height | number   | 是   | 是   | 矩形区域的高度。   |
+| left   | number   | 是   | 是   | 矩形区域的左边界，单位为像素。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界，单位为像素。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度，单位为像素。   |
+| height | number   | 是   | 是   | 矩形区域的高度，单位为像素。   |
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
@@ -236,7 +237,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：PC上插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：PC上移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
+| type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
 | callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
@@ -264,7 +265,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：PC上插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：PC上移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
+| type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
 | callback | Callback&lt;number&gt; | 否 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
@@ -433,7 +434,7 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 
 | 参数名      | 类型                        | 必填 | 说明                                                         |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | 是   | 回调函数。当获取信息成功，err为undefined，data为获取到的CutoutInfo对象；否则err为错误对象。 |
+| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | 是   | 回调函数。返回描述不可用屏幕区域的CutoutInfo对象。。 |
 
 **错误码：**
 
@@ -472,7 +473,7 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[CutoutInfo](#cutoutinfo9)&gt; | Promise对象，返回描述不可用屏幕区域的CutoutInfo对象。 |
+| Promise&lt;[CutoutInfo](#cutoutinfo9)&gt; | Promise对象。返回描述不可用屏幕区域的CutoutInfo对象。 |
 
 **错误码：**
 

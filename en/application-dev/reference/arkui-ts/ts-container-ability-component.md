@@ -6,7 +6,7 @@
 >
 >  This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  The APIs of this module are system APIs and cannot be called by third-party applications.
+>  The APIs provided by this component are system APIs.
 
 ## Constraints
 
@@ -16,7 +16,7 @@
 
 Only width and height can be set for **\<AbilityComponent>**. These attributes are mandatory and cannot be dynamically updated.
 
-The ability to be started must inherit from [WindowExtension](../apis/js-apis-application-WindowExtensionAbility.md).
+The ability to be started must inherit [WindowExtension](../apis/js-apis-application-windowExtensionAbility.md).
 
 ## Child Components
 
@@ -31,7 +31,7 @@ AbilityComponent(want: Want)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-application-Want.md) | Yes| Description of the default ability to load.|
+| want | [Want](../apis/js-apis-app-ability-want.md) | Yes| Description of the default ability to load.|
 
 
 ## Events
@@ -65,12 +65,14 @@ struct MyComponent {
               },
           })
           .onConnect(() => {
-              console.log('AbilityComponent connect');
+              console.log('AbilityComponent connect')
           })
           .onDisconnect(() => {
-              console.log('AbilityComponent disconnect');
+              console.log('AbilityComponent disconnect')
           })
       }
   }
 }
 ```
+
+ <!--no_check--> 

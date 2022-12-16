@@ -1,6 +1,6 @@
 
 
-# Webview
+# @ohos.web.webview (Webview)
 
 提供web控制能力。
 
@@ -11,6 +11,7 @@
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
 ## 需要权限
+
 访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
 
 ## 导入模块
@@ -72,7 +73,7 @@ postMessageEvent(message: string): void
 | ------- | ------ | ---- | :------------- |
 | message | string | 是   | 要发送的消息。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -122,9 +123,9 @@ onMessageEvent(callback: (result: string) => void): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | :------------------- |
-| callback | function | 是   | 接收消息的回调函数。 |
+| result | string | 是   | 接收到的消息。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -198,10 +199,10 @@ loadUrl(url: string | Resource, headers?: Array\<HeaderV9>): void
 
 | 参数名  | 类型             | 必填 | 说明                  |
 | ------- | ---------------- | ---- | :-------------------- |
-| url     | string           | 是   | 需要加载的 URL。      |
+| url     | string \| Resource | 是   | 需要加载的 URL。      |
 | headers | Array\<[HeaderV9](#headerv9)> | 否   | URL的附加HTTP请求头。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -254,9 +255,9 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 | mimeType   | string | 是   | 媒体类型（MIME）。                                           |
 | encoding   | string | 是   | 编码类型，具体为“Base64"或者”URL编码。                       |
 | baseUrl    | string | 否   | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给window.origin。 |
-| historyUrl | string | 否   | 历史记录URL。非空时，可被历史记录管理，实现前进后退功能。当baseUrl为空时，此属性无效。 |
+| historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -310,7 +311,7 @@ accessForward(): boolean
 | ------- | --------------------------------- |
 | boolean | 可以前进返回true，否则返回false。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -354,7 +355,7 @@ forward(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -447,7 +448,7 @@ backward(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -805,6 +806,14 @@ struct Index {
 
   build() {
     Column() {
+      Button('refresh')
+        .onClick(() => {
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+          }
+        })
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
@@ -833,7 +842,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
 | script   | string                   | 是   | JavaScript脚本。                                             |
-| callback | AsyncCallback\<string> | 否   | 回调执行JavaScript脚本结果。JavaScript脚本若执行失败或无返回值时，返回null。 |
+| callback | AsyncCallback\<string> | 是   | 回调执行JavaScript脚本结果。JavaScript脚本若执行失败或无返回值时，返回null。 |
 
 **错误码：**
 
@@ -1059,9 +1068,9 @@ searchAllAsync(searchString: string): void
 
 **参数：**
 
-| 参数名       | 参数类型 | 必填 | 默认值 | 参数描述       |
-| ------------ | -------- | ---- | ------ | -------------- |
-| searchString | string   | 是   | -      | 查找的关键字。 |
+| 参数名       | 类型 | 必填 | 说明       |
+| ------------ | -------- | ---- | -------------- |
+| searchString | string   | 是   | 查找的关键字。 |
 
 **错误码：**
 
@@ -1295,7 +1304,7 @@ struct WebComponent {
 | ---------------------- | ----------------- |
 | Array\<WebMessagePort> | web消息端口列表。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1348,7 +1357,7 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 | ports  | Array\<WebMessagePort> | 是   | 接收该消息的URI。                |
 | uri    | string                 | 是   | 接收该消息的URI。                |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1472,7 +1481,7 @@ requestFocus(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1515,7 +1524,7 @@ zoomIn(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1559,7 +1568,7 @@ zoomOut(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1609,7 +1618,7 @@ getHitTestValue(): HitTestValue
 | ------------ | -------------------- |
 | [HitTestValue](#hittestvalue) | 点击区域的元素信息。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1660,7 +1669,7 @@ getWebId(): number
 | ------ | --------------------- |
 | number | 当前Web组件的索引值。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1710,7 +1719,7 @@ getUserAgent(): string
 | ------ | -------------- |
 | string | 默认用户代理。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1760,7 +1769,7 @@ getTitle(): string
 | ------ | -------------------- |
 | string | 返回文件选择器标题。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1810,7 +1819,7 @@ getPageHeight(): number
 | ------ | -------------------- |
 | number | 当前网页的页面高度。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1862,7 +1871,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 | autoName | boolean               | 是   | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
 | callback | AsyncCallback\<string> | 是   | 返回文件存储路径，保持网页失败会返回null。                   |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1927,7 +1936,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 | --------------- | ----------------------------------------------------- |
 | Promise\<string> | Promise实例，保存成功返回文件路径，保存失败返回null。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1985,7 +1994,7 @@ getUrl(): string
 | ------ | ------------------- |
 | string | 当前页面的url地址。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -2029,7 +2038,7 @@ stop(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -2078,7 +2087,7 @@ backOrForward(step: number): void
 | ------ | -------- | ---- | ---------------------- |
 | step   | number   | 是   | 需要前进或后退的步长。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -2114,6 +2123,366 @@ struct WebComponent {
 }
 ```
 
+### getOriginalUrl
+
+getOriginalUrl(): string
+
+获取当前页面的原始url地址。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                    |
+| ------ | ----------------------- |
+| string | 当前页面的原始url地址。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getOrgUrl')
+        .onClick(() => {
+          try {
+            let url = this.controller.getOriginalUrl();
+            console.log("original url: " + url);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getFavicon
+
+getFavicon(): image.PixelMap
+
+获取页面的favicon图标。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                                   | 说明                            |
+| -------------------------------------- | ------------------------------- |
+| [PixelMap](js-apis-image.md#pixelmap7) | 页面favicon图标的PixelMap对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import image from "@ohos.multimedia.image"
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+    @State pixelmap: image.PixelMap = undefined;
+
+  build() {
+    Column() {
+      Button('getFavicon')
+        .onClick(() => {
+          try {
+            this.pixelmap = this.controller.getFavicon();
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### setNetworkAvailable
+
+setNetworkAvailable(enable: boolean): void
+
+设置JavaScript中的window.navigator.onLine属性。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                              |
+| ------ | ------- | ---- | --------------------------------- |
+| enable | boolean | 是   | 是否使能window.navigator.onLine。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401      | Invalid input parameter.                                     |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('setNetworkAvailable')
+        .onClick(() => {
+          try {
+            this.controller.setNetworkAvailable(true);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### hasImage
+
+hasImage(callback: AsyncCallback<boolean>): void
+
+通过Callback方式异步查找当前页面是否存在图像。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                       |
+| -------- | ----------------------- | ---- | -------------------------- |
+| callback | AsyncCallback\<boolean> | 是   | 返回查找页面是否存在图像。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 401      | Invalid input parameter.                                     |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('hasImageCb')
+        .onClick(() => {
+          try {
+            this.controller.hasImage((err, data) => {
+                if (error) {
+                  console.info(`hasImage error: ` + JSON.stringify(error))
+                  return;
+                }
+                console.info("hasImage: " + data);
+              });
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### hasImage
+
+hasImage(): Promise<boolean>
+
+通过Promise方式异步查找当前页面是否存在图像。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：** 
+
+| 类型              | 说明                                    |
+| ----------------- | --------------------------------------- |
+| Promise\<boolean> | Promise实例，返回查找页面是否存在图像。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 401      | Invalid input parameter.                                     |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('hasImagePm')
+        .onClick(() => {
+          try {
+            this.controller.hasImage().then((data) => {
+                console.info('hasImage: ' + data);
+              })
+              .catch(function (error) {
+                console.error("error: " + error);
+              })
+          } catch (error) {
+            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### removeCache
+
+removeCache(clearRom: boolean): void
+
+清除应用中的资源缓存文件，此方法将会清除同一应用中所有webview的缓存文件。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                                                     |
+| -------- | ------- | ---- | -------------------------------------------------------- |
+| clearRom | boolean | 是   | 是否同时清除rom和ram中的缓存，false时只清除ram中的缓存。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401      | Invalid input parameter.                                     |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('removeCache')
+        .onClick(() => {
+          try {
+            this.controller.removeCache(false);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getBackForwardEntries
+
+getBackForwardEntries(): BackForwardList
+
+获取当前Webview的历史信息列表。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                                | 说明                        |
+| ----------------------------------- | --------------------------- |
+| [BackForwardList](#backforwardlist) | 当前Webview的历史信息列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getBackForwardEntries')
+        .onClick(() => {
+          try {
+            let list = this.controller.getBackForwardEntries()
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
@@ -2138,7 +2507,7 @@ static getCookie(url: string): string
 | ------ | ------------------------- |
 | string | 指定url对应的cookie的值。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -2189,14 +2558,14 @@ static setCookie(url: string, value: string): void
 | url    | string | 是   | 要设置的cookie所属的url。 |
 | value  | string | 是   | 要设置的cookie的值。      |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100002 | Invalid url.                                           |
-| 17100005 | Invaild cookie value.                                  |
+| 17100005 | Invalid cookie value.                                  |
 
 **示例：**
 
@@ -2672,7 +3041,7 @@ struct WebComponent {
           try {
             web_webview.WebStorage.getOrigins((error, origins) => {
               if (error) {
-                console.log('error: ' + error);
+                console.log('error: ' + JSON.stringify(error));
                 return;
               }
               for (let i = 0; i < origins.length; i++) {
@@ -2740,7 +3109,7 @@ struct WebComponent {
                 }
               })
               .catch(e => {
-                console.log('error: ' + e);
+                console.log('error: ' + JSON.stringify(e));
               })
           } catch (error) {
             console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
@@ -2796,7 +3165,7 @@ struct WebComponent {
           try {
             web_webview.WebStorage.getOriginQuota(this.origin, (error, quota) => {
               if (error) {
-                console.log('error: ' + error);
+                console.log('error: ' + JSON.stringify(error));
                 return;
               }
               console.log('quota: ' + quota);
@@ -2863,7 +3232,7 @@ struct WebComponent {
                 console.log('quota: ' + quota);
               })
               .catch(e => {
-                console.log('error: ' + e);
+                console.log('error: ' + JSON.stringify(e));
               })
           } catch (error) {
             console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
@@ -2919,7 +3288,7 @@ struct WebComponent {
           try {
             web_webview.WebStorage.getOriginUsage(this.origin, (error, usage) => {
               if (error) {
-                console.log('error: ' + error);
+                console.log('error: ' + JSON.stringify(error));
                 return;
               }
               console.log('usage: ' + usage);
@@ -2986,7 +3355,7 @@ struct WebComponent {
                 console.log('usage: ' + usage);
               })
               .catch(e => {
-                console.log('error: ' + e);
+                console.log('error: ' + JSON.stringify(e));
               })
           } catch (error) {
             console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
@@ -3217,6 +3586,133 @@ struct WebComponent {
 }
 ```
 
+## WebAsyncController
+
+通过WebAsyncController可以控制Web组件具有异步回调通知的行为，一个WebAsyncController对象控制一个Web组件。
+
+### 创建对象
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    webAsyncController: WebAsyncController = new web_webview.WebAsyncController(this.controller)
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### constructor<sup>9+</sup>
+
+constructor(controller: WebController)
+
+WebAsyncController的创建需要与一个[WebController](../arkui-ts/ts-basic-components-web.md#webcontroller)进行绑定。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名| 类型 | 必填 | 说明 |
+| ----- | ---- | ---- | --- |
+| controller | [WebController](../arkui-ts/ts-basic-components-web.md#webcontroller) | 是 | 所绑定的WebviewController。|
+
+### storeWebArchive<sup>9+</sup>
+
+storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<string>): void
+
+以回调方式异步保存当前页面。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名      | 类型                                     | 必填   | 说明                                  |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| baseName | string | 是 | 文件存储路径，该值不能为空。
+| autoName | boolean | 是 | 决定是否自动生成文件名。<br/>如果为false，则将baseName作为文件存储路径。<br/>如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。
+| callback | AsyncCallback\<string> | 是    | 返回文件存储路径，保持网页失败会返回null。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    build() {
+      Column() {
+        Button('saveWebArchive')
+          .onClick(() => {
+            let webAsyncController = new web_webview.WebAsyncController(this.controller)
+            webAsyncController.storeWebArchive("/data/storage/el2/base/", true, (filename) => {
+              if (filename != null) {
+                console.info(`save web archive success: ${filename}`)
+              }
+            })
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### storeWebArchive<sup>9+</sup>
+
+storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
+
+以Promise方式异步保存当前页面。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名      | 类型                                     | 必填   | 说明                                  |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| baseName | string | 是 | 文件存储路径，该值不能为空。
+| autoName | boolean | 是 | 决定是否自动生成文件名。<br/>如果为false，则将baseName作为文件存储路径。<br/>如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。
+
+**返回值：**
+
+| 类型                                       | 说明                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise<string> | Promise实例，保存成功返回文件路径，保存失败返回null。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Button('saveWebArchive')
+          .onClick(() => {
+            let webAsyncController = new web_webview.WebAsyncController(this.controller);
+            webAsyncController.storeWebArchive("/data/storage/el2/base/", true)
+              .then(filename => {
+                if (filename != null) {
+                  console.info(`save web archive success: ${filename}`)
+                }
+              })
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
 ## GeolocationPermissions
 
 web组件地理位置权限管理对象。
@@ -3231,9 +3727,9 @@ static allowGeolocation(origin: string): void
 
 **参数：**
 
-| 参数名 | 类型   | 说明               |
-| ------ | ------ | ------------------ |
-| origin | string | 指定源的字符串索引 |
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| origin | string | 是   |指定源的字符串索引 |
 
 **错误码：**
 
@@ -3388,7 +3884,7 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean>
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述             |
+| 参数名 | 类型 | 必填 | 说明             |
 | ------ | -------- | ---- | -------------------- |
 | origin | string   | 是   | 指定源的字符串索引。 |
 
@@ -3615,3 +4111,89 @@ Web组件返回的请求/响应头对象。
 | origin | string | 是  | 否 | 指定源的字符串索引。 |
 | usage  | number | 是  | 否 | 指定源的存储量。     |
 | quota  | number | 是  | 否 | 指定源的存储配额。   |
+
+## BackForwardList
+
+当前Webview的历史信息列表。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 类型   | 可读 | 可写 | 说明                         |
+| ------------ | ------ | ---- | ---- | ---------------------------- |
+| currentIndex | number | 是   | 否   | 当前在页面历史列表中的索引。 |
+| size         | number | 是   | 否   | 历史列表中索引的数量。       |
+
+### getItemAtIndex
+
+getItemAtIndex(index: number): HistoryItem
+
+获取历史列表中指定索引的历史记录项信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| index  | number | 是   | 指定历史列表中的索引。 |
+
+**返回值：** 
+
+| 类型                        | 说明         |
+| --------------------------- | ------------ |
+| [HistoryItem](#historyitem) | 历史记录项。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 401      | Invalid input parameter |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import image from "@ohos.multimedia.image"
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State icon: image.PixelMap = undefined;
+    
+  build() {
+    Column() {
+      Button('getBackForwardEntries')
+        .onClick(() => {
+          try {
+            let list = this.controller.getBackForwardEntries();
+            let historyItem = list.getItemAtIndex(list.currentIndex);
+			console.log("HistoryItem: " + JSON.stringify(historyItem));
+  			this.icon = item.icon;
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+## HistoryItem
+
+页面历史记录项。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称          | 类型                                   | 可读 | 可写 | 说明                         |
+| ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
+| icon          | [PixelMap](js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
+| historyUrl    | string                                 | 是   | 否   | 历史记录项的url地址。        |
+| historyRawUrl | string                                 | 是   | 否   | 历史记录项的原始url地址。    |
+| title         | string                                 | 是   | 否   | 历史记录项的标题。           |
+
+### 

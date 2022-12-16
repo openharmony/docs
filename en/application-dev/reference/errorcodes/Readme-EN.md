@@ -1,0 +1,48 @@
+# Error Codes
+
+- Ability Framework
+  - [Ability Error Codes](errorcode-ability.md)
+  - [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md)
+- Bundle Management
+  - [Bundle Error Codes](errorcode-bundle.md)
+  - [zlib Error Codes](errorcode-zlib.md)
+- UI Page
+  - [promptAction Error Codes](errorcode-promptAction.md)
+  - [Router Error Codes](errorcode-router.md)
+- Graphics
+  - [colorSpaceManager Error Codes](errorcode-colorspace-manager.md)
+  - [Display Error Codes](errorcode-display.md)
+  - [Window Error Codes](errorcode-window.md)
+- Media
+  - [Audio Error Codes](errorcode-audio.md)
+  - [AVSession Management Error Codes](errorcode-avsession.md)
+- Resource Management
+  - [I18N Error Codes](errorcode-i18n.md)
+  - [Resource Manager Error Codes](errorcode-resource-manager.md)
+- Resource Scheduling
+  - [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md)
+  - [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md)
+  - [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md)
+  - [workScheduler Error Codes](errorcode-workScheduler.md)
+- Security
+  - [Ability Access Control Error Codes](errorcode-access-token.md)
+  - [HUKS Error Codes](errorcode-huks.md)
+- Data Management
+  - [RDB Error Codes](errorcode-data-rdb.md)
+  - [Preferences Error Codes](errorcode-preferences.md)
+- Network Management
+  - [Upload and Download Error Codes](errorcode-request.md)
+- Basic Features
+  - [FaultLogger Error Codes](errorcode-faultlogger.md)
+- Account Management
+  - [Account Error Codes](errorcode-account.md)
+  - [App Account Error Codes](errorcode-app-account.md)
+- Device Management
+  - [Device Management Error Codes](errorcode-device-manager.md)
+  - [Screen Hopping Error Codes](errorcode-multimodalinput.md)
+  - [Sensor Error Codes](errorcode-sensor.md)
+  - [Vibrator Error Codes](errorcode-vibrator.md)
+  - [System Parameter Error Codes](errorcode-system-parameterV9.md)
+- Language Base Class Library 
+  - [Buffer Error Codes](errorcode-buffer.md)
+  - [containers Error Codes](errorcode-containers.md)

@@ -1,4 +1,4 @@
-# 延迟任务调度
+# @ohos.resourceschedule.workScheduler (延迟任务调度)
 
 本模块提供延迟任务注册、取消、查询的能力。
 
@@ -34,12 +34,12 @@ startWork(work: WorkInfo): void
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Checking workInfo failed. |
 | 9700005 | StartWork failed. |
 
 
@@ -86,12 +86,12 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Checking workInfo failed. |
 
 **示例**：
 
@@ -136,12 +136,12 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Checking workInfo failed. |
 
 **示例**：
 
@@ -184,12 +184,12 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Checking workInfo failed. |
 
 **示例**：
 
@@ -230,7 +230,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
@@ -269,7 +269,7 @@ obtainAllWorks(): Promise<Array\<WorkInfo>>
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
@@ -300,7 +300,7 @@ stopAndClearWorks(): void
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
@@ -341,7 +341,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
@@ -386,7 +386,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
@@ -413,7 +413,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-| 参数名             | 类型                                | 必填   | 说明               |
+| 名称             | 类型                                | 必填   | 说明               |
 | --------------- | --------------------------------- | ---- | ---------------- |
 | workId          | number                            | 是    | 当前工作的ID          |
 | bundleName      | string                            | 是    | 延迟任务包名           |
@@ -437,45 +437,45 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-| 名称                     | 说明                      |
-| ---------------------- | ----------------------- |
-| NETWORK_TYPE_ANY       | 表示这个触发条件是任何类型的网络连接。     |
-| NETWORK_TYPE_MOBILE    | 表示这个触发条件是Mobile网络连接。    |
-| NETWORK_TYPE_WIFI      | 表示这个触发条件是Wifi类型的网络连接。   |
-| NETWORK_TYPE_BLUETOOTH | 表示这个触发条件是Bluetooth网络连接。 |
-| NETWORK_TYPE_WIFI_P2P  | 表示这个触发条件是Wifi P2P网络连接。  |
-| NETWORK_TYPE_ETHERNET  | 表示这个触发条件是有线网络连接。        |
+| 名称                     | 值  | 说明                      |
+| ---------------------- | ---- | ----------------------- |
+| NETWORK_TYPE_ANY       | 0    | 表示这个触发条件是任何类型的网络连接。     |
+| NETWORK_TYPE_MOBILE    | 1    | 表示这个触发条件是Mobile网络连接。    |
+| NETWORK_TYPE_WIFI      | 2    | 表示这个触发条件是Wifi类型的网络连接。   |
+| NETWORK_TYPE_BLUETOOTH | 3    | 表示这个触发条件是Bluetooth网络连接。 |
+| NETWORK_TYPE_WIFI_P2P  | 4    | 表示这个触发条件是Wifi P2P网络连接。  |
+| NETWORK_TYPE_ETHERNET  | 5    | 表示这个触发条件是有线网络连接。        |
 
 ## ChargingType
 触发工作的充电类型。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-| 名称                        | 说明                   |
-| ------------------------- | -------------------- |
-| CHARGING_PLUGGED_ANY      | 表示这个触发条件是任何类型的充电器连接。 |
-| CHARGING_PLUGGED_AC       | 表示这个触发条件是直流充电器连接。    |
-| CHARGING_PLUGGED_USB      | 表示这个触发条件是USB充连接。     |
-| CHARGING_PLUGGED_WIRELESS | 表示这个触发条件是无线充电器连接。    |
+| 名称                        | 值  | 说明                   |
+| ------------------------- | ---- | -------------------- |
+| CHARGING_PLUGGED_ANY      | 0    | 表示这个触发条件是任何类型的充电器连接。 |
+| CHARGING_PLUGGED_AC       | 1    | 表示这个触发条件是直流充电器连接。    |
+| CHARGING_PLUGGED_USB      | 2    | 表示这个触发条件是USB充连接。     |
+| CHARGING_PLUGGED_WIRELESS | 3    | 表示这个触发条件是无线充电器连接。    |
 
 ## BatteryStatus
 触发工作的电池状态。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-| 名称                         | 说明                         |
-| -------------------------- | -------------------------- |
-| BATTERY_STATUS_LOW         | 表示这个触发条件是低电告警。             |
-| BATTERY_STATUS_OKAY        | 表示这个触发条件是从低电恢复到正常电量。       |
-| BATTERY_STATUS_LOW_OR_OKAY | 表示这个触发条件是从低电恢复到正常电量或者低电告警。 |
+| 名称                         | 值  | 说明                         |
+| -------------------------- | ---- | -------------------------- |
+| BATTERY_STATUS_LOW         | 0    | 表示这个触发条件是低电告警。             |
+| BATTERY_STATUS_OKAY        | 1    | 表示这个触发条件是从低电恢复到正常电量。       |
+| BATTERY_STATUS_LOW_OR_OKAY | 2    | 表示这个触发条件是从低电恢复到正常电量或者低电告警。 |
 
 ## StorageRequest
 触发工作的存储状态。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-| 名称                        | 说明                             |
-| ------------------------- | ------------------------------ |
-| STORAGE_LEVEL_LOW         | 表示这个触发条件是存储空间不足。               |
-| STORAGE_LEVEL_OKAY        | 表示这个触发条件是从存储空间不足恢复到正常。         |
-| STORAGE_LEVEL_LOW_OR_OKAY | 表示这个触发条件是从存储空间不足恢复到正常或者存储空间不足。 |
+| 名称                        | 值  | 说明                             |
+| ------------------------- | ---- | ------------------------------ |
+| STORAGE_LEVEL_LOW         | 0    | 表示这个触发条件是存储空间不足。               |
+| STORAGE_LEVEL_OKAY        | 1    | 表示这个触发条件是从存储空间不足恢复到正常。         |
+| STORAGE_LEVEL_LOW_OR_OKAY | 2    | 表示这个触发条件是从存储空间不足恢复到正常或者存储空间不足。 |

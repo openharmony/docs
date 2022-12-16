@@ -13,11 +13,13 @@ This module provides APIs for accessing ability-specific resources. You can use 
 
 Before using the **AbilityContext** module, you must define a child class that inherits from **Ability**.
 
-```js
-import Ability from '@ohos.application.Ability';
+```ts
+import Ability from '@ohos.app.ability.UIAbility';
+
+ let context = undefined;
 class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
-        let context = this.context;
+        context = this.context;
     }
 }
 ```
@@ -30,7 +32,7 @@ class MainAbility extends Ability {
 | -------- | -------- | -------- | -------- | -------- |
 | abilityInfo | AbilityInfo | Yes| No| Ability information.|
 | currentHapModuleInfo | HapModuleInfo | Yes| No| Information about the current HAP.|
-| config | [Configuration](js-apis-configuration.md) | Yes| No| Configuration information.|
+| config | [Configuration](js-apis-application-configuration.md) | Yes| No| Configuration information.|
 
 ## AbilityContext.startAbility
 
@@ -44,20 +46,40 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
-  ```js
+  ```ts
   var want = {
-  	"deviceId": "",
-  	"bundleName": "com.extreme.test",
-  	"abilityName": "MainAbility"
+    bundleName: "com.example.myapp",
+    abilityName: "MyAbility"
   };
-  this.context.startAbility(want, (error) => {
-      console.log("error.code = " + error.code)
-  })
+
+  try {
+    this.context.startAbility(want, (error) => {
+      if (error.code) {
+        // Process service logic errors.
+        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // Carry out normal service processing.
+      console.log('startAbility succeed');
+    });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -73,26 +95,46 @@ Starts an ability with the start options specified. This API uses an asynchronou
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md)  | Yes| Information about the target ability.|
-| options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Parameters used for starting the ability.|
+| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
-  ```js
+  ```ts
   var want = {
-  	"deviceId": "",
-  	"bundleName": "com.extreme.test",
-  	"abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var options = {
-  	windowMode: 0,
+    windowMode: 0
   };
-  this.context.startAbility(want, options, (error) => {
-      console.log("error.code = " + error.code)
-  })
-  ```
 
+  try {
+    this.context.startAbility(want, options, (error) => {
+      if (error.code) {
+        // Process service logic errors.
+        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // Carry out normal service processing.
+      console.log('startAbility succeed');
+    });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
+  ```
 
 ## AbilityContext.startAbility
 
@@ -106,8 +148,8 @@ Starts an ability. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
-| options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
 
@@ -115,23 +157,40 @@ Starts an ability. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
-  ```js
+  ```ts
   var want = {
-  	"deviceId": "",
-  	"bundleName": "com.extreme.test",
-  	"abilityName": "MainAbility"
+    bundleName: "com.example.myapp",
+    abilityName: "MyAbility"
   };
   var options = {
   	windowMode: 0,
   };
-  this.context.startAbility(want, options)
-  .then(() => {
-      console.log('Operation successful.')
-  }).catch((error) => {
-      console.log('Operation failed.');
-  })
+
+  try {
+    this.context.startAbility(want, options)
+      .then((data) => {
+        // Carry out normal service processing.
+        console.log('startAbility succeed');
+      })
+      .catch((error) => {
+        // Process service logic errors.
+        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -147,27 +206,49 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Yes| Callback used to return the result.|
+| want |[Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
-  ```js
-  this.context.startAbilityForResult(
-      {deviceId: "", bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo2"},
-      (error, result) => {
-          console.log("startAbilityForResult AsyncCallback is called, error.code = " + error.code)
-          console.log("startAbilityForResult AsyncCallback is called, result.resultCode = " + result.resultCode)
-       }
-  );
+  ```ts
+  var want = {
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
+  };
+
+  try {
+    this.context.startAbilityForResult(want, (error, result) => {
+      if (error.code) {
+        // Process service logic errors.
+        console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // Carry out normal service processing.
+      console.log("startAbilityForResult succeed, result.resultCode = " +
+        result.resultCode)
+    });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.startAbilityForResult
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-Starts an ability with start options specified. This API uses an asynchronous callback to return the result when the ability is terminated.
+Starts an ability with the start options specified. This API uses an asynchronous callback to return the result when the ability is terminated.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -175,24 +256,46 @@ Starts an ability with start options specified. This API uses an asynchronous ca
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
-| options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Yes| Callback used to return the result.|
+| want |[Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | Yes| Parameters used for starting the ability.|
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
-  ```js
+  ```ts
+  var want = {
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
+  };
   var options = {
     windowMode: 0,
   };
-  this.context.startAbilityForResult(
-      {deviceId: "", bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo2"}, options,
-      (error, result) => {
-          console.log("startAbilityForResult AsyncCallback is called, error.code = " + error.code)
-          console.log("startAbilityForResult AsyncCallback is called, result.resultCode = " + result.resultCode)
-       }
-  );
+
+  try {
+    this.context.startAbilityForResult(want, options, (error, result) => {
+      if (error.code) {
+        // Process service logic errors.
+        console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // Carry out normal service processing.
+      console.log("startAbilityForResult succeed, result.resultCode = " +
+        result.resultCode)
+    });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -208,27 +311,50 @@ Starts an ability. This API uses a promise to return the result when the ability
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
-| options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | No| Parameters used for starting the ability.|
 
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Promise used to return the result.|
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
-  ```js
-  var options = {
-    windowMode: 0,
+  ```ts
+  var want = {
+    bundleName: "com.example.myapp",
+    abilityName: "MyAbility"
   };
-  this.context.startAbilityForResult({deviceId: "", bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo2"}, options).then((result) => {
-      console.log("startAbilityForResult Promise.resolve is called, result.resultCode = " + result.resultCode)
-  }, (error) => {
-      console.log("startAbilityForResult Promise.Reject is called, error.code = " + error.code)
-  })
+  var options = {
+  	windowMode: 0,
+  };
+
+  try {
+    this.context.startAbilityForResult(want, options)
+      .then((result) => {
+        // Carry out normal service processing.
+        console.log("startAbilityForResult succeed, result.resultCode = " + result.resultCode);
+      })
+      .catch((error) => {
+        // Process service logic errors.
+        console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.startAbilityForResultWithAccount
@@ -247,23 +373,44 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<AbilityResult\> | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
-  this.context.startAbilityWithAccount(want, accountId, (err, data) => {
-    console.log('---------- startAbilityWithAccount fail, err:  -----------', err);
-    console.log('---------- startAbilityWithAccount success, data:  -----------', data);
-  });
+
+  try {
+    this.context.startAbilityForResultWithAccount(want, accountId, (error, result) => {
+      if (error.code) {
+        // Process service logic errors.
+        console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // Carry out normal service processing.
+      console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
+        result.resultCode)
+    });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -271,7 +418,7 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
 
-Starts an ability with start options specified. This API uses an asynchronous callback to return the result when the account of the ability is destroyed.
+Starts an ability with the start options specified. This API uses an asynchronous callback to return the result when the account of the ability is destroyed.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -283,26 +430,48 @@ Starts an ability with start options specified. This API uses an asynchronous ca
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
   var options = {
-    windowMode: 0,
+    windowMode: 0
   };
-  this.context.startAbilityForResultWithAccount(want, accountId, options, (err) => {
-    console.log('---------- startAbilityForResultWithAccount fail, err:  -----------', err);
-  });
+
+  try {
+    this.context.startAbilityForResultWithAccount(want, accountId, options, (error, result) => {
+      if (error.code) {
+        // Process service logic errors.
+        console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // Carry out normal service processing.
+      console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
+        result.resultCode)
+    });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -310,7 +479,7 @@ Starts an ability with start options specified. This API uses an asynchronous ca
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>;
 
-Starts an ability with start options specified. This API uses a promise to return the result when the account of the ability is destroyed.
+Starts an ability with the start options specified. This API uses a promise to return the result when the account of the ability is destroyed.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -322,9 +491,9 @@ Starts an ability with start options specified. This API uses a promise to retur
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
 
@@ -332,25 +501,43 @@ Starts an ability with start options specified. This API uses a promise to retur
 | -------- | -------- |
 | Promise&lt;AbilityResult&gt; | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
   var options = {
-    windowMode: 0,
+    windowMode: 0
   };
-  this.context.startAbilityForResultWithAccount(want, accountId, options)
-    .then((data) => {
-        console.log('---------- startAbilityForResultWithAccount success, data:  -----------', data);
-    })
-    .catch((err) => {
-        console.log('---------- startAbilityForResultWithAccount fail, err:  -----------', err);
-    })
+
+  try {
+    this.context.startAbilityForResultWithAccount(want, accountId, options)
+      .then((result) => {
+        // Carry out normal service processing.
+        console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
+          result.resultCode)
+      })
+      .catch((error) => {
+        // Process service logic errors.
+        console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 ## AbilityContext.startServiceExtensionAbility
 
@@ -366,20 +553,41 @@ Starts a new Service Extension ability. This API uses an asynchronous callback t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
-  this.context.startServiceExtensionAbility(want, (err) => {
-    console.log('---------- startServiceExtensionAbility fail, err:  -----------', err);
-  });
+
+  try {
+    this.context.startServiceExtensionAbility(want, (error) => {
+      if (error.code) {
+        // Process service logic errors.
+        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // Carry out normal service processing.
+      console.log('startServiceExtensionAbility succeed');
+    });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.startServiceExtensionAbility
@@ -396,24 +604,42 @@ Starts a new Service Extension ability. This API uses a promise to return the re
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
-  this.context.startServiceExtensionAbility(want)
-    .then(() => {
-        console.log('---------- startServiceExtensionAbility success -----------');
-    })
-    .catch((err) => {
-        console.log('---------- startServiceExtensionAbility fail, err:  -----------', err);
-    })
+
+  try {
+    this.context.startServiceExtensionAbility(want)
+      .then((data) => {
+        // Carry out normal service processing.
+        console.log('startServiceExtensionAbility succeed');
+      })
+      .catch((error) => {
+        // Process service logic errors.
+        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
+
 ## AbilityContext.startServiceExtensionAbilityWithAccount
 
 startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
@@ -430,22 +656,43 @@ Starts a new Service Extension ability with the account ID specified. This API u
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
-  this.context.startServiceExtensionAbilityWithAccount(want,accountId, (err) => {
-    console.log('---------- startServiceExtensionAbilityWithAccount fail, err:  -----------', err);
-  });
+
+  try {
+    this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error) => {
+      if (error.code) {
+        // Process service logic errors.
+        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // Carry out normal service processing.
+      console.log('startServiceExtensionAbilityWithAccount succeed');
+    });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.startServiceExtensionAbilityWithAccount
@@ -464,25 +711,42 @@ Starts a new Service Extension ability with the account ID specified. This API u
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
-  this.context.startServiceExtensionAbilityWithAccount(want,accountId)
-    .then(() => {
-        console.log('---------- startServiceExtensionAbilityWithAccount success -----------');
-    })
-    .catch((err) => {
-        console.log('---------- startServiceExtensionAbilityWithAccount fail, err:  -----------', err);
-    })
+
+  try {
+    this.context.startServiceExtensionAbilityWithAccount(want, accountId)
+      .then((data) => {
+        // Carry out normal service processing.
+        console.log('startServiceExtensionAbilityWithAccount succeed');
+      })
+      .catch((error) => {
+        // Process service logic errors.
+        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 ## AbilityContext.stopServiceExtensionAbility
 
@@ -498,20 +762,41 @@ Stops a Service Extension ability in the same application. This API uses an asyn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
-  this.context.stopServiceExtensionAbility(want, (err) => {
-    console.log('---------- stopServiceExtensionAbility fail, err:  -----------', err);
-  });
+
+  try {
+    this.context.stopServiceExtensionAbility(want, (error) => {
+      if (error.code) {
+        // Process service logic errors.
+        console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // Carry out normal service processing.
+      console.log('stopServiceExtensionAbility succeed');
+    });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.stopServiceExtensionAbility
@@ -528,23 +813,40 @@ Stops a Service Extension ability in the same application. This API uses a promi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
-  this.context.stopServiceExtensionAbility(want)
-    .then(() => {
-        console.log('---------- stopServiceExtensionAbility success -----------');
-    })
-    .catch((err) => {
-        console.log('---------- stopServiceExtensionAbility fail, err:  -----------', err);
-    })
+
+  try {
+    this.context.stopServiceExtensionAbility(want)
+      .then((data) => {
+        // Carry out normal service processing.
+        console.log('stopServiceExtensionAbility succeed');
+      })
+      .catch((error) => {
+        // Process service logic errors.
+        console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.stopServiceExtensionAbilityWithAccount
@@ -563,22 +865,43 @@ Stops a Service Extension ability in the same application with the account ID sp
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
-  this.context.stopServiceExtensionAbilityWithAccount(want,accountId, (err) => {
-    console.log('---------- stopServiceExtensionAbilityWithAccount fail, err:  -----------', err);
-  });
+
+  try {
+    this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
+      if (error.code) {
+        // Process service logic errors.
+        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // Carry out normal service processing.
+      console.log('stopServiceExtensionAbilityWithAccount succeed');
+    });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.stopServiceExtensionAbilityWithAccount
@@ -597,25 +920,42 @@ Stops a Service Extension ability in the same application with the account ID sp
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
-  this.context.stopServiceExtensionAbilityWithAccount(want,accountId)
-    .then(() => {
-        console.log('---------- stopServiceExtensionAbilityWithAccount success -----------');
-    })
-    .catch((err) => {
-        console.log('---------- stopServiceExtensionAbilityWithAccount fail, err:  -----------', err);
-    })
+
+  try {
+    this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
+      .then((data) => {
+        // Carry out normal service processing.
+        console.log('stopServiceExtensionAbilityWithAccount succeed');
+      })
+      .catch((error) => {
+        // Process service logic errors.
+        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.terminateSelf
@@ -632,11 +972,25 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
-  ```js
-  this.context.terminateSelf((err) => {
-      console.log('terminateSelf result:' + JSON.stringify(err));
+  ```ts
+  this.context.terminateSelf((error) => {
+    if (error.code) {
+      // Process service logic errors.
+      console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
+        ' error.message: ' + JSON.stringify(error.message));
+      return;
+    }
+    // Carry out normal service processing.
+    console.log('terminateSelf succeed');
   });
   ```
 
@@ -655,13 +1009,23 @@ Terminates this ability. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
-  ```js
-  this.context.terminateSelf().then(() => {
-      console.log('success');
+  ```ts
+  this.context.terminateSelf().then((data) => {
+    // Carry out normal service processing.
+    console.log('terminateSelf succeed');
   }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
+    // Process service logic errors.
+    console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
+      ' error.message: ' + JSON.stringify(error.message));
   });
   ```
 
@@ -678,15 +1042,22 @@ Terminates this ability. This API uses an asynchronous callback to return the ab
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| parameter | [AbilityResult](js-apis-featureAbility.md#abilityresult) | Yes| Information returned to the caller.|
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Information returned to the caller.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "bundleName": "com.extreme.myapplication",
-    "abilityName": "SecondAbility"
+    bundleName: "com.extreme.myapplication",
+    abilityName: "SecondAbility"
   }
   var resultCode = 100;
   // AbilityResult information returned to the caller.
@@ -694,10 +1065,23 @@ Terminates this ability. This API uses an asynchronous callback to return the ab
     want,
     resultCode
   }
-  this.context.terminateSelfWithResult(abilityResult, (error) => {
-          console.log("terminateSelfWithResult is called = " + error.code)
+
+  try {
+    this.context.terminateSelfWithResult(abilityResult, (error) => {
+      if (error.code) {
+        // Process service logic errors.
+        console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
       }
-  );
+      // Carry out normal service processing.
+      console.log('terminateSelfWithResult succeed');
+    });
+  } catch (paramError) {
+      // Process input parameter errors.
+      console.log('error.code: ' + JSON.stringify(paramError.code) +
+        ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -713,7 +1097,7 @@ Terminates this ability. This API uses a promise to return the ability result in
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| parameter | [AbilityResult](js-apis-featureAbility.md#abilityresult) | Yes| Information returned to the caller.|
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Information returned to the caller.|
 
 **Return value**
 
@@ -721,12 +1105,20 @@ Terminates this ability. This API uses a promise to return the ability result in
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "bundleName": "com.extreme.myapplication",
-    "abilityName": "SecondAbility"
+    bundleName: "com.extreme.myapplication",
+    abilityName: "SecondAbility"
   }
   var resultCode = 100;
   // AbilityResult information returned to the caller.
@@ -734,15 +1126,28 @@ Terminates this ability. This API uses a promise to return the ability result in
     want,
     resultCode
   }
-  this.context.terminateSelfWithResult(abilityResult).then((result) => {
-      console.log("terminateSelfWithResult")
+
+  try {
+    this.context.terminateSelfWithResult(abilityResult)
+      .then((data) => {
+        // Carry out normal service processing.
+        console.log('terminateSelfWithResult succeed');
+      })
+      .catch((error) => {
+        // Process service logic errors.
+        console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
   }
-  )
   ```
 
-## AbilityContext.connectAbility
+## AbilityContext.connectServiceExtensionAbility
 
-connectAbility(want: Want, options: ConnectOptions): number;
+connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 Uses the **AbilityInfo.AbilityType.SERVICE** template to connect this ability to another ability.
 
@@ -754,8 +1159,8 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template to connect this ability to
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
-| options | [ConnectOptions](js-apis-featureAbility.md#connectoptions) | No| Parameters for the connection.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Parameters for the connection.|
 
 **Return value**
 
@@ -763,27 +1168,41 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template to connect this ability to
 | -------- | -------- |
 | number | Result code of the ability connection.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
   }
-  const result = this.context.connectAbility(want, options);
-  console.log('----------- connectAbilityResult: ------------', result);
+
+  var connection = null;
+  try {
+    connection = this.context.connectServiceExtensionAbility(want, options);
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
-## AbilityContext.connectAbilityWithAccount
+## AbilityContext.connectServiceExtensionAbilityWithAccount
 
-connectAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
+connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
 
 Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect this ability to another ability with the account ID specified.
 
@@ -797,9 +1216,9 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| options | [ConnectOptions](js-apis-featureAbility.md#connectoptions) | No| Parameters for the connection.|
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Parameters for the connection.|
 
 **Return value**
 
@@ -807,13 +1226,20 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
 | -------- | -------- |
 | number | Result code of the ability connection.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
   var options = {
@@ -821,19 +1247,24 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
   }
-  const result = this.context.connectAbilityWithAccount(want, accountId, options);
-  console.log('----------- connectAbilityResult: ------------', result);
+
+  var connection = null;
+  try {
+    connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
-## AbilityContext.disconnectAbility
+## AbilityContext.disconnectServiceExtensionAbility
 
-disconnectAbility(connection: number): Promise\<void>;
+disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
 Disconnects a connection. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -847,26 +1278,44 @@ Disconnects a connection. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
-  ```js
-  var connectionNumber = 0;
-  this.context.disconnectAbility(connectionNumber).then(() => {
-       console.log('disconnectAbility success');
-  }).catch((err) => {
-       console.log('disconnectAbility fail, err: ', err);
-  });
+  ```ts
+  // connection is the return value of connectServiceExtensionAbility.
+  var connection = 1;
+
+  try {
+    this.context.disconnectServiceExtensionAbility(connection)
+      .then((data) => {
+        // Carry out normal service processing.
+        console.log('disconnectServiceExtensionAbility succeed');
+      })
+      .catch((error) => {
+        // Process service logic errors.
+        console.log('disconnectServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
-## AbilityContext.disconnectAbility
+## AbilityContext.disconnectServiceExtensionAbility
 
-disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
+disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<void>): void;
 
 Disconnects a connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -875,13 +1324,35 @@ Disconnects a connection. This API uses an asynchronous callback to return the r
 | connection | number | Yes| Result code of the ability connection.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
-  ```js
-    var connectionNumber = 0;
-    this.context.disconnectAbility(connectionNumber, (err) => {
-       console.log('---------- disconnectAbility fail, err: -----------', err);
+  ```ts
+  // connection is the return value of connectServiceExtensionAbility.
+  var connection = 1;
+
+  try {
+    this.context.disconnectServiceExtensionAbility(connection, (error) => {
+      if (error.code) {
+        // Process service logic errors.
+        console.log('disconnectServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // Carry out normal service processing.
+      console.log('disconnectServiceExtensionAbility succeed');
     });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.startAbilityByCall
@@ -892,11 +1363,13 @@ Starts an ability in the foreground or background and obtains the caller object 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
+| want | [Want](js-apis-application-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
 
 **Return value**
 
@@ -906,8 +1379,10 @@ Starts an ability in the foreground or background and obtains the caller object 
 
 **Example**
 
-  ```js
-  let caller = undefined;
+  Start an ability in the background.
+
+  ```ts
+  var caller = undefined;
 
   // Start an ability in the background by not passing parameters.
   var wantBackground = {
@@ -916,13 +1391,29 @@ Starts an ability in the foreground or background and obtains the caller object 
       abilityName: "MainAbility",
       deviceId: ""
   };
-  this.context.startAbilityByCall(wantBackground)
-    .then((obj) => {
+
+  try {
+    this.context.startAbilityByCall(wantBackground)
+      .then((obj) => {
+        // Carry out normal service processing.
         caller = obj;
-        console.log('GetCaller success');
-    }).catch((error) => {
-        console.log(`GetCaller failed with ${error}`);
-    });
+        console.log('startAbilityByCall succeed');
+      }).catch((error) => {
+        // Process service logic errors.
+        console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
+  ```
+
+  Start an ability in the foreground.
+
+  ```ts
+  var caller = undefined;
 
   // Start an ability in the foreground with ohos.aafwk.param.callAbilityToForeground in parameters set to true.
   var wantForeground = {
@@ -934,13 +1425,23 @@ Starts an ability in the foreground or background and obtains the caller object 
         "ohos.aafwk.param.callAbilityToForeground": true
       }
   };
-  this.context.startAbilityByCall(wantForeground)
-    .then((obj) => {
+
+  try {
+    this.context.startAbilityByCall(wantForeground)
+      .then((obj) => {
+        // Carry out normal service processing.
         caller = obj;
-        console.log('GetCaller success');
-    }).catch((error) => {
-        console.log(`GetCaller failed with ${error}`);
-    });
+        console.log('startAbilityByCall succeed');
+      }).catch((error) => {
+        // Process service logic errors.
+        console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.startAbilityWithAccount
@@ -959,22 +1460,43 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
-  this.context.startAbilityWithAccount(want, accountId, (err) => {
-    console.log('---------- startAbilityWithAccount fail, err:  -----------', err);
-  });
+
+  try {
+    this.context.startAbilityWithAccount(want, accountId, (error) => {
+      if (error.code) {
+        // Process service logic errors.
+        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // Carry out normal service processing.
+      console.log('startAbilityWithAccount succeed');
+    });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -994,26 +1516,47 @@ Starts an ability with the account ID and start options specified. This API uses
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
   var options = {
-    windowMode: 0,
+    windowMode: 0
   };
-  this.context.startAbilityWithAccount(want, accountId, options, (err) => {
-    console.log('---------- startAbilityWithAccount fail, err:  -----------', err);
-  });
+
+  try {
+    this.context.startAbilityWithAccount(want, accountId, options, (error) => {
+      if (error.code) {
+        // Process service logic errors.
+        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // Carry out normal service processing.
+      console.log('startAbilityWithAccount succeed');
+    });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -1033,29 +1576,46 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-startOptions.md) | No| Parameters used for starting the ability.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
   var options = {
-    windowMode: 0,
+    windowMode: 0
   };
-  this.context.startAbilityWithAccount(want, accountId, options)
-    .then(() => {
-        console.log('---------- startAbilityWithAccount success -----------');
-    })
-    .catch((err) => {
-        console.log('---------- startAbilityWithAccount fail, err:  -----------', err);
-    })
+
+  try {
+    this.context.startAbilityWithAccount(want, accountId, options)
+      .then((data) => {
+        // Carry out normal service processing.
+        console.log('startAbilityWithAccount succeed');
+      })
+      .catch((error) => {
+        // Process service logic errors.
+        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.requestPermissionsFromUser
@@ -1071,11 +1631,11 @@ Requests permissions from the user by displaying a dialog box. This API uses an 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | permissions | Array&lt;string&gt; | Yes| Permissions to request.|
-| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
-  ```js
+  ```ts
        var permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions,(result) => {
        console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
@@ -1102,11 +1662,11 @@ Requests permissions from the user by displaying a dialog box. This API uses a p
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Promise used to return the result.|
+| Promise&lt;[PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)&gt; | Promise used to return the result.|
 
 **Example**
 
-  ```js
+  ```ts
    var permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions).then((data) => {
       console.log('success:' + JSON.stringify(data));
@@ -1134,7 +1694,7 @@ Sets a label for this ability in the mission. This API uses an asynchronous call
 
 **Example**
 
-  ```js
+  ```ts
   this.context.setMissionLabel("test",(result) => {
       console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
@@ -1163,7 +1723,7 @@ Sets a label for this ability in the mission. This API uses a promise to return 
 
 **Example**
 
-  ```js
+  ```ts
   this.context.setMissionLabel("test").then(() => {
       console.log('success');
   }).catch((error) => {
@@ -1189,7 +1749,7 @@ Sets an icon for this ability in the mission. This API uses an asynchronous call
 
 **Example**
 
-  ```js
+  ```ts
     import image from '@ohos.multimedia.image';
     var imagePixelMap;
     var color = new ArrayBuffer(0);
@@ -1236,7 +1796,7 @@ Sets an icon for this ability in the mission. This API uses a promise to return 
 
 **Example**
 
-  ```js
+  ```ts
     import image from '@ohos.multimedia.image';
     var imagePixelMap;
     var color = new ArrayBuffer(0);
@@ -1273,11 +1833,11 @@ Restores the window stage data for this ability.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| localStorage | image.LocalStorage | Yes| Storage used to store the restored window stage.|
+| localStorage | LocalStorage | Yes| Storage used to store the restored window stage.|
 
 **Example**
 
-  ```js
+  ```ts
     var storage = new LocalStorage();
     this.context.restoreWindowStage(storage);
   ```
@@ -1298,7 +1858,7 @@ Checks whether this ability is in the terminating state.
 
 **Example**
 
-  ```js
+  ```ts
   var isTerminating = this.context.isTerminating();
   console.log('ability state :' + isTerminating);
   ```

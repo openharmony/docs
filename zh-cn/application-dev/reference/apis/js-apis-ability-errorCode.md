@@ -1,4 +1,4 @@
-# ErrorCode
+# @ohos.ability.errorCode (ErrorCode)
 
 ErrorCode是定义启动功能时使用的错误代码。
 
@@ -10,7 +10,7 @@ ErrorCode是定义启动功能时使用的错误代码。
 
 ## 导入模块
 
-```
+```ts
 import errorCode from '@ohos.ability.errorCode'
 ```
 
@@ -20,9 +20,9 @@ import errorCode from '@ohos.ability.errorCode'
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 变量                             | 值    | 说明                                       |
+| 名称                             | 值    | 说明                                       |
 | ------------------------------ | ---- | ---------------------------------------- |
 | NO_ERROR         | 0    | 没有错误。   |
 | INVALID_PARAMETER | -1   | 无效的参数。 |
-| ABILITY_NOT_FOUND | -2   | 找不到能力。 |
+| ABILITY_NOT_FOUND | -2   | 找不到ABILITY。 |
 | PERMISSION_DENY   | -3   | 拒绝许可。   |

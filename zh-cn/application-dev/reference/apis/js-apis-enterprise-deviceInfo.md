@@ -1,4 +1,4 @@
-# 企业设备信息管理
+# @ohos.enterprise.deviceInfo（设备信息管理）
 
 本模块提供企业设备信息管理能力，包括获取设备序列号等。仅企业设备管理员应用才能调用。
 
@@ -28,16 +28,16 @@ getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-application-Want.md)      | 是    | 设备管理员应用                  |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用                  |
 | callback | AsyncCallback&lt;string&gt;            | 是    | callback方式返回设备序列号       |
 
 **错误码**：
 
 以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
-| 类型      | 说明                                                                       |          
+| 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device.                        |
+| 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
 
 **示例：**
@@ -60,7 +60,7 @@ deviceInfo.getDeviceSerial(wantTemp, (error, result) => {
 
 getDeviceSerial(admin: Want): Promise&lt;string&gt;
 
-获取设备序列号，使用Promise形式返回设备序列号。
+获取设备序列号，使用callback形式返回设备序列号。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -72,7 +72,7 @@ getDeviceSerial(admin: Want): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用 |
 
 **返回值：**
 
@@ -84,9 +84,9 @@ getDeviceSerial(admin: Want): Promise&lt;string&gt;
 
 以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
-| 类型      | 说明                                                                       |          
+| 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device.                        |
+| 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
 
 **示例：**
@@ -105,7 +105,7 @@ deviceInfo.getDeviceSerial(wantTemp).then((result) => {
 
 ## deviceInfo.getDisplayVersion
 
-getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void
+getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void;
 
 获取设备版本号，使用callback形式返回设备版本号。
 
@@ -119,16 +119,16 @@ getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-application-Want.md)      | 是    | 设备管理员应用                  |
+| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用                  |
 | callback | AsyncCallback&lt;string&gt;            | 是    | callback方式返回设备版本号       |
 
 **错误码**：
 
 以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
-| 类型      | 说明                                                                       |          
+| 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device.                        |
+| 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
 
 **示例：**
@@ -151,7 +151,7 @@ deviceInfo.getDisplayVersion(wantTemp, (error, result) => {
 
 getDisplayVersion(admin: Want): Promise&lt;string&gt;
 
-获取设备版本号，使用Promise形式返回设备版本号。
+获取设备版本号，使用callback形式返回设备版本号。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -163,7 +163,7 @@ getDisplayVersion(admin: Want): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用 |
 
 **返回值：**
 
@@ -175,9 +175,9 @@ getDisplayVersion(admin: Want): Promise&lt;string&gt;
 
 以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
-| 类型      | 说明                                                                       |          
+| 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device.                        |
+| 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
 
 **示例：**
@@ -210,16 +210,16 @@ getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-application-Want.md)      | 是    | 设备管理员应用                  |
-| callback | AsyncCallback&lt;string&gt;            | 是    | callback方式返回设备名称       |
+| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用                  |
+| callback | AsyncCallback&lt;string&gt;              | 是    | callback方式返回设备名称       |
 
 **错误码**：
 
 以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
-| 类型      | 说明                                                                       |          
+| 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device.                        |
+| 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
 
 **示例：**
@@ -242,7 +242,7 @@ deviceInfo.getDeviceName(wantTemp, (error, result) => {
 
 getDeviceName(admin: Want): Promise&lt;string&gt;
 
-获取设备名称，使用Promise形式返回设备名称。
+获取设备名称，使用callback形式返回设备名称。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -254,7 +254,7 @@ getDeviceName(admin: Want): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用 |
 
 **返回值：**
 
@@ -266,9 +266,9 @@ getDeviceName(admin: Want): Promise&lt;string&gt;
 
 以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
-| 类型      | 说明                                                                       |          
+| 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device.                        |
+| 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
 
 **示例：**

@@ -1,4 +1,4 @@
-# 后台任务管理
+# @ohos.resourceschedule.backgroundTaskManager (后台任务管理)
 
 本模块提供后台任务管理能力。
 
@@ -47,14 +47,14 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
@@ -95,14 +95,14 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 
 **示例**：
@@ -151,14 +151,14 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
@@ -196,14 +196,14 @@ cancelSuspendDelay(requestId: number): void
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
@@ -233,7 +233,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode) | 是    | 向系统申请的后台模式。                              |
 | wantAgent | [WantAgent](js-apis-wantAgent.md)  | 是    | 通知参数，用于指定长时任务通知点击后跳转的界面。                 |
 | callback  | AsyncCallback&lt;void&gt;          | 是    | callback形式返回启动长时任务的结果。                   |
@@ -242,13 +242,13 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
+| 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -307,7 +307,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode) | 是    | 向系统申请的后台模式。                              |
 | wantAgent | [WantAgent](js-apis-wantAgent.md)  | 是    | 通知参数，用于指定长时任务通知点击跳转的界面。                  |
 
@@ -321,13 +321,13 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
+| 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -380,20 +380,20 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback形式返回启动长时任务的结果。                   |
 
 **错误码**：
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
+| 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -436,7 +436,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 | 参数名     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| context | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 
 **返回值**：
 
@@ -448,13 +448,13 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
+| 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -469,7 +469,7 @@ export default class MainAbility extends Ability {
         try {
             backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
                 console.info("Operation stopBackgroundRunning succeeded");
-            }).catch((err) => {
+            }).catch((error) => {
                 console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
             });
         } catch (error) {
@@ -501,13 +501,13 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed. |
+| 18700001 | Caller information verification failed when applying for efficiency resources. |
 
 **示例**：
 
@@ -544,13 +544,13 @@ resetAllEfficiencyResources(): void
 
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
-| 错误码ID  | 错误码信息             |
+| 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed. |
+| 18700001 | Caller information verification failed when applying for efficiency resources. |
 
 **示例**：
 
@@ -570,7 +570,7 @@ try {
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
-| 参数名             | 类型     | 必填   | 说明                                       |
+| 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | requestId       | number | 是    | 延迟挂起的请求ID。                               |
 | actualDelayTime | number | 是    | 应用的实际挂起延迟时间，以毫秒为单位。<br/>一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。 |
@@ -580,7 +580,7 @@ try {
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| 参数名                     | 参数值  | 描述                    |
+| 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
 | DATA_TRANSFER           | 1    | 数据传输。                  |
 | AUDIO_PLAYBACK          | 2    | 音频播放。                  |
@@ -600,7 +600,7 @@ try {
 
 **系统API**: 此接口为系统接口。
 
-| 参数名             | 类型     | 必填   | 说明                                       |
+| 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | resourceTypes   | number  | 是    | 申请的资源类型。                               |
 | isApply         | boolean | 是    | 申请资源或者是释放资源。          |
@@ -617,13 +617,13 @@ try {
 
 **系统API**: 此接口为系统接口。
 
-| 参数名                     | 描述                    |
-| ----------------------- | --------------------- |
-| CPU                     | CPU资源，申请后不被挂起。             |
-| COMMON_EVENT            | 公共事件，申请后挂起状态下不被代理掉。  |
-| TIMER                   | 计时器，申请后挂起状态下不被代理掉。    |
-| WORK_SCHEDULER          | 延迟任务，申请后有更长的执行时间。      |
-| BLUETOOTH               | 蓝牙相关，申请后挂起状态下不被代理掉。  |
-| GPS                     | GPS相关，申请后挂起状态下不被代理掉。  |
-| AUDIO                   | 音频资源，申请后挂起状态下不被代理掉。 |
+| 名称                     | 值  | 说明                    |
+| ----------------------- | ---- | --------------------- |
+| CPU                     | 1    | CPU资源，申请后不被挂起。             |
+| COMMON_EVENT            | 2    | 公共事件，申请后挂起状态下不被代理掉。  |
+| TIMER                   | 4    | 计时器，申请后挂起状态下不被代理掉。    |
+| WORK_SCHEDULER          | 8    | 延迟任务，申请后有更长的执行时间。      |
+| BLUETOOTH               | 16   | 蓝牙相关，申请后挂起状态下不被代理掉。  |
+| GPS                     | 32   | GPS相关，申请后挂起状态下不被代理掉。  |
+| AUDIO                   | 64   | 音频资源，申请后挂起状态下不被代理掉。 |
 

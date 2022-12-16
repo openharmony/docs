@@ -9,7 +9,7 @@ The **<select\>** component provides a drop-down list that allows users to selec
 
 ## Child Components
 
-The **<[option](js-components-basic-option.md)\>** child component is supported.
+The **[<option\>](js-components-basic-option.md)** child component is supported.
 
 
 ## Attributes
@@ -49,36 +49,65 @@ The [universal methods](../arkui-js/js-components-common-methods.md) are support
 ```html
 <!-- xxx.hml -->
 <div class="container">
-  <select @change="changeFruit">
-    <option value="bananaValue">
-      Banana
-    </option>
-    <option value="appleValue" selected="true">
-      Apple
-    </option>
-    <option value="pearValue">
-      Pear
-    </option>
-  </select>
+    <select @change="onChange">
+        <option for="{{ array }}" value="{{ $item.value }}">
+            {{ $item.name }}
+        </option>
+    </select>
 </div>
 ```
 
 ```css
 /* xxx.css */
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 ```
 
 ```js
-// ×××.js
+// xxx.js
 export default {
-  changeFruit(e){
-    console.log("newValue:" + e.newValue)
-  }
+    data: {
+        array: [
+            {
+                "value": "Option 0", "name": "Option 0"
+            },
+            {
+                "value": "Option 1", "name": "Option 1"
+            },
+            {
+                "value": "Option 2", "name": "Option 2"
+            },
+            {
+                "value": "Option 3", "name": "Option 3"
+            },
+        ]
+    },
+    getData() {
+        let other = [
+            {
+                "value": "Option A", "name": "Option A"
+            },
+            {
+                "value": "Option B", "name": "Option B"
+            },
+            {
+                "value": "Option C", "name": "Option C"
+            },
+            {
+                "value": "Option D", "name": "Option D"
+            },
+        ]
+        return other
+    },
+    onChange() {
+        this.array = this.getData()
+    }
 }
 ```
 
-![en-us_image_0000001152588538](figures/en-us_image_0000001152588538.png)
+![en-us_image_0000001152588538](figures/en-us_image_0000001152588538.gif)

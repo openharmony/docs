@@ -1,4 +1,4 @@
-# 关系型数据库
+# @ohos.data.rdb (关系型数据库)
 
 关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。
 
@@ -29,9 +29,9 @@ getRdbStoreV9(context: Context, config: StoreConfigV9, version: number, callback
 
 | 参数名   | 类型                                           | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                        | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                                        | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | config   | [StoreConfigV9](#storeconfigv99)               | 是   | 与此RDB存储相关的数据库配置。                                |
-| version  | number                                         | 是   | 数据库版本。                                                 |
+| version  | number                                         | 是   | 数据库版本。<br>目前暂不支持通过version自动识别数据库升级降级操作，只能由开发者自行维护。                                                 |
 | callback | AsyncCallback&lt;[RdbStoreV9](#rdbstorev9)&gt; | 是   | 指定callback回调函数，返回RdbStoreV9对象。                   |
 
 **错误码：**
@@ -100,9 +100,9 @@ getRdbStoreV9(context: Context, config: StoreConfigV9, version: number): Promise
 
 | 参数名  | 类型                             | 必填 | 说明                                                         |
 | ------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | config  | [StoreConfigV9](#storeconfigv99) | 是   | 与此RDB存储相关的数据库配置。                                |
-| version | number                           | 是   | 数据库版本。                                                 |
+| version | number                           | 是   | 数据库版本。<br>目前暂不支持通过version自动识别数据库升级降级操作，只能由开发者自行维护。                                                 |
 
 **返回值**：
 
@@ -174,7 +174,7 @@ deleteRdbStoreV9(context: Context, name: string, callback: AsyncCallback&lt;void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | name     | string                    | 是   | 数据库名称。                                                 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。                                       |
 
@@ -239,7 +239,7 @@ deleteRdbStoreV9(context: Context, name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | name    | string  | 是   | 数据库名称。                                                 |
 
 **返回值**：
@@ -311,9 +311,9 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 
 | 参数名   | 类型                                       | 必填 | 说明                                                         |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | Context                                    | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                                    | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | config   | [StoreConfig](#storeconfig)                | 是   | 与此RDB存储相关的数据库配置。                                |
-| version  | number                                     | 是   | 数据库版本。                                                 |
+| version  | number                                     | 是   | 数据库版本。<br>目前暂不支持通过version自动识别数据库升级降级操作，只能由开发者自行维护。                                                 |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是   | 指定callback回调函数，返回RdbStore对象。                     |
 
 **示例：**
@@ -375,9 +375,9 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 
 | 参数名  | 类型                        | 必填 | 说明                                                         |
 | ------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                     | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context                     | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
-| version | number                      | 是   | 数据库版本。                                                 |
+| version | number                      | 是   | 数据库版本。<br>目前暂不支持通过version自动识别数据库升级降级操作，只能由开发者自行维护。                                                 |
 
 **返回值**：
 
@@ -442,7 +442,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | name     | string                    | 是   | 数据库名称。                                                 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。                                       |
 
@@ -503,7 +503,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | name    | string  | 是   | 数据库名称。                                                 |
 
 **返回值**：
@@ -1652,13 +1652,15 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | table      | string                                                       | 是   | 指定的目标表名。                                             |
 | values     | [ValuesBucket](#valuesbucket)                                | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的更新条件。                |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的更新条件。                |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
 **示例：**
@@ -1690,13 +1692,15 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | table      | string                                                       | 是   | 指定的目标表名。                                             |
 | values     | [ValuesBucket](#valuesbucket)                                | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的更新条件。                |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的更新条件。                |
 
 **返回值**：
 
@@ -1794,12 +1798,14 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名     | 类型                                                         | 必填 | 说明                                          |
 | ---------- | ------------------------------------------------------------ | ---- | --------------------------------------------- |
 | table      | string                                                       | 是   | 指定的目标表名。                              |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的删除条件。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的删除条件。 |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定callback回调函数。返回受影响的行数。      |
 
 **示例：**
@@ -1825,12 +1831,14 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名     | 类型                                                         | 必填 | 说明                                          |
 | ---------- | ------------------------------------------------------------ | ---- | --------------------------------------------- |
 | table      | string                                                       | 是   | 指定的目标表名。                              |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的删除条件。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的删除条件。 |
 
 **返回值**：
 
@@ -1926,12 +1934,14 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | table      | string                                                       | 是   | 指定的目标表名。                                            |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的查询条件。               |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的查询条件。               |
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
 | callback   | AsyncCallback&lt;[ResultSetV9](js-apis-data-resultset.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSetV9对象。 |
 
@@ -1959,12 +1969,14 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名     | 类型                                                         | 必填 | 说明                                             |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
 | table      | string                                                       | 是   | 指定的目标表名。                                 |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的查询条件。    |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的查询条件。    |
 | columns    | Array&lt;string&gt;                                          | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
 **返回值**：
@@ -2037,7 +2049,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicatesV9, columns:
 | device     | string                               | 是   | 指定的远程设备的networkId。                      |
 | table      | string                               | 是   | 指定的目标表名。                                 |
 | predicates | [RdbPredicatesV9](#rdbpredicatesv99) | 是   | RdbPredicatesV9的实例对象，指定查询的条件。      |
-| columns    | Array&lt;string&gt;                  | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
+| columns    | Array&lt;string&gt;                  | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
 **返回值**：
 
@@ -2656,7 +2668,7 @@ try {
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 参数名        | 类型          | 必填 | 说明                                                      |
+| 名称        | 类型          | 必填 | 说明                                                      |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | 是   | 数据库文件名。                                            |
 | securityLevel | SecurityLevel | 是   | 设置数据库安全级别                                        |
@@ -4649,7 +4661,7 @@ try {
 
 **系统能力：**SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 数据库文件名。 |
 

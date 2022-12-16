@@ -1,4 +1,4 @@
-# StaticSubscriberExtensionAbility
+# @ohos.application.StaticSubscriberExtensionAbility
 
 The **StaticSubscriberExtensionAbility** module provides Extension abilities for static subscribers.
 
@@ -8,7 +8,7 @@ The **StaticSubscriberExtensionAbility** module provides Extension abilities for
 > The APIs of this module can be used only in the stage model.
 ## Modules to Import
 
-```
+```ts
 import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
 ```
 
@@ -24,13 +24,12 @@ Callback of the common event of a static subscriber.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | event | [CommonEventData](js-apis-commonEvent.md#commoneventdata) | Yes| Common event of a static subscriber.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | [CommonEventData](js-apis-commonEvent.md#commoneventdata) | Yes| Common event of a static subscriber.|
 
-**Example**
-    
-  ```js
+**Example**    
+  ```ts
   var StaticSubscriberExtensionAbility = requireNapi("application.StaticSubscriberExtensionAbility")
   {
       onReceiveEvent(event){

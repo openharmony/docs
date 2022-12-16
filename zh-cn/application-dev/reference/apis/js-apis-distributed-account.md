@@ -1,8 +1,9 @@
-# 分布式帐号管理
+# @ohos.account.distributedAccount (分布式帐号管理)
 
 本模块提供管理分布式帐号的一些基础功能，主要包括查询和更新帐号登录状态。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+> 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -84,7 +85,7 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise对象。返回分布式帐号信息对象。 |
+  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise对象，返回分布式帐号信息对象。 |
 
 **错误码：**
 
@@ -111,9 +112,9 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): void
 
 获取分布式帐号信息。使用callback异步回调。
-> **说明：** 从API version 9开始废弃，建议使用[getOsAccountDistributedInfo](#getosaccountdistributedinfo9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountDistributedInfo](#getosaccountdistributedinfo9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -141,9 +142,9 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 获取分布式帐号信息。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getOsAccountDistributedInfo](#getosaccountdistributedinfo9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountDistributedInfo](#getosaccountdistributedinfo9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -153,7 +154,7 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise对象。返回分布式帐号信息对象。 |
+  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise对象，返回分布式帐号信息对象。 |
 
 **示例：**
   ```js
@@ -224,7 +225,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+  | Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -253,9 +254,9 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
 
 更新分布式帐号信息。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[setOsAccountDistributedInfo](#setosaccountdistributedinfo9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[setOsAccountDistributedInfo](#setosaccountdistributedinfo9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -282,9 +283,9 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
 updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
 更新分布式帐号信息。使用Promise异步回调。
-> **说明：** 从API version 9开始废弃，建议使用[setOsAccountDistributedInfo](#setosaccountdistributedinfo9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[setOsAccountDistributedInfo](#setosaccountdistributedinfo9-1)。
 **系统能力：** SystemCapability.Account.OsAccount
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS。
@@ -299,7 +300,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+  | Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **示例：**
   ```js
@@ -317,7 +318,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 分布式帐号名称，非空字符串。 |
 | id | string | 是 | 分布式帐号UID，非空字符串。 |

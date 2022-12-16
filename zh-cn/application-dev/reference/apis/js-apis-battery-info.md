@@ -1,8 +1,9 @@
-# 电量信息
+# @ohos.batteryInfo (电量信息)
 
 该模块主要提供电池状态和充放电状态的查询接口。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -18,8 +19,8 @@ import batteryInfo from '@ohos.batteryInfo';
 
 **系统能力**：SystemCapability.PowerManager.BatteryManager.Core
 
-| 名称                                      | 类型                                           | 可读 | 可写 | 描述                                                       |
-| ----------------------------------------- | ---------------------------------------------- | ---- | ---- | ---------------------------------------------------------- |
+| 名称      | 类型        | 可读 | 可写 |  说明     |
+| --------------- | ------------------- | ---- | ---- | ---------------------|
 | batterySOC                                | number                                         | 是   | 否   | 表示当前设备剩余电池电量百分比。                           |
 | chargingStatus                            | [BatteryChargeState](#batterychargestate)      | 是   | 否   | 表示当前设备电池的充电状态。                               |
 | healthStatus                              | [BatteryHealthState](#batteryhealthstate)      | 是   | 否   | 表示当前设备电池的健康状态。                               |
@@ -34,21 +35,18 @@ import batteryInfo from '@ohos.batteryInfo';
 | nowCurrent<sup>9+</sup>                   | number                                         | 是   | 否   | 表示当前设备电池的电流，单位毫安。此接口为系统接口。       |
 | remainingEnergy<sup>9+</sup>              | number                                         | 是   | 否   | 表示当前设备电池的剩余容量，单位毫安时。此接口为系统接口。 |
 
-
 ## BatteryPluggedType
 
 表示连接的充电器类型的枚举。
 
 **系统能力**：SystemCapability.PowerManager.BatteryManager.Core
 
-
-| 名称       | 默认值  | 描述                |
+| 名称       | 值  | 说明              |
 | -------- | ---- | ----------------- |
 | NONE     | 0    | 表示连接充电器类型未知。      |
 | AC       | 1    | 表示连接的充电器类型为交流充电器。 |
 | USB      | 2    | 表示连接的充电器类型为USB。   |
 | WIRELESS | 3    | 表示连接的充电器类型为无线充电器。 |
-
 
 ## BatteryChargeState
 
@@ -56,14 +54,12 @@ import batteryInfo from '@ohos.batteryInfo';
 
 **系统能力**：SystemCapability.PowerManager.BatteryManager.Core
 
-
-| 名称      | 默认值  | 描述              |
+| 名称      | 值  | 说明            |
 | ------- | ---- | --------------- |
 | NONE    | 0    | 表示电池充电状态未知。     |
 | ENABLE  | 1    | 表示电池充电状态为使能状态。  |
 | DISABLE | 2    | 表示电池充电状态为停止状态。  |
 | FULL    | 3    | 表示电池充电状态为已充满状态。 |
-
 
 ## BatteryHealthState
 
@@ -71,8 +67,7 @@ import batteryInfo from '@ohos.batteryInfo';
 
 **系统能力**：SystemCapability.PowerManager.BatteryManager.Core
 
-
-| 名称          | 默认值  | 描述             |
+| 名称          | 值  | 说明           |
 | ----------- | ---- | -------------- |
 | UNKNOWN     | 0    | 表示电池健康状态未知。    |
 | GOOD        | 1    | 表示电池健康状态为正常。   |
@@ -87,8 +82,7 @@ import batteryInfo from '@ohos.batteryInfo';
 
 **系统能力**：SystemCapability.PowerManager.BatteryManager.Core
 
-
-| 名称           | 默认值 | 描述                         |
+| 名称           | 值 | 说明                       |
 | -------------- | ------ | ---------------------------- |
 | LEVEL_NONE     | 0      | 表示电池电量等级未知。       |
 | LEVEL_FULL     | 1      | 表示电池电量等级为满电量。   |
@@ -103,8 +97,7 @@ import batteryInfo from '@ohos.batteryInfo';
 
 **系统能力**：SystemCapability.PowerManager.BatteryManager.Core
 
-
-| 名称                 | 默认值 | 描述                                               |
+| 名称                 | 值 | 说明                                             |
 | -------------------- | ------ | -------------------------------------------------- |
 | EXTRA_SOC            | 0      | 表示剩余电池电量百分比的查询键。                   |
 | EXTRA_VOLTAGE        | 1      | 表示当前设备电池电压的查询键。                     |
@@ -117,4 +110,3 @@ import batteryInfo from '@ohos.batteryInfo';
 | EXTRA_CHARGE_COUNTER | 8      | 表示当前设备电池充电次数的查询键。                 |
 | EXTRA_PRESENT        | 9      | 表示当前设备是否支持电池或者电池是否在位的查询键。 |
 | EXTRA_TECHNOLOGY     | 10     | 表示当前设备电池技术型号的查询键。                 |
-

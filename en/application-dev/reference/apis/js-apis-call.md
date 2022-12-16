@@ -664,6 +664,8 @@ Ends a call. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
+**Required permission**: ohos.permission.ANSWER_CALL
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -688,6 +690,8 @@ hangup\(callId: number, callback: AsyncCallback<void\>\): void
 Ends a call based on the specified call ID. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -714,6 +718,8 @@ hangup\(callId?: number\): Promise<void\>
 Ends a call based on the specified call ID. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -748,6 +754,8 @@ Rejects a call. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
+**Required permission**: ohos.permission.ANSWER_CALL
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -772,6 +780,8 @@ reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 Rejects a call based on the specified options. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -802,6 +812,8 @@ Rejects a call based on the specified call ID. This API uses an asynchronous cal
 
 This is a system API.
 
+**Required permission**: ohos.permission.ANSWER_CALL
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -827,6 +839,8 @@ reject\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<v
 Rejects a call based on the specified call ID and options. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -857,6 +871,8 @@ reject(callId?: number, options?: RejectMessageOptions\): Promise<void\>
 Rejects a call based on the specified call ID and options. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -895,6 +911,8 @@ Holds a call based on the specified call ID. This API uses an asynchronous callb
 
 This is a system API.
 
+**Required permission**: ohos.permission.ANSWER_CALL
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -920,6 +938,8 @@ holdCall\(callId: number\): Promise<void\>
 Holds a call based on the specified call ID. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -954,6 +974,8 @@ Unholds a call based on the specified call ID. This API uses an asynchronous cal
 
 This is a system API.
 
+**Required permission**: ohos.permission.ANSWER_CALL
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -979,6 +1001,8 @@ unHoldCall\(callId: number\): Promise<void\>
 Unholds a call based on the specified call ID. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1013,6 +1037,8 @@ Switches a call. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
+**Required permission**: ohos.permission.ANSWER_CALL
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1038,6 +1064,8 @@ switchCall\(callId: number\): Promise<void\>
 Switches a call. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1308,6 +1336,8 @@ Obtains the call waiting status. This API uses an asynchronous callback to retur
 
 This is a system API.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1333,6 +1363,8 @@ getCallWaitingStatus\(slotId: number\): Promise<CallWaitingStatus\>
 Obtains the call waiting status. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1367,6 +1399,8 @@ Sets the call waiting switch. This API uses an asynchronous callback to return t
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1393,6 +1427,8 @@ setCallWaiting\(slotId: number, activate: boolean\): Promise<void\>
 Sets the call waiting switch. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1604,6 +1640,8 @@ Subscribes to **callDetailsChange** events. This API uses an asynchronous callba
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1628,6 +1666,8 @@ on\(type: 'callEventChange', callback: Callback<CallEventOptions\>\): void
 Subscribes to **callEventChange** events. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1654,6 +1694,8 @@ Subscribes to **callDisconnectedCause** events. This API uses an asynchronous ca
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1678,6 +1720,8 @@ on\(type: 'mmiCodeResult', callback: Callback<MmiCodeResults\>\): void
 Subscribes to **mmiCodeResult** events. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1704,6 +1748,8 @@ Unsubscribes from **callDetailsChange** events. This API uses an asynchronous ca
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1728,6 +1774,8 @@ off\(type: 'callEventChange', callback?: Callback<CallEventOptions\>\): void
 Unsubscribes from **callEventChange** events. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1754,6 +1802,8 @@ Unsubscribes from **callDisconnectedCause** events. This API uses an asynchronou
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1778,6 +1828,8 @@ off\(type: 'mmiCodeResult', callback?: Callback<MmiCodeResults\>\): void
 Unsubscribes from **mmiCodeResult** events. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1915,6 +1967,8 @@ Obtains the call restriction status. This API uses an asynchronous callback to r
 
 This is a system API.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1941,6 +1995,8 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise<R
 Obtains the call restriction status. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1976,6 +2032,8 @@ Sets the call restriction status. This API uses an asynchronous callback to retu
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -2007,6 +2065,8 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise<void\>
 Sets the call restriction status. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2047,6 +2107,8 @@ Obtains call transfer information. This API uses an asynchronous callback to ret
 
 This is a system API.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -2073,6 +2135,8 @@ getCallTransferInfo\(slotId: number, type: CallTransferType): Promise<CallTransf
 Obtains call transfer information. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2108,6 +2172,8 @@ Sets call transfer information. This API uses an asynchronous callback to return
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -2139,6 +2205,8 @@ setCallTransfer\(slotId: number, info: CallTransferInfo): Promise<void\>
 Sets call transfer information. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2558,6 +2626,8 @@ Enables the IMS switch. This API uses an asynchronous callback to return the res
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -2582,6 +2652,8 @@ enableImsSwitch(slotId: number): Promise<void\>
 Enables the IMS switch. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2616,6 +2688,8 @@ Disables the IMS switch. This API uses an asynchronous callback to return the re
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -2640,6 +2714,8 @@ disableImsSwitch(slotId: number): Promise<void\>
 Disables the IMS switch. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 

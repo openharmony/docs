@@ -12,9 +12,13 @@ ImageData对象可以存储canvas渲染的像素数据。
 
 | 属性 | 类型 | 描述 |
 | -------- | -------- | -------- |
-| width | number | 矩形区域实际像素宽度。 |
-| height | number | 矩形区域实际像素高度。 |
+| width | number | 矩形区域实际像素宽度，单位为px。 |
+| height | number | 矩形区域实际像素高度，单位为px。 |
 | data | Uint8ClampedArray | 一维数组，保存了相应的颜色数据，数据值范围为0到255。 |
+
+>  **说明：**
+> 
+> 可使用[px2vp](ts-pixel-units.md)接口进行单位转换。
 
 **示例：**
 

@@ -14,6 +14,8 @@
 >
 > 当权限校验结果显示当前应用尚未被授权该权限时，再通过动态弹框授权方式给用户提供手动授权入口。
 
+应用可申请的权限，可查询[应用权限列表](permission-list.md)
+
 ## 接口说明
 
 以下仅列举本指导使用的接口，更多说明可以查阅[API参考](../reference/apis/js-apis-ability-context.md)。
@@ -24,9 +26,9 @@
 
 ## 权限申请声明
 
-应用需要在工程配置文件中，对需要的权限逐个声明，没有在配置文件中声明的权限，应用将无法获得授权。Ability框架提供了两种模型，分别为FA模型和Stage模型，更多信息可以参考[Ability框架概述](../ability/ability-brief.md)。
+应用需要在工程配置文件中，对需要的权限逐个声明，没有在配置文件中声明的权限，应用将无法获得授权。OpenHarmony提供了两种应用模型，分别为FA模型和Stage模型，更多信息可以参考[应用模型解读](../application-models/application-model-description.md)。
 
-不同的Ability框架模型的应用包结构不同，所使用的配置文件不同，请开发者在申请权限时注意区分。
+不同的应用模型的应用包结构不同，所使用的配置文件不同，请开发者在申请权限时注意区分。
 
 配置文件标签说明如下表。
 
@@ -170,7 +172,7 @@
 ## user_grant权限预授权
 当前正常情况下，user_grant类型的权限默认不授权，需要时应通过拉起弹框由用户确认是否授予。对于一些预置应用，比如截屏应用，不希望出现弹框，则可以通过预授权的方式完成user_grant类型权限的授权。[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json)在设备上的路径为system/etc/app/install_list_permission.json，设备开机启动时会读取该配置文件，在应用安装会对在文件中配置的user_grant类型权限授权。当前仅支持预置应用配置该文件。
 预授权配置文件字段内容包括bundleName、app_signature、permissions。
-1. 这里的权限仅对user_grant类型的权限生效[查看权限等级和类型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)。
+1. 这里的权限仅对user_grant类型的权限生效[查看权限等级和类型](permission-list.md)。
 2. userCancellable配置为true，表示支持用户取消授权，为false则表示不支持用户取消授权。
 
 ```json

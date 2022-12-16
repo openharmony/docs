@@ -1,4 +1,4 @@
-# 输入设备
+# @ohos.multimodalInput.inputDevice (输入设备)
 
 
 输入设备管理模块，用于监听输入设备连接和断开状态，查询输入设备相关信息。
@@ -238,7 +238,7 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 **示例**：
 
 ```js
-inputDevice.getDeviceList((error, ids) => {
+inputDevice.getDeviceIds((error, ids) => {
   if (error) {
     console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
     return;
@@ -266,7 +266,7 @@ getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 **示例**：
 
 ```js
-inputDevice.getDeviceList().then((ids) => {
+inputDevice.getDeviceIds().then((ids) => {
   console.log(`Device id list: ${JSON.stringify(ids)}`);
 });
 ```
@@ -292,7 +292,7 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 ```js
 // 获取输入设备id为1的设备信息。
-inputDevice.getDeviceInfo(1, (error, deviceData) => {
+inputDevice.getDevice(1, (error, deviceData) => {
   if (error) {
     console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
     return;
@@ -327,7 +327,7 @@ getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 ```js
 // 获取输入设备id为1的设备信息。
-inputDevice.getDeviceInfo(1).then((deviceData) => {
+inputDevice.getDevice(1).then((deviceData) => {
   console.log(`Device info: ${JSON.stringify(deviceData)}`);
 });
 ```
@@ -482,7 +482,7 @@ try {
 | id                   | number                                 | 是 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
 | name                 | string                                 | 是 | 否 | 输入设备的名字。                                             |
 | sources              | Array&lt;[SourceType](#sourcetype)&gt; | 是 | 否 | 输入设备支持的源类型。比如有的键盘上附带触摸板，则此设备有keyboard和touchpad两种输入源。 |
-| axisRanges           | Array&lt;[axisRanges](#axisrange)&gt;  | 是 | 否 | 输入设备的轴信息。                                           |
+| axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | 是 | 否 | 输入设备的轴信息。                                           |
 | bus<sup>9+</sup>     | number                                 | 是 | 否 | 输入设备的总线类型。                                         |
 | product<sup>9+</sup> | number                                 | 是 | 否 | 输入设备的产品信息。                                         |
 | vendor<sup>9+</sup>  | number                                 | 是 | 否 | 输入设备的厂商信息。                                         |

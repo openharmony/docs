@@ -25,7 +25,7 @@ Navigation()
 | -------------- | ---------------------------------------- | ---------------------------------------- |
 | title          | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup>&nbsp;\|&nbsp;[NavigationCommonTitle](#navigationcommontitle类型说明)<sup>9+</sup>&nbsp;\|&nbsp;[NavigationCustomTitle](#navigationcustomtitle类型说明)<sup>9+</sup> | 页面标题。                                    |
 | subTitle<sup>deprecated</sup>       | string                                   | 页面副标题。从API Version 9开始废弃，建议使用title代替。                                   |
-| menus          | Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | 页面右上角菜单。      |
+| menus          | Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | 页面右上角菜单。使用Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt;&nbsp;写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。      |
 | titleMode      | [NavigationTitleMode](#navigationtitlemode枚举说明)                      | 页面标题栏显示模式。<br/>默认值：NavigationTitleMode.Free |
 | toolBar        | [object](#object类型说明)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | 设置工具栏内容。<br/>items:&nbsp;工具栏所有项。     |
 | hideToolBar    | boolean                                  | 隐藏工具栏。<br/>默认值：false<br/>true:&nbsp;隐藏工具栏。<br/>false:&nbsp;显示工具栏。 |
@@ -217,7 +217,7 @@ struct NavigationExample {
       }
       .title(this.NavigationTitle)
       .menus(this.NavigationMenus)
-      .titleMode(NavigationTitleMode.Free)
+      .titleMode(NavigationTitleMode.Full)
       .toolBar(this.NavigationToolbar)
       .hideTitleBar(false)
       .hideToolBar(false)
@@ -228,3 +228,5 @@ struct NavigationExample {
   }
 }
 ```
+
+![zh-cn_image_0000001192655288](figures/zh-cn_image_0000001192655288.gif)

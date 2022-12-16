@@ -1,4 +1,4 @@
-# EnterpriseAdminExtensionAbility
+# @ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)
 
 本模块提供企业管理员应用拓展能力。
 
@@ -24,6 +24,8 @@ onAdminEnabled(): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统API**: 此接口为系统接口。
+
 **示例：**
 
 ```ts
@@ -40,6 +42,8 @@ onAdminDisabled(): void
 设备管理员被去激活事件回调。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **示例：**
 

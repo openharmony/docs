@@ -1,4 +1,4 @@
-# Window
+# @ohos.window
 
 The **Window** module provides basic window management capabilities, such as creating and destroying the current window, setting properties for the current window, and managing and scheduling windows.
 
@@ -46,17 +46,15 @@ Enumerates the window types.
 
 ## Configuration<sup>9+</sup>
 
-Defines the parameters used for creating a subwindow.
-
-An asynchronous callback is used when a system window is created in the case that [ServiceExtensionContext](js-apis-service-extension-context.md) is used as the context.
+Defines the parameters for creating a subwindow or system window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name| Type| Mandatory| Description|
 | ---------- | -------------------------- | -- | ----------------------------------- |
-| name       | string                     | Yes| Name of the subwindow.                        |
-| windowType | [WindowType](#windowtype7) | Yes| Type of the subwindow.                        |
-| ctx        | BaseContext                | No| Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-service-extension-context.md).<br>If this parameter is not set, no context is used.     |
+| name       | string                     | Yes| Name of the window.                        |
+| windowType | [WindowType](#windowtype7) | Yes| Type of the window.                        |
+| ctx        | BaseContext                | No| Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md). If this parameter is not set, no context is used.<br>A system window is created when **Context** is [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md).|
 | displayId  | number                     | No| ID of the current physical screen. If this parameter is not set, the default value **-1** is used.|
 | parentId   | number                     | No| ID of the parent window. If this parameter is not set, the default value **-1** is used.     |
 
@@ -108,14 +106,14 @@ Describes the properties of the status bar and navigation bar.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                                  | Type| Readable| Writable| Mandatory| Description                                                        |
-| -------------------------------------- | -------- | ---- | ---- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   | No  | Yes  | No  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
-| isStatusBarLightIcon<sup>7+</sup>      | boolean  | No  | Yes  | No  | Whether any icon on the status bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
-| statusBarContentColor<sup>8+</sup>     | string   | No  | Yes  | No  | Color of the text on the status bar. After this property is set, the setting of **isStatusBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
-| navigationBarColor                     | string   | No  | Yes  | No  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
-| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | No  | Yes  | No  | Whether any icon on the navigation bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
-| navigationBarContentColor<sup>8+</sup> | string   | No  | Yes  | No  | Color of the text on the navigation bar. After this property is set, the setting of **isNavigationBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
+| Name                                  | Type|  Mandatory| Description                                                        |
+| -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
+| statusBarColor                         | string   |  No  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
+| isStatusBarLightIcon<sup>7+</sup>      | boolean  |  No  | Whether any icon on the status bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
+| statusBarContentColor<sup>8+</sup>     | string   |  No  | Color of the text on the status bar. After this property is set, the setting of **isStatusBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
+| navigationBarColor                     | string   |  No  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  No  | Whether any icon on the navigation bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
+| navigationBarContentColor<sup>8+</sup> | string   |  No  | Color of the text on the navigation bar. After this property is set, the setting of **isNavigationBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
 
 ## Orientation<sup>9+</sup>
 
@@ -248,7 +246,7 @@ Enumerates the color spaces.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name      | Default Value | Description          |
+| Name      | Value| Description          |
 | ---------- | ------ | -------------- |
 | DEFAULT    | 0      | Default gamut.|
 | WIDE_GAMUT | 1      | Wide-gamut.  |
@@ -302,7 +300,7 @@ Describes the translation parameters.
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
-Creates a subwindow. This API uses an asynchronous callback to return the result.
+Creates a subwindow or system window. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -310,8 +308,8 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
 
 | Name| Type| Mandatory| Description|
 | -------- | -------------------------------------- | -- | --------------------------------- |
-| config   | [Configuration](#configuration9)       | Yes| Current application context.               |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes| Callback used to return the subwindow created.|
+| config   | [Configuration](#configuration9)       | Yes| Parameters used for creating the window.  |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes| Callback used to return the window created.|
 
 **Error codes**
 
@@ -319,7 +317,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 1300001 | Repeated operation.        |
+| 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
 
 **Example**
@@ -339,14 +337,14 @@ try {
     });
 } catch (exception) {
     console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration): Promise&lt;Window&gt;
 
-Creates a subwindow. This API uses a promise to return the result.
+Creates a subwindow or system window. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -354,13 +352,13 @@ Creates a subwindow. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | ------ | -------------------------------- | -- | ------------------ |
-| config | [Configuration](#configuration9) | Yes| Current application context.|
+| config | [Configuration](#configuration9) | Yes| Parameters used for creating the window.|
 
 **Return value**
 
 | Type| Description|
 | -------------------------------- | ------------------------------------ |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created.|
+| Promise&lt;[Window](#window)&gt; | Promise used to return the window created.|
 
 **Error codes**
 
@@ -368,7 +366,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 1300001 | Repeated operation.        |
+| 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
 
 **Example**
@@ -386,14 +384,14 @@ try {
     });
 } catch (exception) {
     console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.findWindow<sup>9+</sup>
 
 findWindow(name: string): Window
 
-Finds a window based on the ID.
+Finds a window based on the name.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -412,11 +410,12 @@ Finds a window based on the ID.
 **Example**
 
 ```js
+let windowClass = null;
 try {
-    let windowClass = window.findWindow('alertWindow');
+    windowClass = window.findWindow('alertWindow');
 } catch (exception) {
     console.error('Failed to find the Window. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.getLastWindow<sup>9+</sup>
@@ -431,7 +430,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 | Name| Type| Mandatory| Description|
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
-| ctx      | BaseContext                            | Yes| Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx      | BaseContext                            | Yes| Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes| Callback used to return the top window obtained.|
 
 **Error codes**
@@ -458,7 +457,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.getLastWindow<sup>9+</sup>
@@ -473,7 +472,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 | Name| Type| Mandatory| Description|
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx    | BaseContext | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
 
 **Return value**
 
@@ -504,7 +503,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.minimizeAll<sup>9+</sup>
@@ -535,26 +534,25 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```js
 import display from '@ohos.display'
-import window from '@ohos.window'
 
+let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
+
+    try {
+        window.minimizeAll(displayClass.id, (err) => {
+            if(err.code) {
+                console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in minimizing all windows.');
+        });
+    } catch (exception) {
+        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
+    }
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-    return;
-};
-
-try {
-    window.minimizeAll(displayClass.id, (err) => {
-        if(err.code) {
-            console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in minimizing all windows.');
-    });
-} catch (exception) {
-    console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.minimizeAll<sup>9+</sup>
@@ -590,26 +588,24 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```js
 import display from '@ohos.display'
-import window from '@ohos.window'
 
 let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
+
+    try {
+        let promise = window.minimizeAll(displayClass.id);
+        promise.then(()=> {
+            console.info('Succeeded in minimizing all windows.');
+        }).catch((err)=>{
+            console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
+        });
+    } catch (exception) {
+        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
+    }
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-    return;
-};
-
-try {
-    let promise = window.minimizeAll(displayClass.id);
-    promise.then(()=> {
-        console.info('Succeeded in minimizing all windows.');
-    }).catch((err)=>{
-        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
-    });
-} catch (exception) {
-    console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.toggleShownStateForAllAppWindows<sup>9+</sup>
@@ -644,7 +640,7 @@ window.toggleShownStateForAllAppWindows((err) => {
         return;
     }
     console.info('Succeeded in toggling shown state for all app windows.');
-})
+});
 ```
 
 ## window.toggleShownStateForAllAppWindows<sup>9+</sup>
@@ -678,7 +674,7 @@ promise.then(()=> {
     console.info('Succeeded in toggling shown state for all app windows.');
 }).catch((err)=>{
     console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ## window.setWindowLayoutMode<sup>9+</sup>
@@ -718,7 +714,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.setWindowLayoutMode<sup>9+</sup>
@@ -762,7 +758,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.on('systemBarTintChange')<sup>8+</sup>
@@ -777,10 +773,10 @@ Enables listening for properties changes of the status bar and navigation bar.
 
 **Parameters**
 
-| Name  | Type                                                     | Mandatory| Description                                                        |
-| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                    | Yes  | Event type. The value is fixed at **'systemBarTintChange'**, indicating the property change event of the status bar and navigation bar.|
-| callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | Yes  | Callback used to return the properties of the status bar and navigation bar.                |
+| Name  | Type                                                      | Mandatory| Description                                                        |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | Yes  | Event type. The value is fixed at **'systemBarTintChange'**, indicating the property change event of the status bar and navigation bar.|
+| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | Yes  | Callback used to return the properties of the status bar and navigation bar.                |
 
 **Example**
 
@@ -791,7 +787,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to enable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.off('systemBarTintChange')<sup>8+</sup>
@@ -806,10 +802,10 @@ Disables listening for properties changes of the status bar and navigation bar.
 
 **Parameters**
 
-| Name  | Type                                                     | Mandatory| Description                                                        |
-| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                    | Yes  | Event type. The value is fixed at **'systemBarTintChange'**, indicating the property change event of the status bar and navigation bar.|
-| callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | No  | Callback used to return the properties of the status bar and navigation bar.                |
+| Name  | Type                                                      | Mandatory| Description                                                        |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | Yes  | Event type. The value is fixed at **'systemBarTintChange'**, indicating the property change event of the status bar and navigation bar.|
+| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | No  | Callback used to return the properties of the status bar and navigation bar.                |
 
 **Example**
 
@@ -818,7 +814,7 @@ try {
     window.off('systemBarTintChange');
 } catch (exception) {
     console.error('Failed to disable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.create<sup>(deprecated)</sup>
@@ -901,9 +897,7 @@ promise.then((data)=> {
 
 create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-Creates a subwindow in the FA model
-
-or a system window in the stage model. This API uses an asynchronous callback to return the result.
+Creates a subwindow (in API version 8) or a system window (from API version 9). This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
@@ -915,7 +909,7 @@ or a system window in the stage model. This API uses an asynchronous callback to
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-service-extension-context.md).|
+| ctx      | BaseContext                            | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md).|
 | id       | string                                 | Yes  | Window ID.                                                    |
 | type     | [WindowType](#windowtype7)              | Yes  | Window type.                                                  |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.                        |
@@ -939,9 +933,7 @@ window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, 
 
 create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
-Creates a subwindow in the FA model
-
-or a system window in the stage model. This API uses a promise to return the result.
+Creates a subwindow (in API version 8) or a system window (from API version 9). This API uses a promise to return the result.
 
 > **NOTE**
 > 
@@ -953,7 +945,7 @@ or a system window in the stage model. This API uses a promise to return the res
 
 | Name| Type                     | Mandatory| Description                                                        |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext               | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-service-extension-context.md).|
+| ctx    | BaseContext               | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md).|
 | id     | string                    | Yes  | Window ID.                                                    |
 | type   | [WindowType](#windowtype7) | Yes  | Window type.                                                  |
 
@@ -1110,7 +1102,7 @@ promise.then((data)=> {
     console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ## window.getTopWindow<sup>(deprecated)</sup>
@@ -1129,7 +1121,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx      | BaseContext                            | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.                |
 
 **Example**
@@ -1162,7 +1154,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx    | BaseContext | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
 
 **Return value**
 
@@ -1180,7 +1172,7 @@ promise.then((data)=> {
     console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ## Window
@@ -1221,8 +1213,8 @@ windowClass.hide((err) => {
         console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
         return;
     }
-    console.info('Succeeded in hiding the window. data: ' + JSON.stringify(data));
-})
+    console.info('Succeeded in hiding the window.');
+});
 ```
 
 ### hide<sup>7+</sup>
@@ -1257,7 +1249,7 @@ promise.then(()=> {
     console.info('Succeeded in hiding the window.');
 }).catch((err)=>{
     console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ### hideWithAnimation<sup>9+</sup>
@@ -1295,7 +1287,7 @@ windowClass.hideWithAnimation((err) => {
         return;
     }
     console.info('Succeeded in hiding the window with animation.');
-})
+});
 ```
 
 ### hideWithAnimation<sup>9+</sup>
@@ -1329,10 +1321,10 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 ```js
 let promise = windowClass.hideWithAnimation();
 promise.then(()=> {
-    console.info('Succeeded in hiding the window with animation. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in hiding the window with animation.');
 }).catch((err)=>{
     console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ### showWindow<sup>9+</sup>
@@ -1437,7 +1429,7 @@ windowClass.showWithAnimation((err) => {
         return;
     }
     console.info('Succeeded in showing the window with animation.');
-})
+});
 ```
 
 ### showWithAnimation<sup>9+</sup>
@@ -1474,7 +1466,7 @@ promise.then(()=> {
     console.info('Succeeded in showing the window with animation.');
 }).catch((err)=>{
     console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ### destroyWindow<sup>9+</sup>
@@ -1509,7 +1501,7 @@ windowClass.destroyWindow((err) => {
         return;
     }
     console.info('Succeeded in destroying the window.');
-})
+});
 ```
 
 ### destroyWindow<sup>9+</sup>
@@ -1543,7 +1535,7 @@ promise.then(()=> {
     console.info('Succeeded in destroying the window.');
 }).catch((err)=>{
     console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ### moveWindowTo<sup>9+</sup>
@@ -1584,7 +1576,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to move the window. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### moveWindowTo<sup>9+</sup>
@@ -1629,7 +1621,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to move the window. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### resize<sup>9+</sup>
@@ -1637,6 +1629,12 @@ try {
 resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 Changes the size of this window. This API uses an asynchronous callback to return the result.
+
+The main window and subwindow have the following size limits: [320, 2560] in width and [240, 2560] in height, both in units of vp.
+
+The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
+
+The new width and height you set must meet the limits.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1670,7 +1668,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to change the window size. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### resize<sup>9+</sup>
@@ -1678,6 +1676,12 @@ try {
 resize(width: number, height: number): Promise&lt;void&gt;
 
 Changes the size of this window. This API uses a promise to return the result.
+
+The main window and subwindow have the following size limits: [320, 2560] in width and [240, 2560] in height, both in units of vp.
+
+The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
+
+The new width and height you set must meet the limits.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1715,7 +1719,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to change the window size. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowMode<sup>9+</sup>
@@ -1758,7 +1762,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowMode<sup>9+</sup>
@@ -1797,7 +1801,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 ```js
 let mode = window.WindowMode.FULLSCREEN;
 try {
-    let promise = windowClass.setWindowMode(type);
+    let promise = windowClass.setWindowMode(mode);
     promise.then(()=> {
         console.info('Succeeded in setting the window mode.');
     }).catch((err)=>{
@@ -1805,7 +1809,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### getWindowProperties<sup>9+</sup>
@@ -1837,7 +1841,7 @@ try {
     let properties = windowClass.getWindowProperties();
 } catch (exception) {
     console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### getWindowAvoidArea<sup>9+</sup>
@@ -1876,7 +1880,7 @@ try {
     let avoidArea = windowClass.getWindowAvoidArea(type);
 } catch (exception) {
     console.error('Failed to obtain the area. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowLayoutFullScreen<sup>9+</sup>
@@ -1917,7 +1921,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowLayoutFullScreen<sup>9+</sup>
@@ -1962,7 +1966,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowSystemBarEnable<sup>9+</sup>
@@ -1976,8 +1980,8 @@ Sets whether to display the status bar and navigation bar in this window. This A
 **Parameters**
 
 | Name| Type| Mandatory| Description|
-| -------- | ------------------------- | -- | --------- |
-| names    | Array                     | Yes| Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
+| -------- | ---------------------------- | -- | --------- |
+| names    | Array<'status'\|'navigation'> | Yes| Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -2004,7 +2008,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowSystemBarEnable<sup>9+</sup>
@@ -2018,8 +2022,8 @@ Sets whether to display the status bar and navigation bar in this window. This A
 **Parameters**
 
 | Name| Type | Mandatory| Description|
-| ----- | ----- | -- | ------------------------------------------------------------------------------------------------------------ |
-| names | Array | Yes| Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
+| ----- | ---------------------------- | -- | --------------------------------- |
+| names | Array<'status'\|'navigation'> | Yes| Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
 
 **Return value**
 
@@ -2050,7 +2054,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowSystemBarProperties<sup>9+</sup>
@@ -2080,7 +2084,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```js
-let SystemBarProperties={
+let SystemBarProperties = {
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
     // The following properties are supported since API version 8.
@@ -2097,7 +2101,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowSystemBarProperties<sup>9+</sup>
@@ -2132,7 +2136,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```js
-let SystemBarProperties={
+let SystemBarProperties = {
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
     // The following properties are supported since API version 8.
@@ -2148,7 +2152,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setPreferredOrientation<sup>9+</sup>
@@ -2188,7 +2192,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setPreferredOrientation<sup>9+</sup>
@@ -2232,7 +2236,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setUIContent<sup>9+</sup>
@@ -2272,7 +2276,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setUIContent<sup>9+</sup>
@@ -2316,7 +2320,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to load the content. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### loadContent<sup>9+</sup>
@@ -2334,7 +2338,7 @@ Loads content from a page associated with a local storage to this window. This A
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage  | LocalStorage | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 | callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -2362,7 +2366,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### loadContent<sup>9+</sup>
@@ -2380,7 +2384,7 @@ Loads content from a page associated with a local storage to this window. This A
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage | LocalStorage | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 
 **Return value**
 
@@ -2412,7 +2416,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### isWindowShowing<sup>9+</sup>
@@ -2445,7 +2449,7 @@ try {
     console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
 } catch (exception) {
     console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### on('windowSizeChange')<sup>7+</sup>
@@ -2472,7 +2476,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to enable the listener for window size changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### off('windowSizeChange')<sup>7+</sup>
@@ -2497,7 +2501,7 @@ try {
     windowClass.off('windowSizeChange');
 } catch (exception) {
     console.error('Failed to disable the listener for window size changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### on('avoidAreaChange')<sup>9+</sup>
@@ -2525,7 +2529,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### off('avoidAreaChange')<sup>9+</sup>
@@ -2550,7 +2554,7 @@ try {
     windowClass.off('avoidAreaChange');
 } catch (exception) {
     console.error('Failed to disable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### on('keyboardHeightChange')<sup>7+</sup>
@@ -2577,7 +2581,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to enable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### off('keyboardHeightChange')<sup>7+</sup>
@@ -2602,7 +2606,7 @@ try {
     windowClass.off('keyboardHeightChange');
 } catch (exception) {
     console.error('Failed to disable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### on('touchOutside')<sup>9+</sup>
@@ -2631,7 +2635,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### off('touchOutside')<sup>9+</sup>
@@ -2658,7 +2662,7 @@ try {
     windowClass.off('touchOutside');
 } catch (exception) {
     console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### on('screenshot')<sup>9+</sup>
@@ -2685,7 +2689,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### off('screenshot')<sup>9+</sup>
@@ -2706,21 +2710,21 @@ Unsubscribes from screenshot events.
 **Example**
 
 ```js
-let callback = ()=>{
+let callback = () => {
     console.info('screenshot happened');
 };
 try {
     windowClass.on('screenshot', callback);
 } catch (exception) {
     console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
-};
+}
 try {
     windowClass.off('screenshot', callback);
     // If multiple callbacks are enabled in on(), they will all be disabled.
     windowClass.off('screenshot');
 } catch (exception) {
     console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### on('dialogTargetTouch')<sup>9+</sup>
@@ -2747,7 +2751,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### off('dialogTargetTouch')<sup>9+</sup>
@@ -2772,7 +2776,7 @@ try {
     windowClass.off('dialogTargetTouch');
 } catch (exception) {
     console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### bindDialogTarget<sup>9+</sup>
@@ -2805,6 +2809,8 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```js
+import rpc from '@ohos.rpc';
+
 class MyDeathRecipient {
     onRemoteDied() {
         console.log('server died');
@@ -2824,6 +2830,7 @@ class TestRemoteObject extends rpc.RemoteObject {
         return false;
     }
 }
+
 let token = new TestRemoteObject('testObject');
 try {
     windowClass.bindDialogTarget(token, () => {
@@ -2837,7 +2844,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### bindDialogTarget<sup>9+</sup>
@@ -2875,6 +2882,8 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```js
+import rpc from '@ohos.rpc';
+
 class MyDeathRecipient {
     onRemoteDied() {
         console.log('server died');
@@ -2894,6 +2903,7 @@ class TestRemoteObject extends rpc.RemoteObject {
         return false;
     }
 }
+
 let token = new TestRemoteObject('testObject');
 try {
     let promise = windowClass.bindDialogTarget(token, () => {
@@ -2906,7 +2916,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### isWindowSupportWideGamut<sup>9+</sup>
@@ -3012,7 +3022,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set window colorspace. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowColorSpace<sup>9+</sup>
@@ -3055,7 +3065,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set window colorspace. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### getWindowColorSpace<sup>9+</sup>
@@ -3116,7 +3126,7 @@ try {
     windowClass.setWindowBackgroundColor(color);
 } catch (exception) {
     console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowBrightness<sup>9+</sup>
@@ -3157,7 +3167,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the brightness. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowBrightness<sup>9+</sup>
@@ -3202,7 +3212,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the brightness. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowFocusable<sup>9+</sup>
@@ -3232,7 +3242,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```js
-let isFocusable= true;
+let isFocusable = true;
 try {
     windowClass.setWindowFocusable(isFocusable, (err) => {
         if (err.code) {
@@ -3243,7 +3253,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowFocusable<sup>9+</sup>
@@ -3278,7 +3288,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```js
-let isFocusable= true;
+let isFocusable = true;
 try {
     let promise = windowClass.setWindowFocusable(isFocusable);
     promise.then(()=> {
@@ -3288,7 +3298,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowKeepScreenOn<sup>9+</sup>
@@ -3329,7 +3339,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowKeepScreenOn<sup>9+</sup>
@@ -3374,7 +3384,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWakeUpScreen()<sup>9+</sup>
@@ -3410,7 +3420,7 @@ try {
     windowClass.setWakeUpScreen(wakeUp);
 } catch (exception) {
     console.error('Failed to wake up the screen. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowPrivacyMode<sup>9+</sup>
@@ -3452,7 +3462,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowPrivacyMode<sup>9+</sup>
@@ -3498,7 +3508,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setSnapshotSkip<sup>9+</sup>
@@ -3571,7 +3581,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowTouchable<sup>9+</sup>
@@ -3616,7 +3626,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setForbidSplitMove<sup>9+</sup>
@@ -3659,7 +3669,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setForbidSplitMove<sup>9+</sup>
@@ -3706,42 +3716,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
-};
-```
-
-### snapshot<sup>9+</sup>
-
-snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
-
-Captures this window. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-
-| Name     | Type                                                         | Mandatory | Description                         |
-| -------- | ------------------------------------------------------------ | --------- | ----------------------------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes       | Callback used to return the result. |
-
-**Error codes**
-
-For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
-
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
-
-**Example**
-
-```js
-windowClass.snapshot((err, pixelMap) => {
-    if (err.code) {
-        console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // Release the memory in time after the PixelMap is used.
-});
+}
 ```
 
 ### snapshot<sup>9+</sup>
@@ -3801,7 +3776,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.  |
+| 1300004 | Unauthorized operation.        |
 
 **Example**
 
@@ -3810,7 +3785,7 @@ try {
     windowClass.opacity(0.5);
 } catch (exception) {
     console.error('Failed to opacity. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### scale<sup>9+</sup>
@@ -3836,7 +3811,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.  |
+| 1300004 | Unauthorized operation.        |
 
 **Example**
 
@@ -3851,7 +3826,7 @@ try {
     windowClass.scale(obj);
 } catch (exception) {
     console.error('Failed to scale. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### rotate<sup>9+</sup>
@@ -3877,7 +3852,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.  |
+| 1300004 | Unauthorized operation.        |
 
 **Example**
 
@@ -3893,7 +3868,7 @@ try {
     windowClass.rotate(obj);
 } catch (exception) {
     console.error('Failed to rotate. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### translate<sup>9+</sup>
@@ -3919,7 +3894,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.  |
+| 1300004 | Unauthorized operation.        |
 
 **Example**
 
@@ -3933,7 +3908,7 @@ try {
     windowClass.translate(obj);
 } catch (exception) {
     console.error('Failed to translate. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ###  getTransitionController<sup>9+</sup>
@@ -3959,7 +3934,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.  |
+| 1300004 | Unauthorized operation.        |
 
 **Example**
 
@@ -3986,16 +3961,16 @@ controller.animationForHidden = (context : window.TransitionContext) => {
         toWindow.translate(obj); // Set the transition animation.
         console.info('toWindow translate end');
       }
-    )
+    );
     console.info('complete transition end');
-}
+};
 windowClass.hideWithAnimation((err, data) => {
     if (err.code) {
         console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
         return;
     }
     console.info('Succeeded in showing the window with animation. Data: ' + JSON.stringify(data));
-})
+});
 ```
 
 ### setBlur<sup>9+</sup>
@@ -4021,7 +3996,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.  |
+| 1300004 | Unauthorized operation.        |
 
 **Example**
 
@@ -4030,7 +4005,7 @@ try {
     windowClass.setBlur(4.0);
 } catch (exception) {
     console.error('Failed to set blur. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setBackdropBlur<sup>9+</sup>
@@ -4056,7 +4031,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.  |
+| 1300004 | Unauthorized operation.        |
 
 **Example**
 
@@ -4065,7 +4040,7 @@ try {
     windowClass.setBackdropBlur(4.0);
 } catch (exception) {
     console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setBackdropBlurStyle<sup>9+</sup>
@@ -4091,7 +4066,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.  |
+| 1300004 | Unauthorized operation.        |
 
 **Example**
 
@@ -4100,7 +4075,8 @@ try {
     windowClass.setBackdropBlurStyle(window.BlurStyle.THIN);
 } catch (exception) {
     console.error('Failed to set backdrop blur style. Cause: ' + JSON.stringify(exception));
-};
+}
+
 ```
 
 ### setShadow<sup>9+</sup>
@@ -4129,7 +4105,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.  |
+| 1300004 | Unauthorized operation.        |
 
 **Example**
 
@@ -4138,7 +4114,8 @@ try {
     windowClass.setShadow(4.0, '#FF00FF00', 2, 3);
 } catch (exception) {
     console.error('Failed to set shadow. Cause: ' + JSON.stringify(exception));
-};
+}
+
 ```
 
 ### setCornerRadius<sup>9+</sup>
@@ -4164,7 +4141,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.  |
+| 1300004 | Unauthorized operation.        |
 
 **Example**
 
@@ -4173,7 +4150,8 @@ try {
     windowClass.setCornerRadius(4.0);
 } catch (exception) {
     console.error('Failed to set corner radius. Cause: ' + JSON.stringify(exception));
-};
+}
+
 ```
 
 ### show<sup>(deprecated)</sup>
@@ -4203,7 +4181,8 @@ windowClass.show((err) => {
         return;
     }
     console.info('Succeeded in showing the window.');
-})
+});
+
 ```
 
 ### show<sup>(deprecated)</sup>
@@ -4232,7 +4211,8 @@ promise.then(()=> {
     console.info('Succeeded in showing the window.');
 }).catch((err)=>{
     console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
-})
+});
+
 ```
 
 ### destroy<sup>(deprecated)</sup>
@@ -4262,7 +4242,8 @@ windowClass.destroy((err) => {
         return;
     }
     console.info('Succeeded in destroying the window.');
-})
+});
+
 ```
 
 ### destroy<sup>(deprecated)</sup>
@@ -4291,7 +4272,8 @@ promise.then(()=> {
     console.info('Succeeded in destroying the window.');
 }).catch((err)=>{
     console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
-})
+});
+
 ```
 
 ### moveTo<sup>(deprecated)</sup>
@@ -4323,8 +4305,8 @@ windowClass.moveTo(300, 300, (err)=>{
         return;
     }
     console.info('Succeeded in moving the window.');
-
 });
+
 ```
 
 ### moveTo<sup>(deprecated)</sup>
@@ -4360,7 +4342,8 @@ promise.then(()=> {
     console.info('Succeeded in moving the window.');
 }).catch((err)=>{
     console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
-})
+});
+
 ```
 
 ### resetSize<sup>(deprecated)</sup>
@@ -4368,6 +4351,12 @@ promise.then(()=> {
 resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 Changes the size of this window. This API uses an asynchronous callback to return the result.
+
+The main window and subwindow have the following size limits: [320, 2560] in width and [240, 2560] in height, both in units of vp.
+
+The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
+
+The new width and height you set must meet the limits.
 
 > **NOTE**
 >
@@ -4393,6 +4382,7 @@ windowClass.resetSize(500, 1000, (err) => {
     }
     console.info('Succeeded in changing the window size.');
 });
+
 ```
 
 ### resetSize<sup>(deprecated)</sup>
@@ -4400,6 +4390,12 @@ windowClass.resetSize(500, 1000, (err) => {
 resetSize(width: number, height: number): Promise&lt;void&gt;
 
 Changes the size of this window. This API uses a promise to return the result.
+
+The main window and subwindow have the following size limits: [320, 2560] in width and [240, 2560] in height, both in units of vp.
+
+The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
+
+The new width and height you set must meet the limits.
 
 > **NOTE**
 >
@@ -4464,6 +4460,7 @@ windowClass.setWindowType(type, (err) => {
   }
   console.info('Succeeded in setting the window type.');
 });
+
 ```
 
 ### setWindowType<sup>(deprecated)</sup>
@@ -4502,6 +4499,7 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
 });
+
 ```
 
 ### getProperties<sup>(deprecated)</sup>
@@ -4573,7 +4571,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [[getWindowAvoidArea()](#getwindowavoidarea9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getWindowAvoidArea()](#getwindowavoidarea9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -4595,6 +4593,7 @@ windowClass.getAvoidArea(type, (err, data) => {
     }
     console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
 });
+
 ```
 
 ### getAvoidArea<sup>(deprecated)</sup>
@@ -4605,7 +4604,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getWindowProperties()](#getwindowavoidarea9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getWindowAvoidArea()](#getwindowavoidarea9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -4631,6 +4630,7 @@ promise.then((data)=> {
 }).catch((err)=>{
     console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
 });
+
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
@@ -4663,6 +4663,7 @@ windowClass.setFullScreen(isFullScreen, (err) => {
     }
     console.info('Succeeded in enabling the full-screen mode.');
 });
+
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
@@ -4769,6 +4770,7 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
 });
+
 ```
 
 ### setSystemBarEnable<sup>(deprecated)</sup>
@@ -4785,10 +4787,10 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                                                  |
-| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| names    | Array                     | Yes       | Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+| Name     | Type                          | Mandatory | Description                                                  |
+| -------- | ----------------------------- | --------- | ------------------------------------------------------------ |
+| names    | Array<'status'\|'navigation'> | Yes       | Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
+| callback | AsyncCallback&lt;void&gt;     | Yes       | Callback used to return the result.                          |
 
 **Example**
 
@@ -4819,9 +4821,9 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                  |
-| ----- | ----- | --------- | ------------------------------------------------------------ |
-| names | Array | Yes       | Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
+| Name  | Type                          | Mandatory | Description                                                  |
+| ----- | ----------------------------- | --------- | ------------------------------------------------------------ |
+| names | Array<'status'\|'navigation'> | Yes       | Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
 
 **Return value**
 
@@ -4879,6 +4881,7 @@ windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
     }
     console.info('Succeeded in setting the system bar properties.');
 });
+
 ```
 
 ### setSystemBarProperties<sup>(deprecated)</sup>
@@ -5020,6 +5023,7 @@ windowClass.isShowing((err, data) => {
     }
     console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
 });
+
 ```
 
 ### isShowing<sup>(deprecated)</sup>
@@ -5049,6 +5053,7 @@ promise.then((data)=> {
 }).catch((err)=>{
     console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(err));
 });
+
 ```
 
 ### on('systemAvoidAreaChange')<sup>(deprecated)</sup>
@@ -5076,6 +5081,7 @@ Enables listening for changes to the area where the window cannot be displayed.
 windowClass.on('systemAvoidAreaChange', (data) => {
     console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
 });
+
 ```
 
 ### off('systemAvoidAreaChange')<sup>(deprecated)</sup>
@@ -5131,7 +5137,7 @@ windowClass.isSupportWideGamut((err, data) => {
         return;
     }
     console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data));
-})
+});
 
 ```
 
@@ -5193,7 +5199,8 @@ windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err) => {
         return;
     }
     console.info('Succeeded in setting window colorspace.');
-})
+});
+
 ```
 
 ### setColorSpace<sup>(deprecated)</sup>
@@ -5259,7 +5266,7 @@ windowClass.getColorSpace((err, data) => {
         return;
     }
     console.info('Succeeded in getting window colorspace. Cause:' + JSON.stringify(data));
-})
+});
 
 ```
 
@@ -5323,6 +5330,7 @@ windowClass.setBackgroundColor(color, (err) => {
     }
     console.info('Succeeded in setting the background color.');
 });
+
 ```
 
 ### setBackgroundColor<sup>(deprecated)</sup>
@@ -5461,6 +5469,7 @@ windowClass.setDimBehind(0.5, (err) => {
     }
     console.info('Succeeded in setting the dimness.');
 });
+
 ```
 
 ### setDimBehind<sup>(deprecated)</sup>
@@ -5566,6 +5575,7 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the window to be focusable. Cause: ' + JSON.stringify(err));
 });
+
 ```
 
 ### setKeepScreenOn<sup>(deprecated)</sup>
@@ -5598,6 +5608,7 @@ windowClass.setKeepScreenOn(isKeepScreenOn, (err) => {
     }
     console.info('Succeeded in setting the screen to be always on.');
 });
+
 ```
 
 ### setKeepScreenOn<sup>(deprecated)</sup>
@@ -5634,6 +5645,7 @@ promise.then(() => {
 }).catch((err)=>{
     console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
 });
+
 ```
 
 ### setOutsideTouchable<sup>(deprecated)</sup>
@@ -5664,7 +5676,8 @@ windowClass.setOutsideTouchable(true, (err) => {
         return;
     }
     console.info('Succeeded in setting the area to be touchable.');
-})
+});
+
 ```
 
 ### setOutsideTouchable<sup>(deprecated)</sup>
@@ -5700,6 +5713,7 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
 });
+
 ```
 
 ### setPrivacyMode<sup>(deprecated)</sup>
@@ -5731,7 +5745,6 @@ windowClass.setPrivacyMode(isPrivacyMode, (err) => {
         return;
     }
     console.info('Succeeded in setting the window to privacy mode.');
-
 });
 
 ```
@@ -5770,6 +5783,7 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the window to privacy mode. Cause: ' + JSON.stringify(err));
 });
+
 ```
 
 ### setTouchable<sup>(deprecated)</sup>
@@ -5801,8 +5815,8 @@ windowClass.setTouchable(isTouchable, (err) => {
         return;
     }
     console.info('Succeeded in setting the window to be touchable.');
-
 });
+
 ```
 
 ### setTouchable<sup>(deprecated)</sup>
@@ -5839,6 +5853,7 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
 });
+
 ```
 
 ## WindowStageEventType<sup>9+</sup>
@@ -5849,12 +5864,12 @@ Describes the lifecycle of a window stage.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name       | Default Value | Description                                    |
-| ---------- | ------------- | ---------------------------------------------- |
-| FOREGROUND | 1             | The window stage is running in the foreground. |
-| ACTIVE     | 2             | The window stage gains focus.                  |
-| INACTIVE   | 3             | The window stage loses focus.                  |
-| BACKGROUND | 4             | The window stage is running in the background. |
+| Name       | Value | Description                                    |
+| ---------- | ----- | ---------------------------------------------- |
+| FOREGROUND | 1     | The window stage is running in the foreground. |
+| ACTIVE     | 2     | The window stage gains focus.                  |
+| INACTIVE   | 3     | The window stage loses focus.                  |
+| BACKGROUND | 4     | The window stage is running in the background. |
 
 ## WindowStage<sup>9+</sup>
 
@@ -5891,6 +5906,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -5904,7 +5920,8 @@ class myAbility extends Ability {
             console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
         });
     }
-}
+};
+
 ```
 
 ### getMainWindow<sup>9+</sup>
@@ -5936,19 +5953,21 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
         let promise = windowStage.getMainWindow();
-        promise.then((data)=> {
+        promise.then((data) => {
         windowClass = data;
             console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        }).catch((err)=>{
+        }).catch((err) => {
             console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         });
     }
-}
+};
+
 ```
 
 ### getMainWindowSync<sup>9+</sup>
@@ -5980,6 +5999,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -5989,7 +6009,8 @@ class myAbility extends Ability {
             console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(exception));
         };
     }
-}
+};
+
 ```
 
 ### createSubWindow<sup>9+</sup>
@@ -6006,7 +6027,7 @@ Creates a subwindow for this window stage. This API uses an asynchronous callbac
 
 | Name     | Type                                   | Mandatory | Description                            |
 | -------- | -------------------------------------- | --------- | -------------------------------------- |
-| name     | String                                 | Yes       | Name of the subwindow.                 |
+| name     | string                                 | Yes       | Name of the subwindow.                 |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes       | Callback used to return the subwindow. |
 
 **Error codes**
@@ -6022,6 +6043,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -6040,7 +6062,8 @@ class myAbility extends Ability {
             console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
         };
     }
-}
+};
+
 ```
 
 ### createSubWindow<sup>9+</sup>
@@ -6057,7 +6080,7 @@ Creates a subwindow for this window stage. This API uses a promise to return the
 
 | Name | Type   | Mandatory | Description            |
 | ---- | ------ | --------- | ---------------------- |
-| name | String | Yes       | Name of the subwindow. |
+| name | string | Yes       | Name of the subwindow. |
 
 **Return value**
 
@@ -6078,23 +6101,25 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
         try {
             let promise = windowStage.createSubWindow('mySubWindow');
-            promise.then((data)=> {
+            promise.then((data) => {
                 windowClass = data;
                 console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-            }).catch((err)=>{
+            }).catch((err) => {
                 console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
             });
         } catch (exception) {
             console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
         };
     }
-}
+};
+
 ```
 
 ### getSubWindow<sup>9+</sup>
@@ -6125,6 +6150,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -6138,7 +6164,8 @@ class myAbility extends Ability {
             console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
         });
     }
-}
+};
+
 ```
 
 ### getSubWindow<sup>9+</sup>
@@ -6169,19 +6196,21 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
         let promise = windowStage.getSubWindow();
-        promise.then((data)=> {
+        promise.then((data) => {
             windowClass = data;
             console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
-        }).catch((err)=>{
+        }).catch((err) => {
             console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
         })
     }
-}
+};
+
 ```
 
 ### loadContent<sup>9+</sup>
@@ -6199,7 +6228,7 @@ Loads content from a page associated with a local storage to the main window in 
 | Name     | Type                                                         | Mandatory | Description                                                  |
 | -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
 | path     | string                                                       | Yes       | Path of the page from which the content will be loaded.      |
-| storage  | LocalStorage | Yes       | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
+| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes       | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
 | callback | AsyncCallback&lt;void&gt;                                    | Yes       | Callback used to return the result.                          |
 
 **Error codes**
@@ -6215,6 +6244,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
@@ -6233,7 +6263,8 @@ class myAbility extends Ability {
             console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
         };
     }
-}
+};
+
 ```
 
 ### loadContent<sup>9+</sup>
@@ -6251,7 +6282,7 @@ Loads content from a page associated with a local storage to the main window in 
 | Name    | Type                                                         | Mandatory | Description                                                  |
 | ------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
 | path    | string                                                       | Yes       | Path of the page from which the content will be loaded.      |
-| storage | LocalStorage | No        | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
+| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | No        | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
 
 **Return value**
 
@@ -6272,6 +6303,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
@@ -6280,16 +6312,17 @@ class myAbility extends Ability {
         console.log('onWindowStageCreate');
         try {
             let promise = windowStage.loadContent('pages/page2',this.storage);
-            promise.then(()=> {
+            promise.then(() => {
                 console.info('Succeeded in loading the content.');
-            }).catch((err)=>{
+            }).catch((err) => {
                 console.error('Failed to load the content. Cause:' + JSON.stringify(err));
             });
         } catch (exception) {
             console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
         };
     }
-}
+};
+
 ```
 
 ### loadContent<sup>9+</sup>
@@ -6322,6 +6355,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -6337,7 +6371,8 @@ class myAbility extends Ability {
             console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
         };
     }
-}
+};
+
 ```
 
 ### on('windowStageEvent')<sup>9+</sup>
@@ -6370,6 +6405,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -6383,7 +6419,8 @@ class myAbility extends Ability {
                 JSON.stringify(exception));
         };
     }
-}
+};
+
 ```
 
 ### off('windowStageEvent')<sup>9+</sup>
@@ -6416,6 +6453,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -6426,7 +6464,8 @@ class myAbility extends Ability {
                 JSON.stringify(exception));
         };
     }
-}
+};
+
 ```
 
 ### disableWindowDecor()<sup>9+</sup>
@@ -6454,12 +6493,14 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('disableWindowDecor');
         windowStage.disableWindowDecor();
     }
-}
+};
+
 ```
 
 ### setShowOnLockScreen()<sup>9+</sup>
@@ -6493,6 +6534,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -6502,7 +6544,8 @@ class myAbility extends Ability {
             console.error('Failed to show on lockscreen. Cause:' + JSON.stringify(exception));
         };
     }
-}
+};
+
 ```
 
 ## TransitionContext<sup>9+</sup>
@@ -6557,7 +6600,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
-    )
+    );
     try {
         context.completeTransition(true)
     } catch (exception) {
@@ -6565,6 +6608,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
     }
     console.info('complete transition end');
 };
+
 ```
 
 ## TransitionController<sup>9+</sup>
@@ -6612,9 +6656,9 @@ controller.animationForShown = (context : window.TransitionContext) => {
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
-    )
+    );
     console.info('complete transition end');
-}
+};
 ```
 
 ### animationForHidden<sup>9+</sup>
@@ -6660,6 +6704,6 @@ controller.animationForHidden = (context : window.TransitionContext) => {
       }
     )
     console.info('complete transition end');
-}
+};
 ```
 

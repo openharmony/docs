@@ -1,8 +1,8 @@
-# SysCap列表
+# 系统能力SystemCapability列表
 
 SysCap，全称SystemCapability，即系统能力，指操作系统中每一个相对独立的特性。
 
-开发者使用某个接口进行开发前，建议先阅读[SysCap使用指南](../quick-start/syscap.md)，了解Syscap的定义和使用指导。再结合下文中的表格判断具体能力集是否支持某个设备，提高开发效率。
+开发者使用某个接口进行开发前，建议先阅读[SysCap使用指南](syscap.md)，了解Syscap的定义和使用指导。再结合下文中的表格判断具体能力集是否支持某个设备，提高开发效率。
 
 ## SystemCapability.ArkUI.ArkUI.Full
 

@@ -1,99 +1,59 @@
 # Getting Started
-- Getting Started with Mini and Small Systems (IDE Mode, Recommended)
-    - [Mini and Small System Overview](quickstart-ide-lite-overview.md)
-    - Environment Preparation
-        - [Setting Up the Windows+Ubuntu Hybrid Development Environment](quickstart-ide-lite-env-setup-win-ubuntu.md)
-        - [Obtaining Source Code](quickstart-ide-lite-sourcecode-acquire.md)
-    - [Creating a Source Code Project](quickstart-ide-lite-create-project.md)
-    - Running a Hello World Program
-        - Hi3861 Development Board
-            - [Writing a Hello World Program](quickstart-ide-lite-steps-hi3861-helloworld.md)
-            - [Building](quickstart-ide-lite-steps-hi3861-building.md)
-            - [Burning](quickstart-ide-lite-steps-hi3861-burn.md)
-            - [Networking](quickstart-ide-lite-steps-hi3861-netconfig.md)
-            - [Debugging and Verification](quickstart-ide-lite-steps-hi3861-debug.md)
-            - [Running](quickstart-ide-lite-steps-hi3861-running.md)
-        - Hi3516 Development Board
-            - [Writing a Hello World Program](quickstart-ide-lite-steps-hi3516-helloworld.md)
-            - [Building](quickstart-ide-lite-steps-hi3516-building.md)
-            - [Burning](quickstart-ide-lite-steps-hi3516-burn.md)
-            - [Running](quickstart-ide-lite-steps-hi3516-running.md)
-    - Appendix
-        - [Introduction to the Hi3861 Development Board](quickstart-ide-lite-introduction-hi3861.md)
-        - [Introduction to the Hi3516 Development Board](quickstart-ide-lite-introduction-hi3516.md)
-        - [Overall Description of Compilation Form Factors](quickstart-build.md)
-- Getting Started with Mini and Small Systems (Installation Package Mode)
-    - [Mini and Small System Overview](quickstart-lite-overview.md)
-    - [Environment Preparation](quickstart-lite-env-setup.md)
-    - Running a Hello World Program
-        - Hi3861 Development Board
-            - [Setting Up the Hi3861 Development Board Environment](quickstart-lite-steps-hi3861-setting.md)
-            - [Writing a Hello World Program](quickstart-lite-steps-hi3861-helloworld.md)
-            - [Building](quickstart-lite-steps-hi3861-building.md)
-            - [Burning](quickstart-lite-steps-hi3861-burn.md)
-            - [Networking](quickstart-lite-steps-hi3861-netconfig.md)
-            - [Debugging and Verification](quickstart-lite-steps-hi3861-debug.md)
-            - [Running](quickstart-lite-steps-hi3861-running.md)
-        - Hi3516 Development Board
-            - [Setting Up the Hi3516 Development Board Environment](quickstart-lite-steps-hi3516-setting.md)
-            - [Writing a Hello World Program](quickstart-lite-steps-hi3516-helloworld.md)
-            - [Building](quickstart-lite-steps-hi3516-building.md)
-            - [Burning](quickstart-lite-steps-hi3516-burn.md)
-            - [Running](quickstart-lite-steps-hi3516-running.md)
-    - FAQs
-        - [Fixing hb Installation Issues](quickstart-lite-faq-hb.md)
-        - [Fixing Compilation Issues](quickstart-lite-faq-compose.md)
-        - [Fixing Burning Issues](quickstart-lite-faq-burning.md)
-    - Appendix
-        - Introduction to Development Boards
-            - [Introduction to the Hi3861 Development Board](quickstart-lite-introduction-hi3861.md)
-            - [Introduction to the Hi3516 Development Board](quickstart-lite-introduction-hi3516.md)
-        - [Reference](quickstart-lite-reference.md)
-        - [Burning Code by Using HiTool](quickstart-lite-hitool.md)
-        - [Overall Description of Compilation Form Factors](quickstart-build.md)
-- Getting Started with Standard System (IDE Mode, Recommended)
-    - [Standard System Overview](quickstart-ide-standard-overview.md)
-    - Environment Preparation
-        - [Setting Up the Windows+Ubuntu Hybrid Development Environment](quickstart-ide-standard-env-setup-win-ubuntu.md)
-        - [Obtaining Source Code](quickstart-ide-standard-sourcecode-acquire.md)
-    - [Creating a Source Code Project](quickstart-ide-standard-create-project.md)
-    - Running a Hello World Program
-        - Hi3516 Development Board
-            - [Writing a Hello World Program](quickstart-ide-standard-running-hi3516-create.md)
-            - [Building](quickstart-ide-standard-running-hi3516-build.md)
-            - [Burning](quickstart-ide-standard-running-hi3516-burning.md)
-            - [Running](quickstart-ide-standard-running-hi3516-running.md)
-        - RK3568 Development Board
-            - [Writing a Hello World Program](quickstart-ide-standard-running-rk3568-create.md)
-            - [Building](quickstart-ide-standard-running-rk3568-build.md)
-            - [Burning](quickstart-ide-standard-running-rk3568-burning.md)
-            - [Running](quickstart-ide-standard-running-rk3568-running.md)
-    - Appendix
-        - [Introduction to the Hi3516 Development Board](quickstart-ide-standard-board-introduction-hi3516.md)
-        - [Introduction to the RK3568 Development Board](quickstart-ide-standard-board-introduction-rk3568.md)
-        - [Overall Description of Compilation Form Factors](quickstart-build.md)
-- Getting Started with Standard System (Installation Package Mode)
-    - [Standard System Overview](quickstart-standard-overview.md)
-    - [Setting Up Environments for Standard System](quickstart-standard-env-setup.md)
-    - Running a Hello World Program
-        - Hi3516 Development Board
-            - [Writing a Hello World Program](quickstart-std-3516-create.md)
-            - [Building](quickstart-standard-running-hi3516-build.md)
-            - [Burning](quickstart-standard-running-hi3516-burning.md)
-            - [Running](quickstart-standard-running-hi3516-running.md)
-        - RK3568 Development Board
-            - [Writing a Hello World Program](quickstart-standard-running-rk3568-create.md)
-            - [Building](quickstart-standard-running-rk3568-build.md)
-            - [Burning](quickstart-standard-running-rk3568-burning.md)
-            - [Running](quickstart-standard-running-rk3568-running.md)
-    - FAQs
-        - [Fixing hb Installation Issues](quickstart-standard-faq-hb.md)
-        - [Fixing Compilation Issues](quickstart-standard-faq-compose.md)
-        - [Fixing Burning Issues](quickstart-standard-faq-burning.md)
-    - Appendix
-        - Introduction to Development Boards
-            - [Introduction to the Hi3516 Development Board](quickstart-standard-board-introduction-hi3516.md)
-            - [Introduction to the RK3568 Development Board](quickstart-standard-board-introduction-rk3568.md)
-        - [Reference](quickstart-standard-reference.md)
-        - [Burning Code by Using HiTool](quickstart-standard-hitool.md)
-        - [Overall Description of Compilation Form Factors](quickstart-build.md)
+
+- [Quick Start Overview](quickstart-overview.md)
+- Getting Started in IDE Mode
+    - Setting Up the Development Environment
+        - [Setting Up the Windows Environment](quickstart-ide-env-win.md)
+        - [Setting Up the Ubuntu Environment](quickstart-ide-env-ubuntu.md)
+        - [Configuring the Environment for Remote Access](quickstart-ide-env-remote.md)
+    - [Creating a Project and Obtaining Source Code](quickstart-ide-import-project.md)
+    - Mini System (Based on the Hi3861 Development Board)
+        - [Writing a Hello World Program](quickstart-ide-3861-helloworld.md)
+        - [Building Source Code](quickstart-ide-3861-build.md)
+        - [Burning an Image](quickstart-ide-3861-burn.md)
+        - [Running an Image](quickstart-ide-3861-running.md)
+    - Small System (Based on the Hi3516 Development Board)
+        - [Writing a Hello World Program](quickstart-ide-3516-helloworld.md)
+        - [Building Source Code](quickstart-ide-3516-build.md)
+        - [Burning an Image](quickstart-ide-3516-burn.md)
+        - [Running an Image](quickstart-ide-3516-running.md)
+    - Standard System (Based on the RK3568 Development Board)
+        - [Writing a Hello World Program](quickstart-ide-3568-helloworld.md)
+        - [Building Source Code](quickstart-ide-3568-build.md)
+        - [Burning an Image](quickstart-ide-3568-burn.md)
+        - [Running an Image](quickstart-ide-3568-running.md)
+- Getting Started in CLI Mode
+    - Setting Up the Development Environment
+        - [Setting Up the Development Environment](quickstart-pkg-prepare.md)
+        - [Installing Libraries and Tools](quickstart-pkg-install-package.md)
+        - [Obtaining Source Code](quickstart-pkg-sourcecode.md)
+        - [Installing the Compilation Tools](quickstart-pkg-install-tool.md)
+    - Mini System (Based on the Hi3861 Development Board)
+        - [Installing Tools Specially Required by the Hi3861 Development Board](quickstart-pkg-3861-tool.md)
+        - [Writing a Hello World Program](quickstart-pkg-3861-helloworld.md)
+        - [Building Source Code](quickstart-pkg-3861-build.md)
+        - [Burning an Image](quickstart-pkg-3861-burn.md)
+        - [Running an Image](quickstart-pkg-3861-running.md)
+    - Small System (Based on the Hi3516 Development Board)
+        - [Writing a Hello World Program](quickstart-pkg-3516-helloworld.md)
+        - [Building Source Code](quickstart-pkg-3516-build.md)
+        - [Burning an Image](quickstart-pkg-3516-burn.md)
+        - [Running an Image](quickstart-pkg-3516-running.md)
+    - Standard System (Based on the RK3568 Development Board)
+        - [Writing a Hello World Program](quickstart-pkg-3568-helloworld.md)
+        - [Building Source Code](quickstart-pkg-3568-build.md)
+        - [Burning an Image](quickstart-pkg-3568-burn.md)
+        - [Running an Image](quickstart-pkg-3568-running.md)
+    - Miscellaneous
+        - [Configuring the Proxy](quickstart-pkg-common-proxy.md)
+        - [Building Source Code Using the build.sh Script](quickstart-pkg-common-build.md)
+        - [Fixing hb Installation Errors](quickstart-pkg-common-hberr.md)
+        - [Fixing Compilation and Building Errors](quickstart-pkg-common-builderr.md)
+        - [Fixing Image Burning Errors](quickstart-pkg-common-burnerr.md)
+- Appendix
+    - [Hi3516 Development Board](quickstart-appendix-hi3516.md)
+    - [Hi3861 Development Board](quickstart-appendix-hi3861.md)
+    - [RK3568 Development Board](quickstart-appendix-rk3568.md)
+    - [Build Form Factors](quickstart-appendix-compiledform.md)
+    - [Getting Started with the Standard System with Hi3516 (IDE Mode)](quickstart-appendix-hi3516-ide.md)
+    - [Getting Started with the Standard System with Hi3516 (CLI Mode)](quickstart-appendix-hi3516-pkg.md)

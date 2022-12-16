@@ -1,4 +1,4 @@
-# 文件管理
+# @ohos.fileio (文件管理)
 
 该模块提供文件存储管理能力，包括文件基本管理、文件目录管理、文件信息统计、文件流式读写等常用功能。
 
@@ -41,7 +41,7 @@ class MainAbility extends Ability {
  })
  ```
  
- FA模型context的具体获取方法参见[FA模型](js-apis-Context.md#Context模块)。
+ FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
 ## fileio.stat
 
@@ -385,7 +385,7 @@ closeSync(fd: number): void
 
 ## fileio.copyFile
 
-copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt;void&gt;
+copyFile(src: string|number, dest: string|number, mode?: number): Promise&lt;void&gt;
 
 复制文件，使用Promise异步回调。
 
@@ -395,8 +395,8 @@ copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt
 
   | 参数名  | 类型                         | 必填   | 说明                                       |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | src  | string \| number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
-  | dest | string \| number | 是    | 目标文件路径或目标文件描述符。                          |
+  | src  | string\|number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
+  | dest | string\|number | 是    | 目标文件路径或目标文件描述符。                          |
   | mode | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
 
 **返回值：**
@@ -915,7 +915,7 @@ unlinkSync(path: string): void
 
 ## fileio.write
 
-write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): Promise&lt;number&gt;
+write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): Promise&lt;number&gt;
 
 将数据写入文件，使用Promise异步回调。
 
@@ -926,7 +926,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; len
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | 是    | 待写入文件的文件描述符。                             |
-  | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
 
 **返回值：**
@@ -1276,7 +1276,7 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 
 ## fileio.ftruncate<sup>7+</sup>
 
-ftruncate(fd: number, len: number, callback: AsyncCallback&lt;void&gt;): void
+ftruncate(fd: number, len?: number, callback: AsyncCallback&lt;void&gt;): void
 
 基于文件描述符截断文件，使用callback异步回调。
 
@@ -1363,7 +1363,7 @@ truncate(path: string, len?: number): Promise&lt;void&gt;
 
 ## fileio.truncate<sup>7+</sup>
 
-truncate(path: string, len: number, callback: AsyncCallback&lt;void&gt;): void
+truncate(path: string, len?: number, callback: AsyncCallback&lt;void&gt;): void
 
 基于文件路径截断文件，使用callback异步回调。
 
@@ -3020,7 +3020,7 @@ write(buffer: ArrayBuffer|string, options: { offset?: number; length?: number; p
 
 ### writeSync<sup>7+</sup>
 
-writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): number
+writeSync(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): number
 
 以同步方法将数据写入流文件。
 
@@ -3030,7 +3030,7 @@ writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: nu
 
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。  |
 
 **返回值：**

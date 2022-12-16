@@ -1,8 +1,8 @@
-# innerBundleManager模块<sup>(deprecated)</sup>
+# @ohos.bundle.innerBundleManager (innerBundleManager模块)
 
-本模块提供launcher应用使用的接口
+本模块提供launcher应用使用的接口。
 
-> 
+>
 > 本模块首批接口从API version 8 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块从API version 9开始不再支持。建议使用[launcherBundleManager](js-apis-launcherBundleManager.md)及[bundleMonitor](js-apis-bundleMonitor.md)替代。
 
@@ -41,7 +41,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名     | 类型                                                         | 必填 | 说明                                                  |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | bundleName | string                                                       | 是   | 要查询的应用程序包名称。                              |
-| userId     | number                                                       | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| userId     | number                                                       | 是   | 用户ID。取值范围：大于等于0。 |
 | callback   | AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundle-LauncherAbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回程序信息。            |
 
 
@@ -69,7 +69,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名     | 类型   | 必填 | 说明                                                  |
 | ---------- | ------ | ---- | ----------------------------------------------------- |
 | bundleName | string | 是   | 要查询的应用程序包名称。                              |
-| userId     | number | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| userId     | number | 是   | 用户ID。取值范围：大于等于0。 |
 
 **返回值：**
 
@@ -216,7 +216,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                  |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-| userId   | number                                                       | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| userId   | number                                                       | 是   | 用户ID。取值范围：大于等于0。 |
 | callback | AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundle-LauncherAbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回程序信息。            |
 
 ## innerBundleManager.getAllLauncherAbilityInfos<sup>(deprecated)</sup>
@@ -242,7 +242,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名 | 类型   | 必填 | 说明                                                  |
 | ------ | ------ | ---- | ----------------------------------------------------- |
-| userId | number | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| userId | number | 是   | 用户ID。取值范围：大于等于0。 |
 
 **返回值：**
 

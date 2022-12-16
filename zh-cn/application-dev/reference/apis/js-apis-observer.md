@@ -1,4 +1,4 @@
-# observer
+# @ohos.telephony.observer (observer)
 
 本模块提供订阅管理功能，可以订阅/取消订阅的事件包括：网络状态变化、信号状态变化、通话状态变化、蜂窝数据链路连接状态、蜂窝数据业务的上下行数据流状态、SIM状态变化。
 
@@ -531,9 +531,9 @@ SIM卡类型和状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.StateRegistry。
 
-| 名称            | 类型                  | 说明                                                         |
-| ----------------- | --------------------- | ------------------------------------------------------------ |
-| type  | [CardType](js-apis-sim.md#cardtype) | SIM卡类型，参考sim的[CardType](js-apis-sim.md#cardtype)。 |
-| state | [SimState](js-apis-sim.md#simstate) | SIM卡状态，参考sim的[SimState](js-apis-sim.md#simstate)。 |
-| reason<sup>8+</sup>       | [LockReason](#lockreason8) | SIM卡锁类型。 |
+|     名称            |                 类型                | 必填 | 说明                                                      |
+| ------------------- | ----------------------------------- | ---- | --------------------------------------------------------  |
+| type                | [CardType](js-apis-sim.md#cardtype) | 是   | SIM卡类型，参考sim的[CardType](js-apis-sim.md#cardtype)。 |
+| state               | [SimState](js-apis-sim.md#simstate) | 是   | SIM卡状态，参考sim的[SimState](js-apis-sim.md#simstate)。 |
+| reason<sup>8+</sup> | [LockReason](#lockreason8)          | 是   | SIM卡锁类型。                                             |
 

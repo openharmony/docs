@@ -4,7 +4,7 @@
   - [快速入门概述](quick-start/quickstart-overview.md)
   - 基于IDE开发
     - 搭建开发环境
-      - [搭建Windows环境](quick-start/quickstart-ide-env--win.md)
+      - [搭建Windows环境](quick-start/quickstart-ide-env-win.md)
       - [搭建Ubuntu环境](quick-start/quickstart-ide-env-ubuntu.md)
       - [配置远程访问环境](quick-start/quickstart-ide-env-remote.md)
     - [创建工程并获取源码](quick-start/quickstart-ide-import-project.md)
@@ -26,9 +26,9 @@
   - 基于命令行开发
     - 搭建开发环境
       - [准备开发环境](quick-start/quickstart-pkg-prepare.md)
-      - [安装库和工具集](quick-start/quickstart-pkg-install_package.md)
+      - [安装库和工具集](quick-start/quickstart-pkg-install-package.md)
       - [获取源码](quick-start/quickstart-pkg-sourcecode.md)
-      - [安装编译工具](quick-start/quickstart-pkg-install_tool.md)
+      - [安装编译工具](quick-start/quickstart-pkg-install-tool.md)
     - 轻量系统（基于Hi3861开发板）
       - [安装Hi3861开发板特有环境](quick-start/quickstart-pkg-3861-tool.md)
       - [编写“Hello World”程序](quick-start/quickstart-pkg-3861-helloworld.md)
@@ -466,8 +466,10 @@
      - [HiLog开发指导](subsystems/subsys-dfx-hilog-rich.md)
      - [HiLog_Lite开发指导](subsystems/subsys-dfx-hilog-lite.md)
      - [HiTraceChain开发指导](subsystems/subsys-dfx-hitracechain.md)
+     - [HiTraceMeter开发指导](subsystems/subsys-dfx-hitracemeter.md)
      - [HiCollie开发指导](subsystems/subsys-dfx-hicollie.md)
      - HiSysEvent开发指导
+       - [HiSysEvent概述](subsystems/subsys-dfx-hisysevent-overview.md)
        - [HiSysEvent打点配置指导](subsystems/subsys-dfx-hisysevent-logging-config.md)
        - [HiSysEvent打点指导](subsystems/subsys-dfx-hisysevent-logging.md)
        - [HiSysEvent订阅指导](subsystems/subsys-dfx-hisysevent-listening.md)
@@ -524,6 +526,7 @@
     - [hiperf 使用指南](subsystems/subsys-toolchain-hiperf.md)
 - [XTS认证](device-test/xts.md)
 - 工具
+  - [工具概述](get-code/gettools-overview.md)
   - [Docker编译环境](get-code/gettools-acquire.md)
   - [IDE集成开发环境](get-code/gettools-ide.md)
 - 示例教程

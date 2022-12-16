@@ -1,4 +1,4 @@
-# distributedBundle模块(JS端SDK接口)
+# @ohos.bundle.distributedBundle (distributedBundle模块)
 
 本模块提供分布式包的管理能力
 
@@ -22,7 +22,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 | 权限                                       | 权限等级     | 说明               |
 | ------------------------------------------ | ------------ | ------------------ |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息 |
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息。 |
 
 权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 
@@ -49,19 +49,16 @@ getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback\<RemoteAb
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误信息                   |
-|---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| 错误码ID |    错误信息                   |
+|----------|--------------------------------------|
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         {
@@ -108,19 +105,16 @@ getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>;
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误信息                   |
-|---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| 错误码ID |    错误信息                   |
+|----------|-------------------------|
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         {
@@ -153,26 +147,23 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, callback: AsyncCallback\
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>   | 是   | ElementName信息,最大数组长度为10                             |
+| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>   | 是   | ElementName信息,最大数组长度为10。                             |
 | callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)>> | 是   | 回调函数，调用成功返回err为null，data为RemoteAbilityInfo数组对象；否则返回错误对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误信息                   |
-|---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| 错误码ID |    错误信息                   |
+|----------|-------------------------|
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         [
@@ -214,7 +205,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteA
 
 | 参数名        | 类型                                                | 必填 | 说明                    |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
-| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)> | 是   | ElementName信息,最大数组长度为10。 |
+| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)> | 是   | ElementName信息，最大数组长度为10。 |
 
 **返回值：**
 
@@ -226,19 +217,16 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteA
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误信息                   |
-|---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| 错误码ID |    错误信息                   |
+|----------|-------------------------|
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         [
@@ -279,26 +267,23 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCa
 | 参数名       | 类型                                                         | 必填 | 说明                                               |
 | ----------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md)                 | 是   | ElementName信息。                            |
-| locale  | string |是 | 语言地区 |
+| locale  | string |是 | 语言地区。 |
 | callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)> | 是   | 回调函数，操作成功返回err为null，data为RemoteAbilityInfo对象；否则为错误对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误信息                   |
-|---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| 错误码ID |    错误信息                   |
+|----------|-------------------------|
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         {
@@ -334,7 +319,7 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteA
 | 参数名       | 类型                                         | 必填 | 说明                    |
 | ----------- | -------------------------------------------- | ---- | ----------------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md) | 是   | ElementName信息。 |
-| locale  | string |是 | 语言地区 |
+| locale  | string |是 | 语言地区。 |
 
 **返回值：**
 
@@ -346,19 +331,16 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteA
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误信息                   |
-|---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| 错误码ID |    错误信息                   |
+|----------|-------------------------|
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         {
@@ -391,8 +373,8 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback
 
 | 参数名        | 类型                                                         | 必填 | 说明                                               |
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>          | 是   | ElementName信息,最大数组长度为10                   |
-| locale  | string |是 | 语言地区 |
+| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>          | 是   | ElementName信息,最大数组长度为10。                   |
+| locale  | string |是 | 语言地区。 |
 | callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)>> | 是   | 回调函数，调用成功返回err为null，data为RemoteAbilityInfo数组对象；否则返回错误对象。 |
 
 **错误码：**
@@ -401,17 +383,14 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback
 
 | 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         [
@@ -454,7 +433,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise
 | 参数名        | 类型                                                | 必填 | 说明                    |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
 | elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)> | 是   | ElementName信息,最大数组长度为10。 |
-| locale  | string |是 | 语言地区 |
+| locale  | string |是 | 语言地区。 |
 
 **返回值：**
 
@@ -466,19 +445,16 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误信息                   |
-|---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| 错误码ID |    错误信息                   |
+|----------|-------------------------|
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         [

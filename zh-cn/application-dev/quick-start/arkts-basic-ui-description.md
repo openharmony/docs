@@ -47,9 +47,9 @@ Column() {
 }
 ```
 
-### 必选参数构造配置
+### 有参数构造配置
 
-如果组件的接口定义中包含必选构造参数，则在组件后面的“()”中必须配置相应参数，参数可以使用常量进行赋值。
+如果组件的接口定义中包含构造参数，则在组件后面的“()”中可配置相应参数，参数可以使用常量进行赋值。
 
 例如：
 
@@ -59,7 +59,7 @@ Column() {
   Image('https://xyz/test.jpg')
   ```
 
-- Text组件的必选参数content：
+- Text组件的参数content，该参数非必选，即配置或不配置均可：
 
   ```ts
   Text('test')
@@ -81,35 +81,35 @@ Text(`count: ${this.count}`)
 
   ```ts
   Text('test')
-      .fontSize(12)
+    .fontSize(12)
   ```
 
 - 使用"."运算符进行链式调用并同时配置组件的多个属性，如下所示：
 
   ```ts
   Image('test.jpg')
-      .alt('error.jpg')    
-      .width(100)    
-      .height(100)
+    .alt('error.jpg')    
+    .width(100)    
+    .height(100)
   ```
 
 - 除了直接传递常量参数外，还可以传递变量或表达式，如下所示：
 
   ```ts
   Text('hello')
-      .fontSize(this.size)
+    .fontSize(this.size)
   Image('test.jpg')
-      .width(this.count % 2 === 0 ? 100 : 200)    
-      .height(this.offset + 100)
+    .width(this.count % 2 === 0 ? 100 : 200)    
+    .height(this.offset + 100)
   ```
 
 -  对于系统内置组件，框架还为其属性预定义了一些[枚举类型](../reference/arkui-ts/ts-appendix-enums.md)供开发人员调用，枚举类型可以作为参数传递，且必须满足参数类型要求。例如，可以按以下方式配置Text组件的颜色和字体属性： 
 
   ```ts
   Text('hello')
-      .fontSize(20)
-      .fontColor(Color.Red)
-      .fontWeight(FontWeight.Bold)
+    .fontSize(20)
+    .fontColor(Color.Red)
+    .fontWeight(FontWeight.Bold)
   ```
 
 ### 事件配置
@@ -144,7 +144,7 @@ Text(`count: ${this.count}`)
   ...
 
   Button('add counter')
-    .onClick(this.myClickHandler)
+    .onClick(this.myClickHandler.bind(this))
   ```
 
 ### 子组件配置
@@ -156,11 +156,11 @@ Text(`count: ${this.count}`)
   ```ts
   Column() {
       Text('Hello')
-          .fontSize(100)
+        .fontSize(100)
       Divider()
       Text(this.myText)
-          .fontSize(100)
-          .fontColor(Color.Red)
+        .fontSize(100)
+        .fontColor(Color.Red)
   }
   ```
 

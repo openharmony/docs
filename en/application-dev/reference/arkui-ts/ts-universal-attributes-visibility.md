@@ -10,7 +10,7 @@ The visibility attribute controls whether a component is visible.
 
 | Name        | Type                       | Description                                        |
 | ---------- | ---------------------------- | ------------------------------------------ |
-| visibility | [Visibility](ts-appendix-enums.md#visibility) | Whether the component is visible. Note that even if a component is invisible, it still needs to be re-created when the page is refreshed. Therefore, you are advised to use [conditional rendering](../../quick-start/arkts-rendering-control.md#conditional-rendering) instead under scenarios where consistently high performance is required.<br>Default value: **Visibility.Visible**|
+| visibility | [Visibility](ts-appendix-enums.md#visibility) | Whether the component is visible. Note that even if a component is invisible, it still needs to be re-created when the page is refreshed. Therefore, you are advised to use [conditional rendering](../../quick-start/arkts-rendering-control.md#conditional-rendering) instead under scenarios where consistently high performance is required.<br>Default value: **Visibility.Visible** |
 
 
 ## Example
@@ -31,7 +31,7 @@ struct VisibilityExample {
         Text('Hidden').fontSize(9).width('90%').fontColor(0xCCCCCC)
         Row().visibility(Visibility.Hidden).width('90%').height(80).backgroundColor(0xAFEEEE)
 
-        // The component is visiable, which is the default display mode.
+        // The component is visible, which is the default display mode.
         Text('Visible').fontSize(9).width('90%').fontColor(0xCCCCCC)
         Row().visibility(Visibility.Visible).width('90%').height(80).backgroundColor(0xAFEEEE)
       }.width('90%').border({ width: 1 })

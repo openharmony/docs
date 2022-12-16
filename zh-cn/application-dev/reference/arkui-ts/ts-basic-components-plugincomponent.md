@@ -77,6 +77,7 @@ push(param: PushParameters, callback: AsyncCallback&lt;void&gt;): void
 | name      | string   | 是    | 组件名称。           |
 | data      | KVObject | 否    | 组件数据值。          |
 | extraData | KVObject | 否    | 附加数据值。          |
+| jsonPath | string | 否    |  存放模板路径的external.json文件的路径。       |
 
 **示例**
 
@@ -103,6 +104,7 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 | want | Want     | 是    | 组件提供者Ability信息。 |
 | name | string   | 是    | 请求组件名称。         |
 | data | KVObject | 是    | 附加数据。           |
+| jsonPath | string | 否    |  存放模板路径的external.json文件的路径。jsonPath字段不为空或者未设置的时候不触发Request通信。       |
 
 **RequestCallbackParameters说明**
 
@@ -111,12 +113,6 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 | componentTemplate | PluginComponentTemplate | 组件模板。 |
 | data              | KVObject                | 组件数据。 |
 | extraData         | KVObject                | 附加数据。 |
-
-**KVObject类型说明**
-
-| 参数   | 类型                                       | 说明                                       |
-| ---- | ---------------------------------------- | ---------------------------------------- |
-| key  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;boolean&nbsp;\|&nbsp;Array&nbsp;\|&nbsp;KVObject | KVObject用[key，value]来存储数据，key是string类型的，value可以是number，string，boolean，数组或者另外的一个KVObject。 |
 
 **示例**
 
@@ -155,6 +151,20 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback): v
 
 见[Plugin组件工具](#plugin组件工具)示例。
 
+**KVObject类型说明**
+
+| 参数   | 类型                                       | 说明                                       |
+| ---- | ---------------------------------------- | ---------------------------------------- |
+| key  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;boolean&nbsp;\|&nbsp;Array&nbsp;\|&nbsp;KVObject | KVObject用[key，value]来存储数据，key是string类型的，value可以是number，string，boolean，数组或者另外的一个KVObject。 |
+
+
+**external.json文件说明**
+
+external.json文件由开发者创建。external.json中以键值对形式存放组件名称以及对应模板路径。以组件名称name作为关键字，对应模板路径作为值。
+
+**示例**
+
+见[external.json](#externaljson)示例。
 
 ## 示例
 
@@ -347,3 +357,11 @@ export default {
   }
 }
 ```
+
+
+### external.json
+```json
+{
+  "plugintemplate": "ets/pages/plugintemplate.js",
+  "plugintemplate2": "ets/pages/plugintemplate2.js"
+}

@@ -1,10 +1,10 @@
-# 媒体会话管理
+# @ohos.multimedia.avsession (媒体会话管理)
 
 媒体会话管理提供媒体播控相关功能的接口，目的是让应用接入播控中心。
 
 该模块提供以下媒体会话相关的常用功能：
-- [AVSession](#section652893) : 会话，可用于设置元数据、播放状态信息等操作。
-- [AVSessionController](#section974602): 会话控制器，可用于查看会话ID，完成对会话发送命令及事件，获取会话元数据、播放状态信息等操作。
+- [AVSession](#avsession) : 会话，可用于设置元数据、播放状态信息等操作。
+- [AVSessionController](#avsessioncontroller): 会话控制器，可用于查看会话ID，完成对会话发送命令及事件，获取会话元数据、播放状态信息等操作。
 
 > **说明：**
 >
@@ -28,7 +28,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 | 参数名 | 类型                            | 必填 | 说明                           |
 | ------ | ------------------------------- | ---- | ------------------------------ |
-| context| [Context](../../ability/context-userguide.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。 |
+| context| [Context](js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。 |
 | tag    | string                          | 是   | 会话的自定义名称。             |
 | type   | [AVSessionType](#avsessiontype) | 是   | 会话类型，当前支持音频和视频。 |
 
@@ -45,7 +45,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -56,8 +56,8 @@ let session;
 let tag = "createNewSession";
 let context = featureAbility.getContext();
 
-await avSession.createAVSession(context, tag, "audio").then((avSession) => {
-    session = avSession;
+await avSession.createAVSession(context, tag, "audio").then((data) => {
+    session = data;
     console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
 }).catch((err) => {
     console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -76,7 +76,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context| [Context](../../ability/context-userguide.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。     |
+| context| [Context](js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。     |
 | tag      | string                                  | 是   | 会话的自定义名称。                                           |
 | type     | [AVSessionType](#avsessiontype)         | 是   | 会话类型，当前支持音频和视频。                               |
 | callback | AsyncCallback<[AVSession](#avsession)\> | 是   | 回调函数。回调返回会话实例对象，可用于获取会话ID，以及设置元数据、播放状态，发送按键事件等操作。 |
@@ -86,7 +86,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -97,11 +97,11 @@ let session;
 let tag = "createNewSession";
 let context = featureAbility.getContext();
 
-avSession.createAVSession(context, tag, "audio", function (err, avSession) {
+avSession.createAVSession(context, tag, "audio", function (err, data) {
     if (err) {
         console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        session = avSession;
+        session = data;
         console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
     }
 });
@@ -130,7 +130,7 @@ getAllSessionDescriptors(): Promise\<Array\<Readonly\<AVSessionDescriptor>>>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -170,7 +170,7 @@ getAllSessionDescriptors(callback: AsyncCallback\<Array\<Readonly\<AVSessionDesc
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  |Session service exception |
+| 6600101  |Session service exception. |
 
 **示例：**
 
@@ -218,12 +218,25 @@ createController(sessionId: string): Promise\<AVSessionController>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
 ```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let session;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+
+await avSession.createAVSession(context, tag, "audio").then((data) => {
+    session = data;
+    console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
+}).catch((err) => {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+
 let controller;
 await avSession.createController(session.sessionId).then((avcontroller) => {
     controller = avcontroller;
@@ -257,12 +270,25 @@ createController(sessionId: string, callback: AsyncCallback\<AVSessionController
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
 ```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let session;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+
+await avSession.createAVSession(context, tag, "audio").then((data) => {
+    session = data;
+    console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
+}).catch((err) => {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+
 let controller;
 avSession.createController(session.sessionId, function (err, avcontroller) {
     if (err) {
@@ -306,9 +332,9 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600104  | The remote session  connection failed |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600104  | The remote session  connection failed. |
 
 **示例：**
 
@@ -358,9 +384,9 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600104  | The remote session  connection failed |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600104  | The remote session  connection failed. |
 
 **示例：**
 
@@ -409,7 +435,7 @@ on(type: 'sessionCreate' | 'sessionDestroy' | 'topSessionChange', callback: (ses
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -457,7 +483,7 @@ off(type: 'sessionCreate' | 'sessionDestroy' | 'topSessionChange', callback?: (s
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -487,7 +513,7 @@ on(type: 'sessionServiceDie', callback: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -517,7 +543,7 @@ off(type: 'sessionServiceDie', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -554,15 +580,15 @@ sendSystemAVKeyEvent(event: KeyEvent): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600105  | Invalid session command |
+| 6600101  | Session service exception. |
+| 6600105  | Invalid session command. |
 
 **示例：**
 
 ```js
 
 let keyItem = {code:0x49, pressedTime:2, deviceId:0};
-let event = {action:2, key:keyItem, keys:[keyItem]};
+let event = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false}; 
 
 avSession.sendSystemAVKeyEvent(event).then(() => {
     console.info('SendSystemAVKeyEvent Successfully');
@@ -596,14 +622,14 @@ sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600105  | Invalid session command |
+| 6600101  | Session service exception. |
+| 6600105  | Invalid session command. |
 
 **示例：**
 
 ```js
 let keyItem = {code:0x49, pressedTime:2, deviceId:0};
-let event = {action:2, key:keyItem, keys:[keyItem]};
+let event = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false}; 
 
 avSession.sendSystemAVKeyEvent(event, function (err) {
     if (err) {
@@ -643,24 +669,29 @@ sendSystemControlCommand(command: AVControlCommand): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600105  | Invalid session command |
-| 6600107  | Command or event overload |
+| 6600101  | Session service exception. |
+| 6600105  | Invalid session command. |
+| 6600107  | Too many commands or events. |
 
 **示例：**
 
 ```js
-let avcommand = {command:'play'};
-// let avcommand = {command:'pause'};
-// let avcommand = {command:'stop'};
-// let avcommand = {command:'playNext'};
-// let avcommand = {command:'playPrevious'};
-// let avcommand = {command:'fastForward'};
-// let avcommand = {command:'rewind'};
-// let avcommand = {command:'seek', parameter:10};
-// let avcommand = {command:'setSpeed', parameter:2.6};
-// let avcommand = {command:'setLoopMode', parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
-// let avcommand = {command:'toggleFavorite', parameter:"false"};
+let cmd : avSession.AVControlCommandType = 'play';
+// let cmd : avSession.AVControlCommandType = 'pause';
+// let cmd : avSession.AVControlCommandType = 'stop';
+// let cmd : avSession.AVControlCommandType = 'playNext';
+// let cmd : avSession.AVControlCommandType = 'playPrevious';
+// let cmd : avSession.AVControlCommandType = 'fastForward';
+// let cmd : avSession.AVControlCommandType = 'rewind';
+let avcommand = {command:cmd};
+// let cmd : avSession.AVControlCommandType = 'seek';
+// let avcommand = {command:cmd, parameter:10};
+// let cmd : avSession.AVControlCommandType = 'setSpeed';
+// let avcommand = {command:cmd, parameter:2.6};
+// let cmd : avSession.AVControlCommandType = 'setLoopMode';
+// let avcommand = {command:cmd, parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
+// let cmd : avSession.AVControlCommandType = 'toggleFavorite';
+// let avcommand = {command:cmd, parameter:"false"};
 avSession.sendSystemControlCommand(avcommand).then(() => {
     console.info('SendSystemControlCommand successfully');
 }).catch((err) => {
@@ -692,24 +723,29 @@ sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback\<voi
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600105  | Invalid session command |
-| 6600107  | Command or event overload |
+| 6600101  | Session service exception. |
+| 6600105  | Invalid session command. |
+| 6600107  | Too many commands or events. |
 
 **示例：**
 
 ```js
-let avcommand = {command:'play'};
-// let avcommand = {command:'pause'};
-// let avcommand = {command:'stop'};
-// let avcommand = {command:'playNext'};
-// let avcommand = {command:'playPrevious'};
-// let avcommand = {command:'fastForward'};
-// let avcommand = {command:'rewind'};
-// let avcommand = {command:'seek', parameter:10};
-// let avcommand = {command:'setSpeed', parameter:2.6};
-// let avcommand = {command:'setLoopMode', parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
-// let avcommand = {command:'toggleFavorite', parameter:"false"};
+let cmd : avSession.AVControlCommandType = 'play';
+// let cmd : avSession.AVControlCommandType = 'pause';
+// let cmd : avSession.AVControlCommandType = 'stop';
+// let cmd : avSession.AVControlCommandType = 'playNext';
+// let cmd : avSession.AVControlCommandType = 'playPrevious';
+// let cmd : avSession.AVControlCommandType = 'fastForward';
+// let cmd : avSession.AVControlCommandType = 'rewind';
+let avcommand = {command:cmd};
+// let cmd : avSession.AVControlCommandType = 'seek';
+// let avcommand = {command:cmd, parameter:10};
+// let cmd : avSession.AVControlCommandType = 'setSpeed';
+// let avcommand = {command:cmd, parameter:2.6};
+// let cmd : avSession.AVControlCommandType = 'setLoopMode';
+// let avcommand = {command:cmd, parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
+// let cmd : avSession.AVControlCommandType = 'toggleFavorite';
+// let avcommand = {command:cmd, parameter:"false"};
 avSession.sendSystemControlCommand(avcommand, function (err) {
     if (err) {
         console.info(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -719,7 +755,7 @@ avSession.sendSystemControlCommand(avcommand, function (err) {
 });
 ```
 
-## AVSession<a name="section652893"></a>
+## AVSession
 
 调用[avSession.createAVSession](#avsessioncreateavsession)后，返回会话的实例，可以获得会话ID，完成设置元数据，播放状态信息等操作。
 
@@ -763,8 +799,8 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -812,8 +848,8 @@ setAVMetadata(data: AVMetadata, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -868,13 +904,13 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
 ```js
-let PlaybackState = {
+let playbackState = {
     state:avSession.PlaybackState.PLAYBACK_STATE_PLAY,
     speed: 1.0,
     position:{elapsedTime:10, updateTime:(new Date()).getTime()},
@@ -882,7 +918,7 @@ let PlaybackState = {
     loopMode:avSession.LoopMode.LOOP_MODE_SINGLE,
     isFavorite:true,
 };
-session.setAVPlaybackState(PlaybackState).then(() => {
+session.setAVPlaybackState(playbackState).then(() => {
     console.info('SetAVPlaybackState successfully');
 }).catch((err) => {
     console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -909,8 +945,8 @@ setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -957,8 +993,8 @@ setLaunchAbility(ability: WantAgent): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1022,8 +1058,8 @@ setLaunchAbility(ability: WantAgent, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1088,8 +1124,8 @@ getController(): Promise\<AVSessionController>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1122,8 +1158,8 @@ getController(callback: AsyncCallback\<AVSessionController>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1158,8 +1194,8 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1190,8 +1226,8 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1224,8 +1260,8 @@ activate(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1256,8 +1292,8 @@ activate(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1290,8 +1326,8 @@ deactivate(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1324,8 +1360,8 @@ deactivate(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1358,8 +1394,8 @@ destroy(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1391,8 +1427,8 @@ destroy(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1426,8 +1462,8 @@ on(type: 'play'|'pause'|'stop'|'playNext'|'playPrevious'|'fastForward'|'rewind',
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1475,8 +1511,8 @@ on(type: 'seek', callback: (time: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 The session does not exist
@@ -1506,8 +1542,8 @@ on(type: 'setSpeed', callback: (speed: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1537,8 +1573,8 @@ on(type: 'setLoopMode', callback: (mode: LoopMode) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1568,8 +1604,8 @@ on(type: 'toggleFavorite', callback: (assetId: string) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1599,8 +1635,8 @@ on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1630,8 +1666,8 @@ on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): vo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1661,8 +1697,8 @@ off(type: 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1696,8 +1732,8 @@ off(type: 'seek', callback?: (time: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1725,8 +1761,8 @@ off(type: 'setSpeed', callback?: (speed: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1754,8 +1790,8 @@ off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1783,8 +1819,8 @@ off(type: 'toggleFavorite', callback?: (assetId: string) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1812,8 +1848,8 @@ off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1841,8 +1877,8 @@ off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): 
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -1852,7 +1888,7 @@ session.off('outputDeviceChange');
 
 
 
-## AVSessionController<a name="section974602"></a>
+## AVSessionController
 
 调用[avSession.createController](#avsessioncreatecontroller)后，返回会话控制器实例。控制器可查看会话ID，并可完成对会话发送命令及事件，获取会话元数据，播放状态信息等操作。
 
@@ -1895,9 +1931,9 @@ getAVPlaybackState(): Promise\<AVPlaybackState>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 ```js
@@ -1927,9 +1963,9 @@ getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 ```js
@@ -1961,9 +1997,9 @@ getAVMetadata(): Promise\<AVMetadata>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 ```js
@@ -1993,9 +2029,9 @@ getAVMetadata(callback: AsyncCallback\<AVMetadata>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 ```js
@@ -2027,8 +2063,8 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 ```js
@@ -2058,8 +2094,8 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2092,11 +2128,11 @@ sendAVKeyEvent(event: KeyEvent): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
-| 6600105  | Invalid session command |
-| 6600106  | The session not active |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600106  | The session is not activated. |
 
 **返回值：**
 
@@ -2137,11 +2173,11 @@ sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
-| 6600105  | Invalid session command |
-| 6600106  | The session not active |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600106  | The session is not activated. |
 
 **示例：**
 
@@ -2177,9 +2213,9 @@ getLaunchAbility(): Promise\<WantAgent>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2212,9 +2248,9 @@ getLaunchAbility(callback: AsyncCallback\<WantAgent>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2249,8 +2285,8 @@ getRealPlaybackPositionSync(): number
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2277,9 +2313,9 @@ isActive(): Promise\<boolean>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2310,9 +2346,9 @@ isActive(callback: AsyncCallback\<boolean>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2345,8 +2381,8 @@ destroy(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2377,8 +2413,8 @@ destroy(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2411,9 +2447,9 @@ getValidCommands(): Promise\<Array\<AVControlCommandType>>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2444,9 +2480,9 @@ getValidCommands(callback: AsyncCallback\<Array\<AVControlCommandType>>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2470,7 +2506,7 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 
 **参数：**
 
-| 名称    | 类型                                  | 必填 | 说明                           |
+| 参数名    | 类型                                  | 必填 | 说明                           |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
 | command | [AVControlCommand](#avcontrolcommand) | 是   | 会话的相关命令和命令相关参数。 |
 
@@ -2485,12 +2521,12 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
-| 6600105  | Invalid session command |
-| 6600106  | The session not active |
-| 6600107  | Command or event overload |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600106  | The session is not activated. |
+| 6600107  | Too many commands or events. |
 
 **示例：**
 
@@ -2533,12 +2569,12 @@ sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): v
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------- |
-| 6600101  | Session service exception                |
-| 6600102  | The session does not exist      |
-| 6600103  | The session controller does not exist   |
-| 6600105  | Invalid session command           |
-| 6600106  | The session not active                |
-| 6600107  | Command or event overload       |
+| 6600101  | Session service exception.                |
+| 6600102  | The session does not exist.     |
+| 6600103  | The session controller does not exist.   |
+| 6600105  | Invalid session command.           |
+| 6600106  | The session is not activated.                |
+| 6600107  | Too many commands or events.      |
 
 **示例：**
 
@@ -2584,8 +2620,8 @@ on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2621,8 +2657,8 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2657,8 +2693,8 @@ on(type: 'sessionDestroy', callback: () => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2688,8 +2724,8 @@ on(type: 'activeStateChange', callback: (isActive: boolean) => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ----------------------------- |
-| 6600101  | Session service exception |
-| 6600103  |The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  |The session controller does not exist. |
 
 **示例：**
 
@@ -2719,8 +2755,8 @@ on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2751,8 +2787,8 @@ on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): vo
 
 | 错误码ID | 错误信息 |
 | -------- | ----------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2782,7 +2818,7 @@ off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -2810,7 +2846,7 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -2838,7 +2874,7 @@ off(type: 'sessionDestroy', callback?: () => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -2866,7 +2902,7 @@ off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -2894,7 +2930,7 @@ off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandTyp
 
 | 错误码ID | 错误信息           |
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -2922,7 +2958,7 @@ off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): 
 
 | 错误码ID  | 错误信息          |
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -3020,7 +3056,7 @@ controller.off('outputDeviceChange');
 | album           | string                  | 否   | 专辑名称。                                                               |
 | writer          | string                  | 否   | 词作者。                                                                |
 | composer        | string                  | 否   | 作曲者。                                                                |
-| duration        | string                  | 否   | 媒体时长，单位毫秒（ms）。                                                  |
+| duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。                                                  |
 | mediaImage      | image.PixelMap &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。                             |
 | publishDate     | Date                    | 否   | 发行日期。                                                               |
 | subtitle        | string                  | 否   | 子标题。                                                                |
@@ -3105,10 +3141,10 @@ controller.off('outputDeviceChange');
 
 | 名称                           | 值      | 说明                             |
 | ------------------------------ | ------- | ------------------------------- |
-| ERR_CODE_SERVICE_EXCEPTION     | 6600101 | Session service exception                |
-| ERR_CODE_SESSION_NOT_EXIST     | 6600102 | The session does not exist      |
-| ERR_CODE_CONTROLLER_NOT_EXIST  | 6600103 | The session controller does not exist   |
-| ERR_CODE_REMOTE_CONNECTION_ERR | 6600104 | The remote session  connection failed         |
-| ERR_CODE_COMMAND_INVALID       | 6600105 | Invalid session command           |
-| ERR_CODE_SESSION_INACTIVE      | 6600106 | The session not active                |
-| ERR_CODE_MESSAGE_OVERLOAD      | 6600107 | Command or event overload       |
+| ERR_CODE_SERVICE_EXCEPTION     | 6600101 | Session service exception.               |
+| ERR_CODE_SESSION_NOT_EXIST     | 6600102 | The session does not exist.      |
+| ERR_CODE_CONTROLLER_NOT_EXIST  | 6600103 | The session controller does not exist.   |
+| ERR_CODE_REMOTE_CONNECTION_ERR | 6600104 | The remote session  connection failed.         |
+| ERR_CODE_COMMAND_INVALID       | 6600105 | Invalid session command.           |
+| ERR_CODE_SESSION_INACTIVE      | 6600106 | The session is not activated.                |
+| ERR_CODE_MESSAGE_OVERLOAD      | 6600107 | Too many commands or events.       |

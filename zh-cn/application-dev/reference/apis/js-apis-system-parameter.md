@@ -1,4 +1,4 @@
-# 系统参数
+# @ohos.systemParameter (系统属性)
 
 系统参数（SystemParameter）是为各系统服务提供的简单易用的键值对访问接口，各个系统服务可以定义系统参数来描述该服务的状态信息，或者通过系统参数来改变系统服务的行为。其基本操作原语为get和set，通过get可以查询系统参数的值，通过set可以修改系统参数的值。
 详细的系统参数设计原理及定义可参考
@@ -164,7 +164,7 @@ setSync(key: string, value: string): void
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 此接口只能用于系统应用的参数设置。
-> - 所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:[系统参数](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-sysparam.md)。
+> - 所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:[系统参数](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
 
 
 **示例：**
@@ -195,7 +195,7 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 此接口只能用于系统应用的参数设置。
-> - 所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:[系统参数](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-sysparam.md)。
+> - 所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:[系统参数](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
 
 **示例：**
 
@@ -235,7 +235,7 @@ set(key: string, value: string): Promise&lt;void&gt;
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 此接口只能用于系统应用的参数设置。
-> - 所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:[系统参数](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-sysparam.md)
+> - 所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:[系统参数](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)
 
 **示例：**
 

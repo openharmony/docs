@@ -1,4 +1,4 @@
-# 网络搜索
+# @ohos.telephony.radio (网络搜索)
 
 网络搜索模块提供管理网络搜索的一些基础功能，包括获取当前接入的CS域和PS域无线接入技术、获取网络状态、获取当前选网模式、获取注册网络所在国家的ISO国家码、获取主卡所在卡槽的索引号、获取指定SIM卡槽对应的注册网络信号强度信息列表、获取运营商名称、获取设备的指定卡槽的IMEI、获取设备的指定卡槽的MEID、获取设备的指定卡槽的唯一设备ID，判断当前设备是否支持5G\(NR\)、判断主卡的Radio是否打开等。
 
@@ -927,7 +927,7 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -953,7 +953,7 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\):
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -981,7 +981,7 @@ sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1017,7 +1017,7 @@ getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1044,7 +1044,7 @@ getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1073,7 +1073,7 @@ getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1733,8 +1733,8 @@ on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback:
 **示例：**
 
 ```js
-radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1762,8 +1762,8 @@ off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 **示例：**
 
 ```js
-radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1796,10 +1796,10 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) =
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 参数名      | 类型                        | 说明               |
-| ----------- | --------------------------- | ------------------ |
-| signalType  | [NetworkType](#networktype) | 网络信号强度类型。 |
-| signalLevel | number                      | 网络信号强度等级。 |
+|    名称     |           类型              | 必填 |      说明          |
+| ----------- | --------------------------- | ---- | ----------------- |
+| signalType  | [NetworkType](#networktype) | 是   | 网络信号强度类型。 |
+| signalLevel | number                      | 是   | 网络信号强度等级。 |
 
 
 ## NetworkType
@@ -1824,17 +1824,17 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) =
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称            | 类型                  | 说明                                                         |
-| ----------------- | --------------------- | ------------------------------------------------------------ |
-| longOperatorName  | string                | 注册网络的长运营商名称。 |
-| shortOperatorName | string                | 注册网络的短运营商名称。 |
-| plmnNumeric       | string                | 注册网络的PLMN码。 |
-| isRoaming         | boolean               | 是否处于漫游状态。 |
-| regState          | [RegState](#regstate) | 设备的网络注册状态。 |
-| cfgTech<sup>8+</sup> | [RadioTechnology](#radiotechnology) | 设备的无线接入技术。 |
-| nsaState          | [NsaState](#nsastate) | 设备的NSA网络注册状态。 |
-| isCaActive        | boolean               | CA的状态。 |
-| isEmergency       | boolean               | 此设备是否只允许拨打紧急呼叫。 |
+|       名称           |                 类型                | 必填 |                          说明                                |
+| -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| longOperatorName     | string                              |  是  | 注册网络的长运营商名称。                                     |
+| shortOperatorName    | string                              |  是  | 注册网络的短运营商名称。                                     |
+| plmnNumeric          | string                              |  是  | 注册网络的PLMN码。                                           |
+| isRoaming            | boolean                             |  是  | 是否处于漫游状态。                                           |
+| regState             | [RegState](#regstate)               |  是  | 设备的网络注册状态。                                         |
+| cfgTech<sup>8+</sup> | [RadioTechnology](#radiotechnology) |  是  | 设备的无线接入技术。                                         |
+| nsaState             | [NsaState](#nsastate)               |  是  | 设备的NSA网络注册状态。                                      |
+| isCaActive           | boolean                             |  是  | CA的状态。                                                   |
+| isEmergency          | boolean                             |  是  | 此设备是否只允许拨打紧急呼叫。                               |
 
 
 ## RegState
@@ -1932,13 +1932,13 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) =
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称              | 类型                                                         | 说明                                                         |
-| ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| networkType       | [NetworkType](#networktype)                                  | 获取服务单元的网络类型。                                     |
-| isCamped          | boolean                                                      | 获取服务单元的状态。                                         |
-| timeStamp         | number                                                       | 获取单元格信息时获取时间戳。                                 |
-| signalInformation | [SignalInformation](#signalinformation)                      | 信号信息。                                                   |
-| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息 |
+| 名称              |                  类型                   | 必填 |                           说明                               |
+| ----------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| networkType       | [NetworkType](#networktype)             |  是  | 获取服务单元的网络类型。                                     |
+| isCamped          | boolean                                 |  是  | 获取服务单元的状态。                                         |
+| timeStamp         | number                                  |  是  | 获取单元格信息时获取时间戳。                                 |
+| signalInformation | [SignalInformation](#signalinformation) |  是  | 信号信息。                                                   |
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) |  是  | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息 |
 
 ## CdmaCellInformation<sup>8+</sup>
 
@@ -1948,13 +1948,13 @@ CDMA小区信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称      | 类型   | 说明         |
-| --------- | ------ | ------------ |
-| baseId    | number | 基站Id。     |
-| latitude  | number | 经度。       |
-| longitude | number | 纬度。       |
-| nid       | number | 网络识别码。 |
-| sid       | number | 系统识别码。 |
+| 名称      | 类型   | 必填 | 说明         |
+| --------- | ------ | ---- | ------------ |
+| baseId    | number |  是  | 基站Id。     |
+| latitude  | number |  是  | 经度。       |
+| longitude | number |  是  | 纬度。       |
+| nid       | number |  是  | 网络识别码。 |
+| sid       | number |  是  | 系统识别码。 |
 
 ## GsmCellInformation<sup>8+</sup>
 
@@ -1964,14 +1964,14 @@ GSM小区信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称   | 类型   | 说明                 |
-| ------ | ------ | -------------------- |
-| lac    | number | 位置区编号。         |
-| cellId | number | 小区号。             |
-| arfcn  | number | 绝对无线频率信道号。 |
-| bsic   | number | 基站识别号。         |
-| mcc    | string | 移动国家码。         |
-| mnc    | string | 移动网号。           |
+| 名称   | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| lac    | number |  是  | 位置区编号。         |
+| cellId | number |  是  | 小区号。             |
+| arfcn  | number |  是  | 绝对无线频率信道号。 |
+| bsic   | number |  是  | 基站识别号。         |
+| mcc    | string |  是  | 移动国家码。         |
+| mnc    | string |  是  | 移动网号。           |
 
 ## LteCellInformation<sup>8+</sup>
 
@@ -1981,16 +1981,16 @@ LTE小区信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称          | 类型    | 说明                    |
-| ------------- | ------- | ----------------------- |
-| cgi           | number  | 小区全球标识。          |
-| pci           | number  | 物理小区识别。          |
-| tac           | number  | 跟踪区域代码。          |
-| earfcn        | number  | 绝对无线频率信道号。    |
-| bandwidth     | number  | 带宽。                  |
-| mcc           | string  | 移动国家码。            |
-| mnc           | string  | 移动网号。              |
-| isSupportEndc | boolean | 是否支持新无线电_双连接 |
+| 名称          | 类型    | 必填 | 说明                    |
+| ------------- | ------- | ---- | ----------------------- |
+| cgi           | number  |  是  | 小区全球标识。          |
+| pci           | number  |  是  | 物理小区识别。          |
+| tac           | number  |  是  | 跟踪区域代码。          |
+| earfcn        | number  |  是  | 绝对无线频率信道号。    |
+| bandwidth     | number  |  是  | 带宽。                  |
+| mcc           | string  |  是  | 移动国家码。            |
+| mnc           | string  |  是  | 移动网号。              |
+| isSupportEndc | boolean |  是  | 是否支持新无线电_双连接 |
 
 ## NrCellInformation<sup>8+</sup>
 
@@ -2000,14 +2000,14 @@ NR小区信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称    | 类型   | 说明             |
-| ------- | ------ | ---------------- |
-| nrArfcn | number | 5G频点号。       |
-| pci     | number | 物理小区识别。   |
-| tac     | number | 跟踪区域代码。   |
-| nci     | number | 5G网络小区标识。 |
-| mcc     | string | 移动国家码。     |
-| mnc     | string | 移动网号。       |
+| 名称    | 类型   | 必填 | 说明             |
+| ------- | ------ | ---- | ---------------- |
+| nrArfcn | number |  是  | 5G频点号。       |
+| pci     | number |  是  | 物理小区识别。   |
+| tac     | number |  是  | 跟踪区域代码。   |
+| nci     | number |  是  | 5G网络小区标识。 |
+| mcc     | string |  是  | 移动国家码。     |
+| mnc     | string |  是  | 移动网号。       |
 
 ## TdscdmaCellInformation<sup>8+</sup>
 
@@ -2017,14 +2017,14 @@ TD-SCDMA小区信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称   | 类型   | 说明         |
-| ------ | ------ | ------------ |
-| lac    | number | 位置区编号。 |
-| cellId | number | 小区号。     |
-| cpid   | number | 小区参数Id。 |
-| uarfcn | number | 绝对射频号。 |
-| mcc    | string | 移动国家码。 |
-| mnc    | string | 移动网号。   |
+| 名称   | 类型   | 必填 | 说明         |
+| ------ | ------ | ---- | ------------ |
+| lac    | number |  是  | 位置区编号。 |
+| cellId | number |  是  | 小区号。     |
+| cpid   | number |  是  | 小区参数Id。 |
+| uarfcn | number |  是  | 绝对射频号。 |
+| mcc    | string |  是  | 移动国家码。 |
+| mnc    | string |  是  | 移动网号。   |
 
 ## WcdmaCellInformation<sup>8+</sup>
 
@@ -2034,14 +2034,14 @@ WCDMA小区信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称   | 类型   | 说明         |
-| ------ | ------ | ------------ |
-| lac    | number | 位置区编号。 |
-| cellId | number | 小区号。     |
-| psc    | number | 主扰码。     |
-| uarfcn | number | 绝对射频号。 |
-| mcc    | string | 移动国家码。 |
-| mnc    | string | 移动网号。   |
+| 名称   | 类型   | 必填 | 说明         |
+| ------ | ------ | ---- | ------------ |
+| lac    | number |  是  | 位置区编号。 |
+| cellId | number |  是  | 小区号。     |
+| psc    | number |  是  | 主扰码。     |
+| uarfcn | number |  是  | 绝对射频号。 |
+| mcc    | string |  是  | 移动国家码。 |
+| mnc    | string |  是  | 移动网号。   |
 
 ## NrOptionMode<sup>8+</sup>
 
@@ -2066,10 +2066,10 @@ NR的选择模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称                   | 类型                                              | 说明           |
-| ---------------------- | ------------------------------------------------- | -------------- |
-| isNetworkSearchSuccess | boolean                                           | 网络搜索成功。 |
-| networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> | 网络搜索结果。 |
+| 名称                   | 类型                                              | 必填 | 说明           |
+| ---------------------- | ------------------------------------------------- | ---- | -------------- |
+| isNetworkSearchSuccess | boolean                                           |  是  | 网络搜索成功。 |
+| networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> |  是  | 网络搜索结果。 |
 
 ## NetworkInformation
 
@@ -2079,12 +2079,12 @@ NR的选择模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称            | 类型                                      | 说明           |
-| --------------- | ----------------------------------------- | -------------- |
-| operatorName    | string                                    | 运营商的名称。 |
-| operatorNumeric | string                                    | 运营商数字。   |
-| state           | [NetworkInformationState](#networkinformationstate) | 网络信息状态。 |
-| radioTech       | string                                    | 无线电技术。   |
+| 名称            |                         类型                        | 必填 | 说明           |
+| --------------- | --------------------------------------------------- | ---- | -------------- |
+| operatorName    | string                                              |  是  | 运营商的名称。 |
+| operatorNumeric | string                                              |  是  | 运营商数字。   |
+| state           | [NetworkInformationState](#networkinformationstate) |  是  | 网络信息状态。 |
+| radioTech       | string                                              |  是  | 无线电技术。   |
 
 ## NetworkInformationState
 
@@ -2109,12 +2109,12 @@ NR的选择模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称               | 类型                                          | 说明                                   |
-| ------------------ | --------------------------------------------- | -------------------------------------- |
-| slotId             | number                                        | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| selectMode         | [NetworkSelectionMode](#networkselectionmode) | 网络选择模式。                        |
-| networkInformation | [NetworkInformation](#networkinformation)    | 网络信息。                            |
-| resumeSelection    | boolean                                       | 继续选择。                             |
+| 名称               |                    类型                       | 必填 |                 说明                   |
+| ------------------ | --------------------------------------------- | ---- | -------------------------------------- |
+| slotId             | number                                        |  是  | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| selectMode         | [NetworkSelectionMode](#networkselectionmode) |  是  | 网络选择模式。                         |
+| networkInformation | [NetworkInformation](#networkinformation)     |  是  | 网络信息。                             |
+| resumeSelection    | boolean                                       |  是  | 继续选择。                             |
 
 ## ImsRegState<sup>9+</sup>
 
@@ -2152,10 +2152,10 @@ IMS注册信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称        | 类型                         | 说明          |
-| ----------- | ---------------------------- | ------------- |
-| imsRegState | [ImsRegState](#imsregstate9) | IMS注册状态。 |
-| imsRegTech  | [ImsRegTech](#imsregtech9)   | IMS注册技术。 |
+| 名称        | 类型                         | 必填 | 说明          |
+| ----------- | ---------------------------- | ---- | ------------- |
+| imsRegState | [ImsRegState](#imsregstate9) |  是  | IMS注册状态。 |
+| imsRegTech  | [ImsRegTech](#imsregtech9)   |  是  | IMS注册技术。 |
 
 ## ImsServiceType<sup>9+</sup>
 

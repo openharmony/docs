@@ -6,7 +6,7 @@
 >
 >  该组件从API&nbsp;Version&nbsp;9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  本组件均为系统接口，三方应用不支持调用。
+>  本组件为系统接口。
 
 ## 使用约束
 
@@ -16,7 +16,7 @@ AbilityComponent不支持处理输入事件，事件不经过当前Ability，直
 
 AbilityComponent需设置且只能设置width、height，且width、height不支持动态更新。
 
-被拉起的Ability必须继承[WindowExtension](../apis/js-apis-application-WindowExtensionAbility.md)。
+被拉起的Ability必须继承[WindowExtension](../apis/js-apis-application-windowExtensionAbility.md)。
 
 ## 子组件
 
@@ -31,7 +31,7 @@ AbilityComponent(want: Want)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-application-Want.md) | 是 | 默认加载的Ability描述。 |
+| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 默认加载的Ability描述。 |
 
 
 ## 事件

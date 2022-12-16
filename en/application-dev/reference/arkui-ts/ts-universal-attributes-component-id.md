@@ -23,6 +23,8 @@ getInspectorByKey(id: string): string
 
 Obtains all attributes of the component with the specified ID, excluding the information about child components.
 
+This API is used only for test purposes.
+
 **Parameters**
 
 | Name  | Type     | Mandatory    | Description       |
@@ -41,6 +43,8 @@ getInspectorTree(): string
 
 Obtains the component tree and component attributes.
 
+This API is used only for test purposes.
+
 **Return value**
 
 | Type    | Description                           |
@@ -52,6 +56,8 @@ Obtains the component tree and component attributes.
 sendEventByKey(id: string, action: number, params: string): boolean
 
 Sends an event to the component with the specified ID.
+
+This API is used only for test purposes.
 
 **Parameters**
 
@@ -73,6 +79,8 @@ sendTouchEvent(event: TouchObject): boolean
 
 Sends a touch event.
 
+This API is used only for test purposes.
+
 **Parameters**
 
 | Name     | Type           | Mandatory | Description                                                        |
@@ -90,6 +98,8 @@ Sends a touch event.
 sendKeyEvent(event: KeyEvent): boolean
 
 Sends a key event.
+
+This API is used only for test purposes.
 
 **Parameters**
 
@@ -109,6 +119,8 @@ sendMouseEvent(event: MouseEvent): boolean
 
 Sends a mouse event.
 
+This API is used only for test purposes.
+
 **Parameters**
 
 | Name    | Type      | Mandatory      | Description                                    |
@@ -126,19 +138,19 @@ Sends a mouse event.
 ```ts
 // xxx.ets
 class Utils {
-  static rect_left;
-  static rect_top;
-  static rect_right;
-  static rect_bottom;
-  static rect_value;
+  static rect_left
+  static rect_top
+  static rect_right
+  static rect_bottom
+  static rect_value
 
   // Obtain the coordinates of the rectangular area occupied by the component.
   static getComponentRect(key) {
-    let strJson = getInspectorByKey(key);
-    let obj = JSON.parse(strJson);
-    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj));
+    let strJson = getInspectorByKey(key)
+    let obj = JSON.parse(strJson)
+    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj))
     let rectInfo = JSON.parse('[' + obj.$rect + ']')
-    console.info("[getInspectorByKey] rectInfo is: " + rectInfo);
+    console.info("[getInspectorByKey] rectInfo is: " + rectInfo)
     this.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
     this.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
     this.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
@@ -229,7 +241,11 @@ struct IdExample {
                 }
               }
             },
-            source: SourceType.Mouse
+            source: SourceType.Mouse,
+            pressure: 1,
+            tiltX: 1,
+            tiltY: 1,
+            sourceTool: SourceTool.Unknown
           }
           sendMouseEvent(mouseEvent) // Send a mouse event.
         }, 2000)

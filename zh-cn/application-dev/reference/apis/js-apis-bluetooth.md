@@ -1,8 +1,9 @@
-# 蓝牙
+# @ohos.bluetooth (蓝牙)
 
 蓝牙模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -1279,10 +1280,6 @@ getConnectionDevices(): Array&lt;string&gt;
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
-
-**参数：**
-
-无
 
 **返回值：**
 
@@ -2695,8 +2692,6 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-**参数：**
-
 **返回值：**
 
 | 类型                                       | 说明                          |
@@ -2830,7 +2825,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 | 参数名        | 类型                                       | 必填   | 说明                      |
 | ---------- | ---------------------------------------- | ---- | ----------------------- |
 | descriptor | [BLEDescriptor](#bledescriptor)          | 是    | 待读取的描述符。                |
-| callback   | AsyncCallback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是    | client读取描述符，通过注册回调函数获取。 |
+| callback   | AsyncCallback&lt;[BLEDescriptor](#bledescriptor)&gt; | 是    | client读取描述符，通过注册回调函数获取。 |
 
 **返回值：**
 
@@ -3309,7 +3304,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                                       | 默认值  | 说明              |
+| 名称                                       | 值  | 说明              |
 | ---------------------------------------- | ---- | --------------- |
 | SCAN_MODE_NONE                           | 0    | 没有扫描模式。         |
 | SCAN_MODE_CONNECTABLE                    | 1    | 可连接扫描模式。        |
@@ -3324,7 +3319,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                 | 默认值  | 说明     |
+| 名称                 | 值  | 说明     |
 | ------------------ | ---- | ------ |
 | BOND_STATE_INVALID | 0    | 无效的配对。 |
 | BOND_STATE_BONDING | 1    | 正在配对。  |
@@ -3337,7 +3332,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称     | 参数类型                | 可读   | 可写   | 说明          |
+| 名称     | 类型                | 可读   | 可写   | 说明          |
 | ------ | ------------------- | ---- | ---- | ----------- |
 | uuid   | string              | 是    | 是    | spp单据的uuid。 |
 | secure | boolean             | 是    | 是    | 是否是安全通道。    |
@@ -3350,7 +3345,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称         | 默认值  | 说明            |
+| 名称         | 值  | 说明            |
 | ---------- | ---- | ------------- |
 | SPP_RFCOMM | 0    | 表示rfcomm链路类型。 |
 
@@ -3361,7 +3356,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称              | 参数类型                                     | 可读   | 可写   | 说明                                       |
+| 名称              | 类型                                     | 可读   | 可写   | 说明                                       |
 | --------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | serviceUuid     | string                                   | 是    | 是    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | isPrimary       | boolean                                  | 是    | 是    | 如果是主服务设置为true，否则设置为false。                |
@@ -3375,7 +3370,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                  | 参数类型                                     | 可读   | 可写   | 说明                                       |
+| 名称                  | 类型                                     | 可读   | 可写   | 说明                                       |
 | ------------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | serviceUuid         | string                                   | 是    | 是    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | characteristicUuid  | string                                   | 是    | 是    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
@@ -3389,7 +3384,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                 | 参数类型        | 可读   | 可写   | 说明                                       |
+| 名称                 | 类型        | 可读   | 可写   | 说明                                       |
 | ------------------ | ----------- | ---- | ---- | ---------------------------------------- |
 | serviceUuid        | string      | 是    | 是    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | characteristicUuid | string      | 是    | 是    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
@@ -3403,7 +3398,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                  | 参数类型        | 可读   | 可写   | 说明                                       |
+| 名称                  | 类型        | 可读   | 可写   | 说明                                       |
 | ------------------- | ----------- | ---- | ---- | ---------------------------------------- |
 | serviceUuid         | string      | 是    | 是    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | characteristicUuid  | string      | 是    | 是    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
@@ -3417,7 +3412,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                 | 参数类型   | 可读   | 可写   | 说明                                       |
+| 名称                 | 类型   | 可读   | 可写   | 说明                                       |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
 | deviceId           | string | 是    | 否    | 表示发送特征值读请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | transId            | number | 是    | 否    | 表示读请求的传输ID，server端回复响应时需填写相同的传输ID。       |
@@ -3432,7 +3427,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                 | 参数类型   | 可读   | 可写   | 说明                                       |
+| 名称                 | 类型   | 可读   | 可写   | 说明                                       |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
 | deviceId           | string | 是    | 否    | 表示发送特征值写请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | transId            | number | 是    | 否    | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。       |
@@ -3448,7 +3443,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                 | 参数类型   | 可读   | 可写   | 说明                                       |
+| 名称                 | 类型   | 可读   | 可写   | 说明                                       |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
 | deviceId           | string | 是    | 否    | 表示发送描述符读请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | transId            | number | 是    | 否    | 表示读请求的传输ID，server端回复响应时需填写相同的传输ID。       |
@@ -3464,7 +3459,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                 | 参数类型        | 可读   | 可写   | 说明                                       |
+| 名称                 | 类型        | 可读   | 可写   | 说明                                       |
 | ------------------ | ----------- | ---- | ---- | ---------------------------------------- |
 | deviceId           | string      | 是    | 否    | 表示发送描述符写请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | transId            | number      | 是    | 否    | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。       |
@@ -3483,7 +3478,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称       | 参数类型        | 可读   | 可写   | 说明                                     |
+| 名称       | 类型        | 可读   | 可写   | 说明                                     |
 | -------- | ----------- | ---- | ---- | -------------------------------------- |
 | deviceId | string      | 是    | 否    | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。       |
 | transId  | number      | 是    | 否    | 表示请求的传输ID，与订阅的读/写请求事件携带的ID保持一致。        |
@@ -3498,7 +3493,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称     | 参数类型                                          | 可读 | 可写 | 说明                                          |
+| 名称     | 类型                                          | 可读 | 可写 | 说明                                          |
 | -------- | ------------------------------------------------- | ---- | ---- | --------------------------------------------- |
 | deviceId | string                                            | 是   | 否   | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | state    | [ProfileConnectionState](#profileconnectionstate) | 是   | 是   | 表示BLE连接状态的枚举。                       |
@@ -3510,7 +3505,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                  | 默认值  | 说明             |
+| 名称                  | 值  | 说明             |
 | ------------------- | ---- | -------------- |
 | STATE_DISCONNECTED  | 0    | 表示profile已断连。  |
 | STATE_CONNECTING    | 1    | 表示profile正在连接。 |
@@ -3524,7 +3519,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                                     | 参数类型    | 可读 | 可写 | 说明                                                         |
+| 名称                                     | 类型    | 可读 | 可写 | 说明                                                         |
 | ---------------------------------------- | ----------- | ---- | ---- | ------------------------------------------------------------ |
 | deviceId                                 | string      | 是   | 是   | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。           |
 | name                                     | string      | 是   | 是   | 表示过滤的BLE设备名。                                        |
@@ -3545,7 +3540,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称        | 参数类型                    | 可读   | 可写   | 说明                                     |
+| 名称        | 类型                    | 可读   | 可写   | 说明                                     |
 | --------- | ----------------------- | ---- | ---- | -------------------------------------- |
 | interval  | number                  | 是    | 是    | 表示扫描结果上报延迟时间，默认值为0。                    |
 | dutyMode  | [ScanDuty](#scanduty)   | 是    | 是    | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。        |
@@ -3558,7 +3553,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                    | 默认值  | 说明           |
+| 名称                    | 值  | 说明           |
 | --------------------- | ---- | ------------ |
 | SCAN_MODE_LOW_POWER   | 0    | 表示低功耗模式，默认值。 |
 | SCAN_MODE_BALANCED    | 1    | 表示均衡模式。      |
@@ -3571,7 +3566,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                    | 默认值  | 说明                                       |
+| 名称                    | 值  | 说明                                       |
 | --------------------- | ---- | ---------------------------------------- |
 | MATCH_MODE_AGGRESSIVE | 1    | 表示硬件上报扫描结果门限较低，比如扫描到的功率较低或者一段时间扫描到的次数较少也触发上报，默认值。 |
 | MATCH_MODE_STICKY     | 2    | 表示硬件上报扫描结果门限较高，更高的功率门限以及扫描到多次才会上报。       |
@@ -3583,7 +3578,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称       | 参数类型        | 可读   | 可写   | 说明                                 |
+| 名称       | 类型        | 可读   | 可写   | 说明                                 |
 | -------- | ----------- | ---- | ---- | ---------------------------------- |
 | deviceId | string      | 是    | 否    | 表示扫描到的设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | rssi     | number      | 是    | 否    | 表示扫描到的设备的rssi值。                    |
@@ -3596,7 +3591,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                    | 默认值  | 说明                 |
+| 名称                    | 值  | 说明                 |
 | --------------------- | ---- | ------------------ |
 | STATE_OFF             | 0    | 表示蓝牙已关闭。           |
 | STATE_TURNING_ON      | 1    | 表示蓝牙正在打开。          |
@@ -3613,7 +3608,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称          | 参数类型    | 可读   | 可写   | 说明                                       |
+| 名称          | 类型    | 可读   | 可写   | 说明                                       |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
 | interval    | number  | 是    | 是    | 表示广播间隔，最小值设置32个slot表示20ms，最大值设置16384个slot，默认值设置为1600个slot表示1s。 |
 | txPower     | number  | 是    | 是    | 表示发送功率，最小值设置-127，最大值设置1，默认值设置-7，单位dbm。   |
@@ -3626,7 +3621,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称              | 参数类型                                     | 可读   | 可写   | 说明                          |
+| 名称              | 类型                                     | 可读   | 可写   | 说明                          |
 | --------------- | ---------------------------------------- | ---- | ---- | --------------------------- |
 | serviceUuids    | Array&lt;string&gt;                      | 是    | 是    | 表示要广播的服务&nbsp;UUID&nbsp;列表。 |
 | manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | 是    | 是    | 表示要广播的广播的制造商信息列表。           |
@@ -3639,9 +3634,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称               | 参数类型                | 可读   | 可写   | 说明                 |
+| 名称               | 类型                | 可读   | 可写   | 说明                 |
 | ---------------- | ------------------- | ---- | ---- | ------------------ |
-| manufactureId    | Array&lt;string&gt; | 是    | 是    | 表示制造商的ID，由蓝牙SIG分配。 |
+| manufactureId    | number  | 是    | 是    | 表示制造商的ID，由蓝牙SIG分配。 |
 | manufactureValue | ArrayBuffer         | 是    | 是    | 表示制造商发送的制造商数据。     |
 
 
@@ -3651,7 +3646,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称           | 参数类型        | 可读   | 可写   | 说明         |
+| 名称           | 类型        | 可读   | 可写   | 说明         |
 | ------------ | ----------- | ---- | ---- | ---------- |
 | serviceUuid  | string      | 是    | 是    | 表示服务的UUID。 |
 | serviceValue | ArrayBuffer | 是    | 是    | 表示服务数据。    |
@@ -3663,7 +3658,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称       | 参数类型   | 可读   | 可写   | 说明          |
+| 名称       | 类型   | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string | 是    | 否    | 表示要配对的设备ID。 |
 | pinCode  | string | 是    | 否    | 表示要配对的密钥。   |
@@ -3675,7 +3670,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称       | 参数类型   | 可读   | 可写   | 说明          |
+| 名称       | 类型   | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string      | 是    | 否    | 表示要配对的设备ID。 |
 | state    | BondState   | 是    | 否    | 表示配对设备的状态。 |
@@ -3687,7 +3682,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称     | 参数类型                                          | 可读 | 可写 | 说明                            |
+| 名称     | 类型                                          | 可读 | 可写 | 说明                            |
 | -------- | ------------------------------------------------- | ---- | ---- | ------------------------------- |
 | deviceId | string                                            | 是   | 否   | 表示蓝牙设备地址。              |
 | state    | [ProfileConnectionState](#profileconnectionstate) | 是   | 否   | 表示蓝牙设备的profile连接状态。 |
@@ -3699,7 +3694,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称              | 参数类型                                | 可读   | 可写   | 说明               |
+| 名称              | 类型                                | 可读   | 可写   | 说明               |
 | --------------- | ----------------------------------- | ---- | ---- | ---------------- |
 | majorClass      | [MajorClass](#majorclass)           | 是    | 否    | 表示蓝牙设备主要类别的枚举。   |
 | majorMinorClass | [MajorMinorClass](#majorminorclass) | 是    | 否    | 表示主要次要蓝牙设备类别的枚举。 |
@@ -3713,7 +3708,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                  | 默认值    | 说明         |
+| 名称                  | 值    | 说明         |
 | ------------------- | ------ | ---------- |
 | MAJOR_MISC          | 0x0000 | 表示杂项设备。    |
 | MAJOR_COMPUTER      | 0x0100 | 表示计算机设备。   |
@@ -3734,7 +3729,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                                       | 默认值    | 说明              |
+| 名称                                       | 值    | 说明              |
 | ---------------------------------------- | ------ | --------------- |
 | COMPUTER_UNCATEGORIZED                   | 0x0100 | 表示未分类计算机设备。     |
 | COMPUTER_DESKTOP                         | 0x0104 | 表示台式计算机设备。      |
@@ -3830,7 +3825,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                | 默认值    | 说明      |
+| 名称                | 值    | 说明      |
 | ----------------- | ------ | ------- |
 | STATE_NOT_PLAYING | 0x0000 | 表示未播放。  |
 | STATE_PLAYING     | 0x0001 | 表示正在播放。 |
@@ -3842,9 +3837,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                               | 默认值    | 说明              |
+| 名称                               | 值    | 说明              |
 | -------------------------------- | ------ | --------------- |
-| PROFILE_A2DP_SOURCE              | 0x0001 | 表示A2DP profile。 |
-| PROFILE_HANDS_FREE_AUDIO_GATEWAY | 0x0004 | 表示HFP profile。  |
-| PROFILE_HID_HOST<sup>9+</sup> | 0x0006 | 表示HID profile。  |
-| PROFILE_PAN_NETWORK<sup>9+</sup> | 0x0007 | 表示PAN profile。  |
+| PROFILE_A2DP_SOURCE              | 1 | 表示A2DP profile。 |
+| PROFILE_HANDS_FREE_AUDIO_GATEWAY | 4 | 表示HFP profile。  |
+| PROFILE_HID_HOST<sup>9+</sup> | 6 | 表示HID profile。  |
+| PROFILE_PAN_NETWORK<sup>9+</sup> | 7 | 表示PAN profile。  |

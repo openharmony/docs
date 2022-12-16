@@ -6,30 +6,47 @@ The **\<XComponent>** can accept and display the EGL/OpenGL ES and media data in
 >
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
+  
 
-
-## Required Permissions
-
-None
 
 ## Child Components
-
-Not supported
+  Child components are not supported when **type** is set to **"surface"**.\
+  Since API version 9, child components are supported when **type** is set to **"component"**.
 
 ## APIs
 
-XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
+  XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
 
 **Parameters**
 
 | Name      | Type    | Mandatory  | Description   |
 | --------- | ------ | ---- | ----- |
 | id  | string | Yes   | Unique ID of the component. The value can contain a maximum of 128 characters.|
-| type      | string | Yes   |  Type of the component. The options are as follows:<br>-**surface**: The content of this component is displayed individually, without being combined with that of other components.<br>-**component**: The content of this component is displayed after having been combined with that of other components.|
-| libraryname | string | No   | Name of the dynamic library generated after compilation at the application native layer.|
-| controller   | [XComponentcontroller](#xcomponentcontroller) | No   | Controller bound to the component, which can be used to invoke methods of the component.|
+| type      | string | Yes   | Type of the component. The options are as follows:<br>- **"surface"**: The content of the component is displayed individually, without being combined with that of other components. This option is used for displaying EGL/OpenGL ES and media data.<br>- **"component"**<sup>9+</sup>: The component becomes a container where non-UI logic can be executed to dynamically load the display content.|
+| libraryname | string | No   | Name of the dynamic library generated after compilation at the application native layer. This parameter is valid only when the component type is **"surface"**.|
+| controller   | [XComponentcontroller](#xcomponentcontroller) | No   | Controller bound to the component, which can be used to invoke the methods of the component. This parameter is valid only when the component type is **"surface"**. |
+
+> **NOTE**<br>
+>
+> When **type** is set to **"component"**, the **\<XComponent>** functions as a container, where child components are laid out vertically.
+>
+> - Vertical alignment: [FlexAlign](ts-appendix-enums.md#flexalign).Start
+> - Horizontal alignment: [FlexAlign](ts-appendix-enums.md#flexalign).Center
+>
+> The component does not respond to any events.
+>
+> Layout changes and event responses can be set by mounting child components.
+>
+> The non-UI logic written internally needs to be encapsulated in one or more functions.
+
+## Attributes
+- You can customize the content displayed in the **\<XComponent>**. Among the universal attributes, the [background](./ts-universal-attributes-background.md), [opacity](./ts-universal-attributes-opacity.md), and [image effects](./ts-universal-attributes-image-effect.md) attributes are not supported.
+- When **type** is set to **"surface"**, you are advised to use the APIs provided by the EGL/OpenGL ES to set the display content.
+- When **type** is set to **"component"**, you are advised to mount child components to set the display content.
 
 ## Events
+
+The following events are supported only when **type** is set to **"surface"**. The [universal events and gestures](./Readme-EN.md) are not supported.
 
 ### onLoad
 
@@ -51,7 +68,7 @@ Triggered when the plug-in is destroyed.
 
 ## XComponentController
 
-Defines the controller of the **\<XComponent>**. You can bind the controller to the **\<XComponent>** to invoke the component methods through the controller.
+Defines the controller of the **\<XComponent>**. You can bind the controller to the **\<XComponent>** to invoke the methods of the component through the controller.
 
 ### Creating an Object
 
@@ -61,11 +78,10 @@ xcomponentController: XComponentController = new XComponentController()
 
 ### getXComponentSurfaceId
 
-getXComponentSurfaceId()
+getXComponentSurfaceId(): string
 
-Obtains the ID of the surface held by the **\<XComponent>**. The ID can be used for @ohos interfaces, such as camera-related interfaces.
+Obtains the ID of the surface held by the **\<XComponent>**. The ID can be used for @ohos interfaces. For details, see [Camera Management](../apis/js-apis-camera.md). This API works only when **type** of the **\<XComponent>** is set to **"surface"**.
 
-**System API**: This is a system API.
 
 **Return value**
 
@@ -76,11 +92,10 @@ Obtains the ID of the surface held by the **\<XComponent>**. The ID can be used 
 
 ### setXComponentSurfaceSize
 
-setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number})
+setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): void
 
-Sets the width and height of the surface held by the **\<XComponent>**.
+Sets the width and height of the surface held by the **\<XComponent>**. This API works only when **type** of the **\<XComponent>** is set to **"surface"**.
 
-**System API**: This is a system API.
 
 **Parameters**
 
@@ -92,9 +107,9 @@ Sets the width and height of the surface held by the **\<XComponent>**.
 
 ### getXComponentContext
 
-getXComponentContext()
+getXComponentContext(): Object
 
-Obtains the context of an **\<XComponent>** object.
+Obtains the context of an **\<XComponent>** object. This API works only when **type** of the **\<XComponent>** is set to **"surface"**.
 
 **Return value**
 
@@ -105,12 +120,10 @@ Obtains the context of an **\<XComponent>** object.
 
 ## Example
 
-Provide a surface-type **\<XComponent>** to support capabilities such as camera preview. 
 You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
 
 ```ts
 // xxx.ets
-import camera from '@ohos.multimedia.camera';
 @Entry
 @Component
 struct PreviewArea {
@@ -125,10 +138,7 @@ struct PreviewArea {
       })
         .onLoad(() => {
           this.xcomponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
-          this.surfaceId = this.xcomponentController.getXComponentSurfaceId();
-          camera.createPreviewOutput(this.surfaceId).then((previewOutput) => {
-            console.log('Promise returned with the PreviewOutput instance');
-          })
+          this.surfaceId = this.xcomponentController.getXComponentSurfaceId()
         })
         .width('640px')
         .height('480px')

@@ -928,6 +928,8 @@ Sends a cell location update request. This API uses an asynchronous callback to 
 
 **System API**: This is a system API.
 
+**Required permissions**: ohos.permission.LOCATION
+
 **System capability**: SystemCapability.Telephony.CoreService
 
 **Parameters**
@@ -951,6 +953,8 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\):
 Sends a cell location update request for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -977,6 +981,8 @@ sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 Sends a cell location update request for the SIM card in the specified slot.This API uses a promise to return the result.
 
 **System API**: This is a system API.
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1012,7 +1018,7 @@ Obtains cell information. This API uses an asynchronous callback to return the r
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1039,7 +1045,7 @@ Obtains cell information for the SIM card in the specified slot. This API uses a
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1068,7 +1074,7 @@ Obtains cell information for the SIM card in the specified slot. This API uses a
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 

@@ -1,4 +1,4 @@
-# 通用密钥库系统
+# @ohos.security.huks (通用密钥库系统)
 
 向应用提供密钥库能力，包括密钥管理及密钥的密码学操作等功能。
 HUKS所管理的密钥可以由应用导入或者由应用调用HUKS接口生成。
@@ -19,7 +19,7 @@ import huks from '@ohos.security.huks'
 
 **系统能力**：SystemCapability.Security.Huks
 
-| 参数名 | 类型                                | 必填 | 说明         |
+| 名称 | 类型                                | 必填 | 说明         |
 | ------ | ----------------------------------- | ---- | ------------ |
 | tag    | [HuksTag](#hukstag)                 | 是   | 标签。       |
 | value  | boolean\|number\|bigint\|Uint8Array | 是   | 标签对应值。 |
@@ -30,7 +30,7 @@ import huks from '@ohos.security.huks'
 
 **系统能力**：SystemCapability.Security.Huks
 
-| 参数名     | 类型              | 必填 | 说明                     |
+| 名称     | 类型              | 必填 | 说明                     |
 | ---------- | ----------------- | ---- | ------------------------ |
 | properties | Array\<[HuksParam](#huksparam)> | 否   | 属性，用于存HuksParam的数组。 |
 | inData     | Uint8Array        | 否   | 输入数据。               |
@@ -41,7 +41,7 @@ huks Handle结构体。
 
 **系统能力**：SystemCapability.Security.Huks
 
-| 参数名    | 类型       | 必填 | 说明                                                 |
+| 名称    | 类型       | 必填 | 说明                                                 |
 | --------- | ---------- | ---- | ---------------------------------------------------- |
 | handle    | number     | 是   | 表示handle值。                                       |
 | challenge | Uint8Array | 否   | 表示[init](#huksinit)操作之后获取到的challenge信息。 |
@@ -54,7 +54,7 @@ huks Handle结构体。
 
 
 
-| 参数名     | 类型                            | 必填 | 说明             |
+| 名称     | 类型                            | 必填 | 说明             |
 | ---------- | ------------------------------- | ---- | ---------------- |
 | outData    | Uint8Array                      | 否   | 表示输出数据。   |
 | properties | Array\<[HuksParam](#huksparam)> | 否   | 表示属性信息。   |
@@ -74,7 +74,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 | 参数名   | 类型                        | 必填 | 说明                                          |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | 是   | 别名。                                        |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。                      |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **示例：**
@@ -130,7 +130,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 参数名   | 类型                        | 必填 | 说明                     |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | 是   | 密钥别名。               |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 
 **示例：**
 
@@ -288,7 +288,7 @@ importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 | 参数名   | 类型                        | 必填 | 说明                                          |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名。                                    |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。           |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **示例：**
@@ -356,7 +356,7 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 参数名   | 类型                        | 必填 | 说明                                |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名。                          |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 
 **示例：**
 
@@ -675,7 +675,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 | ---------------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias         | string                      | 是   | 密钥别名，存放待导入密钥的别名。              |
 | wrappingKeyAlias | string                      | 是   | 密钥别名，对应密钥用于解密加密的密钥数据。    |
-| options          | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的加密的密钥数据。 |
+| options          | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的加密的密钥数据。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 | callback         | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **示例：**
@@ -891,7 +891,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 | ---------------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias         | string                      | 是   | 密钥别名，存放待导入密钥的别名。              |
 | wrappingKeyAlias | string                      | 是   | 密钥别名，对应密钥用于解密加密的密钥数据。    |
-| options          | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的加密的密钥数据。 |
+| options          | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的加密的密钥数据。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 
 **示例：**
 
@@ -1605,26 +1605,26 @@ async function huksAbort() {
 
 **系统能力**：SystemCapability.Security.Huks
 
-| 名称                                           | 说明                        | 错误码   |
-| ---------------------------------------------- | --------------------------- | -------- |
-| HUKS_ERR_CODE_PERMISSION_FAIL                  | 权限错误导致失败。          | 201      |
-| HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 参数错误导致失败。          | 401      |
-| HUKS_ERR_CODE_NOT_SUPPORTED_API                | 不支持的API。               | 801      |
-| HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED            | 不支持的功能/特性。         | 12000001 |
-| HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT      | 缺少密钥算法参数。          | 12000002 |
-| HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT      | 无效密钥算法参数。          | 12000003 |
-| HUKS_ERR_CODE_FILE_OPERATION_FAIL              | 文件操作失败。              | 12000004 |
-| HUKS_ERR_CODE_COMMUNICATION_FAIL               | 通信失败。                  | 12000005 |
-| HUKS_ERR_CODE_CRYPTO_FAIL                      | 算法库操作失败。            | 12000006 |
-| HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED | 密钥访问失败-密钥访问失效。 | 12000007 |
-| HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED           | 密钥访问失败-密钥认证失败。 | 12000008 |
-| HUKS_ERR_CODE_KEY_AUTH_TIME_OUT                | 密钥访问失败-密钥访问超时。 | 12000009 |
-| HUKS_ERR_CODE_SESSION_LIMIT                    | 密钥操作会话数已达上限。    | 12000010 |
-| HUKS_ERR_CODE_ITEM_NOT_EXIST                   | 目标对象不存在。            | 12000011 |
-| HUKS_ERR_CODE_EXTERNAL_ERROR                   | 外部错误。                  | 12000012 |
-| HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 缺失所需凭据。              | 12000013 |
-| HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 内存不足。                  | 12000014 |
-| HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 调用其他系统服务失败。      | 12000015 |
+| 名称                                           | 值 |  说明                        | 
+| ---------------------------------------------- | -------- |--------------------------- | 
+| HUKS_ERR_CODE_PERMISSION_FAIL                  | 201      | 权限错误导致失败。          | 
+| HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 401      | 参数错误导致失败。          | 
+| HUKS_ERR_CODE_NOT_SUPPORTED_API                | 801      | 不支持的API。               | 
+| HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED            | 12000001 | 不支持的功能/特性。         | 
+| HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT      | 12000002 | 缺少密钥算法参数。          | 
+| HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT      | 12000003 | 无效密钥算法参数。          | 
+| HUKS_ERR_CODE_FILE_OPERATION_FAIL              | 12000004 | 文件操作失败。              | 
+| HUKS_ERR_CODE_COMMUNICATION_FAIL               | 12000005 | 通信失败。                  | 
+| HUKS_ERR_CODE_CRYPTO_FAIL                      | 12000006 | 算法库操作失败。            | 
+| HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED | 12000007 | 密钥访问失败-密钥访问失效。 | 
+| HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED           | 12000008 | 密钥访问失败-密钥认证失败。 | 
+| HUKS_ERR_CODE_KEY_AUTH_TIME_OUT                | 12000009 | 密钥访问失败-密钥访问超时。 | 
+| HUKS_ERR_CODE_SESSION_LIMIT                    | 12000010 | 密钥操作会话数已达上限。    | 
+| HUKS_ERR_CODE_ITEM_NOT_EXIST                   | 12000011 | 目标对象不存在。            | 
+| HUKS_ERR_CODE_EXTERNAL_ERROR                   | 12000012 | 外部错误。                  | 
+| HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 12000013 | 缺失所需凭据。              | 
+| HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | 内存不足。                  | 
+| HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | 调用其他系统服务失败。      | 
 
 ## HuksKeyPurpose
 
@@ -1710,7 +1710,7 @@ async function huksAbort() {
 | HUKS_ECC_KEY_SIZE_384              | 384  | 表示使用ECC算法的密钥长度为384bit。        |
 | HUKS_ECC_KEY_SIZE_521              | 521  | 表示使用ECC算法的密钥长度为521bit。        |
 | HUKS_AES_KEY_SIZE_128              | 128  | 表示使用AES算法的密钥长度为128bit。        |
-| HUKS_AES_KEY_SIZE_192              | 196  | 表示使用AES算法的密钥长度为196bit。        |
+| HUKS_AES_KEY_SIZE_192              | 192  | 表示使用AES算法的密钥长度为196bit。        |
 | HUKS_AES_KEY_SIZE_256              | 256  | 表示使用AES算法的密钥长度为256bit。        |
 | HUKS_AES_KEY_SIZE_512              | 512  | 表示使用AES算法的密钥长度为512bit。        |
 | HUKS_CURVE25519_KEY_SIZE_256       | 256  | 表示使用CURVE25519算法的密钥长度为256bit。 |
@@ -2508,28 +2508,9 @@ init操作密钥接口，使用Promise方式异步返回结果。huks.init, huks
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<[HuksHandle](#hukshandle)> | Promise对象。将Init操作返回的handle添加到密钥管理系统的回调。 |
 
-
 ## huks.update<sup>(deprecated)</sup>
 
-update(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
-
-update操作密钥接口，使用Callback回调异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
-
->  **说明：** 从API Version 9开始废弃，建议使用[huks.updateSession<sup>9+</sup>](#huksupdatesession9)替代。
-
-**系统能力**：SystemCapability.Security.Huks
-
-**参数：**
-
-| 参数名   | 类型                                      | 必填 | 说明                                         |
-| -------- | ----------------------------------------- | ---- | -------------------------------------------- |
-| handle   | number                                    | 是   | Update操作的handle。                         |
-| options  | [HuksOptions](#huksoptions)               | 是   | Update的参数集合。                           |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 回调函数。将Update操作的结果添加到密钥管理系统的回调。 |
-
-## huks.update<sup>(deprecated)</sup>
-
-update(handle: number, options: HuksOptions,  token: Uint8Array,  callback: AsyncCallback\<HuksResult>) : void
+update(handle: number, token?: Uint8Array, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
 update操作密钥接口，使用Callback回调异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
@@ -2548,7 +2529,7 @@ update操作密钥接口，使用Callback回调异步返回结果。huks.init, h
 
 ## huks.update<sup>(deprecated)</sup>
 
-update(handle: number, options: HuksOptions, token?: Uint8Array) : Promise\<HuksResult>
+update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise\<HuksResult>;
 
 update操作密钥接口，使用Promise方式异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
@@ -2854,7 +2835,7 @@ huks Handle结构体。
 
 **系统能力**：SystemCapability.Security.Huks
 
-| 参数名     | 类型             | 必填 | 说明     |
+| 名称     | 类型             | 必填 | 说明     |
 | ---------- | ---------------- | ---- | -------- |
 | errorCode  | number           | 是   | 表示错误码。 |
 | handle    | number       | 是 | 表示handle值。 |
@@ -2868,8 +2849,7 @@ huks Handle结构体。
 **系统能力**：SystemCapability.Security.Huks
 
 
-
-| 参数名     | 类型                            | 必填 | 说明             |
+| 名称     | 类型                            | 必填 | 说明             |
 | ---------- | ------------------------------- | ---- | ---------------- |
 | errorCode  | number                          | 是   | 表示错误码。     |
 | outData    | Uint8Array                      | 否   | 表示输出数据。   |

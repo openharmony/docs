@@ -83,6 +83,7 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
 | ------- | ---------------------------------------- | ---------------------------------------- |
 | element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型<br/>-&nbsp;pattern，样式<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 | element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
 | media   | 表示媒体资源，包括图片、音频、视频等非文本格式的文件。              | 文件名可自定义，例如：icon.png。                     |
+| profile  | 表示自定义配置文件，其文件内容可[通过包管理接口](../reference/apis/js-apis-bundleManager.md#bundlemanagergetprofilebyability)获取       | 文件名可自定义，例如：test_profile.json。           |
 | rawfile | 表示其他类型文件，在应用构建为hap包后，以原始文件形式保存，不会被集成到resources.index文件中。 | 文件名可自定义。                                 |
 
 **媒体资源类型说明**
@@ -202,27 +203,19 @@ plural.json文件的内容如下：
 
 - 创建资源目录及资源文件
 
-  在resources目录右键菜单选择“New > Resource File”，此时可同时创建目录和文件。
-
-  文件默认创建在base目录的对应资源组下。如果选择了限定词，则会按照命名规范自动生成限定词+资源组目录，并将文件创建在目录中。
-
-  目录名自动生成，格式固定为“限定词.资源组”，例如创建一个限定词为横竖屏类别下的竖屏，资源组为绘制资源的目录，自动生成的目录名称为“vertical.graphic”。
+  在resources目录右键菜单选择“New > Resource File”，此时可同时创建目录和文件。文件默认创建在base目录的对应资源组下。如果选择了限定词，则会按照命名规范自动生成限定词+资源组目录，并将文件创建在目录中。图中Avaliable qualifiers为供选择的限定词目录，通过右边的小箭头可添加或者删除。File name为需要创建的文件名，Resource type为资源组类型，默认是element。Root Element为资源类型。创建的目录名自动生成，格式固定为“限定词.资源组”，例如：创建一个限定词为dark的element目录，自动生成的目录名称为“dark.element”。
 
   ![create-resource-file-1](figures/create-resource-file-1.png)
 
 - 创建资源目录
 
-  在resources目录右键菜单选择“New > Resource Directory”，此时可创建资源目录。
-
-  选择资源组类型，设置限定词，创建后自动生成目录名称。目录名称格式固定为“限定词.资源组”，例如创建一个限定词为横竖屏类别下的竖屏，资源组为绘制资源的目录，自动生成的目录名称为“vertical.graphic”。
+  在resources目录右键菜单选择“New > Resource Directory”，此时可创建资源目录。资源目录创建的是base目录，也可根据需求创建其它限定词目录。确定限定词后，选择资源组类型，当前资源组类型支持Element、Media、Profile三种，创建后自动生成目录名称。
 
   ![create-resource-file-2](figures/create-resource-file-2.png)
 
 - 创建资源文件
 
-  在资源目录的右键菜单选择“New > XXX Resource File”，即可创建对应资源组目录的资源文件。
-
-  例如，在element目录下可新建Element Resource File。
+  在资源目录的右键菜单选择“New > XXX Resource File”，即可创建对应资源组目录的资源文件。例如，在element目录下可新建Element Resource File。
 
   ![create-resource-file-3](figures/create-resource-file-3.png)
 
@@ -238,28 +231,27 @@ plural.json文件的内容如下：
 >
 > `$r`返回值为Resource对象，可通过[getStringValue](../reference/apis/js-apis-resource-manager.md#getstringvalue9) 方法获取对应的字符串。
 
-在xxx.ets文件中，可以使用在resources目录中定义的资源。
+在xxx.ets文件中，可以使用在resources目录中定义的资源。结合[资源组目录](#资源组目录)中的“资源文件示例”，资源使用示例如下：
 
 ```ts
 Text($r('app.string.string_hello'))
-    .fontColor($r('app.color.color_hello'))
-    .fontSize($r('app.float.font_hello'))
-}
+  .fontColor($r('app.color.color_hello'))
+  .fontSize($r('app.float.font_hello'))
 
 Text($r('app.string.string_world'))
-    .fontColor($r('app.color.color_world'))
-    .fontSize($r('app.float.font_world'))
-}
+  .fontColor($r('app.color.color_world'))
+  .fontSize($r('app.float.font_world'))
 
-Text($r('app.string.message_arrive', "five of the clock")) // 引用string资源，$r的第二个参数用于替换%s
-    .fontColor($r('app.color.color_hello'))
-    .fontSize($r('app.float.font_hello'))
-}
+// 引用string.json资源，$r的第二个参数用于替换%s，value为"We will arrive at five of the clock"。
+Text($r('app.string.message_arrive', "five of the clock"))
+  .fontColor($r('app.color.color_hello'))
+  .fontSize($r('app.float.font_hello'))
 
-Text($r('app.plural.eat_apple', 5, 5))       // plural$r引用，第一个指定plural资源，第二个参数指定单复数的数量，此处第三个数字为对%d的替换
-    .fontColor($r('app.color.color_world'))
-    .fontSize($r('app.float.font_world'))
-}
+// 引用plural$资源，第一个指定plural资源，第二个参数指定单复数的数量quantity，此处第三个数字为对%d的替换
+// 单数下value为"5 apple"，复数下value为"5 apples"。
+Text($r('app.plural.eat_apple', 5, 5))
+  .fontColor($r('app.color.color_world'))
+  .fontSize($r('app.float.font_world'))
 
 Image($r('app.media.my_background_image'))  // media资源的$r引用
 
@@ -285,15 +277,22 @@ Image($rawfile('newDir/newTest.png'))       // rawfile$r引用rawfile目录下�
 
 ```ts
 Text('Hello')
-    .fontColor($r('sys.color.ohos_id_color_emphasize'))
-    .fontSize($r('sys.float.ohos_id_text_size_headline1'))
-    .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
-    .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
+  .fontColor($r('sys.color.ohos_id_color_emphasize'))
+  .fontSize($r('sys.float.ohos_id_text_size_headline1'))
+  .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+  .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
+
 Image($r('sys.media.ohos_app_icon'))
-    .border({color: $r('sys.color.ohos_id_color_palette_aux1'), radius: $r('sys.float.ohos_id_corner_radius_button'), width: 2})
-    .margin({top: $r('sys.float.ohos_id_elements_margin_horizontal_m'), bottom: $r('sys.float.ohos_id_elements_margin_horizontal_l')})
-    .height(200)
-    .width(300)
+  .border({
+    color: $r('sys.color.ohos_id_color_palette_aux1'),
+    radius: $r('sys.float.ohos_id_corner_radius_button'), width: 2
+  })
+  .margin({
+    top: $r('sys.float.ohos_id_elements_margin_horizontal_m'),
+    bottom: $r('sys.float.ohos_id_elements_margin_horizontal_l')
+  })
+  .height(200)
+  .width(300)
 ```
 
 ## 相关实例

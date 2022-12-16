@@ -1,4 +1,4 @@
-# 公共事件模块
+# @ohos.commonEventManager (公共事件模块)
 
 本模块提供了公共事件的能力，包括公共事件的权限列表，发布公共事件，订阅或取消订阅公共事件，获取或修改公共事件结果代码、结果数据等。
 
@@ -30,7 +30,7 @@ CommonEventManager模块支持的事件类型。名称指的是系统公共事�
 | COMMON_EVENT_POWER_DISCONNECTED                              | usual.event.POWER_DISCONNECTED                              | 无                                                           | 设备与外部电源断开的公共事件的动作。            |
 | COMMON_EVENT_SCREEN_OFF                                      | usual.event.SCREEN_OFF                                      | 无                                                           | 表示设备屏幕关闭且设备处于睡眠状态的普通事件的动作。            |
 | COMMON_EVENT_SCREEN_ON                                       | usual.event.SCREEN_ON                                       | 无                                                           | 表示设备屏幕打开且设备处于交互状态的公共事件的操作。  |
-| COMMON_EVENT_THERMAL_LEVEL_CHANGED<sup>8+<sup>                           | usual.event.THERMAL_LEVEL_CHANGED                           | 无                                                           | 表示设备热状态的公共事件的动作。  |
+| COMMON_EVENT_THERMAL_LEVEL_CHANGED                           | usual.event.THERMAL_LEVEL_CHANGED                           | 无                                                           | 表示设备热状态的公共事件的动作。  |
 | COMMON_EVENT_USER_PRESENT                                    | usual.event.USER_PRESENT                                    | 无                                                           | 用户解锁设备的公共事件的动作。      |
 | COMMON_EVENT_TIME_TICK                                       | usual.event.TIME_TICK                                       | 无                                                           | 表示系统时间更改的公共事件的动作。        |
 | COMMON_EVENT_TIME_CHANGED                                    | usual.event.TIME_CHANGED                                    | 无                                                           | 设置系统时间的公共事件的动作。      |
@@ -71,6 +71,10 @@ CommonEventManager模块支持的事件类型。名称指的是系统公共事�
 | COMMON_EVENT_USER_UNLOCKED                                   | usual.event.USER_UNLOCKED                                   | 无                                                           | 设备重启后解锁时，当前用户的凭据加密存储已解锁的公共事件的动作。     |
 | COMMON_EVENT_USER_STOPPING                                   | usual.event.USER_STOPPING                                   | ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS                        | 表示要停止用户的公共事件的动作。    |
 | COMMON_EVENT_USER_STOPPED                                    | usual.event.USER_STOPPED                                    | 无                                                           | 表示用户已停止的公共事件的动作。    |
+| COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN                                     | usual.event.DISTRIBUTED_ACCOUNT_LOGIN                                    | 无                                                           | 表示分布式账号登录成功的动作。    |
+| COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT                                     | usual.event.DISTRIBUTED_ACCOUNT_LOGOUT                                    | 无                                                           | 表示分布式账号登出成功的动作。    |
+| COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID                                     | usual.event.DISTRIBUTED_ACCOUNT_TOKEN_INVALID                                    | 无                                                           | 表示分布式账号token令牌无效的动作。    |
+| COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF                                     | usual.event.DISTRIBUTED_ACCOUNT_LOGOFF                                    | 无                                                           | 表示分布式账号注销的动作。    |
 | COMMON_EVENT_WIFI_POWER_STATE                                | usual.event.wifi.POWER_STATE                                | 无                                                           | Wi-Fi状态公共事件的动作，如启用和禁用。      |
 | COMMON_EVENT_WIFI_SCAN_FINISHED                              | usual.event.wifi.SCAN_FINISHED                              | ohos.permission.LOCATION                                     | 表示Wi-Fi接入点已被扫描并证明可用的公共事件的操作。       |
 | COMMON_EVENT_WIFI_RSSI_VALUE                                 | usual.event.wifi.RSSI_VALUE                                 | ohos.permission.GET_WIFI_INFO                                | 表示Wi-Fi信号强度（RSSI）改变的公共事件的动作。      |
@@ -167,7 +171,7 @@ CommonEventManager模块支持的事件类型。名称指的是系统公共事�
 | COMMON_EVENT_ACCOUNT_DELETED                                 | usual.event.data.ACCOUNT_DELETED                            | ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS               | 删除帐户的公共事件的动作。      |
 | COMMON_EVENT_FOUNDATION_READY                                | usual.event.data.FOUNDATION_READY                           | ohos.permission.RECEIVER_STARTUP_COMPLETED                   | 表示foundation已准备好的公共事件的动作。      |
 | COMMON_EVENT_AIRPLANE_MODE_CHANGED                           | usual.event.AIRPLANE_MODE                                   | 无                                                           | 表示设备飞行模式已更改的公共事件的动作。      |
-| COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>                                    | usual.event.SPLIT_SCREEN                                    | ohos.permission.RECEIVER_SPLIT_SCREEN                        | 表示分屏的公共事件的动作。      |
+| COMMON_EVENT_SPLIT_SCREEN                                    | usual.event.SPLIT_SCREEN                                    | ohos.permission.RECEIVER_SPLIT_SCREEN                        | 表示分屏的公共事件的动作。      |
 | COMMON_EVENT_SLOT_CHANGE<sup>9+<sup>                                    | usual.event.SLOT_CHANGE                                    | ohos.permission.NOTIFICATION_CONTROLLER                        | 表示通知通道更新的动作。      |
 | COMMON_EVENT_SPN_INFO_CHANGED <sup>9+<sup>                                    | usual.event.SPN_INFO_CHANGED                                    | 无                        | 表示spn显示信息已更新的公共事件的动作。      |
 | COMMON_EVENT_QUICK_FIX_APPLY_RESULT <sup>9+<sup>                                    | usual.event.QUICK_FIX_APPLY_RESULT                        | 无                        | 表示快速修复应用的动作。      |
@@ -183,7 +187,7 @@ publish(event: string, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 描述                   |
+| 参数名     | 类型                 | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
 | event    | string               | 是   | 表示要发送的公共事件。 |
 | callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
@@ -193,12 +197,7 @@ publish(event: string, callback: AsyncCallback\<void>): void
 
 |错误码ID    |错误信息            |
 |-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
 |1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
 |1500007    |message send error|
 |1500008    |CEMS error|
 |1500009    |system error|
@@ -207,7 +206,7 @@ publish(event: string, callback: AsyncCallback\<void>): void
 
 ```ts
 //发布公共事件回调
-function PublishCallBack(err) {
+function publishCallBack(err) {
 	if (err) {
         console.error("publish failed " + JSON.stringify(err));
     } else {
@@ -217,7 +216,7 @@ function PublishCallBack(err) {
 
 //发布公共事件
 try {
-    CommonEventManager.publish("event", PublishCallBack);
+    CommonEventManager.publish("event", publishCallBack);
 } catch(err) {
     console.error('publish failed, catch error' + JSON.stringify(err));
 }
@@ -233,7 +232,7 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 描述                   |
+| 参数名     | 类型                   | 必填 | 说明                   |
 | -------- | ---------------------- | ---- | ---------------------- |
 | event    | string                 | 是   | 表示要发布的公共事件。  |
 | options  | [CommonEventPublishData](#commoneventpublishdata) | 是   | 表示发布公共事件的属性。 |
@@ -242,15 +241,11 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 **错误码：**
 |错误码ID    |错误信息            |
 |-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
 |1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
 |1500007    |message send error|
 |1500008    |CEMS error|
 |1500009    |system error|
+
 
 **示例：**
 
@@ -264,7 +259,7 @@ var options = {
 }
 
 //发布公共事件回调
-function PublishCallBack(err) {
+function publishCallBack(err) {
 	if (err) {
         console.error("publish failed " + JSON.stringify(err));
     } else {
@@ -274,7 +269,7 @@ function PublishCallBack(err) {
 
 //发布公共事件
 try {
-    CommonEventManager.publish("event", options, PublishCallBack);
+    CommonEventManager.publish("event", options, publishCallBack);
 } catch (err) {
     console.error('publish failed, catch error' + JSON.stringify(err));
 }
@@ -294,7 +289,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 描述                               |
+| 参数名     | 类型                 | 必填 | 说明                               |
 | -------- | -------------------- | ---- | ---------------------------------- |
 | event    | string               | 是   | 表示要发送的公共事件。             |
 | userId   | number               | 是   | 表示指定向该用户ID发送此公共事件。 |
@@ -303,12 +298,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 **错误码：**
 |错误码ID    |错误信息            |
 |-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
 |1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
 |1500007    |message send error|
 |1500008    |CEMS error|
 |1500009    |system error|
@@ -317,7 +307,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 
 ```ts
 //发布公共事件回调
-function PublishAsUserCallBack(err) {
+function publishAsUserCallBack(err) {
 	if (err) {
         console.error("publishAsUser failed " + JSON.stringify(err));
     } else {
@@ -330,7 +320,7 @@ var userId = 100;
 
 //发布公共事件
 try {
-    CommonEventManager.publishAsUser("event", userId, PublishAsUserCallBack);
+    CommonEventManager.publishAsUser("event", userId, publishAsUserCallBack);
 } catch (err) {
     console.error('publishAsUser failed, catch error' + JSON.stringify(err));
 }
@@ -350,7 +340,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 描述                   |
+| 参数名     | 类型                   | 必填 | 说明                   |
 | -------- | ---------------------- | ---- | ---------------------- |
 | event    | string                 | 是   | 表示要发布的公共事件。  |
 | userId   | number | 是 | 表示指定向该用户ID发送此公共事件。 |
@@ -360,12 +350,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 **错误码：**
 |错误码ID    |错误信息            |
 |-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
 |1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
 |1500007    |message send error|
 |1500008    |CEMS error|
 |1500009    |system error|
@@ -381,7 +366,7 @@ var options = {
 }
 
 //发布公共事件回调
-function PublishAsUserCallBack(err) {
+function publishAsUserCallBack(err) {
 	if (err) {
         console.error("publishAsUser failed " + JSON.stringify(err));
     } else {
@@ -394,7 +379,7 @@ var userId = 100;
 
 //发布公共事件
 try {
-    CommonEventManager.publishAsUser("event", userId, options, PublishAsUserCallBack);
+    CommonEventManager.publishAsUser("event", userId, options, publishAsUserCallBack);
 } catch (err) {
     console.error('publishAsUser failed, catch error' + JSON.stringify(err));
 }
@@ -412,23 +397,10 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 
 **参数：**
 
-| 名称          | 类型                                                         | 必填 | 描述                       |
+| 参数名          | 类型                                                         | 必填 | 说明                       |
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------- |
 | subscribeInfo | [CommonEventSubscribeInfo](#commoneventsubscribeinfo)        | 是   | 表示订阅信息。             |
 | callback      | AsyncCallback\<[CommonEventSubscriber](#commoneventsubscriber)> | 是   | 表示创建订阅者的回调方法。 |
-
-**错误码：**
-|错误码ID    |错误信息            |
-|-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
-|1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
-|1500007    |message send error|
-|1500008    |CEMS error|
-|1500009    |system error|
 
 **示例：**
 
@@ -442,7 +414,7 @@ var subscribeInfo = {
 };
 
 //创建订阅者回调
-function CreateSubscriberCallBack(err, commonEventSubscriber) {
+function createSubscriberCallBack(err, commonEventSubscriber) {
     if(!err) {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
@@ -453,7 +425,7 @@ function CreateSubscriberCallBack(err, commonEventSubscriber) {
 
 //创建订阅者
 try {
-    CommonEventManager.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
+    CommonEventManager.createSubscriber(subscribeInfo, createSubscriberCallBack);
 } catch (err) {
     console.error('createSubscriber failed, catch error' + JSON.stringify(err));
 }
@@ -471,7 +443,7 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 
 **参数：**
 
-| 名称          | 类型                                                  | 必填 | 描述           |
+| 参数名          | 类型                                                  | 必填 | 说明           |
 | ------------- | ----------------------------------------------------- | ---- | -------------- |
 | subscribeInfo | [CommonEventSubscribeInfo](#commoneventsubscribeinfo) | 是   | 表示订阅信息。 |
 
@@ -479,19 +451,6 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 | 类型                                                      | 说明             |
 | --------------------------------------------------------- | ---------------- |
 | Promise\<[CommonEventSubscriber](#commoneventsubscriber)> | 返回订阅者对象。 |
-
-**错误码：**
-|错误码ID    |错误信息            |
-|-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
-|1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
-|1500007    |message send error|
-|1500008    |CEMS error|
-|1500009    |system error|
 
 **示例：**
 
@@ -529,23 +488,10 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 
 **参数：**
 
-| 名称       | 类型                                                | 必填 | 描述                             |
+| 参数名       | 类型                                                | 必填 | 说明                             |
 | ---------- | ---------------------------------------------------- | ---- | -------------------------------- |
 | subscriber | [CommonEventSubscriber](#commoneventsubscriber)     | 是   | 表示订阅者对象。                 |
 | callback   | AsyncCallback\<[CommonEventData](#commoneventdata)> | 是   | 表示接收公共事件数据的回调函数。 |
-
-**错误码：**
-|错误码ID    |错误信息            |
-|-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
-|1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
-|1500007    |message send error|
-|1500008    |CEMS error|
-|1500009    |system error|
 
 **示例：**
 
@@ -568,7 +514,7 @@ function SubscribeCallBack(err, data) {
 }
 
 //创建订阅者回调
-function CreateSubscriberCallBack(err, commonEventSubscriber) {
+function createSubscriberCallBack(err, commonEventSubscriber) {
     if(!err) {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
@@ -585,7 +531,7 @@ function CreateSubscriberCallBack(err, commonEventSubscriber) {
 
 //创建订阅者
 try {
-    CommonEventManager.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
+    CommonEventManager.createSubscriber(subscribeInfo, createSubscriberCallBack);
 } catch (err) {
     console.error('createSubscriber failed, catch error' + JSON.stringify(err));
 }
@@ -603,23 +549,10 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 
 **参数：**
 
-| 名称       | 类型                                             | 必填 | 描述                     |
+| 参数名       | 类型                                             | 必填 | 说明                     |
 | ---------- | ----------------------------------------------- | ---- | ------------------------ |
 | subscriber | [CommonEventSubscriber](#commoneventsubscriber) | 是   | 表示订阅者对象。         |
 | callback   | AsyncCallback\<void>                            | 否   | 表示取消订阅的回调方法。 |
-
-**错误码：**
-|错误码ID    |错误信息            |
-|-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
-|1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
-|1500007    |message send error|
-|1500008    |CEMS error|
-|1500009    |system error|
 
 **示例：**
 
@@ -630,7 +563,7 @@ var subscribeInfo = {
     events: ["event"]
 };
 //订阅公共事件回调
-function SubscribeCallBack(err, data) {
+function subscribeCallBack(err, data) {
     if (err) {
         console.info("subscribe failed " + JSON.stringify(err));
     } else {
@@ -638,7 +571,7 @@ function SubscribeCallBack(err, data) {
     }
 }
 //创建订阅者回调
-function CreateSubscriberCallBack(err, commonEventSubscriber) {
+function createSubscriberCallBack(err, commonEventSubscriber) {
     if (err) {
         console.info("createSubscriber failed " + JSON.stringify(err));
     } else {
@@ -646,14 +579,14 @@ function CreateSubscriberCallBack(err, commonEventSubscriber) {
         subscriber = commonEventSubscriber;
         //订阅公共事件
         try {
-            CommonEventManager.subscribe(subscriber, SubscribeCallBack);
+            CommonEventManager.subscribe(subscriber, subscribeCallBack);
         } catch(err) {
             console.info("subscribe failed " + JSON.stringify(err));
         }
     }
 }
 //取消订阅公共事件回调
-function UnsubscribeCallBack(err) {
+function unsubscribeCallBack(err) {
     if (err) {
         console.info("unsubscribe failed " + JSON.stringify(err));
     } else {
@@ -662,14 +595,14 @@ function UnsubscribeCallBack(err) {
 }
 //创建订阅者
 try {
-    CommonEventManager.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
+    CommonEventManager.createSubscriber(subscribeInfo, createSubscriberCallBack);
 } catch (err) {
     console.info("createSubscriber failed " + JSON.stringify(err));
 }
 
 //取消订阅公共事件
 try {
-    CommonEventManager.unsubscribe(subscriber, UnsubscribeCallBack);
+    CommonEventManager.unsubscribe(subscriber, unsubscribeCallBack);
 } catch (err) {
     console.info("unsubscribe failed " + JSON.stringify(err));
 }
@@ -687,7 +620,7 @@ getCode(callback: AsyncCallback\<number>): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 描述               |
+| 参数名   | 类型                   | 必填 | 说明               |
 | -------- | ---------------------- | ---- | ------------------ |
 | callback | AsyncCallback\<number> | 是   | 公共事件的结果代码。 |
 
@@ -743,7 +676,7 @@ setCode(code: number, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型                 | 必填 | 描述                   |
+| 参数名   | 类型                 | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
 | code     | number               | 是   | 公共事件的结果代码。   |
 | callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
@@ -774,7 +707,7 @@ setCode(code: number): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 描述               |
+| 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
 | code   | number | 是   | 公共事件的结果代码。 |
 
@@ -806,7 +739,7 @@ getData(callback: AsyncCallback\<string>): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 描述                 |
+| 参数名   | 类型                   | 必填 | 说明                 |
 | -------- | ---------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<string> | 是   | 公共事件的结果数据。 |
 
@@ -862,7 +795,7 @@ setData(data: string, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型                 | 必填 | 描述                 |
+| 参数名   | 类型                 | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
 | data     | string               | 是   | 公共事件的结果数据。   |
 | callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
@@ -893,7 +826,7 @@ setData(data: string): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 描述                 |
+| 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
 | data   | string | 是   | 公共事件的结果数据。 |
 
@@ -925,7 +858,7 @@ setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型                 | 必填 | 描述                   |
+| 参数名   | 类型                 | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
 | code     | number               | 是   | 公共事件的结果代码。   |
 | data     | string               | 是   | 公共事件的结果数据。   |
@@ -957,7 +890,7 @@ setCodeAndData(code: number, data: string): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 描述                 |
+| 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
 | code   | number | 是   | 公共事件的结果代码。 |
 | data   | string | 是   | 公共事件的结果数据。 |
@@ -992,7 +925,7 @@ isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 描述                               |
+| 参数名   | 类型                    | 必填 | 说明                               |
 | -------- | ----------------------- | ---- | ---------------------------------- |
 | callback | AsyncCallback\<boolean> | 是   | 当前公共事件的是否为有序公共事件。 |
 
@@ -1052,7 +985,7 @@ isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 描述                               |
+| 参数名   | 类型                    | 必填 | 说明                               |
 | -------- | ----------------------- | ---- | ---------------------------------- |
 | callback | AsyncCallback\<boolean> | 是   | 当前公共事件的是否为粘性公共事件。 |
 
@@ -1110,7 +1043,7 @@ abortCommonEvent(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型                 | 必填 | 描述                 |
+| 参数名   | 类型                 | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<void> | 是   | 取消当前的公共事件。 |
 
@@ -1166,7 +1099,7 @@ clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型                 | 必填 | 描述                 |
+| 参数名   | 类型                 | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
 
@@ -1222,7 +1155,7 @@ getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 描述                               |
+| 参数名   | 类型                    | 必填 | 说明                               |
 | -------- | ----------------------- | ---- | ---------------------------------- |
 | callback | AsyncCallback\<boolean> | 是   | 表示当前有序公共事件是否取消的状态。 |
 
@@ -1278,7 +1211,7 @@ getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 描述                   |
+| 参数名   | 类型                                                         | 必填 | 说明                   |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------- |
 | callback | AsyncCallback\<[CommonEventSubscribeInfo](#commoneventsubscribeinfo)> | 是   | 表示订阅者的订阅信息。 |
 
@@ -1334,7 +1267,7 @@ finishCommonEvent(callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 描述                              |
+| 参数名   | 类型                  | 必填 | 说明                              |
 | -------- | -------------------- | ---- | -------------------------------- |
 | callback | AsyncCallback\<void> | 是   | 表示有序公共事件结束后的回调函数。 |
 
@@ -1384,37 +1317,37 @@ subscriber.finishCommonEvent().then(() => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 
-| 名称       | 可读 | 可写 | 类型                 | 描述                                                    |
-| ---------- | ---- | ---- | -------------------- | ------------------------------------------------------- |
-| event      | 是  | 否  | string               | 表示当前接收的公共事件名称。                              |
-| bundleName | 是  | 否  | string               | 表示包名称。                                              |
-| code       | 是  | 否  | number               | 表示公共事件的结果代码，用于传递int类型的数据。           |
-| data       | 是  | 否  | string               | 表示公共事件的自定义结果数据，用于传递string类型的数据。 |
-| parameters | 是  | 否  | {[key: string]: any} | 表示公共事件的附加信息。                                  |
+| 名称       | 类型                 | 可读 | 可写 | 说明                                                    |
+| ---------- |-------------------- | ---- | ---- |  ------------------------------------------------------- |
+| event      | string               | 是  | 否  | 表示当前接收的公共事件名称。                              |
+| bundleName | string               | 是  | 否  | 表示包名称。                                              |
+| code       | number               | 是  | 否  | 表示公共事件的结果代码，用于传递int类型的数据。           |
+| data       | string               | 是  | 否  | 表示公共事件的自定义结果数据，用于传递string类型的数据。 |
+| parameters | {[key: string]: any} | 是  | 否  | 表示公共事件的附加信息。                                  |
 
 
 ## CommonEventPublishData
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 
-| 名称                  | 可读 | 可写 | 类型                 | 描述                         |
-| --------------------- | ---- | ---- | -------------------- | ---------------------------- |
-| bundleName            | 是  | 否  | string               | 表示包名称。                   |
-| code                  | 是  | 否  | number               | 表示公共事件的结果代码。       |
-| data                  | 是  | 否  | string               | 表示公共事件的自定义结果数据。 |
-| subscriberPermissions | 是  | 否  | Array\<string>       | 表示订阅者的权限。             |
-| isOrdered             | 是  | 否  | boolean              | 表示是否是有序事件。           |
-| isSticky              | 是  | 否  | boolean              | 表示是否是粘性事件。仅系统应用或系统服务允许发送粘性事件。 |
-| parameters            | 是  | 否  | {[key: string]: any} | 表示公共事件的附加信息。       |
+| 名称                  | 类型                 | 可读 | 可写 | 说明                         |
+| --------------------- | -------------------- | ---- | ---- | ---------------------------- |
+| bundleName            | string               | 是  | 否  | 表示包名称。                   |
+| code                  | number               | 是  | 否  | 表示公共事件的结果代码。       |
+| data                  | string               | 是  | 否  | 表示公共事件的自定义结果数据。 |
+| subscriberPermissions | Array\<string>       | 是  | 否  | 表示订阅者的权限。             |
+| isOrdered             | boolean              | 是  | 否  | 表示是否是有序事件。           |
+| isSticky              | boolean              | 是  | 否  | 表示是否是粘性事件。仅系统应用或系统服务允许发送粘性事件。 |
+| parameters            | {[key: string]: any} | 是  | 否  | 表示公共事件的附加信息。       |
 
 ## CommonEventSubscribeInfo
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 
-| 名称                | 可读 | 可写 | 类型           | 描述                                                         |
-| ------------------- | ---- | ---- | -------------- | ------------------------------------------------------------ |
-| events              | 是  | 否  | Array\<string> | 表示要发送的公共事件。                                         |
-| publisherPermission | 是  | 否  | string         | 表示发布者的权限。                                             |
-| publisherDeviceId   | 是  | 否  | string         | 表示设备ID，该值必须是同一ohos网络上的现有设备ID。             |
-| userId              | 是  | 否  | number         | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
-| priority            | 是  | 否  | number         | 表示订阅者的优先级。值的范围是-100到1000。                     |
+| 名称                | 类型           | 可读 | 可写 | 说明                                                         |
+| ------------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
+| events              | Array\<string> | 是  | 否  | 表示要发送的公共事件。                                         |
+| publisherPermission | string         | 是  | 否  | 表示发布者的权限。                                             |
+| publisherDeviceId   | string         | 是  | 否  | 表示设备ID，该值必须是同一ohos网络上的现有设备ID。             |
+| userId              | number         | 是  | 否  | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
+| priority            | number         | 是  | 否  | 表示订阅者的优先级。值的范围是-100到1000。                     |

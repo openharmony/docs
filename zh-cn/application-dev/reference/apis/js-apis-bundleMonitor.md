@@ -1,14 +1,14 @@
-# Bundle.bundleMonitor模块(JS端sdk接口)
+# @ohos.bundle.bundleMonitor (bundleMonitor模块)
 
 本模块提供监听应用安装，卸载，更新的能力。
 
-> **说明：** 
+> **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
-```javascript
+```ts
 import bundleMonitor from '@ohos.bundle.bundleMonitor';
 ```
 
@@ -18,7 +18,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 | ------------------------------------ | ----------- | ------------------------------ |
 | ohos.permission.LISTEN_BUNDLE_CHANGE | system_core | 可监听应用的安装，卸载，更新。 |
 
-权限等级参考[权限等级说明]([zh-cn/application-dev/security/accesstoken-overview.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md))
+权限等级参考[权限等级说明](../../security/accesstoken-overview.md)
 
 ## BundleChangeInfo
 
@@ -28,8 +28,8 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 | 名称       | 类型   | 可读 | 可写 | 说明                       |
 | ---------- | ------ | ---- | ---- | -------------------------- |
-| bundleName | string | 是   | 否   | 应用状态发生变化的应用包名 |
-| userId     | number | 是   | 否   | 应用状态发生变化的用户id   |
+| bundleName | string | 是   | 否   | 应用状态发生变化的应用包名。 |
+| userId     | number | 是   | 否   | 应用状态发生变化的用户id。   |
 
 ## bundleMonitor.on
 
@@ -37,29 +37,22 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void;
 
 注册监听应用的安装，卸载，更新。
 
-**需要权限：**ohos.permission.LISTEN_BUNDLE_CHANGE
+**需要权限：** ohos.permission.LISTEN_BUNDLE_CHANGE
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
-**系统能力：**SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
 
 | 参数名                       | 类型     | 必填 | 说明               |
 | ---------------------------- | -------- | ---- | ------------------ |
-| BundleChangedEvent           | string   | 是   | 注册监听的事件类型 |
-| Callback\<BundleChangedInfo> | callback | 是   | 注册监听的回调函数 |
-
-**相关错误码**
-
-| 错误码ID | 错误信息                    |
-| -------- | --------------------------- |
-| 201      | Permission denied.          |
-| 401      | The parameter check failed. |
+| BundleChangedEvent           | string   | 是   | 注册监听的事件类型。 |
+| Callback\<BundleChangedInfo> | callback | 是   | 注册监听的回调函数。 |
 
 **示例：**
 
-```js
+```ts
 import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 try {
@@ -77,29 +70,22 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void;
 
 注销监听应用的安装，卸载，更新。
 
-**需要权限：**ohos.permission.LISTEN_BUNDLE_CHANGE
+**需要权限：** ohos.permission.LISTEN_BUNDLE_CHANGE
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
-**系统能力：**SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
 
 | 参数名                       | 类型     | 必填 | 说明                                                       |
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
-| BundleChangedEvent           | string   | 是   | 注销监听的事件类型                                         |
-| Callback\<BundleChangedInfo> | callback | 否   | 注销监听的回调函数，当为空时表示注销当前事件的所有callback |
-
-**相关错误码**
-
-| 错误码ID | 错误信息                    |
-| -------- | --------------------------- |
-| 201      | Permission denied.          |
-| 401      | The parameter check failed. |
+| BundleChangedEvent           | string   | 是   | 注销监听的事件类型。                                         |
+| Callback\<BundleChangedInfo> | callback | 是   | 注销监听的回调函数，当为空时表示注销当前事件的所有callback。 |
 
 **示例：**
 
-```js
+```ts
 import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 try {

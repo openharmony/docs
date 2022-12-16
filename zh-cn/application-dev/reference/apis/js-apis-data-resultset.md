@@ -1,4 +1,4 @@
-# 结果集
+# resultSet (结果集)
 
 结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
 
@@ -27,9 +27,9 @@ promise.then((resultSetV9) => {
 
 ### 属性<sup>9+</sup>
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 名称         | 参数类型            | 必填 | 说明                             |
+| 名称         | 类型            | 必填 | 说明                             |
 | ------------ | ------------------- | ---- | -------------------------------- |
 | columnNames  | Array&lt;string&gt; | 是   | 获取结果集中所有列的名称。       |
 | columnCount  | number              | 是   | 获取结果集中的列数。             |
@@ -565,9 +565,9 @@ promise.then((resultSet) => {
 >
 > 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[属性](#属性9)替代。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | columnNames | Array&lt;string&gt; | 是 | 获取结果集中所有列的名称。 |
 | columnCount | number | 是 | 获取结果集中的列数。 |

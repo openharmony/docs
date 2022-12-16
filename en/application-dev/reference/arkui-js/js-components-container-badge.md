@@ -25,14 +25,14 @@ This component supports only one child component.
 
 In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
-| Name                | Type         | Default Value     | Mandatory  | Description                                      |
-| ------------------ | ----------- | -------- | ---- | ---------------------------------------- |
-| placement          | string      | rightTop | No   | Position of a number or dot badge. Available values are as follows:<br>- **right**: on the right border of the component.<br>- **rightTop**: in the upper right corner of the component border.<br>- **left**: on the left border of the component.|
-| count              | number      | 0        | No   | Number of notifications displayed via the badge. The default value is **0**. If the number of notifications is greater than 0, the badge changes from a dot to the number. If this attribute is not set or the value is less than or equal to 0, the badge is a dot.<br>When the **count** value is greater than the **maxcount** value, *maxcount***+** is displayed. The largest integer value supported for **count** is **2147483647**.|
-| visible            | boolean     | false    | No   | Whether to display the badge. The value **true** means that the badge shows up when a new notification is received. To use a number badge, set the **count** attribute.|
-| maxcount           | number      | 99       | No   | Maximum number of notifications. When the number of new notifications exceeds the value of this attribute, *maxcount***+** is displayed, for example, **99+**.<br>The largest integer value supported for **maxcount** is **2147483647**.|
-| config             | BadgeConfig | -        | No   | Configuration of the badge.                          |
-| label<sup>6+</sup> | string      | -        | No   | Text of the new notification displayed via the badge.<br>When this attribute is set, attributes **count** and **maxcount** do not take effect.|
+| Name              | Type       | Default Value  | Mandatory| Description                                                        |
+| ------------------ | ----------- | -------- | ---- | ------------------------------------------------------------ |
+| placement          | string      | rightTop | No  | Position of a number or dot badge. Available values are as follows:<br>- **right**: on the right border of the component.<br>- **rightTop**: in the upper right corner of the component border.<br>- **left**: on the left border of the component.|
+| count              | number      | 0        | No  | Number of notifications displayed via the badge. If the value is 0 (default value), the badge is not displayed. If the value is greater than 0, the badge is a number badge.<br>When the **count** value is greater than the **maxcount** value, *maxcount***+** is displayed. The largest integer value supported for **count** is **2147483647**.|
+| visible            | boolean     | false    | No  | Whether to display the badge. The value **true** means that the badge shows up when a new notification is received. To use a number badge, also set the **count** attribute.|
+| maxcount           | number      | 99       | No  | Maximum number of notifications. When the number of new notifications exceeds the value of this attribute, *maxcount***+** is displayed, for example, **99+**.<br>The largest integer value supported for **maxcount** is **2147483647**.|
+| config             | BadgeConfig | -        | No  | Configuration of the badge.                                |
+| label<sup>6+</sup> | string      | -        | No  | Text of the new notification displayed via the badge.<br>When this attribute is set, attributes **count** and **maxcount** do not take effect.|
 
 **Table 1** BadgeConfig
 
@@ -110,4 +110,4 @@ export default {
 }
 ```
 
-![figures1](figures/figures1.png)
+![en-us_image_000000117726526811](figures/en-us_image_000000117726526811.png)

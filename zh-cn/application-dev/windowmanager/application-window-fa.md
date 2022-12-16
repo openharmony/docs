@@ -22,21 +22,19 @@
 
 | 实例名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| window静态方法 | create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void | 创建子窗口。<br>此接口仅可在`FA`模型下使用。 |
-| window静态方法 | getTopWindow(callback: AsyncCallback&lt;Window&gt;): void | 获取当前应用内最后显示的窗口。<br/>此接口仅可在`FA`模型下使用。 |
-| window静态方法 | find(id: string, callback: AsyncCallback&lt;Window&gt;): void | 查找`id`所对应的窗口。 |
-| Window | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面内容。 |
-| Window | moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口。 |
-| Window | setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | 设置窗口的背景色。 |
-| Window | setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。 |
-| Window | resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。 |
-| Window | setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口是否全屏显示。 |
-| Window | setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口布局是否为全屏布局。 |
-| Window | setSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | 设置导航栏、状态栏是否显示。 |
-| Window | setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
-| Window | show(callback: AsyncCallback\<void>): void | 显示当前窗口。 |
+| window静态方法 | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | 创建子窗口。<br/>-`config`：创建窗口时的参数。 |
+| window静态方法 | findWindow(id: string, callback: AsyncCallback&lt;Window&gt;): void | 查找`id`所对应的窗口。 |
+| Window | SetUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面内容。 |
+| Window | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口。 |
+| Window | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | 设置窗口的背景色。 |
+| Window | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。 |
+| Window | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。 |
+| Window | setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口布局是否为全屏布局。 |
+| Window | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | 设置导航栏、状态栏是否显示。 |
+| Window | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
+| Window | showWindow(callback: AsyncCallback\<void>): void | 显示当前窗口。 |
 | Window | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | 开启本窗口区域外的点击事件的监听。 |
-| Window | destroy(callback: AsyncCallback&lt;void&gt;): void | 销毁当前窗口。 |
+| Window | destroyWindow(callback: AsyncCallback&lt;void&gt;): void | 销毁当前窗口。 |
 
 
 ## 设置应用子窗口
@@ -48,16 +46,16 @@
 
 1. 创建/获取子窗口对象。
 
-   - 可以通过`window.create`接口创建子窗口。
-   - 可以通过`window.getTopWindow`来获取最后显示的窗口得到子窗口。
-   - 也可以通过`window.find`接口来查找已经创建的窗口从而得到子窗口。
-
-   ```js
+   - 可以通过`window.createWindow`接口创建子窗口。
+   - 也可以通过`window.findWindow`接口来查找已经创建的窗口从而得到子窗口。
+   
+```js
    import window from '@ohos.window';
    
    let windowClass = null;
    // 方式一：创建子窗口。
-   window.create("subWindow", window.WindowType.TYPE_APP, (err, data) => {
+   let config = {name: "subWindow", windowType: window.WindowType.TYPE_APP, ctx: this.context};
+   window.createWindow(config, (err, data) => {
        if (err.code) {
            console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
            return;
@@ -65,17 +63,8 @@
        console.info('Succeeded in creating subWindow. Data: ' + JSON.stringify(data));
        windowClass = data;
    });
-   // 方式二：获取子窗口。
-   window.getTopWindow((err, data) => {
-       if (err.code) {
-           console.error('Failed to get the subWindow. Cause: ' + JSON.stringify(err));
-           return;
-       }
-       console.info('Succeeded in getting subWindow. Data: ' + JSON.stringify(data));
-       windowClass = data;
-   });
-   // 方式三：查找得到子窗口。
-   window.find("subWindow", (err, data) => {
+   // 方式二：查找得到子窗口。
+   window.findWindow("subWindow", (err, data) => {
        if (err.code) {
            console.error('Failed to find the subWindow. Cause: ' + JSON.stringify(err));
            return;
@@ -91,7 +80,7 @@
    
    ```js
    // 移动子窗口位置。
-   windowClass.moveTo(300, 300, (err) => {
+   windowClass.moveWindowTo(300, 300, (err) => {
      if (err.code) {
        console.error('Failed to move the window. Cause:' + JSON.stringify(err));
        return;
@@ -99,7 +88,7 @@
      console.info('Succeeded in moving the window.');
    });
    // 改变子窗口大小。
-   windowClass.resetSize(500, 1000, (err) => {
+   windowClass.resize(500, 500, (err) => {
      if (err.code) {
        console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
        return;
@@ -110,18 +99,18 @@
 
 3. 加载显示子窗口的具体内容。
 
-   使用`loadContent`和`show`接口加载显示子窗口的具体内容。
+   使用`SetUIContent`和`showWindow`接口加载显示子窗口的具体内容。
    
    ```js
    // 为子窗口加载对应的目标页面。
-   windowClass.loadContent("pages/page2", (err) => {
+   windowClass.SetUIContent("pages/page2", (err) => {
        if (err.code) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
        }
        console.info('Succeeded in loading the content.');
        // 显示子窗口。
-       windowClass.show((err) => {
+       windowClass.showWindow((err) => {
         if (err.code) {
                console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
                return;
@@ -133,11 +122,11 @@
    
 4. 销毁子窗口。
 
-   当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用`destroy`接口销毁子窗口。
+   当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用`destroyWindow`接口销毁子窗口。
    
    ```js
    // 销毁子窗口。当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用destroy接口销毁子窗口。
-   windowClass.destroy((err) => {
+   windowClass.destroyWindow((err) => {
        if (err.code) {
            console.error('Failed to destroy the subwindow. Cause:' + JSON.stringify(err));
            return;
@@ -160,14 +149,14 @@
    >
    > 沉浸式能力需要在成功获取应用主窗口对象的前提下进行。
    >
-   > 确保应用内最后显示的窗口为主窗口，然后再使用`window.getTopWindow`接口来获取得到主窗口。
+   > 确保应用内最后显示的窗口为主窗口，然后再使用`window.getLastWindow`接口来获取得到主窗口。
    
    ```js
    import window from '@ohos.window';
    
    let mainWindowClass = null;
    // 获取主窗口。
-   window.getTopWindow((err, data) => {
+   window.getLastWindow((err, data) => {
      if (err.code) {
        console.error('Failed to get the subWindow. Cause: ' + JSON.stringify(err));
        return;
@@ -179,23 +168,14 @@
 
 2. 实现沉浸式效果。有以下三种方式：
 
-   - 方式一：调用`setFullScreen`接口，设置应用主窗口为全屏显示，此时导航栏、状态栏将隐藏，从而达到沉浸式效果。
-   - 方式二：调用`setSystemBarEnable`接口，设置导航栏、状态栏不显示，从而达到沉浸式效果。
-   - 方式三：调用`setLayoutFullScreen`接口，设置应用主窗口为全屏布局；然后调用`setSystemProperties`接口，设置导航栏、状态栏的透明度、背景/文字颜色以及高亮图标等属性，使之保持与主窗口显示协调一致，从而达到沉浸式效果。
+   - 方式一：调用`setWindowSystemBarEnable`接口，设置导航栏、状态栏不显示，从而达到沉浸式效果。
+   - 方式二：调用`setWindowLayoutFullScreen`接口，设置应用主窗口为全屏布局；然后调用`setSystemProperties`接口，设置导航栏、状态栏的透明度、背景/文字颜色以及高亮图标等属性，使之保持与主窗口显示协调一致，从而达到沉浸式效果。
 
    ```js
-   // 实现沉浸式效果。方式一：设置窗口全屏显示。
-   let isFullScreen = true;
-   mainWindowClass.setFullScreen(isFullScreen, (err) => {
-     if (err.code) {
-       console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
-       return;
-     }
-     console.info('Succeeded in enabling the full-screen mode.');
-   });
-   // 实现沉浸式效果。方式二：设置导航栏、状态栏不显示。
+   
+   // 实现沉浸式效果。方式一：设置导航栏、状态栏不显示。
    let names = [];
-   mainWindowClass.setSystemBarEnable(names, (err) => {
+   mainWindowClass.setWindowSystemBarEnable(names, (err) => {
      if (err.code) {
        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
        return;
@@ -203,9 +183,9 @@
      console.info('Succeeded in setting the system bar to be visible.');
    });
    // 实现沉浸式效果。
-   // 方式三：设置窗口为全屏布局，配合设置状态栏、导航栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
+   // 方式二：设置窗口为全屏布局，配合设置状态栏、导航栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
    let isLayoutFullScreen = true;
-   mainWindowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
+   mainWindowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err) => {
      if (err.code) {
        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
        return;
@@ -219,7 +199,7 @@
      statusBarContentColor: '#ffffff',
      navigationBarContentColor: '#ffffff'
    };
-   mainWindowClass.setSystemBarProperties(sysBarProps, (err) => {
+   mainWindowClass.setWindowSystemBarProperties(sysBarProps, (err) => {
      if (err.code) {
        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
        return;
@@ -227,21 +207,21 @@
      console.info('Succeeded in setting the system bar properties.');
    });
    ```
-   
+
 3. 加载显示沉浸式窗口的具体内容。
 
-   使用`loadContent`和`show`接口加载显示沉浸式窗口的具体内容。
+   使用`SetUIContent`和`showWindow`接口加载显示沉浸式窗口的具体内容。
    
    ```js
    // 为沉浸式窗口加载对应的目标页面。
-   mainWindowClass.loadContent("pages/page3", (err) => {
+   mainWindowClass.SetUIContent("pages/page3", (err) => {
        if (err.code) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
        }
        console.info('Succeeded in loading the content.');
        // 显示沉浸式窗口。
-       mainWindowClass.show((err) => {
+       mainWindowClass.showWindow((err) => {
            if (err.code) {
                console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
                return;

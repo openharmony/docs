@@ -1,8 +1,9 @@
-# 系统帐号管理
+# @ohos.account.osAccount (系统帐号管理)
 
 本模块提供管理系统帐号的基础能力，包括系统帐号的添加、删除、查询、设置、订阅、启动等功能。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -37,7 +38,7 @@ getAccountManager(): AccountManager
 
 **系统能力：** SystemCapability.Account.OsAccount。
 
-| 参数   | 默认值 | 说明         |
+| 名称   | 值 | 说明         |
 | ------ | ------ | ----------- |
 | ADMIN  | 0      | 管理员帐号。 |
 | NORMAL | 1      | 普通帐号。   |
@@ -115,7 +116,7 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 
 | 类型                | 说明                                  |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -523,7 +524,7 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 
 | 参数名   | 类型                         | 必填 | 说明                                                            |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| localId  | number                       | 否   | 系统帐号ID。                              |
+| localId  | number                       | 是   | 系统帐号ID。                              |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示指定帐号已验证；返回false表示指定帐号未验证。 |
 
 **错误码：**
@@ -668,7 +669,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 | 类型                | 说明                                  |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -770,7 +771,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 | 类型                | 说明                                 |
 | :------------------ | :----------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -868,7 +869,7 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
 | 类型                | 说明                                  |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2130,7 +2131,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 | -------- | ------------------------- | ---- | ------------ |
 | localId  | number                    | 是   | 系统帐号ID。 |
 | photo    | string                    | 是   | 头像信息。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。   |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果设置成功，err为null，否则为错误对象。  |
 
 **错误码：**
 
@@ -2182,7 +2183,7 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
 | 类型                | 说明                                 |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2381,7 +2382,7 @@ querySerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&gt;): void
 
-订阅系统帐号的变动信息。使用callback异步回调。
+订阅系统帐号的激活完成与激活中的事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2395,7 +2396,7 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'activate' \| 'activating' | 是   | 订阅类型，activate表示订阅的是帐号已激活完成的事件，activating表示订阅的是帐号正在激活的事件。 |
 | name     | string                     | 是   | 订阅名称，可自定义，要求非空且长度不超过1024字节。           |
-| callback | Callback&lt;number&gt;     | 是   | 订阅系统帐号变动信息的回调，表示当前事件对应的系统帐号ID。    |
+| callback | Callback&lt;number&gt;     | 是   | 订阅系统帐号激活完成与激活中的事件回调，表示激活完成后或正在激活中的系统帐号ID。    |
 
 **错误码：**
 
@@ -2423,7 +2424,7 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 
 off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number&gt;): void
 
-取消订阅系统帐号的变动信息。使用callback异步回调。
+取消订阅系统帐号的激活完成与激活中的事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2437,7 +2438,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'activate' \| 'activating' | 是   | 取消订阅类型，activate表示取消订阅帐号已激活完成的事件，activating取消订阅帐号正在激活的事件。 |
 | name     | string                     | 是   | 订阅名称，可自定义，，要求非空且长度不超过1024字节，需要与订阅接口传入的值保持一致。 |
-| callback | Callback&lt;number&gt;     | 否   | 取消订阅系统帐号变化的回调，默认返回0。                      |
+| callback | Callback&lt;number&gt;     | 否   | 取消订阅系统帐号激活完成与激活中的事件回调，默认返回0。                      |
 
 **错误码：**
 
@@ -2715,9 +2716,9 @@ isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断是否支持多系统帐号。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkMultiOsAccountEnabled](#checkmultiosaccountenabled9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkMultiOsAccountEnabled](#checkmultiosaccountenabled9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2746,9 +2747,9 @@ isMultiOsAccountEnable(): Promise&lt;boolean&gt;
 
 判断是否支持多系统帐号。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkMultiOsAccountEnabled](#checkmultiosaccountenabled9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkMultiOsAccountEnabled](#checkmultiosaccountenabled9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2776,9 +2777,9 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 
 判断指定系统帐号是否处于激活状态。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃, 建议使用[checkOsAccountActivated](#checkosaccountactivated9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持从API version 9开始废弃, 建议使用[checkOsAccountActivated](#checkosaccountactivated9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -2811,9 +2812,9 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 
 判断指定系统帐号是否处于激活状态。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃, 建议使用[checkOsAccountActivated](#checkosaccountactivated9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持从API version 9开始废弃, 建议使用[checkOsAccountActivated](#checkosaccountactivated9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -2849,9 +2850,9 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 
 判断指定系统帐号是否具有指定约束。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkConstraintEnabled](#checkconstraintenabled9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkConstraintEnabled](#checkconstraintenabled9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -2886,9 +2887,9 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 
 判断指定系统帐号是否具有指定约束。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkConstraintEnabled](#checkconstraintenabled9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkConstraintEnabled](#checkconstraintenabled9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -2926,9 +2927,9 @@ isTestOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 
 检查当前系统帐号是否为测试帐号。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkOsAccountTestable](#checkosaccounttestable9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountTestable](#checkosaccounttestable9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2957,9 +2958,9 @@ isTestOsAccount(): Promise&lt;boolean&gt;
 
 检查当前系统帐号是否为测试帐号。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkOsAccountTestable](#checkosaccounttestable9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountTestable](#checkosaccounttestable9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2986,9 +2987,9 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 检查当前系统帐号是否已验证。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkOsAccountVerified](#checkosaccountverified9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3019,9 +3020,9 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 检查指定系统帐号是否已验证。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkOsAccountVerified](#checkosaccountverified9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3031,7 +3032,7 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 | 参数名   | 类型                         | 必填 | 说明                                                            |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| localId  | number                       | 否   | 系统帐号ID。                             |
+| localId  | number                       | 是   | 系统帐号ID。                             |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示指定帐号已验证；返回false表示指定帐号未验证。 |
 
 **示例：**
@@ -3054,9 +3055,9 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 检查指定系统帐号是否已验证。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkOsAccountVerified](#checkosaccountverified9-2)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9-2)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3091,9 +3092,9 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 
 获取已创建的系统帐号数量。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getOsAccountCount](#getosaccountcount9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3124,9 +3125,9 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
 
 获取已创建的系统帐号数量，使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getOsAccountCount](#getosaccountcount9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3155,9 +3156,9 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
 
 获取当前进程所属的系统帐号ID，使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdFromProcess](#queryosaccountlocalidfromprocess9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromProcess](#queryosaccountlocalidfromprocess9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3186,9 +3187,9 @@ getOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
 
 获取当前进程所属的系统帐号ID，使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdFromProcess](#queryosaccountlocalidfromprocess9-1)
+> **说明：**
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromProcess](#queryosaccountlocalidfromprocess9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3215,9 +3216,9 @@ getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): 
 
 根据uid查询对应的系统帐号ID。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdFromUid](#queryosaccountlocalidfromuid9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromUid](#queryosaccountlocalidfromuid9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3248,9 +3249,9 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 
 根据uid查询对应的系统帐号ID，使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdFromUid](#queryosaccountlocalidfromuid9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromUid](#queryosaccountlocalidfromuid9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3284,9 +3285,9 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 
 根据域帐号信息，获取与其关联的系统帐号的帐号ID。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdFromDomain](#queryosaccountlocalidfromdomain9)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromDomain](#queryosaccountlocalidfromdomain9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3319,9 +3320,9 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
 
 根据域帐号信息，获取与其关联的系统帐号的帐号ID。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdFromDomain](#queryosaccountlocalidfromdomain9-1)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromDomain](#queryosaccountlocalidfromdomain9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3357,9 +3358,9 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 
 获取指定系统帐号的全部约束。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getOsAccountConstraints](#getosaccountconstraints9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountConstraints](#getosaccountconstraints9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3387,9 +3388,9 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 
 getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-> **说明：** 从API version 9开始废弃，建议使用[getOsAccountConstraints](#getosaccountconstraints9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountConstraints](#getosaccountconstraints9-1)。
 
 获取指定系统帐号的全部约束。使用Promise异步回调。
 
@@ -3427,9 +3428,9 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
 
 查询当前处于激活状态的系统帐号的ID列表。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getActivatedOsAccountIds](#getactivatedosaccountids9)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getActivatedOsAccountIds](#getactivatedosaccountids9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3456,9 +3457,9 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
 
 queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 
-> **说明：** 从API version 9开始废弃，建议使用[getActivatedOsAccountIds](#getactivatedosaccountids9-1)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getActivatedOsAccountIds](#getactivatedosaccountids9-1)。
 
 查询当前处于激活状态的系统帐号的ID列表。使用Promise异步回调。
 
@@ -3487,9 +3488,9 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 查询当前进程所属的系统帐号的信息。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getCurrentOsAccount](#getcurrentosaccount9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getCurrentOsAccount](#getcurrentosaccount9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3517,9 +3518,9 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 查询当前进程所属的系统帐号的信息。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getCurrentOsAccount](#getcurrentosaccount9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getCurrentOsAccount](#getcurrentosaccount9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3548,9 +3549,9 @@ getOsAccountTypeFromProcess(callback: AsyncCallback&lt;OsAccountType&gt;): void
 
 查询当前进程所属的系统帐号的帐号类型。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getOsAccountType](#getosaccounttype9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountType](#getosaccounttype9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3576,9 +3577,9 @@ getOsAccountTypeFromProcess(): Promise&lt;OsAccountType&gt;
 
 查询当前进程所属的系统帐号的帐号类型。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getOsAccountType](#getosaccounttype9-1)
+> **说明：**
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountType](#getosaccounttype9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3605,9 +3606,9 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 获取分布式虚拟设备ID。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9)。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 或 ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3635,9 +3636,9 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 获取分布式虚拟设备ID。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9-1)。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 或 ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3666,9 +3667,9 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&
 
 通过SN码查询与其关联的系统帐号的帐号ID。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdBySerialNumber](#queryosaccountlocalidbyserialnumber9)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdBySerialNumber](#queryosaccountlocalidbyserialnumber9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3696,9 +3697,9 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 通过SN码查询与其关联的系统帐号的帐号ID。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdBySerialNumber](#queryosaccountlocalidbyserialnumber9-1)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdBySerialNumber](#queryosaccountlocalidbyserialnumber9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3732,9 +3733,9 @@ getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;nu
 
 通过系统帐号ID获取与该系统帐号关联的SN码。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[querySerialNumberByOsAccountLocalId](#queryserialnumberbyosaccountlocalid9)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[querySerialNumberByOsAccountLocalId](#queryserialnumberbyosaccountlocalid9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3762,9 +3763,9 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 通过系统帐号ID获取与该系统帐号关联的SN码。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[querySerialNumberByOsAccountLocalId](#queryserialnumberbyosaccountlocalid9-1)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[querySerialNumberByOsAccountLocalId](#queryserialnumberbyosaccountlocalid9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3985,7 +3986,7 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;): void;
+setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): void;
 
 设置可用于初始化算法的属性。使用callback异步回调。
 
@@ -4000,7 +4001,7 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;):
 | 参数名    | 类型                                                  | 必填 | 说明                                                                    |
 | -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------------------------- |
 | request  | [SetPropertyRequest](#setpropertyrequest8)| 是   | 请求信息，包括认证类型和要设置的密钥值。                                   |
-| callback | AsyncCallback&lt;number&gt;                           | 是   | 回调函数。如果设置成功，err为null，data为一个[数值](#resultcode8)，指示属性设置是否成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt;                           | 是   | 回调函数。如果设置成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -4018,9 +4019,12 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;):
     setInfo: new Uint8Array([0])
   };
   try {
-    userAuth.setProperty(request, (err, result) => {
-        console.log('setProperty error = ' + JSON.stringify(err));
-        console.log('setProperty result = ' + JSON.stringify(result));
+    userAuth.setProperty(request, (err) => {
+      if (err) {
+        console.log('setProperty failed, error = ' + JSON.stringify(err));
+      } else {
+        console.log('setProperty successfully');
+      }
     });
   } catch (e) {
     console.log('setProperty exception = ' + JSON.stringify(e));
@@ -4029,7 +4033,7 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;):
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
+setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
 
 设置可用于初始化算法的属性。使用Promise异步回调。
 
@@ -4049,7 +4053,7 @@ setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
 
 | 类型                  | 说明                                                           |
 | :-------------------- | :------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise对象，返回一个[数值](#resultcode8)，指示属性设置是否成功。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4067,10 +4071,10 @@ setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
     setInfo: new Uint8Array([0])
   };
   try {
-    userAuth.setProperty(request).then((result) => {
-      console.log('setProperty result = ' + JSON.stringify(result));
+    userAuth.setProperty(request).then(() => {
+      console.log('setProperty successfully');
     }).catch((err) => {
-      console.log('setProperty error = ' + JSON.stringify(err));
+      console.log('setProperty failed, error = ' + JSON.stringify(err));
     });
   } catch (e) {
     console.log('setProperty exception = ' + JSON.stringify(e));
@@ -4240,7 +4244,7 @@ cancelAuth(contextID: Uint8Array): void;
 
 ## PINAuth<sup>8+</sup>
 
-Pin码认证功能基类。
+PIN码认证基类。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4248,7 +4252,7 @@ Pin码认证功能基类。
 
 constructor()
 
-创建Pin码认证的实例。
+创建PIN码认证的实例。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4277,17 +4281,12 @@ registerInputer(inputer: IInputer): void;
 | ----------| ----------------------- | --- | -------------------------- |
 | inputer   | [IInputer](#iinputer8)  | 是  | PIN码输入器，用于获取PIN码。 |
 
-**返回值：**
-
-| 类型    | 说明                                           |
-| :------ | :-------------------------------------------- |
-| boolean | 返回布尔值，true表示注册成功，false表示注册失败。 |
-
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 12300001 | System service exception. |
+| 12300102 | Invalid inputer. |
 | 12300103 | Inputer already registered. |
 
 **示例：**
@@ -4296,8 +4295,8 @@ registerInputer(inputer: IInputer): void;
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
     let result = pinAuth.registerInputer({
-        onGetData: (pinSubType, callback) => {
-          callback.onSetData(pinSubType, password);
+        onGetData: (authSubType, callback) => {
+          callback.onSetData(authSubType, password);
         }
     });
     console.log('registerInputer result = ' + result);
@@ -4322,6 +4321,91 @@ unregisterInputer(): void;
   ```js
   let pinAuth = new account_osAccount.PINAuth();
   pinAuth.unregisterInputer();
+  ```
+
+### InputerManager <sup>10+</sup>
+
+凭据输入管理器。
+
+### registerInputer<sup>10+</sup>
+
+registerInputer(authType: AuthType, inputer: IInputer): void;
+
+注册凭据输入器。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL 或 ohos.permission.MANAGE_USER_IDM
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                      |
+| ----------| ----------------------- | --- | -------------------------- |
+| authType   | [AuthType](#authtype8)  | 是  | 认证类型。 |
+| inputer   | [IInputer](#iinputer8)  | 是  | 凭据输入器，用于获取凭据。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300102 | Invalid authType or inputer. |
+| 12300103 | The credential inputer has been registered. |
+| 12300106 | Unsupported authType. |
+
+**示例：**
+  ```js
+  let inputerMgr = new account_osAccount.InputerManager();
+  let authType = account_osAccount.AuthType.DOMAIN;
+  let password = new Uint8Array([0, 0, 0, 0, 0]);
+  try {
+    InputerMgr.registerInputer(authType, {
+        onGetData: (authSubType, callback) => {
+          callback.onSetData(authSubType, password);
+        }
+    });
+    console.log('registerInputer success.');
+  } catch (e) {
+    console.log('registerInputer exception = ' + JSON.stringify(e));
+  }
+  ```
+
+### unregisterInputer<sup>10+</sup>
+
+unregisterInputer(authType: AuthType): void;
+
+解注册凭据输入器。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL 或 ohos.permission.MANAGE_USER_IDM
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                      |
+| ----------| ----------------------- | --- | -------------------------- |
+| authType   | [AuthType](#authtype8)  | 是  | 认证类型。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300002  | Invalid authType. |
+
+**示例：**
+  ```js
+  let inputerMgr = new account_osAccount.InputerManager();
+  let authType = account_osAccount.AuthType.DOMAIN;
+  try {
+    inputerMgr.unregisterInputer(authType);
+    console.log('unregisterInputer success.');
+  } catch(err) {
+    console.log("unregisterInputer err:" + JSON.stringify(err));
+  }
   ```
 
 ## UserIdentityManager<sup>8+</sup>
@@ -4453,8 +4537,8 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let pinAuth = new account_osAccount.PINAuth();
   pinAuth.registerInputer({
-    onGetData: (pinSubType, callback) => {
-      callback.onSetData(pinSubType, password);
+    onGetData: (authSubType, callback) => {
+      callback.onSetData(authSubType, password);
     }
   });
   let credentialInfo = {
@@ -4467,12 +4551,12 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
     try {
     userIDM.addCredential(credentialInfo, {
       onResult: (result, extraInfo) => {
-        console.log('updateCredential result = ' + result);
-        console.log('updateCredential extraInfo = ' + extraInfo);
+        console.log('addCredential result = ' + result);
+        console.log('addCredential extraInfo = ' + extraInfo);
       }
     });
     } catch (e) {
-      console.log('updateCredential exception = ' + JSON.stringify(e));
+      console.log('addCredential exception = ' + JSON.stringify(e));
     }
   });
   ```
@@ -4517,8 +4601,8 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
     token: null
   };
   pinAuth.registerInputer({
-    onGetData: (pinSubType, callback) => {
-      callback.onSetData(pinSubType, password);
+    onGetData: (authSubType, callback) => {
+      callback.onSetData(authSubType, password);
     }
   });
   userIDM.openSession((err, challenge) => {
@@ -4817,7 +4901,7 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 
 ### onSetData<sup>8+</sup>
 
-onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
+onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
 
 **系统接口：** 此接口为系统接口。
 
@@ -4829,7 +4913,7 @@ onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
 
 | 参数名      | 类型                                     | 必填 | 说明                                            |
 | ---------- | ---------------------------------------- | ---- | ----------------------------------------------- |
-| pinSubType | [AuthSubType](#authsubtype8)             | 是   | 用于认证的凭据子类型。                            |
+| authSubType | [AuthSubType](#authsubtype8)             | 是   | 用于认证的凭据子类型。                            |
 | data       | Uint8Array                               | 是   | 要设置的数据是凭据，用来在认证、添加、修改凭据操作。 |
 
 **示例：**
@@ -4837,11 +4921,11 @@ onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
   let inputer = {
-    onGetData: (pinSubType, callback) => {
-        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
-          callback.onSetData(pinSubType, passwordNumber);
+    onGetData: (authSubType, callback) => {
+        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(authSubType, passwordNumber);
         } else {
-          callback.onSetData(pinSubType, password);
+          callback.onSetData(authSubType, password);
         }
     }
   };
@@ -4849,13 +4933,13 @@ onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
 
 ## IInputer<sup>8+</sup>
 
-密码输入框回调。
+凭据输入器回调。
 
 **系统接口：** 此接口为系统接口。
 
 ### onGetData<sup>8+</sup>
 
-onGetData: (pinSubType: AuthSubType, callback: IInputData) => void;
+onGetData: (authSubType: AuthSubType, callback: IInputData) => void;
 
 通知获取数据。
 
@@ -4874,11 +4958,11 @@ onGetData: (pinSubType: AuthSubType, callback: IInputData) => void;
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
   let inputer = {
-    onGetData: (pinSubType, callback) => {
-        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
-          callback.onSetData(pinSubType, passwordNumber);
+    onGetData: (authSubType, callback) => {
+        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(authSubType, passwordNumber);
         } else {
-          callback.onSetData(pinSubType, password);
+          callback.onSetData(authSubType, password);
         }
     }
   };
@@ -4974,7 +5058,7 @@ onResult: (result: number, extraInfo: RequestResult) => void;
 | 参数名     | 类型                                    | 必填 | 说明                     |
 | --------- | --------------------------------------- | ---- | ----------------------- |
 | result    | number                                  | 是   | 表示身份认证结果代码。    |
-| extraInfo | [AuthResult](#authresult8)  | 是   | 针对不同情况传递具体信息。|
+| extraInfo | [RequestResult](#requestresult8)  | 是   | 针对不同情况传递具体信息。|
 
 **示例：**
   ```js
@@ -5027,7 +5111,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数名    | 类型                                                          | 必填   | 说明                   |
+| 名称    | 类型                                                          | 必填   | 说明                   |
 | -------- | ------------------------------------------------------------- | ----- | ----------------------- |
 | authType | [AuthType](#authtype8)                            | 是    | 身份验证凭据类型。        |
 | keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | 是    | 指示要获取的属性类型数组。 |
@@ -5040,7 +5124,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数名    | 类型                                             | 必填   | 说明                 |
+| 名称    | 类型                                             | 必填   | 说明                 |
 | -------- | ------------------------------------------------ | ----- | -------------------- |
 | authType | [AuthType](#authtype8)               | 是    | 身份验证凭据类型。     |
 | key     | [SetPropertyType](#setpropertytype8) | 是    | 指示要设置的属性类型。 |
@@ -5054,7 +5138,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数名        | 类型                                     | 必填   | 说明              |
+| 名称        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ----------------- |
 | result       | number                                   | 是    | 指示结果。         |
 | authSubType  | [AuthSubType](#authsubtype8) | 是    | 指示认证凭据子类型。|
@@ -5069,7 +5153,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数名        | 类型        | 必填   | 说明              |
+| 名称        | 类型        | 必填   | 说明              |
 | ------------ | ----------- | ----- | ----------------- |
 | token        | Uint8Array  | 否    | 指示认证令牌。     |
 | remainTimes  | number      | 否    | 指示剩余时间。     |
@@ -5083,7 +5167,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数名        | 类型                                     | 必填   | 说明              |
+| 名称        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ----------------- |
 | credType     | [AuthType](#authtype8)       | 是    | 指示凭据类型。     |
 | credSubType  | [AuthSubType](#authsubtype8) | 是    | 指示凭据子类型。   |
@@ -5097,7 +5181,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数名        | 类型        | 必填   | 说明              |
+| 名称        | 类型        | 必填   | 说明              |
 | ------------ | ----------- | ----- | ----------------- |
 | credentialId | Uint8Array  | 否    | 指示凭据索引。     |
 
@@ -5109,7 +5193,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数名        | 类型                                     | 必填   | 说明              |
+| 名称        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ------------------- |
 | credentialId | Uint8Array                               | 是    | 指示凭据索引。       |
 | authType     | [AuthType](#authtype8)       | 是    | 指示认证凭据类型。   |
@@ -5124,7 +5208,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数           | 默认值 | 说明      |
+| 名称           | 值 | 说明      |
 | ------------- | ------ | --------- |
 | AUTH_SUB_TYPE | 1      | 认证子类型。 |
 | REMAIN_TIMES  | 2      | 剩余时间。   |
@@ -5138,7 +5222,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数           | 默认值 | 说明        |
+| 名称           | 值 | 说明        |
 | -------------- | ----- | ----------- |
 | INIT_ALGORITHM | 1     | 初始化算法。 |
 
@@ -5150,10 +5234,12 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数  | 默认值 | 说明             |
+| 名称  | 值 | 说明             |
 | ----- | ----- | ---------------- |
-| PIN   | 1     | 指示PIN认证类型。 |
-| FACE  | 2     | 指示脸部认证类型。|
+| PIN   | 1     | 表示PIN认证类型。 |
+| FACE  | 2     | 表示脸部认证类型。|
+| FINGERPRINT<sup>10+</sup>   | 4     | 表示指纹认证类型。 |
+| DOMAIN<sup>10+</sup>  | 1024     | 表示域认证类型。|
 
 ## AuthSubType<sup>8+</sup>
 
@@ -5163,13 +5249,14 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数       | 默认值 | 说明               |
+| 名称       | 值 | 说明               |
 | ---------- | ----- | ------------------ |
 | PIN_SIX    | 10000 | 表示6位凭证。       |
 | PIN_NUMBER | 10001 | 表示自定义数字凭证。 |
 | PIN_MIXED  | 10002 | 表示自定义混合凭据。 |
-| FACE_2D    | 20000 | 指示2D 人脸凭证。   |
-| FACE_3D    | 20001 | 指示3D 人脸凭证。   |
+| FACE_2D    | 20000 | 表示2D 人脸凭证。   |
+| FACE_3D    | 20001 | 表示3D 人脸凭证。   |
+| DOMAIN_MIXED<sup>10+</sup>    | 10240001 | 表示域认证混合凭证。   |
 
 ## AuthTrustLevel<sup>8+</sup>
 
@@ -5179,7 +5266,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数  | 默认值 | 说明        |
+| 名称  | 值 | 说明        |
 | ---- | ------ | ----------- |
 | ATL1 | 10000  | 信任级别 1。 |
 | ATL2 | 20000  | 信任级别 2。 |
@@ -5194,7 +5281,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数       | 默认值 | 说明                     |
+| 名称       | 值 | 说明                     |
 | --------- | ------ | ------------------------ |
 | FACE_AUTH | 1      | 表示从人脸认证获取的信息。 |
 
@@ -5206,7 +5293,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数                    | 默认值 | 说明                                     |
+| 名称                    | 值 | 说明                                     |
 | ----------------------- | ----- | ---------------------------------------- |
 | SUCCESS                 | 0     | 表示身份验证成功或支持此功能。             |
 | FAIL                    | 1     | 表示验证器无法识别用户。                   |
@@ -5228,7 +5315,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数                          | 默认值 | 说明                                     |
+| 名称                          | 值 | 说明                                     |
 | ----------------------------- | ----- | ---------------------------------------- |
 | FACE_AUTH_TIP_TOO_BRIGHT      | 1     | 表示由于高照明，获得的面部图像太亮。         |
 | FACE_AUTH_TIP_TOO_DARK        | 2     | 表示由于照明度低，获得的面部图像太暗。       |
@@ -5250,7 +5337,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数                          | 默认值 | 说明                                            |
+| 名称                          | 值 | 说明                                            |
 | ----------------------------- | ----- | ----------------------------------------------- |
 | FINGERPRINT_TIP_GOOD          | 0     | 表明采集的图像良好。                              |
 | FINGERPRINT_TIP_IMAGER_DIRTY  | 1     | 表示由于传感器上可疑或检测到污垢，指纹图像噪声过大。 |
@@ -5265,7 +5352,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
 
-| 参数名                         | 类型                                                         | 必填 | 说明                              |
+| 名称                         | 类型                                                         | 必填 | 说明                              |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------- |
 | localId                        | number                                                       | 是   | 系统帐号ID。                      |
 | localName                      | string                                                       | 是   | 系统帐号名称。                    |
@@ -5287,7 +5374,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
 
-| 参数名      | 类型   | 必填 | 说明       |
+| 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | 是   | 域名。     |
 | accountName | string | 是   | 域帐号名。 |
@@ -5368,7 +5455,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
 
-| 参数名      | 类型   | 必填 | 说明       |
+| 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | localId      | number | 是   | 系统帐号ID     |
 | type | [ConstraintSourceType](#constraintsourcetype) | 是   | 约束来源类型 |
@@ -5381,7 +5468,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
 
-| 参数   | 默认值 | 说明         |
+| 名称   | 值 | 说明         |
 | ------ | ------ | ------------ |
 | CONSTRAINT_NOT_EXIST  | 0      | 约束不存在 |
 | CONSTRAINT_TYPE_BASE | 1      | 约束源自系统设置   |

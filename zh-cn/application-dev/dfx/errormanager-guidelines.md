@@ -45,31 +45,32 @@ var callback = {
         console.log(errMsg);
     }
 }
+
 export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
         console.log("[Demo] MainAbility onCreate")
+        registerId = errorManager.registerErrorObserver(callback);
         globalThis.abilityWant = want;
     }
 
     onDestroy() {
         console.log("[Demo] MainAbility onDestroy")
+        errorManager.unregisterErrorObserver(registerId, (result) => {
+            console.log("[Demo] result " + result.code + ";" + result.message)
+        });
     }
 
     onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
         console.log("[Demo] MainAbility onWindowStageCreate")
 
-        globalThis.registerObserver = (() => {
-            registerId = errorManager.registerErrorObserver(callback);
-        })
-
-        globalThis.unRegisterObserver = (() => {
-            errorManager.unregisterErrorObserver(registerId, (result) => {
-                console.log("[Demo] result " + result.code + ";" + result.message)
-            });
-        })
-
-        windowStage.setUIContent(this.context, "pages/index", null)
+        windowStage.loadContent("pages/index", (err, data) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+        });
     }
 
     onWindowStageDestroy() {

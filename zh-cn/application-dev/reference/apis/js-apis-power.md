@@ -1,8 +1,9 @@
-# 系统电源管理
+# @ohos.power (系统电源管理)
 
 该模块主要提供重启、关机、查询屏幕状态等接口。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -87,7 +88,7 @@ try {
 
 isActive(): boolean
 
-检测当前设备是否处于活动状态。
+检测当前设备是否处于活动状态。有屏的设备为亮屏状态，无屏的设备为非休眠状态。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -177,8 +178,6 @@ try {
 getPowerMode(): DevicePowerMode
 
 获取当前设备的电源模式。
-
-**需要权限：** ohos.permission.POWER_OPTIMIZATION
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -375,9 +374,9 @@ power.isScreenOn()
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
-| 名称                    | 默认值 | 描述                   |
-| ----------------------- | ------ | ---------------------- |
-| MODE_NORMAL             | 600    | 表示标准模式，默认值。 |
-| MODE_POWER_SAVE         | 601    | 表示省电模式。         |
-| MODE_PERFORMANCE        | 602    | 表示性能模式。         |
-| MODE_EXTREME_POWER_SAVE | 603    | 表示超级省电模式。     |
+| 名称                    | 值   | 说明                   |
+| ----------------------- | ---- | ---------------------- |
+| MODE_NORMAL             | 600  | 表示标准模式，默认值。 |
+| MODE_POWER_SAVE         | 601  | 表示省电模式。         |
+| MODE_PERFORMANCE        | 602  | 表示性能模式。         |
+| MODE_EXTREME_POWER_SAVE | 603  | 表示超级省电模式。     |

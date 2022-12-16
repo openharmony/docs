@@ -6,7 +6,6 @@
 
 是递归删除。
 
-
 ## 如何实现如果文件不存在则创建文件
 
 适用于：OpenHarmony SDK 3.2.6.3版本，API9 Stage模型
@@ -63,7 +62,7 @@ async function readFile(path) {
 
 适用于：OpenHarmony SDK 3.2.5.3版本，API9 Stage模型
 
-getAlbums方法需要权限：ohos.permission.READ_MEDIA，从[OpenHarmony权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查询知道ohos.permission.READ_MEDIA权限是需要用户授权。
+getAlbums方法需要权限：ohos.permission.READ_MEDIA，从[OpenHarmony权限定义列表](../security/permission-list.md)查询知道ohos.permission.READ_MEDIA权限是需要用户授权。
 
 1. 在module.json5中配置权限：
      

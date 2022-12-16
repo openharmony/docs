@@ -1,4 +1,4 @@
-# 线性容器ArrayList
+# @ohos.util.ArrayList (线性容器ArrayList)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -51,11 +51,6 @@ ArrayList的构造函数。
 
 ```ts
 let arrayList = new ArrayList();
-try {
-  let arrayList2 = ArrayList();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -89,21 +84,16 @@ add(element: T): boolean
 
 **示例：**
 
-  ```ts
-  let arrayList = new ArrayList();
-  let result = arrayList.add("a");
-  let result1 = arrayList.add(1);
-  let b = [1, 2, 3];
-  let result2 = arrayList.add(b);
-  let c = {name: "Dylon", age: "13"};
-  let result3 = arrayList.add(c);
-  let result4 = arrayList.add(false);
-  try {
-    arrayList.add.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-  } catch(err) {
-    console.log(`${err.code} - ${err.name} - ${err.message}`);
-  }
-  ```
+```ts
+let arrayList = new ArrayList();
+let result = arrayList.add("a");
+let result1 = arrayList.add(1);
+let b = [1, 2, 3];
+let result2 = arrayList.add(b);
+let c = {name: "Dylon", age: "13"};
+let result3 = arrayList.add(c);
+let result4 = arrayList.add(false);
+```
 
 ### insert
 
@@ -127,7 +117,7 @@ insert(element: T, index: number): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The insert method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
@@ -136,21 +126,6 @@ let arrayList = new ArrayList();
 arrayList.insert("A", 0);
 arrayList.insert(0, 1);
 arrayList.insert(true, 2);
-try {
-  arrayList.insert.bind({}, 1, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  let res = arrayList.insert(8, 11); // 测试越界异常
-} catch (err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  let res = arrayList.insert("a", "b"); // 测试类型异常
-} catch (err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### has
@@ -188,11 +163,6 @@ let arrayList = new ArrayList();
 let result = arrayList.has("squirrel");
 arrayList.add("squirrel");
 let result1 = arrayList.has("squirrel");
-try {
-  arrayList.has.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getIndexOf
@@ -235,11 +205,6 @@ arrayList.add(1);
 arrayList.add(2);
 arrayList.add(4);
 let result = arrayList.getIndexOf(2);
-try {
-  arrayList.getIndexOf.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getLastIndexOf
@@ -282,11 +247,6 @@ arrayList.add(1);
 arrayList.add(2);
 arrayList.add(4);
 let result = arrayList.getLastIndexOf(2);
-try {
-  arrayList.getLastIndexOf.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### removeByIndex
@@ -316,7 +276,7 @@ removeByIndex(index: number): T
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeByIndex method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
@@ -328,21 +288,6 @@ arrayList.add(5);
 arrayList.add(2);
 arrayList.add(4);
 let result = arrayList.removeByIndex(2);
-try {
-  arrayList.removeByIndex.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  arrayList.removeByIndex("a"); // 测试类型异常
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  arrayList.removeByIndex(8); // 测试越界异常
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### remove
@@ -382,11 +327,6 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result = arrayList.remove(2);
-try {
-  arrayList.remove.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### removeByRange
@@ -411,7 +351,7 @@ removeByRange(fromIndex: number, toIndex: number): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeByRange method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
@@ -422,21 +362,11 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.removeByRange(2, 4);
-try {
-  arrayList.removeByRange.bind({}, 2, 4)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  arrayList.removeByRange(8, 4); // 测试越界异常
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### replaceAllElements
 
-replaceAllElements(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => T,
+replaceAllElements(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => T,
 thisArg?: Object): void
 
 用户操作ArrayList中的元素，用操作后的元素替换原元素并返回操作后的元素。
@@ -447,7 +377,7 @@ thisArg?: Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -480,18 +410,11 @@ arrayList.replaceAllElements((value: number, index: number)=> {
 arrayList.replaceAllElements((value: number, index: number) => {
   return value = value - 2;
 });
-try {
-  arrayList.replaceAllElements.bind({}, (value: number, index: number)=> {
-    return value = 2 * value;
-  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
 thisArg?: Object): void
 
 通过回调函数来遍历ArrayList实例对象上的元素以及元素对应的下标。
@@ -502,7 +425,7 @@ thisArg?: Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -532,13 +455,6 @@ arrayList.add(4);
 arrayList.forEach((value, index) => {
   console.log(`value:${value}`, index);
 });
-try {
-  arrayList.forEach.bind({}, (value, index) => {
-    console.log(`value:${value}`, index);
-  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### sort
@@ -581,11 +497,6 @@ arrayList.add(4);
 arrayList.sort((a: number, b: number) => a - b);
 arrayList.sort((a: number, b: number) => b - a);
 arrayList.sort();
-try {
-  arrayList.sort.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### subArrayList
@@ -616,7 +527,7 @@ subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The subArrayList method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
@@ -629,16 +540,6 @@ arrayList.add(4);
 let result1 = arrayList.subArrayList(2, 4);
 let result2 = arrayList.subArrayList(4, 3);
 let result3 = arrayList.subArrayList(2, 6);
-try {
-  arrayList.subArrayList.bind({}, 2, 4)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  arrayList.subArrayList(6, 4);
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### clear
@@ -666,11 +567,6 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.clear();
-try {
-  arrayList.clear.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### clone
@@ -705,11 +601,6 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result = arrayList.clone();
-try {
-  arrayList.clone.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getCapacity
@@ -743,11 +634,6 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result = arrayList.getCapacity();
-try {
-  arrayList.getCapacity.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### convertToArray
@@ -781,11 +667,6 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result = arrayList.convertToArray();
-try {
-  arrayList.convertToArray.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### isEmpty
@@ -819,11 +700,6 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result = arrayList.isEmpty();
-try {
-  arrayList.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### increaseCapacityTo
@@ -858,11 +734,6 @@ arrayList.add(5);
 arrayList.add(4);
 arrayList.increaseCapacityTo(2);
 arrayList.increaseCapacityTo(8);
-try {
-  arrayList.increaseCapacityTo.bind({}, 5)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### trimToCurrentLength
@@ -890,11 +761,6 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.trimToCurrentLength();
-try {
-  arrayList.trimToCurrentLength.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### [Symbol.iterator]
@@ -939,10 +805,5 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log(`value:${temp}`);
   temp = iter.next().value;
-}
-try {
-  arrayList[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

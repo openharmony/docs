@@ -181,7 +181,7 @@ struct LineCapExample {
 }
 ```
 
-![zh-cn_image_0000001194192454](figures/zh-cn_image_0000001194192454.png)
+![zh-cn_image_0000001194192454](figures/zh-cn_image_0000001194192454.PNG)
 
 
 ### lineJoin

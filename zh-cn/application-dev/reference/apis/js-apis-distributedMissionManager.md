@@ -1,4 +1,4 @@
-# 分布式任务管理
+# @ohos.distributedMissionManager (分布式任务管理)
 
 分布式任务管理模块提供跨设备系统任务管理能力，包括注册系统任务状态监听、取消系统任务状态监听、开始同步远端任务列表、停止同步远端任务列表、迁移任务操作。
 
@@ -372,6 +372,19 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 | options | [ContinueCallback](#continuecallback) | 是    | 迁移任务完成回调函数。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 执行结果回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 16300501 | The system ability work abnormally. |
+| 16300502 | Failed to get the missionInfo of the specified missionId. |
+| 16300503 | The application is not installed on the remote end and installation-free is not supported. |
+| 16300504 | The application is not installed on the remote end but installation-free is supported, try again with freeInstall flag. |
+| 16300505 | The operation device must be the device where the application to be continued is located or the target device to be continued. |
+| 16300506 | The local continuation task is already in progress. |
+
 **示例：**
 
   ```ts
@@ -422,6 +435,19 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | promise方式返回执行结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 16300501 | The system ability work abnormally. |
+| 16300502 | Failed to get the missionInfo of the specified missionId. |
+| 16300503 | The application is not installed on the remote end and installation-free is not supported. |
+| 16300504 | The application is not installed on the remote end but installation-free is supported, try again with freeInstall flag. |
+| 16300505 | The operation device must be the device where the application to be continued is located or the target device to be continued. |
+| 16300506 | The local continuation task is already in progress. |
+
 **示例：**
 
   ```ts
@@ -471,7 +497,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称          | 参数类型    | 可读   | 可写   | 说明          |
+| 名称          | 类型    | 可读   | 可写   | 说明          |
 | ----------- | ------- | ---- | ---- | ----------- |
 | deviceId    | string  | 是    | 是    | 表示设备ID。     |
 | fixConflict | boolean | 是    | 是    | 表示是否存在版本冲突。 |
@@ -485,7 +511,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称       | 参数类型   | 可读   | 可写   | 说明      |
+| 名称       | 类型   | 可读   | 可写   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
 | deviceId | string | 是    | 是    | 表示设备ID。 |
 
@@ -497,7 +523,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称       | 参数类型   | 可读   | 可写   | 说明      |
+| 名称       | 类型   | 可读   | 可写   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
 | srcDeviceId | string | 是    | 是    | 表示任务迁移源设备ID。 |
 | dstDeviceId | string | 是    | 是    | 表示任务迁移目标设备ID。 |

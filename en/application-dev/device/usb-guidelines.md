@@ -2,7 +2,7 @@
 
 ## When to Use
 
-In Host mode, you can obtain the list of connected devices, enable or disable the devices, manage device access permissions, and perform data transfer or control transfer.
+In Host mode, you can obtain the list of connected USB devices, enable or disable the devices, manage device access permissions, and perform data transfer or control transfer.
 
 ## APIs
 
@@ -16,6 +16,7 @@ The following table lists the USB APIs currently available. For details, see the
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | hasRight(deviceName: string): boolean                        | Checks whether the user, for example, the application or system, has the device access permissions. The value **true** is returned if the user has the device access permissions; the value **false** is returned otherwise. |
 | requestRight(deviceName: string): Promise\<boolean>          | Requests the temporary permission for a given application to access the USB device. |
+| removeRight(deviceName: string): boolean                     | Removes the permission for a given application to access the USB device. |
 | connectDevice(device: USBDevice): Readonly\<USBDevicePipe>   | Connects to the USB device based on the device information returned by `getDevices()`. |
 | getDevices(): Array<Readonly\<USBDevice>>                    | Obtains the USB device list.                                 |
 | setConfiguration(pipe: USBDevicePipe, config: USBConfig): number | Sets the USB device configuration.                           |

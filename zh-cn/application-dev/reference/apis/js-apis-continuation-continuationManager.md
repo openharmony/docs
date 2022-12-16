@@ -1,4 +1,4 @@
-# continuationManager
+# @ohos.continuation.continuationManager (continuationManager)
 
 continuationManager模块提供了流转/协同入口管理服务能力，包括连接/取消流转管理服务，注册/解注册设备连接变化监听，拉起设备选择模块，更新连接状态。
 
@@ -171,7 +171,6 @@ registerContinuation(callback: AsyncCallback\<number>): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
@@ -216,7 +215,6 @@ registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
@@ -269,7 +267,6 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
@@ -471,7 +468,6 @@ on(type: "deviceSelected", token: number, callback: Callback\<Array\<Continuatio
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -518,7 +514,6 @@ on(type: "deviceUnselected", token: number, callback: Callback\<Array\<Continuat
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -565,7 +560,6 @@ off(type: "deviceSelected", token: number): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -604,7 +598,6 @@ off(type: "deviceUnselected", token: number): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -785,7 +778,6 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -830,7 +822,6 @@ startContinuationDeviceManager(token: number, options: ContinuationExtraParams, 
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -883,7 +874,6 @@ startContinuationDeviceManager(token: number, options?: ContinuationExtraParams)
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -1029,7 +1019,6 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -1081,7 +1070,6 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -1212,7 +1200,6 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -1261,7 +1248,6 @@ unregisterContinuation(token: number): Promise\<void>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -1289,14 +1275,12 @@ unregisterContinuation(token: number): Promise\<void>;
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
-**参数：**
-
-  | 参数名 | 类型 | 值 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | IDLE | number | 0 | 设备连接初始状态。 |
-  | CONNECTING | number | 1 | 设备连接中状态。 |
-  | CONNECTED | number | 2 | 设备已连接状态。 |
-  | DISCONNECTING | number | 3 | 设备断开连接状态。 |
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| IDLE | 0 | 设备连接初始状态。 |
+| CONNECTING | 1 | 设备连接中状态。 |
+| CONNECTED | 2 | 设备已连接状态。 |
+| DISCONNECTING | 3 | 设备断开连接状态。 |
 
 ## ContinuationMode
 
@@ -1304,9 +1288,7 @@ unregisterContinuation(token: number): Promise\<void>;
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
-**参数：**
-
-  | 参数名 | 类型 | 值 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | COLLABORATION_SINGLE | number | 0 | 设备选择模块单选模式。 |
-  | COLLABORATION_MULTIPLE | number | 1 | 设备选择模块多选模式。 |
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| COLLABORATION_SINGLE | 0 | 设备选择模块单选模式。 |
+| COLLABORATION_MULTIPLE | 1 | 设备选择模块多选模式。 |

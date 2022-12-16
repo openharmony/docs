@@ -1,4 +1,4 @@
-# EnterpriseAdminExtensionAbility
+# @ohos.enterprise.EnterpriseAdminExtensionAbility
 
 The **EnterpriseAdminExtensionAbility** module provides Extension abilities for enterprise administrators.
 
@@ -13,7 +13,7 @@ To have the capabilities provided by the module, for example, receiving the appl
 ## Modules to Import
 
 ```ts
-import EnterpriseAdminExtensionAbility from '@ohos.EnterpriseAdminExtensionAbility'
+import EnterpriseAdminExtensionAbility from '@ohos.enterprise.EnterpriseAdminExtensionAbility'
 ```
 
 ## EnterpriseAdminExtensionAbility.onAdminEnabled
@@ -23,6 +23,8 @@ onAdminEnabled(): void
 Called when an enterprise administrator is enabled.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
 
 **Example**
 
@@ -41,6 +43,8 @@ Called when an enterprise administrator is disabled.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
+**System API**: This is a system API.
+
 **Example**
 
 ```ts
@@ -57,6 +61,8 @@ onBundleAdded(bundleName: string): void
 Called when a bundle is added.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -81,6 +87,8 @@ onBundleRemoved(bundleName: string): void
 Called when a bundle is removed.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
 
 **Parameters**
 

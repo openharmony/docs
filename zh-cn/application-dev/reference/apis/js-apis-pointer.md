@@ -1,4 +1,4 @@
-# 鼠标指针
+# @ohos.multimodalInput.pointer (鼠标指针)
 
 鼠标指针管理模块，用于查询和设置鼠标指针相关属性。
 
@@ -142,7 +142,7 @@ setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | speed    | number                    | 是    | 鼠标移动速度，范围1-11，默认为5。   |
-| callback | AysncCallback&lt;void&gt; | 是    | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **示例**：
 
@@ -349,7 +349,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 | ------------ | ------------------------------ | ---- | ----------------------------------- |
 | windowId     | number                         | 是    | 窗口id。                          |
 | pointerStyle | [PointerStyle](#pointerstyle9) | 是    | 鼠标样式id。                             |
-| callback     | AysncCallback&lt;void&gt;      | 是    | 回调函数。 |
+| callback     | AsyncCallback&lt;void&gt;      | 是    | 回调函数。 |
 
 **示例**：
 

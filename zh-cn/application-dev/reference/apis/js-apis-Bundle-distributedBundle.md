@@ -1,6 +1,6 @@
-# distributedBundle模块(JS端SDK接口)
+# @ohos.distributedBundle (分布式包管理)
 
-本模块提供分布式包的管理
+本模块提供分布式包的管理。
 
 > **说明：**
 >
@@ -26,7 +26,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 ## distributedBundle.getRemoteAbilityInfo<sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[getRemoteAbilityInfo](js-apis-distributedBundle.md)替代。
+> 从API version 9开始不再维护，建议使用[getRemoteAbilityInfo(@ohos.bundle.distributedBundle)](js-apis-distributedBundle.md)替代。
 
 getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback&lt;RemoteAbilityInfo&gt;): void;
 
@@ -46,7 +46,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 **参数：**
 
-| 名称        | 类型                                                         | 必填 | 描述                                               |
+| 参数名      | 类型                                                         | 必填 | 说明                                               |
 | ----------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementName | [ElementName](js-apis-bundle-ElementName.md)                 | 是   | 获得的ElementName信息。                            |
 | callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)> | 是   | 程序启动作为入参的回调函数，返回远程基本能力信息。 |
@@ -55,7 +55,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 ## distributedBundle.getRemoteAbilityInfo<sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[getRemoteAbilityInfo](js-apis-distributedBundle.md)替代。
+> 从API version 9开始不再维护，建议使用[getRemoteAbilityInfo(@ohos.bundle.distributedBundle)](js-apis-distributedBundle.md)替代。
 
 getRemoteAbilityInfo(elementName: ElementName): Promise&lt;RemoteAbilityInfo&gt;
 
@@ -75,7 +75,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 **参数：**
 
-| 名称        | 类型                                         | 必填 | 描述                    |
+| 参数名      | 类型                                         | 必填 | 说明                    |
 | ----------- | -------------------------------------------- | ---- | ----------------------- |
 | elementName | [ElementName](js-apis-bundle-ElementName.md) | 是   | 获得的ElementName信息。 |
 
@@ -87,7 +87,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 ## distributedBundle.getRemoteAbilityInfos<sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[getRemoteAbilityInfo](js-apis-distributedBundle.md)替代。
+> 从API version 9开始不再维护，建议使用[getRemoteAbilityInfo(@ohos.bundle.distributedBundle)](js-apis-distributedBundle.md)替代。
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;, callback: AsyncCallback&lt;Array&lt;RemoteAbilityInfo&gt;&gt;): void;
 
@@ -107,16 +107,16 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 **参数：**
 
-| 名称         | 类型                                                         | 必填 | 描述                                               |
+| 参数名       | 类型                                                         | 必填 | 说明                                               |
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)>          | 是   | ElementName信息,最大数组长度为10                   |
+| elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)>          | 是   | ElementName信息，最大数组长度为10。                   |
 | callback     | AsyncCallback< Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回远程基本能力信息。 |
 
 
 
 ## distributedBundle.getRemoteAbilityInfos<sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[getRemoteAbilityInfo](js-apis-distributedBundle.md)替代。
+> 从API version 9开始不再维护，建议使用[getRemoteAbilityInfo(@ohos.bundle.distributedBundle)](js-apis-distributedBundle.md)替代。
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;): Promise&lt;Array&lt;RemoteAbilityInfo&gt;&gt;
 
@@ -136,9 +136,9 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 **参数：**
 
-| 名称         | 类型                                                | 必填 | 描述                    |
+| 参数名      | 类型                                                | 必填 | 说明                  |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
-| elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)> | 是   | ElementName信息,最大数组长度为10。 |
+| elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)> | 是   | ElementName信息，最大数组长度为10。 |
 
 **返回值：**
 

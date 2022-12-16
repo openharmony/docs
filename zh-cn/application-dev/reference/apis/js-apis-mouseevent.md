@@ -1,8 +1,9 @@
-# 鼠标输入事件
+# @ohos.multimodalInput.mouseEvent (鼠标输入事件)
 
 设备上报的鼠标事件。
 
 >  **说明：**
+>
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -15,41 +16,41 @@ import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mou
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称        | 类型 | 可读 | 可写 | 说明                 |
-| ----------- | -------- | ---- | ---- | -------------------- |
-| CANCEL      | number   | 是   | 否   | 取消             |
-| MOVE        | number   | 是   | 否   | 鼠标移动             |
-| BUTTON_DOWN | number   | 是   | 否   | 鼠标按钮按下         |
-| BUTTON_UP   | number   | 是   | 否   | 鼠标按钮抬起         |
-| AXIS_BEGIN  | number   | 是   | 否   | 鼠标轴事件开始 |
-| AXIS_UPDATE | number   | 是   | 否   | 鼠标轴事件更新 |
-| AXIS_END    | number   | 是   | 否   | 鼠标轴事件结束 |
+| 名称        | 值 | 说明                 |
+| ----------- | -------- | -------------------- |
+| CANCEL      | 0   | 取消             |
+| MOVE        | 1   | 鼠标移动             |
+| BUTTON_DOWN | 2   | 鼠标按钮按下         |
+| BUTTON_UP   | 3   | 鼠标按钮抬起         |
+| AXIS_BEGIN  | 4   | 鼠标轴事件开始 |
+| AXIS_UPDATE | 5   | 鼠标轴事件更新 |
+| AXIS_END    | 6   | 鼠标轴事件结束 |
 
 
 ## Button
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称      | 类型   | 可读   | 可写   | 说明    |
-| ------- | ------ | ---- | ---- | ----- |
-| LEFT    | number | 是    | 否    | 鼠标左键  |
-| MIDDLE  | number | 是    | 否    | 鼠标中键  |
-| RIGHT   | number | 是    | 否    | 鼠标右键  |
-| SIDE    | number | 是    | 否    | 鼠标侧边键 |
-| EXTRA   | number | 是    | 否    | 鼠标扩展键 |
-| FORWARD | number | 是    | 否    | 鼠标前进键 |
-| BACK    | number | 是    | 否    | 鼠标后退键 |
-| TASK    | number | 是    | 否    | 鼠标任务键 |
+| 名称      | 值  | 说明    |
+| ------- | ------| ----- |
+| LEFT    | 0 | 鼠标左键  |
+| MIDDLE  | 1 | 鼠标中键  |
+| RIGHT   | 2 | 鼠标右键  |
+| SIDE    | 3 | 鼠标侧边键 |
+| EXTRA   | 4 | 鼠标扩展键 |
+| FORWARD | 5 | 鼠标前进键 |
+| BACK    | 6 | 鼠标后退键 |
+| TASK    | 7 | 鼠标任务键 |
 
 ## Axis
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称                | 类型   | 可读   | 可写   | 说明    |
-| ----------------- | ------ | ---- | ---- | ----- |
-| SCROLL_VERTICAL   | number | 是    | 否    | 垂直滚动轴 |
-| SCROLL_HORIZONTAL | number | 是    | 否    | 水平滚动轴 |
-| PINCH             | number | 是    | 否    | 捏合轴   |
+| 名称                | 值     | 说明    |
+| ----------------- | ------- | ----- |
+| SCROLL_VERTICAL   | 0 | 垂直滚动轴 |
+| SCROLL_HORIZONTAL | 1 | 水平滚动轴 |
+| PINCH             | 2 | 捏合轴   |
 
 
 ## AxisValue

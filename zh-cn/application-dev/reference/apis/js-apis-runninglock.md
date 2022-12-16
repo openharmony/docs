@@ -1,8 +1,9 @@
-# RunningLock锁
+# @ohos.runningLock (Runninglock锁)
 
 该模块主要提供RunningLock锁相关操作的接口，包括创建、查询、持锁、释放锁等操作。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -52,7 +53,7 @@ try {
 
 ## runningLock.create<sup>9+</sup>
 
-createRunningLock(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLock&gt;): void
+create(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLock&gt;): void
 
 创建RunningLock锁。
 
@@ -90,7 +91,7 @@ runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, 
 
 ## runningLock.create<sup>9+</sup>
 
-createRunningLock(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
+create(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 
 创建RunningLock锁。
 
@@ -281,7 +282,7 @@ hold(timeout: number): void
 
 | 参数名  | 类型   | 必填 | 说明                                      |
 | ------- | ------ | ---- | ----------------------------------------- |
-| timeout | number | 否   | 锁定和持有RunningLock的时长，单位：毫秒。 |
+| timeout | number | 是   | 锁定和持有RunningLock的时长，单位：毫秒。 |
 
 **错误码：**
 
@@ -399,9 +400,9 @@ lock(timeout: number): void
 
 **参数：**
 
-| 参数名     | 类型     | 必填   | 说明                         |
-| ------- | ------ | ---- | -------------------------- |
-| timeout | number | 否    | 锁定和持有RunningLock的时长，单位：毫秒。 |
+| 参数名  | 类型   | 必填 | 说明                                      |
+| ------- | ------ | ---- | ----------------------------------------- |
+| timeout | number | 是   | 锁定和持有RunningLock的时长，单位：毫秒。 |
 
 **示例：**
 
@@ -475,7 +476,7 @@ RunningLock锁的类型。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
-| 名称                     | 默认值 | 描述                                   |
-| ------------------------ | ------ | -------------------------------------- |
-| BACKGROUND               | 1      | 阻止系统休眠的锁。                     |
-| PROXIMITY_SCREEN_CONTROL | 2      | 通过接近或者远离状态来控制亮灭屏的锁。 |
+| 名称                     | 值   | 说明                                   |
+| ------------------------ | ---- | -------------------------------------- |
+| BACKGROUND               | 1    | 阻止系统休眠的锁。                     |
+| PROXIMITY_SCREEN_CONTROL | 2    | 通过接近或者远离状态来控制亮灭屏的锁。 |

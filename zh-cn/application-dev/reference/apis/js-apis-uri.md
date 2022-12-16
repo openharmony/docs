@@ -1,6 +1,7 @@
-# URI字符串解析
+# @ohos.uri (URI字符串解析)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -16,7 +17,7 @@ import uri from '@ohos.uri'
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | scheme | string | 是 | 否 | 获取URI&nbsp;的协议部分。 |
 | userInfo | string | 是 | 否 | 获取&nbsp;URI&nbsp;的用户信息部分。 |
@@ -39,9 +40,9 @@ constructor是URI的构造函数。
 
 **参数：**
 
-| 参数名 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| uri | string | 是 | 是 | 入参对象。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| uri | string | 是 | 入参对象。 |
 
 **示例：**
 
@@ -77,8 +78,10 @@ result.toString()
 
 
 ### equals<sup>(deprecated)</sup>
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[equalsTo<sup>9+</sup>](#equalsto9)替代。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[equalsTo<sup>9+</sup>](#equalsto9)替代。
 
 equals(other: URI): boolean
 
@@ -170,6 +173,7 @@ normalize(): URI
 | URI | 返回一个path被规范化后的URI对象。 |
 
 **示例：**
+
 ```js
 const uriInstance = new uri.URI('http://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
 let uriInstance1 = uriInstance.normalize();

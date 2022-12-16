@@ -2,7 +2,7 @@
 
 The **continuationManager** module provides the continuation management entry. You can use the APIs of this module to connect to and cancel the continuation management service, subscribe to and unsubscribe from device connection events, start the device selection module, and update the device connection state.
 
-Currently, this module provides incomplete functions, and its APIs are mainly used to start the device selection module. **The continuation capability is not available for application development.**
+Currently, this module provides incomplete functions, and its APIs are mainly used to start the device selection module. The continuation capability is not available for application development.
 
 > **NOTE**
 > 
@@ -32,13 +32,13 @@ Registers the continuation management service and obtains a token. This API does
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360207 | The maximum number of registrations exceeded. |
+| 29360207 | The number of registrations has reached the upper limit. |
 
 **Example**
 
@@ -73,13 +73,13 @@ Registers the continuation management service and obtains a token. This API uses
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360207 | The maximum number of registrations exceeded. |
+| 29360207 | The number of registrations has reached the upper limit. |
 | 29360216 | Invalid continuation mode. |
 
 **Example**
@@ -123,13 +123,13 @@ Registers the continuation management service and obtains a token. This API uses
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object |
 | 7 | The object is null. |
-| 29360207 | The maximum number of registrations exceeded. |
+| 29360207 | The number of registrations has reached the upper limit. |
 | 29360216 | Invalid continuation mode. |
 
 **Example**
@@ -167,12 +167,11 @@ Registers the continuation management service and obtains a token. This API does
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
+| 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
 **Example**
@@ -212,12 +211,11 @@ Registers the continuation management service and obtains a token. This API uses
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
+| 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
 **Example**
@@ -265,12 +263,11 @@ Registers the continuation management service and obtains a token. This API uses
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
+| 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
 **Example**
@@ -314,14 +311,14 @@ Subscribes to device connection events. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object |
 | 7 | The object is null | 7 |
-| 29360208 | The token has not registered. |
-| 29360209 | Callback has been registered. |
+| 29360208 | The token is not registered. |
+| 29360209 | The callback has been registered. |
 | 29360214 | The type of callback is not supported. |
 
 **Example**
@@ -353,14 +350,14 @@ Subscribes to device disconnection events. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360209 | Callback has been registered. |
+| 29360208 | The token is not registered. |
+| 29360209 | The callback has been registered. |
 | 29360214 | The type of callback is not supported. |
 
 **Example**
@@ -390,14 +387,14 @@ Unsubscribes from device connection events. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
 | 29360214 | The type of callback is not supported. |
 
 **Example**
@@ -429,14 +426,14 @@ Unsubscribes from device disconnection events. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
 | 29360214 | The type of callback is not supported. |
 
 **Example**
@@ -467,13 +464,12 @@ Subscribes to device connection events. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
 
 **Example**
@@ -514,13 +510,12 @@ Subscribes to device disconnection events. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
 
 **Example**
@@ -561,13 +556,12 @@ Unsubscribes from device connection events.
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
 
 **Example**
@@ -600,13 +594,12 @@ Unsubscribes from device disconnection events.
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
 
 **Example**
@@ -639,15 +632,15 @@ Starts the device selection module to show the list of available devices on the 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
-| 29360211 | Failed to connect ability. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
+| 29360211 | Failed to connect to the ability. |
 | 29360216 | Invalid continuation mode. |
 
 **Example**
@@ -683,15 +676,15 @@ Starts the device selection module to show the list of available devices on the 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object |
 | 7 | The object is null |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
-| 29360211 | Failed to connect ability. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
+| 29360211 | Failed to connect to the ability. |
 | 29360216 | Invalid continuation mode. |
 
 **Example**
@@ -735,15 +728,15 @@ Starts the device selection module to show the list of available devices on the 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object |
 | 7 | The object is null |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
-| 29360211 | Failed to connect ability. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
+| 29360211 | Failed to connect to the ability. |
 | 29360216 | Invalid continuation mode. |
 
 **Example**
@@ -781,13 +774,12 @@ Starts the device selection module to show the list of available devices on the 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
@@ -826,13 +818,12 @@ Starts the device selection module to show the list of available devices on the 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
@@ -879,13 +870,12 @@ Starts the device selection module to show the list of available devices on the 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
@@ -928,16 +918,16 @@ Instructs the device selection module to update the device connection state. Thi
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
-| 29360211 | Failed to connect ability. |
-| 29360215 | Invalid connect state. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
+| 29360211 | Failed to connect to the ability. |
+| 29360215 | Invalid connection state. |
 
 **Example**
 
@@ -979,16 +969,16 @@ Instructs the device selection module to update the device connection state. Thi
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
-| 29360211 | Failed to connect ability. |
-| 29360215 | Invalid connect state. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
+| 29360211 | Failed to connect to the ability. |
+| 29360215 | Invalid connection state. |
 
 **Example**
 
@@ -1025,13 +1015,12 @@ Instructs the device selection module to update the device connection state. Thi
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
@@ -1077,13 +1066,12 @@ Instructs the device selection module to update the device connection state. Thi
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
@@ -1123,13 +1111,13 @@ Deregisters the continuation management service. This API uses an asynchronous c
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
+| 29360208 | The token is not registered. |
 
 **Example**
 
@@ -1168,13 +1156,13 @@ Deregisters the continuation management service. This API uses a promise to retu
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
+| 29360208 | The token is not registered. |
 
 **Example**
 
@@ -1208,13 +1196,12 @@ Deregisters the continuation management service. This API uses an asynchronous c
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
@@ -1257,13 +1244,12 @@ Deregisters the continuation management service. This API uses a promise to retu
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
@@ -1289,14 +1275,12 @@ Enumerates the device connection states.
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
-**Parameters**
-
-  | Name| Type| Value| Description|
-  | -------- | -------- | -------- | -------- |
-  | IDLE | number | 0 | The device is in the initial state.|
-  | CONNECTING | number | 1 | The device is being connected.|
-  | CONNECTED | number | 2 | The device is connected.|
-  | DISCONNECTING | number | 3 | The device is being disconnected.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| IDLE | 0 | The device is in the initial state.|
+| CONNECTING | 1 | The device is being connected.|
+| CONNECTED | 2 | The device is connected.|
+| DISCONNECTING | 3 | The device is being disconnected.|
 
 ## ContinuationMode
 
@@ -1304,9 +1288,7 @@ Enumerates the continuation modes provided by the device selection module.
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
-**Parameters**
-
-  | Name| Type| Value| Description|
-  | -------- | -------- | -------- | -------- |
-  | COLLABORATION_SINGLE | number | 0 | Single-choice mode.|
-  | COLLABORATION_MULTIPLE | number | 1 | Multi-choice mode.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| COLLABORATION_SINGLE | 0 | Single-choice mode.|
+| COLLABORATION_MULTIPLE | 1 | Multi-choice mode.|

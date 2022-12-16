@@ -1,4 +1,4 @@
-# SIM卡管理
+# @ohos.telephony.sim (SIM卡管理)
 
 SIM卡管理模块提供了SIM卡管理的基础能力，包括获取指定卡槽SIM卡的名称、号码、ISO国家码、归属PLMN号、服务提供商名称、SIM卡状态、卡类型、是否插卡、是否激活、锁状态，设置指定卡槽SIM卡显示的名称、号码、锁状态，激活、禁用指定卡槽SIM卡，更改Pin密码，以及解锁指定卡槽SIM卡密码、SIM卡密码的解锁密码等。
 
@@ -2848,10 +2848,10 @@ SIM卡状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称            | 类型   | 说明               |
-| --------------- | ------ | ------------------ |
-| result          | number | 当前操作的结果。     |
-| remain?: number | number | 剩余次数（可以为空）。 |
+| 名称            | 类型   | 必填 | 说明                  |
+| --------------- | ------ | ---- | --------------------- |
+| result          | number |  是  | 当前操作的结果。      |
+| remain?: number | number |  否  | 剩余次数（可以为空）。|
 
 ## LockInfo<sup>8+</sup>
 
@@ -2861,11 +2861,11 @@ SIM卡状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称     | 类型                     | 说明   |
-| -------- | ------------------------ | ------ |
-| lockType | [LockType](#locktype8)   | 锁类型。 |
-| password | string                   | 密码。   |
-| state    | [LockState](#lockstate8) | 锁状态。 |
+| 名称     |           类型           | 必填 |   说明   |
+| -------- | ------------------------ | ---- | -------- |
+| lockType | [LockType](#locktype8)   |  是  | 锁类型。 |
+| password | string                   |  是  | 密码。   |
+| state    | [LockState](#lockstate8) |  是  | 锁状态。 |
 
 ## PersoLockInfo<sup>8+</sup>
 
@@ -2875,10 +2875,10 @@ SIM卡状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称     | 类型                             | 说明         |
-| -------- | -------------------------------- | ------------ |
-| lockType | [PersoLockType](#persolocktype8) | 定制锁的类型。 |
-| password | string                           | 密码。         |
+| 名称     |               类型               | 必填 |      说明     |
+| -------- | -------------------------------- | ---- | ------------- |
+| lockType | [PersoLockType](#persolocktype8) |  是  | 定制锁的类型。|
+| password | string                           |  是  | 密码。        |
 
 ## IccAccountInfo<sup>7+</sup>
 
@@ -2888,15 +2888,15 @@ Icc账户信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称       | 类型    | 说明             |
-| ---------- | ------- | ---------------- |
-| simId      | number  | SIM卡ID。          |
-| slotIndex  | number  | 卡槽ID。           |
-| isEsim     | boolean | 标记卡是否是eSim。 |
-| isActive   | boolean | 卡是否被激活。     |
-| iccId      | string  | ICCID号码。        |
-| showName   | string  | SIM卡显示名称。    |
-| showNumber | string  | SIM卡显示号码。    |
+| 名称       | 类型    | 必填 | 说明             |
+| ---------- | ------- | ---- | ---------------- |
+| simId      | number  |  是  | SIM卡ID。          |
+| slotIndex  | number  |  是  | 卡槽ID。           |
+| isEsim     | boolean |  是  | 标记卡是否是eSim。 |
+| isActive   | boolean |  是  | 卡是否被激活。     |
+| iccId      | string  |  是  | ICCID号码。        |
+| showName   | string  |  是  | SIM卡显示名称。    |
+| showNumber | string  |  是  | SIM卡显示号码。    |
 
 ## OperatorConfig<sup>8+</sup>
 
@@ -2906,10 +2906,10 @@ Icc账户信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称  | 类型   | 说明 |
-| ----- | ------ | ---- |
-| field | string | 字段 |
-| value | string | 值   |
+| 名称  | 类型   | 必填 | 说明 |
+| ----- | ------ | ---- | ---- |
+| field | string |  是  | 字段 |
+| value | string |  是  | 值   |
 
 ## DiallingNumbersInfo<sup>8+</sup>
 
@@ -2919,12 +2919,12 @@ Icc账户信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称         | 类型   | 说明     |
-| ------------ | ------ | -------- |
-| alphaTag     | string | 标签。     |
-| number       | string | 号码。     |
-| recordNumber | number | 记录编号。 |
-| pin2         | string | pin2密码。 |
+| 名称         | 类型   | 必填 |    说明    |
+| ------------ | ------ | ---- | ---------- |
+| alphaTag     | string |  是  | 标签。     |
+| number       | string |  是  | 号码。     |
+| recordNumber | number |  是  | 记录编号。 |
+| pin2         | string |  是  | pin2密码。 |
 
 ## ContactType<sup>8+</sup>
 
@@ -2935,6 +2935,37 @@ Icc账户信息。
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
 | 名称            | 值   | 说明       |
-| :-------------- | ---- | ---------- |
+| --------------- | ---- | ---------- |
 | GENERAL_CONTACT | 1    | 通用联系人。 |
 | FIXED_DIALING   | 2    | 固定拨号。   |
+
+## OperatorConfigKey<sup>9+</sup>
+
+运营商配置键。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+|                             名称                        |                             值                       |         说明         |
+| ------------------------------------------------------- | ---------------------------------------------------- | -------------------- |
+| KEY_VOICE_MAIL_NUMBER_STRING                            | "voice_mail_number_string"                             | 语音邮件号码。       |
+| KEY_IMS_SWITCH_ON_BY_DEFAULT_BOOL                       | "ims_switch_on_by_default_bool"                        | 固定拨号。           |
+| KEY_HIDE_IMS_SWITCH_BOOL                                | "hide_ims_switch_bool"                                 | 是否隐藏ims开关。    |
+| KEY_VOLTE_SUPPORTED_BOOL                                | "volte_supported_bool"                                 | 是否支持volte模式。  |
+| KEY_NR_MODE_SUPPORTED_LIST_INT_ARRAY                    | "nr_mode_supported_list_int_array"                     | nr模式支持的列表。   |
+| KEY_VOLTE_PROVISIONING_SUPPORTED_BOOL                   | "volte_provisioning_supported_bool"                    | 是否支持配置VOLTE。  |
+| KEY_SS_OVER_UT_SUPPORTED_BOOL                           | "ss_over_ut_supported_bool"                            | SS服务是否支持UT。   |
+| KEY_IMS_GBA_REQUIRED_BOOL                               | "ims_gba_required_bool"                                | IMS是否需要GBA。     |
+| KEY_UT_PROVISIONING_SUPPORTED_BOOL                      | "ut_provisioning_supported_bool"                       | 是否支持UT配置。     |
+| KEY_IMS_PREFER_FOR_EMERGENCY_BOOL                       | "ims_prefer_for_emergency_bool"                        | IMS紧急首选项。      |
+| KEY_CALL_WAITING_SERVICE_CLASS_INT                      | "call_waiting_service_class_int"                       | 呼叫等待服务。       |
+| KEY_CALL_TRANSFER_VISIBILITY_BOOL                       | "call_transfer_visibility_bool"                        | 呼叫转移可见性。     |
+| KEY_IMS_CALL_DISCONNECT_REASONINFO_MAPPING_STRING_ARRAY | "ims_call_disconnect_reasoninfo_mapping_string_array"  | IMS呼叫结束原因列表。|
+| KEY_FORCE_VOLTE_SWITCH_ON_BOOL                          | "force_volte_switch_on_bool"                           | 强制VOLTE开关。      |
+| KEY_ENABLE_OPERATOR_NAME_CUST_BOOL                      | "enable_operator_name_cust_bool"                       | 是否显示运营商名称。 |
+| KEY_OPERATOR_NAME_CUST_STRING                           | "operator_name_cust_string"                            | 运营商名称。         |
+| KEY_SPN_DISPLAY_CONDITION_CUST_INT                      | "spn_display_condition_cust_int"                       | SPN显示规则。        |
+| KEY_PNN_CUST_STRING_ARRAY                               | "pnn_cust_string_array"                                | PLMN名称。           |
+| KEY_OPL_CUST_STRING_ARRAY                               | "opl_cust_string_array"                                | 运营商PLMN信息。     |
+| KEY_EMERGENCY_CALL_STRING_ARRAY                         | "emergency_call_string_array"                          | 紧急呼叫列表。       |

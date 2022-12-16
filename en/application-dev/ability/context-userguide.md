@@ -96,13 +96,13 @@ Obtain the context by calling **context.getApplicationContext()** in **Ability**
 **Example**
 
 ```javascript
-import AbilityStage from "@ohos.application.AbilityStage";
+import Ability from "@ohos.application.Ability";
 
 var lifecycleid;
 
-export default class MyAbilityStage extends AbilityStage {
+export default class MainAbility extends Ability {
     onCreate() {
-        console.log("MyAbilityStage onCreate")
+        console.log("MainAbility onCreate")
         let AbilityLifecycleCallback  =  {
             onAbilityCreate(ability){
                 console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));        
@@ -141,11 +141,11 @@ export default class MyAbilityStage extends AbilityStage {
         // 2. Use applicationContext to register and listen for the ability lifecycle in the application.
         lifecycleid = applicationContext.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
         console.log("registerAbilityLifecycleCallback number: " + JSON.stringify(lifecycleid));       
-    }
+    },
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.unregisterAbilityLifecycleCallback(lifecycleid, (error, data) => {
-        console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
+            console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
         });
     }
 }
@@ -211,7 +211,13 @@ export default class MainAbility extends Ability {
         let context = this.context;
         console.log("[Demo] MainAbility bundleName " + context.abilityInfo.bundleName)
 
-        windowStage.setUIContent(this.context, "pages/index", null)
+        windowStage.loadContent("pages/index", (err, data) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+        });
     }
 
     onWindowStageDestroy() {
@@ -237,7 +243,7 @@ For details, see [FormExtensionContext](../reference/apis/js-apis-formextensionc
 
 ### Obtaining the Context on an ArkTS Page
 
-In the stage model, in the `onWindowStageCreate` lifecycle of an ability, you can call `SetUIContent` of `WindowStage` to load an ArkTS page. In some scenarios, you need to obtain the context on the page to call related APIs.
+In the stage model, in the onWindowStageCreate lifecycle of an ability, you can call **SetUIContent** of **WindowStage** to load an ArkTS page. In some scenarios, you need to obtain the context on the page to call related APIs.
 
 **How to Obtain**
 
@@ -245,7 +251,7 @@ Use the API described in the table below to obtain the context associated with a
 
 | API                                  | Description                          |
 | :------------------------------------ | :--------------------------- |
-| getContext(component: Object): Object | Obtains the `Context` object associated with a component on the page.|
+| getContext(component: Object): Object | Obtains the **Context** object associated with a component on the page.|
 
 **Example**
 

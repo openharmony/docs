@@ -60,7 +60,7 @@ full-SDK需要手动下载。请参考[版本说明书](../../release-notes/Open
 
    `oh-uni-package.json`文件配置信息如下，其中，`apiVersion`的值以SDK对应的API version为准，`version`的值以SDK文件的版本号为准：
 
-   ```
+   ```json
    {
      "apiVersion": "X",
      "displayName": "Ets",

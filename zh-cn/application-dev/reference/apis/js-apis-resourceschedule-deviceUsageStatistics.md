@@ -1,4 +1,4 @@
-# 设备使用信息统计
+# @ohos.resourceschedule.usageStatistics (设备使用信息统计)
 
 本模块提供设备使用信息统计能力。
 
@@ -1182,8 +1182,6 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
 
 **系统API**：此接口为系统接口。
 
-**参数**：无参数
-
 **返回值**：
 
 | 类型            | 说明                       |
@@ -1297,7 +1295,7 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
 | 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed           |
+| 10000006   | Get application info failed.          |
 | 10000007   | Get system or actual time failed.     |
 
 **示例**：
@@ -1345,7 +1343,7 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
 | 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed           |
+| 10000006   | Get application info failed.           |
 | 10000007   | Get system or actual time failed.     |
 
 **示例**：
@@ -1400,7 +1398,7 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
 | 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed           |
+| 10000006   | Get application info failed.          |
 | 10000007   | Get system or actual time failed.     |
 
 **示例**：
@@ -1448,7 +1446,7 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
 | 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed           |
+| 10000006   | Get application info failed.          |
 | 10000007   | Get system or actual time failed.     |
 
 **示例**：
@@ -1475,7 +1473,7 @@ FA的使用信息的属性集合。
 
 **系统API**：此接口为系统接口。
 
-| 参数名                  | 类型                                       | 必填   | 说明                            |
+| 名称                  | 类型                                       | 必填   | 说明                            |
 | -------------------- | ---------------------------------------- | ---- | ----------------------------- |
 | deviceId             | string                                   | 否    | FA所属deviceId。                 |
 | bundleName           | string                                   | 是    | FA所属应用包名。                     |
@@ -1498,7 +1496,7 @@ FA卡片的使用信息的属性集合。
 
 **系统API**：此接口为系统接口。
 
-| 参数名              | 类型     | 必填   | 说明          |
+| 名称              | 类型     | 必填   | 说明          |
 | ---------------- | ------ | ---- | ----------- |
 | formName         | string | 是    | 卡片名称。       |
 | formDimension    | number | 是    | 卡片尺寸。       |
@@ -1514,7 +1512,7 @@ FA卡片的使用信息的属性集合。
 
 **系统API**：此接口为系统接口。
 
-| 参数名           | 类型   | 必填 | 说明             |
+| 名称           | 类型   | 必填 | 说明             |
 | ---------------- | ------ | ---- | ---------------- |
 | appOldGroup | number | 是   | 变化前的应用分组 |
 | appNewGroup | number | 是   | 变化后的应用分组 |
@@ -1532,7 +1530,7 @@ FA卡片的使用信息的属性集合。
 
 **系统API**：此接口为系统接口。
 
-| 参数名                      | 类型     | 必填   | 说明                                       |
+| 名称                      | 类型     | 必填   | 说明                                       |
 | ------------------------ | ------ | ---- | ---------------------------------------- |
 | bundleName               | string | 是    | 应用包名。                                    |
 | abilityPrevAccessTime    | number | 是    | 应用最后一次使用的时间。                             |
@@ -1551,7 +1549,7 @@ FA卡片的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
-| 参数名                   | 类型     | 必填   | 说明                                       |
+| 名称                   | 类型     | 必填   | 说明                                       |
 | --------------------- | ------ | ---- | ---------------------------------------- |
 | bundleName            | string | 是    | 应用包名。                                    |
 | eventId             | number | 是    | 应用事件类型。                                  |
@@ -1566,6 +1564,8 @@ FA卡片的使用信息的属性集合。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口。
+
 | 参数名                            | 类型                                       | 必填   | 说明             |
 | ------------------------------ | ---------------------------------------- | ---- | -------------- |
 | [key: string]: BundleStatsInfo | [key: string]: [BundleStatsInfo](#bundlestatsinfo) | 是    | 不同应用的使用时长统计信息。 |
@@ -1578,7 +1578,7 @@ FA卡片的使用信息的属性集合。
 
 **系统API**：此接口为系统接口。
 
-| 参数名     | 类型     | 必填   | 说明                |
+| 名称     | 类型     | 必填   | 说明                |
 | ------- | ------ | ---- | ----------------- |
 | name    | string | 是    | 通知应用包名或者系统事件名。    |
 | eventId | number | 是    | 通知、系统事件类型。        |
@@ -1590,7 +1590,9 @@ FA卡片的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
-| 名称           | 默认值  | 说明                                       |
+**系统API**：此接口为系统接口。
+
+| 名称           | 值  | 说明                                       |
 | ------------ | ---- | ---------------------------------------- |
 | BY_OPTIMIZED | 0    | 表示系统自行判断最合适的查询类型（天、周、月、年）去查询指定时间段间隔的应用使用时长信息。 |
 | BY_DAILY     | 1    | 表示系统按照天去查询指定时间段间隔的应用使用时长信息。              |
@@ -1606,7 +1608,7 @@ FA卡片的使用信息的属性集合。
 
 **系统API**：此接口为系统接口。
 
-| 名称                 | 默认值  | 说明                |
+| 名称                 | 值  | 说明                |
 | ------------------ | ---- | ----------------- |
 | ALIVE_GROUP | 10   | 活跃分组。              |
 | DAILY_GROUP | 20   | 经常使用，但当前并未在活跃态。    |

@@ -151,6 +151,38 @@ struct WebComponent {
 </script>
 </html>
 ```
+
+## 开启网页调试
+在PC上启用端口转发，以及设置Web组件属性webDebuggingAccess为true后，便可以在PC上调试通过USB连接的开发设备上的Web组件里的网页。
+
+设置步骤如下：
+
+1、首先设置Web组件属性webDebuggingAccess为true。
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webDebuggingAccess(true) // true表示启用调试功能
+      }
+    }
+  }
+  ```
+
+2、PC上启用端口转发功能，添加TCP端口9222映射。
+  ```ts
+  hdc fport tcp:9222 tcp:9222
+  ```
+  添加是否成功可以通过如下命令来查看已存在的映射关系表。
+  ```ts
+  hdc fport ls
+  ```
+如上设置完成后，首先打开应用Web组件、访问要调试的网页，然后在PC上使用chrome浏览器访问：http://localhost:9222, 就可以在PC上调试开发设备刚才访问的网页。
+
 ## 场景示例
 
 该场景实现了Web组件中视频的动态播放。首先在HTML页面内嵌入视频资源，再使用Web组件的控制器调用onActive和onInactive方法激活和暂停页面渲染。点击onInactive按钮，Web页面停止渲染，视频暂停播放；点击onActive按钮，激活Web组件，视频继续播放。
@@ -199,5 +231,3 @@ struct WebComponent {
 针对Web开发，有以下相关实例可供参考：
 
 - [`Web`：Web（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Web)
-
-- [Web组件加载本地H5小程序（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/WebComponent)

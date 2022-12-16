@@ -16,7 +16,6 @@ TS语言的使用在生成器函数中存在以下限制：
 
 错误示例：
 
-  
 ```
 build() {
   let a: number = 1 // invalid: variable declaration not allowed
@@ -36,7 +35,7 @@ build() {
 在应用中，通过"$r('app.string.xx')"的形式引用应用资源，$r的第二个参数可用于替换%s占位符。
 
   示例：
-  
+
 ```
 build() {
   //do something
@@ -54,13 +53,13 @@ build() {
 
 1. 通过resourceManager的RawFile接口获取Uint8Array格式数据。
 
-2. 通过String.fromCharCode将Uint8Array格式数据转化为String类型。快快快
+2. 通过String.fromCharCode将Uint8Array格式数据转化为String类型。
 
 参考文档：[资源管理](../reference/apis/js-apis-resource-manager.md)
 
 示例：
 
-  
+
 ```
 resourceManager.getRawFile(path, (error, value) => {
   if (error != null) {
@@ -96,7 +95,7 @@ Stage模型支持了通过context获取resourceManager对象的方式，再调�
 
 示例：
 
-  
+
 ```
 const context = getContext(this) as any
 context 
@@ -113,7 +112,7 @@ context
 
 aboutToAppear函数中使用异步接口获取页面数据，使用\@State修饰变量，数据获取完成后根据变量自动刷新页面。
 
-  
+
 ```
 @Entry
 @Component
@@ -180,7 +179,7 @@ systemTime.getCurrentTime(false)和new Date().getTime()一样，都是返回1970
 
 适用于：OpenHarmony SDK3.2.6.5, API9 Stage模型
 
-对\@BuilderParam修饰的属性进行赋值时不带参数（如：content: this.specificParam），则此属性的类型需定义成无返回值的函数（如：\@BuilderParam content: () =&gt; void）；若带参数（如：callContent: this.specificParam1("111")），则此属性的类型需定义成any（如：\@BuilderParam callContent: any;），具体用法请参考[BuilderParam](../ui/ts-component-based-builder.md)。
+对\@BuilderParam修饰的属性进行赋值时不带参数（如：content: this.specificParam），则此属性的类型需定义成无返回值的函数（如：\@BuilderParam content: () =&gt; void）；若带参数（如：callContent: this.specificParam1("111")），则此属性的类型需定义成any（如：\@BuilderParam callContent: any;），具体用法请参考[BuilderParam](../quick-start/arkts-dynamic-ui-elememt-building.md#builderparam8)。
 
 ## ArkTS如何把string转成byte数组
 
@@ -188,7 +187,7 @@ systemTime.getCurrentTime(false)和new Date().getTime()一样，都是返回1970
 
 参考如下代码实现，示例：
 
-  
+
 ```
 function stringToByte(str) {
   var bytes = new Array();
@@ -263,7 +262,7 @@ OpenHarmony推荐使用worker来处理多线程场景。
 适用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
 
 - namespace导出
-    
+
   ```
   namespace Util{
       export function getTime(){
@@ -274,7 +273,7 @@ OpenHarmony推荐使用worker来处理多线程场景。
   ```
 
 - namespace导入
-    
+
   ```
   import Util from './util'
   Util.getTime()

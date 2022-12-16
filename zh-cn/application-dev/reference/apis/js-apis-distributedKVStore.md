@@ -1,4 +1,4 @@
-# 分布式键值数据库
+# @ohos.data.distributedKVStore (分布式键值数据库)
 
 分布式键值数据库为应用程序提供不同设备间数据库的分布式协同能力。通过调用分布式键值数据库各个接口，应用程序可将数据保存到分布式键值数据库中，并可对分布式键值数据库中的数据进行增加、删除、修改、查询、同步等操作。
 
@@ -8,7 +8,7 @@
 - [KVStoreResultSet](#kvstoreresultset)：提供获取数据库结果集的相关方法，包括查询和移动数据读取位置等。
 - [Query](#query)：使用谓词表示数据库查询，提供创建Query实例、查询数据库中的数据和添加谓词的方法。
 - [SingleKVStore](#singlekvstore)：单版本分布式键值数据库，不对数据所属设备进行区分，提供查询数据和同步数据的方法。
-- [DeviceKVStore](#devicekvstore)：设备协同数据库，继承自[SingleKVStore](#kvstore)，以设备维度对数据进行区分，提供查询数据和同步数据的方法。
+- [DeviceKVStore](#devicekvstore)：设备协同数据库，继承自[SingleKVStore](#singlekvstore)，以设备维度对数据进行区分，提供查询数据和同步数据的方法。
 
 > **说明：** 
 >
@@ -26,10 +26,10 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称     | 类型              | 可读 | 可写 | 说明                                                         |
-| ---------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| context    | Context               | 是   | 是   |应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
-| bundleName | string                | 是   | 是   | 调用方的包名。                                               |
+| 名称     | 类型              | 必填 | 说明                                                         |
+| ---------- | --------------------- | ---- | ------------------------------------------------------------ |
+| context    | Context               | 是   |应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| bundleName | string                | 是   | 调用方的包名。                                               |
 
 ## Constants
 
@@ -67,10 +67,10 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称  | 类型   |可读   |可写   | 说明                    |
-| ----- | -------   | -----| ------|------------------------ |
-| type | [ValueType](#valuetype) | 是  |  是 |值类型。   |
-| value | Uint8Array \| string \| number \| boolean| 是  |  是 |值。   |
+| 名称  | 类型   |必填  | 说明                    |
+| ----- | -------   |-----|------------------------ |
+| type | [ValueType](#valuetype) | 是|值类型。   |
+| value | Uint8Array \| string \| number \| boolean| 是|值。   |
 
 ## Entry
 
@@ -78,10 +78,10 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称  | 类型        | 可读 | 可写 | 说明     |
-| ----- | --------------- | ---- | ---- | -------- |
-| key   | string          | 是   | 是   | 键值。   |
-| value | [Value](#value) | 是   | 是   | 值对象。 |
+| 名称  | 类型        | 必填 | 说明     |
+| ----- | --------------- | ---- | -------- |
+| key   | string          | 是   | 键值。   |
+| value | [Value](#value) | 是   | 值对象。 |
 
 ## ChangeNotification
 
@@ -89,12 +89,12 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称          | 类型          | 可读 | 可写 | 说明                     |
-| ------------- | ----------------- | ---- | ---- | ------------------------ |
-| insertEntries | [Entry](#entry)[] | 是   | 是   | 数据添加记录。           |
-| updateEntries | [Entry](#entry)[] | 是   | 是   | 数据更新记录。           |
-| deleteEntries | [Entry](#entry)[] | 是   | 是   | 数据删除记录。           |
-| deviceId      | string            | 是   | 是   | 设备ID，此处为设备UUID。 |
+| 名称          | 类型          | 必填       | 说明                     |
+| ------------- | ----------------- | ---- | ------------------------ |
+| insertEntries | [Entry](#entry)[] | 是   | 数据添加记录。           |
+| updateEntries | [Entry](#entry)[] | 是   | 数据更新记录。           |
+| deleteEntries | [Entry](#entry)[] | 是    | 数据删除记录。           |
+| deviceId      | string            | 是    | 设备ID，此处为设备UUID。 |
 
 ## SyncMode
 
@@ -126,8 +126,8 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 | 名称                 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ |
-| DEVICE_COLLABORATION | 表示多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
-| SINGLE_VERSION       | 表示单版本数据库。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| DEVICE_COLLABORATION | 表示多设备协同数据库。<br> **数据库特点：** 数据以设备的维度管理，不存在冲突；支持按照设备的维度查询数据。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| SINGLE_VERSION       | 表示单版本数据库。<br> **数据库特点：** 数据不分设备，设备之间修改相同的key会覆盖。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 
 ## SecurityLevel
 
@@ -146,15 +146,15 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 用于提供创建数据库的配置信息。
 
-| 名称          | 类型                        | 可读 | 可写 | 说明                                                         |
-| --------------- | ------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| createIfMissing | boolean                         | 是   | 是   | 当数据库文件不存在时是否创建数据库，默认创建。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| encrypt         | boolean                         | 是   | 是   | 设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| backup          | boolean                         | 是   | 是   | 设置数据库文件是否备份，默认备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| autoSync        | boolean                         | 是   | 是   | 设置数据库文件是否自动同步，默认不自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC |
-| kvStoreType     | [KVStoreType](#kvstoretype)     | 是   | 是   | 设置要创建的数据库类型，默认为多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| securityLevel   | [SecurityLevel](#securitylevel) | 是   | 是   |设置数据库安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| schema          | [Schema](#schema)               | 是   | 是   | 设置定义存储在数据库中的值，默认不使用Schema。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| 名称          | 类型                        | 必填 | 说明                                                         |
+| --------------- | -------------- | ---- | -------------------------|
+| createIfMissing | boolean                         | 否  | 当数据库文件不存在时是否创建数据库，默认创建。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| encrypt         | boolean                         | 否   | 设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| backup          | boolean                         | 否   | 设置数据库文件是否备份，默认备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| autoSync        | boolean                         | 否   | 设置数据库文件是否自动同步，默认不自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC |
+| kvStoreType     | [KVStoreType](#kvstoretype)     | 否   | 设置要创建的数据库类型，默认为多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| securityLevel   | [SecurityLevel](#securitylevel) | 是   |设置数据库安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| schema          | [Schema](#schema)               | 否   | 设置定义存储在数据库中的值，默认不使用Schema。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 ## Schema
 
@@ -248,79 +248,9 @@ try {
 
 ## distributedKVStore.createKVManager
 
-createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void
+createKVManager(config: KVManagerConfig): KVManager
 
-创建一个KVManager对象实例，用于管理数据库对象，使用callback异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名   | 类型                                     | 必填 | 说明                                                        |
-| -------- | -------------------------------------------- | ---- | ----------------------------------------------------------- |
-| config   | [KVManagerConfig](#kvmanagerconfig)          | 是   | 提供KVManager实例的配置信息，包括调用方的包名和应用上下文。 |
-| callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是   | 回调函数。返回创建的KVManager对象实例。                     |
-
-**示例：**
-
-Stage模型下的示例：
-
-```js
-import AbilityStage from '@ohos.application.Ability'
-let kvManager;
-export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.log("MyAbilityStage onCreate")
-        let context = this.context
-        const kvManagerConfig = {
-            context: context,
-            bundleName: 'com.example.datamanagertest',
-        }
-        try {
-            distributedKVStore.createKVManager(kvManagerConfig, function (err, manager) {
-                if (err) {
-                    console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-                    return;
-                }
-                console.log("Succeeded in creating KVManager");
-                kvManager = manager;
-            });
-        } catch (e) {
-            console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
-        }
-    }
-}
-```
-
-FA模型下的示例：
-
-```js
-import featureAbility from '@ohos.ability.featureAbility'
-let kvManager;
-let context = featureAbility.getContext()
-const kvManagerConfig = {
-    context: context,
-    bundleName: 'com.example.datamanagertest',
-}
-try {
-    distributedKVStore.createKVManager(kvManagerConfig, function (err, manager) {
-        if (err) {
-            console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.log("Succeeded in creating KVManager");
-        kvManager = manager;
-    });
-} catch (e) {
-    console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
-}
-```
-
-## distributedKVStore.createKVManager
-
-createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
-
-创建一个KVManager对象实例，用于管理数据库对象，使用Promise异步回调。
+创建一个KVManager对象实例，用于管理数据库对象。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -328,13 +258,13 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
 | 参数名 | 类型                      | 必填 | 说明                                                      |
 | ------ | ----------------------------- | ---- | --------------------------------------------------------- |
-| config | [KVManagerConfig](#kvmanager) | 是   | 提供KVManager实例的配置信息，包括调用方的包名和用户信息。 |
+| config | [KVManagerConfig](#kvmanagerconfig) | 是   | 提供KVManager实例的配置信息，包括调用方的包名和用户信息。 |
 
 **返回值：**
 
 | 类型                                   | 说明                                       |
 | -------------------------------------- | ------------------------------------------ |
-| Promise&lt;[KVManager](#kvmanager)&gt; | Promise对象。返回创建的KVManager对象实例。 |
+| [KVManager](#kvmanager) | 返回创建的KVManager对象实例。 |
 
 **示例：**
 
@@ -352,12 +282,8 @@ export default class MyAbilityStage extends AbilityStage {
             bundleName: 'com.example.datamanagertest',
         }
         try {
-            distributedKVStore.createKVManager(kvManagerConfig).then((manager) => {
-                console.log("Succeeded in creating KVManager");
-                kvManager = manager;
-            }).catch((err) => {
-                console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-            });
+            kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+            console.log("Succeeded in creating KVManager");
         } catch (e) {
             console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
         }
@@ -376,12 +302,8 @@ const kvManagerConfig = {
     bundleName: 'com.example.datamanagertest',
 }
 try {
-    distributedKVStore.createKVManager(kvManagerConfig).then((manager) => {
-        console.log("Succeeded in creating KVManager");
-        kvManager = manager;
-    }).catch((err) => {
-        console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-    });
+    kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+    console.log("Succeeded in creating KVManager");
 } catch (e) {
     console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
 }
@@ -790,7 +712,7 @@ try {
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
-订阅服务状态变更通知，此方法为同步方法。
+订阅服务状态变更通知。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -820,7 +742,7 @@ try {
 
 off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void
 
-取消订阅服务状态变更通知，此方法为同步方法。
+取消订阅服务状态变更通知。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -850,7 +772,7 @@ try {
 
 提供获取数据库结果集的相关方法，包括查询和移动数据读取位置等。
 
-在调用KVStoreResultSet的方法前，需要先通过[getKVStore](#getkvstore)构建一个KvStore(SingleKVStore或者DeviceKVStore)实例。
+在调用KVStoreResultSet的方法前，需要先通过[getKVStore](#getkvstore)构建一个SingleKVStore或者DeviceKVStore实例。
 
 ### getCount
 
@@ -2188,7 +2110,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -2237,7 +2159,7 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -2269,7 +2191,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | ------------------------ | ---- | ------------------------ |
 | entries  | [Entry](#entry)[]        | 是   | 表示要批量插入的键值对。 |
-| callback | Asyncallback&lt;void&gt; | 是   | 回调函数。               |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。               |
 
 **错误码：**
 
@@ -2278,7 +2200,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -2345,7 +2267,7 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -2395,8 +2317,8 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 
 | 参数名   | 类型                                                     | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| value    | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是   | 表示要插入的数据。 |
-| callback | Asyncallback&lt;void&gt;                                     | 是   | 回调函数。         |
+| value    | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | 是   | 表示要插入的数据。 |
+| callback | AsyncCallback&lt;void&gt;                                     | 是   | 回调函数。         |
 
 **错误码：**
 
@@ -2405,7 +2327,7 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -2447,7 +2369,7 @@ putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
 | 参数名 | 类型                                                     | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是   | 表示要插入的数据。 |
+| value  | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | 是   | 表示要插入的数据。 |
 
 **返回值：**
 
@@ -2462,7 +2384,7 @@ putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -2510,8 +2432,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
-| 15100006     | Database or result set already closed. |
+| 15100005    | Database or result set already closed. |
 
 **示例：**
 
@@ -2566,8 +2487,7 @@ delete(key: string): Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -2605,7 +2525,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 
 | 参数名     | 类型                                                     | 必填 | 说明                                            |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
 | callback   | AsyncCallback&lt;void&gt;                                    | 是   | 回调函数。                                      |
 
 **错误码：**
@@ -2615,8 +2535,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
-| 15100006     | Database or result set already closed. |
+| 15100005    | Database or result set already closed. |
 
 **示例：**
 
@@ -2651,7 +2570,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 
 | 参数名     | 类型                                                     | 必填 | 说明                                            |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
 
@@ -2666,8 +2585,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -2716,8 +2634,7 @@ deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -2785,8 +2702,7 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -2844,7 +2760,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -2898,7 +2814,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -2941,7 +2857,7 @@ get(key: string, callback: AsyncCallback<boolean | string| number | Uint8Array>)
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | 是    |要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。  |
-| callback  |AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt;) | 是    |回调函数。返回获取查询的值。  |
+| callback  |AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | 是    |回调函数。返回获取查询的值。  |
 
 **错误码：**
 
@@ -2951,7 +2867,7 @@ get(key: string, callback: AsyncCallback<boolean | string| number | Uint8Array>)
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3007,7 +2923,7 @@ get(key: string): Promise&lt;boolean | string| number | Uint8Array&gt;
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3053,7 +2969,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3121,7 +3037,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3179,8 +3095,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100005     | Not support the operation.             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3247,8 +3162,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100005     | Not support the operation.             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3309,7 +3223,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3383,7 +3297,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3446,7 +3360,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): voi
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3514,7 +3428,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3566,7 +3480,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 | 参数名     | 类型                                                     | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。              |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。              |
 | callback   | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt;   | 是   | 回调函数，获取与指定Predicates对象匹配的KVStoreResultSet对象。 |
 
 **错误码：**
@@ -3576,7 +3490,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3622,7 +3536,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 
 | 参数名     | 类型                                                     | 必填 | 说明                                            |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
 
@@ -3637,7 +3551,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3756,7 +3670,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3819,7 +3733,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3876,8 +3790,7 @@ backup(file:string, callback: AsyncCallback&lt;void&gt;):void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100005     | Not support the operation.             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3923,8 +3836,7 @@ backup(file:string): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100005     | Not support the operation.             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -3963,8 +3875,7 @@ restore(file:string, callback: AsyncCallback&lt;void&gt;):void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100005     | Not support the operation.             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -4010,8 +3921,7 @@ restore(file:string): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100005     | Not support the operation.             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -4118,7 +4028,7 @@ startTransaction(callback: AsyncCallback&lt;void&gt;): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -4186,7 +4096,7 @@ startTransaction(): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -4228,7 +4138,7 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -4267,7 +4177,7 @@ commit(): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -4304,7 +4214,7 @@ rollback(callback: AsyncCallback&lt;void&gt;): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -4343,7 +4253,7 @@ rollback(): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -4600,10 +4510,24 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 ```js
 let kvStore;
+const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
+const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 try {
-    kvStore.sync('deviceIds', distributedKVStore.SyncMode.PULL_ONLY, 1000);
-} catch (err) {
-    console.error(`Fail to syn.code is ${err.code},message is ${err.message}`);
+    kvStore.on('syncComplete', function (data) {
+        console.log('Sync dataChange');
+    });
+    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err, data) {
+        if (err != undefined) {
+            console.error(`Fail to sync.code is ${err.code},message is ${err.message}`);
+            return;
+        }
+        console.log('Succeeded in putting data');
+        const devices = ['deviceList'];
+        const mode = distributedKVStore.SyncMode.PULL_ONLY;
+        kvStore.sync(devices, mode, 1000);
+    });
+} catch (e) {
+    console.error(`Fail to sync.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4667,7 +4591,7 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
 
-订阅指定类型的数据变更通知，此方法为同步方法。
+订阅指定类型的数据变更通知。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4686,7 +4610,7 @@ on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotific
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100001     | Over max subscribe limits.             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -4705,7 +4629,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-订阅同步完成事件回调通知，此方法为同步方法。
+订阅同步完成事件回调通知。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4740,7 +4664,7 @@ try {
 
 off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
-取消订阅数据变更通知，此方法为同步方法。
+取消订阅数据变更通知。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4757,7 +4681,7 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -4794,7 +4718,7 @@ class KvstoreModel {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-取消订阅同步完成事件回调通知，此方法为同步方法。
+取消订阅同步完成事件回调通知。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4856,7 +4780,7 @@ getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -4895,7 +4819,7 @@ getSecurityLevel(): Promise&lt;SecurityLevel&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -4924,6 +4848,109 @@ try {
 
 ### get
 
+get(key: string, callback: AsyncCallback<boolean | string| number | Uint8Array>): void
+
+获取本设备指定键的值，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| key      | string                                                       | 是   | 要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| callback | AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | 是   | 回调函数。返回获取查询的值。                                 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 15100003     | Database corrupted.                    |
+| 15100004     | Not found.                             |
+| 15100005     | Database or result set already closed. |
+
+**示例：**
+
+```js
+let kvStore;
+const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
+try {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err, data) {
+        if (err != undefined) {
+            console.error(`Fail to put.code is ${err.code},message is ${err.message}`);
+            return;
+        }
+        console.log("Succeeded in putting");
+        kvStore.get(KEY_TEST_STRING_ELEMENT, function (err, data) {
+            if (err != undefined) {
+                console.error(`Fail to get.code is ${err.code},message is ${err.message}`);
+                return;
+            }
+            console.log(`Succeeded in getting data.data=${data}`);
+        });
+    });
+} catch (e) {
+    console.error(`Fail to get.code is ${e.code},message is ${e.message}`);
+}
+```
+
+### get
+
+get(key: string): Promise&lt;boolean | string| number | Uint8Array&gt;
+
+获取本设备指定键的值，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| key    | string | 是   | 要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+
+**返回值：**
+
+| 类型                                                     | 说明                            |
+| -------------------------------------------------------- | ------------------------------- |
+| Promise&lt;Uint8Array \| string \| boolean \| number&gt; | Promise对象。返回获取查询的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 15100003     | Database corrupted.                    |
+| 15100004     | Not found.                             |
+| 15100005     | Database or result set already closed. |
+
+**示例：**
+
+```js
+let kvStore;
+const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
+try {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((data) => {
+        console.log(`Succeeded in putting data.data=${data}`);
+        kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+            console.log(`Succeeded in getting data.data=${data}`);
+        }).catch((err) => {
+            console.error(`Fail to get.code is ${err.code},message is ${err.message}`);
+        });
+    }).catch((err) => {
+        console.error(`Fail to put.code is ${err.code},message is ${err.message}`);
+    });
+} catch (e) {
+    console.error(`Fail to get.code is ${e.code},message is ${e.message}`);
+}
+```
+
+### get
+
 get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|number|Uint8Array&gt;): void
 
 获取与指定设备ID和key匹配的string值，使用callback异步回调。
@@ -4946,7 +4973,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|num
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -5003,7 +5030,7 @@ get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -5024,6 +5051,132 @@ try {
     });
 } catch (e) {
     console.error(`Fail to get.code is ${e.code},message is ${e.message}`);
+}
+```
+
+### getEntries
+
+getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
+
+获取匹配本设备指定键前缀的所有键值对，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名    | 类型                                   | 必填 | 说明                                     |
+| --------- | -------------------------------------- | ---- | ---------------------------------------- |
+| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。                     |
+| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回匹配指定前缀的键值对列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**示例：**
+
+```js
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key: key + i,
+            value: {
+                type: distributedKVStore.ValueType.STRING,
+                value: 'batch_test_string_value'
+            }
+        }
+        entries.push(entry);
+    }
+    console.log(`entries: ${entries}`);
+    kvStore.putBatch(entries, async function (err, data) {
+        if (err != undefined) {
+            console.error(`Fail to put Batch.code is ${err.code},message is ${err.message}`);
+            return;
+        }
+        console.log('Succeeded in putting Batch');
+        kvStore.getEntries('batch_test_string_key', function (err, entries) {
+            if (err != undefined) {
+                console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
+                return;
+            }
+            console.log('Succeeded in getting Entries');
+            console.log(`entries.length: ${entries.length}`);
+            console.log(`entries[0]: ${entries[0]}`);
+        });
+    });
+} catch (e) {
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message} `);
+}
+```
+
+### getEntries
+
+getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
+
+获取匹配本设备指定键前缀的所有键值对，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明                 |
+| --------- | ------ | ---- | -------------------- |
+| keyPrefix | string | 是   | 表示要匹配的键前缀。 |
+
+**返回值：**
+
+| 类型                             | 说明                                        |
+| -------------------------------- | ------------------------------------------- |
+| Promise&lt;[Entry](#entry)[]&gt; | Promise对象。返回匹配指定前缀的键值对列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**示例：**
+
+```js
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key: key + i,
+            value: {
+                type: distributedKVStore.ValueType.STRING,
+                value: 'batch_test_string_value'
+            }
+        }
+        entries.push(entry);
+    }
+    console.log(`entries: ${entries}`);
+    kvStore.putBatch(entries).then(async (entries) => {
+        console.log('Succeeded in putting Batch');
+        kvStore.getEntries('batch_test_string_key').then((entries) => {
+            console.log('Succeeded in getting Entries');
+            console.log(`PutBatch ${entries}`);
+        }).catch((err) => {
+            console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
+        });
+    }).catch((err) => {
+        console.error(`Fail to put Batch.code is ${err.code},message is ${err.message}`);
+    });
+} catch (e) {
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message} `);
 }
 ```
 
@@ -5050,7 +5203,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -5119,7 +5272,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -5160,6 +5313,134 @@ try {
 
 ### getEntries
 
+getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
+
+获取本设备与指定Query对象匹配的键值对列表，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                  |
+| -------- | -------------------------------------- | ---- | ----------------------------------------------------- |
+| query    | [Query](query)                         | 是   | 表示要匹配的键前缀。                                  |
+| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回本设备与指定Query对象匹配的键值对列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**示例：**
+
+```js
+let kvStore;
+try {
+    var arr = new Uint8Array([21, 31]);
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_bool_key';
+        var entry = {
+            key: key + i,
+            value: {
+                type: distributedKVStore.ValueType.BYTE_ARRAY,
+                value: arr
+            }
+        }
+        entries.push(entry);
+    }
+    console.log(`entries: {entries}`);
+    kvStore.putBatch(entries, async function (err, data) {
+        console.log('Succeeded in putting Batch');
+        const query = new distributedKVStore.Query();
+        query.prefixKey("batch_test");
+        kvStore.getEntries(query, function (err, entries) {
+            if (err != undefined) {
+                console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
+                return;
+            }
+            console.log('Succeeded in getting Entries');
+            console.log(`entries.length: ${entries.length}`);
+            console.log(`entries[0]: ${entries[0]}`);
+        });
+    });
+} catch (e) {
+    console.error(`Fail to get Entries.code is ${e.code},message is ${e.message}`);
+}
+```
+
+### getEntries
+
+getEntries(query: Query): Promise&lt;Entry[]&gt;
+
+获取本设备与指定Query对象匹配的键值对列表，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名 | 类型           | 必填 | 说明           |
+| ------ | -------------- | ---- | -------------- |
+| query  | [Query](query) | 是   | 表示查询对象。 |
+
+**返回值：**
+
+| 类型                             | 说明                                                     |
+| -------------------------------- | -------------------------------------------------------- |
+| Promise&lt;[Entry](#entry)[]&gt; | Promise对象。返回本设备与指定Query对象匹配的键值对列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**示例：**
+
+```js
+let kvStore;
+try {
+    var arr = new Uint8Array([21, 31]);
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_bool_key';
+        var entry = {
+            key: key + i,
+            value: {
+                type: distributedKVStore.ValueType.BYTE_ARRAY,
+                value: arr
+            }
+        }
+        entries.push(entry);
+    }
+    console.log(`entries: {entries}`);
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('Succeeded in putting Batch');
+        const query = new distributedKVStore.Query();
+        query.prefixKey("batch_test");
+        kvStore.getEntries(query).then((entries) => {
+            console.log('Succeeded in getting Entries');
+        }).catch((err) => {
+            console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
+        });
+    }).catch((err) => {
+        console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`)
+    });
+    console.log('Succeeded in getting Entries');
+} catch (e) {
+    console.error(`Fail to get Entries.code is ${e.code},message is ${e.message}`);
+}
+```
+
+### getEntries
+
 getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 获取与指定设备ID和Query对象匹配的键值对列表，使用callback异步回调。
@@ -5181,8 +5462,7 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100005     | Not support the operation.             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -5256,8 +5536,7 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100005     | Not support the operation.             |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -5299,6 +5578,143 @@ try {
 
 ### getResultSet
 
+getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
+
+从DeviceKVStore数据库中获取本设备具有指定前缀的结果集，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名    | 类型                                                       | 必填 | 说明                                 |
+| --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
+| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。                 |
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回具有指定前缀的结果集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**示例：**
+
+```js
+let kvStore;
+try {
+    let resultSet;
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key: key + i,
+            value: {
+                type: distributedKVStore.ValueType.STRING,
+                value: 'batch_test_string_value'
+            }
+        }
+        entries.push(entry);
+    }
+    kvStore.putBatch(entries, async function (err, data) {
+        if (err != undefined) {
+            console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
+            return;
+        }
+        console.log('Succeeded in putting batch');
+        kvStore.getResultSet('batch_test_string_key', async function (err, result) {
+            if (err != undefined) {
+                console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
+                return;
+            }
+            console.log('Succeeded in getting result set');
+            resultSet = result;
+            kvStore.closeResultSet(resultSet, function (err, data) {
+                if (err != undefined) {
+                    console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
+                    return;
+                }
+                console.log('Succeeded in closing result set');
+            })
+        });
+    });
+} catch (e) {
+    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+}
+```
+
+### getResultSet
+
+getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
+
+从DeviceKVStore数据库中获取本设备具有指定前缀的结果集，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明                 |
+| --------- | ------ | ---- | -------------------- |
+| keyPrefix | string | 是   | 表示要匹配的键前缀。 |
+
+**返回值：**
+
+| 类型                                                 | 说明                                    |
+| ---------------------------------------------------- | --------------------------------------- |
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。返回具有指定前缀的结果集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**示例：**
+
+```js
+let kvStore;
+try {
+    let resultSet;
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key: key + i,
+            value: {
+                type: distributedKVStore.ValueType.STRING,
+                value: 'batch_test_string_value'
+            }
+        }
+        entries.push(entry);
+    }
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('Succeeded in putting batch');
+    }).catch((err) => {
+        console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
+    });
+    kvStore.getResultSet('batch_test_string_key').then((result) => {
+        console.log('Succeeded in getting result set');
+        resultSet = result;
+    }).catch((err) => {
+        console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
+    });
+    kvStore.closeResultSet(resultSet).then((err) => {
+        console.log('Succeeded in closing result set');
+    }).catch((err) => {
+        console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
+    });
+} catch (e) {
+    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+}
+```
+
+### getResultSet
+
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 获取与指定设备ID和key前缀匹配的KVStoreResultSet对象，使用callback异步回调。
@@ -5311,7 +5727,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | 是   | 标识要查询其数据的设备。                                     |
 | keyPrefix | string                                                       | 是   | 表示要匹配的键前缀。                                         |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)[]&gt; | 是   | 回调函数。返回与指定设备ID和key前缀匹配的KVStoreResultSet对象。 |
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回与指定设备ID和key前缀匹配的KVStoreResultSet对象。 |
 
 **错误码：**
 
@@ -5320,7 +5736,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -5367,7 +5783,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 
 | 类型                                                   | 说明                                                         |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)[]&gt; | Promise对象。返回与指定设备ID和key前缀匹配的KVStoreResultSet对象。 |
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。返回与指定设备ID和key前缀匹配的KVStoreResultSet对象。 |
 
 **错误码：**
 
@@ -5376,7 +5792,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -5414,7 +5830,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId | string                                                       | 是   | KVStoreResultSet对象所属的设备ID。                           |
 | query    | [Query](query)                                               | 是   | 表示查询对象。                                               |
-| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)[]&gt; | 是   | 回调函数。返回与指定设备ID和Query对象匹配的KVStoreResultSet对象。 |
+| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回与指定设备ID和Query对象匹配的KVStoreResultSet对象。 |
 
 **错误码：**
 
@@ -5423,7 +5839,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -5491,7 +5907,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 
 | 类型                                                   | 说明                                                         |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)[]&gt; | Promise对象。返回与指定设备ID和Query对象匹配的KVStoreResultSet对象。 |
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。返回与指定设备ID和Query对象匹配的KVStoreResultSet对象。 |
 
 **错误码：**
 
@@ -5500,7 +5916,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -5548,6 +5964,258 @@ try {
 
 ### getResultSet
 
+getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
+
+获取与本设备指定Query对象匹配的KVStoreResultSet对象，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名 | 类型           | 必填 | 说明           |
+| ------ | -------------- | ---- | -------------- |
+| query  | [Query](query) | 是   | 表示查询对象。 |
+
+**返回值：**
+
+| 类型                                                 | 说明                                                         |
+| ---------------------------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。获取与本设备指定Query对象匹配的KVStoreResultSet对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**示例：**
+
+```js
+let kvStore;
+try {
+    let resultSet;
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key: key + i,
+            value: {
+                type: distributedKVStore.ValueType.STRING,
+                value: 'batch_test_string_value'
+            }
+        }
+        entries.push(entry);
+    }
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('Succeeded in putting batch');
+    }).catch((err) => {
+        console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
+    });
+    const query = new distributedKVStore.Query();
+    query.prefixKey("batch_test");
+    kvStore.getResultSet(query).then((result) => {
+        console.log('Succeeded in getting result set');
+        resultSet = result;
+    }).catch((err) => {
+        console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
+    });
+} catch (e) {
+    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+}    
+```
+
+### getResultSet
+
+getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
+
+获取与指定设备ID和Query对象匹配的KVStoreResultSet对象，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
+
+**参数：**
+
+| 参数名   | 类型           | 必填 | 说明                               |
+| -------- | -------------- | ---- | ---------------------------------- |
+| deviceId | string         | 是   | KVStoreResultSet对象所属的设备ID。 |
+| query    | [Query](query) | 是   | 表示查询对象。                     |
+
+**返回值：**
+
+| 类型                                                 | 说明                                                         |
+| ---------------------------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。返回与指定设备ID和Query对象匹配的KVStoreResultSet对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**示例：**
+
+```js
+let kvStore;
+try {
+    let resultSet;
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key: key + i,
+            value: {
+                type: distributedKVStore.ValueType.STRING,
+                value: 'batch_test_string_value'
+            }
+        }
+        entries.push(entry);
+    }
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('Succeeded in putting batch');
+    }).catch((err) => {
+        console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
+    });
+    const query = new distributedKVStore.Query();
+    query.prefixKey("batch_test");
+    kvStore.getResultSet('localDeviceId', query).then((result) => {
+        console.log('Succeeded in getting resultSet');
+        resultSet = result;
+    }).catch((err) => {
+        console.error(`Fail to get resultSet.code is ${err.code},message is ${err.message}`);
+    });
+    query.deviceId('localDeviceId');
+    console.log("GetResultSet " + query.getSqlLike());
+    kvStore.closeResultSet(resultSet).then((err) => {
+        console.log('Succeeded in closing resultSet');
+    }).catch((err) => {
+        console.error(`Fail to close resultSet.code is ${err.code},message is ${err.message}`);
+    });
+
+} catch (e) {
+    console.error(`Fail to get resultSet.code is ${e.code},message is ${e.message}`);
+}
+```
+
+### getResultSet
+
+getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
+
+获取与本设备指定Predicate对象匹配的KVStoreResultSet对象，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Provider
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。              |
+| callback   | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt;   | 是   | 回调函数，获取与指定Predicates对象匹配的KVStoreResultSet对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**示例：**
+
+```js
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+let kvStore;
+try {
+    let resultSet;
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.prefixKey("batch_test_string_key");
+    kvStore.getResultSet(predicates, async function (err, result) {
+        if (err != undefined) {
+            console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
+            return;
+        }
+        console.log('Succeeded in getting result set');
+        resultSet = result;
+        kvStore.closeResultSet(resultSet, function (err, data) {
+            if (err != undefined) {
+                console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
+                return;
+            }
+            console.log('Succeeded in closing result set');
+        })
+    });
+} catch (e) {
+    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+}
+```
+
+### getResultSet
+
+getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
+
+获取与本设备指定Predicate对象匹配的KVStoreResultSet对象，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Provider
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                                            |
+| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
+
+**返回值：**
+
+| 类型                                                 | 说明                      |
+| ---------------------------------------------------- | ------------------------- |
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**示例：**
+
+```js
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+let kvStore;
+try {
+    let resultSet;
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.prefixKey("batch_test_string_key");
+    kvStore.getResultSet(predicates).then((result) => {
+        console.log('Succeeded in getting result set');
+        resultSet = result;
+    }).catch((err) => {
+        console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
+    });
+    kvStore.closeResultSet(resultSet).then((err) => {
+        console.log('Succeeded in closing result set');
+    }).catch((err) => {
+        console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
+    });
+} catch (e) {
+    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+}
+```
+
+### getResultSet
+
 getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 获取与指定Predicate对象匹配的KVStoreResultSet对象，使用callback异步回调。
@@ -5561,7 +6229,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 | 参数名     | 类型                                                     | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | 是   | 标识要查询其数据的设备。                                     |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。              |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。              |
 | callback   | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt;   | 是   | 回调函数，获取与指定Predicates对象匹配的KVStoreResultSet对象。 |
 
 **错误码：**
@@ -5571,7 +6239,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -5618,7 +6286,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 | 参数名     | 类型                                                     | 必填 | 说明                                            |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
 | deviceId  | string                                                       | 是   | 标识要查询其数据的设备。                                     |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
 
@@ -5633,7 +6301,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -5654,6 +6322,127 @@ try {
         console.log('Succeeded in closing result set');
     }).catch((err) => {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
+    });
+} catch (e) {
+    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+}
+```
+
+### getResultSize
+
+getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
+
+获取与本设备指定Query对象匹配的结果数，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                              |
+| -------- | --------------------------- | ---- | ------------------------------------------------- |
+| query    | [Query](query)              | 是   | 表示查询对象。                                    |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回与本设备指定Query对象匹配的结果数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**示例：**
+
+```js
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key: key + i,
+            value: {
+                type: distributedKVStore.ValueType.STRING,
+                value: 'batch_test_string_value'
+            }
+        }
+        entries.push(entry);
+    }
+    kvStore.putBatch(entries, async function (err, data) {
+        console.log('Succeeded in putting batch');
+        const query = new distributedKVStore.Query();
+        query.prefixKey("batch_test");
+        kvStore.getResultSize(query, async function (err, resultSize) {
+            if (err != undefined) {
+                console.error(`Fail to get result size.code is ${err.code},message is ${err.message}`);
+                return;
+            }
+            console.log('Succeeded in getting result set size');
+        });
+    });
+} catch (e) {
+    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+}
+```
+
+### getResultSize
+
+getResultSize(query: Query): Promise&lt;number&gt;
+
+获取与本设备指定Query对象匹配的结果数，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名 | 类型           | 必填 | 说明           |
+| ------ | -------------- | ---- | -------------- |
+| query  | [Query](query) | 是   | 表示查询对象。 |
+
+**返回值：**
+
+| 类型                  | 说明                                                 |
+| --------------------- | ---------------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象。获取与本设备指定Query对象匹配的结果数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**示例：**
+
+```js
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key: key + i,
+            value: {
+                type: distributedKVStore.ValueType.STRING,
+                value: 'batch_test_string_value'
+            }
+        }
+        entries.push(entry);
+    }
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('Succeeded in putting batch');
+    }).catch((err) => {
+        console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
+    });
+    const query = new distributedKVStore.Query();
+    query.prefixKey("batch_test");
+    kvStore.getResultSize(query).then((resultSize) => {
+        console.log('Succeeded in getting result set size');
+    }).catch((err) => {
+        console.error(`Fail to get result size.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
     console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
@@ -5683,7 +6472,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 
@@ -5752,7 +6541,7 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
-| 15100006     | Database or result set already closed. |
+| 15100005     | Database or result set already closed. |
 
 **示例：**
 

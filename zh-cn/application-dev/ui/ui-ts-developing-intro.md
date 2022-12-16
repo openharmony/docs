@@ -2,14 +2,14 @@
 
 ## 开发说明
 
-| 任务                   | 简介                                                         | 相关资源                                                     |
-| ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 准备开发环境           | 了解声明式UI的工程结构。<br>了解资源分类与访问。             | [OpenHarmony工程介绍](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-project-overview-0000001218440650)<br>[资源分类与访问](../quick-start/resource-categories-and-access.md) |
-| 学习ArkTS语言          | ArkTS是HarmonyOS优选的主力应用开发语言，当前，ArkTS在TS基础上主要扩展了声明式UI能力。 | [学习ArkTS语言](../quick-start/arkts-get-started.md)         |
-| 开发页面               | 根据页面的使用场景，选择合适的布局。<br>根据页面需要实现的内容，添加系统内置组件，并修改组件样式。<br>更新页面内容，丰富页面展现形式。 | [创建页面](#创建页面)<br>        [常见布局开发指导](ui-ts-layout-linear.md)<br>        [常见组件说明](ui-ts-components-intro.md)<br>[修改组件样式](#修改组件样式)<br>[更新页面内容](#更新页面内容) |
-| （可选）页面多样化     | 绘图和动画。                                                 | [绘图组件](../reference/arkui-ts/ts-drawing-components-circle.md)<br>[画布组件](../reference/arkui-ts/ts-components-canvas-canvas.md)<br>[动画](../reference/arkui-ts/ts-animatorproperty.md) |
-| （可选）页面之间的跳转 | 使用页面路由实现多个页面之前的跳转。                         | [页面路由](../reference/apis/js-apis-router.md)              |
-| （可选）性能提升       | 避免低性能代码对应用的性能造成负面影响。                     | [性能提升的推荐方法](ui-ts-performance-improvement-recommendation.md) |
+| 任务          | 简介                                       | 相关资源                                     |
+| ----------- | ---------------------------------------- | ---------------------------------------- |
+| 准备开发环境      | 了解声明式UI的工程结构。<br>了解资源分类与访问。              | [OpenHarmony工程介绍](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-project-overview-0000001218440650)<br>[资源分类与访问](../quick-start/resource-categories-and-access.md) |
+| 学习ArkTS语言   | ArkTS是OpenHarmony优选的主力应用开发语言，当前，ArkTS在TS基础上主要扩展了声明式UI能力。 | [学习ArkTS语言](../quick-start/arkts-get-started.md) |
+| 开发页面        | 根据页面的使用场景，选择合适的布局。<br>根据页面需要实现的内容，添加系统内置组件，并修改组件样式。<br>更新页面内容，丰富页面展现形式。 | [创建页面](#创建页面)<br>        &nbsp;&nbsp;[常见布局开发指导](ui-ts-layout-linear.md)<br>        &nbsp;&nbsp;[常见组件说明](ui-ts-components-intro.md)<br>[修改组件样式](#修改组件样式)<br>[更新页面内容](#更新页面内容) |
+| （可选）页面多样化   | 绘图和动画。                                   | [绘图组件](../reference/arkui-ts/ts-drawing-components-circle.md)<br>[画布组件](../reference/arkui-ts/ts-components-canvas-canvas.md)<br>[动画](../reference/arkui-ts/ts-animatorproperty.md) |
+| （可选）页面之间的跳转 | 使用页面路由实现多个页面之前的跳转。                       | [页面路由](../reference/apis/js-apis-router.md) |
+| （可选）性能提升    | 避免低性能代码对应用的性能造成负面影响。                     | [性能提升的推荐方法](ui-ts-performance-improvement-recommendation.md) |
 
 ## 创建页面
 

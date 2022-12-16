@@ -4,6 +4,7 @@
 - Ability框架
   - [元能力子系统错误码](errorcode-ability.md)
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)
+  - [卡片错误码](errorcode-form.md)
 - 包管理
   - [包管理子系统通用错误码](errorcode-bundle.md)
   - [zlib子系统错误码](errorcode-zlib.md)
@@ -20,6 +21,7 @@
   - [窗口错误码](errorcode-window.md)
 - 媒体
   - [Audio错误码](errorcode-audio.md)
+  - [Media错误码](errorcode-media.md)
   - [媒体会话管理错误码](errorcode-avsession.md)
 - 资源管理
   - [I18n错误码](errorcode-i18n.md)
@@ -32,12 +34,15 @@
 - 安全
   - [AccessToken错误码](errorcode-access-token.md)
   - [HUKS错误码](errorcode-huks.md)
+  - [用户认证错误码](errorcode-useriam.md)
 - 数据管理
   - [关系型数据库错误码](errorcode-data-rdb.md)
   - [数据共享错误码](errorcode-datashare.md)
   - [分布式数据对象错误码](errorcode-distributed-dataObject.md)
   - [分布式键值数据库错误码](errorcode-distributedKVStore.md)
   - [首选项错误码](errorcode-preferences.md)
+- 文件管理
+  - [文件管理子系统错误码](errorcode-filemanagement.md)
 - 网络管理
   - [上传下载错误码](errorcode-request.md)
 - 通信与连接
@@ -51,6 +56,7 @@
   - [Hidebug错误码](errorcode-hiviewdfx-hidebug.md)
   - [输入法框架错误码](errorcode-inputmethod-framework.md)
   - [剪贴板错误码](errorcode-pasteboard.md)
+  - [锁屏服务错误码](errorcode-screenlock.md)
   - [Webview错误码](errorcode-webview.md)
 - 帐号管理
   - [Account错误码](errorcode-account.md)
