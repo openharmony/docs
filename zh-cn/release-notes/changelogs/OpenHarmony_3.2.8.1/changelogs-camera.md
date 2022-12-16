@@ -152,6 +152,8 @@ OpenHarmony3.2 Beta4版本相较于OpenHarmony3.2 Beta3版本，媒体子系统c
 
 **适配指导**
 
+除新增接口，和废弃接口之外，开发者需要关注变更的接口的适配：
+
 **接口变更**
 
 从Beta4版本开始，对以下接口进行调整：
@@ -750,11 +752,8 @@ cameraInput.open().then(() => {
 
     属性名称：code，值：MetadataOutputErrorCode
 
-    
 
-参考代码
-
-**接口废弃
+**接口废弃**
 
 1. CameraInput中废弃接口on(type: 'exposureStateChange', callback: AsyncCallback<ExposureState>): void;
 
