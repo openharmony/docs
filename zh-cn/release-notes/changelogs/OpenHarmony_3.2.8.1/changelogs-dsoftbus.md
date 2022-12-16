@@ -127,3 +127,18 @@
 | Ashmem  | setProtection(protectionType: number): boolean | NA | setProtectionType(protectionType: number): void |
 | Ashmem  | writeToAshmem(buf: number[], size: number, offset: number): boolean | NA | writeAshmem(buf: number[], size: number, offset: number): void |
 | Ashmem  | readFromAshmem(size: number, offset: number): number[] | NA | readAshmem(size: number, offset: number): number[] |
+
+##### 适配指导
+
+```js
+import rpc from '@ohos.rpc'
+
+try {
+       var data = rpc.MessageParcel.create();
+       data.reclaim();
+    } catch (error) {
+       console.info("create meassageParcel failed, errorCode = " + error.errCode);
+       console.info("create meassageParcel failed, errorMessage = " + error.errorMessage);
+  }
+```
+更多接口的示例代码可参考[RPC通信API文档](../../../application-dev/reference/apis/js-apis-rpc.md)。
