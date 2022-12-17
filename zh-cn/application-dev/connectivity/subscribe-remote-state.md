@@ -15,8 +15,47 @@ IPC/RPC提供对远端Stub对象状态的订阅机制， 在远端Stub对象死�
 | RemoveDeathRecipient(const sptr\<DeathRecipient> &recipient); | bool | 取消订阅远端Stub对象状态。 |
 | OnRemoteDied(const wptr\<IRemoteObject> &object); | void | 当远端Stub对象死亡时回调。 |
 
-
 ### 参考代码
+
+```C++
+//定义消息码
+enum {
+    TRANS_ID_PING_ABILITY = 5,
+    TRANS_ID_REVERSED_MONITOR
+};
+
+class ITestService : public IRemoteBroker {
+public:
+    // DECLARE_INTERFACE_DESCRIPTOR是必需的，入参需使用std::u16string；
+    DECLARE_INTERFACE_DESCRIPTOR(to_utf16(DESCRIPTOR));
+    virtual int TestPingAbility(const std::u16string &dummy) = 0; // 定义业务函数
+};
+
+class TestServiceProxy : public IRemoteProxy<ITestAbility> {
+public:
+    explicit TestAbilityProxy(const sptr<IRemoteObject> &impl);
+    virtual int TestPingAbility(const std::u16string &dummy) override;
+    int TestAnonymousStub();
+private:
+    static inline BrokerDelegator<TestAbilityProxy> delegator_; // 方便后续使用iface_cast宏
+};
+
+TestServiceProxy::TestServiceProxy(const sptr<IRemoteObject> &impl)
+    : IRemoteProxy<ITestAbility>(impl)
+{
+}
+
+int TestServiceProxy::TestPingAbility(const std::u16string &dummy){
+    MessageOption option;
+    MessageParcel dataParcel, replyParcel;
+    dataParcel.WriteString16(dummy);
+    int error = PeerHolder::Remote()->SendRequest(TRANS_ID_PING_ABILITY, dataParcel, replyParcel, option);
+    int result = (error == ERR_NONE) ? replyParcel.ReadInt32() : -1;
+    return result;
+}
+```
+
+
 
 
 ```
@@ -24,10 +63,20 @@ class TestDeathRecipient : public IRemoteObject::DeathRecipient {
 public:
     virtual void OnRemoteDied(const wptr<IRemoteObject>& remoteObject);
 }
-sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient());// 构造一个死亡通知对象
-bool result = proxy->AddDeathRecipient(deathRecipient); // 注册死亡通知
-result = proxy->RemoveDeathRecipient(deathRecipient); // 移除死亡通知
+
+void TestDeathRecipient::OnRemoteDied(const wptr<IRemoteObject>& remoteObject)
+{
+}
 ```
+
+```c++
+sptr<IPCObjectProxy> object = new IPCObjectProxy(1, to_utf16(DESCRIPTOR));
+sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient());// 构造一个死亡通知对象
+bool result = object->AddDeathRecipient(deathRecipient); // 注册死亡通知
+result = object->RemoveDeathRecipient(deathRecipient); // 移除死亡通知
+```
+
+
 
 ## Stub感知Proxy死亡（匿名Stub的使用）
 

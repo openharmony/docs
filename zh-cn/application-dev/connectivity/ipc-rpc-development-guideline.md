@@ -161,7 +161,6 @@ include_dirs = [
 ```
 import rpc from "@ohos.rpc"
 import featureAbility from "@ohos.ability.featureAbility"
-]
 ```
 
 2. 客户端构造变量want，指定要绑定的Ability所在应用的包名、组件名，如果是跨设备的场景，还需要目标设备NetworkId。构造变量connect，指定绑定成功、绑定失败、断开连接时的回调函数。使用featureAbility提供的接口绑定Ability。
