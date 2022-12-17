@@ -2,7 +2,7 @@
 
 应用特权是指应用所具备的一些高等级的特殊能力，比如限制应用不可被卸载、应用内数据不可被删除等。
 
-OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单独配置的应用特权。
+OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单独配置的应用特权。当签名证书中配置的特权与白名单(install_list_capability.json)中特权相同时，以白名单的配置为主。
 
 注：应当注意不要滥用应用特权，避免造成用户反感甚至对用户造成侵权。
 
@@ -15,12 +15,9 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
 | 权限 | 描述                                                       |
 | ---------------- | ------------------------------------------------------------ |
 | AllowAppDataNotCleared | 是否允许应用数据被删除 |
-| AllowAppMultiProcess | 是否允许应用多进程 |
 | AllowAppDesktopIconHide | 是否允许隐藏桌面图标 |
 | AllowAbilityPriorityQueried | 是否允许Ability配置查询优先级     |
 | AllowAbilityExcludeFromMissions | 是否允许Ability不在任务栈中显示 |
-| AllowAppUsePrivilegeExtension | 是否允许应用使用ServiceExtension、DataExtension |
-| AllowFormVisibleNotify | 是否允许桌面卡片可见 |
 
 ### 配置方式
 
@@ -61,6 +58,13 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
 | allowCommonEvent      | string[] | -      | 是否允许静态广播拉起                              |
 | associatedWakeUp      | bool     | false  | 是否允许FA模型应用被关联唤醒                      |
 | runningResourcesApply | bool     | false  | 是否允许应用运行资源申请（CPU、事件通知、蓝牙等） |
+| allowAppDataNotCleared | bool | false|是否允许应用数据被删除 |
+| allowAppMultiProcess | bool | false| 是否允许应用多进程 |
+| allowAppDesktopIconHide | bool | false| 是否允许隐藏桌面图标 |
+| allowAbilityPriorityQueried | bool | false| 是否允许Ability配置查询优先级     |
+| allowAbilityExcludeFromMissions | bool | false| 是否允许Ability不在任务栈中显示 |
+| allowAppUsePrivilegeExtension | bool | false|是否允许应用使用ServiceExtension、DataExtension |
+| allowFormVisibleNotify | bool | false| 是否允许桌面卡片可见 |
 
 ### 配置方式
 
@@ -80,7 +84,14 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
             "runningResourcesApply": true, // 运行资源申请（CPU、事件通知、蓝牙等）
             "associatedWakeUp": true, // FA模型应用被关联唤醒
             "app_signature" : [“8E93863FC32EE238060BF69A9B37E2608FFFB21F93C862DD511CBAC”], // 当配置的证书指纹和hap的证书指纹一致才生效
-            "allowCommonEvent": [“usual.event.SCREEN_ON”, “usual.event.THERMAL_LEVEL_CHANGED”]
+            "allowCommonEvent": [“usual.event.SCREEN_ON”, “usual.event.THERMAL_LEVEL_CHANGED”],
+            "allowAppDataNotCleared": true, // 不允许应用数据被删除
+            "allowAppMultiProcess": true, //允许应用多进程
+            "allowAppDesktopIconHide": true, //允许隐藏桌面图标
+            "allowAbilityPriorityQueried": true, //允许Ability配置查询优先级
+            "allowAbilityExcludeFromMissions": true, // 允许Ability不在任务栈中显示
+            "allowAppUsePrivilegeExtension": true, // 允许应用使用ServiceExtension、DataExtension
+            "allowFormVisibleNotify": true // 允许桌面卡片可见
         },
 }
 ```
