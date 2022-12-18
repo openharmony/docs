@@ -163,3 +163,64 @@ interface AudioRenderer {
     on(type: 'audioInterrupt', callback: Callback<InterruptEvent>): void;
 }
 ```
+
+
+## cl.multimedia.media.001 VideoRecorder相关接口变更为systemapi
+
+VideoRecorder相关接口变更为systemapi，只提供给系统用户使用。
+
+**变更影响**
+
+如果VideoRecorder的调用者非系统用户，会调用失败。
+涉及接口以及枚举如下：
+function createVideoRecorder(callback: AsyncCallback<VideoRecorder>): void;
+function createVideoRecorder(): Promise<VideoRecorder>;
+type VideoRecordState = 'idle' | 'prepared' | 'playing' | 'paused' | 'stopped' | 'error';
+interface VideoRecorder{
+    prepare(config: VideoRecorderConfig, callback: AsyncCallback<void>): void;
+    prepare(config: VideoRecorderConfig): Promise<void>;
+    getInputSurface(callback: AsyncCallback<string>): void;
+    getInputSurface(): Promise<string>;
+    start(callback: AsyncCallback<void>): void;
+    start(): Promise<void>;
+    pause(callback: AsyncCallback<void>): void;
+    pause(): Promise<void>;
+    resume(callback: AsyncCallback<void>): void;
+    resume(): Promise<void>;
+    stop(callback: AsyncCallback<void>): void;
+    stop(): Promise<void>;
+    release(callback: AsyncCallback<void>): void;
+    release(): Promise<void>;
+    reset(callback: AsyncCallback<void>): void;
+    reset(): Promise<void>;
+    on(type: 'error', callback: ErrorCallback): void;
+    readonly state: VideoRecordState;
+}
+interface VideoRecorderProfile {
+    readonly audioBitrate: number;
+    readonly audioChannels: number;
+    readonly audioCodec: CodecMimeType;
+    readonly audioSampleRate: number;
+    readonly fileFormat: ContainerFormatType;
+    readonly videoBitrate: number;
+    readonly videoCodec: CodecMimeType;
+    readonly videoFrameWidth: number;
+    readonly videoFrameHeight: number;
+    readonly videoFrameRate: number;  
+}
+enum AudioSourceType {
+    AUDIO_SOURCE_TYPE_DEFAULT = 0,
+    AUDIO_SOURCE_TYPE_MIC = 1,
+}
+enum VideoSourceType {
+    VIDEO_SOURCE_TYPE_SURFACE_YUV = 0,
+    VIDEO_SOURCE_TYPE_SURFACE_ES = 1,
+}
+enum VideoRecorderConfig {
+    audioSourceType?: AudioSourceType;
+    videoSourceType: VideoSourceType;
+    profile: VideoRecorderProfile;
+    url: string;
+    rotation?: number;
+    location?: Location;
+}
