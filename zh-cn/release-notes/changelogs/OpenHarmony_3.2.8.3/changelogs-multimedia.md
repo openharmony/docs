@@ -224,3 +224,36 @@ enum VideoRecorderConfig {
     rotation?: number;
     location?: Location;
 }
+
+## cl.multimedia.media.002 VideoPlayer中不对外提供多码率选择接口
+
+VideoPlayer在API9中不对外提供多码率选择相关接口，相关接口会在MR版本中由AvPlayer提供。
+
+**变更影响**
+
+VideoPlayer多码率场景无法进行码率选择，相关功能由AVPlayer提供
+
+**关键的接口/组件变更**
+
+删除如下接口
+interface VideoPlayer {
+    selectBitrate(bitrate: number): Promise<number>;
+    selectBitrate(bitrate: number, callback: AsyncCallback<number>): void;
+    on(type: 'availableBitratesCollect', callback: (bitrates: Array<number>) => void): void;
+}
+
+## cl.multimedia.media.003 VideoRecorder错误信息变更
+
+VideoRecorder以前错误码和整体错误码规则不一致，需要变更错误码
+
+**变更影响**
+
+VideoRecorder返回的错误码发生变更
+
+**关键的接口/组件变更**
+
+VideoRecorder接口未发生变更，返回的错误码发生变更
+
+**适配指导**
+
+异常处理具体参考接口文档。
