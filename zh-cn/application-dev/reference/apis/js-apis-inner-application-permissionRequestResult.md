@@ -1,6 +1,6 @@
 # PermissionRequestResult
 
-PermissionRequestResult模块提供了权限请求结果的能力，在调用[requestPermissionsFromUser](js-apis-inner-application-uiAbilityContext.md#abilitycontextrequestpermissionsfromuser)申请权限时返回此对象表明此次权限申请的结果。
+权限请求结果对象，在调用[requestPermissionsFromUser](js-apis-inner-application-uiAbilityContext.md#abilitycontextrequestpermissionsfromuser)申请权限时返回此对象表明此次权限申请的结果。
 
 > **说明：**
 > 
