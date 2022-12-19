@@ -167,7 +167,8 @@ interface AudioRenderer {
 
 ## cl.multimedia.media.001 VideoRecorder相关接口变更为systemapi
 
-VideoRecorder相关接口变更为systemapi，只提供给系统用户使用。
+录制在MR版本会提供正式的AVRecorder（音视频合一）的接口给外部用户使用。
+VideoRecorder相关的api9接口变更为systemapi，当前只提供给系统用户使用，未来等内部用户都切换为AVRecorder之后，废弃VideoRecorder相关接口。
 
 **变更影响**
 
