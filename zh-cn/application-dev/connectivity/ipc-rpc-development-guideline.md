@@ -20,26 +20,22 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
 **Native侧开发步骤**
 
-1.添加依赖
+1. 添加依赖
 
-sdk依赖：
+​	sdk依赖：
 
-```
-external_deps = [
-  "ipc:ipc_core",
-]
-```
+	 external_deps = [
+	   "ipc:ipc_core",
+	 ]
 
-此外， IPC/RPC依赖的refbase实现在公共基础库下，请增加对utils的依赖：
+​	此外， IPC/RPC依赖的refbase实现在公共基础库下，请增加对utils的依赖：
 
-```
-deps = [
- “//utils/native/base:utils”
-]
-include_dirs = [
-“//utils/native/base/include”,
-]
-```
+	 deps = [
+	   “//utils/native/base:utils”
+	 ]
+	 include_dirs = [
+	   “//utils/native/base/include”,
+	 ]
 
 2. 定义IPC接口ITestAbility
 
@@ -102,7 +98,7 @@ include_dirs = [
    class TestAbilityProxy : public IRemoteProxy<ITestAbility> {
    public:
        explicit TestAbilityProxy(const sptr<IRemoteObject> &impl);
-       int TestPingService(const std::u16string &dummy) override;
+       int TestPingAbility(const std::u16string &dummy) override;
    private:
        static inline BrokerDelegator<TestAbilityProxy> delegator_; // 方便后续使用iface_cast宏
    }
@@ -112,7 +108,7 @@ include_dirs = [
    {
    }
    
-   int TestAbilityProxy::TestPingService(const std::u16string &dummy){
+   int TestAbilityProxy::TestPingAbility(const std::u16string &dummy){
        MessageOption option;
        MessageParcel dataParcel, replyParcel;
        dataParcel.WriteString16(dummy);
