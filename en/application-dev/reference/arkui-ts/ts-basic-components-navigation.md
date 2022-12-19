@@ -108,10 +108,10 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## Events
 
-| Name                                                         | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void) | Triggered when **titleMode** is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls. |
-| onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) | Triggered when the navigation bar visibility status changes. The value **true** means that the navigation bar is displayed, and **false** means the opposite. |
+| Name                                      | Description                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void) | Triggered when **titleMode** is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls.|
+| onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) | Triggered when the navigation bar visibility status changes. The value **true** means that the navigation bar is displayed, and **false** means the opposite.|
 
 
 ## Example
@@ -232,4 +232,4 @@ struct NavigationExample {
 }
 ```
 
-![en-us_image_0000001212058484](figures/en-us_image_0000001212058484.gif)
+![en-us_image_0000001192655288](figures/en-us_image_0000001192655288.gif)

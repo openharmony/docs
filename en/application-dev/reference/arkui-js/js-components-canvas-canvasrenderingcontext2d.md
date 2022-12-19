@@ -2,7 +2,7 @@
 
 >  **NOTE**
 >
->  Supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
+>  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
 **CanvasRenderingContext2D** allows you to draw rectangles, text, images, and other objects on a canvas.
 
@@ -426,9 +426,9 @@ export default {
 }
   ```
 
-![en-us_image_0000001213192781](figures/en-us_image_0000001213192781.png)
+  ![en-us_image_0000001213192781](figures/en-us_image_0000001213192781.png)
 
-In the above example, the blue rectangle represents the new drawing, and the red rectangle represents the existing drawing.
+  In the above example, the blue rectangle represents the new drawing, and the red rectangle represents the existing drawing.
 
 ### shadowBlur
 
@@ -585,7 +585,7 @@ Fills a rectangle on the canvas.
 ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
   </div>
 ```
 
@@ -621,7 +621,7 @@ Clears the content in a rectangle on the canvas.
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px;"></canvas>
   </div>
   ```
 
@@ -984,7 +984,7 @@ Creates a pattern for image filling based on a specified source image and repeti
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    <canvas ref="canvas" style="width: 1000px; height: 1000px;"></canvas>
   </div>
   ```
 
@@ -998,7 +998,7 @@ Creates a pattern for image filling based on a specified source image and repeti
       img.src = 'common/images/example.jpg';
       var pat = ctx.createPattern(img, 'repeat');
       ctx.fillStyle = pat;
-      ctx.fillRect(0, 0, 20, 20);
+      ctx.fillRect(0, 0, 500, 500);
     }
   }
   ```
@@ -1429,7 +1429,7 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 
 setTransform(scaleX: number, skewX: number, skewY: number, scale: number, translateX: number, translateY: number): void
 
-Resets the existing transformation matrix and creates a new transformation matrix by using the same parameters as the **transform()** function.
+Resets the existing transformation matrix and creates a new transformation matrix by using the same parameters as the **transform()** API.
 
 **Parameters**
 
@@ -1574,7 +1574,7 @@ Draws an image on the canvas.
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
@@ -1582,11 +1582,11 @@ Draws an image on the canvas.
   //xxx.js
   export default {
     onShow() {
-      var test = this.$element('drawImage');
+      var test = this.$refs.canvas;
       var ctx = test.getContext('2d');
       var img = new Image();
       img.src = 'common/image/test.jpg';
-      ctx.drawImage(img, 50, 80, 80, 80);
+      ctx.drawImage(img, 0, 0, 200, 200, 10, 10, 200, 200);
     }
   }
   ```
