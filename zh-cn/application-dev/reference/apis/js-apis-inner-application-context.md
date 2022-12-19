@@ -1,6 +1,6 @@
 # Context模块
 
-Context模块提供了ability或application的上下文的能力，包括允许访问特定于应用程序的资源等。
+Context模块提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。
 
 > **说明：**
 >
