@@ -244,16 +244,17 @@ interface VideoPlayer {
 
 ## cl.multimedia.media.003 VideoRecorder错误信息变更
 
-VideoRecorder以前错误码和整体错误码规则不一致，需要变更错误码
+VideoRecorder原有错误码与整体错误码规则不一致，变更错误码适配规则。
 
 **变更影响**
 
-VideoRecorder返回的错误码发生变更
+VideoRecorder返回的错误码发生变更。
 
 **关键的接口/组件变更**
 
-VideoRecorder接口未发生变更，返回的错误码发生变更
+VideoRecorder接口未发生变更，返回的错误码发生变更。
 
 **适配指导**
 
 异常处理具体参考接口文档。
+https://gitee.com/openharmony/docs/pulls/11965
