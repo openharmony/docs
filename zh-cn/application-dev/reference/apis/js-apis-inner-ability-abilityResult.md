@@ -1,6 +1,6 @@
 # AbilityResult<sup>7+</sup>
 
-定义ability拉起、销毁之后返回的结果码和数据。
+定义Ability拉起、销毁之后返回的结果码和数据，可以通过[startAbilityForResult](js-apis-ability-context.md#abilitycontextstartabilityforresult)获取对端Ability销毁后返回的AbilityResult对象，被startAbilityForResult拉起的Ability对象可以通过[terminateSelfWithResult](js-apis-ability-context.md#abilitycontextterminateselfwithresult)返回AbilityResult对象。
 
 > **说明：**
 >
@@ -13,14 +13,3 @@
 | resultCode    | 是    | 否      | number               | 否   | 表示ability拉起、销毁之后返回的结果码。                                |
 | want   | 是    | 否      | [Want](./js-apis-app-ability-want.md)               | 否   | 表示ability销毁之后返回的数据。 |
 
-**示例：**
-  ```ts
-  let want = {
-    bundleName: 'com.example.mydocapplication',
-    abilityName: 'MainAbility',
-  };
-  this.context.startAbilityForResult(want, (error, data) => {
-      let resultCode = data.resultCode;
-      let want = data.want;
-  });
-  ```

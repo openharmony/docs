@@ -1,6 +1,6 @@
 # MissionParameter
 
-表示同步时所需参数的枚举。
+作为[startSyncRemoteMissions](js-apis-distributedMissionManager.md#distributedmissionmanagerstartsyncremotemissions)的入参，表示同步时所需参数的枚举。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 

@@ -1,6 +1,6 @@
 # ContinueCallback
 
-表示迁移完成后，返回迁移结果回调函数。
+表示迁移完成后，返回迁移结果回调函数，可以作为[continueMission](js-apis-distributedMissionManager.md#distributedmissionmanagercontinuemission)的入参监听迁移回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
