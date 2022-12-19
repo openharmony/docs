@@ -144,11 +144,11 @@ endElement(): void
 let arrayBuffer = new ArrayBuffer(1024);
 let bufView = new DataView(arrayBuffer);
 let thatSer = new xml.XmlSerializer(bufView);
-thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
+thatSer.setNamespace("h", "https://www.w3.org/TR/html4/");
 thatSer.startElement("table");
 thatSer.setAttributes("importance", "high");
 thatSer.setText("Happy");
-thatSer.endElement(); // => <h:table importance="high" xmlns:h="http://www.w3.org/TR/html4/">Happy</h:table>
+thatSer.endElement(); // => <h:table importance="high" xmlns:h="https://www.w3.org/TR/html4/">Happy</h:table>
 ```
 
 
@@ -173,9 +173,9 @@ setNamespace(prefix: string, namespace: string): void
 let arrayBuffer = new ArrayBuffer(1024);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
-thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
+thatSer.setNamespace("h", "https://www.w3.org/TR/html4/");
 thatSer.startElement("note");
-thatSer.endElement();// = >'<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>';
+thatSer.endElement();// = >'<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="https://www.w3.org/TR/html4/"/>';
 ```
 
 ### setComment
