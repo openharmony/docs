@@ -44,7 +44,7 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 ![form_extension](figures/form_extension.png)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 同一应用内的所有同类型的ExtensionAbility运行在同一独立进程（除ServiceExtensionAbility、DataShareExtensionAbility外），跟UIAbility组件不在同一进程，Stage模型的进程模型请参见[进程模型](process-model-stage.md)。
 > 
 > 例如一个应用有1个UIAbility组件、1个ServiceExtensionAbility、1个DataShareExtensionAbility、2个FormExtensionAbility、1个ImeExtensionAbility。则该应用在运行时，有三个进程：

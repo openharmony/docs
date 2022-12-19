@@ -119,7 +119,7 @@ ar-AE.json
     <text>{{ replaceObject }}</text>
     <!-- 先在js中获取资源内容，并将占位符{0}替换为“Hello world”，再在text中显示“Array type parameter substitution-Hello world” -->
     <text>{{ replaceArray }}</text>
-
+  
     <!-- 获取图片路径 -->
     <image src="{{ $t('files.image') }}" class="image"></image>
     <!-- 先在js中获取图片路径，再在image中显示图片 -->
@@ -150,9 +150,9 @@ ar-AE.json
 
   表4 单复数格式化
 
-  | 属性   | 类型       | 参数          | 必填   | 描述                                       |
-  | ---- | -------- | ----------- | ---- | ---------------------------------------- |
-  | $tc  | Function | 请见表 $tc参数说明 | 是    | 根据系统语言完成单复数替换：this.$tc('strings.people')<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;说明：<br/>>&nbsp;定义资源的内容通过json格式的key为“zero”、“one”、“two”、“few”、“many”和“other”区分。 |
+  | 属性 | 类型     | 参数               | 必填 | 描述                                                         |
+  | ---- | -------- | ------------------ | ---- | ------------------------------------------------------------ |
+  | $tc  | Function | 请见表 $tc参数说明 | 是   | 根据系统语言完成单复数替换：this.$tc('strings.people')<br/>> 说明：<br/>>&nbsp;定义资源的内容通过json格式的key为“zero”、“one”、“two”、“few”、“many”和“other”区分。 |
 
   表5 $tc参数说明
 

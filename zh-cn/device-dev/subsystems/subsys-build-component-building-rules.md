@@ -69,7 +69,7 @@
 - 不超过63个有效英文字符。
 - 使用小写加下划线的内核风格命名，例如：unix_like。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **例外：** 三方开源软件的使用对应社区的原生命名方式，比如：cJson。
+> **例外：** 三方开源软件的使用对应社区的原生命名方式，比如：cJson。
 
 ### 规则1.2 特性名为部件名前缀+特性名称
 
@@ -160,13 +160,13 @@ bundle.json是定义部件的描述文件，包含了部件的根目录、名称
   deps = [ "a" ] # Good, 依赖当前部件内的其他模块
   ```
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **例外：** 对三方开源软件的引用除外。
+  > **例外：** 对三方开源软件的引用除外。
 
 - public_deps
 
   public_deps只允许用于部件内模块的依赖，直接引用其他部件的模块可能会导致依赖其他部件的内部模块和接口。
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **例外：** 对三方开源软件的引用除外。
+  > **例外：** 对三方开源软件的引用除外。
   
 
 看护手段：静态检查
@@ -249,7 +249,7 @@ ohos_shared_library("foo_a") {
 
 部件是通用的系统能力，与特定产品无关。编译脚本中使用产品名称，将导致部件功能与产品绑定，不具备通用性。部件不同产品形态上的差异应抽象为特性或者运行时的插件。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif)**例外：** vendor和device目录下三方厂商部件的编译脚本例外。
+> **例外：** vendor和device目录下三方厂商部件的编译脚本例外。
 
 看护手段：静态检查
 
@@ -257,7 +257,7 @@ ohos_shared_library("foo_a") {
 
 部件内的gni文件用于声明部件内部编译变量和模板，import其他部件的gni文件等同于使用其他部件内部的变量和模板，即引入对其他部件的依赖。影响多个部件的变量、args和模板应定义在编译框架的gni文件中。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif)**例外：** build目录下编译框架定义全局的编译选项的gni可以被所有部件import。
+> **例外：** build目录下编译框架定义全局的编译选项的gni可以被所有部件import。
 
 看护手段：静态检查
 

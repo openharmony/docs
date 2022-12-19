@@ -1,6 +1,6 @@
 # @ohos.util.HashMap (非线性容器HashMap)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 HashMap底层使用数组+链表+红黑树的方式实现，查询、插入和删除的效率都很高。HashMap存储内容基于key-value的键值对映射，不能有重复的key，且一个key只能对应一个value。

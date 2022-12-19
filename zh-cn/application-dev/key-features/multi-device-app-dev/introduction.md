@@ -24,7 +24,7 @@
 
 从第4章开始将从UX设计、系统能力等角度，详尽的解答上述问题。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 应用开发不仅包含应用页面开发，还包括应用后端功能开发以及服务器端开发等。
 > 
 > - 本文旨在指导开发者如何在OpenHarmony系统中开发“一多”应用，服务器端开发不在本文探讨范围内。
@@ -47,7 +47,7 @@ HAP包是OpenHarmony的安装包，一个HAP在工程目录中对应一个Module
 
 ![zh-cn_image_0000001266965046](figures/zh-cn_image_0000001266965046.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - Module是开发者开发的相对独立的功能模块，由代码、资源、第三方库及应用配置文件组成，属于IDE开发视图的概念。Module分为entry、feature及har三种类型，相应的可以编译生成entry类型的HAP包、feature类型的HAP包，以及har包。
 > 
 > - 如果需要了解应用程序包结构更多详情，可以查看[包结构说明](../../quick-start/application-package-structure-stage.md)。
@@ -71,7 +71,7 @@ OpenHarmony提供了方舟开发框架（简称：ArkUI），提供开发者进�
 | 声明式开发范式 | ArkTS语言 | 数据驱动更新 | 复杂度较大、团队合作度较高的程序 | 移动系统应用开发人员、系统应用开发人员 | 
 | 类Web开发范式 | JS语言 | 数据驱动更新 | 界面较为简单的中小型应用和卡片 | Web前端开发人员 | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 声明式开发范式占用内存更少，**更推荐开发者选用声明式开发范式来搭建应用UI界面**。
 > 
 > - 可以查看[方舟开发框架概述](../../ui/arkui-overview.md)，了解方舟开发框架更多详情。
@@ -108,7 +108,7 @@ OpenHarmony提供了方舟开发框架（简称：ArkUI），提供开发者进�
 
 ![zh-cn_image_0000001400300617](figures/zh-cn_image_0000001400300617.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 页面导航逻辑是指应用内页面之间的跳转关系。假设默认设备上页面A跳转到页面B，平板设备上也是页面A跳转到页面B。因为两种设备屏幕大小不同，默认设备上页面B是覆盖显示在页面A上的，平板设备上页面B是在页面A的右边并且同时显示，但因为都是页面A跳转到页面B，那么我们认为它们的页面导航逻辑相同。
 
 **工程结构**
@@ -121,7 +121,7 @@ OpenHarmony提供了方舟开发框架（简称：ArkUI），提供开发者进�
 
 - product：产品层目录，通过引用common和feature目录中代码的方式做功能和特性的集成，同时也作为主入口。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > features层可横向调用和依赖common层能力；product层不可横向调用，可依赖features层和common层，且不能有反向依赖。
 
 部署模型不同，相应的代码工程结构也有差异。部署模型A和部署模型B的主要差异点集中在product层：
@@ -132,7 +132,7 @@ OpenHarmony提供了方舟开发框架（简称：ArkUI），提供开发者进�
 
 部署模型A对应的代码工程结构抽象后一般如下所示：
 
-  
+
 ```
 /application
 ├── common                  # 可选。公共特性目录, har类型的module
@@ -145,7 +145,7 @@ OpenHarmony提供了方舟开发框架（简称：ArkUI），提供开发者进�
 
 部署模型B对应的代码工程结构抽象后一般如下所示：
 
-  
+
 ```
 /application
 ├── common                  # 可选。公共特性目录, har类型的module
@@ -159,5 +159,5 @@ OpenHarmony提供了方舟开发框架（简称：ArkUI），提供开发者进�
     └── ...
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 无论是用部署模型A还是部署模型B，在开发阶段，都应考虑**不同类型设备间最大程度的复用代码**，以减少开发及后续维护的工作量。

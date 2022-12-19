@@ -2,7 +2,7 @@
 
 该模块提供文件存储管理能力，包括文件基本管理、文件目录管理、文件信息统计、文件流式读写等常用功能。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -40,7 +40,7 @@ class MainAbility extends Ability {
       let pathDir = data;
  })
  ```
- 
+
  FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
 ## fileio.stat

@@ -1,6 +1,6 @@
 # @ohos.util.PlainArray (非线性容器PlainArray)  
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 PlainArray可用于存储具有关联关系的key-value键值对集合，存储元素中key值唯一，key值类型为number类型，每个key对应一个value。
