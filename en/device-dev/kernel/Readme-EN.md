@@ -65,6 +65,7 @@
                 - [Virtual File System](kernel-small-bundles-fs-virtual.md)
                 - [Supported File Systems](kernel-small-bundles-fs-support.md)
                 - [File System Adaptation](kernel-small-bundles-fs-new.md)
+                - [Plimitsfs](kernel-small-plimits.md)
         - Debugging and Tools
             - Shell
                 - [Introduction to the Shell](kernel-small-debug-shell-overview.md)
