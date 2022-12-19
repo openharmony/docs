@@ -36,7 +36,7 @@
 
 ### 基于FA模型
 
-基于FA的Service Ability使用，参考[ServiceAbility开发指导](../ability-deprecated/fa-serviceability.md)。
+基于FA的Service Ability使用，参考[ServiceAbility开发指导](../application-models/serviceability-overview.md)。
 
 当不需要与后台执行的长时任务交互时，可以采用startAbility()方法启动Service Ability。并在Service Ability的onStart回调方法中，调用长时任务的申请接口，声明此服务需要在后台长时运行。当任务执行完，再调用长时任务取消接口，及时释放资源。
 
@@ -179,7 +179,7 @@ export default {
 
 ### 基于Stage模型
 
-Stage模型的相关信息参考[Stage模型综述](../ability-deprecated/stage-brief.md)。
+Stage模型的相关信息参考[Stage开发概述](../application-models/stage-model-development-overview.md)。
 
 1、新建Api Version 9的工程后，在工程目录中右键选择“New” -> “Ability” 快速创建Ability组件。并在module.json5文件中配置长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING、后台模式类型。
 
@@ -201,7 +201,7 @@ Stage模型的相关信息参考[Stage模型综述](../ability-deprecated/stage-
 }
 ```
 
-2、在应用内执行长时任务时，由于元能力启动管控规则限制，不支持同应用通过startAbilityByCall的形式在后台创建并运行Ability。可以直接在page中，执行相应的代码。Stage模型的Ability使用参考[Ability开发指导](../ability/stage-ability.md)。
+2、在应用内执行长时任务时，由于元能力启动管控规则限制，不支持同应用通过startAbilityByCall的形式在后台创建并运行Ability。可以直接在page中，执行相应的代码。Stage模型的Ability使用参考[Stage模型开发指导-UIAbility组件](../application-models/uiability-overview.md)。
 
 ```ts
 import wantAgent from '@ohos.wantAgent';
@@ -290,7 +290,7 @@ struct Index {
 }
 ```
 
-3、当需要跨设备或者跨应用在后台执行长时任务时，可以通过Call的方式在后台创建并运行Ability。使用方式参考[Call调用开发指导](../ability-deprecated/stage-call.md)。
+3、当需要跨设备或者跨应用在后台执行长时任务时，可以通过Call的方式在后台创建并运行Ability。使用方式参考[Call调用开发指南（同设备）](../application-models/uiability-intra-device-interaction.md#通过call调用实现uiability交互仅对系统应用开放)，[Call调用开发指南（跨设备）](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)。
 
 ```ts
 import Ability from '@ohos.application.Ability'
