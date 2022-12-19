@@ -10,12 +10,12 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称 | 类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | 是 | 否 | 进程ID。 | 
-| uid | number | 是 | 否 | 用户ID。 | 
-| processName | string | 是 | 否 | 进程名称。 | 
-| bundleNames | Array&lt;string&gt; | 是 | 否 | 进程中所有运行的包名称。 | 
+| pid | number | 是 | 否 | 进程ID。 |
+| uid | number | 是 | 否 | 用户ID。 |
+| processName | string | 是 | 否 | 进程名称。 |
+| bundleNames | Array&lt;string&gt; | 是 | 否 | 进程中所有运行的包名称。 |
 
 ## 使用说明
 
@@ -24,7 +24,8 @@
 **示例：**
 ```ts
 import appManager from '@ohos.application.appManager';
-app.getProcessRunningInfos().then((data) => {
+
+appManager.getProcessRunningInfos().then((data) => {
     console.log('success:' + JSON.stringify(data));
 }).catch((error) => {
     console.log('failed:' + JSON.stringify(error));

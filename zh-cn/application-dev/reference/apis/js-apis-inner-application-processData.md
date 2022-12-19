@@ -1,6 +1,6 @@
 # ProcessData
 
-定义进程数据。
+定义进程数据，可以通过[registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver8)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的onProcessCreated生命周期回调获取。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 

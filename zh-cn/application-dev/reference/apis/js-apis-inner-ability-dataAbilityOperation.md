@@ -1,6 +1,6 @@
 # DataAbilityOperation
 
-定义dataAbility数据操作方式。
+定义dataAbility数据操作方式，可以作为[executeBatch](js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch)的入参查询数据库的信息。
 
 > **说明：**
 > 
@@ -11,56 +11,11 @@
 
 | 名称       | 类型     |     必填|       说明      |
 | --------  | --------    | --------| --------        |
-| uri   | string |      是    | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。  | 
-| type   | featureAbility.DataAbilityOperationType |      是    | 指示操作类型。  | 
-| valuesBucket?   |  rdb.ValuesBucket |      否    | 指示要设置的数据值。  | 
-| valueBackReferences?   | rdb.ValuesBucket |      否    | 指示包含一组键值对的valuesBucket对象。  | 
-| predicates?   | dataAbility.DataAbilityPredicates |      否    | 指示要设置的筛选条件。如果此参数为空，则所有数据记录。  | 
-| predicatesBackReferences?   | Map\<number, number> |      否    | 指示用作谓词中筛选条件的反向引用。  | 
-| interrupted?   | boolean |      否    | 指定是否可以中断批处理操作。  | 
-| expectedCount?   | number |      否    | 指示要更新或删除的预期行数。  | 
-
-**示例：**
-```ts
-import featureAbility from '@ohos.ability.featureAbility'
-
-let dataAbilityUri = ("dataability:///com.example.myapplication.TestDataAbility");
-let DAHelper;
-try {
-    DAHelper = featureAbility.acquireDataAbilityHelper(dataAbilityUri);
-    if(DAHelper == null){
-        console.error('DAHelper is null');
-        return;
-    }
-} catch (err) {
-    console.error('acquireDataAbilityHelper fail, error:' + JSON.stringify(err));
-    return;
-}
-
-let valueBucket = {
-    "name": "DataAbilityHelperTest",
-    "age": 24,
-    "salary": 2024.20,
-};
-let dataAbilityOperation = {
-    uri: dataAbilityUri,
-    type: featureAbility.DataAbilityOperationType.TYPE_INSERT,
-    valuesBucket: valueBucket,
-    predicates: null,
-    expectedCount: 1,
-    PredicatesBackReferences: {},
-    interrupted: true
-}
-let operations = [
-    dataAbilityOperation
-];
-try {
-    DAHelper.executeBatch(dataAbilityUri, operations,
-        (err, data) => {
-            console.log("executeBatch, data: " + JSON.stringify(data));
-        }
-    );
-} catch (err) {
-    console.error('executeBatch fail: ' + JSON.stringify(err));
-}
-```
+| uri   | string |      是    | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。  |
+| type   | featureAbility.DataAbilityOperationType |      是    | 指示操作类型。  |
+| valuesBucket?   |  rdb.ValuesBucket |      否    | 指示要设置的数据值。  |
+| valueBackReferences?   | rdb.ValuesBucket |      否    | 指示包含一组键值对的valuesBucket对象。  |
+| predicates?   | dataAbility.DataAbilityPredicates |      否    | 指示要设置的筛选条件。如果此参数为空，则所有数据记录。  |
+| predicatesBackReferences?   | Map\<number, number> |      否    | 指示用作谓词中筛选条件的反向引用。  |
+| interrupted?   | boolean |      否    | 指定是否可以中断批处理操作。  |
+| expectedCount?   | number |      否    | 指示要更新或删除的预期行数。  |
