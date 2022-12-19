@@ -70,6 +70,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
   } catch (err) {
       console.error("errCode:" + err.code + ",errMessage:" + err.message);
   }
+  ```
 
 ## cl.location.2 位置服务权限变更
 
