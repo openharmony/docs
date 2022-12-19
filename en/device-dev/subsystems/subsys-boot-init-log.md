@@ -66,7 +66,7 @@ init logs are mainly used to start modules (like **param**, **ueventd**, and **m
        ```
       Run **dmesg** to check the printed log **Start init first stage.**
 
-  2. Set the log level via a command.
+  2. Set the log level by using the begetctl command.
 
      The command is **begetctl setloglevel level**, where **level** indicates one of the following log levels: **0** (**INIT_DEBUG**), **1** (**INIT_INFO**), **2** (**INIT_WARN**), **3** (**INIT_ERROR**), and **4** (**INIT_FATAL**).
 
