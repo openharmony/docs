@@ -1,9 +1,9 @@
-# Upload and Download
+# @ohos.request
 
 The **request** module provides applications with basic upload, download, and background transmission agent capabilities.
 
 > **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -34,8 +34,9 @@ var config = {
 
 The **cleartextTraffic** attribute is not involved during application development in the stage model.
 
-The download server must support the HTTP HEAD method so that the size of the data to download can be obtained through **content-length**. Otherwise, the download task fails. If this is the case, you can check the failure cause through [on('fail')<sup>7+</sup>)](#onfail7).
+The download server must support the HTTP HEAD method so that the size of the data to download can be obtained through **Content-length**. Otherwise, the download task fails. If this is the case, you can check the failure cause through [on('fail')<sup>7+</sup>](#onfail7).
 
+Only HTTP requests are supported. HTTPS requests are not supported.
 
 ## Constants
 
@@ -69,183 +70,6 @@ The download server must support the HTTP HEAD method so that the size of the da
 | SESSION_SUCCESSFUL<sup>7+</sup> | number | Yes| No| Successful download.|
 
 
-## request.upload
-
-upload(config: UploadConfig): Promise&lt;UploadTask&gt;
-
-Uploads files. This API uses a promise to return the result.
-
-This API can be used only in the FA model.
-
->  **NOTE**<br>This API is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Upload
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
-
-**Example**
-  
-  ```js
-  let uploadTask;
-  let uploadConfig = {
-    url: 'https://patch',
-    header: { key1: "value1", key2: "value2" },
-    method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
-    data: [{ name: "name123", value: "123" }],
-  };
-  request.upload(uploadConfig).then((data) => {
-      uploadTask = data;
-  }).catch((err) => {
-      console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-  })
-  ```
-
-
-## request.upload
-
-upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
-
-Uploads files. This API uses an asynchronous callback to return the result.
-
-This API can be used only in the FA model.
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9-1).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Upload
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
-  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
-
-**Example**
-  
-  ```js
-  let uploadTask;
-  let uploadConfig = {
-    url: 'https://patch',
-    header: { key1: "value1", key2: "value2" },
-    method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
-    data: [{ name: "name123", value: "123" }],
-  };
-  request.upload(uploadConfig, (err, data) => {
-      if (err) {
-          console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      uploadTask = data;
-  });
-  ```
-## request.upload<sup>9+</sup>
-
-upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
-
-Uploads files. This API uses a promise to return the result.
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Upload
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | BaseContext | Yes| Application-based context.|
-  | config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
-  
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
-
-**Example**
-  
-  ```js
-  let uploadTask;
-  let uploadConfig = {
-    url: 'https://patch',
-    header: { key1: "value1", key2: "value2" },
-    method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
-    data: [{ name: "name123", value: "123" }],
-  };
-  request.upload(globalThis.abilityContext, uploadConfig).then((data) => {
-      uploadTask = data;
-  }).catch((err) => {
-      console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-  });
-  ```
-
-
-## request.upload<sup>9+</sup>
-
-upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
-
-Uploads files. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9-1).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Upload
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | BaseContext | Yes| Application-based context.|
-  | config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
-  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
-
-**Example**
-  
-  ```js
-  let uploadTask;
-  let uploadConfig = {
-    url: 'https://patch',
-    header: { key1: "value1", key2: "value2" },
-    method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
-    data: [{ name: "name123", value: "123" }],
-  };
-  request.upload(globalThis.abilityContext, uploadConfig, (err, data) => {
-      if (err) {
-          console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      uploadTask = data;
-  });
-  ```
-
-
 ## request.uploadFile<sup>9+</sup>
 
 uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
@@ -259,15 +83,15 @@ Uploads files. This API uses a promise to return the result.
 **Parameters**
 
 | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-| context | BaseContext | Yes| Application-based context.|
+| -------- | -------- | -------- | -------- |
+| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
 | config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
 
 
 **Return value**
 
 | Type| Description|
-  | -------- | -------- |
+| -------- | -------- |
 | Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
 
 **Error codes**
@@ -282,7 +106,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'https://patch',
+    url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -309,8 +133,8 @@ Uploads files. This API uses an asynchronous callback to return the result.
 **Parameters**
 
 | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-| context | BaseContext | Yes| Application-based context.|
+| -------- | -------- | -------- | -------- |
+| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
 | config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
 | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
 
@@ -326,7 +150,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'https://patch',
+    url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -341,10 +165,189 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
   });
   ```
 
+## request.upload<sup>(deprecated)</sup>
+
+upload(config: UploadConfig): Promise&lt;UploadTask&gt;
+
+Uploads files. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the FA model.
+
+>  **NOTE**
+>
+>  This API is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Upload
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
+
+**Example**
+
+  ```js
+  let uploadTask;
+  let uploadConfig = {
+    url: 'http://patch',
+    header: { key1: "value1", key2: "value2" },
+    method: "POST",
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    data: [{ name: "name123", value: "123" }],
+  };
+  request.upload(uploadConfig).then((data) => {
+      uploadTask = data;
+  }).catch((err) => {
+      console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
+  })
+  ```
+
+
+## request.upload<sup>(deprecated)</sup>
+
+upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
+
+Uploads files. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the FA model.
+
+>  **NOTE**
+>
+>  This API is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9-1).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Upload
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
+| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
+
+**Example**
+
+  ```js
+  let uploadTask;
+  let uploadConfig = {
+    url: 'http://patch',
+    header: { key1: "value1", key2: "value2" },
+    method: "POST",
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    data: [{ name: "name123", value: "123" }],
+  };
+  request.upload(uploadConfig, (err, data) => {
+      if (err) {
+          console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      uploadTask = data;
+  });
+  ```
+
+## request.upload<sup>(deprecated)</sup>
+
+upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
+
+Uploads files. This API uses a promise to return the result.
+
+>  **NOTE**
+>
+>  This API is supported since API version 9 and is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Upload
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+| config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
+
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
+
+**Example**
+
+  ```js
+  let uploadTask;
+  let uploadConfig = {
+    url: 'http://patch',
+    header: { key1: "value1", key2: "value2" },
+    method: "POST",
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    data: [{ name: "name123", value: "123" }],
+  };
+  request.upload(globalThis.abilityContext, uploadConfig).then((data) => {
+      uploadTask = data;
+  }).catch((err) => {
+      console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
+
+## request.upload<sup>(deprecated)</sup>
+
+upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
+
+Uploads files. This API uses an asynchronous callback to return the result.
+
+>  **NOTE**
+>
+>  This API is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9-1).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Upload
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+| config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
+| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
+
+**Example**
+
+  ```js
+  let uploadTask;
+  let uploadConfig = {
+    url: 'http://patch',
+    header: { key1: "value1", key2: "value2" },
+    method: "POST",
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    data: [{ name: "name123", value: "123" }],
+  };
+  request.upload(globalThis.abilityContext, uploadConfig, (err, data) => {
+      if (err) {
+          console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      uploadTask = data;
+  });
+  ```
 
 ## UploadTask
 
-Implements file uploads. Before using any APIs of this class, you must obtain an **UploadTask** object.
+Implements file uploads. Before using any APIs of this class, you must obtain an **UploadTask** object through [request.uploadFile<sup>9+</sup>](#requestuploadfile9) in promise mode or [request.uploadFile<sup>9+</sup>](#requestuploadfile9-1) in callback mode.
+
 
 
 ### on('progress')
@@ -359,10 +362,10 @@ Subscribes to an upload event. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (upload progress).|
-  | callback | function | Yes| Callback for the upload progress event.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (upload progress).|
+| callback | function | Yes| Callback for the upload progress event.|
 
   Parameters of the callback function
 
@@ -372,9 +375,8 @@ Subscribes to an upload event. This API uses an asynchronous callback to return 
 | totalSize | number | Yes| Total size of the files to upload, in KB.|
 
 **Example**
-  
+
   ```js
-  let uploadTask;
   uploadTask.on('progress', function callback(uploadedSize, totalSize) {
       console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
   }
@@ -394,10 +396,10 @@ Subscribes to an upload event. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to subscribe to. The value is **'headerReceive'** (response header).|
-  | callback | function | Yes| Callback for the HTTP Response Header event.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to subscribe to. The value is **'headerReceive'** (response header).|
+| callback | function | Yes| Callback for the HTTP Response Header event.|
 
   Parameters of the callback function
 
@@ -406,9 +408,8 @@ Subscribes to an upload event. This API uses an asynchronous callback to return 
 | header | object | Yes| HTTP Response Header.|
 
 **Example**
-  
+
   ```js
-  let uploadTask;
   uploadTask.on('headerReceive', function callback(headers){   
       console.info("upOnHeader headers:" + JSON.stringify(headers));
   }
@@ -428,10 +429,10 @@ Subscribes to an upload event. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
-  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
+| callback | Callback&lt;Array&lt;TaskState&gt;&gt; | Yes| Callback used to return the result.|
 
   Parameters of the callback function
 
@@ -440,9 +441,8 @@ Subscribes to an upload event. This API uses an asynchronous callback to return 
 | taskstates | Array&lt;[TaskState](#taskstate9)&gt; | Yes| Upload result.|
 
 **Example**
-  
+
   ```js
-  let uploadTask;
   uploadTask.on('complete', function callback(taskStates) {
     for (let i = 0; i < taskStates.length; i++ ) {
       console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
@@ -471,10 +471,10 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (upload progress).|
-  | callback | function | No| Callback for the upload progress event.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (upload progress).|
+| callback | function | No| Callback for the upload progress event.|
 
   Parameters of the callback function
 
@@ -484,9 +484,8 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 | totalSize | number | Yes| Total size of the files to upload, in KB.|
 
 **Example**
-  
+
   ```js
-  let uploadTask;
   uploadTask.off('progress', function callback(uploadedSize, totalSize) {
       console.info('uploadedSize: ' + uploadedSize, 'totalSize: ' + totalSize);
   }
@@ -506,10 +505,10 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to unsubscribe from. The value is **'headerReceive'** (response header).|
-  | callback | function | No| Callback for the HTTP Response Header event.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to unsubscribe from. The value is **'headerReceive'** (response header).|
+| callback | function | No| Callback for the HTTP Response Header event.|
 
   Parameters of the callback function
 
@@ -518,9 +517,8 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 | header | object | Yes| HTTP Response Header.|
 
 **Example**
-  
+
   ```js
-  let uploadTask;
   uploadTask.off('headerReceive', function callback(headers) {
       console.info("upOnHeader headers:" + JSON.stringify(headers));
   }
@@ -539,10 +537,10 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
-  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | No| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
+| callback | Callback&lt;Array&lt;TaskState&gt;&gt; | No| Callback used to return the result.|
 
   Parameters of the callback function
 
@@ -551,9 +549,8 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 | taskstates | Array&lt;[TaskState](#taskstate9)&gt; | Yes| Upload result.|
 
 **Example**
-  
+
   ```js
-  let uploadTask;
   uploadTask.off('complete', function callback(taskStates) {
     for (let i = 0; i < taskStates.length; i++ ) {
       console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
@@ -569,83 +566,7 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
   );
   ```
 
-
-### remove
-
-remove(): Promise&lt;boolean&gt;
-
-Removes this upload task. This API uses a promise to return the result. 
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Upload
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. It returns **true** if the operation is successful and returns **false** otherwise.|
-
-**Example**
-  
-  ```js
-  let uploadTask;
-  uploadTask.remove().then((result) => {
-      if (result) {
-          console.info('Upload task removed successfully. ');
-      } else {
-          console.error('Failed to remove the upload task. ');
-      }
-  }).catch((err) => {
-      console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
-  });
-  ```
-
-
-### remove
-
-remove(callback: AsyncCallback&lt;boolean&gt;): void
-
-Removes this upload task. This API uses an asynchronous callback to return the result. 
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9-1).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Upload
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
-
-**Example**
-  
-  ```js
-  let uploadTask;
-  uploadTask.remove((err, result) => {
-      if (err) {
-          console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      if (result) {
-          console.info('Upload task removed successfully.');
-      } else {
-          console.error('Failed to remove the upload task.');
-      }
-  });
-  ```
-
-
 ### delete<sup>9+</sup>
-
 delete(): Promise&lt;boolean&gt;
 
 Deletes this upload task. This API uses a promise to return the result. 
@@ -657,13 +578,12 @@ Deletes this upload task. This API uses a promise to return the result.
 **Return value**
 
 | Type| Description|
-  | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the task removal result. It returns **true** if the operation is successful and returns **false** otherwise.|
 
 **Example**
 
   ```js
-  let uploadTask;
   uploadTask.delete().then((result) => {
       if (result) {
           console.info('Upload task removed successfully. ');
@@ -680,7 +600,7 @@ Deletes this upload task. This API uses a promise to return the result.
 
 delete(callback: AsyncCallback&lt;boolean&gt;): void
 
-Deletes this upload task. This API uses an asynchronous callback to return the result. 
+Removes this upload task. This API uses an asynchronous callback to return the result. 
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -689,13 +609,12 @@ Deletes this upload task. This API uses an asynchronous callback to return the r
 **Parameters**
 
 | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```js
-  let uploadTask;
   uploadTask.delete((err, result) => {
       if (err) {
           console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
@@ -709,6 +628,77 @@ Deletes this upload task. This API uses an asynchronous callback to return the r
   });
   ```
 
+
+### remove<sup>(deprecated)</sup>
+
+remove(): Promise&lt;boolean&gt;
+
+Removes this upload task. This API uses a promise to return the result. 
+
+>  **NOTE**
+>
+>  This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Upload
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the task removal result. It returns **true** if the operation is successful and returns **false** otherwise.|
+
+**Example**
+
+  ```js
+  uploadTask.remove().then((result) => {
+      if (result) {
+          console.info('Upload task removed successfully. ');
+      } else {
+          console.error('Failed to remove the upload task. ');
+      }
+  }).catch((err) => {
+      console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
+
+### remove<sup>(deprecated)</sup>
+
+remove(callback: AsyncCallback&lt;boolean&gt;): void
+
+Removes this upload task. This API uses an asynchronous callback to return the result. 
+
+>  **NOTE**
+>
+>  This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9-1).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Upload
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+
+**Example**
+
+  ```js
+  uploadTask.remove((err, result) => {
+      if (err) {
+          console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      if (result) {
+          console.info('Upload task removed successfully.');
+      } else {
+          console.error('Failed to remove the upload task.');
+      }
+  });
+  ```
 
 ## UploadConfig
 
@@ -746,7 +736,7 @@ Deletes this upload task. This API uses an asynchronous callback to return the r
 | -------- | -------- | -------- | -------- |
 | filename | string | Yes| File name in the header when **multipart** is used.|
 | name | string | Yes| Name of a form item when **multipart** is used. The default value is **file**.|
-| uri | string | Yes| Local path for storing files.<br>The **dataability** and **internal** protocol types are supported. However, the **internal** protocol type supports only temporary directories. Below are examples:<br>dataability:///com.domainname.dataability.persondata/person/10/file.txt<br>internal://cache/path/to/file.txt |
+| uri | string | Yes| Local path for storing files.<br>The **dataability** and **internal** protocol types are supported. However, the **internal** protocol type supports only temporary directories. Below are examples:<br>dataability:///com.domainname.dataability.persondata/person/10/file.txt<br><br>internal://cache/path/to/file.txt |
 | type | string | Yes| Type of the file content. By default, the type is obtained based on the extension of the file name or URI.|
 
 
@@ -761,160 +751,6 @@ Deletes this upload task. This API uses an asynchronous callback to return the r
 | name | string | Yes| Name of a form element.|
 | value | string | Yes| Value of a form element.|
 
-
-## request.download
-
-download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
-
-Downloads files. This API uses a promise to return the result.
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9).
-
-This API can be used only in the FA model.
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the result.|
-
-**Example**
-  
-  ```js
-  let downloadTask;
-  request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
-      downloadTask = data;
-  }).catch((err) => {
-      console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-  })
-  ```
-
-
-## request.download
-
-download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void
-
-Downloads files. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1).
-
-This API can be used only in the FA model.
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
-  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the result.|
-
-**Example**
-  
-  ```js
-  let downloadTask;
-  request.download({ url: 'https://xxxx/xxxxx.hap', 
-  filePath: 'xxx/xxxxx.hap'}, (err, data) => {
-      if (err) {
-          console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      downloadTask = data;
-  });
-  ```
-
-## request.download<sup>9+</sup>
-
-download(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
-
-Downloads files. This API uses a promise to return the result.
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | BaseContext | Yes| Application-based context.|
-  | config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the result.|
-
-**Example**
-  
-  ```js
-  let downloadTask;
-  request.download(globalThis.abilityContext, { url: 'https://xxxx/xxxx.hap' }).then((data) => {
-      downloadTask = data;
-  }).catch((err) => {
-      console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-  })
-  ```
-
-
-## request.download<sup>9+</sup>
-
-download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
-
-Downloads files. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | BaseContext | Yes| Application-based context.|
-  | config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
-  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the result.|
-
-**Example**
-  
-  ```js
-  let downloadTask;
-  request.download(globalThis.abilityContext, { url: 'https://xxxx/xxxxx.hap', 
-  filePath: 'xxx/xxxxx.hap'}, (err, data) => {
-      if (err) {
-          console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      downloadTask = data;
-  });
-  ```
-
-
 ## request.downloadFile<sup>9+</sup>
 
 downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
@@ -928,14 +764,14 @@ Downloads files. This API uses a promise to return the result.
 **Parameters**
 
 | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-| context | BaseContext | Yes| Application-based context.|
+| -------- | -------- | -------- | -------- |
+| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
 | config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
 
 **Return value**
 
 | Type| Description|
-  | -------- | -------- |
+| -------- | -------- |
 | Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the result.|
 
 **Error codes**
@@ -972,8 +808,8 @@ Downloads files. This API uses an asynchronous callback to return the result.
 **Parameters**
 
 | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-| context | BaseContext | Yes| Application-based context.|
+| -------- | -------- | -------- | -------- |
+| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
 | config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
 | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the result.|
 
@@ -1000,10 +836,162 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
   });
   ```
 
+## request.download<sup>(deprecated)</sup>
+
+download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
+
+Downloads files. This API uses a promise to return the result.
+
+>  **NOTE**
+>
+>  This API is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9).
+
+**Model restriction**: This API can be used only in the FA model.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Download
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the result.|
+
+**Example**
+
+  ```js
+  let downloadTask;
+  request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
+      downloadTask = data;
+  }).catch((err) => {
+      console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+  })
+  ```
+
+
+## request.download<sup>(deprecated)</sup>
+
+download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void
+
+Downloads files. This API uses an asynchronous callback to return the result.
+
+>  **NOTE**
+>
+>  This API is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1).
+
+**Model restriction**: This API can be used only in the FA model.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Download
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
+| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the result.|
+
+**Example**
+
+  ```js
+  let downloadTask;
+  request.download({ url: 'https://xxxx/xxxxx.hap', 
+  filePath: 'xxx/xxxxx.hap'}, (err, data) => {
+      if (err) {
+          console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      downloadTask = data;
+  });
+  ```
+
+## request.download<sup>(deprecated)</sup>
+
+download(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
+
+Downloads files. This API uses a promise to return the result.
+
+>  **NOTE**
+>
+>  This API is supported since API version 9 and is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Download
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+| config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the result.|
+
+**Example**
+
+  ```js
+  let downloadTask;
+  request.download(globalThis.abilityContext, { url: 'https://xxxx/xxxx.hap' }).then((data) => {
+      downloadTask = data;
+  }).catch((err) => {
+      console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+  })
+  ```
+
+
+## request.download<sup>(deprecated)</sup>
+
+download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
+
+Downloads files. This API uses an asynchronous callback to return the result.
+
+>  **NOTE**
+>
+>  This API is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Download
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+| config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
+| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the result.|
+
+**Example**
+
+  ```js
+  let downloadTask;
+  request.download(globalThis.abilityContext, { url: 'https://xxxx/xxxxx.hap', 
+  filePath: 'xxx/xxxxx.hap'}, (err, data) => {
+      if (err) {
+          console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      downloadTask = data;
+  });
+  ```
+
 
 ## DownloadTask
 
-Implements file downloads.
+Implements file downloads. Before using any APIs of this class, you must obtain a **DownloadTask** object through [request.downloadFile<sup>9+</sup>](#requestdownloadfile9) in promise mode or [request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1) in callback mode.
 
 
 ### on('progress')
@@ -1018,10 +1006,10 @@ Subscribes to a download event. This API uses an asynchronous callback to return
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (download progress).|
-  | callback | function | Yes| Callback for the download progress event.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (download progress).|
+| callback | function | Yes| Callback for the download progress event.|
 
   Parameters of the callback function
 
@@ -1031,9 +1019,8 @@ Subscribes to a download event. This API uses an asynchronous callback to return
 | totalSize | number | Yes| Total size of the files to download, in KB.|
 
 **Example**
-  
+
   ```js
-  let downloadTask;
   downloadTask.on('progress', function download_callback(receivedSize, totalSize) {
       console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   }
@@ -1053,10 +1040,10 @@ Unsubscribes from a download event. This API uses an asynchronous callback to re
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (download progress).|
-  | callback | function | No| Callback for the download progress event.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (download progress).|
+| callback | function | No| Callback for the download progress event.|
 
   Parameters of the callback function
 
@@ -1066,7 +1053,7 @@ Unsubscribes from a download event. This API uses an asynchronous callback to re
 | totalSize | number | Yes| Total size of the files to download.|
 
 **Example**
-  
+
   ```js
   downloadTask .off('progress', function download_callback(receivedSize, totalSize) {
       console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
@@ -1087,15 +1074,14 @@ Subscribes to a download event. This API uses an asynchronous callback to return
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to subscribe to.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
-  | callback | function | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to subscribe to.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
+| callback | function | Yes| Callback used to return the result.|
 
 **Example**
-  
+
   ```js
-  let downloadTask;
   downloadTask.on('complete', function callback() {
       console.info('Download task completed.');
   }
@@ -1115,15 +1101,14 @@ Unsubscribes from a download event. This API uses an asynchronous callback to re
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to unsubscribe from.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
-  | callback | function | No| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to unsubscribe from.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
+| callback | function | No| Callback used to return the result.|
 
 **Example**
-  
+
   ```js
-  let downloadTask;
   downloadTask.off('complete', function callback() {
       console.info('Download task completed.');
   }
@@ -1143,10 +1128,10 @@ Subscribes to the download task failure event. This API uses an asynchronous cal
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to subscribe to. The value is **'fail'** (download failure).|
-  | callback | function | Yes| Callback for the download task failure event.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to subscribe to. The value is **'fail'** (download failure).|
+| callback | function | Yes| Callback for the download task failure event.|
 
   Parameters of the callback function
 
@@ -1155,9 +1140,8 @@ Subscribes to the download task failure event. This API uses an asynchronous cal
 | err | number | Yes| Error code of the download failure. For details about the error codes, see [ERROR_*](#constants).|
 
 **Example**
-  
+
   ```js 
-  let downloadTask;
   downloadTask.on('fail', function callBack(err) {
       console.info('Download task failed. Cause:' + err);
   }
@@ -1177,10 +1161,10 @@ Unsubscribes from the download task failure event. This API uses an asynchronous
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to unsubscribe from. The value is **'fail'** (download failure).|
-  | callback | function | No| Callback for the download task failure event.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to unsubscribe from. The value is **'fail'** (download failure).|
+| callback | function | No| Callback for the download task failure event.|
 
   Parameters of the callback function
 
@@ -1189,376 +1173,19 @@ Unsubscribes from the download task failure event. This API uses an asynchronous
 | err | number | Yes| Error code of the download failure. For details about the error codes, see [ERROR_*](#constants).|
 
 **Example**
-  
+
   ```js
-  let downloadTask;
   downloadTask.off('fail', function callBack(err) {
       console.info('Download task failed. Cause:' + err);
   } 
   );
   ```
 
-
-### remove
-
-remove(): Promise&lt;boolean&gt;
-
-Removes this download task. This API uses a promise to return the result.
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9-2).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the task removal result.|
-
-**Example**
-  
-  ```js
-  let downloadTask;
-  downloadTask.remove().then((result) => {
-      if (result) {
-          console.info('Download task removed.');
-      } else {
-          console.error('Failed to remove the download task.');
-      }
-  }).catch ((err) => {
-      console.error('Failed to remove the download task.');
-  });
-  ```
-
-
-### remove
-
-remove(callback: AsyncCallback&lt;boolean&gt;): void
-
-Removes this download task. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9-3).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task removal result.|
-
-**Example**
-  
-  ```js
-  let downloadTask;
-  downloadTask.remove((err, result)=>{
-      if(err) {
-          console.error('Failed to remove the download task.');
-          return;
-      } 
-      if (result) {
-          console.info('Download task removed.');
-      } else {
-          console.error('Failed to remove the download task.');
-      } 
-  });
-  ```
-
-
-### query<sup>7+</sup>
-
-query(): Promise&lt;DownloadInfo&gt;
-
-Queries this download task. This API uses a promise to return the result.
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [getTaskInfo<sup>9+</sup>](#gettaskinfo9).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | Promise used to return the download task information.|
-
-**Example**
-  
-  ```js
-  let downloadTask;
-  downloadTask.query().then((downloadInfo) => {    
-      console.info('Download task queried. Data:' + JSON.stringify(downloadInfo))
-  }) .catch((err) => {
-      console.error('Failed to query the download task. Cause:' + err)
-  });
-  ```
-
-
-### query<sup>7+</sup>
-
-query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
-
-Queries this download task. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [getTaskInfo<sup>9+</sup>](#gettaskinfo9-1).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
-
-**Example**
-  
-  ```js
-  let downloadTask;
-  downloadTask.query((err, downloadInfo)=>{
-      if(err) {
-          console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
-      } else {
-          console.info('download query success. data:'+ JSON.stringify(downloadInfo));
-      }
-  });
-  ```
-
-
-### queryMimeType<sup>7+</sup>
-
-queryMimeType(): Promise&lt;string&gt;
-
-Queries the **MimeType** of this download task. This API uses a promise to return the result.
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [getTaskMimeType<sup>9+</sup>](#gettaskmimetype9).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
-
-**Example**
-  
-  ```js
-  let downloadTask;
-  downloadTask.queryMimeType().then((data) => {    
-      console.info('Download task queried. Data:' + JSON.stringify(data));
-  }).catch((err) => {
-      console.error('Failed to query the download MimeType. Cause:' + JSON.stringify(err))
-  });
-  ```
-
-
-### queryMimeType<sup>7+</sup>
-
-queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
-
-Queries the **MimeType** of this download task. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [getTaskMimeType<sup>9+</sup>](#gettaskmimetype9-1).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
-
-**Example**
-  
-  ```js
-  let downloadTask;
-  downloadTask.queryMimeType((err, data)=>{
-      if(err) {
-          console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
-      } else {
-          console.info('Download task queried. data:' + JSON.stringify(data));
-      }
-  });
-  ```
-
-
-### pause<sup>7+</sup>
-
-pause(): Promise&lt;void&gt;
-
-Pauses this download task. This API uses a promise to return the result.
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [suspend<sup>9+</sup>](#suspend9).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the download task pause result.|
-
-**Example**
-  
-  ```js
-  let downloadTask;
-  downloadTask.pause().then((result) => {    
-      if (result) {
-           console.info('Download task paused. ');
-      } else {
-          console.error('Failed to pause the download task. Cause:' + JSON.stringify(result));
-      }
-  }).catch((err) => {
-      console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
-  });
-  ```
-
-
-### pause<sup>7+</sup>
-
-pause(callback: AsyncCallback&lt;void&gt;): void
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [suspend<sup>9+</sup>](#suspend9-1).
-
-Pauses this download task. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
-
-**Example**
-  
-  ```js
-  let downloadTask;
-  downloadTask.pause((err, result)=>{
-      if(err) {
-          console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
-          return;
-      }
-      if (result) {
-           console.info('Download task paused. ');
-      } else {
-          console.error('Failed to pause the download task. Cause:' + JSON.stringify(result));
-      }
-  });
-  ```
-
-
-### resume<sup>7+</sup>
-
-resume(): Promise&lt;void&gt;
-
-Resumes this download task. This API uses a promise to return the result.
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [restore<sup>9+</sup>](#restore9).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
-
-**Example**
-  
-  ```js
-  let downloadTask;
-  downloadTask.resume().then((result) => {
-      if (result) {
-          console.info('Download task resumed.')
-      } else {
-          console.error('Failed to resume the download task. ');
-      }
-      console.info('Download task resumed.')
-  }).catch((err) => {
-      console.error('Failed to resume the download task. Cause:' + err);
-  });
-  ```
-
-
-### resume<sup>7+</sup>
-
-resume(callback: AsyncCallback&lt;void&gt;): void
-
-> **NOTE**
-> 
-> This API is deprecated since API version 9. You are advised to use [restore<sup>9+</sup>](#restore9-1).
-
-Resumes this download task. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
-
-**Example**
-  
-  ```js
-  let downloadTask;
-  downloadTask.resume((err, result)=>{
-      if (err) {
-          console.error('Failed to resume the download task. Cause:' + err);
-          return;
-      } 
-      if (result) {
-          console.info('Download task resumed.');
-      } else {
-          console.error('Failed to resume the download task.');
-      }
-  });
-  ```
-
-
-### delete<sup>9+</sup>
+  ### delete<sup>9+</sup>
 
 delete(): Promise&lt;boolean&gt;
 
-Deletes this download task. This API uses a promise to return the result.
+Removes this download task. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1567,13 +1194,12 @@ Deletes this download task. This API uses a promise to return the result.
 **Return value**
 
 | Type| Description|
-  | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the task removal result.|
 
 **Example**
 
   ```js
-  let downloadTask;
   downloadTask.delete().then((result) => {
       if (result) {
           console.info('Download task removed.');
@@ -1590,7 +1216,7 @@ Deletes this download task. This API uses a promise to return the result.
 
 delete(callback: AsyncCallback&lt;boolean&gt;): void
 
-Deletes this download task. This API uses an asynchronous callback to return the result.
+Removes this download task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1599,13 +1225,12 @@ Deletes this download task. This API uses an asynchronous callback to return the
 **Parameters**
 
 | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task removal result.|
 
 **Example**
 
   ```js
-  let downloadTask;
   downloadTask.delete((err, result)=>{
       if(err) {
           console.error('Failed to remove the download task.');
@@ -1639,7 +1264,6 @@ Queries this download task. This API uses a promise to return the result.
 **Example**
 
   ```js
-  let downloadTask;
   downloadTask.getTaskInfo().then((downloadInfo) => {    
       console.info('Download task queried. Data:' + JSON.stringify(downloadInfo))
   }) .catch((err) => {
@@ -1650,7 +1274,7 @@ Queries this download task. This API uses a promise to return the result.
 
 ### getTaskInfo<sup>9+</sup>
 
-query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
+getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 Queries this download task. This API uses an asynchronous callback to return the result.
 
@@ -1661,13 +1285,12 @@ Queries this download task. This API uses an asynchronous callback to return the
 **Parameters**
 
 | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
 
 **Example**
 
   ```js
-  let downloadTask;
   downloadTask.getTaskInfo((err, downloadInfo)=>{
       if(err) {
           console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
@@ -1691,13 +1314,12 @@ Obtains the **MimeType** of this download task. This API uses a promise to retur
 **Return value**
 
 | Type| Description|
-  | -------- | -------- |
+| -------- | -------- |
 | Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
 
 **Example**
 
   ```js
-  let downloadTask;
   downloadTask.getTaskMimeType().then((data) => {    
       console.info('Download task queried. Data:' + JSON.stringify(data));
   }).catch((err) => {
@@ -1719,13 +1341,12 @@ Obtains the **MimeType** of this download task. This API uses an asynchronous ca
 **Parameters**
 
 | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
 
 **Example**
 
   ```js
-  let downloadTask;
   downloadTask.getTaskMimeType((err, data)=>{
       if(err) {
           console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
@@ -1749,13 +1370,12 @@ Pauses this download task. This API uses a promise to return the result.
 **Return value**
 
 | Type| Description|
-  | -------- | -------- |
+| -------- | -------- |
 | Promise&lt;boolean&gt; | Promise used to return the download task pause result.|
 
 **Example**
 
   ```js
-  let downloadTask;
   downloadTask.suspend().then((result) => {    
       if (result) {
            console.info('Download task paused. ');
@@ -1781,13 +1401,12 @@ Pauses this download task. This API uses an asynchronous callback to return the 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```js
-  let downloadTask;
   downloadTask.suspend((err, result)=>{
       if(err) {
           console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
@@ -1815,13 +1434,12 @@ Resumes this download task. This API uses a promise to return the result.
 **Return value**
 
 | Type| Description|
-  | -------- | -------- |
+| -------- | -------- |
 | Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Example**
 
   ```js
-  let downloadTask;
   downloadTask.restore().then((result) => {
       if (result) {
           console.info('Download task resumed.')
@@ -1848,14 +1466,359 @@ Resumes this download task. This API uses an asynchronous callback to return the
 **Parameters**
 
 | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```js
-  let downloadTask;
   downloadTask.restore((err, result)=>{
+      if (err) {
+          console.error('Failed to resume the download task. Cause:' + err);
+          return;
+      } 
+      if (result) {
+          console.info('Download task resumed.');
+      } else {
+          console.error('Failed to resume the download task.');
+      }
+  });
+  ```
+
+
+
+### remove<sup>(deprecated)</sup>
+
+remove(): Promise&lt;boolean&gt;
+
+Removes this download task. This API uses a promise to return the result.
+
+>  **NOTE**
+>
+>  This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9-2).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Download
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the task removal result.|
+
+**Example**
+
+  ```js
+  downloadTask.remove().then((result) => {
+      if (result) {
+          console.info('Download task removed.');
+      } else {
+          console.error('Failed to remove the download task.');
+      }
+  }).catch ((err) => {
+      console.error('Failed to remove the download task.');
+  });
+  ```
+
+
+### remove<sup>(deprecated)</sup>
+
+remove(callback: AsyncCallback&lt;boolean&gt;): void
+
+Removes this download task. This API uses an asynchronous callback to return the result.
+
+>  **NOTE**
+>
+>  This API is deprecated since API version 9. You are advised to use [delete<sup>9+</sup>](#delete9-3).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Download
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task removal result.|
+
+**Example**
+
+  ```js
+  downloadTask.remove((err, result)=>{
+      if(err) {
+          console.error('Failed to remove the download task.');
+          return;
+      } 
+      if (result) {
+          console.info('Download task removed.');
+      } else {
+          console.error('Failed to remove the download task.');
+      } 
+  });
+  ```
+
+
+### query<sup>(deprecated)</sup>
+
+query(): Promise&lt;DownloadInfo&gt;
+
+Queries this download task. This API uses a promise to return the result.
+
+>  **NOTE**
+>
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [getTaskInfo<sup>9+</sup>](#gettaskinfo9).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Download
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | Promise used to return the download task information.|
+
+**Example**
+
+  ```js
+  downloadTask.query().then((downloadInfo) => {    
+      console.info('Download task queried. Data:' + JSON.stringify(downloadInfo))
+  }) .catch((err) => {
+      console.error('Failed to query the download task. Cause:' + err)
+  });
+  ```
+
+
+### query<sup>(deprecated)</sup>
+
+query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
+
+Queries this download task. This API uses an asynchronous callback to return the result.
+
+>  **NOTE**
+>
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [getTaskInfo<sup>9+</sup>](#gettaskinfo9-1).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Download
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
+
+**Example**
+
+  ```js
+  downloadTask.query((err, downloadInfo)=>{
+      if(err) {
+          console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
+      } else {
+          console.info('download query success. data:'+ JSON.stringify(downloadInfo));
+      }
+  });
+  ```
+
+
+### queryMimeType<sup>(deprecated)</sup>
+
+queryMimeType(): Promise&lt;string&gt;
+
+Queries the **MimeType** of this download task. This API uses a promise to return the result.
+
+>  **NOTE**
+>
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [getTaskMimeType<sup>9+</sup>](#gettaskmimetype9).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Download
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
+
+**Example**
+
+  ```js
+  downloadTask.queryMimeType().then((data) => {    
+      console.info('Download task queried. Data:' + JSON.stringify(data));
+  }).catch((err) => {
+      console.error('Failed to query the download MimeType. Cause:' + JSON.stringify(err))
+  });
+  ```
+
+
+### queryMimeType<sup>(deprecated)</sup>
+
+queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
+
+Queries the **MimeType** of this download task. This API uses an asynchronous callback to return the result.
+
+>  **NOTE**
+>
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [getTaskMimeType<sup>9+</sup>](#gettaskmimetype9-1).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Download
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
+
+**Example**
+
+  ```js
+  downloadTask.queryMimeType((err, data)=>{
+      if(err) {
+          console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
+      } else {
+          console.info('Download task queried. data:' + JSON.stringify(data));
+      }
+  });
+  ```
+
+
+### pause<sup>(deprecated)</sup>
+
+pause(): Promise&lt;void&gt;
+
+Pauses this download task. This API uses a promise to return the result.
+
+>  **NOTE**
+>
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [suspend<sup>9+</sup>](#suspend9).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Download
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the download task pause result.|
+
+**Example**
+
+  ```js
+  downloadTask.pause().then((result) => {    
+      if (result) {
+           console.info('Download task paused. ');
+      } else {
+          console.error('Failed to pause the download task. Cause:' + JSON.stringify(result));
+      }
+  }).catch((err) => {
+      console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
+  });
+  ```
+
+
+### pause<sup>(deprecated)</sup>
+
+pause(callback: AsyncCallback&lt;void&gt;): void
+
+>  **NOTE**
+>
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [suspend<sup>9+</sup>](#suspend9-1).
+
+Pauses this download task. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Download
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Example**
+
+  ```js
+  downloadTask.pause((err, result)=>{
+      if(err) {
+          console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
+          return;
+      }
+      if (result) {
+           console.info('Download task paused. ');
+      } else {
+          console.error('Failed to pause the download task. Cause:' + JSON.stringify(result));
+      }
+  });
+  ```
+
+
+### resume<sup>(deprecated)</sup>
+
+resume(): Promise&lt;void&gt;
+
+Resumes this download task. This API uses a promise to return the result.
+
+>  **NOTE**
+>
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [restore<sup>9+</sup>](#restore9).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Download
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+  ```js
+  downloadTask.resume().then((result) => {
+      if (result) {
+          console.info('Download task resumed.')
+      } else {
+          console.error('Failed to resume the download task. ');
+      }
+      console.info('Download task resumed.')
+  }).catch((err) => {
+      console.error('Failed to resume the download task. Cause:' + err);
+  });
+  ```
+
+
+### resume<sup>(deprecated)</sup>
+
+resume(callback: AsyncCallback&lt;void&gt;): void
+
+>  **NOTE**
+>
+>  This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [restore<sup>9+</sup>](#restore9-1).
+
+Resumes this download task. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Download
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Example**
+
+  ```js
+  downloadTask.resume((err, result)=>{
       if (err) {
           console.error('Failed to resume the download task. Cause:' + err);
           return;
