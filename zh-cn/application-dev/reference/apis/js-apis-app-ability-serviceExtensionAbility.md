@@ -1,6 +1,6 @@
 # @ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)
 
-ServiceExtensionAbility模块提供ServiceExtension服务扩展相关接口的能力。
+ServiceExtensionAbility模块提供后台服务相关扩展能力，提供后台服务创建、销毁、连接、断开等生命周期回调。
 
 > **说明：**
 > 
@@ -23,9 +23,9 @@ import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称 | 类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)  | 是 | 否 | ServiceExtension的上下文环境，继承自ExtensionContext。 | 
+| context | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)  | 是 | 否 | ServiceExtension的上下文环境，继承自ExtensionContext。 |
 
 
 ## ServiceExtensionAbility.onCreate
@@ -40,9 +40,9 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want |  [Want](js-apis-app-ability-want.md) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want |  [Want](js-apis-app-ability-want.md) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
 **示例：**
 
@@ -88,10 +88,10 @@ Extension生命周期回调，如果是startAbility拉起的服务，会在onCre
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want |  [Want](js-apis-app-ability-want.md) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 | 
-  | startId | number | 是 | 返回拉起次数。首次拉起初始值返回1，多次之后自动递增。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want |  [Want](js-apis-app-ability-want.md) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
+| startId | number | 是 | 返回拉起次数。首次拉起初始值返回1，多次之后自动递增。 |
 
 **示例：**
 
@@ -116,15 +116,15 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want |  [Want](js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want |  [Want](js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | rpc.RemoteObject | 一个RemoteObject对象，用于和客户端进行通信。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| rpc.RemoteObject | 一个RemoteObject对象，用于和客户端进行通信。 |
 
 **示例：**
 
@@ -158,9 +158,9 @@ Extension的生命周期，断开服务连接时回调。
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want |[Want](js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want |[Want](js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
 **示例：**
 
@@ -184,9 +184,9 @@ onReconnect(want: Want): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want |[Want](js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want |[Want](js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
 **示例：**
 
@@ -210,9 +210,9 @@ onConfigurationUpdate(newConfig: Configuration): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | newConfig | [Configuration](js-apis-app-ability-configuration.md) | 是 | 表示需要更新的配置信息。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| newConfig | [Configuration](js-apis-app-ability-configuration.md) | 是 | 表示需要更新的配置信息。 |
 
 **示例：**
     
@@ -236,9 +236,9 @@ onDump(params: Array\<string>): Array\<string>;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | params | Array\<string> | 是 | 表示命令形式的参数。| 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| params | Array\<string> | 是 | 表示命令形式的参数。|
 
 **示例：**
     
