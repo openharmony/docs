@@ -19,7 +19,7 @@ ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力和接�
   let context = undefined;
   class MainAbility extends ServiceExtensionAbility {
     onCreate() {
-      context = this.context;
+      context = this.context; // 获取ServiceExtensionContext
     }
   }
 ```
@@ -36,10 +36,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 | 
-  | callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 |
+| callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
 
@@ -103,16 +103,16 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 | 
-  | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
 
 **错误码：**
 
@@ -406,9 +406,9 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
 
 **错误码：**
 
@@ -545,9 +545,9 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
 
 **错误码：**
 
@@ -681,9 +681,9 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
 
 **错误码：**
 
@@ -807,9 +807,9 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
 
 **错误码：**
 
@@ -936,9 +936,9 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
 
 **错误码：**
 
@@ -995,9 +995,9 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
 
@@ -1037,9 +1037,9 @@ terminateSelf(): Promise&lt;void&gt;;
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
 
 **错误码：**
 
@@ -1077,16 +1077,16 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 | 
-  | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | ConnectOptions类型的回调函数，返回服务连接成功、断开或连接失败后的信息。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 |
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | ConnectOptions类型的回调函数，返回服务连接成功、断开或连接失败后的信息。 |
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | number | 返回一个number，后续根据这个number去断开连接。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回一个number，后续根据这个number去断开连接。 |
 
 **错误码：**
 
@@ -1197,10 +1197,10 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | connection | number | 是 | 在connectAbility中返回的number。 | 
-  | callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| connection | number | 是 | 在connectAbility中返回的number。 |
+| callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
 
@@ -1249,15 +1249,15 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | connection | number | 是 | 在connectAbility中返回的number。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| connection | number | 是 | 在connectAbility中返回的number。 |
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
 
 **错误码：**
 

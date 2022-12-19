@@ -9,7 +9,7 @@ Context模块提供了ability或application的上下文的能力，包括允许�
 
 ## 使用说明
 
-Context对象是在featureAbility中创建实例，并通过featureAbility的getContext()接口返回，因此在使用Context时，必须导入@ohos.ability.featureAbility库。示例如下：
+Context对象是在featureAbility中创建实例，并通过featureAbility的[getContext](js-apis-ability-featureAbility.md#featureabilitygetcontext)接口返回，因此在使用Context时，必须导入@ohos.ability.featureAbility库。示例如下：
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
