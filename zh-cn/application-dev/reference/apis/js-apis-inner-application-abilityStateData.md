@@ -1,6 +1,6 @@
 # AbilityStateData
 
-定义Ability状态信息。
+定义Ability状态信息，可以通过[registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver8)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的onAbilityStateChanged生命周期回调获取。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -12,22 +12,5 @@
 | uid<sup>8+</sup>                     | number   | 是   | 否   | 用户ID。                  |
 | state<sup>8+</sup>                   | number   | 是   | 否   | Ability状态。                |
 | moduleName<sup>9+</sup> | string   | 是   | 否   | Ability所属的HAP包的名称。    |
-| abilityType<sup>8+</sup> | string   | 是   | 否   | 能力类型、页面或服务等。    |
+| abilityType<sup>8+</sup> | string   | 是   | 否   | Ability类型：页面或服务等。 |
 
-**示例：**
-```ts
-import appManager from "@ohos.application.appManager"
-
-appManager.getForegroundApplications((error, data) => {
-    for(let i=0; i<data.length; i++) {
-        let appStateData = data[i];
-        console.info('appStateData.pid: ' + appStateData.pid);
-        console.info('appStateData.bundleName: ' + appStateData.bundleName);
-        console.info('appStateData.abilityName: ' + appStateData.abilityName);
-        console.info('appStateData.uid: ' + appStateData.uid);
-        console.info('appStateData.state: ' + appStateData.state);
-        console.info('appStateData.moduleName: ' + appStateData.moduleName);
-        console.info('appStateData.abilityType: ' + appStateData.abilityType);
-    }
-});
-```

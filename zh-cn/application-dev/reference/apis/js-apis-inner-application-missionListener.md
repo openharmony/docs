@@ -1,6 +1,6 @@
 # MissionListener
 
-定义系统任务状态监听。
+定义系统任务状态监听，可以通过[registerMissionListener](js-apis-application-missionManager.md#missionmanagerregistermissionlistener)注册。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 

@@ -8,7 +8,7 @@ AbilityMonitor模块提供匹配满足指定条件的受监视能力对象的方
 
 ## 使用说明
 
-通过abilityDelegator中的addAbilityMonitor来设置。
+可以作为abilityDelegator中的[addAbilityMonitor](js-apis-inner-application-abilityDelegator.md#addabilitymonitor9)的入参来监听指定Ability的生命周期变化。
 
 ## AbilityMonitor
 
@@ -31,7 +31,6 @@ Ability监听器
 
 ```ts
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-var abilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
@@ -42,7 +41,7 @@ var monitor = {
     onAbilityCreate: onAbilityCreateCallback
 }
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
     console.info("addAbilityMonitor callback");
 });

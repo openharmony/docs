@@ -1,6 +1,6 @@
 # DataAbilityResult
 
-定义dataAbility数据操作结果。
+定义dataAbility数据操作结果，通过[executeBatch](js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch)查询数据库信息时查询结果通过DataAbilityResult对象返回。
 
 > **说明：**
 > 
@@ -11,10 +11,11 @@
 
 | 名称       | 类型  |     必填    |       说明   |
 | --------  | --------  | --------    | --------    |
-| uri?      | string    |      否    | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。  | 
-| count?     | number    |      否    | 指示受操作影响的行数。  | 
+| uri?      | string    |      否    | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。  |
+| count?     | number    |      否    | 指示受操作影响的行数。  |
 
 **示例：**
+
 ```ts
 import featureAbility from '@ohos.ability.featureAbility'
 
@@ -22,7 +23,7 @@ let dataAbilityUri = ("dataability:///com.example.myapplication.TestDataAbility"
 let DAHelper;
 try {
     DAHelper = featureAbility.acquireDataAbilityHelper(dataAbilityUri);
-    if(DAHelper == null){
+    if (DAHelper == null) {
         console.error('DAHelper is null');
         return;
     }
