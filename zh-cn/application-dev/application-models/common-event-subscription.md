@@ -19,10 +19,10 @@
 
 ## 开发步骤
 
-1. 导入CommonEvent模块。
+1. 导入模块。
    
    ```ts
-   import commonEvent from '@ohos.commonEventManager';
+   import commonEventManager from '@ohos.commonEventManager';
    ```
 
 2. 创建订阅者信息，详细的订阅者信息数据类型及包含的参数请见[CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo)文档介绍。
@@ -40,7 +40,7 @@
    
    ```ts
    // 创建订阅者回调
-   commonEvent.createSubscriber(subscribeInfo, (err, data) => {
+   commonEventManager.createSubscriber(subscribeInfo, (err, data) => {
        if (err) {
            console.error(`[CommonEvent] CreateSubscriberCallBack err=${JSON.stringify(err)}`);
        } else {
@@ -56,7 +56,7 @@
    ```ts
    // 订阅公共事件回调
    if (subscriber !== null) {
-       commonEvent.subscribe(subscriber, (err, data) => {
+       commonEventManager.subscribe(subscriber, (err, data) => {
            if (err) {
                console.error(`[CommonEvent] SubscribeCallBack err=${JSON.stringify(err)}`);
            } else {
