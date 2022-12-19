@@ -18,6 +18,10 @@ You can use `$r` or `$rawfile` to create a **Resource** object, but its attribut
 
   **filename**: name of the file in the **resources/rawfile** directory of the project.
 
+  > **NOTE**
+  >
+  > When referencing resources of the **Resource** type, make sure the data type is the same as that of the attribute method. For example, if an attribute method supports the **string | Resource** types, the data type of the **Resource** type must be string.
+
 ## Length
 
 The **Length** type is used to represent a size unit.
@@ -212,4 +216,4 @@ The **CustomBuilder** type is used to define custom UI descriptions in component
 
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | Must be decorated by **@Builder**. For details, see [@Builder](../../quick-start/arkts-dynamic-ui-elememt-building.md#builder).|
+| CustomBuilder | () =&gt; any | Must be decorated by **@Builder**. For details, see [@Builder](../../quick-start/arkts-dynamic-ui-elememt-building.md#builder).|
