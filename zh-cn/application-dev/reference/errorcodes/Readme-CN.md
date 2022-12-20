@@ -78,7 +78,6 @@
 - 定制管理
   - [企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
 - 语言基础类库
-  - [buffer错误码](errorcode-buffer.md)
-  - [containers错误码](errorcode-containers.md)
+  - [语言基础类库错误码](errorcode-utils.md)
 - 测试
   - [uitest错误码](errorcode-uitest.md)
