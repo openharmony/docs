@@ -30,4 +30,4 @@
   - [升级服务](js-apidiff-update.md)
   - [Web](js-apidiff-web.md)
   - [窗口管理](js-apidiff-window.md)
-- [3.2 beta3相对于3.2 beta2变更详细说明](changelog-v3.2-beta3.md)
+- [3.2 beta3相对于3.2 beta2变更详细说明](../../changelogs/v3.2-beta3/changelog-v3.2-beta3.md)

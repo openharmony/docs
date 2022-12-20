@@ -4,6 +4,7 @@
 - [术语](glossary.md)
 - 版本说明
   - OpenHarmony 3.x Releases
+    - [OpenHarmony v3.2 Beta4 (2022-11-30)](release-notes/OpenHarmony-v3.2-beta4.md)
     - [OpenHarmony v3.2 Beta3 (2022-09-30)](release-notes/OpenHarmony-v3.2-beta3.md)
     - [OpenHarmony v3.2 Beta2 (2022-07-30)](release-notes/OpenHarmony-v3.2-beta2.md)
     - [OpenHarmony v3.2 Beta1 (2022-05-31)](release-notes/OpenHarmony-v3.2-beta1.md)
@@ -18,13 +19,13 @@
       - [OpenHarmony v3.0.3 LTS (2022-04-08)](release-notes/OpenHarmony-v3.0.3-LTS.md)
       - [OpenHarmony v3.0.2 LTS (2022-03-18)](release-notes/OpenHarmony-v3.0.2-LTS.md)
       - [OpenHarmony v3.0.1 LTS (2022-01-12)](release-notes/OpenHarmony-v3.0.1-LTS.md)
-
+    
   - OpenHarmony 2.x Releases
     - [OpenHarmony v2.2 beta2 (2021-08-04)](release-notes/OpenHarmony-v2.2-beta2.md)
     - [OpenHarmony 2.0 Canary (2021-06-01)](release-notes/OpenHarmony-2-0-Canary.md)
-
+  
   - OpenHarmony 1.x Releases
-
+  
     - [OpenHarmony 1.0 (2020-09-10)](release-notes/OpenHarmony-1-0.md)
       - [OpenHarmony v1.1.5 LTS (2022-08-24)](release-notes/OpenHarmony-v1.1.5-LTS.md)
       - [OpenHarmony v1.1.4 LTS (2022-02-11)](release-notes/OpenHarmony-v1-1-4-LTS.md)
@@ -32,8 +33,42 @@
       - [OpenHarmony v1.1.2 LTS (2021-08-04)](release-notes/OpenHarmony-v1.1.2-LTS.md)
       - [OpenHarmony v1.1.1 LTS (2021-06-22)](release-notes/OpenHarmony-1-1-1-LTS.md)
       - [OpenHarmony v1.1.0 LTS (2021-04-01)](release-notes/OpenHarmony-1-1-0-LTS.md)
-
+  
   - API差异报告
+    - OpenHarmony 3.2 Beta4
+      - JS API差异报告
+        - [元能力](release-notes/api-diff/v3.2-beta4/js-apidiff-ability.md)
+        - [无障碍](release-notes/api-diff/v3.2-beta4/js-apidiff-accessibility.md)
+        - [帐号](release-notes/api-diff/v3.2-beta4/js-apidiff-account.md)
+        - [应用](release-notes/api-diff/v3.2-beta4/js-apidiff-application.md)
+        - [ArkUI](release-notes/api-diff/v3.2-beta4/js-apidiff-arkui.md)
+        - [电源服务](release-notes/api-diff/v3.2-beta4/js-apidiff-battery.md)
+        - [包管理](release-notes/api-diff/v3.2-beta4/js-apidiff-bundle.md)
+        - [网络及通信](release-notes/api-diff/v3.2-beta4/js-apidiff-communication.md)
+        - [语言编译器运行时](release-notes/api-diff/v3.2-beta4/js-apidiff-compiler-and-runtime.md)
+        - [定制](release-notes/api-diff/v3.2-beta4/js-apidiff-customization.md)
+        - [DFX](release-notes/api-diff/v3.2-beta4/js-apidiff-dfx.md)
+        - [分布式数据](release-notes/api-diff/v3.2-beta4/js-apidiff-distributed-data.md)
+        - [分布式硬件](release-notes/api-diff/v3.2-beta4/js-apidiff-distributed-hardware.md)
+        - [文件管理](release-notes/api-diff/v3.2-beta4/js-apidiff-file-management.md)
+        - [位置服务](release-notes/api-diff/v3.2-beta4/js-apidiff-geolocation.md)
+        - [全球化](release-notes/api-diff/v3.2-beta4/js-apidiff-global.md)
+        - [Misc软件](release-notes/api-diff/v3.2-beta4/js-apidiff-misc.md)
+        - [MSDP](release-notes/api-diff/v3.2-beta4/js-apidiff-msdp.md)
+        - [多模输入](release-notes/api-diff/v3.2-beta4/js-apidiff-multi-modal-input.md)
+        - [媒体服务](release-notes/api-diff/v3.2-beta4/js-apidiff-multimedia.md)
+        - [事件与通知](release-notes/api-diff/v3.2-beta4/js-apidiff-notification.md)
+        - [资源调度](release-notes/api-diff/v3.2-beta4/js-apidiff-resource-scheduler.md)
+        - [安全](release-notes/api-diff/v3.2-beta4/js-apidiff-security.md)
+        - [泛Sensor](release-notes/api-diff/v3.2-beta4/js-apidiff-sensor.md)
+        - [启动](release-notes/api-diff/v3.2-beta4/js-apidiff-start-up.md)
+        - [电话服务](release-notes/api-diff/v3.2-beta4/js-apidiff-telephony.md)
+        - [测试服务](release-notes/api-diff/v3.2-beta4/js-apidiff-unitest.md)
+        - [升级](release-notes/api-diff/v3.2-beta4/js-apidiff-update.md)
+        - [USB服务](release-notes/api-diff/v3.2-beta4/js-apidiff-usb.md)
+        - [用户IAM](release-notes/api-diff/v3.2-beta4/js-apidiff-user-iam.md)
+        - [Web](release-notes/api-diff/v3.2-beta4/js-apidiff-web.md)
+        - [窗口管理](release-notes/api-diff/v3.2-beta4/js-apidiff-window.md)
     - OpenHarmony 3.2 Beta3
       - JS API差异报告
         - [元能力](release-notes/api-diff/v3.2-beta3/js-apidiff-ability.md)
@@ -169,7 +204,7 @@
     - OpenHarmony v2.2 Beta2
       - [JS API差异报告](release-notes/api-diff/v2.2-beta2/js-apidiff-v2.2-beta2.md)
       - [Native API差异报告](release-notes/api-diff/v2.2-beta2/native-apidiff-v2.2-beta2.md)
-
+  
 - OpenHarmony三方组件
   - [OpenHarmony三方组件简介](third-party-components/third-party-components-introduction.md)  
   - [OpenHarmony JS/TS三方组件使用指导](third-party-components/npm-third-party-guide.md)

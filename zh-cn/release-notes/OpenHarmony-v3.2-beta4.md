@@ -184,6 +184,13 @@ ArkTS API新增支持错误码的上报，帮助开发者快速捕捉异常，�
 | DFX | - 对HiTrace的打点接口、调用链接口从底层概念进行统一。<br/>- 新增支持功耗数据、系统事件数据的采集。<br/>- 新增支持JS HAP在启动过程中及时采集perf数据。<br/>主要涉及需求：<br/>I5X4TY 【新增特性】支持HiTrace统一概念的HiTraceMeter打点接口<br/>I5X4U1 【新增特性】支持HiTrace统一概念的HiTraceChain调用链接口<br/>I5X4TD 【新增特性】功耗数据采集<br/>I5X4TE 【新增特性】系统事件数据采集<br/>I5X4TL 【新增特性】支持JS HAP启动过程及时采集perf数据 | NA |
 
 
+
+API变更请参考：
+
+[*API差异报告*](api-diff/v3.2-beta4/js-apidiff-ability.md)
+
+
+
 ### 芯片及开发板适配
 
 芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
@@ -200,7 +207,7 @@ ArkTS API新增支持错误码的上报，帮助开发者快速捕捉异常，�
 | 数据管理 | [CrossAppDataShare: 跨应用数据共享](https://gitee.com/openharmony/applications_app_samples/tree/master/data/CrossAppDataShare) | 本示例实现了一个跨应用数据共享实例，分为联系人（数据提供方）和联系人助手（数据使用方）两部分：联系人支持联系人数据的增、删、改、查等功能；联系人助手支持同步联系人数据，当联系人与联系人助手数据不一致时，支持合并重复数据。 |
 | 媒体 | [PlayMusicBackground: 后台播放音乐](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/PlayMusicBackground) | 本示例基于API9 stage应用开发模型，用于验证OpenHarmony提供的后台播放音乐时申请长时任务功能。 |
 | 资源调度 | [ReminderAgentManager: 后台代理提醒](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/ReminderAgentManager) | 本示例通过使用后台代理提醒的能力，创建闹钟、日历、计时器三种类型的定时提醒，保证应用被冻结或退出时，计时和弹出提醒的功能可以被后台系统服务代理。 |
-| 文件管理 | [StorageStatistic: 存储空间统计](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Screenshot) | 本示例通过应用程序包管理、应用空间统计与卷管理模块，实现了查看当前设备存储空间信息、所有安装的应用的存储信息、所有可用卷的存储信息的功能。 |
+| 文件管理 | [StorageStatistic: 存储空间统计](https://gitee.com/openharmony/applications_app_samples/tree/master/FileManager/StorageStatistic) | 本示例通过应用程序包管理、应用空间统计与卷管理模块，实现了查看当前设备存储空间信息、所有安装的应用的存储信息、所有可用卷的存储信息的功能。 |
 | 窗口 | [Screenshot: 截屏](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Screenshot) | 本示例通过screenshot模块实现屏幕截图 ，通过window模块实现隐私窗口切换，通过display模块查询当前隐私窗口。 |
 | 包管理 | [MultiHap: 多HAP](https://gitee.com/openharmony/applications_app_samples/tree/master/bundle/MultiHap) | 本示例展示多HAP开发，简单介绍了多HAP的使用场景，应用包含了一个entry HAP和两个feature HAP，两个feature HAP分别提供了音频和视频播放组件，entry中使用了音频和视频播放组件。 |
 | 元能力 | [AbilityStartMode: Ability的启动模式](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/AbilityStartMode) | 本示例展示了在一个Stage模型中，实现standard、singleton、specified多种模式场景。 |
