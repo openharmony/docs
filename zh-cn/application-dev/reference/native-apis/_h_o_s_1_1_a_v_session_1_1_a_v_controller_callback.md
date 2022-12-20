@@ -133,4 +133,6 @@ virtual void OHOS::AVSession::AVControllerCallback::OnValidCommandChange (const 
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| cmds，媒体有效的指令列表，范围为{ |  | 
+| cmds，媒体有效的指令列表，范围为{ |  |
+
+<!--no_check-->

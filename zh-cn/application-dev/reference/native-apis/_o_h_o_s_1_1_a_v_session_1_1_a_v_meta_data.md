@@ -924,3 +924,5 @@ const std::vector<int32_t> OHOS::AVSession::AVMetaData::localCapability
 ```
 **描述:**
 会话元数据数组，用于分布式业务，设置会话属性。
+
+<!--no_check-->
