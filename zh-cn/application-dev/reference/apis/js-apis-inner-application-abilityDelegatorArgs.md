@@ -8,7 +8,7 @@ AbilityDelegatorArgs模块提供在应用程序启动期间，用于存储已注
 
 ## 使用说明
 
-通过AbilityDelegatorRegistry中getArguments方法获取。
+通过AbilityDelegatorRegistry中[getArguments](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetarguments)方法获取。
 
 ## AbilityDelegatorArgs
 
@@ -30,5 +30,3 @@ import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry
 
 var args = AbilityDelegatorRegistry.getArguments();
 ```
-
-

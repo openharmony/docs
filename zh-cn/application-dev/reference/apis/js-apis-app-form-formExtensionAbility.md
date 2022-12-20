@@ -1,6 +1,6 @@
-# FormExtensionAbility
+# @ohos.app.form.FormExtensionAbility (FormExtensionAbility)
 
-FormExtensionAbility模块提供了卡片扩展相关接口。
+FormExtensionAbility为卡片扩展模块，提供卡片创建、销毁、刷新等生命周期回调。
 
 > **说明：**
 >
@@ -17,9 +17,9 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 **系统能力**：SystemCapability.Ability.Form
 
-| 名称    | 类型                                                | 可读 | 可写 | 说明                                                |
-| ------- | ------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
-| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | 是   | 否   | FormExtensionAbility的上下文环境，继承自ExtensionContext。 |
+| 名称    | 类型                                                         | 可读 | 可写 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | 是   | 否   | FormExtensionAbility的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。 |
 
 ## onAddForm
 
@@ -207,7 +207,7 @@ onConfigurationUpdate(newConfig: Configuration): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| newConfig | [Configuration](js-apis-configuration.md) | 是 | 表示需要更新的配置信息。 |
+| newConfig | [Configuration](js-apis-application-configuration.md) | 是 | 表示需要更新的配置信息。 |
 
 **示例：**
 

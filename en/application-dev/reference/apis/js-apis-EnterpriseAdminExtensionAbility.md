@@ -1,4 +1,4 @@
-# EnterpriseAdminExtensionAbility
+# @ohos.enterprise.EnterpriseAdminExtensionAbility
 
 The **EnterpriseAdminExtensionAbility** module provides Extension abilities for enterprise administrators.
 

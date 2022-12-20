@@ -1,10 +1,10 @@
-# EnvironmentCallback
+# @ohos.application.EnvironmentCallback (EnvironmentCallback)
 
 EnvironmentCallback模块提供应用上下文ApplicationContext对系统环境变化监听回调的能力，包括onConfigurationUpdated方法。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9 开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.EnvironmentCallback](js-apis-app-ability-environmentCallback.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9 开始支持，从API version 9后续版本废弃，替换模块为[@ohos.app.ability.EnvironmentCallback](js-apis-app-ability-environmentCallback.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
 

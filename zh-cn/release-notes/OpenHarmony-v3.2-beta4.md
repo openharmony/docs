@@ -184,6 +184,13 @@ ArkTS API新增支持错误码的上报，帮助开发者快速捕捉异常，�
 | DFX | - 对HiTrace的打点接口、调用链接口从底层概念进行统一。<br/>- 新增支持功耗数据、系统事件数据的采集。<br/>- 新增支持JS HAP在启动过程中及时采集perf数据。<br/>主要涉及需求：<br/>I5X4TY 【新增特性】支持HiTrace统一概念的HiTraceMeter打点接口<br/>I5X4U1 【新增特性】支持HiTrace统一概念的HiTraceChain调用链接口<br/>I5X4TD 【新增特性】功耗数据采集<br/>I5X4TE 【新增特性】系统事件数据采集<br/>I5X4TL 【新增特性】支持JS HAP启动过程及时采集perf数据 | NA |
 
 
+
+API变更请参考：
+
+[*API差异报告*](api-diff/v3.2-beta4/js-apidiff-ability.md)
+
+
+
 ### 芯片及开发板适配
 
 芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。

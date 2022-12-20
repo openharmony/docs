@@ -37,7 +37,7 @@ Image(src: string | PixelMap | Resource)
 | --------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
 | alt                   | string \| [Resource](ts-types.md#resource类型) | 加载时显示的占位图，支持本地图片。                 |
 | objectFit             | [ImageFit](ts-appendix-enums.md#imagefit)                           | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover                  |
-| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | 设置图片的重复样式。<br/>默认值：NoRepeat<br/>**说明：**<br/>svg类型图源不支持该属性。 |
+| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | 设置图片的重复样式。<br/>默认值：ImageRepeat.NoRepeat<br/>**说明：**<br/>svg类型图源不支持该属性。 |
 | interpolation         | [ImageInterpolation](#imageinterpolation)               | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>默认值：ImageInterpolation.None<br/>**说明：**<br/>svg类型图源不支持该属性。<br/>PixelMap资源不支持该属性。 |
 | renderMode            | [ImageRenderMode](#imagerendermode)                     | 设置图片渲染的模式。<br/>默认值：ImageRenderMode.Original<br/>**说明：**<br/>svg类型图源不支持该属性。 |
 | sourceSize            | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | 设置图片裁剪尺寸，将原始图片解码成pixelMap，指定尺寸的图片，单位为px。<br/>**说明：**<br/>PixelMap资源不支持该属性。 |
@@ -74,11 +74,11 @@ Image(src: string | PixelMap | Resource)
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
+| 名称                                                         | 功能描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onComplete(callback:&nbsp;(event?:&nbsp;{&nbsp;width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;componentWidth:&nbsp;number,<br>&nbsp;componentHeight:&nbsp;number,&nbsp;loadingStatus:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 图片成功加载时触发该回调，返回成功加载的图片尺寸。<br>- width：图片的宽，单位为像素。<br/>- height：图片的高，单位为像素。<br/>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。<br/>- loadingStatus：图片加载成功的状态。<br/> |
-| onError(callback:&nbsp;(event?:&nbsp;{&nbsp;componentWidth:&nbsp;number,&nbsp;componentHeight:&nbsp;number&nbsp;, message<sup>9+</sup>: string })&nbsp;=&gt;&nbsp;void) | 图片加载出现异常时触发该回调。<br>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。<br/> |
-| onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 当加载的源文件为带动效的svg图片时，当svg动效播放完成时会触发这个回调，如果动效为无限循环动效，则不会触发这个回调。 |
+| onError(callback:&nbsp;(event?:&nbsp;{&nbsp;componentWidth:&nbsp;number,&nbsp;componentHeight:&nbsp;number&nbsp;, message<sup>9+</sup>: string })&nbsp;=&gt;&nbsp;void) | 图片加载出现异常时触发该回调。<br>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。 |
+| onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)                | 当加载的源文件为带动效的svg图片时，当svg动效播放完成时会触发这个回调，如果动效为无限循环动效，则不会触发这个回调。 |
 
 ## 示例
 
@@ -161,7 +161,7 @@ struct ImageExample1 {
 ```tsx
 // @ts-nocheck
 import http from '@ohos.net.http';
-import ResponseCode from '@ohos.net.http';
+import ResponseCode from '@ohos.net.http'
 import image from '@ohos.multimedia.image'
 
 
@@ -176,7 +176,7 @@ struct Index {
     Column({space: 10}) {
       Button("获取网络图片")
         .onClick(() => {
-          this.httpRequest();
+          this.httpRequest()
         })
       Image(this.image).height(100).width(100)
     }
@@ -187,7 +187,7 @@ struct Index {
 
   // 网络图片请求方法
   private httpRequest() {
-    let httpRequest = http.createHttp();
+    let httpRequest = http.createHttp()
 	
     httpRequest.request(
       "https://www.example.com/xxx.png",   // 请填写一个具体的网络图片地址
@@ -207,7 +207,7 @@ struct Index {
               this.image = pixelMap
             })
           } else {
-            console.log("response code: " + code);
+            console.log("response code: " + code)
           }
         }
       }
@@ -354,7 +354,7 @@ struct ImageExample3 {
 
 ```ts
 import fileio from '@ohos.fileio'
-import fs from '@ohos.file.fs';
+import fs from '@ohos.file.fs'
 import context from '@ohos.application.context'
 
 @Entry

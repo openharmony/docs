@@ -1,4 +1,4 @@
-# Notification模块
+# @ohos.notification (Notification模块)
 
 本模块提供通知管理的能力，包括发布、取消发布通知，创建、获取、移除通知通道，订阅、取消订阅通知，获取通知的使能状态、角标使能状态，获取通知的相关信息等。
 
@@ -3966,8 +3966,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 | badgeIconStyle        | number                                        | 是  | 是  | 通知角标类型。               |
 | showDeliveryTime      | boolean                                       | 是  | 是  | 是否显示分发时间。           |
 | actionButtons         | Array\<[NotificationActionButton](#notificationactionbutton)\>             | 是  | 是  | 通知按钮，最多两个按钮。     |
-| smallIcon             | PixelMap                                      | 是  | 是  | 通知小图标。                 |
-| largeIcon             | PixelMap                                      | 是  | 是  | 通知大图标。                 |
+| smallIcon             | PixelMap                                      | 是  | 是  | 通知小图标。（可选字段，大小不超过30KB） |
+| largeIcon             | PixelMap                                      | 是  | 是  | 通知大图标。（可选字段，大小不超过30KB） |
 | creatorBundleName     | string                                        | 是  | 否  | 创建通知的包名。             |
 | creatorUid            | number                                        | 是  | 否  | 创建通知的UID。              |
 | creatorPid            | number                                        | 是  | 否  | 创建通知的PID。              |
@@ -3983,7 +3983,6 @@ Notification.subscribe(subscriber, subscribeCallback);
 | notificationFlags<sup>8+</sup> | [NotificationFlags](#notificationflags8)                    | 是  | 否  | 获取NotificationFlags。          |
 | removalWantAgent<sup>9+</sup> | WantAgent                    | 是  | 是  | 当移除通知时，通知将被重定向到的WantAgent实例。          |
 | badgeNumber<sup>9+</sup> | number                    | 是  | 是  | 应用程序图标上显示的通知数。          |
-
 
 ## DistributedOptions<sup>8+</sup>
 

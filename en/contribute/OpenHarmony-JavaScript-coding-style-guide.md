@@ -170,9 +170,9 @@ function render(container, dataSource) {
 
 #### Rule 2.3 The use of braces must comply with the following conventions:
 
-1. If the value in the braces is empty, the value can be abbreviated as `{}` without a newline.
-2. The left braces do not contain a line feed, and the left braces are followed by a line feed.
-3. Line feeds before the right brace. If there is `else` or `catch` after the brace, line feeds are not required. In other cases, line feeds are required.
+1. If the value in the braces is empty, the value can be abbreviated as `{}` without a line feed.
+2. Do not use a line feed before the left brace, and use one after it.
+3. Use a line feed before the right brace, and use one after it as long as it is not followed by `else` or `catch`.
 
 #### Rule 2.4 Implementations of conditional and loop statements must be enclosed in braces, even if there is only one statement.
 

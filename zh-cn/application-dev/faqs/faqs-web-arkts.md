@@ -6,7 +6,6 @@
 
 设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启，控制web网页中localStorage的使用，对sessionStorage未做控制
 
-
 ## Web组件加载的html页面内如何检测网络状态
 
 适用于：OpenHarmony SDK 3.2.7.5版本，API9 Stage模型

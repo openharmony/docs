@@ -1,8 +1,9 @@
-# 系统电源管理
+# @ohos.power (系统电源管理)
 
 该模块主要提供重启、关机、查询屏幕状态等接口。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -87,7 +88,7 @@ try {
 
 isActive(): boolean
 
-检测当前设备是否处于活动状态。
+检测当前设备是否处于活动状态。有屏的设备为亮屏状态，无屏的设备为非休眠状态。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 

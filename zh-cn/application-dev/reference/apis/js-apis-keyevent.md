@@ -1,4 +1,4 @@
-# 按键输入事件
+# @ohos.multimodalInput.keyEvent (按键输入事件)
 
 设备上报的按键事件。
 

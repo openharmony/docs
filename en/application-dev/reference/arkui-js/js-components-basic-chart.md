@@ -22,7 +22,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 | Name                            | Type                                      | Default Value | Mandatory  | Description                                      |
 | ------------------------------ | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| type                           | string                                   | line | No   | Chart type. Dynamic modification is not supported. Available values include:<br>- **bar**: bar chart.<br>- **line**: line chart.<br>- **gauge**: gauge chart.<br>- **progress**<sup>5+</sup>: circle chart of progresses.<br>- **loading**<sup>5+</sup>: circle chart of loading processes.<br>- **rainbow**<sup>5+</sup>: circle chart of proportions.|
+| type                           | string                                   | line | No   | Chart type. Dynamic modification is not supported. Available values include:<br>- **bar**: bar chart<br>- **line**: line chart<br>- **gauge**: gauge chart<br>- **progress**<sup>5+</sup>: circle chart of progresses<br>- **loading**<sup>5+</sup>: circle chart of loading processes<br>- **rainbow**<sup>5+</sup>: circle chart of proportions|
 | options                        | ChartOptions                             | -    | No   | Chart parameters. You must set parameters for bar charts and line charts. Parameter settings for gauge charts do not take effect. You can set the minimum value, maximum value, scale, and line width of the x-axis or y-axis, whether to display the x-axis and y-axis, and whether the line is smooth. Dynamic modification is not supported.|
 | datasets                       | Array&lt;ChartDataset&gt;                | -    | No   | Data sets. You must set data sets for bar charts and line charts. Data sets for a gauge chart do not take effect. You can set multiple datasets and their background colors.|
 | segments<sup>5+</sup>          | DataSegment \| Array&lt;DataSegment&gt; | -    | No   | Data structures used by **progress**, **loading**, and **rainbow** charts.<br>**DataSegment** is available for **progress** and **loading** charts.<br>**Array&lt;DataSegment&gt;** is available for **rainbow** charts. A maximum of nine **DataSegment**s are supported in the array.|
@@ -99,7 +99,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 | description  | string        | -        | No   | Description text of the point.                             |
 | textLocation | string        | -        | No   | Position of the description text relative to the point. Available values are as follows: **top**: above the point<br>**bottom**: below the point<br>**none**: not displayed|
 | textColor    | &lt;color&gt; | \#000000 | No   | Color of the description text.                              |
-| lineDash     | string        | solid    | No   | Dashed line pattern. You can set the dash length and space length between the dashes. For example, **"dashed, 5, 5"** indicates a dashed line with each dash in 5 px and a 5 px space between each two dashes. Default value **"solid"** indicates a solid line.|
+| lineDash     | string        | solid    | No   | Dashed line pattern. You can set the dash length and space length between the dashes. - **"dashed, 5, 5"**: dashed line with each dash in 5 px and a 5 px space between each two dashes. Default value **"solid"** indicates a solid line.|
 | lineColor    | &lt;color&gt; | \#000000 | No   | Line color. If this attribute is not set, the value of **strokeColor** is used.  |
 
 **Table 9** DataSegment<sup>5+</sup>
@@ -144,7 +144,7 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 | center-x                 | &lt;length&gt; | -                          | No   | Center of the scale bar of the gauge component. This style is supported by the gauge chart only. This style takes precedence over the **position** style in the common styles, and must be used together with **center-y** and **radius**. This style is supported by the gauge chart only.|
 | center-y                 | &lt;length&gt; | -                          | No   | Center of the scale bar of the gauge component. This style is supported by the gauge chart only. This style takes precedence over the **position** style in the common styles, and must be used together with **center-x** and **radius**. This style is supported by the gauge chart only.|
 | radius                   | &lt;length&gt; | -                          | No   | Radius of the scale bar of the gauge component. This style is supported by the gauge chart only. This style takes precedence over the **width** and **height** in the common styles, and must be used together with **center-x** and **center-y**. This style is supported by the gauge chart only.|
-| colors                   | Array          | -                          | No   | Color of each section for the scale bar of the gauge component.<br>For example, **colors: \#ff0000, #00ff00**. This style is supported by the gauge chart only.|
+| colors                   | Array          | -                          | No   | Color of each section for the scale bar of the gauge component.<br>For example, **colors: \#ff0000, \#00ff00**. This style is supported by the gauge chart only.|
 | weights                  | Array          | -                          | No   | Weight of each section for the scale bar of the gauge component.<br>For example, **weights: 2, 2**. This style is supported by the gauge chart only.|
 | font-family<sup>5+</sup> | Array          | -                          | No   | Font style of the description text. You can use a [custom font](../arkui-js/js-components-common-customizing-font.md).|
 | font-size<sup>5+</sup>   | &lt;length&gt; | -                          | No   | Font size of the description text.                           |
@@ -161,7 +161,7 @@ In addition to the [universal methods](../arkui-js/js-components-common-methods.
 
 | Name    | Parameter                                      | Description                                      |
 | ------ | ---------------------------------------- | ---------------------------------------- |
-| append | {<br>serial: number, // Set the data subscript of the line chart to be updated.<br>data: Array&lt;number&gt;, // Set the new data.<br>} | Data is dynamically added to an existing data sequence. The target sequence is specified based on **serial**, which is the subscript of the datasets array and starts from 0. **datasets[index].data** is not updated. Only line charts support this attribute. The value is incremented by 1 based on the horizontal coordinate and is related to the **xAxis min/max** setting.|
+| append | {<br>serial: number, <br>data: Array&lt;number&gt;, <br>} | Data is dynamically added to an existing data sequence. The target sequence is specified based on **serial**, which is the subscript of the datasets array and starts from 0. For example, if the value of **serial** is **index**, use **data** to update **datasets[index].data**. Only line charts support this attribute. The value is incremented by 1 based on the horizontal coordinate and is related to the **xAxis min/max** setting.|
 
 ## Example
 
@@ -212,24 +212,24 @@ In addition to the [universal methods](../arkui-js/js-components-common-methods.
            strokeColor: '#0081ff',
            fillColor: '#cce5ff',
            data: [763, 550, 551, 554, 731, 654, 525, 696, 595, 628, 791, 505, 613, 575, 475, 553, 491, 680, 657, 716],
-           gradient: true,
+           gradient: true
          }
        ],
        lineOps: {
          xAxis: {
            min: 0,
            max: 20,
-           display: false,
+           display: false
          },
          yAxis: {
            min: 0,
            max: 1000,
-           display: false,
+           display: false
          },
          series: {
            lineStyle: {
              width: "5px",
-             smooth: true,
+             smooth: true
            },
            headPoint: {
              shape: "circle",
@@ -237,14 +237,14 @@ In addition to the [universal methods](../arkui-js/js-components-common-methods.
              strokeWidth: 5,
              fillColor: '#ffffff',
              strokeColor: '#007aff',
-             display: true,
+             display: true
            },
            loop: {
              margin: 2,
-             gradient: true,
+             gradient: true
            }
          }
-       },
+       }
      },
      addData() {
        this.$refs.linechart.append({
@@ -295,15 +295,15 @@ In addition to the [universal methods](../arkui-js/js-components-common-methods.
        barData: [
          {
            fillColor: '#f07826',
-           data: [763, 550, 551, 554, 731, 654, 525, 696, 595, 628],
+           data: [763, 550, 551, 554, 731, 654, 525, 696, 595, 628]
          },
          {
            fillColor: '#cce5ff',
-           data: [535, 776, 615, 444, 694, 785, 677, 609, 562, 410],
+           data: [535, 776, 615, 444, 694, 785, 677, 609, 562, 410]
          },
          {
            fillColor: '#ff88bb',
-           data: [673, 500, 574, 483, 702, 583, 437, 506, 693, 657],
+           data: [673, 500, 574, 483, 702, 583, 437, 506, 693, 657]
          },
        ],
        barOps: {
@@ -311,14 +311,14 @@ In addition to the [universal methods](../arkui-js/js-components-common-methods.
            min: 0,
            max: 20,
            display: false,
-           axisTick: 10,
+           axisTick: 10
          },
          yAxis: {
            min: 0,
            max: 1000,
-           display: false,
-         },
-       },
+           display: false
+         }
+       }
      }
    }
    ```
@@ -353,3 +353,76 @@ In addition to the [universal methods](../arkui-js/js-components-common-methods.
    ```
 
    ![en-us_image_0000001127125264](figures/en-us_image_0000001127125264.png)
+
+4. Circle chart of progresses, loading progresses, or proportions
+   ```html
+   <!-- xxx.hml -->
+   <div class="container">
+       <text class="text">progress Example</text>
+       <stack class="chart-region">
+           <chart class="" type="progress" segments="{{ progressdata }}"></chart>
+       </stack>
+       <text class="text">loading Example</text>
+       <stack class="chart-region">
+           <chart class="" type="loading" segments="{{ loadingdata }}"></chart>
+       </stack>
+       <text class="text">rainbow Example</text>
+       <stack class="chart-region">
+           <chart class="" type="rainbow" segments="{{ rainbowdata }}" effects="true" animationduration="5000"></chart>
+       </stack>
+   </div>
+   ```
+   ```css
+   /* xxx.css */
+   .container {
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+   }
+   .chart-region {
+       height: 400px;
+       width: 700px;
+       margin-top: 10px;
+   }
+   .text {
+       margin-top: 30px;
+   }
+   ```
+   ```js
+   // xxx.js
+   export default {
+      data: {
+         progressdata: {
+            value: 50,
+            name: 'progress'
+         },
+         loadingdata: {
+            startColor: "#ffc0cb",
+            endColor: "#00bfff",
+         },
+         rainbowdata: [
+            {
+               value: 50,
+               name: 'item1'
+            },
+            {
+               value: 10,
+               name: 'item2'
+            },
+            {
+               value: 20,
+               name: 'item3'
+            },
+            {
+               value: 10,
+               name: 'item4'
+            },
+            {
+               value: 10,
+               name: 'item5'
+            }
+         ]
+      }
+   }
+   ```
+   ![rainbow](figures/rainbow.gif)

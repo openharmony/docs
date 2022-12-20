@@ -1,15 +1,15 @@
-# 输入法框架
+# @ohos.inputmethod (输入法框架)
 
 本模块提供对输入法框架的管理，包括隐藏输入法、查询已安装的输入法列表和显示输入法选择对话框。
 
->**说明：**
+> **说明：**
 >
->本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
 
-```
+```js
 import inputMethod from '@ohos.inputmethod';
 ```
 
@@ -31,14 +31,14 @@ import inputMethod from '@ohos.inputmethod';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| name<sup>9+</sup>  | string | 是 | 否 | 输入法内部名称。 |
-| id<sup>9+</sup>    | string | 是 | 否 | 输入法唯一标识。 |
-| label<sup>9+</sup>    | string | 是 | 否 | 输入法对外显示名称。 |
-| icon<sup>9+</sup>    | string | 是 | 否 | 输入法图标数据。 |
-| iconId<sup>9+</sup>    | number | 是 | 否 | 输入法图标资源号。 |
-| extra<sup>9+</sup>    | object | 是 | 否 | 输入法扩展信息。 |
-| packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用name替代。 |
-| methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用id替代。 |
+| name<sup>9+</sup>  | string | 是 | 否 | 输入法内部名称。必填。|
+| id<sup>9+</sup>    | string | 是 | 否 | 输入法唯一标识。必填。|
+| label<sup>9+</sup>    | string | 是 | 否 | 输入法对外显示名称。 非必填。|
+| icon<sup>9+</sup>    | string | 是 | 否 | 输入法图标数据。非必填。 |
+| iconId<sup>9+</sup>    | number | 是 | 否 | 输入法图标资源号。非必填。 |
+| extra<sup>9+</sup>    | object | 是 | 是 | 输入法扩展信息。 必填。|
+| packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用name替代。 |
+| methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用id替代。 |
 
 ## inputMethod.getController<sup>9+</sup>
 
@@ -102,7 +102,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 
 切换输入法。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -120,25 +120,33 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
+let im = inputMethod.getCurrentInputMethod();
+let prop = {
+    packageName: im.packageName,
+    methodId: im.methodId,
+    name: im.packageName,
+    id: im.methodId,
+    extra: {}
+}
 try{
-    inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard', extra: {}}, (err, result) => {
-        if (err) {
-            console.error('switchInputMethod err: ' + JSON.stringify(err));
+    inputMethod.switchInputMethod(prop, (err, result) => {
+        if (err !== undefined) {
+            console.error('Failed to switchInputMethod: ' + JSON.stringify(err));
             return;
         }
         if (result) {
-            console.info('Success to switchInputMethod.(callback)');
+            console.info('Succeeded in switching inputmethod.');
         } else {
-            console.error('Failed to switchInputMethod.(callback)');
+            console.error('Failed to switchInputMethod.');
         }
     });
 } catch(err) {
-    console.error('switchInputMethod err: ' + JSON.stringify(err));
+    console.error('Failed to switchInputMethod: ' + JSON.stringify(err));
 }
 ```
 ## inputMethod.switchInputMethod<sup>9+</sup>
@@ -146,7 +154,7 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
 切换输入法。使用promise异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -169,23 +177,31 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
+let im = inputMethod.getCurrentInputMethod();
+let prop = {
+    packageName: im.packageName,
+    methodId: im.methodId,
+    name: im.packageName,
+    id: im.methodId,
+    extra: {}
+}
 try {
-    inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard', extra: {}}).then((result) => {
+    inputMethod.switchInputMethod(prop).then((result) => {
         if (result) {
-            console.info('Success to switchInputMethod.');
+            console.info('Succeeded in switching inputmethod.');
         } else {
             console.error('Failed to switchInputMethod.');
         }
     }).catch((err) => {
-        console.error('switchInputMethod err: ' + JSON.stringify(err));
+        console.error('Failed to switchInputMethod: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('switchInputMethod err: ' + JSON.stringify(err));
+    console.error('Failed to switchInputMethod: ' + JSON.stringify(err));
 }
 ```
 
@@ -215,7 +231,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 在当前输入法应用内切换子类型。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -233,36 +249,35 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
-let inputMethodSubtype = {
-    id: "com.example.kikakeyboard",
-    label: "ServiceExtAbility",
-    name: "",
-    mode: "upper",
-    locale: "",
-    language: "",
-    icon: "",
-    iconId: 0,
-    extra: {}
-}
 try {
-    inputMethod.switchCurrentInputMethodSubtype(inputMethodSubtype, (err, result) => {
-        if (err) {
-            console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+    inputMethod.switchCurrentInputMethodSubtype({
+      id: "com.example.kikakeyboard",
+      label: "ServiceExtAbility",
+      name: "",
+      mode: "upper",
+      locale: "",
+      language: "",
+      icon: "",
+      iconId: 0,
+      extra: {}
+    }, (err, result) => {
+        if (err !== undefined) {
+            console.error('Failed to switchCurrentInputMethodSubtype: ' + JSON.stringify(err));
             return;
         }
         if (result) {
-            console.info('Success to switchCurrentInputMethodSubtype.(callback)');
+            console.info('Succeeded in switching currentInputMethodSubtype.');
         } else {
-            console.error('Failed to switchCurrentInputMethodSubtype.(callback)');
+            console.error('Failed to switchCurrentInputMethodSubtype');
         }
     });
 } catch(err) {
-    console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+    console.error('Failed to switchCurrentInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -272,7 +287,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 在当前输入法应用内切换子类型。使用promise异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -295,34 +310,33 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
-let inputMethodSubtype = {
-    id: "com.example.kikakeyboard",
-    label: "ServiceExtAbility",
-    name: "",
-    mode: "upper",
-    locale: "",
-    language: "",
-    icon: "",
-    iconId: 0,
-    extra: {}
-}
 try {
-    inputMethod.switchCurrentInputMethodSubtype(inputMethodSubtype).then((result) => {
+    inputMethod.switchCurrentInputMethodSubtype({
+      id: "com.example.kikakeyboard",
+      label: "ServiceExtAbility",
+      name: "",
+      mode: "upper",
+      locale: "",
+      language: "",
+      icon: "",
+      iconId: 0,
+      extra: {}
+    }).then((result) => {
         if (result) {
-            console.info('Success to switchCurrentInputMethodSubtype.');
+            console.info('Succeeded in switching currentInputMethodSubtype.');
         } else {
             console.error('Failed to switchCurrentInputMethodSubtype.');
         }
     }).catch((err) => {
-        console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+        console.error('Failed to switchCurrentInputMethodSubtype: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+    console.error('Failed to switchCurrentInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -352,7 +366,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -371,41 +385,43 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
+let im = inputMethod.getCurrentInputMethod();
 let inputMethodProperty = {
-    packageName: "com.example.kikakeyboard",
-    methodId: "ServiceExtAbility",
-    extra: {}
-}
-let inputMethodSubProperty = {
-    id: "com.example.kikakeyboard",
-    label: "ServiceExtAbility",
-    name: "",
-    mode: "upper",
-    locale: "",
-    language: "",
-    icon: "",
-    iconId: 0,
+    packageName: im.packageName,
+    methodId: im.methodId,
+    name: im.packageName,
+    id: im.methodId,
     extra: {}
 }
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, inputMethodSubProperty, (err,result) => {
-        if (err) {
-            console.error('switchCurrentInputMethodAndSubtype err: ' + JSON.stringify(err));
+    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
+      id: "com.example.kikakeyboard",
+      label: "ServiceExtAbility",
+      name: "",
+      mode: "upper",
+      locale: "",
+      language: "",
+      icon: "",
+      iconId: 0,
+      extra: {}
+    }, (err,result) => {
+        if (err !== undefined) {
+            console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
             return;
         }
         if (result) {
-            console.info('Success to switchCurrentInputMethodAndSubtype.(callback)');
+            console.info('Succeeded in switching currentInputMethodAndSubtype.');
         } else {
-            console.error('Failed to switchCurrentInputMethodAndSubtype.(callback)');
+            console.error('Failed to switchCurrentInputMethodAndSubtype.');
         }
     });
 } catch (err) {
-    console.error('switchCurrentInputMethodAndSubtype err: ' + JSON.stringify(err));
+    console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -415,7 +431,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。使用promise异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -439,39 +455,41 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
+let im = inputMethod.getCurrentInputMethod();
 let inputMethodProperty = {
-    packageName: "com.example.kikakeyboard",
-    methodId: "ServiceExtAbility",
-    extra: {}
-}
-let inputMethodSubProperty = {
-    id: "com.example.kikakeyboard",
-    label: "ServiceExtAbility",
-    name: "",
-    mode: "upper",
-    locale: "",
-    language: "",
-    icon: "",
-    iconId: 0,
+    packageName: im.packageName,
+    methodId: im.methodId,
+    name: im.packageName,
+    id: im.methodId,
     extra: {}
 }
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, inputMethodSubProperty).then((result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
+      id: im.packageName,
+      label: im.methodId,
+      name: "",
+      mode: "upper",
+      locale: "",
+      language: "",
+      icon: "",
+      iconId: 0,
+      extra: {}
+    }).then((result) => {
         if (result) {
-            console.info('Success to switchCurrentInputMethodAndSubtype.');
+            console.info('Succeeded in switching currentInputMethodAndSubtype.');
         } else {
             console.error('Failed to switchCurrentInputMethodAndSubtype.');
         }
     }).catch((err) => {
-        console.error('switchCurrentInputMethodAndSubtype err: ' + err);
+        console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('switchCurrentInputMethodAndSubtype err: ' + err);
+    console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -548,25 +566,25 @@ stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
 try {
     inputMethodController.stopInputSession((error, result) => {
-        if (error) {
-            console.error('stopInputSession err: ' + JSON.stringify(error));
+        if (error !== undefined) {
+            console.error('Failed to stopInputSession: ' + JSON.stringify(error));
             return;
         }
         if (result) {
-            console.info('Success to stopInputSession.(callback)');
+            console.info('Succeeded in stopping inputSession.');
         } else {
-            console.error('Failed to stopInputSession.(callback)');
+            console.error('Failed to stopInputSession.');
         }
     });
 } catch(error) {
-    console.error('stopInputSession err: ' + JSON.stringify(error));
+    console.error('Failed to stopInputSession: ' + JSON.stringify(error));
 }
 ```
 
@@ -591,7 +609,7 @@ stopInputSession(): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
@@ -599,15 +617,15 @@ stopInputSession(): Promise&lt;boolean&gt;
 try {
     inputMethodController.stopInputSession().then((result) => {
         if (result) {
-            console.info('Success to stopInputSession.');
+            console.info('Succeeded in stopping inputSession.');
         } else {
             console.error('Failed to stopInputSession.');
         }
     }).catch((err) => {
-        console.error('stopInputSession err: ' + JSON.stringify(err));
+        console.error('Failed to stopInputSession: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('stopInputSession err: ' + JSON.stringify(err));
+    console.error('Failed to stopInputSession: ' + JSON.stringify(err));
 }
 ```
 
@@ -617,7 +635,7 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 显示软键盘。需要与输入框绑定使用。当点击输入框后，才可通过该接口的调用显示出当前输入法的软键盘。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -634,16 +652,16 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
 inputMethodController.showSoftKeyboard((err) => {
     if (err === undefined) {
-        console.info('showSoftKeyboard success');
+        console.info('Succeeded in showing softKeyboard.');
     } else {
-        console.error('showSoftKeyboard failed because : ' + JSON.stringify(err));
+        console.error('Failed to showSoftKeyboard: ' + JSON.stringify(err));
     }
 })
 ```
@@ -654,7 +672,7 @@ showSoftKeyboard(): Promise&lt;void&gt;
 
 显示软键盘。需要与输入框绑定使用。当点击输入框后，才可通过该接口的调用显示出当前输入法的软键盘。使用Promise异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -671,15 +689,15 @@ showSoftKeyboard(): Promise&lt;void&gt;
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
-inputMethodController.showSoftKeyboard().then(async (err) => {
-    console.log('showSoftKeyboard success');
+inputMethodController.showSoftKeyboard().then(() => {
+    console.log('Succeeded in showing softKeyboard.');
 }).catch((err) => {
-    console.error('showSoftKeyboard err: ' + JSON.stringify(err));
+    console.error('Failed to showSoftKeyboard: ' + JSON.stringify(err));
 });
 ```
 
@@ -689,7 +707,7 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 隐藏软键盘。需要与输入框绑定使用。点击输入框后，才可以使用该接口的调用隐藏软键盘。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -706,16 +724,16 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
 inputMethodController.hideSoftKeyboard((err) => {
     if (err === undefined) {
-        console.info('hideSoftKeyboard success');
+        console.info('Succeeded in hiding softKeyboard.');
     } else {
-        console.error('hideSoftKeyboard failed because : ' + JSON.stringify(err));
+        console.error('Failed to hideSoftKeyboard: ' + JSON.stringify(err));
     }
 })
 ```
@@ -726,7 +744,7 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 
 隐藏软键盘。需要与输入框绑定使用。点击输入框后，才可以使用该接口的调用隐藏软键盘。使用Promise异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -743,15 +761,15 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
-inputMethodController.hideSoftKeyboard().then(async (err) => {
-    console.log('hideSoftKeyboard success');
+inputMethodController.hideSoftKeyboard().then(() => {
+    console.log('Succeeded in hiding softKeyboard.');
 }).catch((err) => {
-    console.error('hideSoftKeyboard err: ' + JSON.stringify(err));
+    console.error('Failed to hideSoftKeyboard: ' + JSON.stringify(err));
 });
 ```
 
@@ -777,14 +795,14 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 inputMethodController.stopInput((error, result) => {
-    if (error) {
-        console.error('failed to stopInput because: ' + JSON.stringify(error));
+    if (error !== undefined) {
+        console.error('Failed to stopInput: ' + JSON.stringify(error));
         return;
     }
     if (result) {
-        console.info('Success to stopInput.(callback)');
+        console.info('Succeeded in stopping input.');
     } else {
-        console.error('Failed to stopInput.(callback)');
+        console.error('Failed to stopInput.');
     }
 });
 ```
@@ -812,12 +830,12 @@ stopInput(): Promise&lt;boolean&gt;
 ```js
 inputMethodController.stopInput().then((result) => {
     if (result) {
-        console.info('Success to stopInput.');
+        console.info('Succeeded in stopping input.');
     } else {
         console.error('Failed to stopInput.');
     }
 }).catch((err) => {
-    console.error('stopInput err: ' + err);
+    console.error('Failed to stopInput: ' + err);
 })
 ```
 
@@ -891,26 +909,28 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
 let inputMethodProperty = {
-    packageName:'com.example.kikakeyboard',
-    methodId:'com.example.kikakeyboard',
+    packageName: 'com.example.kikakeyboard',
+    methodId: 'com.example.kikakeyboard',
+    name: 'com.example.kikakeyboard',
+    id: 'com.example.kikakeyboard',
     extra:{}
 }
 try {
     inputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err,data) => {
-        if (err) {
-            console.error('listInputMethodSubtype failed: ' + JSON.stringify(err));
+        if (err !== undefined) {
+            console.error('Failed to listInputMethodSubtype: ' + JSON.stringify(err));
             return;
         }
-        console.log('listInputMethodSubtype success');
+        console.log('Succeeded in listing inputMethodSubtype.');
     });
 } catch (err) {
-    console.error('listInputMethodSubtype failed: ' + JSON.stringify(err));
+    console.error('Failed to listInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -941,24 +961,26 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
 let inputMethodProperty = {
-    packageName:'com.example.kikakeyboard',
-    methodId:'com.example.kikakeyboard',
+    packageName: 'com.example.kikakeyboard',
+    methodId: 'com.example.kikakeyboard',
+    name: 'com.example.kikakeyboard',
+    id: 'com.example.kikakeyboard',
     extra:{}
 }
 try {
     inputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data) => {
-        console.info('listInputMethodSubtype success');
+        console.info('Succeeded in listing inputMethodSubtype.');
     }).catch((err) => {
-        console.error('listInputMethodSubtype err: ' + JSON.stringify(err));
+        console.error('Failed to listInputMethodSubtype: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('listInputMethodSubtype err: ' + JSON.stringify(err));
+    console.error('Failed to listInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -983,21 +1005,21 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
 try {
     inputMethodSetting.listCurrentInputMethodSubtype((err, data) => {
-        if (err) {
-            console.error('listCurrentInputMethodSubtype failed: ' + JSON.stringify(err));
+        if (err !== undefined) {
+            console.error('Failed to listCurrentInputMethodSubtype: ' + JSON.stringify(err));
             return;
         }
-        console.log('listCurrentInputMethodSubtype success');
+        console.log('Succeeded in listing currentInputMethodSubtype.');
     });
 } catch(err) {
-    console.error('listCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+    console.error('Failed to listCurrentInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -1022,19 +1044,19 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
 try {
     inputMethodSetting.listCurrentInputMethodSubtype().then((data) => {
-        console.info('listCurrentInputMethodSubtype success');
+        console.info('Succeeded in listing currentInputMethodSubtype.');
     }).catch((err) => {
-        console.error('listCurrentInputMethodSubtype err: ' + err);
+        console.error('Failed to listCurrentInputMethodSubtype: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('listCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+    console.error('Failed to listCurrentInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -1060,21 +1082,21 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
 try {
     inputMethodSetting.getInputMethods(true, (err,data) => {
-        if (err) {
-            console.error('getInputMethods failed: ' + JSON.stringify(err));
+        if (err !== undefined) {
+            console.error('Failed to getInputMethods: ' + JSON.stringify(err));
             return;
         }
-        console.log('getInputMethods success');
+        console.log('Succeeded in getting inputMethods.');
     });
 } catch (err) {
-    console.error('getInputMethods failed: ' + JSON.stringify(err));
+    console.error('Failed to getInputMethods: ' + JSON.stringify(err));
 }
 ```
 
@@ -1099,7 +1121,7 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **返回值：**
 
@@ -1112,12 +1134,12 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 ```js
 try {
     inputMethodSetting.getInputMethods(true).then((data) => {
-        console.info('getInputMethods success');
+        console.info('Succeeded in getting inputMethods.');
     }).catch((err) => {
-        console.error('getInputMethods err: ' + JSON.stringify(err));
+        console.error('Failed to getInputMethods: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('getInputMethods err: ' + JSON.stringify(err));
+    console.error('Failed to getInputMethods: ' + JSON.stringify(err));
 }
 ```
 
@@ -1127,7 +1149,7 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 显示输入法选择对话框。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1143,21 +1165,21 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
 try {
     inputMethodSetting.showOptionalInputMethods((err, data) => {
-        if (err) {
-            console.error('showOptionalInputMethods failed: ' + JSON.stringify(err));
+        if (err !== undefined) {
+            console.error('Failed to showOptionalInputMethods: ' + JSON.stringify(err));
             return;
         }
-        console.info('showOptionalInputMethods success');
+        console.info('Succeeded in showing optionalInputMethods.');
     });
 } catch (err) {
-    console.error('showOptionalInputMethods failed: ' + JSON.stringify(err));
+    console.error('Failed to showOptionalInputMethods: ' + JSON.stringify(err));
 }
 ```
 
@@ -1167,7 +1189,7 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 显示输入法选择对话框。使用promise异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1183,15 +1205,15 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **示例：**
 
 ```js
 inputMethodSetting.showOptionalInputMethods().then((data) => {
-    console.info('displayOptionalInputMethod success.');
+    console.info('Succeeded in showing optionalInputMethods.');
 }).catch((err) => {
-    console.error('displayOptionalInputMethod err: ' + err);
+    console.error('Failed to showOptionalInputMethods: ' + JSON.stringify(err));
 })
 ```
 
@@ -1217,11 +1239,11 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 
 ```js
 inputMethodSetting.listInputMethod((err,data) => {
-    if (err) {
-        console.error('listInputMethod failed because: ' + JSON.stringify(err));
+    if (err !== undefined) {
+        console.error('Failed to listInputMethod: ' + JSON.stringify(err));
         return;
     }
-    console.log('listInputMethod success');
+    console.log('Succeeded in listing inputMethod.');
  });
 ```
 
@@ -1247,9 +1269,9 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 ```js
 inputMethodSetting.listInputMethod().then((data) => {
-    console.info('listInputMethod success');
+    console.info('Succeeded in listing inputMethod.');
 }).catch((err) => {
-    console.error('listInputMethod err: ' + JSON.stringify(err));
+    console.error('Failed to listInputMethod: ' + JSON.stringify(err));
 })
 ```
 
@@ -1275,11 +1297,11 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 inputMethodSetting.displayOptionalInputMethod((err) => {
-    if (err) {
-        console.error('displayOptionalInputMethod failed because: ' + JSON.stringify(err));
+    if (err !== undefined) {
+        console.error('Failed to displayOptionalInputMethod: ' + JSON.stringify(err));
         return;
     }
-    console.info('displayOptionalInputMethod success');
+    console.info('Succeeded in displaying optionalInputMethod.');
 });
 ```
 
@@ -1305,8 +1327,8 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 
 ```js
 inputMethodSetting.displayOptionalInputMethod().then(() => {
-    console.info('displayOptionalInputMethod success');
+    console.info('Succeeded in displaying optionalInputMethod.');
 }).catch((err) => {
-    console.error('displayOptionalInputMethod err: ' + err);
+    console.error('Failed to displayOptionalInputMethod: ' + JSON.stringify(err));
 })
 ```

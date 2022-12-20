@@ -1,6 +1,6 @@
 # ExtensionRunningInfo
 
-ExtensionRunningInfo模块提供对Extension运行的相关信息和类型进行设置和查询的能力。
+ExtensionRunningInfo模块提供对Extension运行的相关信息和类型进行设置和查询的能力，可以通过[getExtensionRunningInfos](js-apis-app-ability-abilityManager.md#getextensionrunninginfos)获取。
 
 > **说明：**
 > 
@@ -28,10 +28,10 @@ ExtensionRunningInfo模块提供对Extension运行的相关信息和类型进行
 **示例：**
 ```ts
 import abilityManager from '@ohos.application.abilityManager';
-let upperLimit=1;
+let upperLimit = 1;
 abilityManager.getExtensionRunningInfos(upperLimit, (err,data) => {
     console.log("getExtensionRunningInfos err: "  + err + " data: " + JSON.stringify(data));
-    for (let i=0; i<data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
         let extensionRunningInfo = data[i];
         console.log("extensionRunningInfo.extension: " + JSON.stringify(extensionRunningInfo.extension));
         console.log("extensionRunningInfo.pid: " + JSON.stringify(extensionRunningInfo.pid));

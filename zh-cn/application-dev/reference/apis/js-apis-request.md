@@ -1,8 +1,9 @@
-# 上传下载
+# @ohos.request (上传下载)
 
 request部件主要给应用提供上传下载文件、后台传输代理的基础能力。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -33,8 +34,9 @@ var config = {
 
 在开发stage模型下的应用程序时，不涉及属性标识 "cleartextTraffic"。
 
-下载服务器需要支持HTTP协议的head方法，能够通过Content-length获取下载数据大小，否则下载任务失败，可通过[on('fail')<sup>7+</sup>)](#onfail7)查看失败原因。
+下载服务器需要支持HTTP协议的head方法，能够通过Content-length获取下载数据大小，否则下载任务失败，可通过[on('fail')<sup>7+</sup>](#onfail7)查看失败原因。
 
+上传目前仅支持HTTP请求，不支持HTTPS。
 
 ## 常量
 
@@ -104,7 +106,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'https://patch',
+    url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -148,7 +150,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'https://patch',
+    url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -194,7 +196,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'https://patch',
+    url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -234,7 +236,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'https://patch',
+    url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -280,7 +282,7 @@ upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'https://patch',
+    url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -319,7 +321,7 @@ upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;Up
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'https://patch',
+    url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -336,7 +338,8 @@ upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;Up
 
 ## UploadTask
 
-上传任务，使用下列方法前，需要先获取UploadTask对象。
+上传任务，使用下列方法前，需要先获取UploadTask对象，promise形式通过[request.uploadFile<sup>9+</sup>](#requestuploadfile9)获取，callback形式通过[request.uploadFile<sup>9+</sup>](#requestuploadfile9-1)获取。
+
 
 
 ### on('progress')
@@ -968,7 +971,7 @@ download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&l
 
 ## DownloadTask
 
-下载任务。
+下载任务，使用下列方法前，需要先获取DownloadTask对象，promise形式通过[request.downloadFile<sup>9+</sup>](#requestdownloadfile9)获取，callback形式通过[request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1)获取。
 
 
 ### on('progress')

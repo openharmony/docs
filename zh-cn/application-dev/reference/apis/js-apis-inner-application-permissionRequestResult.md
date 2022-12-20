@@ -1,6 +1,6 @@
 # PermissionRequestResult
 
-PermissionRequestResult模块提供了权限请求结果的能力。
+权限请求结果对象，在调用[requestPermissionsFromUser](js-apis-inner-application-uiAbilityContext.md#abilitycontextrequestpermissionsfromuser)申请权限时返回此对象表明此次权限申请的结果。
 
 > **说明：**
 > 
@@ -11,10 +11,10 @@ PermissionRequestResult模块提供了权限请求结果的能力。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-  | 名称 | 类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| permissions | Array&lt;string&gt; | 是 | 否 | 用户传入的权限。| 
-| authResults | Array&lt;number&gt; | 是 | 否 | 相应请求权限的结果。0表示授权成功，非0表示失败。  | 
+| permissions | Array&lt;string&gt; | 是 | 否 | 用户传入的权限。|
+| authResults | Array&lt;number&gt; | 是 | 否 | 相应请求权限的结果：0表示授权成功，非0表示失败。 |
 
 ## 使用说明
 
@@ -22,16 +22,16 @@ PermissionRequestResult模块提供了权限请求结果的能力。
 
 **示例：**
 ```ts
-import Ability from '@ohos.application.Ability'
-export default class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility'
+export default class MainAbility extends UIAbility {
   onWindowStageCreate(windowStage) {
-    var permissions=['com.example.permission']
+    var permissions = ['com.example.permission']
     var permissionRequestResult;
-    this.context.requestPermissionsFromUser(permissions,(err,result) => {
-      if(err){
+    this.context.requestPermissionsFromUser(permissions, (err, result) => {
+      if (err) {
         console.log('requestPermissionsFromUserError: ' + JSON.stringify(err));
-      }else{
-        permissionRequestResult=result;
+      } else {
+        permissionRequestResult = result;
         console.log('permissionRequestResult: ' + JSON.stringify(permissionRequestResult));
       }    
     });

@@ -1,4 +1,4 @@
-# quickFixManager
+# @ohos.app.ability.quickFixManager (quickFixManager)
 
 quickFixManager模块提供快速修复的能力，快速修复是OpenHarmony提供给开发者的一种技术手段，支持开发者以远快于（小时级、分钟级）应用升级的方式进行缺陷修复。
 
@@ -65,8 +65,6 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 **示例：**
     
 ```ts
-  import quickFixManager from '@ohos.app.ability.quickFixManager'
-
   try {
     let hapModuleQuickFixFiles = ["/data/storage/el2/base/entry.hqf"]
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
@@ -108,8 +106,6 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 **示例：**
     
 ```ts
-  import quickFixManager from '@ohos.app.ability.quickFixManager'
-
   let hapModuleQuickFixFiles = ["/data/storage/el2/base/entry.hqf"]
   try {
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
@@ -144,8 +140,6 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 **示例：**
     
 ```ts
-  import quickFixManager from '@ohos.app.ability.quickFixManager'
-
   try {
     let bundleName = "bundleName"
     quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
@@ -187,8 +181,6 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 **示例：**
     
   ```ts 
-  import quickFixManager from '@ohos.app.ability.quickFixManager'
-
   try {
     let bundleName = "bundleName"
     quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {

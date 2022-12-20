@@ -1,11 +1,12 @@
-# 标准NFC-Tag  Nfc 技术
+# nfctech (标准NFC-Tag Nfc 技术)
 
 本模块主要用于采用不同Nfc技术的Tag的读写操作。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## **导入模块**
+## 导入模块
 
 ```js
 import tag from '@ohos.nfc.tag';

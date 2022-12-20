@@ -1,4 +1,4 @@
-# InputMethodExtensionContext
+# @ohos.inputmethodextensioncontext (InputMethodExtensionContext)
 
 InputMethodExtensionContext模块是InputMethodExtensionAbility的上下文环境，继承自ExtensionContext。
 

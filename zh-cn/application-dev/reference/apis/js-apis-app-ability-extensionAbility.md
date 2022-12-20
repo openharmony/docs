@@ -1,6 +1,6 @@
-# ExtensionAbility
+# @ohos.app.ability.ExtensionAbility (扩展能力基类)
 
-ExtensionAbility模块提供对ExtensionAbility生命周期、上下文环境等调用管理的能力，包括ExtensionAbility创建、销毁、转储客户端信息等。
+ExtensionAbility是特定场景扩展能力的基类，提供系统配置更新回调和系统内存调整回调。。
 
 > **说明：**
 > 
@@ -16,7 +16,7 @@ import ExtensionAbility from '@ohos.app.ability.ExtensionAbility';
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
-    
+
   ```ts
   class MyExtensionAbility extends ExtensionAbility {
       onConfigurationUpdated(config) {
@@ -28,3 +28,4 @@ import ExtensionAbility from '@ohos.app.ability.ExtensionAbility';
       }
   }
   ```
+

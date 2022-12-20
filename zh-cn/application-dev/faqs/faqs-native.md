@@ -28,9 +28,9 @@ Native API中的[Drawing](../reference/native-apis/_drawing.md)接口可以提�
 
 适用于：OpenHarmony SDK 3.2.5.3版本，API9 Stage模型
 
-1. 在编译工具Hvigor脚本文件hvigorfile.js中，通过subModule.getPackageJsonPath方法获取module中package.json文件位置；
+1. 在编译工具Hvigor脚本文件hvigorfile.js中，通过subModule.getPackageJsonPath方法获取module中package.json文件位置。
 
-2. 使用nodejs能力读取package.json文件中version字段，写入build-profile.json5文件buildOption.cppFlags字段；
+2. 使用nodejs能力读取package.json文件中version字段，写入build-profile.json5文件buildOption.cppFlags字段。
 
 示例：
 

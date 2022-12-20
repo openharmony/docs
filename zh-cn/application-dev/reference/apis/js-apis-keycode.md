@@ -1,4 +1,4 @@
-# 键值
+# @ohos.multimodalInput.keyCode (键值)
 
 按键设备键值。
 

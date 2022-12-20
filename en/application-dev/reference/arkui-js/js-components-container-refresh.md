@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **<Refresh\>** component is used to refresh a page through a pull-down gesture.
+The **<refresh\>** component is used to refresh a page through a pull-down gesture.
 
 ## Required Permissions
 
@@ -22,7 +22,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 | Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| offset | &lt;length&gt; | - | No| Distance to the top of the parent component from the **<Refresh\>** component that comes to rest after a successful pull-down gesture.|
+| offset | &lt;length&gt; | - | No| Distance to the top of the parent component from the **<refresh\>** component that comes to rest after a successful pull-down gesture.|
 | refreshing | boolean | false | No| Whether the **\<refresh>** component is being used for refreshing.|
 | type | string | auto | No| Dynamic effect when the component is refreshed. Two options are available and cannot be modified dynamically.<br>- **auto**: default effect. When the list is pulled to the top, the list does not move. When the list is pulled to the bottom, a circle is displayed.<br>- **pulldown**: When the list is pulled to the top, users can continue to pull down to trigger a refresh. The rebound effect will appear after the refresh. If the child component contains a list, set **scrolleffect** of the list to **no** to prevent drop-down effect conflicts.|
 | lasttime | boolean | false | No| Whether to display the last update time. The character string format is **last update time: XXXX**, where **XXXX** is displayed based on the certain time and date formats and cannot be dynamically modified. (It is recommended that this attribute be used when **type** is set to **pulldown**. The fixed distance is at the bottom of the content drop-down area. Pay attention to the **offset** attribute setting to prevent overlapping.)|
@@ -36,8 +36,8 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 
 | Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| background-color | &lt;color&gt; | white | No| Background color of the **\<refresh>** component.|
-| progress-color | &lt;color&gt; | black | No| Loading color of the **\<refresh>** component.|
+| background-color | &lt;color&gt; | white<br>| No| Background color of the **\<refresh>** component.|
+| progress-color | &lt;color&gt; | black<br>| No| Color of the loading icon of the **\<refresh>** component.|
 
 
 ## Events
@@ -107,7 +107,7 @@ The [universal methods](../arkui-js/js-components-common-methods.md) are not sup
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     list:[],
@@ -121,7 +121,7 @@ export default {
     }
   },
   refresh: function (e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Refreshing...'
     })
     var that = this;
@@ -130,7 +130,7 @@ export default {
       that.fresh = false;
       var addItem ='Refresh element';
       that.list.unshift(addItem);
-      prompt.showToast({
+      promptAction.showToast({
         message: 'Refreshed.'
       })
     }, 2000)

@@ -173,7 +173,7 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 ### API变更
 
 
-_[API差异报告](api-change/v3.2-beta1/Readme-CN.md)_
+_[API差异报告](api-diff/v3.2-beta1/Readme-CN.md)_
 
 ### 芯片及开发板适配
 
@@ -205,7 +205,7 @@ _[API差异报告](api-change/v3.2-beta1/Readme-CN.md)_
 | ArkUI | [Game2048](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Game2048) | 2048是一款比较流行的数字游戏，此游戏demo是grid组件基础上进行开发完成的。 | eTS |
 | 窗口 | [Window](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Window) | 本示例展示了创建新窗口，将应用悬浮在其他界面，及应用分屏等功能 | eTS |
 | 分布式数据管理 | [Preference](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Preferences) | 本示例主要展示了首选项在主题切换方面的功能。 | eTS |
-| ArkUI | [NativeAPI](https://gitee.com/openharmony/applications_app_samples/tree/master/Native/NativeAPI) | 本示例展示了在eTS中如何调用C++的接口以及C++如何回调JS，完成了一个简单的五子棋游戏，在native层完成计算逻辑，eTS完成界面绘制和刷新。 | eTS/C++ |
+| ArkUI | [NativeAPI](https://gitee.com/openharmony/app_samples/tree/master/Native/NativeAPI) | 本示例展示了在eTS中如何调用C++的接口以及C++如何回调JS，完成了一个简单的五子棋游戏，在native层完成计算逻辑，eTS完成界面绘制和刷新。 | eTS/C++ |
 | 全球化 | [International](https://gitee.com/openharmony/applications_app_samples/tree/master/common/International) | 本示例展示了i18n，intl，resourceManager在eTS中的使用，使用相关api实现系统语言和地区设置、时间和时区设置，展示了区域格式化示例。 | eTS |
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。

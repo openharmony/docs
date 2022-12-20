@@ -1,4 +1,4 @@
-# AbilityManager
+# @ohos.app.ability.abilityManager (AbilityManager)
 
 AbilityManager模块提供对Ability相关信息和状态信息进行获取、新增、修改等能力。
 
@@ -10,7 +10,7 @@ AbilityManager模块提供对Ability相关信息和状态信息进行获取、�
 ## 导入模块
 
 ```ts
-import AbilityManager from '@ohos.app.ability.abilityManager'
+import abilityManager from '@ohos.app.ability.abilityManager'
 ```
 
 ## AbilityState
@@ -49,14 +49,12 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.app.ability.abilityManager';
-
 var config = {
   language: 'chinese' 
 }
 
 try {
-  abilitymanager.updateConfiguration(config, () => {
+  abilityManager.updateConfiguration(config, () => {
     console.log('------------ updateConfiguration -----------');
   })
 } catch (paramError) {
@@ -90,14 +88,12 @@ updateConfiguration(config: Configuration): Promise\<void>
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.app.ability.abilityManager';
-
 var config = {
   language: 'chinese' 
 }
 
 try {
-  abilitymanager.updateConfiguration(config).then(() => {
+  abilityManager.updateConfiguration(config).then(() => {
     console.log('updateConfiguration success');
   }).catch((err) => {
     console.log('updateConfiguration fail');
@@ -127,10 +123,8 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.app.ability.abilityManager';
-
 try {
-  abilitymanager.getAbilityRunningInfos((err,data) => { 
+  abilityManager.getAbilityRunningInfos((err,data) => { 
     console.log("getAbilityRunningInfos err: "  + err + " data: " + JSON.stringify(data));
   });
 } catch (paramError) {
@@ -158,10 +152,8 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.app.ability.abilityManager';
- 
 try {
-  abilitymanager.getAbilityRunningInfos().then((data) => {
+  abilityManager.getAbilityRunningInfos().then((data) => {
     console.log("getAbilityRunningInfos  data: " + JSON.stringify(data))
   }).catch((err) => {
     console.log("getAbilityRunningInfos err: "  + err)
@@ -192,12 +184,10 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.app.ability.abilityManager';
-
 var upperLimit = 0;
 
 try {
-  abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => { 
+  abilityManager.getExtensionRunningInfos(upperLimit, (err,data) => { 
     console.log("getExtensionRunningInfos err: "  + err + " data: " + JSON.stringify(data));
   });
 } catch (paramError) {
@@ -231,12 +221,10 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.app.ability.abilityManager';
-
 var upperLimit = 0;
 
 try {
-  abilitymanager.getExtensionRunningInfos(upperLimit).then((data) => {
+  abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
     console.log("getAbilityRunningInfos data: " + JSON.stringify(data));
   }).catch((err) => {
     console.log("getAbilityRunningInfos err: "  + err);
@@ -264,16 +252,9 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.app.ability.abilityManager';
-
-try {
-  abilitymanager.getTopAbility((err,data) => { 
+abilityManager.getTopAbility((err,data) => { 
     console.log("getTopAbility err: "  + err + " data: " + JSON.stringify(data));
-  });
-} catch (paramError) {
-  console.log('error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-}
+});
 ```
 
 ## getTopAbility
@@ -293,16 +274,9 @@ getTopAbility(): Promise\<ElementName>;
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.app.ability.abilityManager';
-
-try {
-  abilitymanager.getTopAbility().then((data) => {
+abilityManager.getTopAbility().then((data) => {
     console.log("getTopAbility data: " + JSON.stringify(data));
-  }).catch((err) => {
+}).catch((err) => {
     console.log("getTopAbility err: "  + err);
-  })
-} catch (paramError) {
-  console.log('error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-}
+})
 ```

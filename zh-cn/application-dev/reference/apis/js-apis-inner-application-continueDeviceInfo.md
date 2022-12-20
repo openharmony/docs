@@ -1,6 +1,6 @@
 # ContinueDeviceInfo
 
-表示发起任务迁移时所需参数的枚举。
+表示发起任务迁移时所需参数的枚举，可以作为[continueMission](js-apis-distributedMissionManager.md#distributedmissionmanagercontinuemission)的入参指定迁移相关参数。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 

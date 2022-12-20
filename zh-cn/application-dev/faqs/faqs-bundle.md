@@ -4,7 +4,7 @@
 
 适用于：OpenHarmony SDK 3.2.3.5版本，API9 Stage模型
 
-通过\@ohos.bundle模块bundle.getBundleInfo()接口获取包信息bundleInfo，然后分别通过bundleInfo.versionCode、bundleInfo.versionName
+通过@ohos.bundle模块bundle.getBundleInfo()接口获取包信息bundleInfo，然后分别通过bundleInfo.versionCode、bundleInfo.versionName
 
 参考文档：[Bundle模块](../reference/apis/js-apis-Bundle.md#bundlegetbundleinfo)
 

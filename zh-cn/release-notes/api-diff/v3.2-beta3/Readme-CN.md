@@ -1,0 +1,33 @@
+# Readme
+
+本目录记录了OpenHarmony 3.2 Beta3版本相较于OpenHarmony 3.2 Beta2版本的API变化，包括新增、变更、废弃、删除。
+
+- JS API差异报告
+  - [元能力](js-apidiff-ability.md)
+  - [无障碍](js-apidiff-accessibility.md)
+  - [帐号](js-apidiff-account.md)
+  - [ArkUI](js-apidiff-arkui.md)
+  - [电源管理](js-apidiff-battery.md)
+  - [包管理](js-apidiff-bundle.md)
+  - [基础通信](js-apidiff-communicate.md)
+  - [公共基础库](js-apidiff-compiler-and-runtime.md)
+  - [DFX](js-apidiff-dfx.md)
+  - [分布式数据管理](js-apidiff-distributed-data.md)
+  - [分布式硬件](js-apidiff-distributed-hardware.md)
+  - [事件通知](js-apidiff-event-and-notification.md)
+  - [文件管理](js-apidiff-file-management.md)
+  - [全球化](js-apidiff-global.md)
+  - [图形图像](js-apidiff-graphic.md)
+  - [Misc](js-apidiff-misc.md)
+  - [多模输入](js-apidiff-multi-modal-input.md)
+  - [多媒体](js-apidiff-multimedia.md)
+  - [资源调度](js-apidiff-resource-scheduler.md)
+  - [安全](js-apidiff-security.md)
+  - [泛Sensor](js-apidiff-sensor.md)
+  - [分布式软总线](js-apidiff-soft-bus.md)
+  - [电话服务](js-apidiff-telephony.md)
+  - [测试框架](js-apidiff-unitest.md)
+  - [升级服务](js-apidiff-update.md)
+  - [Web](js-apidiff-web.md)
+  - [窗口管理](js-apidiff-window.md)
+- [3.2 beta3相对于3.2 beta2变更详细说明](../../changelogs/v3.2-beta3/changelog-v3.2-beta3.md)

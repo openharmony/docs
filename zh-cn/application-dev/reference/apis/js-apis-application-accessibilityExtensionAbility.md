@@ -1,10 +1,10 @@
-# 辅助功能扩展能力
+# @ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)
 
 **AccessibilityExtensionAbility**基于ExtensionAbility框架，提供辅助功能业务的能力。
 
->![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
->本模块首批接口从API version 9开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 

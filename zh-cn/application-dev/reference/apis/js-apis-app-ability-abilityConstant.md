@@ -1,8 +1,6 @@
-# AbilityConstant
+# @ohos.app.ability.AbilityConstant (AbilityConstant)
 
-AbilityConstant是启动参数的接口。
-
-AbilityConstant提供启动参数的接口的能力，包括设置初次开始原因的类型、上次退出原因的类型、继续结果的类型。
+AbilityConstant提供Ability相关的枚举，包括设置初次启动原因、上次退出原因、迁移结果、窗口类型等。
 
 > **说明：**
 > 
@@ -19,14 +17,14 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | LaunchReason| 是 | 是 | 指示启动原因。 | 
-| lastExitReason | LastExitReason | 是 | 是 | 表示最后退出原因。 | 
+| launchReason | LaunchReason| 是 | 是 | 指示启动原因。 |
+| lastExitReason | LastExitReason | 是 | 是 | 表示最后退出原因。 |
 
 ## AbilityConstant.LaunchReason
 
-初次开始原因的类型。
+初次启动原因。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -41,7 +39,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 ## AbilityConstant.LastExitReason
 
-上次退出原因的类型。
+上次退出原因。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -54,7 +52,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 ## AbilityConstant.OnContinueResult 
 
-继续结果的类型。
+迁移结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -80,7 +78,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 ## AbilityConstant.MemoryLevel
 
-内存级别的类型。
+内存级别。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -92,7 +90,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 ## AbilityConstant.OnSaveResult
 
-保存应用数据的结果类型。
+保存应用数据的结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -107,7 +105,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 ## AbilityConstant.StateType
 
-保存应用数据场景原因类型。
+保存应用数据场景原因。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 

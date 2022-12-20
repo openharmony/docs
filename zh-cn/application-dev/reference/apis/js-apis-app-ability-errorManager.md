@@ -1,4 +1,4 @@
-# ErrorManager
+# @ohos.app.ability.errorManager (ErrorManager)
 
 ErrorManager模块提供对错误观察器的注册和注销的能力。
 
@@ -7,7 +7,7 @@ ErrorManager模块提供对错误观察器的注册和注销的能力。
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
-```
+```ts
 import errorManager from '@ohos.app.ability.errorManager'
 ```
 
@@ -28,7 +28,7 @@ on(type: "error", observer: ErrorObserver): number;
 
 **示例：**
     
-```js
+```ts
 var observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
@@ -59,7 +59,7 @@ off(type: "error", observerId: number,  callback: AsyncCallback\<void>): void;
 
 **示例：**
     
-```js
+```ts
 var observerId = 100;
 
 function unregisterErrorObserverCallback(err) {
@@ -97,7 +97,7 @@ off(type: "error", observerId: number): Promise\<void>;
 
 **示例：**
     
-```js
+```ts
 var observerId = 100;
 try {
     errorManager.off("error", observerId)

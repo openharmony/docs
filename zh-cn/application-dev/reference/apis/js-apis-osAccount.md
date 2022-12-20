@@ -1,8 +1,9 @@
-# 系统帐号管理
+# @ohos.account.osAccount (系统帐号管理)
 
 本模块提供管理系统帐号的基础能力，包括系统帐号的添加、删除、查询、设置、订阅、启动等功能。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -4243,7 +4244,7 @@ cancelAuth(contextID: Uint8Array): void;
 
 ## PINAuth<sup>8+</sup>
 
-Pin码认证功能基类。
+PIN码认证基类。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4251,7 +4252,7 @@ Pin码认证功能基类。
 
 constructor()
 
-创建Pin码认证的实例。
+创建PIN码认证的实例。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4280,17 +4281,12 @@ registerInputer(inputer: IInputer): void;
 | ----------| ----------------------- | --- | -------------------------- |
 | inputer   | [IInputer](#iinputer8)  | 是  | PIN码输入器，用于获取PIN码。 |
 
-**返回值：**
-
-| 类型    | 说明                                           |
-| :------ | :-------------------------------------------- |
-| boolean | 返回布尔值，true表示注册成功，false表示注册失败。 |
-
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 12300001 | System service exception. |
+| 12300102 | Invalid inputer. |
 | 12300103 | Inputer already registered. |
 
 **示例：**
@@ -4299,8 +4295,8 @@ registerInputer(inputer: IInputer): void;
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
     let result = pinAuth.registerInputer({
-        onGetData: (pinSubType, callback) => {
-          callback.onSetData(pinSubType, password);
+        onGetData: (authSubType, callback) => {
+          callback.onSetData(authSubType, password);
         }
     });
     console.log('registerInputer result = ' + result);
@@ -4325,6 +4321,91 @@ unregisterInputer(): void;
   ```js
   let pinAuth = new account_osAccount.PINAuth();
   pinAuth.unregisterInputer();
+  ```
+
+### InputerManager <sup>10+</sup>
+
+凭据输入管理器。
+
+### registerInputer<sup>10+</sup>
+
+registerInputer(authType: AuthType, inputer: IInputer): void;
+
+注册凭据输入器。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL 或 ohos.permission.MANAGE_USER_IDM
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                      |
+| ----------| ----------------------- | --- | -------------------------- |
+| authType   | [AuthType](#authtype8)  | 是  | 认证类型。 |
+| inputer   | [IInputer](#iinputer8)  | 是  | 凭据输入器，用于获取凭据。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300102 | Invalid authType or inputer. |
+| 12300103 | The credential inputer has been registered. |
+| 12300106 | Unsupported authType. |
+
+**示例：**
+  ```js
+  let inputerMgr = new account_osAccount.InputerManager();
+  let authType = account_osAccount.AuthType.DOMAIN;
+  let password = new Uint8Array([0, 0, 0, 0, 0]);
+  try {
+    InputerMgr.registerInputer(authType, {
+        onGetData: (authSubType, callback) => {
+          callback.onSetData(authSubType, password);
+        }
+    });
+    console.log('registerInputer success.');
+  } catch (e) {
+    console.log('registerInputer exception = ' + JSON.stringify(e));
+  }
+  ```
+
+### unregisterInputer<sup>10+</sup>
+
+unregisterInputer(authType: AuthType): void;
+
+解注册凭据输入器。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL 或 ohos.permission.MANAGE_USER_IDM
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                      |
+| ----------| ----------------------- | --- | -------------------------- |
+| authType   | [AuthType](#authtype8)  | 是  | 认证类型。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300002  | Invalid authType. |
+
+**示例：**
+  ```js
+  let inputerMgr = new account_osAccount.InputerManager();
+  let authType = account_osAccount.AuthType.DOMAIN;
+  try {
+    inputerMgr.unregisterInputer(authType);
+    console.log('unregisterInputer success.');
+  } catch(err) {
+    console.log("unregisterInputer err:" + JSON.stringify(err));
+  }
   ```
 
 ## UserIdentityManager<sup>8+</sup>
@@ -4456,8 +4537,8 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let pinAuth = new account_osAccount.PINAuth();
   pinAuth.registerInputer({
-    onGetData: (pinSubType, callback) => {
-      callback.onSetData(pinSubType, password);
+    onGetData: (authSubType, callback) => {
+      callback.onSetData(authSubType, password);
     }
   });
   let credentialInfo = {
@@ -4470,12 +4551,12 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
     try {
     userIDM.addCredential(credentialInfo, {
       onResult: (result, extraInfo) => {
-        console.log('updateCredential result = ' + result);
-        console.log('updateCredential extraInfo = ' + extraInfo);
+        console.log('addCredential result = ' + result);
+        console.log('addCredential extraInfo = ' + extraInfo);
       }
     });
     } catch (e) {
-      console.log('updateCredential exception = ' + JSON.stringify(e));
+      console.log('addCredential exception = ' + JSON.stringify(e));
     }
   });
   ```
@@ -4520,8 +4601,8 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
     token: null
   };
   pinAuth.registerInputer({
-    onGetData: (pinSubType, callback) => {
-      callback.onSetData(pinSubType, password);
+    onGetData: (authSubType, callback) => {
+      callback.onSetData(authSubType, password);
     }
   });
   userIDM.openSession((err, challenge) => {
@@ -4820,7 +4901,7 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 
 ### onSetData<sup>8+</sup>
 
-onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
+onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
 
 **系统接口：** 此接口为系统接口。
 
@@ -4832,7 +4913,7 @@ onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
 
 | 参数名      | 类型                                     | 必填 | 说明                                            |
 | ---------- | ---------------------------------------- | ---- | ----------------------------------------------- |
-| pinSubType | [AuthSubType](#authsubtype8)             | 是   | 用于认证的凭据子类型。                            |
+| authSubType | [AuthSubType](#authsubtype8)             | 是   | 用于认证的凭据子类型。                            |
 | data       | Uint8Array                               | 是   | 要设置的数据是凭据，用来在认证、添加、修改凭据操作。 |
 
 **示例：**
@@ -4840,11 +4921,11 @@ onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
   let inputer = {
-    onGetData: (pinSubType, callback) => {
-        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
-          callback.onSetData(pinSubType, passwordNumber);
+    onGetData: (authSubType, callback) => {
+        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(authSubType, passwordNumber);
         } else {
-          callback.onSetData(pinSubType, password);
+          callback.onSetData(authSubType, password);
         }
     }
   };
@@ -4852,13 +4933,13 @@ onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
 
 ## IInputer<sup>8+</sup>
 
-密码输入框回调。
+凭据输入器回调。
 
 **系统接口：** 此接口为系统接口。
 
 ### onGetData<sup>8+</sup>
 
-onGetData: (pinSubType: AuthSubType, callback: IInputData) => void;
+onGetData: (authSubType: AuthSubType, callback: IInputData) => void;
 
 通知获取数据。
 
@@ -4877,11 +4958,11 @@ onGetData: (pinSubType: AuthSubType, callback: IInputData) => void;
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
   let inputer = {
-    onGetData: (pinSubType, callback) => {
-        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
-          callback.onSetData(pinSubType, passwordNumber);
+    onGetData: (authSubType, callback) => {
+        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(authSubType, passwordNumber);
         } else {
-          callback.onSetData(pinSubType, password);
+          callback.onSetData(authSubType, password);
         }
     }
   };
@@ -5155,8 +5236,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 | 名称  | 值 | 说明             |
 | ----- | ----- | ---------------- |
-| PIN   | 1     | 指示PIN认证类型。 |
-| FACE  | 2     | 指示脸部认证类型。|
+| PIN   | 1     | 表示PIN认证类型。 |
+| FACE  | 2     | 表示脸部认证类型。|
+| FINGERPRINT<sup>10+</sup>   | 4     | 表示指纹认证类型。 |
+| DOMAIN<sup>10+</sup>  | 1024     | 表示域认证类型。|
 
 ## AuthSubType<sup>8+</sup>
 
@@ -5171,8 +5254,9 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | PIN_SIX    | 10000 | 表示6位凭证。       |
 | PIN_NUMBER | 10001 | 表示自定义数字凭证。 |
 | PIN_MIXED  | 10002 | 表示自定义混合凭据。 |
-| FACE_2D    | 20000 | 指示2D 人脸凭证。   |
-| FACE_3D    | 20001 | 指示3D 人脸凭证。   |
+| FACE_2D    | 20000 | 表示2D 人脸凭证。   |
+| FACE_3D    | 20001 | 表示3D 人脸凭证。   |
+| DOMAIN_MIXED<sup>10+</sup>    | 10240001 | 表示域认证混合凭证。   |
 
 ## AuthTrustLevel<sup>8+</sup>
 

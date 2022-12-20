@@ -18,7 +18,7 @@ Enumerates trace flag types.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-| Name | Default Value | Description |
+| Name | Value | Description |
 | -------- | -------- | -------- |
 | DEFAULT           | 0      | Default flag. |
 | INCLUDE_ASYNC     | 1      | Asynchronous call flag. By default, only synchronous calls are traced. If this flag is set, both synchronous and asynchronous calls will be traced. |
@@ -35,7 +35,7 @@ Enumerates trace point types.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-| Name| Default Value | Description |
+| Name| Value | Description |
 | -------- | -------- | -------- |
 | CS       | 0 | Client Send (CS) trace point. |
 | CR       | 1 | Client Receive (CS) trace point. |
@@ -49,7 +49,7 @@ Enumerates communication modes.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-| Name| Default Value | Description |
+| Name| Value | Description |
 | -------- | -------- | -------- |
 | DEFAULT  | 0 | Default communication mode. |
 | THREAD   | 1 | Inter-thread communication. |
@@ -84,7 +84,7 @@ Starts call chain tracing. This API works in synchronous manner.
 | name  | string | Yes| Traced service name. |
 | flags | number | No| Trace flag combination. For details, see [HiTraceFlag](#hitraceflag). |
 
-**Return Value**
+**Return value**
 
 | Type | Description |
 | -------- | -------- |
@@ -126,7 +126,7 @@ Obtains the trace ID. This API works in synchronous manner.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-**Return Value**
+**Return value**
 
 | Type | Description |
 | -------- | -------- |
@@ -187,7 +187,7 @@ Creates a trace span. This API works in synchronous manner.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-**Return Value**
+**Return value**
 
 | Type | Description |
 | -------- | -------- |
@@ -240,7 +240,7 @@ Checks whether a **HiTraceId** instance is valid. This API works in synchronous 
 | -------- | -------- | -------- | -------- |
 | id  | [HiTraceId](#hitraceid) | Yes| **HiTraceId** instance. |
 
-**Return Value**
+**Return value**
 
 | Type | Description |
 | -------- | -------- |
@@ -268,7 +268,7 @@ Checks whether the specified trace flag in the **HiTraceId** instance is enabled
 | id  | [HiTraceId](#hitraceid) | Yes | **HiTraceId** instance. |
 | flag | [HiTraceFlag](#hitraceflag) | Yes | Specified trace flag. |
 
-**Return Value**
+**Return value**
 
 | Type | Description |
 | -------- | -------- |

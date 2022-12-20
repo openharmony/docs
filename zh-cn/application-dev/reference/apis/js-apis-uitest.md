@@ -1,4 +1,4 @@
-# UiTest
+# @ohos.uitest (UiTest)
 
 UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要支持如点击、双击、长按、滑动等UI操作能力。
 

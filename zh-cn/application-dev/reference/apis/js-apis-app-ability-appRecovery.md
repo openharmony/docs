@@ -1,4 +1,4 @@
-# appRecovery
+# @ohos.app.ability.appRecovery (appRecovery)
 
 appRecovery模块提供了应用在故障状态下的恢复能力。
 
@@ -67,6 +67,7 @@ enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMo
 **示例：**
     
 ```ts
+import AbilityStage from '@ohos.app.ability.AbilityStage';
 export default class MyAbilityStage extends AbilityStage {
     onCreate() {
         appRecovery.enableAppRecovery(RestartFlag::ALWAYS_RESTART, SaveOccasionFlag::SAVE_WHEN_ERROR, SaveModeFlag::SAVE_WITH_FILE);
@@ -86,6 +87,7 @@ restartApp(): void;
 **示例：**
     
 ```ts
+import errorManager from '@ohos.app.ability.errorManager';
 var observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
@@ -112,6 +114,7 @@ saveAppState(): boolean;
 **示例：**
     
 ```ts
+import errorManager from '@ohos.app.ability.errorManager';
 var observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)

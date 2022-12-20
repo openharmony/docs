@@ -50,7 +50,7 @@ HAP包是OpenHarmony的安装包，一个HAP在工程目录中对应一个Module
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - Module是开发者开发的相对独立的功能模块，由代码、资源、第三方库及应用配置文件组成，属于IDE开发视图的概念。Module分为entry、feature及har三种类型，相应的可以编译生成entry类型的HAP包、feature类型的HAP包，以及har包。
 > 
-> - 如果需要了解应用程序包结构更多详情，可以查看[包结构说明](../../quick-start/application-configuration-file-overview-fa.md)。
+> - 如果需要了解应用程序包结构更多详情，可以查看[包结构说明](../../quick-start/application-package-structure-stage.md)。
 
 
 ### 方舟开发框架

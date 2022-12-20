@@ -1,4 +1,4 @@
-# ProcessRunningInfo<sup>(deprecated)</sup>
+# ProcessRunningInfo
 
 本模块提供对进程运行信息进行设置和查询的能力。
 
@@ -10,21 +10,22 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称 | 类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | 是 | 否 | 进程ID。 | 
-| uid | number | 是 | 否 | 用户ID。 | 
-| processName | string | 是 | 否 | 进程名称。 | 
-| bundleNames | Array&lt;string&gt; | 是 | 否 | 进程中所有运行的包名称。 | 
+| pid | number | 是 | 否 | 进程ID。 |
+| uid | number | 是 | 否 | 用户ID。 |
+| processName | string | 是 | 否 | 进程名称。 |
+| bundleNames | Array&lt;string&gt; | 是 | 否 | 进程中所有运行的包名称。 |
 
 ## 使用说明
 
-通过appManager中[getProcessRunningInfos](js-apis-application-appManager.md##appManager.getProcessRunningInfos<sup>(deprecated)</sup>)方法来获取。
+通过appManager中[getProcessRunningInfos](js-apis-application-appManager.md#appmanagergetprocessrunninginfosdeprecated)方法来获取。
 
 **示例：**
 ```ts
 import appManager from '@ohos.application.appManager';
-app.getProcessRunningInfos().then((data) => {
+
+appManager.getProcessRunningInfos().then((data) => {
     console.log('success:' + JSON.stringify(data));
 }).catch((error) => {
     console.log('failed:' + JSON.stringify(error));

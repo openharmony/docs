@@ -1,4 +1,4 @@
-# 相机管理
+# @ohos.multimedia.camera (相机管理)
 
 > **说明：**
 >
@@ -22,7 +22,7 @@ getCameraManager(context: Context, callback: AsyncCallback<CameraManager\>): voi
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | [Context](../../ability/context-userguide.md)      | 是   | 应用上下文。                   |
+| context  | [Context](js-apis-inner-app-context.md)      | 是   | 应用上下文。                   |
 | callback | AsyncCallback<[CameraManager](#cameramanager)\> | 是   | 回调函数，用于获取相机管理器实例。 |
 
 **示例：**
@@ -49,7 +49,7 @@ getCameraManager(context: Context): Promise<CameraManager\>
 
 | 参数名    | 类型    | 必填 | 说明         |
 | ------- | ------- | ---- | ------------ |
-| context | [Context](../../ability/context-userguide.md) | 是   | 应用上下文。 |
+| context | [Context](js-apis-inner-app-context.md) | 是   | 应用上下文。 |
 
 **返回值：**
 
@@ -757,7 +757,7 @@ on(type: 'cameraMute', callback: AsyncCallback<boolean\>): void
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | 是   | 监听事件，固定为'cameraMute'，即禁用状态变化事件。 |
-| callback | AsyncCallback<boolean> | 是   | 回调函数，用于获取禁用状态变化信息。               |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数，用于获取禁用状态变化信息。               |
 
 **示例：**
 
