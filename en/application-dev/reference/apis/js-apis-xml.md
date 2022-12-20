@@ -1,4 +1,4 @@
-# XML Parsing and Generation
+# @ohos.xml (XML Parsing and Generation)
 
 > **NOTE**
 >
@@ -24,10 +24,10 @@ A constructor used to create an **XmlSerializer** instance.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| buffer | ArrayBuffer&nbsp;\|&nbsp;DataView | Yes| **ArrayBuffer** or **DataView** for storing the XML information to write.|
-| encoding | string | No| Encoding format.|
+| Name  | Type                             | Mandatory| Description                                            |
+| -------- | --------------------------------- | ---- | ------------------------------------------------ |
+| buffer   | ArrayBuffer \| DataView | Yes  | **ArrayBuffer** or **DataView** for storing the XML information to write.|
+| encoding | string                            | No  | Encoding format.                                      |
 
 **Example**
 
@@ -48,10 +48,10 @@ Sets an attribute.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Key of the attribute.|
-| value | string | Yes| Value of the attribute.|
+| Name| Type  | Mandatory| Description           |
+| ------ | ------ | ---- | --------------- |
+| name   | string | Yes  | Key of the attribute.  |
+| value  | string | Yes  | Value of the attribute.|
 
 **Example**
 
@@ -60,8 +60,8 @@ let arrayBuffer = new ArrayBuffer(1024);
 let bufView = new DataView(arrayBuffer);
 let thatSer = new xml.XmlSerializer(bufView);
 thatSer.startElement("note");
-thatSer.setAttributes("importance", "high");
-thatSer.endElement();
+thatSer.setAttributes("importance", "high"); 
+thatSer.endElement(); 
 ```
 
 
@@ -75,9 +75,9 @@ Adds an empty element.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the empty element to add.|
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| name   | string | Yes  | Name of the empty element to add.|
 
 **Example**
 
@@ -117,9 +117,9 @@ Writes the start tag based on the given element name.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the element.|
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| name   | string | Yes  | Name of the element.|
 
 **Example**
 
@@ -145,11 +145,11 @@ Writes the end tag of the element.
 let arrayBuffer = new ArrayBuffer(1024);
 let bufView = new DataView(arrayBuffer);
 let thatSer = new xml.XmlSerializer(bufView);
-thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
+thatSer.setNamespace("h", "https://www.w3.org/TR/html4/");
 thatSer.startElement("table");
 thatSer.setAttributes("importance", "high");
 thatSer.setText("Happy");
-thatSer.endElement(); // => <h:table importance="high" xmlns:h="http://www.w3.org/TR/html4/">Happy</h:table>
+thatSer.endElement(); // => <h:table importance="high" xmlns:h="https://www.w3.org/TR/html4/">Happy</h:table>
 ```
 
 
@@ -163,10 +163,10 @@ Sets the namespace for an element tag.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| prefix | string | Yes| Prefix of the element and its child elements.|
-| namespace | string | Yes| Namespace to set.|
+| Name   | Type  | Mandatory| Description                          |
+| --------- | ------ | ---- | ------------------------------ |
+| prefix    | string | Yes  | Prefix of the element and its child elements.    |
+| namespace | string | Yes  | Namespace to set.|
 
 **Example**
 
@@ -174,9 +174,9 @@ Sets the namespace for an element tag.
 let arrayBuffer = new ArrayBuffer(1024);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
-thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
+thatSer.setNamespace("h", "https://www.w3.org/TR/html4/");
 thatSer.startElement("note");
-thatSer.endElement();// = >'<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>';
+thatSer.endElement();// = >'<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="https://www.w3.org/TR/html4/"/>';
 ```
 
 ### setComment
@@ -189,9 +189,9 @@ Sets the comment.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| text | string | Yes| Comment to set.|
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| text   | string | Yes  | Comment to set.|
 
 **Example**
 
@@ -214,9 +214,9 @@ Sets CDATA attributes.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| text | string | Yes| CDATA attribute to set.|
+| Name| Type  | Mandatory| Description             |
+| ------ | ------ | ---- | ----------------- |
+| text   | string | Yes  | CDATA attribute to set.|
 
 **Example**
 
@@ -237,9 +237,9 @@ Sets **Text**.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| text | string | Yes| Content of the **Text** to set.|
+| Name| Type  | Mandatory| Description            |
+| ------ | ------ | ---- | ---------------- |
+| text   | string | Yes  | Content of the **Text** to set.|
 
 **Example**
 
@@ -263,9 +263,9 @@ Sets **DocType**.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| text | string | Yes| Content of **DocType** to set.|
+| Name| Type  | Mandatory| Description               |
+| ------ | ------ | ---- | ------------------- |
+| text   | string | Yes  | Content of **DocType** to set.|
 
 **Example**
 
@@ -289,10 +289,10 @@ Creates and returns an **XmlPullParser** object. The **XmlPullParser** object pa
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| buffer | ArrayBuffer&nbsp;\|&nbsp;DataView | Yes| **ArrayBuffer** or **DataView** that contains XML text information.|
-| encoding | string | No| Encoding format. Only UTF-8 is supported.|
+| Name  | Type                             | Mandatory| Description                                      |
+| -------- | --------------------------------- | ---- | ------------------------------------------ |
+| buffer   | ArrayBuffer \| DataView | Yes  | **ArrayBuffer** or **DataView** that contains XML text information.|
+| encoding | string                            | No  | Encoding format. Only UTF-8 is supported.                 |
 
 **Example**
 
@@ -324,9 +324,9 @@ Parses XML information.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| option | [ParseOptions](#parseoptions) | Yes| Options for controlling and obtaining the parsed information.|
+| Name| Type                         | Mandatory| Description                            |
+| ------ | ----------------------------- | ---- | -------------------------------- |
+| option | [ParseOptions](#parseoptions) | Yes  | Options for controlling and obtaining the parsed information.|
 
 **Example**
 
@@ -372,13 +372,13 @@ Defines the XML parsing options.
 **System capability**: SystemCapability.Utils.Lang
 
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| supportDoctype | boolean | No| Whether to ignore **Doctype**. The default value is **false**.|
-| ignoreNameSpace | boolean | No| Whether to ignore **Namespace**. The default value is **false**.|
-| tagValueCallbackFunction | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | No| Callback used to return **tagValue**.|
-| attributeValueCallbackFunction | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | No| Callback used to return **attributeValue**.|
-| tokenValueCallbackFunction | (eventType:&nbsp;[EventType](#eventtype),&nbsp;value:&nbsp;[ParseInfo](#parseinfo))=&gt;&nbsp;boolean | No| Callback used to return **tokenValue**.|
+| Name                          | Type                                                        | Mandatory| Description                                   |
+| ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
+| supportDoctype                 | boolean                                                      | No  | Whether to ignore **Doctype**. The default value is **false**.|
+| ignoreNameSpace                | boolean                                                      | No  | Whether to ignore **Namespace**. The default value is **false**.         |
+| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | No  | Callback used to return **tagValue**.                 |
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No  | Callback used to return **attributeValue**.           |
+| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | No  | Callback used to return **tokenValue**.               |
 
 ## ParseInfo
 
@@ -395,8 +395,8 @@ Obtains the column line number, starting from 1.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type  | Description          |
+| ------ | -------------- |
 | number | Column number obtained.|
 
 
@@ -410,8 +410,8 @@ Obtains the depth of this element.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type  | Description                |
+| ------ | -------------------- |
 | number | Depth obtained.|
 
 
@@ -425,8 +425,8 @@ Obtains the current line number, starting from 1.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type  | Description          |
+| ------ | -------------- |
 | number | Line number obtained.|
 
 
@@ -440,8 +440,8 @@ Obtains the name of this element.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type  | Description              |
+| ------ | ------------------ |
 | string | Element name obtained.|
 
 
@@ -455,8 +455,8 @@ Obtains the namespace of this element.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type  | Description                    |
+| ------ | ------------------------ |
 | string | Namespace obtained.|
 
 
@@ -470,8 +470,8 @@ Obtains the prefix of this element.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type  | Description              |
+| ------ | ------------------ |
 | string | Element prefix obtained.|
 
 
@@ -485,8 +485,8 @@ Obtains the text of the current event.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type  | Description                    |
+| ------ | ------------------------ |
 | string | Text content obtained.|
 
 
@@ -500,8 +500,8 @@ Checks whether the current element is empty.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type   | Description                        |
+| ------- | ---------------------------- |
 | boolean | Returns **true** if the element is empty; returns **false** otherwise.|
 
 
@@ -515,8 +515,8 @@ Checks whether the current text event contains only whitespace characters.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type   | Description                                  |
+| ------- | -------------------------------------- |
 | boolean | Returns **true** if the text event contains only whitespace characters; returns **false** otherwise.|
 
 
@@ -529,8 +529,8 @@ Obtains the number of attributes for the current start tag.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
+| Type  | Description                  |
+| ------ | ---------------------- |
 | number | Number of attributes obtained.|
 
 
@@ -540,16 +540,16 @@ Enumerates the events.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Value| Description|
-| -------- | -------- | -------- |
-| START_DOCUMENT | 0 | Indicates a start document event.|
-| END_DOCUMENT | 1 | Indicates an end document event.|
-| START_TAG | 2 | Indicates a start tag event.|
-| END_TAG | 3 | Indicates an end tag event.|
-| TEXT | 4 | Indicates a text event.|
-| CDSECT | 5 | Indicates a CDATA section event.|
-| COMMENT | 6 | Indicates an XML comment event.|
-| DOCDECL | 7 | Indicates an XML document type declaration event.|
-| INSTRUCTION | 8 | Indicates an XML processing instruction event.|
-| ENTITY_REFERENCE | 9 | Indicates an entity reference event.|
-| WHITESPACE | 10 | Indicates a whitespace character event.|
+| Name            | Value  | Description                 |
+| ---------------- | ---- | --------------------- |
+| START_DOCUMENT   | 0    | Indicates a start document event.       |
+| END_DOCUMENT     | 1    | Indicates an end document event.       |
+| START_TAG        | 2    | Indicates a start tag event.       |
+| END_TAG          | 3    | Indicates an end tag event.       |
+| TEXT             | 4    | Indicates a text event.           |
+| CDSECT           | 5    | Indicates a CDATA section event.          |
+| COMMENT          | 6    | Indicates an XML comment event.        |
+| DOCDECL          | 7    | Indicates an XML document type declaration event.|
+| INSTRUCTION      | 8    | Indicates an XML processing instruction event.|
+| ENTITY_REFERENCE | 9    | Indicates an entity reference event.       |
+| WHITESPACE       | 10   | Indicates a whitespace character event.           |

@@ -4,6 +4,8 @@ Worker是与主线程并行的独立线程。创建Worker的线程称之为宿�
 
 Worker主要作用是为应用程序提供一个多线程的运行环境，可满足应用程序在执行过程中与主线程分离，在后台线程中运行一个脚本操作耗时操作，极大避免类似于计算密集型或高延迟的任务阻塞主线程的运行。由于Worker一旦被创建则不会主动被销毁，若不处于任务状态一直运行，在一定程度上会造成资源的浪费，应及时关闭空闲的Worker。
 
+Worker的上下文对象和主线程的上下文对象是不同的，Worker线程不支持UI操作。
+
 > **说明：**<br/>
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -39,13 +41,13 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 ## ThreadWorker<sup>9+</sup>
 
-使用以下方法前，均需先构造Worker实例，Worker类继承[WorkerEventTarget](#workereventtarget9)。
+使用以下方法前，均需先构造ThreadWorker实例，ThreadWorker类继承[WorkerEventTarget](#workereventtarget9)。
 
 ### constructor<sup>9+</sup>
 
 constructor(scriptURL: string, options?: WorkerOptions)
 
-Worker构造函数。
+ThreadWorker构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -58,9 +60,20 @@ Worker构造函数。
 
 **返回值：**
 
-| 类型   | 说明                                                      |
-| ------ | --------------------------------------------------------- |
-| Worker | 执行Worker构造函数生成的Worker对象，失败则返回undefined。 |
+| 类型         | 说明                                                         |
+| ------------ | ------------------------------------------------------------ |
+| ThreadWorker | 执行ThreadWorker构造函数生成的ThreadWorker对象，失败则返回undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200003 | Worker initialization failure. |
+| 10200007 | The worker file patch is invalid path. |
+
+
 
 **示例：**
 
@@ -137,6 +150,40 @@ Stage模型:
   }
 ```
 
+### postMessage<sup>9+</sup>
+
+postMessage(message: Object, transfer: ArrayBuffer[]): void;
+
+向Worker线程发送数据，数据类型必须是序列化所支持的类型。序列化支持类型见其他说明。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| message  | Object        | 是   | 发送至Worker的数据。                                         |
+| transfer | ArrayBuffer[] | 是   | 可传递&nbsp;ArrayBuffer&nbsp;的实例对象，数组中不可传入null。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+| 10200006 | Serializing an uncaught exception failed. |
+
+**示例：**
+
+```js
+const workerInstance = new worker.ThreadWorker("workers/worker.js");
+
+workerInstance.postMessage("hello world");
+
+var buffer = new ArrayBuffer(8);
+workerInstance.postMessage(buffer, [buffer]);
+```
 
 ### postMessage<sup>9+</sup>
 
@@ -153,6 +200,15 @@ postMessage(message: Object, options?: PostMessageOptions): void
 | message | Object                                    | 是   | 发送至Worker的数据。                                         |
 | options | [PostMessageOptions](#postmessageoptions) | 否   | 可转移对象是&nbsp;ArrayBuffer&nbsp;的实例对象。transferList数组中不可传入null。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+| 10200006 | Serializing an uncaught exception failed. |
+
 **示例：**
 
 ```js
@@ -163,7 +219,6 @@ workerInstance.postMessage("hello world");
 var buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
-
 
 ### on<sup>9+</sup>
 
@@ -179,6 +234,15 @@ on(type: string, listener: WorkerEventListener): void
 | -------- | -------------------------------------------- | ---- | ---------------------- |
 | type     | string                                       | 是   | 监听的事件类型。       |
 | listener | [WorkerEventListener](#workereventlistener9) | 是 | 回调的事件。回调事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | -------------------------------------------- |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
 
 **示例：**
 
@@ -205,6 +269,15 @@ once(type: string, listener: WorkerEventListener): void
 | type     | string                                       | 是   | 监听的事件类型。       |
 | listener | [WorkerEventListener](#workereventlistener9) | 是 | 回调的事件。回调事件。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | -------------------------------------------- |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
+
 **示例：**
 
 ```js
@@ -230,6 +303,15 @@ off(type: string, listener?: WorkerEventListener): void
 | type     | string                                       | 是   | 需要删除的事件类型。         |
 | listener | [WorkerEventListener](#workereventlistener9) | 否 | 回调的事件。删除的回调事件。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | -------------------------------------------- |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
+
 **示例：**
 
 ```js
@@ -246,6 +328,14 @@ terminate(): void
 销毁Worker线程，终止Worker接收消息。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                      |
+| -------- | ------------------------------- |
+| 10200004 | Worker instance is not running. |
 
 **示例：**
 
@@ -268,6 +358,15 @@ Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序�
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
 | code   | number | 是   | Worker退出的code。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | -------------------------------------------- |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
 
 **示例：**
 
@@ -300,6 +399,15 @@ Worker对象的onerror属性表示Worker在执行过程中发生异常被调用�
 | ------ | ------------------------- | ---- | ---------- |
 | err    | [ErrorEvent](#errorevent) | 是   | 异常数据。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | -------------------------------------------- |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
+
 **示例：**
 
 ```js
@@ -323,6 +431,15 @@ Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worke
 | 参数名 | 类型                             | 必填 | 说明                   |
 | ------ | -------------------------------- | ---- | ---------------------- |
 | event  | [MessageEvents](#messageevents9) | 是   | 收到的Worker消息数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | -------------------------------------------- |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
 
 **示例：**
 
@@ -350,6 +467,15 @@ Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被
 | ------ | -------------------------------- | ---- | ---------- |
 | event  | [MessageEvents](#messageevents9) | 是   | 异常数据。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | -------------------------------------------- |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
+
 **示例：**
 
 ```js
@@ -358,9 +484,6 @@ workerInstance.onmessageerror= function(e) {
     console.log("onmessageerror");
 }
 ```
-
-
-## WorkerEventTarget<sup>9+</sup>
 
 ### addEventListener<sup>9+</sup>
 
@@ -376,6 +499,15 @@ addEventListener(type: string, listener: WorkerEventListener): void
 | -------- | -------------------------------------------- | ---- | ---------------- |
 | type     | string                                       | 是   | 监听的事件类型。 |
 | listener | [WorkerEventListener](#workereventlistener9) | 是   | 回调的事件。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | -------------------------------------------- |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
 
 **示例：**
 
@@ -401,6 +533,14 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的监听事件类型。     |
 | callback | [WorkerEventListener](#workereventlistener9) | 否 | 回调的事件。删除的回调事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                      |
+| -------- | ------------------------------- |
+| 10200004 | Worker instance is not running. |
 
 **示例：**
 
@@ -433,6 +573,14 @@ dispatchEvent(event: Event): boolean
 | ------- | ------------------------------- |
 | boolean | 分发的结果，false表示分发失败。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                      |
+| -------- | ------------------------------- |
+| 10200004 | Worker instance is not running. |
+
 **示例：**
 
 ```js
@@ -449,7 +597,7 @@ workerInstance.addEventListener("alert_add", (e)=>{
 })
 
 //once接口创建的事件执行一次便会删除。
-workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});
+workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});//timeStamp暂未支持。
 //on接口创建的事件可以一直被分发，不能主动删除。
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
@@ -483,6 +631,180 @@ removeAllListener(): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                      |
+| -------- | ------------------------------- |
+| 10200004 | Worker instance is not running. |
+
+**示例：**
+
+```js
+const workerInstance = new worker.ThreadWorker("workers/worker.js");
+workerInstance.addEventListener("alert", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.removeAllListener();
+```
+
+## WorkerEventTarget<sup>9+</sup>
+
+### addEventListener<sup>9+</sup>
+
+addEventListener(type: string, listener: WorkerEventListener): void
+
+向Worker添加一个事件监听，该接口与[on<sup>9+</sup>](#on9)接口功能一致。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明             |
+| -------- | -------------------------------------------- | ---- | ---------------- |
+| type     | string                                       | 是   | 监听的事件类型。 |
+| listener | [WorkerEventListener](#workereventlistener9) | 是   | 回调的事件。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | -------------------------------------------- |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
+
+**示例：**
+
+```js
+const workerInstance = new worker.ThreadWorker("workers/worker.js");
+workerInstance.addEventListener("alert", (e)=>{
+    console.log("alert listener callback");
+})
+```
+
+
+### removeEventListener<sup>9+</sup>
+
+removeEventListener(type: string, callback?: WorkerEventListener): void
+
+删除Worker的事件监听，该接口与[off<sup>9+</sup>](#off9)接口功能一致。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                         |
+| -------- | -------------------------------------------- | ---- | ---------------------------- |
+| type     | string                                       | 是   | 需要删除的监听事件类型。     |
+| callback | [WorkerEventListener](#workereventlistener9) | 否 | 回调的事件。删除的回调事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                      |
+| -------- | ------------------------------- |
+| 10200004 | Worker instance is not running. |
+
+**示例：**
+
+```js
+const workerInstance = new worker.ThreadWorker("workers/worker.js");
+workerInstance.addEventListener("alert", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.removeEventListener("alert");
+```
+
+
+### dispatchEvent<sup>9+</sup>
+
+dispatchEvent(event: Event): boolean
+
+分发定义在Worker的事件。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型            | 必填 | 说明             |
+| ------ | --------------- | ---- | ---------------- |
+| event  | [Event](#event) | 是   | 需要分发的事件。 |
+
+**返回值：**
+
+| 类型    | 说明                            |
+| ------- | ------------------------------- |
+| boolean | 分发的结果，false表示分发失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                      |
+| -------- | ------------------------------- |
+| 10200004 | Worker instance is not running. |
+
+**示例：**
+
+```js
+const workerInstance = new worker.ThreadWorker("workers/worker.js");
+//用法一:
+workerInstance.on("alert_on", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.once("alert_once", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.addEventListener("alert_add", (e)=>{
+    console.log("alert listener callback");
+})
+
+//once接口创建的事件执行一次便会删除。
+workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});//timeStamp暂未支持。
+//on接口创建的事件可以一直被分发，不能主动删除。
+workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
+workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
+//addEventListener接口创建的事件可以一直被分发，不能主动删除。
+workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
+workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
+
+//用法二:
+//event类型的type支持自定义，同时存在"message"/"messageerror"/"error"特殊类型，如下所示
+//当type = "message"，onmessage接口定义的方法同时会执行。
+//当type = "messageerror"，onmessageerror接口定义的方法同时会执行。
+//当type = "error"，onerror接口定义的方法同时会执行。
+//若调用removeEventListener接口或者off接口取消事件时，能且只能取消使用addEventListener/on/once创建的事件。
+
+workerInstance.addEventListener("message", (e)=>{
+    console.log("message listener callback");
+})
+workerInstance.onmessage = function(e) {
+    console.log("onmessage : message listener callback");
+}
+//调用dispatchEvent分发“message”事件，addEventListener和onmessage中定义的方法都会被执行。
+workerInstance.dispatchEvent({type:"message", timeStamp:0});
+```
+
+
+### removeAllListener<sup>9+</sup>
+
+removeAllListener(): void
+
+删除Worker所有的事件监听。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                      |
+| -------- | ------------------------------- |
+| 10200004 | Worker instance is not running. |
+
 **示例：**
 
 ```js
@@ -498,10 +820,9 @@ workerInstance.removeAllListener();
 
 Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口销毁Worker线程。ThreadWorkerGlobalScope类继承[GlobalScope<sup>9+</sup>](#globalscope9)。
 
-
 ### postMessage<sup>9+</sup>
 
-postMessage(messageObject: Object, options?: PostMessageOptions): void
+postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
 
 Worker线程向宿主线程发送消息。
 
@@ -509,10 +830,19 @@ Worker线程向宿主线程发送消息。
 
 **参数：**
 
-| 参数名  | 类型                                      | 必填 | 说明                                                         |
-| ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | 是   | 发送至宿主线程的数据。                                       |
-| options | [PostMessageOptions](#postmessageoptions) | 否   | 可转移对象是ArrayBuffer的实例对象。transferList数组中不可传入null。 |
+| 参数名   | 类型          | 必填 | 说明                                                    |
+| -------- | ------------- | ---- | ------------------------------------------------------- |
+| message  | Object        | 是   | 发送至宿主线程的数据。                                  |
+| transfer | ArrayBuffer[] | 是   | 可传输对象是ArrayBuffer的实例对象，数组中不可传入null。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+| 10200006 | Serializing an uncaught exception failed. |
 
 **示例：**
 
@@ -530,10 +860,58 @@ workerInstance.onmessage = function(e) {
 ```js
 // worker.js
 import worker from '@ohos.worker';
-const parentPort = worker.workerPort;
-parentPort.onmessage = function(e){
+const workerPort = worker.workerPort;
+workerPort.onmessage = function(e){
     // let data = e.data;
-    parentPort.postMessage("receive data from main.js");
+    var buffer = new ArrayBuffer(8);
+    workerPort.postMessage(buffer, [buffer]);
+}
+```
+
+### postMessage<sup>9+</sup>
+
+postMessage(messageObject: Object, options?: PostMessageOptions): void
+
+Worker线程向宿主线程发送消息。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型                                      | 必填 | 说明                                                         |
+| ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| message | Object                                    | 是   | 发送至宿主线程的数据。                                       |
+| options | [PostMessageOptions](#postmessageoptions) | 否   | 可转移对象是ArrayBuffer的实例对象。transferList数组中不可传入null。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+| 10200006 | Serializing an uncaught exception failed. |
+
+**示例：**
+
+```js
+// main.js
+import worker from '@ohos.worker';
+const workerInstance = new worker.ThreadWorker("workers/worker.js");
+workerInstance.postMessage("hello world");
+workerInstance.onmessage = function(e) {
+    // let data = e.data;
+    console.log("receive data from worker.js");
+}
+```
+
+```js
+// worker.js
+import worker from '@ohos.worker';
+const workerPort = worker.workerPort;
+workerPort.onmessage = function(e){
+    // let data = e.data;
+    workerPort.postMessage("receive data from main.js");
 }
 ```
 
@@ -546,6 +924,14 @@ close(): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                      |
+| -------- | ------------------------------- |
+| 10200004 | Worker instance is not running. |
+
 **示例：**
 
 ```js
@@ -557,16 +943,16 @@ const workerInstance = new worker.ThreadWorker("workers/worker.js");
 ```js
 // worker.js
 import worker from '@ohos.worker';
-const parentPort = worker.workerPort;
-parentPort.onmessage = function(e) {
-    parentPort.close()
+const workerPort = worker.workerPort;
+workerPort.onmessage = function(e) {
+    workerPort.close()
 }
 ```
 
 
 ### onmessage<sup>9+</sup>
 
-onmessage?: (this: ThreadWorkerGlobalScope, event: MessageEvents) =&gt; void
+onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -577,7 +963,16 @@ DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿
 | 参数名 | 类型                                                 | 必填 | 说明                     |
 | ------ | ---------------------------------------------------- | ---- | ------------------------ |
 | this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | 是   | 指向调用者对象。         |
-| event  | [MessageEvents](#messageevents9)                     | 是   | 收到宿主线程发送的数据。 |
+| ev     | [MessageEvents](#messageevents9)                     | 是   | 收到宿主线程发送的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | -------------------------------------------- |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
 
 **示例：**
 
@@ -591,8 +986,8 @@ workerInstance.postMessage("hello world");
 ```js
 // worker.js
 import worker from '@ohos.worker';
-const parentPort = worker.workerPort;
-parentPort.onmessage = function(e) {
+const workerPort = worker.workerPort;
+workerPort.onmessage = function(e) {
     console.log("receive main.js message");
 }
 ```
@@ -600,7 +995,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessageerror<sup>9+</sup>
 
-onmessageerror?: (this: ThreadWorkerGlobalScope, event: MessageEvents) =&gt; void
+onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -611,7 +1006,16 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 | 参数名 | 类型                             | 必填 | 说明       |
 | ------ | -------------------------------- | ---- | ---------- |
 | this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | 是   | 指向调用者对象。         |
-| event  | [MessageEvents](#messageevents9) | 是   | 异常数据。 |
+| ev     | [MessageEvents](#messageevents9) | 是   | 异常数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | -------------------------------------------- |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
 
 **示例：**
 
@@ -650,6 +1054,15 @@ parentPort.onmessageerror = function(e) {
 | 类型                                  | 说明                            |
 | ------------------------------------- | ------------------------------- |
 | void&nbsp;\|&nbsp;Promise&lt;void&gt; | 无返回值或者以Promise形式返回。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | -------------------------------------------- |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
 
 **示例：**
 
@@ -700,8 +1113,8 @@ const workerInstance = new worker.ThreadWorker("workers/worker.js")
 ```js
 // worker.js
 import worker from '@ohos.worker';
-const parentPort = worker.workerPort
-parentPort.onerror = function(e){
+const workerPort = worker.workerPort
+workerPort.onerror = function(e){
     console.log("worker.js onerror")
 }
 ```
@@ -815,6 +1228,36 @@ Stage模型:
     }
   }
 ```
+
+### postMessage<sup>(deprecated)</sup>
+
+postMessage(message: Object, transfer: ArrayBuffer[]): void;
+
+向Worker线程发送数据，数据类型必须是序列化所支持的类型。序列化支持类型见其他说明。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.postMessage<sup>9+</sup>](#postmessage9)替代。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                            |
+| -------- | ------------- | ---- | ----------------------------------------------- |
+| message  | Object        | 是   | 发送至Worker的数据。                            |
+| transfer | ArrayBuffer[] | 是   | 可转移对象是&nbsp;ArrayBuffer&nbsp;的实例对象。 |
+
+**示例：**
+
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
+
+workerInstance.postMessage("hello world");
+
+var buffer = new ArrayBuffer(8);
+workerInstance.postMessage(buffer, [buffer]);
+```
+
 ### postMessage<sup>(deprecated)</sup>
 
 postMessage(message: Object, options?: PostMessageOptions): void
@@ -822,7 +1265,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 向Worker线程发送数据，数据类型必须是序列化所支持的类型。序列化支持类型见其他说明。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.postMessage<sup>9+</sup>](#postmessage9)替代。
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.postMessage<sup>9+</sup>](#postmessage9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -839,9 +1282,6 @@ postMessage(message: Object, options?: PostMessageOptions): void
 const workerInstance = new worker.Worker("workers/worker.js");
 
 workerInstance.postMessage("hello world");
-
-var buffer = new ArrayBuffer(8);
-workerInstance.postMessage(buffer, [buffer]);
 ```
 
 
@@ -1165,7 +1605,7 @@ workerInstance.addEventListener("alert_add", (e)=>{
 })
 
 //once接口创建的事件执行一次便会删除。
-workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});
+workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});//timeStamp暂未支持。
 //on接口创建的事件可以一直被分发，不能主动删除。
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
@@ -1218,6 +1658,44 @@ Worker线程用于与宿主线程通信的类，通过postMessage接口发送消
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9)替代。
 
+### postMessage<sup>9+</sup>
+
+postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
+
+Worker线程向宿主线程发送消息。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                                  |
+| -------- | ------------- | ---- | ----------------------------------------------------- |
+| message  | Object        | 是   | 发送至宿主线程的数据。                                |
+| transfer | ArrayBuffer[] | 是   | 可传输对象是ArrayBuffer的实例对象，数组不可传入null。 |
+
+**示例：**
+
+```js
+// main.js
+import worker from '@ohos.worker';
+const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.postMessage("hello world");
+workerInstance.onmessage = function(e) {
+    // let data = e.data;
+    console.log("receive data from worker.js");
+}
+```
+```js
+// worker.js
+import worker from '@ohos.worker';
+const parentPort = worker.parentPort;
+parentPort.onmessage = function(e){
+    // let data = e.data;
+    let buffer = new ArrayBuffer(5)
+    parentPort.postMessage(buffer, [buffer]);
+}
+```
+
 ### postMessage<sup>(deprecated)</sup>
 
 postMessage(messageObject: Object, options?: PostMessageOptions): void
@@ -1258,7 +1736,6 @@ parentPort.onmessage = function(e){
 }
 ```
 
-
 ### close<sup>(deprecated)</sup>
 
 close(): void
@@ -1289,7 +1766,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessage<sup>(deprecated)</sup>
 
-onmessage?: (this: DedicatedWorkerGlobalScope, event: MessageEvent) =&gt; void
+onmessage?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -1303,7 +1780,7 @@ DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿
 | 参数名 | 类型                                                         | 必填 | 说明                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。         |
-| event  | [MessageEvent](#messageeventt)                               | 是   | 收到宿主线程发送的数据。 |
+| ev     | [MessageEvent](#messageeventt)                               | 是   | 收到宿主线程发送的数据。 |
 
 **示例：**
 
@@ -1325,7 +1802,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessageerror<sup>(deprecated)</sup>
 
-onmessageerror?: (this: DedicatedWorkerGlobalScope, event: MessageEvent) =&gt; void
+onmessageerror?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -1339,7 +1816,7 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 | 参数名 | 类型                           | 必填 | 说明       |
 | ------ | ------------------------------ | ---- | ---------- |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。 |
-| event  | [MessageEvent](#messageeventt) | 是   | 异常数据。 |
+| ev     | [MessageEvent](#messageeventt) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -1375,10 +1852,10 @@ parentPort.onmessageerror = function(e) {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称      | 类型   | 可读 | 可写 | 说明                               |
-| --------- | ------ | ---- | ---- | ---------------------------------- |
-| type      | string | 是   | 否   | 指定事件的类型。                   |
-| timeStamp | number | 是   | 否   | 事件创建时的时间戳（精度为毫秒）。 |
+| 名称      | 类型   | 可读 | 可写 | 说明                                         |
+| --------- | ------ | ---- | ---- | -------------------------------------------- |
+| type      | string | 是   | 否   | 指定事件的类型。                             |
+| timeStamp | number | 是   | 否   | 事件创建时的时间戳（精度为毫秒），暂未支持。 |
 
 
 ## EventListener<sup>(deprecated)</sup>
@@ -1524,14 +2001,14 @@ workerInstance.onmessage = function(d) {
 ```js
 // worker.js
 import worker from '@ohos.worker';
-const parentPort = worker.workerPort;
+const workerPort = worker.workerPort;
 class MyModel {
     name = "undefined"
     Init() {
         this.name = "MyModel"
     }
 }
-parentPort.onmessage = function(d) {
+workerPort.onmessage = function(d) {
     console.log("worker.js onmessage");
     let data = d.data;
     let func1 = function() {
@@ -1545,14 +2022,14 @@ parentPort.onmessage = function(d) {
         }
     }
     let obj2 = new MyModel();
-    // parentPort.postMessage(func1); 传递func1发生序列化错误
-    // parentPort.postMessage(obj1);  传递obj1发生序列化错误
-    parentPort.postMessage(obj2);     // 传递obj2不会发生序列化错误
+    // workerPort.postMessage(func1); 传递func1发生序列化错误
+    // workerPort.postMessage(obj1);  传递obj1发生序列化错误
+    workerPort.postMessage(obj2);     // 传递obj2不会发生序列化错误
 }
-parentPort.onmessageerror = function(e) {
+workerPort.onmessageerror = function(e) {
     console.log("worker.js onmessageerror");
 }
-parentPort.onerror = function(e) {
+workerPort.onerror = function(e) {
     console.log("worker.js onerror");
 }
 ```
@@ -1570,6 +2047,7 @@ Actor并发模型的交互原理：各个Actor并发地处理主线程任务，�
 - 自API version 9版本开始，若Worker处于已经销毁或正在销毁等非运行状态时，调用其功能接口，会抛出相应的BusinessError。
 - Worker的创建和销毁耗费性能，建议管理已创建的Worker并重复使用。
 - 创建Worker工程时，new worker.Worker构造函数和new worker.ThreadWorker构造函数不能同时使用，否则将导致工程中Worker的功能异常。自API version 9版本开始，建议使用[new worker.ThreadWorker](#constructor9)构造函数，在API version 8及之前的版本，建议使用[new worker.Worker](#constructordeprecated)构造函数。
+- 创建Worker工程时，在Worker线程的文件中（比如本文中worker.ts）不能导入任何有关构建UI的方法（比如ETS文件等），否则会导致Worker的功能失效。排查方式：解压生成的Hap包，在创建Worker线程的文件目录中找到"worker.js"，全局搜索"View"关键字。如果存在该关键字，说明在worker.js中打包进去了构建UI的方法，会导致Worker的功能失效，建议在创建Worker线程的文件中修改 "import “xxx” from src"中src的目录层级。
 
 ## 完整示例
 > **说明：**<br/>
@@ -1610,23 +2088,23 @@ workerInstance.onexit = function() {
 import worker from '@ohos.worker';
 
 // 创建worker线程中与主线程通信的对象
-const parentPort = worker.workerPort
+const workerPort = worker.workerPort
 
 // API version 9之前版本，创建worker线程中与主线程通信的对象
 // const parentPort = worker.parentPort
 
 // worker线程接收主线程信息
-parentPort.onmessage = function(e) {
+workerPort.onmessage = function(e) {
     // data：主线程发送的信息
     let data = e.data;
     console.log("worker.ts onmessage");
 
     // worker线程向主线程发送信息
-    parentPort.postMessage("123")
+    workerPort.postMessage("123")
 }
 
 // worker线程发生error的回调
-parentPort.onerror= function(e) {
+workerPort.onerror= function(e) {
     console.log("worker.ts onerror");
 }
 ```
@@ -1672,20 +2150,20 @@ workerInstance.onexit = function() {
 import worker from '@ohos.worker';
 
 // 创建worker线程中与主线程通信的对象
-const parentPort = worker.workerPort
+const workerPort = worker.workerPort
 
 // worker线程接收主线程信息
-parentPort.onmessage = function(e) {
+workerPort.onmessage = function(e) {
     // data：主线程发送的信息
     let data = e.data;
     console.log("worker.ts onmessage");
 
     // worker线程向主线程发送信息
-    parentPort.postMessage("123")
+    workerPort.postMessage("123")
 }
 
 // worker线程发生error的回调
-parentPort.onerror= function(e) {
+workerPort.onerror= function(e) {
     console.log("worker.ts onerror");
 }
 ```

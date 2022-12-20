@@ -71,7 +71,6 @@ Continuous task verification failed.
 2. 应用重复取消长时任务。
 3. bgMode无效，应用配置文件属性backgroundModes没有配置任何长时任务类型。
 4. 只有PC设备才能申请长时任务KEEPING_TASK。
-5. 只有系统应用才能申请长时任务WIFI_INTERACTION或VOIP。
 
 **处理步骤**
 
