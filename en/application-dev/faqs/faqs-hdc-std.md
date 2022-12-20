@@ -1,17 +1,14 @@
 # hdc_std Command Usage
 
-
-
-## What are the commands commonly used for log management?
+## Common Log Commands
 
 Applicable to: OpenHarmony SDK 3.2.2.5
 
-- Clearing logs: hdc_std shell hilog -r
+Clearing logs: hdc_std shell hilog -r
 
-- Increasing the buffer size to 20 MB: hdc_std shell hilog -G 20M
+Increasing the buffer size to 20 MB: hdc_std shell hilog -G 20M
 
-- Capturing logs: hdc_std shell hilog &gt; log.txt
-
+Capturing logs: hdc_std shell hilog &gt; log.txt
 
 ## What should I do to avoid log flow control?
 
@@ -27,29 +24,13 @@ Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
 After performing the preceding operations, restart the DevEco Studio.
 
-
-## Is HiLog or Console recommended for log printing? How do I set the domain if HiLog is used?
-
-Applicable to: OpenHarmony SDK 3.2.2.5
-
-[HiLog](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-hilog.md) is recommended for an application to print logs. For details about domain setting, see [Development Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-hilog.md#hilogisloggable).
-
-
-## What is the maximum length of a log record when HiLog is used? Is it configurable?
-
-Applicable to: OpenHarmony SDK 3.2.2.5
-
-The maximum length of a log record is 1,024 characters, and it is not changeable.
-
-
-## What should I do if a HAP package cannot be opened after being installed on the development board using the IDE?
+## What should I do if the HAP installed on the development board through the IDE cannot be opened?
 
 Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
 Check whether the SDK version is consistent with the system version on the development board. You are advised to use the SDK version and system version that are released on the same day.
 
-
-## How do I upload files using an hdc command?
+## How do I upload files using the hdc command?
 
 Applicable to: OpenHarmony SDK 3.2.2.5
 
@@ -61,9 +42,46 @@ Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
 Run the **hdc_std shell "power-shell setmode 602"** command.
 
-
-## How do I start an ability using an hdc command?
+## How do I start an ability using the hdc command?
 
 Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
-Run the **hdc_std shell aa start -a AbilityName -b bundleName -m moduleName** command.
+Run the **hdc\_std shell aa start -a AbilityName -b bundleName -m moduleName** command.
+
+## How do I change the read and write permissions on a file directory on the development board?
+
+Applicable to: OpenHarmony SDK 3.2.5.6, stage model of API version 9
+
+Run the **hdc\_std shell mount -o remount,rw /** command.
+
+## What should I do if the error message "Unknown file option -r" is displayed when hdc_std file recv is run?
+
+Applicable to: OpenHarmony SDK 3.2.5.6, stage model of API version 9
+
+1. Use the the hdc tool in the device image or SDK of the same version.
+
+2. Remove any Chinese characters or spaces from the directory specified for the hdc tool.
+
+## How do I uninstall an application using the hdc command?
+
+Applicable to: OpenHarmony SDK 3.2.2.5
+
+Run the **hdc\_std uninstall [-k] [package_name]** command.
+
+## How do I check whether the system is 32-bit or 64-bit?
+
+Applicable to: OpenHarmony SDK 3.2.5.5
+
+Run the **hdc\_std shell getconf LONG_BIT** command.
+
+If **64** is returned, the system is a 64-bit one. Otherwise, the system is a 32-bit one.
+
+## How do I view the component tree structure?
+
+Applicable to: OpenHarmony SDK 3.2.5.5
+
+1. Run the **hdc\_std shell** command to launch the CLI.
+
+2. Run the **aa dump -a** command to find **abilityID**.
+
+3. Run the **aa dump -i [abilityID] -c -render** command to view the component tree.
