@@ -45,9 +45,9 @@ import display from '@ohos.display';
 | rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。|
 | width | number | 是 | 否 | 显示设备的宽度，单位为像素。|
 | height | number | 是 | 否 | 显示设备的高度，单位为像素。|
-| densityDPI | number | 是 | 否 | 显示设备的屏幕密度，单位为DPI。|
-| densityPixels | number | 是 | 否 | 显示设备的屏幕密度，单位为像素。|
-| scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。|
+| densityDPI | number | 是 | 否 | 显示设备的屏幕密度，表示每英寸点数。一般取值160、480等。|
+| densityPixels | number | 是 | 否 | 显示设备的逻辑密度，是与像素单位无关的缩放系数。一般取值1、3等。|
+| scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。通常与densityPixels相同。|
 | xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值。 |
 | yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值。|
 
