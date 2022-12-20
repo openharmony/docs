@@ -1,10 +1,12 @@
-# Worker Startup
+# @ohos.worker
+
+The worker thread is an independent thread running in parallel with the main thread. The thread that creates the worker thread is referred to as the host thread. The URL file passed in during worker creation is executed in the worker thread. The worker thread can process time-consuming operations, but cannot directly operate the UI.
+
+With the **Worker** module, you can provide a multithreading environment for an application, so that the application can perform a time-consuming operation in a background thread. This greatly prevents a computing-intensive or high-latency task from blocking the running of the main thread. A **Worker** instance will not be proactively destroyed once it is created. It consumes resources to keep running. Therefore, you should call the API to terminate it in a timely manner.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-The worker thread is an independent thread running in parallel with the main thread. The thread that creates the worker thread is referred to as the host thread. The URL file passed in during worker creation is executed in the worker thread. The worker thread can process time-consuming operations, but cannot directly operate the UI.
 
 ## Modules to Import
 
@@ -17,10 +19,10 @@ import worker from '@ohos.worker';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name                             | Type                                                 | Readable| Writable| Description                                                        |
+| Name                             | Type                                                     | Readable| Writable| Description                                                        |
 | --------------------------------- | --------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)      | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.                        |
-| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscope) | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.<br>This attribute is deprecated since API version 9. You are advised to use **workerPort<sup>9+</sup>** instead.|
+| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscope) | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.<br>This attribute is supported since API version 7 and deprecated since API version 9.<br>You are advised to use **workerPort<sup>9+</sup>** instead.|
 
 
 ## WorkerOptions
@@ -31,7 +33,9 @@ Provides options that can be set for the **Worker** instance to create.
 
 | Name| Type| Readable| Writable| Description          |
 | ---- | -------- | ---- | ---- | -------------- |
+| type | "classic" \| "module" | Yes  | Yes  | Mode in which the **Worker** instance executes the script. The default value is **classic**. The module **type** is not supported yet.|
 | name | string   | Yes  | Yes  | Name of the worker thread.|
+| shared | boolean | Yes  | Yes  | Sharing of the **Worker** instance is not supported yet.|
 
 
 ## ThreadWorker<sup>9+</sup>
@@ -166,7 +170,7 @@ workerInstance.postMessage(buffer, [buffer]);
 
 on(type: string, listener: WorkerEventListener): void
 
-Adds an event listener for the worker thread.
+Adds an event listener for the worker thread. This API provides the same functionality as [addEventListener<sup>9+</sup>](#addeventlistener9).
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -216,7 +220,7 @@ workerInstance.once("alert", (e)=>{
 
 off(type: string, listener?: WorkerEventListener): void
 
-Removes an event listener for the worker thread.
+Removes an event listener for the worker thread. This API provides the same functionality as [removeEventListener<sup>9+</sup>](#removeeventlistener9).
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -231,6 +235,7 @@ Removes an event listener for the worker thread.
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
+// Use on, once, or addEventListener to add a listener for the "alert" event, and use off to remove the listener.
 workerInstance.off("alert");
 ```
 
@@ -263,7 +268,7 @@ Defines the event handler to be called when the worker thread exits. The handler
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| code   | number | No  | Code indicating the worker thread exit state.|
+| code   | number | Yes  | Code indicating the worker thread exit state.|
 
 **Example**
 
@@ -272,6 +277,13 @@ const workerInstance = new worker.ThreadWorker("workers/worker.js");
 workerInstance.onexit = function(e) {
     console.log("onexit");
 }
+
+// onexit is executed in either of the following ways:
+// Main thread:
+workerInstance.terminate();
+
+// Worker thread:
+//parentPort.close()
 ```
 
 
@@ -287,7 +299,7 @@ Defines the event handler to be called when an exception occurs during worker ex
 
 | Name| Type                     | Mandatory| Description      |
 | ------ | ------------------------- | ---- | ---------- |
-| err    | [ErrorEvent](#errorevent) | No  | Error data.|
+| err    | [ErrorEvent](#errorevent) | Yes  | Error data.|
 
 **Example**
 
@@ -301,7 +313,7 @@ workerInstance.onerror = function(e) {
 
 ### onmessage<sup>9+</sup>
 
-onmessage?: (event: MessageEvent\<T>) =&gt; void
+onmessage?: (event: MessageEvents) =&gt; void
 
 Defines the event handler to be called when the host thread receives a message sent by the worker thread through **parentPort.postMessage**. The event handler is executed in the host thread.
 
@@ -309,16 +321,16 @@ Defines the event handler to be called when the host thread receives a message s
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description                  |
-| ------ | ----------------------------- | ---- | ---------------------- |
-| event  | [MessageEvent](#messageevent) | No  | Message received.|
+| Name| Type                            | Mandatory| Description                  |
+| ------ | -------------------------------- | ---- | ---------------------- |
+| event  | [MessageEvents](#messageevents9) | Yes  | Message received.|
 
 **Example**
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
 workerInstance.onmessage = function(e) {
-    // e: MessageEvent<T>. The usage is as follows:
+    // e: MessageEvents. The usage is as follows:
     // let data = e.data;
     console.log("onmessage");
 }
@@ -327,7 +339,7 @@ workerInstance.onmessage = function(e) {
 
 ### onmessageerror<sup>9+</sup>
 
-onmessageerror?: (event: MessageEvent\<T>) =&gt; void
+onmessageerror?: (event: MessageEvents) =&gt; void
 
 Defines the event handler to be called when the worker thread receives a message that cannot be serialized. The event handler is executed in the host thread.
 
@@ -335,9 +347,9 @@ Defines the event handler to be called when the worker thread receives a message
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description      |
-| ------ | ----------------------------- | ---- | ---------- |
-| event  | [MessageEvent](#messageevent) | No  | Error data.|
+| Name| Type                            | Mandatory| Description      |
+| ------ | -------------------------------- | ---- | ---------- |
+| event  | [MessageEvents](#messageevents9) | Yes  | Error data.|
 
 **Example**
 
@@ -355,7 +367,7 @@ workerInstance.onmessageerror= function(e) {
 
 addEventListener(type: string, listener: WorkerEventListener): void
 
-Adds an event listener for the worker thread.
+Adds an event listener for the worker thread. This API provides the same functionality as [on<sup>9+</sup>](#on9).
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -380,7 +392,7 @@ workerInstance.addEventListener("alert", (e)=>{
 
 removeEventListener(type: string, callback?: WorkerEventListener): void
 
-Removes an event listener for the worker thread.
+Removes an event listener for the worker thread. This API provides the same functionality as [off<sup>9+</sup>](#off9).
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -395,6 +407,9 @@ Removes an event listener for the worker thread.
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
+workerInstance.addEventListener("alert", (e)=>{
+    console.log("alert listener callback");
+})
 workerInstance.removeEventListener("alert");
 ```
 
@@ -423,7 +438,41 @@ Dispatches the event defined for the worker thread.
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
-workerInstance.dispatchEvent({type:"alert"});
+// Usage 1:
+workerInstance.on("alert_on", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.once("alert_once", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.addEventListener("alert_add", (e)=>{
+    console.log("alert listener callback");
+})
+
+// The event listener created by once is removed after being executed once.
+workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});
+// The event listener created by on will be always valid and will not be proactively deleted.
+workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
+workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
+// The event listener created by addEventListener will be always valid and will not be proactively deleted.
+workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
+workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
+
+// Usage 2:
+// The event type can be customized, and the special types "message", "messageerror", and "error" exist.
+// When type = "message", the event handler defined by onmessage will also be executed.
+// When type = "messageerror", the event handler defined by onmessageerror will also be executed.
+// When type = "error", the event handler defined by onerror will also be executed.
+// removeEventListener or off can be used to remove an event listener that is created by addEventListener, on, or once.
+
+workerInstance.addEventListener("message", (e)=>{
+    console.log("message listener callback");
+})
+workerInstance.onmessage = function(e) {
+    console.log("onmessage : message listener callback");
+}
+// When dispatchEvent is called to distribute the "message" event, the callback passed in addEventListener and onmessage will be invoked.
+workerInstance.dispatchEvent({type:"message", timeStamp:0});
 ```
 
 
@@ -439,13 +488,16 @@ Removes all event listeners for the worker thread.
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
+workerInstance.addEventListener("alert", (e)=>{
+    console.log("alert listener callback");
+})
 workerInstance.removeAllListener();
 ```
 
 
 ## ThreadWorkerGlobalScope<sup>9+</sup>
 
-Implements communication between the worker thread and the host thread. The **postMessage** API is used to send messages to the host thread, and the **close** API is used to terminate the worker thread. The **DedicatedWorkerGlobalScope** class inherits from [GlobalScope<sup>9+</sup>](#globalscope9).
+Implements communication between the worker thread and the host thread. The **postMessage** API is used to send messages to the host thread, and the **close** API is used to terminate the worker thread. The **ThreadWorkerGlobalScope** class inherits from [GlobalScope<sup>9+</sup>](#globalscope9).
 
 
 ### postMessage<sup>9+</sup>
@@ -515,7 +567,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessage<sup>9+</sup>
 
-onmessage?: (event: MessageEvent\<T>) =&gt; void
+onmessage?: (this: ThreadWorkerGlobalScope, event: MessageEvents) =&gt; void
 
 Defines the event handler to be called when the worker thread receives a message sent by the host thread through **postMessage**. The event handler is executed in the worker thread.
 
@@ -523,9 +575,10 @@ Defines the event handler to be called when the worker thread receives a message
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description                    |
-| ------ | ----------------------------- | ---- | ------------------------ |
-| event  | [MessageEvent](#messageevent) | No  | Message received.|
+| Name| Type                                                | Mandatory| Description                    |
+| ------ | ---------------------------------------------------- | ---- | ------------------------ |
+| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | Yes  | Caller.        |
+| event  | [MessageEvents](#messageevents9)                     | Yes  | Message received.|
 
 **Example**
 
@@ -548,7 +601,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessageerror<sup>9+</sup>
 
-onmessageerror?: (event: MessageEvent\<T>) =&gt; void
+onmessageerror?: (this: ThreadWorkerGlobalScope, event: MessageEvents) =&gt; void
 
 Defines the event handler to be called when the worker thread receives a message that cannot be deserialized. The event handler is executed in the worker thread.
 
@@ -556,9 +609,10 @@ Defines the event handler to be called when the worker thread receives a message
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description      |
-| ------ | ----------------------------- | ---- | ---------- |
-| event  | [MessageEvent](#messageevent) | No  | Error data.|
+| Name| Type                            | Mandatory| Description      |
+| ------ | -------------------------------- | ---- | ---------- |
+| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | Yes  | Caller.        |
+| event  | [MessageEvents](#messageevents9) | Yes  | Error data.|
 
 **Example**
 
@@ -572,7 +626,7 @@ const workerInstance = new worker.ThreadWorker("workers/worker.js");
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.workerPort;
-parentPort.onmessageerror= function(e) {
+parentPort.onmessageerror = function(e) {
     console.log("worker.js onmessageerror")
 }
 ```
@@ -610,13 +664,13 @@ workerInstance.addEventListener("alert", (e)=>{
 
 ## GlobalScope<sup>9+</sup>
 
-Implements the running environment of the worker thread. The **WorkerGlobalScope** class inherits from [WorkerEventTarget](#workereventtarget9).
+Implements the running environment of the worker thread. The **GlobalScope** class inherits from [WorkerEventTarget](#workereventtarget9).
 
 ### Attributes
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type                                                    | Readable| Writable| Description                                 |
+| Name| Type                                                        | Readable| Writable| Description                                 |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | Yes  | No  | **Worker** instance specified when there is a new **Worker** instance.|
 | self | [GlobalScope](#globalscope9)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | Yes  | No  | **GlobalScope** itself.                    |
@@ -634,7 +688,7 @@ Defines the event handler to be called when an exception occurs during worker ex
 
 | Name| Type                     | Mandatory| Description      |
 | ------ | ------------------------- | ---- | ---------- |
-| ev     | [ErrorEvent](#errorevent) | No  | Error data.|
+| ev     | [ErrorEvent](#errorevent) | Yes  | Error data.|
 
 **Example**
 
@@ -653,21 +707,32 @@ parentPort.onerror = function(e){
 }
 ```
 
+## MessageEvents<sup>9+</sup>
+
+Holds the data transferred between worker threads.
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name| Type| Readable| Writable| Description              |
+| ---- | ---- | ---- | ---- | ------------------ |
+| data | any  | Yes  | No  | Data transferred between threads.|
 
 ## Worker<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorker<sup>9+</sup>](#threadworker9) instead.
 
 Before using the following APIs, you must create a **Worker** instance. The **Worker** class inherits from [EventTarget](#eventtarget).
 
-### constructor<sup>(deprecated)</sup>
 > **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorker.constructor<sup>9+</sup>](#constructor9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker<sup>9+</sup>](#threadworker9) instead.
+
+### constructor<sup>(deprecated)</sup>
 
 constructor(scriptURL: string, options?: WorkerOptions)
 
 A constructor used to create a **Worker** instance.
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.constructor<sup>9+</sup>](#constructor9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -753,12 +818,12 @@ In the stage model:
 ```
 ### postMessage<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorker.postMessage<sup>9+</sup>](#postmessage9) instead.
-
 postMessage(message: Object, options?: PostMessageOptions): void
 
 Sends a message to the worker thread. The data type of the message must be sequenceable. For details about the sequenceable data types, see [More Information](#more-information).
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.postMessage<sup>9+</sup>](#postmessage9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -783,12 +848,12 @@ workerInstance.postMessage(buffer, [buffer]);
 
 ### on<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorker.on<sup>9+</sup>](#on9) instead.
-
 on(type: string, listener: EventListener): void
 
-Adds an event listener for the worker thread.
+Adds an event listener for the worker thread. This API provides the same functionality as [addEventListener<sup>(deprecated)</sup>](#addeventlistenerdeprecated).
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.on<sup>9+</sup>](#on9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -811,12 +876,12 @@ workerInstance.on("alert", (e)=>{
 
 ### once<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorker.once<sup>9+</sup>](#once9) instead.
-
 once(type: string, listener: EventListener): void
 
 Adds an event listener for the worker thread and removes the event listener after it is invoked once.
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.once<sup>9+</sup>](#once9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -839,12 +904,12 @@ workerInstance.once("alert", (e)=>{
 
 ### off<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorker.off<sup>9+</sup>](#off9) instead.
-
 off(type: string, listener?: EventListener): void
 
-Removes an event listener for the worker thread.
+Removes an event listener for the worker thread. This API provides the same functionality as [removeEventListener<sup>(deprecated)</sup>](#removeeventlistenerdeprecated).
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.off<sup>9+</sup>](#off9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -859,18 +924,19 @@ Removes an event listener for the worker thread.
 
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
+// Use on, once, or addEventListener to add a listener for the "alert" event, and use off to remove the listener.
 workerInstance.off("alert");
 ```
 
 
 ### terminate<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorker.terminate<sup>9+</sup>](#terminate9) instead.
-
 terminate(): void
 
 Terminates the worker thread to stop it from receiving messages.
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.terminate<sup>9+</sup>](#terminate9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -884,12 +950,12 @@ workerInstance.terminate();
 
 ### onexit<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorker.onexit<sup>9+</sup>](#onexit9) instead.
-
 onexit?: (code: number) =&gt; void
 
 Defines the event handler to be called when the worker thread exits. The handler is executed in the host thread.
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.onexit<sup>9+</sup>](#onexit9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -897,7 +963,7 @@ Defines the event handler to be called when the worker thread exits. The handler
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| code   | number | No  | Code indicating the worker thread exit state.|
+| code   | number | Yes  | Code indicating the worker thread exit state.|
 
 **Example**
 
@@ -906,17 +972,24 @@ const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.onexit = function(e) {
     console.log("onexit");
 }
+
+// onexit is executed in either of the following ways:
+// Main thread:
+workerInstance.terminate();
+
+// Worker thread:
+//parentPort.close()
 ```
 
 
 ### onerror<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorker.onerror<sup>9+</sup>](#onerror9) instead.
-
 onerror?: (err: ErrorEvent) =&gt; void
 
 Defines the event handler to be called when an exception occurs during worker execution. The event handler is executed in the host thread.
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.onerror<sup>9+</sup>](#onerror9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -924,7 +997,7 @@ Defines the event handler to be called when an exception occurs during worker ex
 
 | Name| Type                     | Mandatory| Description      |
 | ------ | ------------------------- | ---- | ---------- |
-| err    | [ErrorEvent](#errorevent) | No  | Error data.|
+| err    | [ErrorEvent](#errorevent) | Yes  | Error data.|
 
 **Example**
 
@@ -938,27 +1011,27 @@ workerInstance.onerror = function(e) {
 
 ### onmessage<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorker.onmessage<sup>9+</sup>](#onmessage9) instead.
-
-onmessage?: (event: MessageEvent\<T>) =&gt; void
+onmessage?: (event: MessageEvent) =&gt; void
 
 Defines the event handler to be called when the host thread receives a message sent by the worker thread through **parentPort.postMessage**. The event handler is executed in the host thread.
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.onmessage<sup>9+</sup>](#onmessage9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description                  |
-| ------ | ----------------------------- | ---- | ---------------------- |
-| event  | [MessageEvent](#messageevent) | No  | Message received.|
+| Name| Type                          | Mandatory| Description                  |
+| ------ | ------------------------------ | ---- | ---------------------- |
+| event  | [MessageEvent](#messageeventt) | Yes  | Message received.|
 
 **Example**
 
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.onmessage = function(e) {
-    // e: MessageEvent<T>. The usage is as follows:
+    // e: MessageEvent. The usage is as follows:
     // let data = e.data;
     console.log("onmessage");
 }
@@ -967,20 +1040,20 @@ workerInstance.onmessage = function(e) {
 
 ### onmessageerror<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorker.onmessageerror<sup>9+</sup>](#onmessageerror9) instead.
-
-onmessageerror?: (event: MessageEvent\<T>) =&gt; void
+onmessageerror?: (event: MessageEvent) =&gt; void
 
 Defines the event handler to be called when the worker thread receives a message that cannot be serialized. The event handler is executed in the host thread.
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.onmessageerror<sup>9+</sup>](#onmessageerror9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description      |
-| ------ | ----------------------------- | ---- | ---------- |
-| event  | [MessageEvent](#messageevent) | No  | Error data.|
+| Name| Type                          | Mandatory| Description      |
+| ------ | ------------------------------ | ---- | ---------- |
+| event  | [MessageEvent](#messageeventt) | Yes  | Error data.|
 
 **Example**
 
@@ -994,16 +1067,16 @@ workerInstance.onmessageerror= function(e) {
 
 ## EventTarget<sup>(deprecated)</sup>
 > **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [WorkerEventTarget<sup>9+</sup>](#workereventtarget9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [WorkerEventTarget<sup>9+</sup>](#workereventtarget9) instead.
 
 ### addEventListener<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [addEventListener<sup>9+</sup>](#addeventlistener9) instead.
-
 addEventListener(type: string, listener: EventListener): void
 
-Adds an event listener for the worker thread.
+Adds an event listener for the worker thread. This API provides the same functionality as [on<sup>(deprecated)</sup>](#ondeprecated).
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [addEventListener<sup>9+</sup>](#addeventlistener9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1026,12 +1099,12 @@ workerInstance.addEventListener("alert", (e)=>{
 
 ### removeEventListener<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [removeEventListener<sup>9+</sup>](#removeeventlistener9) instead.
-
 removeEventListener(type: string, callback?: EventListener): void
 
-Removes an event listener for the worker thread.
+Removes an event listener for the worker thread. This API provides the same functionality as [off<sup>(deprecated)</sup>](#offdeprecated).
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [removeEventListener<sup>9+</sup>](#removeeventlistener9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1046,18 +1119,21 @@ Removes an event listener for the worker thread.
 
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.addEventListener("alert", (e)=>{
+    console.log("alert listener callback");
+})
 workerInstance.removeEventListener("alert");
 ```
 
 
 ### dispatchEvent<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [dispatchEvent<sup>9+</sup>](#dispatchevent9) instead.
-
 dispatchEvent(event: Event): boolean
 
 Dispatches the event defined for the worker thread.
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [dispatchEvent<sup>9+</sup>](#dispatchevent9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1077,18 +1153,51 @@ Dispatches the event defined for the worker thread.
 
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
-workerInstance.dispatchEvent({type:"alert"});
+
+// Usage 1:
+workerInstance.on("alert_on", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.once("alert_once", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.addEventListener("alert_add", (e)=>{
+    console.log("alert listener callback");
+})
+
+// The event listener created by once is removed after being executed once.
+workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});
+// The event listener created by on will not be proactively deleted.
+workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
+workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
+// The event listener created by addEventListener will not be proactively deleted.
+workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
+workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
+
+// Usage 2:
+// The event type can be customized, and the special types "message", "messageerror", and "error" exist.
+// When type = "message", the event handler defined by onmessage will also be executed.
+// When type = "messageerror", the event handler defined by onmessageerror will also be executed.
+// When type = "error", the event handler defined by onerror will also be executed.
+// removeEventListener or off can be used to remove an event listener that is created by addEventListener, on, or once.
+
+workerInstance.addEventListener("message", (e)=>{
+    console.log("message listener callback");
+})
+workerInstance.onmessage = function(e) {
+    console.log("onmessage : message listener callback");
+}
+// When dispatchEvent is called to distribute the "message" event, the callback passed in addEventListener and onmessage will be invoked.
+workerInstance.dispatchEvent({type:"message", timeStamp:0});
 ```
-
-
 ### removeAllListener<sup>(deprecated)</sup>
-
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [removeAllListener<sup>9+</sup>](#removealllistener9) instead.
 
 removeAllListener(): void
 
 Removes all event listeners for the worker thread.
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [removeAllListener<sup>9+</sup>](#removealllistener9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1096,26 +1205,28 @@ Removes all event listeners for the worker thread.
 
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.addEventListener("alert", (e)=>{
+    console.log("alert listener callback");
+})
 workerInstance.removeAllListener();
 ```
 
 
 ## DedicatedWorkerGlobalScope<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9) instead.
-
 Implements communication between the worker thread and the host thread. The **postMessage** API is used to send messages to the host thread, and the **close** API is used to terminate the worker thread. This class inherits from [WorkerGlobalScope](#workerglobalscope).
 
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9) instead.
 
 ### postMessage<sup>(deprecated)</sup>
-
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).postMessage<sup>9+</sup> instead.
 
 postMessage(messageObject: Object, options?: PostMessageOptions): void
 
 Sends a message to the host thread from the worker thread.
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).postMessage<sup>9+</sup> instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1151,12 +1262,12 @@ parentPort.onmessage = function(e){
 
 ### close<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).close<sup>9+</sup> instead.
-
 close(): void
 
 Terminates the worker thread to stop it from receiving messages.
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).close<sup>9+</sup> instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1179,20 +1290,21 @@ parentPort.onmessage = function(e) {
 
 ### onmessage<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).onmessage<sup>9+</sup> instead.
-
-onmessage?: (event: MessageEvent\<T>) =&gt; void
+onmessage?: (this: DedicatedWorkerGlobalScope, event: MessageEvent) =&gt; void
 
 Defines the event handler to be called when the worker thread receives a message sent by the host thread through **postMessage**. The event handler is executed in the worker thread.
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).onmessage<sup>9+</sup> instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description                    |
-| ------ | ----------------------------- | ---- | ------------------------ |
-| event  | [MessageEvent](#messageevent) | No  | Message received.|
+| Name| Type                                                        | Mandatory| Description                    |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------ |
+| this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.        |
+| event  | [MessageEvent](#messageeventt)                               | Yes  | Message received.|
 
 **Example**
 
@@ -1214,20 +1326,21 @@ parentPort.onmessage = function(e) {
 
 ### onmessageerror<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).onmessageerror<sup>9+</sup> instead.
-
-onmessageerror?: (event: MessageEvent\<T>) =&gt; void
+onmessageerror?: (this: DedicatedWorkerGlobalScope, event: MessageEvent) =&gt; void
 
 Defines the event handler to be called when the worker thread receives a message that cannot be deserialized. The event handler is executed in the worker thread.
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).onmessageerror<sup>9+</sup> instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description      |
-| ------ | ----------------------------- | ---- | ---------- |
-| event  | [MessageEvent](#messageevent) | No  | Error data.|
+| Name| Type                          | Mandatory| Description      |
+| ------ | ------------------------------ | ---- | ---------- |
+| this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.|
+| event  | [MessageEvent](#messageeventt) | Yes  | Error data.|
 
 **Example**
 
@@ -1240,7 +1353,7 @@ const workerInstance = new worker.Worker("workers/worker.js");
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
-parentPort.onmessageerror= function(e) {
+parentPort.onmessageerror = function(e) {
     console.log("worker.js onmessageerror")
 }
 ```
@@ -1252,7 +1365,7 @@ Specifies the object whose ownership needs to be transferred during data transfe
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name    | Type| Readable| Writable| Description                             |
+| Name    | Type    | Readable| Writable| Description                             |
 | -------- | -------- | ---- | ---- | --------------------------------- |
 | transfer | Object[] | Yes  | Yes  | **ArrayBuffer** array used to transfer the ownership.|
 
@@ -1263,20 +1376,20 @@ Defines the event.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name     | Type| Readable| Writable| Description                              |
-| --------- | -------- | ---- | ---- | ---------------------------------- |
-| type      | string   | Yes  | No  | Type of the event.                  |
-| timeStamp | number   | Yes  | No  | Timestamp (accurate to millisecond) when the event is created.|
+| Name     | Type  | Readable| Writable| Description                              |
+| --------- | ------ | ---- | ---- | ---------------------------------- |
+| type      | string | Yes  | No  | Type of the event.                  |
+| timeStamp | number | Yes  | No  | Timestamp (accurate to millisecond) when the event is created.|
 
 
 ## EventListener<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [WorkerEventListener<sup>9+</sup>](#workereventlistener9) instead.
-
 (evt: Event): void | Promise&lt;void&gt;
 
 Implements event listening.
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [WorkerEventListener<sup>9+</sup>](#workereventlistener9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1308,38 +1421,38 @@ Provides detailed information about the exception that occurs during worker exec
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name    | Type| Readable| Writable| Description                |
-| -------- | -------- | ---- | ---- | -------------------- |
-| message  | string   | Yes  | No  | Information about the exception.|
-| filename | string   | Yes  | No  | File where the exception is located.|
-| lineno   | number   | Yes  | No  | Serial number of the line where the exception is located.    |
-| colno    | number   | Yes  | No  | Serial number of the column where the exception is located.    |
-| error    | Object   | Yes  | No  | Type of the exception.          |
+| Name    | Type  | Readable| Writable| Description                |
+| -------- | ------ | ---- | ---- | -------------------- |
+| message  | string | Yes  | No  | Information about the exception.|
+| filename | string | Yes  | No  | File where the exception is located.|
+| lineno   | number | Yes  | No  | Serial number of the line where the exception is located.    |
+| colno    | number | Yes  | No  | Serial number of the column where the exception is located.    |
+| error    | Object | Yes  | No  | Type of the exception.          |
 
 
-## MessageEvent
+## MessageEvent\<T\>
 
 Holds the data transferred between worker threads.
 
 **System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description              |
-| ---- | -------- | ---- | ---- | ------------------ |
-| data | T        | Yes  | No  | Data transferred between threads.|
+| ---- | ---- | ---- | ---- | ------------------ |
+| data | T    | Yes  | No  | Data transferred between threads.|
 
 
 ## WorkerGlobalScope<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [GlobalScope<sup>9+</sup>](#globalscope9) instead.
-
 Implements the running environment of the worker thread. The **WorkerGlobalScope** class inherits from [EventTarget](#eventtarget).
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [GlobalScope<sup>9+</sup>](#globalscope9) instead.
 
 ### Attributes
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type                                                    | Readable| Writable| Description                                 |
+| Name| Type                                                        | Readable| Writable| Description                                 |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | Yes  | No  | **Worker** instance specified when there is a new **Worker** instance.|
 | self | [WorkerGlobalScope](#workerglobalscope)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | Yes  | No  | **WorkerGlobalScope**.              |
@@ -1347,12 +1460,12 @@ Implements the running environment of the worker thread. The **WorkerGlobalScope
 
 ### onerror<sup>(deprecated)</sup>
 
-> **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [GlobalScope<sup>9+</sup>](#globalscope9).onerror instead.
-
 onerror?: (ev: ErrorEvent) =&gt; void
 
 Defines the event handler to be called when an exception occurs during worker execution. The event handler is executed in the worker thread.
+
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [GlobalScope<sup>9+</sup>](#globalscope9).onerror instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1360,7 +1473,7 @@ Defines the event handler to be called when an exception occurs during worker ex
 
 | Name| Type                     | Mandatory| Description      |
 | ------ | ------------------------- | ---- | ---------- |
-| ev     | [ErrorEvent](#errorevent) | No  | Error data.|
+| ev     | [ErrorEvent](#errorevent) | Yes  | Error data.|
 
 **Example**
 
@@ -1402,7 +1515,7 @@ Exception: When an object created through a custom class is passed, no serializa
 ```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.Thread("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("workers/worker.js");
 workerInstance.postMessage("message from main to worker");
 workerInstance.onmessage = function(d) {
   // When the worker thread passes obj2, data contains obj2, excluding the Init or SetName method.
@@ -1414,12 +1527,9 @@ workerInstance.onmessage = function(d) {
 import worker from '@ohos.worker';
 const parentPort = worker.workerPort;
 class MyModel {
+    name = "undefined"
     Init() {
-        this.name = "wzy"
-        this.age = 18
-    }
-    SetName() {
-        this.name = "WZY"
+        this.name = "MyModel"
     }
 }
 parentPort.onmessage = function(d) {
@@ -1460,6 +1570,7 @@ Each actor concurrently processes tasks of the main thread. For each actor, ther
 - To proactively destroy a worker thread, you can call **terminate()** or **parentPort.close()** of the newly created **Worker** instance.
 - Since API version 9, if a **Worker** instance in a non-running state (such as destroyed or being destroyed) calls an API, a business error is thrown.
 - Creating and terminating worker threads consume performance. Therefore, you are advised to manage available workers and reuse them.
+- Do not use both **new worker.Worker** and **new worker.ThreadWorker** to create a **Worker** project. Otherwise, **Worker** functions abnormally. Since API version 9, you are advised to use [new worker.ThreadWorker](#constructor9). In API version 8 and earlier versions, you are advised to use [new worker.Worker](#constructordeprecated).
 
 ## Sample Code
 > **NOTE**<br>
@@ -1589,3 +1700,4 @@ Configuration of the **build-profile.json5** file:
     }
   }
 ```
+<!--no_check-->
