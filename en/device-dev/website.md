@@ -142,7 +142,7 @@
            - [Mutex](kernel/kernel-mini-basic-ipc-mutex.md)
            - [Queue](kernel/kernel-mini-basic-ipc-queue.md)
            - [Semaphore](kernel/kernel-mini-basic-ipc-sem.md)
-         - [Time Management](kernel/kernel-basic-mini-time.md)
+         - [Time Management](kernel/kernel-mini-basic-time.md)
          - [Software Timer](kernel/kernel-mini-basic-soft.md)
          - [Doubly Linked List](kernel/kernel-mini-basic-list.md)
        - Extended Components
