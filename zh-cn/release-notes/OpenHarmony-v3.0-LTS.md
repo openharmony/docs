@@ -127,7 +127,7 @@ repo forall -c 'git lfs pull'
 
 ### API变更
 
-API变更请参考：[JS API 差异报告](api-change/v3.0-LTS/js-apidiff-v3.0-lts.md)
+API变更请参考：[JS API 差异报告](api-diff/v3.0-LTS/js-apidiff-v3.0-lts.md)
 
 
 ### 芯片及开发板适配
