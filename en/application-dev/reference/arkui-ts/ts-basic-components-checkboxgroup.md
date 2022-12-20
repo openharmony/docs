@@ -110,4 +110,4 @@ struct CheckboxExample {
   }
 }
 ```
-![checkboxGroup](figures/checkboxGroup.gif)
+![checkboxgroup](figures/checkboxgroup.gif)

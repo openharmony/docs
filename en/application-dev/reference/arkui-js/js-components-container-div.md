@@ -30,9 +30,8 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 | flex-direction                 | string         | row          | No  | Main axis direction of the flex container, which defines how items are placed in the container. Available values are as follows:<br>- **column**: Items are placed vertically from top to bottom.<br>- **row**: Items are placed horizontally from left to right.|
 | flex-wrap                      | string         | nowrap       | No  | Whether items in the flex container are displayed in a single line or multiple lines. The value cannot be dynamically updated. Available values are as follows:<br>- **nowrap**: Flex items are displayed in a single line.<br>- **wrap**: Flex items are displayed in multiple lines.|
 | justify-content                | string         | flex-start   | No  | How items are aligned along the main axis of the flex container. Available values are as follows:<br>- **flex-start**: Items are packed toward the start edge of the container along the main axis.<br>- **flex-end**: Items are packed toward the end edge of the container along the main axis.<br>- **center**: Items are packed toward the center of the container along the main axis.<br>- **space-between**: Items are positioned with space between the rows.<br>- **space-around**: Items are positioned with space before, between, and after the rows.<br>- **space-evenly**<sup>5+</sup>: Items are distributed within the container along the main axis, with even space between each two.|
-| align-items                    | string         | stretch<br>| No  | How items are aligned along the cross axis of the flex container. Available values are as follows:<br>- **stretch**: Items are stretched to the same height or width as the container along the cross axis.<br>- **flex-start**: Items are packed toward the start edge of the cross axis.<br>- **flex-end**: Items are packed toward the end edge of the cross axis.<br>- **center**: Items are packed toward the center of the cross axis.<br>- **baseline**: In a vertical layout, items are aligned to the start of the cross axis, which means that this value is equivalent of **flex-start**. In a horizontal layout, items are aligned with the text baseline if there is text involved, and aligned to the bottom otherwise.|
+| align-items                    | string         | stretch<br>| No  | How items are aligned along the cross axis in a flex container. Available values are as follows:<br>- **stretch**: Items are stretched to the same height or width as the container along the cross axis.<br>- **flex-start**: Items are packed toward the start edge of the cross axis.<br>- **flex-end**: Items are packed toward the end edge of the cross axis.<br>- **center**: Items are packed toward the center of the cross axis.<br>- **baseline**: In a vertical layout, items are aligned to the start of the cross axis, which means that this value is equivalent of **flex-start**. In a horizontal layout, items are aligned with the text baseline if there is text involved, and aligned to the bottom otherwise.|
 | align-content                  | string         | flex-start   | No  | Multi-row alignment mode when there is extra space in the cross axis. Available values are as follows:<br>- **flex-start**: All rows are packed toward the start edge of the cross axis. The start edge of the cross axis of the first row is aligned with the start edge of the cross axis of the container. All subsequent rows are aligned with the previous row.<br>- **flex-end**: All rows are packed toward the end edge of the cross axis. The end of the cross axis of the last row is aligned with the end of the cross axis of the container. All subsequent rows are aligned with the previous row.<br>- **center**: All rows are packed toward the center of the cross axis. Rows are close to each other and aligned with the center of the container. The spacing between the start edge of the container's cross axis and the first row is equal to the spacing between the end edge of the container's cross axis and the last row.<br>- **space-between**: All rows are evenly distributed in the container. The spacing between two adjacent rows is the same. The start and end edges of the container's cross axis are aligned with the edges of the first and last rows, respectively.<br>- **space-around**: All rows are evenly distributed in the container. The spacing between two adjacent rows is the same. The spacing between the start edge of the container's cross axis and the first row and that between the end edge and the last row are half of the spacing between two adjacent rows.|
-| display                        | string         | flex         | No  | Type of the view box of the item. The value cannot be dynamically updated. Available values are as follows:<br>- **flex**: flexible layout<br>- **grid**: grid layout<br>- **none**: not rendered<br>- **inline-flex**<sup>9+</sup>: layout with the **flex** and **inline-block** effects.|
 | grid-template-[columns\|rows]  | string         | 1 row, 1 column      | No  | Number of rows and columns in the current grid layout. If this attribute is not set, one row and one column are displayed by default. This attribute is valid only when **display** is set to **grid**.<br>Below are some example values of **grid-template-columns**:<br>- **50px 100px 60px**: There are three columns. The first column is 50 px, the second column is 100 px, and the third column is 60 px.<br>- **1fr 1fr 2fr**: There are three columns, and the width allowed by the parent component is divided into four equal shares. The first column occupies one share, the second column occupies one share, and the third column occupies two shares.<br>- **30% 20% 50%**: There are three columns. The first column occupies 30% of the total width allowed by the parent component, the second column occupies 20%, and the third column occupies 50%.<br>- **repeat (2,100px)**: There are two columns. The first column is 100 px, and the second column is 100 px.<br>- **repeat(auto-fill,100px)**<sup>5+</sup>: Each column is 100 px and repeats to fill the cross axis. The number of columns is calculated based on the column size and the cross axis size.<br>- **auto 1fr 1fr**: There are three columns. The first column is adaptive to the width required by its child components. The remaining space is divided into two equal shares, one share occupied by each of the rest two columns.|
 | grid-[columns\|rows]-gap       | &lt;length&gt; | 0            | No  | Size of the gap between two consecutive rows or columns in a grid layout. You can also use **grid-gap** to set the same size of the gap between rows and columns. This attribute is valid only when **display** is set to **grid**.|
 | grid-row-[start\|end]          | number         | -            | No  | Start and end row numbers of the current item in the grid layout. This attribute is valid only when the item's parent component is a **\<div>** container whose **display** style is set to **grid**.|
@@ -46,6 +45,8 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 
 
 ## Events
+
+
 
 In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
 
@@ -246,26 +247,28 @@ In addition to the [universal methods](js-components-common-methods.md), the fol
    ```html
    <!-- xxx.hml -->
    <div class="container">
-     <div class="content" ondragstart="dragstart" ondrag="drag" ondragend="dragend" style="position: absolute;left: {{left}};top:{{top}};">
+     <div class="content" ondragstart="dragstart" ondrag="drag" ondragend="dragend" style="position: absolute;left: {{left}};top: {{top}};">
      </div>
    </div>
    ```
 
    ```css
-   /* xxx.css */
-   .container {
-     flex-direction: column;
-   }
-   .content{
-     width: 200px;
-     height: 200px;
-     background-color: red;
-   }
+    /* xxx.css */
+    .container {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    }
+    .content {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    }
    ```
 
    ```js
    // xxx.js
-   import prompt from '@system.prompt';
+   import promptAction from '@ohos.promptAction';
    export default {
      data:{
        left:0,
@@ -281,10 +284,10 @@ In addition to the [universal methods](js-components-common-methods.md), the fol
        this.top = e.globalY;
      },
      dragend(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'End Drag'
        })
-      },
+     }
    }
    ```
 
@@ -318,7 +321,7 @@ In addition to the [universal methods](js-components-common-methods.md), the fol
 
    ```js
    // xxx.js
-   import prompt from '@system.prompt';
+   import promptAction from '@ohos.promptAction';
    export default {
      data:{
        left:0,
@@ -329,22 +332,22 @@ In addition to the [universal methods](js-components-common-methods.md), the fol
        this.top = e.globalY;
      },
      dragenter(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'enter'
        })
      },
      dragover(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'over'
        })
      },
      dragleave(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'leave'
        })
      },
      drop(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'drop'
        })
      }
@@ -357,8 +360,8 @@ In addition to the [universal methods](js-components-common-methods.md), the fol
    ```html
    <!-- xxx.hml -->
    <div class="container">
-     <div class="content "onpinchstart="pinchstart" onpinchend="pinchend" onpinchupdate="pinchupdate"
-       onpinchcancel=" pinchcancel"> 
+     <div class="content" onpinchstart="pinchstart" onpinchend="pinchend" onpinchupdate="pinchupdate"
+       onpinchcancel="pinchcancel"> 
      </div>
    </div>
    ```
@@ -370,12 +373,13 @@ In addition to the [universal methods](js-components-common-methods.md), the fol
      justify-content: center;
      align-items: center;
      width: 454px;
-     height: 454px;}
-   .content{
+     height: 454px;
+   }
+   .content {
      width: 400px;
      height: 400px;
      background-color: aqua;
-     margin:30px
+     margin: 30px;
    }
    ```
 
