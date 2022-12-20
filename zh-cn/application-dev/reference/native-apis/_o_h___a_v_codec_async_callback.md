@@ -23,7 +23,7 @@ AVCodec所有的异步回调函数指针集合。注册一个该结构体实例�
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| **onError** | [OH_AVCodecOnError](_codec_base.md#ohavcodeconerror) | 
-| **onStreamChanged** | [OH_AVCodecOnStreamChanged](_codec_base.md#ohavcodeconstreamchanged) | 
-| **onNeedInputData** | [OH_AVCodecOnNeedInputData](_codec_base.md#ohavcodeconneedinputdata) | 
-| **onNeedOutputData** | [OH_AVCodecOnNewOutputData](_codec_base.md#ohavcodeconnewoutputdata) | 
+| **onError** | [OH_AVCodecOnError](_codec_base.md#oh_avcodeconerror) | 
+| **onStreamChanged** | [OH_AVCodecOnStreamChanged](_codec_base.md#oh_avcodeconstreamchanged) | 
+| **onNeedInputData** | [OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata) | 
+| **onNeedOutputData** | [OH_AVCodecOnNewOutputData](_codec_base.md#oh_avcodeconnewoutputdata) | 

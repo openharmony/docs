@@ -17,20 +17,20 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OnPlay](#onplay)&nbsp;()=0 | AVSession多媒体播放的抽象的回调方法。&nbsp; | 
-| [OnPause](#onpause)&nbsp;()=0 | AVSession多媒体播放暂停的抽象的回调方法。&nbsp; | 
-| [OnStop](#onstop)&nbsp;()=0 | AVSession多媒体播放停止的抽象的回调方法。&nbsp; | 
-| [OnPlayNext](#onplaynext)&nbsp;()=0 | AVSession播放下一首多媒体的抽象的回调方法。&nbsp; | 
-| [OnPlayPrevious](#onplayprevious)&nbsp;()=0 | AVSession播放上一首多媒体的抽象的回调方法。&nbsp; | 
-| [OnFastForward](#onfastforward)&nbsp;()=0 | AVSession快进播放多媒体的抽象的回调方法。&nbsp; | 
-| [OnRewind](#onrewind)&nbsp;()=0 | AVSession多媒体快退的抽象的回调方法。&nbsp; | 
-| [OnSeek](#onseek)&nbsp;(int64_t&nbsp;time)=0 | AVSession多媒体跳播操作的抽象的回调方法。&nbsp; | 
-| [OnSetSpeed](#onsetspeed)&nbsp;(double&nbsp;speed)=0 | AVSession设置多媒体倍速播放操作的抽象的回调方法。&nbsp; | 
-| [OnSetLoopMode](#onsetloopmode)&nbsp;(int32_t&nbsp;loopMode)=0 | AVSession设置多媒体循环播放模式的抽象的回调方法。&nbsp; | 
-| [OnToggleFavorite](#ontogglefavorite)&nbsp;(const&nbsp;std::string&nbsp;&amp;mediald)=0 | AVSession设置多媒体切换收藏操作的抽象的回调方法。&nbsp; | 
-| [OnMediaKeyEvent](#onmediakeyevent)&nbsp;(const&nbsp;MMI::KeyEvent&nbsp;&amp;keyEvent)=0 | AVSession多媒体按键事件处理的抽象的回调方法。&nbsp; | 
-| [OnOutputDeviceChange](#onoutputdevicechange)&nbsp;(const&nbsp;[OutputDeviceInfo](_o_h_o_s_1_1_a_v_session_1_1_output_device_info.md)&nbsp;&amp;outputDeviceInfo)=0 | 注册会话输出设备变更监听。&nbsp; | 
-| [~AVSessionCallback](#avsessioncallback)&nbsp;()=default | AVSessionCallback的默认的析构函数。&nbsp; | 
+| [OnPlay](#onplay) ()=0 | AVSession多媒体播放的抽象的回调方法。  | 
+| [OnPause](#onpause) ()=0 | AVSession多媒体播放暂停的抽象的回调方法。  | 
+| [OnStop](#onstop) ()=0 | AVSession多媒体播放停止的抽象的回调方法。  | 
+| [OnPlayNext](#onplaynext) ()=0 | AVSession播放下一首多媒体的抽象的回调方法。  | 
+| [OnPlayPrevious](#onplayprevious) ()=0 | AVSession播放上一首多媒体的抽象的回调方法。  | 
+| [OnFastForward](#onfastforward) ()=0 | AVSession快进播放多媒体的抽象的回调方法。  | 
+| [OnRewind](#onrewind) ()=0 | AVSession多媒体快退的抽象的回调方法。  | 
+| [OnSeek](#onseek) (int64_t time)=0 | AVSession多媒体跳播操作的抽象的回调方法。  | 
+| [OnSetSpeed](#onsetspeed) (double speed)=0 | AVSession设置多媒体倍速播放操作的抽象的回调方法。  | 
+| [OnSetLoopMode](#onsetloopmode) (int32_t loopMode)=0 | AVSession设置多媒体循环播放模式的抽象的回调方法。  | 
+| [OnToggleFavorite](#ontogglefavorite) (const std::string &amp;mediald)=0 | AVSession设置多媒体切换收藏操作的抽象的回调方法。  | 
+| [OnMediaKeyEvent](#onmediakeyevent) (const MMI::KeyEvent &amp;keyEvent)=0 | AVSession多媒体按键事件处理的抽象的回调方法。  | 
+| [OnOutputDeviceChange](#onoutputdevicechange) (const [OutputDeviceInfo](_o_h_o_s_1_1_a_v_session_1_1_output_device_info.md) &amp;outputDeviceInfo)=0 | 注册会话输出设备变更监听。  | 
+| [~AVSessionCallback](#avsessioncallback) ()=default | AVSessionCallback的默认的析构函数。  | 
 
 
 ## 构造及析构函数说明
@@ -72,7 +72,7 @@ AVSession多媒体按键事件处理的抽象的回调方法。
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件码，类型为**MMI::KeyEvent**。&nbsp; | 
+| keyEvent | 按键事件码，类型为**MMI::KeyEvent**。  | 
 
 
 ### OnOutputDeviceChange()
@@ -88,7 +88,7 @@ virtual void OHOS::AVSession::AVSessionCallback::OnOutputDeviceChange (const Out
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| outputDeviceInfo | 输出设备信息&nbsp;[OutputDeviceInfo](_o_h_o_s_1_1_a_v_session_1_1_output_device_info.md)。&nbsp; | 
+| outputDeviceInfo | 输出设备信息 [OutputDeviceInfo](_o_h_o_s_1_1_a_v_session_1_1_output_device_info.md)。  | 
 
 
 ### OnPause()
@@ -154,7 +154,7 @@ AVSession多媒体跳播操作的抽象的回调方法。
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| time | 媒体资源的位置，从媒体资源开头开始计算，单位为ms。取值需大于等于0。&nbsp; | 
+| time | 媒体资源的位置，从媒体资源开头开始计算，单位为ms。取值需大于等于0。  | 
 
 
 ### OnSetLoopMode()
@@ -170,7 +170,7 @@ AVSession设置多媒体循环播放模式的抽象的回调方法。
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| loopMode | 多媒体循环播放模式，&nbsp;范围在&nbsp;[AVPlaybackState#LOOP_MODE_SEQUENCE](_o_h_o_s_1_1_a_v_session_1_1_a_v_playback_state.md#a12c2de6b9e2d86a6d2fe5bec88f90abfa85feb6afb637e762bc97d938f74c5f08)到[AVPlaybackState#LOOP_MODE_SHUFFLE](_o_h_o_s_1_1_a_v_session_1_1_a_v_playback_state.md#a12c2de6b9e2d86a6d2fe5bec88f90abfaeaa9c517ca402e56c594c6b17d566203)之间。&nbsp; | 
+| loopMode | 多媒体循环播放模式， 范围在[AVPlaybackState](_o_h_o_s_1_1_a_v_session_1_1_a_v_playback_state.md)的**LOOP_MODE_SEQUENCE**到**LOOP_MODE_SHUFFLE**之间。  |
 
 
 ### OnSetSpeed()
@@ -186,7 +186,7 @@ AVSession设置多媒体倍速播放操作的抽象的回调方法。
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| speed | 多媒体播放的倍速值。&nbsp; | 
+| speed | 多媒体播放的倍速值。  | 
 
 
 ### OnStop()
@@ -212,4 +212,4 @@ AVSession设置多媒体切换收藏操作的抽象的回调方法。
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| mediald | 多媒体ID号标识。&nbsp; | 
+| mediald | 多媒体ID号标识。  | 

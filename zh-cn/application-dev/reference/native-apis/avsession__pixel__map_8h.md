@@ -28,7 +28,7 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OHOS::AVSession::DEFAULT_BUFFER_SIZE](#defaultbuffersize) = 160 \* 1024 | constexpr size_t<br/>初始化容器大小为160KB  | 
+| [OHOS::AVSession::DEFAULT_BUFFER_SIZE](#default_buffer_size) = 160 \* 1024 | constexpr size_t<br/>初始化容器大小为160KB  | 
 
 
 ## 变量说明

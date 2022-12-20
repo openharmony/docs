@@ -1154,7 +1154,6 @@
       - [@ohos.reminderAgent (后台代理提醒)](reference/apis/js-apis-reminderAgent.md)
       - [@ohos.systemParameter (系统属性)](reference/apis/js-apis-system-parameter.md)
       - [@ohos.usb (USB管理)](reference/apis/js-apis-usb-deprecated.md)
-      - [@ohos.workScheduler (延迟任务调度)](reference/apis/js-apis-workScheduler.md)
       - [@system.app (应用上下文)](reference/apis/js-apis-system-app.md)
       - [@system.battery (电量信息)](reference/apis/js-apis-system-battery.md)
       - [@system.bluetooth (蓝牙)](reference/apis/js-apis-system-bluetooth.md)

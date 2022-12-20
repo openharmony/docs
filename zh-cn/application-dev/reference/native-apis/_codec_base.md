@@ -36,26 +36,26 @@ CodecBase模块提供运行音视频编解码通用的结构体、字符常量�
 | -------- | -------- |
 | **OHNativeWindow** | typedef struct NativeWindow | 
 | **OH_AVCodec** | typedef struct OH_AVCodec | 
-| [OH_AVCodecBufferFlags](#ohavcodecbufferflags) | typedef enum [OH_AVCodecBufferFlags](#ohavcodecbufferflags)<br/>枚举OH_AVCodec的Buffer标记的类别。  | 
-| [OH_AVCodecBufferAttr](#ohavcodecbufferattr) | typedef struct [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)<br/>定义OH_AVCodec的Buffer描述信息。  | 
-| [OH_AVCodecOnError](#ohavcodeconerror)) (OH_AVCodec \*codec, int32_t errorCode, void \*userData) | typedef void(\*<br/>当OH_AVCodec实例运行发生错误时，该函数指针会被调用以报告具体错误信息。  | 
-| [OH_AVCodecOnStreamChanged](#ohavcodeconstreamchanged)) (OH_AVCodec \*codec, OH_AVFormat \*format, void \*userData) | typedef void(\*<br/>当输出流发生变化时，该函数指针会被调用以报告新的流描述信息。 需要注意的时，OH_AVFormat指针的生命周期仅维持在该函数指针被调用时上有效，禁止在调用结束后继续访问。  | 
-| [OH_AVCodecOnNeedInputData](#ohavcodeconneedinputdata)) (OH_AVCodec \*codec, uint32_t index, OH_AVMemory \*data, void \*userData) | typedef void(\*<br/>当AVCodec运行过程中需要新的输入数据时，该函数指针会被调用，并携带一块可用的Buffer以供填入新的输入数据。  | 
-| [OH_AVCodecOnNewOutputData](#ohavcodeconnewoutputdata)) (OH_AVCodec \*codec, uint32_t index, OH_AVMemory \*data, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr, void \*userData) | typedef void(\*<br/>当AVCodec运行过程中产生了新的输出数据时，该函数指针会被调用，并携带一块包含新输出数据的Buffer， 需要注意的是，OH_AVCodecBufferAttr指针的生命周期仅维持在该函数指针被调用时有效，禁止调用结束后继续访问。  | 
-| [OH_AVCodecAsyncCallback](#ohavcodecasynccallback) | typedef struct [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)<br/>AVCodec所有的异步回调函数指针集合。注册一个该结构体实例给OH_AVCodec实例，并处理通过该回调报告 的信息，以确保AVCodec正常运转。  | 
-| [OH_MediaType](#ohmediatype) | typedef enum [OH_MediaType](#ohmediatype)<br/>媒体类型。  | 
-| [OH_AVCProfile](#ohavcprofile) | typedef enum [OH_AVCProfile](#ohavcprofile)<br/>AVC Profile枚举。  | 
-| [OH_AACProfile](#ohaacprofile) | typedef enum [OH_AACProfile](#ohaacprofile)<br/>AAC Profile枚举。  | 
+| [OH_AVCodecBufferFlags](#oh_avcodecbufferflags) | typedef enum [OH_AVCodecBufferFlags](#oh_avcodecbufferflags)<br/>枚举OH_AVCodec的Buffer标记的类别。  | 
+| [OH_AVCodecBufferAttr](#oh_avcodecbufferattr) | typedef struct [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)<br/>定义OH_AVCodec的Buffer描述信息。  | 
+| [OH_AVCodecOnError](#oh_avcodeconerror)) (OH_AVCodec \*codec, int32_t errorCode, void \*userData) | typedef void(\*<br/>当OH_AVCodec实例运行发生错误时，该函数指针会被调用以报告具体错误信息。  | 
+| [OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)) (OH_AVCodec \*codec, OH_AVFormat \*format, void \*userData) | typedef void(\*<br/>当输出流发生变化时，该函数指针会被调用以报告新的流描述信息。 需要注意的时，OH_AVFormat指针的生命周期仅维持在该函数指针被调用时上有效，禁止在调用结束后继续访问。  | 
+| [OH_AVCodecOnNeedInputData](#oh_avcodeconneedinputdata)) (OH_AVCodec \*codec, uint32_t index, OH_AVMemory \*data, void \*userData) | typedef void(\*<br/>当AVCodec运行过程中需要新的输入数据时，该函数指针会被调用，并携带一块可用的Buffer以供填入新的输入数据。  | 
+| [OH_AVCodecOnNewOutputData](#oh_avcodeconnewoutputdata)) (OH_AVCodec \*codec, uint32_t index, OH_AVMemory \*data, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr, void \*userData) | typedef void(\*<br/>当AVCodec运行过程中产生了新的输出数据时，该函数指针会被调用，并携带一块包含新输出数据的Buffer， 需要注意的是，OH_AVCodecBufferAttr指针的生命周期仅维持在该函数指针被调用时有效，禁止调用结束后继续访问。  | 
+| [OH_AVCodecAsyncCallback](#oh_avcodecasynccallback) | typedef struct [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)<br/>AVCodec所有的异步回调函数指针集合。注册一个该结构体实例给OH_AVCodec实例，并处理通过该回调报告 的信息，以确保AVCodec正常运转。  | 
+| [OH_MediaType](#oh_mediatype) | typedef enum [OH_MediaType](#oh_mediatype)<br/>媒体类型。  | 
+| [OH_AVCProfile](#oh_avcprofile) | typedef enum [OH_AVCProfile](#oh_avcprofile)<br/>AVC Profile枚举。  | 
+| [OH_AACProfile](#oh_aacprofile) | typedef enum [OH_AACProfile](#oh_aacprofile)<br/>AAC Profile枚举。  | 
 
 
 ### 枚举
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVCodecBufferFlags](#ohavcodecbufferflags) {<br/>**AVCODEC_BUFFER_FLAGS_NONE** = 0, **AVCODEC_BUFFER_FLAGS_EOS** = 1 &lt;&lt; 0, **AVCODEC_BUFFER_FLAGS_SYNC_FRAME** = 1 &lt;&lt; 1, **AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME** = 1 &lt;&lt; 2, **AVCODEC_BUFFER_FLAGS_CODEC_DATA**= 1 &lt;&lt; 3<br/>} | 枚举OH_AVCodec的Buffer标记的类别。  |
-| [OH_MediaType](#ohmediatype) { **MEDIA_TYPE_AUD** = 0, **MEDIA_TYPE_VID** = 1 } | 媒体类型。  |
-| [OH_AVCProfile](#ohavcprofile) { **AVC_PROFILE_BASELINE** = 0, **AVC_PROFILE_HIGH** = 4, **AVC_PROFILE_MAIN** = 8 } | AVC Profile枚举。  | 
-| [OH_AACProfile](#ohaacprofile) { **AAC_PROFILE_LC** = 0 } | AAC Profile枚举。  | 
+| [OH_AVCodecBufferFlags](#oh_avcodecbufferflags) {<br/>**AVCODEC_BUFFER_FLAGS_NONE** = 0, **AVCODEC_BUFFER_FLAGS_EOS** = 1 &lt;&lt; 0, **AVCODEC_BUFFER_FLAGS_SYNC_FRAME** = 1 &lt;&lt; 1, **AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME** = 1 &lt;&lt; 2, **AVCODEC_BUFFER_FLAGS_CODEC_DATA**= 1 &lt;&lt; 3<br/>} | 枚举OH_AVCodec的Buffer标记的类别。  |
+| [OH_MediaType](#oh_mediatype) { **MEDIA_TYPE_AUD** = 0, **MEDIA_TYPE_VID** = 1 } | 媒体类型。  |
+| [OH_AVCProfile](#oh_avcprofile) { **AVC_PROFILE_BASELINE** = 0, **AVC_PROFILE_HIGH** = 4, **AVC_PROFILE_MAIN** = 8 } | AVC Profile枚举。  | 
+| [OH_AACProfile](#oh_aacprofile) { **AAC_PROFILE_LC** = 0 } | AAC Profile枚举。  | 
 
 
 ### 变量
@@ -65,31 +65,31 @@ CodecBase模块提供运行音视频编解码通用的结构体、字符常量�
 | [OH_AVCodecBufferAttr::pts](#pts) | int64_t<br/>以微秒为单位表示的该Buffer的Presentation时间戳  | 
 | [OH_AVCodecBufferAttr::size](#size) | int32_t<br/>以字节为单位表示的该Buffer内所包含数据的大小  | 
 | [OH_AVCodecBufferAttr::offset](#offset) | int32_t<br/>有效数据在该Buffer内的起始偏移量  | 
-| [OH_AVCodecBufferAttr::flags](#flags) | uint32_t<br/>该Buffer具有的标记，也是多个[OH_AVCodecBufferFlags](#ohavcodecbufferflags)的组合  | 
-| **OH_AVCodecAsyncCallback::onError** | [OH_AVCodecOnError](#ohavcodeconerror) | 
-| **OH_AVCodecAsyncCallback::onStreamChanged** | [OH_AVCodecOnStreamChanged](#ohavcodeconstreamchanged) | 
-| **OH_AVCodecAsyncCallback::onNeedInputData** | [OH_AVCodecOnNeedInputData](#ohavcodeconneedinputdata) | 
-| **OH_AVCodecAsyncCallback::onNeedOutputData** | [OH_AVCodecOnNewOutputData](#ohavcodeconnewoutputdata) | 
-| [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#ohavcodecmimetypevideoavc) | const char \*<br/>AVC视频编解码器的MIME类型。  | 
-| [OH_AVCODEC_MIMETYPE_AUDIO_AAC](#ohavcodecmimetypeaudioaac) | const char \*<br/>AAC音频编解码器的MIME类型。  | 
-| [OH_ED_KEY_TIME_STAMP](#ohedkeytimestamp) | const char \*<br/>提供统一的surface Buffer附属数据的字符描述符。  | 
-| [OH_ED_KEY_EOS](#ohedkeyeos) | const char \*<br/>surface附属数据中结束流的字符描述符，值类型为bool  | 
-| [OH_MD_KEY_TRACK_TYPE](#ohmdkeytracktype) | const char \*<br/>为媒体播放框架提供统一的字符描述符。  | 
-| [OH_MD_KEY_CODEC_MIME](#ohmdkeycodecmime) | const char \*<br/>mime类型的字符描述符，值类型为string  | 
-| [OH_MD_KEY_DURATION](#ohmdkeyduration) | const char \*<br/>duration的字符描述符，值类型为int64_t  | 
-| [OH_MD_KEY_BITRATE](#ohmdkeybitrate) | const char \*<br/>比特率的字符描述符，值类型为uint32_t  | 
-| [OH_MD_KEY_MAX_INPUT_SIZE](#ohmdkeymaxinputsize) | const char \*<br/>最大输入尺寸的字符描述符，值类型为uint32_t  | 
-| [OH_MD_KEY_WIDTH](#ohmdkeywidth) | const char \*<br/>视频宽度的字符描述符，值类型为uint32_t  | 
-| [OH_MD_KEY_HEIGHT](#ohmdkeyheight) | const char \*<br/>视频高度的字符描述符，值类型为uint32_t  | 
-| [OH_MD_KEY_PIXEL_FORMAT](#ohmdkeypixelformat) | const char \*<br/>视频像素格式的字符描述符，值类型为int32_t，具体见[OH_AVPixelFormat](_core.md#ohavpixelformat) | 
-| [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#ohmdkeyaudiosampleformat) | const char \*<br/>音频采样格式的字符描述符，值类型为uint32_t  | 
-| [OH_MD_KEY_FRAME_RATE](#ohmdkeyframerate) | const char \*<br/>视频帧率的字符描述符，值类型为double  | 
-| [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#ohmdkeyvideoencodebitratemode) | const char \*<br/>视频编码比特率模式的字符描述符，值类型为int32_t，具体见[OH_VideoEncodeBitrateMode](_video_encoder.md#ohvideoencodebitratemode) | 
-| [OH_MD_KEY_PROFILE](#ohmdkeyprofile) | const char \*<br/>音视频编码能力的字符描述符，值类型为int32_t，具体见[OH_AVCProfile](#ohavcprofile)或[OH_AACProfile](#ohaacprofile) | 
-| [OH_MD_KEY_AUD_CHANNEL_COUNT](#ohmdkeyaudchannelcount) | const char \*<br/>音频声道数的字符描述符，值类型为uint32_t  | 
-| [OH_MD_KEY_AUD_SAMPLE_RATE](#ohmdkeyaudsamplerate) | const char \*<br/>音频采样率的字符描述符，值类型为uint32_t  | 
-| [OH_MD_KEY_I_FRAME_INTERVAL](#ohmdkeyiframeinterval) | const char \*<br/>I帧间隔时长的字符描述符，值类型为int32_t，单位是毫秒  | 
-| [OH_MD_KEY_ROTATION](#ohmdkeyrotation) | const char \*<br/>surface旋转角度的字符描述符，值类型为int32_t，限于{0, 90, 180, 270}，默认值为0  | 
+| [OH_AVCodecBufferAttr::flags](#flags) | uint32_t<br/>该Buffer具有的标记，也是多个[OH_AVCodecBufferFlags](#oh_avcodecbufferflags)的组合  | 
+| **OH_AVCodecAsyncCallback::onError** | [OH_AVCodecOnError](#oh_avcodeconerror) | 
+| **OH_AVCodecAsyncCallback::onStreamChanged** | [OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged) | 
+| **OH_AVCodecAsyncCallback::onNeedInputData** | [OH_AVCodecOnNeedInputData](#oh_avcodeconneedinputdata) | 
+| **OH_AVCodecAsyncCallback::onNeedOutputData** | [OH_AVCodecOnNewOutputData](#oh_avcodeconnewoutputdata) | 
+| [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | const char \*<br/>AVC视频编解码器的MIME类型。  | 
+| [OH_AVCODEC_MIMETYPE_AUDIO_AAC](#oh_avcodec_mimetype_audio_aac) | const char \*<br/>AAC音频编解码器的MIME类型。  | 
+| [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp) | const char \*<br/>提供统一的surface Buffer附属数据的字符描述符。  | 
+| [OH_ED_KEY_EOS](#oh_ed_key_eos) | const char \*<br/>surface附属数据中结束流的字符描述符，值类型为bool  | 
+| [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type) | const char \*<br/>为媒体播放框架提供统一的字符描述符。  | 
+| [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime) | const char \*<br/>mime类型的字符描述符，值类型为string  | 
+| [OH_MD_KEY_DURATION](#oh_md_key_duration) | const char \*<br/>duration的字符描述符，值类型为int64_t  | 
+| [OH_MD_KEY_BITRATE](#oh_md_key_bitrate) | const char \*<br/>比特率的字符描述符，值类型为uint32_t  | 
+| [OH_MD_KEY_MAX_INPUT_SIZE](#oh_md_key_max_input_size) | const char \*<br/>最大输入尺寸的字符描述符，值类型为uint32_t  | 
+| [OH_MD_KEY_WIDTH](#oh_md_key_width) | const char \*<br/>视频宽度的字符描述符，值类型为uint32_t  | 
+| [OH_MD_KEY_HEIGHT](#oh_md_key_height) | const char \*<br/>视频高度的字符描述符，值类型为uint32_t  | 
+| [OH_MD_KEY_PIXEL_FORMAT](#oh_md_key_pixel_format) | const char \*<br/>视频像素格式的字符描述符，值类型为int32_t，具体见[OH_AVPixelFormat](_core.md#ohavpixelformat) | 
+| [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | const char \*<br/>音频采样格式的字符描述符，值类型为uint32_t  | 
+| [OH_MD_KEY_FRAME_RATE](#oh_md_key_frame_rate) | const char \*<br/>视频帧率的字符描述符，值类型为double  | 
+| [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | const char \*<br/>视频编码比特率模式的字符描述符，值类型为int32_t，具体见[OH_VideoEncodeBitrateMode](_video_encoder.md#ohvideoencodebitratemode) | 
+| [OH_MD_KEY_PROFILE](#oh_md_key_profile) | const char \*<br/>音视频编码能力的字符描述符，值类型为int32_t，具体见[OH_AVCProfile](#oh_avcprofile)或[OH_AACProfile](#oh_aacprofile) | 
+| [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count) | const char \*<br/>音频声道数的字符描述符，值类型为uint32_t  | 
+| [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate) | const char \*<br/>音频采样率的字符描述符，值类型为uint32_t  | 
+| [OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval) | const char \*<br/>I帧间隔时长的字符描述符，值类型为int32_t，单位是毫秒  | 
+| [OH_MD_KEY_ROTATION](#oh_md_key_rotation) | const char \*<br/>surface旋转角度的字符描述符，值类型为int32_t，限于{0, 90, 180, 270}，默认值为0  | 
 
 
 ## 类型定义说明
@@ -122,10 +122,10 @@ AVCodec所有的异步回调函数指针集合。注册一个该结构体实例�
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| onError | 监听AVCodec运行错误，参考[OH_AVCodecOnError](#ohavcodeconerror) | 
-| onStreamChanged | 监听编解码流信息，参考[OH_AVCodecOnStreamChanged](#ohavcodeconstreamchanged) | 
-| onNeedInputData | 监听编解码需要输入数据，参考[OH_AVCodecOnNeedInputData](#ohavcodeconneedinputdata) | 
-| onNeedInputData | 监听编解码产生输出数据，参考[OH_AVCodecOnNewOutputData](#ohavcodeconnewoutputdata) | 
+| onError | 监听AVCodec运行错误，参考[OH_AVCodecOnError](#oh_avcodeconerror) | 
+| onStreamChanged | 监听编解码流信息，参考[OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged) | 
+| onNeedInputData | 监听编解码需要输入数据，参考[OH_AVCodecOnNeedInputData](#oh_avcodeconneedinputdata) | 
+| onNeedInputData | 监听编解码产生输出数据，参考[OH_AVCodecOnNewOutputData](#oh_avcodeconnewoutputdata) | 
 
 
 ### OH_AVCodecBufferAttr
@@ -332,7 +332,7 @@ enum OH_MediaType
 uint32_t OH_AVCodecBufferAttr::flags
 ```
 **描述:**
-该Buffer具有的标记，也是多个[OH_AVCodecBufferFlags](#ohavcodecbufferflags)的组合
+该Buffer具有的标记，也是多个[OH_AVCodecBufferFlags](#oh_avcodecbufferflags)的组合
 
 
 ### offset
@@ -508,7 +508,7 @@ const char* OH_MD_KEY_PIXEL_FORMAT
 const char* OH_MD_KEY_PROFILE
 ```
 **描述:**
-音视频编码能力的字符描述符，值类型为int32_t，具体见[OH_AVCProfile](#ohavcprofile)或[OH_AACProfile](#ohaacprofile)
+音视频编码能力的字符描述符，值类型为int32_t，具体见[OH_AVCProfile](#oh_avcprofile)或[OH_AACProfile](#oh_aacprofile)
 
 
 ### OH_MD_KEY_ROTATION

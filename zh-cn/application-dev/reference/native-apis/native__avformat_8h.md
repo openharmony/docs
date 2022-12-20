@@ -29,7 +29,7 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVPixelFormat](_core.md#ohavpixelformat) {<br/>[AV_PIXEL_FORMAT_YUVI420](_core.md#ggab04647d11a5a280f7427f9478ae2890ea961a1167e79625d6e72193f4fbb1add7) = 1, [AV_PIXEL_FORMAT_NV12](_core.md#ggab04647d11a5a280f7427f9478ae2890eac65005d3e8437c615d4c4e051dfb4533) = 2, [AV_PIXEL_FORMAT_NV21](_core.md#ggab04647d11a5a280f7427f9478ae2890eab324169419f675fc7ab9a786a5588543) = 3, [AV_PIXEL_FORMAT_SURFACE_FORMAT](_core.md#ggab04647d11a5a280f7427f9478ae2890eabc2c11f0feacf52e43b323383f486608) = 4,<br/>[AV_PIXEL_FORMAT_RGBA](_core.md#ggab04647d11a5a280f7427f9478ae2890ea2c15b220da3b7e9043d41f6e789249f0) = 5<br/>} | AVPixel 格式的枚举。  | 
+| [OH_AVPixelFormat](_core.md#ohavpixelformat) {<br/> **AV_PIXEL_FORMAT_YUVI420** = 1,  **AV_PIXEL_FORMAT_NV12** = 2,  **AV_PIXEL_FORMAT_NV21** = 3,  **AV_PIXEL_FORMAT_SURFACE_FORMAT** = 4,  **AV_PIXEL_FORMAT_RGBA** = 5<br/>} | AVPixel 格式的枚举。  | 
 
 
 ### 函数
