@@ -93,3 +93,5 @@ AVSession的TOP会话发生变化的抽象的接口回调方法。
   | 名称 | 描述 | 
 | -------- | -------- |
 | descriptor | AVSession的会话描述对象，类型为[AVSessionDescriptor](o_h_o_s_1_1_a_v_session_1_1_a_v_session_descriptor.md)。&nbsp; | 
+
+<!--no_check-->
