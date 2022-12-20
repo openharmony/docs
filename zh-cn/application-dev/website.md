@@ -650,7 +650,7 @@
     - [枚举说明](reference/arkui-ts/ts-appendix-enums.md)
     - [类型说明](reference/arkui-ts/ts-types.md)
     - 已停止维护的组件
-      - [GridContainer(栅格)](reference/arkui-ts/ts-container-gridcontainer.md)
+      - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
   - 组件参考（兼容JS的类Web开发范式）
     - 组件通用信息
       - [通用属性](reference/arkui-js/js-components-common-attributes.md)
