@@ -21,4 +21,4 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OHOS::AVSession::AVControlCommand](_o_h_o_s_1_1_a_v_session_1_1_a_v_control_command.md) | class<br/>用于描述音视频播控命令工具类，播控命令的封装对象，支持设置和获取控制命令。&nbsp; | 
+| [OHOS::AVSession::AVControlCommand](_o_h_o_s_1_1_a_v_session_1_1_a_v_control_command.md) | class<br/>用于描述音视频播控命令工具类，播控命令的封装对象，支持设置和获取控制命令。  | 

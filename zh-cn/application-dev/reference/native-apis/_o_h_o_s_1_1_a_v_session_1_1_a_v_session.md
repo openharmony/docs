@@ -13,27 +13,27 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| {&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001473692273.xml#xref1866899108182348,link:zh-cn_topic_0000001473692273.xml#ac1c9f46a84c35e7cca9966a48d4cbd96a283e24b9b0054e34c8035bd11b61addf](#ac1c9f46a84c35e7cca9966a48d4cbd96a283e24b9b0054e34c8035bd11b61addf)&nbsp;=&nbsp;-1,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001473692273.xml#xref324891332182348,link:zh-cn_topic_0000001473692273.xml#ac1c9f46a84c35e7cca9966a48d4cbd96a10f702f1a7483e621c98c7b8ff4108f6](#ac1c9f46a84c35e7cca9966a48d4cbd96a10f702f1a7483e621c98c7b8ff4108f6)&nbsp;=&nbsp;0,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001473692273.xml#xref521456086182348,link:zh-cn_topic_0000001473692273.xml#ac1c9f46a84c35e7cca9966a48d4cbd96ab28acf8f76ffe654b5820e9db3f0e9bb](#ac1c9f46a84c35e7cca9966a48d4cbd96ab28acf8f76ffe654b5820e9db3f0e9bb)&nbsp;=&nbsp;1&nbsp;} | 会话类型的枚举。&nbsp; | 
+| { **SESSION_TYPE_INVALID** = -1, **SESSION_TYPE_AUDIO** = 0, **SESSION_TYPE_VIDEO** = 1 } | 会话类型的枚举。  | 
 
 
 ### Public 成员函数
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [GetSessionId](#getsessionid)&nbsp;()=0 | 获取会话的标识。&nbsp; | 
-| [GetAVMetaData](#getavmetadata)&nbsp;([AVMetaData](_o_h_o_s_1_1_a_v_session_1_1_a_v_meta_data.md)&nbsp;&amp;meta)=0 | 获取会话元数据。&nbsp; | 
-| [SetAVMetaData](#setavmetadata)&nbsp;(const&nbsp;[AVMetaData](_o_h_o_s_1_1_a_v_session_1_1_a_v_meta_data.md)&nbsp;&amp;meta)=0 | 设置会话元数据。&nbsp; | 
-| [GetAVPlaybackState](#getavplaybackstate)&nbsp;([AVPlaybackState](_o_h_o_s_1_1_a_v_session_1_1_a_v_playback_state.md)&nbsp;&amp;state)=0 | 获取音视频的播放状态。&nbsp; | 
-| [SetAVPlaybackState](#setavplaybackstate)&nbsp;(const&nbsp;[AVPlaybackState](_o_h_o_s_1_1_a_v_session_1_1_a_v_playback_state.md)&nbsp;&amp;state)=0 | 设置音视频的播放状态。&nbsp; | 
-| [SetLaunchAbility](#setlaunchability)&nbsp;(const&nbsp;AbilityRuntime::WantAgent::WantAgent&nbsp;&amp;ability)=0 | 设置一个WantAgent用于启动会话的Ability。&nbsp; | 
-| [GetController](#getcontroller)&nbsp;()=0 | 获取会话控制器。&nbsp; | 
-| [RegisterCallback](#registercallback)&nbsp;(const&nbsp;std::shared_ptr&lt;&nbsp;[AVSessionCallback](_o_h_o_s_1_1_a_v_session_1_1_a_v_session_callback.md)&nbsp;&gt;&nbsp;&amp;callback)=0 | 注册会话回调。&nbsp; | 
-| [Activate](#activate)&nbsp;()=0 | 激活会话。&nbsp; | 
-| [Deactivate](#deactivate)&nbsp;()=0 | 去激活会话。&nbsp; | 
-| [IsActive](#isactive)&nbsp;()=0 | 获取会话是否被激活。&nbsp; | 
-| [Destroy](#destroy)&nbsp;()=0 | 销毁会话。&nbsp; | 
-| [AddSupportCommand](#addsupportcommand)&nbsp;(const&nbsp;int32_t&nbsp;cmd)=0 | 添加支持的控制命令。&nbsp; | 
-| [DeleteSupportCommand](#deletesupportcommand)&nbsp;(const&nbsp;int32_t&nbsp;cmd)=0 | 删除支持的控制命令。&nbsp; | 
+| [GetSessionId](#getsessionid) ()=0 | 获取会话的标识。  | 
+| [GetAVMetaData](#getavmetadata) ([AVMetaData](_o_h_o_s_1_1_a_v_session_1_1_a_v_meta_data.md) &amp;meta)=0 | 获取会话元数据。  | 
+| [SetAVMetaData](#setavmetadata) (const [AVMetaData](_o_h_o_s_1_1_a_v_session_1_1_a_v_meta_data.md) &amp;meta)=0 | 设置会话元数据。  | 
+| [GetAVPlaybackState](#getavplaybackstate) ([AVPlaybackState](_o_h_o_s_1_1_a_v_session_1_1_a_v_playback_state.md) &amp;state)=0 | 获取音视频的播放状态。  | 
+| [SetAVPlaybackState](#setavplaybackstate) (const [AVPlaybackState](_o_h_o_s_1_1_a_v_session_1_1_a_v_playback_state.md) &amp;state)=0 | 设置音视频的播放状态。  | 
+| [SetLaunchAbility](#setlaunchability) (const AbilityRuntime::WantAgent::WantAgent &amp;ability)=0 | 设置一个WantAgent用于启动会话的Ability。  | 
+| [GetController](#getcontroller) ()=0 | 获取会话控制器。  | 
+| [RegisterCallback](#registercallback) (const std::shared_ptr&lt; [AVSessionCallback](_o_h_o_s_1_1_a_v_session_1_1_a_v_session_callback.md) &gt; &amp;callback)=0 | 注册会话回调。  | 
+| [Activate](#activate) ()=0 | 激活会话。  | 
+| [Deactivate](#deactivate) ()=0 | 去激活会话。  | 
+| [IsActive](#isactive) ()=0 | 获取会话是否被激活。  | 
+| [Destroy](#destroy) ()=0 | 销毁会话。  | 
+| [AddSupportCommand](#addsupportcommand) (const int32_t cmd)=0 | 添加支持的控制命令。  | 
+| [DeleteSupportCommand](#deletesupportcommand) (const int32_t cmd)=0 | 删除支持的控制命令。  | 
 
 
 ## 成员枚举类型说明
@@ -50,9 +50,9 @@ anonymous enum
 
   | 枚举值 | 描述 | 
 | -------- | -------- |
-| SESSION_TYPE_INVALID&nbsp; | 无效会话 | 
-| SESSION_TYPE_AUDIO&nbsp; | 音频会话 | 
-| SESSION_TYPE_VIDEO&nbsp; | 视频会话 | 
+| SESSION_TYPE_INVALID  | 无效会话 | 
+| SESSION_TYPE_AUDIO  | 音频会话 | 
+| SESSION_TYPE_VIDEO  | 视频会话 | 
 
 
 ## 成员函数说明
@@ -93,7 +93,7 @@ virtual int32_t OHOS::AVSession::AVSession::AddSupportCommand (const int32_t cmd
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| cmd | 待添加的控制命令，范围为**SESSION_CMD_INVALID**到**SESSION_CMD_MAX**。&nbsp; | 
+| cmd | 待添加的控制命令，范围为**SESSION_CMD_INVALID**到**SESSION_CMD_MAX**。  | 
 
 **返回:**
 
@@ -135,7 +135,7 @@ virtual int32_t OHOS::AVSession::AVSession::DeleteSupportCommand (const int32_t 
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| cmd | 待删除的控制命令，范围为**SESSION_CMD_INVALID**到**SESSION_CMD_MAX**。&nbsp; | 
+| cmd | 待删除的控制命令，范围为**SESSION_CMD_INVALID**到**SESSION_CMD_MAX**。  | 
 
 **返回:**
 
@@ -171,7 +171,7 @@ virtual int32_t OHOS::AVSession::AVSession::GetAVMetaData (AVMetaData & meta)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| meta | 用于保存会话的元数据[AVMetaData](_o_h_o_s_1_1_a_v_session_1_1_a_v_meta_data.md)对象。&nbsp; | 
+| meta | 用于保存会话的元数据[AVMetaData](_o_h_o_s_1_1_a_v_session_1_1_a_v_meta_data.md)对象。  | 
 
 **返回:**
 
@@ -195,7 +195,7 @@ virtual int32_t OHOS::AVSession::AVSession::GetAVPlaybackState (AVPlaybackState 
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| state | 用于保存播放状态的[AVPlaybackState](_o_h_o_s_1_1_a_v_session_1_1_a_v_playback_state.md)对象。&nbsp; | 
+| state | 用于保存播放状态的[AVPlaybackState](_o_h_o_s_1_1_a_v_session_1_1_a_v_playback_state.md)对象。  | 
 
 **返回:**
 
@@ -267,7 +267,7 @@ virtual int32_t OHOS::AVSession::AVSession::RegisterCallback (const std::shared_
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| callback | 用于注册会话回调的[AVSessionCallback](_o_h_o_s_1_1_a_v_session_1_1_a_v_session_callback.md)对象。&nbsp; | 
+| callback | 用于注册会话回调的[AVSessionCallback](_o_h_o_s_1_1_a_v_session_1_1_a_v_session_callback.md)对象。  | 
 
 **返回:**
 
@@ -287,7 +287,7 @@ virtual int32_t OHOS::AVSession::AVSession::SetAVMetaData (const AVMetaData & me
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| meta | 用于修改会话的元数据[AVMetaData](_o_h_o_s_1_1_a_v_session_1_1_a_v_meta_data.md)对象。&nbsp; | 
+| meta | 用于修改会话的元数据[AVMetaData](_o_h_o_s_1_1_a_v_session_1_1_a_v_meta_data.md)对象。  | 
 
 **返回:**
 
@@ -311,7 +311,7 @@ virtual int32_t OHOS::AVSession::AVSession::SetAVPlaybackState (const AVPlayback
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| state | 用于修改播放状态的[AVPlaybackState](_o_h_o_s_1_1_a_v_session_1_1_a_v_playback_state.md)对象。&nbsp; | 
+| state | 用于修改播放状态的[AVPlaybackState](_o_h_o_s_1_1_a_v_session_1_1_a_v_playback_state.md)对象。  | 
 
 **返回:**
 
@@ -335,7 +335,7 @@ virtual int32_t OHOS::AVSession::AVSession::SetLaunchAbility (const AbilityRunti
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| ability | 具体的应用对应的能力，类型为**AbilityRuntime::WantAgent::WantAgent**。&nbsp; | 
+| ability | 具体的应用对应的能力，类型为**AbilityRuntime::WantAgent::WantAgent**。  | 
 
 **返回:**
 

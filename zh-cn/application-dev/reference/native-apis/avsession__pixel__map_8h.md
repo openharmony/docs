@@ -21,14 +21,14 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OHOS::AVSession::AVSessionPixelMap](_o_h_o_s_1_1_a_v_session_1_1_a_v_session_pixel_map.md) | class<br/>读取、设置图片及图片信息。&nbsp; | 
+| [OHOS::AVSession::AVSessionPixelMap](_o_h_o_s_1_1_a_v_session_1_1_a_v_session_pixel_map.md) | class<br/>读取、设置图片及图片信息。  | 
 
 
 ### 变量
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OHOS::AVSession::DEFAULT_BUFFER_SIZE](#defaultbuffersize)&nbsp;=&nbsp;160&nbsp;\*&nbsp;1024 | constexpr&nbsp;size_t<br/>初始化容器大小为160KB&nbsp; | 
+| [OHOS::AVSession::DEFAULT_BUFFER_SIZE](#defaultbuffersize) = 160 \* 1024 | constexpr size_t<br/>初始化容器大小为160KB  | 
 
 
 ## 变量说明

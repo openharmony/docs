@@ -21,4 +21,4 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OHOS::AVSession::AVSession](_o_h_o_s_1_1_a_v_session_1_1_a_v_session.md) | class<br/>会话对象，支持配置会话属性，并可主动更新播放状态和会话元数据。&nbsp; | 
+| [OHOS::AVSession::AVSession](_o_h_o_s_1_1_a_v_session_1_1_a_v_session.md) | class<br/>会话对象，支持配置会话属性，并可主动更新播放状态和会话元数据。  | 

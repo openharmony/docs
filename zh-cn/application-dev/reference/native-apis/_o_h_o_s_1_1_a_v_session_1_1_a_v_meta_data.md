@@ -13,69 +13,69 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| {<br/>[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref2118602748182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28ae99d5364d7a646080ede50f15b3c2724](#a7a1596eae23e0cf8ab02d02de37dea28ae99d5364d7a646080ede50f15b3c2724)&nbsp;=&nbsp;0,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref1712783448182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28a189fb78288cd6a3afbd81a88ed721b26](#a7a1596eae23e0cf8ab02d02de37dea28a189fb78288cd6a3afbd81a88ed721b26)&nbsp;=&nbsp;1,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref195676889182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28a0d56221d2b6d0230a8441b569ec79423](#a7a1596eae23e0cf8ab02d02de37dea28a0d56221d2b6d0230a8441b569ec79423)&nbsp;=&nbsp;2,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref693195284182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28a0f71f86527ce21d97666c33cac459a29](#a7a1596eae23e0cf8ab02d02de37dea28a0f71f86527ce21d97666c33cac459a29)&nbsp;=&nbsp;3,<br/>[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref1603000664182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28af3b9104ec669ce3a252969fda137756e](#a7a1596eae23e0cf8ab02d02de37dea28af3b9104ec669ce3a252969fda137756e)&nbsp;=&nbsp;4,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref740488576182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28adb25084cc3ccdfc1c0ccd5202c010b88](#a7a1596eae23e0cf8ab02d02de37dea28adb25084cc3ccdfc1c0ccd5202c010b88)&nbsp;=&nbsp;5,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref377729915182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28a6ada4246477004d1f8c1c22805448f57](#a7a1596eae23e0cf8ab02d02de37dea28a6ada4246477004d1f8c1c22805448f57)&nbsp;=&nbsp;6,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref1579556667182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28a6c87155e22476332c3afca2e362b6499](#a7a1596eae23e0cf8ab02d02de37dea28a6c87155e22476332c3afca2e362b6499)&nbsp;=&nbsp;7,<br/>[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref952040068182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28a573988a41fdc15138125de9e699b4410](#a7a1596eae23e0cf8ab02d02de37dea28a573988a41fdc15138125de9e699b4410)&nbsp;=&nbsp;8,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref1699648636182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28ae73aa81af3bd31e8af78edae31d14f69](#a7a1596eae23e0cf8ab02d02de37dea28ae73aa81af3bd31e8af78edae31d14f69)&nbsp;=&nbsp;9,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref210405995182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28af1063b65c0120e1e14298f16f8f48eb8](#a7a1596eae23e0cf8ab02d02de37dea28af1063b65c0120e1e14298f16f8f48eb8)&nbsp;=&nbsp;10,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref1304520289182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28a87dff8b9a7fc5629047a6c49aa7ad075](#a7a1596eae23e0cf8ab02d02de37dea28a87dff8b9a7fc5629047a6c49aa7ad075)&nbsp;=&nbsp;11,<br/>[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref1353365541182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28a0e4b4d1fbe3f96f5875fc8a3db63665a](#a7a1596eae23e0cf8ab02d02de37dea28a0e4b4d1fbe3f96f5875fc8a3db63665a)&nbsp;=&nbsp;12,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref1860277742182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28a22d6767a149cadb9f8adfcc2e7e883e0](#a7a1596eae23e0cf8ab02d02de37dea28a22d6767a149cadb9f8adfcc2e7e883e0)&nbsp;=&nbsp;13,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref1487235666182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28a3e66bd6d568e6d563ab64385d96f7b33](#a7a1596eae23e0cf8ab02d02de37dea28a3e66bd6d568e6d563ab64385d96f7b33)&nbsp;=&nbsp;14,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref919001485182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28aa8b557fe3184b235c6b76cfdee285253](#a7a1596eae23e0cf8ab02d02de37dea28aa8b557fe3184b235c6b76cfdee285253)&nbsp;=&nbsp;15,<br/>[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref406831288182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28ad1907479ca45af05709d1b813cf1b59a](#a7a1596eae23e0cf8ab02d02de37dea28ad1907479ca45af05709d1b813cf1b59a)&nbsp;=&nbsp;16<br/>} | 会话元数据具体枚举项。&nbsp; | 
-| [MetaMaskType](#metamasktype)&nbsp;=&nbsp;std::bitset&lt;&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref871960788182348,link:zh-cn_topic_0000001423615938.xml#a7a1596eae23e0cf8ab02d02de37dea28ad1907479ca45af05709d1b813cf1b59a](#a7a1596eae23e0cf8ab02d02de37dea28ad1907479ca45af05709d1b813cf1b59a)&nbsp;&gt; | 引入掩码标记需要拷贝的会话元数据。&nbsp; | 
+| {<br/>**META_KEY_ASSET_ID** = 0, **META_KEY_TITLE** = 1, **META_KEY_ARTIST** = 2, **META_KEY_AUTHOR** = 3, **META_KEY_ALBUM** = 4, **META_KEY_WRITER** = 5, **META_KEY_COMPOSER** = 6, **META_KEY_DURATION** = 7, **META_KEY_MEDIA_IMAGE** = 8, **META_KEY_MEDIA_IMAGE_URI** = 9, **META_KEY_PUBLISH_DATE** = 10, **META_KEY_SUBTITLE** = 11, **META_KEY_DESCRIPTION** = 12, **META_KEY_LYRIC** = 13, **META_KEY_PREVIOUS_ASSET_ID** = 14, **META_KEY_NEXT_ASSET_ID** = 15, **META_KEY_MAX** = 16<br/>} | 会话元数据具体枚举项。  | 
+| [MetaMaskType](#metamasktype) = std::bitset&lt; META_KEY_MAX &gt; | 引入掩码标记需要拷贝的会话元数据。  | 
 
 
 ### Public 成员函数
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [AVMetaData](#avmetadata)&nbsp;()=default | 会话元数据默认构造函数。&nbsp; | 
-| [~AVMetaData](#avmetadata)&nbsp;()&nbsp;override | 会话元数据默认析构函数。&nbsp; | 
-| [Marshalling](#marshalling)&nbsp;(Parcel&nbsp;&amp;data)&nbsp;const&nbsp;override | 实现会话元数据进程间传递的序列化。&nbsp; | 
-| [SetAssetId](#setassetid)&nbsp;(const&nbsp;std::string&nbsp;&amp;assetId) | 设置曲目ID。&nbsp; | 
-| [GetAssetId](#getassetid)&nbsp;()&nbsp;const | 获取曲目ID。&nbsp; | 
-| [SetTitle](#settitle)&nbsp;(const&nbsp;std::string&nbsp;&amp;title) | 设置标题。&nbsp; | 
-| [GetTitle](#gettitle)&nbsp;()&nbsp;const | 获取标题。&nbsp; | 
-| [SetArtist](#setartist)&nbsp;(const&nbsp;std::string&nbsp;&amp;artist) | 设置艺术家名称。&nbsp; | 
-| [GetArtist](#getartist)&nbsp;()&nbsp;const | 获取艺术家名称。&nbsp; | 
-| [SetAuthor](#setauthor)&nbsp;(const&nbsp;std::string&nbsp;&amp;author) | 设置制作人名称。&nbsp; | 
-| [GetAuthor](#getauthor)&nbsp;()&nbsp;const | 获取制作人名称。&nbsp; | 
-| [SetAlbum](#setalbum)&nbsp;(const&nbsp;std::string&nbsp;&amp;album) | 设置专辑名称。&nbsp; | 
-| [GetAlbum](#getalbum)&nbsp;()&nbsp;const | 获取专辑名称。&nbsp; | 
-| [SetWriter](#setwriter)&nbsp;(const&nbsp;std::string&nbsp;&amp;writer) | 设置作词名称。&nbsp; | 
-| [GetWriter](#getwriter)&nbsp;()&nbsp;const | 获取作词名称。&nbsp; | 
-| [SetComposer](#setcomposer)&nbsp;(const&nbsp;std::string&nbsp;&amp;composer) | 设置作曲名称。&nbsp; | 
-| [GetComposer](#getcomposer)&nbsp;()&nbsp;const | 获取作曲名称。&nbsp; | 
-| [SetDuration](#setduration)&nbsp;(int64_t&nbsp;duration) | 设置媒体时长。&nbsp; | 
-| [GetDuration](#getduration)&nbsp;()&nbsp;const | 获取媒体时长。&nbsp; | 
-| [SetMediaImage](#setmediaimage)&nbsp;(const&nbsp;std::shared_ptr&lt;&nbsp;[AVSessionPixelMap](_o_h_o_s_1_1_a_v_session_1_1_a_v_session_pixel_map.md)&nbsp;&gt;&nbsp;&amp;mediaImage) | 设置媒体图片。&nbsp; | 
-| [GetMediaImage](#getmediaimage)&nbsp;()&nbsp;const | 获取媒体图片。&nbsp; | 
-| [SetMediaImageUri](#setmediaimageuri)&nbsp;(const&nbsp;std::string&nbsp;&amp;mediaImageUri) | 设置媒体图片URI。&nbsp; | 
-| [GetMediaImageUri](#getmediaimageuri)&nbsp;()&nbsp;const | 获取媒体图片URI。&nbsp; | 
-| [SetPublishDate](#setpublishdate)&nbsp;(double&nbsp;date) | 设置曲目发布日期，时间戳，单位为ms。&nbsp; | 
-| [GetPublishDate](#getpublishdate)&nbsp;()&nbsp;const | 获取曲目发布日期，时间戳，单位为ms。&nbsp; | 
-| [SetSubTitle](#setsubtitle)&nbsp;(const&nbsp;std::string&nbsp;&amp;subTitle) | 设置子标题。&nbsp; | 
-| [GetSubTitle](#getsubtitle)&nbsp;()&nbsp;const | 获取子标题。&nbsp; | 
-| [SetDescription](#setdescription)&nbsp;(const&nbsp;std::string&nbsp;&amp;description) | 设置曲目描述。&nbsp; | 
-| [GetDescription](#getdescription)&nbsp;()&nbsp;const | 获取曲目描述。&nbsp; | 
-| [SetLyric](#setlyric)&nbsp;(const&nbsp;std::string&nbsp;&amp;lyric) | 设置歌词。&nbsp; | 
-| [GetLyric](#getlyric)&nbsp;()&nbsp;const | 获取歌词。&nbsp; | 
-| [SetPreviousAssetId](#setpreviousassetid)&nbsp;(const&nbsp;std::string&nbsp;&amp;assetId) | 设置上一曲曲目ID。&nbsp; | 
-| [GetPreviousAssetId](#getpreviousassetid)&nbsp;()&nbsp;const | 获取上一曲曲目ID。&nbsp; | 
-| [SetNextAssetId](#setnextassetid)&nbsp;(const&nbsp;std::string&nbsp;&amp;assetId) | 设置下一曲曲目ID。&nbsp; | 
-| [GetNextAssetId](#getnextassetid)&nbsp;()&nbsp;const | 获取下一曲曲目ID。&nbsp; | 
-| [Reset](#reset)&nbsp;() | 重置所有会话元数据项。&nbsp; | 
-| [GetMetaMask](#getmetamask)&nbsp;()&nbsp;const | 获取掩码。&nbsp; | 
-| [CopyToByMask](#copytobymask)&nbsp;([MetaMaskType](#metamasktype)&nbsp;&amp;mask,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref2143206164182348,link:zh-cn_topic_0000001423615938.xml](zh-cn_topic_0000001423615938.xml)&nbsp;&amp;metaOut)&nbsp;const | 根据metadata掩码,将metadata项复制到metaOut。&nbsp; | 
-| [CopyFrom](#copyfrom)&nbsp;(const&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref1637590024182348,link:zh-cn_topic_0000001423615938.xml](zh-cn_topic_0000001423615938.xml)&nbsp;&amp;metaIn) | 根据metaIn元掩码的设置位从metaIn复制metadata项。&nbsp; | 
-| [IsValid](#isvalid)&nbsp;()&nbsp;const | 会话元数据有效性判断。&nbsp; | 
+| [AVMetaData](#avmetadata) ()=default | 会话元数据默认构造函数。  | 
+| [~AVMetaData](#avmetadata) () override | 会话元数据默认析构函数。  | 
+| [Marshalling](#marshalling) (Parcel &amp;data) const override | 实现会话元数据进程间传递的序列化。  | 
+| [SetAssetId](#setassetid) (const std::string &amp;assetId) | 设置曲目ID。  | 
+| [GetAssetId](#getassetid) () const | 获取曲目ID。  | 
+| [SetTitle](#settitle) (const std::string &amp;title) | 设置标题。  | 
+| [GetTitle](#gettitle) () const | 获取标题。  | 
+| [SetArtist](#setartist) (const std::string &amp;artist) | 设置艺术家名称。  | 
+| [GetArtist](#getartist) () const | 获取艺术家名称。  | 
+| [SetAuthor](#setauthor) (const std::string &amp;author) | 设置制作人名称。  | 
+| [GetAuthor](#getauthor) () const | 获取制作人名称。  | 
+| [SetAlbum](#setalbum) (const std::string &amp;album) | 设置专辑名称。  | 
+| [GetAlbum](#getalbum) () const | 获取专辑名称。  | 
+| [SetWriter](#setwriter) (const std::string &amp;writer) | 设置作词名称。  | 
+| [GetWriter](#getwriter) () const | 获取作词名称。  | 
+| [SetComposer](#setcomposer) (const std::string &amp;composer) | 设置作曲名称。  | 
+| [GetComposer](#getcomposer) () const | 获取作曲名称。  | 
+| [SetDuration](#setduration) (int64_t duration) | 设置媒体时长。  | 
+| [GetDuration](#getduration) () const | 获取媒体时长。  | 
+| [SetMediaImage](#setmediaimage) (const std::shared_ptr&lt; [AVSessionPixelMap](_o_h_o_s_1_1_a_v_session_1_1_a_v_session_pixel_map.md) &gt; &amp;mediaImage) | 设置媒体图片。  | 
+| [GetMediaImage](#getmediaimage) () const | 获取媒体图片。  | 
+| [SetMediaImageUri](#setmediaimageuri) (const std::string &amp;mediaImageUri) | 设置媒体图片URI。  | 
+| [GetMediaImageUri](#getmediaimageuri) () const | 获取媒体图片URI。  | 
+| [SetPublishDate](#setpublishdate) (double date) | 设置曲目发布日期，时间戳，单位为ms。  | 
+| [GetPublishDate](#getpublishdate) () const | 获取曲目发布日期，时间戳，单位为ms。  | 
+| [SetSubTitle](#setsubtitle) (const std::string &amp;subTitle) | 设置子标题。  | 
+| [GetSubTitle](#getsubtitle) () const | 获取子标题。  | 
+| [SetDescription](#setdescription) (const std::string &amp;description) | 设置曲目描述。  | 
+| [GetDescription](#getdescription) () const | 获取曲目描述。  | 
+| [SetLyric](#setlyric) (const std::string &amp;lyric) | 设置歌词。  | 
+| [GetLyric](#getlyric) () const | 获取歌词。  | 
+| [SetPreviousAssetId](#setpreviousassetid) (const std::string &amp;assetId) | 设置上一曲曲目ID。  | 
+| [GetPreviousAssetId](#getpreviousassetid) () const | 获取上一曲曲目ID。  | 
+| [SetNextAssetId](#setnextassetid) (const std::string &amp;assetId) | 设置下一曲曲目ID。  | 
+| [GetNextAssetId](#getnextassetid) () const | 获取下一曲曲目ID。  | 
+| [Reset](#reset) () | 重置所有会话元数据项。  | 
+| [GetMetaMask](#getmetamask) () const | 获取掩码。  | 
+| [CopyToByMask](#copytobymask) ([MetaMaskType](#metamasktype) &amp;mask, AVMetaData &amp;metaOut) const | 根据metadata掩码,将metadata项复制到metaOut。  | 
+| [CopyFrom](#copyfrom) (const AVMetaData &amp;metaIn) | 根据metaIn元掩码的设置位从metaIn复制metadata项。  | 
+| [IsValid](#isvalid) () const | 会话元数据有效性判断。  | 
 
 
 ### 静态 Public 成员函数
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [Unmarshalling](#unmarshalling)&nbsp;(Parcel&nbsp;&amp;data) | 实现会话元数据进程间传递的反序列化。&nbsp; | 
+| [Unmarshalling](#unmarshalling) (Parcel &amp;data) | 实现会话元数据进程间传递的反序列化。  | 
 
 
 ### 静态 Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [DURATION_ALWAYS_PLAY](#durationalwaysplay)&nbsp;=&nbsp;-1 | 持续时间全局变量宏定义。&nbsp; | 
-| [localCapability](#localcapability) | 会话元数据数组，用于分布式业务，设置会话属性。&nbsp; | 
+| [DURATION_ALWAYS_PLAY](#durationalwaysplay) = -1 | 持续时间全局变量宏定义。  | 
+| [localCapability](#localcapability) | 会话元数据数组，用于分布式业务，设置会话属性。  | 
 
 
 ## 成员类型定义说明
@@ -105,23 +105,23 @@ anonymous enum
 
   | 枚举值 | 描述 | 
 | -------- | -------- |
-| META_KEY_ASSET_ID&nbsp; | 曲目ID | 
-| META_KEY_TITLE&nbsp; | 标题 | 
-| META_KEY_ARTIST&nbsp; | 艺术家 | 
-| META_KEY_AUTHOR&nbsp; | 制作人 | 
-| META_KEY_ALBUM&nbsp; | 专辑 | 
-| META_KEY_WRITER&nbsp; | 作词 | 
-| META_KEY_COMPOSER&nbsp; | 作曲 | 
-| META_KEY_DURATION&nbsp; | 媒体时长 | 
-| META_KEY_MEDIA_IMAGE&nbsp; | 媒体影像 | 
-| META_KEY_MEDIA_IMAGE_URI&nbsp; | 媒体影像路径 | 
-| META_KEY_PUBLISH_DATE&nbsp; | 曲目发布日期 | 
-| META_KEY_SUBTITLE&nbsp; | 子标题 | 
-| META_KEY_DESCRIPTION&nbsp; | 曲目描述 | 
-| META_KEY_LYRIC&nbsp; | 歌词 | 
-| META_KEY_PREVIOUS_ASSET_ID&nbsp; | 上一曲 | 
-| META_KEY_NEXT_ASSET_ID&nbsp; | 下一曲 | 
-| META_KEY_MAX&nbsp; | 无效指令，内部用来判断会话元数据是否有效 | 
+| META_KEY_ASSET_ID  | 曲目ID | 
+| META_KEY_TITLE  | 标题 | 
+| META_KEY_ARTIST  | 艺术家 | 
+| META_KEY_AUTHOR  | 制作人 | 
+| META_KEY_ALBUM  | 专辑 | 
+| META_KEY_WRITER  | 作词 | 
+| META_KEY_COMPOSER  | 作曲 | 
+| META_KEY_DURATION  | 媒体时长 | 
+| META_KEY_MEDIA_IMAGE  | 媒体影像 | 
+| META_KEY_MEDIA_IMAGE_URI  | 媒体影像路径 | 
+| META_KEY_PUBLISH_DATE  | 曲目发布日期 | 
+| META_KEY_SUBTITLE  | 子标题 | 
+| META_KEY_DESCRIPTION  | 曲目描述 | 
+| META_KEY_LYRIC  | 歌词 | 
+| META_KEY_PREVIOUS_ASSET_ID  | 上一曲 | 
+| META_KEY_NEXT_ASSET_ID  | 下一曲 | 
+| META_KEY_MAX  | 无效指令，内部用来判断会话元数据是否有效 | 
 
 
 ## 构造及析构函数说明
@@ -163,7 +163,7 @@ bool OHOS::AVSession::AVMetaData::CopyFrom (const AVMetaData & metaIn)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| metaIn：会话元数据将要拷贝的入参{ |  | 
+| metaIn | 会话元数据将要拷贝的入参。| 
 
 
 ### CopyToByMask()
@@ -179,8 +179,8 @@ bool OHOS::AVSession::AVMetaData::CopyToByMask (MetaMaskType & mask, AVMetaData 
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| mask | metadata掩码[MetaMaskType](#metamasktype)。&nbsp; | 
-| metaOut | metadata已拷贝成功的出参[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001423615938.xml#xref2069636235182348,link:zh-cn_topic_0000001423615938.xml](zh-cn_topic_0000001423615938.xml)。&nbsp; | 
+| mask | metadata掩码[MetaMaskType](#metamasktype)。  | 
+| metaOut | metadata已拷贝成功的出参AVMetaData。  | 
 
 **返回:**
 
@@ -516,7 +516,7 @@ bool OHOS::AVSession::AVMetaData::Marshalling (Parcel & data) const
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| data | 保存序列化值的对象**Parcel**。&nbsp; | 
+| data | 保存序列化值的对象**Parcel**。  | 
 
 **返回:**
 
@@ -550,7 +550,7 @@ void OHOS::AVSession::AVMetaData::SetAlbum (const std::string & album)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| album | 专辑名称。&nbsp; | 
+| album | 专辑名称。  | 
 
 **参见:**
 
@@ -570,7 +570,7 @@ void OHOS::AVSession::AVMetaData::SetArtist (const std::string & artist)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| artist | 艺术家名称。&nbsp; | 
+| artist | 艺术家名称。  | 
 
 **参见:**
 
@@ -590,7 +590,7 @@ void OHOS::AVSession::AVMetaData::SetAssetId (const std::string & assetId)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| assetId | 曲目ID,不可为空。&nbsp; | 
+| assetId | 曲目ID,不可为空。  | 
 
 **参见:**
 
@@ -610,7 +610,7 @@ void OHOS::AVSession::AVMetaData::SetAuthor (const std::string & author)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| author | 制作人名称。&nbsp; | 
+| author | 制作人名称。  | 
 
 **参见:**
 
@@ -630,7 +630,7 @@ void OHOS::AVSession::AVMetaData::SetComposer (const std::string & composer)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| composer | 作曲名称。&nbsp; | 
+| composer | 作曲名称。  | 
 
 **参见:**
 
@@ -650,7 +650,7 @@ void OHOS::AVSession::AVMetaData::SetDescription (const std::string & descriptio
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| description | 曲目描述。&nbsp; | 
+| description | 曲目描述。  | 
 
 **参见:**
 
@@ -670,7 +670,7 @@ void OHOS::AVSession::AVMetaData::SetDuration (int64_t duration)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| duration | 媒体时长，必须大于等于-1，单位为ms&nbsp;。&nbsp; | 
+| duration | 媒体时长，必须大于等于-1，单位为ms 。  | 
 
 **参见:**
 
@@ -690,7 +690,7 @@ void OHOS::AVSession::AVMetaData::SetLyric (const std::string & lyric)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| lyric | 歌词。&nbsp; | 
+| lyric | 歌词。  | 
 
 **参见:**
 
@@ -710,7 +710,7 @@ void OHOS::AVSession::AVMetaData::SetMediaImage (const std::shared_ptr< AVSessio
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| mediaImage | 媒体图片[AVSessionPixelMap](_o_h_o_s_1_1_a_v_session_1_1_a_v_session_pixel_map.md)。&nbsp; | 
+| mediaImage | 媒体图片[AVSessionPixelMap](_o_h_o_s_1_1_a_v_session_1_1_a_v_session_pixel_map.md)。  | 
 
 **参见:**
 
@@ -730,7 +730,7 @@ void OHOS::AVSession::AVMetaData::SetMediaImageUri (const std::string & mediaIma
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| mediaImageUri | 媒体图片URI。&nbsp; | 
+| mediaImageUri | 媒体图片URI。  | 
 
 **参见:**
 
@@ -750,7 +750,7 @@ void OHOS::AVSession::AVMetaData::SetNextAssetId (const std::string & assetId)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| assetId | 下一曲曲目ID。&nbsp; | 
+| assetId | 下一曲曲目ID。  | 
 
 **参见:**
 
@@ -770,7 +770,7 @@ void OHOS::AVSession::AVMetaData::SetPreviousAssetId (const std::string & assetI
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| assetId | 上一曲曲目ID。&nbsp; | 
+| assetId | 上一曲曲目ID。  | 
 
 **参见:**
 
@@ -790,7 +790,7 @@ void OHOS::AVSession::AVMetaData::SetPublishDate (double date)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| date | 曲目发布日期，时间戳，单位为ms。&nbsp; | 
+| date | 曲目发布日期，时间戳，单位为ms。  | 
 
 **参见:**
 
@@ -810,7 +810,7 @@ void OHOS::AVSession::AVMetaData::SetSubTitle (const std::string & subTitle)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| subTitle | 子标题。&nbsp; | 
+| subTitle | 子标题。  | 
 
 **参见:**
 
@@ -830,7 +830,7 @@ void OHOS::AVSession::AVMetaData::SetTitle (const std::string & title)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| title | 标题。&nbsp; | 
+| title | 标题。  | 
 
 **参见:**
 
@@ -850,7 +850,7 @@ void OHOS::AVSession::AVMetaData::SetWriter (const std::string & writer)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| writer | 作词名称。&nbsp; | 
+| writer | 作词名称。  | 
 
 **参见:**
 
@@ -870,7 +870,7 @@ static AVMetaData* OHOS::AVSession::AVMetaData::Unmarshalling (Parcel & data)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| data | 序列化对象**Parcel**。&nbsp; | 
+| data | 序列化对象**Parcel**。  | 
 
 **返回:**
 

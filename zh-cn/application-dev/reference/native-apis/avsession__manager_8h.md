@@ -21,4 +21,4 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OHOS::AVSession::AVSessionManager](_o_h_o_s_1_1_a_v_session_1_1_a_v_session_manager.md) | class<br/>实现会话管理器对外接口功能的类的实现。&nbsp; | 
+| [OHOS::AVSession::AVSessionManager](_o_h_o_s_1_1_a_v_session_1_1_a_v_session_manager.md) | class<br/>实现会话管理器对外接口功能的类的实现。  | 

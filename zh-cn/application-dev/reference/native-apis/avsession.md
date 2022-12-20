@@ -50,41 +50,41 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OHOS::AVSession::AVSessionDescriptor::WriteToParcel](#writetoparcel)&nbsp;(Parcel&nbsp;&amp;out)&nbsp;const | bool<br/>将会话相关描述信息写进包里。 | 
-| [OHOS::AVSession::AVSessionDescriptor::ReadFromParcel](#readfromparcel)&nbsp;(Parcel&nbsp;&amp;in) | bool<br/>对会话相关描述信息进行解包。 | 
+| [OHOS::AVSession::AVSessionDescriptor::WriteToParcel](#writetoparcel) (Parcel &amp;out) const | bool<br/>将会话相关描述信息写进包里。 | 
+| [OHOS::AVSession::AVSessionDescriptor::ReadFromParcel](#readfromparcel) (Parcel &amp;in) | bool<br/>对会话相关描述信息进行解包。 | 
 
 
 ### 变量
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OHOS::AVSession::OutputDeviceInfo::isRemote_](#isremote)&nbsp;{} | bool<br/>是否连接 | 
-| [OHOS::AVSession::OutputDeviceInfo::deviceIds_](#deviceids) | std::vector&lt;&nbsp;std::string&nbsp;&gt;<br/>分布式设备的id集合 | 
-| [OHOS::AVSession::OutputDeviceInfo::deviceNames_](#devicenames) | std::vector&lt;&nbsp;std::string&nbsp;&gt;<br/>分布式设备的名称集合 | 
+| [OHOS::AVSession::OutputDeviceInfo::isRemote_](#isremote) {} | bool<br/>是否连接 | 
+| [OHOS::AVSession::OutputDeviceInfo::deviceIds_](#deviceids) | std::vector&lt; std::string &gt;<br/>分布式设备的id集合 | 
+| [OHOS::AVSession::OutputDeviceInfo::deviceNames_](#devicenames) | std::vector&lt; std::string &gt;<br/>分布式设备的名称集合 | 
 | [OHOS::AVSession::AVSessionDescriptor::sessionId_](#sessionid) | std::string<br/>会话的id | 
-| [OHOS::AVSession::AVSessionDescriptor::sessionType_](#sessiontype)&nbsp;{} | int32_t<br/>会话的类型 | 
+| [OHOS::AVSession::AVSessionDescriptor::sessionType_](#sessiontype) {} | int32_t<br/>会话的类型 | 
 | [OHOS::AVSession::AVSessionDescriptor::sessionTag_](#sessiontag) | std::string<br/>会话的自定义名称 | 
 | [OHOS::AVSession::AVSessionDescriptor::elementName_](#elementname) | AppExecFwk::ElementName<br/>会话所属应用的信息包含bundleName，abilityName等 | 
-| [OHOS::AVSession::AVSessionDescriptor::pid_](#pid)&nbsp;{} | pid_t<br/>进程id | 
-| [OHOS::AVSession::AVSessionDescriptor::uid_](#uid)&nbsp;{} | pid_t<br/>用户id | 
-| [OHOS::AVSession::AVSessionDescriptor::isActive_](#isactive)&nbsp;{} | bool<br/>会话是否为激活状态 | 
-| [OHOS::AVSession::AVSessionDescriptor::isTopSession_](#istopsession)&nbsp;{} | bool<br/>会话是否是最新的会话 | 
-| [OHOS::AVSession::AVSessionDescriptor::isThirdPartyApp_](#isthirdpartyapp)&nbsp;{} | bool<br/>是否是第三方应用 | 
+| [OHOS::AVSession::AVSessionDescriptor::pid_](#pid) {} | pid_t<br/>进程id | 
+| [OHOS::AVSession::AVSessionDescriptor::uid_](#uid) {} | pid_t<br/>用户id | 
+| [OHOS::AVSession::AVSessionDescriptor::isActive_](#isactive) {} | bool<br/>会话是否为激活状态 | 
+| [OHOS::AVSession::AVSessionDescriptor::isTopSession_](#istopsession) {} | bool<br/>会话是否是最新的会话 | 
+| [OHOS::AVSession::AVSessionDescriptor::isThirdPartyApp_](#isthirdpartyapp) {} | bool<br/>是否是第三方应用 | 
 | [OHOS::AVSession::AVSessionDescriptor::outputDeviceInfo_](#outputdeviceinfo) | [OutputDeviceInfo](_o_h_o_s_1_1_a_v_session_1_1_output_device_info.md)<br/>分布式设备相关信息 | 
-| [OHOS::AVSession::AVSessionBasicInfo::deviceName_](#devicename)&nbsp;{} | std::string<br/>设备名称 | 
-| [OHOS::AVSession::AVSessionBasicInfo::networkId_](#networkid)&nbsp;{} | std::string<br/>设备id | 
-| [OHOS::AVSession::AVSessionBasicInfo::vendorId_](#vendorid)&nbsp;{} | std::string<br/>供应商id | 
-| [OHOS::AVSession::AVSessionBasicInfo::deviceType_](#devicetype)&nbsp;{} | std::string<br/>设备类型 | 
-| [OHOS::AVSession::AVSessionBasicInfo::systemVersion_](#systemversion)&nbsp;{} | std::string<br/>系统版本 | 
-| [OHOS::AVSession::AVSessionBasicInfo::sessionVersion_](#sessionversion)&nbsp;{} | int32_t<br/>会话版本 | 
-| [OHOS::AVSession::AVSessionBasicInfo::reserve_](#reserve)&nbsp;{} | std::vector&lt;&nbsp;int32_t&nbsp;&gt;<br/>备注信息 | 
-| [OHOS::AVSession::AVSessionBasicInfo::feature_](#feature)&nbsp;{} | std::vector&lt;&nbsp;int32_t&nbsp;&gt;<br/>特征信息 | 
-| [OHOS::AVSession::AVSessionBasicInfo::metaDataCap_](#metadatacap)&nbsp;{} | std::vector&lt;&nbsp;int32_t&nbsp;&gt;<br/>会话元数据 | 
-| [OHOS::AVSession::AVSessionBasicInfo::playBackStateCap_](#playbackstatecap)&nbsp;{} | std::vector&lt;&nbsp;int32_t&nbsp;&gt;<br/>支持播放状态数组 | 
-| [OHOS::AVSession::AVSessionBasicInfo::controlCommandCap_](#controlcommandcap)&nbsp;{} | std::vector&lt;&nbsp;int32_t&nbsp;&gt;<br/>系统控制命令 | 
-| [OHOS::AVSession::AVSessionBasicInfo::extendCapability_](#extendcapability)&nbsp;{} | std::vector&lt;&nbsp;int32_t&nbsp;&gt;<br/>扩展能力 | 
-| [OHOS::AVSession::AVSessionBasicInfo::systemTime_](#systemtime)&nbsp;{} | int32_t<br/>系统时间 | 
-| [OHOS::AVSession::AVSessionBasicInfo::extend_](#extend)&nbsp;{} | std::vector&lt;&nbsp;int32_t&nbsp;&gt;<br/>扩展信息 | 
+| [OHOS::AVSession::AVSessionBasicInfo::deviceName_](#devicename) {} | std::string<br/>设备名称 | 
+| [OHOS::AVSession::AVSessionBasicInfo::networkId_](#networkid) {} | std::string<br/>设备id | 
+| [OHOS::AVSession::AVSessionBasicInfo::vendorId_](#vendorid) {} | std::string<br/>供应商id | 
+| [OHOS::AVSession::AVSessionBasicInfo::deviceType_](#devicetype) {} | std::string<br/>设备类型 | 
+| [OHOS::AVSession::AVSessionBasicInfo::systemVersion_](#systemversion) {} | std::string<br/>系统版本 | 
+| [OHOS::AVSession::AVSessionBasicInfo::sessionVersion_](#sessionversion) {} | int32_t<br/>会话版本 | 
+| [OHOS::AVSession::AVSessionBasicInfo::reserve_](#reserve) {} | std::vector&lt; int32_t &gt;<br/>备注信息 | 
+| [OHOS::AVSession::AVSessionBasicInfo::feature_](#feature) {} | std::vector&lt; int32_t &gt;<br/>特征信息 | 
+| [OHOS::AVSession::AVSessionBasicInfo::metaDataCap_](#metadatacap) {} | std::vector&lt; int32_t &gt;<br/>会话元数据 | 
+| [OHOS::AVSession::AVSessionBasicInfo::playBackStateCap_](#playbackstatecap) {} | std::vector&lt; int32_t &gt;<br/>支持播放状态数组 | 
+| [OHOS::AVSession::AVSessionBasicInfo::controlCommandCap_](#controlcommandcap) {} | std::vector&lt; int32_t &gt;<br/>系统控制命令 | 
+| [OHOS::AVSession::AVSessionBasicInfo::extendCapability_](#extendcapability) {} | std::vector&lt; int32_t &gt;<br/>扩展能力 | 
+| [OHOS::AVSession::AVSessionBasicInfo::systemTime_](#systemtime) {} | int32_t<br/>系统时间 | 
+| [OHOS::AVSession::AVSessionBasicInfo::extend_](#extend) {} | std::vector&lt; int32_t &gt;<br/>扩展信息 | 
 
 
 ## 函数说明
