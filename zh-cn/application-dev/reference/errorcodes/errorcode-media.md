@@ -23,7 +23,7 @@ No memory.
 
 **错误信息**
 
-Operate not permit.
+Operation not allowed.
 
 **错误描述**
 
@@ -41,7 +41,7 @@ Operate not permit.
 
 **错误信息**
 
-IO error.
+I/O error.
 
 **错误描述**
 
@@ -59,7 +59,7 @@ IO error.
 
 **错误信息**
 
-Time out.
+Operation timeout.
 
 **错误描述**
 
