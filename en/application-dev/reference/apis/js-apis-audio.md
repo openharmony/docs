@@ -1,4 +1,4 @@
-# Audio Management
+# @ohos.multimedia.audio (Audio Management)
 
 The **Audio** module provides basic audio management capabilities, including audio volume and audio device management, and audio data collection and rendering.
 
@@ -9,9 +9,9 @@ This module provides the following common audio-related functions:
 - [AudioCapturer](#audiocapturer8): audio capture, used to record PCM audio data.
 - [TonePlayer](#toneplayer9): tone player, used to manage and play Dual Tone Multi Frequency (DTMF) tones, such as dial tones and ringback tones.
 
->  **NOTE**
+> **NOTE**
 >
->  The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -23,9 +23,9 @@ import audio from '@ohos.multimedia.audio';
 
 | Name                                   | Type     | Readable | Writable| Description              |
 | --------------------------------------- | ----------| ---- | ---- | ------------------ |
-| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | Yes  | No  | Network ID of the local device.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
-| DEFAULT_VOLUME_GROUP_ID<sup>9+</sup>    | number    | Yes  | No  | Default volume group ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Volume      |
-| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number | Yes  | No  | Default audio interruption group ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Interrupt      |
+| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | Yes  | No  | Network ID of the local device.<br>This is a system API.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
+| DEFAULT_VOLUME_GROUP_ID<sup>9+</sup>    | number    | Yes  | No  | Default volume group ID.<br>**System capability**: SystemCapability.Multimedia.Audio.Volume      |
+| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number    | Yes  | No  | Default audio interruption group ID.<br>**System capability**: SystemCapability.Multimedia.Audio.Interrupt      |
 
 **Example**
 
@@ -74,7 +74,10 @@ Creates an **AudioRenderer** instance. This API uses an asynchronous callback to
 **Example**
 
 ```js
+import featureAbility from '@ohos.ability.featureAbility';
+import fileio from '@ohos.fileio';
 import audio from '@ohos.multimedia.audio';
+
 let audioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
   channels: audio.AudioChannel.CHANNEL_1,
@@ -126,6 +129,8 @@ Creates an **AudioRenderer** instance. This API uses a promise to return the res
 **Example**
 
 ```js
+import featureAbility from '@ohos.ability.featureAbility';
+import fileio from '@ohos.fileio';
 import audio from '@ohos.multimedia.audio';
 
 let audioStreamInfo = {
@@ -279,9 +284,9 @@ Creates a **TonePlayer** instance. This API uses an asynchronous callback to ret
 import audio from '@ohos.multimedia.audio';
 
 let audioRendererInfo = {
-  "contentType": audio.ContentType.CONTENT_TYPE_MUSIC,
-  "streamUsage": audio.StreamUsage.STREAM_USAGE_MEDIA,
-  "rendererFlags": 0
+  content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags : 0
 }
 let tonePlayer;
 
@@ -322,13 +327,14 @@ Creates a **TonePlayer** instance. This API uses a promise to return the result.
 
 ```js
 import audio from '@ohos.multimedia.audio';
-async function createTonePlayer(){
+let tonePlayer;
+async function createTonePlayerBefore(){
   let audioRendererInfo = {
-    "contentType": audio.ContentType.CONTENT_TYPE_MUSIC,
-    "streamUsage": audio.StreamUsage.STREAM_USAGE_MEDIA,
-    "rendererFlags": 0
+    content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0
   }
-  let tonePlayer = await audio.createTonePlayer(audioRendererInfo);
+  tonePlayer = await audio.createTonePlayer(audioRendererInfo);
 }
 ```
 
@@ -338,7 +344,7 @@ Enumerates the audio stream types.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
-| Name                        | Default Value| Description      |
+| Name                        | Value     | Description      |
 | ---------------------------- | ------ | ---------- |
 | VOICE_CALL<sup>8+</sup>      | 0      | Audio stream for voice calls.|
 | RINGTONE                     | 2      | Audio stream for ringtones.    |
@@ -354,7 +360,7 @@ Enumerates the result types of audio interruption requests.
 
 **System API**: This is a system API.
 
-| Name                        | Default Value| Description      |
+| Name                        | Value     | Description      |
 | ---------------------------- | ------ | ---------- |
 | INTERRUPT_REQUEST_GRANT      | 0      | The audio interruption request is accepted.|
 | INTERRUPT_REQUEST_REJECT     | 1      | The audio interruption request is denied. There may be a stream with a higher priority.|
@@ -365,7 +371,7 @@ Enumerates the audio interruption modes.
 
 **System capability**: SystemCapability.Multimedia.Audio.Interrupt
 
-| Name                        | Default Value| Description      |
+| Name                        | Value     | Description      |
 | ---------------------------- | ------ | ---------- |
 | SHARE_MODE                   | 0      | Shared mode.|
 | INDEPENDENT_MODE             | 1      | Independent mode.|
@@ -376,7 +382,7 @@ Enumerates the audio device flags.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
-| Name                           | Default Value | Description                                             |
+| Name                           |  Value    | Description                                             |
 | ------------------------------- | ------ | ------------------------------------------------- |
 | NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | No device.<br>This is a system API.       |
 | OUTPUT_DEVICES_FLAG             | 1      | Output device.|
@@ -392,7 +398,7 @@ Enumerates the audio device roles.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
-| Name         | Default Value| Description          |
+| Name         |  Value   | Description          |
 | ------------- | ------ | -------------- |
 | INPUT_DEVICE  | 1      | Input role.|
 | OUTPUT_DEVICE | 2      | Output role.|
@@ -403,7 +409,7 @@ Enumerates the audio device types.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
-| Name                | Default Value| Description                                                     |
+| Name                | Value    | Description                                                     |
 | ---------------------| ------ | --------------------------------------------------------- |
 | INVALID              | 0      | Invalid device.                                               |
 | EARPIECE             | 1      | Earpiece.                                                   |
@@ -422,7 +428,7 @@ Enumerates the device types used for communication.
 
 **System capability**: SystemCapability.Multimedia.Audio.Communication
 
-| Name         | Default Value| Description         |
+| Name         | Value    | Description         |
 | ------------- | ------ | -------------|
 | SPEAKER       | 2      | Speaker.     |
 
@@ -432,7 +438,7 @@ Enumerates the ringer modes.
 
 **System capability**: SystemCapability.Multimedia.Audio.Communication
 
-| Name               | Default Value| Description      |
+| Name               |  Value   | Description      |
 | ------------------- | ------ | ---------- |
 | RINGER_MODE_SILENT  | 0      | Silent mode.|
 | RINGER_MODE_VIBRATE | 1      | Vibration mode.|
@@ -444,7 +450,7 @@ Enumerates the audio sample formats.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                               | Default Value| Description                      |
+| Name                               |  Value   | Description                      |
 | ---------------------------------- | ------ | -------------------------- |
 | SAMPLE_FORMAT_INVALID              | -1     | Invalid format.                |
 | SAMPLE_FORMAT_U8                   | 0      | Unsigned 8-bit integer.           |
@@ -459,15 +465,15 @@ Enumerates the audio error codes.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Error Message             | Error Code  | Error Description         |
+| Name                | Value     | Description        |
 | ---------------------| --------| ----------------- |
 | ERROR_INVALID_PARAM  | 6800101 | Invalid parameter.        |
 | ERROR_NO_MEMORY      | 6800102 | Memory allocation failure.    |
 | ERROR_ILLEGAL_STATE  | 6800103 | Unsupported state.      |
-| ERROR_UNSUPPORTED    | 6800104 | Unsupported parameter value. |
+| ERROR_UNSUPPORTED    | 6800104 | Unsupported parameter value.   |
 | ERROR_TIMEOUT        | 6800105 | Processing timeout.        |
 | ERROR_STREAM_LIMIT   | 6800201 | Too many audio streams.|
-| ERROR_SYSTEM         | 6800301 | System error. |
+| ERROR_SYSTEM         | 6800301 | System error.    |
 
 ## AudioChannel<sup>8+</sup>
 
@@ -475,18 +481,18 @@ Enumerates the audio channels.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name     | Default Value  | Description    |
+| Name     |  Value      | Description    |
 | --------- | -------- | -------- |
 | CHANNEL_1 | 0x1 << 0 | Mono.|
 | CHANNEL_2 | 0x1 << 1 | Dual-channel.|
 
 ## AudioSamplingRate<sup>8+</sup>
 
-Enumerates the audio sampling rates.
+Enumerates the audio sampling rates. The sampling rates supported vary according to the device in use.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name             | Default Value| Description           |
+| Name             |  Value   | Description           |
 | ----------------- | ------ | --------------- |
 | SAMPLE_RATE_8000  | 8000   | The sampling rate is 8000. |
 | SAMPLE_RATE_11025 | 11025  | The sampling rate is 11025.|
@@ -506,7 +512,7 @@ Enumerates the audio encoding types.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                 | Default Value| Description     |
+| Name                 |  Value   | Description     |
 | --------------------- | ------ | --------- |
 | ENCODING_TYPE_INVALID | -1     | Invalid.   |
 | ENCODING_TYPE_RAW     | 0      | PCM encoding.|
@@ -517,7 +523,7 @@ Enumerates the audio content types.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                              | Default Value| Description      |
+| Name                              |  Value   | Description      |
 | ---------------------------------- | ------ | ---------- |
 | CONTENT_TYPE_UNKNOWN               | 0      | Unknown content.|
 | CONTENT_TYPE_SPEECH                | 1      | Speech.    |
@@ -532,7 +538,7 @@ Enumerates the audio stream usage.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                                     | Default Value| Description      |
+| Name                                     |  Value   | Description      |
 | ------------------------------------------| ------ | ---------- |
 | STREAM_USAGE_UNKNOWN                      | 0      | Unknown usage.|
 | STREAM_USAGE_MEDIA                        | 1      | Used for media.    |
@@ -548,7 +554,7 @@ Enumerates the audio interruption request types.
 
 **System capability**: SystemCapability.Multimedia.Audio.Interrupt
 
-| Name                              | Default Value | Description                      |
+| Name                              |  Value    | Description                      |
 | ---------------------------------- | ------ | ------------------------- |
 | INTERRUPT_REQUEST_TYPE_DEFAULT     | 0      |  Default type, which can be used to interrupt audio requests. |
 
@@ -558,7 +564,7 @@ Enumerates the audio states.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name          | Default Value| Description            |
+| Name          | Value    | Description            |
 | -------------- | ------ | ---------------- |
 | STATE_INVALID  | -1     | Invalid state.      |
 | STATE_NEW      | 0      | Creating instance state.|
@@ -574,7 +580,7 @@ Enumerates the audio renderer rates.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name              | Default Value| Description      |
+| Name              | Value    | Description      |
 | ------------------ | ------ | ---------- |
 | RENDER_RATE_NORMAL | 0      | Normal rate.|
 | RENDER_RATE_DOUBLE | 1      | Double rate.   |
@@ -586,7 +592,7 @@ Enumerates the audio interruption types.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name                | Default Value| Description                  |
+| Name                |  Value    | Description                  |
 | -------------------- | ------ | ---------------------- |
 | INTERRUPT_TYPE_BEGIN | 1      | Audio interruption started.|
 | INTERRUPT_TYPE_END   | 2      | Audio interruption ended.|
@@ -597,7 +603,7 @@ Enumerates the types of force that causes audio interruption.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name           | Default Value| Description                                |
+| Name           |  Value   | Description                                |
 | --------------- | ------ | ------------------------------------ |
 | INTERRUPT_FORCE | 0      | Forced action taken by the system.  |
 | INTERRUPT_SHARE | 1      | The application can choose to take action or ignore.|
@@ -608,7 +614,7 @@ Enumerates the hints provided along with audio interruption.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name                              | Default Value| Description                                        |
+| Name                              |  Value    | Description                                        |
 | ---------------------------------- | ------ | -------------------------------------------- |
 | INTERRUPT_HINT_NONE<sup>8+</sup>   | 0      | None.                                    |
 | INTERRUPT_HINT_RESUME              | 1      | Resume the playback.                              |
@@ -636,7 +642,7 @@ Describes audio renderer information.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name         | Type                       | Mandatory| Description            |
+| Name         | Type                       | Mandatory | Description            |
 | ------------- | --------------------------- | ---- | ---------------- |
 | content       | [ContentType](#contenttype) | Yes  | Audio content type.      |
 | usage         | [StreamUsage](#streamusage) | Yes  | Audio stream usage.|
@@ -661,7 +667,7 @@ Describes audio renderer configurations.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name        | Type                                    | Mandatory| Description            |
+| Name        | Type                                    | Mandatory | Description            |
 | ------------ | ---------------------------------------- | ---- | ---------------- |
 | streamInfo   | [AudioStreamInfo](#audiostreaminfo8)     | Yes  | Audio stream information.|
 | rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | Yes  | Audio renderer information.|
@@ -672,7 +678,7 @@ Describes the interruption event received by the application when playback is in
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name     | Type                                      | Mandatory| Description                                |
+| Name     | Type                                      |Mandatory  | Description                                |
 | --------- | ------------------------------------------ | ---- | ------------------------------------ |
 | eventType | [InterruptType](#interrupttype)            | Yes  | Whether the interruption has started or ended.        |
 | forceType | [InterruptForceType](#interruptforcetype9) | Yes  | Whether the interruption is taken by the system or to be taken by the application.|
@@ -686,7 +692,7 @@ Describes the event received by the application when the volume is changed.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
-| Name      | Type                               | Mandatory| Description                                                    |
+| Name      | Type                               | Mandatory  | Description                                                    |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
 | volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.|
@@ -701,7 +707,7 @@ Describes the event received by the application when the microphone mute status 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
 | Name      | Type                               | Mandatory| Description                                                    |
-| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| ---------- | ----------------------------------- | ---- |-------------------------------------------------------- |
 | mute | boolean | Yes  | Mute status of the microphone. The value **true** means that the microphone is muted, and **false** means the opposite.         |
 
 ## ConnectType<sup>9+</sup>
@@ -712,7 +718,7 @@ Enumerates the types of connected devices.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
-| Name                           | Default Value| Description                  |
+| Name                           |  Value    | Description                  |
 | :------------------------------ | :----- | :--------------------- |
 | CONNECT_TYPE_LOCAL              | 1      | Local device.        |
 | CONNECT_TYPE_DISTRIBUTED        | 2      | Distributed device.           |
@@ -738,7 +744,7 @@ Describes the volume group information.
 | networkId<sup>9+</sup>     | string                     | Yes  | No  | Network ID of the device. |
 | groupId<sup>9+</sup>       | number                     | Yes  | No  | Group ID of the device.|
 | mappingId<sup>9+</sup>     | number                     | Yes  | No  | Group mapping ID.|
-| groupName<sup>9+</sup>     | number                     | Yes  | No  | Group name.|
+| groupName<sup>9+</sup>     | string                     | Yes  | No  | Group name.|
 | type<sup>9+</sup>          | [ConnectType](#connecttype9)| Yes  | No  | Type of the connected device.|
 
 ## DeviceChangeAction
@@ -758,7 +764,7 @@ Enumerates the device connection statuses.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
-| Name      | Default Value| Description          |
+| Name      |  Value    | Description          |
 | :--------- | :----- | :------------- |
 | CONNECT    | 0      | Connected.    |
 | DISCONNECT | 1      | Disconnected.|
@@ -791,7 +797,7 @@ Enumerates the audio source types.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                                        | Default Value| Description                  |
+| Name                                        |  Value    | Description                  |
 | :------------------------------------------- | :----- | :--------------------- |
 | SOURCE_TYPE_INVALID                          | -1     | Invalid audio source.        |
 | SOURCE_TYPE_MIC                              | 0      | Mic source.           |
@@ -804,7 +810,7 @@ Enumerates the audio scenes.
 
 **System capability**: SystemCapability.Multimedia.Audio.Communication
 
-| Name                  | Default Value| Description                                         |
+| Name                  |  Value    | Description                                         |
 | :--------------------- | :----- | :-------------------------------------------- |
 | AUDIO_SCENE_DEFAULT    | 0      | Default audio scene.                               |
 | AUDIO_SCENE_RINGING    | 1      | Ringing audio scene.<br>This is a system API.|
@@ -959,7 +965,6 @@ Sets an audio scene. This API uses an asynchronous callback to return the result
 **Example**
 
 ```js
-let audioManager = audio.getAudioManager();
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err) => {
   if (err) {
     console.error(`Failed to set the audio scene mode.​ ${err}`);
@@ -994,7 +999,6 @@ Sets an audio scene. This API uses a promise to return the result.
 **Example**
 
 ```js
-let audioManager = audio.getAudioManager();
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
   console.info('Promise returned to indicate a successful setting of the audio scene mode.');
 }).catch ((err) => {
@@ -1019,7 +1023,6 @@ Obtains the audio scene. This API uses an asynchronous callback to return the re
 **Example**
 
 ```js
-let audioManager = audio.getAudioManager();
 audioManager.getAudioScene((err, value) => {
   if (err) {
     console.error(`Failed to obtain the audio scene mode.​ ${err}`);
@@ -1046,7 +1049,6 @@ Obtains the audio scene. This API uses a promise to return the result.
 **Example**
 
 ```js
-let audioManager = audio.getAudioManager();
 audioManager.getAudioScene().then((value) => {
   console.info(`Promise returned to indicate that the audio scene mode is obtained ${value}.`);
 }).catch ((err) => {
@@ -1094,6 +1096,1102 @@ Obtains an **AudioRoutingManager** instance.
 
 ```js
 let audioRoutingManager = audioManager.getRoutingManager();
+```
+
+### setVolume<sup>(deprecated)</sup>
+
+setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the volume for a stream. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**.
+
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                    |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
+| volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.|
+| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.                                  |
+
+**Example**
+
+```js
+audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err) => {
+  if (err) {
+    console.error(`Failed to set the volume. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate a successful volume setting.');
+});
+```
+
+### setVolume<sup>(deprecated)</sup>
+
+setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
+
+Sets the volume for a stream. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**.
+
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                    |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
+| volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.|
+
+**Return value**
+
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
+  console.info('Promise returned to indicate a successful volume setting.');
+});
+```
+
+### getVolume<sup>(deprecated)</sup>
+
+getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the volume of a stream. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getVolume](#getvolume9) in **AudioVolumeGroupManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description              |
+| ---------- | ----------------------------------- | ---- | ------------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.      |
+| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the volume.|
+
+**Example**
+
+```js
+audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the volume. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate that the volume is obtained.');
+});
+```
+
+### getVolume<sup>(deprecated)</sup>
+
+getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
+
+Obtains the volume of a stream. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getVolume](#getvolume9) in **AudioVolumeGroupManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description        |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.|
+
+**Return value**
+
+| Type                 | Description                     |
+| --------------------- | ------------------------- |
+| Promise&lt;number&gt; | Promise used to return the volume.|
+
+**Example**
+
+```js
+audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) => {
+  console.info(`Promise returned to indicate that the volume is obtained ${value} .`);
+});
+```
+
+### getMinVolume<sup>(deprecated)</sup>
+
+getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the minimum volume allowed for a stream. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMinVolume](#getminvolume9) in **AudioVolumeGroupManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description              |
+| ---------- | ----------------------------------- | ---- | ------------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.      |
+| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the minimum volume.|
+
+**Example**
+
+```js
+audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the minimum volume. ${err}`);
+    return;
+  }
+  console.info(`Callback invoked to indicate that the minimum volume is obtained. ${value}`);
+});
+```
+
+### getMinVolume<sup>(deprecated)</sup>
+
+getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
+
+Obtains the minimum volume allowed for a stream. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMinVolume](#getminvolume9) in **AudioVolumeGroupManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description        |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.|
+
+**Return value**
+
+| Type                 | Description                     |
+| --------------------- | ------------------------- |
+| Promise&lt;number&gt; | Promise used to return the minimum volume.|
+
+**Example**
+
+```js
+audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) => {
+  console.info(`Promised returned to indicate that the minimum volume is obtained. ${value}`);
+});
+```
+
+### getMaxVolume<sup>(deprecated)</sup>
+
+getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the maximum volume allowed for a stream. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMaxVolume](#getmaxvolume9) in **AudioVolumeGroupManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                  |
+| ---------- | ----------------------------------- | ---- | ---------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.          |
+| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the maximum volume.|
+
+**Example**
+
+```js
+audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the maximum volume. ${err}`);
+    return;
+  }
+  console.info(`Callback invoked to indicate that the maximum volume is obtained. ${value}`);
+});
+```
+
+### getMaxVolume<sup>(deprecated)</sup>
+
+getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
+
+Obtains the maximum volume allowed for a stream. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMaxVolume](#getmaxvolume9) in **AudioVolumeGroupManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description        |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.|
+
+**Return value**
+
+| Type                 | Description                         |
+| --------------------- | ----------------------------- |
+| Promise&lt;number&gt; | Promise used to return the maximum volume.|
+
+**Example**
+
+```js
+audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data) => {
+  console.info('Promised returned to indicate that the maximum volume is obtained.');
+});
+```
+
+### mute<sup>(deprecated)</sup>
+
+mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Mutes or unmutes a stream. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [mute](#mute9) in **AudioVolumeGroupManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                 |
+| ---------- | ----------------------------------- | ---- | ------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                         |
+| mute       | boolean                             | Yes  | Mute status to set. The value **true** means to mute the stream, and **false** means the opposite.|
+| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.               |
+
+**Example**
+
+```js
+audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
+  if (err) {
+    console.error(`Failed to mute the stream. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate that the stream is muted.');
+});
+```
+
+### mute<sup>(deprecated)</sup>
+
+mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
+
+Mutes or unmutes a stream. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [mute](#mute9) in **AudioVolumeGroupManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                 |
+| ---------- | ----------------------------------- | ---- | ------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                         |
+| mute       | boolean                             | Yes  | Mute status to set. The value **true** means to mute the stream, and **false** means the opposite.|
+
+**Return value**
+
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+
+```js
+audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() => {
+  console.info('Promise returned to indicate that the stream is muted.');
+});
+```
+
+### isMute<sup>(deprecated)</sup>
+
+isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
+
+Checks whether a stream is muted. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMute](#ismute9) in **AudioVolumeGroupManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                           |
+| ---------- | ----------------------------------- | ---- | ----------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                   |
+| callback   | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the mute status of the stream. The value **true** means that the stream is muted, and **false** means the opposite.|
+
+**Example**
+
+```js
+audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the mute status. ${err}`);
+    return;
+  }
+  console.info(`Callback invoked to indicate that the mute status of the stream is obtained. ${value}`);
+});
+```
+
+### isMute<sup>(deprecated)</sup>
+
+isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
+
+Checks whether a stream is muted. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMute](#ismute9) in **AudioVolumeGroupManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description        |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.|
+
+**Return value**
+
+| Type                  | Description                                                  |
+| ---------------------- | ------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise used to return the mute status of the stream. The value **true** means that the stream is muted, and **false** means the opposite.|
+
+**Example**
+
+```js
+audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
+  console.info(`Promise returned to indicate that the mute status of the stream is obtained ${value}.`);
+});
+```
+
+### isActive<sup>(deprecated)</sup>
+
+isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
+
+Checks whether a stream is active. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isActive](#isactive9) in **AudioStreamManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                             |
+| ---------- | ----------------------------------- | ---- | ------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                     |
+| callback   | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the active status of the stream. The value **true** means that the stream is active, and **false** means the opposite.|
+
+**Example**
+
+```js
+audioManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the active status of the stream. ${err}`);
+    return;
+  }
+  console.info(`Callback invoked to indicate that the active status of the stream is obtained ${value}.`);
+});
+```
+
+### isActive<sup>(deprecated)</sup>
+
+isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
+
+Checks whether a stream is active. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isActive](#isactive9) in **AudioStreamManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description        |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.|
+
+**Return value**
+
+| Type                  | Description                                                    |
+| ---------------------- | -------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the active status of the stream. The value **true** means that the stream is active, and **false** means the opposite.|
+
+**Example**
+
+```js
+audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
+  console.info(`Promise returned to indicate that the active status of the stream is obtained ${value}.`);
+});
+```
+
+### setRingerMode<sup>(deprecated)</sup>
+
+setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the ringer mode. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setRingerMode](#setringermode9) in **AudioVolumeGroupManager**.
+
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+This permission is required only for muting or unmuting the ringer.
+
+**System capability**: SystemCapability.Multimedia.Audio.Communication
+
+**Parameters**
+
+| Name  | Type                           | Mandatory| Description                    |
+| -------- | ------------------------------- | ---- | ------------------------ |
+| mode     | [AudioRingMode](#audioringmode) | Yes  | Ringer mode.          |
+| callback | AsyncCallback&lt;void&gt;       | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
+  if (err) {
+    console.error(`Failed to set the ringer mode.​ ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate a successful setting of the ringer mode.');
+});
+```
+
+### setRingerMode<sup>(deprecated)</sup>
+
+setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
+
+Sets the ringer mode. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setRingerMode](#setringermode9) in **AudioVolumeGroupManager**.
+
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+This permission is required only for muting or unmuting the ringer.
+
+**System capability**: SystemCapability.Multimedia.Audio.Communication
+
+**Parameters**
+
+| Name| Type                           | Mandatory| Description          |
+| ------ | ------------------------------- | ---- | -------------- |
+| mode   | [AudioRingMode](#audioringmode) | Yes  | Ringer mode.|
+
+**Return value**
+
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() => {
+  console.info('Promise returned to indicate a successful setting of the ringer mode.');
+});
+```
+
+### getRingerMode<sup>(deprecated)</sup>
+
+getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
+
+Obtains the ringer mode. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getRingerMode](#getringermode9) in **AudioVolumeGroupManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Communication
+
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                    |
+| -------- | ---------------------------------------------------- | ---- | ------------------------ |
+| callback | AsyncCallback&lt;[AudioRingMode](#audioringmode)&gt; | Yes  | Callback used to return the ringer mode.|
+
+**Example**
+
+```js
+audioManager.getRingerMode((err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the ringer mode.​ ${err}`);
+    return;
+  }
+  console.info(`Callback invoked to indicate that the ringer mode is obtained ${value}.`);
+});
+```
+
+### getRingerMode<sup>(deprecated)</sup>
+
+getRingerMode(): Promise&lt;AudioRingMode&gt;
+
+Obtains the ringer mode. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getRingerMode](#getringermode9) in **AudioVolumeGroupManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Communication
+
+**Return value**
+
+| Type                                          | Description                           |
+| ---------------------------------------------- | ------------------------------- |
+| Promise&lt;[AudioRingMode](#audioringmode)&gt; | Promise used to return the ringer mode.|
+
+**Example**
+
+```js
+audioManager.getRingerMode().then((value) => {
+  console.info(`Promise returned to indicate that the ringer mode is obtained ${value}.`);
+});
+```
+
+### getDevices<sup>(deprecated)</sup>
+
+getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
+
+Obtains the audio devices with a specific flag. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getDevices](#getdevices9) in **AudioRoutingManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
+| deviceFlag | [DeviceFlag](#deviceflag)                                    | Yes  | Audio device flag.    |
+| callback   | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Yes  | Callback used to return the device list.|
+
+**Example**
+```js
+audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the device list. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate that the device list is obtained.');
+});
+```
+
+### getDevices<sup>(deprecated)</sup>
+
+getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
+
+Obtains the audio devices with a specific flag. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getDevices](#getdevices9) in **AudioRoutingManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name    | Type                     | Mandatory| Description            |
+| ---------- | ------------------------- | ---- | ---------------- |
+| deviceFlag | [DeviceFlag](#deviceflag) | Yes  | Audio device flag.|
+
+**Return value**
+
+| Type                                                        | Description                     |
+| ------------------------------------------------------------ | ------------------------- |
+| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Promise used to return the device list.|
+
+**Example**
+
+```js
+audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+  console.info('Promise returned to indicate that the device list is obtained.');
+});
+```
+
+### setDeviceActive<sup>(deprecated)</sup>
+
+setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Sets a device to the active state. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCommunicationDevice](#setcommunicationdevice9) in **AudioRoutingManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name    | Type                                 | Mandatory| Description                    |
+| ---------- | ------------------------------------- | ---- | ------------------------ |
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Audio device type.      |
+| active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.          |
+| callback   | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err) => {
+  if (err) {
+    console.error(`Failed to set the active status of the device. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate that the device is set to the active status.');
+});
+```
+
+### setDeviceActive<sup>(deprecated)</sup>
+
+setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise&lt;void&gt;
+
+Sets a device to the active state. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCommunicationDevice](#setcommunicationdevice9) in **AudioRoutingManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name    | Type                                 | Mandatory| Description              |
+| ---------- | ------------------------------------- | ---- | ------------------ |
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Audio device type.|
+| active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.    |
+
+**Return value**
+
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+
+```js
+audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true).then(() => {
+  console.info('Promise returned to indicate that the device is set to the active status.');
+});
+```
+
+### isDeviceActive<sup>(deprecated)</sup>
+
+isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback&lt;boolean&gt;): void
+
+Checks whether a device is active. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isCommunicationDeviceActive](#iscommunicationdeviceactive9) in **AudioRoutingManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name    | Type                                 | Mandatory| Description                    |
+| ---------- | ------------------------------------- | ---- | ------------------------ |
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Audio device type.      |
+| callback   | AsyncCallback&lt;boolean&gt;          | Yes  | Callback used to return the active state of the device.|
+
+**Example**
+
+```js
+audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the active status of the device. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate that the active status of the device is obtained.');
+});
+```
+
+### isDeviceActive<sup>(deprecated)</sup>
+
+isDeviceActive(deviceType: ActiveDeviceType): Promise&lt;boolean&gt;
+
+Checks whether a device is active. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isCommunicationDeviceActive](#iscommunicationdeviceactive9) in **AudioRoutingManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name    | Type                                 | Mandatory| Description              |
+| ---------- | ------------------------------------- | ---- | ------------------ |
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Audio device type.|
+
+**Return value**
+
+| Type                   | Description                     |
+| ---------------------- | ------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the active state of the device.|
+
+**Example**
+
+```js
+audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then((value) => {
+  console.info(`Promise returned to indicate that the active status of the device is obtained ${value}.`);
+});
+```
+
+### setMicrophoneMute<sup>(deprecated)</sup>
+
+setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Mutes or unmutes the microphone. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setMicrophoneMute](#setmicrophonemute9) in **AudioVolumeGroupManager**.
+
+**Required permissions**: ohos.permission.MICROPHONE
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                         |
+| -------- | ------------------------- | ---- | --------------------------------------------- |
+| mute     | boolean                   | Yes  | Mute status to set. The value **true** means to mute the microphone, and **false** means the opposite.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                     |
+
+**Example**
+
+```js
+audioManager.setMicrophoneMute(true, (err) => {
+  if (err) {
+    console.error(`Failed to mute the microphone. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate that the microphone is muted.');
+});
+```
+
+### setMicrophoneMute<sup>(deprecated)</sup>
+
+setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
+
+Mutes or unmutes the microphone. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setMicrophoneMute](#setmicrophonemute9) in **AudioVolumeGroupManager**.
+
+**Required permissions**: ohos.permission.MICROPHONE
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                         |
+| ------ | ------- | ---- | --------------------------------------------- |
+| mute   | boolean | Yes  | Mute status to set. The value **true** means to mute the microphone, and **false** means the opposite.|
+
+**Return value**
+
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+audioManager.setMicrophoneMute(true).then(() => {
+  console.info('Promise returned to indicate that the microphone is muted.');
+});
+```
+
+### isMicrophoneMute<sup>(deprecated)</sup>
+
+isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
+
+Checks whether the microphone is muted. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMicrophoneMute](#ismicrophonemute9) in **AudioVolumeGroupManager**.
+
+**Required permissions**: ohos.permission.MICROPHONE
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name  | Type                        | Mandatory| Description                                                   |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the mute status of the microphone. The value **true** means that the microphone is muted, and **false** means the opposite.|
+
+**Example**
+
+```js
+audioManager.isMicrophoneMute((err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the mute status of the microphone. ${err}`);
+    return;
+  }
+  console.info(`Callback invoked to indicate that the mute status of the microphone is obtained ${value}.`);
+});
+```
+
+### isMicrophoneMute<sup>(deprecated)</sup>
+
+isMicrophoneMute(): Promise&lt;boolean&gt;
+
+Checks whether the microphone is muted. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMicrophoneMute](#ismicrophonemute9) in **AudioVolumeGroupManager**.
+
+**Required permissions**: ohos.permission.MICROPHONE
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Return value**
+
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise used to return the mute status of the microphone. The value **true** means that the microphone is muted, and **false** means the opposite.|
+
+**Example**
+
+```js
+audioManager.isMicrophoneMute().then((value) => {
+  console.info(`Promise returned to indicate that the mute status of the microphone is obtained ${value}.`);
+});
+```
+
+### on('volumeChange')<sup>(deprecated)</sup>
+
+on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on](#on9) in **AudioVolumeManager**.
+
+Subscribes to system volume change events.
+
+**System API**: This is a system API.
+
+Currently, when multiple **AudioManager** instances are used in a single process, only the subscription of the last instance takes effect, and the subscription of other instances is overwritten (even if the last instance does not initiate a subscription). Therefore, you are advised to use a single **AudioManager** instance.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | Yes  | Event type. The value **'volumeChange'** means the system volume change event, which is triggered when a system volume change is detected.|
+| callback | Callback<[VolumeEvent](#volumeevent8)> | Yes  | Callback used to return the system volume change event.                                                  |
+
+**Example**
+
+```js
+audioManager.on('volumeChange', (volumeEvent) => {
+  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
+  console.info(`Volume level: ${volumeEvent.volume} `);
+  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+});
+```
+
+### on('ringerModeChange')<sup>(deprecated)</sup>
+
+on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
+
+Subscribes to ringer mode change events.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on('ringerModeChange')](#onringermodechange9) in **AudioVolumeGroupManager**.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Communication
+
+**Parameters**
+
+| Name  | Type                                     | Mandatory| Description                                                        |
+| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                    | Yes  | Event type. The value **'ringerModeChange'** means the ringer mode change event, which is triggered when a ringer mode change is detected.|
+| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the ringer mode change event.                                                  |
+
+**Example**
+
+```js
+audioManager.on('ringerModeChange', (ringerMode) => {
+  console.info(`Updated ringermode: ${ringerMode}`);
+});
+```
+
+### on('deviceChange')<sup>(deprecated)</sup>
+
+on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
+
+Subscribes to device change events. When a device is connected or disconnected, registered clients will receive the callback.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [on](#on9) in **AudioRoutingManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                                      |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | Yes  | Event type. The value **'deviceChange'** means the device change event, which is triggered when a device connection status change is detected.|
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes  | Callback used to return the device update details.                        |
+
+**Example**
+
+```js
+audioManager.on('deviceChange', (deviceChanged) => {
+  console.info(`device change type : ${deviceChanged.type} `);
+  console.info(`device descriptor size : ${deviceChanged.deviceDescriptors.length} `);
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceRole} `);
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceType} `);
+});
+```
+
+### off('deviceChange')<sup>(deprecated)</sup>
+
+off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
+
+Unsubscribes from device change events.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [off](#off9) in **AudioRoutingManager**.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name  | Type                                               | Mandatory| Description                                      |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | Yes  | Event type. The value **'deviceChange'** means the device change event, which is triggered when a device connection status change is detected.|
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No  | Callback used to return the device update details.                        |
+
+**Example**
+
+```js
+audioManager.off('deviceChange', (deviceChanged) => {
+  console.info('Should be no callback.');
+});
+```
+
+### on('interrupt')<sup>(deprecated)</sup>
+
+on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
+
+Subscribes to audio interruption events. When the application's audio is interrupted by another playback event, the application will receive the callback.
+
+Same as [on('audioInterrupt')](#onaudiointerrupt9), this API is used to listen for focus changes. However, this API is used in scenarios without audio streams (no **AudioRenderer** instance is created), such as frequency modulation (FM) and voice wakeup.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name   | Type                                         | Mandatory| Description                                                        |
+| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type      | string                                        | Yes  | Event type. The value **'interrupt'** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
+| interrupt | AudioInterrupt                                | Yes  | Audio interruption event type.                                    |
+| callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | Yes  | Callback invoked for the audio interruption event.                                      |
+
+**Example**
+
+```js
+let interAudioInterrupt = {
+  streamUsage:2,
+  contentType:0,
+  pauseWhenDucked:true
+};
+audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
+  if (InterruptAction.actionType === 0) {
+    console.info('An event to gain the audio focus starts.');
+    console.info(`Focus gain event: ${InterruptAction} `);
+  }
+  if (InterruptAction.actionType === 1) {
+    console.info('An audio interruption event starts.');
+    console.info(`Audio interruption event: ${InterruptAction} `);
+  }
+});
+```
+
+### off('interrupt')<sup>(deprecated)</sup>
+
+off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
+
+Unsubscribes from audio interruption events.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name   | Type                                         | Mandatory| Description                                                        |
+| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type      | string                                        | Yes  | Event type. The value **'interrupt'** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
+| interrupt | AudioInterrupt                                | Yes  | Audio interruption event type.                                    |
+| callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | No  | Callback invoked for the audio interruption event.                                      |
+
+**Example**
+
+```js
+let interAudioInterrupt = {
+  streamUsage:2,
+  contentType:0,
+  pauseWhenDucked:true
+};
+audioManager.off('interrupt', interAudioInterrupt, (InterruptAction) => {
+  if (InterruptAction.actionType === 0) {
+      console.info('An event to release the audio focus starts.');
+      console.info(`Focus release event: ${InterruptAction} `);
+  }
+});
 ```
 
 ## AudioVolumeManager<sup>9+</sup>
@@ -1172,7 +2270,7 @@ Obtains the audio group manager. This API uses an asynchronous callback to retur
 | Name    | Type                                                        | Mandatory| Description                |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
 | groupId    | number                                    | Yes  | Volume group ID.    |
-| callback   | AsyncCallback&lt; [AudioVolumeGroupManager](#audiovolumegroupmanager9) &gt; | Yes  | Callback used to return the audio group manager.|
+| callback   | AsyncCallback&lt;[AudioVolumeGroupManager](#audiovolumegroupmanager9)&gt; | Yes  | Callback used to return the audio group manager.|
 
 **Example**
 
@@ -1212,8 +2310,13 @@ Obtains the audio group manager. This API uses a promise to return the result.
 
 ```js
 let groupid = audio.DEFAULT_VOLUME_GROUP_ID;
-let audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupid);
-console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+let audioVolumeGroupManager;
+getVolumeGroupManager();
+async function getVolumeGroupManager(){
+  audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupid);
+  console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+}
+
 ```
 
 ### on('volumeChange')<sup>9+</sup>
@@ -1237,7 +2340,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.             |
+| 6800101 | if input parameter value error              |
 
 **Example**
 
@@ -1751,7 +2854,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.             |
+| 6800101 | if input parameter value error              |
 
 **Example**
 
@@ -1871,7 +2974,7 @@ audioVolumeGroupManager.isMicrophoneMute().then((value) => {
 
 on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
-Subscribes to system mic state change events.
+Subscribes to system microphone state change events.
 
 Currently, when multiple **AudioManager** instances are used in a single process, only the subscription of the last instance takes effect, and the subscription of other instances is overwritten (even if the last instance does not initiate a subscription). Therefore, you are advised to use a single **AudioManager** instance.
 
@@ -1881,8 +2984,8 @@ Currently, when multiple **AudioManager** instances are used in a single process
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | Yes  | Event type. The value **'micStateChange'** means the system mic state change event, which is triggered when the system mic state changes.|
-| callback | Callback<[MicStateChangeEvent](#micstatechangeevent9)> | Yes  | Callback used to return the changed micr state.                                                  |
+| type     | string                                 | Yes  | Event type. The value **'micStateChange'** means the system microphone state change event, which is triggered when the system microphone state changes.|
+| callback | Callback<[MicStateChangeEvent](#micstatechangeevent9)> | Yes  | Callback used to return the changed microphone state.                                                  |
 
 **Error codes**
 
@@ -1890,7 +2993,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.             |
+| 6800101 | if input parameter value error              |
 
 **Example**
 
@@ -2008,7 +3111,7 @@ Obtains the information about the current audio capturer. This API uses an async
 
 **Parameters**
 
-| Name      | Type                                | Mandatory     | Description                                                     |
+| Name       | Type                                | Mandatory     | Description                                                     |
 | ---------- | ----------------------------------- | --------- | -------------------------------------------------------- |
 | callback   | AsyncCallback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | Yes   | Callback used to return the audio capturer information.|
 
@@ -2098,7 +3201,7 @@ Subscribes to audio renderer change events.
 
 **Parameters**
 
-| Name    | Type       | Mandatory     | Description                                                                    |
+| Name     | Type       | Mandatory     | Description                                                                    |
 | -------- | ---------- | --------- | ------------------------------------------------------------------------ |
 | type     | string     | Yes       | Event type. The event `'audioRendererChange'` is triggered when the audio renderer changes.    |
 | callback | Callback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | Yes |  Callback used to return the result.       |
@@ -2109,7 +3212,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.             |
+| 6800101 | if input parameter value error              |
 
 **Example**
 
@@ -2158,7 +3261,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.             |
+| 6800101 | if input parameter value error              |
 
 **Example**
 
@@ -2181,6 +3284,14 @@ Subscribes to audio capturer change events.
 | -------- | ------- | --------- | ----------------------------------------------------------------------- |
 | type     | string  | Yes       | Event type. The event `'audioCapturerChange'` is triggered when the audio capturer changes.    |
 | callback | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | Yes    | Callback used to return the result.  |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
 
 **Example**
 
@@ -2218,9 +3329,17 @@ Unsubscribes from audio capturer change events.
 
 **Parameters**
 
-| Name     | Type    | Mandatory| Description                                                         |
+| Name      | Type    | Mandatory| Description                                                         |
 | -------- | -------- | --- | ------------------------------------------------------------- |
 | type     | string   |Yes  | Event type. The event `'audioCapturerChange'` is triggered when the audio capturer changes.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
 
 **Example**
 
@@ -2242,7 +3361,7 @@ Checks whether a stream is active. This API uses an asynchronous callback to ret
 
 | Name    | Type                               | Mandatory| Description                                             |
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                     |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream types.                                     |
 | callback   | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the active status of the stream. The value **true** means that the stream is active, and **false** means the opposite.|
 
 **Example**
@@ -2269,7 +3388,7 @@ Checks whether a stream is active. This API uses a promise to return the result.
 
 | Name    | Type                               | Mandatory| Description        |
 | ---------- | ----------------------------------- | ---- | ------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.|
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream types.|
 
 **Return value**
 
@@ -2366,7 +3485,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.             |
+| 6800101 | if input parameter value error              |
 
 **Example**
 
@@ -2400,7 +3519,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.             |
+| 6800101 | if input parameter value error              |
 
 **Example**
 
@@ -2414,7 +3533,7 @@ audioRoutingManager.off('deviceChange', (deviceChanged) => {
 
 selectInputDevice(inputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
 
-Selects an audio input device. Currently, only one input device can be selected. This API uses an asynchronous callback to return the result.
+Selects an audio input device. Only one input device can be selected. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2430,10 +3549,18 @@ Selects an audio input device. Currently, only one input device can be selected.
 **Example**
 ```js
 let inputAudioDeviceDescriptor = [{
-  "deviceRole":audio.DeviceRole.INPUT_DEVICE,
-  "networkId":audio.LOCAL_NETWORK_ID,
-  "interruptGroupId":1,
-  "volumeGroupId":1 }];
+    deviceRole : audio.DeviceRole.INPUT_DEVICE,
+    deviceType : audio.DeviceType.EARPIECE,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+}];
 
 async function selectInputDevice(){
   audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor, (err) => {
@@ -2451,7 +3578,7 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt
 
 **System API**: This is a system API.
 
-Selects an audio input device. Currently, only one input device can be selected. This API uses a promise to return the result.
+Selects an audio input device. Only one input device can be selected. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -2470,11 +3597,19 @@ Selects an audio input device. Currently, only one input device can be selected.
 **Example**
 
 ```js
-let inputAudioDeviceDescriptor =[{
-  "deviceRole":audio.DeviceRole.INPUT_DEVICE,
-  "networkId":audio.LOCAL_NETWORK_ID,
-  "interruptGroupId":1,
-  "volumeGroupId":1 }];
+let inputAudioDeviceDescriptor = [{
+    deviceRole : audio.DeviceRole.INPUT_DEVICE,
+    deviceType : audio.DeviceType.EARPIECE,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+}];
 
 async function getRoutingManager(){
     audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor).then(() => {
@@ -2617,10 +3752,19 @@ Selects an audio output device. Currently, only one output device can be selecte
 **Example**
 ```js
 let outputAudioDeviceDescriptor = [{
-  "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
-  "networkId":audio.LOCAL_NETWORK_ID,
-  "interruptGroupId":1,
-  "volumeGroupId":1 }];
+    deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+    deviceType : audio.DeviceType.SPEAKER,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+}];
+
 async function selectOutputDevice(){
   audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
     if (err) {
@@ -2656,11 +3800,19 @@ Selects an audio output device. Currently, only one output device can be selecte
 **Example**
 
 ```js
-let outputAudioDeviceDescriptor =[{
-  "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
-  "networkId":audio.LOCAL_NETWORK_ID,
-  "interruptGroupId":1,
-  "volumeGroupId":1 }];
+let outputAudioDeviceDescriptor = [{
+    deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+    deviceType : audio.DeviceType.SPEAKER,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+}];
 
 async function selectOutputDevice(){
   audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
@@ -2692,17 +3844,26 @@ Selects an audio output device based on the filter criteria. Currently, only one
 **Example**
 ```js
 let outputAudioRendererFilter = {
-  "uid":20010041,
-  "rendererInfo": {
-    "contentType":audio.ContentType.CONTENT_TYPE_MUSIC,
-    "streamUsage":audio.StreamUsage.STREAM_USAGE_MEDIA,
-    "rendererFlags":0 },
-  "rendererId":0 };
+  uid : 20010041,
+  rendererInfo : {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0 },
+  rendererId : 0 };
+  
 let outputAudioDeviceDescriptor = [{
-  "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
-  "networkId":audio.LOCAL_NETWORK_ID,
-  "interruptGroupId":1,
-  "volumeGroupId":1 }];
+    deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+    deviceType : audio.DeviceType.SPEAKER,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+}];
 
 async function selectOutputDeviceByFilter(){
   audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err) => {
@@ -2741,17 +3902,26 @@ Selects an audio output device based on the filter criteria. Currently, only one
 
 ```js
 let outputAudioRendererFilter = {
-  "uid":20010041,
-  "rendererInfo": {
-    "contentType":audio.ContentType.CONTENT_TYPE_MUSIC,
-    "streamUsage":audio.StreamUsage.STREAM_USAGE_MEDIA,
-    "rendererFlags":0 },
-  "rendererId":0 };
+  uid : 20010041,
+  rendererInfo : {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0 },
+  rendererId : 0 };
+
 let outputAudioDeviceDescriptor = [{
-  "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
-  "networkId":audio.LOCAL_NETWORK_ID,
-  "interruptGroupId":1,
-  "volumeGroupId":1 }];
+    deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+    deviceType : audio.DeviceType.SPEAKER,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+}];
 
 async function selectOutputDeviceByFilter(){
   audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor).then(() => {
@@ -2786,18 +3956,9 @@ Describes the audio renderer change event.
 ```js
 import audio from '@ohos.multimedia.audio';
 
-let audioStreamManager;
+const audioManager = audio.getAudioManager();
+let audioStreamManager = audioManager.getStreamManager();
 let resultFlag = false;
-let audioManager = audio.getAudioManager();
-
-audioManager.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`Get AudioStream Manager : ERROR : ${err}`);
-  } else {
-    audioStreamManager = data;
-    console.info('Get AudioStream Manager : Success');
-  }
-});
 
 audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
   for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
@@ -2853,15 +4014,7 @@ Describes the audio capturer change event.
 import audio from '@ohos.multimedia.audio';
 
 const audioManager = audio.getAudioManager();
-let audioStreamManager;
-audioManager.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
+let audioStreamManager = audioManager.getStreamManager();
 
 let resultFlag = false;
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
@@ -2947,9 +4100,9 @@ Implements filter criteria. Before calling **selectOutputDeviceByFilter**, you m
 
 | Name         | Type                                     | Mandatory | Description                                                  |
 | ------------ | ---------------------------------------- | --------- | ------------------------------------------------------------ |
-| uid          | number                                   | Yes       | Application ID.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
-| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | No        | Audio renderer information.<br>**System capability**: SystemCapability.Multimedia.Audio.Renderer |
-| rendererId   | number                                   | No        | Unique ID of an audio stream.<br>**System capability**: SystemCapability.Multimedia.Audio.Renderer |
+| uid          | number                                   | Yes       | Application ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Core |
+| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | No        | Audio renderer information.<br> **System capability**: SystemCapability.Multimedia.Audio.Renderer |
+| rendererId   | number                                   | No        | Unique ID of an audio stream.<br> **System capability**: SystemCapability.Multimedia.Audio.Renderer |
 
 **Example**
 
@@ -3764,9 +4917,9 @@ Sets the volume for the application. This API uses a promise to return the resul
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description    |
-| ------ | ------ | --------- | -------------- |
-| volume | number | Yes       | Volume to set. |
+| Name   | Type   | Mandatory | Description                                                  |
+| ------ | ------ | --------- | ------------------------------------------------------------ |
+| volume | number | Yes       | Volume to set, which can be within the range from 0.0 to 1.0. |
 
 **Return value**
 
@@ -3777,7 +4930,7 @@ Sets the volume for the application. This API uses a promise to return the resul
 **Example**
 
 ```js
-audioRenderer.setVolume(10).then(data=>{
+audioRenderer.setVolume(0.5).then(data=>{
   console.info('setVolume Success!');
 }).catch((err) => {
   console.error(`setVolume Fail: ${err}`);
@@ -3795,15 +4948,15 @@ Sets the volume for the application. This API uses an asynchronous callback to r
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                         |
-| -------- | -------------------- | --------- | ----------------------------------- |
-| volume   | number               | Yes       | Volume to set.                      |
-| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. |
+| Name     | Type                 | Mandatory | Description                                                  |
+| -------- | -------------------- | --------- | ------------------------------------------------------------ |
+| volume   | number               | Yes       | Volume to set, which can be within the range from 0.0 to 1.0. |
+| callback | AsyncCallback\<void> | Yes       | Callback used to return the result.                          |
 
 **Example**
 
 ```js
-audioRenderer.setVolume(10, (err, data)=>{
+audioRenderer.setVolume(0.5, (err, data)=>{
   if(err){
     console.error(`setVolume Fail: ${err}`);
   }
@@ -3833,58 +4986,62 @@ Same as [on('interrupt')](#oninterruptdeprecated), this API has obtained the foc
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                   |
-| ------- | ------------------------------- |
-| 6800101 | if input parameter value error. |
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 6800101 | if input parameter value error |
 
 **Example**
 
 ```js
 let isPlay;
 let started;
-audioRenderer.on('audioInterrupt', async(interruptEvent) => {
-  if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-    switch (interruptEvent.hintType) {
-      case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-        console.info('Force paused. Stop writing');
-        isPlay = false;
-        break;
-      case audio.InterruptHint.INTERRUPT_HINT_STOP:
-        console.info('Force stopped. Stop writing');
-        isPlay = false;
-        break;
-    }
-  } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-    switch (interruptEvent.hintType) {
-      case audio.InterruptHint.INTERRUPT_HINT_RESUME:
-        console.info('Resume force paused renderer or ignore');
-        await audioRenderer.start().then(async function () {
-          console.info('AudioInterruptMusic: renderInstant started :SUCCESS ');
-          started = true;
-        }).catch((err) => {
-          console.error(`AudioInterruptMusic: renderInstant start :ERROR : ${err}`);
-          started = false;
-        });
-        if (started) {
-          isPlay = true;
-          console.info(`AudioInterruptMusic Renderer started : isPlay : ${isPlay}`);
-        } else {
-          console.error('AudioInterruptMusic Renderer start failed');
-        }
-        break;
-      case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-        console.info('Choose to pause or ignore');
-        if (isPlay == true) {
-          isPlay == false;
-          console.info('AudioInterruptMusic: Media PAUSE : TRUE');
-        } else {
-          isPlay = true;
-          console.info('AudioInterruptMusic: Media PLAY : TRUE');
-        }
-        break;
-    }
-  }
-});
+onAudioInterrupt();
+
+async function onAudioInterrupt(){
+  audioRenderer.on('audioInterrupt', async(interruptEvent) => {
+    if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+      switch (interruptEvent.hintType) {
+        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+          console.info('Force paused. Stop writing');
+          isPlay = false;
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_STOP:
+          console.info('Force stopped. Stop writing');
+          isPlay = false;
+          break;
+      }
+    } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+      switch (interruptEvent.hintType) {
+        case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+          console.info('Resume force paused renderer or ignore');
+          await audioRenderer.start().then(async function () {
+            console.info('AudioInterruptMusic: renderInstant started :SUCCESS ');
+            started = true;
+          }).catch((err) => {
+            console.error(`AudioInterruptMusic: renderInstant start :ERROR : ${err}`);
+            started = false;
+          });
+          if (started) {
+            isPlay = true;
+            console.info(`AudioInterruptMusic Renderer started : isPlay : ${isPlay}`);
+          } else {
+            console.error('AudioInterruptMusic Renderer start failed');
+          }
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+          console.info('Choose to pause or ignore');
+          if (isPlay == true) {
+            isPlay == false;
+            console.info('AudioInterruptMusic: Media PAUSE : TRUE');
+          } else {
+            isPlay = true;
+            console.info('AudioInterruptMusic: Media PLAY : TRUE');
+          }
+          break;
+      }
+   }
+  });
+}
 
 ```
 
@@ -3995,10 +5152,10 @@ Subscribes to state change events.
 
 **Parameters**
 
-| Name     | Type                       | Mandatory | Description                                                  |
-| :------- | :------------------------- | :-------- | :----------------------------------------------------------- |
-| type     | string                     | Yes       | Event type. The value **stateChange** means the state change event. |
-| callback | [AudioState](#audiostate8) | Yes       | Callback used to return the state change.                    |
+| Name     | Type                                  | Mandatory | Description                                                  |
+| :------- | :------------------------------------ | :-------- | :----------------------------------------------------------- |
+| type     | string                                | Yes       | Event type. The value **stateChange** means the state change event. |
+| callback | Callback\<[AudioState](#audiostate8)> | Yes       | Callback used to return the state change.                    |
 
 **Example**
 
@@ -4661,10 +5818,10 @@ Subscribes to state change events.
 
 **Parameters**
 
-| Name     | Type                       | Mandatory | Description                                                  |
-| :------- | :------------------------- | :-------- | :----------------------------------------------------------- |
-| type     | string                     | Yes       | Event type. The value **stateChange** means the state change event. |
-| callback | [AudioState](#audiostate8) | Yes       | Callback used to return the state change.                    |
+| Name     | Type                                  | Mandatory | Description                                                  |
+| :------- | :------------------------------------ | :-------- | :----------------------------------------------------------- |
+| type     | string                                | Yes       | Event type. The value **stateChange** means the state change event. |
+| callback | Callback\<[AudioState](#audiostate8)> | Yes       | Callback used to return the state change.                    |
 
 **Example**
 
@@ -4688,35 +5845,35 @@ Enumerates the tone types of the player.
 
 **System capability**: SystemCapability.Multimedia.Audio.Tone
 
-| Name                                             | Default Value | Description                                   |
-| :----------------------------------------------- | :------------ | :-------------------------------------------- |
-| TONE_TYPE_DIAL_0                                 | 0             | DTMF tone of key 0.                           |
-| TONE_TYPE_DIAL_1                                 | 1             | DTMF tone of key 1.                           |
-| TONE_TYPE_DIAL_2                                 | 2             | DTMF tone of key 2.                           |
-| TONE_TYPE_DIAL_3                                 | 3             | DTMF tone of key 3.                           |
-| TONE_TYPE_DIAL_4                                 | 4             | DTMF tone of key 4.                           |
-| TONE_TYPE_DIAL_5                                 | 5             | DTMF tone of key 5.                           |
-| TONE_TYPE_DIAL_6                                 | 6             | DTMF tone of key 6.                           |
-| TONE_TYPE_DIAL_7                                 | 7             | DTMF tone of key 7.                           |
-| TONE_TYPE_DIAL_8                                 | 8             | DTMF tone of key 8.                           |
-| TONE_TYPE_DIAL_9                                 | 9             | DTMF tone of key 9.                           |
-| TONE_TYPE_DIAL_S                                 | 10            | DTMF tone of the star key (*).                |
-| TONE_TYPE_DIAL_P                                 | 11            | DTMF tone of the pound key (#).               |
-| TONE_TYPE_DIAL_A                                 | 12            | DTMF tone of key A.                           |
-| TONE_TYPE_DIAL_B                                 | 13            | DTMF tone of key B.                           |
-| TONE_TYPE_DIAL_C                                 | 14            | DTMF tone of key C.                           |
-| TONE_TYPE_DIAL_D                                 | 15            | DTMF tone of key D.                           |
-| TONE_TYPE_COMMON_SUPERVISORY_DIAL                | 100           | Supervisory tone - dial tone.                 |
-| TONE_TYPE_COMMON_SUPERVISORY_BUSY                | 101           | Supervisory tone - busy.                      |
-| TONE_TYPE_COMMON_SUPERVISORY_CONGESTION          | 102           | Supervisory tone - congestion.                |
-| TONE_TYPE_COMMON_SUPERVISORY_RADIO_ACK           | 103           | Supervisory tone - radio path acknowledgment. |
-| TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE | 104           | Supervisory tone - radio path not available.  |
-| TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING        | 106           | Supervisory tone - call waiting tone.         |
-| TONE_TYPE_COMMON_SUPERVISORY_RINGTONE            | 107           | Supervisory tone - ringing tone.              |
-| TONE_TYPE_COMMON_PROPRIETARY_BEEP                | 200           | Proprietary tone - beep tone.                 |
-| TONE_TYPE_COMMON_PROPRIETARY_ACK                 | 201           | Proprietary tone - ACK.                       |
-| TONE_TYPE_COMMON_PROPRIETARY_PROMPT              | 203           | Proprietary tone - PROMPT.                    |
-| TONE_TYPE_COMMON_PROPRIETARY_DOUBLE_BEEP         | 204           | Proprietary tone - double beep tone.          |
+| Name                                             | Value | Description                                   |
+| :----------------------------------------------- | :---- | :-------------------------------------------- |
+| TONE_TYPE_DIAL_0                                 | 0     | DTMF tone of key 0.                           |
+| TONE_TYPE_DIAL_1                                 | 1     | DTMF tone of key 1.                           |
+| TONE_TYPE_DIAL_2                                 | 2     | DTMF tone of key 2.                           |
+| TONE_TYPE_DIAL_3                                 | 3     | DTMF tone of key 3.                           |
+| TONE_TYPE_DIAL_4                                 | 4     | DTMF tone of key 4.                           |
+| TONE_TYPE_DIAL_5                                 | 5     | DTMF tone of key 5.                           |
+| TONE_TYPE_DIAL_6                                 | 6     | DTMF tone of key 6.                           |
+| TONE_TYPE_DIAL_7                                 | 7     | DTMF tone of key 7.                           |
+| TONE_TYPE_DIAL_8                                 | 8     | DTMF tone of key 8.                           |
+| TONE_TYPE_DIAL_9                                 | 9     | DTMF tone of key 9.                           |
+| TONE_TYPE_DIAL_S                                 | 10    | DTMF tone of the star key (*).                |
+| TONE_TYPE_DIAL_P                                 | 11    | DTMF tone of the pound key (#).               |
+| TONE_TYPE_DIAL_A                                 | 12    | DTMF tone of key A.                           |
+| TONE_TYPE_DIAL_B                                 | 13    | DTMF tone of key B.                           |
+| TONE_TYPE_DIAL_C                                 | 14    | DTMF tone of key C.                           |
+| TONE_TYPE_DIAL_D                                 | 15    | DTMF tone of key D.                           |
+| TONE_TYPE_COMMON_SUPERVISORY_DIAL                | 100   | Supervisory tone - dial tone.                 |
+| TONE_TYPE_COMMON_SUPERVISORY_BUSY                | 101   | Supervisory tone - busy.                      |
+| TONE_TYPE_COMMON_SUPERVISORY_CONGESTION          | 102   | Supervisory tone - congestion.                |
+| TONE_TYPE_COMMON_SUPERVISORY_RADIO_ACK           | 103   | Supervisory tone - radio path acknowledgment. |
+| TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE | 104   | Supervisory tone - radio path not available.  |
+| TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING        | 106   | Supervisory tone - call waiting tone.         |
+| TONE_TYPE_COMMON_SUPERVISORY_RINGTONE            | 107   | Supervisory tone - ringing tone.              |
+| TONE_TYPE_COMMON_PROPRIETARY_BEEP                | 200   | Proprietary tone - beep tone.                 |
+| TONE_TYPE_COMMON_PROPRIETARY_ACK                 | 201   | Proprietary tone - ACK.                       |
+| TONE_TYPE_COMMON_PROPRIETARY_PROMPT              | 203   | Proprietary tone - PROMPT.                    |
+| TONE_TYPE_COMMON_PROPRIETARY_DOUBLE_BEEP         | 204   | Proprietary tone - double beep tone.          |
 
 ## TonePlayer<sup>9+</sup>
 
@@ -4729,6 +5886,8 @@ Provides APIs for playing and managing DTMF tones, such as dial tones, ringback 
 load(type: ToneType, callback: AsyncCallback&lt;void&gt;): void
 
 Loads the DTMF tone configuration. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Tone
 
@@ -4758,6 +5917,8 @@ tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_5, (err) => {
 load(type: ToneType): Promise&lt;void&gt;
 
 Loads the DTMF tone configuration. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Tone
 
@@ -4790,6 +5951,8 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 Starts DTMF tone playing. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Tone
 
 **Parameters**
@@ -4818,6 +5981,8 @@ start(): Promise&lt;void&gt;
 
 Starts DTMF tone playing. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Tone
 
 **Return value**
@@ -4842,6 +6007,8 @@ tonePlayer.start().then(() => {
 stop(callback: AsyncCallback&lt;void&gt;): void
 
 Stops the tone that is being played. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Tone
 
@@ -4871,6 +6038,8 @@ stop(): Promise&lt;void&gt;
 
 Stops the tone that is being played. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Tone
 
 **Return value**
@@ -4895,6 +6064,8 @@ tonePlayer.stop().then(() => {
 release(callback: AsyncCallback&lt;void&gt;): void
 
 Releases the resources associated with the **TonePlayer** instance. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Tone
 
@@ -4923,6 +6094,8 @@ tonePlayer.release((err) => {
 release(): Promise&lt;void&gt;
 
 Releases the resources associated with the **TonePlayer** instance. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Tone
 
@@ -4953,32 +6126,33 @@ Enumerates the active device types.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
-| Name          | Default Value | Description                                                  |
-| ------------- | ------------- | ------------------------------------------------------------ |
-| SPEAKER       | 2             | Speaker.                                                     |
-| BLUETOOTH_SCO | 7             | Bluetooth device using Synchronous Connection Oriented (SCO) links. |
+| Name          | Value | Description                                                  |
+| ------------- | ----- | ------------------------------------------------------------ |
+| SPEAKER       | 2     | Speaker.                                                     |
+| BLUETOOTH_SCO | 7     | Bluetooth device using Synchronous Connection Oriented (SCO) links. |
 
 ## InterruptActionType<sup>(deprecated)</sup>
 
 Enumerates the returned event types for audio interruption events.
 
 > **NOTE**
+>
 > This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name           | Default Value | Description               |
-| -------------- | ------------- | ------------------------- |
-| TYPE_ACTIVATED | 0             | Focus gain event.         |
-| TYPE_INTERRUPT | 1             | Audio interruption event. |
+| Name           | Value | Description               |
+| -------------- | ----- | ------------------------- |
+| TYPE_ACTIVATED | 0     | Focus gain event.         |
+| TYPE_INTERRUPT | 1     | Audio interruption event. |
 
 ## AudioInterrupt<sup>(deprecated)</sup>
+
+Describes input parameters of audio interruption events.
 
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9.
-
-Describes input parameters of audio interruption events.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -4990,1154 +6164,17 @@ Describes input parameters of audio interruption events.
 
 ## InterruptAction<sup>(deprecated)</sup>
 
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9.
-
 Describes the callback invoked for audio interruption or focus gain events.
 
-**System capability**: SystemCapability.Multimedia.Audio.Renderer
-
-| Name       | Type                                        | Mandatory | Description                                                  |
-| ---------- | ------------------------------------------- | --------- | ------------------------------------------------------------ |
-| actionType | [InterruptActionType](#interruptactiontype) | Yes       | Returned event type. The value **TYPE_ACTIVATED** means the focus gain event, and **TYPE_INTERRUPT** means the audio interruption event. |
-| type       | [InterruptType](#interrupttype)             | No        | Type of the audio interruption event.                        |
-| hint       | [InterruptHint](#interrupthint)             | No        | Hint provided along with the audio interruption event.       |
-| activated  | boolean                                     | No        | Whether the focus is gained or released. The value **true** means that the focus is gained or released, and **false** means that the focus fails to be gained or released. |
-
-### setVolume<sup>(deprecated)</sup>
-
-setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
-
-Sets the volume for a stream. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**.
-
-**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
-**Parameters**
-
-| Name       | Type                                | Mandatory | Description                                                  |
-| ---------- | ----------------------------------- | --------- | ------------------------------------------------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                                           |
-| volume     | number                              | Yes       | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**. |
-| callback   | AsyncCallback&lt;void&gt;           | Yes       | Callback used to return the result.                          |
-
-**Example**
-
-```js
-audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err) => {
-  if (err) {
-    console.error(`Failed to set the volume. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate a successful volume setting.');
-});
-
-```
-
-### setVolume<sup>(deprecated)</sup>
-
-setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
-
-Sets the volume for a stream. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**.
-
-**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
-**Parameters**
-
-| Name       | Type                                | Mandatory | Description                                                  |
-| ---------- | ----------------------------------- | --------- | ------------------------------------------------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                                           |
-| volume     | number                              | Yes       | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**. |
-
-**Return value**
-
-| Type                | Description                        |
-| ------------------- | ---------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
-
-**Example**
-
-```js
-audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
-  console.info('Promise returned to indicate a successful volume setting.');
-});
-
-```
-
-### getVolume<sup>(deprecated)</sup>
-
-getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
-
-Obtains the volume of a stream. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getVolume](#getvolume9) in **AudioVolumeGroupManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
-**Parameters**
-
-| Name       | Type                                | Mandatory | Description                         |
-| ---------- | ----------------------------------- | --------- | ----------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                  |
-| callback   | AsyncCallback&lt;number&gt;         | Yes       | Callback used to return the volume. |
-
-**Example**
-
-```js
-audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the volume. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate that the volume is obtained.');
-});
-
-```
-
-### getVolume<sup>(deprecated)</sup>
-
-getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
-
-Obtains the volume of a stream. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getVolume](#getvolume9) in **AudioVolumeGroupManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
-**Parameters**
-
-| Name       | Type                                | Mandatory | Description        |
-| ---------- | ----------------------------------- | --------- | ------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type. |
-
-**Return value**
-
-| Type                  | Description                        |
-| --------------------- | ---------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the volume. |
-
-**Example**
-
-```js
-audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) => {
-  console.info(`Promise returned to indicate that the volume is obtained ${value} .`);
-});
-
-```
-
-### getMinVolume<sup>(deprecated)</sup>
-
-getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
-
-Obtains the minimum volume allowed for a stream. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMinVolume](#getminvolume9) in **AudioVolumeGroupManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
-**Parameters**
-
-| Name       | Type                                | Mandatory | Description                                 |
-| ---------- | ----------------------------------- | --------- | ------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                          |
-| callback   | AsyncCallback&lt;number&gt;         | Yes       | Callback used to return the minimum volume. |
-
-**Example**
-
-```js
-audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the minimum volume. ${err}`);
-    return;
-  }
-  console.info(`Callback invoked to indicate that the minimum volume is obtained. ${value}`);
-});
-
-```
-
-### getMinVolume<sup>(deprecated)</sup>
-
-getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
-
-Obtains the minimum volume allowed for a stream. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMinVolume](#getminvolume9) in **AudioVolumeGroupManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
-**Parameters**
-
-| Name       | Type                                | Mandatory | Description        |
-| ---------- | ----------------------------------- | --------- | ------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type. |
-
-**Return value**
-
-| Type                  | Description                                |
-| --------------------- | ------------------------------------------ |
-| Promise&lt;number&gt; | Promise used to return the minimum volume. |
-
-**Example**
-
-```js
-audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) => {
-  console.info(`Promised returned to indicate that the minimum volume is obtained. ${value}`);
-});
-
-```
-
-### getMaxVolume<sup>(deprecated)</sup>
-
-getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
-
-Obtains the maximum volume allowed for a stream. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMaxVolume](#getmaxvolume9) in **AudioVolumeGroupManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
-**Parameters**
-
-| Name       | Type                                | Mandatory | Description                                 |
-| ---------- | ----------------------------------- | --------- | ------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                          |
-| callback   | AsyncCallback&lt;number&gt;         | Yes       | Callback used to return the maximum volume. |
-
-**Example**
-
-```js
-audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the maximum volume. ${err}`);
-    return;
-  }
-  console.info(`Callback invoked to indicate that the maximum volume is obtained. ${value}`);
-});
-
-```
-
-### getMaxVolume<sup>(deprecated)</sup>
-
-getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
-
-Obtains the maximum volume allowed for a stream. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMaxVolume](#getmaxvolume9) in **AudioVolumeGroupManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
-**Parameters**
-
-| Name       | Type                                | Mandatory | Description        |
-| ---------- | ----------------------------------- | --------- | ------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type. |
-
-**Return value**
-
-| Type                  | Description                                |
-| --------------------- | ------------------------------------------ |
-| Promise&lt;number&gt; | Promise used to return the maximum volume. |
-
-**Example**
-
-```js
-audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data) => {
-  console.info('Promised returned to indicate that the maximum volume is obtained.');
-});
-
-```
-
-### mute<sup>(deprecated)</sup>
-
-mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-Mutes or unmutes a stream. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [mute](#mute9) in **AudioVolumeGroupManager**.
-
-**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
-**Parameters**
-
-| Name       | Type                                | Mandatory | Description                                                  |
-| ---------- | ----------------------------------- | --------- | ------------------------------------------------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                                           |
-| mute       | boolean                             | Yes       | Mute status to set. The value **true** means to mute the stream, and **false** means the opposite. |
-| callback   | AsyncCallback&lt;void&gt;           | Yes       | Callback used to return the result.                          |
-
-**Example**
-
-```js
-audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
-  if (err) {
-    console.error(`Failed to mute the stream. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate that the stream is muted.');
-});
-
-```
-
-### mute<sup>(deprecated)</sup>
-
-mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
-
-Mutes or unmutes a stream. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [mute](#mute9) in **AudioVolumeGroupManager**.
-
-**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
-**Parameters**
-
-| Name       | Type                                | Mandatory | Description                                                  |
-| ---------- | ----------------------------------- | --------- | ------------------------------------------------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                                           |
-| mute       | boolean                             | Yes       | Mute status to set. The value **true** means to mute the stream, and **false** means the opposite. |
-
-**Return value**
-
-| Type                | Description                        |
-| ------------------- | ---------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
-
-**Example**
-
-
-```js
-audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() => {
-  console.info('Promise returned to indicate that the stream is muted.');
-});
-
-```
-
-### isMute<sup>(deprecated)</sup>
-
-isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
-
-Checks whether a stream is muted. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMute](#ismute9) in **AudioVolumeGroupManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
-**Parameters**
-
-| Name       | Type                                | Mandatory | Description                                                  |
-| ---------- | ----------------------------------- | --------- | ------------------------------------------------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                                           |
-| callback   | AsyncCallback&lt;boolean&gt;        | Yes       | Callback used to return the mute status of the stream. The value **true** means that the stream is muted, and **false** means the opposite. |
-
-**Example**
-
-```js
-audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the mute status. ${err}`);
-    return;
-  }
-  console.info(`Callback invoked to indicate that the mute status of the stream is obtained. ${value}`);
-});
-
-```
-
-### isMute<sup>(deprecated)</sup>
-
-isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
-
-Checks whether a stream is muted. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMute](#ismute9) in **AudioVolumeGroupManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
-**Parameters**
-
-| Name       | Type                                | Mandatory | Description        |
-| ---------- | ----------------------------------- | --------- | ------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type. |
-
-**Return value**
-
-| Type                   | Description                                                  |
-| ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the mute status of the stream. The value **true** means that the stream is muted, and **false** means the opposite. |
-
-**Example**
-
-```js
-audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
-  console.info(`Promise returned to indicate that the mute status of the stream is obtained ${value}.`);
-});
-
-```
-
-### isActive<sup>(deprecated)</sup>
-
-isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
-
-Checks whether a stream is active. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isActive](#isactive9) in **AudioStreamManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
-**Parameters**
-
-| Name       | Type                                | Mandatory | Description                                                  |
-| ---------- | ----------------------------------- | --------- | ------------------------------------------------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                                           |
-| callback   | AsyncCallback&lt;boolean&gt;        | Yes       | Callback used to return the active status of the stream. The value **true** means that the stream is active, and **false** means the opposite. |
-
-**Example**
-
-```js
-audioManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the active status of the stream. ${err}`);
-    return;
-  }
-  console.info(`Callback invoked to indicate that the active status of the stream is obtained ${value}.`);
-});
-
-```
-
-### isActive<sup>(deprecated)</sup>
-
-isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
-
-Checks whether a stream is active. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isActive](#isactive9) in **AudioStreamManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
-**Parameters**
-
-| Name       | Type                                | Mandatory | Description        |
-| ---------- | ----------------------------------- | --------- | ------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type. |
-
-**Return value**
-
-| Type                   | Description                                                  |
-| ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the active status of the stream. The value **true** means that the stream is active, and **false** means the opposite. |
-
-**Example**
-
-```js
-audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
-  console.info(`Promise returned to indicate that the active status of the stream is obtained ${value}.`);
-});
-
-```
-
-### setRingerMode<sup>(deprecated)</sup>
-
-setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
-
-Sets the ringer mode. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setRingerMode](#setringermode9) in **AudioVolumeGroupManager**.
-
-**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-This permission is required only for muting or unmuting the ringer.
-
-**System capability**: SystemCapability.Multimedia.Audio.Communication
-
-**Parameters**
-
-| Name     | Type                            | Mandatory | Description                         |
-| -------- | ------------------------------- | --------- | ----------------------------------- |
-| mode     | [AudioRingMode](#audioringmode) | Yes       | Ringer mode.                        |
-| callback | AsyncCallback&lt;void&gt;       | Yes       | Callback used to return the result. |
-
-**Example**
-
-```js
-audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
-  if (err) {
-    console.error(`Failed to set the ringer mode.​ ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate a successful setting of the ringer mode.');
-});
-
-```
-
-### setRingerMode<sup>(deprecated)</sup>
-
-setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
-
-Sets the ringer mode. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setRingerMode](#setringermode9) in **AudioVolumeGroupManager**.
-
-**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-This permission is required only for muting or unmuting the ringer.
-
-**System capability**: SystemCapability.Multimedia.Audio.Communication
-
-**Parameters**
-
-| Name | Type                            | Mandatory | Description  |
-| ---- | ------------------------------- | --------- | ------------ |
-| mode | [AudioRingMode](#audioringmode) | Yes       | Ringer mode. |
-
-**Return value**
-
-| Type                | Description                        |
-| ------------------- | ---------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
-
-**Example**
-
-```js
-audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() => {
-  console.info('Promise returned to indicate a successful setting of the ringer mode.');
-});
-
-```
-
-### getRingerMode<sup>(deprecated)</sup>
-
-getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
-
-Obtains the ringer mode. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getRingerMode](#getringermode9) in **AudioVolumeGroupManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Communication
-
-**Parameters**
-
-| Name     | Type                                                 | Mandatory | Description                              |
-| -------- | ---------------------------------------------------- | --------- | ---------------------------------------- |
-| callback | AsyncCallback&lt;[AudioRingMode](#audioringmode)&gt; | Yes       | Callback used to return the ringer mode. |
-
-**Example**
-
-```js
-audioManager.getRingerMode((err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the ringer mode.​ ${err}`);
-    return;
-  }
-  console.info(`Callback invoked to indicate that the ringer mode is obtained ${value}.`);
-});
-
-```
-
-### getRingerMode<sup>(deprecated)</sup>
-
-getRingerMode(): Promise&lt;AudioRingMode&gt;
-
-Obtains the ringer mode. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getRingerMode](#getringermode9) in **AudioVolumeGroupManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Communication
-
-**Return value**
-
-| Type                                           | Description                             |
-| ---------------------------------------------- | --------------------------------------- |
-| Promise&lt;[AudioRingMode](#audioringmode)&gt; | Promise used to return the ringer mode. |
-
-**Example**
-
-```js
-audioManager.getRingerMode().then((value) => {
-  console.info(`Promise returned to indicate that the ringer mode is obtained ${value}.`);
-});
-
-```
-
-### getDevices<sup>(deprecated)</sup>
-
-getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
-
-Obtains the audio devices with a specific flag. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getDevices](#getdevices9) in **AudioRoutingManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-**Parameters**
-
-| Name       | Type                                                         | Mandatory | Description                              |
-| ---------- | ------------------------------------------------------------ | --------- | ---------------------------------------- |
-| deviceFlag | [DeviceFlag](#deviceflag)                                    | Yes       | Audio device flag.                       |
-| callback   | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Yes       | Callback used to return the device list. |
-
-**Example**
-
-```js
-audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the device list. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate that the device list is obtained.');
-});
-
-```
-
-### getDevices<sup>(deprecated)</sup>
-
-getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
-
-Obtains the audio devices with a specific flag. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getDevices](#getdevices9) in **AudioRoutingManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-**Parameters**
-
-| Name       | Type                      | Mandatory | Description        |
-| ---------- | ------------------------- | --------- | ------------------ |
-| deviceFlag | [DeviceFlag](#deviceflag) | Yes       | Audio device flag. |
-
-**Return value**
-
-| Type                                                         | Description                             |
-| ------------------------------------------------------------ | --------------------------------------- |
-| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Promise used to return the device list. |
-
-**Example**
-
-```js
-audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
-  console.info('Promise returned to indicate that the device list is obtained.');
-});
-
-```
-
-### setDeviceActive<sup>(deprecated)</sup>
-
-setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-Sets a device to the active state. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCommunicationDevice](#setcommunicationdevice9) in **AudioRoutingManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-**Parameters**
-
-| Name       | Type                                  | Mandatory | Description                                                  |
-| ---------- | ------------------------------------- | --------- | ------------------------------------------------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetype) | Yes       | Audio device type.                                           |
-| active     | boolean                               | Yes       | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite. |
-| callback   | AsyncCallback&lt;void&gt;             | Yes       | Callback used to return the result.                          |
-
-**Example**
-
-```js
-audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err) => {
-  if (err) {
-    console.error(`Failed to set the active status of the device. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate that the device is set to the active status.');
-});
-
-```
-
-### setDeviceActive<sup>(deprecated)</sup>
-
-setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise&lt;void&gt;
-
-Sets a device to the active state. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCommunicationDevice](#setcommunicationdevice9) in **AudioRoutingManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-**Parameters**
-
-| Name       | Type                                  | Mandatory | Description                                                  |
-| ---------- | ------------------------------------- | --------- | ------------------------------------------------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetype) | Yes       | Audio device type.                                           |
-| active     | boolean                               | Yes       | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite. |
-
-**Return value**
-
-| Type                | Description                        |
-| ------------------- | ---------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
-
-**Example**
-
-
-```js
-audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true).then(() => {
-  console.info('Promise returned to indicate that the device is set to the active status.');
-});
-
-```
-
-### isDeviceActive<sup>(deprecated)</sup>
-
-isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback&lt;boolean&gt;): void
-
-Checks whether a device is active. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isCommunicationDeviceActive](#iscommunicationdeviceactive9) in **AudioRoutingManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-**Parameters**
-
-| Name       | Type                                  | Mandatory | Description                                             |
-| ---------- | ------------------------------------- | --------- | ------------------------------------------------------- |
-| deviceType | [ActiveDeviceType](#activedevicetype) | Yes       | Audio device type.                                      |
-| callback   | AsyncCallback&lt;boolean&gt;          | Yes       | Callback used to return the active state of the device. |
-
-**Example**
-
-```js
-audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the active status of the device. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate that the active status of the device is obtained.');
-});
-
-```
-
-### isDeviceActive<sup>(deprecated)</sup>
-
-isDeviceActive(deviceType: ActiveDeviceType): Promise&lt;boolean&gt;
-
-Checks whether a device is active. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isCommunicationDeviceActive](#iscommunicationdeviceactive9) in **AudioRoutingManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-**Parameters**
-
-| Name       | Type                                  | Mandatory | Description        |
-| ---------- | ------------------------------------- | --------- | ------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetype) | Yes       | Audio device type. |
-
-**Return value**
-
-| Type                   | Description                                            |
-| ---------------------- | ------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the active state of the device. |
-
-**Example**
-
-```js
-audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then((value) => {
-  console.info(`Promise returned to indicate that the active status of the device is obtained ${value}.`);
-});
-
-```
-
-### setMicrophoneMute<sup>(deprecated)</sup>
-
-setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-Mutes or unmutes the microphone. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setMicrophoneMute](#setmicrophonemute9) in **AudioVolumeGroupManager**.
-
-**Required permissions**: ohos.permission.MICROPHONE
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-**Parameters**
-
-| Name     | Type                      | Mandatory | Description                                                  |
-| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| mute     | boolean                   | Yes       | Mute status to set. The value **true** means to mute the microphone, and **false** means the opposite. |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
-
-**Example**
-
-```js
-audioManager.setMicrophoneMute(true, (err) => {
-  if (err) {
-    console.error(`Failed to mute the microphone. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate that the microphone is muted.');
-});
-
-```
-
-### setMicrophoneMute<sup>(deprecated)</sup>
-
-setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
-
-Mutes or unmutes the microphone. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setMicrophoneMute](#setmicrophonemute9) in **AudioVolumeGroupManager**.
-
-**Required permissions**: ohos.permission.MICROPHONE
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-**Parameters**
-
-| Name | Type    | Mandatory | Description                                                  |
-| ---- | ------- | --------- | ------------------------------------------------------------ |
-| mute | boolean | Yes       | Mute status to set. The value **true** means to mute the microphone, and **false** means the opposite. |
-
-**Return value**
-
-| Type                | Description                        |
-| ------------------- | ---------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
-
-**Example**
-
-```js
-audioManager.setMicrophoneMute(true).then(() => {
-  console.info('Promise returned to indicate that the microphone is muted.');
-});
-
-```
-
-### isMicrophoneMute<sup>(deprecated)</sup>
-
-isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
-
-Checks whether the microphone is muted. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMicrophoneMute](#ismicrophonemute9) in **AudioVolumeGroupManager**.
-
-**Required permissions**: ohos.permission.MICROPHONE
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-**Parameters**
-
-| Name     | Type                         | Mandatory | Description                                                  |
-| -------- | ---------------------------- | --------- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes       | Callback used to return the mute status of the microphone. The value **true** means that the microphone is muted, and **false** means the opposite. |
-
-**Example**
-
-```js
-audioManager.isMicrophoneMute((err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the mute status of the microphone. ${err}`);
-    return;
-  }
-  console.info(`Callback invoked to indicate that the mute status of the microphone is obtained ${value}.`);
-});
-
-```
-
-### isMicrophoneMute<sup>(deprecated)</sup>
-
-isMicrophoneMute(): Promise&lt;boolean&gt;
-
-Checks whether the microphone is muted. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMicrophoneMute](#ismicrophonemute9) in **AudioVolumeGroupManager**.
-
-**Required permissions**: ohos.permission.MICROPHONE
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-**Return value**
-
-| Type                   | Description                                                  |
-| ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the mute status of the microphone. The value **true** means that the microphone is muted, and **false** means the opposite. |
-
-**Example**
-
-```js
-audioManager.isMicrophoneMute().then((value) => {
-  console.info(`Promise returned to indicate that the mute status of the microphone is obtained ${value}.`);
-});
-
-```
-
-### on('volumeChange')<sup>(deprecated)</sup>
-
-on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
-
-> **NOTE**
->
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on](#on9) in **AudioVolumeManager**.
-
-Subscribes to system volume change events.
-
-**System API**: This is a system API.
-
-Currently, when multiple **AudioManager** instances are used in a single process, only the subscription of the last instance takes effect, and the subscription of other instances is overwritten (even if the last instance does not initiate a subscription). Therefore, you are advised to use a single **AudioManager** instance.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
-**Parameters**
-
-| Name     | Type                                   | Mandatory | Description                                                  |
-| -------- | -------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | string                                 | Yes       | Event type. The value **'volumeChange'** means the system volume change event, which is triggered when a system volume change is detected. |
-| callback | Callback<[VolumeEvent](#volumeevent8)> | Yes       | Callback used to return the result.                          |
-
-**Example**
-
-```js
-audioManager.on('volumeChange', (volumeEvent) => {
-  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
-  console.info(`Volume level: ${volumeEvent.volume} `);
-  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
-});
-
-```
-
-### on('ringerModeChange')<sup>(deprecated)</sup>
-
-on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
-
-Subscribes to ringer mode change events.
-
-> **NOTE**
->
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on('ringerModeChange')](#onringermodechange9) in **AudioVolumeGroupManager**.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Audio.Communication
-
-**Parameters**
-
-| Name     | Type                                      | Mandatory | Description                                                  |
-| -------- | ----------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | string                                    | Yes       | Event type. The value **'ringerModeChange'** means the ringer mode change event, which is triggered when a ringer mode change is detected. |
-| callback | Callback<[AudioRingMode](#audioringmode)> | Yes       | Callback used to return the result.                          |
-
-**Example**
-
-```js
-audioManager.on('ringerModeChange', (ringerMode) => {
-  console.info(`Updated ringermode: ${ringerMode}`);
-});
-
-```
-
-### on('deviceChange')<sup>(deprecated)</sup>
-
-on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
-
-Subscribes to device change events. When a device is connected or disconnected, registered clients will receive the callback.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [on](#on9) in **AudioRoutingManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-**Parameters**
-
-| Name     | Type                                                 | Mandatory | Description                                                  |
-| :------- | :--------------------------------------------------- | :-------- | :----------------------------------------------------------- |
-| type     | string                                               | Yes       | Event type. The value **'deviceChange'** means the device change event, which is triggered when a device connection status change is detected. |
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes       | Callback used to return the device update details.           |
-
-**Example**
-
-```js
-audioManager.on('deviceChange', (deviceChanged) => {
-  console.info(`device change type : ${deviceChanged.type} `);
-  console.info(`device descriptor size : ${deviceChanged.deviceDescriptors.length} `);
-  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceRole} `);
-  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceType} `);
-});
-
-```
-
-### off('deviceChange')<sup>(deprecated)</sup>
-
-off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
-
-Unsubscribes from device change events.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [off](#off9) in **AudioRoutingManager**.
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-**Parameters**
-
-| Name     | Type                                                | Mandatory | Description                                                  |
-| -------- | --------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | string                                              | Yes       | Event type. The value **'deviceChange'** means the device change event, which is triggered when a device connection status change is detected. |
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No        | Callback used to return the device update details.           |
-
-**Example**
-
-```js
-audioManager.off('deviceChange', (deviceChanged) => {
-  console.info('Should be no callback.');
-});
-```
-
-### on('interrupt')<sup>(deprecated)</sup>
-
-on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
-
-Subscribes to audio interruption events. When the application's audio is interrupted by another playback event, the application will receive the callback.
-
-Same as [on('audioInterrupt')](#onaudiointerrupt9), this API is used to listen for focus changes. However, this API is used in scenarios without audio streams (no **AudioRenderer** instance is created), such as frequency modulation (FM) and voice wakeup.
-
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters**
-
-| Name      | Type                                          | Mandatory | Description                                                  |
-| --------- | --------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type      | string                                        | Yes       | Event type. The value **'interrupt'** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application. |
-| interrupt | AudioInterrupt                                | Yes       | Audio interruption event type.                               |
-| callback  | Callback<[InterruptAction](#interruptaction)> | Yes       | Callback invoked for the audio interruption event.           |
-
-**Example**
-
-```js
-let interAudioInterrupt = {
-  streamUsage:2,
-  contentType:0,
-  pauseWhenDucked:true
-};
-audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
-  if (InterruptAction.actionType === 0) {
-    console.info('An event to gain the audio focus starts.');
-    console.info(`Focus gain event: ${InterruptAction} `);
-  }
-  if (InterruptAction.actionType === 1) {
-    console.info('An audio interruption event starts.');
-    console.info(`Audio interruption event: ${InterruptAction} `);
-  }
-});
-
-```
-
-### off('interrupt')<sup>(deprecated)</sup>
-
-off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
-
-Unsubscribes from audio interruption events.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9.
-
-**System capability**: SystemCapability.Multimedia.Audio.Renderer
-
-**Parameters**
-
-| Name      | Type                                          | Mandatory | Description                                                  |
-| --------- | --------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type      | string                                        | Yes       | Event type. The value **'interrupt'** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application. |
-| interrupt | AudioInterrupt                                | Yes       | Audio interruption event type.                               |
-| callback  | Callback<[InterruptAction](#interruptaction)> | No        | Callback invoked for the audio interruption event.           |
-
-**Example**
-
-```js
-let interAudioInterrupt = {
-  streamUsage:2,
-  contentType:0,
-  pauseWhenDucked:true
-};
-audioManager.off('interrupt', interAudioInterrupt, (InterruptAction) => {
-  if (InterruptAction.actionType === 0) {
-      console.info('An event to release the audio focus starts.');
-      console.info(`Focus release event: ${InterruptAction} `);
-  }
-});
-```
+| Name       | Type                                                  | Mandatory | Description                                                  |
+| ---------- | ----------------------------------------------------- | --------- | ------------------------------------------------------------ |
+| actionType | [InterruptActionType](#interruptactiontypedeprecated) | Yes       | Returned event type. The value **TYPE_ACTIVATED** means the focus gain event, and **TYPE_INTERRUPT** means the audio interruption event. |
+| type       | [InterruptType](#interrupttype)                       | No        | Type of the audio interruption event.                        |
+| hint       | [InterruptHint](#interrupthint)                       | No        | Hint provided along with the audio interruption event.       |
+| activated  | boolean                                               | No        | Whether the focus is gained or released. The value **true** means that the focus is gained or released, and **false** means that the focus fails to be gained or released. |
