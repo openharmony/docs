@@ -1,8 +1,8 @@
-# innerBundleManager<sup>(deprecated)</sup>
+# @ohos.bundle.innerBundleManager
 
 The **innerBundleManager** module provides APIs for the **Home Screen** application.
 
-> 
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > This module is deprecated since API version 9. You are advised to use [launcherBundleManager](js-apis-launcherBundleManager.md) and [bundleMonitor](js-apis-bundleMonitor.md) instead.
 
@@ -41,7 +41,7 @@ This is a system API and cannot be called by third-party applications.
 | Name    | Type                                                        | Mandatory| Description                                                 |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | bundleName | string                                                       | Yes  | Bundle name of an application.                             |
-| userId     | number                                                       | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.|
+| userId     | number                                                       | Yes  | User ID. The value must be greater than or equal to 0.|
 | callback   | AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundle-LauncherAbilityInfo.md)>> | Yes  | Callback used to return an array of the launcher ability information.           |
 
 
@@ -69,7 +69,7 @@ This is a system API and cannot be called by third-party applications.
 | Name    | Type  | Mandatory| Description                                                 |
 | ---------- | ------ | ---- | ----------------------------------------------------- |
 | bundleName | string | Yes  | Bundle name of an application.                             |
-| userId     | number | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.|
+| userId     | number | Yes  | User ID. The value must be greater than or equal to 0.|
 
 **Return value**
 
@@ -216,7 +216,7 @@ This is a system API and cannot be called by third-party applications.
 
 | Name  | Type                                                        | Mandatory| Description                                                 |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-| userId   | number                                                       | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.|
+| userId   | number                                                       | Yes  | User ID. The value must be greater than or equal to 0.|
 | callback | AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundle-LauncherAbilityInfo.md)>> | Yes  | Callback used to return an array of the launcher ability information.           |
 
 ## innerBundleManager.getAllLauncherAbilityInfos<sup>(deprecated)</sup>
@@ -242,7 +242,7 @@ This is a system API and cannot be called by third-party applications.
 
 | Name| Type  | Mandatory| Description                                                 |
 | ------ | ------ | ---- | ----------------------------------------------------- |
-| userId | number | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.|
+| userId | number | Yes  | User ID. The value must be greater than or equal to 0.|
 
 **Return value**
 

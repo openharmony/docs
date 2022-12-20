@@ -1,10 +1,12 @@
 # ShortcutInfo
 
-The **ShortcutInfo** module provides shortcut information defined in the configuration file. For details about the configuration in the FA model, see [config.json](../../quick-start/package-structure.md). For details about the configuration in the stage model, see [Internal Structure of the shortcuts Attribute](../../quick-start/stage-structure.md#internal-structure-of-the-shortcuts-attribute).
+The **ShortcutInfo** module defines shortcut information configured in the configuration file. The information can be obtained through [getShortcutInfo](js-apis-launcherBundleManager.md#launcherbundlemanagergetshortcutinfo9).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> For the FA model, the shortcut information is configured in the [config.json](../../quick-start/module-structure.md) file. For details about the shortcut information in the stage model, see [shortcuts](../../quick-start/module-configuration-file.md#shortcuts).
 
 ## ShortcutWant
 
@@ -16,7 +18,7 @@ The **ShortcutInfo** module provides shortcut information defined in the configu
 | ------------------------- | ------ | ---- | ---- | -------------------- |
 | targetBundle              | string | Yes  | No  | Target bundle name of the shortcut.|
 | targetModule              | string | Yes  | No  | Target module name of the shortcut.  |
-| targetAbility               | string | Yes  | No  | Target ability name of the shortcut.|
+| targetAbility             | string | Yes  | No  | Target ability name of the shortcut.|
 
 ## ShortcutInfo
 
@@ -35,3 +37,5 @@ The **ShortcutInfo** module provides shortcut information defined in the configu
 | label                   | string                                     | Yes  | No  | Label of the shortcut.              |
 | labelId    | number                                     | Yes  | No  | Label ID of the shortcut.            |
 | wants                   | Array\<[ShortcutWant](#shortcutwant)> | Yes  | No  | Want information required for the shortcut.        |
+
+<!--no_check-->
