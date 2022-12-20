@@ -127,7 +127,7 @@
             if (needGrantPermission) {
                 Logger.info("app permission needGrantPermission")
                 try {
-                    await this.context.requestPermissionsFromUser(permissions)
+                    await accessManger.requestPermissionsFromUser(this.context, permissions)
                 } catch (err) {
                     Logger.error(`app permission ${JSON.stringify(err)}`)
                 }
