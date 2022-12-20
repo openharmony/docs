@@ -588,7 +588,6 @@
       - [Counter](reference/arkui-ts/ts-container-counter.md)
       - [Flex](reference/arkui-ts/ts-container-flex.md)
       - [FlowItem](reference/arkui-ts/ts-container-flowitem.md)
-      - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
       - [GridCol](reference/arkui-ts/ts-container-gridcol.md)
       - [GridRow](reference/arkui-ts/ts-container-gridrow.md)
       - [Grid](reference/arkui-ts/ts-container-grid.md)
@@ -651,7 +650,7 @@
     - [枚举说明](reference/arkui-ts/ts-appendix-enums.md)
     - [类型说明](reference/arkui-ts/ts-types.md)
     - 已停止维护的组件
-      - [GridContainer(栅格)](reference/arkui-ts/ts-container-gridcontainer.md)
+      - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
   - 组件参考（兼容JS的类Web开发范式）
     - 组件通用信息
       - [通用属性](reference/arkui-js/js-components-common-attributes.md)
@@ -1084,6 +1083,7 @@
       - [@ohos.reminderAgent (后台代理提醒)](reference/apis/js-apis-reminderAgent.md)
       - [@ohos.systemParameter (系统属性)](reference/apis/js-apis-system-parameter.md)
       - [@ohos.usb (USB管理)](reference/apis/js-apis-usb-deprecated.md)
+      - [@ohos.workScheduler (延迟任务调度)](reference/apis/js-apis-workScheduler.md)
       - [@system.app (应用上下文)](reference/apis/js-apis-system-app.md)
       - [@system.battery (电量信息)](reference/apis/js-apis-system-battery.md)
       - [@system.bluetooth (蓝牙)](reference/apis/js-apis-system-bluetooth.md)
