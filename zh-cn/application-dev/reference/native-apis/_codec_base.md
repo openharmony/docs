@@ -81,10 +81,10 @@ CodecBase模块提供运行音视频编解码通用的结构体、字符常量�
 | [OH_MD_KEY_MAX_INPUT_SIZE](#oh_md_key_max_input_size) | const char \*<br/>最大输入尺寸的字符描述符，值类型为uint32_t  | 
 | [OH_MD_KEY_WIDTH](#oh_md_key_width) | const char \*<br/>视频宽度的字符描述符，值类型为uint32_t  | 
 | [OH_MD_KEY_HEIGHT](#oh_md_key_height) | const char \*<br/>视频高度的字符描述符，值类型为uint32_t  | 
-| [OH_MD_KEY_PIXEL_FORMAT](#oh_md_key_pixel_format) | const char \*<br/>视频像素格式的字符描述符，值类型为int32_t，具体见[OH_AVPixelFormat](_core.md#ohavpixelformat) | 
+| [OH_MD_KEY_PIXEL_FORMAT](#oh_md_key_pixel_format) | const char \*<br/>视频像素格式的字符描述符，值类型为int32_t，具体见[OH_AVPixelFormat](_core.md#oh_avpixelformat) | 
 | [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | const char \*<br/>音频采样格式的字符描述符，值类型为uint32_t  | 
 | [OH_MD_KEY_FRAME_RATE](#oh_md_key_frame_rate) | const char \*<br/>视频帧率的字符描述符，值类型为double  | 
-| [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | const char \*<br/>视频编码比特率模式的字符描述符，值类型为int32_t，具体见[OH_VideoEncodeBitrateMode](_video_encoder.md#ohvideoencodebitratemode) | 
+| [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | const char \*<br/>视频编码比特率模式的字符描述符，值类型为int32_t，具体见[OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) | 
 | [OH_MD_KEY_PROFILE](#oh_md_key_profile) | const char \*<br/>音视频编码能力的字符描述符，值类型为int32_t，具体见[OH_AVCProfile](#oh_avcprofile)或[OH_AACProfile](#oh_aacprofile) | 
 | [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count) | const char \*<br/>音频声道数的字符描述符，值类型为uint32_t  | 
 | [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate) | const char \*<br/>音频采样率的字符描述符，值类型为uint32_t  | 
@@ -498,7 +498,7 @@ const char* OH_MD_KEY_MAX_INPUT_SIZE
 const char* OH_MD_KEY_PIXEL_FORMAT
 ```
 **描述:**
-视频像素格式的字符描述符，值类型为int32_t，具体见[OH_AVPixelFormat](_core.md#ohavpixelformat)
+视频像素格式的字符描述符，值类型为int32_t，具体见[OH_AVPixelFormat](_core.md#oh_avpixelformat)
 
 
 ### OH_MD_KEY_PROFILE
@@ -540,7 +540,7 @@ const char* OH_MD_KEY_TRACK_TYPE
 const char* OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE
 ```
 **描述:**
-视频编码比特率模式的字符描述符，值类型为int32_t，具体见[OH_VideoEncodeBitrateMode](_video_encoder.md#ohvideoencodebitratemode)
+视频编码比特率模式的字符描述符，值类型为int32_t，具体见[OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode)
 
 
 ### OH_MD_KEY_WIDTH

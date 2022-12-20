@@ -74,7 +74,7 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [DURATION_ALWAYS_PLAY](#durationalwaysplay) = -1 | 持续时间全局变量宏定义。  | 
+| [DURATION_ALWAYS_PLAY](#duration_always_play) = -1 | 持续时间全局变量宏定义。  | 
 | [localCapability](#localcapability) | 会话元数据数组，用于分布式业务，设置会话属性。  | 
 
 

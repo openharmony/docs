@@ -28,9 +28,9 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVErrCode](#ohaverrcode) | typedef enum [OH_AVErrCode](#ohaverrcode)<br/>音视频错误码。  | 
+| [OH_AVErrCode](#oh_averrcode) | typedef enum [OH_AVErrCode](#oh_averrcode)<br/>音视频错误码。  | 
 | **OH_AVFormat** | typedef struct OH_AVFormat | 
-| [OH_AVPixelFormat](#ohavpixelformat) | typedef enum [OH_AVPixelFormat](#ohavpixelformat)<br/>AVPixel 格式的枚举。  | 
+| [OH_AVPixelFormat](#oh_avpixelformat) | typedef enum [OH_AVPixelFormat](#oh_avpixelformat)<br/>AVPixel 格式的枚举。  | 
 | **OH_AVMemory** | typedef struct OH_AVMemory | 
 
 
@@ -38,32 +38,32 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVErrCode](#ohaverrcode) {<br/>**AV_ERR_OK** = 0, **AV_ERR_NO_MEMORY** = 1, **AV_ERR_OPERATE_NOT_PERMIT** = 2, **AV_ERR_INVALID_VAL** = 3, **AV_ERR_IO** = 4, **AV_ERR_TIMEOUT** = 5, **AV_ERR_UNKNOWN** = 6, **AV_ERR_SERVICE_DIED** = 7, **AV_ERR_INVALID_STATE** = 8, **AV_ERR_UNSUPPORT** = 9, **AV_ERR_EXTEND_START** = 100<br/>} | 音视频错误码。  |
-| [OH_AVPixelFormat](#ohavpixelformat) {<br/>**AV_PIXEL_FORMAT_YUVI420** = 1, **AV_PIXEL_FORMAT_NV12** = 2, **AV_PIXEL_FORMAT_NV21** = 3, **AV_PIXEL_FORMAT_SURFACE_FORMAT** = 4, **AV_PIXEL_FORMAT_RGBA** = 5<br/>} | AVPixel 格式的枚举。  |
+| [OH_AVErrCode](#oh_averrcode) {<br/>**AV_ERR_OK** = 0, **AV_ERR_NO_MEMORY** = 1, **AV_ERR_OPERATE_NOT_PERMIT** = 2, **AV_ERR_INVALID_VAL** = 3, **AV_ERR_IO** = 4, **AV_ERR_TIMEOUT** = 5, **AV_ERR_UNKNOWN** = 6, **AV_ERR_SERVICE_DIED** = 7, **AV_ERR_INVALID_STATE** = 8, **AV_ERR_UNSUPPORT** = 9, **AV_ERR_EXTEND_START** = 100<br/>} | 音视频错误码。  |
+| [OH_AVPixelFormat](#oh_avpixelformat) {<br/>**AV_PIXEL_FORMAT_YUVI420** = 1, **AV_PIXEL_FORMAT_NV12** = 2, **AV_PIXEL_FORMAT_NV21** = 3, **AV_PIXEL_FORMAT_SURFACE_FORMAT** = 4, **AV_PIXEL_FORMAT_RGBA** = 5<br/>} | AVPixel 格式的枚举。  |
 
 
 ### 函数
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVFormat_Create](#ohavformatcreate) (void) | struct OH_AVFormat \*<br/>创建一个OH_AVFormat句柄指针，用以读写数据。  | 
-| [OH_AVFormat_Destroy](#ohavformatdestroy) (struct OH_AVFormat \*format) | void<br/>销毁指定OH_AVFormat句柄资源。  | 
-| [OH_AVFormat_Copy](#ohavformatcopy) (struct OH_AVFormat \*to, struct OH_AVFormat \*from) | bool<br/>拷贝OH_AVFormat句柄资源.  | 
-| [OH_AVFormat_SetIntValue](#ohavformatsetintvalue) (struct OH_AVFormat \*format, const char \*key, int32_t value) | bool<br/>向OH_AVFormat写入Int数据.  | 
-| [OH_AVFormat_SetLongValue](#ohavformatsetlongvalue) (struct OH_AVFormat \*format, const char \*key, int64_t value) | bool<br/>向OH_AVFormat写入Long数据。  | 
-| [OH_AVFormat_SetFloatValue](#ohavformatsetfloatvalue) (struct OH_AVFormat \*format, const char \*key, float value) | bool<br/>向OH_AVFormat写入Float数据。  | 
-| [OH_AVFormat_SetDoubleValue](#ohavformatsetdoublevalue) (struct OH_AVFormat \*format, const char \*key, double value) | bool<br/>向OH_AVFormat写入Double数据。  | 
-| [OH_AVFormat_SetStringValue](#ohavformatsetstringvalue) (struct OH_AVFormat \*format, const char \*key, const char \*value) | bool<br/>向OH_AVFormat写入String数据。  | 
-| [OH_AVFormat_SetBuffer](#ohavformatsetbuffer) (struct OH_AVFormat \*format, const char \*key, const uint8_t \*addr, size_t size) | bool<br/>向OH_AVFormat写入一块指定长度的数据。  | 
-| [OH_AVFormat_GetIntValue](#ohavformatgetintvalue) (struct OH_AVFormat \*format, const char \*key, int32_t \*out) | bool<br/>从OH_AVFormat读取Int数据。  | 
-| [OH_AVFormat_GetLongValue](#ohavformatgetlongvalue) (struct OH_AVFormat \*format, const char \*key, int64_t \*out) | bool<br/>从OH_AVFormat读取Long数据。  | 
-| [OH_AVFormat_GetFloatValue](#ohavformatgetfloatvalue) (struct OH_AVFormat \*format, const char \*key, float \*out) | bool<br/>从OH_AVFormat读取Float数据。  | 
-| [OH_AVFormat_GetDoubleValue](#ohavformatgetdoublevalue) (struct OH_AVFormat \*format, const char \*key, double \*out) | bool<br/>从OH_AVFormat读取Double数据。  | 
-| [OH_AVFormat_GetStringValue](#ohavformatgetstringvalue) (struct OH_AVFormat \*format, const char \*key, const char \*\*out) | bool<br/>从OH_AVFormat读取Double数据。  | 
-| [OH_AVFormat_GetBuffer](#ohavformatgetbuffer) (struct OH_AVFormat \*format, const char \*key, uint8_t \*\*addr, size_t \*size) | bool<br/>从OH_AVFormat读取一块指定长度的数据。  | 
-| [OH_AVFormat_DumpInfo](#ohavformatdumpinfo) (struct OH_AVFormat \*format) | const char \*<br/>以字符串的形式输出OH_AVFormat所包含的信息。  | 
-| [OH_AVMemory_GetAddr](#ohavmemorygetaddr) (struct OH_AVMemory \*mem) | uint8_t \*<br/>获取入参的内存虚拟地址。  | 
-| [OH_AVMemory_GetSize](#ohavmemorygetsize) (struct OH_AVMemory \*mem) | int32_t<br/>获取入参的内存长度。  | 
+| [OH_AVFormat_Create](#oh_avformat_create) (void) | struct OH_AVFormat \*<br/>创建一个OH_AVFormat句柄指针，用以读写数据。  | 
+| [OH_AVFormat_Destroy](#oh_avformat_destroy) (struct OH_AVFormat \*format) | void<br/>销毁指定OH_AVFormat句柄资源。  | 
+| [OH_AVFormat_Copy](#oh_avformat_copy) (struct OH_AVFormat \*to, struct OH_AVFormat \*from) | bool<br/>拷贝OH_AVFormat句柄资源.  | 
+| [OH_AVFormat_SetIntValue](#oh_avformat_setintvalue) (struct OH_AVFormat \*format, const char \*key, int32_t value) | bool<br/>向OH_AVFormat写入Int数据.  | 
+| [OH_AVFormat_SetLongValue](#oh_avformat_setlongvalue) (struct OH_AVFormat \*format, const char \*key, int64_t value) | bool<br/>向OH_AVFormat写入Long数据。  | 
+| [OH_AVFormat_SetFloatValue](#oh_avformat_setfloatvalue) (struct OH_AVFormat \*format, const char \*key, float value) | bool<br/>向OH_AVFormat写入Float数据。  | 
+| [OH_AVFormat_SetDoubleValue](#oh_avformat_setdoublevalue) (struct OH_AVFormat \*format, const char \*key, double value) | bool<br/>向OH_AVFormat写入Double数据。  | 
+| [OH_AVFormat_SetStringValue](#oh_avformat_setstringvalue) (struct OH_AVFormat \*format, const char \*key, const char \*value) | bool<br/>向OH_AVFormat写入String数据。  | 
+| [OH_AVFormat_SetBuffer](#oh_avformat_setbuffer) (struct OH_AVFormat \*format, const char \*key, const uint8_t \*addr, size_t size) | bool<br/>向OH_AVFormat写入一块指定长度的数据。  | 
+| [OH_AVFormat_GetIntValue](#oh_avformat_getintvalue) (struct OH_AVFormat \*format, const char \*key, int32_t \*out) | bool<br/>从OH_AVFormat读取Int数据。  | 
+| [OH_AVFormat_GetLongValue](#oh_avformat_getlongvalue) (struct OH_AVFormat \*format, const char \*key, int64_t \*out) | bool<br/>从OH_AVFormat读取Long数据。  | 
+| [OH_AVFormat_GetFloatValue](#oh_avformat_getfloatvalue) (struct OH_AVFormat \*format, const char \*key, float \*out) | bool<br/>从OH_AVFormat读取Float数据。  | 
+| [OH_AVFormat_GetDoubleValue](#oh_avformat_getdoublevalue) (struct OH_AVFormat \*format, const char \*key, double \*out) | bool<br/>从OH_AVFormat读取Double数据。  | 
+| [OH_AVFormat_GetStringValue](#oh_avformat_getstringvalue) (struct OH_AVFormat \*format, const char \*key, const char \*\*out) | bool<br/>从OH_AVFormat读取Double数据。  | 
+| [OH_AVFormat_GetBuffer](#oh_avformat_getbuffer) (struct OH_AVFormat \*format, const char \*key, uint8_t \*\*addr, size_t \*size) | bool<br/>从OH_AVFormat读取一块指定长度的数据。  | 
+| [OH_AVFormat_DumpInfo](#oh_avformat_dumpinfo) (struct OH_AVFormat \*format) | const char \*<br/>以字符串的形式输出OH_AVFormat所包含的信息。  | 
+| [OH_AVMemory_GetAddr](#oh_avmemory_getaddr) (struct OH_AVMemory \*mem) | uint8_t \*<br/>获取入参的内存虚拟地址。  | 
+| [OH_AVMemory_GetSize](#oh_avmemory_getsize) (struct OH_AVMemory \*mem) | int32_t<br/>获取入参的内存长度。  | 
 
 
 ## 类型定义说明

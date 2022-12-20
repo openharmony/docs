@@ -26,22 +26,22 @@ VideoDecoder模块提供用于视频解码功能的函数。
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_VideoDecoder_CreateByMime](#ohvideodecodercreatebymime) (const char \*mime) | OH_AVCodec \*<br/>通过mime类型创建一个视频解码器实例，大多数情况下推荐使用该接口。  | 
-| [OH_VideoDecoder_CreateByName](#ohvideodecodercreatebyname) (const char \*name) | OH_AVCodec \*<br/>通过视频解码器名称创建一个视频解码器实例，使用这个接口的前提是必须清楚解码器准确的名称。  | 
-| [OH_VideoDecoder_Destroy](#ohvideodecoderdestroy) (OH_AVCodec \*codec) | [OH_AVErrCode](_core.md#ohaverrcode)<br/>清空解码器内部资源，并销毁解码器实例。  | 
-| [OH_VideoDecoder_SetCallback](#ohvideodecodersetcallback) (OH_AVCodec \*codec, [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) callback, void \*userData) | [OH_AVErrCode](_core.md#ohaverrcode)<br/>设置异步回调函数，使得你的应用能够响应视频解码器产生的事件，该接口被调用必须是在Prepare被调用前。  | 
-| [OH_VideoDecoder_SetSurface](#ohvideodecodersetsurface) (OH_AVCodec \*codec, OHNativeWindow \*window) | [OH_AVErrCode](_core.md#ohaverrcode)<br/>指定输出Surface，以提供视频解码输出，该接口被调用必须是在Prepare被调用前。  | 
-| [OH_VideoDecoder_Configure](#ohvideodecoderconfigure) (OH_AVCodec \*codec, OH_AVFormat \*format) | [OH_AVErrCode](_core.md#ohaverrcode)<br/>配置视频解码器，典型地，需要配置被解码视频轨道的描述信息，这些信息能够从容器中提取出来， 该接口被调用必须是在Prepare被调用前。  | 
-| [OH_VideoDecoder_Prepare](#ohvideodecoderprepare) (OH_AVCodec \*codec) | [OH_AVErrCode](_core.md#ohaverrcode)<br/>准备解码器内部资源，调用该接口前必须先调用Configure接口。  | 
-| [OH_VideoDecoder_Start](#ohvideodecoderstart) (OH_AVCodec \*codec) | [OH_AVErrCode](_core.md#ohaverrcode)<br/>启动解码器，该接口必须在已经Prepare成功后调用。 在启动成功后，解码器将开始报告[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)事件。  | 
-| [OH_VideoDecoder_Stop](#ohvideodecoderstop) (OH_AVCodec \*codec) | [OH_AVErrCode](_core.md#ohaverrcode)<br/>停止解码器。在停止后可通过Start重新进入Started状态，但需要注意的是，若先前给解码器输入过 Codec-Specific-Data，则需要重新输入。  | 
-| [OH_VideoDecoder_Flush](#ohvideodecoderflush) (OH_AVCodec \*codec) | [OH_AVErrCode](_core.md#ohaverrcode)<br/>清空解码器内部缓存的输入输出数据。在该接口被调用后，所有先前通过异步回调报告的Buffer的索引都将 失效，确保不要再访问这些索引对应的Buffers。  | 
-| [OH_VideoDecoder_Reset](#ohvideodecoderreset) (OH_AVCodec \*codec) | [OH_AVErrCode](_core.md#ohaverrcode)<br/>重置解码器。如需继续解码工作，需要重新调用Configure接口以配置该解码器实例。  | 
-| [OH_VideoDecoder_GetOutputDescription](#ohvideodecodergetoutputdescription) (OH_AVCodec \*codec) | OH_AVFormat \*<br/>获取该解码器输出数据的描述信息，需要注意的是，返回值所指向的OH_AVFormat实例的生命周期 将会再下一次调用该接口时或者该OH_AVCodec实例被销毁时失效。  | 
-| [OH_VideoDecoder_SetParameter](#ohvideodecodersetparameter) (OH_AVCodec \*codec, OH_AVFormat \*format) | [OH_AVErrCode](_core.md#ohaverrcode)<br/>向解码器设置动态参数，注意：该接口仅能在解码器被启动后调用，同时错误的参数设置，可能会导致解码失败。  | 
-| [OH_VideoDecoder_PushInputData](#ohvideodecoderpushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | [OH_AVErrCode](_core.md#ohaverrcode)<br/>将填充好数据的输入Buffer提交给视频解码器。[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调会报告可用的输入 Buffer及对应的索引值。一旦指定索引的Buffer被提交给解码器，直到再一次收到[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata) 回调报告相同索引的Buffer可用前，该Buffer都不可以再次被访问。另外，对于部分解码器，要求在最开始给解码器输入 Codec-Specific-Data，用以初始化解码器的解码过程，例如H264格式的PPS/SPS数据。  | 
-| [OH_VideoDecoder_RenderOutputData](#ohvideodecoderrenderoutputdata) (OH_AVCodec \*codec, uint32_t index) | [OH_AVErrCode](_core.md#ohaverrcode)<br/>将处理结束的输出Buffer交还给解码器，并通知解码器完成将该Buffer内包含的解码后的数据在输出Surface上渲染。 如果先前未配置输出Surface，调用该接口仅仅将指定索引对应的输出Buffer交还给解码器。  | 
-| [OH_VideoDecoder_FreeOutputData](#ohvideodecoderfreeoutputdata) (OH_AVCodec \*codec, uint32_t index) | [OH_AVErrCode](_core.md#ohaverrcode)<br/>将处理结束的输出Buffer交还给解码器。  | 
+| [OH_VideoDecoder_CreateByMime](#oh_videodecoder_createbymime) (const char \*mime) | OH_AVCodec \*<br/>通过mime类型创建一个视频解码器实例，大多数情况下推荐使用该接口。  | 
+| [OH_VideoDecoder_CreateByName](#oh_videodecoder_createbyname) (const char \*name) | OH_AVCodec \*<br/>通过视频解码器名称创建一个视频解码器实例，使用这个接口的前提是必须清楚解码器准确的名称。  | 
+| [OH_VideoDecoder_Destroy](#oh_videodecoder_destroy) (OH_AVCodec \*codec) | [OH_AVErrCode](_core.md#oh_averrcode)<br/>清空解码器内部资源，并销毁解码器实例。  | 
+| [OH_VideoDecoder_SetCallback](#oh_videodecoder_setcallback) (OH_AVCodec \*codec, [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) callback, void \*userData) | [OH_AVErrCode](_core.md#oh_averrcode)<br/>设置异步回调函数，使得你的应用能够响应视频解码器产生的事件，该接口被调用必须是在Prepare被调用前。  | 
+| [OH_VideoDecoder_SetSurface](#oh_videodecoder_setsurface) (OH_AVCodec \*codec, OHNativeWindow \*window) | [OH_AVErrCode](_core.md#oh_averrcode)<br/>指定输出Surface，以提供视频解码输出，该接口被调用必须是在Prepare被调用前。  | 
+| [OH_VideoDecoder_Configure](#oh_videodecoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format) | [OH_AVErrCode](_core.md#oh_averrcode)<br/>配置视频解码器，典型地，需要配置被解码视频轨道的描述信息，这些信息能够从容器中提取出来， 该接口被调用必须是在Prepare被调用前。  | 
+| [OH_VideoDecoder_Prepare](#oh_videodecoder_prepare) (OH_AVCodec \*codec) | [OH_AVErrCode](_core.md#oh_averrcode)<br/>准备解码器内部资源，调用该接口前必须先调用Configure接口。  | 
+| [OH_VideoDecoder_Start](#oh_videodecoder_start) (OH_AVCodec \*codec) | [OH_AVErrCode](_core.md#oh_averrcode)<br/>启动解码器，该接口必须在已经Prepare成功后调用。 在启动成功后，解码器将开始报告[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)事件。  | 
+| [OH_VideoDecoder_Stop](#oh_videodecoder_stop) (OH_AVCodec \*codec) | [OH_AVErrCode](_core.md#oh_averrcode)<br/>停止解码器。在停止后可通过Start重新进入Started状态，但需要注意的是，若先前给解码器输入过 Codec-Specific-Data，则需要重新输入。  | 
+| [OH_VideoDecoder_Flush](#oh_videodecoder_flush) (OH_AVCodec \*codec) | [OH_AVErrCode](_core.md#oh_averrcode)<br/>清空解码器内部缓存的输入输出数据。在该接口被调用后，所有先前通过异步回调报告的Buffer的索引都将 失效，确保不要再访问这些索引对应的Buffers。  | 
+| [OH_VideoDecoder_Reset](#oh_videodecoder_reset) (OH_AVCodec \*codec) | [OH_AVErrCode](_core.md#oh_averrcode)<br/>重置解码器。如需继续解码工作，需要重新调用Configure接口以配置该解码器实例。  | 
+| [OH_VideoDecoder_GetOutputDescription](#oh_videodecoder_getoutputdescription) (OH_AVCodec \*codec) | OH_AVFormat \*<br/>获取该解码器输出数据的描述信息，需要注意的是，返回值所指向的OH_AVFormat实例的生命周期 将会再下一次调用该接口时或者该OH_AVCodec实例被销毁时失效。  | 
+| [OH_VideoDecoder_SetParameter](#oh_videodecoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format) | [OH_AVErrCode](_core.md#oh_averrcode)<br/>向解码器设置动态参数，注意：该接口仅能在解码器被启动后调用，同时错误的参数设置，可能会导致解码失败。  | 
+| [OH_VideoDecoder_PushInputData](#oh_videodecoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | [OH_AVErrCode](_core.md#oh_averrcode)<br/>将填充好数据的输入Buffer提交给视频解码器。[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调会报告可用的输入 Buffer及对应的索引值。一旦指定索引的Buffer被提交给解码器，直到再一次收到[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata) 回调报告相同索引的Buffer可用前，该Buffer都不可以再次被访问。另外，对于部分解码器，要求在最开始给解码器输入 Codec-Specific-Data，用以初始化解码器的解码过程，例如H264格式的PPS/SPS数据。  | 
+| [OH_VideoDecoder_RenderOutputData](#oh_videodecoder_renderoutputdata) (OH_AVCodec \*codec, uint32_t index) | [OH_AVErrCode](_core.md#oh_averrcode)<br/>将处理结束的输出Buffer交还给解码器，并通知解码器完成将该Buffer内包含的解码后的数据在输出Surface上渲染。 如果先前未配置输出Surface，调用该接口仅仅将指定索引对应的输出Buffer交还给解码器。  | 
+| [OH_VideoDecoder_FreeOutputData](#oh_videodecoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | [OH_AVErrCode](_core.md#oh_averrcode)<br/>将处理结束的输出Buffer交还给解码器。  | 
 
 
 ## 函数说明
@@ -69,7 +69,7 @@ OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec * codec, OH_AVFormat * format
 
 执行成功返回AV_ERR_OK
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#ohaverrcode)
+执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
 
 
 ### OH_VideoDecoder_CreateByMime()
@@ -137,7 +137,7 @@ OH_AVErrCode OH_VideoDecoder_Destroy (OH_AVCodec * codec)
 
 执行成功返回AV_ERR_OK
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#ohaverrcode)
+执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
 
 
 ### OH_VideoDecoder_Flush()
@@ -161,7 +161,7 @@ OH_AVErrCode OH_VideoDecoder_Flush (OH_AVCodec * codec)
 
 执行成功返回AV_ERR_OK
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#ohaverrcode)
+执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
 
 
 ### OH_VideoDecoder_FreeOutputData()
@@ -186,7 +186,7 @@ OH_AVErrCode OH_VideoDecoder_FreeOutputData (OH_AVCodec * codec, uint32_t index 
 
 执行成功返回AV_ERR_OK
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#ohaverrcode)
+执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
 
 
 ### OH_VideoDecoder_GetOutputDescription()
@@ -232,7 +232,7 @@ OH_AVErrCode OH_VideoDecoder_Prepare (OH_AVCodec * codec)
 
 执行成功返回AV_ERR_OK
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#ohaverrcode)
+执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
 
 
 ### OH_VideoDecoder_PushInputData()
@@ -258,7 +258,7 @@ OH_AVErrCode OH_VideoDecoder_PushInputData (OH_AVCodec * codec, uint32_t index, 
 
 执行成功返回AV_ERR_OK
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#ohaverrcode)
+执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
 
 
 ### OH_VideoDecoder_RenderOutputData()
@@ -283,7 +283,7 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputData (OH_AVCodec * codec, uint32_t inde
 
 执行成功返回AV_ERR_OK
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#ohaverrcode)
+执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
 
 
 ### OH_VideoDecoder_Reset()
@@ -307,7 +307,7 @@ OH_AVErrCode OH_VideoDecoder_Reset (OH_AVCodec * codec)
 
 执行成功返回AV_ERR_OK
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#ohaverrcode)
+执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
 
 
 ### OH_VideoDecoder_SetCallback()
@@ -333,7 +333,7 @@ OH_AVErrCode OH_VideoDecoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCal
 
 执行成功返回AV_ERR_OK
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#ohaverrcode)
+执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
 
 
 ### OH_VideoDecoder_SetParameter()
@@ -358,7 +358,7 @@ OH_AVErrCode OH_VideoDecoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * for
 
 执行成功返回AV_ERR_OK
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#ohaverrcode)
+执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
 
 
 ### OH_VideoDecoder_SetSurface()
@@ -383,7 +383,7 @@ OH_AVErrCode OH_VideoDecoder_SetSurface (OH_AVCodec * codec, OHNativeWindow * wi
 
 执行成功返回AV_ERR_OK
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#ohaverrcode)
+执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
 
 
 ### OH_VideoDecoder_Start()
@@ -407,7 +407,7 @@ OH_AVErrCode OH_VideoDecoder_Start (OH_AVCodec * codec)
 
 执行成功返回AV_ERR_OK
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#ohaverrcode)
+执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
 
 
 ### OH_VideoDecoder_Stop()
@@ -431,4 +431,4 @@ OH_AVErrCode OH_VideoDecoder_Stop (OH_AVCodec * codec)
 
 执行成功返回AV_ERR_OK
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#ohaverrcode)
+执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)

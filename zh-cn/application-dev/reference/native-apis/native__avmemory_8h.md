@@ -28,5 +28,5 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVMemory_GetAddr](_core.md#ohavmemorygetaddr) (struct OH_AVMemory \*mem) | uint8_t \*<br/>获取入参的内存虚拟地址。  | 
-| [OH_AVMemory_GetSize](_core.md#ohavmemorygetsize) (struct OH_AVMemory \*mem) | int32_t<br/>获取入参的内存长度。  | 
+| [OH_AVMemory_GetAddr](_core.md#oh_avmemory_getaddr) (struct OH_AVMemory \*mem) | uint8_t \*<br/>获取入参的内存虚拟地址。  | 
+| [OH_AVMemory_GetSize](_core.md#oh_avmemory_getsize) (struct OH_AVMemory \*mem) | int32_t<br/>获取入参的内存长度。  | 
