@@ -719,7 +719,7 @@ cameraInput.open().then(() => {
 
     枚举值名称：AUTO，初值由默认变更为4;
 
-14. CaptureSession中接口addOutput参数由原来子类类型（PreviewOutput，PhotoOutput，VideoOutput，MetadataOutput）统一修改为基类类型（CameraOutput），由原来8个接口改变之后只有2个接口
+14. CaptureSession中接口addOutput参数由原来子类类型（PreviewOutput，PhotoOutput，VideoOutput，MetadataOutput）统一修改为基类类型（CameraOutput），变更后由原来8个接口缩减为2个接口。
 
     改变前接口为：
 
@@ -747,7 +747,7 @@ cameraInput.open().then(() => {
     })
     ```
 
-15. CaptureSession中接口removeOutput参数由原来子类类型（PreviewOutput，PhotoOutput，VideoOutput，MetadataOutput）统一修改为基类类型（CameraOutput），由原来8个接口改变之后只有2个接口
+15. CaptureSession中接口removeOutput参数由原来子类类型（PreviewOutput，PhotoOutput，VideoOutput，MetadataOutput）统一修改为基类类型（CameraOutput），变更后由原来8个接口缩减为2个接口。
 
     改变前接口为：
 
