@@ -556,6 +556,95 @@ promise.then(data => {
 });
 ```
 
+### requestPermissionsFromUser<sup>9+</sup>
+
+requestPermissionsFromUser(context: Context, permissions: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void;
+
+用于拉起弹框请求用户授权。使用callback异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**: SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| context | Context | 是 | 请求权限的应用ability上下文context。 |
+| permissions | Array&lt;Permissions&gt; | 是 | 权限列表。 |
+| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | Parameter invalid. |
+
+**示例：**
+
+  ```js
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+let atManager = abilityAccessCtrl.createAtManager();
+try {
+    atManager.requestPermissionsFromUser(this.context, ["ohos.permission.MANAGE_DISPOSED_APP_STATUS"], (err, data)=>{
+        console.info("data:" + JSON.stringify(data));
+        console.info("data permissions:" + data.permissions);
+        console.info("data authResults:" + data.authResults);
+    });
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
+  ```
+
+### requestPermissionsFromUser<sup>9+</sup>
+
+requestPermissionsFromUser(context: Context, permissions: Array&lt;Permissions&gt;) : Promise&lt;PermissionRequestResult&gt;;
+
+用于拉起弹框请求用户授权。使用promise异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**: SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| context | Context | 是 | 请求权限的应用ability上下文context。 |
+| permissions | Array&lt;Permissions&gt; | 是 | 权限列表。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | 返回一个Promise，包含接口的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | Parameter invalid. |
+
+**示例：**
+
+  ```js
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+let atManager = abilityAccessCtrl.createAtManager();
+try {
+    atManager.requestPermissionsFromUser(this.context, ["ohos.permission.MANAGE_DISPOSED_APP_STATUS"]).then((data) => {
+        console.info("data:" + JSON.stringify(data));
+        console.info("data permissions:" + data.permissions);
+        console.info("data authResults:" + data.authResults);
+    }).catch((err) => {
+        console.info("data:" + JSON.stringify(err));
+    })
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
+  ```
+
 ### verifyAccessToken<sup>(deprecated)</sup>
 
 verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt;
