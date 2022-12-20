@@ -25,18 +25,18 @@ onCreate(): void
 
 **示例：**
     
-  ```ts
-  class MyAbilityStage extends AbilityStage {
-      onCreate() {
-          console.log("MyAbilityStage.onCreate is called")
-      }
-  }
-  ```
+```ts
+class MyAbilityStage extends AbilityStage {
+    onCreate() {
+        console.log("MyAbilityStage.onCreate is called");
+    }
+}
+```
 
 
 ## AbilityStage.onAcceptWant
 
-onAcceptWant(want: Want): string;
+onAcceptWant(want: [Want](js-apis-app-ability-want.md)): string;
 
 启动一个specified ability时触发的事件。
 
@@ -56,19 +56,19 @@ onAcceptWant(want: Want): string;
 
 **示例：**
     
-  ```ts
-  class MyAbilityStage extends AbilityStage {
-      onAcceptWant(want) {
-          console.log("MyAbilityStage.onAcceptWant called");
-          return "com.example.test";
-      }
-  }
-  ```
+```ts
+class MyAbilityStage extends AbilityStage {
+    onAcceptWant(want) {
+        console.log("MyAbilityStage.onAcceptWant called");
+        return "com.example.test";
+    }
+}
+```
 
 
 ## AbilityStage.onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: Configuration): void;
+onConfigurationUpdate(newConfig: [Configuration](js-apis-app-ability-configuration.md)): void;
 
 环境变化通知接口，发生全局配置变更时回调。
 
@@ -82,17 +82,17 @@ onConfigurationUpdate(newConfig: Configuration): void;
 
 **示例：**
     
-  ```ts
-  class MyAbilityStage extends AbilityStage {
-      onConfigurationUpdate(config) {
-          console.log('onConfigurationUpdate, language:' + config.language);
-      }
-  }
-  ```
+```ts
+class MyAbilityStage extends AbilityStage {
+    onConfigurationUpdate(config) {
+        console.log('onConfigurationUpdate, language:' + config.language);
+    }
+}
+```
 
 ## AbilityStage.onMemoryLevel
 
-onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+onMemoryLevel(level: [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel)): void;
 
 当系统已决定调整内存时调用。例如，当该功能在后台运行时，没有足够的内存来运行尽可能多的后台进程时可以使用。
 
@@ -106,22 +106,22 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 **示例：**
     
-  ```ts
-  class MyAbilityStage extends AbilityStage {
+```ts
+class MyAbilityStage extends AbilityStage {
     onMemoryLevel(level) {
         console.log('onMemoryLevel, level:' + JSON.stringify(level));
     } 
-  }
-  ```
+}
+```
 
 ## AbilityStage.context
 
-context: AbilityStageContext;
+context: [AbilityStageContext](js-apis-inner-application-abilityStageContext.md);
 
-指示有关上下文的配置信息。
+指示AbilityStage的上下文，。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 属性名      | 类型                        | 说明                                                         |
 | ----------- | --------------------------- | ------------------------------------------------------------ |
-| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 在启动能力阶段进行初始化时回调。 |
+| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 在Ability启动阶段进行初始化时回调，获取到该Ability的context值。 |
