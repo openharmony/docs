@@ -24,16 +24,16 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回当前是否处于稳定性测试场景。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回当前是否处于稳定性测试场景。true: 处于稳定性测试场景，false：处于非稳定性测试场景。 | 
 
 **示例：**
     
-  ```ts
-  appManager.isRunningInStabilityTest((err, flag) => {
-      console.log('error:' + JSON.stringify(err));
-      console.log('The result of isRunningInStabilityTest is:' + JSON.stringify(flag));
-  })  
-  ```
+```ts
+appManager.isRunningInStabilityTest((err, flag) => {
+    console.log('error:' + JSON.stringify(err));
+    console.log('The result of isRunningInStabilityTest is:' + JSON.stringify(flag));
+})  
+```
 
 
 ## appManager.isRunningInStabilityTest
@@ -48,17 +48,17 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 返回当前是否处于稳定性测试场景。 | 
+  | Promise&lt;boolean&gt; | 返回当前是否处于稳定性测试场景。true: 处于稳定性测试场景，false：处于非稳定性测试场景。 | 
 
 **示例：**
     
-  ```ts
-  appManager.isRunningInStabilityTest().then((flag) => {
-      console.log('The result of isRunningInStabilityTest is:' + JSON.stringify(flag));
-  }).catch((error) => {
-      console.log('error:' + JSON.stringify(error));
-  });
-  ```
+```ts
+appManager.isRunningInStabilityTest().then((flag) => {
+    console.log('The result of isRunningInStabilityTest is:' + JSON.stringify(flag));
+}).catch((error) => {
+    console.log('error:' + JSON.stringify(error));
+});
+```
 
 
 ## appManager.isRamConstrainedDevice
@@ -73,17 +73,17 @@ isRamConstrainedDevice(): Promise\<boolean>;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 是否为ram受限设备。 | 
+  | Promise&lt;boolean&gt; | 是否为ram受限设备。true：当前设备为ram受限设备，false：当前设备为非ram受限设备。 | 
 
 **示例：**
     
-  ```ts
-  appManager.isRamConstrainedDevice().then((data) => {
-      console.log('The result of isRamConstrainedDevice is:' + JSON.stringify(data));
-  }).catch((error) => {
-      console.log('error:' + JSON.stringify(error));
-  });
-  ```
+```ts
+appManager.isRamConstrainedDevice().then((data) => {
+    console.log('The result of isRamConstrainedDevice is:' + JSON.stringify(data));
+}).catch((error) => {
+    console.log('error:' + JSON.stringify(error));
+});
+```
 
 ## appManager.isRamConstrainedDevice
 
@@ -97,16 +97,16 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回当前是否是ram受限设备。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回当前是否是ram受限设备。true：当前设备为ram受限设备，false：当前设备为非ram受限设备。 | 
 
 **示例：**
     
-  ```ts
-  appManager.isRamConstrainedDevice((err, data) => {
+```ts
+appManager.isRamConstrainedDevice((err, data) => {
     console.log('error:' + JSON.stringify(err));
     console.log('The result of isRamConstrainedDevice is:' + JSON.stringify(data));
-  })
-  ```
+})
+```
 
 ## appManager.getAppMemorySize
 
@@ -124,13 +124,13 @@ getAppMemorySize(): Promise\<number>;
 
 **示例：**
     
-  ```ts
-  appManager.getAppMemorySize().then((data) => {
-      console.log('The size of app memory is:' + JSON.stringify(data));
-  }).catch((error) => {
-      console.log('error:' + JSON.stringify(error));
-  });
-  ```
+```ts
+appManager.getAppMemorySize().then((data) => {
+    console.log('The size of app memory is:' + JSON.stringify(data));
+}).catch((error) => {
+    console.log('error:' + JSON.stringify(error));
+});
+```
 
 ## appManager.getAppMemorySize
 
@@ -148,16 +148,16 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 
 **示例：**
     
-  ```ts
-  appManager.getAppMemorySize((err, data) => {
-      console.log('error:' + JSON.stringify(err));
-      console.log('The size of app memory is:' + JSON.stringify(data));
-  })
-  ```
+```ts
+appManager.getAppMemorySize((err, data) => {
+    console.log('error:' + JSON.stringify(err));
+    console.log('The size of app memory is:' + JSON.stringify(data));
+})
+```
 
 ## appManager.getProcessRunningInformation<sup>9+</sup>
 
-getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
+getProcessRunningInformation(): Promise\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>>;
 
 获取有关运行进程的信息。
 
@@ -175,17 +175,17 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 
 **示例：**
     
-  ```ts
-  appManager.getProcessRunningInformation().then((data) => {
-      console.log('The process running infomation is:' + JSON.stringify(data));
-  }).catch((error) => {
-      console.log('error:' + JSON.stringify(error));
-  });
-  ```
+```ts
+appManager.getProcessRunningInformation().then((data) => {
+    console.log('The process running information is:' + JSON.stringify(data));
+}).catch((error) => {
+    console.log('error:' + JSON.stringify(error));
+});
+```
 
 ## appManager.getProcessRunningInformation<sup>9+</sup>
 
-getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInformation>>): void;
+getProcessRunningInformation(callback: AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>>): void;
 
 获取有关运行进程的信息。
 
@@ -203,16 +203,16 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 
 **示例：**
     
-  ```ts
-  appManager.getProcessRunningInformation((err, data) => {
+```ts
+appManager.getProcessRunningInformation((err, data) => {
     console.log('error :' + JSON.stringify(err));
     console.log('The process running information is:' + JSON.stringify(data));
-  })
-  ```
+})
+```
 
 ## appManager.on
 
-on(type: "applicationState", observer: ApplicationStateObserver): number;
+on(type: "applicationState", observer: [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md)): number;
 
 注册全部应用程序状态观测器。
 
@@ -226,13 +226,13 @@ on(type: "applicationState", observer: ApplicationStateObserver): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型 |
-| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | 是 | 返回观察者的数字代码。 |
+| type | string | 是 | 调用接口类型，固定填"applicationState"字符串。 |
+| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | 是 | 返回观测器的数字代码ID。 |
 
 **示例：**
     
-  ```js
-  var applicationStateObserver = {
+```js
+var applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log('------------ onForegroundApplicationChanged -----------', appStateData);
     },
@@ -248,19 +248,18 @@ on(type: "applicationState", observer: ApplicationStateObserver): number;
     onProcessStateChanged(processData) {
         console.log('------------ onProcessStateChanged -----------', processData);
     }
-  }
-  try {
+}
+try {
     const observerCode = appManager.on(applicationStateObserver);
     console.log('-------- observerCode: ---------', observerCode);
-  } catch (paramError) {
+} catch (paramError) {
     console.log('error: ' + paramError.code + ', ' + paramError.message);
-  }
-
-  ```
+}
+```
 
 ## appManager.on
 
-on(type: "applicationState", observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
+on(type: "applicationState", observer: [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md), bundleNameList: Array\<string>): number;
 
 注册指定应用程序状态观测器。
 
@@ -274,8 +273,8 @@ on(type: "applicationState", observer: ApplicationStateObserver, bundleNameList:
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型 |
-| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | 是 | 返回观察者的数字代码。 |
+| type | string | 是 | 调用接口类型，固定填"applicationState"字符串。 |
+| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | 是 | 返回观测器的数字代码ID。 |
 | bundleNameList | Array<string> | 是 | 表示需要注册监听的bundleName数组。最大值128。 |
 
 **示例：**
@@ -323,26 +322,26 @@ off(type: "applicationState", observerId: number,  callback: AsyncCallback\<void
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型 |
-| observerId | number | 是 | 表示观察者的编号代码。 |
+| type | string | 是 | 调用接口类型，固定填"applicationState"字符串。 |
+| observerId | number | 是 | 表示观测器的编号代码。 |
 | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **示例：**
     
-  ```js
-    var observerId = 100;
+```ts
+var observerId = 100;
 
-    function unregisterApplicationStateObserverCallback(err) {
-      if (err) {
-          console.log('------------ unregisterApplicationStateObserverCallback ------------', err);
-      }
+function unregisterApplicationStateObserverCallback(err) {
+    if (err) {
+        console.log('------------ unregisterApplicationStateObserverCallback ------------', err);
     }
-    try {
-      appManager.off(observerId, unregisterApplicationStateObserverCallback);
-    } catch (paramError) {
-      console.log('error: ' + paramError.code + ', ' + paramError.message);
-    }
-  ```
+}
+try {
+    appManager.off(observerId, unregisterApplicationStateObserverCallback);
+} catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+}
+```
 
 ## appManager.off
 
@@ -360,8 +359,8 @@ off(type: "applicationState", observerId: number): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型 |
-| observerId | number | 是 | 表示观察者的编号代码。 |
+| type | string | 是 | 调用接口类型，固定填"applicationState"字符串。 |
+| observerId | number | 是 | 表示观测器的编号代码。 |
 
 **返回值：**
 
@@ -371,25 +370,23 @@ off(type: "applicationState", observerId: number): Promise\<void>;
 
 **示例：**
     
-  ```js
-    var observerId = 100;
+```ts
+var observerId = 100;
     
-    try {
-      appManager.off(observerId)
-        .then((data) => {
-          console.log('----------- unregisterApplicationStateObserver success ----------', data);
-        })
-        .catch((err) => {
-          console.log('----------- unregisterApplicationStateObserver fail ----------', err);
-        })
-    } catch (paramError) {
-      console.log('error: ' + paramError.code + ', ' + paramError.message);
-    }
-  ```
+try {
+    appManager.off(observerId).then((data) => {
+        console.log('----------- unregisterApplicationStateObserver success ----------', data);
+    }).catch((err) => {
+        console.log('----------- unregisterApplicationStateObserver fail ----------', err);
+    })
+} catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+}
+```
 
 ## appManager.getForegroundApplications
 
-getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
+getForegroundApplications(callback: AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>>): void;
 
 获取前台进程的应用程序。
 
@@ -403,67 +400,28 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<AppStateData>> | 是 | 表示应用的状态数据。 |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 表示应用的状态数据。 |
 
 **示例：**
     
-  ```js
-  function getForegroundApplicationsCallback(err, data) {
+```ts
+function getForegroundApplicationsCallback(err, data) {
     if (err) {
         console.log('--------- getForegroundApplicationsCallback fail ---------', err.code + ': ' + err.message);
     } else {
         console.log('--------- getForegroundApplicationsCallback success ---------', data)
     }
-  }
-  try {
+}
+try {
     appManager.getForegroundApplications(getForegroundApplicationsCallback);
-  } catch (paramError) {
+} catch (paramError) {
     console.log("error: " + paramError.code + ", " + paramError.message);
-  }
-  ```
-
-unregisterApplicationStateObserver(observerId: number): Promise\<void>;
-
-取消注册应用程序状态观测器。
-
-**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| observerId | number | 是 | 表示观察者的编号代码。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise\<void> | 返回执行结果。 |
-
-**示例：**
-    
-  ```ts
-  var observerId = 100;
-  try {
-    appManager.unregisterApplicationStateObserver(observerId)
-    .then((data) => {
-      console.log('----------- unregisterApplicationStateObserver success ----------', data);
-    })
-    .catch((err) => {
-      console.log('----------- unregisterApplicationStateObserver fail ----------', err);
-    })
-  } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
-  }
-  ```
+}
+```
 
 ## appManager.getForegroundApplications
 
-getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
+getForegroundApplications(callback: AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>>): void;
 
 获取前台进程的应用程序。
 
@@ -477,28 +435,28 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<AppStateData>> | 是 | 表示应用的状态数据。 |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 表示应用的状态数据。 |
 
 **示例：**
     
-  ```ts
-  function getForegroundApplicationsCallback(err, data) {
+```ts
+function getForegroundApplicationsCallback(err, data) {
     if (err) {
         console.log('--------- getForegroundApplicationsCallback fail ---------', err);
     } else {
         console.log('--------- getForegroundApplicationsCallback success ---------', data)
     }
-  }
-  try {
+}
+try {
     appManager.getForegroundApplications(getForegroundApplicationsCallback);
-  } catch (paramError) {
+} catch (paramError) {
     console.log("error: " + paramError.code + ", " + paramError.message);
-  }
-  ```
+}
+```
 
 ## appManager.getForegroundApplications
 
-getForegroundApplications(): Promise\<Array\<AppStateData>>;
+getForegroundApplications(): Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>>;
 
 获取前台进程的应用程序。
 
@@ -512,19 +470,17 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<ProcessRunningInfo>> | 返回进程运行信息的数组。 |
+| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 返回前台进程应用程序的数组。 |
 
 **示例：**
     
-  ```ts
-  appManager.getForegroundApplications()
-  .then((data) => {
-      console.log('--------- getForegroundApplications success -------', data);
-  })
-  .catch((err) => {
-      console.log('--------- getForegroundApplications fail -------', err);
-  })
-  ```
+```ts
+appManager.getForegroundApplications().then((data) => {
+    console.log('--------- getForegroundApplications success -------', data);
+}).catch((err) => {
+    console.log('--------- getForegroundApplications fail -------', err);
+})
+```
 
 ## appManager.killProcessWithAccount
 
@@ -551,15 +507,13 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 var bundleName = 'bundleName';
 var accountId = 0;
 try {
-  appManager.killProcessWithAccount(bundleName, accountId)
-   .then((data) => {
-       console.log('------------ killProcessWithAccount success ------------', data);
-   })
-   .catch((err) => {
-       console.log('------------ killProcessWithAccount fail ------------', err);
-   })
+    appManager.killProcessWithAccount(bundleName, accountId).then((data) => {
+        console.log('------------ killProcessWithAccount success ------------', data);
+    }).catch((err) => {
+        console.log('------------ killProcessWithAccount fail ------------', err);
+    })
 } catch (paramError) {
-  console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log("error: " + paramError.code + ", " + paramError.message);
 }
 ```
 
@@ -590,11 +544,11 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 var bundleName = 'bundleName';
 var accountId = 0;
 function killProcessWithAccountCallback(err, data) {
-   if (err) {
-       console.log('------------- killProcessWithAccountCallback fail, err: --------------', err);
-   } else {
-       console.log('------------- killProcessWithAccountCallback success, data: --------------', data);
-   }
+    if (err) {
+        console.log('------------- killProcessWithAccountCallback fail, err: --------------', err);
+    } else {
+        console.log('------------- killProcessWithAccountCallback success, data: --------------', data);
+    }
 }
 appManager.killProcessWithAccount(bundleName, accountId, killProcessWithAccountCallback);
 ```
@@ -620,21 +574,21 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 
 **示例：**
     
-  ```ts
-  var bundleName = 'bundleName';
-  function killProcessesByBundleNameCallback(err, data) {
+```ts
+var bundleName = 'bundleName';
+function killProcessesByBundleNameCallback(err, data) {
     if (err) {
         console.log('------------- killProcessesByBundleNameCallback fail, err: --------------', err);
     } else {
         console.log('------------- killProcessesByBundleNameCallback success, data: --------------', data);
     }
-  }
-  try {
+}
+try {
     appManager.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
-  } catch (paramError) {
+} catch (paramError) {
     console.log("error: " + paramError.code + ", " + paramError.message);
-  }
-  ```
+}
+```
 
 ## appManager.killProcessesByBundleName
 
@@ -652,7 +606,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 表示包名。 |
+| bundleName | string | 是 | 表示应用包名。 |
 
 **返回值：**
 
@@ -662,20 +616,18 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 
 **示例：**
     
-  ```ts
-  var bundleName = 'bundleName';
-  try {
-    appManager.killProcessesByBundleName(bundleName)
-    .then((data) => {
-         console.log('------------ killProcessesByBundleName success ------------', data);
+```ts
+var bundleName = 'bundleName';
+try {
+    appManager.killProcessesByBundleName(bundleName).then((data) => {
+        console.log('------------ killProcessesByBundleName success ------------', data);
+    }).catch((err) => {
+        console.log('------------ killProcessesByBundleName fail ------------', err);
     })
-    .catch((err) => {
-         console.log('------------ killProcessesByBundleName fail ------------', err);
-    })
-  } catch (paramError) {
+} catch (paramError) {
     console.log("error: " + paramError.code + ", " + paramError.message);
-  }
-  ```
+}
+```
 
 ## appManager.clearUpApplicationData
 
@@ -698,21 +650,21 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 
 **示例：**
     
-  ```ts
-  var bundleName = 'bundleName';
-  function clearUpApplicationDataCallback(err, data) {
+```ts
+var bundleName = 'bundleName';
+function clearUpApplicationDataCallback(err, data) {
     if (err) {
         console.log('------------- clearUpApplicationDataCallback fail, err: --------------', err);
     } else {
         console.log('------------- clearUpApplicationDataCallback success, data: --------------', data);
     }
-  }
-  try {
+}
+try {
     appManager.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
-  } catch (paramError) {
+} catch (paramError) {
     console.log("error: " + paramError.code + ", " + paramError.message);
-  }
-  ```
+}
+```
 
 ## appManager.clearUpApplicationData
 
@@ -740,22 +692,22 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 
 **示例：**
     
-  ```ts
-  var bundleName = 'bundleName';
-  try {
-    appManager.clearUpApplicationData(bundleName)
-      .then((data) => {
+```ts
+var bundleName = 'bundleName';
+try {
+    appManager.clearUpApplicationData(bundleName).then((data) => {
         console.log('------------ clearUpApplicationData success ------------', data);
-      })
-      .catch((err) => {
+    }).catch((err) => {
         console.log('------------ clearUpApplicationData fail ------------', err);
-      })
-  } catch (paramError) {
+    })
+} catch (paramError) {
     console.log("error: " + paramError.code + ", " + paramError.message);
-  }
-  ```
+}
+```
 
 ## ApplicationState
+
+应用状态，该类型为枚举，可配合[AbilityStateData](js-apis-inner-application-appStateData.md)返回相应的应用状态。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -770,6 +722,8 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 | STATE_DESTROY        | 5   |           当应用在销毁的时候处于的状态。       |
 
 ## ProcessState
+
+进程状态，该类型为枚举，可配合[ProcessData](js-apis-inner-application-processData.md)返回相应的进程状态。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

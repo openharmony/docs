@@ -15,7 +15,7 @@ import abilityManager from '@ohos.app.ability.abilityManager'
 
 ## AbilityState
 
-Ability的状态信息。
+Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)返回Abiltiy的状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -23,15 +23,15 @@ Ability的状态信息。
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
-| INITIAL | 0 | 表示ability为initial状态。| 
-| FOREGROUND | 9 | 表示ability为foreground状态。  | 
-| BACKGROUND | 10 | 表示ability为background状态。  | 
-| FOREGROUNDING | 11 | 表示ability为foregrounding状态。  | 
-| BACKGROUNDING | 12 | 表示ability为backgrounding状态。  | 
+| INITIAL | 0 | 表示ability为初始化状态。| 
+| FOREGROUND | 9 | 表示ability为前台状态。  | 
+| BACKGROUND | 10 | 表示ability为后台状态。  | 
+| FOREGROUNDING | 11 | 表示ability为前台调度中状态。  | 
+| BACKGROUNDING | 12 | 表示ability为后台调度中状态。  | 
 
 ## updateConfiguration
 
-updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
+updateConfiguration(config: [Configuration](js-apis-app-ability-configuration.md), callback: AsyncCallback\<void>): void
 
 通过修改配置来更新配置（callback形式）。
 
@@ -43,14 +43,19 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | [Configuration](js-apis-app-ability-configuration.md)   | 是    | 新的配置项。 |
+| config    | [Configuration](js-apis-app-ability-configuration.md)   | 是    | 新的配置项，仅需配置需要更新的项。 |
 | callback  | AsyncCallback\<void>                   | 是    | 被指定的回调方法。      |
 
 **示例**：
 
 ```ts
 var config = {
-  language: 'chinese' 
+  language: 'chinese',
+  colorMode: COLOR_MODE_LIGHT,
+  direction: DIRECTION_VERTICAL,
+  screenDensity: SCREEN_DENSITY_SDPI,
+  displayId: 1,
+  hasPointerDevice: true,
 }
 
 try {
@@ -65,7 +70,7 @@ try {
 
 ## updateConfiguration
 
-updateConfiguration(config: Configuration): Promise\<void>
+updateConfiguration(config: [Configuration](js-apis-app-ability-configuration.md)): Promise\<void>
 
 通过修改配置来更新配置（Promise形式）。
 
@@ -77,7 +82,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | [Configuration](js-apis-app-ability-configuration.md)   | 是    | 新的配置项。 |
+| config    | [Configuration](js-apis-app-ability-configuration.md)   | 是    | 新的配置项，仅需配置需要更新的项。 |
 
 **返回值：**
 
@@ -89,7 +94,12 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 ```ts
 var config = {
-  language: 'chinese' 
+  language: 'chinese',
+  colorMode: COLOR_MODE_LIGHT,
+  direction: DIRECTION_VERTICAL,
+  screenDensity: SCREEN_DENSITY_SDPI,
+  displayId: 1,
+  hasPointerDevice: true,
 }
 
 try {
@@ -106,7 +116,7 @@ try {
 
 ## getAbilityRunningInfos
 
-getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): void
+getAbilityRunningInfos(callback: AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>): void
 
 获取Ability运行相关信息（callback形式）。
 
@@ -118,7 +128,7 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<AbilityRunningInfo>>  | 是    | 被指定的回调方法。      |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | 是    | 被指定的回调方法，返回运行中的ability信息。      |
 
 **示例**：
 
@@ -135,7 +145,7 @@ try {
 
 ## getAbilityRunningInfos
 
-getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
+getAbilityRunningInfos(): Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>
 
 获取Ability运行相关信息（Promise形式）。
 
@@ -147,7 +157,7 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<AbilityRunningInfo>> | 返回执行结果。 |
+| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | 返回运行中的ability信息。 |
 
 **示例**：
 
@@ -166,7 +176,7 @@ try {
 
 ## getExtensionRunningInfos
 
-getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<ExtensionRunningInfo>>): void
+getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>>): void
 
 获取关于运行扩展能力的信息（callback形式）。
 
@@ -179,7 +189,7 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | upperLimit | number                                   | 是 | 获取消息数量的最大限制。 |
-| callback  | AsyncCallback\<Array\<AbilityRunningInfo>>  | 是    | 被指定的回调方法。      |
+| callback  | AsyncCallback\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>>  | 是    | 被指定的回调方法，返回运行中的extension信息。      |
 
 **示例**：
 
@@ -198,7 +208,7 @@ try {
 
 ## getExtensionRunningInfos
 
-getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
+getExtensionRunningInfos(upperLimit: number): Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>>
 
 获取关于运行扩展能力的信息（Promise形式）。
  
@@ -216,7 +226,7 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<AbilityRunningInfo>> | 返回执行结果。 |
+| Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>> | 返回运行中的extension信息。 |
 
 **示例**：
 
@@ -225,9 +235,9 @@ var upperLimit = 0;
 
 try {
   abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
-    console.log("getAbilityRunningInfos data: " + JSON.stringify(data));
+    console.log("getExtensionRunningInfos data: " + JSON.stringify(data));
   }).catch((err) => {
-    console.log("getAbilityRunningInfos err: "  + err);
+    console.log("getExtensionRunningInfos err: "  + err);
   })
 } catch (paramError) {
   console.log('error.code: ' + JSON.stringify(paramError.code) +
@@ -237,7 +247,7 @@ try {
 
 ## getTopAbility<sup>9+</sup>
 
-getTopAbility(callback: AsyncCallback\<ElementName>): void;
+getTopAbility(callback: AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)>): void;
 
 获取窗口焦点的ability接口（callback形式）。
 
@@ -247,7 +257,7 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<ElementName>  | 是    | 被指定的回调方法。      |
+| callback  | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)>  | 是    | 被指定的回调方法，返回目前获焦窗口的应用名。      |
 
 **示例**：
 
@@ -259,7 +269,7 @@ abilityManager.getTopAbility((err,data) => {
 
 ## getTopAbility
 
-getTopAbility(): Promise\<ElementName>;
+getTopAbility(): Promise\<[ElementName](js-apis-bundleManager-elementName.md)>;
 
 获取窗口焦点的ability接口（Promise形式）。
  
@@ -269,7 +279,7 @@ getTopAbility(): Promise\<ElementName>;
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<ElementName>| 返回执行结果。 |
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)>| 返回目前获焦窗口的应用名。 |
 
 **示例**：
 

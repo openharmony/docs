@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)
 
-AbilityDelegatorRegistry模块提供用于存储已注册的AbilityDelegator和AbilityDelegatorArgs对象的全局寄存器的能力，包括获取应用程序的AbilityDelegator对象、获取单元测试参数AbilityDelegatorArgs对象。
+AbilityDelegatorRegistry模块提供用于存储已注册的[AbilityDelegator](js-apis-inner-application-abilityDelegator.md)和[AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)对象的全局寄存器的能力，包括获取应用程序的[AbilityDelegator](js-apis-inner-application-abilityDelegator.md)对象、获取单元测试参数[AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)对象。
 
 > **说明：**
 > 
@@ -14,7 +14,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 ## AbilityLifecycleState
 
-Ability生命周期状态。
+Ability生命周期状态，该类型为枚举，可配合[AbilityDelegator](js-apis-inner-application-abilityDelegator.md)的[getAbilityState(ability)](js-apis-inner-application-abilityDelegator.md#getabilitystate9)方法返回不同ability生命周期。
 
 **系统能力** ：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -28,9 +28,9 @@ Ability生命周期状态。
 
 ## AbilityDelegatorRegistry.getAbilityDelegator
 
-getAbilityDelegator(): AbilityDelegator
+getAbilityDelegator(): [AbilityDelegator](js-apis-inner-application-abilityDelegator.md)
 
-获取应用程序的AbilityDelegator对象
+获取应用程序的[AbilityDelegator](js-apis-inner-application-abilityDelegator.md)对象。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -45,13 +45,21 @@ getAbilityDelegator(): AbilityDelegator
 ```ts
 var abilityDelegator;
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
+let want = {
+    bundleName: "com.ohos.example",
+    abilityName: "MainAbility"
+}
+abilityDelegator.startAbility(want, (err, data)=>{
+    console.log("startAbility callback err: " + JSON.stringify(err) + " data: " + JSON.stringify(data));
+})
 ```
 
 ## AbilityDelegatorRegistry.getArguments
 
-getArguments(): AbilityDelegatorArgs
+getArguments(): [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)
 
-获取单元测试参数AbilityDelegatorArgs对象
+获取单元测试参数[AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)对象。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
