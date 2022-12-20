@@ -158,11 +158,335 @@ OpenHarmony3.2 Beta4版本相较于OpenHarmony3.2 Beta3版本，媒体子系统c
 
 除新增接口，和废弃接口之外，开发者需要关注变更的接口的适配：
 
-**接口变更**
-
 从Beta4版本开始，对以下接口进行调整：
 
-1. CameraManager中接口getCameras返回值由Array<Camera>变更为Array<CameraDevice>，因此旧接口getCameras(callback: AsyncCallback<Array<Camera>>): void;以及getCameras(): Promise<Array<Camera>>;变更为getSupportedCameras(callback: AsyncCallback<Array<CameraDevice>>): void和getSupportedCameras(): Promise<Array<CameraDevice>>;
+**新增接口**
+
+1. Profile接口
+
+   属性1：readonly format，类型：CameraFormat;
+
+   属性2：readonly size，类型：Size;
+
+2. FrameRateRange接口
+
+   属性1：readonly min，类型：number;
+
+   属性2：readonly max，类型：number;
+
+3. VideoProfile接口，继承自Profile
+
+   属性：readonly frameRateRange，类型：FrameRateRange;
+
+4. CameraOutputCapability接口
+
+   属性1：readonly previewProfiles，类型：Array<Profile>;
+
+   属性2：readonly photoProfiles，类型：Array<Profile>;
+
+   属性3：readonly videoProfiles，类型：Array<VideoProfile>;
+
+   属性4：readonly supportedMetadataObjectTypes，类型：Array<MetadataObjectType>;
+
+5. CameraManager中新增
+
+   getSupportedOutputCapability(camera: CameraDevice, callback: AsyncCallback<CameraOutputCapability>): void;
+
+   getSupportedOutputCapability(camera: CameraDevice): Promise<CameraOutputCapability>;
+
+   参考代码如下：
+
+   ```
+   cameraManager.getSupportedCameras().then((cameras) => {
+       let cameraDevice = cameras[0];
+       cameraManager.getSupportedOutputCapability(cameraDevice, (err, CameraOutputCapability) => {
+           if (err) {
+               console.error(`Failed to get the outputCapability. ${err.message}`);
+               return;
+           }
+           console.log('Callback returned with an array of supported outputCapability');
+       })
+   })
+   ```
+
+   ```
+   cameraManager.getSupportedCameras().then((cameras) => {
+       let cameraDevice = cameras[0];
+       cameraManager.getSupportedOutputCapability(cameraDevice).then((cameraoutputcapability) => {
+           console.log('Promise returned with an array of supported outputCapability');
+       })
+   })
+   ```
+
+6. CameraManager中新增isCameraMuted(): boolean; 
+
+   参考代码如下：
+
+   ```
+   let ismuted = cameraManager.isCameraMuted();
+   ```
+
+7. CameraManager中新增isCameraMuteSupported(): boolean; 
+
+   参考代码如下：
+
+   ```
+   let ismutesuppotred = cameraManager.isCameraMuteSupported();
+   ```
+
+8. CameraManager中新增muteCamera(mute: boolean): void;
+
+   参考代码如下：
+
+   ```
+   let mute = true;
+   cameraManager.muteCamera(mute);
+   ```
+
+9. CameraManager中新增on(type: 'cameraMute', callback: AsyncCallback<boolean>): void;
+
+   参考代码如下：
+
+   ```
+   cameraManager.on('cameraMute', (err, curMuetd) => {
+       if (err) {
+           console.error(`Failed to get cameraMute callback. ${err.message}`);
+           return;
+       }
+   })
+   ```
+
+10. CameraInput中新增open(callback: AsyncCallback<void>): void;以及open(): Promise<void>;
+
+参考代码如下：
+
+```
+cameraInput.open((err) => {
+    if (err) {
+        console.error(`Failed to open the camera. ${err.message}`);
+        return;
+    }
+    console.log('Callback returned with camera opened.');
+})
+```
+
+```
+cameraInput.open().then(() => {
+    console.log('Promise returned with camera opened.');
+})
+```
+
+11. CameraInput中新增close(callback: AsyncCallback<void>): void;以及close(): Promise<void>;
+
+    参考代码如下：
+
+    ```
+    cameraInput.close((err) => {
+        if (err) {
+            console.error(`Failed to close the cameras. ${err.message}`);
+            return;
+        }
+        console.log('Callback returned with camera closed.');
+    })
+    ```
+
+    ```
+    cameraInput.close().then(() => {
+        console.log('Promise returned with camera closed.');
+    })
+    ```
+
+12. 枚举CameraInputErrorCode中新增
+
+    枚举值名称：ERROR_NO_PERMISSION，值：0;
+
+    枚举值名称：ERROR_DEVICE_PREEMPTED，值：1;
+
+    枚举值名称：ERROR_DEVICE_DISCONNECTED，值：2;
+
+    枚举值名称：ERROR_DEVICE_IN_USE，值：3;
+
+    枚举值名称：ERROR_DRIVER_ERROR，值：4;
+
+13. 枚举CameraFormat中新增
+
+    枚举值名称：CAMERA_FORMAT_RGBA_8888，值：3;
+
+14. CaptureSession中新增getMeteringPoint(callback: AsyncCallback<Point>): void;以及getMeteringPoint(): Promise<Point>;
+
+    参考代码如下：
+
+    ```
+    captureSession.getMeteringPoint((err, exposurePoint) => {
+        if (err) {
+            console.log(`Failed to get the current exposure point ${err.message}`);
+            return ;
+        }
+        console.log(`Callback returned with current exposure point: ${exposurePoint}`);
+    })
+    ```
+
+    ```
+    captureSession.getMeteringPoint().then((exposurePoint) => {
+        console.log(`Promise returned with current exposure point : ${exposurePoint}`);
+    })
+    ```
+
+15. CaptureSession中新增setMeteringPoint(point: Point, callback: AsyncCallback<void>): void;以及setMeteringPoint(point: Point): Promise<void>;
+
+    参考代码如下：
+
+    ```
+    const Point1 = {x: 1, y: 1};
+    
+    captureSession.setMeteringPoint(Point1,(err) => {
+        if (err) {
+            console.log(`Failed to set the exposure point ${err.message}`);
+            return ;
+        }
+        console.log('Callback returned with the successful execution of setMeteringPoint');
+    })
+    ```
+
+    ```
+    const Point2 = {x: 2, y: 2};
+    
+    captureSession.setMeteringPoint(Point2).then(() => {
+        console.log('Promise returned with the successful execution of setMeteringPoint');
+    })
+    ```
+
+16. 枚举CaptureSessionErrorCode中新增
+
+    枚举值名称：ERROR_INSUFFICIENT_RESOURCES，值：0;
+
+    枚举值名称：ERROR_TIMEOUT，值：1;
+
+17. 新增接口CameraOutput，接口下有release(callback: AsyncCallback<void>): void;以及release(): Promise<void>;方法
+
+    参考代码如下：用previewOutput做示例
+
+    ```
+    previewOutput.release((err) => {
+        if (err) {
+            console.error(`Failed to release the PreviewOutput instance ${err.message}`);
+            return;
+        }
+        console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
+    });
+    ```
+
+    ```
+    previewOutput.release().then(() => {
+        console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
+    })
+    ```
+
+18. PreviewOutput中新增start(callback: AsyncCallback<void>): void;以及start(): Promise<void>;
+
+    参考代码如下
+
+    ```
+    previewOutput.start((err) => {
+        if (err) {
+            console.error(`Failed to start the previewOutput. ${err.message}`);
+            return;
+        }
+        console.log('Callback returned with previewOutput started.');
+    })
+    ```
+
+    ```
+    previewOutput.start().then(() => {
+        console.log('Promise returned with previewOutput started.');
+    })
+    ```
+
+19. PreviewOutput中新增stop(callback: AsyncCallback<void>): void;以及stop(): Promise<void>;
+
+    参考代码如下
+
+    ```
+    previewOutput.stop((err) => {
+        if (err) {
+            console.error(`Failed to stop the previewOutput. ${err.message}`);
+            return;
+        }
+        console.log('Callback returned with previewOutput stopped.');
+    })
+    ```
+
+    ```
+    previewOutput.stop().then(() => {
+        console.log('Callback returned with previewOutput stopped.');
+    })
+    ```
+
+20. PhotoCaptureSetting接口
+
+    属性1：mirror?，类型：boolean;
+
+21. 枚举PhotoOutputErrorCode中新增
+
+    枚举值名称：ERROR_DRIVER_ERROR，值：0;
+
+    枚举值名称：ERROR_INSUFFICIENT_RESOURCES，值：1;
+
+    枚举值名称：ERROR_TIMEOUT，值：2;
+
+22. 枚举VideoOutputErrorCode中新增
+
+    枚举值名称：ERROR_DRIVER_ERROR，值：0;
+
+23. MetadataOutput中新增on(type: 'error', callback: ErrorCallback<MetadataOutputError>): void;
+
+    参考代码如下
+
+    ```
+    metadataOutput.on('error', (metadataOutputError) => {
+        console.log(`Metadata output error code: ${metadataOutputError.code}`);
+    })
+    ```
+
+24. MetadataOutputErrorCode枚举
+
+    枚举值名称：ERROR_UNKNOWN，值：-1;
+
+    枚举值名称：ERROR_INSUFFICIENT_RESOURCES，值：0;
+
+25. MetadataOutputError接口
+
+    属性名称：code，值：MetadataOutputErrorCode
+
+**废弃接口**
+
+1. CameraInput中废弃接口on(type: 'exposureStateChange', callback: AsyncCallback<ExposureState>): void;
+
+2. previewOutput中废弃接口release(callback: AsyncCallback<void>): void;以及release(): Promise<void>;
+
+3. metadataOutput中废弃接口
+
+   setCapturingMetadataObjectTypes(metadataObjectTypes: Array<MetadataObjectType>, callback: AsyncCallback<void>): void;<br/>setCapturingMetadataObjectTypes(metadataObjectTypes: Array<MetadataObjectType>): Promise<void>;
+
+4. metadataOutput中废弃接口
+
+   getSupportedMetadataObjectTypes(callback: AsyncCallback<Array<MetadataObjectType>>): void;<br/>getSupportedMetadataObjectTypes(): Promise<Array<MetadataObjectType>>;
+
+5. PreviewOutput中废弃接口release(callback: AsyncCallback<void>): void;以及release(): Promise<void>;
+
+6. PhotoOutput中废弃接口release(callback: AsyncCallback<void>): void;以及release(): Promise<void>;
+
+7. VideoOutput中废弃接口release(callback: AsyncCallback<void>): void;以及release(): Promise<void>;
+
+8. CameraInput中废弃接口getCameraId(callback: AsyncCallback<string>): void;以及getCameraId(): Promise<string>;
+
+9. CameraInput中废弃接口getExposurePoint(callback: AsyncCallback<Point>): void;以及getExposurePoint(): Promise<Point>;
+
+10. CameraInput中废弃接口setExposurePoint(exposurePoint: Point, callback: AsyncCallback<void>): void;以及setExposurePoint(exposurePoint: Point): Promise<void>;
+
+**接口变更**
+
+1. CameraManager中接口getCameras返回值由Array<Camera>变更为Array<CameraDevice>，接口名由getCameras 更换为 getSupportedCameras，因此旧接口getCameras(callback: AsyncCallback<Array<Camera>>): void;以及getCameras(): Promise<Array<Camera>>;变更为getSupportedCameras(callback: AsyncCallback<Array<CameraDevice>>): void和getSupportedCameras(): Promise<Array<CameraDevice>>;
 
    参考代码如下：
 
@@ -204,7 +528,7 @@ OpenHarmony3.2 Beta4版本相较于OpenHarmony3.2 Beta3版本，媒体子系统c
    })
    ```
 
-3. CameraManager中接口createPreviewOutput新增传递参数profile: Profile，因此旧接口createPreviewOutput(surfaceId: string, callback: AsyncCallback<PreviewOutput>): void;以及createPreviewOutput(surfaceId: string): Promise<PreviewOutput>;变更为createPreviewOutput(profile: Profile, surfaceId: string, callback: AsyncCallback<PreviewOutput>): void;createPreviewOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput>;
+3. CameraManager中接口createPreviewOutput新增传递参数profile: Profile，profile参数由getSupportedOutputCapability接口获取，因此旧接口createPreviewOutput(surfaceId: string, callback: AsyncCallback<PreviewOutput>): void;以及createPreviewOutput(surfaceId: string): Promise<PreviewOutput>;变更为createPreviewOutput(profile: Profile, surfaceId: string, callback: AsyncCallback<PreviewOutput>): void;createPreviewOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput>;
 
    参考代码如下：
 
@@ -226,7 +550,7 @@ OpenHarmony3.2 Beta4版本相较于OpenHarmony3.2 Beta3版本，媒体子系统c
    })
    ```
 
-4. CameraManager中接口createPhotoOutput新增传递参数profile: Profile，因此旧接口CreatePhotoOutput(surfaceId: string, callback: AsyncCallback<PhotoOutput>): void;以及CreatePhotoOutput(surfaceId: string): Promise<PhotoOutput>;变更为createPhotoOutput(profile: Profile, surfaceId: string, callback: AsyncCallback<PhotoOutput>): void;和createPhotoOutput(profile: Profile, surfaceId: string): Promise<PhotoOutput>;
+4. CameraManager中接口createPhotoOutput新增传递参数profile: Profile，profile参数由getSupportedOutputCapability接口获取，因此旧接口CreatePhotoOutput(surfaceId: string, callback: AsyncCallback<PhotoOutput>): void;以及CreatePhotoOutput(surfaceId: string): Promise<PhotoOutput>;变更为createPhotoOutput(profile: Profile, surfaceId: string, callback: AsyncCallback<PhotoOutput>): void;和createPhotoOutput(profile: Profile, surfaceId: string): Promise<PhotoOutput>;
 
    参考代码如下：
 
@@ -248,7 +572,7 @@ OpenHarmony3.2 Beta4版本相较于OpenHarmony3.2 Beta3版本，媒体子系统c
    })
    ```
 
-5. CameraManager中接口createVideoOutput新增传递参数profile: Profile，因此旧接口createVideoOutput(surfaceId: string, callback: AsyncCallback<VideoOutput>): void;以及createVideoOutput(surfaceId: string): Promise<VideoOutput>;变更为createVideoOutput(profile: VideoProfile, surfaceId: string, callback: AsyncCallback<VideoOutput>): void;和createVideoOutput(profile: VideoProfile, surfaceId: string): Promise<VideoOutput>;
+5. CameraManager中接口createVideoOutput新增传递参数profile: Profile，profile参数由getSupportedOutputCapability接口获取，因此旧接口createVideoOutput(surfaceId: string, callback: AsyncCallback<VideoOutput>): void;以及createVideoOutput(surfaceId: string): Promise<VideoOutput>;变更为createVideoOutput(profile: VideoProfile, surfaceId: string, callback: AsyncCallback<VideoOutput>): void;和createVideoOutput(profile: VideoProfile, surfaceId: string): Promise<VideoOutput>;
 
    参考代码如下：
 
@@ -270,7 +594,7 @@ OpenHarmony3.2 Beta4版本相较于OpenHarmony3.2 Beta3版本，媒体子系统c
    })
    ```
 
-6. CameraManager中接口createMetadataOutput新增传递参数metadataObjectTypes: Array<MetadataObjectType>,因此旧接口createMetadataOutput(callback: AsyncCallback<MetadataOutput>): void;以及createVideoOutput(): Promise<MetadataOutput>;变更为createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType>, callback: AsyncCallback<MetadataOutput>): void;和createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType>): Promise<MetadataOutput>;
+6. CameraManager中接口createMetadataOutput新增传递参数metadataObjectTypes: Array<MetadataObjectType>,metadataObjectTypes参数由getSupportedOutputCapability接口获取，因此旧接口function createMetadataOutput(callback: AsyncCallback<MetadataOutput>): void;以及function createMetadataOutput(): Promise<MetadataOutput>;变更为createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType>, callback: AsyncCallback<MetadataOutput>): void;和createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType>): Promise<MetadataOutput>;
 
    参考代码如下：
 
@@ -456,329 +780,3 @@ OpenHarmony3.2 Beta4版本相较于OpenHarmony3.2 Beta3版本，媒体子系统c
     枚举值名称由FACE变更为FACE_DETECTION;
 
 17. 接口Camera名称更改为CameraDevice
-
-**新增接口**
-
-1. Profile接口
-
-   属性1：readonly format，类型：CameraFormat;
-
-   属性2：readonly size，类型：Size;
-
-2. FrameRateRange接口
-
-   属性1：readonly min，类型：number;
-
-   属性2：readonly max，类型：number;
-
-3. VideoProfile接口，继承自Profile
-
-   属性：readonly frameRateRange，类型：FrameRateRange;
-
-4. CameraOutputCapability接口
-
-   属性1：readonly previewProfiles，类型：Array<Profile>;
-
-   属性2：readonly photoProfiles，类型：Array<Profile>;
-
-   属性3：readonly videoProfiles，类型：Array<VideoProfile>;
-
-   属性4：readonly supportedMetadataObjectTypes，类型：Array<MetadataObjectType>;
-
-5. CameraManager中新增
-
-   getSupportedOutputCapability(camera: CameraDevice, callback: AsyncCallback<CameraOutputCapability>): void;
-
-   getSupportedOutputCapability(camera: CameraDevice): Promise<CameraOutputCapability>;
-
-   参考代码如下：
-
-   ```
-   cameraManager.getSupportedCameras().then((cameras) => {
-       let cameraDevice = cameras[0];
-       cameraManager.getSupportedOutputCapability(cameraDevice, (err, CameraOutputCapability) => {
-           if (err) {
-               console.error(`Failed to get the outputCapability. ${err.message}`);
-               return;
-           }
-           console.log('Callback returned with an array of supported outputCapability');
-       })
-   })
-   ```
-
-   ```
-   cameraManager.getSupportedCameras().then((cameras) => {
-       let cameraDevice = cameras[0];
-       cameraManager.getSupportedOutputCapability(cameraDevice).then((cameraoutputcapability) => {
-           console.log('Promise returned with an array of supported outputCapability');
-       })
-   })
-   ```
-
-6. CameraManager中新增isCameraMuted(): boolean; 
-
-   参考代码如下：
-
-   ```
-   let ismuted = cameraManager.isCameraMuted();
-   ```
-
-7. CameraManager中新增isCameraMuteSupported(): boolean; 
-
-   参考代码如下：
-
-   ```
-   let ismutesuppotred = cameraManager.isCameraMuteSupported();
-   ```
-
-8. CameraManager中新增muteCamera(mute: boolean): void;
-
-   参考代码如下：
-
-   ```
-   let mute = true;
-   cameraManager.muteCamera(mute);
-   ```
-
-9. CameraManager中新增on(type: 'cameraMute', callback: AsyncCallback<boolean>): void;
-
-   参考代码如下：
-
-   ```
-   cameraManager.on('cameraMute', (err, curMuetd) => {
-       if (err) {
-           console.error(`Failed to get cameraMute callback. ${err.message}`);
-           return;
-       }
-   })
-   ```
-
-10. CameraInput中新增open(callback: AsyncCallback<void>): void;以及open(): Promise<void>;
-
-参考代码如下：
-
-```
-cameraInput.open((err) => {
-    if (err) {
-        console.error(`Failed to open the camera. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with camera opened.');
-})
-```
-
-```
-cameraInput.open().then(() => {
-    console.log('Promise returned with camera opened.');
-})
-```
-
-
-11. CameraInput中新增close(callback: AsyncCallback<void>): void;以及close(): Promise<void>;
-
-    参考代码如下：
-
-    ```
-    cameraInput.close((err) => {
-        if (err) {
-            console.error(`Failed to close the cameras. ${err.message}`);
-            return;
-        }
-        console.log('Callback returned with camera closed.');
-    })
-    ```
-
-    ```
-    cameraInput.close().then(() => {
-        console.log('Promise returned with camera closed.');
-    })
-    ```
-
-12. 枚举CameraInputErrorCode中新增
-
-    枚举值名称：ERROR_NO_PERMISSION，值：0;
-
-    枚举值名称：ERROR_DEVICE_PREEMPTED，值：1;
-
-    枚举值名称：ERROR_DEVICE_DISCONNECTED，值：2;
-
-    枚举值名称：ERROR_DEVICE_IN_USE，值：3;
-
-    枚举值名称：ERROR_DRIVER_ERROR，值：4;
-
-13. 枚举CameraFormat中新增
-
-    枚举值名称：CAMERA_FORMAT_RGBA_8888，值：3;
-
-14. CaptureSession中新增getMeteringPoint(callback: AsyncCallback<Point>): void;以及getMeteringPoint(): Promise<Point>;
-
-    参考代码如下：
-
-    ```
-    captureSession.getMeteringPoint((err, exposurePoint) => {
-        if (err) {
-            console.log(`Failed to get the current exposure point ${err.message}`);
-            return ;
-        }
-        console.log(`Callback returned with current exposure point: ${exposurePoint}`);
-    })
-    ```
-
-    ```
-    captureSession.getMeteringPoint().then((exposurePoint) => {
-        console.log(`Promise returned with current exposure point : ${exposurePoint}`);
-    })
-    ```
-
-15. CaptureSession中新增setMeteringPoint(point: Point, callback: AsyncCallback<void>): void;以及setMeteringPoint(point: Point): Promise<void>;
-
-    参考代码如下：
-
-    ```
-    const Point1 = {x: 1, y: 1};
-    
-    captureSession.setMeteringPoint(Point1,(err) => {
-        if (err) {
-            console.log(`Failed to set the exposure point ${err.message}`);
-            return ;
-        }
-        console.log('Callback returned with the successful execution of setMeteringPoint');
-    })
-    ```
-
-    ```
-    const Point2 = {x: 2, y: 2};
-    
-    captureSession.setMeteringPoint(Point2).then(() => {
-        console.log('Promise returned with the successful execution of setMeteringPoint');
-    })
-    ```
-
-16. 枚举CaptureSessionErrorCode中新增
-
-    枚举值名称：ERROR_INSUFFICIENT_RESOURCES，值：0;
-
-    枚举值名称：ERROR_TIMEOUT，值：1;
-
-17. 新增接口CameraOutput，接口下有release(callback: AsyncCallback<void>): void;以及release(): Promise<void>;方法
-
-    参考代码如下：用previewOutput做示例
-
-    ```
-    previewOutput.release((err) => {
-        if (err) {
-            console.error(`Failed to release the PreviewOutput instance ${err.message}`);
-            return;
-        }
-        console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
-    });
-    ```
-
-    ```
-    previewOutput.release().then(() => {
-        console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
-    })
-    ```
-
-18. PreviewOutput中新增start(callback: AsyncCallback<void>): void;以及start(): Promise<void>;
-
-    参考代码如下
-
-    ```
-    previewOutput.start((err) => {
-        if (err) {
-            console.error(`Failed to start the previewOutput. ${err.message}`);
-            return;
-        }
-        console.log('Callback returned with previewOutput started.');
-    })
-    ```
-
-    ```
-    previewOutput.start().then(() => {
-        console.log('Promise returned with previewOutput started.');
-    })
-    ```
-
-19. PreviewOutput中新增stop(callback: AsyncCallback<void>): void;以及stop(): Promise<void>;
-
-    参考代码如下
-
-    ```
-    previewOutput.stop((err) => {
-        if (err) {
-            console.error(`Failed to stop the previewOutput. ${err.message}`);
-            return;
-        }
-        console.log('Callback returned with previewOutput stopped.');
-    })
-    ```
-
-    ```
-    previewOutput.stop().then(() => {
-        console.log('Callback returned with previewOutput stopped.');
-    })
-    ```
-
-20. PhotoCaptureSetting接口
-
-    属性1：mirror?，类型：boolean;
-
-21. 枚举PhotoOutputErrorCode中新增
-
-    枚举值名称：ERROR_DRIVER_ERROR，值：0;
-
-    枚举值名称：ERROR_INSUFFICIENT_RESOURCES，值：1;
-
-    枚举值名称：ERROR_TIMEOUT，值：2;
-
-22. 枚举VideoOutputErrorCode中新增
-
-    枚举值名称：ERROR_DRIVER_ERROR，值：0;
-
-23. MetadataOutput中新增on(type: 'error', callback: ErrorCallback<MetadataOutputError>): void;
-
-    参考代码如下
-
-    ```
-    metadataOutput.on('error', (metadataOutputError) => {
-        console.log(`Metadata output error code: ${metadataOutputError.code}`);
-    })
-    ```
-
-24. MetadataOutputErrorCode枚举
-
-    枚举值名称：ERROR_UNKNOWN，值：-1;
-
-    枚举值名称：ERROR_INSUFFICIENT_RESOURCES，值：0;
-
-25. MetadataOutputError接口
-
-    属性名称：code，值：MetadataOutputErrorCode
-
-
-**接口废弃**
-
-1. CameraInput中废弃接口on(type: 'exposureStateChange', callback: AsyncCallback<ExposureState>): void;
-
-2. previewOutput中废弃接口release(callback: AsyncCallback<void>): void;以及release(): Promise<void>;
-
-3. metadataOutput中废弃接口
-
-   setCapturingMetadataObjectTypes(metadataObjectTypes: Array<MetadataObjectType>, callback: AsyncCallback<void>): void;<br/>setCapturingMetadataObjectTypes(metadataObjectTypes: Array<MetadataObjectType>): Promise<void>;
-
-4. metadataOutput中废弃接口
-
-   getSupportedMetadataObjectTypes(callback: AsyncCallback<Array<MetadataObjectType>>): void;<br/>getSupportedMetadataObjectTypes(): Promise<Array<MetadataObjectType>>;
-
-5. PreviewOutput中废弃接口release(callback: AsyncCallback<void>): void;以及release(): Promise<void>;
-
-6. PhotoOutput中废弃接口release(callback: AsyncCallback<void>): void;以及release(): Promise<void>;
-
-7. VideoOutput中废弃接口release(callback: AsyncCallback<void>): void;以及release(): Promise<void>;
-
-8. CameraInput中废弃接口getCameraId(callback: AsyncCallback<string>): void;以及getCameraId(): Promise<string>;
-
-9. CameraInput中废弃接口getExposurePoint(callback: AsyncCallback<Point>): void;以及getExposurePoint(): Promise<Point>;
-
-10. CameraInput中废弃接口setExposurePoint(exposurePoint: Point, callback: AsyncCallback<void>): void;以及setExposurePoint(exposurePoint: Point): Promise<void>;
