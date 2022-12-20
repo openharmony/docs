@@ -40,7 +40,7 @@ Deque的构造函数。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -68,7 +68,7 @@ insertFront(element: T): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -103,7 +103,7 @@ insertEnd(element: T): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -144,7 +144,7 @@ has(element: T): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -175,7 +175,7 @@ popFirst(): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -209,7 +209,7 @@ popLast(): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -253,7 +253,7 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -288,7 +288,7 @@ getFirst(): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -321,7 +321,7 @@ getLast(): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -354,7 +354,7 @@ let result = deque.getLast();
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
