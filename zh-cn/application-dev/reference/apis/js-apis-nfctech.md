@@ -1,4 +1,4 @@
-# 标准NFC-Tag  Nfc 技术
+# nfctech (标准NFC-Tag Nfc 技术)
 
 本模块主要用于采用不同Nfc技术的Tag的读写操作。
 

@@ -1,4 +1,4 @@
-# 标准NFC-Tag
+# @ohos.nfc.tag (标准NFC-Tag)
 
 本模块主要用于操作及管理NFC Tag。
 
