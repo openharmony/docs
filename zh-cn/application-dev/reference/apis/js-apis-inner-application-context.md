@@ -1,11 +1,11 @@
-# Context模块
+# Context
 
 Context模块提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。
 
 > **说明：**
 >
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口仅可在Stage模型下使用。
+>  - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>  - 本模块接口仅可在Stage模型下使用。
 
 ## 属性
 
@@ -25,12 +25,13 @@ Context模块提供了ability或application的上下文的能力，包括访问�
 | eventHub | string | 是    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。 |
 | area | [AreaMode](#areamode) | 是    | 否    | 文件分区信息。 |
 
-
 ## Context.createBundleContext
 
 createBundleContext(bundleName: string): Context;
 
-根据包名创建安装包的上下文Context。
+根据包名创建安装包的上下文。
+
+**需要权限**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -44,19 +45,32 @@ createBundleContext(bundleName: string): Context;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Context | 安装包的上下文Context。 |
+| Context | 安装包的上下文。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
-let bundleContext = this.context.createBundleContext("com.example.test");
+let bundleContext;
+try {
+    bundleContext = this.context.createBundleContext("com.example.test");
+} catch (error) {
+    console.log('createBundleContext failed, error.code: ' + JSON.stringify(error.code) +
+        ' error.message: ' + JSON.stringify(error.message));
+}
 ```
 
 ## Context.createModuleContext
 
 createModuleContext(moduleName: string): Context;
 
-根据模块名创建上下文Context。
+根据模块名创建上下文。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -70,17 +84,30 @@ createModuleContext(moduleName: string): Context;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Context | 上下文Context。 |
+| Context | 模块的上下文。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
-let moduleContext = this.context.createModuleContext("entry");
+let moduleContext;
+try {
+    moduleContext = this.context.createModuleContext("entry");
+} catch (error) {
+    console.log('createModuleContext failed, error.code: ' + JSON.stringify(error.code) +
+        ' error.message: ' + JSON.stringify(error.message));
+}
 ```
 
 createModuleContext(bundleName: string, moduleName: string): Context;
 
-根据包名和模块名创建上下文Context。
+根据包名和模块名创建上下文。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -95,19 +122,32 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Context | 上下文Context。 |
+| Context | 模块的上下文。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
-let moduleContext = this.context.createModuleContext("com.example.test", "entry");
+let moduleContext;
+try {
+    moduleContext = this.context.createModuleContext("com.example.test", "entry");
+} catch (error) {
+    console.log('createModuleContext failed, error.code: ' + JSON.stringify(error.code) +
+        ' error.message: ' + JSON.stringify(error.message));
+}
 ```
 
 ## Context.getApplicationContext
 
 getApplicationContext(): ApplicationContext;
 
-获取应用上下文Context。
+获取本应用的应用上下文。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -115,12 +155,18 @@ getApplicationContext(): ApplicationContext;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Context | 应用上下文Context。 |
+| [ApplicationContext](js-apis-inner-application-applicationContext.md) | 应用上下文Context。 |
 
 **示例：**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
+let applicationContext;
+try {
+    applicationContext = this.context.getApplicationContext();
+} catch (error) {
+    console.log('getApplicationContext failed, error.code: ' + JSON.stringify(error.code) +
+        ' error.message: ' + JSON.stringify(error.message));
+}
 ```
 
 ## AreaMode
