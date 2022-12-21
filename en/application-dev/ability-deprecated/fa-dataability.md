@@ -148,7 +148,7 @@ The basic dependency packages include:
 
 1. Create a Data ability helper.
 
-   For details about the APIs provided by **DataAbilityHelper**, see [DataAbilityHelper Module](../reference/apis/js-apis-dataAbilityHelper.md).
+   For details about the APIs provided by **DataAbilityHelper**, see [DataAbilityHelper Module](../reference/apis/js-apis-inner-ability-dataAbilityHelper.md).
    ```js
    // Different from the URI defined in the config.json file, the URI passed in the parameter has an extra slash (/), because there is a DeviceID parameter between the second and the third slash (/).
    import featureAbility from '@ohos.ability.featureAbility'
