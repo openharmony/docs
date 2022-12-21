@@ -1,4 +1,4 @@
-# Work Scheduler
+# @ohos.resourceschedule.workScheduler
 
 The **workScheduler** module provides the APIs for registering, canceling, and querying Work Scheduler tasks, which do not have real-time constraints.
 
@@ -437,45 +437,45 @@ Enumerates the network types that can trigger the task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-| Name                    | Description                     |
-| ---------------------- | ----------------------- |
-| NETWORK_TYPE_ANY       | Any network type.    |
-| NETWORK_TYPE_MOBILE    | Mobile network.   |
-| NETWORK_TYPE_WIFI      | Wi-Fi network.  |
-| NETWORK_TYPE_BLUETOOTH | Bluetooth network.|
-| NETWORK_TYPE_WIFI_P2P  | Wi-Fi P2P network. |
-| NETWORK_TYPE_ETHERNET  | Ethernet.       |
+| Name                    | Value | Description                     |
+| ---------------------- | ---- | ----------------------- |
+| NETWORK_TYPE_ANY       | 0    | Any network type.    |
+| NETWORK_TYPE_MOBILE    | 1    | Mobile network.   |
+| NETWORK_TYPE_WIFI      | 2    | Wi-Fi network.  |
+| NETWORK_TYPE_BLUETOOTH | 3    | Bluetooth network.|
+| NETWORK_TYPE_WIFI_P2P  | 4    | Wi-Fi P2P network. |
+| NETWORK_TYPE_ETHERNET  | 5    | Ethernet.       |
 
 ## ChargingType
 Enumerates the charging types that can trigger the task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-| Name                       | Description                  |
-| ------------------------- | -------------------- |
-| CHARGING_PLUGGED_ANY      | Any charging type.|
-| CHARGING_PLUGGED_AC       | DC charging.   |
-| CHARGING_PLUGGED_USB      | USB charging.    |
-| CHARGING_PLUGGED_WIRELESS | Wireless charging.   |
+| Name                       | Value | Description                  |
+| ------------------------- | ---- | -------------------- |
+| CHARGING_PLUGGED_ANY      | 0    | Any charging type.|
+| CHARGING_PLUGGED_AC       | 1    | DC charging.   |
+| CHARGING_PLUGGED_USB      | 2    | USB charging.    |
+| CHARGING_PLUGGED_WIRELESS | 3    | Wireless charging.   |
 
 ## BatteryStatus
 Enumerates the battery states that can trigger the task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-| Name                        | Description                        |
-| -------------------------- | -------------------------- |
-| BATTERY_STATUS_LOW         | A low battery alert is displayed.            |
-| BATTERY_STATUS_OKAY        | The battery level is restored from low to normal.      |
-| BATTERY_STATUS_LOW_OR_OKAY | The battery level is restored from low to normal, or a low battery alert is displayed.|
+| Name                        | Value | Description                        |
+| -------------------------- | ---- | -------------------------- |
+| BATTERY_STATUS_LOW         | 0    | A low battery alert is displayed.            |
+| BATTERY_STATUS_OKAY        | 1    | The battery level is restored from low to normal.      |
+| BATTERY_STATUS_LOW_OR_OKAY | 2    | The battery level is restored from low to normal, or a low battery alert is displayed.|
 
 ## StorageRequest
 Enumerates the storage states that can trigger the task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-| Name                       | Description                            |
-| ------------------------- | ------------------------------ |
-| STORAGE_LEVEL_LOW         | The storage space is insufficient.              |
-| STORAGE_LEVEL_OKAY        | The storage space is restored from insufficient to normal.        |
-| STORAGE_LEVEL_LOW_OR_OKAY | The storage space is restored from insufficient to normal, or the storage space is insufficient.|
+| Name                       | Value | Description                            |
+| ------------------------- | ---- | ------------------------------ |
+| STORAGE_LEVEL_LOW         | 0    | The storage space is insufficient.              |
+| STORAGE_LEVEL_OKAY        | 1    | The storage space is restored from insufficient to normal.        |
+| STORAGE_LEVEL_LOW_OR_OKAY | 2    | The storage space is restored from insufficient to normal, or the storage space is insufficient.|
