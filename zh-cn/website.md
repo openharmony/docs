@@ -3,7 +3,7 @@
 - [了解OpenHarmony开源项目](OpenHarmony-Overview_zh.md)
 - [术语](glossary.md)
 - 版本说明
-  - [版本定义](release-notes/release_definitions.md)
+  - [版本定义](release-notes/release-definitions.md)
   - OpenHarmony 3.x Releases
     - [OpenHarmony v3.2 Beta4 (2022-11-30)](release-notes/OpenHarmony-v3.2-beta4.md)
     - [OpenHarmony v3.2 Beta3 (2022-09-30)](release-notes/OpenHarmony-v3.2-beta3.md)
