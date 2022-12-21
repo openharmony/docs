@@ -1,4 +1,4 @@
-# Device Usage Statistics
+# @ohos.deviceUsageStatistics (Device Usage Statistics)
 
 This module provides APIs for collecting statistics on device usage.
 
@@ -487,7 +487,7 @@ Enumerates the interval types for querying the application usage duration.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-| Name          | Default Value | Description                                      |
+| Name          | Value | Description                                      |
 | ------------ | ---- | ---------------------------------------- |
 | BY_OPTIMIZED | 0    | The system obtains the application usage duration statistics in the specified time frame at the interval the system deems appropriate.|
 | BY_DAILY     | 1    | The system obtains the application usage duration statistics in the specified time frame on a daily basis.             |

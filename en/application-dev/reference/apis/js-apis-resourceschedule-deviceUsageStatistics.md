@@ -1,4 +1,4 @@
-# Device Usage Statistics
+# @ohos.resourceschedule.usageStatistics (Device Usage Statistics)
 
 This module provides APIs for collecting statistics on device usage.
 
@@ -703,7 +703,7 @@ Queries FA usage records. This API uses an asynchronous callback to return a max
 
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes   | Callback used to return a maximum of 1000 FA usage records.|
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes   | Callback used to return a maximum of **maxNum** FA usage records.|
 
 **Error codes**
 
