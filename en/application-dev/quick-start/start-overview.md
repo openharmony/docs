@@ -16,12 +16,12 @@ Before you begin, there are some basic concepts that will help you better unders
 
 OpenHarmony provides a UI development framework, known as ArkUI. ArkUI provides capabilities you may need for application UI development, including a wide array of components, layout calculation, animation, UI interaction, and drawing capabilities.
 
-ArkUI comes with two development paradigms: JavaScript-based web-like development paradigm (web-like development paradigm for short) and TypeScript-based declarative development paradigm (declarative development paradigm for short). You can choose whichever development paradigm that aligns with your practice.
+ArkUI comes with two development paradigms: eTS-based declarative development paradigm (declarative development paradigm for short) and JavaScript-compatible web-like development paradigm (web-like development paradigm for short). You can choose whichever development paradigm that aligns with your practice.
 
 | **Development Paradigm** | **Language** | **UI Update Mode** | **Applicable To** | **Intended Audience** |
 | -------- | -------- | -------- | -------- | -------- |
+| Declarative development paradigm | Extended TypeScript (eTS) | Data-driven        | Applications involving technological sophistication and teamwork | Mobile application and system application developers |
 | Web-like development paradigm | JavaScript | Data-driven | Applications and service widgets with simple UIs | Frontend web developers |
-| Declarative development paradigm | Extended TypeScript (eTS) | Data-driven | Applications involving technological sophistication and teamwork | Mobile application and system application developers |
 
 For DevEco Studio V2.2 Beta1 and later versions, both the traditional coding mode and the low-code mode are supported when the JS language is used for development.
 
