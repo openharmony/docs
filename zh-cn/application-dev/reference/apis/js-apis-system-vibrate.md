@@ -1,4 +1,4 @@
-# 振动
+# @system.vibrator (振动)
 
 ## 模块说明
 
