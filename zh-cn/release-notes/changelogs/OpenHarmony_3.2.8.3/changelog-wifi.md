@@ -8,6 +8,7 @@
 
 import wifiManager from '@ohos.wifiManager';
 
+
 **变更影响**
 
 仅对系统API以及API9所有接口的使用有影响，需要import @ohos.wifiManager才能使用wifi的系统API和API9接口
@@ -15,6 +16,7 @@ import wifiManager from '@ohos.wifiManager';
 import wifiManager from '@ohos.wifiManager';
 
 对于其他接口无影响
+
 
 **关键的接口/组件变更**
 
@@ -71,6 +73,7 @@ import wifiManager from '@ohos.wifiManager';
 | wifi | enum | export enum WifiSecurityType | API9接口变更，迁移到@ohos.wifiManager.d.ts，增加4种加密类型 |
 | wifi | interface | export interface WifiLinkedInfo | API9接口变更，迁移到@ohos.wifiManager.d.ts，增加MacType参数 |
 
+
 **适配指导（可选，不涉及则可以删除）**
 
 以getLinkedInfo为例，在新版本中需要使用如下方式进行调用：
@@ -80,16 +83,16 @@ import wifiManager from '@ohos.wifiManager'
 
 wifiManager.getLinkedInfo((err, data) => {
     if (err) {
-	    console.error("get linked info error");
-		return;
-	}
-	console.info("get linked info: " + JSON.stringify(data));
+        console.error("get linked info error");
+        return;
+    }
+    console.info("get linked info: " + JSON.stringify(data));
 });
 
 wifiManager.getLinkedInfo().then(data => {
-	console.info("get linked info: " + JSON.stringify(data));
+    console.info("get linked info: " + JSON.stringify(data));
 }).catch(error => {
-	console.info("get linked info error");
+    console.info("get linked info error");
 });
 
 ```
@@ -101,6 +104,7 @@ wifiManager.getLinkedInfo().then(data => {
 后续需要import @ohos.wifiManagerExt.d.ts才能够使用wifi的系统API以及API9接口：
 
 import wifiManagerExt from '@ohos.wifiManagerExt';
+
 
 **变更影响**
 
