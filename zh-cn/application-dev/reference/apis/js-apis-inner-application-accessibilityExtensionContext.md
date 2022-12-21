@@ -1,4 +1,4 @@
-# 辅助功能扩展上下文
+# AccessibilityExtensionContext (辅助功能扩展上下文)
 
 AccessibilityExtensionContext是AccessibilityExtensionAbility上下文环境，继承自ExtensionContext。
 

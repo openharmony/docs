@@ -1,16 +1,12 @@
-# 输入设备
-
+# @ohos.multimodalInput.inputDevice (输入设备)
 
 输入设备管理模块，用于监听输入设备连接和断开状态，查询输入设备相关信息。
-
 
 > **说明**：
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
-
 
 ```js
 import inputDevice from '@ohos.multimodalInput.inputDevice';

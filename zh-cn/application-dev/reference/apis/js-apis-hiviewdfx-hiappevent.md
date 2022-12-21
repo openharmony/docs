@@ -1,8 +1,9 @@
-# 应用事件打点
+# @ohos.hiviewdfx.hiAppEvent (应用事件打点)
 
 本模块提供了应用事件打点能力，包括应用事件落盘、应用事件订阅、应用事件清理、打点功能配置等功能。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
