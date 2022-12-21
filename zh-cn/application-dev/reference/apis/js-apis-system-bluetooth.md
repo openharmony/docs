@@ -1,4 +1,4 @@
-# 蓝牙
+# @system.bluetooth (蓝牙)
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
