@@ -1,6 +1,6 @@
 # @ohos.app.ability.ExtensionAbility (扩展能力基类)
 
-ExtensionAbility是特定场景扩展能力的基类，提供系统配置更新回调和系统内存调整回调。。
+ExtensionAbility是特定场景扩展能力的基类，继承自[Ability](js-apis-app-ability-ability.md)，未新增属性和方法。
 
 > **说明：**
 > 
