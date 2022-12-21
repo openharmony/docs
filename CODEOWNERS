@@ -256,12 +256,12 @@ zh-cn/application-dev/reference/apis/js-apis-hidebug.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-hilog.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-hitracechain.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-hitracemeter.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-inputmethod.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-inputmethod.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-screen-lock.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-system-time.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-wallpaper.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-screen-lock.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-system-time.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-wallpaper.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-timer.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-battery-info.md @sun-yue14
 zh-cn/application-dev/reference/apis/js-apis-brightness.md @sun-yue14
