@@ -1,4 +1,4 @@
-# xml转换JavaScript
+# @ohos.convertxml (xml转换JavaScript)
 
 本模块提供转换xml文本为JavaScript对象的选项。
 
