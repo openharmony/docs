@@ -1,4 +1,4 @@
-# Bundle.bundleMonitor模块(JS端sdk接口)
+# @ohos.bundle.bundleMonitor (bundleMonitor模块)
 
 本模块提供监听应用安装，卸载，更新的能力。
 
