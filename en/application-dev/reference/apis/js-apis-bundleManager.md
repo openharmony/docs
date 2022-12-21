@@ -1,4 +1,4 @@
-# bundleManager
+# @ohos.bundle.bundleManager
 
 The **bundleManager** module provides APIs for querying information about bundles, applications, abilities, Extension abilities, and more.
 
@@ -96,10 +96,10 @@ Enumerates the types of Extension abilities.
 
 | Name| Value| Description|
 |:----------------:|:---:|-----|
-| FORM             | 0   | [FormExtensionAbility](../../ability/stage-formextension.md): provides APIs for widget development.|
+| FORM             | 0   | [FormExtensionAbility](../../application-models/widget-development-stage.md): provides APIs for widget development.|
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../../task-management/work-scheduler-dev-guide.md): enables applications to execute non-real-time tasks when the system is idle.|
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
-| SERVICE          | 3   | [ServiceExtensionAbility](../../ability/stage-serviceextension.md): enables applications to run in the background and provide services.|
+| SERVICE          | 3   | [ServiceExtensionAbility](../../application-models/serviceextensionability.md): enables applications to run in the background and provide services.|
 | ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](js-apis-application-accessibilityExtensionAbility.md): provides accessibility for access to and operations on the UI.|
 | DATA_SHARE       | 5   | [DataShareExtensionAbility](../../database/database-datashare-guidelines.md): enables applications to read and write data.|
 | FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved.|
@@ -2181,8 +2181,8 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName is not existed.                      |
-| 17700003 | The specified abilityName is not existed.                     |
+| 17700002 | The specified moduleName does not exist.                      |
+| 17700003 | The specified abilityName does not exist.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 | 17700029 | The specified ability is disabled.                            |
@@ -2236,8 +2236,8 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName is not existed.                      |
-| 17700003 | The specified abilityName is not existed.                     |
+| 17700002 | The specified moduleName does not exist.                      |
+| 17700003 | The specified abilityName does not exist.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 | 17700029 | The specified ability is disabled.                            |
@@ -2299,7 +2299,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName is not existed.                      |
+| 17700002 | The specified moduleName does not exist.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
@@ -2353,7 +2353,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName is not existed.                      |
+| 17700002 | The specified moduleName does not exist.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
@@ -2903,3 +2903,5 @@ try {
     console.error('getBundleInfoSync failed:' + err.message);
 }
 ```
+
+ <!--no_check--> 

@@ -1,4 +1,4 @@
-# Bundle.bundleMonitor
+# @ohos.bundle.bundleMonitor
 
 The **Bundle.bundleMonitor** module provides APIs for listens for bundle installation, uninstall, and updates.
 
@@ -18,7 +18,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 | ------------------------------------ | ----------- | ------------------------------ |
 | ohos.permission.LISTEN_BUNDLE_CHANGE | system_core | Permission to listen for bundle installation, uninstall, and updates.|
 
-For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
+For details, see [Permission Levels](../../security/accesstoken-overview.md).
 
 ## BundleChangeInfo
 
@@ -49,10 +49,6 @@ Subscribes to bundle installation, uninstall, and update events.
 | ---------------------------- | -------- | ---- | ------------------ |
 | BundleChangedEvent           | string   | Yes  | Type of the event to subscribe to.|
 | Callback\<BundleChangedInfo> | callback | Yes  | Callback used for the subscription.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
 **Example**
 
@@ -86,10 +82,6 @@ Unsubscribes from bundle installation, uninstall, and update events.
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
 | BundleChangedEvent           | string   | Yes  | Type of the event to unsubscribe from.                                        |
 | Callback\<BundleChangedInfo> | callback | Yes  | Callback used for the unsubscription. If this parameter is left empty, all callbacks of the current event are unsubscribed from.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
 **Example**
 

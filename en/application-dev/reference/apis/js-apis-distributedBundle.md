@@ -1,4 +1,4 @@
-# distributedBundle
+# @ohos.bundle.distributedBundle
 
 The **distributedBundle** module provides APIs for managing distributed bundles.
 
