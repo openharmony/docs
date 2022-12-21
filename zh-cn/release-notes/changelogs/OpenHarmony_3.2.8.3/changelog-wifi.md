@@ -28,7 +28,7 @@ import wifiManager from '@ohos.wifiManager';
 | wifi | method | function scan(): void | API9接口变更，迁移到@ohos.wifiManager.d.ts，返回值改为void |
 | wifi | method | function getScanResults(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt; | API9接口变更，迁移到@ohos.wifiManager.d.ts，由getScanInfos修改为getScanResults |
 | wifi | method | function getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void | API9接口变更，迁移到@ohos.wifiManager.d.ts，由getScanInfos修改为getScanResults |
-| wifi | method | function getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | API9接口变更，迁移到@ohos.wifiManager.d.ts |
+| wifi | method | function getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo]&gt; | API9接口变更，迁移到@ohos.wifiManager.d.ts |
 | wifi | method | function addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt; | API9接口变更，迁移到@ohos.wifiManager.d.ts |
 | wifi | method | function addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;): void | API9接口变更，迁移到@ohos.wifiManager.d.ts |
 | wifi | method | function removeCandidateConfig(networkId: number): Promise&lt;void&gt; | API9接口变更，迁移到@ohos.wifiManager.d.ts |
@@ -37,7 +37,7 @@ import wifiManager from '@ohos.wifiManager';
 | wifi | method | function addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&gt;): void | API9接口变更，该接口删除 |
 | wifi | method | function removeUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt; | API9接口变更，该接口删除 |
 | wifi | method | function removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&gt;): void | API9接口变更，该接口删除 |
-| wifi | method | function getCandidateConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | API9接口变更，迁移到@ohos.wifiManager.d.ts |
+| wifi | method | function getCandidateConfigs(): &nbsp;Array&lt;[WifiDeviceConfig]&gt; | API9接口变更，迁移到@ohos.wifiManager.d.ts |
 | wifi | method | function connectToCandidateConfig(networkId: number): void | API9接口变更，迁移到@ohos.wifiManager.d.ts |
 | wifi | method | function connectToNetwork(networkId: number): void | API9接口变更，迁移到@ohos.wifiManager.d.ts，返回值修改为void |
 | wifi | method | function connectToDevice(config: WifiDeviceConfig): void | API9接口变更，迁移到@ohos.wifiManager.d.ts，返回值修改为void |
