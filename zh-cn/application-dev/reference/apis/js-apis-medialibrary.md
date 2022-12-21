@@ -1,4 +1,4 @@
-# 媒体库管理
+# @ohos.multimedia.medialibrary (媒体库管理)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 该组件从API Version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
