@@ -1,4 +1,4 @@
-# Socket连接
+# @ohos.net.socket (Socket连接)
 
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >
