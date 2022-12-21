@@ -2,7 +2,7 @@
 
 
 ## cl.wifi.1 系统API和API9接口迁移到新增的@ohos.wifiManager.d.ts
-@ohos.wifi.d.ts接口不支持抛出错误码，而API9以及SystemAPI都需要支持错误码抛出，为支持该功能，将@ohos.wifi.d.ts中的所有SystemAPI以及API9接口迁移到新增的@ohos.wifiManager.d.ts当中，并添加错误码描述
+@ohos.wifi.d.ts接口不支持抛出错误码，而API9以及SystemAPI都需要支持错误码抛出，为支持该功能，将@ohos.wifi.d.ts中的所有SystemAPI以及API9接口迁移到新增的@ohos.wifiManager.d.ts当中，并添加错误码描述。
 
 后续需要import @ohos.wifiManager.d.ts才能够使用wifi的系统API以及API9接口：
 
