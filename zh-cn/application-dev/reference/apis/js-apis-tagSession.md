@@ -28,7 +28,7 @@ getTagInfo(): tag.TagInfo
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -56,7 +56,7 @@ connectTag(): boolean;
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -84,7 +84,7 @@ reset(): void
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **示例：**
 
@@ -105,7 +105,7 @@ isTagConnected(): boolean
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -133,7 +133,7 @@ getMaxSendLength(): number
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -160,7 +160,7 @@ getSendDataTimeout(): number
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -188,7 +188,7 @@ setSendDataTimeout(timeout: number): boolean
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -223,7 +223,7 @@ sendData(data: number[]): Promise<number[]>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -269,7 +269,7 @@ sendData(data: number[], callback: AsyncCallback<number[]>): void
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
