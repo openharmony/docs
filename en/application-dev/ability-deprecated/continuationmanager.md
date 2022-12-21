@@ -188,7 +188,7 @@ As the entry of the ability continuation capability, **continuationManager** is 
     }
     ```
 
-    The preceding multi-device collaboration operation is performed across devices in the stage model. For details about this operation in the FA model, see [Page Ability Development](https://gitee.com/openharmony/docs/blob/master/en/application-dev/ability/fa-pageability.md).
+    The preceding multi-device collaboration operation is performed across devices in the stage model. For details about this operation in the FA model, see [Page Ability Development](fa-pageability.md).
 
     You can also instruct the device selection module to update the device connection state. The sample code is as follows:
 
