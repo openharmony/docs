@@ -1,4 +1,4 @@
-# Notification
+# @ohos.notification
 
 The **Notification** module provides notification management capabilities, covering notifications, notification slots, notification subscription, notification enabled status, and notification badge status.
 
@@ -852,11 +852,7 @@ Subscribes to a notification with the subscription information specified. This A
 
 ```js
 function onConsumeCallback(data) {
-    if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribe success");
-    }
+    console.info("Consume callback: " + JSON.stringify(data));
 }
 var subscriber = {
     onConsume: onConsumeCallback
@@ -1621,7 +1617,7 @@ Removes a notification for a specified bundle. This API uses an asynchronous cal
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
 | hashCode | string                | Yes  | Unique notification ID.          |
-| reason   | [RemoveReason](#removereason9) | Yes  | Reason for removing the notification.        |
+| reason   | [RemoveReason](#removereason9) | Yes  | Indicates the reason for deleting a notification.        |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1659,7 +1655,7 @@ Removes a notification for a specified bundle. This API uses a promise to return
 | Name    | Type      | Mandatory| Description      |
 | -------- | ---------- | ---- | ---------- |
 | hashCode | string | Yes  | Unique notification ID.|
-| reason   | [RemoveReason](#removereason9) | Yes  | Reason for removing the notification.        |
+| reason   | [RemoveReason](#removereason9) | Yes  | Reason for deleting the notification.        |
 
 **Example**
 
@@ -2567,11 +2563,11 @@ Requests notification to be enabled for this application. This API uses an async
 **Example**
 
 ```javascript
-function requestEnableNotificationCallback() {
+function requestEnableNotificationCallback(err) {
     if (err.code) {
         console.info("requestEnableNotification failed " + JSON.stringify(err));
     } else {
-        console.info("requestEnableNotification success");
+        
     }
 };
 
@@ -2620,7 +2616,7 @@ Sets whether this device supports distributed notifications. This API uses an as
 **Example**
 
 ```javascript
-function enabledNotificationCallback() {
+function enabledNotificationCallback(err) {
     if (err.code) {
         console.info("enableDistributed failed " + JSON.stringify(err));
     } else {
@@ -2682,11 +2678,11 @@ Obtains whether this device supports distributed notifications. This API uses an
 **Example**
 
 ```javascript
-function isDistributedEnabledCallback() {
+function isDistributedEnabledCallback(err, data) {
     if (err.code) {
         console.info("isDistributedEnabled failed " + JSON.stringify(err));
     } else {
-        console.info("isDistributedEnabled success");
+        console.info("isDistributedEnabled success " + JSON.stringify(data));
     }
 };
 
@@ -2742,7 +2738,7 @@ Sets whether an application supports distributed notifications based on the bund
 **Example**
 
 ```javascript
-function enableDistributedByBundleCallback() {
+function enableDistributedByBundleCallback(err) {
     if (err.code) {
         console.info("enableDistributedByBundle failed " + JSON.stringify(err));
     } else {
@@ -2817,11 +2813,11 @@ Obtains whether an application supports distributed notifications based on the b
 **Example**
 
 ```javascript
-function isDistributedEnabledByBundleCallback(data) {
+function isDistributedEnabledByBundleCallback(err, data) {
     if (err.code) {
         console.info("isDistributedEnabledByBundle failed " + JSON.stringify(err));
     } else {
-        console.info("isDistributedEnabledByBundle success");
+        console.info("isDistributedEnabledByBundle success" + JSON.stringify(data));
     }
 };
 
@@ -2893,7 +2889,7 @@ Obtains the notification reminder type. This API uses an asynchronous callback t
 **Example**
 
 ```javascript
-function getDeviceRemindTypeCallback(data) {
+function getDeviceRemindTypeCallback(err,data) {
     if (err.code) {
         console.info("getDeviceRemindType failed " + JSON.stringify(err));
     } else {
@@ -3414,6 +3410,8 @@ Notification.getSyncNotificationEnabledWithoutApp(userId)
 
 ## NotificationSubscriber
 
+Provides callbacks for receiving or removing notifications.
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 ### onConsume
@@ -3430,7 +3428,7 @@ Callback for receiving notifications.
 
 | Name| Type| Mandatory| Description|
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | AsyncCallback\<[SubscribeCallbackData](#subscribecallbackdata)\> | Yes| Notification information returned.|
+| data | [SubscribeCallbackData](#subscribecallbackdata) | Yes| Notification information returned.|
 
 **Example**
 
@@ -3447,15 +3445,6 @@ function onConsumeCallback(data) {
     console.info('===> onConsume in test');
     let req = data.request;
     console.info('===> onConsume callback req.id:' + req.id);
-    let wantAgent = data.wantAgent;
-    wantAgent .getWant(wantAgent)
-        .then((data1) => {
-            console.info('===> getWant success want:' + JSON.stringify(data1));
-        })
-        .catch((err) => {
-            console.error('===> getWant failed because' + JSON.stringify(err));
-        });
-    console.info('===> onConsume callback req.wantAgent:' + JSON.stringify(req.wantAgent));
 };
 
 var subscriber = {
@@ -3479,7 +3468,7 @@ Callback for removing notifications.
 
 | Name| Type| Mandatory| Description|
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | AsyncCallback\<[SubscribeCallbackData](#subscribecallbackdata)\> | Yes| Notification information returned.|
+| data | [SubscribeCallbackData](#subscribecallbackdata) | Yes| Notification information returned.|
 
 **Example**
 
@@ -3723,13 +3712,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name           | Readable| Writable| Type                                             | Description    |
-| --------------- | ---- | --- | ------------------------------------------------- | -------- |
-| request         | Yes | No | [NotificationRequest](#notificationrequest)       | Notification content.|
-| sortingMap      | Yes | No | [NotificationSortingMap](#notificationsortingmap) | Notification sorting information.|
-| reason          | Yes | No | number                                            | Reason for deletion.|
-| sound           | Yes | No | string                                            | Sound used for notification.|
-| vibrationValues | Yes | No | Array\<number\>                                   | Vibration used for notification.|
+| Name           | Type                                             | Readable| Writable| Description    |
+| --------------- | ------------------------------------------------- | ---- | --- | -------- |
+| request         | [NotificationRequest](#notificationrequest)       | Yes | No | Notification content.|
+| sortingMap      | [NotificationSortingMap](#notificationsortingmap) | Yes | No | Notification sorting information.|
+| reason          | number                                            | Yes | No | Reason for deletion.|
+| sound           | string                                            | Yes | No | Sound used for notification.|
+| vibrationValues | Array\<number\>                                   | Yes | No | Vibration used for notification.|
 
 
 ## EnabledNotificationCallbackData<sup>8+</sup>
@@ -3738,11 +3727,11 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name  | Readable| Writable| Type   | Description            |
-| ------ | ---- | --- | ------- | ---------------- |
-| bundle | Yes | No | string  | Bundle name of the application.      |
-| uid    | Yes | No | number  | UID of the application.       |
-| enable | Yes | No | boolean | Notification enabled status of the application.|
+| Name  | Type   | Readable| Writable| Description            |
+| ------ | ------- | ---- | --- | ---------------- |
+| bundle | string  | Yes | No | Bundle name of the application.      |
+| uid    | number  | Yes | No | UID of the application.       |
+| enable | boolean | Yes | No | Notification enabled status of the application.|
 
 
 ## DoNotDisturbDate<sup>8+</sup>
@@ -3751,11 +3740,11 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name | Readable| Writable| Type                                 | Description                    |
-| ----- | ---- | --- | ------------------------------------- | ------------------------ |
-| type  | Yes | No | [DoNotDisturbType](#donotdisturbtype8) | DND time type.|
-| begin | Yes | No | Date                                  | DND start time.|
-| end   | Yes | No | Date                                  | DND end time.|
+| Name | Type                                 | Readable| Writable| Description                    |
+| -----  ------------------------------------- || ---- | --- | ------------------------ |
+| type  | [DoNotDisturbType](#donotdisturbtype8) | Yes | No | DND time type.|
+| begin | Date                                  | Yes | No | DND start time.|
+| end   | Date                                  | Yes | No | DND end time.|
 
 
 
@@ -3802,10 +3791,10 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name  | Readable| Writable| Type  | Description  |
-| ------ | ---- | --- | ------ | ------ |
-| bundle | Yes | Yes | string | Bundle name.  |
-| uid    | Yes | Yes | number | User ID.|
+| Name  | Type  | Readable| Writable| Description  |
+| ------ | ------ |---- | --- |  ------ |
+| bundle | string | Yes | Yes | Bundle name.  |
+| uid    | number | Yes | Yes | User ID.|
 
 
 
@@ -3813,10 +3802,10 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name | Readable| Writable| Type  | Description    |
-| ----- | ---- | --- | ------ | -------- |
-| id    | Yes | Yes | number | Notification ID.  |
-| label | Yes | Yes | string | Notification label.|
+| Name | Type  | Readable| Writable| Description    |
+| ----- | ------ | ---- | --- | -------- |
+| id    | number | Yes | Yes | Notification ID.  |
+| label | string | Yes | Yes | Notification label.|
 
 
 ## SlotType
@@ -3834,83 +3823,97 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationActionButton
 
+Enumerates the buttons in the notification.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name     | Readable| Writable| Type                                           | Description                     |
-| --------- | --- | ---- | ----------------------------------------------- | ------------------------- |
-| title     | Yes | Yes | string                                          | Button title.                 |
-| wantAgent | Yes | Yes | WantAgent                                       | **WantAgent** of the button.|
-| extras    | Yes | Yes | { [key: string]: any }                          | Extra information of the button.             |
-| userInput<sup>8+</sup> | Yes | Yes | [NotificationUserInput](#notificationuserinput8) | User input object.         |
+| Name     | Type                                           | Readable| Writable| Description                     |
+| --------- | ----------------------------------------------- | --- | ---- | ------------------------- |
+| title     | string                                          | Yes | Yes | Button title.                 |
+| wantAgent | WantAgent                                       | Yes | Yes | **WantAgent** of the button.|
+| extras    | { [key: string]: any }                          | Yes | Yes | Extra information of the button.             |
+| userInput<sup>8+</sup> | [NotificationUserInput](#notificationuserinput8) | Yes | Yes | User input object.         |
 
 
 ## NotificationBasicContent
 
+Describes the normal text notification.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name          | Readable| Writable| Type  | Description                              |
-| -------------- | ---- | ---- | ------ | ---------------------------------- |
-| title          | Yes  | Yes  | string | Notification title.                        |
-| text           | Yes  | Yes  | string | Notification content.                        |
-| additionalText | Yes  | Yes  | string | Additional information of the notification.|
+| Name          | Type  | Readable| Writable| Description                              |
+| -------------- | ------ | ---- | ---- | ---------------------------------- |
+| title          | string | Yes  | Yes  | Notification title.                        |
+| text           | string | Yes  | Yes  | Notification content.                        |
+| additionalText | string | Yes  | Yes  | Additional information of the notification.|
 
 
 ## NotificationLongTextContent
 
+Describes the long text notification.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name          | Readable| Writable| Type  | Description                            |
-| -------------- | ---- | --- | ------ | -------------------------------- |
-| title          | Yes | Yes | string | Notification title.                        |
-| text           | Yes | Yes | string | Notification content.                        |
-| additionalText | Yes | Yes | string | Additional information of the notification.|
-| longText       | Yes | Yes | string | Long text of the notification.                    |
-| briefText      | Yes | Yes | string | Brief text of the notification.|
-| expandedTitle  | Yes | Yes | string | Title of the notification in the expanded state.                |
+| Name          | Type  | Readable| Writable| Description                            |
+| -------------- | ------ | ---- | --- | -------------------------------- |
+| title          | string | Yes | Yes | Notification title.                        |
+| text           | string | Yes | Yes | Notification content.                        |
+| additionalText | string | Yes | Yes | Additional information of the notification.|
+| longText       | string | Yes | Yes | Long text of the notification.                    |
+| briefText      | string | Yes | Yes | Brief text of the notification.|
+| expandedTitle  | string | Yes | Yes | Title of the notification in the expanded state.                |
 
 
 ## NotificationMultiLineContent
 
+Describes the multi-line text notification.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name          | Readable| Writable| Type           | Description                            |
-| -------------- | --- | --- | --------------- | -------------------------------- |
-| title          | Yes | Yes | string          | Notification title.                        |
-| text           | Yes | Yes | string          | Notification content.                        |
-| additionalText | Yes | Yes | string          | Additional information of the notification.|
-| briefText      | Yes | Yes | string          | Brief text of the notification.|
-| longTitle      | Yes | Yes | string          | Title of the notification in the expanded state.                |
-| lines          | Yes | Yes | Array\<string\> | Multi-line text of the notification.                  |
+| Name          | Type           | Readable| Writable| Description                            |
+| -------------- | --------------- | --- | --- | -------------------------------- |
+| title          | string          | Yes | Yes | Notification title.                        |
+| text           | string          | Yes | Yes | Notification content.                        |
+| additionalText | string          | Yes | Yes | Additional information of the notification.|
+| briefText      | string          | Yes | Yes | Brief text of the notification.|
+| longTitle      | string          | Yes | Yes | Title of the notification in the expanded state.                |
+| lines          | Array\<string\> | Yes | Yes | Multi-line text of the notification.                  |
 
 
 ## NotificationPictureContent
 
+Describes the picture-attached notification.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name          | Readable| Writable| Type          | Description                            |
-| -------------- | ---- | --- | -------------- | -------------------------------- |
-| title          | Yes | Yes | string         | Notification title.                        |
-| text           | Yes | Yes | string         | Notification content.                        |
-| additionalText | Yes | Yes | string         | Additional information of the notification.|
-| briefText      | Yes | Yes | string         | Brief text of the notification.|
-| expandedTitle  | Yes | Yes | string         | Title of the notification in the expanded state.                |
-| picture        | Yes | Yes | image.PixelMap | Picture attached to the notification.                  |
+| Name          | Type          | Readable| Writable| Description                            |
+| -------------- | -------------- | ---- | --- | -------------------------------- |
+| title          | string         | Yes | Yes | Notification title.                        |
+| text           | string         | Yes | Yes | Notification content.                        |
+| additionalText | string         | Yes | Yes | Additional information of the notification.|
+| briefText      | string         | Yes | Yes | Brief text of the notification.|
+| expandedTitle  | string         | Yes | Yes | Title of the notification in the expanded state.                |
+| picture        | image.PixelMap | Yes | Yes | Picture attached to the notification.                  |
 
 
 ## NotificationContent
 
+Describes the notification content.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name       | Readable| Writable| Type                                                        | Description              |
-| ----------- | ---- | --- | ------------------------------------------------------------ | ------------------ |
-| contentType | Yes | Yes | [ContentType](#contenttype)                                  | Notification content type.      |
-| normal      | Yes | Yes | [NotificationBasicContent](#notificationbasiccontent)        | Normal text.  |
-| longText    | Yes | Yes | [NotificationLongTextContent](#notificationlongtextcontent)  | Long text.|
-| multiLine   | Yes | Yes | [NotificationMultiLineContent](#notificationmultilinecontent) | Multi-line text.  |
-| picture     | Yes | Yes | [NotificationPictureContent](#notificationpicturecontent)    | Picture-attached.  |
+| Name       | Type                                                        | Readable| Writable| Description              |
+| ----------- | ------------------------------------------------------------ | ---- | --- | ------------------ |
+| contentType | [ContentType](#contenttype)                                  | Yes | Yes | Notification content type.      |
+| normal      | [NotificationBasicContent](#notificationbasiccontent)        | Yes | Yes | Normal text.  |
+| longText    | [NotificationLongTextContent](#notificationlongtextcontent)  | Yes | Yes | Long text.|
+| multiLine   | [NotificationMultiLineContent](#notificationmultilinecontent) | Yes | Yes | Multi-line text.  |
+| picture     | [NotificationPictureContent](#notificationpicturecontent)    | Yes | Yes | Picture-attached.  |
 
 
 ## NotificationFlagStatus<sup>8+</sup>
+
+Describes the notification flag status.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3925,133 +3928,149 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationFlags<sup>8+</sup>
 
+Enumerates notification flags.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name            | Readable| Writable| Type                   | Description                              |
-| ---------------- | ---- | ---- | ---------------------- | --------------------------------- |
-| soundEnabled     | Yes  | No  | NotificationFlagStatus | Whether to enable the sound alert for the notification.                 |
-| vibrationEnabled | Yes  | No  | NotificationFlagStatus | Whether to enable vibration for the notification.              |
+| Name            | Type                   | Readable| Writable| Description                              |
+| ---------------- | ---------------------- | ---- | ---- | --------------------------------- |
+| soundEnabled     | NotificationFlagStatus | Yes  | No  | Whether to enable the sound alert for the notification.                 |
+| vibrationEnabled | NotificationFlagStatus | Yes  | No  | Whether to enable vibration for the notification.              |
 
 
 ## NotificationRequest
 
+Describes the notification request.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name                 | Readable| Writable| Type                                         | Description                      |
-| --------------------- | ---- | --- | --------------------------------------------- | -------------------------- |
-| content               | Yes | Yes | [NotificationContent](#notificationcontent)   | Notification content.                  |
-| id                    | Yes | Yes | number                                        | Notification ID.                    |
-| slotType              | Yes | Yes | [SlotType](#slottype)                         | Slot type.                  |
-| isOngoing             | Yes | Yes | boolean                                       | Whether the notification is an ongoing notification.            |
-| isUnremovable         | Yes | Yes | boolean                                       | Whether the notification can be removed.                |
-| deliveryTime          | Yes | Yes | number                                        | Time when the notification is sent.              |
-| tapDismissed          | Yes | Yes | boolean                                       | Whether the notification is automatically cleared.          |
-| autoDeletedTime       | Yes | Yes | number                                        | Time when the notification is automatically cleared.            |
-| wantAgent             | Yes | Yes | WantAgent                                     | **WantAgent** instance to which the notification will be redirected after being clicked.       |
-| extraInfo             | Yes | Yes | {[key: string]: any}                          | Extended parameters.                  |
-| color                 | Yes | Yes | number                                        | Background color of the notification.              |
-| colorEnabled          | Yes | Yes | boolean                                       | Whether the notification background color is enabled.      |
-| isAlertOnce           | Yes | Yes | boolean                                       | Whether the notification triggers an alert only once.|
-| isStopwatch           | Yes | Yes | boolean                                       | Whether to display the stopwatch.          |
-| isCountDown           | Yes | Yes | boolean                                       | Whether to display the countdown time.        |
-| isFloatingIcon        | Yes | Yes | boolean                                       | Whether the notification is displayed as a floating icon.        |
-| label                 | Yes | Yes | string                                        | Notification label.                  |
-| badgeIconStyle        | Yes | Yes | number                                        | Notification badge type.              |
-| showDeliveryTime      | Yes | Yes | boolean                                       | Whether to display the time when the notification is delivered.          |
-| actionButtons         | Yes | Yes | Array\<[NotificationActionButton](#notificationactionbutton)\>             | Buttons in the notification. Up to two buttons are allowed.    |
-| smallIcon             | Yes | Yes | PixelMap                                      | Small notification icon.                |
-| largeIcon             | Yes | Yes | PixelMap                                      | Large notification icon.                |
-| creatorBundleName     | Yes | No | string                                        | Name of the bundle that creates the notification.            |
-| creatorUid            | Yes | No | number                                        | UID used for creating the notification.             |
-| creatorPid            | Yes | No | number                                        | PID used for creating the notification.             |
-| creatorUserId<sup>8+</sup>| Yes | No | number                                    | ID of the user who creates the notification.          |
-| hashCode              | Yes | No | string                                        | Unique ID of the notification.              |
-| classification        | Yes | Yes | string                                        | Notification category.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| groupName<sup>8+</sup>| Yes | Yes | string                                        | Group notification name.                |
-| template<sup>8+</sup> | Yes | Yes | [NotificationTemplate](#notificationtemplate8) | Notification template.                  |
-| isRemoveAllowed<sup>8+</sup> | Yes | No | boolean                                | Whether the notification can be removed.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| source<sup>8+</sup>   | Yes | No | number                                        | Notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| distributedOption<sup>8+</sup>   | Yes | Yes | [DistributedOptions](#distributedoptions8)                 | Option of distributed notification.         |
-| deviceId<sup>8+</sup> | Yes | No | string                                        | Device ID of the notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.         |
-| notificationFlags<sup>8+</sup> | Yes | No | [NotificationFlags](#notificationflags8)                    | Notification flags.         |
-| removalWantAgent<sup>9+</sup> | Yes | Yes | WantAgent                    | **WantAgent** instance to which the notification will be redirected when it is removed.         |
-| badgeNumber<sup>9+</sup> | Yes | Yes | number                    | Number of notifications displayed on the application icon.         |
+| Name                 | Type                                         | Readable| Writable| Description                      |
+| --------------------- | --------------------------------------------- | ---- | --- | -------------------------- |
+| content               | [NotificationContent](#notificationcontent)   | Yes | Yes | Notification content.                  |
+| id                    | number                                        | Yes | Yes | Notification ID.                    |
+| slotType              | [SlotType](#slottype)                         | Yes | Yes | Slot type.                  |
+| isOngoing             | boolean                                       | Yes | Yes | Whether the notification is an ongoing notification.            |
+| isUnremovable         | boolean                                       | Yes | Yes | Whether the notification can be removed.                |
+| deliveryTime          | number                                        | Yes | Yes | Time when the notification is sent.              |
+| tapDismissed          | boolean                                       | Yes | Yes | Whether the notification is automatically cleared.          |
+| autoDeletedTime       | number                                        | Yes | Yes | Time when the notification is automatically cleared.            |
+| wantAgent             | WantAgent                                     | Yes | Yes | **WantAgent** instance to which the notification will be redirected after being clicked. |
+| extraInfo             | {[key: string]: any}                          | Yes | Yes | Extended parameters.                  |
+| color                 | number                                        | Yes | Yes | Background color of the notification. Not supported currently.      |
+| colorEnabled          | boolean                                       | Yes | Yes | Whether the notification background color is enabled. Not supported currently. |
+| isAlertOnce           | boolean                                       | Yes | Yes | Whether the notification triggers an alert only once.|
+| isStopwatch           | boolean                                       | Yes | Yes | Whether to display the stopwatch.          |
+| isCountDown           | boolean                                       | Yes | Yes | Whether to display the countdown time.        |
+| isFloatingIcon        | boolean                                       | Yes | Yes | Whether the notification is displayed as a floating icon.        |
+| label                 | string                                        | Yes | Yes | Notification label.                  |
+| badgeIconStyle        | number                                        | Yes | Yes | Notification badge type.              |
+| showDeliveryTime      | boolean                                       | Yes | Yes | Whether to display the time when the notification is delivered.          |
+| actionButtons         | Array\<[NotificationActionButton](#notificationactionbutton)\>             | Yes | Yes | Buttons in the notification. Up to two buttons are allowed.    |
+| smallIcon             | PixelMap                                      | Yes | Yes | Small notification icon.                |
+| largeIcon             | PixelMap                                      | Yes | Yes | Large notification icon.                |
+| creatorBundleName     | string                                        | Yes | No | Name of the bundle that creates the notification.            |
+| creatorUid            | number                                        | Yes | No | UID used for creating the notification.             |
+| creatorPid            | number                                        | Yes | No | PID used for creating the notification.             |
+| creatorUserId<sup>8+</sup>| number                                    | Yes | No | ID of the user who creates the notification.          |
+| hashCode              | string                                        | Yes | No | Unique ID of the notification.              |
+| classification        | string                                        | Yes | Yes | Notification category.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
+| groupName<sup>8+</sup>| string                                        | Yes | Yes | Group notification name.                |
+| template<sup>8+</sup> | [NotificationTemplate](#notificationtemplate8) | Yes | Yes | Notification template.                  |
+| isRemoveAllowed<sup>8+</sup> | boolean                                | Yes | No | Whether the notification can be removed.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
+| source<sup>8+</sup>   | number                                        | Yes | No | Notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
+| distributedOption<sup>8+</sup>   | [DistributedOptions](#distributedoptions8)                 | Yes | Yes | Option of distributed notification.         |
+| deviceId<sup>8+</sup> | string                                        | Yes | No | Device ID of the notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.         |
+| notificationFlags<sup>8+</sup> | [NotificationFlags](#notificationflags8)                    | Yes | No | Notification flags.         |
+| removalWantAgent<sup>9+</sup> | WantAgent                    | Yes | Yes | **WantAgent** instance to which the notification will be redirected when it is removed.         |
+| badgeNumber<sup>9+</sup> | number                    | Yes | Yes | Number of notifications displayed on the application icon.         |
 
 
 ## DistributedOptions<sup>8+</sup>
 
+Describes distributed options.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name                  | Readable| Writable| Type           | Description                              |
-| ---------------------- | ---- | ---- | -------------- | ---------------------------------- |
-| isDistributed          | Yes  | Yes  | boolean        | Whether the notification is a distributed notification.                 |
-| supportDisplayDevices  | Yes  | Yes  | Array\<string> | Types of the devices to which the notification can be synchronized.          |
-| supportOperateDevices  | Yes  | Yes  | Array\<string> | Devices on which notification can be enabled.               |
-| remindType             | Yes  | No  | number         | Notification reminder type.<br>**System API**: This is a system API and cannot be called by third-party applications.                   |
+| Name                  | Type           | Readable| Writable| Description                              |
+| ---------------------- | -------------- | ---- | ---- | ---------------------------------- |
+| isDistributed          | boolean        | Yes  | Yes  | Whether the notification is a distributed notification.                 |
+| supportDisplayDevices  | Array\<string> | Yes  | Yes  | Types of the devices to which the notification can be synchronized.          |
+| supportOperateDevices  | Array\<string> | Yes  | Yes  | Devices on which notification can be enabled.               |
+| remindType             | number         | Yes  | No  | Notification reminder type.<br>**System API**: This is a system API and cannot be called by third-party applications.                   |
 
 
 ## NotificationSlot
 
+Describes the notification slot.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name                | Readable| Writable| Type                 | Description                                      |
-| -------------------- | ---- | --- | --------------------- | ------------------------------------------ |
-| type                 | Yes | Yes | [SlotType](#slottype) | Slot type.                                  |
-| level                | Yes | Yes | number                | Notification level. If this parameter is not set, the default value is used based on the notification slot type.|
-| desc                 | Yes | Yes | string                | Notification slot description.                          |
-| badgeFlag            | Yes | Yes | boolean               | Whether to display the badge.                              |
-| bypassDnd            | Yes | Yes | boolean               | Whether to bypass the DND mode in the system.              |
-| lockscreenVisibility | Yes | Yes | number                | Mode for displaying the notification on the lock screen.                |
-| vibrationEnabled     | Yes | Yes | boolean               | Whether vibration is supported for the notification.                                |
-| sound                | Yes | Yes | string                | Notification alert tone.                                |
-| lightEnabled         | Yes | Yes | boolean               | Whether the indicator blinks for the notification.                                  |
-| lightColor           | Yes | Yes | number                | Indicator color of the notification.                                |
-| vibrationValues      | Yes | Yes | Array\<number\>       | Vibration mode of the notification.                              |
-| enabled<sup>9+</sup> | Yes | No | boolean               | Enabled status of the notification slot.                     |
+| Name                | Type                 | Readable| Writable| Description                                      |
+| -------------------- | --------------------- | ---- | --- | ------------------------------------------ |
+| type                 | [SlotType](#slottype) | Yes | Yes | Slot type.                                  |
+| level                | number                | Yes | Yes | Notification level. If this parameter is not set, the default value is used based on the notification slot type.|
+| desc                 | string                | Yes | Yes | Notification slot description.                          |
+| badgeFlag            | boolean               | Yes | Yes | Whether to display the badge.                              |
+| bypassDnd            | boolean               | Yes | Yes | Whether to bypass the DND mode in the system.              |
+| lockscreenVisibility | number                | Yes | Yes | Mode for displaying the notification on the lock screen.                |
+| vibrationEnabled     | boolean               | Yes | Yes | Whether vibration is supported for the notification.                                |
+| sound                | string                | Yes | Yes | Notification alert tone.                                |
+| lightEnabled         | boolean               | Yes | Yes | Whether the indicator blinks for the notification.                                  |
+| lightColor           | number                | Yes | Yes | Indicator color of the notification.                                |
+| vibrationValues      | Array\<number\>       | Yes | Yes | Vibration mode of the notification.                              |
+| enabled<sup>9+</sup> | boolean               | Yes | No | Enabled status of the notification slot.                     |
 
 
 ## NotificationSorting
 
+Provides sorting information of active notifications.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name    | Readable| Writable| Type                                 | Description        |
-| -------- | ---- | --- | ------------------------------------- | ------------ |
-| slot     | Yes | No | [NotificationSlot](#notificationslot) | Notification slot content.|
-| hashCode | Yes | No | string                                | Unique ID of the notification.|
-| ranking  | Yes | No | number                                | Notification sequence number.|
+| Name    | Type                                 | Readable| Writable| Description        |
+| -------- | ------------------------------------- | ---- | --- | ------------ |
+| slot     | [NotificationSlot](#notificationslot) | Yes | No | Notification slot content.|
+| hashCode | string                                | Yes | No | Unique ID of the notification.|
+| ranking  | number                                | Yes | No | Notification sequence number.|
 
 
 ## NotificationSortingMap
 
+Provides sorting information of active notifications in all subscribed notifications.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name          | Readable| Writable| Type                                                        | Description            |
-| -------------- | ---- | --- | ------------------------------------------------------------ | ---------------- |
-| sortings       | Yes | No | {[key: string]: [NotificationSorting](#notificationsorting)} | Array of notification sorting information.|
-| sortedHashCode | Yes | No | Array\<string\>                                              | Array of unique notification IDs.|
+| Name          | Type                                                        | Readable| Writable| Description            |
+| -------------- | ------------------------------------------------------------ | ---- | --- | ---------------- |
+| sortings       | {[key: string]: [NotificationSorting](#notificationsorting)} | Yes | No | Array of notification sorting information.|
+| sortedHashCode | Array\<string\>                                              | Yes | No | Array of unique notification IDs.|
 
 
 ## NotificationSubscribeInfo
 
+Provides the information about the publisher for notification subscription.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name       | Readable| Writable| Type           | Description                           |
-| ----------- | --- | ---- | --------------- | ------------------------------- |
-| bundleNames | Yes | Yes | Array\<string\> | Bundle names of the applications whose notifications are to be subscribed to.|
-| userId      | Yes | Yes | number          | User whose notifications are to be subscribed to.   |
+| Name       | Type           | Readable| Writable| Description                           |
+| ----------- | --------------- | --- | ---- | ------------------------------- |
+| bundleNames | Array\<string\> | Yes | Yes | Bundle names of the applications whose notifications are to be subscribed to.|
+| userId      | number          | Yes | Yes | User whose notifications are to be subscribed to.   |
 
 
 ## NotificationTemplate<sup>8+</sup>
 
+Notification template.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name| Type              | Readable| Writable| Description      |
+| Name| Type                   | Readable| Writable| Description      |
 | ---- | ---------------------- | ---- | ---- | ---------- |
 | name | string                 | Yes  | Yes  | Template name.|
 | data | {[key:string]: Object} | Yes  | Yes  | Template data.|
@@ -4059,11 +4078,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationUserInput<sup>8+</sup>
 
+Provides the notification user input.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name    | Readable| Writable| Type  | Description                         |
-| -------- | --- | ---- | ------ | ----------------------------- |
-| inputKey | Yes | Yes | string | Key to identify the user input.|
+| Name    | Type  | Readable| Writable| Description                         |
+| -------- | ------ | --- | ---- | ----------------------------- |
+| inputKey | string | Yes | Yes | Key to identify the user input.|
 
 
 ## DeviceRemindType<sup>8+</sup>
