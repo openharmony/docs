@@ -2,8 +2,8 @@
 
 ## cl.multimodalinput.1 API错误信息返回方式变更
 
-如下接口使用业务逻辑返回值表示错误信息，不符合OpenHarmony接口错误码规范。从API9开始作以下变更，
- 设备管理：三方接口，@ohos.multimodalInput.inputDevice.d.ts
+如下原有接口使用业务逻辑返回值表示错误信息，不符合OpenHarmony接口错误码规范。从API9开始作以下变更，
+设备管理：三方接口，@ohos.multimodalInput.inputDevice.d.ts
 
 按键订阅：系统接口，@ohos.multimodalInput.inputConsumer.d.ts
 
@@ -46,10 +46,10 @@
   -  **function** getDeviceInfo(deviceId: **number**): Promise<InputDeviceData>; 
 
 以下接口增加错误码处理：
-  -  **function** supportKeys(deviceId: **number**, keys: Array<KeyCode>, callback: AsyncCallback<Array<boolean>>): **void**; 
-  -  **function** supportKeys(deviceId: **number**, keys: Array<KeyCode>): Promise<Array<boolean>>; 
-  -  **function** getKeyboardType(deviceId: **number**, callback: AsyncCallback<KeyboardType>): **void**; &gt;
-  -  **function** getKeyboardType(deviceId: **number**): Promise<KeyboardType>; 
+  -   **function** supportKeys(deviceId: **number**, keys: Array<KeyCode>, callback: AsyncCallback<Array<boolean>>): **void**; 
+  -   **function** supportKeys(deviceId: **number**, keys: Array<KeyCode>): Promise<Array<boolean>>; 
+  -   **function** getKeyboardType(deviceId: **number**, callback: AsyncCallback<KeyboardType>): **void**; &gt;
+  -   **function** getKeyboardType(deviceId: **number**): Promise<KeyboardType>; 
   -   **function** setPointerSpeed(speed: **number**, callback: AsyncCallback<**void**>): **void**; 
   -   **function** setPointerSpeed(speed: **number**): Promise<**void**>; 
   -   **function** getPointerSpeed(callback: AsyncCallback<**number**>): **void**; 
