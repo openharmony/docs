@@ -117,13 +117,13 @@ GNU扩展标准完全支持对应的ISO标准，并在对应的ISO标准上做�
 
 **【级别】** 要求
 
-**【描述】**编译器提示的警告通常对于鉴别低劣的代码和隐晦的bug非常有用，使用-w选项会屏蔽了所有的警告。
+**【描述】** 编译器提示的警告通常对于鉴别低劣的代码和隐晦的bug非常有用，使用-w选项会屏蔽了所有的警告。
 
 ##### G.C&C++.WARN.05 禁止使用"-Wno-XXXX"抑制"-Wall"包含的所有警告选项
 
 **【级别】** 要求
 
-**【描述】**"-Wall"是gcc编译器认可的、很有用的警告选项集合，禁止使用比如"-Wno-pointer-sign"、"-Wno-frame-address"、"-Wno-maybe-uninitialized"、"-Wno-int-in-bool-context"抑制"-Wall"包含的"-Wpointer-sign"、"-Wframe-address"、"-Wmaybe-uninitialized"、"-Wint-in-bool-context"选项。
+**【描述】** "-Wall"是gcc编译器认可的、很有用的警告选项集合，禁止使用比如"-Wno-pointer-sign"、"-Wno-frame-address"、"-Wno-maybe-uninitialized"、"-Wno-int-in-bool-context"抑制"-Wall"包含的"-Wpointer-sign"、"-Wframe-address"、"-Wmaybe-uninitialized"、"-Wint-in-bool-context"选项。
 
 ##### G.C&C++.WARN.06 禁止使用"-Wno-error= XXXX"选项将已指定的升级错误的警告再次降级成警告
 
