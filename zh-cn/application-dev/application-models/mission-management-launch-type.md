@@ -8,12 +8,12 @@
 - singleton：单实例模式，应用在运行时只存在一个该UIAbility实例。
   
   **图1** 任务与singleton模式
-![mission-and-singleton](figures/mission-and-singleton.png)
+  ![mission-and-singleton](figures/mission-and-singleton.png)
   
 - standard：多实例模式，每次调用startAbility()方法，都会在应用进程中创建一个该Ability的实例。
   
   **图2** 任务与standard模式
-![mission-and-standard](figures/mission-and-standard.png)
+  ![mission-and-standard](figures/mission-and-standard.png)
   
 - specified：指定实例模式，由[AbilityStage](abilitystage.md)的（[onAcceptWant](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)）决定是否创建新的实例。
   
@@ -27,5 +27,5 @@
 每个UIAbility实例对应的Mission都保留有该UIAbility实例的快照（Snapshot），UIAbility实例销毁后，Mission信息（包括Ability信息和任务快照）依然会保留，直到用户删除该任务。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > specified模式只在Stage模型上支持，FA模型不支持。

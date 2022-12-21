@@ -49,7 +49,7 @@ FormExtensionAbility就是服务卡片扩展组件（以下简称“卡片”）
 
 - 通信适配层：由OpenHarmony SDK提供，负责与卡片管理服务通信，用于将卡片的更新数据主动推送到卡片管理服务。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 实际开发时只需要作为卡片提供方进行卡片内容的开发，卡片使用方和卡片管理服务由系统自动处理。
 
 
@@ -173,7 +173,7 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
    }
    ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > FormExtensionAbility不能常驻后台，即在卡片生命周期回调函数中无法处理长时间的任务。
 
 ### 配置卡片配置文件
@@ -369,7 +369,7 @@ onUpdateForm(formId) {
 
 ![widget-development-stage](figures/widget-development-stage.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 当前仅支持JS扩展的类Web开发范式来实现卡片的UI界面。
 
 - HML：使用类Web范式的组件描述卡片的页面信息。

@@ -6,7 +6,7 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 
 Worker的上下文对象和主线程的上下文对象是不同的，Worker线程不支持UI操作。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br/>
+> **说明：**<br/>
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块

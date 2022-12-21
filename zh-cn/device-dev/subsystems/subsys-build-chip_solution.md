@@ -19,7 +19,7 @@
                      └── config.gni          # liteos_a版本编译配置
 ```
 
-![icon-note.gif](public_sys-resources/icon-note.gif)**注意**：config.gni为开发板编译相关的配置，编译时会采用该配置文件中的参数编译所有OS部件，编译阶段系统全局可见。
+> **注意**：config.gni为开发板编译相关的配置，编译时会采用该配置文件中的参数编译所有OS部件，编译阶段系统全局可见。
 
 - config.gni的关键字段介绍如下：
 

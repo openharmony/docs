@@ -38,7 +38,7 @@
   };
   ```
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+  > **说明：**
   > - 根据系统中待匹配Ability的匹配情况不同，使用隐式Want启动Ability时会出现以下三种情况。
   >   - 未匹配到满足条件的Ability：启动失败。
   >   - 匹配到一个满足条件的Ability：直接启动该Ability。

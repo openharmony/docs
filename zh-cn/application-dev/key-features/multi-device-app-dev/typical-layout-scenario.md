@@ -18,7 +18,7 @@
 | [重复布局](#重复布局) | 栅格组件 | 
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 在本文[媒体查询](responsive-layout.md#媒体查询)小节中已经介绍了如何通过媒体查询监听断点变化，后续的示例中不再重复介绍此部分代码。
 
 

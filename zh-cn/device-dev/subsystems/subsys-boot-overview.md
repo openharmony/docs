@@ -57,8 +57,8 @@
 
 - 新芯片平台移植时，平台相关的初始化配置需要增加平台相关的初始化配置文件/vendor/etc/init/init.{hardware}.cfg；该文件完成平台相关的初始化设置，如安装ko驱动，设置平台相关的/proc节点信息。
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-
+  > **说明：**
+>
   > 配置文件init.cfg仅支持json格式。
 
 - bootstrap服务启动组件：需要在链接脚本中配置zInit代码段。
@@ -188,8 +188,8 @@
 
       下面以OpenHarmony系统在Hi3516DV300平台启动过程中必要的system分区为例，详细介绍init进程启动后，从读取required fstab信息到创建required分区块设备节点再到最后完成required分区挂载的全部流程。其中会包含一些关键代码段和关键的log信息供开发者调试参考。
 
-      > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-
+      > **说明：**
+    >
       > 从此处开始出现的代码是按逻辑顺序展示的关键代码行，不代表其在源码当中真正的相邻关系。
 
       1. 获取required设备信息
