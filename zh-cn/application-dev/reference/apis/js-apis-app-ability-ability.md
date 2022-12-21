@@ -1,4 +1,4 @@
-# Ability
+# @ohos.app.ability.Ability (Ability基类)
 
 [UIAbility](js-apis-app-ability-uiAbility.md)和[ExtensionAbility](js-apis-app-ability-extensionAbility.md)的基类，提供系统配置更新回调和系统内存调整回调。
 

@@ -1,4 +1,4 @@
-# Common
+# @ohos.app.ability.common (应用上下文Context)
 
 Common模块将二级模块API组织在一起方便开发者进行导出。
 

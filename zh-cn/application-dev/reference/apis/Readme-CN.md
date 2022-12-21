@@ -40,7 +40,6 @@
     - [@ohos.app.ability.appRecovery (appRecovery)](js-apis-app-ability-appRecovery.md)
     - [@ohos.app.ability.Configuration (Configuration)](js-apis-app-ability-configuration.md)
     - [@ohos.app.ability.ConfigurationConstant (ConfigurationConstant)](js-apis-app-ability-configurationConstant.md)
-    - [@ohos.app.ability.dataUriUtils (DataUriUtils模块)](js-apis-app-ability-dataUriUtils.md)
     - [@ohos.app.ability.errorManager (ErrorManager)](js-apis-app-ability-errorManager.md)
     - [@ohos.app.ability.missionManager (missionManager)](js-apis-app-ability-missionManager.md)
     - [@ohos.app.ability.quickFixManager (quickFixManager)](js-apis-app-ability-quickFixManager.md)

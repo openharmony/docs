@@ -1,4 +1,4 @@
-# FormHost
+# @ohos.app.form.formHost (FormHost)
 
 FormHost模块提供了卡片使用方相关接口的能力，包括对使用方同一用户下安装的卡片进行删除、释放、请求更新、获取卡片信息、状态等操作。
 

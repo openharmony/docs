@@ -1,4 +1,4 @@
-# FormError
+# @ohos.application.formError (FormError)
 
 FormError模块提供获取卡片错误码的能力。
 

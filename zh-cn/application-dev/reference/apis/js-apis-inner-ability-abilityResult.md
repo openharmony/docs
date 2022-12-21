@@ -1,4 +1,4 @@
-# AbilityResult<sup>7+</sup>
+# AbilityResult
 
 定义Ability拉起、销毁之后返回的结果码和数据，可以通过[startAbilityForResult](js-apis-ability-context.md#abilitycontextstartabilityforresult)获取对端Ability销毁后返回的AbilityResult对象，被startAbilityForResult拉起的Ability对象可以通过[terminateSelfWithResult](js-apis-ability-context.md#abilitycontextterminateselfwithresult)返回AbilityResult对象。
 
