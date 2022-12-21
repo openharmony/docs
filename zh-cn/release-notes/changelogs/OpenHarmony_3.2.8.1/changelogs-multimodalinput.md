@@ -70,6 +70,7 @@
   - getDeviceInfo(deviceId: **number**): Promise<InputDeviceData>; 
 
 以下接口发生变更
+
 变更前：
  - supportKeys(deviceId: **number**, keys: Array<KeyCode>, callback: Callback<Array<boolean>>): **void**; 
  - getKeyboardType(deviceId: **number**, callback: Callback<KeyboardType>): **void**; 
