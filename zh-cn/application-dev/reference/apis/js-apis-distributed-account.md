@@ -1,8 +1,8 @@
-# 分布式帐号管理
+# @ohos.account.distributedAccount (分布式帐号管理)
 
 本模块提供管理分布式帐号的一些基础功能，主要包括查询和更新帐号登录状态。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
