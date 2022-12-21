@@ -1,4 +1,4 @@
-# NotificationSubscribe模块
+# @ohos.notificationSubscribe (NotificationSubscribe模块)
 
 本模块提供通知订阅、取消订阅、通知移除等，一般情况下，只有系统应用具有这些操作权限。
 

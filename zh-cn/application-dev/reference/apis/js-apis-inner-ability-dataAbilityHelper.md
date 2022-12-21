@@ -1,4 +1,4 @@
-# DataAbilityHelper模块(JS端SDK接口)
+# DataAbilityHelper
 
 可以通过[acquireDataAbilityHelper](js-apis-ability-featureAbility.md#featureabilityacquiredataabilityhelper7)接口获取DataAbilityHelper对象。
 

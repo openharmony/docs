@@ -1,4 +1,4 @@
-## DataAbilityResult
+# DataAbilityResult
 
 定义dataAbility数据操作结果，通过[executeBatch](js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch)查询数据库信息时查询结果通过DataAbilityResult对象返回。
 

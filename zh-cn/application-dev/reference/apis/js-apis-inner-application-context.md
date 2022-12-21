@@ -1,4 +1,4 @@
-# Context模块
+# Context
 
 Context模块提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。
 

@@ -1,4 +1,4 @@
-# AbilityLifecycleCallback
+# @ohos.application.AbilityLifecycleCallback (AbilityLifecycleCallback)
 
 AbilityLifecycleCallback模块提供应用上下文ApplicationContext的生命周期监听方法的回调类的能力，包括onAbilityCreate、onWindowStageCreate、onWindowStageDestroy等方法。
 

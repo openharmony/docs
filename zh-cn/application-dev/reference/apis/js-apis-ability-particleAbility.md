@@ -1,4 +1,4 @@
-# particleAbility模块
+# @ohos.ability.particleAbility (ParticleAbility模块)
 
 particleAbility模块提供了Service类型Ability的能力，包括启动、停止指定的particleAbility，获取dataAbilityHelper，连接、断开当前Ability与指定ServiceAbility等。
 
