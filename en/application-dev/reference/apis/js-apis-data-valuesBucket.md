@@ -1,4 +1,4 @@
-# Value Bucket
+# @ohos.data.ValuesBucket
 
 The **ValueBucket** module holds data in key-value (KV) pairs. You can use it to insert data into a database.
 
