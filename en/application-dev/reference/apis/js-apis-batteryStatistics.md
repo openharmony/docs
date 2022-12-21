@@ -1,4 +1,4 @@
-# @ohos.batteryStatistics
+# Battery Statistics
 
 This module provides APIs for querying software and hardware power consumption statistics.
 
