@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 zh-cn/device-dev/kernel/ @Austin23
 zh-cn/device-dev/website.md @Austin23
 zh-cn/device-dev/faqs/ @Austin23
@@ -120,21 +120,21 @@ zh-cn/application-dev/telephony/ @zengyawen
 zh-cn/application-dev/dfx/ @zengyawen
 zh-cn/application-dev/database/ @ge-yafang
 zh-cn/application-dev/napi/drawing_guidelines.md @ge-yafang
-zh-cn/application-dev/napi/rawfile_guidelines.md @HelloCrease
+zh-cn/application-dev/napi/rawfile_guidelines.md @ningningW
 zh-cn/application-dev/background-agent-scheduled-reminder/ @RayShih
 zh-cn/application-dev/background-task-management/ @RayShih
-zh-cn/application-dev/work-scheduler/ @HelloCrease
+zh-cn/application-dev/work-scheduler/ @ningningW
 zh-cn/application-dev/device/usb-overview.md @ge-yafang
 zh-cn/application-dev/device/usb-guidelines.md @ge-yafang
 zh-cn/application-dev/device/device-location-overview.md @sun-yue14
 zh-cn/application-dev/device/device-location-info.md @sun-yue14
 zh-cn/application-dev/device/device-location-geocoding.md @sun-yue14
-zh-cn/application-dev/device/sensor-overview.md @HelloCrease
-zh-cn/application-dev/device/sensor-guidelines.md @HelloCrease
-zh-cn/application-dev/device/vibrator-overview.md @HelloCrease
-zh-cn/application-dev/device/vibrator-guidelines.md @HelloCrease
-zh-cn/application-dev/device/sample-server-overview.md @HelloCrease
-zh-cn/application-dev/device/sample-server-guidelines.md @HelloCrease
+zh-cn/application-dev/device/sensor-overview.md @ningningW
+zh-cn/application-dev/device/sensor-guidelines.md @ningningW
+zh-cn/application-dev/device/vibrator-overview.md @ningningW
+zh-cn/application-dev/device/vibrator-guidelines.md @ningningW
+zh-cn/application-dev/device/sample-server-overview.md @ningningW
+zh-cn/application-dev/device/sample-server-guidelines.md @ningningW
 zh-cn/application-dev/reference/arkui-js/ @HelloCrease
 zh-cn/application-dev/reference/arkui-ts/ @HelloCrease
 zh-cn/application-dev/reference/native-apis @RayShih
@@ -203,14 +203,14 @@ zh-cn/application-dev/reference/apis/js-apis-camera.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-image.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-media.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-medialibrary.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-i18n.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-intl.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-workScheduler.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-WorkSchedulerExtensionAbility.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-config-policy.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-enterprise-device-manager.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-i18n.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-intl.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-workScheduler.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-WorkSchedulerExtensionAbility.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-config-policy.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-enterprise-device-manager.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-huks.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-useriam-userauth.md @zengyawen
@@ -268,18 +268,18 @@ zh-cn/application-dev/reference/apis/js-apis-brightness.md @sun-yue14
 zh-cn/application-dev/reference/apis/js-apis-device-info.md @sun-yue14
 zh-cn/application-dev/reference/apis/js-apis-device-manager.md
 zh-cn/application-dev/reference/apis/js-apis-geolocation.md @sun-yue14
-zh-cn/application-dev/reference/apis/js-apis-inputconsumer.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-inputdevice.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-inputeventclient.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-inputmonitor.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-inputconsumer.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-inputdevice.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-inputeventclient.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-inputmonitor.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-power.md @sun-yue14
 zh-cn/application-dev/reference/apis/js-apis-runninglock.md @sun-yue14
-zh-cn/application-dev/reference/apis/js-apis-sensor.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-sensor.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-system-parameter.md @sun-yue14
 zh-cn/application-dev/reference/apis/js-apis-thermal.md @sun-yue14
-zh-cn/application-dev/reference/apis/js-apis-update.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-update.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-usb.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-vibrator.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-vibrator.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-appAccount.md @sun-yue14
 zh-cn/application-dev/reference/apis/js-apis-distributed-account.md @sun-yue14
 zh-cn/application-dev/reference/apis/js-apis-osAccount.md @sun-yue14
@@ -304,8 +304,8 @@ zh-cn/application-dev/reference/apis/js-apis-treeset.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-vector.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-worker.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-xml.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-testRunner.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-uitest.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-testRunner.md @RayShih
+zh-cn/application-dev/reference/apis/js-apis-uitest.md @ningningW
 zh-cn/application-dev/quick-start/start-overview.md @ge-yafang
 zh-cn/application-dev/quick-start/start-with-ets.md @ge-yafang
 zh-cn/application-dev/quick-start/start-with-ets-low-code.md @ge-yafang
