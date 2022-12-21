@@ -43,7 +43,7 @@ The table below describes the **LifecycleForm** APIs, which represent the lifecy
 | onDestroy(formId: string): void                              | Called to notify the widget provider that a widget has been destroyed.          |
 | onAcquireFormState?(want: Want): formInfo.FormState          | Called to instruct the widget provider to receive the status query result of a widget.      |
 
-The table below describes the **FormProvider** APIs. For details, see [FormProvider](../reference/apis/js-apis-formprovider.md).
+The table below describes the **FormProvider** APIs. For details, see [FormProvider](../reference/apis/js-apis-application-formProvider.md).
 
 **Table 2** FormProvider APIs
 

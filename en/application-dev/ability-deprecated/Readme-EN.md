@@ -1,5 +1,8 @@
 # Ability Development
 
+> **NOTE**<br/>
+> This folder is deprecated. Read [Application Models](../application-models/Readme-EN.md) instead.
+
 - [Ability Framework Overview](ability-brief.md)
 - [Context Usage](context-userguide.md)
 - FA Model

@@ -12,15 +12,15 @@ The stage model is designed based on the following considerations:
 
 - Efficient management of application processes
 
-   As the device memory becomes larger, the number of processes concurrently running in the system increases. If the number of concurrent processes reaches several hundreds, the overall power consumption and performance of the system will be adversely affected without effective management measures. To restrict the behavior of background processes, the stage model uses four measures: transient task, continuous task, agent task, and Work Scheduler task. With these measures, foreground processes will obtain guaranteed resources, thereby delivering a better user experience.
+As the device memory becomes larger, the number of processes concurrently running in the system increases. If the number of concurrent processes reaches several hundreds, the overall power consumption and performance of the system will be adversely affected without effective management measures. To restrict the behavior of background processes, the stage model uses four measures: transient task, continuous task, agent task, and Work Scheduler task. With these measures, foreground processes will obtain guaranteed resources, thereby delivering a better user experience.
 
 - Native support for cross-device migration and multi-device collaboration
 
-   OpenHarmony is a native distributed OS. Its application framework must be designed for easier component migration and collaboration across devices. The stage model achieves this design objective by providing features such as separation between ability and UI as well as integration of UI display and service capabilities.
+OpenHarmony is a native distributed OS. Its application framework must be designed for easier component migration and collaboration across devices. The stage model achieves this design objective by providing features such as separation between ability and UI as well as integration of UI display and service capabilities.
 
 - Different window forms for various device types
 
-   The stage model redefines the ability lifecycle. In terms of architecture, the component manager and window manager are decoupled. This facilitates adaptation between window forms and device types.
+The stage model redefines the ability lifecycle. In terms of architecture, the component manager and window manager are decoupled. This facilitates adaptation between window forms and device types.
 
 ## Basic Concepts
 
@@ -103,8 +103,12 @@ The processes of an application can be classified into three types:
 
   ![stageprocessmodel](figures/stageprocessmodel.png)
 
+
+
 ## Application Package Structure
 
 For details about the project directory structure of the stage model, see [OpenHarmony Project Overview](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-project-overview-0000001218440650#section56487581904).
 
-For details about how to configure the application package structure of the stage model, see [Application Package Structure Configuration File (Stage Model)](../quick-start/stage-structure.md).
+For details about how to configure the application package structure of the stage model, see [Application Package Structure Configuration File](../quick-start/application-configuration-file-overview-stage.md).
+
+ <!--no_check--> 
