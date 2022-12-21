@@ -85,12 +85,12 @@
 
 ```ts
 import pointer from '@ohos.multimodalInput.pointer';
-pointer.setPointerVisible(true, (error) =&gt; {
+pointer.setPointerVisible(true, (error) => {
     console.log(`Set pointer visible success`);
   });
 
 try {
-  pointer.setPointerVisible(true, (error) =&gt; {
+  pointer.setPointerVisible(true, (error) => {
     if (error) {
       console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
