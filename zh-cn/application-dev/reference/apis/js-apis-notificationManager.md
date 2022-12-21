@@ -3589,7 +3589,7 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 ```js
 let userId = 100;
 
-function getSyncNotificationEnabledWithoutAppCallback(data, err) {
+function getSyncNotificationEnabledWithoutAppCallback(err, data) {
     if (err) {
         console.info('getSyncNotificationEnabledWithoutAppCallback, err' + err);
     } else {
