@@ -1,4 +1,4 @@
-# ShortcutInfo<sup>(deprecated)<sup>
+# shortcutInfo
 
 
 

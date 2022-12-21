@@ -1,5 +1,4 @@
-# HapModuleInfo
-
+# hapModuleInfo
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
