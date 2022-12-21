@@ -100,3 +100,27 @@ ArkUI子系统alertDialog, actionSheet, customDialog组件及prompt, promptActio
 **适配指导**
 
 按文档提示修改，使用其它装饰器变量或常规变量赋值。
+
+## cl.arkui.5 单一子组件校验补全
+
+对 'Button', 'FlowItem'，'GridItem'，'GridCol'，'ListItem'，'Navigator'，'Refresh'，'RichText'，'ScrollBar'，'StepperItem'，'TabContent'等只支持一个子组件的开启校验。
+
+
+**变更影响**
+
+如果上述组件内有超过一个子组件，编译报错。
+
+**关键的接口/组件变更**
+
+```js
+RichText('RichText') {
+    Text('Text1')
+    Text('Text2')
+}
+/* ArkTS:ERROR File: /root/newOH/developtools/ace-ets2bundle/compiler/sample/pages/home.ets:25:7
+ The component 'RichText' can only have a single child component. */
+```
+
+**适配指导**
+
+按报错提示修改，指定组件内只能有一个子组件。
