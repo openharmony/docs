@@ -57,7 +57,7 @@
 
 **【级别】** 要求
 
-**【描述】**按时间先后顺序，常用的ISO C标准包括："-std=c90","-std=c99","-std=c11"，对应的GNU扩展标准为"-std=gnu90","-std=gnu99","-std=gnu11"。
+**【描述】** 按时间先后顺序，常用的ISO C标准包括："-std=c90","-std=c99","-std=c11"，对应的GNU扩展标准为"-std=gnu90","-std=gnu99","-std=gnu11"。
 
 按时间先后顺序，常用的ISO C++标准包括："-std=c++98","-std=c++11","-std=c++14","-std=c++1z"，对应的GNU扩展标准为"-std=gnu++98","-std=gnu++11","-std=gnu++14","-std=gnu++1z"。
 
@@ -83,7 +83,7 @@ GNU扩展标准完全支持对应的ISO标准，并在对应的ISO标准上做�
 
 **【级别】** 要求
 
-**【描述】**使用"-fpermissive"选项将C++代码中不符合标准的语法error降级成warning。不允许使用该选项，应采用符合标准的C++语法。
+**【描述】** 使用"-fpermissive"选项将C++代码中不符合标准的语法error降级成warning。不允许使用该选项，应采用符合标准的C++语法。
 
 ### 警告选项
 
@@ -93,13 +93,13 @@ GNU扩展标准完全支持对应的ISO标准，并在对应的ISO标准上做�
 
 **【级别】** 要求
 
-**【描述】**"-Wall"是gcc编译器认可的、很有用的警告选项集合，包括"-Wpointer-sign"、"-Wframe-address"、"-Wmaybe-uninitialized"、"-Wint-in-bool-context"等警告。对于这些警告，应该理解其含义，通过修改代码来消除警告。
+**【描述】** "-Wall"是gcc编译器认可的、很有用的警告选项集合，包括"-Wpointer-sign"、"-Wframe-address"、"-Wmaybe-uninitialized"、"-Wint-in-bool-context"等警告。对于这些警告，应该理解其含义，通过修改代码来消除警告。
 
 ##### G.C&C++.WARN.02 打开"-Wextra"选项，检查除"-Wall"外附加的选项集；"-Wextra"中误报较多的选项，可以使用"-Wno-XXXX"屏蔽
 
-**【级别】要求**
+**【级别】** 要求
 
-**【描述】**"-Wextra"是除"-Wall"外的一些有用的警告选项集合，包括“-Wempty-body”、"Wmissing-field-initializers"、"-Wunused-parameter"等警告。
+**【描述】** "-Wextra"是除"-Wall"外的一些有用的警告选项集合，包括“-Wempty-body”、"Wmissing-field-initializers"、"-Wunused-parameter"等警告。
 
 "-Wextra"中某些警告可能存在较多误报，产品在实测的基础上，可以使用“-Wno-XXXX”屏蔽其中误报较多的警告，如某产品实测“-Wunused-parameter
 \-Wmissing-field-initializers”误报较多，可以设置“-Wextra -Wno-unused-parameter
@@ -107,9 +107,9 @@ GNU扩展标准完全支持对应的ISO标准，并在对应的ISO标准上做�
 
 ##### G.C&C++.WARN.03 打开"-Weffc++"选项，检查Scott Meyers’ Effective C++选项
 
-**【级别】建议**
+**【级别】** 建议
 
-**【描述】**"-Weffc++"：Scott Meyers’ Effective C++对应的警告选项集。
+**【描述】** "-Weffc++"：Scott Meyers’ Effective C++对应的警告选项集。
 
 #### 警告屏蔽
 
@@ -129,17 +129,17 @@ GNU扩展标准完全支持对应的ISO标准，并在对应的ISO标准上做�
 
 **【级别】** 要求
 
-**【描述】**"-Werror=XXXX"把指定警告升级错误，"-Wno-error=XXXX"：将指定升级成错误的警告再次降级成警告，令人困惑。
+**【描述】** "-Werror=XXXX"把指定警告升级错误，"-Wno-error=XXXX"：将指定升级成错误的警告再次降级成警告，令人困惑。
 
 ##### G.C&C++.WARN.07 避免使用"-Wno-XXXX"抑制编译器缺省打开的编译警告选项
 
 **【级别】** 建议
 
-**【描述】**编译器缺省打开的编译警告选项，是gcc编译器认可的、很有用的警告选项，如"-Wwrite-strings"、"-Wdelete-incomplete"、"-Wsizeof-array-argument"等。对于这些警告，应该理解其含义，通过修改代码来消除警告。
+**【描述】** 编译器缺省打开的编译警告选项，是gcc编译器认可的、很有用的警告选项，如"-Wwrite-strings"、"-Wdelete-incomplete"、"-Wsizeof-array-argument"等。对于这些警告，应该理解其含义，通过修改代码来消除警告。
 
-**【错误示例】**某组件的构建工程中使用"-Wno-write-strings"抑制"-Wwrite-strings"编译警告7749次。
+**【错误示例】** 某组件的构建工程中使用"-Wno-write-strings"抑制"-Wwrite-strings"编译警告7749次。
 
-**例外：**为了确保构建一致性，可以重定义 \__FILE_\_ 宏，消除绝对路径，可以使用"-Wno-builtin-macro-redefined"抑制"-Wbuiltin-macro-redefined"警告。
+**例外：** 为了确保构建一致性，可以重定义 \__FILE_\_ 宏，消除绝对路径，可以使用"-Wno-builtin-macro-redefined"抑制"-Wbuiltin-macro-redefined"警告。
 
 #### 警告升级
 
@@ -147,7 +147,7 @@ GNU扩展标准完全支持对应的ISO标准，并在对应的ISO标准上做�
 
 **【级别】** 建议
 
-**【描述】**建议打开"-Werror"、"-Werror=XXXX"选项：把警告当错误处理
+**【描述】** 建议打开"-Werror"、"-Werror=XXXX"选项：把警告当错误处理
 
 "-Werror"：把警告当错误处理，一旦出现警告，编译就会失败，有利于在开发过程中清除所有的警告。
 
@@ -159,7 +159,7 @@ GNU扩展标准完全支持对应的ISO标准，并在对应的ISO标准上做�
 
 **【级别】** 要求
 
-**【描述】**统一的编译警告选项，确保各部分代码质量统一。
+**【描述】** 统一的编译警告选项，确保各部分代码质量统一。
 
 #### 函数
 
@@ -167,9 +167,9 @@ GNU扩展标准完全支持对应的ISO标准，并在对应的ISO标准上做�
 
 **【级别】** 建议
 
-**【描述】**内嵌函数是定义于函数中的函数。当内嵌函数指针生成trampoline时，会触发警告。Trampoline是在运行时创建于栈区的一小段数据或代码，它包含了内嵌函数的地址信息，它被用于内嵌函数的间接调用。某些平台上，Trampoline仅仅由一些特殊处理的数据构成。但是，大多数平台上，它是由代码构成的，因此它需要栈可执行来支持。栈变成可执行栈，CPU读取栈上指令执行，攻击者可能通过缓冲区溢出攻击等手段运行栈内存上自己得代码。
+**【描述】** 内嵌函数是定义于函数中的函数。当内嵌函数指针生成trampoline时，会触发警告。Trampoline是在运行时创建于栈区的一小段数据或代码，它包含了内嵌函数的地址信息，它被用于内嵌函数的间接调用。某些平台上，Trampoline仅仅由一些特殊处理的数据构成。但是，大多数平台上，它是由代码构成的，因此它需要栈可执行来支持。栈变成可执行栈，CPU读取栈上指令执行，攻击者可能通过缓冲区溢出攻击等手段运行栈内存上自己得代码。
 
-**【错误示例】**在函数main内部定义并通过函数指针调用内嵌函数fun，在”-Wtrampolines”选项下编译警告。
+**【错误示例】** 在函数main内部定义并通过函数指针调用内嵌函数fun，在”-Wtrampolines”选项下编译警告。
 
 -  源程序：
 ```
@@ -202,7 +202,7 @@ warning:trampoline generated for nested function ‘fun’ [-Wtrampolines]
 
 **【级别】** 建议
 
-**【描述】**"-Wformat=2"是“-Wformat”、“-Wformat-nonliteral”、“-Wformat-SEC“、”\-Wformat-y2k“的集合。
+**【描述】** "-Wformat=2"是“-Wformat”、“-Wformat-nonliteral”、“-Wformat-SEC“、”\-Wformat-y2k“的集合。
 
 1. “-Wformat”：格式化函数的参数类型、格式错误时，警告
 
@@ -218,7 +218,7 @@ warning:trampoline generated for nested function ‘fun’ [-Wtrampolines]
 
 **【级别】** 建议
 
-**【描述】**在函数的声明或定义时，显式指明函数参数类型，编译器检查函数调用和定义之间参数类型的不匹配情况。
+**【描述】** 在函数的声明或定义时，显式指明函数参数类型，编译器检查函数调用和定义之间参数类型的不匹配情况。
 
 **【错误示例】**
 
@@ -248,9 +248,9 @@ information in function declarators
 
 **【级别】** 建议
 
-**【描述】**"-Wdate-time"：避免代码使用__DATE__、__TIME__、__TIMESTAMP__，以确保二进制一致性。
+**【描述】** "-Wdate-time"：避免代码使用__DATE__、__TIME__、__TIMESTAMP__，以确保二进制一致性。
 
-【**错误示例**】
+**【错误示例】**
 
 -  源程序:
 ```
@@ -275,9 +275,9 @@ warning:macro "_DATE_" might prevent reproducible builds [-Wdate-time] warning:m
 
 **【级别】** 要求
 
-**【描述】**由于浮点数存在精度问题，大多数情况下是近似值，不能精确判断是否相等。浮点数相等或不相等比较是不安全的行为，建议通过判断两数之差的绝对值是否小于可接受误差来判断浮点数是否相等，可以使用C语言标准库函数fabs()求两浮点数之差的绝对值，然后与可接受误差比较，如果在可接受误差范围内，则相等，否则不相等。需要特别注意的是：\>、\<、\>=、\<=这四种比较运算符用于浮点数比较不会警告。
+**【描述】** 由于浮点数存在精度问题，大多数情况下是近似值，不能精确判断是否相等。浮点数相等或不相等比较是不安全的行为，建议通过判断两数之差的绝对值是否小于可接受误差来判断浮点数是否相等，可以使用C语言标准库函数fabs()求两浮点数之差的绝对值，然后与可接受误差比较，如果在可接受误差范围内，则相等，否则不相等。需要特别注意的是：\>、\<、\>=、\<=这四种比较运算符用于浮点数比较不会警告。
 
-【**错误示例**】
+**【错误示例】**
 
 -  源程序 ：
 ```
@@ -302,7 +302,7 @@ gcc -Wfloat-equal float_equal.c -o out
 上述示例中，进行双精度浮点数相等比较，编译器警告"warning:comparing floating
 point with == or != is unsafe[-Wfloat-equal]"，a+b和c看似应该相等，但是程序运行时并不相等，这是因为浮点数是近似表达，a+b和c均为近似值，浮点数的相等性比较不可信，是一种不安全的行为。浮点数正确的比较方式是设定一个可接受的误差精度，如果两个浮点数差值的绝对值在这个误差范围内，就表示相等，正确方式如下：
 
-**【正确示例**】浮点数相等比较
+**【正确示例】** 浮点数相等比较
 
 -  源程序 ：
 ```
@@ -329,9 +329,9 @@ gcc -Wfloat-equal float_equal.c -o out
 
 **【级别】** 建议
 
-**【描述】**如果switch语句没有default分支，在-Wswitch-default选项下编译警告。
+**【描述】** 如果switch语句没有default分支，在-Wswitch-default选项下编译警告。
 
-【**错误示例**】
+**【错误示例】**
 
 -  源程序：
 ```
@@ -363,9 +363,9 @@ warning: switch missing default case [-Wswitch-default] switch (Color)
 
 **【级别】** 建议
 
-**【描述】**"-Wshadow"：局部变量覆盖全局变量、函数参数等产生的警告。C++语言打开该选项警告较多，团队可以根据实际情况评估是否打开该选项。
+**【描述】** "-Wshadow"：局部变量覆盖全局变量、函数参数等产生的警告。C++语言打开该选项警告较多，团队可以根据实际情况评估是否打开该选项。
 
-【**错误示例**】
+**【错误示例】**
 
 -  源程序：
 ```
@@ -389,9 +389,9 @@ warning: declaration of 'num' shadows a global declaration [-Wshadow] int num = 
 
 **【级别】** 建议
 
-**【描述】**如果函数使用的栈内存可能超过len个字节，编译警告。len的值，团队根据实际情况设置。
+**【描述】** 如果函数使用的栈内存可能超过len个字节，编译警告。len的值，团队根据实际情况设置。
 
-【**错误示例**】
+**【错误示例】**
 
 -  源程序：
 ``` 
@@ -413,9 +413,9 @@ warning: stack usage is 4012 bytes [-Wstack-usage=] void foo(void) {
 
 **【级别】** 建议
 
-**【描述】**如果一个函数的栈框架超过len字节，编译警告。len的值，团队根据实际情况设置。
+**【描述】** 如果一个函数的栈框架超过len字节，编译警告。len的值，团队根据实际情况设置。
 
-【**错误示例**】
+**【错误示例】**
 
 -  源程序： 
 ```
@@ -437,9 +437,9 @@ warning: the frame size of 4000 bytes is larger than 1000 bytes [-Wframe-larger-
 
 **【级别】** 建议
 
-**【描述】**如果函数返回局部变量的地址，编译时默认产生“-Wreturn-local-addr”警告。禁止开启“-Wno-return-local-addr”选项屏蔽这些警告。
+**【描述】** 如果函数返回局部变量的地址，编译时默认产生“-Wreturn-local-addr”警告。禁止开启“-Wno-return-local-addr”选项屏蔽这些警告。
 
-【**错误示例**】
+**【错误示例】**
 
 -  源程序：
 ```
@@ -463,10 +463,10 @@ warning: function returns address of local variable [-Wreturn-local-addr] return
 
 **【级别】** 建议
 
-**【描述】**如果代码中的隐式转换会改变数值，在-Wconversion下编译警告。
+**【描述】** 如果代码中的隐式转换会改变数值，在-Wconversion下编译警告。
 可能造成数值改变的隐式转换包括：带小数的实数转换成整数，无符号数和有符号数之间的转换，较大类型的数转换成较小类型。需要注意的是，如果代码进行显式强转，在-Wconversion下编译不会警告。
 
-【**错误示例**】
+**【错误示例】**
 
 -  源程序：
 ```
@@ -492,9 +492,9 @@ warning: conversion from 'double' to 'int' may change value [-Wfloat-conversion]
 
 对指针类型强制转化，导致目标类型丢失类型限定词
 
-**【描述】**如将const char\*指针类型强制转换为普通的char\*时会丢失const类型限定词，const修饰指针是期望该指针指向的内存不可修改，如果强制转化丢失了const类型限定词，就可以通过转换后的结果指针修改原本不期望被修改的内存，失去了对对象const约束的意义。
+**【描述】** 如将const char\*指针类型强制转换为普通的char\*时会丢失const类型限定词，const修饰指针是期望该指针指向的内存不可修改，如果强制转化丢失了const类型限定词，就可以通过转换后的结果指针修改原本不期望被修改的内存，失去了对对象const约束的意义。
 
-【**错误示例**】
+**【错误示例】**
 
 -  源程序：
 ```
@@ -517,7 +517,7 @@ warning: cast discards 'const' qualifier from pointer target type [-Wcast-qual] 
 
 **【级别】** 建议
 
-**【描述】**当源程序中某个指针类型强制转换导致目标所需的地址对齐字节数增加时，则产生警告。比如在整型只能以两字节或四字节边界进行访问的机器上，将 char \* 转换为 int \* 则给出警告。
+**【描述】** 当源程序中某个指针类型强制转换导致目标所需的地址对齐字节数增加时，则产生警告。比如在整型只能以两字节或四字节边界进行访问的机器上，将 char \* 转换为 int \* 则给出警告。
 
 #### 数组
 
@@ -525,9 +525,9 @@ warning: cast discards 'const' qualifier from pointer target type [-Wcast-qual] 
 
 **【级别】** 建议
 
-**【描述】**定义数组时，如果数据长度是变量而非固定值，在-Wvla选项下编译警告。
+**【描述】** 定义数组时，如果数据长度是变量而非固定值，在-Wvla选项下编译警告。
 
-【**错误示例**】
+**【错误示例】**
 
 -  源程序：
 ```
@@ -550,7 +550,7 @@ warning: ISO C90 forbids variable length array 'arr' [-Wvla] int arr[len];
 
 **【级别】** 建议
 
-**【描述】**-Wunused选项检查代码中未使用的变量、函数、参数、别名等问题。-Wunused选项包含了多个针对某种类型对象未使用的子选项：
+**【描述】** -Wunused选项检查代码中未使用的变量、函数、参数、别名等问题。-Wunused选项包含了多个针对某种类型对象未使用的子选项：
 
 \-Wunused-but-set-variable
 
@@ -566,7 +566,7 @@ warning: ISO C90 forbids variable length array 'arr' [-Wvla] int arr[len];
 
 需要注意的是，需要使用-Wextra \-Wunused或者-Wunused-parameter，才能对函数中未使用的形参警告。
 
-【**错误示例**】
+**【错误示例】**
 
 -  源程序：
 ```
@@ -589,9 +589,9 @@ warning: unused variable 'a' [-Wunused-variable] int a;
 
 **【级别】** 建议
 
-**【描述】**当一个没有定义的标识符出现在 \#if 中时，给出警告。
+**【描述】** 当一个没有定义的标识符出现在 \#if 中时，给出警告。
 
-【**错误示例**】
+**【错误示例】**
 
 -  源程序：
 ```
@@ -614,9 +614,9 @@ warning: "DEFINE_A_VALUE" is not defined, evaluates to 0 [-Wundef] \#if DEFINE_A
 
 **【级别】** 建议
 
-**【描述】**只有基类析构函数是virtual，通过多态调用的时候才能保证派生类的析构函数被调用。
+**【描述】** 只有基类析构函数是virtual，通过多态调用的时候才能保证派生类的析构函数被调用。
 
-【**错误示例**】
+**【错误示例】**
 
 -  源程序 ：
 ```
@@ -643,9 +643,9 @@ warning: 'class Base' has virtual functions and accessible non-virtual destructo
 
 **【级别】 建议**
 
-**【描述】**当基类没有定义虚析构函数，指向基类的指针来执行删除操作，可导致未定义的行为。禁止开启“-Wno-delete-non-virtual-dtor”选项屏蔽这些警告。
+**【描述】** 当基类没有定义虚析构函数，指向基类的指针来执行删除操作，可导致未定义的行为。禁止开启“-Wno-delete-non-virtual-dtor”选项屏蔽这些警告。
 
-【**错误示例**】
+**【错误示例】**
 
 -  源程序：
 ```
@@ -674,9 +674,9 @@ warning: deleting object of polymorphic class type 'Base' which has non-virtual 
 
 **【级别】** 建议
 
-**【描述】**派生类重新定义基类的虚函数，导致基类的虚函数被隐藏。
+**【描述】** 派生类重新定义基类的虚函数，导致基类的虚函数被隐藏。
 
-【**错误示例**】
+**【错误示例】**
 
 -  源程序：
 ```
@@ -701,9 +701,9 @@ warning: by 'void Sub::f(int)' [-Woverloaded-virtual] void f(int);
 
 ##### G.C&C++.SEC.01 打开栈保护选项
 
-【级别】 要求
+**【级别】** 要求
 
-【描述】
+**【描述】**
 
 **Linux平台用户态**
 
