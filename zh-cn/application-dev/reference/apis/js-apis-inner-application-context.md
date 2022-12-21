@@ -1,6 +1,6 @@
 # Context模块
 
-Context模块提供了ability或application的上下文的能力，包括允许访问特定于应用程序的资源、请求和验证权限等。
+Context模块提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。
 
 > **说明：**
 >
@@ -13,8 +13,8 @@ Context模块提供了ability或application的上下文的能力，包括允许�
 
 | 名称          | 类型     | 可读   | 可写   | 说明      |
 | ----------- | ------ | ---- | ---- | ------- |
-| resourceManager     | resmgr.ResourceManager | 是    | 否    | 资源管理对象。   |
-| applicationInfo | ApplicationInfo | 是    | 否    | 当前应用程序的信息。 |
+| resourceManager     | resmgr.[ResourceManager](js-apis-resource-manager.md) | 是    | 否    | 资源管理对象。   |
+| applicationInfo | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md) | 是    | 否    | 当前应用程序的信息。 |
 | cacheDir | string | 是    | 否    | 缓存目录。 |
 | tempDir | string | 是    | 否    | 临时目录。 |
 | filesDir | string | 是    | 否    | 文件目录。 |
@@ -129,7 +129,7 @@ let applicationContext = this.context.getApplicationContext();
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 值 | 说明 | 
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| EL1 | 0 | 设备级加密区。 | 
-| EL2 | 1 | 用户凭据加密区。 | 
+| EL1 | 0 | 设备级加密区，设备开机后可访问的数据区。 |
+| EL2 | 1 | 用户级加密区，设备开机，首次输入密码后才能够访问的数据区。 |

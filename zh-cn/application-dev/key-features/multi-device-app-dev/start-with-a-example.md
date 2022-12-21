@@ -19,7 +19,7 @@
 | 中设备 | [520,&nbsp;840) | 
 | 大设备 | [840,&nbsp;+∞) | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - vp是virtual pixel（虚拟像素）的缩写，是OpenHarmony中常用的长度单位，详见本文[视觉基础](visual-basics.md)小节中的介绍。
 > 
 > - 此处基于设备屏幕宽度划分不同设备是为了读者方便理解。通常智能设备上的应用都是以全屏的形式运行，但随着移动技术的发展，当前部分智能设备支持应用以自由窗口模式运行（即用户可以通过拖拽等操作自由调整应用运行窗口的尺寸），故以应用窗口尺寸为基准进行划分更为合适，本文后续的响应式布局章节中将详细介绍相关内容。
@@ -84,14 +84,14 @@
 - 将天气主页划分为9个基础区域，如：
   ![home_full](figures/home_full.png)
 
-- 基础区域9仅在大设备上显示，基础区域1-8虽然在各设备上始终展示但其尺寸及区域内的布局基本保持不变，可以结合[自适应布局](adaptive-layout.md)能力以[自定义组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-component-based-component.md)的形式分别实现这9个基础区域。
+- 基础区域9仅在大设备上显示，基础区域1-8虽然在各设备上始终展示但其尺寸及区域内的布局基本保持不变，可以结合[自适应布局](adaptive-layout.md)能力以[自定义组件](../../quick-start/arkts-basic-ui-description.md)的形式分别实现这9个基础区域。
     |  | 小设备 | 中设备 | 大设备 | 
   | -------- | -------- | -------- | -------- |
   | 主页 | ![Home_sm](figures/Home_sm.png) | ![Home_md_mark](figures/Home_md_mark.png) | ![Home_lg_mark](figures/Home_lg_mark.png) | 
 
 - 基础区域1-8之间的布局在不同设备上有较大差异，可以使用响应式布局中的[栅格布局](responsive-layout.md#栅格布局)能力实现组件间的布局效果。
 
-- 展开和隐藏侧边栏的功能可以通过[侧边栏组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-sidebarcontainer.md)来实现。侧边栏是大设备上独有的，借助响应式布局中的[媒体查询](responsive-layout.md#媒体查询)能力，控制仅在大设备上展示侧边栏即可。
+- 展开和隐藏侧边栏的功能可以通过[侧边栏组件](../../reference/arkui-ts/ts-container-sidebarcontainer.md)来实现。侧边栏是大设备上独有的，借助响应式布局中的[媒体查询](responsive-layout.md#媒体查询)能力，控制仅在大设备上展示侧边栏即可。
 
 
 ### 主页基础区域
@@ -114,7 +114,7 @@
 
 延伸能力是指容器组件内的子组件，按照其在列表中的先后顺序，随容器组件尺寸变化显示或隐藏。随着可用显示区域的增加，用户可以看到的“每小时天气”信息也不断增加，故“每小时天气”可以通过延伸能力实现，其核心代码如下所示。
 
-  
+
 ```
 @Component
 export default struct HoursWeather {
@@ -149,10 +149,10 @@ export default struct HoursWeather {
 | -------- | -------- | -------- |
 | ![zh-cn_image_0000001395631821](figures/zh-cn_image_0000001395631821.png) | ![zh-cn_image_0000001345312038](figures/zh-cn_image_0000001345312038.png) | ![zh-cn_image_0000001349454550](figures/zh-cn_image_0000001349454550.png) | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 为提升用户体验，大设备侧边栏隐藏状态下，每日天气与空气质量的相对顺序发生了改变。可以调整通过GridCol栅格子组件的order属性，实现目标效果。
 
-  
+
 ```
 @Component
 export default struct HomeContent {

@@ -25,6 +25,9 @@ Develop, review, and test code following the OpenHarmony coding standards. Make 
 ### Introducing Open-source Software 
 
 For details, see [Introducing Open-Source Software](introducing-open-source-software.md).
+### Test Guide
+
+[OpenHarmony Secure Test Guide](OpenHarmony-security-test-guide.md)
 
 ## Contribution Workflow
 
@@ -32,7 +35,10 @@ For details, see [Contribution Process](contribution-process.md).
 
 ## Security Issue Disclosure
 
--   [OpenHarmony Security Vulnerability Governance](https://gitee.com/openharmony/security/blob/master/en/security-process/README.md)
--   [OpenHarmony Security and Disclosure Statement](https://gitee.com/openharmony/security/blob/master/en/security-process/security-disclosure.md)
+- [OpenHarmony Security Vulnerability Governance](https://gitee.com/openharmony/security/blob/master/en/security-process/README.md)
+
+- [OpenHarmony Security and Disclosure Statement](https://gitee.com/openharmony/security/blob/master/en/security-process/security-disclosure.md)
+
+   <!--no_check--> 
 
 

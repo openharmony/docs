@@ -1,4 +1,4 @@
-# Nonlinear Container HashSet
+# @ohos.util.HashSet (Nonlinear Container HashSet)
 
 > **NOTE**
 >
@@ -61,11 +61,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 
 ```ts
 let hashSet = new HashSet();
-try {
-  let hashSet2 = HashSet();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -96,11 +91,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 ```ts
 const hashSet = new HashSet();
 let result = hashSet.isEmpty();
-try {
-  hashSet.isEmpty.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -139,11 +129,6 @@ let hashSet = new HashSet();
 let result = hashSet.has("squirrel");
 hashSet.add("squirrel");
 let result1 = hashSet.has("squirrel");
-try {
-  hashSet.has.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -180,11 +165,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 ```ts
 let hashSet = new HashSet();
 let result = hashSet.add("squirrel");
-try {
-  hashSet.add.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -223,11 +203,6 @@ let hashSet = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let result = hashSet.remove("sparrow");
-try {
-  hashSet.remove.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -254,11 +229,6 @@ let hashSet = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 hashSet.clear();
-try {
-  hashSet.remove.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -296,17 +266,12 @@ while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
 }
-try {
-  hashSet.values.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
 ### forEach
 
-forEach(callbackfn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
@@ -316,7 +281,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -324,7 +289,7 @@ callbackfn
 | -------- | -------- | -------- | -------- |
 | value | T | No| Value of the element that is currently traversed.|
 | key | T | No| Key of the element that is currently traversed (same as **value**).|
-| set | HashSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
+| set | HashSet&lt;T&gt; | No| Instance that invokes the **forEach** API.|
 
 **Error codes**
 
@@ -343,13 +308,6 @@ hashSet.add("squirrel");
 hashSet.forEach((value, key) => {
   console.log("value:" + value, key);
 });
-try {
-  hashSet.forEach.bind({}, (value, key) => {
-    console.log("value:" + value, key);
-  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -386,11 +344,6 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
-}
-try {
-  hashSet.entries.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -435,10 +388,5 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value: " + temp);
   temp = iter.next().value;
-}
-try {
-  hashSet[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

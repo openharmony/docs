@@ -713,7 +713,7 @@ defaultFixedFontSize(size: number)
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                     |
 | ------ | -------- | ---- | ------ | ---------------------------- |
-| size   | number   | 是   | 13     | 设置网页的默认固定字体大小。 |
+| size   | number   | 是   | 13     | 设置网页的默认固定字体大小。入参限制为1到72之间的非负整数，小于1的数固定为1，超过72的数固定为72。 |
 
 **示例：**
 
@@ -744,7 +744,7 @@ defaultFontSize(size: number)
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
 | ------ | -------- | ---- | ------ | ------------------------ |
-| size   | number   | 是   | 16     | 设置网页的默认字体大小。 |
+| size   | number   | 是   | 16     | 设置网页的默认字体大小。入参限制为1到72之间的非负整数，小于1的数固定为1，超过72的数固定为72。 |
 
 **示例：**
 
@@ -775,7 +775,7 @@ minFontSize(size: number)
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
 | ------ | -------- | ---- | ------ | ------------------------ |
-| size   | number   | 是   | 8      | 设置网页字体大小最小值。 |
+| size   | number   | 是   | 8      | 设置网页字体大小最小值。入参限制为1到72之间的非负整数，小于1的数固定为1，超过72的数固定为72。 |
 
 **示例：**
 
@@ -2288,14 +2288,14 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
         .multiWindowAccess(true)
         .onWindowNew((event) => {
           console.log("onWindowNew...")
-          var popController: WebController = new WebController()
+          var popController: web_webview.WebviewController = new web_webview.WebviewController()
           event.handler.setWebController(popController)
         })
       }
@@ -2636,19 +2636,19 @@ exitFullScreen(): void
 
 ## ControllerHandler<sup>9+</sup>
 
-设置用户新建web组件的的WebController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
+设置用户新建web组件的的WebviewController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
 
 ### setWebController<sup>9+</sup>
 
-setWebController(controller: WebController): void
+setWebController(controller: WebviewController): void
 
-设置WebController对象。
+设置WebviewController对象。
 
 **参数：**
 
 | 参数名        | 参数类型          | 必填   | 默认值  | 参数描述                      |
 | ---------- | ------------- | ---- | ---- | ------------------------- |
-| controller | WebController | 是    | -    | 新建web组件的的WebController对象。 |
+| controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | 是    | -    | 新建web组件的的WebviewController对象。 |
 
 ## WebResourceError
 
@@ -3140,9 +3140,9 @@ getLinkUrl(): string
 | ------ | ------------------------- |
 | string | 如果长按位置是链接，返回经过安全检查的url链接。 |
 
-### getUnfilterendLinkUrl<sup>9+</sup>
+### getUnfilteredLinkUrl<sup>9+</sup>
 
-getUnfilterendLinkUrl(): string
+getUnfilteredLinkUrl(): string
 
 获取链接地址。
 

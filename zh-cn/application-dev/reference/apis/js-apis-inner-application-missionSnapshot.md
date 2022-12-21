@@ -1,6 +1,6 @@
 # MissionSnapshot
 
-MissionSnapshot模块提供设置与任务对应的任务快照的任务元素名称的能力。
+一个任务的任务快照对象，可以通过[getMissionSnapShot](js-apis-app-ability-missionManager.md#missionmanagergetmissionsnapshot)获取。
 
 > **说明：**
 > 

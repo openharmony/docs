@@ -102,7 +102,6 @@
   - [Counter](ts-container-counter.md)
   - [Flex](ts-container-flex.md)
   - [FlowItem](ts-container-flowitem.md)
-  - [GridContainer](ts-container-gridcontainer.md)
   - [GridCol](ts-container-gridcol.md)
   - [GridRow](ts-container-gridrow.md)
   - [Grid](ts-container-grid.md)
@@ -165,4 +164,4 @@
 - [枚举说明](ts-appendix-enums.md)
 - [类型说明](ts-types.md)
 - 已停止维护的组件
-  - [GridContainer(栅格)](ts-container-gridcontainer.md)
+  - [GridContainer](ts-container-gridcontainer.md)

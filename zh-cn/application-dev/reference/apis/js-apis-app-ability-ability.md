@@ -1,6 +1,6 @@
 # @ohos.app.ability.Ability (Ability基类)
 
-Ability模块提供对Ability生命周期、上下文环境等调用管理的能力，包括Ability创建、销毁、转储客户端信息等。
+[UIAbility](js-apis-app-ability-uiAbility.md)和[ExtensionAbility](js-apis-app-ability-extensionAbility.md)的基类，提供系统配置更新回调和系统内存调整回调。
 
 > **说明：**
 > 
@@ -23,18 +23,17 @@ onConfigurationUpdate(newConfig: Configuration): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | newConfig | [Configuration](js-apis-app-ability-configuration.md) | 是 | 表示需要更新的配置信息。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| newConfig | [Configuration](js-apis-app-ability-configuration.md) | 是 | 表示需要更新的配置信息。 |
 
 **示例：**
-    
   ```ts
-  class myAbility extends Ability {
-      onConfigurationUpdate(config) {
-          console.log('onConfigurationUpdate, config:' + JSON.stringify(config));
-      }
-  }
+class MyAbility extends Ability {
+    onConfigurationUpdate(config) {
+        console.log('onConfigurationUpdate, config:' + JSON.stringify(config));
+    }
+}
   ```
 
 ## Ability.onMemoryLevel
@@ -47,16 +46,16 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。| 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。|
 
 **示例：**
-    
+
   ```ts
-  class myAbility extends Ability {
+class MyAbility extends Ability {
     onMemoryLevel(level) {
         console.log('onMemoryLevel, level:' + JSON.stringify(level));
     } 
-  }
+}
   ```

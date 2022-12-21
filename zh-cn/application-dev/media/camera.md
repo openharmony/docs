@@ -81,6 +81,9 @@ for (let index = 0; index < cameraArray.length; index++) {
 // 创建相机输入流
 let cameraInput = await cameraManager.createCameraInput(cameraArray[0])
 
+// 打开相机
+await cameraInput.open();
+
 // 获取相机设备支持的输出流能力
 let cameraOutputCap = await cameraManager.getSupportedOutputCapability(cameraArray[0]);
 if (!cameraOutputCap) {

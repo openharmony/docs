@@ -5,7 +5,7 @@
 
 
 - 在开发态，一个应用包含一个或者多个Module，可以在[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio/)工程中[创建一个或者多个Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ohos-adding-deleting-module-0000001218760594-V3)。Module是OpenHarmony应用/服务的基本功能单元，包含了源代码、资源文件、第三方库及应用/服务配置文件，每一个Module都可以独立进行编译和运行。Module分为“Ability”和“Library”两种类型，“Ability”类型的Module对应于编译后的HAP（Harmony Ability Package）；“Library”类型的Module对应于[HAR](har-structure.md)（Harmony Ability Resources）包，即编译后的.tgz文件。
-  一个Module可以包含一个或多个[UIAbility](../application-models/uiability-overview.md)组件，如[Module与UIAbility组件关系示意图](figures/ability-and-module.png)所示。
+  一个Module可以包含一个或多个[UIAbility](../application-models/uiability-overview.md)组件，如**Module与UIAbility组件关系示意图**所示。
 
     **图1** Module与UIAbility组件关系示意图  
   ![ability-and-module](figures/ability-and-module.png)

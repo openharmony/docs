@@ -44,15 +44,15 @@ onAcceptWant(want: Want): string;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-want.md) | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 |
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | string | 用户返回一个ability标识，如果之前启动过标识的ability，不创建新的实例并拉回栈顶，否则创建新的实例并启动。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 用户返回一个ability标识，如果之前启动过标识的ability，不创建新的实例并拉回栈顶，否则创建新的实例并启动。 |
 
 **示例：**
     
@@ -76,9 +76,9 @@ onConfigurationUpdated(config: Configuration): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-application-configuration.md) | 是 | 发生全局配置变更时触发回调，当前全局配置包括系统语言、深浅色模式。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| config | [Configuration](js-apis-application-configuration.md) | 是 | 发生全局配置变更时触发回调，当前全局配置包括系统语言、深浅色模式。 |
 
 **示例：**
     
@@ -100,9 +100,9 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | level | [AbilityConstant.MemoryLevel](js-apis-application-abilityConstant.md#abilityconstantmemorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。| 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| level | [AbilityConstant.MemoryLevel](js-apis-application-abilityConstant.md#abilityconstantmemorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。|
 
 **示例：**
     
@@ -118,10 +118,10 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 context: AbilityStageContext;
 
-指示有关上下文的配置信息。
+AbilityStage的上下文对象。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 属性名      | 类型                        | 说明                                                         |
-| ----------- | --------------------------- | ------------------------------------------------------------ |
-| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 在启动能力阶段进行初始化时回调。 |
+| 属性名  | 类型                                                         | 说明                       |
+| ------- | ------------------------------------------------------------ | -------------------------- |
+| context | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | AbilityStage的上下文对象。 |

@@ -2,7 +2,7 @@
 
 该模块提供用户数据管理能力，包括访问、修改用户等用户公共媒体数据信息等常用功能。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口为系统接口。
 
@@ -19,7 +19,7 @@ getUserFileMgr(context: Context): UserFileManager
 获取用户数据管理模块的实例，用于访问和修改用户等用户公共媒体数据信息（如音频、视频、图片、文档等）。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
- 
+
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
 **参数：** 
@@ -2329,7 +2329,7 @@ async function example() {
 成员类型。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
- 
+
 | 名称  |  类型 |  可读  |  可写  |  说明  |
 | ----- |  ---- |  ---- |  ---- |  ---- |
 | number |  number | 是 | 是 | number类型 | 

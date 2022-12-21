@@ -27,7 +27,7 @@ onAbilityCreate(ability: UIAbility): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md#Ability) | 是 | 当前Ability对象 | 
 
 
 ## AbilityLifecycleCallback.onWindowStageCreate
@@ -42,7 +42,7 @@ onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md#Ability) | 是 | 当前Ability对象 |  
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
 
 
@@ -58,7 +58,7 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md#Ability) | 是 | 当前Ability对象 |  
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
 
 
@@ -74,7 +74,7 @@ onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md#Ability) | 是 | 当前Ability对象 |  
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
 
 
@@ -90,7 +90,7 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md#Ability) | 是 | 当前Ability对象 |  
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
 
 
@@ -106,7 +106,7 @@ onAbilityDestroy(ability: UIAbility): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md#Ability) | 是 | 当前Ability对象 | 
 
 
 ## AbilityLifecycleCallback.onAbilityForeground
@@ -121,7 +121,7 @@ onAbilityForeground(ability: UIAbility): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md#Ability) | 是 | 当前Ability对象 | 
 
 
 ## AbilityLifecycleCallback.onAbilityBackground
@@ -136,7 +136,7 @@ onAbilityBackground(ability: UIAbility): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md#Ability) | 是 | 当前Ability对象 | 
 
 
 ## AbilityLifecycleCallback.onAbilityContinue
@@ -151,7 +151,7 @@ onAbilityContinue(ability: UIAbility): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md#Ability) | 是 | 当前Ability对象 | 
 
 **示例：**
     

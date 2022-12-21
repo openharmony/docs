@@ -264,7 +264,7 @@ onUpdate(formId) {
 
 开发者可以使用hml+css+json开发JS卡片页面：
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 当前仅支持JS扩展的类Web开发范式来实现卡片的UI页面。
 
    - hml:

@@ -15,7 +15,7 @@ None
 
 ## Child Components
 
-Only the **[\<span>](../arkui-js/js-components-basic-span.md)** component is supported.
+The **[\<span>](../arkui-js/js-components-basic-span.md)** child component is supported.
 
 
 ## Attributes
@@ -34,19 +34,19 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 | allow-scale                        | boolean                                  | true                                     | No   | Whether the font size changes with the system's font size settings.<br>For details about how to make the configuration take effect dynamically, see the **config-changes** attribute in the **config.json** file.|
 | letter-spacing                     | &lt;length&gt;                           | 0px                                      | No   | Character spacing (px).                              |
 | word-spacing<sup>7+</sup>          | &lt;length&gt; \| &lt;percentage&gt; \| string | normal                                   | No   | Spacing between texts. If the input is a string, the options are as follows:<br>**normal**: default spacing.|
-| font-style                         | string                                   | normal                                   | No   | Font style. Available values are as follows:<br>- **normal**: standard font style<br>- **italic**: italic font style|
-| font-weight                        | number \| string               | normal                                   | No   | Font width. For the number type, the value ranges from 100 to 900. The default value is 400. A larger value indicates a larger font width. The value of the number type must be an integer multiple of 100.<br>The value of the string type can be **lighter**, **normal**, **bold**, or **bolder**.|
+| font-style                         | string                                   | normal                                   | No   | Font style. Available values are as follows:<br>- **normal**: standard font style.<br>- **italic**: italic font style.|
+| font-weight                        | number \| string               | normal                                   | No   | Font weight. For the number type, the value ranges from 100 to 900. The default value is 400. A larger value indicates a heavier font weight. The value of the number type must be an integer multiple of 100.<br>The value of the string type can be **lighter**, **normal**, **bold**, or **bolder**.|
 | text-decoration                    | string                                   | none                                     | No   | Text decoration. Available values are as follows:<br>- **underline**: An underline is used.<br>- **line-through**: A strikethrough is used.<br>- **none**: The standard text is used.|
 | text-decoration-color<sup>7+</sup> | &lt;color&gt;                            | -                                        | No   | Color of the text decoration.                             |
 | text-align                         | string                                   | start<br>                              | No   | Text alignment mode. Available values are as follows:<br>- **left**: The text is left-aligned.<br>- **center**: The text is center-aligned.<br>- **right**: The text is right-aligned.<br>- **start**: The text is aligned with the direction in which the text is written.<br>- **end**: The text is aligned with the opposite direction in which the text is written.<br>If the text width is not specified, the alignment effect may not be obvious when the text width is the same as the width of the parent container.|
-| line-height                        | &lt;length&gt; \| &lt;percentage&gt;<sup>7+</sup> \| string<sup>7+</sup> | 0px<sup>1-6</sup><br>normal<sup>7+</sup> | No   | Text line height. When this parameter is set to **0px**, the text line height is not limited and the font size is adaptive. The value of the string type is as follows:<br>**normal**<sup>7+</sup>: default line height |
+| line-height                        | &lt;length&gt; \| &lt;percentage&gt;<sup>7+</sup> \| string<sup>7+</sup> | 0px<sup>1-6</sup><br>normal<sup>7+</sup> | No   | Text line height. When this parameter is set to **0px**, the text line height is not limited and the font size is adaptive. The value of the string type is as follows:<br>**normal**<sup>7+</sup>: default line height|
 | text-overflow                      | string                                   | clip                                     | No   | Display mode when the text is too long. This style takes effect when the maximum number of lines is specified. Available values are as follows:<br>- **clip**: The text is clipped and displayed based on the size of the parent container.<br>- **ellipsis**: The text is displayed based on the size of the parent container. The text that cannot be displayed is replaced with ellipsis. This style must be used together with **max-lines**.|
 | font-family                        | string                                   | sans-serif                               | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
-| max-lines                          | number \| string<sup>7+</sup>  | -                                        | No   | Maximum number of text lines. The value of the string type is as follows:<br>- **auto**<sup>7+</sup>: The number of text lines adapts to the container height. |
+| max-lines                          | number \| string<sup>7+</sup>  | -                                        | No   | Maximum number of text lines. The value of the string type is as follows:<br>- **auto**<sup>7+</sup>: The number of text lines adapts to the container height.|
 | min-font-size                      | &lt;length&gt;                           | -                                        | No   | Minimum font size in the text. This style must be used together with **max-font-size**. The font size can be changed dynamically. After the maximum and minimum font sizes are set, **font-size** does not take effect.|
 | max-font-size                      | &lt;length&gt;                           | -                                        | No   | Maximum font size in the text. This style must be used together with **min-font-size**. The font size can be changed dynamically. After the maximum and minimum font sizes are set, **font-size** does not take effect.|
 | font-size-step                     | &lt;length&gt;                           | 1px                                      | No   | Step for dynamically adjusting the font size in the text. The minimum and maximum font sizes must be set.           |
-| prefer-font-sizes                  | &lt;array&gt;                            | -                                        | No   | Preset preferred font sizes. For dynamic font size adjustment, the preset sizes are used to match the maximum number of lines in the text. If the preferred font sizes were not set, the font size will be adjusted based on the maximum and minimum font sizes and the step you have set. If the maximum number of lines in the text cannot be met, **text-overflow** is used to truncate the text. If this parameter is set, **font-size**, **max-font-size**, **min-font-size**, and **font-size-step** do not take effect.<br>Example values: **12px,14px,16px**|
+| prefer-font-sizes                  | &lt;array&gt;                            | -                                        | No   | Preset preferred font sizes. For dynamic font size adjustment, the preset sizes are used to match the maximum number of lines in the text. If the preferred font sizes were not set, the font size will be adjusted based on the maximum and minimum font sizes and the step you have set. If the maximum number of lines in the text cannot be met, **text-overflow** is used to truncate the text. If this parameter is set, **font-size**, **max-font-size**, **min-font-size**, and **font-size-step** do not take effect.<br>Example: prefer-font-sizes: 12px,14px,16px|
 | word-break<sup>6+</sup>            | string                                   | normal                                   | No   | Text line breaking mode. The options are as follows:<br>- **normal**: Allows text line breaks between words as appropriate to the relevant language writing systems. This is the default mode.<br>- **break-all**: Allows text line breaks between any characters for writing systems other than Chinese, Japanese, and Korean.<br>- **break-word**: Works in the same way as **break-all**, except that it does not break unbreakable words.|
 | text-indent<sup>7+</sup>           | &lt;length&gt;                           | -                                        | No   | Indentation of the first line.                                |
 | white-space<sup>7+</sup>           | string                                   | pre                                      | No   | Mode for processing blanks in the component. The options are as follows:<br>- **normal**: All spaces, carriage returns, and tabs are combined into one space, and the text is automatically wrapped.<br>- **nowrap**: All spaces, carriage returns, and tabs are combined into one space, and the text is not wrapped.<br>- **pre**: All contents are output as-is.<br>- **pre-wrap**: All contents are output as-is with line breaks.<br>- **pre-line**: All spaces and tabs are combined into one space, the carriage return remains unchanged, and the text is wrapped.|
@@ -76,84 +76,65 @@ The [universal methods](../arkui-js/js-components-common-methods.md) are support
 
 
 ## Example
-
+1. 
 ```html
 <!-- xxx.hml -->
 <div class="container">
-  <div class="content">
-    <text class="title">
-      Hello {{ title }}
-    </text>
-  </div>
+    <text class="title">default text</text>
+    <text class="title textcolor">hello world with color</text>
+    <text class="title textsize">hello world with font-size</text>
+    <text class="title textletterspacing">hello world with letter-spacing</text>
+    <text class="title textwordspacing">hello world with word-spacing</text>
+    <text class="title textstyle">hello world with italic</text>
+    <text class="title textweight">hello world with font-weight</text>
+    <text class="title textdecoration1">hello world with underline</text>
+    <text class="title textdecoration2">hello world with line-through</text>
+    <text class="title textalign">hello world with text-align:right</text>
 </div>
 ```
 
 ```css
 /* xxx.css */
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.content{
-  width: 400px;
-  height: 400px;
-  border: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .title {
-  font-size: 80px;
-  text-align: center;
-  width: 400px;
-  height: 400px;
+    text-align: center;
+    width: 800px;
+    height: 60px;
+}
+.textcolor {
+    color: indianred;
+}
+.textsize {
+    font-size: 40px;
+}
+.textletterspacing {
+    letter-spacing: -3px;
+}
+.textwordspacing {
+    word-spacing: 20px;
+}
+.textstyle {
+    font-style: italic;
+}
+.textweight {
+    font-weight: 700;
+}
+.textdecoration1 {
+    text-decoration: underline;
+}
+.textdecoration2 {
+    text-decoration: line-through;
+    text-decoration-color: red;
+}
+.textalign {
+    text-align: right;
 }
 ```
 
-```js
-// xxx.js
-export default {
-  data: {
-    title: 'World'
-  }
-}
-```
 
-![3](figures/3.png)
-
-```html
-<!-- xxx.hml -->
-<div class="container">
-  <text class="text1">
-    This is a passage
-  </text>
-  <text class="text2">
-    This is a passage
-  </text>
-</div>
-```
-
-```css
-/* xxx.css */
-.container {
-  flex-direction: column;
-  align-items: center;
-  background-color: #F1F3F5;
-  justify-content: center;
-}
-.text1{
-  word-spacing: 10px;
-  adapt-height: true;
-}
-.text2{
-  width: 200px;
-  max-lines: 1;
-  text-overflow: ellipsis;
-  text-valign: middle;
-  line-height: 40px;
-  text-decoration: underline;
-  text-decoration-color: red;
-  text-indent: 20px;
-  white-space: pre;
-}
-```
-
-![2](figures/2.png)
+![en-us_image_0000001167823076](figures/text.png)

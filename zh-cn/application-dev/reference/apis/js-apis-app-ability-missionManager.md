@@ -43,8 +43,7 @@ on(type:"mission", listener: MissionListener): number;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
-import missionManager from '@ohos.app.ability.missionManager';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 var listener = {
     onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
@@ -57,7 +56,7 @@ var listener = {
 
 var listenerId = -1;
 
-export default class MainAbility extends Ability {
+export default class MainAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("[Demo] MainAbility onCreate")
         globalThis.abilityWant = want;
@@ -124,8 +123,7 @@ off(type: "mission", listenerId: number, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
-import missionManager from '@ohos.app.ability.missionManager';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 var listener = {
     onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
@@ -138,7 +136,7 @@ var listener = {
 
 var listenerId = -1;
 
-export default class MainAbility extends Ability {
+export default class MainAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("[Demo] MainAbility onCreate")
         globalThis.abilityWant = want;
@@ -210,8 +208,7 @@ off(type: "mission", listenerId: number): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
-import missionManager from '@ohos.app.ability.missionManager';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 var listener = {
     onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
@@ -224,7 +221,7 @@ var listener = {
 
 var listenerId = -1;
 
-export default class MainAbility extends Ability {
+export default class MainAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("[Demo] MainAbility onCreate")
         globalThis.abilityWant = want;
@@ -292,8 +289,6 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     var allMissions=missionManager.getMissionInfos("",10).catch(function(err){console.log(err);});
       missionManager.getMissionInfo("", allMissions[0].missionId, (error, mission) => {
@@ -339,8 +334,6 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     var mission = missionManager.getMissionInfo("", 10).catch(function (err){
       console.log(err);
@@ -374,8 +367,6 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     missionManager.getMissionInfos("", 10, (error, missions) => {
       console.log("getMissionInfos is called, error.code = " + error.code);
@@ -416,8 +407,6 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
       console.log(err);
@@ -451,8 +440,6 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     missionManager.getMissionInfos("", 10, (error, missions) => {
       console.log("getMissionInfos is called, error.code = " + error.code);
@@ -499,8 +486,6 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     var allMissions;
     missionManager.getMissionInfos("",10).then(function(res){
@@ -541,8 +526,6 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: A
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     missionManager.getMissionInfos("", 10, (error, missions) => {
       console.log("getMissionInfos is called, error.code = " + error.code);
@@ -589,8 +572,6 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<M
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     var allMissions;
     missionManager.getMissionInfos("",10).then(function(res){
@@ -631,8 +612,6 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     missionManager.getMissionInfos("", 10, (error, missions) => {
       console.log("getMissionInfos is called, error.code = " + error.code);
@@ -677,8 +656,6 @@ lockMission(missionId: number): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-  
   try {
     var allMissions;
     missionManager.getMissionInfos("",10).then(function(res){
@@ -719,8 +696,6 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     missionManager.getMissionInfos("", 10, (error, missions) => {
       console.log("getMissionInfos is called, error.code = " + error.code);
@@ -765,8 +740,6 @@ unlockMission(missionId: number): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     var allMissions;
     missionManager.getMissionInfos("",10).then(function(res){
@@ -810,8 +783,6 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     missionManager.getMissionInfos("", 10, (error, missions) => {
       console.log("getMissionInfos is called, error.code = " + error.code);
@@ -856,8 +827,6 @@ clearMission(missionId: number): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     var allMissions;
     missionManager.getMissionInfos("",10).then(function(res){
@@ -891,8 +860,6 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   missionManager.clearAllMissions().then(() => {
     console.log("clearAllMissions is called ");
   });
@@ -920,7 +887,6 @@ clearAllMissions(): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
   missionManager.clearAllMissions().catch(function (err){
     console.log(err);
   });
@@ -949,8 +915,6 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     missionManager.getMissionInfos("", 10, (error, missions) => {
       console.log("getMissionInfos is called, error.code = " + error.code);
@@ -991,8 +955,6 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     missionManager.getMissionInfos("", 10, (error, missions) => {
       console.log("getMissionInfos is called, error.code = " + error.code);
@@ -1038,8 +1000,6 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
-
   try {
     var allMissions;
     missionManager.getMissionInfos("",10).then(function(res){

@@ -3872,8 +3872,8 @@ Notification.getSyncNotificationEnabledWithoutApp(userId)
 | badgeIconStyle        | 是  | 是  | number                                        | 通知角标类型。               |
 | showDeliveryTime      | 是  | 是  | boolean                                       | 是否显示分发时间。           |
 | actionButtons         | 是  | 是  | Array\<[NotificationActionButton](#notificationactionbutton)\>             | 通知按钮，最多两个按钮。     |
-| smallIcon             | 是  | 是  | PixelMap                                      | 通知小图标。                 |
-| largeIcon             | 是  | 是  | PixelMap                                      | 通知大图标。                 |
+| smallIcon             | 是  | 是  | PixelMap                                      | 通知小图标。（可选字段，大小不超过30KB） |
+| largeIcon             | 是  | 是  | PixelMap                                      | 通知大图标。（可选字段，大小不超过30KB） |
 | creatorBundleName     | 是  | 否  | string                                        | 创建通知的包名。             |
 | creatorUid            | 是  | 否  | number                                        | 创建通知的UID。              |
 | creatorPid            | 是  | 否  | number                                        | 创建通知的PID。              |

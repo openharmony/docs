@@ -41,7 +41,7 @@ The APIs of the **containers** class do not support **bind()**.
 
 **Error Message**
 
-The value of parameters are out of range.
+The parameter value is out of range.
 
 **Description**
 
@@ -59,7 +59,7 @@ Use a value within the range.
 
 **Error Message**
 
-Container is empty.
+The container is empty.
 
 **Description**
 
