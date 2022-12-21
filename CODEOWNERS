@@ -369,10 +369,10 @@ zh-cn/application-dev/reference/apis/js-apis-inputconsumer.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-inputdevice.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-inputevent.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-inputeventclient.md @ningningW
-zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-ability.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-context.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-inputmethod.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-ability.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-context.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-inputmethod.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-inputmonitor.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-intl.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-keycode.md @ningningW
@@ -412,7 +412,7 @@ zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-router.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-rpc.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-runninglock.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-screen-lock.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-screen-lock.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-screen.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-screenshot.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-securityLabel.md @zengyawen
@@ -446,8 +446,8 @@ zh-cn/application-dev/reference/apis/js-apis-system-request.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-system-router.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-system-sensor.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-system-storage.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-system-time.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-system-timer.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-system-time.md @ningningW
+zh-cn/application-dev/reference/apis/js-apis-system-timer.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-system-vibrate.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-telephony-data.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-testRunner.md @RayShih
@@ -466,7 +466,7 @@ zh-cn/application-dev/reference/apis/js-apis-util.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-vector.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-vibrator.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-volumemanager.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-wallpaper.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-wallpaper.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-wantAgent.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-webgl.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-webgl2.md @ge-yafang
@@ -527,7 +527,7 @@ zh-cn/application-dev/reference/apis/js-apis-fileExtensionInfo.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-freeInstall.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-geoLocationManager.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-hiviewdfx-hiappevent.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-inputmethod-subtype.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-inputmethod-subtype.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-installer.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-launcherBundleManager.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-matrix4.md @HelloCrease
@@ -581,7 +581,7 @@ zh-cn/application-dev/reference/errorcodes/errorcode-hisysevent.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-hiviewdfx-hidebug.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-huks.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-i18n.md @ningningW
-zh-cn/application-dev/reference/errorcodes/errorcode-inputmethod-framework.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errorcode-inputmethod-framework.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-media.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-multimodalinput.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-nfc.md @RayShih
