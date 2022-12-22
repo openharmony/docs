@@ -1,4 +1,4 @@
-# App Account Management
+# @ohos.account.appAccount
 
 The **appAccount** module provides APIs for adding, deleting, modifying, and querying app account information, and supports inter-app authentication and distributed data synchronization.
 
@@ -3173,7 +3173,7 @@ Set credentials for an app account. This API uses an asynchronous callback to re
 | Name           | Type                       | Mandatory  | Description           |
 | -------------- | ------------------------- | ---- | ------------- |
 | name           | string                    | Yes   | Name of the target app account.    |
-| credentialType | string                    | Yes   | Type of the credential to delete.    |
+| credentialType | string                    | Yes   | Type of the credential to set.    |
 | credential     | string                    | Yes   | Credential value.     |
 | callback       | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
@@ -3203,7 +3203,7 @@ Set credentials for an app account. This API uses a promise to return the result
 | Name           | Type    | Mandatory  | Description        |
 | -------------- | ------ | ---- | ---------- |
 | name           | string | Yes   | Name of the target app account.  |
-| credentialType | string | Yes   | Type of the credential to delete.|
+| credentialType | string | Yes   | Type of the credential to set.|
 | credential     | string | Yes   | Credential value.|
 
 **Return value**
@@ -3576,7 +3576,7 @@ Obtains the credential of an app account. This API uses an asynchronous callback
 | Name           | Type                         | Mandatory  | Description            |
 | -------------- | --------------------------- | ---- | -------------- |
 | name           | string                      | Yes   | Name of the target app account.       |
-| credentialType | string                      | Yes   | Type of the credential to delete.|
+| credentialType | string                      | Yes   | Type of the credential to obtain.|
 | callback       | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the credential obtained. Otherwise, **err** is an error object.|
 
 **Example**
@@ -3606,7 +3606,7 @@ Obtains the credential of an app account. This API uses a promise to return the 
 | Name           | Type    | Mandatory  | Description        |
 | -------------- | ------ | ---- | ---------- |
 | name           | string | Yes   | Name of the target app account.   |
-| credentialType | string | Yes   | Type of the credential to delete.|
+| credentialType | string | Yes   | Type of the credential to obtain.|
 
 **Return value**
 

@@ -1,8 +1,9 @@
-# Bluetooth
+# @ohos.bluetooth
 
 The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -202,7 +203,7 @@ Obtains the connection state of a profile.
 
 | Name      | Type       | Mandatory  | Description                                   |
 | --------- | --------- | ---- | ------------------------------------- |
-| ProfileId | profileId | Yes   | ID of the target profile, for example, **PROFILE_A2DP_SOURCE**.|
+| ProfileId | profileId | Yes   | ID of the profile to obtain, for example, **PROFILE_A2DP_SOURCE**.|
 
 **Return value**
 
@@ -1279,10 +1280,6 @@ Obtains the connected devices.
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
-
-**Parameters**
-
-No value is returned.
 
 **Return value**
 
@@ -2695,8 +2692,6 @@ Obtains all services of the remote BLE device. This API uses a promise to return
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Parameters**
-
 **Return value**
 
 | Type                                      | Description                         |
@@ -2830,7 +2825,7 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 | Name       | Type                                      | Mandatory  | Description                     |
 | ---------- | ---------------------------------------- | ---- | ----------------------- |
 | descriptor | [BLEDescriptor](#bledescriptor)          | Yes   | Descriptor to read.               |
-| callback   | AsyncCallback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback invoked to return the descriptor read.|
+| callback   | AsyncCallback&lt;[BLEDescriptor](#bledescriptor)&gt; | Yes   | Callback invoked to return the descriptor read.|
 
 **Return value**
 
@@ -3309,7 +3304,7 @@ Enumerates the scan modes.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                                      | Default Value | Description             |
+| Name                                      | Value | Description             |
 | ---------------------------------------- | ---- | --------------- |
 | SCAN_MODE_NONE                           | 0    | No scan mode.        |
 | SCAN_MODE_CONNECTABLE                    | 1    | Connectable mode.       |
@@ -3324,7 +3319,7 @@ Enumerates the pairing states.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                | Default Value | Description    |
+| Name                | Value | Description    |
 | ------------------ | ---- | ------ |
 | BOND_STATE_INVALID | 0    | Invalid pairing.|
 | BOND_STATE_BONDING | 1    | Pairing. |
@@ -3350,7 +3345,7 @@ Enumerates the SPP link types.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name        | Default Value | Description           |
+| Name        | Value | Description           |
 | ---------- | ---- | ------------- |
 | SPP_RFCOMM | 0    | Radio frequency communication (RFCOMM) link type.|
 
@@ -3510,7 +3505,7 @@ Enumerates the profile connection states.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                 | Default Value | Description            |
+| Name                 | Value | Description            |
 | ------------------- | ---- | -------------- |
 | STATE_DISCONNECTED  | 0    | Disconnected. |
 | STATE_CONNECTING    | 1    | Connecting.|
@@ -3558,7 +3553,7 @@ Enumerates the scan duty options.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                   | Default Value | Description          |
+| Name                   | Value | Description          |
 | --------------------- | ---- | ------------ |
 | SCAN_MODE_LOW_POWER   | 0    | Low-power mode, which is the default value.|
 | SCAN_MODE_BALANCED    | 1    | Balanced mode.     |
@@ -3571,7 +3566,7 @@ Enumerates the hardware match modes of BLE scan filters.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                   | Default Value | Description                                      |
+| Name                   | Value | Description                                      |
 | --------------------- | ---- | ---------------------------------------- |
 | MATCH_MODE_AGGRESSIVE | 1    | Hardware reports the scan result with a lower threshold of signal strength and few number of matches in a duration. This is the default value.|
 | MATCH_MODE_STICKY     | 2    | Hardware reports the scan result with a higher threshold of signal strength and sightings.      |
@@ -3596,7 +3591,7 @@ Enumerates the Bluetooth states.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                   | Default Value | Description                |
+| Name                   | Value | Description                |
 | --------------------- | ---- | ------------------ |
 | STATE_OFF             | 0    | Bluetooth is turned off.          |
 | STATE_TURNING_ON      | 1    | Bluetooth is being turned on.         |
@@ -3641,7 +3636,7 @@ Defines the content of a BLE advertisement packet.
 
 | Name              | Type               | Readable  | Writable  | Description                |
 | ---------------- | ------------------- | ---- | ---- | ------------------ |
-| manufactureId    | Array&lt;string&gt; | Yes   | Yes   | Manufacturer ID allocated by the Bluetooth SIG.|
+| manufactureId    | number  | Yes   | Yes   | Manufacturer ID allocated by the Bluetooth SIG.|
 | manufactureValue | ArrayBuffer         | Yes   | Yes   | Manufacturer data.    |
 
 
@@ -3713,7 +3708,7 @@ Enumerates the major classes of Bluetooth devices.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                 | Default Value   | Description        |
+| Name                 | Value   | Description        |
 | ------------------- | ------ | ---------- |
 | MAJOR_MISC          | 0x0000 | Miscellaneous device.   |
 | MAJOR_COMPUTER      | 0x0100 | Computer.  |
@@ -3734,7 +3729,7 @@ Enumerates the major and minor classes of Bluetooth devices.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                                      | Default Value   | Description             |
+| Name                                      | Value   | Description             |
 | ---------------------------------------- | ------ | --------------- |
 | COMPUTER_UNCATEGORIZED                   | 0x0100 | Unclassified computer.    |
 | COMPUTER_DESKTOP                         | 0x0104 | Desktop computer.     |
@@ -3830,7 +3825,7 @@ Enumerates the A2DP playing states.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name               | Default Value   | Description     |
+| Name               | Value   | Description     |
 | ----------------- | ------ | ------- |
 | STATE_NOT_PLAYING | 0x0000 | Not playing. |
 | STATE_PLAYING     | 0x0001 | Playing.|
@@ -3842,9 +3837,9 @@ Enumerates the Bluetooth profiles. API version 9 is added with **PROFILE_HID_HOS
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                              | Default Value   | Description             |
+| Name                              | Value   | Description             |
 | -------------------------------- | ------ | --------------- |
-| PROFILE_A2DP_SOURCE              | 0x0001 | A2DP profile.|
-| PROFILE_HANDS_FREE_AUDIO_GATEWAY | 0x0004 | HFP profile. |
-| PROFILE_HID_HOST<sup>9+</sup> | 0x0006 | Human Interface Device (HID) profile. |
-| PROFILE_PAN_NETWORK<sup>9+</sup> | 0x0007 | PAN profile. |
+| PROFILE_A2DP_SOURCE              | 1 | A2DP profile.|
+| PROFILE_HANDS_FREE_AUDIO_GATEWAY | 4 | HFP profile. |
+| PROFILE_HID_HOST<sup>9+</sup> | 6 | Human Interface Device (HID) profile. |
+| PROFILE_PAN_NETWORK<sup>9+</sup> | 7 | PAN profile. |

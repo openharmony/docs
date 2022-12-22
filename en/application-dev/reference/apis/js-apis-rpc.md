@@ -1,9 +1,11 @@
-# RPC
+# @ohos.rpc
 
 The **RPC** module implements communication between processes, including inter-process communication (IPC) on a single device and remote procedure call (RPC) between processes on difference devices. IPC is implemented based on the Binder driver, and RPC is based on the DSoftBus driver.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > This module supports return of error codes since API version 9.
 
 
@@ -24,7 +26,7 @@ The APIs of this module return exceptions since API version 9. The following tab
   | ------------------------------------- | ------- | --------------------------------------------- |
   | CHECK_PARAM_ERROR                     | 401     | Parameter check failed.                               |
   | OS_MMAP_ERROR                         | 1900001 | Failed to call mmap.                       |
-  | OS_IOCTL_ERROR                        | 1900002 | Failed to execute **ioctl** with the shared memory file descriptor.|
+  | OS_IOCTL_ERROR                        | 1900002 | Failed to call **ioctl** with the shared memory file descriptor.|
   | WRITE_TO_ASHMEM_ERROR                 | 1900003 | Failed to write data to the shared memory.                       |
   | READ_FROM_ASHMEM_ERROR                | 1900004 | Failed to read data from the shared memory.                       |
   | ONLY_PROXY_OBJECT_PERMITTED_ERROR     | 1900005 | This operation is allowed only on the proxy object.                    |
@@ -123,7 +125,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 readRemoteObject(): IRemoteObject
 
-Reads a remote object from **MessageSequence**. You can use this API to deserialize the **MessageSequence** object to generate an **IRemoteObject**. The remote object is read in the order in which it is written to this **MessageSequence** object.
+Reads the remote object from **MessageSequence**. You can use this API to deserialize the **MessageSequence** object to generate an **IRemoteObject**. The remote object is read in the order in which it is written to this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -405,7 +407,7 @@ Obtains the read position of this **MessageSequence** object.
 
   | Type| Description|
   | ------ | ------ |
-  | number | Current read position of the **MessageSequence** object.|
+  | number | Read position obtained.|
 
 **Example**
 
@@ -427,7 +429,7 @@ Obtains the write position of this **MessageSequence** object.
 
   | Type| Description|
   | ------ | ----- |
-  | number | Current write position of the **MessageSequence** object.|
+  | number | Write position obtained.|
 
 **Example**
 
@@ -504,7 +506,7 @@ Moves the write pointer to the specified position.
 
 writeByte(val: number): void
 
-Writes a Byte value to this **MessageSequence** object.
+Writes a byte value to this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -538,7 +540,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 readByte(): number
 
-Reads the Byte value from this **MessageSequence** object.
+Reads the byte value from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2856,7 +2858,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 readFileDescriptor(): number
 
-Reads a file descriptor from this **MessageSequence** object.
+Reads the file descriptor from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4017,7 +4019,7 @@ Writes a string to this **MessageParcel** object.
 
 readString(): string
 
-Reads a string from this **MessageParcel** object.
+Reads the string from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
