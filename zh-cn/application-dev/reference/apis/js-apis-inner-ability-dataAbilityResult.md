@@ -1,6 +1,6 @@
 # DataAbilityResult
 
-定义dataAbility数据操作结果，通过[executeBatch](js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch)查询数据库信息时查询结果通过DataAbilityResult对象返回。
+定义DataAbility数据操作结果，通过[executeBatch](js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch)操作数据库时，操作结果使用DataAbilityResult对象返回。
 
 > **说明：**
 > 
@@ -11,8 +11,8 @@
 
 | 名称       | 类型  |     必填    |       说明   |
 | --------  | --------  | --------    | --------    |
-| uri?      | string    |      否    | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。  |
-| count?     | number    |      否    | 指示受操作影响的行数。  |
+| uri?      | string    |      否    | 指示待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。  |
+| count?     | number    |      否    | 指示受操作影响的数据数量。  |
 
 **示例：**
 
@@ -59,7 +59,7 @@ let operations = [
 ];
 
 try {
-    let promise = DAHelper.executeBatch(dataAbilityUri, operations).then((data) => {
+    DAHelper.executeBatch(dataAbilityUri, operations).then((data) => {
         for (let i = 0; i < data.length; i++) {
             let dataAbilityResult = data[i];
             console.log('dataAbilityResult.uri: ' + dataAbilityResult.uri);

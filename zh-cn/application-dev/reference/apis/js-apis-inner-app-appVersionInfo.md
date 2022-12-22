@@ -12,5 +12,5 @@
 | ----------- | ------ | ---- | ---- | -------------- |
 | appName     | string | 是   | 否   | 应用名称。     |
 | versionCode | number | 是   | 否   | 应用版本编码。 |
-| versionName | string | 是   | 否   | 应用版本号。   |
+| versionName | string | 是   | 否   | 应用版本名称。   |
 
