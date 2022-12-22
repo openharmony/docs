@@ -63,3 +63,98 @@ try {
     console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
 }
 ```
+
+## cl.distributeddatamgr.2 function getRdbStoreV9 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts
+**变更影响**
+应用需要进行适配，才可以在新版本SDK环境正常编译通过。
+
+**关键的接口/组件变更**
+如下接口：
+```ts
+function getRdbStoreV9(context: Context, config: StoreConfigV9, version: number, callback: AsyncCallback<RdbStoreV9>): void;
+function getRdbStoreV9(context: Context, config: StoreConfigV9, version: number): Promise<RdbStoreV9>;
+```
+从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts:
+```
+function getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback<RdbStore>): void;
+function getRdbStore(context: Context, config: StoreConfig, version: number): Promise<RdbStore>;
+```
+
+**适配指导**
+ * `import rdb from "@ohos.data.rdb"` 改为 `import rdb from "@ohos.data.relationalStore"`；
+ * 按上述接口变更对齐修改所调用的方法名称即可。
+
+## cl.distributeddatamgr.3 function deleteRdbStoreV9 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts
+**变更影响**
+应用需要进行适配，才可以在新版本SDK环境正常编译通过。
+
+**关键的接口/组件变更**
+如下接口：
+```ts
+function deleteRdbStoreV9(context: Context, name: string, callback: AsyncCallback<void>): void;
+function deleteRdbStoreV9(context: Context, name: string): Promise<void>;
+```
+从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts:
+```
+function deleteRdbStoreV9(context: Context, name: string, callback: AsyncCallback<void>): void;
+function deleteRdbStoreV9(context: Context, name: string): Promise<void>;
+```
+
+**适配指导**
+ * `import rdb from "@ohos.data.rdb"` 改为 `import rdb from "@ohos.data.relationalStore"`；
+ * 按上述接口变更对齐修改所调用的方法名称即可。
+
+## cl.distributeddatamgr.4 interface StoreConfigV9 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts
+**变更影响**
+应用需要进行适配，才可以在新版本SDK环境正常编译通过。
+
+**关键的接口/组件变更**
+interface StoreConfigV9 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts 改名为interface StoreConfig。
+
+**适配指导**
+ * `import rdb from "@ohos.data.rdb"` 改为 `import rdb from "@ohos.data.relationalStore"`；
+ * 按上述接口变更对齐修改所调用的接口名称即可。
+
+## cl.distributeddatamgr.5 enum SecurityLevel 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts
+**变更影响**
+应用需要进行适配，才可以在新版本SDK环境正常编译通过。
+
+**关键的接口/组件变更**
+enum SecurityLevel 从ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts。
+
+**适配指导**
+ * `import rdb from "@ohos.data.rdb"` 改为 `import rdb from "@ohos.data.relationalStore"`；
+ * 按上述接口变更对齐修改所调用的接口名称即可。
+
+## cl.distributeddatamgr.6 interface RdbStoreV9 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts
+**变更影响**
+应用需要进行适配，才可以在新版本SDK环境正常编译通过。
+
+**关键的接口/组件变更** 
+interface RdbStoreV9 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts 改名为interface RdbStore。
+
+**适配指导**
+ * `import rdb from "@ohos.data.rdb"` 改为 `import rdb from "@ohos.data.relationalStore"`；
+ * 按上述接口变更对齐修改所调用的接口名称即可。
+
+## cl.distributeddatamgr.7 class RdbPredicatesV9 从ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts
+**变更影响**
+应用需要进行适配，才可以在新版本SDK环境正常编译通过。
+
+**关键的接口/组件变更**
+class RdbPredicatesV9 从ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts 改名为interface RdbPredicates。
+
+**适配指导**
+ * `import rdb from "@ohos.data.rdb"` 改为 `import rdb from "@ohos.data.relationalStore"`；
+ * 按上述接口变更对齐修改所调用的接口名称即可。
+
+## cl.distributeddatamgr.8 interface ResultSetV9 从api/@ohos.data.relationalStore.d.ts 迁移至@ohos.data.relationalStore.d.ts
+**变更影响**
+应用需要进行适配，才可以在新版本SDK环境正常编译通过。
+
+**关键的接口/组件变更**
+interface ResultSetV9 从api/data/rdb/resultSet.d.ts 迁移至@ohos.data.relationalStore.d.ts 改名为interface ResultSet。
+
+**适配指导**
+ * `import rdb from "@ohos.data.rdb"` 改为 `import rdb from "@ohos.data.relationalStore"`；
+ * ResultSetV9实例仅通过getRdbStoreV9方法获取，参考cl.distributeddatamgr.2变更后，代码可自动适配ResultSet。
