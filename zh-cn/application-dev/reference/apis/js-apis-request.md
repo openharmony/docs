@@ -111,11 +111,15 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
     data: [{ name: "name123", value: "123" }],
   };
-  request.uploadFile(globalThis.abilityContext, uploadConfig).then((data) => {
+  try {
+    request.uploadFile(globalThis.abilityContext, uploadConfig).then((data) => {
       uploadTask = data;
-  }).catch((err) => {
-      console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-  });
+    }).catch((err) => {
+        console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.error('err.code : ' + err.code + ', err.message : ' + err.message);
+  }
   ```
 
 
@@ -155,13 +159,17 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
     data: [{ name: "name123", value: "123" }],
   };
-  request.uploadFile(globalThis.abilityContext, uploadConfig, (err, data) => {
+  try {
+    request.uploadFile(globalThis.abilityContext, uploadConfig, (err, data) => {
       if (err) {
           console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
           return;
       }
       uploadTask = data;
-  });
+    });
+  } catch (err) {
+    console.error('err.code : ' + err.code + ', err.message : ' + err.message);
+  }
   ```
 
 ## request.upload<sup>(deprecated)</sup>
@@ -362,8 +370,8 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| uploadedSize | number | 是 | 当前已上传文件大小，单位为KB。 |
-| totalSize | number | 是 | 上传文件的总大小，单位为KB。 |
+| uploadedSize | number | 是 | 当前已上传文件大小，单位为bit。 |
+| totalSize | number | 是 | 上传文件的总大小，单位为bit。 |
 
 **示例：**
 
@@ -471,8 +479,8 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| uploadedSize | number | 是 | 当前已上传文件的大小，单位为KB。 |
-| totalSize | number | 是 | 上传文件的总大小，单位为KB。 |
+| uploadedSize | number | 是 | 当前已上传文件的大小，单位为bit。 |
+| totalSize | number | 是 | 上传文件的总大小，单位为bit。 |
 
 **示例：**
 
@@ -774,11 +782,15 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
   ```js
   let downloadTask;
-  request.downloadFile(globalThis.abilityContext, { url: 'https://xxxx/xxxx.hap' }).then((data) => {
-      downloadTask = data;
-  }).catch((err) => {
-      console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-  })
+  try {
+    request.downloadFile(globalThis.abilityContext, { url: 'https://xxxx/xxxx.hap' }).then((data) => {
+        downloadTask = data;
+    }).catch((err) => {
+        console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+    })
+  } catch (err) {
+    console.error('err.code : ' + err.code + ', err.message : ' + err.message);
+  }
   ```
 
 
@@ -813,14 +825,18 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 
   ```js
   let downloadTask;
-  request.downloadFile(globalThis.abilityContext, { url: 'https://xxxx/xxxxx.hap', 
-  filePath: 'xxx/xxxxx.hap'}, (err, data) => {
-      if (err) {
-          console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      downloadTask = data;
-  });
+  try {
+    request.downloadFile(globalThis.abilityContext, { url: 'https://xxxx/xxxxx.hap', 
+    filePath: 'xxx/xxxxx.hap'}, (err, data) => {
+        if (err) {
+            console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        downloadTask = data;
+    });
+  } catch (err) {
+    console.error('err.code : ' + err.code + ', err.message : ' + err.message);
+  }
   ```
 
 ## request.download<sup>(deprecated)</sup>
@@ -994,8 +1010,8 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| receivedSize | number | 是 | 当前下载的进度，单位为KB。 |
-| totalSize | number | 是 | 下载文件的总大小，单位为KB。 |
+| receivedSize | number | 是 | 当前下载的进度，单位为bit。 |
+| totalSize | number | 是 | 下载文件的总大小，单位为bit。 |
 
 **示例：**
 
@@ -1028,8 +1044,8 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| receivedSize | number | 是 | 当前下载的进度。 |
-| totalSize | number | 是 | 下载文件的总大小。 |
+| receivedSize | number | 是 | 当前下载的进度，单位为bit。 |
+| totalSize | number | 是 | 下载文件的总大小，单位为bit。 |
 
 **示例：**
 
@@ -1804,7 +1820,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
 | enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
 | description | string | 否 | 设置下载会话的描述。 |
-| filePath<sup>7+</sup> | string | 否 | 设置下载路径（默认在'internal://cache/'路径下）。<br/>-&nbsp;filePath:'workspace/test.txt'：默认路径下创建workspace路径，并将文件存储在workspace路径下。<br/>-&nbsp;filePath:'test.txt'：将文件存储在默认路径下。<br/>-&nbsp;filePath:'workspace/'：默认路径下创建workspace路径，并将文件存储在workspace路径下。 |
+| filePath<sup>7+</sup> | string | 否 | 设置下载路径。<br/>-&nbsp;filePath:'/data/storage/el2/base/haps/entry/files/test.txt'：将文件存储在绝对路径下。<br/>-&nbsp;FA模型下使用[context](js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径，比如：'${featureAbility.getContext().getFilesDir()}/test.txt'，并将文件存储在此路径下。<br/>-&nbsp;Stage模型下使用[AbilityContext](js-apis-inner-application-context.md) 类获取文件路径，比如：'${globalThis.abilityContext.tempDir}/test.txt'并将文件存储在此路径下。|
 | networkType | number | 否 | 设置允许下载的网络类型。<br/>-&nbsp;NETWORK_MOBILE：0x00000001<br/>-&nbsp;NETWORK_WIFI：0x00010000|
 | title | string | 否 | 设置下载会话标题。 |
 | background<sup>9+</sup> | boolean | 否 | 后台任务通知开关，开启后可在通知中显示下载状态。 |
