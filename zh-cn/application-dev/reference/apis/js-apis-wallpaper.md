@@ -96,7 +96,7 @@ getId(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回壁纸的ID。如果配置了指定类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1~2^31-1。 |
+  | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回壁纸的ID。如果配置了指定类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1到（2^31-1）。 |
 
 **示例：**
   
@@ -130,7 +130,7 @@ getId(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;number&gt; | 壁纸的ID。如果配置了这种壁纸类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1~2^31-1。 |
+  | Promise&lt;number&gt; | 壁纸的ID。如果配置了这种壁纸类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1到（2^31-1）。 |
 
 **示例：**
   
@@ -603,7 +603,7 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
 
 **示例：**
   
@@ -637,7 +637,7 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | 调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
+  | Promise&lt;void&gt; | 调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
 
 **示例：**
   
