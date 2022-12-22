@@ -10,7 +10,7 @@ Yes. **fileio.rmdir** deletes files recursively.
 
 Applicable to: OpenHarmony SDK 3.2.6.3, stage model of API version 9
 
-Use **fileio.open(filePath, 0o100, 0o666)** to create a file that does not exist. The second parameter **0o100** means to create a file if it does not exist. The third parameter **mode** must also be specified.
+You can use **fileio.open(filePath, 0o100, 0o666)**. The second parameter **0o100** means to create a file if it does not exist. The third parameter **mode** must also be specified.
 
 ## What If "call fail callback fail, code: 202, data: json arguments illegal" Is Displayed?
 
@@ -22,7 +22,7 @@ When the **fileio** module is used to copy files, the file path cannot start wit
 
 Applicable to: OpenHarmony SDK 3.2.6.5, stage model of API version 9
 
-If the input parameter of the **fileio** API is **path**, only the sandbox directory of the current app obtained from the context can be accessed. To access data in other directories, such as the user data, images, and videos, open the file as the data owner and operate with the file descriptor (FD) returned.
+If the input parameter of the **fileio** API is **path**, only the sandbox directory of the current app obtained from the context can be accessed. To access data in other directories such as the user data, images, and videos, open the file as the data owner and operate with the file descriptor (FD) returned.
 
 For example, to read or write a file in Media Library, perform the following steps:
 
@@ -52,14 +52,14 @@ async function readFile(path) {
 }
 ```
 
-## What Should I Do If There is No Return Value or Error Captured After getAlbums Is Called?
+## What Should I Do If There Is No Return Value or Error Captured After getAlbums Is Called?
 
 Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
-The **ohos.permission.READ_MEDIA** is required for using **getAlbums()**. In addition, this permission needs user authorization. For details, see [OpenHarmony Permission List] (../security/permission-list.md).
+The **ohos.permission.READ_MEDIA** is required for using **getAlbums()**. In addition, this permission needs user authorization. For details, see [OpenHarmony Permission List](../security/permission-list.md).
 
 1. Configure the required permission in the **module.json5** file.
-     
+   
    ```
    "requestPermissions": [
      {
@@ -69,7 +69,7 @@ The **ohos.permission.READ_MEDIA** is required for using **getAlbums()**. In add
    ```
 
 2. Add the code for user authorization before the **MainAbility.ts -> onWindowStageCreate** page is loaded.
-     
+   
    ```
    private requestPermissions() {
    let permissionList: Array<string> = [
@@ -85,13 +85,13 @@ The **ohos.permission.READ_MEDIA** is required for using **getAlbums()**. In add
    }
    ```
 
-## What Do I Do If the App Crashes When FetchFileResult() Is called Multiple Times?
+## What Do I Do If the App Crashes When FetchFileResult() Is Called Multiple Times?
 
 Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
 
 Each time after the **FetchFileResult** object is called, call **FetchFileResult.close()** to release and invalidate the **FetchFileResult** object .
 
-## What if An Error Is Reported by IDE When mediaLibrary.getMediaLibrary() Is Called in the Stage Model?
+## What If An Error Is Reported by IDE When mediaLibrary.getMediaLibrary() Is Called in the Stage Model?
 
 Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
 
