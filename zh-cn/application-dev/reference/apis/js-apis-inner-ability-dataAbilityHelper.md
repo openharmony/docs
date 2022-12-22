@@ -19,7 +19,7 @@ import ohos_data_rdb from '@ohos.data.rdb'
 
 openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
-在指定的远程路径中打开文件（callback形式）。
+打开指定uri对应的文件，返回文件描述符（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -27,9 +27,9 @@ openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
 | 参数名     | 类型                   | 必填 | 说明                               |
 | -------- | ---------------------- | ---- | ---------------------------------- |
-| uri      | string                 | 是   | 指示要打开的文件的路径。           |
-| mode     | string                 | 是   | 指示文件打开模式‘rwt’。            |
-| callback | AsyncCallback\<number> | 是   | 被指定的回调方法，返回文件说明符。 |
+| uri      | string                 | 是   | 指示待打开文件的uri。           |
+| mode     | string                 | 是   | 指示文件打开模式，可以设置为‘r’表示只读访问，‘w’表示只写访问，‘rw’表示读写访问等。            |
+| callback | AsyncCallback\<number> | 是   | 指示文件打开的回调方法，返回文件描述符。 |
 
 **示例：**
 
@@ -38,9 +38,9 @@ import featureAbility from '@ohos.ability.featureAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var mode = "rwt";
-DAHelper.openFile("dataability:///com.example.DataAbility", mode, (err) => {
-    console.info("==========================>Called=======================>");
+var mode = "rw";
+DAHelper.openFile("dataability:///com.example.DataAbility", mode, (err, data) => {
+        console.info("openFile err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -48,7 +48,7 @@ DAHelper.openFile("dataability:///com.example.DataAbility", mode, (err) => {
 
 openFile(uri: string, mode: string): Promise\<number>
 
-在指定的远程路径中打开文件（promise形式）。
+打开指定uri对应的文件，返回文件描述符（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -56,8 +56,8 @@ openFile(uri: string, mode: string): Promise\<number>
 
 | 参数名 | 类型   | 必填 | 说明                     |
 | ---- | ------ | ---- | ------------------------ |
-| uri  | string | 是   | 指示要打开的文件的路径。 |
-| mode | string | 是   | 指示文件打开模式‘rwt’。  |
+| uri  | string | 是   | 指示待打开文件的uri。 |
+| mode | string | 是   | 指示文件打开模式，可以设置为‘r’表示只读访问，‘w’表示只写访问，‘rw’表示读写访问等。  |
 
 **返回值：**
 
@@ -72,9 +72,9 @@ import featureAbility from '@ohos.ability.featureAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var mode = "rwt";
+var mode = "rw";
 DAHelper.openFile("dataability:///com.example.DataAbility", mode).then((data) => {
-	console.info("==========================>openFileCallback=======================>");
+    console.info("openFile data: " + JSON.stringify(data));
 });
 ```
 
@@ -82,7 +82,7 @@ DAHelper.openFile("dataability:///com.example.DataAbility", mode).then((data) =>
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
-注册观察者以观察给定uri指定的数据callback通知。
+注册观察者以监听给定uri指定数据的数据变化通知。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -90,21 +90,21 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
 | 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| type     | string               | 是   | 数据更改。               |
-| uri      | string               | 是   | 指示要操作的数据的路径。 |
-| callback | AsyncCallback\<void> | 是   | 指示数据更改时的回调。   |
+| type     | string               | 是   | 指示监听操作类型，"dataChange"表示数据变化操作。               |
+| uri      | string               | 是   | 指示待操作数据的uri。 |
+| callback | AsyncCallback\<void> | 是   | 指示数据变化时的回调。   |
 
 **示例：**
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility'
-var helper = featureAbility.acquireDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 function onChangeNotify() {
-    console.info("==========================>onChangeNotify=======================>");
+    console.info("onChangeNotify call back");
 };
-helper.on(
+DAHelper.on(
     "dataChange",
     "dataability:///com.example.DataAbility",
     onChangeNotify
@@ -115,7 +115,7 @@ helper.on(
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
-注消观察者以停止观察给定uri指定的数据callback通知。
+注消观察者以停止监听给定uri指定数据的数据变化通知。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -123,28 +123,28 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
 | 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| type     | string               | 是   | 数据更改。               |
-| uri      | string               | 是   | 指示要操作的数据的路径。 |
-| callback | AsyncCallback\<void> | 否   | 指示已注册的回调。       |
+| type     | string               | 是   | 指示监听操作类型，"dataChange"表示数据变化操作。               |
+| uri      | string               | 是   | 指示待操作数据的uri。 |
+| callback | AsyncCallback\<void> | 否   | 指示已注册的数据变化回调。如果设置数据变化回调为空，将会取消所有数据变化监听。       |
 
 **示例：**
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility'
-var helper = featureAbility.acquireDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 function onChangeNotify() {
-    console.info("==========================>onChangeNotify=======================>");
+    console.info("onChangeNotify call back");
 };
-helper.off(
-    "dataChange",
-    "dataability:///com.example.DataAbility",
-)
-helper.off(
+DAHelper.off(
     "dataChange",
     "dataability:///com.example.DataAbility",
     onChangeNotify
+)
+DAHelper.off(
+    "dataChange",
+    "dataability:///com.example.DataAbility",
 )
 ```
 
@@ -152,7 +152,7 @@ helper.off(
 
 getType(uri: string, callback: AsyncCallback\<string>): void
 
-获取给定URI指定数据的MIME类型（callback形式）。
+获取给定uri指向数据的媒体资源类型（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -160,8 +160,8 @@ getType(uri: string, callback: AsyncCallback\<string>): void
 
 | 参数名     | 类型                   | 必填 | 说明                                          |
 | -------- | ---------------------- | ---- | --------------------------------------------- |
-| uri      | string                 | 是   | 指示要操作的数据的路径。                      |
-| callback | AsyncCallback\<string> | 是   | 回调方法，返回与uri指定的数据匹配的MIME类型。 |
+| uri      | string                 | 是   | 指示待获取数据的uri。                      |
+| callback | AsyncCallback\<string> | 是   | 指示获取媒体资源类型的回调，返回与uri指向数据匹配的媒体资源类型。 |
 
 **示例：**
 
@@ -171,7 +171,7 @@ var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.getType("dataability:///com.example.DataAbility", (err, data) => {
-    console.info("==========================>Called=======================>");
+    console.info("getType err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -179,7 +179,7 @@ DAHelper.getType("dataability:///com.example.DataAbility", (err, data) => {
 
 getType(uri: string): Promise\<string>
 
-获取给定URI指定数据的MIME类型（Promise形式）。
+获取给定uri指向数据的媒体资源类型（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -187,13 +187,13 @@ getType(uri: string): Promise\<string>
 
 | 参数名 | 类型   | 必填 | 说明                     |
 | ---- | ------ | ---- | ------------------------ |
-| uri  | string | 是   | 指示要操作的数据的路径。 |
+| uri  | string | 是   | 指示待获取数据的uri。 |
 
 **返回值：**
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | 返回与uri指定的数据匹配的MIME类型。 |
+| Promise\<string> | 返回与uri指向数据匹配的媒体资源类型。 |
 
 **示例：**
 
@@ -203,7 +203,7 @@ var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.getType("dataability:///com.example.DataAbility").then((data) => {
-	console.info("==========================>getTypeCallback=======================>");
+    console.info("getType data: " + JSON.stringify(data));
 });
 ```
 
@@ -211,7 +211,7 @@ DAHelper.getType("dataability:///com.example.DataAbility").then((data) => {
 
 getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\<string>>): void
 
-获取支持的文件的MIME类型（callback形式）。
+获取支持的文件的媒体资源类型（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -220,8 +220,8 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\
 | 参数名           | 类型                           | 必填 | 说明                               |
 | -------------- | ------------------------------ | ---- | ---------------------------------- |
 | uri            | string                         | 是   | 指示要获取的文件的路径。           |
-| mimeTypeFilter | string                         | 是   | 指示要获取的文件的MIME类型。       |
-| callback       | AsyncCallback\<Array\<string>> | 是   | 回调方法，返回匹配的MIME类型数组。 |
+| mimeTypeFilter | string                         | 是   | 指示要获取的文件的媒体资源类型。       |
+| callback       | AsyncCallback\<Array\<string>> | 是   | 回调方法，返回匹配的媒体资源类型数组。 |
 
 **示例：**
 
@@ -242,7 +242,7 @@ DAHelper.getFileTypes( "dataability:///com.example.DataAbility",
 
 getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
-获取支持的文件的MIME类型（Promise形式）。
+获取支持的文件的媒体资源类型（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -251,13 +251,13 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 | 参数名           | 类型   | 必填 | 说明                         |
 | -------------- | ------ | ---- | ---------------------------- |
 | uri            | string | 是   | 指示要获取的文件的路径。     |
-| mimeTypeFilter | string | 是   | 指示要获取的文件的MIME类型。 |
+| mimeTypeFilter | string | 是   | 指示要获取的文件的媒体资源类型。 |
 
 **返回值：**
 
 | 类型                     | 说明                     |
 | ------------------------ | ------------------------ |
-| Promise\<Array\<string>> | 返回匹配的MIME类型数组。 |
+| Promise\<Array\<string>> | 返回匹配的媒体资源类型数组。 |
 
 **示例：**
 
@@ -411,10 +411,10 @@ notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility'
-var helper = featureAbility.acquireDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-helper.notifyChange("dataability:///com.example.DataAbility", (err) => {
+DAHelper.notifyChange("dataability:///com.example.DataAbility", (err) => {
     console.info("==========================>Called=======================>");
 });
 ```
@@ -821,7 +821,7 @@ call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                 | 是   | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"           |
+| uri        | string                 | 是   | 指示待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"           |
 | method    | string                  | 是   | 被调用的方法名。   |
 | arg      | string                   | 是   |需传入的参数。      |
 | extras   | [PacMap](#pacmap)        | 是   | 键值对参数。       |
@@ -859,7 +859,7 @@ call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCa
 
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                 | 是   | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"           |
+| uri        | string                 | 是   | 指示待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"           |
 | method    | string                  | 是   | 被调用的方法名。   |
 | arg      | string                   | 是   |需传入的参数。      |
 | extras   | [PacMap](#pacmap)        | 是   | 键值对参数。       |
@@ -894,7 +894,7 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: As
 
 | 参数名            | 类型                                         | 必填 | 说明                                             |
 | ----------    | ---------------------------------             | ---- | ------------------------------------------------ |
-| uri           | string                                        | 是   | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。|
+| uri           | string                                        | 是   | 指示待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。|
 | operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>               | 是   | 指示数据操作列表，其中可以包含对数据库的多个操作。   |
 | callback      |  AsyncCallback\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>>    | 是   |在数组 DataAbilityResult中返回每个操作的结果。      |
 
@@ -929,7 +929,7 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Ar
 
 | 参数名          | 类型                            | 必填 | 说明                                             |
 | ----------    | -------------------------------| ---- | ------------------------------------------------ |
-| uri           | string                         | 是   | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。|
+| uri           | string                         | 是   | 指示待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。|
 | operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>  | 是   | 指示数据操作列表，其中可以包含对数据库的多个操作。   |
 
 **返回值：**
