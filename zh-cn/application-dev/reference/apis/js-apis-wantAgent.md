@@ -1,6 +1,6 @@
 # @ohos.wantAgent (WantAgent模块)
 
-WantAgent模块提供了触发、取消、比较WantAgent实例和获取bundle名称的能力，包括创建WantAgent实例、获取实例的用户ID、获取want信息等。
+WantAgent模块提供了创建WantAgent实例、获取实例的用户ID、获取want信息、比较WantAgent实例和获取bundle名称等能力。
 
 > **说明：**
 > 
@@ -8,7 +8,7 @@ WantAgent模块提供了触发、取消、比较WantAgent实例和获取bundle�
 
 ## 导入模块
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 ```
 
@@ -29,7 +29,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 //getWantAgent回调
@@ -91,7 +91,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -147,7 +147,7 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -224,7 +224,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -288,7 +288,7 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -365,7 +365,7 @@ getUid(agent: WantAgent): Promise\<number\>
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -431,7 +431,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -510,7 +510,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -574,7 +574,7 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -651,7 +651,7 @@ cancel(agent: WantAgent): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -711,12 +711,12 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<Complet
 | 参数名        | 类型                          | 必填 | 说明                            |
 | ----------- | ----------------------------- | ---- | ------------------------------- |
 | agent       | WantAgent                     | 是   | WantAgent对象。                   |
-| triggerInfo | TriggerInfo                   | 是   | TriggerInfo对象。                 |
+| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                     | 是   | TriggerInfo对象。                 |
 | callback    | AsyncCallback\<CompleteData\> | 否   | 主动激发WantAgent实例的回调方法。 |
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -793,7 +793,7 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -873,7 +873,7 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -937,7 +937,7 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 //wantAgent对象
@@ -1003,7 +1003,7 @@ getOperationType(agent: WantAgent): Promise\<number>;
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 //wantAgent对象

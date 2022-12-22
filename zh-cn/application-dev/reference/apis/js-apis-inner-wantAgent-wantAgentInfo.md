@@ -9,5 +9,5 @@
 | wants          | Array\<Want\>                   | 是   | 将被执行的动作列表。     |
 | operationType  | wantAgent.OperationType         | 是   | 动作类型。               |
 | requestCode    | number                          | 是   | 使用者定义的一个私有值。 |
-| wantAgentFlags | Array<[wantAgent.WantAgentFlags](js-apis-wantAgent.md#WantAgentFlags)> | 否   | 动作执行属性。           |
+| wantAgentFlags | Array<[wantAgent.WantAgentFlags](js-apis-app-ability-wantAgent.md#WantAgentFlags)> | 否   | 动作执行属性。           |
 | extraInfo      | {[key: string]: any}            | 否   | 额外数据。               |
