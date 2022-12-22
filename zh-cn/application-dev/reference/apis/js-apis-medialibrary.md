@@ -870,7 +870,7 @@ getActivePeers(): Promise\<Array\<PeerInfo>>;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-|  Promise\<Array\<PeerInfo>> | 返回获取的所有在线对端设备的PeerInfo |
+|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有在线对端设备的PeerInfo |
 
 **示例：**
 
@@ -906,7 +906,7 @@ getActivePeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<PeerInfo>> | 返回获取的所有在线对端设备的PeerInfo |
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有在线对端设备的PeerInfo |
 
 **示例：**
 
@@ -941,7 +941,7 @@ getAllPeers(): Promise\<Array\<PeerInfo>>;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-|  Promise\<Array\<PeerInfo>> | 返回获取的所有对端设备的PeerInfo |
+|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有对端设备的PeerInfo |
 
 **示例：**
 
@@ -977,7 +977,7 @@ getAllPeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<PeerInfo>> | 返回获取的所有对端设备的PeerInfo |
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有对端设备的PeerInfo |
 
 **示例：**
 
@@ -2539,9 +2539,9 @@ async function example() {
 
 | 名称                    | 类型                | 可读 | 可写 | 说明                                                         |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------------------------------------ |
-| selections              | string              | 是   | 是   | 检索条件，使用[FileKey](#filekey8)中的枚举值作为检索条件的列名。示例：<br />selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?', |
-| selectionArgs           | Array&lt;string&gt; | 是   | 是   | 检索条件的值，对应selections中检索条件列的值。<br />示例：<br />selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order                   | string              | 是   | 是   | 检索结果排序方式，使用[FileKey](#filekey8)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br />升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " ASC"<br />降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
+| selections              | string              | 是   | 是   | 检索条件，使用[FileKey](#filekey8)中的枚举值作为检索条件的列名。示例：<br/>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?', |
+| selectionArgs           | Array&lt;string&gt; | 是   | 是   | 检索条件的值，对应selections中检索条件列的值。<br/>示例：<br/>selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
+| order                   | string              | 是   | 是   | 检索结果排序方式，使用[FileKey](#filekey8)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br/>升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " ASC"<br/>降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
 | uri<sup>8+</sup>        | string              | 是   | 是   | 文件URI                                                      |
 | networkId<sup>8+</sup>  | string              | 是   | 是   | 注册设备网络ID                                               |
 | extendArgs<sup>8+</sup> | string              | 是   | 是   | 扩展的检索参数，目前没有扩展检索参数                         |
