@@ -1,17 +1,16 @@
-# System Accessibility Configuration
+# @ohos.accessibility.config
 
-The **config** module allows you to configure system accessibility features, including accessibility extension, high-contrast text, mouse buttons, and captions.
+The System Accessibility Configuration module allows you to configure system accessibility features, including accessibility extension, high-contrast text, mouse buttons, and captions.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> The APIs provided by this module are system APIs.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
-```typescript
-import config from "@ohos.accessibility.config";
+```ts
+import config from '@ohos.accessibility.config';
 ```
 
 ## Attributes
@@ -22,20 +21,20 @@ import config from "@ohos.accessibility.config";
 | -------- | -------- | -------- | -------- | -------- |
 | highContrastText | [Config](#config)\<boolean>| Yes| Yes| Whether to enable high-contrast text.|
 | invertColor | [Config](#config)\<boolean>| Yes| Yes| Whether to enable color inversion.|
-| daltonizationColorFilter | [Config](#config)\<[DaltonizationColorFilter](#daltonizationcolorfilter)>| Yes| Yes| Daltonization filter. |
+| daltonizationColorFilter | [Config](#config)&lt;[DaltonizationColorFilter](#daltonizationcolorfilter)&gt;| Yes| Yes| Configuration of the daltonization filter.|
 | contentTimeout | [Config](#config)\<number>| Yes| Yes| Recommended duration for content display. The value ranges from 0 to 5000, in milliseconds.|
-| animationOff | [Config](#config)\<boolean>| Yes| Yes| Whether to enable animation.|
+| animationOff | [Config](#config)\<boolean>| Yes| Yes| Whether to disable animation.|
 | brightnessDiscount | [Config](#config)\<number>| Yes| Yes| Brightness discount. The value ranges from 0 to 1.0.|
 | mouseKey | [Config](#config)\<boolean>| Yes| Yes| Whether to enable the mouse button feature.|
-| mouseAutoClick | [Config](#config)\<number>| Yes| Yes| Interval for the automatic mouse clicks. The value ranges from 0 to 5000, in milliseconds.|
+| mouseAutoClick | [Config](#config)\<number>| Yes| Yes| Interval for automatic mouse clicks. The value ranges from 0 to 5000, in milliseconds.|
 | shortkey | [Config](#config)\<boolean>| Yes| Yes| Whether to enable the accessibility extension shortcut key.|
-| shortkeyTarget | [Config](#config)\<string>| Yes| Yes| Target application for the accessibility extension shortcut key. The value format is bundleName/abilityName.|
+| shortkeyTarget | [Config](#config)\<string>| Yes| Yes| Target application for the accessibility extension shortcut key. The value format is 'bundleName/abilityName'.|
 | captions | [Config](#config)\<boolean>| Yes| Yes| Whether to enable captions.|
-| captionsStyle | [Config](#config)\<[accessibility.CaptionsStyle](./js-apis-accessibility.md#captionsstyle8)>| Yes| Yes| Captions style.|
+| captionsStyle | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)>| Yes| Yes| Captions style.|
 
 ## enableAbility
 
-enableAbility(name: string, capability: Array&lt;[accessibility.Capability](./js-apis-accessibility.md#capability)&gt;): Promise&lt;void&gt;;
+enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): Promise&lt;void&gt;;
 
 Enables an accessibility extension ability. This API uses a promise to return the result.
 
@@ -45,29 +44,44 @@ Enables an accessibility extension ability. This API uses a promise to return th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the accessibility extension ability. The format is bundleName/abilityName.|
-| capability | Array&lt;[accessibility.Capability](./js-apis-accessibility.md#capability)&gt;) | Yes| Capability of the accessibility extension ability.|
+| name | string | Yes| Name of the accessibility extension ability. The format is 'bundleName/abilityName'.|
+| capability | Array&lt;[accessibility.Capability](js-apis-accessibility.md#capability)&gt; | Yes| Capability of the accessibility extension ability.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the execution result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 9300001 | Invalid bundle name or ability name.  |
+| 9300002 | Target ability already enabled. |
 
 **Example**
 
-  ```typescript
-  config.enableAbility("com.ohos.example/axExtension", ['retrieve'])
-      .then(() => {
-        console.info('enable succeed');
-      }).catch((error) => {
-        console.error('enable failed');
-      });
-  ```
+```ts
+import accessibility from '@ohos.accessibility';
+let name = 'com.ohos.example/axExtension';
+let capability : accessibility.Capability[] = ['retrieve'];
+try {
+    config.enableAbility(name, capability).then(() => {
+      console.info('enable ability succeed');
+    }).catch((err) => {
+      console.error('failed to enable ability, because ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('failed to enable ability, because ' + JSON.stringify(exception));
+};
+```
 
 ## enableAbility
 
-enableAbility(name: string, capability: Array&lt;[accessibility.Capability](./js-apis-accessibility.md#capability)&gt;, callback: AsyncCallback&lt;void&gt;): void;
+enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
 Enables an accessibility extension ability. This API uses an asynchronous callback to return the result.
 
@@ -77,21 +91,37 @@ Enables an accessibility extension ability. This API uses an asynchronous callba
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the accessibility extension ability. The format is bundleName/abilityName.|
-| capability | Array&lt;[accessibility.Capability](./js-apis-accessibility.md#capability)&gt; | Yes| Capability of the accessibility extension ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+| name | string | Yes| Name of the accessibility extension ability. The format is 'bundleName/abilityName'.|
+| capability | Array&lt;[accessibility.Capability](js-apis-accessibility.md#capability)&gt; | Yes| Capability of the accessibility extension ability.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 9300001 | Invalid bundle name or ability name.  |
+| 9300002 | Target ability already enabled. |
 
 **Example**
 
-  ```typescript
-  config.enableAbility("com.ohos.example/axExtension", ['retrieve'], (err, data) => {
-      if (err) {
-          console.error('enable failed');
-          return;
-      }
-      console.info('enable succeed');
-    })
-  ```
+```ts
+import accessibility from '@ohos.accessibility';
+let name = 'com.ohos.example/axExtension';
+let capability : accessibility.Capability[] = ['retrieve'];
+try {
+    config.enableAbility(name, capability, (err) => {
+        if (err) {
+            console.error('failed to enable ability, because ' + JSON.stringify(err));
+            return;
+        }
+        console.info('enable ability succeed');
+    });
+} catch (exception) {
+    console.error('failed to enable ability, because ' + JSON.stringify(exception));
+};
+```
 
 ## disableAbility
 
@@ -105,24 +135,36 @@ Disables an accessibility extension ability. This API uses a promise to return t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the accessibility extension ability. The format is bundleName/abilityName.|
+| name | string | Yes| Name of the accessibility extension ability. The format is 'bundleName/abilityName'.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the execution result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 9300001 | Invalid bundle name or ability name.  |
 
 **Example**
 
-  ```typescript
-  config.disableAbility("com.ohos.example/axExtension")
-      .then(() => {
-        console.info('disable succeed');
-      }).catch((error) => {
-        console.error('disable failed');
-      });
-  ```
+```ts
+let name = 'com.ohos.example/axExtension';
+try {
+    config.disableAbility(name).then(() => {
+      console.info('disable ability succeed');
+    }).catch((err) => {
+      console.error('failed to disable ability, because ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('failed to disable ability, because ' + JSON.stringify(exception));
+};
+```
 
 ## disableAbility
 
@@ -136,26 +178,39 @@ Disables an accessibility extension ability. This API uses an asynchronous callb
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the accessibility extension ability. The format is bundleName/abilityName.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+| name | string | Yes| Name of the accessibility extension ability. The format is 'bundleName/abilityName'.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 9300001 | Invalid bundle name or ability name.  |
 
 **Example**
 
-  ```typescript
-  config.disableAbility("com.ohos.example/axExtension", (err, data) => {
-      if (err) {
-          console.error('disable failed');
-          return;
-      }
-      console.info('disable succeed');
-    })
-  ```
+```ts
+let name = 'com.ohos.example/axExtension';
+try {
+    config.disableAbility(name, (err, data) => {
+        if (err) {
+            console.error('failed to enable ability, because ' + JSON.stringify(err));
+            return;
+        }
+        console.info('disable succeed');
+    });
+} catch (exception) {
+    console.error('failed to enable ability, because ' + JSON.stringify(exception));
+};
+```
 
-## on('enableAbilityListsStateChanged')
+## on('enabledAccessibilityExtensionListChange')
 
-on(type: 'enableAbilityListsStateChanged', callback: Callback&lt;void&gt;): void;
+on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&gt;): void;
 
-Adds a listener for changes in the list of enabled accessibility extension abilities.
+Adds a listener for changes in the list of enabled accessibility extension abilities. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -163,22 +218,27 @@ Adds a listener for changes in the list of enabled accessibility extension abili
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type. The value is fixed at **'enableAbilityListsStateChanged'**, indicating the changes in the list of enabled accessibility extension abilities. |
+| type | string | Yes| Listening type. The value is fixed at **'enabledAccessibilityExtensionListChange'**, indicating listening for changes in the list of enabled accessibility extension abilities.|
 | callback | Callback&lt;void&gt; | Yes| Callback invoked when the list of enabled accessibility extension abilities changes.|
 
 **Example**
 
-  ```typescript
-  config.on('enableAbilityListsStateChanged',() => {
-      console.info('ax extension ability enable list changed');
-  });
-  ```
+```ts
+try {
+    config.on('enabledAccessibilityExtensionListChange', () => {
+        console.info('subscribe enabled accessibility extension list change state success');
+    });
+} catch (exception) {
+    console.error('failed to subscribe enabled accessibility extension list change state, because ' +
+    JSON.stringify(exception));
+};
+```
 
-## off('enableAbilityListsStateChanged')
+## off('enabledAccessibilityExtensionListChange')
 
-off(type: 'enableAbilityListsStateChanged', callback?: Callback&lt;void&gt;): void;
+off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void&gt;): void;
 
-Cancels the listener for changes in the list of enabled accessibility extension abilities.
+Cancels the listener for changes in the list of enabled accessibility extension abilities. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -186,14 +246,21 @@ Cancels the listener for changes in the list of enabled accessibility extension 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type |  string | No| Listening type. The value is fixed at **'enableAbilityListsStateChanged'**, indicating the changes in the list of enabled accessibility extension abilities. |
+| type |  string | Yes| Listening type. The value is fixed at **'enabledAccessibilityExtensionListChange'**, indicating listening for changes in the list of enabled accessibility extension abilities.|
 | callback | Callback&lt;void&gt; | No| Callback invoked when the list of enabled accessibility extension abilities changes.|
 
 **Example**
 
-  ```typescript
-  config.off('enableAbilityListsStateChanged');
-  ```
+```ts
+try {
+    config.off('enabledAccessibilityExtensionListChange', () => {
+        console.info('Unsubscribe enabled accessibility extension list change state success');
+    });
+} catch (exception) {
+    console.error('failed to Unsubscribe enabled accessibility extension list change state, because ' +
+    JSON.stringify(exception));
+};
+```
 
 ## Config
 
@@ -203,7 +270,7 @@ Implements configuration, acquisition, and listening for attributes.
 
 set(value: T): Promise&lt;void&gt;;
 
-Sets this attribute. This API uses a promise to return the result.
+Sets the attribute value. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -217,24 +284,28 @@ Sets this attribute. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the execution result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
-  ```typescript
-  config.highContrastText.set(true)
-      .then(() => {
-        console.info('highContrastText set succeed');
-      }).catch((error) => {
-        console.error('highContrastText set failed');
-      });
-  ```
+```ts
+let value = true;
+try {
+    config.highContrastText.set(value).then(() => {
+        console.info('set highContrastText succeed');
+    }).catch((err) => {
+        console.error('failed to set highContrastText, because ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('failed to set config, because ' + JSON.stringify(exception));
+};
+```
 
 ### set
 
 set(value: T, callback: AsyncCallback&lt;void&gt;): void;
 
-Sets this attribute. This API uses an asynchronous callback to return the result.
+Sets the attribute value. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -243,25 +314,30 @@ Sets this attribute. This API uses an asynchronous callback to return the result
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Attribute value to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
-  ```typescript
-  config.highContrastText.set(true, (err, data) => {
-      if (err) {
-          console.error('highContrastText set failed');
-          return;
-      }
-      console.info('highContrastText set succeed');
-    })
-  ```
+```ts
+let value = true;
+try {
+    config.highContrastText.set(value, (err, data) => {
+        if (err) {
+            console.error('failed to set highContrastText, because ' + JSON.stringify(err));
+            return;
+        }
+        console.info('set highContrastText succeed');
+    });
+} catch (exception) {
+    console.error('failed to set config, because ' + JSON.stringify(exception));
+};
+```
 
 ### get
 
 get(): Promise&lt;T&gt;;
 
-Obtains the value of this attribute. This API uses a promise to return the result.
+Obtains the attribute value. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -269,24 +345,25 @@ Obtains the value of this attribute. This API uses a promise to return the resul
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;T&gt; | Promise used to return the attribute value.|
+| Promise&lt;T&gt; | Promise used to return the value obtained.|
 
 **Example**
 
-  ```typescript
-  config.highContrastText.get()
-      .then((value) => {
-        console.info('highContrastText get succeed');
-      }).catch((error) => {
-        console.error('highContrastText get failed');
-      });
-  ```
+```ts
+let value;
+config.highContrastText.get().then((data) => {
+    value = data;
+    console.info('get highContrastText success');
+}).catch((err) => {
+    console.error('failed to get highContrastText, because ' + JSON.stringify(err));
+});
+```
 
 ### get
 
 get(callback: AsyncCallback&lt;T&gt;): void;
 
-Obtains the value of this attribute. This API uses an asynchronous callback to return the result.
+Obtains the attribute value. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -294,25 +371,27 @@ Obtains the value of this attribute. This API uses an asynchronous callback to r
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the attribute value.|
+| callback | AsyncCallback&lt;T&gt; | Yes| Callback used to return the attribute value.|
 
 **Example**
 
-  ```typescript
-  config.highContrastText.get((err, data) => {
-      if (err) {
-          console.error('highContrastText get failed');
-          return;
-      }
-      console.info('highContrastText get succeed');
-    })
-  ```
+```ts
+let value;
+config.highContrastText.get((err, data) => {
+    if (err) {
+        console.error('failed to get highContrastText, because ' + JSON.stringify(err));
+        return;
+    }
+    value = data;
+    console.info('get highContrastText success');
+});
+```
 
 ### on
 
 on(callback: Callback&lt;T&gt;): void;
 
-Adds a listener for attribute changes.
+Adds a listener for attribute changes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -324,17 +403,21 @@ Adds a listener for attribute changes.
 
 **Example**
 
-  ```typescript
-  config.highContrastText.on(() => {
-      console.info('highContrastText changed');
-  });
-  ```
+```ts
+try {
+    config.highContrastText.on((data) => {
+        console.info('subscribe highContrastText success, result: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('failed subscribe highContrastText, because ' + JSON.stringify(exception));
+}
+```
 
 ### off
 
 off(callback?: Callback&lt;T&gt;): void;
 
-Cancels the listener for attribute changes.
+Cancels the listener for attribute changes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -342,13 +425,15 @@ Cancels the listener for attribute changes.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;T&gt; | No| Callback invoked when the attribute changes.|
+| callback | Callback&lt;T&gt; | No| Callback invoked when the list of enabled accessibility extension abilities changes.|
 
 **Example**
 
-  ```typescript
-  config.highContrastText.off();
-  ```
+```ts
+config.highContrastText.off((data) => {
+    console.info('Unsubscribe highContrastText success, result: ' + JSON.stringify(data));
+});
+```
 
 ## DaltonizationColorFilter
 

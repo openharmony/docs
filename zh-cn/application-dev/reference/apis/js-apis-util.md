@@ -2121,6 +2121,42 @@ that.decode(array).then(val=>{
 })
   ```
 
+## ScopeType<sup>8+</sup>
+
+用于表示范围中的值的类型。该类型的值，类型可以为ScopeComparable或number。
+
+ScopeComparable类型的值需要实现compareTo方法，确保传入的数据具有可比性。
+
+```js
+interface ScopeComparable{
+    compareTo(other: ScopeComparable): boolean;
+}
+type ScopeType = ScopeComparable | number;
+```
+
+
+构造新类，实现compareTo方法。后续示例代码中，均通过Temperature，获取[ScopeType](#scopetype8)的实例化对象。
+
+
+示例：
+```js
+class Temperature{
+    constructor(value){
+       // 当使用ts语言开发时，需要补充以下代码：
+       // private readonly _temp: Temperature;
+       this._temp = value;
+    }
+    compareTo(value){
+       return this._temp >= value.getTemp();
+    }
+    getTemp(){
+       return this._temp;
+    }
+    toString(){
+       return this._temp.toString();
+    }
+}
+```
 
 ## types<sup>8+</sup>
 
@@ -3859,43 +3895,6 @@ entries(): IterableIterator&lt;[K,V]&gt;
   pro.put(2,10);
   let result = pro[Symbol.iterator]();
   ```
-
-### ScopeType<sup>8+</sup>
-
-用于表示范围中的值的类型。该类型的值，类型可以为ScopeComparable或number。
-
-ScopeComparable类型的值需要实现compareTo方法，确保传入的数据具有可比性。
-
-```js
-interface ScopeComparable{
-    compareTo(other: ScopeComparable): boolean;
-}
-type ScopeType = ScopeComparable | number;
-```
-
-
-构造新类，实现compareTo方法。后续示例代码中，均通过Temperature，获取[ScopeType](#scopetype8)的实例化对象。
-
-
-示例：
-```js
-class Temperature{
-    constructor(value){
-       // 当使用ts语言开发时，需要补充以下代码：
-       // private readonly _temp: Temperature;
-       this._temp = value;
-    }
-    compareTo(value){
-       return this._temp >= value.getTemp();
-    }
-    getTemp(){
-       return this._temp;
-    }
-    toString(){
-       return this._temp.toString();
-    }
-}
-```
 
 ## Scope<sup>(deprecated)</sup>
 

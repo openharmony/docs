@@ -1,4 +1,4 @@
-# Image Processing
+# @ohos.multimedia.image (Image Processing)
 
 The **Image** module provides APIs for image processing. You can use the APIs to create a **PixelMap** object with specified properties or read image pixel data (even in an area).
 
@@ -22,7 +22,7 @@ Creates a **PixelMap** object with the default BGRA_8888 format and pixel proper
 
 **Parameters**
 
-| Name   | Type                                            | Mandatory| Description                                                            |
+| Name | Type                                            | Mandatory| Description                                                            |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
 | colors  | ArrayBuffer                                      | Yes  | Color array in BGRA_8888 format.                                       |
 | options | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
@@ -57,7 +57,7 @@ Creates a **PixelMap** object with the default BGRA_8888 format and pixel proper
 
 **Parameters**
 
-| Name    | Type                                            | Mandatory| Description                      |
+| Name  | Type                                            | Mandatory| Description                      |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | colors   | ArrayBuffer                                      | Yes  | Color array in BGRA_8888 format. |
 | options  | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties.                    |
@@ -907,7 +907,7 @@ Releases this **PixelMap** object. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description              |
+| Name  | Type                | Mandatory| Description              |
 | -------- | -------------------- | ---- | ------------------ |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
@@ -1077,9 +1077,9 @@ const data = new ArrayBuffer(112);
 const imageSourceApi = image.createImageSource(data);
 ```
 
-## image.createIncrementalSource<sup>9+</sup>
+## image.CreateIncrementalSource<sup>9+</sup>
 
-createIncrementalSource(buf: ArrayBuffer): ImageSource
+CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 Creates an **ImageSource** instance in incremental mode based on the buffers.
 
@@ -1101,12 +1101,12 @@ Creates an **ImageSource** instance in incremental mode based on the buffers.
 
 ```js
 const buf = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.CreateIncrementalSource(buf);
 ```
 
-## image.createIncrementalSource<sup>9+</sup>
+## image.CreateIncrementalSource<sup>9+</sup>
 
-createIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
+CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 Creates an **ImageSource** instance in incremental mode based on the buffers.
 
@@ -1129,7 +1129,7 @@ Creates an **ImageSource** instance in incremental mode based on the buffers.
 
 ```js
 const buf = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.CreateIncrementalSource(buf);
 ```
 
 ## ImageSource
@@ -1181,7 +1181,7 @@ Obtains information about this image. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name    | Type                                  | Mandatory| Description                                    |
+| Name  | Type                                  | Mandatory| Description                                    |
 | -------- | -------------------------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback<[ImageInfo](#imageinfo)> | Yes  | Callback used to return the image information.|
 
@@ -1203,7 +1203,7 @@ Obtains information about an image with the specified index. This API uses a pro
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                 |
+| Name| Type  | Mandatory| Description                                 |
 | ----- | ------ | ---- | ------------------------------------- |
 | index | number | No  | Index of the image. If this parameter is not set, the default value **0** is used.|
 
@@ -1234,7 +1234,7 @@ Obtains the value of a property with the specified index in this image. This API
 
  **Parameters**
 
-| Name   | Type                                                | Mandatory| Description                                |
+| Name | Type                                                | Mandatory| Description                                |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
 | key     | string                                               | Yes  | Name of the property.                        |
 | options | [GetImagePropertyOptions](#getimagepropertyoptions7) | No  | Image properties, including the image index and default property value.|
@@ -1372,12 +1372,12 @@ Updates incremental data. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name      | Type       | Mandatory| Description        |
+| Name    | Type       | Mandatory| Description        |
 | ---------- | ----------- | ---- | ------------ |
 | buf        | ArrayBuffer | Yes  | Incremental data.  |
 | isFinished | boolean     | Yes  | Whether the update is complete.|
-| value      | number      | No  | Offset for data reading.    |
-| length     | number      | No  | Array length.    |
+| value      | number      | Yes  | Offset for data reading.    |
+| length     | number      | Yes  | Array length.    |
 
 **Return value**
 
@@ -1405,12 +1405,12 @@ Updates incremental data. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name      | Type               | Mandatory| Description                |
+| Name    | Type               | Mandatory| Description                |
 | ---------- | ------------------- | ---- | -------------------- |
 | buf        | ArrayBuffer         | Yes  | Incremental data.          |
 | isFinished | boolean             | Yes  | Whether the update is complete.        |
-| value      | number              | No  | Offset for data reading.            |
-| length     | number              | No  | Array length.            |
+| value      | number              | Yes  | Offset for data reading.            |
+| length     | number              | Yes  | Array length.            |
 | callback   | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1434,7 +1434,7 @@ Creates a **PixelMap** object based on image decoding parameters. This API uses 
 
 **Parameters**
 
-| Name   | Type                                | Mandatory| Description      |
+| Name | Type                                | Mandatory| Description      |
 | ------- | ------------------------------------ | ---- | ---------- |
 | options | [DecodingOptions](#decodingoptions7) | No  | Image decoding parameters.|
 
@@ -1486,7 +1486,7 @@ Creates a **PixelMap** object based on image decoding parameters. This API uses 
 
 **Parameters**
 
-| Name    | Type                                 | Mandatory| Description                      |
+| Name  | Type                                 | Mandatory| Description                      |
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | options  | [DecodingOptions](#decodingoptions7)  | Yes  | Image decoding parameters.                |
 | callback | AsyncCallback<[PixelMap](#pixelmap7)> | Yes  | Callback used to return the **PixelMap** object.|
@@ -1518,7 +1518,7 @@ Releases this **ImageSource** instance. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                              |
+| Name  | Type                | Mandatory| Description                              |
 | -------- | -------------------- | ---- | ---------------------------------- |
 | callback | AsyncCallback\<void> | Yes  | Callback invoked for instance release. If the operation fails, an error message is returned.|
 
@@ -1768,11 +1768,11 @@ Creates an **ImageReceiver** instance by specifying the image width, height, for
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                  |
+| Name  | Type  | Mandatory| Description                  |
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | Yes  | Default image width.      |
 | height   | number | Yes  | Default image height.      |
-| format   | number | Yes  | Image format, which is a constant of [ImageFormat](#imageformat9). (Currently, the value of this parameter is agreed between the user and camera. In the future, there may be other application scenarios. The receiver is used only for transfer. Currently, only **ImageFormat:JPEG** is supported.) |
+| format   | number | Yes  | Image format, which is a constant of [ImageFormat](#imageformat9). (Only ImageFormat:JPEG and 4 are supported.) |
 | capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
 
 **Return value**
@@ -1813,7 +1813,7 @@ Obtains a surface ID for the camera or other components. This API uses an asynch
 
 **Parameters**
 
-| Name    | Type                  | Mandatory| Description                      |
+| Name  | Type                  | Mandatory| Description                      |
 | -------- | ---------------------- | ---- | -------------------------- |
 | callback | AsyncCallback\<string> | Yes  | Callback used to return the surface ID.|
 
@@ -1913,7 +1913,7 @@ Reads the next image from the **ImageReceiver** instance. This API uses an async
 
 **Parameters**
 
-| Name    | Type                           | Mandatory| Description                      |
+| Name  | Type                           | Mandatory| Description                      |
 | -------- | ------------------------------- | ---- | -------------------------- |
 | callback | AsyncCallback<[Image](#image9)> | Yes  | Callback used to return the next image.|
 
@@ -1963,7 +1963,7 @@ Listens for image arrival events.
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                                                  |
+| Name  | Type                | Mandatory| Description                                                  |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | type     | string               | Yes  | Type of event to listen for. The value is fixed at **imageArrival**, which is triggered when an image is received.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked for the event.                                      |
@@ -1984,7 +1984,7 @@ Releases this **ImageReceiver** instance. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
+| Name  | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
@@ -2028,7 +2028,7 @@ Creates an **ImageCreator** instance by specifying the image width, height, form
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                  |
+| Name  | Type  | Mandatory| Description                  |
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | Yes  | Default image width.      |
 | height   | number | Yes  | Default image height.      |
@@ -2071,7 +2071,7 @@ Obtains an image buffer from the idle queue and writes image data into it. This 
 
 **Parameters**
 
-| Name         | Type                                   | Mandatory| Description                |
+| Name       | Type                                   | Mandatory| Description                |
 | ------------- | ---------------------------------------| ---- | -------------------- |
 | callback      | AsyncCallback\<Image>                   | Yes  | Callback used to return the drawn image.|
 
@@ -2080,9 +2080,9 @@ Obtains an image buffer from the idle queue and writes image data into it. This 
 ```js
 creator.dequeueImage((err, img) => {
     if (err) {
-        console.info('dequeueImage succeeded.');
+        console.info('dequeueImage failed.');
     }
-    console.info('dequeueImage failed.');
+    console.info('dequeueImage succeeded.');
 });
 ```
 
@@ -2120,7 +2120,7 @@ Places the drawn image in the dirty queue. This API uses an asynchronous callbac
 
 **Parameters**
 
-| Name         | Type                    | Mandatory| Description                |
+| Name       | Type                    | Mandatory| Description                |
 | ------------- | -------------------------| ---- | -------------------- |
 | interface     | Image                    | Yes  | Drawn image.|
 | callback      | AsyncCallback\<void>     | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
@@ -2128,12 +2128,25 @@ Places the drawn image in the dirty queue. This API uses an asynchronous callbac
 **Example**
 
 ```js
-creator.queueImage(img, (err) => {
-    if (err) {
-        console.info('dequeueImage failed: ' + err);
-    }
-    console.info('dequeueImage succeeded');
+creator.dequeueImage().then(img => {
+    // Draw the image.
+    img.getComponent(4).then(component => {
+        var bufferArr = new Uint8Array(component.byteBuffer);
+        for (var i = 0; i < bufferArr.length; i += 4) {
+            bufferArr[i] = 0; //B
+            bufferArr[i + 1] = 0; //G
+            bufferArr[i + 2] = 255; //R
+            bufferArr[i + 3] = 255; //A
+        }
+    })
+    creator.queueImage(img, (err) => {
+        if (err) {
+            console.info('queueImage failed: ' + err);
+        }
+        console.info('queueImage succeeded');
+    })
 })
+
 ```
 
 ### queueImage<sup>9+</sup>
@@ -2159,11 +2172,24 @@ Places the drawn image in the dirty queue. This API uses a promise to return the
 **Example**
 
 ```js
-creator.queueImage(img).then(() => {
-    console.info('dequeueImage succeeded.');
-}).catch(error => {
-    console.info('dequeueImage failed: ' + error);
+creator.dequeueImage().then(img => {
+    // Draw the image.
+    img.getComponent(4).then(component => {
+        var bufferArr = new Uint8Array(component.byteBuffer);
+        for (var i = 0; i < bufferArr.length; i += 4) {
+            bufferArr[i] = 0; //B
+            bufferArr[i + 1] = 0; //G
+            bufferArr[i + 2] = 255; //R
+            bufferArr[i + 3] = 255; //A
+        }
+    })
+    creator.queueImage(img).then(() => {
+        console.info('queueImage succeeded.');
+    }).catch(error => {
+        console.info('queueImage failed: ' + error);
+    })
 })
+
 ```
 
 ### on<sup>9+</sup>
@@ -2176,7 +2202,7 @@ Listens for image release events. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name         | Type                    | Mandatory| Description                |
+| Name       | Type                    | Mandatory| Description                |
 | ------------- | -------------------------| ---- | -------------------- |
 | type          | string                   | Yes  | Type of event, which is **'imageRelease'**.|
 | callback      | AsyncCallback\<void>     | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
@@ -2264,7 +2290,7 @@ Obtains the component buffer from the **Image** instance based on the color comp
 
 **Parameters**
 
-| Name         | Type                                   | Mandatory| Description                |
+| Name       | Type                                   | Mandatory| Description                |
 | ------------- | --------------------------------------- | ---- | -------------------- |
 | componentType | [ComponentType](#componenttype9)        | Yes  | Color component type of the image.    |
 | callback      | AsyncCallback<[Component](#component9)> | Yes  | Callback used to return the component buffer.|
@@ -2291,7 +2317,7 @@ Obtains the component buffer from the **Image** instance based on the color comp
 
 **Parameters**
 
-| Name         | Type                            | Mandatory| Description            |
+| Name       | Type                            | Mandatory| Description            |
 | ------------- | -------------------------------- | ---- | ---------------- |
 | componentType | [ComponentType](#componenttype9) | Yes  | Color component type of the image.|
 
@@ -2319,7 +2345,7 @@ The corresponding resources must be released before another image arrives.
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description          |
+| Name  | Type                | Mandatory| Description          |
 | -------- | -------------------- | ---- | -------------- |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
@@ -2398,7 +2424,7 @@ Enumerates the pixel formats of images.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name                  | Default Value| Description             |
+| Name                  |   Value  | Description             |
 | ---------------------- | ------ | ----------------- |
 | UNKNOWN                | 0      | Unknown format.       |
 | RGB_565                | 2      | RGB_565.    |
@@ -2416,7 +2442,7 @@ Enumerates the alpha types of images.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name    | Default Value| Description                   |
+| Name    |   Value  | Description                   |
 | -------- | ------ | ----------------------- |
 | UNKNOWN  | 0      | Unknown alpha type.           |
 | OPAQUE   | 1      | There is no alpha or the image is opaque.|
@@ -2429,7 +2455,7 @@ Enumerates the scale modes of images.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name           | Default Value| Description                                              |
+| Name           |   Value  | Description                                              |
 | --------------- | ------ | -------------------------------------------------- |
 | CENTER_CROP     | 1      | Scales the image so that it fills the requested bounds of the target and crops the extra.|
 | FIT_TARGET_SIZE | 0      | Reduces the image size to the dimensions of the target.                          |
@@ -2519,7 +2545,7 @@ Describes the exchangeable image file format (EXIF) information of an image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name             | Default Value                 | Description                    |
+| Name             |   Value                   | Description                    |
 | ----------------- | ----------------------- | ------------------------ |
 | BITS_PER_SAMPLE   | "BitsPerSample"         | Number of bits per pixel.        |
 | ORIENTATION       | "Orientation"           | Image orientation.              |
@@ -2542,7 +2568,7 @@ Enumerates the image formats.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name        | Default Value| Description                |
+| Name        |   Value  | Description                |
 | ------------ | ------ | -------------------- |
 | YCBCR_422_SP | 1000   | YCBCR422 semi-planar format.|
 | JPEG         | 2000   | JPEG encoding format.      |
@@ -2553,7 +2579,7 @@ Enumerates the color component types of images.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
-| Name | Default Value| Description       |
+| Name |   Value  | Description       |
 | ----- | ------ | ----------- |
 | YUV_Y | 1      | Luminance component. |
 | YUV_U | 2      | Chrominance component. |

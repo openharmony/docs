@@ -61,7 +61,7 @@ By default, **singleton** is used.
 
 | API                                             | Description           |
 | --------------------------------------------------- | --------------- |
-| void startAbility(parameter: StartAbilityParameter) | Starts an ability.    |
+| void startAbility(parameter: StartAbilityParameter) | Starts an ability.   |
 | Context getContext():                               | Obtains the application context.|
 | void terminateSelf()                                | Terminates the ability.    |
 | bool hasWindowFocus()                               | Checks whether the ability has focus.   |

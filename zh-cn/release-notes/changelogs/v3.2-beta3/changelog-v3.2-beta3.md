@@ -228,3 +228,29 @@ struct Index {
 **关键的接口/组件变更**
 
 无
+
+## 电源管理子系统
+
+### 修改@ohos.batteryinfo.d.ts文件名
+
+API声明文件@ohos.batteryinfo.d.ts，变更其文件名为@ohos.batteryInfo.d.ts。
+
+**变更影响**
+
+JS/TS 引用该声明时，由`import batteryInfo from '@ohos.batteryinfo';` 变为`import batteryInfo from '@ohos.batteryInfo';`
+
+**关键的接口/组件变更**
+
+无
+
+### 修改runninglock.d.ts文件名
+
+API声明文件@ohos.runninglock.d.ts，变更其文件名为@ohos.runningLock.d.ts。
+
+**变更影响**
+
+JS/TS 引用该声明时，由`import runningLock from '@ohos.runninglock';` 变为`import runningLock from '@ohos.runningLock';`
+
+**关键的接口/组件变更**
+
+无

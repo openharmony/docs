@@ -38,4 +38,6 @@ When an ability is started, an application process as well as a thread for this 
 
 For details about the project directory structure of the FA model, see [OpenHarmony Project Overview](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-project-overview-0000001218440650#section4154183910141).
 
-For details about how to configure the application package structure of the FA model, see [Application Package Structure Configuration File](../quick-start/package-structure.md).
+For details about how to configure the application package structure of the FA model, see [Application Package Structure Configuration File](../quick-start/application-configuration-file-overview-fa.md).
+
+ <!--no_check--> 

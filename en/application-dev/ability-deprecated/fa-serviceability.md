@@ -22,7 +22,9 @@ The differences between **onCommand()** and **onConnect()** are as follows:
 
 ### Creating and Registering a Service Ability
 
-1. Override the Service ability-related lifecycle callbacks to implement your own logic for processing interaction requests. 
+1. Override the Service ability-related lifecycle callbacks to implement your own logic for processing interaction requests.
+   
+    
    
    ```ts
     export default {
@@ -45,7 +47,7 @@ The differences between **onCommand()** and **onConnect()** are as follows:
         }
     }
    ```
-   
+
 2. Register a Service ability.
 
    Declare the Service ability in the **config.json** file by setting its **type** attribute to **service**.
