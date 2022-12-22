@@ -130,7 +130,7 @@
 
 - 如果s_uri的pathRegex不为空，当w_uri满足s_uri**正则表达式**时匹配成功，否则匹配失败；
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 待匹配Ability的skills配置的uris中scheme、host、port、path、pathStartWith和pathRegex属性拼接，如果依次声明了path、pathStartWith和pathRegex属性时，uris将分别拼接为如下三种表达式：
 > 
 > - **全路径表达式**：scheme://host:port/path
@@ -142,7 +142,7 @@
 
 ### type匹配规则
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 此小节所述的type匹配规则的适用性需建立在want参数内type不为空的基础上。当want参数内type为空时请参考[want参数的uri和type匹配规则](#want参数的uri和type匹配规则)。
 
 这里为了简化描述，称want中传入的uri为w_type，待匹配Ability的skills数组中uris的type数据为s_type，具体的匹配规则如下：

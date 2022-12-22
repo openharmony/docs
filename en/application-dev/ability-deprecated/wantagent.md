@@ -2,8 +2,6 @@
 ## When to Use
 The **WantAgent** class encapsulates want information that specifies a particular action, which can be starting an ability or publishing a common event. You can either call **wantAgent.trigger** to trigger a **WantAgent** directly or add a **WantAgent** to a notification so that it will be triggered when users tap the notification.
 
- 
-
 ## Available APIs
 | API                                                                                         | Description|
 | ---------------------------------------------------------------------------------------------- | ----------- |

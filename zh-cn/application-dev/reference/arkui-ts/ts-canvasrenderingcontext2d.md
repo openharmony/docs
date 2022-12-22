@@ -1809,7 +1809,7 @@ transform(a: number, b: number, c: number, d: number, e: number, f: number): voi
 
 transform方法对应一个变换矩阵，想对一个图形进行变化的时候，只要设置此变换矩阵相应的参数，对图形的各个定点的坐标分别乘以这个矩阵，就能得到新的定点的坐标。矩阵变换效果可叠加。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
 >
 > - x' = scaleX \* x + skewY \* y + translateX

@@ -418,7 +418,7 @@ Response类的属性如下表所示。
 
    上述代码为API接口的具体实现。在示例代码中，SDK中create接口的具体实现即为上述示例代码中create方法，该方法调用了AI引擎框架client端提供的AieClientInit及AieClientPrepare接口，从而实现与server端建立连接及加载算法模型的能力。
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > **说明：**
    > 
    > SDK调用AI引擎client端接口应遵循AieClientInit-&gt;AieClientPrepare-&gt;AieClientSyncProcess/AieClientAsyncProcess-&gt;AieClientRelease-&gt;AieClientDestroy顺序，否则调用接口会返回错误码。
 

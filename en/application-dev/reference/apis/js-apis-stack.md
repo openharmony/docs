@@ -1,4 +1,4 @@
-# Linear Container Stack
+# @ohos.util.Stack (Linear Container Stack)
 
 > **NOTE**
 >
@@ -18,9 +18,6 @@ This topic uses the following to identify the use of generics:
 ```ts
 import Stack from '@ohos.util.Stack';  
 ```
-
-
-
 
 ## Stack
 
@@ -53,11 +50,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 
 ```ts
 let stack = new Stack();
-try {
-  let stack2 = Stack();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -99,11 +91,6 @@ let b = [1, 2, 3];
 let result2 = stack.push(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = stack.push(c);
-try {
-  stack.push.bind({}, "b")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### pop
@@ -138,11 +125,6 @@ stack.push(5);
 stack.push(2);
 stack.push(4);
 let result = stack.pop();
-try {
-  stack.pop.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### peek
@@ -176,11 +158,6 @@ stack.push(4);
 stack.push(5);
 stack.push(2);
 let result = stack.peek();
-try {
-  stack.peek.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### locate
@@ -220,16 +197,11 @@ stack.push(4);
 stack.push(5);
 stack.push(2);
 let result = stack.locate(2);
-try {
-  stack.locate.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
 thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
@@ -240,7 +212,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -270,13 +242,6 @@ stack.push(4);
 stack.forEach((value, index) => {
  console.log("value:" + value, index);
 });
-try {
-  stack.forEach.bind({}, (value, index) => {
-    console.log("value:" + value, index);
-  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### isEmpty
@@ -310,11 +275,6 @@ stack.push(4);
 stack.push(5);
 stack.push(4);
 let result = stack.isEmpty();
-try {
-  stack.isEmpty.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### [Symbol.iterator]
@@ -358,10 +318,5 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-}
-try {
-  stack[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

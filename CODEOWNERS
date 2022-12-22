@@ -133,7 +133,7 @@ zh-cn/device-dev/subsystems/subsys-xts-guide.md @Austin23
 zh-cn/application-dev/ability/ @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/IDL/ @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/device-usage-statistics/ @RayShih @shuaytao @wangzhen107 @inter515
-zh-cn/application-dev/ui/ @HelloCrease @qieqiewl @tomatodevboy @niulihua
+zh-cn/application-dev/ui/ @HelloCrease @huaweimaxuchu @tomatodevboy @niulihua
 zh-cn/application-dev/notification/ @RayShih @jayleehw @li-weifeng2 @currydavids
 zh-cn/application-dev/windowmanager/ @ge-yafang @zhangqiang183  @zhouyaoying @zxg-gitee
 zh-cn/application-dev/webgl/ @zengyawen @zhangqiang183  @wind_zj @zxg-gitee
@@ -369,10 +369,10 @@ zh-cn/application-dev/reference/apis/js-apis-inputconsumer.md @mayunteng_1 @ning
 zh-cn/application-dev/reference/apis/js-apis-inputdevice.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-inputevent.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-inputeventclient.md @mayunteng_1 @ningningW @cococoler @alien0208
-zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-ability.md @feng-aiwen @ge-yafang @SuperShrimp @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-context.md @feng-aiwen @ge-yafang @SuperShrimp @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-inputmethod.md @feng-aiwen @ge-yafang @SuperShrimp @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md @feng-aiwen @ge-yafang @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-ability.md @feng-aiwen @ningningW @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-context.md @feng-aiwen @ningningW @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-inputmethod.md @feng-aiwen @ningningW @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md @feng-aiwen @ningningW @SuperShrimp @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-inputmonitor.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-intl.md @Buda-Liu @ningningW @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-keycode.md @mayunteng_1 @ningningW @cococoler @alien0208
@@ -412,7 +412,7 @@ zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @Buda-Liu @ning
 zh-cn/application-dev/reference/apis/js-apis-router.md @huaweimaxuchu @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-rpc.md @xuepianpian @RayShih @zhaopeng_gitee @vagrant_world
 zh-cn/application-dev/reference/apis/js-apis-runninglock.md @aqxyjay @zengyawen @aqxyjay @alien0208
-zh-cn/application-dev/reference/apis/js-apis-screen-lock.md @feng-aiwen @ge-yafang @wangzhangjun @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-screen-lock.md @feng-aiwen @ningningW @wangzhangjun @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-screen.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-screenshot.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-securityLabel.md @panqinxu @zengyawen @bubble_mao @jinhaihw
@@ -446,8 +446,8 @@ zh-cn/application-dev/reference/apis/js-apis-system-request.md @zhang-hai-feng @
 zh-cn/application-dev/reference/apis/js-apis-system-router.md @huaweimaxuchu @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-system-sensor.md @hellohyh001 @ningningW @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/reference/apis/js-apis-system-storage.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-system-time.md @feng-aiwen @ge-yafang @illybyy @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-system-timer.md @feng-aiwen @ge-yafang @illybyy @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-system-time.md @feng-aiwen @ningningW @illybyy @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-system-timer.md @feng-aiwen @ningningW @illybyy @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-system-vibrate.md @hellohyh001 @ningningW @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/reference/apis/js-apis-telephony-data.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-testRunner.md @inter515 @littlejerry1 @RayShih @inter515 @jiyong
@@ -466,7 +466,7 @@ zh-cn/application-dev/reference/apis/js-apis-util.md @gongjunsong @ge-yafang @fl
 zh-cn/application-dev/reference/apis/js-apis-vector.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
 zh-cn/application-dev/reference/apis/js-apis-vibrator.md @hellohyh001 @ningningW @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/reference/apis/js-apis-volumemanager.md @panqinxu @zengyawen @bubble_mao @jinhaihw
-zh-cn/application-dev/reference/apis/js-apis-wallpaper.md @feng-aiwen @ge-yafang @wangzhangjun @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-wallpaper.md @feng-aiwen @ningningW @wangzhangjun @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-wantAgent.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-webgl.md @zhangqiang183  @ge-yafang @wind_zj @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-webgl2.md @zhangqiang183  @ge-yafang @wind_zj @zxg-gitee
@@ -527,7 +527,7 @@ zh-cn/application-dev/reference/apis/js-apis-fileExtensionInfo.md @panqinxu @zen
 zh-cn/application-dev/reference/apis/js-apis-freeInstall.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-geoLocationManager.md @cheng_guohong @RayShih @cheng_guohong @xiangkejin123
 zh-cn/application-dev/reference/apis/js-apis-hiviewdfx-hiappevent.md @stone2050 @zengyawen @stesen @elsen-liu
-zh-cn/application-dev/reference/apis/js-apis-inputmethod-subtype.md @feng-aiwen @ge-yafang @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-inputmethod-subtype.md @feng-aiwen @ningningW @SuperShrimp @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-installer.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-launcherBundleManager.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-matrix4.md @huaweimaxuchu @HelloCrease @niulihua @tomatodevboy
@@ -581,7 +581,7 @@ zh-cn/application-dev/reference/errorcodes/errorcode-hisysevent.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-hiviewdfx-hidebug.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-huks.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-i18n.md @ningningW
-zh-cn/application-dev/reference/errorcodes/errorcode-inputmethod-framework.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errorcode-inputmethod-framework.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-multimodalinput.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-nfc.md @RayShih
 zh-cn/application-dev/reference/errorcodes/errorcode-pasteboard.md @ge-yafang

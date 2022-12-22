@@ -28,7 +28,7 @@ getSak(): number
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -54,7 +54,7 @@ getAtqa(): number[]
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -88,7 +88,7 @@ getRespAppData(): number[]
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -114,7 +114,7 @@ getRespProtocol(): number[]
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -148,7 +148,7 @@ getSystemCode(): number[]
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -174,7 +174,7 @@ getPmm(): number[]
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -208,7 +208,7 @@ getResponseFlags(): number
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -234,7 +234,7 @@ getDsfId(): number
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -266,7 +266,7 @@ getHistoricalBytes(): number[]
 
 获取标签的历史字节，针对基于NfcA通信技术的IsoDep卡片。
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -290,7 +290,7 @@ getHiLayerResponse(): number[]
 
 获取标签的更高层响应字节，针对基于NfcB通信技术的IsoDep卡片。
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -316,7 +316,7 @@ isExtendedApduSupported(): Promise&lt;boolean&gt;
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -367,7 +367,7 @@ isExtendedApduSupported(callback: AsyncCallback\<boolean>): void
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -419,7 +419,7 @@ getNdefRecords(): [tag.NdefRecord](js-apis-nfcTag.md#ndefrecord9)[]
 
 获取NDEF消息中的所有记录。
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -454,7 +454,7 @@ getNdefTagType(): [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)
 
 获取NDEF标签的类型。
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -478,7 +478,7 @@ getNdefMessage(): [NdefMessage](#ndefmessage9)
 
 获取发现NDEF标签时，从标签读取的Message。
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -501,7 +501,7 @@ isNdefWritable(): boolean;
 
 检查NDEF标签是否可写。在调用写数据接口前，需要先判断是否支持写操作。
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -527,7 +527,7 @@ readNdef(): Promise\<[NdefMessage](#ndefmessage9)>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -577,7 +577,7 @@ readNdef(callback: AsyncCallback\<[NdefMessage](#ndefmessage9)>): void
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -629,7 +629,7 @@ writeNdef(msg: NdefMessage): Promise\<void>;
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -682,7 +682,7 @@ writeNdef(msg: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): vo
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -738,7 +738,7 @@ canSetReadOnly(): boolean
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -772,7 +772,7 @@ setReadOnly(): Promise\<void>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **错误码：**
 
@@ -816,7 +816,7 @@ setReadOnly(callback: AsyncCallback\<void>): void
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -866,7 +866,7 @@ getNdefTagTypeString(type: [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)):
 
 将NFC论坛类型，转换为NFC论坛中定义的字符串描述。
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -911,7 +911,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean): Promise
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -965,7 +965,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1021,7 +1021,7 @@ readSingleBlock(blockIndex: number): Promise\<number[]>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1078,7 +1078,7 @@ readSingleBlock(blockIndex: number, callback: AsyncCallback\<number[]>): void
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1132,7 +1132,7 @@ writeSingleBlock(blockIndex: number, data: number[]): Promise\<void>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1186,7 +1186,7 @@ writeSingleBlock(blockIndex: number, data: number[], callback: AsyncCallback\<vo
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1243,7 +1243,7 @@ incrementBlock(blockIndex: number, value: number): Promise\<void>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1296,7 +1296,7 @@ incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1352,7 +1352,7 @@ decrementBlock(blockIndex: number, value: number): Promise\<void>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1405,7 +1405,7 @@ decrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1461,7 +1461,7 @@ transferToBlock(blockIndex: number): Promise\<void>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1512,7 +1512,7 @@ transferToBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1566,7 +1566,7 @@ restoreFromBlock(blockIndex: number): Promise\<void>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1617,7 +1617,7 @@ restoreFromBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1669,7 +1669,7 @@ getSectorCount(): number
 
 获取MIFARE Classic标签中的扇区数。
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -1693,7 +1693,7 @@ getBlockCountInSector(sectorIndex: number): number
 
 获取指定扇区中的块数。
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1729,7 +1729,7 @@ getType(): [tag.MifareClassicType](js-apis-nfcTag.md#mifareclassictype9)
 
 获取MIFARE Classic标签的类型。
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -1753,7 +1753,7 @@ getTagSize(): number
 
 获取标签的存储空间大小，具体请参见[MifareClassicSize](js-apis-nfcTag.md#mifareclassicsize9)。
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -1777,7 +1777,7 @@ isEmulatedTag(): boolean
 
 检查标签是不是被模拟的。
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -1801,7 +1801,7 @@ getBlockIndex(sectorIndex: number): number
 
 获取特定扇区的第一个块的序号。
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1837,7 +1837,7 @@ getSectorIndex(blockIndex: number): number
 
 获取包含指定块号的扇区序号。
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1883,7 +1883,7 @@ readMultiplePages(pageIndex: number): Promise\<number[]>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1941,7 +1941,7 @@ readMultiplePages(pageIndex: number, callback: AsyncCallback\<number[]>): void
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -1995,7 +1995,7 @@ writeSinglePage(pageIndex: number, data: number[]): Promise\<void>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -2048,7 +2048,7 @@ writeSinglePage(pageIndex: number, data: number[], callback: AsyncCallback\<void
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -2102,7 +2102,7 @@ getType(): [tag.MifareUltralightType](js-apis-nfcTag.md#mifareultralighttype9)
 
 获取MIFARE Ultralight标签的类型。
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -2136,7 +2136,7 @@ format(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -2190,7 +2190,7 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): v
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -2245,7 +2245,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -2299,7 +2299,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<v
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 

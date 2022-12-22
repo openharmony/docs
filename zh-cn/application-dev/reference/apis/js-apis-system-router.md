@@ -67,7 +67,7 @@ export default {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 页面路由栈支持的最大Page数量为32。
 
 
@@ -183,7 +183,7 @@ export default {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 示例中的uri字段是页面路由，由配置文件中的pages列表指定。
 
 ## router.getParams

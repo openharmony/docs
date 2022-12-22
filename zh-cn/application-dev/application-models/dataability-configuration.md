@@ -23,7 +23,7 @@ URI示例：
 
 - 本地设备：dataability:///_com.domainname.dataability.persondata_/_person_/_1_
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本地设备的"device_id"字段为空，因此在"dataability:"后面有三个"/"。
 
 

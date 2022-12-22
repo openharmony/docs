@@ -2,7 +2,7 @@
 
 位置服务提供GNSS定位、网络定位、地理编码、逆地理编码、国家码和地理围栏等基本功能。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 从API Version 9开始，该接口不再维护，推荐使用新接口[geoLocationManager](js-apis-geoLocationManager.md)。
 
@@ -61,11 +61,11 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
   | type | string | 是 | 设置事件类型。type为“locationChange”，表示位置变化。 |
   | request |  [LocationRequest](#locationrequest) | 是 | 设置位置请求参数。 |
   | callback | Callback&lt;[Location](#location)&gt; | 是 | 接收位置变化状态变化监听。 |
-  
+
 
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
@@ -98,7 +98,7 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
@@ -132,7 +132,7 @@ on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;): void
 
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var locationServiceState = (state) => {
@@ -164,7 +164,7 @@ off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void;
 
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var locationServiceState = (state) => {
@@ -199,7 +199,7 @@ on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, ca
 
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var cachedLocationsCb = (locations) => {
@@ -233,7 +233,7 @@ off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Locati
 
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var cachedLocationsCb = (locations) => {
@@ -268,7 +268,7 @@ on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): voi
 
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var gnssStatusCb = (satelliteStatusInfo) => {
@@ -300,7 +300,7 @@ off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): v
   | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfo)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var gnssStatusCb = (satelliteStatusInfo) => {
@@ -334,7 +334,7 @@ on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
 
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var nmeaCb = (str) => {
@@ -367,7 +367,7 @@ off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void;
 
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var nmeaCb = (str) => {
@@ -402,7 +402,7 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   import wantAgent from '@ohos.wantAgent';
@@ -450,7 +450,7 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
   | want | WantAgent | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   import wantAgent from '@ohos.wantAgent';
@@ -497,7 +497,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
   | callback | AsyncCallback&lt;[Location](#location)&gt; | 是 | 用来接收位置信息的回调。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
@@ -534,7 +534,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void
   | callback | AsyncCallback&lt;[Location](#location)&gt; | 是 | 用来接收位置信息的回调。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var locationChange = (err, location) => {
@@ -576,7 +576,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
@@ -607,7 +607,7 @@ getLastLocation(callback: AsyncCallback&lt;Location&gt;): void
 
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.getLastLocation((err, data) => {
@@ -642,7 +642,7 @@ getLastLocation(): Promise&lt;Location&gt;
 
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.getLastLocation().then((result) => {
@@ -671,7 +671,7 @@ isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;): void
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.isLocationEnabled((err, data) => {
@@ -705,7 +705,7 @@ isLocationEnabled(): Promise&lt;boolean&gt;
   | Promise&lt;boolean&gt; | boolean|NA|返回位置服务是否可用的状态。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.isLocationEnabled().then((result) => {
@@ -734,7 +734,7 @@ requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;): void
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.requestEnableLocation((err, data) => {
@@ -768,7 +768,7 @@ requestEnableLocation(): Promise&lt;boolean&gt;
   | Promise&lt;boolean&gt; | boolean|NA|返回位置服务是否可用。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.requestEnableLocation().then((result) => {
@@ -797,7 +797,7 @@ isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;): void
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收地理编码服务状态的回调。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.isGeoServiceAvailable((err, data) => {
@@ -831,7 +831,7 @@ isGeoServiceAvailable(): Promise&lt;boolean&gt;
   | Promise&lt;boolean&gt; |boolean|NA| 返回地理编码服务是否可用的状态。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.isGeoServiceAvailable().then((result) => {
@@ -861,7 +861,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
   | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 是 | 设置接收逆地理编码请求的回调参数。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
@@ -902,7 +902,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
   | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Array&lt;[GeoAddress](#geoaddress)&gt;|NA|返回地理描述信息。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
@@ -933,7 +933,7 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
   | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 是 | 设置接收地理编码请求的回调参数。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
@@ -974,7 +974,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
   | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Array&lt;[GeoAddress](#geoaddress)&gt;|NA|设置接收地理编码请求的回调参数。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
@@ -1005,7 +1005,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
   | callback | AsyncCallback&lt;number&gt; | 是 | 用来接收GNSS芯片缓存位置个数的回调。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.getCachedGnssLocationsSize((err, size) => {
@@ -1040,7 +1040,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
   | Promise&lt;number&gt; | number|NA|返回GNSS缓存位置的个数。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.getCachedGnssLocationsSize().then((result) => {
@@ -1070,7 +1070,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void;
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收清空GNSS芯片缓存位置操作的结果。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.flushCachedGnssLocations((err, result) => {
@@ -1105,7 +1105,7 @@ flushCachedGnssLocations(): Promise&lt;boolean&gt;;
   | Promise&lt;boolean&gt; |boolean|NA| 清空所有GNSS缓存位置是否成功。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.flushCachedGnssLocations().then((result) => {
@@ -1136,7 +1136,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): v
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收命令发送的结果。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var requestInfo = {'scenario': 0x301, 'command': "command_1"};
@@ -1178,7 +1178,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
   | Promise&lt;boolean&gt; |boolean|NA| 表示命令发送成功或失败。 |
 
 **示例**
-  
+
   ```ts
   import geolocation from '@ohos.geolocation';
   var requestInfo = {'scenario': 0x301, 'command': "command_1"};

@@ -1,4 +1,4 @@
-# Linear Container Queue
+# @ohos.util.Queue (Linear Container Queue)
 
 > **NOTE**
 >
@@ -51,11 +51,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 
 ```ts
 let queue = new Queue();
-try {
-  let queue2 = Queue();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -97,11 +92,6 @@ let b = [1, 2, 3];
 let result2 = queue.add(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = queue.add(c);
-try {
-  queue.add.bind({}, "b")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### pop
@@ -136,11 +126,6 @@ queue.add(5);
 queue.add(2);
 queue.add(4);
 let result = queue.pop();
-try {
-  queue.pop.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getFirst
@@ -151,7 +136,7 @@ Obtains the first element of this container.
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Parameters**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -174,16 +159,11 @@ queue.add(4);
 queue.add(5);
 queue.add(2);
 let result = queue.getFirst();
-try {
-  queue.getFirst.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
 thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
@@ -194,7 +174,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -224,13 +204,6 @@ queue.add(4);
 queue.forEach((value, index) => {
   console.log("value:" + value, index);
 });
-try {
-  queue.forEach.bind({}, (value, index) => {
-    console.log("value:" + value, index);
-  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### [Symbol.iterator]
@@ -274,10 +247,5 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-}
-try {
-  queue[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

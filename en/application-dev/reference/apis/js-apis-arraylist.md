@@ -1,4 +1,4 @@
-# Linear Container ArrayList
+# @ohos.util.ArrayList (Linear Container ArrayList)
 
 > **NOTE**
 >
@@ -52,11 +52,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 
 ```ts
 let arrayList = new ArrayList();
-try {
-  let arrayList2 = ArrayList();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -90,21 +85,16 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 
 **Example**
 
-  ```ts
-  let arrayList = new ArrayList();
-  let result = arrayList.add("a");
-  let result1 = arrayList.add(1);
-  let b = [1, 2, 3];
-  let result2 = arrayList.add(b);
-  let c = {name: "Dylon", age: "13"};
-  let result3 = arrayList.add(c);
-  let result4 = arrayList.add(false);
-  try {
-    arrayList.add.bind({}, "b")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-  } catch(err) {
-    console.log(`${err.code} - ${err.name} - ${err.message}`);
-  }
-  ```
+```ts
+let arrayList = new ArrayList();
+let result = arrayList.add("a");
+let result1 = arrayList.add(1);
+let b = [1, 2, 3];
+let result2 = arrayList.add(b);
+let c = {name: "Dylon", age: "13"};
+let result3 = arrayList.add(c);
+let result4 = arrayList.add(false);
+```
 
 ### insert
 
@@ -128,7 +118,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The insert method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -137,21 +127,6 @@ let arrayList = new ArrayList();
 arrayList.insert("A", 0);
 arrayList.insert(0, 1);
 arrayList.insert(true, 2);
-try {
-  arrayList.insert.bind({}, 1, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  let res = arrayList.insert (8, 11); // Trigger an out-of-bounds exception.
-} catch (err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  let res = arrayList.insert("a", "b"); // Trigger a type exception.
-} catch (err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### has
@@ -189,11 +164,6 @@ let arrayList = new ArrayList();
 let result = arrayList.has("squirrel");
 arrayList.add("squirrel");
 let result1 = arrayList.has("squirrel");
-try {
-  arrayList.has.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getIndexOf
@@ -236,11 +206,6 @@ arrayList.add(1);
 arrayList.add(2);
 arrayList.add(4);
 let result = arrayList.getIndexOf(2);
-try {
-  arrayList.getIndexOf.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getLastIndexOf
@@ -283,11 +248,6 @@ arrayList.add(1);
 arrayList.add(2);
 arrayList.add(4);
 let result = arrayList.getLastIndexOf(2);
-try {
-  arrayList.getLastIndexOf.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### removeByIndex
@@ -317,7 +277,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The removeByIndex method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -329,21 +289,6 @@ arrayList.add(5);
 arrayList.add(2);
 arrayList.add(4);
 let result = arrayList.removeByIndex(2);
-try {
-  arrayList.removeByIndex.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  arrayList.removeByIndex("a"); // Trigger a type exception.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  arrayList.removeByIndex(8); // Trigger an out-of-bounds exception.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### remove
@@ -383,11 +328,6 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result = arrayList.remove(2);
-try {
-  arrayList.remove.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### removeByRange
@@ -412,7 +352,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The removeByRange method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -423,21 +363,11 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.removeByRange(2, 4);
-try {
-  arrayList.removeByRange.bind({}, 2, 4)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  arrayList.removeByRange(8, 4); // Trigger an out-of-bounds exception.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### replaceAllElements
 
-replaceAllElements(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => T,
+replaceAllElements(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => T,
 thisArg?: Object): void
 
 Replaces all elements in this container with new elements, and returns the new ones.
@@ -448,7 +378,7 @@ Replaces all elements in this container with new elements, and returns the new o
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked for the replacement.|
+| callbackFn | function | Yes| Callback invoked for the replacement.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -481,18 +411,11 @@ arrayList.replaceAllElements((value: number, index: number)=> {
 arrayList.replaceAllElements((value: number, index: number) => {
   return value = value - 2;
 });
-try {
-  arrayList.replaceAllElements.bind({}, (value: number, index: number)=> {
-    return value = 2 * value;
-  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
 thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
@@ -503,7 +426,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -533,13 +456,6 @@ arrayList.add(4);
 arrayList.forEach((value, index) => {
   console.log(`value:${value}`, index);
 });
-try {
-  arrayList.forEach.bind({}, (value, index) => {
-    console.log(`value:${value}`, index);
-  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### sort
@@ -582,11 +498,6 @@ arrayList.add(4);
 arrayList.sort((a: number, b: number) => a - b);
 arrayList.sort((a: number, b: number) => b - a);
 arrayList.sort();
-try {
-  arrayList.sort.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### subArrayList
@@ -617,7 +528,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The subArrayList method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -630,16 +541,6 @@ arrayList.add(4);
 let result1 = arrayList.subArrayList(2, 4);
 let result2 = arrayList.subArrayList(4, 3);
 let result3 = arrayList.subArrayList(2, 6);
-try {
-  arrayList.subArrayList.bind({}, 2, 4)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  arrayList.subArrayList(6, 4);
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### clear
@@ -667,11 +568,6 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.clear();
-try {
-  arrayList.clear.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### clone
@@ -706,11 +602,6 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result = arrayList.clone();
-try {
-  arrayList.clone.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getCapacity
@@ -744,11 +635,6 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result = arrayList.getCapacity();
-try {
-  arrayList.getCapacity.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### convertToArray
@@ -782,11 +668,6 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result = arrayList.convertToArray();
-try {
-  arrayList.convertToArray.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### isEmpty
@@ -820,11 +701,6 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result = arrayList.isEmpty();
-try {
-  arrayList.isEmpty.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### increaseCapacityTo
@@ -859,11 +735,6 @@ arrayList.add(5);
 arrayList.add(4);
 arrayList.increaseCapacityTo(2);
 arrayList.increaseCapacityTo(8);
-try {
-  arrayList.increaseCapacityTo.bind({}, 5)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### trimToCurrentLength
@@ -891,11 +762,6 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.trimToCurrentLength();
-try {
-  arrayList.trimToCurrentLength.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### [Symbol.iterator]
@@ -940,10 +806,5 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log(`value:${temp}`);
   temp = iter.next().value;
-}
-try {
-  arrayList[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

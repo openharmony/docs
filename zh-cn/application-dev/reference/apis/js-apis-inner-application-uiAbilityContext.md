@@ -1,8 +1,6 @@
 # UIAbilityContext
 
-UIAbilityContext是UIAbility的上下文环境，继承自Context。
-
-UIAbilityContext模块提供允许访问特定UIAbility的资源的能力，包括对UIAbility的启动、停止的设置、获取caller通信接口、拉起弹窗请求用户授权等。
+UIAbilityContext是[UIAbility](js-apis-app-ability-uiAbility.md)的上下文环境，继承自[Context](js-apis-inner-application-context.md)，提供UIAbility的相关配置信息以及操作UIAbility和ServiceExtensionAbility的方法，如启动UIAbility，停止当前UIAbilityContext所属的UIAbility，启动、停止、连接、断开连接ServiceExtensionAbility等。
 
 > **说明：**
 >
@@ -15,9 +13,12 @@ UIAbilityContext模块提供允许访问特定UIAbility的资源的能力，包�
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是 | 否 | Abilityinfo相关信息 |
-| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前hap包的信息 |
-| config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 表示配置信息。 |
+| abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是 | 否 | UIAbility的相关信息。 |
+| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前HAP包的信息。 |
+| config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 与UIAbility相关的配置信息，如语言、颜色模式等。 |
+
+> **关于示例代码的说明：**
+> - 本文档中的示例，通过this.context获取UIAbilityContext，this代表的是继承自UIAbility的UIAbility实例，若需要在页面中使用UIAbilityContext的能力，请参照[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)
 
 ## UIAbilityContext.startAbility
 
@@ -32,7 +33,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **错误码：**
 
@@ -83,7 +84,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
-
 
 ## UIAbilityContext.startAbility
 
@@ -150,7 +150,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
@@ -213,7 +213,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
   try {
     this.context.startAbility(want, options)
-      .then((data) => {
+      .then(() => {
         // 执行正常业务
         console.log('startAbility succeed');
       })
@@ -224,11 +224,10 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
-
 
 ## UIAbilityContext.startAbilityForResult
 
@@ -292,7 +291,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
@@ -461,8 +460,8 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| callback | AsyncCallback\<AbilityResult\> | 是 | 启动Ability的回调函数，返回Ability结果。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 启动Ability的回调函数，返回Ability结果。 |
 
 **错误码：**
 
@@ -509,11 +508,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
       }
       // 执行正常业务
       console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
-        result.resultCode)
+        result.resultCode + ' result.want = ' + JSON.stringify(result.want))
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
@@ -523,7 +522,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
 
-启动一个Ability并在该Ability帐号销毁时返回执行结果（callback形式）。
+启动一个Ability并在该Ability销毁时返回执行结果（callback形式）。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -536,9 +535,9 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
+| callback | AsyncCallback\<void\> | 是 | 启动Ability后，Ability被销毁时的回调函数。 |
 
 **错误码：**
 
@@ -579,7 +578,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
   };
 
   try {
-    this.context.startAbilityForResultWithAccount(want, accountId, options, (error, result) => {
+    this.context.startAbilityForResultWithAccount(want, accountId, options, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
         console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(error.code) +
@@ -588,11 +587,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
       }
       // 执行正常业务
       console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
-        result.resultCode)
+        result.resultCode + ' result.want = ' + JSON.stringify(result.want))
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
@@ -602,7 +601,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>;
 
-启动一个Ability并在该Ability帐号销毁时返回执行结果（promise形式）。
+启动一个Ability并在该Ability销毁时返回执行结果（promise形式）。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -615,14 +614,14 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;AbilityResult&gt; | 返回一个Promise，包含Ability结果。 |
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Ability被销毁时的回调函数，包含Ability结果。 |
 
 **错误码：**
 
@@ -736,7 +735,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
@@ -755,7 +754,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
 
 **错误码：**
 
@@ -785,7 +784,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
   try {
     this.context.startServiceExtensionAbility(want)
-      .then((data) => {
+      .then(() => {
         // 执行正常业务
         console.log('startServiceExtensionAbility succeed');
       })
@@ -796,7 +795,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
@@ -818,7 +817,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
@@ -858,7 +857,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
@@ -880,7 +879,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 
 **错误码：**
 
@@ -923,7 +922,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
@@ -980,7 +979,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
@@ -999,7 +998,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-application-want.md) | 是 | 停止ServiceExtensionAbility的want信息。 |
 
 **错误码：**
 
@@ -1037,7 +1036,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
@@ -1046,7 +1045,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
 
-使用帐户停止同一应用程序内的服务（callback形式）。
+停止同一应用程序内指定账户的服务（callback形式）。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1058,9 +1057,9 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
+| want | [Want](js-apis-application-want.md) | 是 | 停止ServiceExtensionAbility的want信息。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
+| callback | AsyncCallback\<void\> | 是 | 停止ServiceExtensionAbility的回调函数。 |
 
 **错误码：**
 
@@ -1100,7 +1099,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
@@ -1109,7 +1108,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
 
-使用帐户停止同一应用程序内的服务（Promise形式）。
+停止同一应用程序内指定账户的服务（Promise形式）。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1121,8 +1120,8 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+| want | [Want](js-apis-application-want.md) | 是 | 停止ServiceExtensionAbility的want信息。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 
 **错误码：**
 
@@ -1162,7 +1161,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
@@ -1179,7 +1178,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 停止Ability自身的回调函数。 |
 
 **错误码：**
 
@@ -1195,16 +1194,22 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  this.context.terminateSelf((error) => {
-    if (error.code) {
-      // 处理业务逻辑错误
-      console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-      return;
-    }
-    // 执行正常业务
-    console.log('terminateSelf succeed');
-  });
+  try {
+    this.context.terminateSelf((error) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // 执行正常业务
+      console.log('terminateSelf succeed');
+    });
+  } catch (error) {
+    // 捕获同步的参数错误
+    console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
+      ' error.message: ' + JSON.stringify(error.message));
+  }
   ```
 
 
@@ -1236,14 +1241,22 @@ terminateSelf(): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  this.context.terminateSelf().then((data) => {
-    // 执行正常业务
-    console.log('terminateSelf succeed');
-  }).catch((error) => {
-    // 处理业务逻辑错误
+  try {
+    this.context.terminateSelf()
+      .then(() => {
+        // 执行正常业务
+        console.log('terminateSelf succeed');
+      })
+      .catch((error) => {
+        // 处理业务逻辑错误
+        console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (error) {
+    // 捕获同步的参数错误
     console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
       ' error.message: ' + JSON.stringify(error.message));
-  });
+  }
   ```
 
 
@@ -1300,7 +1313,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
     });
   } catch (paramError) {
       // 处理入参错误异常
-      console.log('error.code: ' + JSON.stringify(paramError.code) +
+      console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(paramError.code) +
         ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
@@ -1365,7 +1378,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
@@ -1374,7 +1387,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
-使用AbilityInfo.AbilityType.SERVICE模板将当前Ability连接到一个Ability。
+将当前Ability连接到一个使用AbilityInfo.AbilityType.SERVICE模板的Ability。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1434,7 +1447,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
 
-使用AbilityInfo.AbilityType.SERVICE模板和account将当前Ability连接到一个Ability。
+将当前Ability连接到一个使用AbilityInfo.AbilityType.SERVICE模板的指定account的Ability。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1447,7 +1460,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 否 | 远端对象实例。 |
 
 **返回值：**
@@ -1498,7 +1511,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
-断开连接（promise形式）。
+断开与ServiceExtensionAbility的连接（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1508,7 +1521,7 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 连接的Ability的数字代码。 |
+| connection | number | 是 | 连接的ServiceExtensionAbility的数字代码，即connectServiceExtensionAbility返回的connectionId。 |
 
 **返回值：**
 
@@ -1555,7 +1568,7 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
 disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<void>): void;
 
-断开连接（callback形式）。
+断开与ServiceExtensionAbility的连接（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1565,7 +1578,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 连接的Ability的数字代码。 |
+| connection | number | 是 | 连接的ServiceExtensionAbility的数字代码，即connectServiceExtensionAbility返回的connectionId。 |
 | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **错误码：**
@@ -1694,7 +1707,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void;
 
-根据account启动Ability（callback形式）。
+根据accountId启动Ability（callback形式）。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1707,7 +1720,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
@@ -1768,7 +1781,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
 
-根据account启动Ability（callback形式）。
+根据accountId及startOptions启动Ability（callback形式）。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1781,7 +1794,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。|
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
@@ -1836,7 +1849,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
@@ -1846,7 +1859,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>;
 
-根据account启动Ability（Promise形式）。
+根据accountId和startOptions启动Ability（Promise形式）。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1859,7 +1872,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **错误码：**
@@ -1913,12 +1926,15 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
+    console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
       ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
 ## UIAbilityContext.requestPermissionsFromUser
+
+> **说明：**
+> - 该接口自API version 9已废弃。
 
 requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void;
 
@@ -1945,6 +1961,9 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
 
 
 ## UIAbilityContext.requestPermissionsFromUser
+
+> **说明：**
+> - 该接口自API version 9已废弃。
 
 requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;PermissionRequestResult&gt;;
 
@@ -1995,7 +2014,7 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  this.context.setMissionLabel("test",(result) => {
+  this.context.setMissionLabel("test", (result) => {
       console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
   ```

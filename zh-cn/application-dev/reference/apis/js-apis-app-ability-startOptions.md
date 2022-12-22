@@ -21,4 +21,4 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | [windowMode](js-apis-application-abilityConstant.md#abilityconstantwindowmode) | number | 否 | 窗口模式。 |
-| displayId | number | 否 | 显示ID。 |
+| displayId | number | 否 | 屏幕ID。默认是0，表示当前屏幕。 |

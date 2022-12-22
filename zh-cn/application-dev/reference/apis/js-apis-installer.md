@@ -1,6 +1,6 @@
 # @ohos.bundle.installer (installer模块)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 在设备上安装、升级和卸载应用

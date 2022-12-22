@@ -2,7 +2,7 @@
 
 该模块提供充电状态及剩余电量的查询功能。
 
->  ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 >  - 从API Version 6开始不再维护，建议使用[`@ohos.batteryInfo`](js-apis-battery-info.md)替代。
 >  - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 

@@ -1,6 +1,6 @@
 # Key Event
 
-Represents key events reported by an input device.
+The Key Event module provides key events reported by an input device.
 
 >  **NOTE**
 >

@@ -46,19 +46,19 @@ For details about how to use DevEco Studio to start the test framework, see [Ope
 
 ## Introduction to TestRunner
 
-**TestRunner** is the entry class of the test framework test process. When the test process is started, the system calls related APIs in **TestRunner**. You need to inherit this class and override the **onPrepare** and **onRun** APIs. When creating an application template, DevEco Studio initializes the default **TestRunner** and starts the default **TestAbility** in the **onRun** API. You can modify the test code of **TestAbility** or override **onPrepare** and **onRun** in **TestRunner** to implement your own test code. For details, see [TestRunner](../reference/apis/js-apis-testRunner.md).
+**TestRunner** is the entry class of the test framework test process. When the test process is started, the system calls related APIs in **TestRunner**. You need to inherit this class and override the **onPrepare** and **onRun** APIs. When creating an application template, DevEco Studio initializes the default **TestRunner** and starts the default **TestAbility** in the **onRun** API. You can modify the test code of **TestAbility** or override **onPrepare** and **onRun** in **TestRunner** to implement your own test code. For details, see [TestRunner](../reference/apis/js-apis-application-testRunner.md).
 
 ## Introduction to AbilityDelegatorRegistry
 
-**AbilityDelegatorRegistry** is the **AbilityDelegator** repository class provided by the test framework. You can use **AbilityDelegatorRegistry** to obtain an **AbilityDelegator** instance and the input and generated parameters **AbilityDelegatorArgs** during the test. You can use **AbilityDelegator** to invoke the function set provided by the test framework for testing and verification. For details, see [AbilityDelegatorRegistry](../reference/apis/js-apis-abilityDelegatorRegistry.md).
+**AbilityDelegatorRegistry** is the **AbilityDelegator** repository class provided by the test framework. You can use **AbilityDelegatorRegistry** to obtain an **AbilityDelegator** instance and the input and generated parameters **AbilityDelegatorArgs** during the test. You can use **AbilityDelegator** to invoke the function set provided by the test framework for testing and verification. For details, see [AbilityDelegatorRegistry](../reference/apis/js-apis-application-abilityDelegatorRegistry.md).
 
 ## Introduction to AbilityDelegatorArgs
 
-**AbilityDelegatorArgs** is a test parameter class provided by the test framework. You can use **AbilityDelegatorArgs** to obtain the parameters passed and generated during the test. For details, see [AbilityDelegatorArgs](../reference/apis/js-apis-application-abilityDelegatorArgs.md).
+**AbilityDelegatorArgs** is a test parameter class provided by the test framework. You can use **AbilityDelegatorArgs** to obtain the parameters passed and generated during the test. For details, see [AbilityDelegatorArgs](../reference/apis/js-apis-inner-application-abilityDelegatorArgs.md).
 
 ## Introduction to AbilityMonitor
 
-**AbilityMonitor** is provided by the test framework for binding to and listening for abilities. You can use **AbilityMonitor** to bind to an **Ability** instance and add **AbilityMonitor** to the listening list. When **AbilityMonitor** is bound to an ability, the creation and lifecycle changes of the ability will trigger the related callback in **AbilityMonitor**. You can test and verify the ability in these callbacks. For details, see [AbilityMonitor](../reference/apis/js-apis-application-abilityMonitor.md).
+**AbilityMonitor** is provided by the test framework for binding to and listening for abilities. You can use **AbilityMonitor** to bind to an **Ability** instance and add **AbilityMonitor** to the listening list. When **AbilityMonitor** is bound to an ability, the creation and lifecycle changes of the ability will trigger the related callback in **AbilityMonitor**. You can test and verify the ability in these callbacks. For details, see [AbilityMonitor](../reference/apis/js-apis-inner-application-abilityMonitor.md).
 
 **Example**
 
@@ -131,7 +131,7 @@ abilityDelegator.startAbility(want, (err, data) => {
 
 ### Scheduling the Ability Lifecycle
 
-**AbilityDelegator** provides APIs to display and schedule the ability lifecycle and supports the foreground and background. It works with **AbilityMonitor** to listen for the ability lifecycle. For details, see [AbilityDelegator](../reference/apis/js-apis-application-abilityDelegator.md).
+**AbilityDelegator** provides APIs to display and schedule the ability lifecycle and supports the foreground and background. It works with **AbilityMonitor** to listen for the ability lifecycle. For details, see [AbilityDelegator](../reference/apis/js-apis-inner-application-abilityDelegator.md).
 
 ### Running a Shell Command
 

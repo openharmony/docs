@@ -1,4 +1,4 @@
-# Nonlinear Container LightWeightMap 
+# @ohos.util.LightWeightMap (Nonlinear Container LightWeightMap) 
 
 > **NOTE**
 >
@@ -54,11 +54,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-try {
-  let lightWeightMap2 = LightWeightMap();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -89,11 +84,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 ```ts
 const lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.isEmpty();
-try {
-  lightWeightMap.isEmpty.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -134,11 +124,6 @@ lightWeightMap.set("sparrow", 356);
 let map = new LightWeightMap();
 map.set("sparrow", 356);
 let result = lightWeightMap.hasAll(map);
-try {
-  lightWeightMap.hasAll.bind({}, map)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -178,11 +163,6 @@ let result = lightWeightMap.hasKey;
 lightWeightMap.hasKey("squirrel");
 lightWeightMap.set("squirrel", 123);
 let result1 = lightWeightMap.hasKey("squirrel");
-try {
-  lightWeightMap.hasKey.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -221,11 +201,6 @@ let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.hasValue(123);
 lightWeightMap.set("squirrel", 123);
 let result1 = lightWeightMap.hasValue(123);
-try {
-  lightWeightMap.hasValue.bind({}, 123)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -256,11 +231,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 ```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.increaseCapacityTo(10);
-try {
-  lightWeightMap.increaseCapacityTo.bind({}, 10)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -299,11 +269,6 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.get("sparrow");
-try {
-  lightWeightMap.get.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -342,11 +307,6 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getIndexOfKey("sparrow");
-try {
-  lightWeightMap.getIndexOfKey.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -385,11 +345,6 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getIndexOfValue(123);
-try {
-  lightWeightMap.getIndexOfValue.bind({}, 123)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -420,7 +375,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The getKeyAt method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -429,16 +384,6 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getKeyAt(1);
-try {
-  lightWeightMap.getKeyAt.bind({}, 1)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  lightWeightMap.getKeyAt(6)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -472,11 +417,6 @@ lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let map = new LightWeightMap();
 lightWeightMap.setAll(map);
-try {
-  lightWeightMap.setAll.bind({}, map)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -513,11 +453,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 ```ts
 let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.set("squirrel", 123);
-try {
-  lightWeightMap.set.bind({}, "squirrel", 123)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -556,11 +491,6 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 lightWeightMap.remove("sparrow");
-try {
-  lightWeightMap.remove.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -599,11 +529,6 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.removeAt(1);
-try {
-  lightWeightMap.removeAt.bind({}, 1)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -635,7 +560,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The setValueAt method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -644,16 +569,6 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 lightWeightMap.setValueAt(1, 3546);
-try {
-  lightWeightMap.setValueAt.bind({}, 1, 3546)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  lightWeightMap.setValueAt(6, 3546);
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -684,7 +599,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The getValueAt method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -693,16 +608,6 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getValueAt(1);
-try {
-  lightWeightMap.getValueAt.bind({}, 1)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  lightWeightMap.getValueAt(6);
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -729,11 +634,6 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 lightWeightMap.clear();
-try {
-  lightWeightMap.clear.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -770,11 +670,6 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-}
-try {
-  lightWeightMap.keys.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -813,17 +708,12 @@ while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
 }
-try {
-  lightWeightMap.values.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
 ### forEach
 
-forEach(callbackfn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
@@ -833,7 +723,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -860,13 +750,6 @@ lightWeightMap.set("gull", 357);
 lightWeightMap.forEach((value, key) => {
   console.log("value:" + value, key);
 });
-try {
-  lightWeightMap.forEach.bind({}, (value, key) => {
-    console.log("value:" + value, key);
-  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -905,11 +788,6 @@ while(temp != undefined) {
   console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
-try {
-  lightWeightMap.entries.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### toString
@@ -941,11 +819,6 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.toString();
-try {
-  lightWeightMap.toString.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### [Symbol.iterator]
@@ -990,10 +863,5 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
-}
-try {
-  lightWeightMap[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

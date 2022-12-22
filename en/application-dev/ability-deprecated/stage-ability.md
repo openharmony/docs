@@ -1,6 +1,6 @@
 # Ability Development
 ## When to Use
-Ability development in the [stage model](stage-brief.md) is significantly different from that in the FA model. The stage model requires you to declare the application package structure in the **module.json5** and **app.json5** files during application development. For details about the configuration file, see [Application Package Structure Configuration File](../quick-start/stage-structure.md). To develop an ability based on the stage model, implement the following logic:
+Ability development in the [stage model](stage-brief.md) is significantly different from that in the FA model. The stage model requires you to declare the application package structure in the **module.json5** and **app.json5** files during application development. For details about the configuration file, see [Application Package Structure Configuration File](../quick-start/application-package-structure-stage.md). To develop an ability based on the stage model, implement the following logic:
 - Create an ability that supports screen viewing and human-machine interaction. You must implement the following scenarios: ability lifecycle callbacks, obtaining ability configuration, requesting permissions, and notifying environment changes.
 - Start an ability. You need to implement ability startup on the same device, on a remote device, or with a specified UI page.
 - Call abilities. For details, see [Call Development](stage-call.md).
@@ -30,7 +30,7 @@ By default, the singleton mode is used. The following is an example of the **mod
 ```
 ## Creating an Ability
 ### Available APIs
-The table below describes the APIs provided by the **AbilityStage** class, which has the **context** attribute. For details about the APIs, see [AbilityStage](../reference/apis/js-apis-application-abilitystage.md).
+The table below describes the APIs provided by the **AbilityStage** class, which has the **context** attribute. For details about the APIs, see [AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md).
 
 **Table 1** AbilityStage APIs
 |API|Description|
@@ -321,3 +321,5 @@ struct Index {
   }
 }
 ```
+
+ <!--no_check--> 
