@@ -15,7 +15,7 @@
 | stopBackgroundRunning(context: Context): Promise&lt;void&gt; | 停止后台长时任务的运行。                 |
 
 
-其中，wantAgent的信息详见（[WantAgent](../reference/apis/js-apis-wantAgent.md)）
+其中，wantAgent的信息详见（[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)）
 
 **表2** 后台模式类型
 
