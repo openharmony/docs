@@ -1,10 +1,10 @@
 # 远端状态订阅开发实例
 
-IPC/RPC提供对远端Stub对象状态的订阅机制， 在远端Stub对象死亡时，可触发死亡通知告诉本地Proxy对象。这种状态通知订阅需要调用特定接口完成，当不再需要订阅时也需要调用特定接口取消。使用这种订阅机制的用户，需要实现死亡通知接口DeathRecipient并实现onRemoteDied方法清理资源。该方法会在远端Stub对象所在进程死亡或所在设备离开组网时被回调。值得注意的是，调用这些接口有一定的顺序。首先，需要Proxy订阅Stub死亡通知，若在订阅期间Stub状态正常，则在不再需要时取消订阅；若在订阅期间Stub所在进程退出或者所在设备退出组网，则会自动触发Proxy自定义的后续操作。
+IPC/RPC提供对远端Stub对象状态的订阅机制， 在远端Stub对象消亡时，可触发消亡通知告诉本地Proxy对象。这种状态通知订阅需要调用特定接口完成，当不再需要订阅时也需要调用特定接口取消。使用这种订阅机制的用户，需要实现消亡通知接口DeathRecipient并实现onRemoteDied方法清理资源。该方法会在远端Stub对象所在进程消亡或所在设备离开组网时被回调。值得注意的是，调用这些接口有一定的顺序。首先，需要Proxy订阅Stub消亡通知，若在订阅期间Stub状态正常，则在不再需要时取消订阅；若在订阅期间Stub所在进程退出或者所在设备退出组网，则会自动触发Proxy自定义的后续操作。
 
 ## 使用场景
 
-这种订阅机制适用于本地Proxy对象需要感知远端Stub对象所在进程死亡，或所在设备离开组网的场景。当Proxy感知到Stub端死亡后，可适当清理本地资源。此外，RPC目前不提供匿名Stub对象的死亡通知，即只有向SAMgr注册过的服务才能被订阅死亡通知，IPC则支持匿名对象的死亡通知。
+这种订阅机制适用于本地Proxy对象需要感知远端Stub对象所在进程消亡，或所在设备离开组网的场景。当Proxy感知到Stub端消亡后，可适当清理本地资源。此外，RPC目前不提供匿名Stub对象的消亡通知，即只有向SAMgr注册过的服务才能被订阅消亡通知，IPC则支持匿名对象的消亡通知。
 
 
 ## Native侧接口
@@ -18,11 +18,17 @@ IPC/RPC提供对远端Stub对象状态的订阅机制， 在远端Stub对象死�
 ### 参考代码
 
 ```C++
+#include "iremote_broker.h"
+#include "iremote_stub.h"
+
+
 //定义消息码
 enum {
     TRANS_ID_PING_ABILITY = 5,
     TRANS_ID_REVERSED_MONITOR
 };
+
+const std::string DESCRIPTOR = "test.ITestAbility";
 
 class ITestService : public IRemoteBroker {
 public:
@@ -58,7 +64,9 @@ int TestServiceProxy::TestPingAbility(const std::u16string &dummy){
 
 
 
-```
+```c++
+#include "iremote_object.h"
+
 class TestDeathRecipient : public IRemoteObject::DeathRecipient {
 public:
     virtual void OnRemoteDied(const wptr<IRemoteObject>& remoteObject);
@@ -71,23 +79,62 @@ void TestDeathRecipient::OnRemoteDied(const wptr<IRemoteObject>& remoteObject)
 
 ```c++
 sptr<IPCObjectProxy> object = new IPCObjectProxy(1, to_utf16(DESCRIPTOR));
-sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient());// 构造一个死亡通知对象
-bool result = object->AddDeathRecipient(deathRecipient); // 注册死亡通知
-result = object->RemoveDeathRecipient(deathRecipient); // 移除死亡通知
+sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient());// 构造一个消亡通知对象
+bool result = object->AddDeathRecipient(deathRecipient); // 注册消亡通知
+result = object->RemoveDeathRecipient(deathRecipient); // 移除消亡通知
 ```
 
+## JS侧接口
 
+| 接口名               | 返回值类型 | 功能描述                                                     |
+| -------------------- | ---------- | ------------------------------------------------------------ |
+| addDeathRecippient   | boolean    | 注册用于接收远程对象消亡通知的回调，增加proxy对象上的消亡通知。 |
+| removeDeathRecipient | boolean    | 注销用于接收远程对象消亡通知的回调。                         |
+| onRemoteDied         | void       | 在成功添加死亡通知订阅后，当远端对象死亡时，将自动调用本方法。 |
 
-## Stub感知Proxy死亡（匿名Stub的使用）
+### 参考代码
 
-正向的死亡通知是Proxy感知Stub的状态，若想达到反向的死亡通知，即Stub感知Proxy的状态，可以巧妙的利用正向死亡通知。如两个进程A（原Stub所在进程）和B（原Proxy所在进程），进程B在获取到进程A的Proxy对象后，在B进程新建一个匿名Stub对象（匿名指未向SAMgr注册），可称之为回调Stub，再通过SendRequest接口将回调Stub传给进程A的原Stub。这样一来，进程A便获取到了进程B的回调Proxy。当进程B死亡或B所在设备离开组网时，回调Stub会死亡，回调Proxy会感知，进而通知给原Stub，便实现了反向死亡通知。
+```ts
+import FA from "@ohos.ability.featureAbility";
+let proxy;
+let connect = {
+    onConnect: function(elementName, remoteProxy) {
+        console.log("RpcClient: js onConnect called.");
+        proxy = remoteProxy;
+    },
+    onDisconnect: function(elementName) {
+        console.log("RpcClient: onDisconnect");
+    },
+    onFailed: function() {
+        console.log("RpcClient: onFailed");
+    }
+};
+let want = {
+    "bundleName": "com.ohos.server",
+    "abilityName": "com.ohos.server.MainAbility",
+};
+FA.connectAbility(want, connect);
+class MyDeathRecipient {
+    onRemoteDied() {
+        console.log("server died");
+    }
+}
+let deathRecipient = new MyDeathRecipient();
+proxy.addDeathRecippient(deathRecipient, 0);
+proxy.removeDeathRecipient(deathRecipient, 0);
+```
+
+## Stub感知Proxy消亡（匿名Stub的使用）
+
+正向的消亡通知是Proxy感知Stub的状态，若想达到反向的死消亡通知，即Stub感知Proxy的状态，可以巧妙的利用正向消亡通知。如两个进程A（原Stub所在进程）和B（原Proxy所在进程），进程B在获取到进程A的Proxy对象后，在B进程新建一个匿名Stub对象（匿名指未向SAMgr注册），可称之为回调Stub，再通过SendRequest接口将回调Stub传给进程A的原Stub。这样一来，进程A便获取到了进程B的回调Proxy。当进程B消亡或B所在设备离开组网时，回调Stub会消亡，回调Proxy会感知，进而通知给原Stub，便实现了反向消亡通知。
 
 注意：
 
-- 反向死亡通知仅限设备内跨进程通信使用，不可用于跨设备
-- 当匿名Stub对象没有被任何一个Proxy指向的时候，内核会自动回收
+> 反向死亡通知仅限设备内跨进程通信使用，不可用于跨设备。
 
-### Native侧参考代码
+> 当匿名Stub对象没有被任何一个Proxy指向的时候，内核会自动回收。
+
+### 参考代码
 
 ```c++
 //Proxy
