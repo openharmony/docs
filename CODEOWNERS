@@ -407,7 +407,7 @@ zh-cn/application-dev/reference/apis/js-apis-prompt.md @huaweimaxuchu @HelloCrea
 zh-cn/application-dev/reference/apis/js-apis-queue.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
 zh-cn/application-dev/reference/apis/js-apis-radio.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-reminderAgent.md @jayleehw @RayShih @li-weifeng2 @currydavids
-zh-cn/application-dev/reference/apis/js-apis-request.md @feng-aiwen @zengyawen @nagexiucai @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-request.md @feng-aiwen @ningningW @nagexiucai @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @Buda-Liu @ningningW @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-router.md @huaweimaxuchu @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-rpc.md @xuepianpian @RayShih @zhaopeng_gitee @vagrant_world
@@ -589,7 +589,7 @@ zh-cn/application-dev/reference/errorcodes/errorcode-power.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-preferences.md @ge-yafang
 zh-cn/application-dev/reference/errorcodes/errorcode-promptAction.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-reminderAgentManager.md @ningningW
-zh-cn/application-dev/reference/errorcodes/errorcode-request.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errorcode-request.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-resource-manager.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-router.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md @RayShih
