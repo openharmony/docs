@@ -15,10 +15,11 @@ import bundle from '@ohos.bundle';
 
 | 权限                                         | 权限等级         | 描述            |
 |--------------------------------------------|--------------|---------------|
-| ohos.permission.GET_BUNDLE_INFO            | normal       | 查询指定应用信息。      |
+| ohos.permission.CHANGE_ABILITY_ENABLED_STATE | system_basic | 设置禁用使能所需的权限。 |
+| ohos.permission.GET_BUNDLE_INFO | normal | 查询指定应用信息。 |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息。     |
 | ohos.permission.INSTALL_BUNDLE             | system_core  | 可安装、卸载应用。      |
-| ohos.permission.MANAGE_DISPOSED_APP_STATUS | system_core  | 可设置和查询应用的处置状态。 |
+| ohos.permission.REMOVE_CACHE_FILES | system_basic | 清理应用缓存。 |
 
 权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 
@@ -186,6 +187,7 @@ SystemCapability.BundleManager.BundleFramework
 ```ts
 let bundleFlag = 0;
 let userId = 100;
+
 bundle.getAllBundleInfo(bundleFlag, userId)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -359,7 +361,6 @@ bundle.getBundleInfo(bundleName, bundleFlags, (err, data) => {
     console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
-
 
 ## bundle.getBundleInfo<sup>deprecated<sup>
 
@@ -1006,7 +1007,6 @@ bundle.getBundleArchiveInfo(hapFilePath, bundleFlags, (err, data) => {
 })
 ```
 
-
 ## bundle.getAbilityInfo<sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)替代。
@@ -1230,7 +1230,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名   | 类型                                         | 必填 | 说明                    |
 | -------- | -------------------------------------------- | ---- | ----------------------- |
 | info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | 是   | Ability的配置信息。       |
-| callback | AsyncCallback\<boolean>                      | 是   | 返回boolean代表是否启用。 |
+| callback | AsyncCallback\<boolean>                      | 是   | 回调函数，返回boolean代表是否启用。 |
 
 **示例：**
 
@@ -1301,7 +1301,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名     | 类型                    | 必填 | 说明                     |
 | ---------- | ----------------------- | ---- | ------------------------ |
 | bundleName | string                  | 是   | 要查询的应用程序包名称。 |
-| callback   | AsyncCallback\<boolean> | 是   | 返回boolean代表是否启用。  |
+| callback   | AsyncCallback\<boolean> | 是   | 回调函数，返回boolean代表是否启用。 |
 
 **示例：**
 

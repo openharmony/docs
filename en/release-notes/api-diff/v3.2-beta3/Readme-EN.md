@@ -30,4 +30,4 @@ This directory records the API changes in OpenHarmony 3.2 Beta3 over OpenHarmony
   - [Update subsystem](js-apidiff-update.md)
   - [Web subsystem](js-apidiff-web.md)
   - [Window manager subsystem](js-apidiff-window.md)
-- [Updates (OpenHarmony 3.2 Beta2 -> OpenHarmony 3.2 Beta3)](changelog-v3.2-beta3.md)
+- [Updates (OpenHarmony 3.2 Beta2 -> OpenHarmony 3.2 Beta3)](../../changelogs/v3.2-beta3/changelog-v3.2-beta3.md)

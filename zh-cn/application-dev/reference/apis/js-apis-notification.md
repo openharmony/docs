@@ -3058,7 +3058,7 @@ Notification.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallb
 
 cancelAsBundle(id: number, representativeBundle: string, userId: number): Promise\<void\>
 
-代理通知（Promise形式）。
+取消代理通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
