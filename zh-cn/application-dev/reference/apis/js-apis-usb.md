@@ -87,7 +87,7 @@ console.log(`devicesList = ${JSON.stringify(devicesList)}`);
 
 connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
-打开USB设备。
+根据getDevices()返回的设备信息打开USB设备。
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及device，再调用[usb.requestRight](#usbrequestright)请求使用该设备的权限。
 
@@ -133,6 +133,8 @@ console.log(`devicepipe = ${JSON.stringify(devicepipe)}`);
 hasRight(deviceName: string): boolean
 
 判断是否有权访问该设备。
+
+如果“使用者”（如各种App或系统）有权访问设备则返回true；无权访问设备则返回false。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -187,7 +189,7 @@ usb.requestRight(devicesName).then((ret) => {
 
 ## usb.removeRight
 
-removeRight(deviceName: string): boolean;
+removeRight(deviceName: string): boolean
 
 移除软件包访问设备的权限。
 
@@ -216,7 +218,7 @@ if (usb.removeRight(devicesName) {
 
 ## usb.addRight
 
-addRight(bundleName: string, deviceName: string): boolean;
+addRight(bundleName: string, deviceName: string): boolean
 
 添加软件包访问设备的权限。
 
