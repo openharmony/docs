@@ -21,7 +21,7 @@ Applicable to: OpenHarmony SDK 3.2.2.5, stage model of API version 9
 
 Error code 28 refers to **CURLE_OPERATION_TIMEDOUT**, which means a cURL operation timeout. For details, see any HTTP status code description available.
 
-Reference: [Development Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-http.md#httpresponse) and [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html)
+Reference: [Response Codes](../reference/apis/js-apis-http.md#responsecode) and [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html)
 
 
 ## What does error code 6 mean for the response of \@ohos.net.http.d.ts?
@@ -30,4 +30,4 @@ Applicable to: OpenHarmony SDK 3.2.3.5
 
 Error code 6 indicates a failure to resolve the host in the address. You can ping the URL carried in the request to check whether the host is accessible.
 
-Reference: [Development Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-http.md#httpresponse) and [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html)
+Reference: [Response Codes](../reference/apis/js-apis-http.md#responsecode) and [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html)
