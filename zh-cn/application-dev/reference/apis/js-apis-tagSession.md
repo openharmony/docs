@@ -2,7 +2,8 @@
 
 本模块是对NFC TagSession的使用说明。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## **导入模块**
@@ -27,7 +28,7 @@ getTagInfo(): tag.TagInfo
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -55,7 +56,7 @@ connectTag(): boolean;
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -83,7 +84,7 @@ reset(): void
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **示例：**
 
@@ -104,7 +105,7 @@ isTagConnected(): boolean
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -132,7 +133,7 @@ getMaxSendLength(): number
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -159,7 +160,7 @@ getSendDataTimeout(): number
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
 
@@ -187,7 +188,7 @@ setSendDataTimeout(timeout: number): boolean
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -222,7 +223,7 @@ sendData(data: number[]): Promise<number[]>
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
@@ -268,7 +269,7 @@ sendData(data: number[], callback: AsyncCallback<number[]>): void
 
 **需要权限：** ohos.permission.NFC_TAG
 
-**系统能力：** SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
 
