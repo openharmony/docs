@@ -370,8 +370,8 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| uploadedSize | number | 是 | 当前已上传文件大小，单位为bit。 |
-| totalSize | number | 是 | 上传文件的总大小，单位为bit。 |
+| uploadedSize | number | 是 | 当前已上传文件大小，单位为B。 |
+| totalSize | number | 是 | 上传文件的总大小，单位为B。 |
 
 **示例：**
 
@@ -479,8 +479,8 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| uploadedSize | number | 是 | 当前已上传文件的大小，单位为bit。 |
-| totalSize | number | 是 | 上传文件的总大小，单位为bit。 |
+| uploadedSize | number | 是 | 当前已上传文件的大小，单位为B。 |
+| totalSize | number | 是 | 上传文件的总大小，单位为B。 |
 
 **示例：**
 
@@ -1010,8 +1010,8 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| receivedSize | number | 是 | 当前下载的进度，单位为bit。 |
-| totalSize | number | 是 | 下载文件的总大小，单位为bit。 |
+| receivedSize | number | 是 | 当前下载的进度，单位为B。 |
+| totalSize | number | 是 | 下载文件的总大小，单位为B。 |
 
 **示例：**
 
@@ -1044,8 +1044,8 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| receivedSize | number | 是 | 当前下载的进度，单位为bit。 |
-| totalSize | number | 是 | 下载文件的总大小，单位为bit。 |
+| receivedSize | number | 是 | 当前下载的进度，单位为B。|
+| totalSize | number | 是 | 下载文件的总大小，单位为B。|
 
 **示例：**
 
