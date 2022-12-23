@@ -8,16 +8,16 @@ Notification is not enabled.
 
 **错误描述**
 
-当调用发布提醒接口时，未允许应用发送通知。
+当调用发布提醒接口时，不允许应用发送通知。
 
 **可能原因**
 
-1. 未申请通知使能。
+1. 未申请通知使能权限。
 2. 通知使能被关闭。
 
 **处理步骤**
 
-1. 申请通知使能弹窗[Notification.requestEnableNotification](../apis/js-apis-notification.md#notificationrequestenablenotification8)。
+1. 申请通知使能权限弹窗[Notification.requestEnableNotification](../apis/js-apis-notification.md#notificationrequestenablenotification8)。
 2. 检查通知使能是否被关闭。
 
 ## 1700002 提醒数量超出限制

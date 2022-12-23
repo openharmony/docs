@@ -11,12 +11,12 @@
 - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED
 
 ## COMMON_EVENT_LOCKED_BOOT_COMPLETED
-（预留事件能力，暂未支持）提示用户已完成引导，系统已加载，但屏幕仍锁定。
+（预留事件，暂未支持）提示用户已完成引导，系统已加载，但屏幕仍锁定。
 - 值：usual.event.LOCKED_BOOT_COMPLETED
 - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED
 
 ## COMMON_EVENT_SHUTDOWN
-提示设备正在关闭并将继续直至最终关闭。 
+提示设备正在关闭并将继续直至最终关闭。
 - 值：usual.event.SHUTDOWN
 - 订阅者所需权限：无
 
@@ -66,7 +66,7 @@
 
 
 ## COMMON_EVENT_USER_PRESENT
-（预留事件能力，暂未支持）提示用户解锁了设备。
+（预留事件，暂未支持）提示用户解锁了设备。
 - 值：usual.event.USER_PRESENT
 - 订阅者所需权限：无
 
@@ -84,7 +84,7 @@
 
 
 ## COMMON_EVENT_DATE_CHANGED
-（预留事件能力，暂未支持）提示系统日期已更改。
+（预留事件，暂未支持）提示系统日期已更改。
 - 值：usual.event.DATE_CHANGED
 - 订阅者所需权限：无
 
@@ -96,7 +96,7 @@
 
 
 ## COMMON_EVENT_CLOSE_SYSTEM_DIALOGS
-（预留事件能力，暂未支持）提示用户关闭临时系统对话框。
+（预留事件，暂未支持）提示用户关闭临时系统对话框。
 - 值：usual.event.CLOSE_SYSTEM_DIALOGS
 - 订阅者所需权限：无
 
@@ -108,13 +108,13 @@
 
 
 ## COMMON_EVENT_PACKAGE_REPLACED
-（预留事件能力，暂未支持）提示设备上已安装的旧版本应用程序已被新版本所替换。
+（预留事件，暂未支持）提示设备上已安装的旧版本应用程序已被新版本所替换。
 - 值：usual.event.PACKAGE_REPLACED
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_MY_PACKAGE_REPLACED
-（预留事件能力，暂未支持）提示应用程序包的新版本已取代前一个版本。
+（预留事件，暂未支持）提示应用程序包的新版本已取代前一个版本。
 - 值：usual.event.MY_PACKAGE_REPLACED
 - 订阅者所需权限：无
 
@@ -125,13 +125,13 @@
 
 
 ## COMMON_EVENT_BUNDLE_REMOVED
-（预留事件能力，暂未支持）提示已从设备中卸载已安装应用程序的附加包，但应用程序数据得到保留。
+（预留事件，暂未支持）提示已从设备中卸载已安装应用程序的附加包，但应用程序数据得到保留。
 - 值：usual.event.BUNDLE_REMOVED
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_PACKAGE_FULLY_REMOVED
-（预留事件能力，暂未支持）提示已从设备中完全卸载已安装的应用程序（包括应用程序数据和代码）。
+（预留事件，暂未支持）提示已从设备中完全卸载已安装的应用程序（包括应用程序数据和代码）。
 - 值：usual.event.PACKAGE_FULLY_REMOVED
 - 订阅者所需权限：无
 
@@ -161,13 +161,13 @@
 
 
 ## COMMON_EVENT_PACKAGES_SUSPENDED
-（预留事件能力，暂未支持）提示应用程序已挂起。
+（预留事件，暂未支持）提示应用程序已挂起。
 - 值：usual.event.PACKAGES_SUSPENDED
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_PACKAGES_UNSUSPENDED
-（预留事件能力，暂未支持）提示应用HAP包未挂起（从挂起状态恢复）。
+（预留事件，暂未支持）提示应用HAP包未挂起（从挂起状态恢复）。
 - 值：usual.event.PACKAGES_UNSUSPENDED
 - 订阅者所需权限：无
 
@@ -185,91 +185,91 @@
 
 
 ## COMMON_EVENT_UID_REMOVED
-（预留事件能力，暂未支持）提示用户ID已从系统中删除。
+（预留事件，暂未支持）提示用户ID已从系统中删除。
 - 值：usual.event.UID_REMOVED
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_PACKAGE_FIRST_LAUNCH
-（预留事件能力，暂未支持）提示首次启动已安装的应用程序。
+（预留事件，暂未支持）提示首次启动已安装的应用程序。
 - 值：usual.event.PACKAGE_FIRST_LAUNCH
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_PACKAGE_NEEDS_VERIFICATION
-（预留事件能力，暂未支持）提示应用需要系统校验。
+（预留事件，暂未支持）提示应用需要系统校验。
 - 值：usual.event.PACKAGE_NEEDS_VERIFICATION
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_PACKAGE_VERIFIED
-（预留事件能力，暂未支持）提示应用已被系统校验。
+（预留事件，暂未支持）提示应用已被系统校验。
 - 值：usual.event.PACKAGE_VERIFIED
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_EXTERNAL_APPLICATIONS_AVAILABLE
-（预留事件能力，暂未支持）提示安装在外部存储上的应用程序对系统可用。
+（预留事件，暂未支持）提示安装在外部存储上的应用程序对系统可用。
 - 值：usual.event.EXTERNAL_APPLICATIONS_AVAILABLE
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_EXTERNAL_APPLICATIONS_UNAVAILABLE
-（预留事件能力，暂未支持）提示安装在外部存储上的应用程序对系统不可用。
+（预留事件，暂未支持）提示安装在外部存储上的应用程序对系统不可用。
 - 值：usual.event.EXTERNAL_APPLICATIONS_UNAVAILABLE
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_CONFIGURATION_CHANGED
-（预留事件能力，暂未支持）提示设备状态（例如，方向、区域设置等）已更改。
+（预留事件，暂未支持）提示设备状态（例如，方向、区域设置等）已更改。
 - 值：usual.event.CONFIGURATION_CHANGED
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_LOCALE_CHANGED
-（预留事件能力，暂未支持）提示设备区域设置已更改。
+（预留事件，暂未支持）提示设备区域设置已更改。
 - 值：usual.event.LOCALE_CHANGED
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_MANAGE_PACKAGE_STORAGE
-（预留事件能力，暂未支持）提示设备存储空间不足。
+（预留事件，暂未支持）提示设备存储空间不足。
 - 值：usual.event.MANAGE_PACKAGE_STORAGE
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_DRIVE_MODE
-（预留事件能力，暂未支持）提示系统处于驾驶模式。
+（预留事件，暂未支持）提示系统处于驾驶模式。
 - 值：common.event.DRIVE_MODE
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_HOME_MODE
-（预留事件能力，暂未支持）提示系统处于HOME模式。
+（预留事件，暂未支持）提示系统处于HOME模式。
 - 值：common.event.HOME_MODE
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_OFFICE_MODE
-（预留事件能力，暂未支持）提示系统处于办公模式。
+（预留事件，暂未支持）提示系统处于办公模式。
 - 值：common.event.OFFICE_MODE
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_USER_STARTED
-（预留事件能力，暂未支持）提示用户已启动。
+（预留事件，暂未支持）提示用户已启动。
 - 值：usual.event.USER_STARTED
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_USER_BACKGROUND
-（预留事件能力，暂未支持）提示用户已被带到后台。
+（预留事件，暂未支持）提示用户已被带到后台。
 - 值：usual.event.USER_BACKGROUND
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_USER_FOREGROUND
-（预留事件能力，暂未支持）提示用户已被带到前台。
+（预留事件，暂未支持）提示用户已被带到前台。
 - 值：usual.event.USER_FOREGROUND
 - 订阅者所需权限：无
 
@@ -281,25 +281,25 @@
 
 
 ## COMMON_EVENT_USER_STARTING
-（预留事件能力，暂未支持）提示用户正在启动。
+（预留事件，暂未支持）提示用户正在启动。
 - 值：usual.event.USER_STARTING
 - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 
 ## COMMON_EVENT_USER_UNLOCKED
-（预留事件能力，暂未支持）在重启后解锁时，提示当前用户的凭据加密存储已解锁。
+（预留事件，暂未支持）在重启后解锁时，提示当前用户的凭据加密存储已解锁。
 - 值：usual.event.USER_UNLOCKED
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_USER_STOPPING
-（预留事件能力，暂未支持）提示要停止用户。
+（预留事件，暂未支持）提示要停止用户。
 - 值：usual.event.USER_STOPPING
 - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 
 ## COMMON_EVENT_USER_STOPPED
-（预留事件能力，暂未支持）提示用户已停止。
+（预留事件，暂未支持）提示用户已停止。
 - 值：usual.event.USER_STOPPED
 - 订阅者所需权限：无
 
@@ -389,241 +389,241 @@
 
 
 ## COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE
-（预留事件能力，暂未支持）提示蓝牙免提通信连接状态。
+（预留事件，暂未支持）提示蓝牙免提通信连接状态。
 - 值：usual.event.bluetooth.handsfree.ag.CONNECT_STATE_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CURRENT_DEVICE_UPDATE
-（预留事件能力，暂未支持）提示连接到具有蓝牙免提功能的设备处于活动状态。
+（预留事件，暂未支持）提示连接到具有蓝牙免提功能的设备处于活动状态。
 - 值：usual.event.bluetooth.handsfree.ag.CURRENT_DEVICE_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_AUDIO_STATE_UPDATE
-（预留事件能力，暂未支持）提示蓝牙A2DP连接状态已更改。
+（预留事件，暂未支持）提示蓝牙A2DP连接状态已更改。
 - 值：usual.event.bluetooth.handsfree.ag.AUDIO_STATE_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_UPDATE
-（预留事件能力，暂未支持）提示蓝牙A2DP连接状态。
+（预留事件，暂未支持）提示蓝牙A2DP连接状态。
 - 值：usual.event.bluetooth.a2dpsource.CONNECT_STATE_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CURRENT_DEVICE_UPDATE
-（预留事件能力，暂未支持）提示使用蓝牙A2DP连接的设备处于活动状态。
+（预留事件，暂未支持）提示使用蓝牙A2DP连接的设备处于活动状态。
 - 值：usual.event.bluetooth.a2dpsource.CURRENT_DEVICE_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_A2DPSOURCE_PLAYING_STATE_UPDATE
-（预留事件能力，暂未支持）提示蓝牙A2DP播放状态发生改变。
+（预留事件，暂未支持）提示蓝牙A2DP播放状态发生改变。
 - 值：usual.event.bluetooth.a2dpsource.PLAYING_STATE_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_A2DPSOURCE_AVRCP_CONNECT_STATE_UPDATE
-（预留事件能力，暂未支持）提示蓝牙A2DP的AVRCP连接状态已更改。
+（预留事件，暂未支持）提示蓝牙A2DP的AVRCP连接状态已更改。
 - 值：usual.event.bluetooth.a2dpsource.AVRCP_CONNECT_STATE_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CODEC_VALUE_UPDATE
-（预留事件能力，暂未支持）提示蓝牙A2DP音频编解码状态更改。
+（预留事件，暂未支持）提示蓝牙A2DP音频编解码状态更改。
 - 值：usual.event.bluetooth.a2dpsource.CODEC_VALUE_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_DISCOVERED
-（预留事件能力，暂未支持）提示发现远程蓝牙设备。
+（预留事件，暂未支持）提示发现远程蓝牙设备。
 - 值：usual.event.bluetooth.remotedevice.DISCOVERED
 - 订阅者所需权限：ohos.permission.LOCATION and ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CLASS_VALUE_UPDATE
-（预留事件能力，暂未支持）提示远程蓝牙设备的蓝牙类别已更改。
+（预留事件，暂未支持）提示远程蓝牙设备的蓝牙类别已更改。
 - 值：usual.event.bluetooth.remotedevice.CLASS_VALUE_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_CONNECTED
-（预留事件能力，暂未支持）提示已与远程蓝牙设备建立低级别（ACL）连接。
+（预留事件，暂未支持）提示已与远程蓝牙设备建立低级别（ACL）连接。
 - 值：usual.event.bluetooth.remotedevice.ACL_CONNECTED
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_DISCONNECTED
-（预留事件能力，暂未支持）提示低级别（ACL）连接已从远程蓝牙设备断开。
+（预留事件，暂未支持）提示低级别（ACL）连接已从远程蓝牙设备断开。
 - 值：usual.event.bluetooth.remotedevice.ACL_DISCONNECTED
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_NAME_UPDATE
-（预留事件能力，暂未支持）提示远程蓝牙设备的友好名称首次被检索或自上次检索以来被更改。
+（预留事件，暂未支持）提示远程蓝牙设备的友好名称首次被检索或自上次检索以来被更改。
 - 值：usual.event.bluetooth.remotedevice.NAME_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE
-（预留事件能力，暂未支持）提示远程蓝牙设备连接状态更改。
+（预留事件，暂未支持）提示远程蓝牙设备连接状态更改。
 - 值：usual.event.bluetooth.remotedevice.PAIR_STATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_BATTERY_VALUE_UPDATE
-（预留事件能力，暂未支持）提示远程蓝牙设备的电池电量首次被检索或自上次检索以来被更改。
+（预留事件，暂未支持）提示远程蓝牙设备的电池电量首次被检索或自上次检索以来被更改。
 - 值：usual.event.bluetooth.remotedevice.BATTERY_VALUE_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_SDP_RESULT
-（预留事件能力，暂未支持）提示远程蓝牙设备SDP状态。
+（预留事件，暂未支持）提示远程蓝牙设备SDP状态。
 - 值：usual.event.bluetooth.remotedevice.SDP_RESULT
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_UUID_VALUE
-（预留事件能力，暂未支持）提示远程蓝牙设备UUID连接状态。
+（预留事件，暂未支持）提示远程蓝牙设备UUID连接状态。
 - 值：usual.event.bluetooth.remotedevice.UUID_VALUE
 - 订阅者所需权限：ohos.permission.DISCOVER_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_REQ
-（预留事件能力，暂未支持）提示远程蓝牙设备配对请求。
+（预留事件，暂未支持）提示远程蓝牙设备配对请求。
 - 值：usual.event.bluetooth.remotedevice.PAIRING_REQ
 - 订阅者所需权限：ohos.permission.DISCOVER_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_CANCEL
-（预留事件能力，暂未支持）提示取消蓝牙配对。
+（预留事件，暂未支持）提示取消蓝牙配对。
 - 值：usual.event.bluetooth.remotedevice.PAIRING_CANCEL
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REQ
-（预留事件能力，暂未支持）提示远程蓝牙设备连接请求。
+（预留事件，暂未支持）提示远程蓝牙设备连接请求。
 - 值：usual.event.bluetooth.remotedevice.CONNECT_REQ
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REPLY
-（预留事件能力，暂未支持）提示远程蓝牙设备连接请求响应。
+（预留事件，暂未支持）提示远程蓝牙设备连接请求响应。
 - 值：usual.event.bluetooth.remotedevice.CONNECT_REPLY
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_CANCEL
-（预留事件能力，暂未支持）提示取消与远程蓝牙设备的连接。
+（预留事件，暂未支持）提示取消与远程蓝牙设备的连接。
 - 值：usual.event.bluetooth.remotedevice.CONNECT_CANCEL
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_CONNECT_STATE_UPDATE
-（预留事件能力，暂未支持）提示蓝牙免提连接状态已更改。
+（预留事件，暂未支持）提示蓝牙免提连接状态已更改。
 - 值：usual.event.bluetooth.handsfreeunit.CONNECT_STATE_UPDATE
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AUDIO_STATE_UPDATE
-（预留事件能力，暂未支持）提示蓝牙免提音频状态已更改。
+（预留事件，暂未支持）提示蓝牙免提音频状态已更改。
 - 值：usual.event.bluetooth.handsfreeunit.AUDIO_STATE_UPDATE
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_COMMON_EVENT
-（预留事件能力，暂未支持）提示蓝牙免提音频网关状态已更改。
+（预留事件，暂未支持）提示蓝牙免提音频网关状态已更改。
 - 值：usual.event.bluetooth.handsfreeunit.AG_COMMON_EVENT
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_CALL_STATE_UPDATE
-（预留事件能力，暂未支持）提示蓝牙免提呼叫状态已更改。
+（预留事件，暂未支持）提示蓝牙免提呼叫状态已更改。
 - 值：usual.event.bluetooth.handsfreeunit.AG_CALL_STATE_UPDATE
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE
-（预留事件能力，暂未支持）提示蓝牙适配器状态已更改，例如蓝牙已打开或关闭。
+（预留事件，暂未支持）提示蓝牙适配器状态已更改，例如蓝牙已打开或关闭。
 - 值：usual.event.bluetooth.host.STATE_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE
-（预留事件能力，暂未支持）提示用户允许扫描蓝牙请求。
+（预留事件，暂未支持）提示用户允许扫描蓝牙请求。
 - 值：usual.event.bluetooth.host.REQ_DISCOVERABLE
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE
-（预留事件能力，暂未支持）提示用户打开蓝牙请求。
+（预留事件，暂未支持）提示用户打开蓝牙请求。
 - 值：usual.event.bluetooth.host.REQ_ENABLE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE
-（预留事件能力，暂未支持）提示用户关闭蓝牙请求。
+（预留事件，暂未支持）提示用户关闭蓝牙请求。
 - 值：usual.event.bluetooth.host.REQ_DISABLE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_HOST_SCAN_MODE_UPDATE
-（预留事件能力，暂未支持）提示设备蓝牙扫描模式更改。
+（预留事件，暂未支持）提示设备蓝牙扫描模式更改。
 - 值：usual.event.bluetooth.host.SCAN_MODE_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED
-（预留事件能力，暂未支持）提示设备上已启动蓝牙扫描。
+（预留事件，暂未支持）提示设备上已启动蓝牙扫描。
 - 值：usual.event.bluetooth.host.DISCOVERY_STARTED
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED
-（预留事件能力，暂未支持）提示设备上蓝牙扫描完成。
+（预留事件，暂未支持）提示设备上蓝牙扫描完成。
 - 值：usual.event.bluetooth.host.DISCOVERY_FINISHED
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE
-（预留事件能力，暂未支持）提示设备蓝牙适配器名称已更改。
+（预留事件，暂未支持）提示设备蓝牙适配器名称已更改。
 - 值：usual.event.bluetooth.host.NAME_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE
-（预留事件能力，暂未支持）提示蓝牙A2DP宿的连接状态已更改。
+（预留事件，暂未支持）提示蓝牙A2DP宿的连接状态已更改。
 - 值：usual.event.bluetooth.a2dpsink.CONNECT_STATE_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE
-（预留事件能力，暂未支持）提示蓝牙A2DP宿的播放状态发生改变。
+（预留事件，暂未支持）提示蓝牙A2DP宿的播放状态发生改变。
 - 值：usual.event.bluetooth.a2dpsink.PLAYING_STATE_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE
-（预留事件能力，暂未支持）提示蓝牙A2DP宿的音频状态已更改。
+（预留事件，暂未支持）提示蓝牙A2DP宿的音频状态已更改。
 - 值：usual.event.bluetooth.a2dpsink.AUDIO_STATE_UPDATE
 - 订阅者所需权限：ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED
-（预留事件能力，暂未支持）提示设备NFC适配器状态已更改。
+（预留事件，暂未支持）提示设备NFC适配器状态已更改。
 - 值：usual.event.nfc.action.ADAPTER_STATE_CHANGED
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED
-（预留事件能力，暂未支持）提示检测到NFC设备RF字段处于使能状态。
+（预留事件，暂未支持）提示检测到NFC设备RF字段处于使能状态。
 - 值：usual.event.nfc.action.RF_FIELD_ON_DETECTED
 - 订阅者所需权限：ohos.permission.MANAGE_SECURE_SETTINGS
 
 
 ## COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED
-（预留事件能力，暂未支持）提示检测到NFC设备RF字段处于关闭状态。
+（预留事件，暂未支持）提示检测到NFC设备RF字段处于关闭状态。
 - 值：usual.event.nfc.action.RF_FIELD_OFF_DETECTED
 - 订阅者所需权限：ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -641,7 +641,7 @@
 
 
 ## COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
-（预留事件能力，暂未支持）提示系统空闲模式已更改。
+（预留事件，暂未支持）提示系统空闲模式已更改。
 - 值：usual.event.DEVICE_IDLE_MODE_CHANGED
 - 订阅者所需权限：无
 
@@ -665,91 +665,91 @@
 
 
 ## COMMON_EVENT_ABILITY_ADDED
-（预留事件能力，暂未支持）提示有某个能力已被添加。
+（预留事件，暂未支持）提示有某个能力已被添加。
 - 值：usual.event.ABILITY_ADDED
 - 订阅者所需权限：ohos.permission.LISTEN_BUNDLE_CHANGE
 
 
 ## COMMON_EVENT_ABILITY_REMOVED
-（预留事件能力，暂未支持）提示已删除某个能力。
+（预留事件，暂未支持）提示已删除某个能力。
 - 值：usual.event.ABILITY_REMOVED
 - 订阅者所需权限：ohos.permission.LISTEN_BUNDLE_CHANGE
 
 
 ## COMMON_EVENT_ABILITY_UPDATED
-（预留事件能力，暂未支持）提示能力已更新。
+（预留事件，暂未支持）提示能力已更新。
 - 值：usual.event.ABILITY_UPDATED
 - 订阅者所需权限：ohos.permission.LISTEN_BUNDLE_CHANGE
 
 
 ## COMMON_EVENT_LOCATION_MODE_STATE_CHANGED
-（预留事件能力，暂未支持）提示系统定位模式已更改。
+（预留事件，暂未支持）提示系统定位模式已更改。
 - 值：usual.event.location.MODE_STATE_CHANGED
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_IVI_SLEEP
-（预留事件能力，暂未支持）提示车辆的车载信息娱乐（IVI）系统正在休眠。
+（预留事件，暂未支持）提示车辆的车载信息娱乐（IVI）系统正在休眠。
 - 值：common.event.IVI_SLEEP
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_IVI_PAUSE
-（预留事件能力，暂未支持）提示车辆的车载信息娱乐（IVI）系统已休眠，并通知应用程序停止播放。
+（预留事件，暂未支持）提示车辆的车载信息娱乐（IVI）系统已休眠，并通知应用程序停止播放。
 - 值：common.event.IVI_PAUSE
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_IVI_STANDBY
-（预留事件能力，暂未支持）提示车辆的车载信息娱乐（IVI）系统中的第三方应用暂停当前工作。
+（预留事件，暂未支持）提示车辆的车载信息娱乐（IVI）系统中的第三方应用暂停当前工作。
 - 值：common.event.IVI_STANDBY
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_IVI_LASTMODE_SAVE
-（预留事件能力，暂未支持）提示车辆的车载信息娱乐（IVI）系统中的第三方应用保存其最后一个模式。
+（预留事件，暂未支持）提示车辆的车载信息娱乐（IVI）系统中的第三方应用保存其最后一个模式。
 - 值：common.event.IVI_LASTMODE_SAVE
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_IVI_VOLTAGE_ABNORMAL
-（预留事件能力，暂未支持）提示车辆电源系统电压异常。
+（预留事件，暂未支持）提示车辆电源系统电压异常。
 - 值：common.event.IVI_VOLTAGE_ABNORMAL
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_IVI_HIGH_TEMPERATURE
-（预留事件能力，暂未支持）提示车辆的车载信息娱乐（IVI）系统温度过高。
+（预留事件，暂未支持）提示车辆的车载信息娱乐（IVI）系统温度过高。
 - 值：common.event.IVI_HIGH_TEMPERATURE
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_IVI_EXTREME_TEMPERATURE
-（预留事件能力，暂未支持）提示车辆的车载信息娱乐（IVI）系统温度极高。
+（预留事件，暂未支持）提示车辆的车载信息娱乐（IVI）系统温度极高。
 - 值：common.event.IVI_EXTREME_TEMPERATURE
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_IVI_TEMPERATURE_ABNORMAL
-（预留事件能力，暂未支持）提示车辆的车载信息娱乐（IVI）系统具有极端温度。
+（预留事件，暂未支持）提示车辆的车载信息娱乐（IVI）系统具有极端温度。
 - 值：common.event.IVI_TEMPERATURE_ABNORMAL
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_IVI_VOLTAGE_RECOVERY
-（预留事件能力，暂未支持）提示车辆电源系统电压恢复正常。
+（预留事件，暂未支持）提示车辆电源系统电压恢复正常。
 - 值：common.event.IVI_VOLTAGE_RECOVERY
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_IVI_TEMPERATURE_RECOVERY
-（预留事件能力，暂未支持）提示车载系统温度恢复正常。
+（预留事件，暂未支持）提示车载系统温度恢复正常。
 - 值：common.event.IVI_TEMPERATURE_RECOVERY
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_IVI_ACTIVE
-（预留事件能力，暂未支持）提示车载系统电池服务处于活动状态。
+（预留事件，暂未支持）提示车载系统电池服务处于活动状态。
 - 值：common.event.IVI_ACTIVE
 - 订阅者所需权限：无
 
@@ -779,49 +779,49 @@
 
 
 ## COMMON_EVENT_USB_ACCESSORY_ATTACHED
-（预留事件能力，暂未支持）提示已连接USB附件。
+（预留事件，暂未支持）提示已连接USB附件。
 - 值：usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_USB_ACCESSORY_DETACHED
-（预留事件能力，暂未支持）提示USB附件被卸载。
+（预留事件，暂未支持）提示USB附件被卸载。
 - 值：usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED
 - 订阅者所需权限：无
 
 
 ## COMMON_EVENT_DISK_REMOVED
-（预留事件能力，暂未支持）提示外部存储设备状态变更为移除。
+（预留事件，暂未支持）提示外部存储设备状态变更为移除。
 - 值：usual.event.data.DISK_REMOVED
 - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
 
 
 ## COMMON_EVENT_DISK_UNMOUNTED
-（预留事件能力，暂未支持）提示外部存储设备状态变更为卸载。
+（预留事件，暂未支持）提示外部存储设备状态变更为卸载。
 - 值：usual.event.data.DISK_UNMOUNTED
 - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
 
 
 ## COMMON_EVENT_DISK_MOUNTED
-（预留事件能力，暂未支持）提示外部存储设备状态变更为挂载。
+（预留事件，暂未支持）提示外部存储设备状态变更为挂载。
 - 值：usual.event.data.DISK_MOUNTED
 - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
 
 
 ## COMMON_EVENT_DISK_BAD_REMOVAL
-（预留事件能力，暂未支持）提示外部存储设备在挂载状态下被移除。
+（预留事件，暂未支持）提示外部存储设备在挂载状态下被移除。
 - 值：usual.event.data.DISK_BAD_REMOVAL
 - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
 
 
 ## COMMON_EVENT_DISK_UNMOUNTABLE
-（预留事件能力，暂未支持）提示外部存储设备在插卡情况下无法挂载。
+（预留事件，暂未支持）提示外部存储设备在插卡情况下无法挂载。
 - 值：usual.event.data.DISK_UNMOUNTABLE
 - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
 
 
 ## COMMON_EVENT_DISK_EJECT
-（预留事件能力，暂未支持）提示用户已作出弹出外部存储介质的操作（系统软件层面的交互操作，非直接物理弹出）。
+（预留事件，暂未支持）提示用户已作出弹出外部存储介质的操作（系统软件层面的交互操作，非直接物理弹出）。
 - 值：usual.event.data.DISK_EJECT
 - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
 
@@ -857,19 +857,19 @@
 
 
 ## COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED
-（预留事件能力，暂未支持）提示帐户发生可见性的更改。
+（预留事件，暂未支持）提示帐户发生可见性的更改。
 - 值：usual.event.data.VISIBLE_ACCOUNTS_UPDATED
 - 订阅者所需权限：ohos.permission.GET_APP_ACCOUNTS
 
 
 ## COMMON_EVENT_ACCOUNT_DELETED
-（预留事件能力，暂未支持）提示有帐户被删除。
+（预留事件，暂未支持）提示有帐户被删除。
 - 值：usual.event.data.ACCOUNT_DELETED
 - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 
 ## COMMON_EVENT_FOUNDATION_READY
-（预留事件能力，暂未支持）提示foundation已准备好。
+（预留事件，暂未支持）提示foundation已准备好。
 - 值：usual.event.data.FOUNDATION_READY
 - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED
 
