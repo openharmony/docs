@@ -1711,7 +1711,7 @@ let want = {
     bundleName : "com.example.myapplication",
     abilityName : "com.example.myapplication.MainAbility"
 };
-var info;
+let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
@@ -1777,7 +1777,7 @@ let want = {
     bundleName : "com.example.myapplication",
     abilityName : "com.example.myapplication.MainAbility"
 };
-var info;
+let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
@@ -1924,7 +1924,7 @@ let want = {
     bundleName : "com.example.myapplication",
     abilityName : "com.example.myapplication.MainAbility"
 };
-var info;
+let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
@@ -1987,7 +1987,7 @@ let want = {
     bundleName : "com.example.myapplication",
     abilityName : "com.example.myapplication.MainAbility"
 };
-var info;
+let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
