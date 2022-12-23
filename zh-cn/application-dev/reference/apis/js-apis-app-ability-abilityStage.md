@@ -28,7 +28,7 @@ onCreate(): void
 ```ts
 class MyAbilityStage extends AbilityStage {
     onCreate() {
-        console.log("MyAbilityStage.onCreate is called")
+        console.log("MyAbilityStage.onCreate is called");
     }
 }
 ```
@@ -118,10 +118,10 @@ class MyAbilityStage extends AbilityStage {
 
 context: [AbilityStageContext](js-apis-inner-application-abilityStageContext.md);
 
-指示有关上下文的配置信息。
+指示AbilityStage的上下文，。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 属性名      | 类型                        | 说明                                                         |
 | ----------- | --------------------------- | ------------------------------------------------------------ |
-| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 在启动能力阶段进行初始化时回调。 |
+| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 在Ability启动阶段进行初始化时回调，获取到该Ability的context值。 |
