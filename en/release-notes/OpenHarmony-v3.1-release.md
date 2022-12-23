@@ -189,7 +189,7 @@ This version has the following updates to OpenHarmony 3.1 Beta.
 
 For details, see the following:
 
-*[API Differences](api-change/v3.1-Release/Readme-EN.md)*
+*[API Differences](api-diff/v3.1-Release/Readme-EN.md)*
 
 
 ### Chip and Development Board Adaptation
