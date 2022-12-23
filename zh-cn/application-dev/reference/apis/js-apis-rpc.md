@@ -46,8 +46,6 @@ import rpc from '@ohos.rpc';
 
   static create(): MessageSequence
 
-**描述**：
-
   静态方法，创建MessageSequence对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -69,8 +67,6 @@ import rpc from '@ohos.rpc';
 
 reclaim(): void
 
-**描述**：
-
 释放不再使用的MessageSequence对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -85,8 +81,6 @@ reclaim(): void
 ### writeRemoteObject
 
 writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
-
-**描述**：
 
 序列化远程对象并将其写入MessageSequence对象。
 
@@ -128,8 +122,6 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
 ### readRemoteObject
 
 readRemoteObject(): IRemoteObject
-
-**描述**：
 
 从MessageSequence读取远程对象。此方法用于反序列化MessageSequence对象以生成IRemoteObject。远程对象按写入MessageSequence的顺序读取。
 
@@ -173,8 +165,6 @@ readRemoteObject(): IRemoteObject
 
 writeInterfaceToken(token: string): void
 
-**描述**：
-
 将接口描述符写入MessageSequence对象，远端对象可使用该信息校验本次通信。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -208,8 +198,6 @@ writeInterfaceToken(token: string): void
 ### readInterfaceToken
 
 readInterfaceToken(): string
-
-**描述**：
 
 从MessageSequence对象中读取接口描述符，接口描述符按写入MessageSequence的顺序读取，本地对象可使用该信息检验本次通信。
 
@@ -250,8 +238,6 @@ class Stub extends rpc.RemoteObject {
 
 getSize(): number
 
-**描述**：
-
 获取当前创建的MessageSequence对象的数据大小。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -274,8 +260,6 @@ getSize(): number
 
 getCapacity(): number
 
-**描述**：
-
 获取当前MessageSequence对象的容量大小。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -297,8 +281,6 @@ getCapacity(): number
 ### setSize
 
 setSize(size: number): void
-
-**描述**：
 
 设置MessageSequence对象中包含的数据大小。
 
@@ -326,8 +308,6 @@ setSize(size: number): void
 ### setCapacity
 
 setCapacity(size: number): void
-
-**描述**：
 
 设置MessageSequence对象的存储容量。
 
@@ -364,8 +344,6 @@ setCapacity(size: number): void
 
 getWritableBytes(): number
 
-**描述**：
-
 获取MessageSequence的可写字节空间大小。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -391,8 +369,6 @@ class Stub extends rpc.RemoteObject {
 ### getReadableBytes
 
 getReadableBytes(): number
-
-**描述**：
 
 获取MessageSequence的可读字节空间。
 
@@ -420,8 +396,6 @@ class Stub extends rpc.RemoteObject {
 
 getReadPosition(): number
 
-**描述**：
-
 获取MessageSequence的读位置。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -443,8 +417,6 @@ getReadPosition(): number
 ### getWritePosition
 
 getWritePosition(): number
-
-**描述**：
 
 获取MessageSequence的写位置。
 
@@ -468,8 +440,6 @@ getWritePosition(): number
 ### rewindRead
 
 rewindRead(pos: number): void
-
-**描述**：
 
 重新偏移读取位置到指定的位置。
 
@@ -503,8 +473,6 @@ rewindRead(pos: number): void
 
 rewindWrite(pos: number): void
 
-**描述**：
-
 重新偏移写位置到指定的位置。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -534,8 +502,6 @@ rewindWrite(pos: number): void
 ### writeByte
 
 writeByte(val: number): void
-
-**描述**：
 
 将字节值写入MessageSequence实例。
 
@@ -570,8 +536,6 @@ writeByte(val: number): void
 ### readByte
 
 readByte(): number
-
-**描述**：
 
 从MessageSequence实例读取字节值。
 
@@ -614,8 +578,6 @@ readByte(): number
 
 writeShort(val: number): void
 
-**描述**：
-
 将短整数值写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -649,8 +611,6 @@ writeShort(val: number): void
 ### readShort
 
 readShort(): number
-
-**描述**：
 
 从MessageSequence实例读取短整数值。
 
@@ -693,8 +653,6 @@ readShort(): number
 
 writeInt(val: number): void
 
-**描述**：
-
 将整数值写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -728,8 +686,6 @@ writeInt(val: number): void
 ### readInt
 
 readInt(): number
-
-**描述**：
 
 从MessageSequence实例读取整数值。
 
@@ -772,8 +728,6 @@ readInt(): number
 
 writeLong(val: number): void
 
-**描述**：
-
 将长整数值写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -807,8 +761,6 @@ writeLong(val: number): void
 ### readLong
 
 readLong(): number
-
-**描述**：
 
 从MessageSequence实例中读取长整数值。
 
@@ -851,8 +803,6 @@ readLong(): number
 
 writeFloat(val: number): void
 
-**描述**：
-
 将浮点值写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -886,8 +836,6 @@ writeFloat(val: number): void
 ### readFloat
 
 readFloat(): number
-
-**描述**：
 
 从MessageSequence实例中读取浮点值。
 
@@ -930,8 +878,6 @@ readFloat(): number
 
 writeDouble(val: number): void
 
-**描述**：
-
 将双精度浮点值写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -965,8 +911,6 @@ writeDouble(val: number): void
 ### readDouble
 
 readDouble(): number
-
-**描述**：
 
 从MessageSequence实例读取双精度浮点值。
 
@@ -1009,8 +953,6 @@ readDouble(): number
 
 writeBoolean(val: boolean): void
 
-**描述**：
-
 将布尔值写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -1044,8 +986,6 @@ writeBoolean(val: boolean): void
 ### readBoolean
 
 readBoolean(): boolean
-
-**描述**：
 
 从MessageSequence实例读取布尔值。
 
@@ -1088,8 +1028,6 @@ readBoolean(): boolean
 
 writeChar(val: number): void
 
-**描述**：
-
 将单个字符值写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -1123,8 +1061,6 @@ writeChar(val: number): void
 ### readChar
 
 readChar(): number
-
-**描述**：
 
 从MessageSequence实例中读取单个字符值。
 
@@ -1167,8 +1103,6 @@ readChar(): number
 
 writeString(val: string): void
 
-**描述**：
-
 将字符串值写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -1202,8 +1136,6 @@ writeString(val: string): void
 ### readString
 
 readString(): string
-
-**描述**：
 
 从MessageSequence实例读取字符串值。
 
@@ -1245,8 +1177,6 @@ readString(): string
 ### writeParcelable
 
 writeParcelable(val: Parcelable): void
-
-**描述**：
 
 将自定义序列化对象写入MessageSequence实例。
 
@@ -1300,8 +1230,6 @@ writeParcelable(val: Parcelable): void
 ### readParcelable
 
 readParcelable(dataIn: Parcelable): void
-
-**描述**：
 
 从MessageSequence实例中读取成员变量到指定的对象（dataIn）。
 
@@ -1359,8 +1287,6 @@ readParcelable(dataIn: Parcelable): void
 
 writeByteArray(byteArray: number[]): void
 
-**描述**：
-
 将字节数组写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -1395,8 +1321,6 @@ writeByteArray(byteArray: number[]): void
 ### readByteArray
 
 readByteArray(dataIn: number[]): void
-
-**描述**：
 
 从MessageSequence实例读取字节数组。
 
@@ -1440,8 +1364,6 @@ readByteArray(dataIn: number[]): void
 
 readByteArray(): number[]
 
-**描述**：
-
 从MessageSequence实例中读取字节数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -1484,8 +1406,6 @@ readByteArray(): number[]
 
 writeShortArray(shortArray: number[]): void
 
-**描述**：
-
 将短整数数组写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -1519,8 +1439,6 @@ writeShortArray(shortArray: number[]): void
 ### readShortArray
 
 readShortArray(dataIn: number[]): void
-
-**描述**：
 
 从MessageSequence实例中读取短整数数组。
 
@@ -1563,8 +1481,6 @@ readShortArray(dataIn: number[]): void
 
 readShortArray(): number[]
 
-**描述**：
-
 从MessageSequence实例中读取短整数数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -1606,8 +1522,6 @@ readShortArray(): number[]
 
 writeIntArray(intArray: number[]): void
 
-**描述**：
-
 将整数数组写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -1641,8 +1555,6 @@ writeIntArray(intArray: number[]): void
 ### readIntArray
 
 readIntArray(dataIn: number[]): void
-
-**描述**：
 
 从MessageSequence实例中读取整数数组。
 
@@ -1685,8 +1597,6 @@ readIntArray(dataIn: number[]): void
 
 readIntArray(): number[]
 
-**描述**：
-
 从MessageSequence实例中读取整数数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -1728,8 +1638,6 @@ readIntArray(): number[]
 
 writeLongArray(longArray: number[]): void
 
-**描述**：
-
 将长整数数组写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -1764,9 +1672,7 @@ writeLongArray(longArray: number[]): void
 
 readLongArray(dataIn: number[]): void
 
-**描述**：
-
-从MessageSequence实例读取定长长整数数组。
+从MessageSequence实例读取的长整数数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -1806,8 +1712,6 @@ readLongArray(dataIn: number[]): void
 ### readLongArray
 
 readLongArray(): number[]
-
-**描述**：
 
 从MessageSequence实例中读取所有的长整数数组。
 
@@ -1850,8 +1754,6 @@ readLongArray(): number[]
 
 writeFloatArray(floatArray: number[]): void
 
-**描述**：
-
 将浮点数组写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -1885,8 +1787,6 @@ writeFloatArray(floatArray: number[]): void
 ### readFloatArray
 
 readFloatArray(dataIn: number[]): void
-
-**描述**：
 
 从MessageSequence实例中读取浮点数组。
 
@@ -1929,8 +1829,6 @@ readFloatArray(dataIn: number[]): void
 
 readFloatArray(): number[]
 
-**描述**：
-
 从MessageSequence实例中读取浮点数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -1972,8 +1870,6 @@ readFloatArray(): number[]
 
 writeDoubleArray(doubleArray: number[]): void
 
-**描述**：
-
 将双精度浮点数组写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -2008,9 +1904,7 @@ writeDoubleArray(doubleArray: number[]): void
 
 readDoubleArray(dataIn: number[]): void
 
-**描述**：
-
-从MessageSequence实例中读取定长双精度浮点数组。
+从MessageSequence实例中读取双精度浮点数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -2050,8 +1944,6 @@ readDoubleArray(dataIn: number[]): void
 ### readDoubleArray
 
 readDoubleArray(): number[]
-
-**描述**：
 
 从MessageSequence实例读取所有双精度浮点数组。
 
@@ -2094,8 +1986,6 @@ readDoubleArray(): number[]
 
 writeBooleanArray(booleanArray: boolean[]): void
 
-**描述**：
-
 将布尔数组写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -2130,9 +2020,7 @@ writeBooleanArray(booleanArray: boolean[]): void
 
 readBooleanArray(dataIn: boolean[]): void
 
-**描述**：
-
-从MessageSequence实例中读取定长布尔数组。
+从MessageSequence实例中读取布尔数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -2172,8 +2060,6 @@ readBooleanArray(dataIn: boolean[]): void
 ### readBooleanArray
 
 readBooleanArray(): boolean[]
-
-**描述**：
 
 从MessageSequence实例中读取所有布尔数组。
 
@@ -2216,8 +2102,6 @@ readBooleanArray(): boolean[]
 
 writeCharArray(charArray: number[]): void
 
-**描述**：
-
 将单个字符数组写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -2251,8 +2135,6 @@ writeCharArray(charArray: number[]): void
 ### readCharArray
 
 readCharArray(dataIn: number[]): void
-
-**描述**：
 
 从MessageSequence实例中读取单个字符数组。
 
@@ -2294,8 +2176,6 @@ readCharArray(dataIn: number[]): void
 ### readCharArray
 
 readCharArray(): number[]
-
-**描述**：
 
 从MessageSequence实例读取单个字符数组。
 
@@ -2339,8 +2219,6 @@ readCharArray(): number[]
 
 writeStringArray(stringArray: string[]): void
 
-**描述**：
-
 将字符串数组写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -2374,8 +2252,6 @@ writeStringArray(stringArray: string[]): void
 ### readStringArray
 
 readStringArray(dataIn: string[]): void
-
-**描述**：
 
 从MessageSequence实例读取字符串数组。
 
@@ -2418,8 +2294,6 @@ readStringArray(dataIn: string[]): void
 
 readStringArray(): string[]
 
-**描述**：
-
 从MessageSequence实例读取字符串数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -2460,8 +2334,6 @@ readStringArray(): string[]
 ### writeNoException
 
 writeNoException(): void
-
-**描述**：
 
 向MessageSequence写入“指示未发生异常”的信息。
 
@@ -2504,8 +2376,6 @@ writeNoException(): void
 ### readException
 
 readException(): void
-
-**描述**：
 
 从MessageSequence中读取异常。
 
@@ -2574,8 +2444,6 @@ readException(): void
 
 writeParcelableArray(parcelableArray: Parcelable[]): void
 
-**描述**：
-
 将可序列化对象数组写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -2631,8 +2499,6 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 ### readParcelableArray
 
 readParcelableArray(parcelableArray: Parcelable[]): void
-
-**描述**：
 
 从MessageSequence实例读取可序列化对象数组。
 
@@ -2695,8 +2561,6 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 
 writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
-**描述**：
-
 将IRemoteObject对象数组写入MessageSequence。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -2743,8 +2607,6 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 ### readRemoteObjectArray
 
 readRemoteObjectArray(objects: IRemoteObject[]): void
-
-**描述**：
 
 从MessageSequence读取IRemoteObject对象数组。
 
@@ -2799,8 +2661,6 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
 readRemoteObjectArray(): IRemoteObject[]
 
-**描述**：
-
 从MessageSequence读取IRemoteObject对象数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -2849,8 +2709,6 @@ readRemoteObjectArray(): IRemoteObject[]
 
 static closeFileDescriptor(fd: number): void
 
-**描述**：
-
 静态方法，关闭给定的文件描述符。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -2878,8 +2736,6 @@ static closeFileDescriptor(fd: number): void
 ### dupFileDescriptor
 
 static dupFileDescriptor(fd: number) :number
-
-**描述**：
 
 静态方法，复制给定的文件描述符。
 
@@ -2923,8 +2779,6 @@ static dupFileDescriptor(fd: number) :number
 
 containFileDescriptors(): boolean
 
-**描述**：
-
 检查此MessageSequence对象是否包含文件描述符。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -2963,8 +2817,6 @@ containFileDescriptors(): boolean
 
 writeFileDescriptor(fd: number): void
 
-**描述**：
-
 写入文件描述符到MessageSequence。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3001,8 +2853,6 @@ writeFileDescriptor(fd: number): void
 ### readFileDescriptor
 
 readFileDescriptor(): number
-
-**描述**：
 
 从MessageSequence中读取文件描述符。
 
@@ -3047,8 +2897,6 @@ readFileDescriptor(): number
 
 writeAshmem(ashmem: Ashmem): void
 
-**描述**：
-
 将指定的匿名共享对象写入此MessageSequence。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3090,8 +2938,6 @@ writeAshmem(ashmem: Ashmem): void
 ### readAshmem
 
 readAshmem(): Ashmem
-
-**描述**：
 
 从MessageSequence读取匿名共享对象。
 
@@ -3141,8 +2987,6 @@ readAshmem(): Ashmem
 
 getRawDataCapacity(): number
 
-**描述**：
-
 获取MessageSequence可以容纳的最大原始数据量。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3164,8 +3008,6 @@ getRawDataCapacity(): number
 ### writeRawData
 
 writeRawData(rawData: number[], size: number): void
-
-**描述**：
 
 将原始数据写入MessageSequence对象。
 
@@ -3202,8 +3044,6 @@ writeRawData(rawData: number[], size: number): void
 ### readRawData
 
 readRawData(size: number): number[]
-
-**描述**：
 
 从MessageSequence读取原始数据。
 
@@ -3259,8 +3099,6 @@ readRawData(size: number): number[]
 
 static create(): MessageParcel
 
-**描述**：
-
 静态方法，创建MessageParcel对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3282,8 +3120,6 @@ static create(): MessageParcel
 
 reclaim(): void
 
-**描述**：
-
 释放不再使用的MessageParcel对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3298,8 +3134,6 @@ reclaim(): void
 ### writeRemoteObject
 
 writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
-
-**描述**：
 
 序列化远程对象并将其写入MessageParcel对象。
 
@@ -3348,8 +3182,6 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
 
 readRemoteObject(): IRemoteObject
 
-**描述**：
-
 从MessageParcel读取远程对象。此方法用于反序列化MessageParcel对象以生成IRemoteObject。远程对象按写入MessageParcel的顺序读取。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3392,8 +3224,6 @@ readRemoteObject(): IRemoteObject
 
 writeInterfaceToken(token: string): boolean
 
-**描述**：
-
 将接口描述符写入MessageParcel对象，远端对象可使用该信息校验本次通信。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3423,8 +3253,6 @@ writeInterfaceToken(token: string): boolean
 
 readInterfaceToken(): string
 
-**描述**：
-
 从MessageParcel中读取接口描述符，接口描述符按写入MessageParcel的顺序读取，本地对象可使用该信息检验本次通信。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3451,8 +3279,6 @@ readInterfaceToken(): string
 
 getSize(): number
 
-**描述**：
-
 获取当前MessageParcel的数据大小。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3475,8 +3301,6 @@ getSize(): number
 
 getCapacity(): number
 
-**描述**：
-
 获取当前MessageParcel的容量。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3498,8 +3322,6 @@ getCapacity(): number
 ### setSize
 
 setSize(size: number): boolean
-
-**描述**：
 
 设置MessageParcel实例中包含的数据大小。
 
@@ -3529,8 +3351,6 @@ setSize(size: number): boolean
 
 setCapacity(size: number): boolean
 
-**描述**：
-
 设置MessageParcel实例的存储容量。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3559,8 +3379,6 @@ setCapacity(size: number): boolean
 
 getWritableBytes(): number
 
-**描述**：
-
 获取MessageParcel的可写字节空间。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3586,8 +3404,6 @@ getWritableBytes(): number
 ### getReadableBytes
 
 getReadableBytes(): number
-
-**描述**：
 
 获取MessageParcel的可读字节空间。
 
@@ -3615,8 +3431,6 @@ getReadableBytes(): number
 
 getReadPosition(): number
 
-**描述**：
-
 获取MessageParcel的读位置。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3638,8 +3452,6 @@ getReadPosition(): number
 ### getWritePosition
 
 getWritePosition(): number
-
-**描述**：
 
 获取MessageParcel的写位置。
 
@@ -3663,8 +3475,6 @@ getWritePosition(): number
 ### rewindRead
 
 rewindRead(pos: number): boolean
-
-**描述**：
 
 重新偏移读取位置到指定的位置。
 
@@ -3699,8 +3509,6 @@ rewindRead(pos: number): boolean
 
 rewindWrite(pos: number): boolean
 
-**描述**：
-
 重新偏移写位置到指定的位置。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3732,8 +3540,6 @@ rewindWrite(pos: number): boolean
 
 writeByte(val: number): boolean
 
-**描述**：
-
 将字节值写入MessageParcel实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3762,8 +3568,6 @@ writeByte(val: number): boolean
 
 readByte(): number
 
-**描述**：
-
 从MessageParcel实例读取字节值。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3787,8 +3591,6 @@ readByte(): number
 ### writeShort
 
 writeShort(val: number): boolean
-
-**描述**：
 
 将短整数值写入MessageParcel实例。
 
@@ -3818,8 +3620,6 @@ writeShort(val: number): boolean
 
 readShort(): number
 
-**描述**：
-
 从MessageParcel实例读取短整数值。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3843,8 +3643,6 @@ readShort(): number
 ### writeInt
 
 writeInt(val: number): boolean
-
-**描述**：
 
 将整数值写入MessageParcel实例。
 
@@ -3874,8 +3672,6 @@ writeInt(val: number): boolean
 
 readInt(): number
 
-**描述**：
-
 从MessageParcel实例读取整数值。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3899,8 +3695,6 @@ readInt(): number
 ### writeLong
 
 writeLong(val: number): boolean
-
-**描述**：
 
 将长整数值写入MessageParcel实例。
 
@@ -3930,8 +3724,6 @@ writeLong(val: number): boolean
 
 readLong(): number
 
-**描述**：
-
 从MessageParcel实例中读取长整数值。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -3955,8 +3747,6 @@ readLong(): number
 ### writeFloat
 
 writeFloat(val: number): boolean
-
-**描述**：
 
 将浮点值写入MessageParcel实例。
 
@@ -3986,8 +3776,6 @@ writeFloat(val: number): boolean
 
 readFloat(): number
 
-**描述**：
-
 从MessageParcel实例中读取浮点值。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4011,8 +3799,6 @@ readFloat(): number
 ### writeDouble
 
 writeDouble(val: number): boolean
-
-**描述**：
 
 将双精度浮点值写入MessageParcel实例。
 
@@ -4042,8 +3828,6 @@ writeDouble(val: number): boolean
 
 readDouble(): number
 
-**描述**：
-
 从MessageParcel实例读取双精度浮点值。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4067,8 +3851,6 @@ readDouble(): number
 ### writeBoolean
 
 writeBoolean(val: boolean): boolean
-
-**描述**：
 
 将布尔值写入MessageParcel实例。
 
@@ -4098,8 +3880,6 @@ writeBoolean(val: boolean): boolean
 
 readBoolean(): boolean
 
-**描述**：
-
 从MessageParcel实例读取布尔值。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4123,8 +3903,6 @@ readBoolean(): boolean
 ### writeChar
 
 writeChar(val: number): boolean
-
-**描述**：
 
 将单个字符值写入MessageParcel实例。
 
@@ -4154,8 +3932,6 @@ writeChar(val: number): boolean
 
 readChar(): number
 
-**描述**：
-
 从MessageParcel实例中读取单个字符值。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4179,8 +3955,6 @@ readChar(): number
 ### writeString
 
 writeString(val: string): boolean
-
-**描述**：
 
 将字符串值写入MessageParcel实例。
 
@@ -4210,8 +3984,6 @@ writeString(val: string): boolean
 
 readString(): string
 
-**描述**：
-
 从MessageParcel实例读取字符串值。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4235,8 +4007,6 @@ readString(): string
 ### writeSequenceable
 
 writeSequenceable(val: Sequenceable): boolean
-
-**描述**：
 
 将自定义序列化对象写入MessageParcel实例。
 
@@ -4284,8 +4054,6 @@ writeSequenceable(val: Sequenceable): boolean
 ### readSequenceable
 
 readSequenceable(dataIn: Sequenceable): boolean
-
-**描述**：
 
 从MessageParcel实例中读取成员变量到指定的对象（dataIn）。
 
@@ -4337,8 +4105,6 @@ readSequenceable(dataIn: Sequenceable): boolean
 
 writeByteArray(byteArray: number[]): boolean
 
-**描述**：
-
 将字节数组写入MessageParcel实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4368,8 +4134,6 @@ writeByteArray(byteArray: number[]): boolean
 
 readByteArray(dataIn: number[]): void
 
-**描述**：
-
 从MessageParcel实例读取字节数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4395,8 +4159,6 @@ readByteArray(dataIn: number[]): void
 
 readByteArray(): number[]
 
-**描述**：
-
 从MessageParcel实例中读取字节数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4421,8 +4183,6 @@ readByteArray(): number[]
 ### writeShortArray
 
 writeShortArray(shortArray: number[]): boolean
-
-**描述**：
 
 将短整数数组写入MessageParcel实例。
 
@@ -4452,8 +4212,6 @@ writeShortArray(shortArray: number[]): boolean
 
 readShortArray(dataIn: number[]): void
 
-**描述**：
-
 从MessageParcel实例中读取短整数数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4478,8 +4236,6 @@ readShortArray(dataIn: number[]): void
 
 readShortArray(): number[]
 
-**描述**：
-
 从MessageParcel实例中读取短整数数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4503,8 +4259,6 @@ readShortArray(): number[]
 ### writeIntArray
 
 writeIntArray(intArray: number[]): boolean
-
-**描述**：
 
 将整数数组写入MessageParcel实例。
 
@@ -4533,8 +4287,6 @@ writeIntArray(intArray: number[]): boolean
 ### readIntArray
 
 readIntArray(dataIn: number[]): void
-
-**描述**：
 
 从MessageParcel实例中读取整数数组。
 
@@ -4584,8 +4336,6 @@ readIntArray(): number[]
 
 writeLongArray(longArray: number[]): boolean
 
-**描述**：
-
 将长整数数组写入MessageParcel实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4614,8 +4364,6 @@ writeLongArray(longArray: number[]): boolean
 
 readLongArray(dataIn: number[]): void
 
-**描述**：
-
 从MessageParcel实例读取长整数数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4640,8 +4388,6 @@ readLongArray(dataIn: number[]): void
 
 readLongArray(): number[]
 
-**描述**：
-
 从MessageParcel实例中读取长整数数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4665,8 +4411,6 @@ readLongArray(): number[]
 ### writeFloatArray
 
 writeFloatArray(floatArray: number[]): boolean
-
-**描述**：
 
 将浮点数组写入MessageParcel实例。
 
@@ -4696,8 +4440,6 @@ writeFloatArray(floatArray: number[]): boolean
 
 readFloatArray(dataIn: number[]): void
 
-**描述**：
-
 从MessageParcel实例中读取浮点数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4722,8 +4464,6 @@ readFloatArray(dataIn: number[]): void
 
 readFloatArray(): number[]
 
-**描述**：
-
 从MessageParcel实例中读取浮点数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4747,8 +4487,6 @@ readFloatArray(): number[]
 ### writeDoubleArray
 
 writeDoubleArray(doubleArray: number[]): boolean
-
-**描述**：
 
 将双精度浮点数组写入MessageParcel实例。
 
@@ -4778,8 +4516,6 @@ writeDoubleArray(doubleArray: number[]): boolean
 
 readDoubleArray(dataIn: number[]): void
 
-**描述**：
-
 从MessageParcel实例中读取双精度浮点数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4804,8 +4540,6 @@ readDoubleArray(dataIn: number[]): void
 
 readDoubleArray(): number[]
 
-**描述**：
-
 从MessageParcel实例读取双精度浮点数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4829,8 +4563,6 @@ readDoubleArray(): number[]
 ### writeBooleanArray
 
 writeBooleanArray(booleanArray: boolean[]): boolean
-
-**描述**：
 
 将布尔数组写入MessageParcel实例。
 
@@ -4860,8 +4592,6 @@ writeBooleanArray(booleanArray: boolean[]): boolean
 
 readBooleanArray(dataIn: boolean[]): void
 
-**描述**：
-
 从MessageParcel实例中读取布尔数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4886,8 +4616,6 @@ readBooleanArray(dataIn: boolean[]): void
 
 readBooleanArray(): boolean[]
 
-**描述**：
-
 从MessageParcel实例中读取布尔数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4911,8 +4639,6 @@ readBooleanArray(): boolean[]
 ### writeCharArray
 
 writeCharArray(charArray: number[]): boolean
-
-**描述**：
 
 将单个字符数组写入MessageParcel实例。
 
@@ -4942,8 +4668,6 @@ writeCharArray(charArray: number[]): boolean
 
 readCharArray(dataIn: number[]): void
 
-**描述**：
-
 从MessageParcel实例中读取单个字符数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4968,8 +4692,6 @@ readCharArray(dataIn: number[]): void
 
 readCharArray(): number[]
 
-**描述**：
-
 从MessageParcel实例读取单个字符数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -4993,8 +4715,6 @@ readCharArray(): number[]
 ### writeStringArray
 
 writeStringArray(stringArray: string[]): boolean
-
-**描述**：
 
 将字符串数组写入MessageParcel实例。
 
@@ -5024,8 +4744,6 @@ writeStringArray(stringArray: string[]): boolean
 
 readStringArray(dataIn: string[]): void
 
-**描述**：
-
 从MessageParcel实例读取字符串数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -5050,8 +4768,6 @@ readStringArray(dataIn: string[]): void
 
 readStringArray(): string[]
 
-**描述**：
-
 从MessageParcel实例读取字符串数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -5075,8 +4791,6 @@ readStringArray(): string[]
 ### writeNoException<sup>8+</sup>
 
 writeNoException(): void
-
-**描述**：
 
 向MessageParcel写入“指示未发生异常”的信息。
 
@@ -5119,8 +4833,6 @@ writeNoException(): void
 ### readException<sup>8+</sup>
 
 readException(): void
-
-**描述**：
 
 从MessageParcel中读取异常。
 
@@ -5176,8 +4888,6 @@ readException(): void
 
 writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
 
-**描述**：
-
 将可序列化对象数组写入MessageParcel实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -5228,8 +4938,6 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
 
 readSequenceableArray(sequenceableArray: Sequenceable[]): void
 
-**描述**：
-
 从MessageParcel实例读取可序列化对象数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -5275,8 +4983,6 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
 ### writeRemoteObjectArray<sup>8+</sup>
 
 writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
-
-**描述**：
 
 将IRemoteObject对象数组写入MessageParcel。
 
@@ -5330,8 +5036,6 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
 
 readRemoteObjectArray(objects: IRemoteObject[]): void
 
-**描述**：
-
 从MessageParcel读取IRemoteObject对象数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -5378,8 +5082,6 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 ### readRemoteObjectArray<sup>8+</sup>
 
 readRemoteObjectArray(): IRemoteObject[]
-
-**描述**：
 
 从MessageParcel读取IRemoteObject对象数组。
 
@@ -5429,8 +5131,6 @@ readRemoteObjectArray(): IRemoteObject[]
 
 static closeFileDescriptor(fd: number): void
 
-**描述**：
-
 静态方法，关闭给定的文件描述符。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -5453,8 +5153,6 @@ static closeFileDescriptor(fd: number): void
 ### dupFileDescriptor<sup>8+</sup>
 
 static dupFileDescriptor(fd: number) :number
-
-**描述**：
 
 静态方法，复制给定的文件描述符。
 
@@ -5485,8 +5183,6 @@ static dupFileDescriptor(fd: number) :number
 
 containFileDescriptors(): boolean
 
-**描述**：
-
 检查此MessageParcel对象是否包含文件描述符。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -5514,8 +5210,6 @@ containFileDescriptors(): boolean
 ### writeFileDescriptor<sup>8+</sup>
 
 writeFileDescriptor(fd: number): boolean
-
-**描述**：
 
 写入文件描述符到MessageParcel。
 
@@ -5548,8 +5242,6 @@ writeFileDescriptor(fd: number): boolean
 
 readFileDescriptor(): number
 
-**描述**：
-
 从MessageParcel中读取文件描述符。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -5575,8 +5267,6 @@ readFileDescriptor(): number
 ### writeAshmem<sup>8+</sup>
 
 writeAshmem(ashmem: Ashmem): boolean
-
-**描述**：
 
 将指定的匿名共享对象写入此MessageParcel。
 
@@ -5607,8 +5297,6 @@ writeAshmem(ashmem: Ashmem): boolean
 
 readAshmem(): Ashmem
 
-**描述**：
-
 从MessageParcel读取匿名共享对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -5634,8 +5322,6 @@ readAshmem(): Ashmem
 
 getRawDataCapacity(): number
 
-**描述**：
-
 获取MessageParcel可以容纳的最大原始数据量。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -5657,8 +5343,6 @@ getRawDataCapacity(): number
 ### writeRawData<sup>8+</sup>
 
 writeRawData(rawData: number[], size: number): boolean
-
-**描述**：
 
 将原始数据写入MessageParcel对象。
 
@@ -5689,8 +5373,6 @@ writeRawData(rawData: number[], size: number): boolean
 ### readRawData<sup>8+</sup>
 
 readRawData(size: number): number[]
-
-**描述**：
 
 从MessageParcel读取原始数据。
 
@@ -5726,8 +5408,6 @@ readRawData(size: number): number[]
 ### marshalling
 
 marshalling(dataOut: MessageSequence): boolean
-
-**描述**：
 
 将此可序列对象封送到MessageSequence中。
 
@@ -5777,8 +5457,6 @@ marshalling(dataOut: MessageSequence): boolean
 ### unmarshalling
 
 unmarshalling(dataIn: MessageSequence): boolean
-
-**描述**：
 
 从MessageSequence中解封此可序列对象。
 
@@ -5836,8 +5514,6 @@ unmarshalling(dataIn: MessageSequence): boolean
 
 marshalling(dataOut: MessageParcel): boolean
 
-**描述**：
-
 将此可序列对象封送到MessageParcel中。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -5886,8 +5562,6 @@ marshalling(dataOut: MessageParcel): boolean
 ### unmarshalling
 
 unmarshalling(dataIn: MessageParcel): boolean
-
-**描述**：
 
 从MessageParcel中解封此可序列对象。
 
@@ -5942,8 +5616,6 @@ unmarshalling(dataIn: MessageParcel): boolean
 ### asObject
 
 asObject(): IRemoteObject
-
-**描述**：
 
 需派生类实现，获取代理或远端对象。
 
@@ -6010,8 +5682,6 @@ asObject(): IRemoteObject
 
 onRemoteDied(): void
 
-**描述**：
-
 在成功添加死亡通知订阅后，当远端对象死亡时，将自动调用本方法。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -6062,8 +5732,6 @@ onRemoteDied(): void
 
 getLocalInterface(descriptor: string): IRemoteBroker
 
-**描述**：
-
 查询接口描述符的字符串。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -6086,8 +5754,6 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
-**描述**：
-
 查询接口描述符的字符串。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -6109,8 +5775,6 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
-
-**描述**：
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
@@ -6162,8 +5826,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-**描述**：
-
 以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -6188,8 +5850,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-**描述**：
-
 以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -6210,8 +5870,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-**描述**：
-
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -6229,8 +5887,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 ### registerDeathRecipient<sup>9+</sup>
 
 registerDeathRecipient(recipient: DeathRecipient, flags: number): void
-
-**描述**：
 
 注册用于接收远程对象死亡通知的回调。如果与RemoteProxy对象匹配的远程对象进程死亡，则调用此方法。
 
@@ -6257,8 +5913,6 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
-**描述**：
-
 注册用于接收远程对象死亡通知的回调。如果与RemoteProxy对象匹配的远程对象进程死亡，则调用此方法。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -6280,8 +5934,6 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 ### unregisterDeathRecipient<sup>9+</sup>
 
 unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
-
-**描述**：
 
 注销用于接收远程对象死亡通知的回调。
 
@@ -6308,8 +5960,6 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
-**描述**：
-
 注销用于接收远程对象死亡通知的回调。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -6330,8 +5980,6 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 ### getDescriptor<sup>9+</sup>
 
 getDescriptor(): string
-
-**描述**：
 
 获取对象的接口描述符，接口描述符为字符串。
 
@@ -6357,8 +6005,6 @@ getDescriptor(): string
 >从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9)类替代。
 
 getInterfaceDescriptor(): string
-
-**描述**：
 
 获取对象的接口描述符，接口描述符为字符串。
 
@@ -6405,8 +6051,6 @@ isObjectDead(): boolean
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
-
-**描述**：
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
@@ -6470,8 +6114,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 ### sendMessageRequest<sup>9+</sup>
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
-
-**描述**：
 
 以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
 
@@ -6544,8 +6186,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
-**描述**：
-
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -6615,8 +6255,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-**描述**：
-
 以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendMessageRequest返回后的某个时机执行回调，回复内容在RequestResult的reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -6685,8 +6323,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-**描述**：
-
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -6747,8 +6383,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 ### getLocalInterface<sup>9+</sup>
 
 getLocalInterface(interface: string): IRemoteBroker
-
-**描述**：
 
 查询并获取当前接口描述符对应的本地接口对象。
 
@@ -6811,8 +6445,6 @@ getLocalInterface(interface: string): IRemoteBroker
 
 queryLocalInterface(interface: string): IRemoteBroker
 
-**描述**：
-
 查询并获取当前接口描述符对应的本地接口对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -6858,8 +6490,6 @@ queryLocalInterface(interface: string): IRemoteBroker
 ### registerDeathRecipient<sup>9+</sup>
 
 registerDeathRecipient(recipient: DeathRecipient, flags: number): void
-
-**描述**：
 
 注册用于接收远程对象死亡通知的回调。如果与RemoteProxy对象匹配的远程对象进程死亡，则调用此方法。
 
@@ -6922,8 +6552,6 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
-**描述**：
-
 注册用于接收远程对象死亡通知的回调，增加proxy对象上的死亡通知。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -6975,8 +6603,6 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 ### unregisterDeathRecipient<sup>9+</sup>
 
 unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
-
-**描述**：
 
 注销用于接收远程对象死亡通知的回调。
 
@@ -7040,8 +6666,6 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
-**描述**：
-
 注销用于接收远程对象死亡通知的回调。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -7094,8 +6718,6 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 ### getDescriptor<sup>9+</sup>
 
 getDescriptor(): string
-
-**描述**：
 
 获取对象的接口描述符，接口描述符为字符串。
 
@@ -7153,8 +6775,6 @@ getDescriptor(): string
 
 getInterfaceDescriptor(): string
 
-**描述**：
-
 查询当前代理对象接口的描述符。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -7194,8 +6814,6 @@ getInterfaceDescriptor(): string
 ### isObjectDead
 
 isObjectDead(): boolean
-
-**描述**：
 
 指示对应的RemoteObject是否死亡。
 
@@ -7251,8 +6869,6 @@ isObjectDead(): boolean
 
 constructor(async?: boolean);
 
-**描述**：
-
 MessageOption构造函数。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -7278,8 +6894,6 @@ MessageOption构造函数。
 
 constructor(syncFlags?: number, waitTime?: number)
 
-**描述**：
-
 MessageOption构造函数。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -7304,8 +6918,6 @@ MessageOption构造函数。
 
 isAsync(): boolean;
 
-**描述**：
-
 获取SendMessageRequest调用中确定同步或是异步的标志。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -7327,8 +6939,6 @@ isAsync(): boolean;
 
 setAsync(async: boolean): void;
 
-**描述**：
-
 设置SendMessageRequest调用中确定同步或是异步的标志。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -7344,8 +6954,6 @@ setAsync(async: boolean): void;
 ### getFlags
 
 getFlags(): number
-
-**描述**：
 
 获取同步调用或异步调用标志。
 
@@ -7377,8 +6985,6 @@ getFlags(): number
 ### setFlags
 
 setFlags(flags: number): void
-
-**描述**：
 
 设置同步调用或异步调用标志。
 
@@ -7437,8 +7043,6 @@ getWaitTime(): number
 
 setWaitTime(waitTime: number): void
 
-**描述**：
-
 设置rpc调用最长等待时间。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -7470,8 +7074,6 @@ setWaitTime(waitTime: number): void
 
 static getContextObject(): IRemoteObject
 
-**描述**：
-
 静态方法，获取系统能力的管理者。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -7492,8 +7094,6 @@ static getContextObject(): IRemoteObject
 ### getCallingPid
 
 static getCallingPid(): number
-
-**描述**：
 
 静态方法，获取调用者的PID。此方法由RemoteObject对象在onRemoteRequest方法中调用，不在IPC上下文环境（onRemoteRequest）中调用则返回本进程的PID。
 
@@ -7521,8 +7121,6 @@ static getCallingPid(): number
 
 static getCallingUid(): number
 
-**描述**：
-
 静态方法，获取调用者的UID。此方法由RemoteObject对象在onRemoteRequest方法中调用，不在IPC上下文环境（onRemoteRequest）中调用则返回本进程的UID。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -7548,8 +7146,6 @@ static getCallingUid(): number
 ### getCallingTokenId<sup>8+</sup>
 
 static getCallingTokenId(): number;
-
-**描述**：
 
 静态方法，获取调用者的TokenId，用于被调用方对调用方的身份校验。
 
@@ -7578,8 +7174,6 @@ static getCallingTokenId(): number;
 
 static getCallingDeviceID(): string
 
-**描述**：
-
 静态方法，获取调用者进程所在的设备ID。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -7605,8 +7199,6 @@ static getCallingDeviceID(): string
 ### getLocalDeviceID
 
 static getLocalDeviceID(): string
-
-**描述**：
 
 静态方法，获取本端设备ID。
 
@@ -7634,8 +7226,6 @@ static getLocalDeviceID(): string
 
 static isLocalCalling(): boolean
 
-**描述**：
-
 静态方法，检查当前通信对端是否是本设备的进程。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -7661,8 +7251,6 @@ static isLocalCalling(): boolean
 ### flushCmdBuffer<sup>9+</sup>
 
 static flushCmdBuffer(object: IRemoteObject): void
-
-**描述**：
 
 静态方法，将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在执行任何时间敏感操作之前调用此方法。
 
@@ -7697,8 +7285,6 @@ static flushCmdBuffer(object: IRemoteObject): void
 >从API version 9 开始不再维护，建议使用[flushCmdBuffer](#flushcmdbuffer9)类替代。
 
 static flushCommands(object: IRemoteObject): number
-
-**描述**：
 
 静态方法，将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在执行任何时间敏感操作之前调用此方法。
 
@@ -7747,8 +7333,6 @@ static flushCommands(object: IRemoteObject): number
 
 static resetCallingIdentity(): string
 
-**描述**：
-
 静态方法，将远程用户的UID和PID替换为本地用户的UID和PID。它可以用于身份验证等场景。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -7775,8 +7359,6 @@ static resetCallingIdentity(): string
 ### restoreCallingIdentity<sup>9+</sup>
 
 static restoreCallingIdentity(identity: string): void
-
-**描述**：
 
 静态方法，将远程用户的UID和PID替换为本地用户的UID和PID。它可以用于身份验证等场景。
 
@@ -7810,8 +7392,6 @@ static restoreCallingIdentity(identity: string): void
 >从API version 9 开始不再维护，建议使用[restoreCallingIdentity](#restorecallingidentity9)类替代。
 
 static setCallingIdentity(identity: string): boolean
-
-**描述**：
 
 静态方法，将UID和PID恢复为远程用户的UID和PID。它通常在使用resetCallingIdentity后调用，需要resetCallingIdentity返回的远程用户的UID和PID。
 
@@ -7854,8 +7434,6 @@ static setCallingIdentity(identity: string): boolean
 ### constructor
 
 constructor(descriptor: string)
-
-**描述**：
 
 RemoteObject构造函数。
 
@@ -7940,8 +7518,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
-**描述**：
-
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -8012,8 +7588,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-**描述**：
-
 以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -8070,8 +7644,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-**描述**：
-
 以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendMessageRequest返回时收到回调，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -8121,8 +7693,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
-
-**描述**：
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
 
@@ -8187,8 +7757,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 >从API version 9 开始不再维护，建议使用[onRemoteMessageRequest](#onremotemessagerequest9)类替代。
 
 onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
-
-**描述**：
 
 sendMessageRequest请求的响应处理函数，服务端在该函数里处理请求，回复结果。
 
@@ -8382,8 +7950,6 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
 getCallingUid(): number
 
-**描述**：
-
 获取通信对端的进程Uid。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -8408,8 +7974,6 @@ getCallingUid(): number
 ### getCallingPid
 
 getCallingPid(): number
-
-**描述**：
 
 获取通信对端的进程Pid。
 
@@ -8436,8 +8000,6 @@ getCallingPid(): number
 ### getLocalInterface<sup>9+</sup>
 
 getLocalInterface(descriptor: string): IRemoteBroker
-
-**描述**：
 
 查询接口描述符的字符串。
 
@@ -8489,8 +8051,6 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
-**描述**：
-
 查询并获取当前接口描述符对应的远端对象是否已经存在。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -8536,8 +8096,6 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 ### getDescriptor<sup>9+</sup>
 
 getDescriptor(): string
-
-**描述**：
 
 获取对象的接口描述符。接口描述符为字符串。
 
@@ -8591,8 +8149,6 @@ getDescriptor(): string
 
 getInterfaceDescriptor(): string
 
-**描述**：
-
 查询接口描述符。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -8633,8 +8189,6 @@ getInterfaceDescriptor(): string
 ### modifyLocalInterface<sup>9+</sup>
 
 modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
-
-**描述**：
 
 此接口用于把接口描述符和IRemoteBroker对象绑定。
 
@@ -8682,8 +8236,6 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 >从API version 9 开始不再维护，建议使用[modifyLocalInterface](#modifylocalinterface9)类替代。
 
 attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
-
-**描述**：
 
 此接口用于把接口描述符和IRemoteBroker对象绑定。
 
@@ -8744,8 +8296,6 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 static create(name: string, size: number): Ashmem
 
-**描述**：
-
 静态方法，根据指定的名称和大小创建Ashmem对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -8783,8 +8333,6 @@ static create(name: string, size: number): Ashmem
 
 static createAshmem(name: string, size: number): Ashmem
 
-**描述**：
-
 静态方法，根据指定的名称和大小创建Ashmem对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -8813,8 +8361,6 @@ static createAshmem(name: string, size: number): Ashmem
 ### create<sup>9+</sup>
 
 static create(ashmem: Ashmem): Ashmem
-
-**描述**：
 
 静态方法，通过复制现有Ashmem对象的文件描述符(fd)来创建Ashmem对象。两个Ashmem对象指向同一个共享内存区域。
 
@@ -8854,8 +8400,6 @@ static create(ashmem: Ashmem): Ashmem
 
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
-**描述**：
-
 静态方法，通过复制现有Ashmem对象的文件描述符(fd)来创建Ashmem对象。两个Ashmem对象指向同一个共享内存区域。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -8885,8 +8429,6 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
 closeAshmem(): void
 
-**描述**：
-
 关闭这个Ashmem。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -8902,8 +8444,6 @@ closeAshmem(): void
 
 unmapAshmem(): void
 
-**描述**：
-
 删除该Ashmem对象的地址映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -8918,8 +8458,6 @@ unmapAshmem(): void
 ### getAshmemSize<sup>8+</sup>
 
 getAshmemSize(): number
-
-**描述**：
 
 获取Ashmem对象的内存大小。
 
@@ -8942,8 +8480,6 @@ getAshmemSize(): number
 ### mapTypedAshmem<sup>9+</sup>
 
 mapTypedAshmem(mapType: number): void
-
-**描述**：
 
 在此进程的虚拟地址空间上创建共享文件映射，映射区域大小由此Ashmem对象指定。
 
@@ -8981,8 +8517,6 @@ mapTypedAshmem(mapType: number): void
 
 mapAshmem(mapType: number): boolean
 
-**描述**：
-
 在此进程的虚拟地址空间上创建共享文件映射，映射区域大小由此Ashmem对象指定。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -9010,8 +8544,6 @@ mapAshmem(mapType: number): boolean
 ### mapReadWriteAshmem<sup>9+</sup>
 
 mapReadWriteAshmem(): void
-
-**描述**：
 
 在此进程虚拟地址空间上创建可读写的共享文件映射。
 
@@ -9043,8 +8575,6 @@ mapReadWriteAshmem(): void
 
 mapReadAndWriteAshmem(): boolean
 
-**描述**：
-
 在此进程虚拟地址空间上创建可读写的共享文件映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -9066,8 +8596,6 @@ mapReadAndWriteAshmem(): boolean
 ### mapReadonlyAshmem<sup>9+</sup>
 
 mapReadonlyAshmem(): void
-
-**描述**：
 
 在此进程虚拟地址空间上创建只读的共享文件映射。
 
@@ -9099,8 +8627,6 @@ mapReadonlyAshmem(): void
 
 mapReadOnlyAshmem(): boolean
 
-**描述**：
-
 在此进程虚拟地址空间上创建只读的共享文件映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -9122,8 +8648,6 @@ mapReadOnlyAshmem(): boolean
 ### setProtectionType<sup>9+</sup>
 
 setProtectionType(protectionType: number): void
-
-**描述**：
 
 设置映射内存区域的保护等级。
 
@@ -9161,8 +8685,6 @@ setProtectionType(protectionType: number): void
 
 setProtection(protectionType: number): boolean
 
-**描述**：
-
 设置映射内存区域的保护等级。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -9190,8 +8712,6 @@ setProtection(protectionType: number): boolean
 ### writeAshmem<sup>9+</sup>
 
 writeAshmem(buf: number[], size: number, offset: number): void
-
-**描述**：
 
 将数据写入此Ashmem对象关联的共享文件。
 
@@ -9233,8 +8753,6 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
-**描述**：
-
 将数据写入此Ashmem对象关联的共享文件。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -9267,8 +8785,6 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
 ### readAshmem<sup>9+</sup>
 
 readAshmem(size: number, offset: number): number[]
-
-**描述**：
 
 从此Ashmem对象关联的共享文件中读取数据。
 
@@ -9316,8 +8832,6 @@ readAshmem(size: number, offset: number): number[]
 >从API version 9 开始不再维护，建议使用[readAshmem](#readashmem9)类替代。
 
 readFromAshmem(size: number, offset: number): number[]
-
-**描述**：
 
 从此Ashmem对象关联的共享文件中读取数据。
 
