@@ -1051,7 +1051,7 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
 | 参数名     | 参数类型                                     | 参数描述            |
 | ------- | ---------------------------------------- | --------------- |
 | request | [WebResourceRequest](#webresourcerequest) | 网页请求的封装信息。      |
-| error   | [WebResourceError](#webresourceerror)    | 网页加载资源错误的封装信息 。 |
+| response | [WebResourceResponse](#webresourceresponse)    | 资源响应的封装信息。 |
 
 **示例：**
 
