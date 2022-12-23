@@ -106,8 +106,12 @@ cameraInput = await this.cameraManager.createCameraInput(cameraId)
 2. 这两个权限的授权方式均为user_grant，因此需要调用requestPermissionsFromUser接口，以动态弹窗的方式向用户申请授权。
      
    ```
+   import abilityAccessCtrl from '@ohos.abilityAccessCtrl.d.ts';
+   
    let permissions: Array<string> = ['ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA']
-   context.requestPermissionsFromUser(permissions).then((data) => {
+   let atManager = abilityAccessCtrl.createAtManager();
+   // context为调用方UIAbility的AbilityContext
+   atManager.requestPermissionsFromUser(context, permissions).then((data) => {
        console.log("Succeed to request permission from user with data: " + JSON.stringify(data))
    }).catch((error) => {
        console.log("Failed to request permission from user with error: " + JSON.stringify(error))
