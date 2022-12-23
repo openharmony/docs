@@ -201,7 +201,7 @@ export default function abilityTest() {
 
 **通过在cmd窗口直接执行命令。**
 
-> 使用cmd的方式，需要配置好hdc_std相关的环境变量
+> 使用cmd的方式，需要配置好hdc相关的环境变量
 
 - 打开cmd窗口
 - 执行 aa test 命令
@@ -209,61 +209,61 @@ export default function abilityTest() {
 **示例代码1**：执行所有测试用例。
 
 ```shell  
- hdc_std shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner
+ hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner
 ```
 
 **示例代码2**：执行指定的describe测试套用例，指定多个需用逗号隔开。
 
 ```shell  
-  hdc_std shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s class s1,s2
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s class s1,s2
 ```
 
 **示例代码3**：执行指定测试套中指定的用例，指定多个需用逗号隔开。
 
 ```shell  
-  hdc_std shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s class testStop#stop_1,testStop1#stop_0
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s class testStop#stop_1,testStop1#stop_0
 ```
 
 **示例代码4**：执行指定除配置以外的所有的用例，设置不执行多个测试套需用逗号隔开。
 
 ```shell  
-  hdc_std shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s notClass testStop
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s notClass testStop
 ```
 
 **示例代码5**：执行指定it名称的所有用例，指定多个需用逗号隔开。
 
 ```shell  
-  hdc_std shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s itName stop_0
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s itName stop_0
 ```
 
 **示例代码6**：用例执行超时时长配置。
 
 ```shell  
-  hdc_std shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner  -s timeout 15000
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner  -s timeout 15000
 ```
 
 **示例代码7**：用例以breakOnError模式执行用例。
 
 ```shell  
-  hdc_std shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s breakOnError true
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s breakOnError true
 ```
 
 **示例代码8**：执行测试类型匹配的测试用例。
 
 ```shell  
-  hdc_std shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s testType function
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s testType function
 ```
 
 **示例代码9**：执行测试级别匹配的测试用例。
 
 ```shell  
-  hdc_std shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s level 0
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s level 0
 ```
 
 **示例代码10**：执行测试规模匹配的测试用例。
 
 ```shell  
-  hdc_std shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s size small
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s size small
 ```
 
 **查看测试结果**
