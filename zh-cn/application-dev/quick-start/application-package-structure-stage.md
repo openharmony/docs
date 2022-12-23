@@ -20,7 +20,7 @@
 
 - 打包后的HAP包结构包括ets、libs、resources等文件夹和resources.index、module.json、pack.info等文件。
   - ets目录用于存放应用代码编译后的字节码文件。
-  - libs目录用于存放库文件。库文件是OpenHarmony应用依赖的第三方代码（例如.so、.jar、.bin、.har等二进制文件）。
+  - libs目录用于存放库文件。库文件是OpenHarmony应用依赖的第三方代码（.so二进制文件）。
   - resources目录用于存放应用的资源文件（字符串、图片等），便于开发者使用和维护，详见[资源文件的使用](../key-features/multi-device-app-dev/resource-usage.md)。
   - resources.index是资源索引表，由IDE编译工程时生成。
   - module.json是HAP的配置文件，内容由工程配置中的module.json5和app.json5组成，该文件是HAP中必不可少的文件。IDE会自动生成一部分默认配置，开发者按需修改其中的配置。详细字段请参见[应用配置文件](application-configuration-file-overview-stage.md)。
