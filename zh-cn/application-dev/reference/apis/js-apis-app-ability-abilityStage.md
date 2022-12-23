@@ -118,7 +118,7 @@ class MyAbilityStage extends AbilityStage {
 
 context: [AbilityStageContext](js-apis-inner-application-abilityStageContext.md);
 
-指示AbilityStage的上下文，。
+指示AbilityStage的上下文。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

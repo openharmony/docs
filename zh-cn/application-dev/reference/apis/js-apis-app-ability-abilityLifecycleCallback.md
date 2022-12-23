@@ -154,9 +154,11 @@ onAbilityContinue(ability: [UIAbility](js-apis-app-ability-uiAbility.md)): void;
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 | 
 
 **示例：**
-    
+
+MyAbilityStage.ts
 ```ts
 import AbilityLifecycleCallback from "@ohos.app.ability.AbilityLifecycleCallback";
+import AbilityStage from "@ohos.app.ability.AbilityStage"
 
 // 声明ability生命周期回调
 let abilityLifecycleCallback  =  {
@@ -189,25 +191,31 @@ let abilityLifecycleCallback  =  {
     }
 }
 
-var lifecycleId;
-
-export default class MyAbility extends UIAbility {
+export default class MyAbilityStage extends AbilityStage {
     onCreate() {
-        console.log("MyAbility onCreate")
+        console.log("MyAbilityStage onCreate");
         // 1.通过context属性获取applicationContext
         let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册监听应用内生命周期
         try {
-            lifecycleId = applicationContext.on("abilityLifecycle", abilityLifecycleCallback);
+            globalThis.lifecycleId = applicationContext.on("abilityLifecycle", abilityLifecycleCallback);
             console.log("registerAbilityLifecycleCallback number: " + JSON.stringify(lifecycleId));
         } catch (paramError) {
             console.log("error: " + paramError.code + " ," + paramError.message);
         }
-    },
+    }
+}
+```
+
+MyAbility.ts
+```ts
+import UIAbility from "ohos.app.ability.UIAbility"
+
+export default class MyAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         // 3.通过applicationContext注销监听应用内生命周期
-        applicationContext.off("abilityLifecycle", lifecycleId, (error) => {
+        applicationContext.off("abilityLifecycle", globalThis.lifecycleId, (error) => {
             if (error.code != 0) {
                 console.log("unregisterAbilityLifecycleCallback failed, error: " + JSON.stringify(error));
             } else {
