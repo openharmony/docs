@@ -1,4 +1,4 @@
-# zlib
+# @ohos.zlib
 
 The **zlib** module provides APIs for file compression and decompression.
 
@@ -25,7 +25,7 @@ Zips a file. This API uses a promise to return the result.
 
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the folder or file to zip. For details about the path, see [FA Model](js-apis-Context.md) or [Stage Model](js-apis-application-context.md).|
+| inFile  | string              | Yes  | Path of the folder or file to zip. For details about the path, see [FA Model](js-apis-inner-app-context.md) or [Stage Model](js-apis-application-context.md).|
 | outFile | string              | Yes  | Path of the zipped file. The file name extension is .zip.                 |
 | options | [Options](#options) | Yes  | Optional parameters for the zip operation.                                            |
 
@@ -89,7 +89,7 @@ Unzips a file. This API uses a promise to return the result.
 
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the folder or file to unzip. For details about the path, see [FA Model](js-apis-Context.md) or [Stage Model](js-apis-application-context.md).|
+| inFile  | string              | Yes  | Path of the folder or file to unzip. For details about the path, see [FA Model](js-apis-inner-app-context.md) or [Stage Model](js-apis-application-context.md).|
 | outFile | string              | Yes  | Path of the unzipped file.                                        |
 | options | [Options](#options) | Yes  | Optional parameters for the unzip operation.                                            |
 
@@ -131,7 +131,7 @@ Compresses a file. This API uses an asynchronous callback to return the result.
 
 | Name                 | Type               | Mandatory| Description                                                        |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | Yes  | Path of the folder or file to compress. For details about the path, see [FA Model](js-apis-Context.md) or [Stage Model](js-apis-application-context.md).|
+| inFile                  | string              | Yes  | Path of the folder or file to compress. For details about the path, see [FA Model](js-apis-inner-app-context.md) or [Stage Model](js-apis-application-context.md).|
 | outFile                 | string              | Yes  | Path of the compressed file.                                          |
 | options                 | [Options](#options) | Yes  | Compression parameters.                                              |
 | AsyncCallback<**void**> | callback            | No  | Callback used to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.                                            |
@@ -179,7 +179,7 @@ Compresses a file. This API uses a promise to return the result.
 
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the folder or file to compress. For details about the path, see [FA Model](js-apis-Context.md) or [Stage Model](js-apis-application-context.md).|
+| inFile  | string              | Yes  | Path of the folder or file to compress. For details about the path, see [FA Model](js-apis-inner-app-context.md) or [Stage Model](js-apis-application-context.md).|
 | outFile | string              | Yes  | Path of the compressed file.                                          |
 | options | [Options](#options) | Yes  | Compression parameters.                                              |
 
@@ -229,7 +229,7 @@ Decompresses a file. This API uses an asynchronous callback to return the result
 
 | Name                 | Type               | Mandatory| Description                                                        |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | Yes  | Path of the file to decompress. For details about the path, see [FA Model](js-apis-Context.md) or [Stage Model](js-apis-application-context.md).|
+| inFile                  | string              | Yes  | Path of the file to decompress. For details about the path, see [FA Model](js-apis-inner-app-context.md) or [Stage Model](js-apis-application-context.md).|
 | outFile                 | string              | Yes  | Path of the decompressed file.                                      |
 | options                 | [Options](#options) | Yes  | Decompression parameters.                                              |
 | AsyncCallback<**void**> | callback            | No  | Callback used to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.                                            |
@@ -278,7 +278,7 @@ Decompress a file. This API uses a promise to return the result.
 
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the file to decompress. For details about the path, see [FA Model](js-apis-Context.md) or [Stage Model](js-apis-application-context.md).|
+| inFile  | string              | Yes  | Path of the file to decompress. For details about the path, see [FA Model](js-apis-inner-app-context.md) or [Stage Model](js-apis-application-context.md).|
 | outFile | string              | Yes  | Path of the decompressed file.                                      |
 | options | [Options](#options) | Yes  | Decompression parameters.                                            |
 

@@ -1,4 +1,4 @@
-# 结果集
+# resultSet (结果集)
 
 结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
 
@@ -999,9 +999,9 @@ close(): void
 
 关闭结果集。
 
-**说明：**
-
-从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[close](#close9)替代。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[close](#close9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

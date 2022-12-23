@@ -1,6 +1,6 @@
 # @ohos.util.TreeSet (非线性容器TreeSet)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 TreeSet基于[TreeMap](js-apis-treemap.md)实现，在TreeSet中，只对value对象进行处理。TreeSet可用于存储一系列值的集合，元素中value唯一且有序。
@@ -45,7 +45,7 @@ TreeSet的构造函数。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -74,7 +74,7 @@ isEmpty(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -110,7 +110,7 @@ has(value: T): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -142,7 +142,7 @@ getFirstValue(): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -174,7 +174,7 @@ getLastValue(): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -212,7 +212,7 @@ add(value: T): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -248,7 +248,7 @@ remove(value: T): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -286,7 +286,7 @@ getLowerValue(key: T): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -325,7 +325,7 @@ getHigherValue(key: T): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -358,7 +358,7 @@ popFirst(): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -390,7 +390,7 @@ popLast(): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -416,7 +416,7 @@ clear(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -448,7 +448,7 @@ values(): IterableIterator&lt;T&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -493,7 +493,7 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -527,7 +527,7 @@ entries(): IterableIterator<[T, T]>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -565,7 +565,7 @@ while(temp != undefined) {
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |

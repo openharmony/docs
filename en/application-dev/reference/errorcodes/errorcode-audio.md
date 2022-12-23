@@ -4,7 +4,7 @@
 
 **Error Message**
 
-invalid parameter.
+Invalid parameter.
 
 **Description**
 
@@ -22,7 +22,7 @@ Pass the correct parameters in the API.
 
 **Error Message**
 
-allocate memory failed.
+Memory allocation failure.
 
 **Description**
 
@@ -42,7 +42,7 @@ When the API is called, the memory fails to be allocated or a null pointer occur
 
 **Error Message**
 
-Operation not permit at current state.
+Unsupported state.
 
 **Description**
 
@@ -61,7 +61,7 @@ The operation is not supported in the current state. For example, data is played
 
 **Error Message**
 
-unsupported operation.
+Unsupported parameter value.
 
 **Description**
 
@@ -80,7 +80,7 @@ The value of the input parameter is not within the range supported.
 
 **Error Message**
 
-time out.
+Processing timeout.
 
 **Description**
 
@@ -98,7 +98,7 @@ Control the time of the write operation, for example, adding delayed processing.
 
 **Error Message**
 
-stream number limited.
+Too many audio streams.
 
 **Description**
 
@@ -116,7 +116,7 @@ Release audio streams that are no longer used.
 
 **Error Message**
 
-system error.
+System error.
 
 **Description**
 

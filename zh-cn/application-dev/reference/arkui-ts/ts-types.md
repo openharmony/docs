@@ -140,12 +140,12 @@
 
 设置文本样式。
 
-| 名称     | 类型                                       | 必填   | 说明                                       |
-| ------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| size   | [Length](#length)                        | 否    | 设置文本尺寸，Length为number类型时，使用fp单位。          |
-| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。 |
-| family | string \| [Resource](#resource)          | 否    | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。 |
-| style  | [FontStyle](ts-appendix-enums.md#fontstyle) | 否    | 设置文本的字体样式。                               |
+| 名称   | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| size   | [Length](#length)                                            | 否   | 设置文本尺寸，Length为number类型时，使用fp单位。不支持设置百分比字符串。 |
+| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否   | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。 |
+| family | string \| [Resource](#resource)                              | 否   | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。当前只支持'sans-serif'字体。 |
+| style  | [FontStyle](ts-appendix-enums.md#fontstyle)                  | 否   | 设置文本的字体样式。                                         |
 
 ## Area<sup>8+</sup>
 

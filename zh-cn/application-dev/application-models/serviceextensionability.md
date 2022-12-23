@@ -25,8 +25,8 @@
 - [连接一个后台服务](#连接一个后台服务)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 1. OpenHarmony当前不支持三方应用实现ServiceExtensionAbility。如果三方开发者想要实现后台处理相关事务的功能，可以使用后台任务，具体请参见[后台任务](../task-management/Readme-CN.md)。
+> **说明：**
+> 1. OpenHarmony当前不支持三方应用实现ServiceExtensionAbility。如果三方开发者想要实现后台处理相关事务的功能，可以使用后台任务，具体请参见[后台任务](../task-management/background-task-overview.md)。
 > 
 > 2. 三方应用的UIAbility组件可以通过Context连接系统提供的ServiceExtensionAbility。
 > 
@@ -43,7 +43,7 @@
 - **onCreate**
   服务被首次创建时触发该回调，开发者可以在此进行一些初始化的操作，例如注册公共事件监听等。
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+  > **说明：**
   > 如果服务已创建，再次启动该ServiceExtensionAbility不会触发onCreate()回调。
 
 - **onRequest**
@@ -162,7 +162,7 @@
 
 系统应用通过[startServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartserviceextensionability)方法启动一个后台服务，服务的[onRequest()](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md#serviceextensionabilityonrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的want对象。后台服务启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行。因此，后台服务需要在其工作完成时通过调用ServiceExtensionContext的[terminateSelf()](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextterminateself)来自行停止，或者由另一个组件调用[stopServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstopserviceextensionability)来将其停止。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > ServiceExtensionContext的[startServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartserviceextensionability)、[stopServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstopserviceextensionability)和[terminateSelf()](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextterminateself)为系统接口，三方应用不支持调用。
 
 1. 在系统应用中启动一个新的ServiceExtensionAbility。示例中的context的获取方式参见[获取UIAbility的Context属性](uiability-usage.md#获取uiability的上下文信息)。
@@ -207,7 +207,7 @@
    ```
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 后台服务可以在后台长期运行，为了避免资源浪费，需要对后台服务的生命周期进行管理。即一个后台服务完成了请求方的任务，需要及时销毁。销毁已启动的后台服务有两种方式：
 > 
 > - 后台服务自身调用[terminateSelf()](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextterminateself)方法来自行停止。

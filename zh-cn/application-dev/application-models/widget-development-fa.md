@@ -49,7 +49,7 @@
 
 - 通信适配层：由OpenHarmony SDK提供，负责与卡片管理服务通信，用于将卡片的更新数据主动推送到卡片管理服务。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 实际开发时只需要作为卡片提供方进行卡片内容的开发，卡片使用方和卡片管理服务由系统自动处理。
 
 
@@ -89,7 +89,7 @@ formBindingData类有如下API接口，具体的API介绍详见[接口文档](..
 
 ## 开发步骤
 
-FA卡片开发，即基于[FA模型](../ability/fa-brief.md)的卡片提供方开发，主要涉及如下关键步骤：
+FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片提供方开发，主要涉及如下关键步骤：
 
 - [实现卡片生命周期接口](#实现卡片生命周期接口)：开发FormAbility生命周期回调函数。
 
@@ -166,7 +166,7 @@ FA卡片开发，即基于[FA模型](../ability/fa-brief.md)的卡片提供方�
    }
    ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > FormAbility不能常驻后台，即在卡片生命周期回调函数中无法处理长时间的任务。
 
 ### 配置卡片配置文件
@@ -360,7 +360,7 @@ onUpdate(formId) {
 
 ![widget-development-fa](figures/widget-development-fa.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 当前仅支持JS扩展的类Web开发范式来实现卡片的UI界面。
 
 - HML：使用类Web范式的组件描述卡片的页面信息。

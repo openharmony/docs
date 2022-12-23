@@ -1,4 +1,4 @@
-# Background Task Management
+# @ohos.resourceschedule.backgroundTaskManager (Background Task Management)
 
 The **BackgroundTaskManager** module provides APIs to manage background tasks.
 
@@ -234,7 +234,7 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Background mode requested.                             |
 | wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                |
 | callback  | AsyncCallback&lt;void&gt;          | Yes   | Callback used to return the result.                  |
@@ -308,7 +308,7 @@ Requests a continuous task from the system. This API uses a promise to return th
 
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Background mode requested.                             |
 | wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                 |
 
@@ -381,7 +381,7 @@ Requests to cancel a continuous task. This API uses an asynchronous callback to 
 
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| context  | Context                   | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context  | Context                   | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                  |
 
 **Error codes**
@@ -437,7 +437,7 @@ Requests to cancel a continuous task. This API uses a promise to return the resu
 
 | Name    | Type     | Mandatory  | Description                                      |
 | ------- | ------- | ---- | ---------------------------------------- |
-| context | Context | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context | Context | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
 
 **Return value**
 
@@ -618,12 +618,12 @@ Enumerates the efficiency resource types.
 
 **System API**: This is a system API.
 
-| Name                    | Description                   |
-| ----------------------- | --------------------- |
-| CPU                     | CPU resources, which prevent the application from being suspended.            |
-| COMMON_EVENT            | A type of software resources, which prevent common events from being proxied when the application is suspended. |
-| TIMER                   | A type of software resources, which prevent timers from being proxied when the application is suspended.   |
-| WORK_SCHEDULER          | WORK_SCHEDULER resources, which ensure that the application has more time to execute the task.     |
-| BLUETOOTH               | A type of hardware resources, which prevent Bluetooth resources from being proxied when the application is suspended. |
-| GPS                     | A type of hardware resources, which prevent GPS resources from being proxied when the application is suspended. |
-| AUDIO                   | A type of hardware resources, which prevent audio resources from being proxied when the application is suspended.|
+| Name                    | Value | Description                   |
+| ----------------------- | ---- | --------------------- |
+| CPU                     | 1    | CPU resources, which prevent the application from being suspended.            |
+| COMMON_EVENT            | 2    | A type of software resources, which prevent common events from being proxied when the application is suspended. |
+| TIMER                   | 4    | A type of software resources, which prevent timers from being proxied when the application is suspended.   |
+| WORK_SCHEDULER          | 8    | WORK_SCHEDULER resources, which ensure that the application has more time to execute the task.     |
+| BLUETOOTH               | 16   | A type of hardware resources, which prevent Bluetooth resources from being proxied when the application is suspended. |
+| GPS                     | 32   | A type of hardware resources, which prevent GPS resources from being proxied when the application is suspended. |
+| AUDIO                   | 64   | A type of hardware resources, which prevent audio resources from being proxied when the application is suspended.|

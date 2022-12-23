@@ -8,14 +8,11 @@ AbilityDelegator提供添加用于监视指定ability的生命周期状态更改
 
 ## 使用说明
 
-通过AbilityDelegatorRegistry中getAbilityDelegator方法获取。
+通过AbilityDelegatorRegistry中[getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator)方法获取。
 ```ts
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 
-var abilityDelegator;
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 ```
 
 ## AbilityDelegator
@@ -1044,7 +1041,7 @@ abilityDelegator.waitAbilityStageMonitor(monitor, (err : any, data : any) => {
     console.info("waitAbilityStageMonitor callback");
 });
 ```
-  
+
 ### waitAbilityStageMonitor<sup>9+</sup>
 
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise\<AbilityStage>;

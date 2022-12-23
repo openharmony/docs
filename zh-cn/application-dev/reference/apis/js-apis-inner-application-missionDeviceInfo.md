@@ -1,6 +1,6 @@
 # MissionDeviceInfo
 
-表示注册监听时所需参数的枚举。
+作为可以[registerMissionListener](js-apis-distributedMissionManager.md#distributedmissionmanagerregistermissionlistener)的入参，表示注册监听时所需参数的枚举。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 

@@ -1,4 +1,4 @@
-# 数据共享结果集
+# @ohos.data.dataShareResultSet (数据共享结果集)
 
 **结果集(DataShareResultSet)** 可提供访问由查询数据库生成的结果集的相关方法，根据提供的行数，查询相应的值，也可查询指定数据类型的值。
 

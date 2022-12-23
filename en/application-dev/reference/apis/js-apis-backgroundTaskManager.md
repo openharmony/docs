@@ -1,4 +1,4 @@
-# Background Task Management
+# @ohos.backgroundTaskManager (Background Task Management)
 
 The **BackgroundTaskManager** module provides APIs to manage background tasks.
 
@@ -161,7 +161,7 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | bgMode    | [BackgroundMode](#backgroundmode8) | Yes   | Background mode requested.                             |
 | wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                |
 | callback  | AsyncCallback&lt;void&gt;          | Yes   | Callback used to return the result.                  |
@@ -253,7 +253,7 @@ Requests a continuous task from the system. This API uses a promise to return th
 
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | bgMode    | [BackgroundMode](#backgroundmode8) | Yes   | Background mode requested.                             |
 | wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                 |
 
@@ -339,7 +339,7 @@ Requests to cancel a continuous task. This API uses an asynchronous callback to 
 
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| context  | Context                   | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context  | Context                   | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                  |
 
 **Example**
@@ -395,7 +395,7 @@ Requests to cancel a continuous task. This API uses a promise to return the resu
 
 | Name    | Type     | Mandatory  | Description                                      |
 | ------- | ------- | ---- | ---------------------------------------- |
-| context | Context | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context | Context | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
 
 **Return value**
 
@@ -452,14 +452,14 @@ Provides the information about the suspension delay.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| Name                    | Description                   |
-| ----------------------- | --------------------- |
-| DATA_TRANSFER           | Data transfer.                 |
-| AUDIO_PLAYBACK          | Audio playback.                 |
-| AUDIO_RECORDING         | Audio recording.                   |
-| LOCATION                | Positioning and navigation.                 |
-| BLUETOOTH_INTERACTION   | Bluetooth-related task.                 |
-| MULTI_DEVICE_CONNECTION | Multi-device connection.                |
-| WIFI_INTERACTION        | WLAN-related (system API).|
-| VOIP                    | Audio and video calls (system API). |
-| TASK_KEEPING            | Computing task (effective only for specific devices).       |
+| Name                    | Value | Description                   |
+| ----------------------- | ---- | --------------------- |
+| DATA_TRANSFER           | 1    | Data transfer.                 |
+| AUDIO_PLAYBACK          | 2    | Audio playback.                 |
+| AUDIO_RECORDING         | 3    | Audio recording.                   |
+| LOCATION                | 4    | Positioning and navigation.                 |
+| BLUETOOTH_INTERACTION   | 5    | Bluetooth-related task.                 |
+| MULTI_DEVICE_CONNECTION | 6    | Multi-device connection.                |
+| WIFI_INTERACTION        | 7    | WLAN-related.<br>This is a system API.|
+| VOIP                    | 8    | Audio and video calls.<br>This is a system API. |
+| TASK_KEEPING            | 9    | Computing task (effective only for specific devices).       |

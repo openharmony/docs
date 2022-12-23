@@ -4,7 +4,7 @@
 DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-start/deveco-studio-user-guide-for-openharmony.md)。本章主要介绍如何使用DevEco Studio进行多设备应用开发。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本章的内容基于[DevEco Studio 3.0 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony)版本进行介绍，如您使用DevEco Studio其它版本，可能存在文档与产品功能界面、操作不一致的情况，请以实际功能界面为准。
 
 
@@ -55,7 +55,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 ![zh-cn_image_0000001315434285](figures/zh-cn_image_0000001315434285.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 在一个工程中同一个设备类型只支持一个Entry类型的模块。
 > 
 > - 当前的DevEco Studio（3.0 Beta3版本）在创建工程时，设备类型仅能选择dafault和tablet，默认该模块已经选择了entry类型，那么在创建wearable这个模块，只能选择feature类型。
@@ -75,7 +75,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 ### 修改Module类型及其设备类型
 
-通过修改每个模块中的配置文件（module.json5）对模块进行配置，配置文件中各字段含义详见[配置文件说明](../../quick-start/stage-structure.md)。
+通过修改每个模块中的配置文件（module.json5）对模块进行配置，配置文件中各字段含义详见[配置文件说明](../../quick-start/module-configuration-file.md)。
 
 - 将default模块的deviceTypes配置为["default", "tablet"]，同时将其type字段配置为entry。
   即default模块编译出的hap包在默认设备和平板上安装和运行。
@@ -139,7 +139,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 3. 在default模块中import和使用这些类和函数。注意提前在default模块的package.json文件中配置对common模块的依赖关系。
    ![zh-cn_image_0000001267914120](figures/zh-cn_image_0000001267914120.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 如果需要将npm包发布供其他开发者使用，当前npm包可发布到npm官方中心仓和OpenHarmony npm专用仓，具体可参考[发布OpenHarmony npm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-npm-package-0000001222578434#section663116411397)。
 
 

@@ -25,19 +25,21 @@ Adds a color stop for the **CanvasGradient** object based on the specified offse
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
-  <input type="button" style="width: 180px; height: 60px;" value="fillStyle"onclick="handleClick" />
 </div>
   ```
 
   ```js
 // xxx.js
 export default {
-  handleClick() {
+  onShow() {
     const el =this.$refs.canvas;
-    const ctx =el.getContext('2d');
-    const gradient = ctx.createLinearGradient(0,0,100,0);
-    gradient.addColorStop(0,'#00ffff');
-    gradient.addColorStop(1,'#ffff00');
+    const ctx = el.getContext('2d');
+    const gradient = ctx.createLinearGradient(50,0,300,100);
+    gradient.addColorStop(0.0, 'red')
+    gradient.addColorStop(0.5, 'white')
+    gradient.addColorStop(1.0, 'green')
+    ctx.fillStyle = gradient
+    ctx.fillRect(0, 0, 300, 300)
   }
 }
   ```

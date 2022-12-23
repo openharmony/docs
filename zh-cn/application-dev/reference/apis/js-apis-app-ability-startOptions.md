@@ -1,6 +1,6 @@
 # @ohos.app.ability.StartOptions (StartOptions)
 
-StartOptions模块对系统的基本通信组件进行查询和设置的能力。
+StartOptions可以作为[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)的入参，用于指定目标Ability的窗口模式。
 
 > **说明：**
 >
@@ -21,4 +21,4 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | [windowMode](js-apis-application-abilityConstant.md#abilityconstantwindowmode) | number | 否 | 窗口模式。 |
-| displayId | number | 否 | 显示ID。 |
+| displayId | number | 否 | 屏幕ID。默认是0，表示当前屏幕。 |

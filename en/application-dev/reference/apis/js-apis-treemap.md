@@ -1,4 +1,4 @@
-# Nonlinear Container TreeMap 
+# @ohos.util.TreeMap (Nonlinear Container TreeMap)
 
 > **NOTE**
 >
@@ -59,11 +59,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 
 ```ts
 let treeMap = new TreeMap();
-try {
-  let treeMap2 = TreeMap();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -94,11 +89,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 ```ts
 const treeMap = new TreeMap();
 let result = treeMap.isEmpty();
-try {
-  treeMap.isEmpty.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -137,11 +127,6 @@ let treeMap = new TreeMap();
 let result = treeMap.hasKey("squirrel");
 treeMap.set("squirrel", 123);
 let result1 = treeMap.hasKey("squirrel");
-try {
-  treeMap.hasKey.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -180,11 +165,6 @@ let treeMap = new TreeMap();
 let result = treeMap.hasValue(123);
 treeMap.set("squirrel", 123);
 let result1 = treeMap.hasValue(123);
-try {
-  treeMap.hasValue.bind({}, 123)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -223,11 +203,6 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.get("sparrow");
-try {
-  treeMap.get.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -260,11 +235,6 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.getFirstKey();
-try {
-  treeMap.getFirstKey.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -297,11 +267,6 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.getLastKey();
-try {
-  treeMap.getLastKey.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -335,11 +300,6 @@ treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let map = new TreeMap();
 treeMap.setAll(map);
-try {
-  treeMap.setAll.bind({}, map)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -377,11 +337,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 ```ts
 let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
-try {
-  treeMap.set.bind({}, "squirrel", 123)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -420,11 +375,6 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.remove("sparrow");
-try {
-  treeMap.remove.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -464,11 +414,6 @@ treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.set("gander", 356);
 let result = treeMap.getLowerKey("sparrow");
-try {
-  treeMap.getLowerKey.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -508,11 +453,6 @@ treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.set("gander", 356);
 let result = treeMap.getHigherKey("sparrow");
-try {
-  treeMap.getHigherKey.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### replace
@@ -550,11 +490,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 let treeMap = new TreeMap();
 treeMap.set("sparrow", 123);
 let result = treeMap.replace("sparrow", 357);
-try {
-  treeMap.replace.bind({}, "sparrow", 357)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -581,11 +516,6 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.clear();
-try {
-  treeMap.clear.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -622,11 +552,6 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-}
-try {
-  treeMap.keys.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -665,17 +590,12 @@ while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
 }
-try {
-  treeMap.values.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
 ### forEach
 
-forEach(callbackfn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
@@ -685,7 +605,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -712,13 +632,6 @@ treeMap.set("gull", 357);
 treeMap.forEach((value, key) => {
   console.log("value:" + value, key);
 });
-try {
-  treeMap.forEach.bind({}, (value, key) => {
-    console.log("value:" + value, key);
-  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -756,11 +669,6 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
-}
-try {
-  treeMap.entries.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -806,10 +714,5 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
-}
-try {
-  treeMap[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

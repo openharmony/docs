@@ -1,6 +1,6 @@
 # StartAbilityParameter
 
-定义启动Ability参数。
+定义启动Ability参数，可以作为入参调用[startAbility](js-apis-ability-featureAbility.md#featureabilitystartability)启动指定的Ability。
 
 > **说明：**
 > 
@@ -31,11 +31,11 @@ let abilityStartSetting ={
 }
 
 let startAbilityParameter = {
-    want:Want,
-    abilityStartSetting:abilityStartSetting
+    want : Want,
+    abilityStartSetting : abilityStartSetting
 }
 
-featureAbility.startAbility(startAbilityParameter, (err,data)=>{
+featureAbility.startAbility(startAbilityParameter, (err, data)=>{
     console.log('errCode : ' + JSON.stringify(err));
     console.log('data : ' + JSON.stringify(data));
 } catch(error) {

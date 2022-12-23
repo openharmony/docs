@@ -1,6 +1,6 @@
 # @ohos.util.HashMap (非线性容器HashMap)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 HashMap底层使用数组+链表+红黑树的方式实现，查询、插入和删除的效率都很高。HashMap存储内容基于key-value的键值对映射，不能有重复的key，且一个key只能对应一个value。
@@ -42,7 +42,7 @@ HashMap的构造函数。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -71,7 +71,7 @@ isEmpty(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -107,7 +107,7 @@ hasKey(key: K): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -145,7 +145,7 @@ hasValue(value: V): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -183,7 +183,7 @@ get(key: K): V
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -215,7 +215,7 @@ setAll(map: HashMap<K, V>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -255,7 +255,7 @@ set(key: K, value: V): Object
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -291,7 +291,7 @@ remove(key: K): V
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -317,7 +317,7 @@ clear(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -349,7 +349,7 @@ keys(): IterableIterator&lt;K&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -386,7 +386,7 @@ values(): IterableIterator&lt;V&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -430,7 +430,7 @@ replace(key: K, newValue: V): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -469,7 +469,7 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -503,7 +503,7 @@ entries(): IterableIterator&lt;[K, V]&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -541,7 +541,7 @@ while(temp != undefined) {
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |

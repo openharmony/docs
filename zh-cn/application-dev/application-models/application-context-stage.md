@@ -173,7 +173,7 @@ export default class EntryAbility extends UIAbility {
 基类Context提供创建其他应用或其他Module的Context的方法有[createBundleContext(bundleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatebundlecontext)、[createModuleContext(moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext)和[createModuleContext(bundleName:string, moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext-1)接口，创建其他应用或者其他Module的Context，从而通过该Context获取相应的资源信息（例如获取其他Module的[获取应用开发路径](#获取应用开发路径)信息）。
 
 - 调用createBundleContext(bundleName:string)方法，创建其他应用的Context信息。
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+  > **说明：**
   > 当获取的是其他应用的Context时：
   > 
   > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
@@ -196,7 +196,7 @@ export default class EntryAbility extends UIAbility {
   ```
 
 - 调用createModuleContext(bundleName:string, moduleName:string)方法，获取指定应用指定Module的上下文信息。获取到指定应用指定Module的Context之后，即可获取到相应应用Module的资源信息。
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+  > **说明：**
   > 当获取的是其他应用的指定Module的Context时：
   > 
   > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。

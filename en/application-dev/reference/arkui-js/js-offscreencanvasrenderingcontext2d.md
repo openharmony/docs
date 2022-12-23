@@ -19,7 +19,7 @@ In addition to the attributes that are supported by **CanvasRenderingContext2D**
 **Example**
 ```html
 <!-- xxx.hml -->
-<div style="width: 180px; height: 60px;">
+<div style="width: 500px; height: 500px;">
   <canvas ref="canvasId" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
 ```
@@ -95,7 +95,7 @@ Checks whether a specified point is in the path area.
 **Example**
 ```html
 <!-- xxx.hml -->
-<div style="width: 180px; height: 60px;">
+<div style="width: 500px; height: 500px;">
   <text>In path:{{textValue}}</text>
   <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
@@ -145,7 +145,7 @@ Checks whether a specified point is on the edge line of a path.
 **Example**
 ```html
 <!-- xxx.hml -->
-<div style="width: 180px; height: 60px;">
+<div style="width: 500px; height: 500px;">
   <text>In path:{{textValue}}</text>
   <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
@@ -181,7 +181,7 @@ resetTransform(): void
 **Example**
 ```html
 <!-- xxx.hml -->
-<div style="width: 180px; height: 60px;">
+<div style="width: 500px; height: 500px;">
   <text>In path:{{textValue}}</text>
   <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>

@@ -1,10 +1,10 @@
-# 媒体会话管理
+# @ohos.multimedia.avsession (媒体会话管理)
 
 媒体会话管理提供媒体播控相关功能的接口，目的是让应用接入播控中心。
 
 该模块提供以下媒体会话相关的常用功能：
-- [AVSession](#section652893) : 会话，可用于设置元数据、播放状态信息等操作。
-- [AVSessionController](#section974602): 会话控制器，可用于查看会话ID，完成对会话发送命令及事件，获取会话元数据、播放状态信息等操作。
+- [AVSession](#avsession) : 会话，可用于设置元数据、播放状态信息等操作。
+- [AVSessionController](#avsessioncontroller): 会话控制器，可用于查看会话ID，完成对会话发送命令及事件，获取会话元数据、播放状态信息等操作。
 
 > **说明：**
 >
@@ -28,7 +28,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 | 参数名 | 类型                            | 必填 | 说明                           |
 | ------ | ------------------------------- | ---- | ------------------------------ |
-| context| [Context](../../reference/apis/js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。 |
+| context| [Context](js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。 |
 | tag    | string                          | 是   | 会话的自定义名称。             |
 | type   | [AVSessionType](#avsessiontype) | 是   | 会话类型，当前支持音频和视频。 |
 
@@ -76,7 +76,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context| [Context](../../reference/apis/js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。     |
+| context| [Context](js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。     |
 | tag      | string                                  | 是   | 会话的自定义名称。                                           |
 | type     | [AVSessionType](#avsessiontype)         | 是   | 会话类型，当前支持音频和视频。                               |
 | callback | AsyncCallback<[AVSession](#avsession)\> | 是   | 回调函数。回调返回会话实例对象，可用于获取会话ID，以及设置元数据、播放状态，发送按键事件等操作。 |
@@ -755,7 +755,7 @@ avSession.sendSystemControlCommand(avcommand, function (err) {
 });
 ```
 
-## AVSession<a name="section652893"></a>
+## AVSession
 
 调用[avSession.createAVSession](#avsessioncreateavsession)后，返回会话的实例，可以获得会话ID，完成设置元数据，播放状态信息等操作。
 
@@ -1888,7 +1888,7 @@ session.off('outputDeviceChange');
 
 
 
-## AVSessionController<a name="section974602"></a>
+## AVSessionController
 
 调用[avSession.createController](#avsessioncreatecontroller)后，返回会话控制器实例。控制器可查看会话ID，并可完成对会话发送命令及事件，获取会话元数据，播放状态信息等操作。
 

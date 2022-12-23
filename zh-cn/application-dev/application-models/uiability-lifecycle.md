@@ -57,7 +57,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > WindowStage的相关使用请参见[窗口开发指导](../windowmanager/application-window-stage.md)。
 
 对应于onWindowStageCreate()回调。在UIAbility实例销毁之前，则会先进入onWindowStageDestroy()回调，可以在该回调中释放UI界面资源。例如在onWindowStageDestroy()中注销获焦/失焦等WindowStage事件。

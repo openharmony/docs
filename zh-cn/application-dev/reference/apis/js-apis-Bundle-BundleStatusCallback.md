@@ -1,6 +1,6 @@
-# bundleStatusCallback (BundleStatusCallback)
+# BundleStatusCallback
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 从API version 9开始不再支持。建议使用[bundleMonitor](js-apis-bundleMonitor.md)替代。
 
 

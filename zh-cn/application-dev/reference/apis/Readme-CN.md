@@ -135,7 +135,7 @@
     - [EventHub](js-apis-inner-application-eventHub.md)
 
 - 包管理
-  - [@ohos.bundle.appControl(appControl模块)](js-apis-appControl.md)
+  - [@ohos.bundle.appControl (appControl模块)](js-apis-appControl.md)
   - [@ohos.bundle.bundleManager (bundleManager模块)](js-apis-bundleManager.md)
   - [@ohos.bundle.bundleMonitor (bundleMonitor模块)](js-apis-bundleMonitor.md)
   - [@ohos.bundle.defaultAppManager (默认应用管理)](js-apis-defaultAppManager.md)
@@ -383,7 +383,6 @@
   - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
   - [@ohos.systemParameter (系统属性)](js-apis-system-parameter.md)
   - [@ohos.usb (USB管理)](js-apis-usb-deprecated.md)
-  - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)

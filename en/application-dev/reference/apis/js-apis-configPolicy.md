@@ -1,4 +1,4 @@
-# Configuration Policy
+# @ohos.configPolicy (Configuration Policy)
 
 The **configPolicy** module provides APIs for obtaining the custom configuration directory and file path based on the predefined custom configuration level.
 
@@ -24,6 +24,7 @@ For example, if the **config.xml** file is stored in **/system/etc/config.xml** 
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
 **Parameters**
+
 | Name     | Type                         | Mandatory  | Description                   |
 | -------- | --------------------------- | ---- | --------------------- |
 | relPath  | string                      | Yes   | Name of the configuration file.                |
@@ -50,11 +51,13 @@ Obtains the path of a configuration file with the specified name and highest pri
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
 **Parameters**
+
 | Name    | Type    | Mandatory  | Description   |
 | ------- | ------ | ---- | ----- |
 | relPath | string | Yes   | Name of the configuration file.|
 
 **Return value**
+
 | Type                   | Description          |
 | --------------------- | ------------ |
 | Promise&lt;string&gt; | Promise used to return the path of the configuration file.|
@@ -79,6 +82,7 @@ For example, if the **config.xml** file is stored in **/system/etc/config.xml** 
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
 **Parameters**
+
 | Name     | Type                                      | Mandatory  | Description           |
 | -------- | ---------------------------------------- | ---- | ------------- |
 | relPath  | string                                   | Yes   | Name of the configuration file.        |
@@ -105,11 +109,13 @@ Obtains a list of configuration files with the specified name, sorted in ascendi
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
 **Parameters**
+
 | Name    | Type    | Mandatory  | Description   |
 | ------- | ------ | ---- | ----- |
 | relPath | string | Yes   | Name of the configuration file.|
 
 **Return value**
+
 | Type                                | Description  |
 | ---------------------------------- | ---- |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the file list.|
@@ -133,6 +139,7 @@ Obtains the list of configuration level directories. This API uses an asynchrono
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
 **Parameters**
+
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the configuration level directory list.|
@@ -158,6 +165,7 @@ Obtains the list of configuration level directories. This API uses a promise to 
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
 **Return value**
+
 | Type                                | Description      |
 | ---------------------------------- | -------- |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the configuration level directory list.|

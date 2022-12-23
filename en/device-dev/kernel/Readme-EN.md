@@ -1,4 +1,4 @@
-#  Kernel
+# Kernel
 
 - Kernel
     - [Kernel Overview](kernel-overview.md)
@@ -13,7 +13,7 @@
                 - [Mutex](kernel-mini-basic-ipc-mutex.md)
                 - [Queue](kernel-mini-basic-ipc-queue.md)
                 - [Semaphore](kernel-mini-basic-ipc-sem.md)
-            - [Time Management](kernel-basic-mini-time.md)
+            - [Time Management](kernel-mini-basic-time.md)
             - [Software Timer](kernel-mini-basic-soft.md)
             - [Doubly Linked List](kernel-mini-basic-list.md)
         - Extended Components
@@ -65,6 +65,7 @@
                 - [Virtual File System](kernel-small-bundles-fs-virtual.md)
                 - [Supported File Systems](kernel-small-bundles-fs-support.md)
                 - [File System Adaptation](kernel-small-bundles-fs-new.md)
+                - [Plimitsfs](kernel-small-plimits.md)
         - Debugging and Tools
             - Shell
                 - [Introduction to the Shell](kernel-small-debug-shell-overview.md)

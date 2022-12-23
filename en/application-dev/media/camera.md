@@ -81,6 +81,9 @@ for (let index = 0; index < cameraArray.length; index++) {
 // Create a camera input stream.
 let cameraInput = await cameraManager.createCameraInput(cameraArray[0])
 
+// Open camera
+await cameraInput.open();
+
 // Obtain the output stream capabilities supported by the camera.
 let cameraOutputCap = await cameraManager.getSupportedOutputCapability(cameraArray[0]);
 if (!cameraOutputCap) {

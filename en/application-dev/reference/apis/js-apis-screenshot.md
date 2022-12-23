@@ -1,4 +1,5 @@
-# Screenshot
+# @ohos.screenshot
+
 The **Screenshot** module provides APIs for you to set information such as the region to capture and the size of the screen region when capturing a screen.
 
 >  **NOTE**

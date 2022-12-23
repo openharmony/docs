@@ -1,6 +1,6 @@
-# 媒体库管理
+# @ohos.multimedia.medialibrary (媒体库管理)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 该组件从API Version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
@@ -870,7 +870,7 @@ getActivePeers(): Promise\<Array\<PeerInfo>>;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-|  Promise\<Array\<PeerInfo>> | 返回获取的所有在线对端设备的PeerInfo |
+|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有在线对端设备的PeerInfo |
 
 **示例：**
 
@@ -906,7 +906,7 @@ getActivePeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<PeerInfo>> | 返回获取的所有在线对端设备的PeerInfo |
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有在线对端设备的PeerInfo |
 
 **示例：**
 
@@ -941,7 +941,7 @@ getAllPeers(): Promise\<Array\<PeerInfo>>;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-|  Promise\<Array\<PeerInfo>> | 返回获取的所有对端设备的PeerInfo |
+|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有对端设备的PeerInfo |
 
 **示例：**
 
@@ -977,7 +977,7 @@ getAllPeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<PeerInfo>> | 返回获取的所有对端设备的PeerInfo |
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有对端设备的PeerInfo |
 
 **示例：**
 
@@ -999,7 +999,7 @@ async function example() {
 
 提供封装文件属性的方法。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 1. title字段默认为去掉后缀的文件名，音频和视频文件会尝试解析文件内容，部分设备写入后在触发扫描时会被还原。
 > 2. orientation字段部分设备可能不支持修改，建议使用image组件的[ModifyImageProperty](js-apis-image.md#modifyimageproperty9)接口。
 
@@ -2471,7 +2471,7 @@ async function example() {
 
 枚举，文件关键信息。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > bucket_id字段在文件重命名或移动后可能会发生变化，开发者使用前需要重新获取。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
@@ -2539,9 +2539,9 @@ async function example() {
 
 | 名称                    | 类型                | 可读 | 可写 | 说明                                                         |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------------------------------------ |
-| selections              | string              | 是   | 是   | 检索条件，使用[FileKey](#filekey8)中的枚举值作为检索条件的列名。示例：<br />selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?', |
-| selectionArgs           | Array&lt;string&gt; | 是   | 是   | 检索条件的值，对应selections中检索条件列的值。<br />示例：<br />selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order                   | string              | 是   | 是   | 检索结果排序方式，使用[FileKey](#filekey8)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br />升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " ASC"<br />降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
+| selections              | string              | 是   | 是   | 检索条件，使用[FileKey](#filekey8)中的枚举值作为检索条件的列名。示例：<br/>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?', |
+| selectionArgs           | Array&lt;string&gt; | 是   | 是   | 检索条件的值，对应selections中检索条件列的值。<br/>示例：<br/>selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
+| order                   | string              | 是   | 是   | 检索结果排序方式，使用[FileKey](#filekey8)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br/>升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " ASC"<br/>降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
 | uri<sup>8+</sup>        | string              | 是   | 是   | 文件URI                                                      |
 | networkId<sup>8+</sup>  | string              | 是   | 是   | 注册设备网络ID                                               |
 | extendArgs<sup>8+</sup> | string              | 是   | 是   | 扩展的检索参数，目前没有扩展检索参数                         |
@@ -2584,5 +2584,4 @@ async function example() {
 | ----- | ------ | ---- | ---- | -------------------- |
 | type  | 'image' &#124; 'video' &#124; 'media' | 是    | 是  | 媒体类型，包括：image, video, media，当前仅支持media类型 |
 | count | number | 是    | 是  | 媒体选择，count = 1表示单选，count大于1表示多选。            |
-
 

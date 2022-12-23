@@ -1,6 +1,6 @@
 # @system.configuration (应用配置)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.i18n`](js-apis-i18n.md)和[`@ohos.intl`](js-apis-intl.md)。
 >
 > 

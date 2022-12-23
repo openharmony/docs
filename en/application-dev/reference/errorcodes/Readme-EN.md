@@ -15,6 +15,7 @@
   - [Window Error Codes](errorcode-window.md)
 - Media
   - [Audio Error Codes](errorcode-audio.md)
+  - [Media Error Codes](errorcode-media.md)
   - [AVSession Management Error Codes](errorcode-avsession.md)
 - Resource Management
   - [I18N Error Codes](errorcode-i18n.md)
@@ -34,6 +35,12 @@
   - [Upload and Download Error Codes](errorcode-request.md)
 - Basic Features
   - [FaultLogger Error Codes](errorcode-faultlogger.md)
+  - [Application Event Logging Error Codes](errorcode-hiappevent.md)
+  - [HiSysEvent Error Codes](errorcode-hisysevent.md)
+  - [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md)
+  - [Input Method Framework Error Codes](errorcode-inputmethod-framework.md)
+  - [Pasteboard Error Codes](errorcode-pasteboard.md)
+  - [Webview Error Codes](errorcode-webview.md)
 - Account Management
   - [Account Error Codes](errorcode-account.md)
   - [App Account Error Codes](errorcode-app-account.md)
@@ -43,6 +50,7 @@
   - [Sensor Error Codes](errorcode-sensor.md)
   - [Vibrator Error Codes](errorcode-vibrator.md)
   - [System Parameter Error Codes](errorcode-system-parameterV9.md)
+  - [USB Error Codes](errorcode-usb.md)
 - Language Base Class Library 
   - [Buffer Error Codes](errorcode-buffer.md)
   - [containers Error Codes](errorcode-containers.md)

@@ -176,7 +176,7 @@ DeviceProfile适配分布式数据库自动同步策略，以及采集信息补�
 
 API变更请参考：
 
-[*API差异报告*](api-change/v3.2-beta3/Readme-CN.md)
+[*API差异报告*](api-diff/v3.2-beta3/js-apidiff-ability.md)
 
 
 ### 芯片及开发板适配

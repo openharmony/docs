@@ -13,6 +13,9 @@ OpenHarmony的进程模型如下图所示：
   **图1** 进程模型示意图  
 ![process-model](figures/process-model.png)
 
+> 说明：
+>
+> 仅系统应用支持构建ServiceExtensionAbility和DataShareExtensionAbility。
 
 在上述模型基础上，对于系统应用可以通过申请多进程权限（如下图所示），为指定HAP配置一个自定义进程名，该HAP中的UIAbility、DataShareExtensionAbility、ServiceExtensionAbility就会运行在自定义进程中。不同的HAP可以通过配置不同的进程名运行在不同进程中。
 
