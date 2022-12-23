@@ -63,7 +63,12 @@ getColorsSync(wallpaperType: WallpaperType): Array&lt;RgbaColor&gt;
 **示例**：
 
 ```js
-let colors = wallpaper.getColorsSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
+try {
+    let colors = wallpaper.getColorsSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
+    console.log(`success to getColorsSync: ${JSON.stringify(colors)}`);
+} catch (error) {
+    console.error(`failed to getColorsSync because: ${JSON.stringify(error)}`);
+}
 ```
 
 ## wallpaper.getIdSync<sup>9+</sup>
@@ -89,7 +94,12 @@ getIdSync(wallpaperType: WallpaperType): number
 **示例**：
 
 ```js
-let id = wallpaper.getIdSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
+try {
+    let id = wallpaper.getIdSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
+    console.log(`success to getIdSync: ${JSON.stringify(id)}`);
+} catch (error) {
+    console.error(`failed to getIdSync because: ${JSON.stringify(error)}`);
+}
 ```
 
 ## wallpaper.getMinHeightSync<sup>9+</sup>
@@ -365,7 +375,12 @@ getFileSync(wallpaperType: WallpaperType): number;
 **示例：**
 
 ```js
-let file = wallpaper.getFileSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
+try {
+    let file = wallpaper.getFileSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
+    console.log(`success to getFileSync: ${JSON.stringify(file)}`);
+} catch (error) {
+    console.error(`failed to getFileSync because: ${JSON.stringify(error)}`);
+}
 ```
 
 ## wallpaper.getImage<sup>9+</sup>
@@ -452,10 +467,14 @@ on(type: 'colorChange', callback: (colors: Array&lt;RgbaColor&gt;, wallpaperType
 **示例：**
 
 ```js
-let listener = (colors, wallpaperType) => {
-    console.log(`wallpaper color changed.`);
-};
-wallpaper.on('colorChange', listener);
+try {
+    let listener = (colors, wallpaperType) => {
+        console.log(`wallpaper color changed.`);
+    };
+    wallpaper.on('colorChange', listener);
+} catch (error) {
+    console.error(`failed to on because: ${JSON.stringify(error)}`);
+}
 ```
 
 ## wallpaper.off('colorChange')<sup>9+</sup>
@@ -479,11 +498,25 @@ off(type: 'colorChange', callback?: (colors: Array&lt;RgbaColor&gt;, wallpaperTy
 let listener = (colors, wallpaperType) => {
     console.log(`wallpaper color changed.`);
 };
-wallpaper.on('colorChange', listener);
-// 取消订阅listener
-wallpaper.off('colorChange', listener);
-// 取消所有'colorChange'类型的订阅
-wallpaper.off('colorChange');
+try {
+    wallpaper.on('colorChange', listener);
+} catch (error) {
+    console.error(`failed to on because: ${JSON.stringify(error)}`);
+}
+
+try {
+    // 取消订阅listener
+    wallpaper.off('colorChange', listener);
+} catch (error) {
+    console.error(`failed to off because: ${JSON.stringify(error)}`);
+}
+
+try {
+    // 取消所有'colorChange'类型的订阅
+    wallpaper.off('colorChange');
+} catch (error) {
+    console.error(`failed to off because: ${JSON.stringify(error)}`);
+}
 ```
 
 ## wallpaper.getColors<sup>(deprecated)</sup>
