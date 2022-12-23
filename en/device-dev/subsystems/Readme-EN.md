@@ -18,6 +18,7 @@
       - [Viewing Ninja Build Information](subsys-build-reference.md)
       - [HAP Build Guide](subsys-build-gn-hap-compilation-guide.md)
       - [FAQs](subsys-build-FAQ.md)
+- [ArkCompiler Development](subsys-arkcompiler-guide.md)
 - [Distributed Remote Startup](subsys-remote-start.md)
 - Graphics
   - [Graphics Overview](subsys-graphics-overview.md)
