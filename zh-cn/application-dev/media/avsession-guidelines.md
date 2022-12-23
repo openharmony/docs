@@ -50,7 +50,7 @@ avSession.createAVSession(context, "AudioAppSample", 'audio').then((session) => 
 
 3.设置AVSession会话信息，包括：
 - 设置会话元数据，除了媒体ID必选外，可选设置媒体标题、专辑信息、媒体作者、媒体时长、上一首/下一首媒体ID等。详细的会话元数据信息可参考API文档中的`AVMetadata`。
-- 设置启动Ability，通过`WantAgent`的接口实现。WantAgent一般用于封装行为意图信息，如果想要了解更多信息，可以查阅[WantAgent开发指导](../reference/apis/js-apis-wantAgent.md)。
+- 设置启动Ability，通过[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)的接口实现。WantAgent一般用于封装行为意图信息。
 - 设置播放状态。
 ```js
 // 设置会话元数据

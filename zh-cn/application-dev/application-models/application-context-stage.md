@@ -93,7 +93,7 @@
 
 获取路径的能力是基类Context中提供的能力，因此在ApplicationContext、AbilityStageContext、UIAbilityContext和ExtensionContext中均可以获取，在各类Context中获取到的路径会有一些差别，具体差别如下图所示。
 
-  **图1** Context中获取的应用开发路径  
+**图1** Context中获取的应用开发路径
 <img src="figures/context-dir.png" alt="context-dir" style="zoom: 50%;" />
 
 - 通过ApplicationContext获取的应用级别路径。应用全局信息建议存放的路径，存放在此路径的文件内容仅在应用卸载时会被删除。
@@ -305,5 +305,5 @@ export default class EntryAbility extends UIAbility {
 
 应用需要获取用户的隐私信息或使用系统能力时，例如获取位置信息、访问日历、使用相机拍摄照片或录制视频等，需要向用户申请授权，示意效果如下图所示。具体使用请参见[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
 
-  **图2** 向用户申请日历访问授权
+**图2** 向用户申请日历访问授权
 <img src="figures/application-context-stage.png" alt="application-context-stage" style="zoom:50%;" />
