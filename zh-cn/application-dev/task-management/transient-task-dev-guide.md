@@ -3,12 +3,14 @@
 ## 场景说明
 
 当应用退到后台默认有6到12秒的运行时长，超过该时间后，系统会将应用置为挂起状态。对于绝大多数应用，6到12秒的时间，足够执行一些重要的任务，但如果应用需要更多的时间，可以通过短时任务接口，扩展应用的执行时间。
-建议不要等到应用退后台后，才调用requestSuspendDelay方法申请延迟挂起，而是应该在执行任何的耗时操作前，都应该调用该接口，向系统申明扩展应用的执行时间。
-当应用在前台时，使用requestSuspendDelay方法，不会影响应用的短时任务配额。
 
-由于每个应用每天的短时任务配额时间有限，当执行完耗时任务后，应当及时取消延迟挂起的申请。
+建议不要等到应用退后台后，才调用[requestSuspendDelay()](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerrequestsuspenddelay)方法申请延迟挂起，而是应该在执行任何的耗时操作前，都应该调用该接口，向系统申明扩展应用的执行时间。
 
-一些典型的耗时任务有，需要保存一些状态数据到本地数据库，需要打开和处理一个大型文件，需要同步一些数据到应用的云端服务器等。
+当应用在前台时，使用[requestSuspendDelay()](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerrequestsuspenddelay)方法，不会影响应用的短时任务配额。
+
+根据需要调用[getRemainingDelayTime()](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagergetremainingdelaytimecallback)接口获取应用程序进入挂起状态前的剩余时间。由于每个应用每天的短时任务配额时间有限，当执行完耗时任务后，应当及时调用[cancelSuspendDelay()](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagercancelsuspenddelay)接口取消延迟挂起的申请。
+
+一些典型的耗时任务，例如保存一些状态数据到本地数据库、打开和处理一个大型文件、同步一些数据到应用的云端服务器等。
 
 
 ## 接口说明
@@ -25,7 +27,7 @@
 
 ## 开发步骤
 
-1、当应用需要开始执行一个耗时的任务时。调用短时任务申请接口，并且在任务执行完后，调用短时任务取消接口。
+当应用需要开始执行一个耗时的任务时。调用短时任务申请接口，并且在任务执行完后，调用短时任务取消接口。
 
 ```js
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
