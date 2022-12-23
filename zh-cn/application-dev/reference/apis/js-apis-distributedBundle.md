@@ -1,6 +1,6 @@
 # @ohos.bundle.distributedBundle (distributedBundle模块)
 
-本模块提供分布式包的管理能力
+本模块提供分布式应用的管理能力
 
 > **说明：**
 >
@@ -22,7 +22,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 | 权限                                       | 权限等级     | 说明               |
 | ------------------------------------------ | ------------ | ------------------ |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息。 |
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询系统中所有应用信息。 |
 
 权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 
@@ -30,7 +30,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback\<RemoteAbilityInfo>): void;
 
-以异步方法根据给定的ElementName获取有关远程设备AbilityInfo信息。使用callback异步回调。
+以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -43,7 +43,7 @@ getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback\<RemoteAb
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md)          | 是   | ElementName信息。                                            |
-| callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)> | 是   | 回调函数，操作成功返回err为null，data为RemoteAbilityInfo对象；否则为错误对象。 |
+| callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)> | 是   | 回调函数，调用成功返回err为null，data为RemoteAbilityInfo对象；调用失败err为错误对象, data为undefined。 |
 
 **错误码：**
 
@@ -67,13 +67,13 @@ try {
             abilityName: 'MainAbility'
         }, (err, data) => {
           if (err) {
-            console.error('Operation failed:' + JSON.stringify(err));
+            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
         });
 } catch (err) {
-    console.error('Operation failed:' + JSON.stringify(err));
+    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
 }
 ```
 
@@ -81,7 +81,7 @@ try {
 
 getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>;
 
-以异步方法根据给定的ElementName获取有关远程设备AbilityInfo信息。使用Promise异步回调。
+以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -99,7 +99,7 @@ getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>;
 
 | 类型                                                         | 说明                              |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)> | Promise对象，返回RemoteAbilityInfo对象。 |
+| Promise\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)> | Promise对象，调用成功返回RemoteAbilityInfo对象；调用失败返回错误对象。 |
 
 **错误码：**
 
@@ -124,10 +124,10 @@ try {
         }).then(data => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch(err => {
-            console.error('Operation failed:' + JSON.stringify(err));
+            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
         });
 } catch (err) {
-    console.error('Operation failed:' + JSON.stringify(err));
+    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
 }
 ```
 
@@ -135,7 +135,7 @@ try {
 
 getRemoteAbilityInfo(elementNames: Array\<ElementName>, callback: AsyncCallback\<Array\<RemoteAbilityInfo>>): void;
 
-以异步方法根据给定的ElementName获取有关远程设备AbilityInfo数组信息。使用callback异步回调。
+以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo数组信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -148,7 +148,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, callback: AsyncCallback\
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>   | 是   | ElementName信息,最大数组长度为10。                             |
-| callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)>> | 是   | 回调函数，调用成功返回err为null，data为RemoteAbilityInfo数组对象；否则返回错误对象。 |
+| callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)>> | 是   | 回调函数，调用成功返回err为null，data为RemoteAbilityInfo数组对象；调用失败err为错误对象, data为undefined。 |
 
 **错误码：**
 
@@ -179,13 +179,13 @@ try {
             }
         ], (err, data) => {
           if (err) {
-            console.error('Operation failed:' + JSON.stringify(err));
+            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
         });
 } catch (err) {
-    console.error('Operation failed:' + JSON.stringify(err));
+    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
 }
 ```
 
@@ -193,7 +193,7 @@ try {
 
 getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteAbilityInfo>>;
 
-以异步方法根据给定的ElementName和locale获取有关远程设备AbilityInfo数组信息。使用Promise异步回调。
+以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo数组信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -211,7 +211,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteA
 
 | 类型                                                         | 说明                              |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<Array<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)>> | Promise对象，返回RemoteAbilityInfo数组对象。 |
+| Promise\<Array<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)>> | Promise对象，调用成功返回RemoteAbilityInfo对象；调用失败返回错误对象。 |
 
 **错误码：**
 
@@ -243,10 +243,10 @@ try {
         ]).then(data => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch(err => {
-            console.error('Operation failed:' + JSON.stringify(err));
+            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
         });
 } catch (err) {
-    console.error('Operation failed:' + JSON.stringify(err));
+    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
 }
 ```
 
@@ -254,7 +254,7 @@ try {
 
 getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCallback\<RemoteAbilityInfo>): void;
 
-以异步方法根据给定的ElementName和locale获取有关远程设备AbilityInfo信息。使用callback异步回调。
+以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -268,7 +268,7 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCa
 | ----------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md)                 | 是   | ElementName信息。                            |
 | locale  | string |是 | 语言地区。 |
-| callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)> | 是   | 回调函数，操作成功返回err为null，data为RemoteAbilityInfo对象；否则为错误对象。 |
+| callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)> | 是   | 回调函数，调用成功返回err为null，data为RemoteAbilityInfo对象；调用失败err为错误对象, data为undefined。 |
 
 **错误码：**
 
@@ -292,13 +292,13 @@ try {
             abilityName: 'MainAbility'
         }, 'zh-Hans-CN', (err, data) => {
           if (err) {
-            console.error('Operation failed:' + JSON.stringify(err));
+            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
         });
 } catch (err) {
-    console.error('Operation failed:' + JSON.stringify(err));
+    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
 }
 ```
 
@@ -306,7 +306,7 @@ try {
 
 getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteAbilityInfo>;
 
-以异步方法根据给定的ElementName和locale获取有关远程设备AbilityInfo信息。使用Promise异步回调。
+以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -325,7 +325,7 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteA
 
 | 类型                                                         | 说明                              |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)> | Promise对象，返回RemoteAbilityInfo对象。 |
+| Promise\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)> | Promise对象，调用成功返回RemoteAbilityInfo对象；调用失败返回错误对象。 |
 
 **错误码：**
 
@@ -350,10 +350,10 @@ try {
         }, 'zh-Hans-CN').then(data => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch(err => {
-            console.error('Operation failed:' + JSON.stringify(err));
+            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
         });
 } catch (err) {
-    console.error('Operation failed:' + JSON.stringify(err));
+    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
 }
 ```
 
@@ -361,7 +361,7 @@ try {
 
 getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback: AsyncCallback\<Array\<RemoteAbilityInfo>>): void;
 
-以异步方法根据给定的ElementName和locale获取有关远程设备AbilityInfo数组信息。使用callback异步回调。
+以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo数组信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -375,7 +375,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>          | 是   | ElementName信息,最大数组长度为10。                   |
 | locale  | string |是 | 语言地区。 |
-| callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)>> | 是   | 回调函数，调用成功返回err为null，data为RemoteAbilityInfo数组对象；否则返回错误对象。 |
+| callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)>> | 是   | 回调函数，调用成功返回err为null，data为RemoteAbilityInfo数组对象；调用失败err为错误对象, data为undefined。 |
 
 **错误码：**
 
@@ -406,13 +406,13 @@ try {
             }
         ], 'zh-Hans-CN', (err, data) => {
           if (err) {
-            console.error('Operation failed:' + JSON.stringify(err));
+            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
         });
 } catch (err) {
-    console.error('Operation failed:' + JSON.stringify(err));
+    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
 }
 ```
 
@@ -420,7 +420,7 @@ try {
 
 getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise\<Array\<RemoteAbilityInfo>>;
 
-以异步方法根据给定的ElementName和locale获取有关远程设备AbilityInfo数组信息。使用Promise异步回调。
+以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo数组信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -439,7 +439,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise
 
 | 类型                                                         | 说明                              |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<Array<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)>> | Promise对象，返回RemoteAbilityInfo数组对象。 |
+| Promise\<Array<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)>> | Promise对象，调用成功返回RemoteAbilityInfo对象；调用失败返回错误对象。 |
 
 **错误码：**
 
@@ -471,9 +471,9 @@ try {
         ], 'zh-Hans-CN').then(data => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch(err => {
-            console.error('Operation failed:' + JSON.stringify(err));
+            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
         });
 } catch (err) {
-    console.error('Operation failed:' + JSON.stringify(err));
+    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
 }
 ```
