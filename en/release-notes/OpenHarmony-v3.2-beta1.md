@@ -172,7 +172,7 @@ This version has the following updates to OpenHarmony 3.1 Release.
 
 ### API Updates
 
-*[API Differences](api-change/v3.2-beta1/Readme-EN.md)*
+*[API Differences](api-diff/v3.2-beta1/Readme-EN.md)*
 
 ### Chip and Development Board Adaptation
 
@@ -204,7 +204,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | ArkUI | [Game2048](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Game2048) | This sample shows how to develop a 2048 game using the **\<Grid>** component.| eTS |
 | Window Manager| [Window](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Window) | This sample shows how to create a window, display an application over another application in the form of a floating window, and display an application on split screens.| eTS |
 | Distributed data management| [Preference](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Preferences) | This sample shows the theme switching function of preferences.| eTS |
-| ArkUI | [NativeAPI](https://gitee.com/openharmony/applications_app_samples/tree/master/Native/NativeAPI) | This sample shows how to call C++ APIs in eTS and how C++ APIs call back JS APIs to play the Gomoku game. The native APIs implement the calculation logic, and eTS implements UI rendering and re-rendering.| eTS/C++ |
+| ArkUI | [NativeAPI](https://gitee.com/openharmony/app_samples/tree/master/Native/NativeAPI) | This sample shows how to call C++ APIs in eTS and how C++ APIs call back JS APIs to play the Gomoku game. The native APIs implement the calculation logic, and eTS implements UI rendering and re-rendering.| eTS/C++ |
 | Globalization| [International](https://gitee.com/openharmony/applications_app_samples/tree/master/common/International) | This sample shows how to use APIs related to i18n, intl, and resourceManager in eTS to set the system language, region, time, and time zone. It also provides locale setting examples.| eTS |
 
 For more information, visit [Samples](https://gitee.com/openharmony/applications_app_samples).

@@ -99,9 +99,9 @@ This release provides the following new and enhanced features based on OpenHarmo
 
 For details, see:
 
--   [JS API Differences](api-change/v2.2-beta2/js-apidiff-v2.2-beta2.md)
+-   [JS API Differences](api-diff/v2.2-beta2/js-apidiff-v2.2-beta2.md)
 
--   [Native API Differences](api-change/v2.2-beta2/native-apidiff-v2.2-beta2.md)
+-   [Native API Differences](api-diff/v2.2-beta2/native-apidiff-v2.2-beta2.md)
 
 ## Resolved Issues
 
