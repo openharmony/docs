@@ -3,9 +3,9 @@
 ## Overview
 ### Function
 
-The OpenHarmony codec Hardware Device Interface (HDI) driver framework implements the video hardware codec driver based on OpenMAX. It provides APIs for the upper-layer media services to obtain component encoding and decoding capabilities, create a component, set parameters, transfer data, and destroy a component. The codec driver can encode video data in YUV or RGB format to H.264 or H.265 format, and decode raw stream data from H.264 or H.265 format to YUV or RGB format. This document describes the codec functionality developed based on the OpenHarmony Hardware Driver Foundation (HDF).
+The codec Hardware Device Interface (HDI) driver framework is implemented based on OpenHarmony Hardware Driver Foundation (HDF). The HDI driver framework implements the video hardware codec driver based on OpenMAX. It provides APIs for the upper-layer media services to obtain component encoding and decoding capabilities, create a component, set parameters, transfer data, and destroy a component. The codec driver can encode video data in YUV or RGB format to H.264 or H.265 format, and decode raw stream data from H.264 or H.265 format to YUV or RGB format.
 
-The codec HDI driver framework is implemented based on the HDF. The figure below shows the codec HDI driver framework.
+The figure below shows the codec HDI driver framework.
 
 **Figure 1** Codec HDI driver framework
 
@@ -16,7 +16,7 @@ The codec HDI driver framework is implemented based on the HDF. The figure below
 - Codec HDI Adapter: HDI implementation layer, which implements HDI APIs and interacts with OpenMAX Integration layer (IL).
 - OpenMAX IL interface: provides OpenMAX IL APIs to directly interact with the codec HDI driver.
 - Vendor Impl: vendor adaptation layer, which is the OpenMAX implementation layer adapted by each vendor.
-- Codec Hardware: hardware decoding device.
+- Codec Hardware: hardware coding and decoding device.
 
 ### Basic Concepts
 Before you get started, understand the following concepts:
@@ -39,7 +39,7 @@ Before you get started, understand the following concepts:
 
 - Component
 
-    An OpenMAX IL component, which is an abstraction of modules in video streams. The components in this document refer to codec components for video encoding and decoding.
+    An OpenMAX IL component, which is an abstraction of modules in video streams. The components in this document refer to codec components used for video encoding and decoding.
 
 ### Constraints
 
@@ -56,20 +56,20 @@ The codec module implements hardware encoding and decoding of video data. It con
 
 - codec_component_manager.h
 
-  | API                                                                                                                                                      | Description                     |
+  | API                                                                                                                                     | Description                     |
   | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------|
   | int32_t (*CreateComponent)(struct CodecComponentType **component, uint32_t *componentId, char *compName, int64_t appData, struct CodecCallbackType *callbacks) | Creates a codec component instance.            |
-  | int32_t (*DestroyComponent)(uint32_t componentId)                                                                                                              | Destroys a component instance.                 |
+  | int32_t (*DestroyComponent)(uint32_t componentId)                                                                                                              | Destroys a codec component instance.                 |
 
 - codec_component _if.h
 
   | API                                                                                                                                                               | Description                     |
   | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
   | int32_t (*SendCommand)(struct CodecComponentType *self, enum OMX_COMMANDTYPE cmd, uint32_t param, int8_t *cmdData, uint32_t cmdDataLen)                                 | Sends commands to a component.               |
-  | int32_t (*GetParameter)(struct CodecComponentType *self, uint32_t paramIndex, int8_t *paramStruct, uint32_t paramStructLen)                                             | Obtains component parameter settings.             |
+  | int32_t (*GetParameter)(struct CodecComponentType *self, uint32_t paramIndex, int8_t *paramStruct, uint32_t paramStructLen)                                        | Obtains component parameter settings.             |
   | int32_t (*SetParameter)(struct CodecComponentType *self, uint32_t index, int8_t *paramStruct, uint32_t paramStructLen)                                                  | Sets component parameters.           |
   | int32_t (*GetState)(struct CodecComponentType *self, enum OMX_STATETYPE *state)                                                                                         | Obtains the component status.               |
-  | int32_t (*UseBuffer)(struct CodecComponentType *self, uint32_t portIndex, struct OmxCodecBuffer *buffer)                                                                | Specifies the buffer of a component port.         |
+  | int32_t (*UseBuffer)(struct CodecComponentType *self, uint32_t portIndex, struct OmxCodecBuffer *buffer)                                                                | Requests a port buffer for the component.         |
   | int32_t (*FreeBuffer)(struct CodecComponentType *self, uint32_t portIndex, const struct OmxCodecBuffer *buffer)                                                         | Releases the buffer.                   |
   | int32_t (*EmptyThisBuffer)(struct CodecComponentType *self, const struct OmxCodecBuffer *buffer)                                                                        | Empties this buffer.       |
   | int32_t (*FillThisBuffer)(struct CodecComponentType *self, const struct OmxCodecBuffer *buffer)                                                                         | Fills this buffer.         |
@@ -88,7 +88,7 @@ For more information, see [codec](https://gitee.com/openharmony/drivers_peripher
 The codec HDI driver development procedure is as follows:
 
 #### Registering and Initializing the Driver
-Define the **HdfDriverEntry** structure (which defines the driver initialization method) and fill in the **g_codecComponentDriverEntry** structure to implement the **Bind()**, **Init()**, and **Release()** pointers.
+Define the **HdfDriverEntry** structure (which defines the driver initialization method) and fill in the **g_codecComponentDriverEntry** structure to implement the pointers in **Bind()**, **Init()**, and **Release()**.
 
 ```c
 struct HdfDriverEntry g_codecComponentDriverEntry = {
@@ -133,7 +133,7 @@ HDF_INIT(g_codecComponentDriverEntry); // Register HdfDriverEntry of the codec H
     }
     ```
 
-- **HdfCodecComponentTypeDriverInit**: loads the attribute configuration from the HDF configuration source (HCS).
+- **HdfCodecComponentTypeDriverInit**: loads the attribute configuration in the HDF Configuration Source (HCS).
 
     ```c
     int32_t HdfCodecComponentTypeDriverInit(struct HdfDeviceObject *deviceObject)
@@ -170,12 +170,11 @@ The HCS consists of the following:
 - Device configuration
 - Configuration of the supported components
 
-The HCS includes the driver node, loading sequence, and service name. For details about the HCS syntax, see [Configuration Management](driver-hdf-manage.md).
+You need to configure the driver node, loading sequence, and service name. For details about the HCS syntax, see [Configuration Management](driver-hdf-manage.md).
 
-Configuration file Path of the standard system:
-vendor/hihope/rk3568/hdf_config/uhdf/
+The following uses the RK3568 development board as an example. The configuration files of the standard system are in the **vendor/hihope/rk3568/hdf_config/uhdf/** directory.
 
-1. Device configuration
+1. Configure the device.
 
     Add the **codec_omx_service** configuration to **codec_host** in **device_info.hcs**. The following is an example:
     ```c
@@ -189,31 +188,31 @@ vendor/hihope/rk3568/hdf_config/uhdf/
                 priority = 100;                                   // Priority.
                 moduleName = "libcodec_hdi_omx_server.z.so";      // Dynamic library of the driver.
                 serviceName = "codec_hdi_omx_service";            // Service name of the driver.
-                deviceMatchAttr = "codec_component_capabilities"; //Attribute configuration.
+                deviceMatchAttr = "codec_component_capabilities"; // Attribute configuration.
             }
         }
     }
     ```
 
-2. Configuration of supported components
+2. Configure supported components.
 
-    Add the component configuration to the **media_codec\codec_component_capabilities.hcs file**. The following is an example:
+    Add the component configuration to the **media_codec\codec_component_capabilities.hcs** file. The following is an example:
     ```c
-    /* node name explanation -- HDF_video_hw_enc_avc_rk:
+    /* Explanation to the node name HDF_video_hw_enc_avc_rk:
     **
     **    HDF____________video__________________hw____________________enc____________avc_______rk
     **     |               |                    |                      |              |        |
-    ** HDF or OMX    video or audio    hardware or software    encoder or decoder    mime    vendor
+    ** HDF or OMX    video or audio    hardware or software    encoder or decoder    MIME    vendor
     */
     HDF_video_hw_enc_avc_rk {
-        role = 1;                                           // Role of the AvCodec.
+        role = 1;                                           // Role of the audio and video codec.
         type = 1;                                           // Codec type.
         name = "OMX.rk.video_encoder.avc";                  // Component name.
         supportProfiles = [1, 32768, 2, 32768, 8, 32768];   // Supported profiles.
         maxInst = 4;                                        // Maximum number of instances.
         isSoftwareCodec = false;                            // Whether it is software codec.
         processModeMask = [];                               // Codec processing mode.
-        capsMask = [0x01];                                  // Codec playback capabilities.
+        capsMask = [0x01];                                  // CodecCapsMask configuration.
         minBitRate = 1;                                     // Minimum bit rate.
         maxBitRate = 40000000;                              // Maximum bit rate.
         minWidth = 176;                                     // Minimum video width.
@@ -239,7 +238,7 @@ vendor/hihope/rk3568/hdf_config/uhdf/
 ### Development Example
 After completing codec module driver adaptation, use the HDI APIs provided by the codec module for further development. The codec HDI provides the following features:
 
-1. Provides codec HDI APIs for video services to implement encoding and decoding of video services.
+1. Provides codec HDI APIs for video services to implement encoding and decoding for video services.
 2. Provides standard interfaces for device developers to ensure that the OEM vendors comply with the HDI adapter standard. This promises a healthy evolution of the ecosystem.
 
 The development procedure is as follows:
@@ -248,7 +247,7 @@ The development procedure is as follows:
 2. Set codec parameters and information such as the video width, height, and bit rate.
 3. Apply for input and output buffers.
 4. Flip codec buffers, enable the component to enter the **OMX_Executing** state, and process the callbacks.
-5. Deinitialize the interface instance, destroy the buffers, close the component, and releases all interface objects.
+5. Deinitialize the interface instance, destroy the buffers, close the component, and releases all interface instances.
 
 #### Initializing the Driver
 Initialize the interface instance and callbacks, and create a component.
@@ -352,7 +351,7 @@ Perform the following steps:
 
 1. Use **UseBuffer()** to apply for input and output buffers and save the buffer IDs. The buffer IDs can be used for subsequent buffer flipping.
 2. Check whether the corresponding port is enabled. If not, enable the port first.
-3. Use **SendCommand()** to change the component status to OMX_StateIdle, and wait until the operation result is obtained.
+3. Use **SendCommand()** to change the component status to **OMX_StateIdle**, and wait until the operation result is obtained.
 ```cpp
 // Apply for the input buffer.
 auto ret = UseBufferOnPort(PortIndex::PORT_INDEX_INPUT);
@@ -376,7 +375,7 @@ HDF_LOGI("Wait for OMX_StateIdle status");
 this->WaitForStatusChanged();
 ```
 
-Implement **UseBufferOnPort** as follows:
+Implement **UseBufferOnPort()** as follows:
 
 ```cpp
 bool CodecHdiDecode::UseBufferOnPort(enum PortIndex portIndex)
@@ -392,22 +391,22 @@ bool CodecHdiDecode::UseBufferOnPort(enum PortIndex portIndex)
     auto err = client_->GetParameter(client_, OMX_IndexParamPortDefinition, (int8_t *)&param, sizeof(param));
     if (err != HDF_SUCCESS) {
         HDF_LOGE("%{public}s failed to GetParameter with OMX_IndexParamPortDefinition : portIndex[%{public}d]",
-                    __func__, portIndex);
+            __func__, portIndex);
         return false;
     }
     bufferSize = param.nBufferSize;
     bufferCount = param.nBufferCountActual;
     bPortEnable = param.bEnabled;
     HDF_LOGI("buffer index [%{public}d], buffer size [%{public}d], "
-                "buffer count [%{public}d], portEnable[%{public}d], err [%{public}d]",
-                portIndex, bufferSize, bufferCount, bPortEnable, err);
+        "buffer count [%{public}d], portEnable[%{public}d], err [%{public}d]",
+        portIndex, bufferSize, bufferCount, bPortEnable, err);
     {
         OMX_PARAM_BUFFERSUPPLIERTYPE param;
         InitParam(param);
         param.nPortIndex = (uint32_t)portIndex;
         auto err = client_->GetParameter(client_, OMX_IndexParamCompBufferSupplier, (int8_t *)&param, sizeof(param));
         HDF_LOGI("param.eBufferSupplier[%{public}d] isSupply [%{public}d], err [%{public}d]", param.eBufferSupplier,
-                    this->isSupply_, err);
+            this->isSupply_, err);
     }
     // Set the port buffer.
     UseBufferOnPort(portIndex, bufferCount, bufferSize);
@@ -483,7 +482,7 @@ if (err != HDF_SUCCESS) {
     HDF_LOGE("%{public}s failed to SendCommand with OMX_CommandStateSet:OMX_StateIdle", __func__);
     return;
 }
-// Set the output buffer.
+// Set the output buffer to fill.
 for (auto bufferId : unUsedOutBuffers_) {
     HDF_LOGI("fill bufferid [%{public}d]", bufferId);
     auto iter = omxBuffers_.find(bufferId);
@@ -536,7 +535,7 @@ while (!this->exit_) {
 client_->SendCommand(client_, OMX_CommandStateSet, OMX_StateIdle, NULL, 0);
 ```
 
-Automatic framing is not supported in rk OMX decoding. Therefore, you need to manually divide data into frames. Currently, data is divided into frames from code 0x000001 or 0x00000001 and sent to the server for processing. The sample code is as follows:
+The RK3568 development board does not support data framing. Therefore, you need to manually divide the data into frames. Data is divided from code 0x000001 or 0x00000001 and sent to the server for processing. The sample code is as follows:
 
 ```cpp
 // Read a file by frame.
@@ -581,8 +580,8 @@ bool OMXCore::ReadOnePacket(FILE* fp, char* buf, uint32_t& nFilled)
 The codec HDI provides the following callbacks:
 
 - **EventHandler**: Called when a command is executed. For example, when the command for changing the component state from **OMX_StateIdle** to **OMX_StateExecuting** is executed, this callback is invoked to return the result.
-- **EmptyBufferDone**: Called when the input data is consumed. If the client needs to fill in data to encode or decode, call **EmptyThisBuffer()**.
-- **FillBufferDone**: Called when the output data is filled. If the client needs to read the encoded or decoded data, call **FillThisBuffer()**.
+- **EmptyBufferDone**: Called when the input data is consumed. If the client needs to fill data to encode or decode, it must call **EmptyThisBuffer()** again.
+- **FillBufferDone**: Called when the output data is filled. If the client needs to read the encoded or decoded data, it must call **FillThisBuffer()** again.
 
 ```cpp
 // EmptyBufferDone example
@@ -646,8 +645,7 @@ int32_t OMXCore::onFillBufferDone(struct OmxCodecBuffer* pBuffer)
 int32_t CodecHdiDecode::OnEvent(struct CodecCallbackType *self, enum OMX_EVENTTYPE event, struct EventInfo *info)
 {
     HDF_LOGI("onEvent: appData[0x%{public}p], eEvent [%{public}d], "
-                "nData1[%{public}d]",
-                info->appData, event, info->data1);
+        "nData1[%{public}d]", info->appData, event, info->data1);
     switch (event) {
         case OMX_EventCmdComplete: {
             OMX_COMMANDTYPE cmd = (OMX_COMMANDTYPE)info->data1;
@@ -665,7 +663,7 @@ int32_t CodecHdiDecode::OnEvent(struct CodecCallbackType *self, enum OMX_EVENTTY
 ```
 
 #### Destroying a Component
-Change the component state to IDLE, release the input and output buffers, change the component state to **OMX_StateLoaded**, and call **DestoryComponent** to destroy the component.
+Change the component state to **OMX_StateIdle**, release the input and output buffers, change the component state to **OMX_StateLoaded**, and call **DestoryComponent** to destroy the component.
 
 ##### Example of Releasing Buffers
 
@@ -721,7 +719,7 @@ OpenMAX does not support framing.
 
 **Solution**
 
-Transfer data frame by frame when **EmptyThisBuffer** is called.
+Pass in one frame at a time when **EmptyThisBuffer** is call.
 
 ## Only Green Screen Displayed During the Decoding Process
 
@@ -751,11 +749,11 @@ After the generated video stream (H.264 stream) is written to a file, the video 
 
 **Solution**
 
-View the **codec_host** log generated during encoding, search for "encode params init settings", and check for incorrect parameters. If **framerate** is **0**, **xFramerate** is incorrectly set. In this case, move the framerate leftwards by 16 bits. 
+View the **codec_host** log generated during encoding, search for "encode params init settings", and check for incorrect parameters. If **framerate** is **0**, **xFramerate** is incorrectly set. In this case, move the frame rate leftwards by 16 bits. 
 
-Check the value of **OMX_VIDEO_PARAM_AVCTYPE**, and set it correctly. 
+Check and correct the setting of **OMX_VIDEO_PARAM_AVCTYPE**. 
 
 
 # Reference
 
-For more information, see [Codec](https://gitee.com/openharmony/drivers_peripheral/tree/master/codec).
+For more information, see [codec](https://gitee.com/openharmony/drivers_peripheral/tree/master/codec).

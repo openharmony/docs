@@ -1,8 +1,9 @@
-# OS Account Management
+# @ohos.account.osAccount
 
 The **osAccount** module provides basic capabilities for managing OS accounts, including adding, deleting, querying, setting, subscribing to, and enabling an OS account.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -2708,7 +2709,6 @@ Obtains the constraint source information of an OS account. This API uses a prom
     console.info('queryOsAccountConstraintSourceType exception:' + JSON.stringify(e));
   }
   ```
-
 ### isMultiOsAccountEnable<sup>(deprecated)</sup>
 
 isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
@@ -4280,17 +4280,12 @@ Register a PIN inputer.
 | ----------| ----------------------- | --- | -------------------------- |
 | inputer   | [IInputer](#iinputer8)  | Yes | PIN inputer, which is used to obtain the PIN.|
 
-**Return value**
-
-| Type   | Description                                          |
-| :------ | :-------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
 **Error codes**
 
 | ID| Error Message                    |
 | -------- | --------------------------- |
 | 12300001 | System service exception. |
+| 12300102 | Invalid inputer. |
 | 12300103 | Inputer already registered. |
 
 **Example**
@@ -4299,8 +4294,8 @@ Register a PIN inputer.
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
     let result = pinAuth.registerInputer({
-        onGetData: (pinSubType, callback) => {
-          callback.onSetData(pinSubType, password);
+        onGetData: (authSubType, callback) => {
+          callback.onSetData(authSubType, password);
         }
     });
     console.log('registerInputer result = ' + result);
@@ -4325,6 +4320,91 @@ Unregisters this PIN inputer.
   ```js
   let pinAuth = new account_osAccount.PINAuth();
   pinAuth.unregisterInputer();
+  ```
+
+### InputerManager <sup>10+</sup>
+
+Provides APIs for managing credential inputers.
+
+### registerInputer<sup>10+</sup>
+
+registerInputer(authType: AuthType, inputer: IInputer): void;
+
+Register a credential inputer.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL or ohos.permission.MANAGE_USER_IDM
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                     |
+| ----------| ----------------------- | --- | -------------------------- |
+| authType   | [AuthType](#authtype8)  | Yes | Authentication credential type.|
+| inputer   | [IInputer](#iinputer8)  | Yes | Credential inputer to register.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300102 | Invalid authType or inputer. |
+| 12300103 | The credential inputer has been registered. |
+| 12300106 | Unsupported authType. |
+
+**Example**
+  ```js
+  let inputerMgr = new account_osAccount.InputerManager();
+  let authType = account_osAccount.AuthType.DOMAIN;
+  let password = new Uint8Array([0, 0, 0, 0, 0]);
+  try {
+    InputerMgr.registerInputer(authType, {
+        onGetData: (authSubType, callback) => {
+          callback.onSetData(authSubType, password);
+        }
+    });
+    console.log('registerInputer success.');
+  } catch (e) {
+    console.log('registerInputer exception = ' + JSON.stringify(e));
+  }
+  ```
+
+### unregisterInputer<sup>10+</sup>
+
+unregisterInputer(authType: AuthType): void;
+
+Unregisters this credential inputer.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL or ohos.permission.MANAGE_USER_IDM
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                     |
+| ----------| ----------------------- | --- | -------------------------- |
+| authType   | [AuthType](#authtype8)  | Yes | Authentication credential type.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300002  | Invalid authType. |
+
+**Example**
+  ```js
+  let inputerMgr = new account_osAccount.InputerManager();
+  let authType = account_osAccount.AuthType.DOMAIN;
+  try {
+    inputerMgr.unregisterInputer(authType);
+    console.log('unregisterInputer success.');
+  } catch(err) {
+    console.log("unregisterInputer err:" + JSON.stringify(err));
+  }
   ```
 
 ## UserIdentityManager<sup>8+</sup>
@@ -4456,8 +4536,8 @@ Adds credential information, including the credential type, subtype, and token (
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let pinAuth = new account_osAccount.PINAuth();
   pinAuth.registerInputer({
-    onGetData: (pinSubType, callback) => {
-      callback.onSetData(pinSubType, password);
+    onGetData: (authSubType, callback) => {
+      callback.onSetData(authSubType, password);
     }
   });
   let credentialInfo = {
@@ -4470,12 +4550,12 @@ Adds credential information, including the credential type, subtype, and token (
     try {
     userIDM.addCredential(credentialInfo, {
       onResult: (result, extraInfo) => {
-        console.log('updateCredential result = ' + result);
-        console.log('updateCredential extraInfo = ' + extraInfo);
+        console.log('addCredential result = ' + result);
+        console.log('addCredential extraInfo = ' + extraInfo);
       }
     });
     } catch (e) {
-      console.log('updateCredential exception = ' + JSON.stringify(e));
+      console.log('addCredential exception = ' + JSON.stringify(e));
     }
   });
   ```
@@ -4520,8 +4600,8 @@ Updates credential information. This API uses a callback to return the result.
     token: null
   };
   pinAuth.registerInputer({
-    onGetData: (pinSubType, callback) => {
-      callback.onSetData(pinSubType, password);
+    onGetData: (authSubType, callback) => {
+      callback.onSetData(authSubType, password);
     }
   });
   userIDM.openSession((err, challenge) => {
@@ -4820,7 +4900,7 @@ Provides callbacks for PIN operations.
 
 ### onSetData<sup>8+</sup>
 
-onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
+onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
 
 **System API**: This is a system API.
 
@@ -4832,7 +4912,7 @@ Called to set data in a PIN operation.
 
 | Name     | Type                                    | Mandatory| Description                                           |
 | ---------- | ---------------------------------------- | ---- | ----------------------------------------------- |
-| pinSubType | [AuthSubType](#authsubtype8)             | Yes  | Credential subtype.                           |
+| authSubType | [AuthSubType](#authsubtype8)             | Yes  | Credential subtype.                           |
 | data       | Uint8Array                               | Yes  | Data (credential) to set. The data is used for authentication and operations for adding and modifying credentials.|
 
 **Example**
@@ -4840,11 +4920,11 @@ Called to set data in a PIN operation.
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
   let inputer = {
-    onGetData: (pinSubType, callback) => {
-        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
-          callback.onSetData(pinSubType, passwordNumber);
+    onGetData: (authSubType, callback) => {
+        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(authSubType, passwordNumber);
         } else {
-          callback.onSetData(pinSubType, password);
+          callback.onSetData(authSubType, password);
         }
     }
   };
@@ -4852,13 +4932,13 @@ Called to set data in a PIN operation.
 
 ## IInputer<sup>8+</sup>
 
-Provides callbacks for the PIN input box.
+Provides callbacks for credential inputers.
 
 **System API**: This is a system API.
 
 ### onGetData<sup>8+</sup>
 
-onGetData: (pinSubType: AuthSubType, callback: IInputData) => void;
+onGetData: (authSubType: AuthSubType, callback: IInputData) => void;
 
 Called to obtain data.
 
@@ -4877,11 +4957,11 @@ Called to obtain data.
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
   let inputer = {
-    onGetData: (pinSubType, callback) => {
-        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
-          callback.onSetData(pinSubType, passwordNumber);
+    onGetData: (authSubType, callback) => {
+        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(authSubType, passwordNumber);
         } else {
-          callback.onSetData(pinSubType, password);
+          callback.onSetData(authSubType, password);
         }
     }
   };
@@ -5157,6 +5237,8 @@ Enumerates the authentication credential types.
 | ----- | ----- | ---------------- |
 | PIN   | 1     | PIN authentication.|
 | FACE  | 2     | Facial authentication.|
+| FINGERPRINT<sup>10+</sup>   | 4     | Fingerprint authentication.|
+| DOMAIN<sup>10+</sup>  | 1024     | Domain authentication.|
 
 ## AuthSubType<sup>8+</sup>
 
@@ -5170,9 +5252,10 @@ Enumerates the authentication credential subtypes.
 | ---------- | ----- | ------------------ |
 | PIN_SIX    | 10000 | Six-digit PIN.      |
 | PIN_NUMBER | 10001 | Custom PIN.|
-| PIN_MIXED  | 10002 | Custom mixed credential.|
+| PIN_MIXED  | 10002 | Custom mixed credentials.|
 | FACE_2D    | 20000 | 2D face credential.  |
 | FACE_3D    | 20001 | 3D face credential.  |
+| DOMAIN_MIXED<sup>10+</sup>    | 10240001 | Mixed domain authentication credentials.  |
 
 ## AuthTrustLevel<sup>8+</sup>
 

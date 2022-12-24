@@ -227,7 +227,6 @@ getBundleName(agent: WantAgent): Promise\<string\>
 ```ts
 import WantAgent from '@ohos.wantAgent';
 
-
 //wantAgent对象
 var wantAgent;
 

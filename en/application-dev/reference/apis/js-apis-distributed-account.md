@@ -1,8 +1,8 @@
-# Distributed Account Management
+# @ohos.account.distributedAccount
 
-The **distributedAccount** module provides APIs for managing distributed accounts, including querying and updating account login status.
+The **distributedAccount** module provides APIs for managing distributed accounts, including querying and updating account login states.
 
-> **NOTE**<br>
+> **NOTE**
 > 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -49,7 +49,7 @@ Obtains distributed account information. This API uses an asynchronous callback 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined** and data is the distributed account information obtained. Otherwise, **err** is an error object.|
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -124,7 +124,7 @@ Obtains distributed account information. This API uses an asynchronous callback 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined** and data is the distributed account information obtained. Otherwise, **err** is an error object.|
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
 
 **Example**
   ```js
@@ -181,7 +181,7 @@ Sets the distributed account information. This API uses an asynchronous callback
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| New distributed account information.|
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the distributed account information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -219,7 +219,7 @@ Sets the distributed account information. This API uses a promise to return the 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| New distributed account information.|
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
 
 **Return value**
 
@@ -322,7 +322,7 @@ Defines distributed OS account information.
 | -------- | -------- | -------- | -------- |
 | name | string | Yes| Name of the distributed account. It must be a non-null string.|
 | id | string | Yes| UID of the distributed account. It must be a non-null string.|
-| event | string | Yes| Login state of a distributed account. The state can be login, logout, token invalid, or logoff, which correspond to the following strings respectively:<br>-&nbsp;Ohos.account.event.LOGIN<br>-&nbsp;Ohos.account.event.LOGOUT<br>-&nbsp;Ohos.account.event.TOKEN_INVALID<br>-&nbsp;Ohos.account.event.LOGOFF |
+| event | string | Yes| Login state of the distributed account. The state can be login, logout, token invalid, or logoff, which correspond to the following strings respectively:<br>-&nbsp;Ohos.account.event.LOGIN<br>-&nbsp;Ohos.account.event.LOGOUT<br>-&nbsp;Ohos.account.event.TOKEN_INVALID<br>-&nbsp;Ohos.account.event.LOGOFF |
 | nickname<sup>9+</sup> | string | No| Nickname of the distributed account. It must be a non-null string.|
 | avatar<sup>9+</sup> | string | No| Avatar of the distributed account. It must be a non-null string.|
-| scalableData | object | No| Extended information about the distributed account, passed in key-value (KV) pairs.<br>**NOTE**<br>This parameter is reserved and not used in query and update methods.|
+| scalableData | object | No| Extended information about the distributed account, passed in key-value (KV) pairs.<br>**NOTE**<br>This parameter is reserved and not used in the setters and getters.|

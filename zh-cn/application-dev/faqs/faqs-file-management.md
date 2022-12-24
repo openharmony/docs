@@ -77,11 +77,14 @@ getAlbums方法需要权限：ohos.permission.READ_MEDIA，从[OpenHarmony权限
 2. 在MainAbility.ts -&gt; onWindowStageCreate页面加载前需要增加用户授权代码：
      
    ```
+   import abilityAccessCtrl from '@ohos.abilityAccessCtrl.d.ts';
+   
    private requestPermissions() {
    let permissionList: Array<string> = [
      "ohos.permission.READ_MEDIA"
    ];
-   this.context.requestPermissionsFromUser(permissionList)
+   let atManager = abilityAccessCtrl.createAtManager();
+   atManager.requestPermissionsFromUser(this.context, permissionList)
      .then(data => {
        console.info(`request permission data result = ${data.authResults}`)
      })
@@ -99,7 +102,7 @@ getAlbums方法需要权限：ohos.permission.READ_MEDIA，从[OpenHarmony权限
 
 ## 在Stage模型下调用mediaLibrary.getMediaLibrary()接口，IDE报错
 
-适用于：OpenHarmonySDK 3.25.5版本，API9 Stage模型
+适用于：OpenHarmonySDK 3.2.5.5版本，API9 Stage模型
 
 Stage模型下，获取媒体库实例应该调用mediaLibrary.getMediaLibrary(context: Context)。
 

@@ -707,13 +707,13 @@ blockNetwork(block: boolean)
 
 defaultFixedFontSize(size: number)
 
-设置网页的默认固定字体大小。
+设置网页的默认等宽字体大小。
 
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                     |
 | ------ | -------- | ---- | ------ | ---------------------------- |
-| size   | number   | 是   | 13     | 设置网页的默认固定字体大小。入参限制为1到72之间的非负整数，小于1的数固定为1，超过72的数固定为72。 |
+| size   | number   | 是   | 13     | 设置网页的默认等宽字体大小，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
 
 **示例：**
 
@@ -744,7 +744,7 @@ defaultFontSize(size: number)
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
 | ------ | -------- | ---- | ------ | ------------------------ |
-| size   | number   | 是   | 16     | 设置网页的默认字体大小。入参限制为1到72之间的非负整数，小于1的数固定为1，超过72的数固定为72。 |
+| size   | number   | 是   | 16     | 设置网页的默认字体大小，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
 
 **示例：**
 
@@ -775,7 +775,7 @@ minFontSize(size: number)
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
 | ------ | -------- | ---- | ------ | ------------------------ |
-| size   | number   | 是   | 8      | 设置网页字体大小最小值。入参限制为1到72之间的非负整数，小于1的数固定为1，超过72的数固定为72。 |
+| size   | number   | 是   | 8      | 设置网页字体大小最小值，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
 
 **示例：**
 
@@ -795,6 +795,38 @@ minFontSize(size: number)
     }
   }
   ```
+
+### minLogicalFontSize<sup>9+</sup>
+
+minLogicalFontSize(size: number)
+
+设置网页逻辑字体大小最小值。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
+| ------ | -------- | ---- | ------ | ------------------------ |
+| size   | number   | 是   | 8      | 设置网页逻辑字体大小最小值，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State size: number = 13
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .minLogicalFontSize(this.size)
+      }
+    }
+  }
+  ```
+
 
 ### webFixedFont<sup>9+</sup>
 
@@ -1361,7 +1393,7 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
 | 参数名     | 参数类型                                     | 参数描述            |
 | ------- | ---------------------------------------- | --------------- |
 | request | [WebResourceRequest](#webresourcerequest) | 网页请求的封装信息。      |
-| error   | [WebResourceError](#webresourceerror)    | 网页加载资源错误的封装信息 。 |
+| response | [WebResourceResponse](#webresourceresponse)    | 资源响应的封装信息。 |
 
 **示例：**
 
