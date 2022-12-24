@@ -55,12 +55,13 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 try {
     launcherBundleManager.getLauncherAbilityInfo('com.example.demo', 100, (errData, data) => {
         if (errData !== null) {
-            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+        } else {
+            console.log("data is " + JSON.stringify(data));
         }
-        console.log("data is " + JSON.stringify(data));
     })
 } catch (errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -107,10 +108,10 @@ try {
     launcherBundleManager.getLauncherAbilityInfo("com.example.demo", 100).then(data => {
         console.log("data is " + JSON.stringify(data));
     }).catch (errData => {
-        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch (errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -154,12 +155,13 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 try {
     launcherBundleManager.getAllLauncherAbilityInfo(100, (errData, data) => {
         if (errData !== null) {
-            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+        } else {
+            console.log("data is " + JSON.stringify(data));
         }
-        console.log("data is " + JSON.stringify(data));
     });
 } catch (errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 ## launcherBundlemanager.getAllLauncherAbilityInfo<sup>9+</sup>
@@ -203,10 +205,10 @@ try {
     launcherBundleManager.getAllLauncherAbilityInfo(100).then(data => {
         console.log("data is " + JSON.stringify(data));
     }).catch (errData => {
-        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
 } catch (errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -248,12 +250,13 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 try {
     launcherBundleManager.getShortcutInfo("com.example.demo", (errData, data) => {
         if (errData !== null) {
-            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+        } else {
+            console.log("data is " + JSON.stringify(data));
         }
-        console.log("data is " + JSON.stringify(data));
     });
 } catch (errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -296,9 +299,9 @@ try {
     launcherBundleManager.getShortcutInfo("com.example.demo").then(data => {
         console.log("data is " + JSON.stringify(data));
     }).catch (errData => {
-        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
 } catch (errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
