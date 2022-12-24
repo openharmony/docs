@@ -40,7 +40,7 @@ try {
   // 1.获取设备列表，判断是否有物理键盘连接
   inputDevice.getDeviceList().then(data => {
     for (let i = 0; i < data.length; ++i) {
-      inputDevice.getKeyboardType(data[i]).then(res => {
+      inputDevice.getKeyboardType(data[i]).then(type => {
         if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD) {
           // 物理键盘已连接
           isPhysicalKeyboardExist = true;

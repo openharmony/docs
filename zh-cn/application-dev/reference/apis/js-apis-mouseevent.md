@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mouseEvent';
+import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInput.mouseEvent';
 ```
 
 ## Action
