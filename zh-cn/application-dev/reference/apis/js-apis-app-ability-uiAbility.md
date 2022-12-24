@@ -18,7 +18,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -29,18 +29,18 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 ## UIAbility.onCreate
 
-onCreate(want: Want, param: UIAbilityConstant.LaunchParam): void;
+onCreate(want: Want, param: AbilityConstant.LaunchParam): void;
 
 UIAbility创建时回调，执行初始化业务逻辑操作。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 当前UIAbility的Want类型信息，包括ability名称、bundle名称等。 |
-| param | UIAbilityConstant.LaunchParam | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 |
+| param | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 |
 
 **示例：**
 
@@ -59,13 +59,13 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
 当WindowStage创建后调用。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowStage | window.WindowStage | 是 | WindowStage相关信息。 |
+| windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
 
 **示例：**
     
@@ -84,7 +84,7 @@ onWindowStageDestroy(): void
 
 当WindowStage销毁后调用。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
     
@@ -103,13 +103,13 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 当迁移多实例ability时，恢复WindowStage后调用。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowStage | window.WindowStage | 是 | WindowStage相关信息。 |
+| windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
 
 **示例：**
     
@@ -128,7 +128,7 @@ onDestroy(): void;
 
 UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
     
@@ -147,7 +147,7 @@ onForeground(): void;
 
 UIAbility生命周期回调，当应用从后台转到前台时触发。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
     
@@ -166,7 +166,7 @@ onBackground(): void;
 
 UIAbility生命周期回调，当应用从前台转到后台时触发。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
     
@@ -181,11 +181,11 @@ UIAbility生命周期回调，当应用从前台转到后台时触发。
 
 ## UIAbility.onContinue
 
-onContinue(wantParam : {[key: string]: any}): UIAbilityConstant.OnContinueResult;
+onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
 
 当ability迁移准备迁移时触发，保存数据。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
@@ -197,17 +197,17 @@ onContinue(wantParam : {[key: string]: any}): UIAbilityConstant.OnContinueResult
 
 | 类型 | 说明 |
 | -------- | -------- |
-| UIAbilityConstant.OnContinueResult | 继续的结果。 |
+| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult) | 继续的结果。 |
 
 **示例：**
     
   ```ts
-  import UIAbilityConstant from "@ohos.app.ability.UIAbilityConstant"
+  import AbilityConstant from "@ohos.app.ability.AbilityConstant"
   class MyUIAbility extends UIAbility {
       onContinue(wantParams) {
           console.log('onContinue');
           wantParams["myData"] = "my1234567";
-          return UIAbilityConstant.OnContinueResult.AGREE;
+          return AbilityConstant.OnContinueResult.AGREE;
       }
   }
   ```
@@ -215,25 +215,26 @@ onContinue(wantParam : {[key: string]: any}): UIAbilityConstant.OnContinueResult
 
 ## UIAbility.onNewWant
 
-onNewWant(want: Want, launchParams: UIAbilityConstant.LaunchParam): void;
+onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
-当ability的启动模式设置为单例时回调会被调用。
+启动模式为单例的ability再次被拉起时会回调执行该方法。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，如ability名称，包名等。 |
-| launchParams | UIAbilityConstant.LaunchParam | 是 | UIAbility启动的原因、上次异常退出的原因信息。 |
+| launchParams | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | UIAbility启动的原因、上次异常退出的原因信息。 |
 
 **示例：**
     
   ```ts
   class MyUIAbility extends UIAbility {
-      onNewWant(want) {
+      onNewWant(want, launchParams) {
           console.log('onNewWant, want:' + want.abilityName);
+          console.log('onNewWant, launchParams:' + JSON.stringify(launchParams));
       }
   }
   ```
@@ -244,7 +245,7 @@ onDump(params: Array\<string>): Array\<string>;
 
 转储客户端信息时调用。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
@@ -266,35 +267,35 @@ onDump(params: Array\<string>): Array\<string>;
 
 ## UIAbility.onSaveState
 
-onSaveState(reason: UIAbilityConstant.StateType, wantParam : {[key: string]: any}): UIAbilityConstant.OnSaveResult;
+onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any}): AbilityConstant.OnSaveResult;
 
 该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存UIAbility状态。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reason | [UIAbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
+| reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
 | wantParam | {[key:&nbsp;string]:&nbsp;any} | 是 | want相关参数。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| UIAbilityConstant.OnSaveResult | 是否同意保存当前UIAbility的状态。 |
+| [AbilityConstant.OnSaveResult](js-apis-app-ability-abilityConstant.md#abilityconstantonsaveresult) | 是否同意保存当前UIAbility的状态。 |
 
 **示例：**
 
   ```ts
-import UIAbilityConstant from '@ohos.app.ability.UIAbilityConstant'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant'
 
 class MyUIAbility extends UIAbility {
     onSaveState(reason, wantParam) {
         console.log('onSaveState');
         wantParam["myData"] = "my1234567";
-        return UIAbilityConstant.OnSaveResult.RECOVERY_AGREE;
+        return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
     }
 }
   ```
@@ -311,14 +312,14 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 
 向通用组件服务端发送约定序列化数据。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | rpc.Sequenceable | 是 | 由开发者实现的Sequenceable可序列化数据。 |
+| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceablesupdeprecatedsup) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
 
 **返回值：**
 
@@ -391,20 +392,20 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
 
 向通用组件服务端发送约定序列化数据, 并将服务端返回的约定序列化数据带回。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | rpc.Sequenceable | 是 | 由开发者实现的Sequenceable可序列化数据。 |
+| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceablesupdeprecatedsup) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;rpc.MessageParcel&gt; | Promise形式返回通用组件服务端应答数据。 |
+| Promise&lt;[rpc.MessageParcel](js-apis-rpc.md#messageparcelsupdeprecatedsup)&gt; | Promise形式返回通用组件服务端应答数据。 |
 
 **错误码：**
 
@@ -473,7 +474,7 @@ release(): void;
 
 主动释放通用组件服务端的通信接口。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **错误码：**
 
@@ -516,13 +517,13 @@ release(): void;
 
 注册通用组件服务端Stub（桩）断开监听通知。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | OnReleaseCallBack | 是 | 返回onRelease回调结果。 |
+| callback | [OnReleaseCallBack](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
 
 **示例：**
     
@@ -558,14 +559,14 @@ release(): void;
 
 注册通用组件服务端Stub（桩）断开监听通知。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
-| callback | OnReleaseCallback | 是 | 返回onRelease回调结果。 |
+| callback | [OnReleaseCallBack](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
 
 **错误码：**
 
@@ -613,14 +614,14 @@ on(method: string, callback: CalleeCallback): void;
 
 通用组件服务端注册消息通知callback。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 与客户端约定的通知消息字符串。 |
-| callback | CalleeCallback | 是 | 一个rpc.MessageParcel类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的rpc.Sequenceable数据对象,&nbsp;其他视为函数执行错误。 |
+| callback | [CalleeCallback](#calleecallback) | 是 | 一个[rpc.MessageParcel](js-apis-rpc.md#messageparcelsupdeprecatedsup)类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的[rpc.Sequenceable](js-apis-rpc.md#sequenceablesupdeprecatedsup)数据对象,&nbsp;其他视为函数执行错误。 |
 
 **错误码：**
 
@@ -679,7 +680,7 @@ off(method: string): void;
 
 解除通用组件服务端注册消息通知callback。
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
@@ -716,7 +717,7 @@ off(method: string): void;
 
 (msg: string): void;
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | 名称 | 可读 | 可写 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -726,8 +727,8 @@ off(method: string): void;
 
 (indata: rpc.MessageParcel): rpc.Sequenceable;
 
-**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | 名称 | 可读 | 可写 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: rpc.MessageParcel) | 是 | 否 | rpc.Sequenceable | 被调用方注册的消息侦听器函数接口的原型。 |
+| (indata: [rpc.MessageParcel](js-apis-rpc.md#messageparcelsupdeprecatedsup)) | 是 | 否 | [rpc.Sequenceable](js-apis-rpc.md#sequenceablesupdeprecatedsup) | 被调用方注册的消息侦听器函数接口的原型。 |
