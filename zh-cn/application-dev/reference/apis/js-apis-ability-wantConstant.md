@@ -50,7 +50,7 @@ want操作的常数。
 |  ACTION_MARKET_DOWNLOAD <sup>9+</sup>    | ohos.want.action.marketDownload     | 表示从应用程序市场下载应用程序的的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 |  ACTION_MARKET_CROWDTEST <sup>9+</sup>    | ohos.want.action.marketCrowdTest     | 指示从应用程序市场众测应用程序的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 |   DLP_PARAMS_SANDBOX<sup>9+</sup>    |ohos.dlp.params.sandbox  | 指示沙盒标志的参数的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
-|   DLP_PARAMS_BUNDLE_NAME<sup>9+</sup>    |ohos.dlp.params.bundleName  |指示DLP包名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
+|   DLP_PARAMS_BUNDLE_NAME<sup>9+</sup>    |ohos.dlp.params.bundleName  |指示DLP Bundle名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 |   DLP_PARAMS_MODULE_NAME<sup>9+</sup>    |ohos.dlp.params.moduleName      |指示DLP模块名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 |   DLP_PARAMS_ABILITY_NAME<sup>9+</sup>    |ohos.dlp.params.abilityName      |指示DLP能力名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 |   DLP_PARAMS_INDEX<sup>9+</sup>    |ohos.dlp.params.index      |指示DLP索引参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |

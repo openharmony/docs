@@ -31,15 +31,15 @@ path: string, container: object, render: string, loop: boolean, autoplay: boolea
 
 **参数：**
 
-| 参数             | 类型                          | 必填   | 描述                                       |
-| -------------- | --------------------------- | ---- | ---------------------------------------- |
-| path           | string                      | 是    | hap包内动画资源文件路径，仅支持json格式。示例：path:&nbsp;"common/lottie/data.json" |
-| container      | object                      | 是    | canvas绘图上下文，声明范式需提前声明CanvasRenderingContext2D。 |
-| render         | string                      | 是    | 渲染类型，仅支持“canvas”。                        |
-| loop           | boolean&nbsp;\|&nbsp;number | 否    | 动画播放结束后，是否循环播放，默认值true。值类型为number，且大于等于1时为设置的重复播放的次数。 |
-| autoplay       | boolean                     | 否    | 是否自动播放动画，默认值true。                        |
-| name           | string                      | 否    | 开发者自定义的动画名称，后续支持通过该名称引用控制动画，默认为空。        |
-| initialSegment | [number,&nbsp;number]       | 否    | 指定动画播放的起始帧号，指定动画播放的结束帧号。                 |
+| 参数           | 类型                        | 必填 | 描述                                                         |
+| -------------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| path           | string                      | 是   | HAP内动画资源文件路径，仅支持json格式。示例：path:&nbsp;"common/lottie/data.json" |
+| container      | object                      | 是   | canvas绘图上下文，声明范式需提前声明CanvasRenderingContext2D。 |
+| render         | string                      | 是   | 渲染类型，仅支持“canvas”。                                   |
+| loop           | boolean&nbsp;\|&nbsp;number | 否   | 动画播放结束后，是否循环播放，默认值true。值类型为number，且大于等于1时为设置的重复播放的次数。 |
+| autoplay       | boolean                     | 否   | 是否自动播放动画，默认值true。                               |
+| name           | string                      | 否   | 开发者自定义的动画名称，后续支持通过该名称引用控制动画，默认为空。 |
+| initialSegment | [number,&nbsp;number]       | 否   | 指定动画播放的起始帧号，指定动画播放的结束帧号。             |
 
 
 ## lottie.destroy

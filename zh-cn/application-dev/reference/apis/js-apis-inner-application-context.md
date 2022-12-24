@@ -29,7 +29,7 @@ Context模块提供了ability或application的上下文的能力，包括访问�
 
 createBundleContext(bundleName: string): Context;
 
-根据包名创建安装包的上下文。
+根据Bundle名称创建安装包的上下文。
 
 **需要权限**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -39,7 +39,7 @@ createBundleContext(bundleName: string): Context;
 
 | 名称       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
-| bundleName | string | 是    | 包名。 |
+| bundleName | string | 是    | Bundle名称。 |
 
 **返回值：**
 
@@ -107,7 +107,7 @@ try {
 
 createModuleContext(bundleName: string, moduleName: string): Context;
 
-根据包名和模块名创建上下文。
+根据Bundle名称和模块名称创建上下文。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -115,7 +115,7 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 
 | 名称       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
-| bundleName | string | 是    | 包名。 |
+| bundleName | string | 是    | Bundle名称。 |
 | moduleName | string | 是    | 模块名。 |
 
 **返回值：**

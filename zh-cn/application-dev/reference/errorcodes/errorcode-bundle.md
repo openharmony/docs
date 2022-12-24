@@ -116,12 +116,12 @@ The specified device ID is not found.
 Failed to install the HAP because the HAP fails to be parsed.
 
 **错误描述**<br/>
-调用installer模块中的install接口时，传入的HAP包解析失败。
+调用installer模块中的install接口时，传入的HAP解析失败。
 
 **可能原因**<br/>
-1. hap包的格式不是zip格式。
-2. hap包的配置文件不满足json格式。
-3. hap包的配置文件缺少必要的字段。
+1. HAP的格式不是zip格式。
+2. HAP的配置文件不满足json格式。
+3. HAP的配置文件缺少必要的字段。
 
 **处理步骤**<br/>
 1. 确认hap的格式是zip。
@@ -138,9 +138,9 @@ Failed to install the HAP because the HAP signature fails to be verified.
 
 **可能原因**<br/>
 
-1. hap包没有签名。
+1. HAP没有签名。
 2. hap签名信息来源不可靠。
-3. 升级的hap包与已安装的hap包签名信息不一致。
+3. 升级的HAP与已安装的HAP签名信息不一致。
 4. 多个hap的签名信息不一致。
 
 **处理步骤**<br/>
@@ -157,28 +157,28 @@ Failed to install the HAP because the HAP path is invalid or the HAP is too larg
 调用installer模块中的install接口时，安装包路径无效或者文件过大导致应用安装失败。
 
 **可能原因**<br/>
-1. 输入错误，hap包的文件路径不存在。
-2. hap包的路径无法访问。
-3. hap包的大小超过最大限制4G。
+1. 输入错误，HAP的文件路径不存在。
+2. HAP的路径无法访问。
+3. HAP的大小超过最大限制4G。
 
 **处理步骤**<br/>
 1. 确认hap是否存在。
 2. 查看hap的可执行权限，是否可读。
-3. 查看hap包的大小是否超过4G。
+3. 查看HAP的大小是否超过4G。
 
-## 17700015 多个hap包配置信息不同导致应用安装失败
+## 17700015 多个HAP配置信息不同导致应用安装失败
 
 **错误信息**<br/>
 Failed to install the HAPs because they have different configuration information.
 
 **错误描述**<br/>
-调用installer模块中的install接口时，多个hap包配置信息不同导致应用安装失败。
+调用installer模块中的install接口时，多个HAP配置信息不同导致应用安装失败。
 
 **可能原因**<br/>
-多个hap包中配置文件app下面的字段不一致。
+多个HAP中配置文件app下面的字段不一致。
 
 **处理步骤**<br/>
-确认多个hap包中配置文件app下面的字段是否一致。
+确认多个HAP中配置文件app下面的字段是否一致。
 
 ## 17700016 系统磁盘空间不足导致应用安装失败
 

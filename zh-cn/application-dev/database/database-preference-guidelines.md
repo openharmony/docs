@@ -24,7 +24,7 @@
 
 **表1** 首选项实例创建接口
 
-| 包名                  | 接口名                                                       | 描述                                                         |
+| Bundle名称            | 接口名                                                       | 描述                                                         |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ohos.data.preferences | getPreferences(context: Context, name: string): Promise\<Preferences> | 读取指定首选项持久化文件，将数据加载到Preferences实例，用于数据操作。 |
 
@@ -75,7 +75,7 @@
 
 **表6** 首选项删除接口
 
-| 包名                  | 接口名                                                       | 描述                                                         |
+| Bundle名称            | 接口名                                                       | 描述                                                         |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ohos.data.preferences | deletePreferences(context: Context, name: string): Promise\<void> | 从缓存中移除已加载的Preferences对象，同时从设备上删除对应的文件。 |
 | ohos.data.preferences | removePreferencesFromCache(context: Context, name: string): Promise\<void> | 仅从缓存中移除已加载的Preferences对象，主要用于释放内存。    |

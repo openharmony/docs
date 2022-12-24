@@ -225,7 +225,7 @@ onNewWant(want: Want, launchParams: UIAbilityConstant.LaunchParam): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，如ability名称，包名等。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，如Ability名称，Bundle名称等。 |
 | launchParams | UIAbilityConstant.LaunchParam | 是 | UIAbility启动的原因、上次异常退出的原因信息。 |
 
 **示例：**

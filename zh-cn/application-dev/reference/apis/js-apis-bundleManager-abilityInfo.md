@@ -11,7 +11,7 @@ Ability信息，系统应用可以通过[getBundleInfo](js-apis-bundleManager.md
 
 | 名称                  | 类型                                                     | 可读 | 可写 | 说明                                      |
 | --------------------- | -------------------------------------------------------- | ---- | ---- | ----------------------------------------- |
-| bundleName            | string                                                   | 是   | 否   | 应用包名                                  |
+| bundleName            | string                                                   | 是   | 否   | 应用Bundle名称                          |
 | moduleName            | string                                                   | 是   | 否   | Ability所属的HAP包的名称                  |
 | name                  | string                                                   | 是   | 否   | Ability名称                               |
 | label                 | string                                                   | 是   | 否   | Ability对用户显示的名称                   |

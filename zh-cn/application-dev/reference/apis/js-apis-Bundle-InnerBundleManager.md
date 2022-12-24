@@ -21,7 +21,7 @@ SystemCapability.BundleManager.BundleFramework
 
 getLauncherAbilityInfos(bundleName: string, userId: number, callback: AsyncCallback&lt;Array&lt;LauncherAbilityInfo&gt;&gt;) : void;
 
-以异步方法根据给定的包名获取LauncherAbilityInfos，使用callback形式返回结果。
+以异步方法根据给定的Bundle名称获取LauncherAbilityInfos，使用callback形式返回结果。
 > 从API version 9开始不再支持。建议使用[launcherBundleManager#getLauncherAbilityInfo](js-apis-launcherBundleManager.md)替代。
 
 **需要权限：**
@@ -38,18 +38,18 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 参数名     | 类型                                                         | 必填 | 说明                                                  |
-| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-| bundleName | string                                                       | 是   | 要查询的应用程序包名称。                              |
-| userId     | number                                                       | 是   | 用户ID。取值范围：大于等于0。 |
-| callback   | AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundle-LauncherAbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回程序信息。            |
+| 参数名     | 类型                                                         | 必填 | 说明                                       |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| bundleName | string                                                       | 是   | 要查询的应用Bundle名称。                   |
+| userId     | number                                                       | 是   | 用户ID。取值范围：大于等于0。              |
+| callback   | AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundle-LauncherAbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回程序信息。 |
 
 
 ## innerBundleManager.getLauncherAbilityInfos<sup>(deprecated)</sup>
 
 getLauncherAbilityInfos(bundleName: string, userId: number) : Promise&lt;Array&lt;LauncherAbilityInfo&gt;&gt;
 
-以异步方法根据给定的包名获取LauncherAbilityInfos，使用Promise形式返回结果。
+以异步方法根据给定的Bundle名称获取LauncherAbilityInfos，使用Promise形式返回结果。
 > 从API version 9开始不再支持。建议使用[launcherBundleManager#getLauncherAbilityInfo](js-apis-launcherBundleManager.md)替代。
 
 **需要权限：**
@@ -66,9 +66,9 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 参数名     | 类型   | 必填 | 说明                                                  |
-| ---------- | ------ | ---- | ----------------------------------------------------- |
-| bundleName | string | 是   | 要查询的应用程序包名称。                              |
+| 参数名     | 类型   | 必填 | 说明                          |
+| ---------- | ------ | ---- | ----------------------------- |
+| bundleName | string | 是   | 要查询的应用Bundle名称。      |
 | userId     | number | 是   | 用户ID。取值范围：大于等于0。 |
 
 **返回值：**
@@ -254,7 +254,7 @@ SystemCapability.BundleManager.BundleFramework
 
 getShortcutInfos(bundleName :string, callback: AsyncCallback&lt;Array&lt;ShortcutInfo&gt;&gt;) : void;
 
-以异步方法根据给定的包名获取快捷方式信息，使用callback形式返回结果。
+以异步方法根据给定的Bundle名称获取快捷方式信息，使用callback形式返回结果。
 > 从API version 9开始不再支持。建议使用[launcherBundleManager#getShortcutInfo](js-apis-launcherBundleManager.md)替代。
 
 **需要权限：**
@@ -273,14 +273,14 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名     | 类型                                                         | 必填 | 说明                                           |
 | ---------- | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
-| bundleName | string                                                       | 是   | 要查询的应用程序包名称。                       |
+| bundleName | string                                                       | 是   | 要查询的应用Bundle名称。                       |
 | callback   | AsyncCallback\<Array<[ShortcutInfo](js-apis-bundle-ShortcutInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回快捷方式信息。 |
 
 ## innerBundleManager.getShortcutInfos<sup>(deprecated)</sup>
 
 getShortcutInfos(bundleName : string) : Promise&lt;Array&lt;ShortcutInfo&gt;&gt;
 
-以异步方法根据给定的包名获取快捷方式信息，使用Promise形式返回结果。
+以异步方法根据给定的Bundle名称获取快捷方式信息，使用Promise形式返回结果。
 > 从API version 9开始不再支持。建议使用[launcherBundleManager#getShortcutInfo](js-apis-launcherBundleManager.md)替代。
 
 **需要权限：**
@@ -299,7 +299,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名     | 类型   | 必填 | 说明                     |
 | ---------- | ------ | ---- | ------------------------ |
-| bundleName | string | 是   | 要查询的应用程序包名称。 |
+| bundleName | string | 是   | 要查询的应用Bundle名称。 |
 
 **返回值：**
 

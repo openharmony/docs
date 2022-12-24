@@ -134,7 +134,7 @@ WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 
 getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
-获取WantAgent实例的包名（callback形式）。
+获取WantAgent实例的Bundle名称（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -206,7 +206,7 @@ WantAgent.getBundleName(wantAgent, getBundleNameCallback)
 
 getBundleName(agent: WantAgent): Promise\<string\>
 
-获取WantAgent实例的包名（Promise形式）。
+获取WantAgent实例的Bundle名称（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -218,9 +218,9 @@ getBundleName(agent: WantAgent): Promise\<string\>
 
 **返回值：**
 
-| 类型                                                        | 说明                                                         |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<string\> | 以Promise形式返回获取WantAgent实例的包名。 |
+| 类型              | 说明                                             |
+| ----------------- | ------------------------------------------------ |
+| Promise\<string\> | 以Promise形式返回获取WantAgent实例的Bundle名称。 |
 
 **示例：**
 

@@ -22,7 +22,7 @@ hap级别的快速修复信息。
 
 | 名称        | 类型                 | 必填 | 说明                                                         |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| moduleName    | string               | 是   | hap包的名称。                               |
+| moduleName    | string               | 是   | HAP的名称。                               |
 | originHapHash    | string               | 是   | 指示hap的哈希值。                               |
 | quickFixFilePath    | string               | 是   | 指示快速修复文件的安装路径。                               |
 
@@ -36,7 +36,7 @@ hap级别的快速修复信息。
 
 | 名称        | 类型                 | 必填 | 说明                                                         |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| bundleName    | string               | 是   | 应用的包名。                               |
+| bundleName    | string               | 是   | 应用Bundle名称。                       |
 | bundleVersionCode    | number               | 是   | 应用的版本号。                               |
 | bundleVersionName    | string               | 是   | 应用版本号的文字描述。                               |
 | quickFixVersionCode    | number               | 是   | 快速修复补丁包的版本号。                               |
@@ -132,10 +132,10 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | 是 |应用的包名。  | 
-  | callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 是 | 应用的快速修复信息。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName | string | 是 |应用Bundle名称。  |
+| callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 是 | 应用的快速修复信息。 |
 
 **示例：**
     
@@ -168,9 +168,9 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | 是 | 应用的包名。  | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 应用Bundle名称。 |
 
 **返回值：**
 
@@ -191,4 +191,4 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
   } catch (paramError) {
     console.log("error: " + paramError.code + ", " + paramError.message);
   }
-```
+  ```

@@ -1476,7 +1476,7 @@ FA的使用信息的属性集合。
 | 名称                  | 类型                                       | 必填   | 说明                            |
 | -------------------- | ---------------------------------------- | ---- | ----------------------------- |
 | deviceId             | string                                   | 否    | FA所属deviceId。                 |
-| bundleName           | string                                   | 是    | FA所属应用包名。                     |
+| bundleName           | string                                   | 是    | FA所属应用Bundle名称。             |
 | moduleName           | string                                   | 是    | FA所属module名。                  |
 | abilityName          | string                                   | 否    | FA的MainAbility名。              |
 | appLabelId           | number                                   | 否    | FA的应用labelId。                 |

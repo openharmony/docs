@@ -37,7 +37,7 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
-| config | [KVManagerConfig](#kvmanagerconfig) | 是  | 提供KVManager实例的配置信息，包括调用方的包名和用户信息。 |
+| config | [KVManagerConfig](#kvmanagerconfig) | 是  | 提供KVManager实例的配置信息，包括调用方的Bundle名称和用户信息。 |
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是  | 回调函数。返回创建的KVManager对象实例。 |
 
 **示例：**
@@ -112,14 +112,14 @@ try {
 
 ## KVManagerConfig
 
-提供KVManager实例的配置信息，包括调用方的包名和用户信息。
+提供KVManager实例的配置信息，包括调用方的Bundle名称和用户信息。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 | 名称 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | userInfo | [UserInfo](#userinfo) | 是  | 调用方的用户信息。 |
-| bundleName | string | 是  | 调用方的包名。 |
+| bundleName | string | 是  | 调用方的Bundle名称。 |
 
 ## UserInfo
 

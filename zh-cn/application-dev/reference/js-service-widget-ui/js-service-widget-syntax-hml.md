@@ -94,7 +94,7 @@ HML（OpenHarmony Markup Language）是一套类HTML的标记语言，通过组�
   }
   ```
 
-   也可以使用want格式绑定参数跳转到目标应用，want定义了ability名称、包名、携带的参数字段等。
+   也可以使用want格式绑定参数跳转到目标应用，want定义了Ability名称、Bundle名称、携带的参数字段等。
 
   | 选择器    | 类型     | 默认值      | 样例描述                                     |
   | ------ | ------ | -------- | ---------------------------------------- |
@@ -102,7 +102,7 @@ HML（OpenHarmony Markup Language）是一套类HTML的标记语言，通过组�
   | want   | [Want](../apis/js-apis-app-ability-want.md) | -        | 跳转目标应用的信息，参考want格式表。                     |
 
 
-    ```json
+```json
   {
       "data": {
         "mainAbility": "xxx.xxx.xxx"
@@ -124,9 +124,9 @@ HML（OpenHarmony Markup Language）是一套类HTML的标记语言，通过组�
         }  
       }
     }
-    ```
+```
 
-    在API Version 8，want参数需要在app.js或app.ets文件的onCreate方法中调用[featureAbility.getWant](../apis/js-apis-ability-featureAbility.md)接口接收相关参数。
+在API Version 8，want参数需要在app.js或app.ets文件的onCreate方法中调用[featureAbility.getWant](../apis/js-apis-ability-featureAbility.md)接口接收相关参数。
 
 - 消息事件格式
 

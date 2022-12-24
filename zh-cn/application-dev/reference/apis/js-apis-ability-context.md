@@ -31,7 +31,7 @@ class MainAbility extends Ability {
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | abilityInfo | AbilityInfo | 是 | 否 | Abilityinfo相关信息 |
-| currentHapModuleInfo | HapModuleInfo | 是 | 否 | 当前hap包的信息 |
+| currentHapModuleInfo | HapModuleInfo | 是 | 否 | 当前HAP的信息 |
 | config | [Configuration](js-apis-application-configuration.md) | 是 | 否 | 表示配置信息。 |
 
 ## AbilityContext.startAbility

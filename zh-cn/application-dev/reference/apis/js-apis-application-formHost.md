@@ -650,7 +650,7 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| bundleName | string | 是 |  要查询的应用程序包名称。 |
+| bundleName | string | 是 | 要查询的应用Bundle名称。 |
 | callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-application-formInfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，err为undefined，data为查询到的卡片信息；否则为错误对象。 |
 
 **示例：**
@@ -679,7 +679,7 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| bundleName | string | 是 |  要查询的应用程序包名称。 |
+| bundleName | string | 是 | 要查询的应用程序Bundle名称。 |
 | moduleName | string | 是 |  要查询的模块名称。 |
 | callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-application-formInfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，err为undefined，data为查询到的卡片信息；否则为错误对象。 |
 
@@ -709,7 +709,7 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| bundleName | string | 是 |  要查询的应用程序包名称。 |
+| bundleName | string | 是 | 要查询的应用程序Bundle名称。 |
 | moduleName | string | 否 |  要查询的模块名称。 |
 
 **返回值：**

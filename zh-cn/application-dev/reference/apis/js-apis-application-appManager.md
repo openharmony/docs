@@ -358,7 +358,7 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
- 
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | observerId | number | 是 | 表示观察者的编号代码。 |
@@ -490,10 +490,10 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | 是 | 应用包名。 | 
-  | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 应用Bundle名称。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 
 **示例：**
 
@@ -524,11 +524,11 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | 是 | 应用包名。 | 
-  | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 | 
-  | callback | AsyncCallback\<void\> | 是 | 切断account进程的回调函数。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 应用Bundle名称。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+| callback | AsyncCallback\<void\> | 是 | 切断account进程的回调函数。 |
 
 **示例：**
 
@@ -549,7 +549,7 @@ appManager.killProcessWithAccount(bundleName, accountId, killProcessWithAccountC
 
 killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 
-通过包名终止进程。
+通过Bundle名称终止进程。
 
 **需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
@@ -561,7 +561,7 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 表示包名。 |
+| bundleName | string | 是 | 表示Bundle名称。 |
 | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **示例：**
@@ -582,7 +582,7 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 
 killProcessesByBundleName(bundleName: string): Promise\<void>;
 
-通过包名终止进程。
+通过Bundle名称终止进程。
 
 **需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
@@ -594,7 +594,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 表示包名。 |
+| bundleName | string | 是 | 表示Bundle名称。 |
 
 **返回值：**
 
@@ -603,9 +603,9 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 | Promise\<void> | 返回执行结果。 |
 
 **示例：**
-    
+
   ```ts
-  var bundleName = 'bundleName';
+  var bundleName = 'com.example.myapplication';
   appManager.killProcessesByBundleName(bundleName)
     .then((data) => {
         console.log('------------ killProcessesByBundleName success ------------', data);
@@ -619,7 +619,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 
 clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 
-通过包名清除应用数据。
+通过Bundle名称清除应用数据。
 
 **需要权限**：ohos.permission.CLEAN_APPLICATION_DATA
 
@@ -631,7 +631,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 表示包名。 |
+| bundleName | string | 是 | 表示Bundle名称。 |
 | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **示例：**
@@ -652,7 +652,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 
 clearUpApplicationData(bundleName: string): Promise\<void>;
 
-通过包名清除应用数据。
+通过Bundle名称清除应用数据。
 
 **需要权限**：ohos.permission.CLEAN_APPLICATION_DATA
 
@@ -664,7 +664,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 表示包名。 |
+| bundleName | string | 是 | 表示Bundle名称。 |
 
 **返回值：**
 

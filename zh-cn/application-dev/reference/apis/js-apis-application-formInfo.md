@@ -21,7 +21,7 @@ import formInfo from '@ohos.application.formInfo';
 
 | 名称        | 类型                 | 可读    | 可写     | 说明                                                         |
 | ----------- | -------- |-------- | -------------------- | ------------------------------------------------------------ |
-| bundleName  | string               | 是    | 否      | 表示卡片所属包的包名。                           |
+| bundleName  | string               | 是    | 否      | 表示卡片所属包的Bundle名称。                   |
 | moduleName  | string               | 是    | 否      | 表示卡片所属模块的模块名。                       |
 | abilityName | string               | 是    | 否      | 表示卡片所属的Ability名称。                     |
 | name        | string               | 是    | 否      | 表示卡片名称。                                 |
@@ -32,7 +32,7 @@ import formInfo from '@ohos.application.formInfo';
 | isDefault    | boolean      | 是    | 否      | 表示是否是默认卡片。                              |
 | updateEnabled  | boolean               | 是    | 否      | 表示卡片是否使能更新。                    |
 | formVisibleNotify  | string               | 是    | 否      | 表示卡片是否使能可见通知。            |
-| relatedBundleName | string               | 是    | 否      | 表示卡片所属的相关联包名。                   |
+| relatedBundleName | string               | 是    | 否      | 表示卡片所属的相关联Bundle名称。           |
 | scheduledUpdateTime        | string               | 是    | 否      | 表示卡片更新时间。     |
 | formConfigAbility | string               | 是    | 否      | 表示卡片配置ability。   |
 | updateDuration        | string             | 是    | 否      | 表示卡片更新周期。 |
