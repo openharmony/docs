@@ -1,22 +1,18 @@
 # Focus Event
 
-A focus event is triggered when the page focus moves between components. It can be used to change the content of a component.
+A focus event is triggered when the page focus moves between components. It can be used to process related logic within the component.
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  - The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  - Currently, only the Tab button and arrow buttons on the external keyboard can be used to trigger the focus event.
 
-
-## Events
 
 | Name                                  | Bubbling Supported| Description       |
 | ---------------------------------------- | -------- | --------------- |
-| onFocus(event: () =&gt; void) | No       | Triggered when the current component obtains focus.|
+| onFocus(event: () =&gt; void) | No  | Triggered when the current component obtains focus.|
 | onBlur(event:() =&gt; void)    | No       | Triggered when the current component loses focus.|
-
->  **NOTE**
->
->  The following components support focus events: **\<Button>**, **\<Text>**, **\<Image>**, **\<List>**, and **\<Grid>**.
 
 
 ## Example
@@ -26,44 +22,52 @@ A focus event is triggered when the page focus moves between components. It can 
 @Entry
 @Component
 struct FocusEventExample {
-  @State textOne: string = ''
-  @State textTwo: string = ''
-  @State textThree: string = ''
-  @State oneButtonColor: string = '#FF0000'
-  @State twoButtonColor: string = '#87CEFA'
-  @State threeButtonColor: string = '#90EE90'
+  @State oneButtonColor: string = '#FFC0CB';
+  @State twoButtonColor: string = '#87CEFA';
+  @State threeButtonColor: string = '#90EE90';
 
   build() {
-    Column({ space:20 }){
-      Button(this.textOne)
+    Column({ space: 20 }) {
+      // You can use the up and down arrow keys on an external keyboard to move the focus between the three buttons. When a button gains focus, its color changes. When it loses focus, its color changes back.
+      Button('First Button')
         .backgroundColor(this.oneButtonColor)
-        .width(260).height(70).fontColor(Color.Black)
+        .width(260)
+        .height(70)
+        .fontColor(Color.Black)
         .focusable(true)
         .onFocus(() => {
-          this.textOne = 'First Button onFocus'
-          this.oneButtonColor = '#AFEEEE'
+          this.oneButtonColor = '#FF0000';
         })
         .onBlur(() => {
-          this.textOne = 'First Button onBlur'
-          this.oneButtonColor = '#FFC0CB'
+          this.oneButtonColor = '#FFC0CB';
         })
-      Button(this.textTwo)
+      Button('Second Button')
         .backgroundColor(this.twoButtonColor)
-        .width(260).height(70).fontColor(Color.Black)
-        .focusable(true)
-      Button(this.textThree)
-        .backgroundColor(this.threeButtonColor)
-        .width(260).height(70).fontColor(Color.Black)
+        .width(260)
+        .height(70)
+        .fontColor(Color.Black)
         .focusable(true)
         .onFocus(() => {
-          this.textThree = 'Third Button onFocus'
-          this.threeButtonColor = '#AFEEEE'
+          this.twoButtonColor = '#FF0000';
         })
         .onBlur(() => {
-          this.textThree = 'Third Button onBlur'
-          this.threeButtonColor = '#FFC0CB'
+          this.twoButtonColor = '#87CEFA';
         })
-    }.width('100%').margin({ top:20 })
+      Button('Third Button')
+        .backgroundColor(this.threeButtonColor)
+        .width(260)
+        .height(70)
+        .fontColor(Color.Black)
+        .focusable(true)
+        .onFocus(() => {
+          this.threeButtonColor = '#FF0000';
+        })
+        .onBlur(() => {
+          this.threeButtonColor = '#90EE90';
+        })
+    }.width('100%').margin({ top: 20 })
   }
 }
 ```
+
+ ![focus](figures/focus.png) 

@@ -17,7 +17,7 @@ Create a **&lt;canvas&gt;** component in the .hml file under **pages/index**.
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -32,9 +32,10 @@ canvas{
 
 ![en-us_image_0000001232162316](figures/en-us_image_0000001232162316.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > - The default background color of the **&lt;canvas&gt;** component is the same as that of the parent component.
-> 
+>
 > - The default width and height of **&lt;canvas&gt;** are 300 px and 150 px, respectively.
 
 
@@ -43,7 +44,7 @@ canvas{
 Set **width**, **height**, **background-color**, and **border** of the **&lt;canvas&gt;** component.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas></canvas>
@@ -51,7 +52,7 @@ Set **width**, **height**, **background-color**, and **border** of the **&lt;can
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -75,7 +76,7 @@ canvas{
 Add the long press event to the **&lt;canvas&gt;** component. When the event is triggered, the value of **dataUrl** (image information returned by the **toDataURL** method) of the **&lt;canvas&gt;** component can be obtained and printed in the text area below.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1" onlongpress="getUrl"></canvas>
@@ -85,7 +86,7 @@ Add the long press event to the **&lt;canvas&gt;** component. When the event is 
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width:100%;
@@ -112,14 +113,12 @@ Add the long press event to the **&lt;canvas&gt;** component. When the event is 
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
   data:{
     dataURL:null,
-    antialia: false,
-    porc:'open',
   },
   onShow(){
     let el = this.$refs.canvas1;
@@ -137,6 +136,6 @@ export default {
 
 ![en-us_image_0000001276003513](figures/en-us_image_0000001276003513.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > The **&lt;canvas&gt;** component cannot be created in **onInit** or **onReady**.
-

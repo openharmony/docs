@@ -1,16 +1,11 @@
 # StepperItem
 
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+The **\<StepperItem>** component provides an element for the **\<Stepper>** component.
 
 
-The **&lt;StepperItem&gt;** component provides an element for the **&lt;Stepper&gt;** component.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -25,22 +20,22 @@ StepperItem()
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| prevLabel | string | - | When the **&lt;Stepper&gt;** contains more than one page, the default value for all pages except the first page is **Back**. |
-| nextLabel | string | - | When the stepper contains more than one page, the default value for the last page is **Start**, and the default value for other pages is **Next**. |
-| status | ItemState | ItemState.Normal | Status of the **&lt;StepperItem&gt;**. |
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| prevLabel | string | Text label of the button on the left. When the **\<Stepper>** contains more than one page, the default value for all pages except the first page is **Back**.|
+| nextLabel | string | Text label of the button on the right. The default value is **Start** for the last page and **Next** for the other pages.|
+| status | ItemState | Display status of **nextLabel** in the stepper.<br>Default value: **ItemState.Normal**|
 
-- ItemState enums
-    | Name | Description | 
-  | -------- | -------- |
-  | Normal | The right button is clickable and can navigate users to the next **&lt;StepperItem&gt;** when it is clicked.. | 
-  | Disabled | The right button is grayed out and unavailable. | 
-  | Waiting | The right button is not displayed, and a progress bar is displayed instead. | 
-  | Skip | The current **&lt;StepperItem&gt;** is skipped, and the next **&lt;StepperItem&gt;** is displayed. | 
+## ItemState
+
+|   Name   |   Value   | Description|
+| -------- | -------- |-------- |
+| Normal |  0  |The button on the right is clickable and can navigate users to the next **\<StepperItem>** when it is clicked.|
+| Disabled |  1  |The button on the right is grayed out and unavailable.|
+| Waiting |  2  | The button on the right is not displayed, and a progress bar is displayed instead.|
+| Skip |  3  |The button on the right reads "Skip". You can define the processing logic for this state in the **onSkip** callback of the stepper.|
 
 
 ## Example
 
 See [Stepper](ts-basic-components-stepper.md).
-
