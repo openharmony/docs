@@ -4,25 +4,32 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统API**：本模块被标记为@systemapi，对三方应用隐藏
 
-| 名称        | 类型                 | 必填 | 说明                                                         |
-| ----------- | -------- | ---- | ------------------------------------------------------------ |
-| bundleName<sup>8+</sup>     | string               | 否   | 包名。                                |
-| uid<sup>8+</sup>   | number               | 否   | 用户ID。 |
-| state<sup>8+</sup>  | number               | 否   | 应用状态。 |
+| 名称                      | 类型   | 必填  | 说明       |
+| ------------------------- | ------ | ---- | --------- |
+| bundleName<sup>8+</sup>   | string | 否   | 包名。     |
+| uid<sup>8+</sup>          | number | 否   | 应用程序的uid。   |
+| state<sup>8+</sup>        | number | 否   | 应用状态。<br>0：初始化状态，应用正在初始化<br>1：就绪状态，应用已初始化完毕<br>2：前台状态，应用位于前台<br>3：获焦状态。（预留状态，当前暂不支持）<br>4：后台状态，应用位于后台<br>5：退出状态，应用已退出 |
 
 **示例：**
+
 ```ts
-import appManager from "@ohos.application.appManager"
+import appManager from "@ohos.app.ability.appManager"
 
-appManager.getForegroundApplications((error, data) => {
-    for (let i = 0; i < data.length; i++) {
-        let appStateData = data[i];
-        console.info('appStateData.bundleName: ' + appStateData.bundleName);
-        console.info('appStateData.uid: ' + appStateData.uid);
-        console.info('appStateData.state: ' + appStateData.state);
-    }
-});
+function getForegroundAppInfos() {
+    appManager.getForegroundApplications((error, data) => {
+        if (error && error.code) {
+            console.log('getForegroundApplications failed, error.code: ' + JSON.stringify(error.code) +
+            ' error.message: ' + JSON.stringify(error.message));
+            return;
+        }
+        for (let i = 0; i < data.length; i++) {
+            let appStateData = data[i];
+            console.log('appStateData.bundleName: ' + appStateData.bundleName);
+            console.log('appStateData.uid: ' + appStateData.uid);
+            console.log('appStateData.state: ' + appStateData.state);
+        }
+    });
+}
 ```
-
