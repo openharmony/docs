@@ -26,9 +26,8 @@
 - 资源管理
   - [I18n错误码](errorcode-i18n.md)
   - [资源管理错误码](errorcode-resource-manager.md)
-- 资源调度
+- 后台任务
   - [backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)
-  - [DeviceUsageStatistics错误码](errorcode-DeviceUsageStatistics.md)
   - [reminderAgentManager错误码](errorcode-reminderAgentManager.md)
   - [workScheduler错误码](errorcode-workScheduler.md)
 - 安全
@@ -74,6 +73,7 @@
   - [系统参数错误码](errorcode-system-parameterV9.md)
   - [USB服务错误码](errorcode-usb.md)
   - [升级错误码](errorcode-update.md)
+  - [DeviceUsageStatistics错误码](errorcode-DeviceUsageStatistics.md)
 - 定制管理
   - [企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
 - 语言基础类库
