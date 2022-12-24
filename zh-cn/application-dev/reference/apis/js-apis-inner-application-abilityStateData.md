@@ -11,6 +11,6 @@
 | abilityName<sup>8+</sup>             | string   | 是   | 否   | Ability名称。               |
 | uid<sup>8+</sup>                     | number   | 是   | 否   | 用户ID。                  |
 | state<sup>8+</sup>                   | number   | 是   | 否   | Ability状态。                |
-| moduleName<sup>9+</sup> | string   | 是   | 否   | Ability所属的HAP包的名称。    |
+| moduleName<sup>9+</sup> | string   | 是   | 否   | Ability所属的HAP的名称。    |
 | abilityType<sup>8+</sup> | string   | 是   | 否   | Ability类型：页面或服务等。 |
 

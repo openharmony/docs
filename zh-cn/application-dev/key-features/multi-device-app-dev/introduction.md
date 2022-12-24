@@ -37,9 +37,9 @@
 
 ### 应用程序包结构
 
-OpenHarmony 的应用以APP Pack (Application Package) 形式发布，它是由一个或多个HAP包以及描述每个HAP包属性的pack.info文件组成。
+OpenHarmony 的应用以APP Pack (Application Package) 形式发布，它是由一个或多个HAP以及描述每个HAP属性的pack.info文件组成。
 
-HAP包是OpenHarmony的安装包，一个HAP在工程目录中对应一个Module，由Module编译而来，可分为entry和feature两种类型的HAP。
+HAP是OpenHarmony的安装包，一个HAP在工程目录中对应一个Module，由Module编译而来，可分为entry和feature两种类型的HAP。
 
 - **entry**：应用的主模块包。一个APP中，对于同一设备类型，可以有一个或多个entry类型的HAP，来支持该设备类型中不同规格（如API版本、屏幕规格等）的具体设备。
 
@@ -48,7 +48,7 @@ HAP包是OpenHarmony的安装包，一个HAP在工程目录中对应一个Module
 ![zh-cn_image_0000001266965046](figures/zh-cn_image_0000001266965046.png)
 
 > **说明：**
-> - Module是开发者开发的相对独立的功能模块，由代码、资源、第三方库及应用配置文件组成，属于IDE开发视图的概念。Module分为entry、feature及har三种类型，相应的可以编译生成entry类型的HAP包、feature类型的HAP包，以及har包。
+> - Module是开发者开发的相对独立的功能模块，由代码、资源、第三方库及应用配置文件组成，属于IDE开发视图的概念。Module分为entry、feature及har三种类型，相应的可以编译生成entry类型的HAP、feature类型的HAP，以及har包。
 > 
 > - 如果需要了解应用程序包结构更多详情，可以查看[包结构说明](../../quick-start/application-package-structure-stage.md)。
 
@@ -81,9 +81,9 @@ OpenHarmony提供了方舟开发框架（简称：ArkUI），提供开发者进�
 
 “一多”有两种部署模型：
 
-- **部署模型A**：不同类型的设备上按照一定的工程结构组织方式，通过一次编译生成**相同**的HAP包（或HAP包组合）。
+- **部署模型A**：不同类型的设备上按照一定的工程结构组织方式，通过一次编译生成**相同**的HAP（或HAP组合）。
 
-- **部署模型B**：不同类型的设备上按照一定的工程结构组织方式，通过一次编译生成**不同**的HAP包（或HAP包组合）。
+- **部署模型B**：不同类型的设备上按照一定的工程结构组织方式，通过一次编译生成**不同**的HAP（或HAP组合）。
 
 建议开发者从设备类型及应用功能两个维度，结合具体的业务场景，考虑选择哪种部署模型。但不管采用哪种部署模型，都应该采用一次编译。
 

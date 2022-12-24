@@ -110,7 +110,7 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
 ### 获取AbilityStage及Ability的配置信息
 AbilityStage类及Ability类均拥有context属性，应用可以通过`this.context`获取Ability实例的上下文，进而获取详细的配置信息。
 
-如下示例展示了AbilityStage通过context属性获取包代码路径、HAP包名、Ability名称以及系统语言的方法。具体示例代码如下：
+如下示例展示了AbilityStage通过context属性获取包代码路径、HAP名、Ability名称以及系统语言的方法。具体示例代码如下：
 
 ```ts
 import AbilityStage from "@ohos.application.AbilityStage"
@@ -130,7 +130,7 @@ export default class MyAbilityStage extends AbilityStage {
 }
 ```
 
-如下示例展示了Ability通过context属性获取包代码路径、HAP包名、Ability名称以及系统语言的方法。具体示例代码如下：
+如下示例展示了Ability通过context属性获取包代码路径、HAP名、Ability名称以及系统语言的方法。具体示例代码如下：
 ```ts
 import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {

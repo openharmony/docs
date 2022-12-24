@@ -22,7 +22,7 @@ Ability信息，未做特殊说明的属性，均通过[GET_BUNDLE_DEFAULT](js-a
 | icon                  | string                                                       | 是   | 否   | Ability的图标资源文件索引。                                  |
 | descriptionId         | number                                                       | 是   | 否   | Ability的描述id。                                            |
 | iconId                | number                                                       | 是   | 否   | Ability的图标id。                                            |
-| moduleName            | string                                                       | 是   | 否   | Ability所属的HAP包的名称。                                   |
+| moduleName            | string                                                       | 是   | 否   | Ability所属的HAP的名称。                                     |
 | process               | string                                                       | 是   | 否   | Ability的进程，如果不设置，默认为包的名称。                  |
 | targetAbility         | string                                                       | 是   | 否   | 当前Ability重用的目标Ability。<br />此属性仅可在FA模型下使用。 |
 | backgroundModes       | number                                                       | 是   | 否   | 表示后台服务的类型。<br />此属性仅可在FA模型下使用。         |

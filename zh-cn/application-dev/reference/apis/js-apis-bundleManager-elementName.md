@@ -16,4 +16,4 @@ ElementName信息，通过接口[Context.getElementName](js-apis-inner-app-conte
 | abilityName             | string   | 是   | 是   | Ability名称。               |
 | uri                     | string   | 是   | 是   | 资源标识符。                 |
 | shortName               | string   | 是   | 是   | Ability短名称。               |
-| moduleName              | string   | 是   | 是   | Ability所属的HAP包的模块名称。   |
+| moduleName              | string   | 是   | 是   | Ability所属的HAP的模块名称。   |

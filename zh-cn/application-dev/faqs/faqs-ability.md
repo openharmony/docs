@@ -91,7 +91,7 @@ Ability配置中缺少startWindowIcon属性配置，需要在module.json5中abil
 
 推荐使用方式参考：[Stage模型的Context详细介绍](../application-models/application-context-stage.md)。
 
-## 如何在应用A中去获取应用B的HAP包的安装路径
+## 如何在应用A中去获取应用B的HAP的安装路径
 
 适用于：OpenHarmony SDK 3.0以上版本， API9 Stage模型
 
