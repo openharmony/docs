@@ -23,7 +23,7 @@ import formInfo from '@ohos.application.formInfo';
 | ----------- | -------- |-------- | -------------------- | ------------------------------------------------------------ |
 | bundleName  | string               | 是    | 否      | 表示卡片所属包的包名。                           |
 | moduleName  | string               | 是    | 否      | 表示卡片所属模块的模块名。                       |
-| abilityName | string               | 是    | 否      | 表示卡片所属的Ability名称。                       |
+| abilityName | string               | 是    | 否      | 表示卡片所属的Ability名称。                     |
 | name        | string               | 是    | 否      | 表示卡片名称。                                 |
 | description | string               | 是    | 否      | 表示卡片描述。   |
 | type        | [FormType](#formtype)             | 是    | 否      | 表示卡片类型，当前支持JS卡片。 |
