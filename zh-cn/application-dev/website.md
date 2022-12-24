@@ -841,6 +841,7 @@
         - [@ohos.app.form.formHost (FormHost)](reference/apis/js-apis-app-form-formHost.md)
         - [@ohos.app.form.formInfo (FormInfo)](reference/apis/js-apis-app-form-formInfo.md)
         - [@ohos.app.form.formProvider (FormProvider)](reference/apis/js-apis-app-form-formProvider.md)
+        - [@ohos.distributedMissionManager (分布式任务管理)](reference/apis/js-apis-distributedMissionManager.md)
       - 通用能力的接口（待停用）
         - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis/js-apis-ability-dataUriUtils.md)
         - [@ohos.ability.errorCode (ErrorCode)](reference/apis/js-apis-ability-errorCode.md)
@@ -975,12 +976,10 @@
       - [@ohos.i18n (国际化-I18n)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
       - [@ohos.resourceManager (资源管理)](reference/apis/js-apis-resource-manager.md)
-    - 资源调度
-      - [@ohos.distributedMissionManager (分布式任务管理)](reference/apis/js-apis-distributedMissionManager.md)
+    - 后台任务
       - [@ohos.reminderAgentManager (后台代理提醒)](reference/apis/js-apis-reminderAgentManager.md)
       - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)
       - [@ohos.resourceschedule.workScheduler (延迟任务调度)](reference/apis/js-apis-resourceschedule-workScheduler.md)
-      - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)](reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md)
       - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
     - 安全
       - [@ohos.abilityAccessCtrl (程序访问控制管理)](reference/apis/js-apis-abilityAccessCtrl.md)
@@ -1091,6 +1090,7 @@
       - [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis/js-apis-pointer.md)
       - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis/js-apis-touchevent.md)
       - [@ohos.power (系统电源管理)](reference/apis/js-apis-power.md)
+      - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)](reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md)
       - [@ohos.runningLock (Runninglock锁)](reference/apis/js-apis-runninglock.md)
       - [@ohos.sensor (传感器)](reference/apis/js-apis-sensor.md)
       - [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
