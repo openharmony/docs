@@ -54,8 +54,8 @@ try {
       data1: 'message',
       data2: {
         data3: [123, 456, 789]
-      },
-    },
+      }
+    }
   })
     .then(() => {
       // success
@@ -103,8 +103,8 @@ try {
       data1: 'message',
       data2: {
         data3: [123, 456, 789]
-      },
-    },
+      }
+    }
   }, (err) => {
     if (err) {
       console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -157,8 +157,8 @@ try {
       data1: 'message',
       data2: {
         data3: [123, 456, 789]
-      },
-    },
+      }
+    }
   }, router.RouterMode.Standard)
     .then(() => {
       // success
@@ -207,8 +207,8 @@ try {
       data1: 'message',
       data2: {
         data3: [123, 456, 789]
-      },
-    },
+      }
+    }
   }, router.RouterMode.Standard, (err) => {
     if (err) {
       console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -257,8 +257,8 @@ try {
   router.replaceUrl({
     url: 'pages/detail',
     params: {
-      data1: 'message',
-    },
+      data1: 'message'
+    }
   })
     .then(() => {
       // success
@@ -302,8 +302,8 @@ try {
   router.replaceUrl({
     url: 'pages/detail',
     params: {
-      data1: 'message',
-    },
+      data1: 'message'
+    }
   }, (err) => {
     if (err) {
       console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -354,8 +354,8 @@ try {
   router.replaceUrl({
     url: 'pages/detail',
     params: {
-      data1: 'message',
-    },
+      data1: 'message'
+    }
   }, router.RouterMode.Standard)
     .then(() => {
       // success
@@ -400,8 +400,8 @@ try {
   router.replaceUrl({
     url: 'pages/detail',
     params: {
-      data1: 'message',
-    },
+      data1: 'message'
+    }
   }, router.RouterMode.Standard, (err) => {
     if (err) {
       console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -465,7 +465,7 @@ getLength(): string
 **示例：**
 
 ```js
-var size = router.getLength();        
+let size = router.getLength();        
 console.log('pages stack size = ' + size);    
 ```
 
@@ -486,7 +486,7 @@ getState(): RouterState
 **示例：** 
 
 ```js
-var page = router.getState();
+let page = router.getState();
 console.log('current index = ' + page.index);
 console.log('current name = ' + page.name);
 console.log('current path = ' + page.path);
@@ -618,8 +618,8 @@ export default {
     router.push({
       url: 'pages/detail/detail',
       params: {
-        data1: 'message',
-      },
+        data1: 'message'
+      }
     });
   }
 }
@@ -649,7 +649,7 @@ struct Index {
         text: '这是第一页的值',
         data: {
           array: [12, 45, 78]
-        },
+        }
       }
     }
     try {
@@ -741,8 +741,8 @@ router.push({
     data1: 'message',
     data2: {
       data3: [123, 456, 789]
-    },
-  },
+    }
+  }
 });
 ```
 ## router.push<sup>(deprecated)</sup>
@@ -772,8 +772,8 @@ router.push({
     data1: 'message',
     data2: {
       data3: [123, 456, 789]
-    },
-  },
+    }
+  }
 },router.RouterMode.Standard);
 ```
 
@@ -799,8 +799,8 @@ replace(options: RouterOptions): void
 router.replace({
   url: 'pages/detail',
   params: {
-    data1: 'message',
-  },
+    data1: 'message'
+  }
 });
 ```
 
@@ -827,8 +827,8 @@ replace(options: RouterOptions, mode: RouterMode): void
 router.replace({
   url: 'pages/detail/detail',
   params: {
-    data1: 'message',
-  },
+    data1: 'message'
+  }
 }, router.RouterMode.Standard);
 ```
 

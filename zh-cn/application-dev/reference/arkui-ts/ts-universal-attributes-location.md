@@ -58,16 +58,16 @@ struct PositionExample1 {
         .direction(Direction.Ltr)
         // 父容器设置direction为Direction.Rtl，子元素从右到左排列
         Row() {
-          Text('1').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3)
-          Text('2').height(50).width('25%').fontSize(16).backgroundColor(0xD2B48C)
-          Text('3').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3)
-          Text('4').height(50).width('25%').fontSize(16).backgroundColor(0xD2B48C)
+          Text('1').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3).textAlign(TextAlign.End)
+          Text('2').height(50).width('25%').fontSize(16).backgroundColor(0xD2B48C).textAlign(TextAlign.End)
+          Text('3').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3).textAlign(TextAlign.End)
+          Text('4').height(50).width('25%').fontSize(16).backgroundColor(0xD2B48C).textAlign(TextAlign.End)
         }
         .width('90%')
         .direction(Direction.Rtl)
       }
     }
-    .width('100%').margin({ top: 5 }).direction(Direction.Rtl)
+    .width('100%').margin({ top: 5 })
   }
 }
 ```
