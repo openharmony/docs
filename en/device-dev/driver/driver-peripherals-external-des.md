@@ -5,22 +5,22 @@
 
 ### WLAN
 
-The Wireless Local Area Network (WLAN) Driver module in OpenHarmony is developed based on the Hardware Driver Foundation (HDF). It provides cross-OS porting, self-adaptation to component differences, and module assembly and building.
+The Wireless Local Area Network (WLAN) driver module is developed based on OpenHarmony Hardware Driver Foundation (HDF). It supports modular assembly and building, automatic adaptation to device differences, and cross-OS porting.
 
 ### Working Principles
 
-You can adapt your driver code based on the unified interfaces provided by the WLAN module. The WLAN module provides:
+You can modify your driver code based on the unified APIs provided by the WLAN module. The WLAN module provides:
 
-- A unified underlying interface to implement capabilities, such as setting up or closing a WLAN hotspot, scanning hotspots, and connecting to or disconnecting from a hotspot.
-- A unified interface to the Hardware Device Interface (HDI) layer to implement capabilities, such as setting or obtaining the device Media Access Control (MAC) address and setting the transmit power.
+- APIs for the underlying layer to implement capabilities, such as opening or closing a WLAN hotspot, scanning hotspots, and connecting to or disconnecting from a hotspot.
+- APIs for the Hardware Device Interface (HDI) layer to implement capabilities, such as setting or obtaining the device Media Access Control (MAC) address and setting the transmit power.
 
-The figure below shows the WLAN architecture. The WLAN Driver module implements startup loading, parses configuration files, and provides bus abstraction APIs. The WLAN Chip Driver module provides the MAC Sublayer Management Entity (MLME).
+The following figure shows the WLAN architecture. The WLAN driver module implements startup loading, parses configuration files, and provides bus abstraction APIs. The WLAN chip driver module provides the MAC Sublayer Management Entity (MLME).
 
   **Figure 1** WLAN architecture
 
   ![image](figures/WLAN_architecture.png "WLAN architecture")
 
-  The figure below shows the WLAN driver architecture.
+  The following figure shows the WLAN driver architecture.
 
   **Figure 2** WLAN driver architecture
 
@@ -32,11 +32,11 @@ The WLAN driver consists of the following modules:
 
 2. WLAN Configuration Core: parses WLAN configuration files.
 
-3. Access point (AP): provides a WLAN access interface for devices.
+3. Access point (AP): allows devices to connect to the WLAN.
 
-4. Station (STA): a terminal that accesses the WLAN system.
+4. Station (STA): a device that has access to the WLAN system and allows transmission and reception of data.
 
-5. mac80211: defines MAC-layer interfaces for underlying drivers.
+5. mac80211: defines MAC-layer APIs for underlying drivers.
 
 6. Bus: provides a unified bus abstract interface for the upper layer. It shields the differences between different kernels by calling the Secure Digital Input Output (SDIO) interfaces provided by the platform layer and encapsulating the adapted USB and PCIe interfaces. It also encapsulates different types of bus operations in a unified manner to shield differences between different chipsets. The complete bus driving capabilities provided by the bus module help simplify and streamline the development of different chip vendors.
 
@@ -58,13 +58,13 @@ The relationships between the main modules are as follows:
 
 4. The protocol stack works with the NetDevice, NetBuf, and FlowCtl modules to exchange data flows.
 
-## Development Guidelines
+## How to Develop
 
 ### Available APIs
 
 The WLAN module provides the following types of APIs:
 
-1. Hardware Device Interface (HDI) and Hardware Abstraction Layer (HAL) APIs for upper-layer services
+1. HDI and Hardware Abstraction Layer (HAL) APIs for upper-layer services
 
 2. APIs for vendors
 
@@ -75,7 +75,7 @@ The WLAN module provides the following types of APIs:
   ![image](figures/WLAN_driver_APIs.png "WLAN Driver APIs")
 
 
-- The WLAN module provides HAL APIs for upper-layer services (applicable to small and mini systems). **Table 2** and **Table 3** describe some APIs.
+- The WLAN module provides HAL APIs for upper-layer services (applicable to small and mini systems). **Table 1** and **Table 2** describe some APIs.
 
     **Table 1** wifi_hal.h
 
@@ -95,7 +95,7 @@ The WLAN module provides the following types of APIs:
   | int32_t (\*getDeviceMacAddress)(const struct IWiFiBaseFeature \*, unsigned char \*, uint8_t)| Obtains the device MAC address.|
   | int32_t (\*setTxPower)(const struct IWiFiBaseFeature \*, int32_t)| Sets the transmit power.|
 
-- The WLAN Driver module also provides APIs that you need to fill in the implementation. **Table 4** describes some APIs.
+- The WLAN Driver module also provides APIs that you need to fill in the implementation. **Table 3** describes some APIs.
 
     **Table 3** net_device.h
 
@@ -110,7 +110,7 @@ The WLAN module provides the following types of APIs:
 
 - The WLAN Driver module provides APIs that you can directly use to create or release a **WifiModule**, connect to or disconnect from a WLAN hotspot, request or release a **NetBuf**, and convert between the **pbuf** structure of Lightweight IP (lwIP) and a **NetBuf**.
 
-  Tables 5 to 7 describe the APIs.
+  The following tables describe the APIs.
 
     **Table 4** wifi_module.h
 
@@ -119,7 +119,7 @@ The WLAN module provides the following types of APIs:
   | struct WifiModule \*WifiModuleCreate(const struct HdfConfigWifiModuleConfig \*config)| Creates a **WifiModule**.|
   | void WifiModuleDelete(struct WifiModule \*module)| Deletes a **WifiModule** and releases its data.|
   | int32_t DelFeature(struct WifiModule \*module, uint16_t featureType)| Deletes a feature from a **WifiModule**.|
-  | int32_t AddFeature(struct WifiModule \*module, uint16_t featureType, struct WifiFeature \*featureData)| Adds a feature to a **WifiModule**.|
+  | int32_t AddFeature(struct WifiModule \*module, uint16_t featureType,<br> struct WifiFeature \*featureData)| Adds a feature to a **WifiModule**.|
 
     **Table 5** wifi_mac80211_ops.h
 
@@ -136,11 +136,11 @@ The WLAN module provides the following types of APIs:
   | -------- | -------- |
   | static inline void NetBufQueueInit(struct NetBufQueue \*q)| Initializes a **NetBuf** queue.|
   | struct NetBuf \*NetBufAlloc(uint32_t size)| Allocates a **NetBuf**.|
-  | void NetBufFree(struct NetBuf \*nb) | Releases a **NetBuf**.|
+  | void NetBufFree(struct NetBuf \*nb)| Releases a **NetBuf**.|
   | struct NetBuf \*Pbuf2NetBuf(const struct NetDevice \*netdev, struct pbuf \*lwipBuf)| Converts the **pbuf** structure of lwIP to a **NetBuf**.|
   | struct pbuf \*NetBuf2Pbuf(const struct NetBuf \*nb)| Converts a **NetBuf** to the **pbuf** structure of lwIP.|
 
-### How to Develop
+### Development Procedure
 #### WLAN Framework Adaptation
 
 The WLAN driver framework developed based on the HDF and Platform framework provides a unified driver model regardless of the OS and system on a chip (SoC). When developing your WLAN driver, you need to configure data based on the WLAN driver framework.
@@ -186,19 +186,19 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
                     }
                 }
                 reset {
-                    resetType = 0;         /* Reset type. The value 0 indicates that reset is dynamically determined, and 1 indicates reset through GPIO. */
-                    gpioId = 2;           /* GPIO pin number. */
-                    activeLevel=1;        /* Active level. The value 0 indicates low level, and 1 indicates high level. */
-                    resetHoldTime = 30;   /* Hold time (ms) after a reset. */
+                    resetType = 0;          /* Reset type. The value 0 indicates that reset is dynamically determined, and 1 indicates reset through GPIO. */
+                    gpioId = 2;             /* GPIO pin number. */
+                    activeLevel=1;          /* Active level. The value 0 indicates low level, and 1 indicates high level. */
+                    resetHoldTime = 30;     /* Hold time (ms) after a reset. */
                 }
-                bootUpTimeout = 30;       /* Boot timeout duration (ms). */
+                bootUpTimeout = 30;         /* Boot timeout duration (ms). */
                 bus {
-                    busEnable = 1;        /* Whether to initialize the bus. The value 1 means to initialize the bus; the value 0 means the opposite. */
-                    busType = 0;         /* Bus type. The value 0 indicates SDIO. */
-                    busId = 2;           /* Bus number. */
-                    funcNum = [1];       /* SDIO function number. */
-                    timeout = 1000;      /* Timeout duration for data read/write. */
-                    blockSize = 512;     /* Size of the data block to read or write. */
+                    busEnable = 1;          /* Whether to initialize the bus. The value 1 means to initialize the bus; the value 0 means the opposite. */
+                    busType = 0;            /* Bus type. The value 0 indicates SDIO. */
+                    busId = 2;              /* Bus number. */
+                    funcNum = [1];          /* SDIO function number. */
+                    timeout = 1000;         /* Timeout duration for data read/write. */
+                    blockSize = 512;        /* Size of the data block to read or write. */
                 }
             }
         }
@@ -546,11 +546,7 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
     }
     ```
 
-4. Invoke the event reporting APIs. 
-
-    The WLAN framework provides the event reporting APIs. For details, see **hdf_wifi_event.c**. 
-
-    For example, call **HdfWiFiEventNewSta AP** to report information about the newly associated STA.
+4. Invoke the event reporting APIs. <br>The WLAN framework provides the event reporting APIs. For details, see hdf_wifi_event.c. <br>For example, call **HdfWiFiEventNewSta AP** to report information about the newly associated STA.
 
     ```c
     hi_u32 oal_cfg80211_new_sta(oal_net_device_stru *net_device, const hi_u8 *mac_addr, hi_u8 addr_len,
@@ -567,12 +563,10 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
         hi_unref_param(en_gfp);
         hi_unref_param(addr_len);
     #endif
-    
+
         return HI_SUCCESS;
     }
     ```
-    
-
 **Verification**
 
 Develop test cases in the WLAN module unit test to verify the basic features of the WLAN module. The following uses Hi3516D V300 standard system as an example.
@@ -650,7 +644,7 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
         exit 0
         ```
 
-    -  Create a **udhcpd.conf** file (used to start the **udhcpd**) and copy the following content to the file. In the following, **opt dns** *x.x.x.x* *x.x.x.x* indicates two DNS servers configured. You can configure DNS servers as required.
+    -  Create a **udhcpd.conf** file (used to start the **udhcpd**) and copy the following content to the file. <br>In the following, **opt dns** *x.x.x.x* *x.x.x.x* indicates two DNS servers configured. You can configure DNS servers as required.
 
         ```text
         start 192.168.12.2
@@ -704,54 +698,44 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
         busybox udhcpd /vendor/etc/udhcpd.conf
         ```
 
-     4. On the mobile phone, select the network named **test** in the available Wi-Fi list and enter the password. 
-
-        The network name and password are configured in the **hostapd.conf** file. You can see that network name in the connected Wi-Fi list if the connection is successful.
+     4. On the mobile phone, select the network named **test** in the available Wi-Fi list and enter the password. <br>The network name and password are configured in the **hostapd.conf** file. You can see that network name in the connected Wi-Fi list if the connection is successful.
 
      5. Ping the test terminal from the development board.
-   
+
         ```shell
         busybox ping xxx.xxx.xxx.xxx
         ```
 
-        In the command, xxx.xxx.xxx.xxx indicates the IP address of the test terminal. If the test terminal can be pinged, the WLAN driver provides basic features normally.
-
-        
+        In the command, *xxx.xxx.xxx.xxx* indicates the IP address of the test terminal. If the test terminal can be pinged, the WLAN driver provides basic features normally.
 
    - Verify basic STA features.
 
-     1. Start the STA on the development board, and enable the hotspot on the test terminal. 
-   
-        The hotspot name and password are configured in the **hostapd.conf** file. The hotspot name is **test**, and the password is **12345678**.
-   
+     1. Start the STA on the development board, and enable the hotspot on the test terminal. <br>The hotspot name and password are configured in the **hostapd.conf** file. The hotspot name is **test**, and the password is **12345678**.
+
      2. Run the following command in the **cmd** window:
-     
+
         ```shell
         hdc shell
         wpa_supplicant -i wlan0 -d -c wpa_supplicant.conf
         ```
-   
-        
-     
+
      3. Run the following commands in another **cmd** window:
-     
+
         ```shell
         hdc shell
         mount -o rw,remount /
         mount -o rw,remount /vendor
         busybox udhcpc -i wlan0 -s system/lib/dhcpc.sh
         ```
-     
         The IP addresses of the board and test terminal are displayed if the command is successful.
-     
+
      4. Ping the test terminal from the development board.
-     
+
         ```shell
         busybox ping xxx.xxx.xxx.xxx
         ```
-     
-        In the command, *xxx.xxx.xxx.xxx* indicates the IP address of the test terminal. If the test terminal can be pinged, the WLAN driver provides basic features normally.  
-     
+
+        In the command, xxx.xxx.xxx.xxx indicates the IP address of the test terminal. If the test terminal can be pinged, the WLAN driver provides basic features normally.
 
 #### **API Invocation**
 The WLAN driver module provides two types of capability interfaces for the upper layer: HDI interface and HAL interface.
@@ -963,19 +947,17 @@ The WLAN driver module provides two types of capability interfaces for the upper
 
 - Code paths:
 
-  - Adaptation of WLAN FlowCtl component on LiteOS: **//drivers/hdf_core/adapter/khdf/liteos/model/network/wifi**
-  - Adaptation of HDF network model on LiteOS: **//drivers/hdf_core/adapter/khdf/liteos/model/network**
-  
-  - Adaptation of WLAN FlowCtl component on Linux, build of the HDF WLAN model, and build of the vendor's WLAN driver: **//drivers/hdf_core/adapter/khdf/linux/model/network/wifi**
-  - Core code for implementing the WLAN module: **//drivers/hdf_core/framework/model/network/wifi**
-  - External APIs of the WLAN module: **//drivers/hdf_core/framework/include/wifi**
-  - HDF network model APIs: **//drivers/hdf_core/framework/include/net**
-  - WLAN HDI server implementation: **//drivers/peripheral/wlan**
-  
-  
-  
-  
-  
-  
-  
+  Adaptation of WLAN FlowCtl component on LiteOS: **//drivers/hdf_core/adapter/khdf/liteos/model/network/wifi**
+
+  Adaptation of HDF network model on LiteOS: **//drivers/hdf_core/adapter/khdf/liteos/model/network**
+
+  Adaptation of WLAN FlowCtl component on Linux, build of the HDF WLAN model, and build of the vendor's WLAN driver: **//drivers/hdf_core/adapter/khdf/linux/model/network/wifi**
+
+  Core code for implementing the WLAN module: **//drivers/hdf_core/framework/model/network/wifi**
+
+  External APIs of the WLAN module: **//drivers/hdf_core/framework/include/wifi**
+
+  HDF network model APIs: **//drivers/hdf_core/framework/include/net**
+
+  WLAN HDI server implementation: **//drivers/peripheral/wlan**
 
