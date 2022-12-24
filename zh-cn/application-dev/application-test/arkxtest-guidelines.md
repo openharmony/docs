@@ -154,7 +154,9 @@ export default function abilityTest() {
 
 ## 执行测试脚本
 
-执行测试脚本可以直接在DevEco Studio中通过点击按钮执行，当前支持以下执行方式：
+### DevEco Studio执行
+
+通过点击按钮执行，当前支持以下执行方式：
 
 1、测试包级别执行即执行测试包内的全部用例。
 
@@ -164,11 +166,160 @@ export default function abilityTest() {
 
 ![](figures/Execute.PNG)
 
-## 查看测试结果
+**查看测试结果**
 
 测试执行完毕后可直接在DevEco Studio中查看测试结果，如下图示例所示：
 
 ![](figures/TestResult.PNG)
+
+### CMD执行
+
+通过在cmd窗口中输入aa命令执行触发用例执行，并通过设置执行参数触发不同功能。
+
+**aa test命令执行配置参数**
+
+| 执行参数全写  | 执行参数缩写 | 执行参数含义                           | 执行参数示例                       |
+| ------------- | ------------ | -------------------------------------- | ---------------------------------- |
+| --bundleName  | -b           | 应用包名                               | - b com.test.example               |
+| --packageName | -p           | 应用模块名，适用于FA模型应用           | - p com.test.example.entry         |
+| --moduleName  | -m           | 应用模块名，适用于STAGE模型应用        | -m entry                           |
+| NA            | -s           | 特定参数，以<key, value>键值对方式传入 | - s unittest OpenHarmonyTestRunner |
+
+框架当前支持多种用例执行方式，通过上表中的-s参数后的配置键值对参数传入触发，如下表所示。
+
+| 配置参数值     | 配置参数含义                                                 | 配置参数有值                                                 | 配置参数示例                              |
+| ------------ | -----------------------------------------------------------------------------    | ------------------------------------------------------------ | ----------------------------------------- |
+| unittest     | 用例执行所使用OpenHarmonyTestRunner对象  | OpenHarmonyTestRunner或用户自定义runner名称                  | - s unittest OpenHarmonyTestRunner        |
+| class        | 指定要执行的测试套或测试用例                                   | {describeName}#{itName}，{describeName}                      | -s class attributeTest#testAttributeIt    |
+| notClass     | 指定不需要执行的测试套或测试用例                               | {describeName}#{itName}，{describeName}                      | -s notClass attributeTest#testAttributeIt |
+| itName       | 指定要执行的测试用例                                         | {itName}                                                     | -s itName testAttributeIt                 |
+| timeout      | 测试用例执行的超时时间                                        | 正整数（单位ms），如不设置默认为 5000                        | -s timeout 15000                          |
+| breakOnError | 遇错即停模式，当执行用例断言失败或者发生错误时，退出测试执行流程 | true/false(默认值)                                           | -s breakOnError true                      |
+| testType     | 指定要执行用例的用例类型                                      | function，performance，power，reliability， security，global，compatibility，user，standard，safety，resilience' | -s testType function                      |
+| level        | 指定要执行用例的用例级别                                      | 0,1,2,3,4                                                    | -s level 0                                |
+| size         | 指定要执行用例的用例规模                                    | small，medium，large                                         | -s size small                             |
+
+**通过在cmd窗口直接执行命令。**
+
+> 使用cmd的方式，需要配置好hdc相关的环境变量
+
+- 打开cmd窗口
+- 执行 aa test 命令
+
+**示例代码1**：执行所有测试用例。
+
+```shell  
+ hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner
+```
+
+**示例代码2**：执行指定的describe测试套用例，指定多个需用逗号隔开。
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s class s1,s2
+```
+
+**示例代码3**：执行指定测试套中指定的用例，指定多个需用逗号隔开。
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s class testStop#stop_1,testStop1#stop_0
+```
+
+**示例代码4**：执行指定除配置以外的所有的用例，设置不执行多个测试套需用逗号隔开。
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s notClass testStop
+```
+
+**示例代码5**：执行指定it名称的所有用例，指定多个需用逗号隔开。
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s itName stop_0
+```
+
+**示例代码6**：用例执行超时时长配置。
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner  -s timeout 15000
+```
+
+**示例代码7**：用例以breakOnError模式执行用例。
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s breakOnError true
+```
+
+**示例代码8**：执行测试类型匹配的测试用例。
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s testType function
+```
+
+**示例代码9**：执行测试级别匹配的测试用例。
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s level 0
+```
+
+**示例代码10**：执行测试规模匹配的测试用例。
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s size small
+```
+
+**查看测试结果**
+
+- cmd模式执行过程,会打印如下相关日志信息。
+
+```
+OHOS_REPORT_STATUS: class=testStop
+OHOS_REPORT_STATUS: current=1
+OHOS_REPORT_STATUS: id=JS
+OHOS_REPORT_STATUS: numtests=447
+OHOS_REPORT_STATUS: stream=
+OHOS_REPORT_STATUS: test=stop_0
+OHOS_REPORT_STATUS_CODE: 1
+
+OHOS_REPORT_STATUS: class=testStop
+OHOS_REPORT_STATUS: current=1
+OHOS_REPORT_STATUS: id=JS
+OHOS_REPORT_STATUS: numtests=447
+OHOS_REPORT_STATUS: stream=
+OHOS_REPORT_STATUS: test=stop_0
+OHOS_REPORT_STATUS_CODE: 0
+OHOS_REPORT_STATUS: consuming=4
+```
+
+| 日志输出字段               | 日志输出字段含义       |
+| -------           | -------------------------|
+| OHOS_REPORT_SUM    | 当前测试套用例总数 |
+| OHOS_REPORT_STATUS: class | 当前执行用例测试套名称|
+| OHOS_REPORT_STATUS: id | 用例执行语言,默认JS  |
+| OHOS_REPORT_STATUS: numtests | 测试包中测试用例总数 |
+| OHOS_REPORT_STATUS: stream | 当前用例发生错误时，记录错误信息 |
+| OHOS_REPORT_STATUS: test| 当前用例执行的it name |
+| OHOS_REPORT_STATUS_CODE | 当前用例执行结果状态 0 (pass) 1(error) 2(fail) |
+| OHOS_REPORT_STATUS: consuming | 当前用例执行消耗的时长 |
+
+- cmd执行完成后,会打印如下相关日志信息。
+
+```
+OHOS_REPORT_RESULT: stream=Tests run: 447, Failure: 0, Error: 1, Pass: 201, Ignore: 245
+OHOS_REPORT_CODE: 0
+
+OHOS_REPORT_RESULT: breakOnError model, Stopping whole test suite if one specific test case failed or error
+OHOS_REPORT_STATUS: taskconsuming=16029
+
+```
+| 日志输出字段               | 日志输出字段含义           |
+| ------------------| -------------------------|
+| run    | 当前测试包用例总数 |
+| Failure | 当前测试失败用例个数 |
+| Error | 当前执行用例发生错误用例个数  |
+| Pass | 当前执行用例通过用例个数 |
+| Ignore | 当前未执行用例个数 |
+| taskconsuming| 执行当前测试用例总耗时 |
+
+> 当处于breakOnError模式，用例发生错误时,注意查看Ignore以及中断说明
 
 ## 常见问题
 
@@ -180,11 +331,11 @@ export default function abilityTest() {
 
 用例中增加的日志打印信息，没有在用例执行过程中出现，而是在用例执行结束之后才出现。
 
- **可能原因**
+**可能原因**
 
 此类情况只会存在于用例中有调用异步接口的情况，原则上用例中所有的日志信息均在用例执行结束之前打印。
 
- **解决方法**
+**解决方法**
 
 当被调用的异步接口多于一个时，建议将接口调用封装成Promise方式调用。
 
@@ -214,12 +365,15 @@ export default function abilityTest() {
 
 2.用例调用函数耗时过长，超过用例执行设置的超时时间。
 
+3.用例调用函数中断言失败，抛出失败异常，导致用例执行一直没有结束，直到超时结束。
+
 **解决方法**
 
 1.检查用例代码逻辑，确保即使断言失败场景认可走到done函数，保证用例执行结束。
 
-2.可在IDE中Run/Debug Configurations中修改用例执行超时配置参数，避免用例执行超时。  
+2.可在IDE中Run/Debug Configurations中修改用例执行超时配置参数，避免用例执行超时。
 
+3.检查用例代码逻辑，断言结果，确保断言Pass。
 ### UI测试用例常见问题
 
 **1、失败日志有“Get windows failed/GetRootByWindow failed”错误信息**
