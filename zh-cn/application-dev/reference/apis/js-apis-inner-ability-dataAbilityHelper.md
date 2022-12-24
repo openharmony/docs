@@ -11,8 +11,8 @@
 
 使用前根据具体情况引入如下模块
 ```ts
-import ohos_data_ability from '@ohos.data.dataAbility'
-import ohos_data_rdb from '@ohos.data.rdb'
+import ohos_data_ability from '@ohos.data.dataAbility';
+import ohos_data_rdb from '@ohos.data.rdb';
 ```
 
 ## DataAbilityHelper.openFile
@@ -34,13 +34,13 @@ openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 var mode = "rw";
 DAHelper.openFile("dataability:///com.example.DataAbility", mode, (err, data) => {
-        console.info("openFile err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+    console.info("openFile err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -68,7 +68,7 @@ openFile(uri: string, mode: string): Promise\<number>
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -82,7 +82,7 @@ DAHelper.openFile("dataability:///com.example.DataAbility", mode).then((data) =>
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
-注册观察者以监听给定uri指定数据的数据变化通知。
+注册观察者以监听uri指定数据的数据变化通知。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -91,13 +91,13 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 | 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 指示监听操作类型，"dataChange"表示数据变化操作。               |
-| uri      | string               | 是   | 指示待操作数据的uri。 |
-| callback | AsyncCallback\<void> | 是   | 指示数据变化时的回调。   |
+| uri      | string               | 是   | 指示待监听数据变化的uri。 |
+| callback | AsyncCallback\<void> | 是   | 指示数据变化时的回调方法。   |
 
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -108,14 +108,14 @@ DAHelper.on(
     "dataChange",
     "dataability:///com.example.DataAbility",
     onChangeNotify
-)
+);
 ```
 
 ## DataAbilityHelper.off
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
-注消观察者以停止监听给定uri指定数据的数据变化通知。
+注消观察者以停止监听uri指定数据的数据变化通知。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -124,13 +124,13 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 | 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 指示监听操作类型，"dataChange"表示数据变化操作。               |
-| uri      | string               | 是   | 指示待操作数据的uri。 |
-| callback | AsyncCallback\<void> | 否   | 指示已注册的数据变化回调。如果设置数据变化回调为空，将会取消所有数据变化监听。       |
+| uri      | string               | 是   | 指示待取消监听数据变化的uri。 |
+| callback | AsyncCallback\<void> | 否   | 指示已注册的数据变化回调方法。如果设置数据变化回调为空，将会取消所有数据变化监听。       |
 
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -141,11 +141,11 @@ DAHelper.off(
     "dataChange",
     "dataability:///com.example.DataAbility",
     onChangeNotify
-)
+);
 DAHelper.off(
     "dataChange",
     "dataability:///com.example.DataAbility",
-)
+);
 ```
 
 ## DataAbilityHelper.getType
@@ -161,12 +161,12 @@ getType(uri: string, callback: AsyncCallback\<string>): void
 | 参数名     | 类型                   | 必填 | 说明                                          |
 | -------- | ---------------------- | ---- | --------------------------------------------- |
 | uri      | string                 | 是   | 指示待获取数据的uri。                      |
-| callback | AsyncCallback\<string> | 是   | 指示获取媒体资源类型的回调，返回与uri指向数据匹配的媒体资源类型。 |
+| callback | AsyncCallback\<string> | 是   | 指示获取媒体资源类型的回调方法，返回与uri指向数据匹配的媒体资源类型。 |
 
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -198,7 +198,7 @@ getType(uri: string): Promise\<string>
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -211,7 +211,7 @@ DAHelper.getType("dataability:///com.example.DataAbility").then((data) => {
 
 getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\<string>>): void
 
-获取支持的文件的媒体资源类型（callback形式）。
+获取支持的文件媒体资源类型（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -219,30 +219,27 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\
 
 | 参数名           | 类型                           | 必填 | 说明                               |
 | -------------- | ------------------------------ | ---- | ---------------------------------- |
-| uri            | string                         | 是   | 指示要获取的文件的路径。           |
-| mimeTypeFilter | string                         | 是   | 指示要获取的文件的媒体资源类型。       |
-| callback       | AsyncCallback\<Array\<string>> | 是   | 回调方法，返回匹配的媒体资源类型数组。 |
+| uri            | string                         | 是   | 指示待获取文件的uri。           |
+| mimeTypeFilter | string                         | 是   | 指示待获取文件的媒体资源类型。       |
+| callback       | AsyncCallback\<Array\<string>> | 是   | 指示获取媒体资源类型的回调方法，返回匹配的媒体资源类型数组。 |
 
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-DAHelper.getFileTypes( "dataability:///com.example.DataAbility",
-    "image/*", (err, data) => {
-    console.info("==========================>Called=======================>");
+DAHelper.getFileTypes( "dataability:///com.example.DataAbility", "image/*", (err, data) => {
+    console.info("getFileTypes err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## DataAbilityHelper.getFileTypes
 
 getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
-获取支持的文件的媒体资源类型（Promise形式）。
+获取支持的文件媒体资源类型（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -250,8 +247,8 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
 | 参数名           | 类型   | 必填 | 说明                         |
 | -------------- | ------ | ---- | ---------------------------- |
-| uri            | string | 是   | 指示要获取的文件的路径。     |
-| mimeTypeFilter | string | 是   | 指示要获取的文件的媒体资源类型。 |
+| uri            | string | 是   | 指示待获取文件的uri。     |
+| mimeTypeFilter | string | 是   | 指示待获取文件的媒体资源类型。 |
 
 **返回值：**
 
@@ -262,13 +259,12 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-DAHelper.getFileTypes("dataability:///com.example.DataAbility",
-    "image/*").then((data) => {
-     console.info("===================>getFileTypesCallback================>");
+DAHelper.getFileTypes("dataability:///com.example.DataAbility", "image/*").then((data) => {
+    console.info("getFileTypes data: " + JSON.stringify(data));
 });
 ```
 
@@ -285,17 +281,17 @@ normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 | 参数名     | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                 | 是   | 指示要规范化的uri对象。                                      |
-| callback | AsyncCallback\<string> | 是   | 回调方法。如果数据功能支持uri规范化，则返回规范化uri对象；否则返回null。 |
+| callback | AsyncCallback\<string> | 是   | 指示uri规范化的回调方法。如果数据功能支持uri规范化，则返回规范化uri对象；否则返回null。 |
 
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.normalizeUri("dataability:///com.example.DataAbility", (err, data) => {
-    console.info("==========================>Called=======================>");
+    console.info("normalizeUri err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -322,12 +318,12 @@ normalizeUri(uri: string): Promise\<string>
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.normalizeUri("dataability:///com.example.DataAbility",).then((data) => {
-    console.info("=================>normalizeUriCallback=======================>");
+    console.info("normalizeUri data: " + JSON.stringify(data));
 });
 ```
 
@@ -343,22 +339,20 @@ denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 | 参数名     | 类型                   | 必填 | 说明                                                |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
-| uri      | string                 | 是   | 指示要规范化的uri对象。                             |
-| callback | AsyncCallback\<string> | 是   | 回调方法。如果反规范化成功，则返回反规范化uri对象。 |
+| uri      | string                 | 是   | 指示要反规范化的uri对象。                             |
+| callback | AsyncCallback\<string> | 是   | 指示反规范化uri的回调方法。如果反规范化成功，则返回反规范化uri对象。 |
 
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.denormalizeUri("dataability:///com.example.DataAbility", (err, data) => {
-    console.info("==========================>Called=======================>");
+    console.info("denormalizeUri err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## DataAbilityHelper.denormalizeUri
 
@@ -383,12 +377,12 @@ denormalizeUri(uri: string): Promise\<string>
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.denormalizeUri("dataability:///com.example.DataAbility",).then((data) => {
-    console.info("===============>denormalizeUriCallback=======================>");
+    console.info("denormalizeUri data: " + JSON.stringify(data));
 });
 ```
 
@@ -396,7 +390,7 @@ DAHelper.denormalizeUri("dataability:///com.example.DataAbility",).then((data) =
 
 notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
-通知已注册的观察者uri指定的数据资源的更改（callback形式）。
+通知注册的观察者，uri指定数据的数据变化（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -404,13 +398,13 @@ notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
 | 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| uri      | string               | 是   | 指示要操作的数据的路径。 |
+| uri      | string               | 是   | 指示数据变化的uri。 |
 | callback | AsyncCallback\<void> | 是   | 回调方法。               |
 
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -423,7 +417,7 @@ DAHelper.notifyChange("dataability:///com.example.DataAbility", (err) => {
 
 notifyChange(uri: string): Promise\<void>
 
-通知已注册的观察者uri指定的数据资源的更改（Promise形式）。
+通知注册的观察者，uri指定数据的数据变化（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -431,7 +425,7 @@ notifyChange(uri: string): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                     |
 | ---- | ------ | ---- | ------------------------ |
-| uri  | string | 是   | 指示要操作的数据的路径。 |
+| uri  | string | 是   | 指示数据变化的uri。 |
 
 **返回值：**
 
@@ -442,7 +436,7 @@ notifyChange(uri: string): Promise\<void>
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -463,14 +457,14 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<num
 
 | 参数名         | 类型                   | 必填 | 说明                                                   |
 | ------------ | ---------------------- | ---- | ------------------------------------------------------ |
-| uri          | string                 | 是   | 指示要插入的数据的路径。                               |
+| uri          | string                 | 是   | 指示要插入数据的uri。                               |
 | valuesBucket | rdb.ValuesBucket       | 是   | 指示要插入的数据记录。如果此参数为空，将插入一个空行。 |
-| callback     | AsyncCallback\<number> | 是   | 回调方法，返回插入数据记录的索引。                     |
+| callback     | AsyncCallback\<number> | 是   | 指示数据插入的回调方法，返回插入数据记录的索引。                     |
 
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -479,10 +473,9 @@ const valueBucket = {
     "age": 22,
     "salary": 200.5,
     "blobType": "u8",
-}
-DAHelper.insert("dataability:///com.example.DataAbility", valueBucket,
-    (err, data) => {
-    console.info("==========================>Called=======================>");
+};
+DAHelper.insert("dataability:///com.example.DataAbility", valueBucket, (err, data) => {
+    console.info("insert err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -498,7 +491,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
 | 参数名         | 类型             | 必填 | 说明                                                   |
 | ------------ | ---------------- | ---- | ------------------------------------------------------ |
-| uri          | string           | 是   | 指示要插入的数据的路径。                               |
+| uri          | string           | 是   | 指示要插入数据的uri。                               |
 | valuesBucket | rdb.ValuesBucket | 是   | 指示要插入的数据记录。如果此参数为空，将插入一个空行。 |
 
 **返回值：**
@@ -510,7 +503,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -519,9 +512,9 @@ const valueBucket = {
     "age": 221,
     "salary": 20.5,
     "blobType": "u8",
-}
+};
 DAHelper.insert("dataability:///com.example.DataAbility", valueBucket).then((data) => {
-    console.info("====================>insertCallback=======================>");
+    console.info("insert data: " + JSON.stringify(data));
 });
 ```
 
@@ -529,7 +522,7 @@ DAHelper.insert("dataability:///com.example.DataAbility", valueBucket).then((dat
 
 batchInsert(uri: string, valuesBuckets: Array\<rdb.ValuesBucket>, callback: AsyncCallback\<number>): void
 
-插入数据库（callback形式）。
+将多个数据记录插入数据库（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -537,23 +530,22 @@ batchInsert(uri: string, valuesBuckets: Array\<rdb.ValuesBucket>, callback: Asyn
 
 | 参数名         | 类型                    | 必填 | 说明                             |
 | ------------ | ----------------------- | ---- | -------------------------------- |
-| uri          | string                  | 是   | 指示要插入的数据的路径。         |
-| valuesBucket | Array\<rdb.ValuesBucket> | 是   | 指示要插入的数据记录。           |
-| callback     | AsyncCallback\<number>  | 是   | 回调方法。返回插入的数据记录数。 |
+| uri          | string                  | 是   | 指示要插入数据的uri。         |
+| valuesBucket | Array\<rdb.ValuesBucket> | 是   | 指示要插入的数据记录数组。           |
+| callback     | AsyncCallback\<number>  | 是   | 指示批量数据插入的回调方法。返回插入的数据记录数。 |
 
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": "u8",},
                      {"name": "roe12", "age": 21, "salary": 20.5, "blobType": "u8",},
-                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",})
-DAHelper.batchInsert("dataability:///com.example.DataAbility", cars,
-    (err, data) => {
-    console.info("==========================>Called=======================>");
+                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",});
+DAHelper.batchInsert("dataability:///com.example.DataAbility", cars, (err, data) => {
+    console.info("batchInsert err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -569,8 +561,8 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<numbe
 
 | 参数名         | 类型                    | 必填 | 说明                     |
 | ------------ | ----------------------- | ---- | ------------------------ |
-| uri          | string                  | 是   | 指示要插入的数据的路径。 |
-| valuesBucket | Array<rdb.ValuesBucket> | 是   | 指示要插入的数据记录。   |
+| uri          | string                  | 是   | 指示要插入数据的uri。 |
+| valuesBucket | Array<rdb.ValuesBucket> | 是   | 指示要插入的数据记录数组。   |
 
 **返回值：**
 
@@ -581,15 +573,15 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<numbe
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": "u8",},
                      {"name": "roe12", "age": 21, "salary": 20.5, "blobType": "u8",},
-                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",})
+                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",});
 DAHelper.batchInsert("dataability:///com.example.DataAbility", cars).then((data) => {
-    console.info("==================>batchInsertCallback=======================>");
+    console.info("batchInsert data: " + JSON.stringify(data));
 });
 ```
 
@@ -605,22 +597,21 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asy
 
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
-| uri          | string                            | 是   | 指示要删除的数据的路径。                         |
+| uri          | string                            | 是   | 指示要删除数据的uri。                         |
 | predicates | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
-| callback     | AsyncCallback\<number>            | 是   | 回调方法。返回已删除的数据记录数。               |
+| callback     | AsyncCallback\<number>            | 是   | 指示数据删除的回调方法。返回已删除的数据记录数。               |
 
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-let da = new ohos_data_ability.DataAbilityPredicates()
-DAHelper.delete("dataability:///com.example.DataAbility", da,
-    (err, data) => {
-    console.info("==========================>Called=======================>");
+let da = new ohos_data_ability.DataAbilityPredicates();
+DAHelper.delete("dataability:///com.example.DataAbility", da, (err, data) => {
+    console.info("delete err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -636,7 +627,7 @@ delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<nu
 
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
-| uri          | string                            | 是   | 指示要删除的数据的路径。                         |
+| uri          | string                            | 是   | 指示要删除数据的uri。                         |
 | predicates | dataAbility.DataAbilityPredicates | 否   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
@@ -648,14 +639,14 @@ delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<nu
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-let da = new ohos_data_ability.DataAbilityPredicates()
+let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.delete("dataability:///com.example.DataAbility", da).then((data) => {
-    console.info("==========================>deleteCallback=======================>");
+    console.info("delete data: " + JSON.stringify(data));
 });
 ```
 
@@ -671,16 +662,16 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
-| uri          | string                            | 是   | 指示要更新的数据的路径。                         |
+| uri          | string                            | 是   | 指示要更新数据的uri。                         |
 | valuesBucket | rdb.ValuesBucket                  | 是   | 指示要更新的数据。                               |
 | predicates   | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
-| callback     | AsyncCallback\<number>            | 是   | 回调方法，返回更新的数据记录数。                 |
+| callback     | AsyncCallback\<number>            | 是   | 指示数据更新的回调方法，返回更新的数据记录数。                 |
 
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -689,10 +680,10 @@ const va = {
     "age": 21,
     "salary": 20.5,
     "blobType": "u8",
-}
-let da = new ohos_data_ability.DataAbilityPredicates()
+};
+let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.update("dataability:///com.example.DataAbility", va, da, (err, data) => {
-    console.info("==========================>Called=======================>");
+    console.info("update err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -708,7 +699,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.Dat
 
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
-| uri          | string                            | 是   | 指示要更新的数据的路径。                         |
+| uri          | string                            | 是   | 指示要更新数据的uri。                         |
 | valuesBucket | rdb.ValuesBucket                  | 是   | 指示要更新的数据。                               |
 | predicates   | dataAbility.DataAbilityPredicates | 否   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
@@ -721,8 +712,8 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.Dat
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -731,10 +722,10 @@ const va = {
     "age": 21,
     "salary": 20.5,
     "blobType": "u8",
-}
-let da = new ohos_data_ability.DataAbilityPredicates()
+};
+let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.update("dataability:///com.example.DataAbility", va, da).then((data) => {
-    console.info("==========================>updateCallback=======================>");
+    console.info("update data: " + JSON.stringify(data));
 });
 ```
 
@@ -750,23 +741,23 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                            | 是   | 指示要查询的数据的路径。                         |
+| uri        | string                            | 是   | 指示要查询数据的uri。                         |
 | columns    | Array\<string>                | 是   | 指示要查询的列。如果此参数为空，则查询所有列。   |
 | predicates | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
-| callback   | AsyncCallback\<ResultSet>         | 是   | 回调方法，返回查询结果。                         |
+| callback   | AsyncCallback\<ResultSet>         | 是   | 指示数据查询的回调方法，返回查询结果。                         |
 
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 var cars=new Array("value1", "value2", "value3", "value4");
-let da = new ohos_data_ability.DataAbilityPredicates()
+let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.query("dataability:///com.example.DataAbility", cars, da, (err, data) => {
-    console.info("==========================>Called=======================>");
+    console.info("query err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -784,7 +775,7 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                            | 是   | 指示要查询的数据的路径。                         |
+| uri        | string                            | 是   | 指示要查询数据的uri。                         |
 | columns    | Array\<string>               | 否   | 指示要查询的列。如果此参数为空，则查询所有列。   |
 | predicates | dataAbility.DataAbilityPredicates | 否   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
@@ -797,53 +788,15 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 var cars = new Array("value1", "value2", "value3", "value4");
-let da = new ohos_data_ability.DataAbilityPredicates()
+let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.query("dataability:///com.example.DataAbility", cars, da).then((data) => {
-    console.info("==========================>queryCallback=======================>");
-});
-```
-
-## DataAbilityHelper.call
-
-call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
-
-调用DataAbility的扩展接口，使用Promise方式作为异步方法。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
-
-**参数：**
-
-| 参数名       | 类型                              | 必填 | 说明                                             |
-| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                 | 是   | 指示待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"           |
-| method    | string                  | 是   | 被调用的方法名。   |
-| arg      | string                   | 是   |需传入的参数。      |
-| extras   | [PacMap](#pacmap)        | 是   | 键值对参数。       |
-
-**返回值：**
-
-| 类型 | 说明 |
-|------ | ------- |
-|Promise\<[PacMap](#pacmap)> | 调用的返回值。 |
-
-**示例：**
-
-```ts
-import featureAbility from '@ohos.ability.featureAbility';
-
-let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.jsapidemo.UserDataAbility");
-dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility",
-    "method", "arg", {"key1":"value1"}).then((data) => {
-    console.info('Operation succeeded: ' + data);
-}).catch((error) => {
-    console.error('Operation failed. Cause: ' + error);
+    console.info("query data: " + JSON.stringify(data));
 });
 ```
 
@@ -851,7 +804,7 @@ dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility",
 
 call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback\<PacMap>): void
 
-调用DataAbility的扩展接口，使用callback方式作为异步方法。
+调用DataAbility的扩展接口（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -860,10 +813,10 @@ call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCa
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                 | 是   | 指示待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"           |
-| method    | string                  | 是   | 被调用的方法名。   |
-| arg      | string                   | 是   |需传入的参数。      |
-| extras   | [PacMap](#pacmap)        | 是   | 键值对参数。       |
-| callback | AsyncCallback\<[PacMap](#pacmap)> | 是 | 返回值。     |
+| method    | string                  | 是   | 指示被调用的方法名。   |
+| arg      | string                   | 是   | 指示需传入的参数。      |
+| extras   | [PacMap](#pacmap)        | 是   | 指示扩展的键值对参数。       |
+| callback | AsyncCallback\<[PacMap](#pacmap)> | 是 | 指示数据操作的回调方法，返回操作结果。     |
 
 **示例：**
 
@@ -871,7 +824,8 @@ call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCa
 import featureAbility from '@ohos.ability.featureAbility';
 
 let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.jsapidemo.UserDataAbility");
+    "dataability:///com.example.jsapidemo.UserDataAbility"
+);
 dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility",
     "method", "arg", {"key1":"value1"}, (err, data) => {
     if (err) {
@@ -882,21 +836,60 @@ dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility",
 });
 ```
 
-## DataAbilityHelper.executeBatch
+## DataAbilityHelper.call
 
-executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void;
+call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 
-查询数据库中的数据。
+调用DataAbility的扩展接口（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
-| 参数名            | 类型                                         | 必填 | 说明                                             |
-| ----------    | ---------------------------------             | ---- | ------------------------------------------------ |
-| uri           | string                                        | 是   | 指示待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。|
-| operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>               | 是   | 指示数据操作列表，其中可以包含对数据库的多个操作。   |
-| callback      |  AsyncCallback\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>>    | 是   |在数组 DataAbilityResult中返回每个操作的结果。      |
+| 参数名       | 类型                              | 必填 | 说明                                             |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                 | 是   | 指示待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"           |
+| method    | string                  | 是   | 指示被调用的方法名。   |
+| arg      | string                   | 是   | 指示需传入的参数。      |
+| extras   | [PacMap](#pacmap)        | 是   | 指示扩展的键值对参数。       |
+
+**返回值：**
+
+| 类型 | 说明 |
+|------ | ------- |
+|Promise\<[PacMap](#pacmap)> | 返回操作结果。 |
+
+**示例：**
+
+```ts
+import featureAbility from '@ohos.ability.featureAbility';
+
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    "dataability:///com.example.jsapidemo.UserDataAbility"
+);
+dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility",
+    "method", "arg", {"key1":"value1"}).then((data) => {
+    console.info('Operation succeeded: ' + data);
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + error);
+});
+```
+
+## DataAbilityHelper.executeBatch
+
+executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void;
+
+批量操作数据库中的数据。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**参数：**
+
+| 参数名        | 类型                          | 必填 | 说明                                             |
+| ----------| ---------------------------------| ---- | ------------------------------------------------ |
+| uri       | string                           | 是   | 指示待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。|
+| operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>        | 是   | 指示数据操作数组，其中可以包含对数据库的多个不同操作。   |
+| callback      |  AsyncCallback\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>>    | 是   | 指示批量操作的回调方法，在DataAbilityResult数组中返回每个操作的结果。      |
 
 **示例：**
 
@@ -906,9 +899,9 @@ import featureAbility from '@ohos.ability.featureAbility';
 // 根据DataAbilityOperation列表选择要对数据库做的操作
 let op=new Array();
 let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.jsapidemo.UserDataAbility");
-dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbility",
-    op, (err, data) => {
+    "dataability:///com.example.jsapidemo.UserDataAbility"
+);
+dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbility", op, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + err);
         return;
@@ -921,7 +914,7 @@ dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbi
 
 executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Array\<DataAbilityResult>>;
 
-查询数据库中的数据。
+批量操作数据库中的数据。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -930,13 +923,13 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Ar
 | 参数名          | 类型                            | 必填 | 说明                                             |
 | ----------    | -------------------------------| ---- | ------------------------------------------------ |
 | uri           | string                         | 是   | 指示待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。|
-| operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>  | 是   | 指示数据操作列表，其中可以包含对数据库的多个操作。   |
+| operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>  | 是   | 指示数据操作数组，其中可以包含对数据库的多个不同操作。   |
 
 **返回值：**
 
 | 类型 | 说明 |
 |------ | ------- |
-|Promise\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>> | 在数组 DataAbilityResult中返回每个操作的结果。 |
+|Promise\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>> | 在DataAbilityResult数组中返回每个操作的结果。 |
 
 **示例：**
 
@@ -946,9 +939,9 @@ import featureAbility from '@ohos.ability.featureAbility';
 // 根据DataAbilityOperation列表选择要对数据库做的操作
 let op=new Array();
 let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.jsapidemo.UserDataAbility");
-dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbility",
-    op).then((data) => {
+    "dataability:///com.example.jsapidemo.UserDataAbility"
+);
+dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbility", op).then((data) => {
     console.info('Operation succeeded: ' + data);
 }).catch((error) => {
     console.error('Operation failed. Cause: ' + error);
