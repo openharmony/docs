@@ -1,6 +1,6 @@
 # MissionListener
 
-定义系统任务状态监听，可以通过[registerMissionListener](js-apis-application-missionManager.md#missionmanagerregistermissionlistener)注册。
+定义系统任务状态监听，可以通过[on](js-apis-app-ability-missionManager.md#missionmanageron)注册。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -16,7 +16,7 @@
 
 **示例：**
 ```ts
-import missionManager from '@ohos.application.missionManager'
+import missionManager from '@ohos.app.ability.missionManager'
 
 let listener = {
     onMissionCreated: function (mission) {
@@ -38,5 +38,10 @@ let listener = {
         console.log("onMissionClosed mission: " + JSON.stringify(mission));
     }
 };
-let listenerid = missionManager.registerMissionListener(listener);
+
+try {
+    let listenerId = missionManager.on("mission", listener);
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```

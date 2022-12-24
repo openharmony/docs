@@ -20,7 +20,7 @@ ohos.permission.MANAGE_MISSIONS
 
 registerMissionListener(listener: MissionListener): number;
 
-注册系统任务状态监听。
+注册系统任务状态监听器。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -32,13 +32,13 @@ registerMissionListener(listener: MissionListener): number;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | listener | [MissionListener](js-apis-inner-application-missionListener.md) | 是 | 系统任务监听方法。 |
+  | listener | [MissionListener](js-apis-inner-application-missionListener.md) | 是 | 系统任务监听器。 |
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | number | 监听方法的index值，由系统创建，在注册系统任务状态监听时分配，和监听方法一一对应&nbsp;。 |
+  | number | 监听器的index值，由系统创建，在注册系统任务状态监听器时分配，和监听器一一对应&nbsp;。 |
 
 **示例：**
 
@@ -61,7 +61,7 @@ var listenerid = missionManager.registerMissionListener(listener);
 
 unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt;): void;
 
-取消任务状态监听。
+解注册任务状态监听器。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -73,7 +73,7 @@ unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | listenerId | number | 是 | 系统任务状态监听方法的index值，和监听方法一一对应，由registerMissionListener方法返回。 |
+  | listenerId | number | 是 | 系统任务状态监听器的index值，和监听器一一对应，由registerMissionListener方法返回。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
@@ -101,7 +101,7 @@ unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt
 
 unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
 
-取消任务状态监听，以promise方式返回执行结果。
+反注册任务状态监听器，以promise方式返回执行结果。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -113,7 +113,7 @@ unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | listenerId | number | 是 | 系统任务状态监听方法的index值，和监听方法一一对应，由registerMissionListener方法返回。 |
+  | listenerId | number | 是 | 系统任务状态监听器的index值，和监听器一一对应，由registerMissionListener方法返回。 |
 
 **返回值：**
 
@@ -146,7 +146,7 @@ unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
 
 getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void;
 
-获取任务信息，以异步回调的方式返回任务信息。
+获取单个任务信息，以异步回调的方式返回任务信息。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -169,7 +169,12 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 
   var allMissions=missionManager.getMissionInfos("",10).catch(function(err){console.log(err);});
       missionManager.getMissionInfo("", allMissions[0].missionId, (error, mission) => {
-        console.log("getMissionInfo is called, error.code = " + error.code)
+        if (error.code) {
+          console.log("getMissionInfo failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+          return;
+        }
+
         console.log("mission.missionId = " + mission.missionId);
         console.log("mission.runningState = " + mission.runningState);
         console.log("mission.lockedState = " + mission.lockedState);
@@ -184,7 +189,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 
 getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
 
-获取任务信息，以promise方式返回任务信息。
+获取单个任务信息，以promise方式返回任务信息。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -242,7 +247,11 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-      console.log("getMissionInfos is called, error.code = " + error.code);
+      if (error.code) {
+          console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+          return;
+      }
       console.log("size = " + missions.length);
       console.log("missions = " + JSON.stringify(missions));
   })
@@ -311,14 +320,22 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-    console.log("getMissionInfos is called, error.code = " + error.code);
+    if (error.code) {
+        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+        return;
+    }
     console.log("size = " + missions.length);
     console.log("missions = " + JSON.stringify(missions));
     var id = missions[0].missionId;
 
     missionManager.getMissionSnapShot("", id, (error, snapshot) => {
-  	console.log("getMissionSnapShot is called, error.code = " + error.code);
-  	console.log("bundleName = " + snapshot.ability.bundleName);
+      if (error.code) {
+          console.log("getMissionSnapShot failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+          return;
+      }
+      console.log("bundleName = " + snapshot.ability.bundleName);
   })
   })
   ```
@@ -371,7 +388,7 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
 
 getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback\<MissionSnapshot>): void;
 
-使用给定的任务ID获取任务低分辨率快照。
+获取任务低分辨率快照。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -393,14 +410,22 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: A
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-    console.log("getMissionInfos is called, error.code = " + error.code);
+    if (error.code) {
+        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+        return;
+    }
     console.log("size = " + missions.length);
     console.log("missions = " + JSON.stringify(missions));
     var id = missions[0].missionId;
 
     missionManager.getLowResolutionMissionSnapShot("", id, (error, snapshot) => {
-  	console.log("getLowResolutionMissionSnapShot is called, error.code = " + error.code);
-  	console.log("bundleName = " + snapshot.ability.bundleName);
+      if (error.code) {
+          console.log("getLowResolutionMissionSnapShot failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+          return;
+      }
+  	  console.log("bundleName = " + snapshot.ability.bundleName);
   })
   })
   ```
@@ -410,7 +435,7 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: A
 
 getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<MissionSnapshot>;
 
-使用给定的任务ID获取任务低分辨率快照。
+获取任务低分辨率快照。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -475,7 +500,11 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-    console.log("getMissionInfos is called, error.code = " + error.code);
+    if (error.code) {
+        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+        return;
+    }
     console.log("size = " + missions.length);
     console.log("missions = " + JSON.stringify(missions));
     var id = missions[0].missionId;
@@ -554,7 +583,11 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-    console.log("getMissionInfos is called, error.code = " + error.code);
+    if (error.code) {
+        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+        return;
+    }
     console.log("size = " + missions.length);
     console.log("missions = " + JSON.stringify(missions));
     var id = missions[0].missionId;
@@ -637,7 +670,11 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-    console.log("getMissionInfos is called, error.code = " + error.code);
+    if (error.code) {
+        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+        return;
+    }
     console.log("size = " + missions.length);
     console.log("missions = " + JSON.stringify(missions));
     var id = missions[0].missionId;
@@ -768,7 +805,11 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-    console.log("getMissionInfos is called, error.code = " + error.code);
+    if (error.code) {
+        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+        return;
+    }
     console.log("size = " + missions.length);
     console.log("missions = " + JSON.stringify(missions));
     var id = missions[0].missionId;
@@ -806,7 +847,11 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-    console.log("getMissionInfos is called, error.code = " + error.code);
+    if (error.code) {
+        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+        return;
+    }
     console.log("size = " + missions.length);
     console.log("missions = " + JSON.stringify(missions));
     var id = missions[0].missionId;
