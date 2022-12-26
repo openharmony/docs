@@ -138,7 +138,7 @@ var dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
 
 startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
 
-启动一个Ability。Ability被启动后，可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresultsup7sup)接口使之终止并且返回结果给调用者（callback形式）。
+启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#abilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -179,7 +179,7 @@ featureAbility.startAbilityForResult(
 
 startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
-启动一个Ability。Ability被启动后，可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresultsup7sup)接口使之终止并且返回结果给调用者（Promise形式）。
+启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#abilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -235,7 +235,7 @@ featureAbility.startAbilityForResult(
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
 
-停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#featureabilitystartabilityforresultsup7sup)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#featureabilitystartabilityforresultsup7sup)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（callback形式）。
+停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -287,7 +287,7 @@ featureAbility.terminateSelfWithResult(
 
 terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
-停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#featureabilitystartabilityforresultsup7sup)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#featureabilitystartabilityforresultsup7sup)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（Promise形式）。
+停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 

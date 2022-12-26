@@ -319,7 +319,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceablesupdeprecatedsup) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
+| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
 
 **返回值：**
 
@@ -399,13 +399,13 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceablesupdeprecatedsup) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
+| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[rpc.MessageParcel](js-apis-rpc.md#messageparcelsupdeprecatedsup)&gt; | Promise形式返回通用组件服务端应答数据。 |
+| Promise&lt;[rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)&gt; | Promise形式返回通用组件服务端应答数据。 |
 
 **错误码：**
 
@@ -621,7 +621,7 @@ on(method: string, callback: CalleeCallback): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 与客户端约定的通知消息字符串。 |
-| callback | [CalleeCallback](#calleecallback) | 是 | 一个[rpc.MessageParcel](js-apis-rpc.md#messageparcelsupdeprecatedsup)类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的[rpc.Sequenceable](js-apis-rpc.md#sequenceablesupdeprecatedsup)数据对象,&nbsp;其他视为函数执行错误。 |
+| callback | [CalleeCallback](#calleecallback) | 是 | 一个[rpc.MessageParcel](js-apis-rpc.md#messageparceldeprecated)类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的[rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated)数据对象,&nbsp;其他视为函数执行错误。 |
 
 **错误码：**
 
@@ -731,4 +731,4 @@ off(method: string): void;
 
 | 名称 | 可读 | 可写 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageParcel](js-apis-rpc.md#messageparcelsupdeprecatedsup)) | 是 | 否 | [rpc.Sequenceable](js-apis-rpc.md#sequenceablesupdeprecatedsup) | 被调用方注册的消息侦听器函数接口的原型。 |
+| (indata: [rpc.MessageParcel](js-apis-rpc.md#messageparceldeprecated)) | 是 | 否 | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 被调用方注册的消息侦听器函数接口的原型。 |
