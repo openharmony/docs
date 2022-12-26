@@ -94,6 +94,8 @@ onChange(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 当前显示的组件索引变化时触发该事件。
 
+**说明**：Swiper组件结合LazyForEach使用时，不能在onChange事件里触发子页面UI的刷新
+
 **参数：**
 
 | 参数名    | 参数类型   | 必填项 | 参数描述 |
