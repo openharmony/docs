@@ -84,8 +84,8 @@
    // 创建WantAgent
    wantAgent.getWantAgent(wantAgentInfo, (err, data) => {
        if (err) {
-           console.error('[WantAgent]getWantAgent err=' + JSON.stringify(err));
-   		return;
+         console.error('[WantAgent]getWantAgent err=' + JSON.stringify(err));
+         return;
        }
        console.info('[WantAgent]getWantAgent success');
        wantAgentObj = data;
