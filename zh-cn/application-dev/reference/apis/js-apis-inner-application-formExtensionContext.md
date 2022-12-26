@@ -1,8 +1,8 @@
 # FormExtensionContext
 
-FormExtensionContext模块是FormExtension的上下文环境，继承自ExtensionContext。
+FormExtensionContext模块是FormExtensionAbility的上下文环境，继承自ExtensionContext。
 
-FormExtensionContext模块提供FormExtension具有的接口和能力。
+FormExtensionContext模块提供FormExtensionAbility具有的接口和能力。
 
 > **说明：**
 >
@@ -11,23 +11,24 @@ FormExtensionContext模块提供FormExtension具有的接口和能力。
 
 ## 使用说明
 
-在使用FormExtensionContext的功能前，需要通过FormExtension获取。
+在使用FormExtensionContext的功能前，需要通过FormExtensionAbility获取。
 
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import formBindingData from '@ohos.app.form.formBindingData';
+
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-    onAddForm() {
-        let formContext = this.context; // 获取FormExtensionContext
-        // ...
-        let dataObj1 = {
-            temperature:"11c",
-            "time":"11:00"
-        };
-        let obj1 = formBindingData.createFormBindingData(dataObj1);
-        return obj1;
-    }
-}
+  onAddForm(want) {
+    let formContext = this.context; // 获取FormExtensionContext
+    // ...
+    let dataObj1 = {
+      temperature: "11c",
+      "time": "11:00"
+    };
+    let obj1 = formBindingData.createFormBindingData(dataObj1);
+    return obj1;
+  }
+};
 ```
 
 ## startAbility
@@ -50,23 +51,29 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-var want = {
-    deviceId: "",
-    bundleName: "com.example.formstartability",
-    abilityName: "MainAbility",
-    action: "action1",
-    entities: ["entity1"],
-    type: "MIMETYPE",
-    uri: "key={true,true,false}",
-    parameters: {}
-}
-this.context.startAbility(want, (error, data) => {
-    if (error) {
-      console.log('FormExtensionContext startAbility, error:' + JSON.stringify(error));
-    } else {
-      console.log(`FormExtensionContext startAbility success`);
-    }
-})
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onFormEvent(formId, message) {
+    // 当触发卡片message事件时，执行startAbility
+    console.log('FormExtensionAbility onFormEvent, formId:' + formId + ", message:" + message);
+    let want = {
+      deviceId: "",
+      bundleName: "com.example.formstartability",
+      abilityName: "MainAbility",
+      parameters: {
+        "message": message
+      }
+    };
+    this.context.startAbility(want, (error, data) => {
+      if (error) {
+        console.log('FormExtensionContext startAbility, error:' + JSON.stringify(error));
+      } else {
+        console.log('FormExtensionContext startAbility success');
+      }
+    });
+  }
+};
 ```
 
 ## startAbility
@@ -89,24 +96,30 @@ startAbility(want: Want): Promise&lt;void&gt;
 
 | 类型          | 说明                                |
 | ------------ | ---------------------------------- |
-| Promise&lt;void&lt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
-var want = {
-    deviceId: "",
-    bundleName: "com.example.formstartability",
-    abilityName: "MainAbility",
-    action: "action1",
-    entities: ["entity1"],
-    type: "MIMETYPE",
-    uri: "key={true,true,false}",
-    parameters: {}
-}
-this.context.startAbility(want).then(() => {
-    console.info("StartAbility Success");
-}).catch((error) => {
-    console.info("StartAbility failed");
-});
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onFormEvent(formId, message) {
+    // 当触发卡片message事件时，执行startAbility
+    console.log('FormExtensionAbility onFormEvent, formId:' + formId + ", message:" + message);
+    let want = {
+      deviceId: "",
+      bundleName: "com.example.formstartability",
+      abilityName: "MainAbility",
+      parameters: {
+        "message": message
+      }
+    };
+    this.context.startAbility(want).then(() => {
+      console.info("StartAbility Success");
+    }).catch((error) => {
+      console.info("StartAbility failed");
+    });
+  }
+};
 ```
