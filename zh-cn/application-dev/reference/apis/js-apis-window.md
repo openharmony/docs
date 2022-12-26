@@ -248,7 +248,7 @@ import window from '@ohos.window';
 
 | 名称       | 值 | 说明           |
 | ---------- | ------ | -------------- |
-| DEFAULT    | 0      | 默认色域模式。 |
+| DEFAULT    | 0      | 默认SRGB色域模式。 |
 | WIDE_GAMUT | 1      | 广色域模式。   |
 
 ## ScaleOptions<sup>9+</sup>
