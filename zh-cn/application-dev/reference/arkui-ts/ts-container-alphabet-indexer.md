@@ -134,7 +134,7 @@ struct AlphabetIndexerSample {
           .selectedFont({ size: 16, weight: FontWeight.Bolder }) // 选中项字体样式
           .popupFont({ size: 30, weight: FontWeight.Bolder }) // 弹出框内容的字体样式
           .itemSize(28) // 每一项的尺寸大小
-          .alignStyle(IndexerAlign.Left) // 弹出框在索引条左侧弹出
+          .alignStyle(IndexerAlign.Left) // 弹出框在索引条右侧弹出
           .onSelect((index: number) => {
             console.info(this.value[index] + ' Selected!')
           })

@@ -12,7 +12,7 @@
 ## 导入模块
 
 
-```
+```ts
 import mediaquery from '@system.mediaquery';
 ```
 
@@ -39,8 +39,8 @@ matchMedia(condition: string): MediaQueryList
 
 **示例：**
 
-```
-var mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');    
+```ts
+let mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');    
 ```
 
 ## MediaQueryEvent
@@ -97,7 +97,7 @@ addListener(callback: (event: MediaQueryEvent) => void): void
 
 **示例：**
 
-```
+```ts
 function maxWidthMatch(e){
   if(e.matches){
     // do something
@@ -123,7 +123,7 @@ removeListener(callback: (event: MediaQueryEvent) => void): void
 
 **示例：**
 
-```
+```ts
 function maxWidthMatch(e){
   if(e.matches){
     // do something

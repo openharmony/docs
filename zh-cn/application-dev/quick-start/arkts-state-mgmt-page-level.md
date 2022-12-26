@@ -154,7 +154,7 @@ struct CountDownComponent {
 
 - 支持多种类型：@Link支持的数据类型与@State相同，即class、number、string、boolean或这些类型的数组；
 - 私有：仅支持组件内访问；
-- 单个数据源：父组件中用于初始化子组件@Link变量的必须是@State变量；
+- 单个数据源：父组件中用于初始化子组件@Link变量的必须是父组件定义的状态变量；
 - 双向通信：子组件对@Link变量的更改将同步修改父组件中的@State变量；
 - 创建自定义组件时需要将变量的引用传递给@Link变量，在创建组件的新实例时，必须使用命名参数初始化所有@Link变量。@Link变量可以使用@State变量或@Link变量的引用进行初始化，@State变量可以通过`'$'`操作符创建引用。
 
@@ -391,7 +391,7 @@ struct ViewB {
 ```
 
 
-## @Consume和@Provide
+## @Provide和@Consume
 
 @Provide作为数据的提供方，可以更新其子孙节点的数据，并触发页面渲染。@Consume在感知到@Provide数据的更新后，会触发当前自定义组件的重新渲染。
 

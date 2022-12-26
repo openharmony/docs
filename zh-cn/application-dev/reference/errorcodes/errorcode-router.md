@@ -18,7 +18,7 @@ Internal error.
 
 NA
 
-## 100002 路由输入的uri错误
+## 100002 路由页面跳转时输入的uri错误
 
 错误信息
 
@@ -54,7 +54,7 @@ Page stack error. The pages are pushed too much.
 
 请清除多余或无效的页面。
 
-## 200002 路由输入的uri错误
+## 200002 路由页面替换时输入的uri错误
 
 **错误信息**
 
