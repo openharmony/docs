@@ -13,7 +13,7 @@ OpenHarmony 3.1.4 Release provides enhanced system security over OpenHarmony 3.1
 | Software/Tool| Version| Remarks|
 | -------- | -------- | -------- |
 | OpenHarmony | 3.1.4 Release| NA |
-| Full SDK | Ohos_sdk_full 3.1.9.7 (API Version 8 Release)| This toolkit is intended for original equipment manufacturers (OEMs) and contains system APIs that require system permissions.<br>To use the Full SDK, you must manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../application-dev/quick-start/full-sdk-switch-guide.md).|
+| Full SDK | Ohos_sdk_full&nbsp;3.1.9.7&nbsp;(API&nbsp;Version&nbsp;8&nbsp;Relese) | This toolkit is intended for original equipment manufacturers (OEMs) and contains system APIs that require system permissions.<br>To use the Full SDK, you must manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../application-dev/quick-start/full-sdk-switch-guide.md).|
 | Public SDK | Ohos_sdk_public 3.1.9.7 (API Version 8 Release)| This toolkit is intended for application developers and does not contain system APIs that require system permissions.<br>It is provided as standard in DevEco Studio 3.0 Beta4 or later.|
 | (Optional) HUAWEI DevEco Studio| 3.1 Preview for OpenHarmony| Recommended for developing OpenHarmony applications|
 | (Optional) HUAWEI DevEco Device Tool| 3.0 Release| Recommended for developing OpenHarmony smart devices|
@@ -75,12 +75,12 @@ repo forall -c 'git lfs pull'
 
 | Source Code| Version| Mirror| SHA-256 Checksum|
 | -------- | -------- | -------- | -------- |
-| Full code base (for mini, small, and standard systems)| 3.1.4&nbsp;Release | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/code-v3.1.4-Release.tar.gz) | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/code-v3.1.4-Release.tar.gz.sha256) |
-| Hi3516 standard system solution (binary)| 3.1.4&nbsp;Release | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/standard_hi3516.tar.gz) | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/standard_hi3516.tar.gz.sha256) |
-| RK3568 standard system solution (binary)| 3.1.4&nbsp;Release | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/standard_rk3568.tar.gz) | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/standard_rk3568.tar.gz.sha256) |
-| Hi3861 mini system solution (binary)| 3.1.4&nbsp;Release | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/hispark_pegasus.tar.gz) | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/hispark_pegasus.tar.gz.sha256) |
-| Hi3516 small system solution - LiteOS (binary)| 3.1.4&nbsp;Release | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/hispark_taurus.tar.gz) | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/hispark_taurus.tar.gz.sha256) |
-| Hi3516 small system solution - Linux (binary)| 3.1.4&nbsp;Release | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/hispark_taurus_linux.tar.gz) | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/hispark_taurus_linux.tar.gz.sha256) |
+| Full code base (for mini, small, and standard systems)| 3.1.4 Release| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/code-v3.1.4-Release-2022-12-12.tar.gz)| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/code-v3.1.4-Release-2022-12-12.tar.gz.sha256)|
+| Hi3516 standard system solution (binary)| 3.1.4 Release| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/standard_hi3516.tar.gz) | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/standard_hi3516.tar.gz.sha256) |
+| RK3568 standard system solution (binary)| 3.1.4 Release| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/standard_rk3568.tar.gz) | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/standard_rk3568.tar.gz.sha256) |
+| Hi3861 mini system solution (binary)| 3.1.4 Release| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/hispark_pegasus.tar.gz) | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/hispark_pegasus.tar.gz.sha256) |
+| Hi3516 small system solution - LiteOS (binary)| 3.1.4 Release| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/hispark_taurus.tar.gz) | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/hispark_taurus.tar.gz.sha256) |
+| Hi3516 small system solution - Linux (binary)| 3.1.4 Release| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/hispark_taurus_linux.tar.gz) | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/hispark_taurus_linux.tar.gz.sha256) |
 | Full SDK package for the standard system (macOS)| 3.1.9.7 | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/ohos-sdk-mac-full.tar.gz) | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/ohos-sdk-mac-full.tar.gz.sha256) |
 | Full SDK package for the standard system (Windows/Linux)| 3.1.9.7 | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/ohos-sdk-full.tar.gz) | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/ohos-sdk-full.tar.gz.sha256) |
 | Public SDK package for the standard system (macOS)| 3.1.9.7 | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/ohos-sdk-mac-public.tar.gz) | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.4/ohos-sdk-mac-public.tar.gz.sha256) |

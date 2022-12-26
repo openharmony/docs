@@ -91,6 +91,8 @@ struct MyComponent {
 - 支持多个实例：一个组件中可以定义多个标有@Prop的属性；
 - 创建自定义组件时将值传递给@Prop变量进行初始化：在创建组件的新实例时，必须初始化所有@Prop变量，不支持在组件内部进行初始化。
 
+> **说明：** @Prop修饰的变量不能在组件内部进行初始化。
+
 **示例：**
 
 在下面的示例中，当按“+1”或“-1”按钮时，父组件状态发生变化，重新执行build方法，此时将创建一个新的CountDownComponent组件实例。父组件的countDownStartValue状态变量被用于初始化子组件的@Prop变量，当按下子组件的“count - costOfOneAttempt”按钮时，其@Prop变量count将被更改，CountDownComponent重新渲染，但是count值的更改不会影响父组件的countDownStartValue值。 
@@ -156,7 +158,7 @@ struct CountDownComponent {
 - 双向通信：子组件对@Link变量的更改将同步修改父组件中的@State变量；
 - 创建自定义组件时需要将变量的引用传递给@Link变量，在创建组件的新实例时，必须使用命名参数初始化所有@Link变量。@Link变量可以使用@State变量或@Link变量的引用进行初始化，@State变量可以通过`'$'`操作符创建引用。
 
-> **说明：** @Link变量不能在组件内部进行初始化。
+> **说明：** @Link修饰的变量不能在组件内部进行初始化。
 
 **简单类型示例：**
 

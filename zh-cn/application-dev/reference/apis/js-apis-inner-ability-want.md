@@ -1,6 +1,6 @@
 # Want
 
-Want是对象间信息传递的载体, 可以用于应用组件间的信息传递。 Want的使用场景之一是作为[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)的参数, 其包含了指定的启动目标, 以及启动时需携带的相关数据, 如bundleName和abilityName字段分别指明目标Ability所在应用的包名以及对应包内的Ability名称。当Ability A需要启动Ability B并传入一些数据时, 可使用Want作为载体将这些数据传递给Ability B。
+Want是对象间信息传递的载体, 可以用于应用组件间的信息传递。 Want的使用场景之一是作为[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)的参数, 其包含了指定的启动目标, 以及启动时需携带的相关数据, 如bundleName和abilityName字段分别指明目标Ability所在应用的Bundle名称以及对应包内的Ability名称。当Ability A需要启动Ability B并传入一些数据时, 可使用Want作为载体将这些数据传递给Ability B。
 
 > **说明：**
 > 
@@ -11,7 +11,7 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
 | 名称        | 类型                 | 必填 | 说明                                                         |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | deviceId    | string               | 否   | 表示运行指定Ability的设备ID。                                |
-| bundleName   | string               | 否   | 表示包名。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| bundleName   | string               | 否   | 表示Bundle名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
 | abilityName  | string               | 否   | 表示待启动的Ability名称。如果在Want中该字段同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。AbilityName需要在一个应用的范围内保证唯一。 |
 | uri          | string               | 否   | 表示Uri。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
 | type         | string               | 否   | 表示MIME type类型，打开文件的类型，主要用于文管打开文件。比如："text/xml" 、 "image/*"等，MIME定义参考：https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com。   |

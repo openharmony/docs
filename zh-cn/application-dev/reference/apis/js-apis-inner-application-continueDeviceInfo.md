@@ -1,6 +1,6 @@
 # ContinueDeviceInfo
 
-表示发起任务迁移时所需参数的枚举，可以作为[continueMission](js-apis-distributedMissionManager.md#distributedmissionmanagercontinuemission)的入参指定迁移相关参数。
+表示发起Mission迁移时所需参数的枚举，迁移Mission详见：[continueMission接口](js-apis-distributedMissionManager.md#distributedmissionmanagercontinuemission)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -14,27 +14,28 @@
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
+  import distributedMissionManager from '@ohos.distributedMissionManager'
 
   let continueDeviceInfo = {
-    srcDeviceId: "123",
-    dstDeviceId: "456",
-    missionId: 123,
-    wantParam: {
-        "key":"value"
-    }
+      srcDeviceId: "123",
+      dstDeviceId: "456",
+      missionId: 123,
+      wantParam: {
+          "key":"value"
+      }
   };
 
   let continueCallback = {
       onContinueDone(result) {
           console.log('onContinueDone, result: ' + JSON.stringify(result));
       }
-  }
+  };
 
   distributedMissionManager.continueMission(continueDeviceInfo, continueCallback, (error) => {
-    if (error.code != 0) {
-        console.error('continueMission failed, cause: ' + JSON.stringify(error))
-    }
-    console.info('continueMission finished')
+      if (error && error.code) {
+          console.log('continueMission failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      }
+      console.log('continueMission finished');
   })
   ```

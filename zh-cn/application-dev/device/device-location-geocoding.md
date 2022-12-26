@@ -29,18 +29,18 @@
 
 ## 开发步骤
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > GeoConvert需要访问后端服务，请确保设备联网，以进行信息获取。
 
 1. 导入geoLocationManager模块，所有与（逆）地理编码转化能力相关的功能API，都是通过该模块提供的。
-     
+   
    ```ts
    import geoLocationManager from '@ohos.geoLocationManager';
    ```
 
 2. 查询geoCoder服务是否可用。
    - 调用isGeoServiceAvailable查询geoCoder服务是否可用，如果服务可用再继续进行步骤3。
-        
+     
       ```ts
       import geoLocationManager from '@ohos.geoLocationManager';
       try {
@@ -52,7 +52,7 @@
 
 3. 获取转化结果。
    - 调用getAddressesFromLocation，坐标转化地理位置信息。
-        
+     
       ```ts
       var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
       try {
@@ -70,7 +70,7 @@
 
       参考接口API说明[位置服务](../reference/apis/js-apis-geoLocationManager.md)，应用可以获得与此坐标匹配的GeoAddress列表，应用可以根据实际使用需求，读取相应的参数数据。
    - 调用getAddressesFromLocationName位置描述转化坐标。
-        
+     
       ```ts
       var geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
       try {

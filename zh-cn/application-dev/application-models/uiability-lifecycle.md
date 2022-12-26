@@ -39,15 +39,26 @@ UIAbility实例创建完成之后，在进入Foreground之前，系统会创建�
   **图2** WindowStageCreate和WindowStageDestory状态  
 <img src="figures/Ability-Life-Cycle-WindowStage.png" alt="Ability-Life-Cycle-WindowStage" style="zoom:50%;" />
 
-  在onWindowStageCreate()回调中通过loadContent()方法设置应用要加载的页面并根据需要订阅WindowStage的[事件](../reference/apis/js-apis-window.md#windowstageeventtype9)（获焦/失焦、可见/不可见）。
+在onWindowStageCreate()回调中通过[loadContent()](../reference/apis/js-apis-window.md#loadcontent9-2)方法设置应用要加载的页面，并根据需要调用[on('windowStageEvent')](../reference/apis/js-apis-window.md#onwindowstageevent9)方法订阅WindowStage的[事件](../reference/apis/js-apis-window.md#windowstageeventtype9)（获焦/失焦、可见/不可见）。
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage: Window.WindowStage) {
         // 设置WindowStage的事件订阅（获焦/失焦、可见/不可见）
+        try {
+            windowStage.on('windowStageEvent', (data) => {
+                console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
+                    JSON.stringify(data));
+            });
+        } catch (exception) {
+            console.error('Failed to enable the listener for window stage event changes. Cause:' +
+                JSON.stringify(exception));
+        };
 
         // 设置UI界面加载
         windowStage.loadContent('pages/Index', (err, data) => {
@@ -57,7 +68,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > WindowStage的相关使用请参见[窗口开发指导](../windowmanager/application-window-stage.md)。
 
 对应于onWindowStageCreate()回调。在UIAbility实例销毁之前，则会先进入onWindowStageDestroy()回调，可以在该回调中释放UI界面资源。例如在onWindowStageDestroy()中注销获焦/失焦等WindowStage事件。
@@ -72,6 +83,13 @@ export default class EntryAbility extends UIAbility {
 
     onWindowStageDestroy() {
         // 释放UI界面资源
+        // 例如在onWindowStageDestroy()中注销获焦/失焦等WindowStage事件
+        try {
+            windowStage.off('windowStageEvent');
+        } catch (exception) {
+            console.error('Failed to disable the listener for window stage event changes. Cause:' +
+                JSON.stringify(exception));
+        };
     }
 }
 ```
@@ -94,6 +112,8 @@ onBackground()回调，在UIAbility的UI界面完全不可见之后，如UIAbili
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
+    // ...
+
     onForeground() {
         // 申请系统需要的资源，或者重新申请在onBackground中释放的资源
     }
@@ -117,6 +137,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import Window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
+    // ...
+
     onDestroy() {
         // 系统资源的释放、数据的保存等
     }

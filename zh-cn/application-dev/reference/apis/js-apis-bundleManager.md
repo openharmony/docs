@@ -2,7 +2,7 @@
 
 本模块提供应用信息查询能力，支持BundleInfo、ApplicationInfo、Ability、ExtensionAbility等信息的查询
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -272,7 +272,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 
 | 参数名  | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 表示要查询的应用程序包名称。    |
+| bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。|
 | userId      | number | 是   | 表示用户ID。  |
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的bundleInfo；否则为错误对象。 |
@@ -345,7 +345,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 表示要查询的应用程序包名称。    |
+| bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。|
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的BundleInfo；否则为错误对象。 |
 
@@ -396,7 +396,7 @@ getBundleInfo(bundleName: string, bundleFlags: [number](#bundleflag), userId?: n
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 表示要查询的应用程序包名称。 |
+| bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。       |
 | userId      | number | 否   | 表示用户ID。  |
 
@@ -469,7 +469,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 
 | 参数名    | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------- |
-| bundleName | string | 是   | 表示要查询的应用程序包名称。 |
+| bundleName | string | 是   | 表示要查询的应用Bundle名称。 |
 | appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。    |
 | userId     | number | 是   | 表示用户ID。  |
 | callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的ApplicationInfo；否则为错误对象。 |
@@ -521,7 +521,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), cal
 
 | 参数名    | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------- |
-| bundleName | string | 是   | 表示要查询的应用程序包名称。 |
+| bundleName | string | 是   | 表示要查询的应用Bundle名称。 |
 | appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。    |
 | callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的ApplicationInfo；否则为错误对象。 |
 
@@ -571,7 +571,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 
 | 参数名    | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------- |
-| bundleName | string | 是   | 表示要查询的应用程序包名称。 |
+| bundleName | string | 是   | 表示要查询的应用Bundle名称。 |
 | appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。    |
 | userId     | number | 否   | 表示用户ID。 |
 
@@ -915,7 +915,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId: numbe
 
 | 参数名      | 类型   | 必填 | 说明                                                  |
 | ------------ | ------ | ---- | ------------------------------------------------------- |
-| want         | Want   | 是   | 表示包含要查询的应用程序包名称的Want。                    |
+| want         | Want   | 是   | 表示包含要查询的应用Bundle名称的Want。                 |
 | abilityFlags | [number](#abilityflag) | 是   | 指定返回的AbilityInfo所包含的信息。                       |
 | userId       | number | 是   | 表示用户ID。                               |
 | callback | AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<AbilityInfo>；否则为错误对象。 |
@@ -972,7 +972,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), callback: Asy
 
 | 参数名      | 类型   | 必填 | 说明                                                  |
 | ------------ | ------ | ---- | -------------------------------------------------------|
-| want         | Want   | 是   | 表示包含要查询的应用程序包名称的Want。                    |
+| want         | Want   | 是   | 表示包含要查询的应用Bundle名称的Want。                 |
 | abilityFlags | [number](#abilityflag) | 是   | 指定返回的AbilityInfo所包含的信息。       |
 | callback | AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<AbilityInfo>；否则为错误对象。 |
 
@@ -1027,7 +1027,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: numb
 
 | 参数名      | 类型   | 必填 | 说明                                                  |
 | ------------ | ------ | ---- | ------------------------------------------------------- |
-| want         | Want   | 是   | 表示包含要查询的应用程序包名称的Want。                    |
+| want         | Want   | 是   | 表示包含要查询的应用Bundle名称的Want。                 |
 | abilityFlags | [number](#abilityflag) | 是   | 表示指定返回的AbilityInfo所包含的信息。 |
 | userId       | number | 否   | 表示用户ID。                               |
 
@@ -1106,10 +1106,10 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want                  | Want                                                         | 是   | 表示包含要查询的应用程序包名称的Want。                         |
-| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                   |
-| extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。      |
-| userId                | number                                                       | 是   | 表示用户ID。                                                   |
+| want                  | Want                                                         | 是   | 表示包含要查询的应用Bundle名称的Want。                       |
+| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                 |
+| extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。    |
+| userId                | number                                                       | 是   | 表示用户ID。                                                 |
 | callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | 是   | 回调函数，当获取成功时，err为null，data为获取到Array\<ExtensionAbilityInfo>；否则为错误对象。 |
 
 **错误码：**
@@ -1164,9 +1164,9 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want                  | Want                                                         | 是   | 表示包含要查询的应用程序包名称的Want。                         |
-| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                   |
-| extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。      |
+| want                  | Want                                                         | 是   | 表示包含要查询的应用Bundle名称的Want。                       |
+| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                 |
+| extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。    |
 | callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | 是   | 回调函数，当获取成功时，err为null，data为获取到Array\<ExtensionAbilityInfo>；否则为错误对象。 |
 
 **错误码：**
@@ -1218,9 +1218,9 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 **参数：**
 
-| 参数名                | 类型                                          | 必填 | 说明                                                    |
-| --------------------- | --------------------------------------------- | ---- | ------------------------------------------------------- |
-| want                  | Want                                          | 是   | 表示包含要查询的应用程序包名称的Want。                    |
+| 参数名                | 类型                                          | 必填 | 说明                                                      |
+| --------------------- | --------------------------------------------- | ---- | --------------------------------------------------------- |
+| want                  | Want                                          | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
 | extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
 | extensionAbilityFlags | [number](#extensionabilityflag)               | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。 |
 | userId                | number                                        | 否   | 表示用户ID。                                              |
@@ -1711,7 +1711,7 @@ let want = {
     bundleName : "com.example.myapplication",
     abilityName : "com.example.myapplication.MainAbility"
 };
-var info;
+let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
@@ -1777,7 +1777,7 @@ let want = {
     bundleName : "com.example.myapplication",
     abilityName : "com.example.myapplication.MainAbility"
 };
-var info;
+let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
@@ -1924,7 +1924,7 @@ let want = {
     bundleName : "com.example.myapplication",
     abilityName : "com.example.myapplication.MainAbility"
 };
-var info;
+let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
@@ -1987,7 +1987,7 @@ let want = {
     bundleName : "com.example.myapplication",
     abilityName : "com.example.myapplication.MainAbility"
 };
-var info;
+let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {

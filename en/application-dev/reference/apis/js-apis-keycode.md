@@ -8,7 +8,7 @@ The Keycode module provides keycodes for a key device.
 ## Modules to Import
 
 ```js
-import {KeyCode} from '@ohos.multimodalInput.keyCode'
+import {KeyCode} from '@ohos.multimodalInput.keyCode';
 ```
 
 ## KeyCode

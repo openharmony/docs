@@ -68,7 +68,7 @@ onBundleAdded(bundleName: string): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| bundleName | string | 是    | 安装应用包名。 |
+| bundleName | string | 是    | 安装应用Bundle名称。 |
 
 **示例：**
 
@@ -94,7 +94,7 @@ onBundleRemoved(bundleName: string): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| bundleName | string | 是    | 卸载应用包名。 |
+| bundleName | string | 是    | 卸载应用Bundle名称。 |
 
 **示例：**
 

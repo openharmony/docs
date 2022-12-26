@@ -12,7 +12,7 @@ emitter数据大小限制不超过10240。
 
 通过配置Notification.publish发布通知接口的参数NotificationRequest中wantAgent属性实现
 
-参考文档：[Notification](../reference/apis/js-apis-notification.md#notificationpublish)、[WantAgent](../reference/apis/js-apis-wantAgent.md)
+参考文档：[Notification](../reference/apis/js-apis-notification.md#notificationpublish)、[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)
 
 示例：
 

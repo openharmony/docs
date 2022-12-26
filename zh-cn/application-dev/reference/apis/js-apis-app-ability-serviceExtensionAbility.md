@@ -108,7 +108,7 @@ Extension生命周期回调，如果是startAbility拉起的服务，会在onCre
 
 onConnect(want: Want): rpc.RemoteObject;
 
-Extension生命周期回调，如果是connectAbility拉起的服务，会在onCreate之后回调。返回一个RemoteObject对象，用于和客户端进行通信。
+Extension生命周期回调，如果是connectAbility拉起的服务，会在onCreate之后回调。返回一个RemoteObject对象，用于客户端和服务端进行通信。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -124,7 +124,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 
 | 类型 | 说明 |
 | -------- | -------- |
-| rpc.RemoteObject | 一个RemoteObject对象，用于和客户端进行通信。 |
+| rpc.RemoteObject | 一个RemoteObject对象，用于客户端和服务端进行通信。 |
 
 **示例：**
 
@@ -150,7 +150,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 
 onDisconnect(want: Want): void;
 
-Extension的生命周期，断开服务连接时回调。
+Extension的生命周期回调，客户端执行断开连接服务时回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -176,7 +176,7 @@ Extension的生命周期，断开服务连接时回调。
 
 onReconnect(want: Want): void;
 
-当新客户端在所有以前的客户端连接之后尝试连接到服务扩展时调用
+Extension的生命周期回调，当所有以前的客户端都断开连接之后，新客户端尝试连接到服务时调用。预留能力，当前暂未支持。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

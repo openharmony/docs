@@ -34,7 +34,7 @@
 | flexBasis | 'auto'&nbsp;\|&nbsp;[Length](../../reference/arkui-ts/ts-types.md#length) | 'auto' | 设置组件在Flex容器中主轴方向上基准尺寸。'auto'意味着使用组件原始的尺寸，不做修改。<br/>flexBasis属性不是必须的，通过width或height也可以达到同样的效果。当flexBasis属性与width或height发生冲突时，以flexBasis属性为准。 | 
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 开发者期望将父容器的剩余空间全部分配给某空白区域时，也可以通过[Blank组件](../../reference/arkui-ts/ts-basic-components-blank.md)实现。注意仅当父组件为Row\Column\Flex组件时，Blank组件才会生效。
 > 
 > - 类Web开发范式也是通过flex-grow和flex-shrink实现拉伸能力，同时也支持配置flex-basis，详见[通用样式](../../reference/arkui-js/js-components-common-styles.md)。
@@ -170,7 +170,7 @@ struct FlexibleCapabilitySample2 {
 均分能力可以通过将[Row组件](../../reference/arkui-ts/ts-container-row.md)、[Column组件](../../reference/arkui-ts/ts-container-column.md)或[Flex组件](../../reference/arkui-ts/ts-container-flex.md)的justifyContent属性设置为FlexAlign.SpaceEvenly实现，即子元素在父容器主轴方向等间距布局，相邻元素之间的间距、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 均分能力还可以通过其它方式实现，如使用[Grid网格组件](../../reference/arkui-ts/ts-container-grid.md)或在每个组件间添加Blank组件等。
 > 
 > - 类Web开发范式中，通过将[div组件](../../reference/arkui-js/js-components-container-div.md)的justify-content属性设置为space-evenly来实现均分布局。
@@ -276,7 +276,7 @@ struct EquipartitionCapabilitySample {
 layoutWeight存在使用限制，所以实际使用过程中大多通过将子组件宽高设置为父组件的百分比来实现占比能力。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 占比能力在实际开发中使用的非常广泛，可以通过很多不同的方式实现占比能力，如还可以通过[Grid组件](../../reference/arkui-ts/ts-container-grid.md)的columnsTemplate属性设置网格容器中列的数量及其宽度比例，或通过配置子组件在栅格（本章后文将详细介绍栅格系统）中占据不同的列数来实现占比能力。本小节仅介绍最基础和常用的实现方式，局限性较大或比非常小众的实现方式，本文不做展开介绍。
 > 
 > - 类Web开发范式同样支持以百分比的形式设置组件的宽高，详见[通用样式](../../reference/arkui-js/js-components-common-styles.md)中关于width和height的介绍以及[长度类型介绍](../../reference/arkui-js/js-appendix-types.md#长度类型)。
@@ -373,7 +373,7 @@ struct ProportionCapabilitySample {
 可以访问[布局约束](../../reference/arkui-ts/ts-universal-attributes-layout-constraints.md)，了解aspectRatio属性的详细信息。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 类Web开发范式同样提供了[aspect-ratio样式](../../reference/arkui-js/js-components-common-atomic-layout.md#固定比例)，用于固定组件的宽高比。
 
 
@@ -450,7 +450,7 @@ struct ScaleCapabilitySample {
 - 通过[Scroll组件](../../reference/arkui-ts/ts-container-scroll.md)配合[Row组件](../../reference/arkui-ts/ts-container-row.md)或[Column组件](../../reference/arkui-ts/ts-container-column.md)实现。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - List、Row或Column组件中子节点的在页面显示时就已经全部完成了布局计算及渲染，只不过受限于父容器尺寸，用户只能看到一部分。随着父容器尺寸增大，用户可以看到的子节点数目也相应的增加。用户还可以通过手指滑动触发列表滑动，查看被隐藏的子节点。
 > 
 > - 类Web开发范式同样可以使用[list组件](../../reference/arkui-js/js-components-container-list.md)实现延伸能力。
@@ -603,7 +603,7 @@ struct ExtensionCapabilitySample2 {
 
 可以访问[布局约束](../../reference/arkui-ts/ts-universal-attributes-layout-constraints.md)，了解displayPriority属性的详细信息。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 类Web开发范式同样支持[display-index样式](../../reference/arkui-js/js-components-common-atomic-layout.md#隐藏能力)，用于设置布局优先级。
 
 **示例：**
@@ -694,7 +694,7 @@ struct HiddenCapabilitySample {
 
 可以访问[Flex组件](../../reference/arkui-ts/ts-container-flex.md)，了解Flex组件的详细用法。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 类Web开发范式通过将[div组件](../../reference/arkui-js/js-components-container-div.md)的flex-warp样式设置为wrap来使用折行能力。
 
 **示例：**

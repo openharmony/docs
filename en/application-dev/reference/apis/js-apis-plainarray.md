@@ -1,4 +1,4 @@
-# Nonlinear Container PlainArray 
+# @ohos.util.PlainArray (Nonlinear Container PlainArray) 
 
 > **NOTE**
 >
@@ -20,8 +20,6 @@ This topic uses the following to identify the use of generics:
 ```ts
 import PlainArray from '@ohos.util.PlainArray';  
 ```
-
-
 
 ## PlainArray
 
@@ -54,11 +52,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 
 ```ts
 let plainArray = new PlainArray();
-try {
-  let plainArray2 = PlainArray();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -89,11 +82,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 ```ts
 const plainArray = new PlainArray();
 let result = plainArray.isEmpty();
-try {
-  plainArray.isEmpty.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -132,11 +120,6 @@ let plainArray = new PlainArray();
 plainArray.has(1);
 plainArray.add(1, "squirrel");
 let result1 = plainArray.has(1);
-try {
-  plainArray.has.bind({}, 1)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -175,11 +158,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.get(1);
-try {
-  plainArray.get.bind({}, 1)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -218,11 +196,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfKey(2);
-try {
-  plainArray.getIndexOfKey.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -261,11 +234,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfValue("squirrel");
-try {
-  plainArray.getIndexOfValue.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -304,11 +272,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getKeyAt(1);
-try {
-  plainArray.getKeyAt.bind({}, 1)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getValueAt
@@ -338,7 +301,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The getValueAt method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -347,16 +310,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getValueAt(1);
-try {
-  plainArray.getValueAt.bind({}, 1)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  plainArray.getValueAt(10);
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### clone
@@ -388,11 +341,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let newPlainArray = plainArray.clone();
-try {
-  plainArray.clone.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -424,11 +372,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 ```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
-try {
-  plainArray.add.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -467,11 +410,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.remove(2);
-try {
-  plainArray.remove.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -510,11 +448,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.removeAt(1);
-try {
-  plainArray.removeAt.bind({}, 1)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -546,7 +479,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The removeRangeFrom method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -555,16 +488,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.removeRangeFrom(1, 3);
-try {
-  plainArray.removeRangeFrom.bind({}, 1, 3)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  plainArray.removeRangeFrom(10, 3);
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -590,7 +513,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The setValueAt method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -599,16 +522,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.setValueAt(1, 3546);
-try {
-  plainArray.setValueAt.bind({}, 1, 3546)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  plainArray.setValueAt(10, 3);
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -641,11 +554,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.toString();
-try {
-  plainArray.toString.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -672,17 +580,12 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.clear();
-try {
-  plainArray.clear.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
+forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
@@ -692,7 +595,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -719,13 +622,6 @@ plainArray.add(2, "sparrow");
 plainArray.forEach((value, index) => {
   console.log("value:" + value, index);
 });
-try {
-  plainArray.forEach.bind({}, (value, index) => {
-    console.log("value:" + value, index);
-  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -771,10 +667,5 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
-}
-try {
-  plainArray[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

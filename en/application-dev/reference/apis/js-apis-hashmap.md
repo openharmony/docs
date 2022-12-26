@@ -1,4 +1,4 @@
-# Nonlinear Container HashMap
+# @ohos.util.HashMap (Nonlinear Container HashMap)
 
 > **NOTE**
 >
@@ -53,11 +53,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 
 ```ts
 let hashMap = new HashMap();
-try {
-  let hashMap2 = HashMap();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -88,11 +83,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 ```ts
 const hashMap = new HashMap();
 let result = hashMap.isEmpty();
-try {
-  hashMap.isEmpty.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -131,11 +121,6 @@ let hashMap = new HashMap();
 let result = hashMap.hasKey("squirrel");
 hashMap.set("squirrel", 123);
 let result1 = hashMap.hasKey("squirrel");
-try {
-  hashMap.hasKey.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -174,11 +159,6 @@ let hashMap = new HashMap();
 let result = hashMap.hasValue(123);
 hashMap.set("squirrel", 123);
 let result1 = hashMap.hasValue(123);
-try {
-  hashMap.hasValue.bind({}, 123)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -217,11 +197,6 @@ let hashMap = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let result = hashMap.get("sparrow");
-try {
-  hashMap.get.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -255,11 +230,6 @@ hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let newHashMap = new HashMap();
 hashMap.setAll(newHashMap);
-try {
-  hashMap.setAll.bind({}, newHashMap)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -297,11 +267,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 ```ts
 let hashMap = new HashMap();
 let result = hashMap.set("squirrel", 123);
-try {
-  hashMap.set.bind({}, "squirrel", 123)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -340,11 +305,6 @@ let hashMap = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let result = hashMap.remove("sparrow");
-try {
-  hashMap.remove.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -371,11 +331,6 @@ let hashMap = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 hashMap.clear();
-try {
-  hashMap.clear.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -413,11 +368,6 @@ while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
 }
-try {
-  hashMap.keys.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -454,11 +404,6 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-}
-try {
-  hashMap.values.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -498,17 +443,12 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 let hashMap = new HashMap();
 hashMap.set("sparrow", 123);
 let result = hashMap.replace("sparrow", 357);
-try {
-  hashMap.replace.bind({}, "sparrow", 357)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
 ### forEach
 
-forEach(callbackfn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
@@ -518,7 +458,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -545,13 +485,6 @@ hashMap.set("gull", 357);
 hashMap.forEach((value, key) => {
   console.log("value:" + value, key);
 });
-try {
-  hashMap.forEach.bind({}, (value, key) => {
-    console.log("value:" + value, key);
-  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -590,11 +523,6 @@ while(temp != undefined) {
   console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
-try {
-  hashMap.entries.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -621,6 +549,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | 10200011 | The Symbol.iterator method cannot be bound. |
 
 **Example**
+
 ```ts
 let hashMap = new HashMap();
 hashMap.set("squirrel", 123);
@@ -639,10 +568,5 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
-}
-try {
-  hashMap[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```js
-import inputDevice from '@ohos.multimodalInput.pointer';
+import pointer from '@ohos.multimodalInput.pointer';
 ```
 
 ## 接口说明

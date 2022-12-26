@@ -68,7 +68,7 @@ HarmonyAppProvision文件示例：
 | developer-id | 表示开发者的唯一ID号，用于OEM厂商标识开发者，开源社区版本该属性不做强制要求。 | 字符串    | 必选 | 不可缺省   |
 | development-certificate  | 表示[调试证书](hapsigntool-guidelines.md)的信息。 | 数值    | 当type属性为debug时，该属性必选；否则，该属性可选。   | 不可缺省   |
 | distribution-certificate  | 表示[发布证书](hapsigntool-guidelines.md)的信息。 | 数值    | 当type属性为release时，该标签必选；否则，该标签可选。 | 不可缺省   |
-| bundle-name  | 表示应用程序的包名。 | 字符串    | 必选 | 不可缺省   |
+| bundle-name  | 表示应用程序的Bundle名称。 | 字符串    | 必选 | 不可缺省   |
 | apl  | 表示应用程序的[APL级别](accesstoken-overview.md)，系统预定义的apl包括：normal、system_basic和system_core。 | 字符串    | 必选 | 不可缺省   |
 | app-feature  | 表示应用程序的类型，系统预定义的app-feature包括hos_system_app （系统应用）和hos_normal_app（普通应用）。只有系统应用才允许调用系统API，普通应用调用系统API可能会调用失败或运行异常。 | 字符串    | 必选 | 不可缺省   |
 

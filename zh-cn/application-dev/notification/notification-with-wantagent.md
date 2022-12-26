@@ -1,11 +1,8 @@
 # 为通知添加行为意图
 
+[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)提供了封装行为意图的能力，该行为意图是指拉起指定的应用组件及发布公共事件等能力。OpenHarmony支持以通知的形式，将[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)从发布方传递至接收方，从而在接收方触发[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)中指定的意图。例如在通知消息的发布者发布通知时，通常期望用户可以通过通知栏点击拉起目标应用组件。为了达成这一目标，开发者可以将[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)封装至通知消息中，当系统接收到[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)后，在用户点击通知栏时触发[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)的意图，从而拉起目标应用组件。
 
-WantAgent提供了封装行为意图的能力，这里所说的行为意图主要是指拉起指定的应用组件及发布公共事件等能力。OpenHarmony支持以通知的形式，将WantAgent从发布方传递至接收方，从而在接收方触发WantAgent中指定的意图。例如，在通知消息的发布者发布通知时，通常期望用户可以通过通知栏点击拉起目标应用组件。为了达成这一目标，开发者可以将WantAgent封装至通知消息中，当系统接收到WantAgent后，在用户点击通知栏时触发WantAgent的意图，从而拉起目标应用组件。
-
-
-为通知添加行为意图的实现方式如下图所示：发布通知的应用向应用组件管理服务AMS（Ability Manager Service）申请WantAgent，然后随其他通知信息一起发送给桌面，当用户在桌面通知栏上点击通知时，触发WantAgent动作。
-
+为通知添加行为意图的实现方式如下图所示：发布通知的应用向应用组件管理服务AMS（Ability Manager Service）申请[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)，然后随其他通知信息一起发送给桌面，当用户在桌面通知栏上点击通知时，触发[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)动作。
 
   **图1** 携带行为意图的通知运行机制  
 ![notification-with-wantagent](figures/notification-with-wantagent.png)
@@ -13,7 +10,7 @@ WantAgent提供了封装行为意图的能力，这里所说的行为意图主�
 
 ## 接口说明
 
-具体接口描述，详见[WantAgent接口文档](../reference/apis/js-apis-wantAgent.md#wantagent%E6%A8%A1%E5%9D%97)。
+具体接口描述，详见[WantAgent接口文档](../reference/apis/js-apis-app-ability-wantAgent.md)。
 
 | | |
 | -------- | -------- |
@@ -27,26 +24,29 @@ WantAgent提供了封装行为意图的能力，这里所说的行为意图主�
 
 ## 开发步骤
 
-1. 导入模块。
-   
-   ```ts
+1. [使能通知开关](notification-enable.md)，获得用户授权后，才能使用通知功能。
+
+2. 导入模块。
+
+   ```typescript
    import NotificationManager from '@ohos.notificationManager';
    import wantAgent from '@ohos.app.ability.wantAgent';
    ```
 
-2. 创建WantAgentInfo信息。
-     场景一：创建拉起Ability的WantAgent的WantAgentInfo信息。
-     
-   ```ts
+3. 创建WantAgentInfo信息。
+
+   场景一：创建拉起UIAbility的WantAgent的WantAgentInfo信息。
+
+   ```typescript
    let wantAgentObj = null; // 用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
    
-   // 通过WantAgentInfo的operationType设置动作类型。
+   // 通过WantAgentInfo的operationType设置动作类型
    let wantAgentInfo = {
        wants: [
            {
                deviceId: '',
-               bundleName: 'com.example.test',
-               abilityName: 'com.example.test.MainAbility',
+               bundleName: 'com.example.myapplication',
+               abilityName: 'EntryAbility',
                action: '',
                entities: [],
                uri: '',
@@ -56,19 +56,19 @@ WantAgent提供了封装行为意图的能力，这里所说的行为意图主�
        operationType: wantAgent.OperationType.START_ABILITY,
        requestCode: 0,
        wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
-   }
+   };
    ```
 
-     场景二：创建发布公共事件的WantAgent的WantAgentInfo信息。
-   
-   ```ts
+   场景二：创建发布[公共事件](../application-models/common-event-overview.md)的WantAgent的WantAgentInfo信息。
+
+   ```typescript
    let wantAgentObj = null; // 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
    
-   // wantAgentInfo
+   // 通过WantAgentInfo的operationType设置动作类型
    let wantAgentInfo = {
        wants: [
            {
-               action: 'event_name', // 设置事件名。
+               action: 'event_name', // 设置事件名
                parameters: {},
            }
        ],
@@ -78,12 +78,12 @@ WantAgent提供了封装行为意图的能力，这里所说的行为意图主�
    }
    ```
 
-3. 创建WantAgent。
-   
-   ```ts
+4. 调用[getWantAgent()](../reference/apis/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)方法进行创建WantAgent。
+
+   ```typescript
    // 创建WantAgent
    wantAgent.getWantAgent(wantAgentInfo, (err, data) => {
-       if (err) {
+       if (err.code === 0) {
            console.error('[WantAgent]getWantAgent err=' + JSON.stringify(err));
        } else {
            console.info('[WantAgent]getWantAgent success');
@@ -92,9 +92,9 @@ WantAgent提供了封装行为意图的能力，这里所说的行为意图主�
    });
    ```
 
-4. 构造NotificationRequest对象。
-   
-   ```ts
+5. 构造NotificationRequest对象，并发布WantAgent通知。
+
+   ```typescript
    // 构造NotificationRequest对象
    let notificationRequest = {
        content: {
@@ -109,29 +109,14 @@ WantAgent提供了封装行为意图的能力，这里所说的行为意图主�
        label: 'TEST',
        wantAgent: wantAgentObj,
    }
-   ```
-
-5. 发布WantAgent通知。
    
-   ```ts
-   // 通知发送
    NotificationManager.publish(notificationRequest, (err) => {
        if (err) {
            console.error(`[ANS] failed to publish, error[${err}]`);
            return;
        }
-       console.info(`[ANS] publish success `);
+       console.info(`[ANS] publish success`);
    });
    ```
 
-6. 用户通过点击通知栏上的通知，触发WantAgent的动作。
-   
-   ```ts
-   // 触发WantAgent
-   let triggerInfo = {
-       code: 0
-   }
-   wantAgent.trigger(wantAgentObj, triggerInfo, (completeData) => {
-       console.info('[WantAgent]getWantAgent success, completeData: ',  + JSON.stringify(completeData));
-   });
-   ```
+6. 用户通过点击通知栏上的通知，系统会自动触发WantAgent的动作。

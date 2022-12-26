@@ -19,8 +19,9 @@ import resourceManager from '@ohos.resourceManager';
 Stage模型下Context的引用方法请参考[Stage模型的Context详细介绍](../../application-models/application-context-stage.md)。
 
 ```ts
-import Ability from '@ohos.application.Ability';
-class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         let context = this.context;
         let resourceManager = context.resourceManager;

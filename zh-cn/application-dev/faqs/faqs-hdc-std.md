@@ -24,7 +24,7 @@
 
 执行完命令后重启DevEco Studio。
 
-## 用IDE安装HAP包到开发板上无法打开
+## 用IDE安装HAP到开发板上无法打开
 
 适用于：OpenHarmony SDK 3.2.5.3版本，API9 Stage模型
 

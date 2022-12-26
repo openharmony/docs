@@ -1,8 +1,8 @@
 # ErrorObserver
 
-定义异常监听，可以作为[registerErrorObserver](js-apis-application-errorManager.md#errormanagerregistererrorobserver)的入参监听当前应用发生的异常。
+定义异常监听，可以作为[ErrorManager.on](js-apis-app-ability-errorManager.md#errormanageron)的入参监听当前应用发生的异常。
 
-## onUnhandledException
+## ErrorObserver.onUnhandledException
 
 onUnhandledException(errMsg: string): void;
 
@@ -19,12 +19,18 @@ onUnhandledException(errMsg: string): void;
 **示例：**
 
 ```ts
-import errorManager from '@ohos.application.errorManager';
+import errorManager from '@ohos.app.ability.errorManager'
 
 let observer = {
     onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ' + JSON.stringify(errorMsg));
+        console.log('HXW onUnhandledException, errorMsg: ', errorMsg);
     }
 }
-errorManager.registerErrorObserver(observer)
+
+try {
+    errorManager.on("error", observer);
+} catch (error) {
+    console.log('registerErrorObserver' + ' failed, error.code: ' + JSON.stringify(error.code) +
+        ' error.message: ' + JSON.stringify(error.message));
+}
 ```

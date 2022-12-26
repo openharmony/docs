@@ -34,7 +34,7 @@
   - 需校验`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`权限
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 1. 组件启动管控自OpenHarmony v3.2 Release版本开始落地。
 > 
 > 2. 与原本的启动规则不同，新的组件启动规则较为严格，开发者需熟知启动规则，避免业务功能异常。

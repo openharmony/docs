@@ -55,7 +55,7 @@ var media = mediaLibrary.getMediaLibrary(context);
 | ohos.permission.WRITE_MEDIA    | 允许应用读写用户外部存储中的媒体文件信息。 | user_grant |
 | ohos.permission.MEDIA_LOCATION | 允许应用访问用户媒体文件中的地理位置信息。 | user_grant |
 
-以上权限的授权方式均为user_grant（用户授权），即开发者在module.json5文件中配置对应的权限后，需要使用接口[Context.requestPermissionsFromUser](../reference/apis/js-apis-ability-context.md#abilitycontextrequestpermissionsfromuser)去校验当前用户是否已授权。如果是，应用可以直接访问/操作目标对象；否则需要弹框向用户申请授权。
+以上权限的授权方式均为user_grant（用户授权），即开发者在module.json5文件中配置对应的权限后，需要使用接口[abilityAccessCtrl.requestPermissionsFromUser](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)去校验当前用户是否已授权。如果是，应用可以直接访问/操作目标对象；否则需要弹框向用户申请授权。
 
 > **说明：**<br/>即使用户曾经授予权限，应用在调用受此权限保护的接口前，也应该先检查是否有权限。不能把之前授予的状态持久化，因为用户在动态授予后还可以通过“设置”取消应用的权限。
 
@@ -105,13 +105,15 @@ var media = mediaLibrary.getMediaLibrary(context);
 2. 调用requestPermissionsFromUser进行权限校验，可以选择需要动态申请获取的权限。
 
    ```ts
-   import Ability from '@ohos.application.Ability'
+   import Ability from '@ohos.application.Ability';
+   import abilityAccessCtrl from '@ohos.abilityAccessCtrl.d.ts';
    
    export default class MainAbility extends Ability {
        onWindowStageCreate(windowStage) {
            var permissions=['ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA']
            var permissionRequestResult;
-           this.context.requestPermissionsFromUser(permissions,(err,result) => {
+           let atManager = abilityAccessCtrl.createAtManager();
+           atManager.requestPermissionsFromUser(this.context, permissions, (err,result) => {
                if(err){
                    console.log('requestPermissionsFromUserError: ' + JSON.stringify(err));
                }else{

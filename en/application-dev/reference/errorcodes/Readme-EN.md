@@ -3,9 +3,13 @@
 - Ability Framework
   - [Ability Error Codes](errorcode-ability.md)
   - [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md)
+  - [Form Error Codes](errorcode-form.md)
 - Bundle Management
   - [Bundle Error Codes](errorcode-bundle.md)
   - [zlib Error Codes](errorcode-zlib.md)
+- Common Event and Notification
+  - [Event Error Codes](errorcode-CommonEventService.md)
+  - [DistributedNotificationService Error Codes](errorcode-DistributedNotificationService.md)
 - UI Page
   - [promptAction Error Codes](errorcode-promptAction.md)
   - [Router Error Codes](errorcode-router.md)
@@ -15,6 +19,7 @@
   - [Window Error Codes](errorcode-window.md)
 - Media
   - [Audio Error Codes](errorcode-audio.md)
+  - [Media Error Codes](errorcode-media.md)
   - [AVSession Management Error Codes](errorcode-avsession.md)
 - Resource Management
   - [I18N Error Codes](errorcode-i18n.md)
@@ -29,20 +34,38 @@
   - [HUKS Error Codes](errorcode-huks.md)
 - Data Management
   - [RDB Error Codes](errorcode-data-rdb.md)
+  - [Distributed KV Store Error Codes](errorcode-distributedKVStore.md)
   - [Preferences Error Codes](errorcode-preferences.md)
 - Network Management
   - [Upload and Download Error Codes](errorcode-request.md)
+- Connectivity
+  - [NFC Error Codes](errorcode-nfc.md)
+  - [RPC Error Codes](errorcode-rpc.md)
 - Basic Features
+  - [Accessibility Error Codes](errorcode-accessibility.md)
   - [FaultLogger Error Codes](errorcode-faultlogger.md)
+  - [Application Event Logging Error Codes](errorcode-hiappevent.md)
+  - [HiSysEvent Error Codes](errorcode-hisysevent.md)
+  - [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md)
+  - [Input Method Framework Error Codes](errorcode-inputmethod-framework.md)
+  - [Pasteboard Error Codes](errorcode-pasteboard.md)
+  - [Screen Lock Management Error Codes](errorcode-screenlock.md)
+  - [Webview Error Codes](errorcode-webview.md)
 - Account Management
   - [Account Error Codes](errorcode-account.md)
   - [App Account Error Codes](errorcode-app-account.md)
 - Device Management
+  - [Power Consumption Statistics Error Codes](errorcode-batteryStatistics.md)
+  - [Brightness Error Codes](errorcode-brightness.md)
+  - [Power Manager Error Codes](errorcode-power.md)
+  - [Running Lock Error Codes](errorcode-runninglock.md)
+  - [Thermal Manager Error Codes](errorcode-thermal.md)
   - [Device Management Error Codes](errorcode-device-manager.md)
+  - [Location Subsystem Error Codes](errorcode-geoLocationManager.md)
   - [Screen Hopping Error Codes](errorcode-multimodalinput.md)
   - [Sensor Error Codes](errorcode-sensor.md)
   - [Vibrator Error Codes](errorcode-vibrator.md)
   - [System Parameter Error Codes](errorcode-system-parameterV9.md)
-- Language Base Class Library 
-  - [Buffer Error Codes](errorcode-buffer.md)
-  - [containers Error Codes](errorcode-containers.md)
+  - [USB Error Codes](errorcode-usb.md)
+- Language Base Class Library
+  - [Utils Error Codes](errorcode-utils.md)

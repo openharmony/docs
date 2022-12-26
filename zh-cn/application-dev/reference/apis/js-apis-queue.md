@@ -1,6 +1,6 @@
 # @ohos.util.Queue (线性容器Queue)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 Queue的特点是先进先出，在尾部增加元素，在头部删除元素。根据循环队列的数据结构实现。
@@ -40,7 +40,7 @@ Queue的构造函数。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -75,7 +75,7 @@ add(element: T): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -109,7 +109,7 @@ pop(): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -143,7 +143,7 @@ getFirst(): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -186,7 +186,7 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -221,7 +221,7 @@ queue.forEach((value, index) => {
 
 **错误码：**
 
-以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |

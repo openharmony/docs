@@ -25,9 +25,9 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 ## 对象
 
 - 应用对象
-  | 属性   | 类型     | 描述                                       |
-  | ---- | ------ | ---------------------------------------- |
-  | $def | Object | 使用this.$app.$def获取在app.js中暴露的对象。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;应用对象不支持数据绑定，需主动触发UI更新。 |
+  | 属性 | 类型   | 描述                                                         |
+  | ---- | ------ | ------------------------------------------------------------ |
+  | $def | Object | 使用this.$app.$def获取在app.js中暴露的对象。<br/>> **说明：**<br/>>&nbsp;应用对象不支持数据绑定，需主动触发UI更新。 |
 
   示例代码
 
@@ -103,7 +103,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
     getAppVersion() {
       this.$set('keyMap.Version', '3.0');
       console.info("keyMap.Version = " + this.keyMap.Version); // keyMap.Version = 3.0
-
+  
       this.$delete('keyMap');
       console.info("keyMap.Version = " + this.keyMap); // log print: keyMap.Version = undefined
     }

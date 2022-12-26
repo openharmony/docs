@@ -51,8 +51,8 @@ import accessibility from '@ohos.accessibility';
 | -------- | -------- | -------- | -------- | -------- |
 | id | string | 是 | 否 | ability&nbsp;id。 |
 | name | string | 是 | 否 | ability 名。 |
-| bundleName | string | 是 | 否 | 包名。 |
-| targetBundleNames<sup>9+</sup> | Array&lt;string&gt; | 是 | 否 | 关注的目标包名。 |
+| bundleName | string | 是 | 否 | Bundle名称。 |
+| targetBundleNames<sup>9+</sup> | Array&lt;string&gt; | 是 | 否 | 关注的目标Bundle名称。 |
 | abilityTypes | Array&lt;[AbilityType](#abilitytype)&gt; | 是 | 否 | 辅助应用类型。 |
 | capabilities | Array&lt;[Capability](#capability)&gt; | 是 | 否 | 辅助应用能力列表。 |
 | description | string | 是 | 否 | 辅助应用描述。 |
@@ -209,7 +209,7 @@ try {
     console.error('failed to subscribe caption manager style state change, because ' + JSON.stringify(exception));
 }
 ```
-  
+
 ### off('enableChange')
 
 off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
@@ -773,7 +773,7 @@ accessibility.isOpenTouchGuide((err, data) => {
     }
     console.info('success data:isOpenTouchGuide : ' + JSON.stringify(data))
 });
-  ```
+```
 
 ## accessibility.sendEvent<sup>(deprecated)</sup>
 

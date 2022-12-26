@@ -1,7 +1,7 @@
 # @system.package (应用管理)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
 > - 从API version 9开始不再维护，推荐使用该模块[@ohos.bundle.bundleManager](js-apis-bundleManager.md)。
 >
@@ -77,7 +77,7 @@ export default {
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。 |
+| bundleName | string | 是 | 应用Bundle名称。 |
 | success | Function | 否 | 接口调用成功的回调函数。 |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |

@@ -25,7 +25,7 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-application-context.md)。 |
+| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-application-context.md)。 |
 | outFile | string              | 是   | 指定压缩结果的文件路径（文件的扩展名zip）。                  |
 | options | [Options](#options) | 是   | 压缩的可选参数。                                             |
 
@@ -39,6 +39,7 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 
 ```typescript
 //【压缩文件 例子1】
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
 import zlib from '@ohos.zlib';
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
@@ -59,6 +60,7 @@ zlib.zipFile(inFile, outFile, options).then((data) => {
 
 ```typescript
 // 【压缩文件夹 例子2】
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
 import zlib from '@ohos.zlib';
 let inFile = '/xxx/xxx';
 let outFile = '/xxx/xxx.zip';
@@ -89,7 +91,7 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-inner-app-context.md)，[stage模型](js-apis-application-context.md)。 |
+| inFile  | string              | 是   | 指定的待解压缩文件的文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-application-context.md)。 |
 | outFile | string              | 是   | 指定的解压文件路径。                                         |
 | options | [Options](#options) | 是   | 解压的可选参数。                                             |
 
@@ -103,6 +105,7 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 ```typescript
 // 【解压缩 例子1】
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
 import zlib from '@ohos.zlib';
 let inFile = '/xx/xxx.zip';
 let outFile = '/xxx';
@@ -131,7 +134,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 | 参数名                  | 类型                | 必填 | 说明                                                         |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-inner-app-context.md)，[stage模型](js-apis-application-context.md)。 |
+| inFile                  | string              | 是   | 指定压缩的文件夹路径或者文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-application-context.md)。 |
 | outFile                 | string              | 是   | 指定的解压文件路径。                                           |
 | options                 | [Options](#options) | 是   | 压缩的配置参数。                                               |
 | AsyncCallback<**void**> | callback            | 否   | 压缩时的回调函数。                                             |
@@ -141,8 +144,8 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
-| 900001   | The Input source file is invalid.      |
-| 900002   | The Input destination file is invalid. |
+| 900001   | The input source file is invalid.      |
+| 900002   | The input destination file is invalid. |
 
 **示例**
 
@@ -179,7 +182,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-inner-app-context.md)，[stage模型](js-apis-application-context.md)。 |
+| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-application-context.md)。 |
 | outFile | string              | 是   | 指定的解压文件路径。                                           |
 | options | [Options](#options) | 是   | 压缩的配置参数。                                               |
 
@@ -189,8 +192,8 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
 
 | 错误码ID | 错误信息                               |
 | -------- | ------------------------------------- |
-| 900001   | The Input source file is invalid.      |
-| 900002   | The Input destination file is invalid. |
+| 900001   | The input source file is invalid.      |
+| 900002   | The input destination file is invalid. |
 
 ```typescript
 // 【压缩文件 例子2】
@@ -229,7 +232,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 | 参数名                  | 类型                | 必填 | 说明                                                         |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，对应的路径参考[FA模型](js-apis-inner-app-context.md)，[stage模型](js-apis-application-context.md)。 |
+| inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-application-context.md)。 |
 | outFile                 | string              | 是   | 指定的解压后的目录路径。                                       |
 | options                 | [Options](#options) | 是   | 解压的配置参数。                                               |
 | AsyncCallback<**void**> | callback            | 否   | 解压是的回调函数。                                             |
@@ -240,8 +243,8 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 | 错误码ID | 错误信息
 | -------- | --------------------------------------|
-| 900001   | The Input source file is invalid.      |
-| 900002   | The Input destination file is invalid. |
+| 900001   | The input source file is invalid.      |
+| 900002   | The input destination file is invalid. |
 
 **示例**
 
@@ -278,7 +281,7 @@ decompressFile(inFile: string, outFile: string, options: Options): Promise\<void
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | 是   | 指定的待解压缩文件的文件路径，对应的路径参考[FA模型](js-apis-inner-app-context.md)，[stage模型](js-apis-application-context.md)。 |
+| inFile  | string              | 是   | 指定的待解压缩文件的文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-application-context.md)。 |
 | outFile | string              | 是   | 指定的解压后的目录路径。                                       |
 | options | [Options](#options) | 是   | 解压时的配置参数。                                             |
 
@@ -288,8 +291,8 @@ decompressFile(inFile: string, outFile: string, options: Options): Promise\<void
 
 | 错误码ID | 错误信息                               |
 | ------ | ------------------------------------- |
-| 900001 | The Input source file is invalid.      |
-| 900002 | The Input destination file is invalid. |
+| 900001 | The input source file is invalid.      |
+| 900002 | The input destination file is invalid. |
 
 ```typescript
 // 【解压缩 例子2】

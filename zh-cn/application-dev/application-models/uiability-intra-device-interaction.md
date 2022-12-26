@@ -26,7 +26,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 假设应用中有两个UIAbility：EntryAbility和FuncAbility（可以在应用的一个Module中，也可以在的不同Module中），需要从EntryAbility的页面中启动FuncAbility。
 
-1. 在EntryAbility中，通过调用startAbility()方法启动UIAbility，[want](../reference/apis/js-apis-app-ability-want.md)为UIAbility实例启动的入口参数，其中bundleName为待启动应用的Bundle名称，abilityName为待启动的UIAbility名称，moduleName在待启动的UIAbility属于不同的Module时添加，parameters为自定义信息参数。示例中的context的获取方式参见[获取UIAbility的Context属性](uiability-usage.md#获取uiability的上下文信息)。
+1. 在EntryAbility中，通过调用startAbility()方法启动UIAbility，[want](../reference/apis/js-apis-app-ability-want.md)为UIAbility实例启动的入口参数，其中bundleName为待启动应用的Bundle名称，abilityName为待启动的Ability名称，moduleName在待启动的UIAbility属于不同的Module时添加，parameters为自定义信息参数。示例中的context的获取方式参见[获取UIAbility的Context属性](uiability-usage.md#获取uiability的上下文信息)。
    
    ```ts
    let wantInfo = {
@@ -410,7 +410,7 @@ export default class FuncAbility extends UIAbility {
    }
    ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 当被调用方[Ability的启动模式](uiability-launch-type.md)设置为standard启动模式时，每次启动都会创建一个新的实例，那么[onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调就不会被用到。
 
 
@@ -448,7 +448,7 @@ Call调用示意图如下所示。
 
 - CalleeAbility持有一个Callee对象，通过Callee的on方法注册回调函数，当接收到Caller发送的数据时将会调用对应的回调函数。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 1. 当前仅支持系统应用使用Call调用。
 > 
 > 2. CalleeAbility的启动模式需要为单实例。

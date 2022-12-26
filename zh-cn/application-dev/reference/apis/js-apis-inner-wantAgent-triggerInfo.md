@@ -6,7 +6,7 @@
 
 | 名称       | 类型                 | 必填 | 说明        |
 | ---------- | --- |-------------------- | ----------- |
-| code       | number               | 是   | result code。 |
+| code       | number               | 是   | 提供给目标wantAgent的自定义结果码。 |
 | want       | Want                 | 否   | Want。        |
 | permission | string               | 否   | 权限定义。    |
 | extraInfo  | {[key: string]: any} | 否   | 额外数据。    |

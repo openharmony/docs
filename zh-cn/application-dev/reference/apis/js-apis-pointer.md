@@ -276,7 +276,7 @@ import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
   win.getProperties((error, properties) => {
-    var windowId = properties.id;
+    let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;
@@ -319,7 +319,7 @@ import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
   win.getProperties((error, properties) => {
-    var windowId = properties.id;
+    let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;
@@ -358,7 +358,7 @@ import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
   win.getProperties((error, properties) => {
-    var windowId = properties.id;
+    let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;
@@ -396,7 +396,7 @@ import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
   win.getProperties((error, properties) => {
-    var windowId = properties.id;
+    let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;

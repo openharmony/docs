@@ -47,10 +47,10 @@
 
 **系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
 
-| 名称       | 类型                | 可读 | 可写 | 说明                               |
-| ---------- | ------------------- | ---- | ---- | ---------------------------------- |
-| bundleName | string              | 是   | 否   | 应用的包名，用于标识应用的唯一性。 |
-| version    | [Version](#version) | 是   | 否   | 包的版本。                         |
+| 名称       | 类型                | 可读 | 可写 | 说明                                   |
+| ---------- | ------------------- | ---- | ---- | -------------------------------------- |
+| bundleName | string              | 是   | 否   | 应用Bundle名称，用于标识应用的唯一性。 |
+| version    | [Version](#version) | 是   | 否   | 包的版本。                             |
 
 ## ModuleConfigInfo
 

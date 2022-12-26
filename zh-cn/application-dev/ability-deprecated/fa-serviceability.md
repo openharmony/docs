@@ -77,7 +77,7 @@ Ability为开发者提供了startAbility()方法来启动另外一个Ability。�
 
 开发者可以通过构造包含bundleName与abilityName的Want对象来设置目标Service信息。参数的含义如下：
 
-- bundleName：表示对端应用的包名称。
+- bundleName：表示对端应用的Bundle名称。
 - abilityName：表示待启动的Ability名称。
 
 启动本地设备Service的代码示例如下：
@@ -157,7 +157,7 @@ featureAbility.startAbility(
 
     ```ts
     import prompt from '@system.prompt'
-
+    
     var option = {
         onConnect: function onConnectCallback(element, proxy) {
             console.log(`onConnectLocalService onConnectDone`);
@@ -196,7 +196,7 @@ featureAbility.startAbility(
 
     ```ts
     import featureAbility from '@ohos.ability.featureAbility'
-
+    
     let want = {
         bundleName: "com.jstest.service",
         abilityName: "com.jstest.service.ServiceAbility"
@@ -210,7 +210,7 @@ featureAbility.startAbility(
 
     ```ts
     import rpc from "@ohos.rpc"
-
+    
     class ServiceAbilityStub extends rpc.RemoteObject {
         constructor(des: any) {
             if (typeof des === 'string') {
@@ -220,7 +220,7 @@ featureAbility.startAbility(
                 return;
             }
         }
-
+    
         onRemoteRequest(code: number, data: any, reply: any, option: any) {
             console.log("onRemoteRequest called");
             // 可根据code执行不同的业务逻辑
@@ -237,7 +237,7 @@ featureAbility.startAbility(
             return true;
         }
     }
-
+    
     export default {
         onStart() {
             console.log('ServiceAbility onStart');

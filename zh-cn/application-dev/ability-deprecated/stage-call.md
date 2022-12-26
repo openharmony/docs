@@ -24,7 +24,7 @@ Call调用流程示意图如下：
  - CalleeAbility持有一个Callee对象，通过Callee的on方法注册回调函数，当接收到Caller发送的数据时将会调用对应的回调函数
 ![stage-call](figures/stage-call.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > CalleeAbility的启动模式需要为单实例。
 > 当前仅支持系统应用使用Call调用。
 
@@ -221,10 +221,13 @@ function getRemoteDeviceId() {
 ```
   在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
 ```ts
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl.d.ts';
+
 requestPermission() {
     let context = this.context
     let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC']
-    context.requestPermissionsFromUser(permissions).then((data) => {
+    let atManager = abilityAccessCtrl.createAtManager();
+    atManager.requestPermissionsFromUser(context, permissions).then((data) => {
         console.log("Succeed to request permission from user with data: "+ JSON.stringify(data))
     }).catch((error) => {
         console.log("Failed to request permission from user with error: "+ JSON.stringify(error))

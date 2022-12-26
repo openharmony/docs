@@ -1,4 +1,4 @@
-# Linear Container LinkedList
+# @ohos.util.LinkedList (Linear Container LinkedList)
 
 > **NOTE**
 >
@@ -20,9 +20,6 @@ This topic uses the following to identify the use of generics:
 ```ts
 import LinkedList from '@ohos.util.LinkedList';  
 ```
-
-
-
 
 ## LinkedList
 
@@ -56,11 +53,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 
 ```ts
 let linkedList = new LinkedList();
-try {
-  let linkedList2 = LinkedList();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -103,11 +95,6 @@ let result2 = linkedList.add(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = linkedList.add(c);
 let result4 = linkedList.add(false);
-try {
-  linkedList.add.bind({}, "b")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### addFirst
@@ -143,11 +130,6 @@ linkedList.addFirst(b);
 let c = {name : "Dylon", age : "13"};
 linkedList.addFirst(c);
 linkedList.addFirst(false);
-try {
-  linkedList.addFirst.bind({}, "b")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### insert
@@ -172,7 +154,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The insert method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -181,16 +163,6 @@ let linkedList = new LinkedList();
 linkedList.insert(0, "A");
 linkedList.insert(1, 0);
 linkedList.insert(2, true);
-try {
-  linkedList.insert.bind({}, 3, "b")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  linkedList.insert(6, "b");
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### has
@@ -228,11 +200,6 @@ let linkedList = new LinkedList();
 let result1 = linkedList.has("squirrel");
 linkedList.add("squirrel");
 let result = linkedList.has("squirrel");
-try {
-  linkedList.has.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### get
@@ -275,11 +242,6 @@ linkedList.add(1);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.get(2);
-try {
-  linkedList.get.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getLastIndexOf
@@ -322,11 +284,6 @@ linkedList.add(1);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.getLastIndexOf(2);
-try {
-  linkedList.getLastIndexOf.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getIndexOf
@@ -369,11 +326,6 @@ linkedList.add(1);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.getIndexOf(2);
-try {
-  linkedList.getIndexOf.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### removeByIndex
@@ -403,7 +355,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The removeByIndex method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -415,16 +367,6 @@ linkedList.add(5);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.removeByIndex(2);
-try {
-  linkedList.removeByIndex.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  linkedList.removeByIndex(8);
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### removeFirst
@@ -448,28 +390,18 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The removeFirst method cannot be bound. |
-| 10200010 | Container is empty. |
+| 10200010 | The container is empty. |
 
 **Example**
 
 ```ts
 let linkedList = new LinkedList();
-try {
-  linkedList.removeFirst();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.removeFirst();
-try {
-  linkedList.removeFirst.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### removeLast
@@ -493,28 +425,18 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The removeLast method cannot be bound. |
-| 10200010 | Container is empty. |
+| 10200010 | The container is empty. |
 
 **Example**
 
 ```ts
 let linkedList = new LinkedList();
-try {
-  linkedList.removeLast();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.removeLast();
-try {
-  linkedList.removeLast.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### remove
@@ -554,11 +476,6 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.remove(2);
-try {
-  linkedList.remove.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### removeFirstFound
@@ -588,27 +505,17 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The removeFirstFound method cannot be bound. |
-| 10200010 | Container is empty. |
+| 10200010 | The container is empty. |
 
 **Example**
 
 ```ts
 let linkedList = new LinkedList();
-try {
-  linkedList.removeFirstFound(4);
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.removeFirstFound(4);
-try {
-  linkedList.removeFirstFound.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### removeLastFound
@@ -638,27 +545,17 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The removeLastFound method cannot be bound. |
-| 10200010 | Container is empty. |
+| 10200010 | The container is empty. |
 
 **Example**
 
 ```ts
 let linkedList = new LinkedList();
-try {
-  linkedList.removeLastFound();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.removeLastFound(4);
-try {
-  linkedList.removeLastFound.bind({}, 4)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### clone
@@ -692,16 +589,11 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.clone();
-try {
-  linkedList.clone.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, LinkedList?: LinkedList&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, LinkedList?: LinkedList&lt;T&gt;) => void,
 thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
@@ -712,7 +604,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -742,13 +634,6 @@ linkedList.add(4);
 linkedList.forEach((value, index) => {
   console.log("value:" + value, index);
 });
-try {
-  linkedList.forEach.bind({}, (value, index) => {
-    console.log("value:" + value, index);
-  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### clear
@@ -776,11 +661,6 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 linkedList.clear();
-try {
-  linkedList.clear.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### set
@@ -811,7 +691,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The set method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -822,16 +702,6 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.set(2, "b");
-try {
-  linkedList.set.bind({}, 2, "b")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  linkedList.set(8, "b");
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### convertToArray
@@ -864,11 +734,6 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.convertToArray();
-try {
-  linkedList.convertToArray.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getFirst
@@ -902,11 +767,6 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.getFirst();
-try {
-  linkedList.getFirst.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getLast
@@ -940,11 +800,6 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 linkedList.getLast();
-try {
-  linkedList.getLast.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### [Symbol.iterator]
@@ -989,10 +844,5 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-}
-try {
-  linkedList[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

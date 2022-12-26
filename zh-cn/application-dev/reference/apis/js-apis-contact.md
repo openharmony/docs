@@ -1695,11 +1695,11 @@ email.email = "xxx@email.com";
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
-| 名称        |   类型   | 可读 | 可写 | 说明       |
-| ----------- | -------- | ---- | ---- | ---------- |
-| bundleName  | string   | 是   | 否   | 包名。     |
-| displayName | string   | 是   | 否   | 应用名称。 |
-| holderId    | number   | 是   | 是   | 应用id。   |
+| 名称        | 类型   | 可读 | 可写 | 说明         |
+| ----------- | ------ | ---- | ---- | ------------ |
+| bundleName  | string | 是   | 否   | Bundle名称。 |
+| displayName | string | 是   | 否   | 应用名称。   |
+| holderId    | number | 是   | 是   | 应用ID。     |
 
 
 **对象创建示例：**

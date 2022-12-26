@@ -1,4 +1,4 @@
-# Linear Container List
+# @ohos.util.List (Linear Container List)
 
 > **NOTE**
 >
@@ -51,11 +51,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 
 ```ts
 let list = new List();
-try {
-  let list2 = List();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -98,11 +93,6 @@ let result3 = list.add(b);
 let c = {name : "Dylon", age : "13"};
 let result4 = list.add(c);
 let result5 = list.add(false);
-try {
-  list.add.bind({}, "b")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### insert
@@ -127,7 +117,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The insert method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -136,16 +126,6 @@ let list = new List();
 list.insert("A", 0);
 list.insert(0, 1);
 list.insert(true, 2);
-try {
-  list.insert.bind({}, "b", 3)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  list.insert("b", 6);
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### has
@@ -183,11 +163,6 @@ let list = new List();
 let result = list.has("squirrel");
 list.add("squirrel");
 let result1 = list.has("squirrel");
-try {
-  list.has.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### get
@@ -230,11 +205,6 @@ list.add(1);
 list.add(2);
 list.add(4);
 let result = list.get(2);
-try {
-  list.get.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getLastIndexOf
@@ -277,11 +247,6 @@ list.add(1);
 list.add(2);
 list.add(4);
 let result = list.getLastIndexOf(2);
-try {
-  list.getLastIndexOf.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getIndexOf
@@ -325,11 +290,6 @@ list.add(2);
 list.add(4);
 list.getIndexOf(2);
 let result = list.getIndexOf(2);
-try {
-  list.getIndexOf.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### equal
@@ -375,11 +335,6 @@ obj1.add(5);
 list.equal(obj1);
 let obj2 = {name : "Dylon", age : "13"};
 let result = list.equal(obj2);
-try {
-  list.equal.bind({}, obj2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### removeByIndex
@@ -409,7 +364,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The removeByIndex method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -421,16 +376,6 @@ list.add(5);
 list.add(2);
 list.add(4);
 let result = list.removeByIndex(2);
-try {
-  list.removeByIndex.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  list.removeByIndex(8);
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### remove
@@ -470,16 +415,11 @@ list.add(4);
 list.add(5);
 list.add(4);
 let result = list.remove(2);
-try {
-  list.remove.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### replaceAllElements
 
-replaceAllElements(callbackfn: (value: T, index?: number, list?: List&lt;T&gt;) => T,
+replaceAllElements(callbackFn: (value: T, index?: number, list?: List&lt;T&gt;) => T,
 thisArg?: Object): void
 
 Replaces all elements in this container with new elements, and returns the new ones.
@@ -490,7 +430,7 @@ Replaces all elements in this container with new elements, and returns the new o
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked for the replacement.|
+| callbackFn | function | Yes| Callback invoked for the replacement.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -523,18 +463,11 @@ list.replaceAllElements((value: number, index: number) => {
 list.replaceAllElements((value: number, index: number) => {
   return value = value - 2;
 });
-try {
-  list.replaceAllElements.bind({}, (value: number, index: number) => {
-    return value = 2 * value;
-  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, List?: List&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, List?: List&lt;T&gt;) => void,
 thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
@@ -545,7 +478,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -575,14 +508,6 @@ list.add(4);
 list.forEach((value, index) => {
   console.log("value: " + value, index);
 });
-try {
-  list.forEach.bind({}, (value, index) => {
-    console.log("value: " + value, index);
-  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-
 ```
 
 ### sort
@@ -624,11 +549,6 @@ list.add(5);
 list.add(4);
 list.sort((a: number, b: number) => a - b);
 list.sort((a: number, b: number) => b - a);
-try {
-  list.sort.bind({}, (a: number, b: number) => b - a)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getSubList
@@ -659,7 +579,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The getSubList method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -672,16 +592,6 @@ list.add(4);
 let result = list.getSubList(2, 4);
 let result1 = list.getSubList(4, 3);
 let result2 = list.getSubList(2, 6);
-try {
-  list.getSubList.bind({}, 2, 4)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  list.getSubList(2, 10);
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### clear
@@ -709,11 +619,6 @@ list.add(4);
 list.add(5);
 list.add(4);
 list.clear();
-try {
-  list.clear.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### set
@@ -744,7 +649,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The set method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -755,16 +660,6 @@ list.add(4);
 list.add(5);
 list.add(4);
 list.set(2, "b");
-try {
-  list.set.bind({}, 3, "b")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  list.set(8, "b");
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### convertToArray
@@ -798,11 +693,6 @@ list.add(4);
 list.add(5);
 list.add(4);
 let result = list.convertToArray();
-try {
-  list.convertToArray.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### isEmpty
@@ -836,11 +726,6 @@ list.add(4);
 list.add(5);
 list.add(4);
 let result = list.isEmpty();
-try {
-  list.isEmpty.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getFirst
@@ -874,11 +759,6 @@ list.add(4);
 list.add(5);
 list.add(4);
 let result = list.getFirst();
-try {
-  list.getFirst.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getLast
@@ -912,11 +792,6 @@ list.add(4);
 list.add(5);
 list.add(4);
 let result = list.getLast();
-try {
-  list.getLast.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### [Symbol.iterator]
@@ -961,10 +836,5 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value: " + temp);
   temp = iter.next().value;
-}
-try {
-  list[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

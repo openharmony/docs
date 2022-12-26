@@ -121,7 +121,7 @@ Text(`count: ${this.count}`)
   ```ts
   Button('add counter')
       .onClick(() => {
-          this.counter += 2
+          this.counter += 2;
       })
   ```
 
@@ -130,7 +130,7 @@ Text(`count: ${this.count}`)
   ```ts
   Button('add counter')
       .onClick(function () {
-          this.counter += 2
+          this.counter += 2;
       }.bind(this))
   ```
 
@@ -138,11 +138,11 @@ Text(`count: ${this.count}`)
 
   ```ts
   myClickHandler(): void {
-    this.counter += 2
+    this.counter += 2;
   }
   
   ...
-
+  
   Button('add counter')
     .onClick(this.myClickHandler.bind(this))
   ```
@@ -174,10 +174,10 @@ Text(`count: ${this.count}`)
         .height(100)
       Button('click +1')
         .onClick(() => {
-          console.info('+1 clicked!')
+          console.info('+1 clicked!');
         })
     }
-
+  
     Divider()
     Row() {
       Image('test2.jpg')
@@ -185,10 +185,10 @@ Text(`count: ${this.count}`)
         .height(100)
       Button('click +2')
         .onClick(() => {
-          console.info('+2 clicked!')
+          console.info('+2 clicked!');
         })
     }
-
+  
     Divider()
     Row() {
       Image('test3.jpg')
@@ -196,7 +196,7 @@ Text(`count: ${this.count}`)
         .height(100)
       Button('click +3')
         .onClick(() => {
-          console.info('+3 clicked!')
+          console.info('+3 clicked!');
         })
     }
   }

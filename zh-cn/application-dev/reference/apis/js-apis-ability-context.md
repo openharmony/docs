@@ -31,7 +31,7 @@ class MainAbility extends Ability {
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | abilityInfo | AbilityInfo | 是 | 否 | Abilityinfo相关信息 |
-| currentHapModuleInfo | HapModuleInfo | 是 | 否 | 当前hap包的信息 |
+| currentHapModuleInfo | HapModuleInfo | 是 | 否 | 当前HAP的信息 |
 | config | [Configuration](js-apis-application-configuration.md) | 是 | 否 | 表示配置信息。 |
 
 ## AbilityContext.startAbility
@@ -1642,65 +1642,6 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
   }
   ```
 
-## AbilityContext.requestPermissionsFromUser
-
-requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void;
-
-拉起弹窗请求用户授权（callback形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| permissions | Array&lt;string&gt; | 是 | 权限列表。 |
-| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
-
-**示例：**
-
-  ```ts
-       var permissions=['com.example.permission']
-       this.context.requestPermissionsFromUser(permissions,(result) => {
-       console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
-  });
-
-  ```
-
-
-## AbilityContext.requestPermissionsFromUser
-
-requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;PermissionRequestResult&gt;;
-
-拉起弹窗请求用户授权（promise形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| permissions | Array&lt;string&gt; | 是 | 权限列表。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;[PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)&gt; | 返回一个Promise，包含接口的结果。 |
-
-**示例：**
-
-  ```ts
-   var permissions=['com.example.permission']
-       this.context.requestPermissionsFromUser(permissions).then((data) => {
-      console.log('success:' + JSON.stringify(data));
-  }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
-  });
-
-  ```
-
-
 ## AbilityContext.setMissionLabel
 
 setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
@@ -1720,7 +1661,7 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
   ```ts
   this.context.setMissionLabel("test",(result) => {
-      console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
+      console.log('setMissionLabel result:' + JSON.stringify(result));
   });
   ```
 

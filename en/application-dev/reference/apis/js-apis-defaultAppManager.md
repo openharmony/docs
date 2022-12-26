@@ -1,4 +1,4 @@
-# DefaultAppManager
+# @ohos.bundle.defaultAppManager (Default Application Management)
 
 The **DefaultAppManager** module provides APIs to query whether the current application is the default application of a specific type.
 
@@ -18,25 +18,25 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 | --------------------------------------- | ----------- | ---------------- |
 | ohos.permission.GET_DEFAULT_APPLICATION | system_core | Permission related to the default application.|
 
-For details, see in [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
+For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
 
 
 ## defaultAppMgr.ApplicationType
 
-Enumerates the application types.
+Enumerates the default application types.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-| Name    | Type    | Value   | Description                                  |
-| -------- | -------- | -------------------------------------- | -------------------------------------- |
-| BROWSER  | string   | Web Browser | Default browser.                           |
-| IMAGE    | string   | Image Gallery | Default image viewer.                        |
-| AUDIO    | string   | Audio Player | Default audio player.                        |
-| VIDEO    | string   | Video Player | Default video player.                        |
-| PDF      | string   | PDF Viewer | Default PDF reader.                     |
-| WORD     | string   | Word Viewer | Default Word viewer.                    |
-| EXCEL    | string   | Excel Viewer | Default Excel viewer.                   |
-| PPT      | string   | PPT Viewer | Default PowerPoint viewer.                     |
+| Name  | Value| Description                                  |
+| -------- | -------------------------------------- | -------------------------------------- |
+| BROWSER  | "Web Browser" | Default browser.                           |
+| IMAGE    | "Image Gallery" | Default image viewer.                        |
+| AUDIO    | "Audio Player" | Default audio player.                        |
+| VIDEO    | "Video Player" | Default video player.                        |
+| PDF      | "PDF Viewer" | Default PDF reader.                     |
+| WORD     | "Word Viewer" | Default Word viewer.                    |
+| EXCEL    | "Excel Viewer" | Default Excel viewer.                   |
+| PPT      | "PPT Viewer" | Default PowerPoint viewer.                     |
 
 ## defaultAppMgr.isDefaultApplication
 
@@ -57,10 +57,6 @@ Checks whether this application is the default application of a system-defined a
 | Type                       | Description                |
 | ------------------------- | ------------------ |
 | Promise\<boolean> | Promise used to return the result. If the application is the default application, `true` is returned; otherwise, `false` is returned.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
 
 **Example**
@@ -90,13 +86,9 @@ Checks whether this application is the default application of a system-defined a
 | type  | string                          | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmgrapplicationtype).                           |
 | callback    | AsyncCallback\<boolean> | Yes   | Callback used to return the result. If the application is the default application, `true` is returned; otherwise, `false` is returned.|
 
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
-
 **Example**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, data) => {
     if (err) {
@@ -144,7 +136,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
 .then((data) => {
@@ -195,7 +187,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err, data) => {
@@ -246,7 +238,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, data) => {
     if (err) {
@@ -302,7 +294,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
     bundleName: "com.test.app",
@@ -369,7 +361,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
@@ -486,7 +478,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId)
@@ -537,7 +529,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 **Example**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err, data) => {

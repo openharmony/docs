@@ -37,7 +37,7 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
-| config | [KVManagerConfig](#kvmanagerconfig) | 是  | 提供KVManager实例的配置信息，包括调用方的包名和用户信息。 |
+| config | [KVManagerConfig](#kvmanagerconfig) | 是  | 提供KVManager实例的配置信息，包括调用方的Bundle名称和用户信息。 |
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是  | 回调函数。返回创建的KVManager对象实例。 |
 
 **示例：**
@@ -112,14 +112,14 @@ try {
 
 ## KVManagerConfig
 
-提供KVManager实例的配置信息，包括调用方的包名和用户信息。
+提供KVManager实例的配置信息，包括调用方的Bundle名称和用户信息。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 | 名称 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | userInfo | [UserInfo](#userinfo) | 是  | 调用方的用户信息。 |
-| bundleName | string | 是  | 调用方的包名。 |
+| bundleName | string | 是  | 调用方的Bundle名称。 |
 
 ## UserInfo
 
@@ -593,7 +593,7 @@ KVStore数据库类型枚举。
 | ---   | ----  | ----------------------- |
 | DEVICE_COLLABORATION  | 0 | 表示多设备协同数据库。<br> **数据库特点：** 数据以设备的维度管理，不存在冲突；支持按照设备的维度查询数据。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore   |
 | SINGLE_VERSION  | 1 | 表示单版本数据库。<br> **数据库特点：** 数据不分设备，设备之间修改相同的key会覆盖。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| MULTI_VERSION   | 2 | 表示多版本数据库。此类型当前不允许使用。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| MULTI_VERSION   | 2 | 表示多版本数据库。当前暂不支持使用此接口。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 
 ## SecurityLevel

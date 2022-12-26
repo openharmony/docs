@@ -18,11 +18,21 @@
 
 ## 接口说明
 
-以下仅列举本指导使用的接口，更多说明可以查阅[API参考](../reference/apis/js-apis-ability-context.md)。
+以下仅列举本指导使用的接口，不同模型下使用的拉起权限弹窗的接口有差异，更多说明可以查阅[完整示例](##完整示例)。
 
+### FA模型
 | 接口名                                                       | 描述                                             |
 | ------------------------------------------------------------ | --------------------------------------------------- |
 | requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void; | 拉起弹窗请求用户授权。 |
+> 详细可查阅[API参考](../reference/apis/js-apis-ability-context.md)
+
+
+### Stage模型
+
+| 接口名                                                       | 描述                                             |
+| ------------------------------------------------------------ | --------------------------------------------------- |
+| requestPermissionsFromUser(context: Context, permissions: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void; | 拉起弹窗请求用户授权。 |
+> 详细可查阅[API参考](../reference/apis/js-apis-abilityAccessCtrl.md)
 
 ## 权限申请声明
 
@@ -149,6 +159,7 @@
 2. 调用requestPermissionsFromUser接口请求权限。运行过程中，该接口会根据应用是否已获得目标权限决定是否拉起动态弹框请求用户授权。
 3. 根据requestPermissionsFromUser接口返回值判断是否已获取目标权限。如果当前已经获取权限，则可以继续正常访问目标接口。
 
+### FA模型下的示例代码
 ```js
   //ability的onWindowStageCreate生命周期
   onWindowStageCreate() {
@@ -167,7 +178,30 @@
 
 ```
 > **说明：**
-> 动态授权申请接口的使用详见[API参考](../reference/apis/js-apis-ability-context.md)。
+> FA模型的动态授权申请接口的使用详见[API参考](../reference/apis/js-apis-ability-context.md)。
+
+### stage 模型下的示例代码
+```js
+  import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+
+  //ability的onWindowStageCreate生命周期
+  onWindowStageCreate() {
+    var context = this.context
+    var AtManager = abilityAccessCtrl.createAtManager();
+    //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
+      AtManager.requestPermissionsFromUser(context, ["ohos.permission.MANAGE_DISPOSED_APP_STATUS"]).then((data) => {
+        console.log("data type:" + typeof(data));
+        console.log("data:" + data);
+        console.log("data permissions:" + data.permissions);
+        console.log("data result:" + data.authResults);
+      }).catch((err) => {
+          console.error('Failed to start ability', err.code);
+      })
+  }
+
+```
+> **说明：**
+> stage模型的动态授权申请接口的使用详见[API参考](../reference/apis/js-apis-abilityAccessCtrl.md)。
 
 ## user_grant权限预授权
 当前正常情况下，user_grant类型的权限默认不授权，需要时应通过拉起弹框由用户确认是否授予。对于一些预置应用，比如截屏应用，不希望出现弹框，则可以通过预授权的方式完成user_grant类型权限的授权。[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json)在设备上的路径为system/etc/app/install_list_permission.json，设备开机启动时会读取该配置文件，在应用安装会对在文件中配置的user_grant类型权限授权。当前仅支持预置应用配置该文件。
@@ -178,7 +212,7 @@
 ```json
 [
   {
-    "bundleName": "com.ohos.myapplication", // 包名
+    "bundleName": "com.ohos.myapplication", // Bundle名称
     "app_signature":[], // 指纹信息
     "permissions":[
       {

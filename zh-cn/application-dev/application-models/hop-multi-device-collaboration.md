@@ -53,13 +53,13 @@
    
    ```ts
    requestPermission() {   
-       let context = this.context
-       let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC']   
-       context.requestPermissionsFromUser(permissions).then((data) => {   
-           console.info("Succeed to request permission from user with data: "+ JSON.stringify(data))
-       }).catch((error) => {       
-           console.info("Failed to request permission from user with error: "+ JSON.stringify(error))   
-       }) 
+       let context = this.context;
+       let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+       context.requestPermissionsFromUser(permissions).then((data) => {
+           console.info("Succeed to request permission from user with data: "+ JSON.stringify(data));
+       }).catch((error) => {
+           console.info("Failed to request permission from user with error: "+ JSON.stringify(error));
+       })
    }
    ```
 
@@ -135,13 +135,13 @@
    
    ```ts
    requestPermission() {   
-       let context = this.context
-       let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC']   
-       context.requestPermissionsFromUser(permissions).then((data) => {   
-           console.info("Succeed to request permission from user with data: "+ JSON.stringify(data))
-       }).catch((error) => {       
-           console.info("Failed to request permission from user with error: "+ JSON.stringify(error))   
-       }) 
+       let context = this.context;
+       let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+       context.requestPermissionsFromUser(permissions).then((data) => {
+           console.info("Succeed to request permission from user with data: "+ JSON.stringify(data));
+       }).catch((error) => {
+           console.info("Failed to request permission from user with error: "+ JSON.stringify(error));
+       })
    }
    ```
 
@@ -218,31 +218,19 @@
 
 ### 开发步骤
 
-1. 在module.json5配置数据同步权限，示例代码如下。
+1. 申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
    
-   ```json
-   {
-     "module": {
-       "requestPermissions":[  
-         {  
-           "name" : "ohos.permission.DISTRIBUTED_DATASYNC",
-         }
-       ]
-     }
-   }
-   ```
-
 2. 申请数据同步权限，弹框示例代码。
    
    ```ts
    requestPermission() {   
-       let context = this.context
-       let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC']   
-       context.requestPermissionsFromUser(permissions).then((data) => {   
-           console.info("Succeed to request permission from user with data: "+ JSON.stringify(data))
-       }).catch((error) => {       
-           console.info("Failed to request permission from user with error: "+ JSON.stringify(error))   
-       }) 
+       let context = this.context;
+       let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+       context.requestPermissionsFromUser(permissions).then((data) => {
+           console.info("Succeed to request permission from user with data: "+ JSON.stringify(data));
+       }).catch((error) => {
+           console.info("Failed to request permission from user with error: "+ JSON.stringify(error));
+       })
    }
    ```
 
@@ -250,7 +238,7 @@
 
 4. 连接一个后台服务。
    - 实现IAbilityConnection接口。IAbilityConnection提供了以下方法供开发者实现：onConnect()是用来处理连接Service成功的回调，onDisconnect()是用来处理Service异常终止的回调，onFailed()是用来处理连接Service失败的回调。
-   - 设置目标组件参数，包括目标设备ID、包名、ability名。
+   - 设置目标组件参数，包括目标设备ID、Bundle名称、Ability名称。
    - 调用connectServiceExtensionAbility发起连接。
    - 连接成功，收到目标设备返回的服务句柄。
    - 进行跨设备调用，获得目标端服务返回的结果。
@@ -291,10 +279,10 @@
               });
           },
           onDisconnect(elementName) {
-              console.info('onDisconnect callback')
+              console.info('onDisconnect callback');
           },
           onFailed(code) {
-              console.info('onFailed callback')
+              console.info('onFailed callback');
           }
       }
       // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
@@ -339,31 +327,19 @@
 
 ### 开发步骤
 
-1. 在module.json5配置数据同步权限，示例代码如下。
+1. 申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
    
-   ```json
-   {
-     "module": {
-       "requestPermissions":[  
-         {  
-           "name" : "ohos.permission.DISTRIBUTED_DATASYNC",
-         }
-       ]
-     }
-   }
-   ```
-
 2. 申请数据同步权限，弹框示例代码。
    
    ```ts
    requestPermission() {   
-       let context = this.context
-       let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC']   
-       context.requestPermissionsFromUser(permissions).then((data) => {   
-           console.info("Succeed to request permission from user with data: "+ JSON.stringify(data))
-       }).catch((error) => {       
-           console.info("Failed to request permission from user with error: "+ JSON.stringify(error))   
-       }) 
+       let context = this.context;
+       let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+       context.requestPermissionsFromUser(permissions).then((data) => {
+           console.info("Succeed to request permission from user with data: "+ JSON.stringify(data));
+       }).catch((error) => {
+           console.info("Failed to request permission from user with error: "+ JSON.stringify(error));
+       })
    }
    ```
 
@@ -394,7 +370,7 @@
    2. 导入UIAbility模块。
       
        ```ts
-       import Ability from '@ohos.app.ability.UIAbility'
+       import Ability from '@ohos.app.ability.UIAbility';
        ```
    3. 定义约定的序列化数据。
        调用端及被调用端发送接收的数据格式需协商一致，如下示例约定数据由number和string组成。
@@ -402,24 +378,24 @@
        
        ```ts
        export default class MySequenceable {
-           num: number = 0
-           str: string = ""
+           num: number = 0;
+           str: string = "";
        
            constructor(num, string) {
-               this.num = num
-               this.str = string
+               this.num = num;
+               this.str = string;
            }
        
            marshalling(messageParcel) {
-               messageParcel.writeInt(this.num)
-               messageParcel.writeString(this.str)
-               return true
+               messageParcel.writeInt(this.num);
+               messageParcel.writeString(this.str);
+               return true;
            }
        
            unmarshalling(messageParcel) {
-               this.num = messageParcel.readInt()
-               this.str = messageParcel.readString()
-               return true
+               this.num = messageParcel.readInt();
+               this.str = messageParcel.readString();
+               return true;
            }
        }
        ```
@@ -427,36 +403,36 @@
          如下示例在Ability的onCreate注册MSG_SEND_METHOD监听，在onDestroy取消监听，收到序列化数据后作相应处理并返回。应用开发者根据实际业务需要做相应处理。
          
        ```ts
-       const TAG: string = '[CalleeAbility]'
-       const MSG_SEND_METHOD: string = 'CallSendMsg'
+       const TAG: string = '[CalleeAbility]';
+       const MSG_SEND_METHOD: string = 'CallSendMsg';
        
        function sendMsgCallback(data) {
-           console.info('CalleeSortFunc called')
+           console.info('CalleeSortFunc called');
        
            // 获取Caller发送的序列化数据
-           let receivedData = new MySequenceable(0, '')
-           data.readSequenceable(receivedData)
-           console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`)
+           let receivedData = new MySequenceable(0, '');
+           data.readSequenceable(receivedData);
+           console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
        
            // 作相应处理
            // 返回序列化数据result给Caller
-           return new MySequenceable(receivedData.num + 1, `send ${receivedData.str} succeed`)
+           return new MySequenceable(receivedData.num + 1, `send ${receivedData.str} succeed`);
        }
        
        export default class CalleeAbility extends Ability {
            onCreate(want, launchParam) {
                try {
-                   this.callee.on(MSG_SEND_METHOD, sendMsgCallback)
+                   this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
                } catch (error) {
-                   console.info(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`)
+                   console.info(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`);
                }
            }
        
            onDestroy() {
                try {
-                   this.callee.off(MSG_SEND_METHOD)
+                   this.callee.off(MSG_SEND_METHOD);
                } catch (error) {
-                   console.error(TAG, `${MSG_SEND_METHOD} unregister failed with error ${JSON.stringify(error)}`)
+                   console.error(TAG, `${MSG_SEND_METHOD} unregister failed with error ${JSON.stringify(error)}`);
                }
            }
        }
@@ -466,7 +442,7 @@
    1. 导入UIAbility模块。
       
        ```ts
-       import Ability from '@ohos.app.ability.UIAbility'
+       import Ability from '@ohos.app.ability.UIAbility';
        ```
    2. 获取Caller通信接口。
        Ability的context属性实现了startAbilityByCall方法，用于获取指定通用组件的Caller通信接口。如下示例通过this.context获取Ability实例的context属性，使用startAbilityByCall拉起Callee被调用端并获取Caller通信接口，注册Caller的onRelease监听。应用开发者根据实际业务需要做相应处理。
@@ -474,8 +450,8 @@
        
        ```ts
        async onButtonGetRemoteCaller() {
-           var caller = undefined
-           var context = this.context
+           var caller = undefined;
+           var context = this.context;
        
            context.startAbilityByCall({
                deviceId: getRemoteDeviceId(),
@@ -483,16 +459,16 @@
                abilityName: 'CalleeAbility'
            }).then((data) => {
                if (data != null) {
-                   caller = data
-                   console.info('get remote caller success')
+                   caller = data;
+                   console.info('get remote caller success');
                    // 注册caller的release监听
                    caller.onRelease((msg) => {
-                       console.info(`remote caller onRelease is called ${msg}`)
+                       console.info(`remote caller onRelease is called ${msg}`);
                    })
-                   console.info('remote caller register OnRelease succeed')
+                   console.info('remote caller register OnRelease succeed');
                }
            }).catch((error) => {
-               console.error(`get remote caller failed with ${error}`)
+               console.error(`get remote caller failed with ${error}`);
            })
        }
        ```
@@ -503,34 +479,34 @@
    1. 向被调用端发送Sequenceable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Callee被调用端发送数据。
       
        ```ts
-       const MSG_SEND_METHOD: string = 'CallSendMsg'
+       const MSG_SEND_METHOD: string = 'CallSendMsg';
        async onButtonCall() {
            try {
-               let msg = new MySequenceable(1, 'origin_Msg')
-               await this.caller.call(MSG_SEND_METHOD, msg)
+               let msg = new MySequenceable(1, 'origin_Msg');
+               await this.caller.call(MSG_SEND_METHOD, msg);
            } catch (error) {
-               console.info(`caller call failed with ${error}`)
+               console.info(`caller call failed with ${error}`);
            }
        }
        ```
    2. 如下示例调用CallWithResult接口，向Callee被调用端发送待处理的数据originMsg，并将’CallSendMsg’方法处理完毕的数据赋值给backMsg。
       
        ```ts
-       const MSG_SEND_METHOD: string = 'CallSendMsg'
-       originMsg: string = ''
-       backMsg: string = ''
+       const MSG_SEND_METHOD: string = 'CallSendMsg';
+       originMsg: string = '';
+       backMsg: string = '';
        async onButtonCallWithResult(originMsg, backMsg) {
            try {
-               let msg = new MySequenceable(1, originMsg)
-               const data = await this.caller.callWithResult(MSG_SEND_METHOD, msg)
-               console.info('caller callWithResult succeed')
+               let msg = new MySequenceable(1, originMsg);
+               const data = await this.caller.callWithResult(MSG_SEND_METHOD, msg);
+               console.info('caller callWithResult succeed');
        
-               let result = new MySequenceable(0, '')
-               data.readSequenceable(result)
-               backMsg(result.str)
-               console.info(`caller result is [${result.num}, ${result.str}]`)
+               let result = new MySequenceable(0, '');
+               data.readSequenceable(result);
+               backMsg(result.str);
+               console.info(`caller result is [${result.num}, ${result.str}]`);
            } catch (error) {
-               console.info(`caller callWithResult failed with ${error}`)
+               console.info(`caller callWithResult failed with ${error}`);
            }
        }
        ```
@@ -541,11 +517,11 @@
    ```ts
    releaseCall() {
        try {
-           this.caller.release()
+           this.caller.release();
            this.caller = undefined
-           console.info('caller release succeed')
+           console.info('caller release succeed');
        } catch (error) {
-           console.info(`caller release failed with ${error}`)
+           console.info(`caller release failed with ${error}`);
        }
    }
    ```
