@@ -130,7 +130,7 @@
 | ----------- | ------ | ---- | ---- | -------------------- |
 | releaseType | string | 是   | 否   | 版本的名称。         |
 | compatible  | number | 是   | 否   | 版本的最小兼容代码。 |
-| target      | number  | 是   | 否   | 目标版本号。         |
+| target      | number | 是   | 否   | 目标版本号。         |
 
 ## Version
 

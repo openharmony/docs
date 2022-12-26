@@ -2720,7 +2720,7 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 | ----------- | ------ | ---- | ----------------------------------------------------------|
 | bundleName  | string | 是   | 表示应用程序的bundleName。                                  |
 | applicationFlags | [number](#applicationflag) | 是   | 表示用于指定将返回的ApplicationInfo对象中包含的信息。       |
-| userId      | number | 是   | 表示用户ID。                                         |
+| userId      | number | 否   | 表示用户ID。                                         |
 
 **返回值：**
 
@@ -2754,42 +2754,6 @@ try {
 }
 ```
 
-### bundleManager.getApplicationInfoSync
-
-getApplicationInfoSync(bundleName: string, applicationFlags: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
-
-以同步方法根据给定的bundleName和applicationFlags获取ApplicationInfo
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名       | 类型   | 必填 | 说明                                                       |
-| ----------- | ------ | ---- | ----------------------------------------------------------|
-| bundleName  | string | 是   | 表示应用程序的bundleName。                                  |
-| applicationFlags | [number](#applicationflag) | 是   | 表示用于指定将返回的ApplicationInfo对象中包含的信息。       |
-
-**返回值：**
-
-| 类型            | 说明                      |
-| --------------- | ------------------------- |
-| [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 返回ApplicationInfo对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                             |
-| -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found. |
-| 17700026 | The specified bundle is disabled.      |
-
-**示例：**
-
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager'
 let bundleName = 'com.example.myapplication';
@@ -2821,7 +2785,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId
 | ----------- | ------ | ---- | -------------------------------------------------------- |
 | bundleName  | string | 是   | 表示应用程序的bundleName。                                 |
 | bundleFlags | [number](#bundleflag) | 是   | 表示用于指定将返回的BundleInfo对象中包含的信息的标志。 |
-| userId      | number | 是   | 表示用户ID。                                             |
+| userId      | number | 否   | 表示用户ID。                                             |
 
 **返回值：**
 
@@ -2854,43 +2818,6 @@ try {
     console.error('getBundleInfoSync failed:' + err.message);
 }
 ```
-
-### bundleManager.getBundleInfoSync
-
-getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
-
-以同步方法根据给定的bundleName和bundleFlags获取BundleInfo。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名       | 类型   | 必填 | 说明                                                     |
-| ----------- | ------ | ---- | -------------------------------------------------------- |
-| bundleName  | string | 是   | 表示应用程序的bundleName。                                 |
-| bundleFlags | [number](#bundleflag) | 是   | 表示用于指定将返回的BundleInfo对象中包含的信息的标志。 |
-
-**返回值：**
-
-| 类型       | 说明                 |
-| ---------- | -------------------- |
-| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | 返回BundleInfo对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                             |
-| -------- | ------------------------------------- |
-| 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found.     |
-| 17700026 | The specified bundle is disabled.      |
-
-**示例：**
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager'

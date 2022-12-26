@@ -3,9 +3,7 @@
 > **说明：**
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
-
-Ability信息，未做特殊说明的属性，均通过[GET_BUNDLE_DEFAULT](js-apis-Bundle.md)获取。
+Ability信息，未做特殊说明的属性，均通过[bundle.getAbilityInfo](js-apis-Bundle.md#bundlegetabilityinfodeprecated)获取。
 
 ## AbilityInfo<sup>(deprecated)<sup>
 
@@ -31,14 +29,14 @@ Ability信息，未做特殊说明的属性，均通过[GET_BUNDLE_DEFAULT](js-a
 | type                  | AbilityType                                                  | 是   | 否   | Ability类型。<br />此属性仅可在FA模型下使用。                |
 | orientation           | [DisplayOrientation](js-apis-Bundle.md#displayorientationdeprecated) | 是   | 否   | Ability的显示模式。                                          |
 | launchMode            | [LaunchMode](js-apis-Bundle.md#launchmodedeprecated)         | 是   | 否   | Ability的启动模式。                                          |
-| permissions           | Array\<string>                                               | 是   | 否   | 被其他应用Ability调用时需要申请的权限集合。<br />通过传入GET_ABILITY_INFO_WITH_PERMISSION获取。 |
+| permissions           | Array\<string>                                               | 是   | 否   | 被其他应用Ability调用时需要申请的权限集合。<br />通过调用[bundle.getAbilityInfo](js-apis-Bundle.md#bundlegetabilityinfodeprecated)接口时，传入GET_ABILITY_INFO_WITH_PERMISSION获取。 |
 | deviceTypes           | Array\<string>                                               | 是   | 否   | Ability支持的设备类型。                                      |
 | deviceCapabilities    | Array\<string>                                               | 是   | 否   | Ability需要的设备能力。                                      |
 | readPermission        | string                                                       | 是   | 否   | 读取Ability数据所需的权限。<br />此属性仅可在FA模型下使用。  |
 | writePermission       | string                                                       | 是   | 否   | 向Ability写数据所需的权限。<br />此属性仅可在FA模型下使用。  |
-| applicationInfo       | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md)         | 是   | 否   | 应用程序的配置信息。<br />通过传入[GET_ABILITY_INFO_WITH_APPLICATION](js-apis-Bundle.md)获取。 |
+| applicationInfo       | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md)         | 是   | 否   | 应用程序的配置信息。<br />通过调用[bundle.getAbilityInfo](js-apis-Bundle.md#bundlegetabilityinfodeprecated)接口时，传入GET_ABILITY_INFO_WITH_APPLICATION获取。 |
 | uri                   | string                                                       | 是   | 否   | 获取Ability的统一资源标识符（URI）。<br />此属性仅可在FA模型下使用。 |
 | labelId               | number                                                       | 是   | 否   | Ability的标签id。                                            |
 | subType               | AbilitySubType                                               | 是   | 否   | Ability中枚举使用的模板的子类型。<br />此属性仅可在FA模型下使用。 |
-| metadata<sup>8+</sup> | Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)>     | 是   | 否   | ability的元信息。<br />通过传入GET_ABILITY_INFO_WITH_METADATA获取。 |
+| metadata<sup>8+</sup> | Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)>     | 是   | 否   | ability的元信息。<br />通过调用[bundle.getAbilityInfo](js-apis-Bundle.md#bundlegetabilityinfodeprecated)接口时，传入GET_ABILITY_INFO_WITH_METADATA获取。 |
 | enabled<sup>8+</sup>  | boolean                                                      | 是   | 否   | ability是否可用。                                            |

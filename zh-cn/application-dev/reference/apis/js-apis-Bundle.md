@@ -92,7 +92,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string                                                       | 是   | 要查询的应用Bundle名称。                                     |
-| bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag。 |
+| bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中应用信息相关flag。 |
 | userId      | number                                                       | 是   | 用户ID。取值范围：大于等于0。                                |
 | callback    | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | 是   | 程序启动作为入参的回调函数，返回应用程序信息。               |
 
@@ -135,7 +135,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string                                                       | 是   | 要查询的应用Bundle名称。                                     |
-| bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag。 |
+| bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中应用信息相关flag。 |
 | callback    | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | 是   | 程序启动作为入参的回调函数，返回应用程序信息。               |
 
 **示例：**
@@ -173,7 +173,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名     | 类型       | 必填 | 说明                                                         |
 | ---------- | ---------- | ---- | ------------------------------------------------------------ |
-| bundleFlag | BundleFlag | 是   | 用于指定返回的包信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
+| bundleFlag | BundleFlag | 是   | 用于指定返回的包信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中包信息相关flag。 |
 | userId     | number     | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
 
 **返回值：**
@@ -217,7 +217,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleFlag | BundleFlag                                                   | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
+| bundleFlag | BundleFlag                                                   | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中包信息相关flag。 |
 | callback   | AsyncCallback<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回所有可用的BundleInfo。       |
 
 **示例：**
@@ -254,7 +254,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名        | 类型                                                                | 必填  | 说明                                                                  |
 |------------|-------------------------------------------------------------------|-----|---------------------------------------------------------------------|
-| bundleFlag | BundleFlag                                                        | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
+| bundleFlag | BundleFlag                                                        | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中包信息相关flag。 |
 | userId     | number                                                            | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。                                        |
 | callback   | AsyncCallback<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回指定用户下所有包的BundleInfo。                                |
 |
@@ -297,8 +297,8 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名         | 类型            | 必填   | 说明                                                                  |
 | ----------- | ------------- | ---- |---------------------------------------------------------------------|
 | bundleName  | string        | 是    | 要查询的应用Bundle名称。                                                 |
-| bundleFlags | number        | 是    | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
-| options     | [BundleOptions](#bundleoptions) | 否    | 包含userid的查询选项。                                                      |
+| bundleFlags | number        | 是    | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中包信息相关flag。 |
+| options     | [BundleOptions](#bundleoptionsdeprecated) | 否    | 包含userid的查询选项。                                                      |
 
 **返回值：**
 
@@ -345,7 +345,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名      | 类型                                                       | 必填 | 说明                                                         |
 | ----------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName  | string                                                     | 是   | 需要查询的应用Bundle名称。                                   |
-| bundleFlags | number                                                     | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
+| bundleFlags | number                                                     | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中包信息相关flag。 |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是   | 程序启动作为入参的回调函数，返回包信息。                     |
 
 **示例：**
@@ -385,8 +385,8 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名      | 类型                                                       | 必填 | 说明                                                         |
 | ----------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName  | string                                                     | 是   | 要查询的应用Bundle名称。                                     |
-| bundleFlags | number                                                     | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
-| options     | [BundleOptions](#bundleoptions)                            | 是   | 包含userid。                                                 |
+| bundleFlags | number                                                     | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中包信息相关flag。 |
+| options     | [BundleOptions](#bundleoptionsdeprecated)                            | 是   | 包含userid。                                                 |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是   | 程序启动作为入参的回调函数，返回包信息。                     |
 
 **示例：**
@@ -761,7 +761,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名         | 类型                                                         | 必填 | 说明                                             |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
 | permissionName | string                                                       | 是   | 需要查询的权限的名称。                                 |
-| callback       | AsyncCallback<[PermissionDef](js-apis-bundle-PermissionDef)> | 是   | 程序启动作为入参的回调函数，返回定义的权限信息。 |
+| callback       | AsyncCallback<[PermissionDef](js-apis-bundle-PermissionDef.md)> | 是   | 程序启动作为入参的回调函数，返回定义的权限信息。 |
 
 **示例：**
 
@@ -839,7 +839,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名      | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag。 |
+| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中应用信息相关flag。 |
 | userId      | number | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
 
 **返回值：**
@@ -881,7 +881,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag。 |
+| bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中应用信息相关flag。 |
 | userId      | number                                                       | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
 | callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回应用信息列表。               |
 
@@ -920,7 +920,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag。 |
+| bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中应用信息相关flag。 |
 | callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回应用信息列表。               |
 
 **示例：**
@@ -953,7 +953,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名        | 类型     | 必填   | 说明           |
 | ---------- | ------ | ---- | ------------ |
 | hapFilePath | string | 是    | HAP存放路径。支持当前应用程序的绝对路径和数据目录沙箱路径。 |
-| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
+| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中包信息相关flag。 |
 
 **返回值：**
 | 类型                                                 | 说明                                                         |
@@ -990,7 +990,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名        | 类型     | 必填   | 说明           |
 | ---------- | ------ | ---- | ------------ |
 | hapFilePath | string | 是    | HAP存放路径，支持当前应用程序的绝对路径和数据目录沙箱路径。 |
-| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
+| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中包信息相关flag。 |
 | callback| AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 程序启动作为入参的回调函数，返回HAP中包含的应用程序包的信息。 |
 
 **示例：**
@@ -1339,7 +1339,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名         | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | ------------------------------------- |
 | want        | [Want](js-apis-application-want.md)   | 是    | 包含要查询的应用Bundle名称的意图。                  |
-| bundleFlags | number | 是    | 用于指定返回abilityInfo信息。取值范围：参考[BundleFlag说明](#bundleflag)中Ability信息相关flag。 |
+| bundleFlags | number | 是    | 用于指定返回abilityInfo信息。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中Ability信息相关flag。 |
 | userId      | number | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。           |
 
 **返回值：**
@@ -1390,7 +1390,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want        | [Want](js-apis-application-want.md)                          | 是   | 指示包含要查询的应用Bundle名称的意图。                       |
-| bundleFlags | number                                                       | 是   | 用于指定返回abilityInfo信息。取值范围：参考[BundleFlag说明](#bundleflag)中Ability信息相关flag。 |
+| bundleFlags | number                                                       | 是   | 用于指定返回abilityInfo信息。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中Ability信息相关flag。 |
 | userId      | number                                                       | 是   | 用户ID。取值范围：大于等于0。                                |
 | callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回Ability信息。                |
 
@@ -1435,7 +1435,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want        | [Want](js-apis-application-want.md)                          | 是   | 指示包含要查询的应用Bundle名称的意图。                       |
-| bundleFlags | number                                                       | 是   | 用于指定返回abilityInfo信息。取值范围：参考[BundleFlag说明](#bundleflag)中Ability信息相关flag。 |
+| bundleFlags | number                                                       | 是   | 用于指定返回abilityInfo信息。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中Ability信息相关flag。 |
 | callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回Ability信息。                |
 
 **示例：**

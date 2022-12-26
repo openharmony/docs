@@ -165,9 +165,9 @@ bundle.getBundleInstaller().then(installer=>{
 
 | 名称        | 类型    | 可读 | 可写 | 说明               |
 | ----------- | ------- | ---- | ---- | ------------------ |
-| userId      | number  | 是   | 否   | 指示用户id         |
-| installFlag | number  | 是   | 否   | 指示安装标志       |
-| isKeepData  | boolean | 是   | 否   | 指示参数是否有数据 |
+| userId      | number  | 是   | 是   | 指示用户id。         |
+| installFlag | number  | 是   | 是   | 指示安装标志。       |
+| isKeepData  | boolean | 是   | 是   | 指示参数是否有数据。 |
 
 ## InstallStatus<sup>(deprecated)<sup>
 

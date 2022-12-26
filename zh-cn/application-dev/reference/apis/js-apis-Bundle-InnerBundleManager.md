@@ -1,3 +1,7 @@
+
+
+
+
 # @ohos.bundle.innerBundleManager (innerBundleManager模块)
 
 本模块提供launcher应用使用的接口。
