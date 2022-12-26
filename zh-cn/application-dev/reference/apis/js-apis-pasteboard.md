@@ -29,7 +29,7 @@ import pasteboard from '@ohos.pasteboard';
 
 用于表示允许的数据字段类型。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.MiscServices.Pasteboard
+**系统能力：** SystemCapability.MiscServices.Pasteboard
 
 | 类型 | 说明 |
 | -------- | -------- |
@@ -120,11 +120,11 @@ let systemPasteboard = pasteboard.getSystemPasteboard();
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称  | 说明                    |
-| -----  | ----------------------- |
-| InApp  |表示仅允许同应用内粘贴。 |
-| LocalDevice  |表示允许在此设备中任何应用内粘贴。 |
-| CrossDevice  |表示允许跨设备在任何应用内粘贴。 |
+| 名称 | 值 | 说明                |
+| ---- |---|-------------------|
+| InApp | 0 | 表示仅允许同应用内粘贴。      |
+| LocalDevice | 1 | 表示允许在此设备中任何应用内粘贴。 |
+| CrossDevice | 2 | 表示允许跨设备在任何应用内粘贴。  |
 
 ## pasteboard.createHtmlData<sup>(deprecated)</sup>
 
@@ -418,7 +418,7 @@ convertToTextV9(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```js
-let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
+let record = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 record.convertToTextV9((err, data) => {
     if (err) {
         console.error(`Failed to convert to text. Cause: ${err.message}`);
@@ -445,7 +445,7 @@ convertToTextV9(): Promise&lt;string&gt;
 **示例：**
 
 ```js
-let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
+let record = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 record.convertToTextV9().then((data) => {
     console.info(`Succeeded in converting to text. Data: ${data}`);
 }).catch((err) => {
@@ -536,7 +536,7 @@ getPrimaryText(): string
 **示例：**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let plainText = pasteData.getPrimaryText();
 ```
 
@@ -558,7 +558,7 @@ getPrimaryHtml(): string
 
 ```js
 let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-let pasteData = pasteboard.createHtmlData(html);
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_HTML, html);
 let htmlText = pasteData.getPrimaryHtml();
 ```
 
@@ -583,7 +583,7 @@ let object = {
     bundleName: "com.example.aafwk.test",
     abilityName: "com.example.aafwk.test.TwoAbility"
 };
-let pasteData = pasteboard.createWantData(object);
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_WANT, object);
 let want = pasteData.getPrimaryWant();
 ```
 
@@ -604,7 +604,7 @@ getPrimaryUri(): string
 **示例：**
 
 ```js
-let pasteData = pasteboard.createUriData('dataability:///com.example.myapplication1/user.txt');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 let uri = pasteData.getPrimaryUri();
 ```
 
@@ -636,7 +636,7 @@ let opt = {
   scaleMode: 1
 };
 image.createPixelMap(buffer, opt).then((pixelMap) => {
-    let pasteData = pasteboard.createData('app/xml',pixelMap);
+    let pasteData = pasteboard.createData(MIMETYPE_PIXELMAP, pixelMap);
     let PixelMap = pasteData.getPrimaryPixelMap();
 });
 ```
@@ -660,10 +660,10 @@ addRecord(record: PasteDataRecord): void
 **示例：**
 
 ```js
-let pasteData = pasteboard.createUriData('dataability:///com.example.myapplication1/user.txt');
-let textRecord = pasteboard.createPlainTextRecord('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
+let textRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-let htmlRecord = pasteboard.createHtmlTextRecord(html);
+let htmlRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_HTML, html);
 pasteData.addRecord(textRecord);
 pasteData.addRecord(htmlRecord);
 ```
@@ -695,7 +695,7 @@ addRecord(mimeType: string, value: ValueType): void
 **示例：**
 
   ```js
-  let pasteData = pasteboard.createUriData('dataability:///com.example.myapplication1/user.txt');
+  let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
   let dataXml = new ArrayBuffer(256);
   pasteData.addRecord('app/xml', dataXml);
   ```
@@ -717,7 +717,7 @@ getMimeTypes(): Array&lt;string&gt;
 **示例：**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let types = pasteData.getMimeTypes();
 ```
 
@@ -738,7 +738,7 @@ getPrimaryMimeType(): string
 **示例：**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let type = pasteData.getPrimaryMimeType();
 ```
 
@@ -759,7 +759,7 @@ getProperty(): PasteDataProperty
 **示例：**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let property = pasteData.getProperty();
 ```
 
@@ -780,7 +780,7 @@ setProperty(property: PasteDataProperty): void
 **示例：**
 
 ```js
-let pasteData = pasteboard.createHtmlData('application/xml');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_HTML, 'application/xml');
 let prop = pasteData.getProperty();
 prop.shareOption = pasteboard.ShareOption.InApp;
 pasteData.setProperty(prop);
@@ -817,7 +817,7 @@ getRecord(index: number): PasteDataRecord
 **示例：**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let record = pasteData.getRecord(0);
 ```
 
@@ -838,7 +838,7 @@ getRecordCount(): number
 **示例：**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let count = pasteData.getRecordCount();
 ```
 
@@ -859,7 +859,7 @@ getTag(): string
 **示例：**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let tag = pasteData.getTag();
 ```
 
@@ -886,7 +886,7 @@ hasType(mimeType: string): boolean
 **示例：**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let hasType = pasteData.hasType(pasteboard.MIMETYPE_TEXT_PLAIN);
 ```
 
@@ -915,7 +915,7 @@ removeRecord(index: number): void
 **示例：**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 pasteData.removeRecord(0);
 ```
 
@@ -945,8 +945,8 @@ replaceRecord(index: number, record: PasteDataRecord): void
 **示例：**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
-let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+let record = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 pasteData.replaceRecord(0, record);
 ```
 ### addHtmlRecord<sup>(deprecated)</sup>
