@@ -1,6 +1,6 @@
 # @ohos.ability.particleAbility (ParticleAbility模块)
 
-particleAbility模块提供了Service类型Ability的能力，包括启动、停止指定的particleAbility，获取dataAbilityHelper，连接、断开当前Ability与指定ServiceAbility等。
+particleAbility模块提供了操作Service类型的Ability的能力，包括启动、停止指定的particleAbility，获取dataAbilityHelper，连接、断连指定的ServiceAbility等。
 
 > **说明：**
 > 
@@ -21,7 +21,7 @@ import particleAbility from '@ohos.ability.particleAbility'
 
 startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): void
 
-使用此方法启动指定的particleAbility（callback形式）。
+启动指定的particleAbility（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -29,8 +29,8 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 
 | 参数名      | 类型                                            | 必填 | 说明              |
 | --------- | ----------------------------------------------- | ---- | ----------------- |
-| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是   | 指示启动的ability |
-| callback  | AsyncCallback\<void>                            | 是   | 被指定的回调方法  |
+| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是   | 表示启动的ability |
+| callback  | AsyncCallback\<void>                            | 是   | 以callback的形式返回启动Ability的结果  |
 
 **示例：**
 
@@ -62,7 +62,7 @@ particleAbility.startAbility(
 
 startAbility(parameter: StartAbilityParameter): Promise\<void>;
 
-使用此方法启动指定的particleAbility（Promise形式）。
+启动指定的particleAbility（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -70,13 +70,13 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>;
 
 | 参数名      | 类型                                            | 必填 | 说明              |
 | --------- | ----------------------------------------------- | ---- | ----------------- |
-| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是   | 指示启动的ability |
+| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是   | 表示启动的ability |
 
 **返回值：**
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | 使用Promise形式返回结果。 |
+| Promise\<void> | Promise形式返回启动Ability的结果。 |
 
 **示例：**
 
@@ -107,7 +107,7 @@ particleAbility.startAbility(
 
 terminateSelf(callback: AsyncCallback\<void>): void
 
-终止particleAbility（callback形式）。
+销毁当前particleAbility（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -115,7 +115,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 | 参数名     | 类型                 | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
+| callback | AsyncCallback\<void> | 是   | 以callback的形式返回停止当前Ability结果 |
 
 **示例：**
 
@@ -133,7 +133,7 @@ particleAbility.terminateSelf(
 
 terminateSelf(): Promise\<void>
 
-终止particleAbility（Promise形式）。
+销毁当前particleAbility（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -141,7 +141,7 @@ terminateSelf(): Promise\<void>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | 使用Promise形式返回结果。 |
+| Promise\<void> | 使用Promise形式返回停止当前Ability结果。 |
 
 **示例：**
 
@@ -159,7 +159,7 @@ particleAbility.terminateSelf().then((data) => {
 
 acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
-获取dataAbilityHelper。
+获取dataAbilityHelper对象。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -167,13 +167,13 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 | 参数名 | 类型   | 必填 | 说明                     |
 | :--- | ------ | ---- | ------------------------ |
-| uri  | string | 是   | 指示要打开的文件的路径。 |
+| uri  | string | 是   | 表示要打开的文件的路径。 |
 
 **返回值：**
 
 | 类型              | 说明                                         |
 | ----------------- | -------------------------------------------- |
-| DataAbilityHelper | 用来协助其他Ability访问DataAbility的工具类。 |
+| [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 用来协助其他Ability访问DataAbility的工具类。 |
 
 **示例：**
 
@@ -270,7 +270,7 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | 使用Promise形式返回结果。 |
+| Promise\<void> | 使用Promise形式返回启动长时任务的结果。 |
 
 **示例**：
 
@@ -326,7 +326,7 @@ cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回取消长时任务的结果 |
 
  **示例**：
 
@@ -357,7 +357,7 @@ cancelBackgroundRunning(): Promise&lt;void&gt;;
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | 使用Promise形式返回结果。 |
+| Promise\<void> | 使用Promise形式返回取消长时任务的结果。 |
 
  **示例**：
 
@@ -376,7 +376,7 @@ particleAbility.cancelBackgroundRunning().then(() => {
 
 connectAbility(request: Want, options:ConnectOptions): number
 
-将当前ability连接到指定ServiceAbility（callback形式）。
+将当前ability与指定的ServiceAbility进行连接（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -385,18 +385,8 @@ connectAbility(request: Want, options:ConnectOptions): number
 | 参数名    | 类型           | 必填 | 说明                         |
 | ------- | -------------- | ---- | ---------------------------- |
 | request | [Want](js-apis-application-want.md)           | 是   | 表示被连接的ServiceAbility。 |
-| options | ConnectOptions | 是   | 被指定的回调方法。           |
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是   | 连接回调方法。           |
 
-
-**ConnectOptions类型说明：**
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称           | 类型       | 必填   | 说明                        |
-| ------------ | -------- | ---- | ------------------------- |
-| onConnect    | function | 是    | 连接成功时的回调函数。               |
-| onDisconnect | function | 是    | 连接失败时的回调函数。               |
-| onFailed     | function | 是    | ConnectAbility调用失败时的回调函数。 |
 
 **示例**：
 
@@ -439,7 +429,7 @@ particleAbility.disconnectAbility(connId).then((data) => {
 
 disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
 
-将功能与服务功能断开连接。
+断开当前ability与指定ServiceAbility的连接（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -489,7 +479,7 @@ var result = particleAbility.disconnectAbility(connId).then((data) => {
 
 disconnectAbility(connection: number): Promise\<void>;
 
-将功能与服务功能断开连接。
+断开当前ability与指定ServiceAbility的连接（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -538,7 +528,7 @@ particleAbility.disconnectAbility(connId).then((data) => {
 
 ## ErrorCode
 
-获取错误代码。
+表示错误码。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 

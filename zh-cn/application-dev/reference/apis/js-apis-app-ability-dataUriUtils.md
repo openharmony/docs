@@ -1,6 +1,6 @@
-# ohos.app.ability.dataUriUtils (DataUriUtils模块)
+# @ohos.app.ability.dataUriUtils (DataUriUtils模块)
 
-DataUriUtils模块提供用于处理使用DataAbilityHelper方案的对象的实用程序类的能力，包括获取，添加，更新给定uri的路径末尾的ID。
+DataUriUtils模块提供用于处理uri对象的能力，包括获取、绑定、删除和更新指定uri对象的路径末尾的ID。
 
 > **说明：**
 > 
@@ -16,7 +16,7 @@ import dataUriUtils from '@ohos.app.ability.dataUriUtils';
 
 getId(uri: string): number
 
-获取附加到给定uri的路径末尾的ID。
+获取指定uri路径末尾的ID。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -24,13 +24,13 @@ getId(uri: string): number
 
 | 名称 | 类型   | 必填 | 描述                        |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | 是   | 指示要从中获取ID的uri对象。 |
+| uri  | string | 是   | 表示uri对象。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| number | 附加到uri路径末尾的ID。 |
+| number | 返回uri路径末尾的ID。 |
 
 **示例：**
 
@@ -49,7 +49,7 @@ try {
 
 attachId(uri: string, id: number): string
 
-将给定ID附加到给定uri的路径末尾。可用于生成新的uri。
+将ID附加到uri的路径末尾。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -57,23 +57,23 @@ attachId(uri: string, id: number): string
 
 | 名称 | 类型   | 必填 | 描述                        |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | 是   | 指示要从中获取ID的uri对象。 |
-| id   | number | 是   | 指示要附加的ID。            |
+| uri  | string | 是   | 表示uri对象。 |
+| id   | number | 是   | 表示要附加的ID。            |
 
 **返回值：**
 
 | 类型   | 说明                  |
 | ------ | --------------------- |
-| string | 附加给定ID的uri对象。 |
+| string | 返回附加ID之后的uri对象。 |
 
 **示例：**
 
 ```ts
-var idint = 1122;
+var id = 1122;
 try {
     var uri = dataUriUtils.attachId(
         "com.example.dataUriUtils",
-        idint,
+        id,
     )
     console.info('attachId the uri is: ' + uri)
 } catch (err) {
@@ -88,7 +88,7 @@ try {
 
 deleteId(uri: string): string
 
-从给定uri的路径的末尾删除ID。
+删除指定uri路径末尾的ID。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -96,13 +96,13 @@ deleteId(uri: string): string
 
 | 名称 | 类型   | 必填 | 描述                        |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | 是   | 指示要从中删除ID的uri对象。 |
+| uri  | string | 是   | 表示要从中删除ID的uri对象。 |
 
 **返回值：**
 
 | 类型   | 说明                |
 | ------ | ------------------- |
-| string | ID已删除的uri对象。 |
+| string | 返回删除ID之后的uri对象。 |
 
 **示例：**
 
@@ -130,24 +130,24 @@ updateId(uri: string, id: number): string
 
 | 名称 | 类型   | 必填 | 描述                |
 | ---- | ------ | ---- | ------------------- |
-| uri  | string | 是   | 指示要更新的uri对象。 |
-| id   | number | 是   | 指示新ID。            |
+| uri  | string | 是   | 表示uri对象 |
+| id   | number | 是   | 表示要更新的ID            |
 
 **返回值：**
 
 | 类型   | 说明            |
 | ------ | --------------- |
-| string | 更新的uri对象。 |
+| string | 返回更新ID之后的uri对象。 |
 
 **示例：**
 
 ```ts
 
 try {
-    var idint = 1122;
+    var id = 1122;
     var uri = dataUriUtils.updateId(
-        "com.example.dataUriUtils",
-        idint
+        "com.example.dataUriUtils/1221",
+        id
     )
 } catch (err) {
     console.error('delete uri err, check the input uri' + err)

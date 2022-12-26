@@ -1,6 +1,6 @@
 # @ohos.ability.featureAbility (FeatureAbility模块)
 
-FeatureAbility模块提供带有UI设计与用户交互的能力，包括启动新的ability、获取dataAbilityHelper、设置此Page Ability、获取当前Ability对应的窗口，连接服务等。
+FeatureAbility模块提供与用户进行交互的Ability的能力，包括启动新的Ability、停止Ability、获取dataAbilityHelper对象、获取当前Ability对应的窗口，连接断连Service等。
 
 > **说明：**
 > 
@@ -9,7 +9,7 @@ FeatureAbility模块提供带有UI设计与用户交互的能力，包括启动�
 
 ## 使用限制
 
-FeatureAbility模块的接口只能在Page类型的Ability调用
+FeatureAbility模块的接口只能在Page类型的Ability中调用
 
 ## 导入模块
 
@@ -21,7 +21,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>): void
 
-启动新的ability（callback形式）。
+启动新的Ability（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -30,7 +30,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是    | 表示被启动的Ability。 |
-| callback  | AsyncCallback\<number>                   | 是    | 被指定的回调方法。      |
+| callback  | AsyncCallback\<number>                   | 是    | 以callback的形式返回启动Ability的结果。      |
 
 **示例：**
 
@@ -64,7 +64,7 @@ featureAbility.startAbility(
 
 startAbility(parameter: StartAbilityParameter): Promise\<number>
 
-启动新的ability（Promise形式）。
+启动新的Ability（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -73,6 +73,12 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是    | 表示被启动的Ability。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Promise\<number> | Promise形式返回启动Ability结果。 |
 
 **示例：**
 
@@ -103,7 +109,7 @@ featureAbility.startAbility(
 
 acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
-获取dataAbilityHelper。
+获取dataAbilityHelper对象。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -111,13 +117,13 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 | 参数名   | 类型     | 必填   | 说明           |
 | ---- | ------ | ---- | ------------ |
-| uri  | string | 是    | 指示要打开的文件的路径。 |
+| uri  | string | 是    | 表示要打开的文件的路径。 |
 
 **返回值：**
 
 | 类型                | 说明                              |
 | ----------------- | ------------------------------- |
-| DataAbilityHelper | 用来协助其他Ability访问DataAbility的工具类。 |
+| [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 用来协助其他Ability访问DataAbility的工具类。 |
 
 **示例：**
 
@@ -132,7 +138,7 @@ var dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
 
 startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
 
-启动一个ability，并在该ability被销毁时返回执行结果（callback形式）。
+启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -141,7 +147,7 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是    | 表示被启动的Ability。 |
-| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | 是    | 被指定的回调方法。      |
+| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | 是    | 以callback的形式返回启动Ability结果。      |
 
 **示例：**
 
@@ -173,7 +179,7 @@ featureAbility.startAbilityForResult(
 
 startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
-启动一个ability，并在该ability被销毁时返回执行结果（Promise形式）。
+启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -187,7 +193,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | 返回执行结果。 |
+| Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Promise形式返回启动Ability结果。 |
 
 **示例：**
 
@@ -229,7 +235,7 @@ featureAbility.startAbilityForResult(
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
 
-设置此Page Ability将返回给调用者的结果代码和数据并破坏此Page Ability（callback形式）。
+停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -237,8 +243,8 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 
 | 参数名        | 类型                              | 必填   | 说明             |
 | --------- | ------------------------------- | ---- | -------------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是    | 表示被启动的Ability。 |
-| callback  | AsyncCallback\<void>            | 是    | 被指定的回调方法。      |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是    | 表示停止Ability之后返回的结果。 |
+| callback  | AsyncCallback\<void>            | 是    | 以callback的形式返回停止Ability结果。      |
 
 **示例：**
 
@@ -281,7 +287,7 @@ featureAbility.terminateSelfWithResult(
 
 terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
-设置此Page Ability将返回给调用者的结果代码和数据并破坏此Page Ability（Promise形式）。
+停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -289,13 +295,13 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 | 参数名        | 类型                              | 必填   | 说明            |
 | --------- | ------------------------------- | ---- | ------------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是    | 表示被启动的Ability |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是    | 表示停止Ability之后返回的结果 |
 
 **返回值：**
 
 | 类型             | 说明              |
 | -------------- | --------------- |
-| Promise\<void> | 以Promise形式返回结果。 |
+| Promise\<void> | 以Promise形式返回停止当前Ability结果。 |
 
 **示例：**
 
@@ -345,7 +351,7 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 | 参数名       | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback\<boolean> | 是    | 被指定的回调方法。<br>如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
+| callback | AsyncCallback\<boolean> | 是    | 以callback的形式返回结果。<br>如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
 
 **示例：**
 
@@ -368,7 +374,7 @@ hasWindowFocus(): Promise\<boolean>
 
 | 类型                | 说明                                    |
 | ----------------- | ------------------------------------- |
-| Promise\<boolean> | 如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
+| Promise\<boolean> | Promise形式返回结果，如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
 
 **示例：**
 
@@ -383,7 +389,7 @@ featureAbility.hasWindowFocus().then((data) => {
 
 getWant(callback: AsyncCallback\<Want>): void
 
-获取从Ability发送的Want（callback形式）。
+获取要拉起的Ability对应的Want（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -391,7 +397,7 @@ getWant(callback: AsyncCallback\<Want>): void
 
 | 参数名       | 类型                            | 必填   | 说明        |
 | -------- | ----------------------------- | ---- | --------- |
-| callback | AsyncCallback\<[Want](js-apis-application-want.md)> | 是    | 被指定的回调方法。 |
+| callback | AsyncCallback\<[Want](js-apis-application-want.md)> | 是    | 以callback的形式返回want。 |
 
 **示例：**
 
@@ -406,7 +412,7 @@ featureAbility.getWant((err, data) => {
 
 getWant(): Promise\<Want>
 
-获取从Ability发送的Want（Promise形式）。
+获取要拉起的Ability对应的Want（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -414,7 +420,7 @@ getWant(): Promise\<Want>
 
 | 类型                      | 说明               |
 | ----------------------- | ---------------- |
-| Promise\<[Want](js-apis-application-want.md)> | 以Promise的形式返回结果。 |
+| Promise\<[Want](js-apis-application-want.md)> | 以Promise的形式返回want。 |
 
 **示例：**
 
@@ -453,7 +459,7 @@ context.getBundleName((err, data) => {
 
 terminateSelf(callback: AsyncCallback\<void>): void
 
-设置Page Ability返回给被调用方的结果代码和数据，并销毁此Page Ability（callback形式）。
+停止当前的Ability（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -461,7 +467,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 | 参数名       | 类型                   | 必填   | 说明       |
 | -------- | -------------------- | ---- | -------- |
-| callback | AsyncCallback\<void> | 是    | 被指定的回调方法 |
+| callback | AsyncCallback\<void> | 是    | 以callback的形式返回停止当前Ability结果 |
 
 **示例：**
 
@@ -478,7 +484,7 @@ featureAbility.terminateSelf(
 
 terminateSelf(): Promise\<void>
 
-设置Page Ability返回给被调用方的结果代码和数据，并销毁此Page Ability（Promise形式）。
+停止当前的Ability（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -486,7 +492,7 @@ terminateSelf(): Promise\<void>
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 以Promise的形式返回结果。 |
+| Promise\<void> | 以Promise的形式返回停止当前Ability结果。 |
 
 **示例：**
 
@@ -501,7 +507,7 @@ featureAbility.terminateSelf().then((data) => {
 
 connectAbility(request: Want, options:ConnectOptions): number
 
-将当前ability连接到指定ServiceAbility（callback形式）。
+将当前Ability与指定的ServiceAbility进行连接。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -510,13 +516,13 @@ connectAbility(request: Want, options:ConnectOptions): number
 | 参数名      | 类型             | 必填   | 说明                    |
 | ------- | -------------- | ---- | --------------------- |
 | request | [Want](js-apis-application-want.md)  | 是    | 表示被连接的ServiceAbility。 |
-| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是    | 被指定的回调方法。             |
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是    | 表示连接回调函数。             |
 
 **返回值：**
 
 | 类型     | 说明                   |
 | ------ | -------------------- |
-| number | 连接的ServiceAbilityID。 |
+| number | 连接的ServiceAbility的ID。 |
 
 **示例：**
 
@@ -558,8 +564,8 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 | 参数名         | 类型                   | 必填   | 说明                      |
 | ---------- | -------------------- | ---- | ----------------------- |
-| connection | number               | 是    | 指定断开连接的ServiceAbilityID |
-| callback   | AsyncCallback\<void> | 是    | 被指定的回调方法                |
+| connection | number               | 是    | 表示断开连接的ServiceAbility的ID |
+| callback   | AsyncCallback\<void> | 是    | 以callback的形式返回断开连接结果                |
 
 **示例：**
 
@@ -605,13 +611,13 @@ disconnectAbility(connection: number): Promise\<void>
 
 | 参数名         | 类型     | 必填   | 说明                      |
 | ---------- | ------ | ---- | ----------------------- |
-| connection | number | 是    | 指定断开连接的ServiceAbilityID |
+| connection | number | 是    | 表示断开连接的ServiceAbility的ID |
 
 **返回值：**
 
 | 类型             | 说明              |
 | -------------- | --------------- |
-| Promise\<void> | 以Promise形式返回结果。 |
+| Promise\<void> | 以Promise形式返回断开连接结果。 |
 
 **示例：**
 
@@ -659,7 +665,7 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 
 | 参数名     | 类型                          | 必填 | 说明                          |
 | -------- | ----------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback\<window.Window> | 是   | 返回与当前Ability对应的窗口。 |
+| callback | AsyncCallback\<[window.Window](js-apis-window.md#window)> | 是   | callback形式返回当前Ability对应的窗口。 |
 
 **示例：**
 
@@ -681,7 +687,7 @@ getWindow(): Promise\<window.Window>;
 
 | 类型                    | 说明                          |
 | ----------------------- | ----------------------------- |
-| Promise\<window.Window> | 返回与当前Ability对应的窗口。 |
+| Promise\<[window.Window](js-apis-window.md#window)> | Promise形式返回当前Ability对应的窗口。 |
 
 **示例：**
 
@@ -693,7 +699,7 @@ featureAbility.getWindow().then((data) => {
 
 ## AbilityWindowConfiguration
 
-使用时通过featureAbility.AbilityWindowConfiguration获取。
+表示当前Ability对应的窗口配置项，使用时通过featureAbility.AbilityWindowConfiguration获取。
 
 **示例：**
 
@@ -714,7 +720,7 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 
 ## AbilityStartSetting
 
-abilityStartSetting属性是一个定义为[key: string]: any的对象，key对应设定类型为：AbilityStartSetting枚举类型，value对应设定类型为：AbilityWindowConfiguration枚举类型。
+表示当前Ability对应的窗口属性，abilityStartSetting属性是一个定义为[key: string]: any的对象，key对应设定类型为：AbilityStartSetting枚举类型，value对应设定类型为：AbilityWindowConfiguration枚举类型。
 
 使用时通过featureAbility.AbilityStartSetting获取。
 
@@ -734,7 +740,7 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 ## ErrorCode
 
-获取错误代码。
+表示错误码。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -742,13 +748,13 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | ------------------------------ | ---- | ---------------------------------------- |
 | NO_ERROR<sup>7+</sup>          | 0    | 没有错误。 |
 | INVALID_PARAMETER<sup>7+</sup> | -1   | 无效的参数。 |
-| ABILITY_NOT_FOUND<sup>7+</sup> | -2   | 找不到能力。 |
-| PERMISSION_DENY<sup>7+</sup>   | -3   | 拒绝许可。 |
+| ABILITY_NOT_FOUND<sup>7+</sup> | -2   | 找不到ABILITY。 |
+| PERMISSION_DENY<sup>7+</sup>   | -3   | 权限拒绝。 |
 
 
 ## DataAbilityOperationType
 
-指示数据的操作类型。
+表示数据的操作类型。DataAbility批量操作数据时可以通过该枚举值指定操作类型
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -761,24 +767,26 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 ## flags说明
 
+表示处理Want的方式。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
 | 名称                                   | 值         | 说明                                       |
 | ------------------------------------ | ---------- | ---------------------------------------- |
-| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权。                         |
-| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权。                         |
-| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | 将结果返回给元能力。                               |
-| FLAG_ABILITY_CONTINUATION            | 0x00000008 | 确定是否可以将本地设备上的功能迁移到远程设备。                  |
-| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | 指定组件是否属于OHOS。                            |
-| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 指定是否启动某个能力。                              |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 指示URI上可能持久化的授权。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                          |
-| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 按照前缀匹配的方式验证URI权限。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                        |
-| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 支持分布式调度系统中的多设备启动。                        |
-| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。           |
-| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是可拉回的。                               |
-| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能。                       |
-| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 如果未安装，使用后台模式安装该功能。                       |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给 **[ohos.app.Context](js-apis-ability-context.md)** 中**startAbility**方法的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
-| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。                       |
-| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 指示如果启动能力的现有实例已位于任务堆栈的顶部，则将重用该实例。否则，将创建一个新的能力实例。 |
+| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 表示对URI执行读取操作的授权。                         |
+| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 表示对URI执行写入操作的授权。                         |
+| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | 表示将结果返回给源Ability。                               |
+| FLAG_ABILITY_CONTINUATION            | 0x00000008 | 表示是否可以将本地设备上的Ability迁移到远端设备。                  |
+| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | 表示组件是否不属于OHOS。                            |
+| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 表示某个Ability是否已经启动。                              |
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 表示URI上可能持久化的授权。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                          |
+| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 表示按照前缀匹配的方式验证URI权限。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                        |
+| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 表示支持分布式调度系统中的多设备启动。                        |
+| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 表示无论宿主应用是否已启动，都将使用前台模式启动Ability。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。           |
+| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是否是可反向的。                               |
+| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 表示如果未安装指定的Ability，将安装该Ability。                       |
+| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 表示如果未安装指定的Ability，将在后台安装该Ability。                       |
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 表示清除其他任务的操作。可以为传递给 **[ohos.app.Context](js-apis-ability-context.md)** 中**startAbility**方法的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
+| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 表示在已有的任务栈上创建任务的操作。                       |
+| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 表示如果启动的Ability的现有实例已位于任务栈顶，则将重用该实例。否则，将创建一个新的Ability实例。 |
 

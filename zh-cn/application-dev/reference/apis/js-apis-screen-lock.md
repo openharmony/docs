@@ -266,7 +266,7 @@ try {
 
 ## screenlock.sendScreenLockEvent<sup>9+</sup>
 
-sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt;boolean&gt;): void
+sendScreenLockEvent(event: string, parameter: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 应用发送事件到锁屏服务。使用callback异步回调。
 
@@ -278,7 +278,7 @@ sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt
 
 | 参数名    | 类型            | 必填 | 说明                             |
 | --------- | ------------------------ | ---- | -------------------- |
-| event     | String                   | 是   | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "lockScreenResult"，表示锁屏结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
+| event     | string                   | 是   | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "lockScreenResult"，表示锁屏结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
 | parameter | number                   | 是   | 事件结果。<br/>- parameter为0，表示成功。例如解锁成功或锁屏成功。<br/>- parameter为1，表示失败。例如解锁失败或锁屏失败。<br/>- parameter为2，表示取消。例如锁屏取消或解锁取消。 |
 | callback  | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示发送事件成功；返回false表示发送事件失败。                 |
 
@@ -304,7 +304,7 @@ screenlock.sendScreenLockEvent('unlockScreenResult', 0, (err, result) => {
 
 ## screenlock.sendScreenLockEvent<sup>9+</sup>
 
-sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
+sendScreenLockEvent(event: string, parameter: number): Promise&lt;boolean&gt;
 
 应用发送事件到锁屏服务。使用Promise异步回调。
 
@@ -316,7 +316,7 @@ sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
 | 参数名    | 类型   | 必填 | 说明                                       |
 | --------- | ------ | ---- | --------------------------------------- |
-| event     | String | 是   | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "lockScreenResult"，表示锁屏结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
+| event     | string | 是   | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "lockScreenResult"，表示锁屏结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
 | parameter | number | 是   | 事件结果。<br/>- parameter为0，表示成功。例如解锁成功或锁屏成功。<br/>- parameter为1，表示失败。例如解锁失败或锁屏失败。<br/>- parameter为2，表示取消。例如锁屏取消或解锁取消。 |
 
 **返回值：** 
