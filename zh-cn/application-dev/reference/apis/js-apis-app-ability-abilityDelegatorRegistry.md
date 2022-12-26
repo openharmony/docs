@@ -29,7 +29,7 @@ Ability生命周期状态，该类型为枚举，可配合[AbilityDelegator](js-
 
 ## AbilityDelegatorRegistry.getAbilityDelegator
 
-getAbilityDelegator(): [AbilityDelegator](js-apis-inner-application-abilityDelegator.md)
+getAbilityDelegator(): AbilityDelegator
 
 获取应用程序的[AbilityDelegator](js-apis-inner-application-abilityDelegator.md)对象，该对象能够使用调度测试框架的相关功能。
 
@@ -64,7 +64,7 @@ abilityDelegator.startAbility(want, (err)=>{
 
 ## AbilityDelegatorRegistry.getArguments
 
-getArguments(): [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)
+getArguments(): AbilityDelegatorArgs
 
 获取单元测试参数[AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)对象。
 

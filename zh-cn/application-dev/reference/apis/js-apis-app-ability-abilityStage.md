@@ -36,7 +36,7 @@ class MyAbilityStage extends AbilityStage {
 
 ## AbilityStage.onAcceptWant
 
-onAcceptWant(want: [Want](js-apis-app-ability-want.md)): string;
+onAcceptWant(want: Want): string;
 
 启动一个specified ability时触发的事件。
 
@@ -68,7 +68,7 @@ class MyAbilityStage extends AbilityStage {
 
 ## AbilityStage.onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: [Configuration](js-apis-app-ability-configuration.md)): void;
+onConfigurationUpdate(newConfig: Configuration): void;
 
 环境变化通知接口，发生全局配置变更时回调。
 
@@ -92,7 +92,7 @@ class MyAbilityStage extends AbilityStage {
 
 ## AbilityStage.onMemoryLevel
 
-onMemoryLevel(level: [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel)): void;
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 当系统已决定调整内存时调用。例如，当该功能在后台运行时，没有足够的内存来运行尽可能多的后台进程时可以使用。
 
@@ -116,7 +116,7 @@ class MyAbilityStage extends AbilityStage {
 
 ## AbilityStage.context
 
-context: [AbilityStageContext](js-apis-inner-application-abilityStageContext.md);
+context: AbilityStageContext;
 
 指示AbilityStage的上下文。
 

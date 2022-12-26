@@ -166,7 +166,7 @@ appManager.getAppMemorySize((err, data) => {
 
 ## appManager.getProcessRunningInformation<sup>9+</sup>
 
-getProcessRunningInformation(): Promise\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>>;
+getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 
 获取有关运行进程的信息。
 
@@ -194,7 +194,7 @@ appManager.getProcessRunningInformation().then((data) => {
 
 ## appManager.getProcessRunningInformation<sup>9+</sup>
 
-getProcessRunningInformation(callback: AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>>): void;
+getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInformation>>): void;
 
 获取有关运行进程的信息。
 
@@ -224,7 +224,7 @@ appManager.getProcessRunningInformation((err, data) => {
 
 ## appManager.on
 
-on(type: "applicationState", observer: [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md)): number;
+on(type: "applicationState", observer: ApplicationStateObserver): number;
 
 注册全部应用程序的状态观测器。
 
@@ -277,7 +277,7 @@ try {
 
 ## appManager.on
 
-on(type: "applicationState", observer: [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md), bundleNameList: Array\<string>): number;
+on(type: "applicationState", observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
 
 注册指定应用程序的状态观测器。
 
@@ -412,9 +412,9 @@ try {
 
 ## appManager.getForegroundApplications
 
-getForegroundApplications(callback: AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>>): void;
+getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
-获取前台的应用程序。
+获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -447,9 +447,9 @@ try {
 
 ## appManager.getForegroundApplications
 
-getForegroundApplications(callback: AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>>): void;
+getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
-获取前台进程的应用程序。
+获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -482,9 +482,9 @@ try {
 
 ## appManager.getForegroundApplications
 
-getForegroundApplications(): Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>>;
+getForegroundApplications(): Promise\<Array\<AppStateData>>;
 
-获取前台进程的应用程序。
+获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 

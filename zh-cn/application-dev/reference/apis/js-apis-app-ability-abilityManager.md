@@ -31,7 +31,7 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 
 ## updateConfiguration
 
-updateConfiguration(config: [Configuration](js-apis-app-ability-configuration.md), callback: AsyncCallback\<void>): void
+updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 通过传入修改的配置项来更新配置（callback形式）。
 
@@ -74,7 +74,7 @@ try {
 
 ## updateConfiguration
 
-updateConfiguration(config: [Configuration](js-apis-app-ability-configuration.md)): Promise\<void>
+updateConfiguration(config: Configuration): Promise\<void>
 
 通过修改配置来更新配置（Promise形式）。
 
@@ -120,7 +120,7 @@ try {
 
 ## getAbilityRunningInfos
 
-getAbilityRunningInfos(callback: AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>): void
+getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): void
 
 获取Ability运行相关信息（callback形式）。
 
@@ -153,7 +153,7 @@ try {
 
 ## getAbilityRunningInfos
 
-getAbilityRunningInfos(): Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>
+getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 获取Ability运行相关信息（Promise形式）。
 
@@ -184,7 +184,7 @@ try {
 
 ## getExtensionRunningInfos
 
-getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>>): void
+getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<ExtensionRunningInfo>>): void
 
 获取关于运行扩展能力的信息（callback形式）。
 
@@ -220,7 +220,7 @@ try {
 
 ## getExtensionRunningInfos
 
-getExtensionRunningInfos(upperLimit: number): Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>>
+getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
 
 获取关于运行扩展能力的信息（Promise形式）。
  
@@ -259,7 +259,7 @@ try {
 
 ## getTopAbility<sup>9+</sup>
 
-getTopAbility(callback: AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)>): void;
+getTopAbility(callback: AsyncCallback\<ElementName>): void;
 
 获取窗口焦点的ability接口（callback形式）。
 
@@ -285,7 +285,7 @@ abilityManager.getTopAbility((err,data) => {
 
 ## getTopAbility
 
-getTopAbility(): Promise\<[ElementName](js-apis-bundleManager-elementName.md)>;
+getTopAbility(): Promise\<ElementName>;
 
 获取窗口焦点的ability接口（Promise形式）。
  

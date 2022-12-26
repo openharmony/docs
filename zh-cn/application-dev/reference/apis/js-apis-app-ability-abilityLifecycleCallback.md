@@ -17,7 +17,7 @@ import AbilityLifecycleCallback from "@ohos.app.ability.AbilityLifecycleCallback
 
 ## AbilityLifecycleCallback.onAbilityCreate
 
-onAbilityCreate(ability: [UIAbility](js-apis-app-ability-uiAbility.md)): void;
+onAbilityCreate(ability: UIAbility): void;
 
 注册监听应用上下文的生命周期后，在ability创建时触发回调。
 
@@ -32,7 +32,7 @@ onAbilityCreate(ability: [UIAbility](js-apis-app-ability-uiAbility.md)): void;
 
 ## AbilityLifecycleCallback.onWindowStageCreate
 
-onWindowStageCreate(ability: [UIAbility](js-apis-app-ability-uiAbility.md), windowStage: [window.WindowStage](js-apis-window.md#windowstage9)): void;
+onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void;
 
 注册监听应用上下文的生命周期后，在windowStage创建时触发回调。
 
@@ -48,7 +48,7 @@ onWindowStageCreate(ability: [UIAbility](js-apis-app-ability-uiAbility.md), wind
 
 ## AbilityLifecycleCallback.onWindowStageActive
 
-onWindowStageActive(ability: [UIAbility](js-apis-app-ability-uiAbility.md), windowStage: [window.WindowStage](js-apis-window.md#windowstage9)): void;
+onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void;
 
 注册监听应用上下文的生命周期后，在windowStage获焦时触发回调。
 
@@ -64,7 +64,7 @@ onWindowStageActive(ability: [UIAbility](js-apis-app-ability-uiAbility.md), wind
 
 ## AbilityLifecycleCallback.onWindowStageInactive
 
-onWindowStageInactive(ability: [UIAbility](js-apis-app-ability-uiAbility.md), windowStage: [window.WindowStage](js-apis-window.md#windowstage9)): void;
+onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void;
 
 注册监听应用上下文的生命周期后，在windowStage失焦时触发回调。
 
@@ -80,7 +80,7 @@ onWindowStageInactive(ability: [UIAbility](js-apis-app-ability-uiAbility.md), wi
 
 ## AbilityLifecycleCallback.onWindowStageDestroy
 
-onWindowStageDestroy(ability: [UIAbility](js-apis-app-ability-uiAbility.md), windowStage: [window.WindowStage](js-apis-window.md#windowstage9)): void;
+onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void;
 
 注册监听应用上下文的生命周期后，在windowStage销毁时触发回调。
 
@@ -96,7 +96,7 @@ onWindowStageDestroy(ability: [UIAbility](js-apis-app-ability-uiAbility.md), win
 
 ## AbilityLifecycleCallback.onAbilityDestroy
 
-onAbilityDestroy(ability: [UIAbility](js-apis-app-ability-uiAbility.md)): void;
+onAbilityDestroy(ability: UIAbility): void;
 
 注册监听应用上下文的生命周期后，在ability销毁时触发回调。
 
@@ -111,7 +111,7 @@ onAbilityDestroy(ability: [UIAbility](js-apis-app-ability-uiAbility.md)): void;
 
 ## AbilityLifecycleCallback.onAbilityForeground
 
-onAbilityForeground(ability: [UIAbility](js-apis-app-ability-uiAbility.md)): void;
+onAbilityForeground(ability: UIAbility): void;
 
 注册监听应用上下文的生命周期后，在ability的状态从后台转到前台时触发回调。
 
@@ -126,7 +126,7 @@ onAbilityForeground(ability: [UIAbility](js-apis-app-ability-uiAbility.md)): voi
 
 ## AbilityLifecycleCallback.onAbilityBackground
 
-onAbilityBackground(ability: [UIAbility](js-apis-app-ability-uiAbility.md)): void;
+onAbilityBackground(ability: UIAbility): void;
 
 注册监听应用上下文的生命周期后，在ability的状态从前台转到后台时触发回调。
 
@@ -141,7 +141,7 @@ onAbilityBackground(ability: [UIAbility](js-apis-app-ability-uiAbility.md)): voi
 
 ## AbilityLifecycleCallback.onAbilityContinue
 
-onAbilityContinue(ability: [UIAbility](js-apis-app-ability-uiAbility.md)): void;
+onAbilityContinue(ability: UIAbility): void;
 
 注册监听应用上下文的生命周期后，在ability迁移时触发回调。
 
