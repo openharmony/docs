@@ -20,7 +20,7 @@ Hap包签名工具支持本地签名需求的开发，为OpenHarmony应用提供
 
    OpenHarmony采用RFC5280标准构建X509证书信任体系。用于应用签名的OpenHarmony证书共有三级，分为：根CA证书、中间CA证书、最终实体证书，其中最终实体证书分为应用签名证书和profile签名证书。应用签名证书表示应用开发者的身份，可保证系统上安装的应用来源可追溯，profile签名证书实现对profile文件的签名进行验签，保证profile文件的完整性。
 
- - HAP包：
+ - HAP：
 
    HAP（OpenHarmony Ability Package）是Ability的部署包，OpenHarmony应用代码围绕Ability组件展开，它是由一个或者多个Ability组成。
 

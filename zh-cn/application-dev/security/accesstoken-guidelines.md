@@ -212,7 +212,7 @@
 ```json
 [
   {
-    "bundleName": "com.ohos.myapplication", // 包名
+    "bundleName": "com.ohos.myapplication", // Bundle名称
     "app_signature":[], // 指纹信息
     "permissions":[
       {

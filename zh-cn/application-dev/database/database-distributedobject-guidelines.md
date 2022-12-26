@@ -17,7 +17,7 @@
 
 **表1** 分布式数据对象实例创建接口
 
-| 包名 | 接口名 | 描述 |
+| Bundle名称 | 接口名 | 描述 |
 | -------- | -------- | -------- |
 | ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | 创建一个分布式数据对象实例，用于数据操作。 <br>-&nbsp;source：设置分布式数据对象的属性。<br>-&nbsp;DistributedObject：返回值是创建好的分布式数据对象。 |
 
@@ -27,7 +27,7 @@
 
 **表2** 分布式数据对象sessionId创建接口
 
-| 包名 | 接口名 | 描述 |
+| Bundle名称 | 接口名 | 描述 |
 | -------- | -------- | -------- |
 | ohos.data.distributedDataObject| genSessionId(): string | 创建一个sessionId，可作为分布式数据对象的sessionId。 |
 
@@ -125,7 +125,7 @@
     
    grantPermission();
    ```
-    
+   
 3. 获取分布式数据对象实例。
 
    ```js
@@ -176,7 +176,7 @@
            });
        }
    } 
-
+   
    // 发起方要在changeCallback里刷新界面，则需要将正确的this绑定给changeCallback
    localObject.on("change", this.changeCallback.bind(this));
    ```

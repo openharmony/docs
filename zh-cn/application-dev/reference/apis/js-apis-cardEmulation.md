@@ -67,8 +67,8 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是 | 应用的描述，由包名和组件名组成。 |
-| type | [CardType](#cardtype) | 是 | 应用的描述，由包名和组件名组成。 |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是 | 应用的描述，由Bundle名称和组件名称组成。 |
+| type | [CardType](#cardtype) | 是 | 应用的描述，由Bundle名称和组件名称组成。 |
 
 **返回值：**
 

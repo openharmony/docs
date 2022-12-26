@@ -83,6 +83,13 @@ export default class EntryAbility extends UIAbility {
 
     onWindowStageDestroy() {
         // 释放UI界面资源
+        // 例如在onWindowStageDestroy()中注销获焦/失焦等WindowStage事件
+        try {
+            windowStage.off('windowStageEvent');
+        } catch (exception) {
+            console.error('Failed to disable the listener for window stage event changes. Cause:' +
+                JSON.stringify(exception));
+        };
     }
 }
 ```

@@ -34,10 +34,10 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 **参数：**
 
-  | 参数名        | 类型                                       | 必填   | 说明                                   |
-  | ---------- | ---------------------------------------- | ---- | ------------------------------------ |
-  | bundleName | string                                   | 是    | 指示应用程序的包名。                           |
-  | callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | 是    | DeviceManager实例创建时调用的回调，返回设备管理器对象实例。 |
+| 参数名     | 类型                                                 | 必填 | 说明                                                        |
+| ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| bundleName | string                                               | 是   | 指示应用程序的Bundle名称。                                  |
+| callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | 是   | DeviceManager实例创建时调用的回调，返回设备管理器对象实例。 |
 
 **错误码：**
 
@@ -638,7 +638,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
     console.error("publishDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
-  
+
 ### unPublishDeviceDiscovery<sup>9+</sup>
 
 unPublishDeviceDiscovery(publishId: number): void

@@ -29,7 +29,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
-| bundleName | string | 是   | 应用程序包名称。 |
+| bundleName | string | 是   | 应用Bundle名称。 |
 | userId     | number | 是   | 被查询的用户id。|
 
 **返回值：**
@@ -81,7 +81,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[Lau
 
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
-| bundleName | string | 是   | 应用程序包名称。|
+| bundleName | string | 是   | 应用Bundle名称。 |
 | userId     | number | 是   | 被查询的用户id。 |
 
 **返回值：**
@@ -226,7 +226,7 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback<Array\<[ShortcutInfo
 
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
-| bundleName | string | 是   | 应用程序包名称。 |
+| bundleName | string | 是   | 应用Bundle名称。 |
 
 **返回值：**
 
@@ -274,7 +274,7 @@ getShortcutInfo(bundleName : string) : Promise<Array\<[ShortcutInfo](js-apis-bun
 
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
-| bundleName | string | 是   | 应用程序包名称。 |
+| bundleName | string | 是   | 应用Bundle名称。 |
 
 **返回值：**
 

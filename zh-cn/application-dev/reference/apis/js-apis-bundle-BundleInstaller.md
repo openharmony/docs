@@ -25,10 +25,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 参数名          | 类型                                                 | 必填 | 说明                                                         |
-| --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| bundleFilePaths | Array&lt;string&gt;                                  | 是   | 指示存储hap包的沙箱路径。沙箱路径的获取方法参见[获取应用的沙箱路径](#获取应用的沙箱路径)。|
-| param           | [InstallParam](#installparamdeprecated)                        | 是   | 指定安装所需的其他参数。                                     |
+| 参数名          | 类型                                                         | 必填 | 说明                                                         |
+| --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleFilePaths | Array&lt;string&gt;                                          | 是   | 指示存储HAP的沙箱路径。沙箱路径的获取方法参见[获取应用的沙箱路径](#获取应用的沙箱路径)。 |
+| param           | [InstallParam](#installparamdeprecated)                      | 是   | 指定安装所需的其他参数。                                     |
 | callback        | AsyncCallback&lt;[InstallStatus](#installstatusdeprecated)&gt; | 是   | 程序启动作为入参的回调函数，返回安装状态信息。               |
 
 **示例：**
@@ -75,10 +75,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 参数名     | 类型                                                 | 必填 | 说明                                           |
-| ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
-| bundleName | string                                               | 是   | 应用包名。                                           |
-| param      | [InstallParam](#installparamdeprecated)                        | 是   | 指定卸载所需的其他参数。                       |
+| 参数名     | 类型                                                         | 必填 | 说明                                           |
+| ---------- | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
+| bundleName | string                                                       | 是   | 应用Bundle名称。                               |
+| param      | [InstallParam](#installparamdeprecated)                      | 是   | 指定卸载所需的其他参数。                       |
 | callback   | AsyncCallback&lt;[InstallStatus](#installstatusdeprecated)&gt; | 是   | 程序启动作为入参的回调函数，返回安装状态信息。 |
 
 **示例：**
@@ -124,10 +124,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 参数名     | 类型                                                 | 必填 | 说明                                           |
-| ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
-| bundleName | string                                               | 是   | 应用包名。                                           |
-| param      | [InstallParam](#installparamdeprecated)                        | 是   | 指定应用恢复所需的其他参数。                       |
+| 参数名     | 类型                                                         | 必填 | 说明                                               |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
+| bundleName | string                                                       | 是   | 应用Bundle名称。                                   |
+| param      | [InstallParam](#installparamdeprecated)                      | 是   | 指定应用恢复所需的其他参数。                       |
 | callback   | AsyncCallback&lt;[InstallStatus](#installstatusdeprecated)&gt; | 是   | 程序启动作为入参的回调函数，返回应用恢复状态信息。 |
 
 **示例：**

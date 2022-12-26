@@ -20,8 +20,8 @@ import formInfo from '@ohos.app.form.formInfo';
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| bundleName  | string               | 是    | 否     | 卡片所属包的包名。                           |
-| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名。                       |
+| bundleName  | string               | 是    | 否     | 卡片所属包的Bundle名称。                   |
+| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
 | name        | string               | 是    | 否     | 卡片名称。                                 |
 | description | string               | 是    | 否     | 卡片描述。   |
@@ -31,7 +31,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | isDefault    | boolean      | 是    | 否     | 卡片是否是默认卡片。                              |
 | updateEnabled  | boolean               | 是    | 否     | 卡片是否使能更新。                    |
 | formVisibleNotify  | string               | 是    | 否     | 卡片是否使能可见通知。            |
-| relatedBundleName | string               | 是    | 否     | 卡片所属的相关联包名。                   |
+| relatedBundleName | string               | 是    | 否     | 卡片所属的相关联Bundle名称。           |
 | scheduledUpdateTime        | string               | 是    | 否     | 卡片更新时间。     |
 | formConfigAbility | string               | 是    | 否     | 卡片配置ability。指定长按卡片弹出的选择框内，编辑选项所对应的ability。   |
 | updateDuration        | string             | 是    | 否     | 卡片更新周期。 |
@@ -102,7 +102,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | TEMPORARY_KEY          | "ohos.extra.param.key.form_temporary"   | 临时卡片。   |
 | ABILITY_NAME_KEY   | "ohos.extra.param.key.ability_name"   | ability名称   |
 | DEVICE_ID_KEY    | "ohos.extra.param.key.device_id"   | 设备标识。<br/>**系统接口**: 此接口为系统接口。   |
-| BUNDLE_NAME_KEY    | "ohos.extra.param.key.bundle_name"   | 指示指定要获取的捆绑包名称的键。|
+| BUNDLE_NAME_KEY    | "ohos.extra.param.key.bundle_name"   | 指示指定要获取的捆绑Bundle名称的键。 |
 
 ##  FormDimension
 

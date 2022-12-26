@@ -5,7 +5,7 @@
 开发者通过[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio)工具按照业务的需要创建多个Module，在相应的Module中完成自身业务的开发。
 
 ## 2. 调试
-通过DevEco Studio编译打包，生成单个或者多个HAP包。真机基于HAP包进行安装、卸载调试，调试指南可参考[应用程序包调试方法](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section10491183521520)，其中包括了单HAP与多HAP通过DevEco Studio工具的安装调试方法。
+通过DevEco Studio编译打包，生成单个或者多个HAP。真机基于HAP进行安装、卸载调试，调试指南可参考[应用程序包调试方法](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section10491183521520)，其中包括了单HAP与多HAP通过DevEco Studio工具的安装调试方法。
 
 应用程序包也可以通过[hdc_std工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)(可通过OpenHarmony SDK获取，在SDK的toolchains目录下)进行安装、更新与卸载，通过hdc_std安装HAP时，HAP的路径为开发平台上的文件路径，以Windows开发平台为例，命令参考如下：
 ```

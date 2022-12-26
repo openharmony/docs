@@ -18,7 +18,7 @@
 
 - 每个OpenHarmony应用可以包含多个.hap文件，一个应用中的.hap文件合在一起称为一个Bundle，而bundleName就是应用的唯一标识（请参见[app.json5配置文件](app-configuration-file.md)中的bundleName标签）。需要特别说明的是：在应用上架到应用市场时，需要把应用包含的所有.hap文件（即Bundle）打包为一个.app后缀的文件用于上架，这个.app文件称为App Pack（Application Package），其中同时包含了描述App Pack属性的pack.info文件；在云端分发和端侧安装时，都是以HAP为单位进行分发和安装的。
 
-- 打包后的HAP包结构包括ets、libs、resources等文件夹和resources.index、module.json、pack.info等文件。
+- 打包后的HAP结构包括ets、libs、resources等文件夹和resources.index、module.json、pack.info等文件。
   - ets目录用于存放应用代码编译后的字节码文件。
   - libs目录用于存放库文件。库文件是OpenHarmony应用依赖的第三方代码（.so二进制文件）。
   - resources目录用于存放应用的资源文件（字符串、图片等），便于开发者使用和维护，详见[资源文件的使用](../key-features/multi-device-app-dev/resource-usage.md)。

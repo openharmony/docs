@@ -180,7 +180,7 @@ export default function abilityTest() {
 
 | 执行参数全写  | 执行参数缩写 | 执行参数含义                           | 执行参数示例                       |
 | ------------- | ------------ | -------------------------------------- | ---------------------------------- |
-| --bundleName  | -b           | 应用包名                               | - b com.test.example               |
+| --bundleName  | -b           | 应用Bundle名称                         | - b com.test.example               |
 | --packageName | -p           | 应用模块名，适用于FA模型应用           | - p com.test.example.entry         |
 | --moduleName  | -m           | 应用模块名，适用于STAGE模型应用        | -m entry                           |
 | NA            | -s           | 特定参数，以<key, value>键值对方式传入 | - s unittest OpenHarmonyTestRunner |

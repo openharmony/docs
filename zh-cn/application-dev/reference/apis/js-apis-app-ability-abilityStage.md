@@ -1,6 +1,6 @@
 # @ohos.app.ability.AbilityStage (AbilityStage)
 
-AbilityStage是HAP包的运行时类。
+AbilityStage是HAP的运行时类。
 
 AbilityStage类提供在HAP加载的时候，通知开发者，可以在此进行该HAP的初始化（如资源预加载，线程创建等）能力。
 
@@ -44,9 +44,9 @@ onAcceptWant(want: Want): string;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
 
 **返回值：**
 

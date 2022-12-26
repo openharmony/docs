@@ -26,8 +26,8 @@ WorkInfo设置参数约束见[延迟任务调度约束](./background-task-overvi
 
 参数名| 类型 |描述                       
 ---------------------------------------------------------|-----------------------------------------|---------------------------------------------------------
-workId| number | 延迟任务Id（必填）
-bundleName| string | 延迟任务包名（必填）
+workId| number | 延迟任务ID（必填） 
+bundleName| string | 延迟任务Bundle名称（必填） 
 abilityName| string | 延迟任务回调通知的组件名（必填）
 networkType  | [NetworkType](../reference/apis/js-apis-resourceschedule-workScheduler.md#networktype) | 网络类型
 isCharging| boolean | 是否充电 
