@@ -384,7 +384,7 @@ console.log(params.toString());
 | port | string | 是 | 是 | 获取和设置URL的端口部分。 |
 | protocol | string | 是 | 是 | 获取和设置URL的协议部分。 |
 | search | string | 是 | 是 | 获取和设置URL的序列化查询部分。 |
-| searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。<br/> 此属性从API version 7开始支持,从API version 9 开始被废弃。<br/>建议使用params<sup>9+</sup>替代。|
+| searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。<br/>- **说明：** 此属性从API version 7开始支持，从API version 9开始被废弃。建议使用params<sup>9+</sup>替代。|
 | params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。 |
 | username | string | 是 | 是 | 获取和设置URL的用户名部分。 |
 
