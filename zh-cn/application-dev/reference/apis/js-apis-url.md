@@ -366,6 +366,128 @@ params.append('fod', '3');
 console.log(params.toString());
 ```
 
+## URL
+
+### 属性
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| hash | string | 是 | 是 | 获取和设置URL的片段部分。 |
+| host | string | 是 | 是 | 获取和设置URL的主机部分。 |
+| hostname | string | 是 | 是 | 获取和设置URL的主机名部分，不带端口。 |
+| href | string | 是 | 是 | 获取和设置序列化的URL。 |
+| origin | string | 是 | 否 | 获取URL源的只读序列化。 |
+| password | string | 是 | 是 | 获取和设置URL的密码部分。 |
+| pathname | string | 是 | 是 | 获取和设置URL的路径部分。 |
+| port | string | 是 | 是 | 获取和设置URL的端口部分。 |
+| protocol | string | 是 | 是 | 获取和设置URL的协议部分。 |
+| search | string | 是 | 是 | 获取和设置URL的序列化查询部分。 |
+| searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。<br/>- **说明：** 此属性从API version 7开始支持，从API version 9开始被废弃。建议使用params<sup>9+</sup>替代。|
+| params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。 |
+| username | string | 是 | 是 | 获取和设置URL的用户名部分。 |
+
+### constructor<sup>(deprecated)</sup>
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[parseURL<sup>9+</sup>](#parseurl9)替代。
+
+constructor(url: string, base?: string | URL)
+
+URL的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| url | string | 是 | 入参对象。 |
+| base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象 |
+
+**示例：**
+
+```js
+let mm = 'https://username:password@host:8080';
+let a = new Url.URL("/", mm); // Output 'https://username:password@host:8080/';
+let b = new Url.URL(mm); // Output 'https://username:password@host:8080/';
+new Url.URL('path/path1', b); // Output 'https://username:password@host:8080/path/path1';
+let c = new Url.URL('/path/path1', b);  // Output 'https://username:password@host:8080/path/path1'; 
+new Url.URL('/path/path1', c); // Output 'https://username:password@host:8080/path/path1';
+new Url.URL('/path/path1', a); // Output 'https://username:password@host:8080/path/path1';
+new Url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
+new Url.URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
+new Url.URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
+new Url.URL('https://www.example.com', ); // Output https://www.example.com/
+new Url.URL('https://www.example.com', b); // Output https://www.example.com/
+```
+
+### parseURL<sup>9+</sup>
+
+static parseURL(url : string, base?: string | URL): URL
+
+URL静态成员函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| url | string | 是 | 入参对象。 |
+| base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象 |
+
+**示例：**
+
+```js
+let mm = 'https://username:password@host:8080';
+Url.URL.parseURL(mm); // Output 'https://username:password@host:8080/';
+```
+
+### tostring
+
+toString(): string
+
+将解析过后的URL转化为字符串。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 用于返回网址的字符串序列化。 |
+
+**示例：**
+
+```js
+const url = new Url.URL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+url.toString();
+```
+
+
+### toJSON
+
+toJSON(): string
+
+将解析过后的URL转化为JSON字符串。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 用于返回网址的字符串序列化。 |
+
+**示例：**
+```js
+const url = new Url.URL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+url.toJSON();
+```
+
 ## URLSearchParams<sup>(deprecated)</sup>
 
 ### constructor<sup>(deprecated)</sup>
@@ -763,127 +885,5 @@ let url = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new Url.URLSearchParams(url.search.slice(1)); 
 params.append('fod', '3');
 console.log(params.toString());
-```
-
-## URL
-
-### 属性
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
-
-| 名称 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| hash | string | 是 | 是 | 获取和设置URL的片段部分。 |
-| host | string | 是 | 是 | 获取和设置URL的主机部分。 |
-| hostname | string | 是 | 是 | 获取和设置URL的主机名部分，不带端口。 |
-| href | string | 是 | 是 | 获取和设置序列化的URL。 |
-| origin | string | 是 | 否 | 获取URL源的只读序列化。 |
-| password | string | 是 | 是 | 获取和设置URL的密码部分。 |
-| pathname | string | 是 | 是 | 获取和设置URL的路径部分。 |
-| port | string | 是 | 是 | 获取和设置URL的端口部分。 |
-| protocol | string | 是 | 是 | 获取和设置URL的协议部分。 |
-| search | string | 是 | 是 | 获取和设置URL的序列化查询部分。 |
-| searchParams | URLSearchParams | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。 |
-| URLParams | URLParams | 是 | 否 | 获取URLParams表示URL查询参数的对象。 |
-| username | string | 是 | 是 | 获取和设置URL的用户名部分。 |
-
-### constructor<sup>(deprecated)</sup>
-
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[parseURL<sup>9+</sup>](#parseurl9)替代。
-
-constructor(url: string, base?: string | URL)
-
-URL的构造函数。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| url | string | 是 | 入参对象。 |
-| base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象 |
-
-**示例：**
-
-```js
-let mm = 'https://username:password@host:8080';
-let a = new Url.URL("/", mm); // Output 'https://username:password@host:8080/';
-let b = new Url.URL(mm); // Output 'https://username:password@host:8080/';
-new Url.URL('path/path1', b); // Output 'https://username:password@host:8080/path/path1';
-let c = new Url.URL('/path/path1', b);  // Output 'https://username:password@host:8080/path/path1'; 
-new Url.URL('/path/path1', c); // Output 'https://username:password@host:8080/path/path1';
-new Url.URL('/path/path1', a); // Output 'https://username:password@host:8080/path/path1';
-new Url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
-new Url.URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
-new Url.URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
-new Url.URL('https://www.example.com', ); // Output https://www.example.com/
-new Url.URL('https://www.example.com', b); // Output https://www.example.com/
-```
-
-### parseURL<sup>9+</sup>
-
-static parseURL(url : string, base?: string | URL): URL
-
-URL静态成员函数。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| url | string | 是 | 入参对象。 |
-| base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象 |
-
-**示例：**
-
-```js
-let mm = 'https://username:password@host:8080';
-Url.URL.parseURL(mm); // Output 'https://username:password@host:8080/';
-```
-
-### tostring
-
-toString(): string
-
-将解析过后的URL转化为字符串。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| string | 用于返回网址的字符串序列化。 |
-
-**示例：**
-
-```js
-const url = new Url.URL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toString();
-```
-
-
-### toJSON
-
-toJSON(): string
-
-将解析过后的URL转化为JSON字符串。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| string | 用于返回网址的字符串序列化。 |
-
-**示例：**
-```js
-const url = new Url.URL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toJSON();
 ```
 <!--no_check-->
