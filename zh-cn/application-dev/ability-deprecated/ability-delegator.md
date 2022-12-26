@@ -5,7 +5,7 @@ Delegator测试框架是OpenHarmony提供的一套开发者应用自测试框架
 
 ## 约束与限制
 
-测试框架相关接口只能在测试hap包中使用，只有通过`aa test`命令或者DevEco Studio启动测试环境后相关接口才能生效。
+测试框架相关接口只能在测试HAP中使用，只有通过`aa test`命令或者DevEco Studio启动测试环境后相关接口才能生效。
 
 
 ## 测试框架启动
@@ -17,7 +17,7 @@ Delegator测试框架是OpenHarmony提供的一套开发者应用自测试框架
 
 ### aa test启动
 
-开发者可通过 `aa test` 命令启动测试框架，开发者可以自行指定使用的TestRunner以及TestRunner所在hap包的package name或module name，具体命令示例如下:
+开发者可通过 `aa test` 命令启动测试框架，开发者可以自行指定使用的TestRunner以及TestRunner所在HAP的package name或module name，具体命令示例如下:
 
 **FA模型：**
 
@@ -31,9 +31,9 @@ aa test -b BundleName -m com.example.myapplicationfaets -s unittest OpenHarmonyT
 ```
 | 参数            | 是否必选 | 参数说明                                                     |
 | --------------- | -------- | ------------------------------------------------------------ |
-| -b              | 是       | TestRunner所在hap包的bundle name。              |
-| -p              | 是       | TestRunner所在hap包的package name，FA模型使用。              |
-| -m              | 是       | TestRunner所在hap包的module name，Stage模型使用。            |
+| -b              | 是       | TestRunner所在HAP的bundle name。              |
+| -p              | 是       | TestRunner所在HAP的package name，FA模型使用。              |
+| -m              | 是       | TestRunner所在HAP的module name，Stage模型使用。            |
 | -s unittest     | 是       | 启用的TestRunner名称，TestRunner名称和文件名需要保持一致。   |
 | -w              | 否       | 测试用例超时时间，单位为秒，如果未指定或指定小于等于0的整数，测试框架会一直等待测试代码调用finishTest才退出。 |
 | -s \<key>\<value> | 否       | 支持以key-value的方式输入任何参数，输入的参数可通过AbilityDelegatorArgs.parameters以key-value的方式获取。示例：-s classname myTest，key为"-s classname"，value为"myTest"。 |
@@ -58,7 +58,7 @@ AbilityDelegatorArgs是测试框架提供的测试参数类。开发者可以使
 
 ## AbilityMonitor介绍
 
-AbilityMonitor是测试框架提供用来绑定并监听Ability类。开发者可以使用AbilityMonitor绑定Ability，并将AbilityMonitor添加到监听列表。绑定后Ability的创建、生命周期变化等会触发AbilityMonitor内相关回调函数，开发者可以在对应回调函数内进行测试验证。具体详细内容请参考AbilityMonitor API接口说明[AbilityMonitor](../reference/apis/js-apis-application-abilityMonitor.md)。
+AbilityMonitor是测试框架提供用来绑定并监听Ability类。开发者可以使用AbilityMonitor绑定Ability，并将AbilityMonitor添加到监听列表。绑定后Ability的创建、生命周期变化等会触发AbilityMonitor内相关回调函数，开发者可以在对应回调函数内进行测试验证。具体详细内容请参考AbilityMonitor API接口说明[AbilityMonitor](../reference/apis/js-apis-inner-application-abilityMonitor.md)。
 
 **示例**
 

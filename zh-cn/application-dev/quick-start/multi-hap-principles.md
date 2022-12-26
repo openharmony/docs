@@ -4,7 +4,7 @@
 多HAP机制主要是为方便开发者进行模块化管理。HAP和应用运行时的进程并不是一一对应的，具体运行机制如下：
 
 
-- 默认情况下，应用中（同一包名）的所有UIAbility、ServiceExtensionAbility、DataShareExtensionAbility运行在同一个独立进程中，其他同类型ExtensionAbility分别运行在单独的进程。
+- 默认情况下，应用中（同一Bundle名称）的所有UIAbility、ServiceExtensionAbility、DataShareExtensionAbility运行在同一个独立进程中，其他同类型ExtensionAbility分别运行在单独的进程。
 
 - HAP支持在module.json5（Stage模型）或者config.json（FA模型）中通过process标签配置单独的进程（仅系统应用支持，三方应用不支持）。配置了process的HAP，其组件运行在单独的process进程中，多个HAP可以配置相同的process，则这些HAP运行在相同进程中，process配置的详细说明请参见[module.json5配置文件](module-configuration-file.md)。
 

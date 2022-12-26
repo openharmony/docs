@@ -10,7 +10,7 @@ IDE支持在一个应用工程中进行多个HAP的开发与构建，如下图�
 
 1. IDE开发态视图
    - AppScope目录
-      - [app.json5](app-configuration-file.md)：配置应用全局描述信息，例如应用包名、版本号、应用图标、应用名称和依赖的SDK版本号等。
+      - [app.json5](app-configuration-file.md)：配置应用全局描述信息，例如应用Bundle名称、版本号、应用图标、应用名称和依赖的SDK版本号等。
       - resources目录：放置应用的图标资源和应用名称字符串资源。
 
          **说明：**

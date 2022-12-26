@@ -38,7 +38,7 @@
   - **src &gt; main &gt; ets &gt; entryability**：应用/服务的入口。
   - **src &gt; main &gt; ets &gt; pages**：应用/服务包含的页面。
   - **src &gt; main &gt; resources**：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。关于资源文件，详见[资源文件的分类](resource-categories-and-access.md#资源分类)。
-  - **src &gt; main &gt; module.json5**：模块配置文件。主要包含HAP包的配置信息、应用/服务在具体设备上的配置信息以及应用/服务的全局配置信息。具体的配置文件说明，详见[module.json5配置文件](module-configuration-file.md)。
+  - **src &gt; main &gt; module.json5**：模块配置文件。主要包含HAP的配置信息、应用/服务在具体设备上的配置信息以及应用/服务的全局配置信息。具体的配置文件说明，详见[module.json5配置文件](module-configuration-file.md)。
   - **build-profile.json5**：当前的模块信息 、编译信息配置项，包括buildOption、targets配置等。
   - **hvigorfile.ts**：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。
 

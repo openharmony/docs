@@ -8,7 +8,7 @@
 
 ## 接口说明
 
-详细接口见[接口文档](../reference/apis/js-apis-commonEvent.md#commoneventcreatesubscriber)。
+详细接口见[接口文档](../reference/apis/js-apis-commonEventManager.md#commoneventmanagersubscribe)。
 
 | 接口名 | 接口描述 |
 | -------- | -------- |

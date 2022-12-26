@@ -1,6 +1,6 @@
 
 
-# Webview
+# @ohos.web.webview (Webview)
 
 The **Webview** module provides APIs for web control.
 
@@ -11,6 +11,7 @@ The **Webview** module provides APIs for web control.
 > - You can preview how the APIs of this module work on a real device. The preview is not yet available in the DevEco Studio Previewer.
 
 ## Required Permissions
+
 **ohos.permission.INTERNET**, required for accessing online web pages. For details about how to apply for a permission, see [Declaring Permissions](../../security/accesstoken-guidelines.md).
 
 ## Modules to Import
@@ -2122,6 +2123,366 @@ struct WebComponent {
 }
 ```
 
+### getOriginalUrl
+
+getOriginalUrl(): string
+
+Obtains the original URL of this page.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                   |
+| ------ | ----------------------- |
+| string | Original URL of the current page.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getOrgUrl')
+        .onClick(() => {
+          try {
+            let url = this.controller.getOriginalUrl();
+            console.log("original url: " + url);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getFavicon
+
+getFavicon(): image.PixelMap
+
+Obtains the favicon of this page.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type                                  | Description                           |
+| -------------------------------------- | ------------------------------- |
+| [PixelMap](js-apis-image.md#pixelmap7) | **PixelMap** object of the favicon of the page.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import image from "@ohos.multimedia.image"
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+    @State pixelmap: image.PixelMap = undefined;
+
+  build() {
+    Column() {
+      Button('getFavicon')
+        .onClick(() => {
+          try {
+            this.pixelmap = this.controller.getFavicon();
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### setNetworkAvailable
+
+setNetworkAvailable(enable: boolean): void
+
+Sets the **window.navigator.onLine** attribute in JavaScript.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                             |
+| ------ | ------- | ---- | --------------------------------- |
+| enable | boolean | Yes  | Whether to enable **window.navigator.onLine**.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401      | Invalid input parameter.                                     |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('setNetworkAvailable')
+        .onClick(() => {
+          try {
+            this.controller.setNetworkAvailable(true);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### hasImage
+
+hasImage(callback: AsyncCallback<boolean>): void
+
+Checks whether this page contains images. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                      |
+| -------- | ----------------------- | ---- | -------------------------- |
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 401      | Invalid input parameter.                                     |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('hasImageCb')
+        .onClick(() => {
+          try {
+            this.controller.hasImage((err, data) => {
+                if (error) {
+                  console.info(`hasImage error: ` + JSON.stringify(error))
+                  return;
+                }
+                console.info("hasImage: " + data);
+              });
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### hasImage
+
+hasImage(): Promise<boolean>
+
+Checks whether this page contains images. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type             | Description                                   |
+| ----------------- | --------------------------------------- |
+| Promise\<boolean> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 401      | Invalid input parameter.                                     |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('hasImagePm')
+        .onClick(() => {
+          try {
+            this.controller.hasImage().then((data) => {
+                console.info('hasImage: ' + data);
+              })
+              .catch(function (error) {
+                console.error("error: " + error);
+              })
+          } catch (error) {
+            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### removeCache
+
+removeCache(clearRom: boolean): void
+
+Clears the cache in the application. This API will clear the cache for all webviews in the same application.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name  | Type   | Mandatory| Description                                                    |
+| -------- | ------- | ---- | -------------------------------------------------------- |
+| clearRom | boolean | Yes  | Whether to clear the cache in the ROM and RAM at the same time. The value **false** means to only clear the cache in the RAM.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401      | Invalid input parameter.                                     |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('removeCache')
+        .onClick(() => {
+          try {
+            this.controller.removeCache(false);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getBackForwardEntries
+
+getBackForwardEntries(): BackForwardList
+
+Obtains the historical information list of the current webview.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type                               | Description                       |
+| ----------------------------------- | --------------------------- |
+| [BackForwardList](#backforwardlist) | Historical information list of the current webview.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getBackForwardEntries')
+        .onClick(() => {
+          try {
+            let list = this.controller.getBackForwardEntries()
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 Implements a **WebCookie** object to manage behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookie** object.
@@ -3750,3 +4111,89 @@ Provides usage information of the Web SQL Database.
 | origin | string | Yes | No| Index of the origin.|
 | usage  | number | Yes | No| Storage usage of the origin.    |
 | quota  | number | Yes | No| Storage quota of the origin.  |
+
+## BackForwardList
+
+Provides the historical information list of the current webview.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name        | Type  | Readable| Writable| Description                        |
+| ------------ | ------ | ---- | ---- | ---------------------------- |
+| currentIndex | number | Yes  | No  | Index of the current page in the page history stack.|
+| size         | number | Yes  | No  | Number of indexes in the history stack.      |
+
+### getItemAtIndex
+
+getItemAtIndex(index: number): HistoryItem
+
+Obtains the page record with the specified index in the history stack.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | ---------------------- |
+| index  | number | Yes  | Index of the target page record in the history stack.|
+
+**Return value**
+
+| Type                       | Description        |
+| --------------------------- | ------------ |
+| [HistoryItem](#historyitem) | Historical page record.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 401      | Invalid input parameter |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import image from "@ohos.multimedia.image"
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State icon: image.PixelMap = undefined;
+    
+  build() {
+    Column() {
+      Button('getBackForwardEntries')
+        .onClick(() => {
+          try {
+            let list = this.controller.getBackForwardEntries();
+            let historyItem = list.getItemAtIndex(list.currentIndex);
+			console.log("HistoryItem: " + JSON.stringify(historyItem));
+  			this.icon = item.icon;
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+## HistoryItem
+
+Describes a historical page record.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name         | Type                                  | Readable| Writable| Description                        |
+| ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
+| icon          | [PixelMap](js-apis-image.md#pixelmap7) | Yes  | No  | **PixelMap** object of the icon on the historical page.|
+| historyUrl    | string                                 | Yes  | No  | URL of the historical page.       |
+| historyRawUrl | string                                 | Yes  | No  | Original URL of the historical page.   |
+| title         | string                                 | Yes  | No  | Title of the historical page.          |
+
+### 

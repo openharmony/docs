@@ -1,8 +1,8 @@
 # 为通知添加行为意图
 
-[WantAgent](../reference/apis/js-apis-wantAgent.md)提供了封装行为意图的能力，该行为意图是指拉起指定的应用组件及发布公共事件等能力。OpenHarmony支持以通知的形式，将[WantAgent](../reference/apis/js-apis-wantAgent.md)从发布方传递至接收方，从而在接收方触发[WantAgent](../reference/apis/js-apis-wantAgent.md)中指定的意图。例如在通知消息的发布者发布通知时，通常期望用户可以通过通知栏点击拉起目标应用组件。为了达成这一目标，开发者可以将[WantAgent](../reference/apis/js-apis-wantAgent.md)封装至通知消息中，当系统接收到[WantAgent](../reference/apis/js-apis-wantAgent.md)后，在用户点击通知栏时触发[WantAgent](../reference/apis/js-apis-wantAgent.md)的意图，从而拉起目标应用组件。
+[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)提供了封装行为意图的能力，该行为意图是指拉起指定的应用组件及发布公共事件等能力。OpenHarmony支持以通知的形式，将[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)从发布方传递至接收方，从而在接收方触发[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)中指定的意图。例如在通知消息的发布者发布通知时，通常期望用户可以通过通知栏点击拉起目标应用组件。为了达成这一目标，开发者可以将[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)封装至通知消息中，当系统接收到[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)后，在用户点击通知栏时触发[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)的意图，从而拉起目标应用组件。
 
-为通知添加行为意图的实现方式如下图所示：发布通知的应用向应用组件管理服务AMS（Ability Manager Service）申请[WantAgent](../reference/apis/js-apis-wantAgent.md)，然后随其他通知信息一起发送给桌面，当用户在桌面通知栏上点击通知时，触发[WantAgent](../reference/apis/js-apis-wantAgent.md)动作。
+为通知添加行为意图的实现方式如下图所示：发布通知的应用向应用组件管理服务AMS（Ability Manager Service）申请[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)，然后随其他通知信息一起发送给桌面，当用户在桌面通知栏上点击通知时，触发[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)动作。
 
   **图1** 携带行为意图的通知运行机制  
 ![notification-with-wantagent](figures/notification-with-wantagent.png)
@@ -10,7 +10,7 @@
 
 ## 接口说明
 
-具体接口描述，详见[WantAgent接口文档](../reference/apis/js-apis-wantAgent.md)。
+具体接口描述，详见[WantAgent接口文档](../reference/apis/js-apis-app-ability-wantAgent.md)。
 
 | | |
 | -------- | -------- |
@@ -78,7 +78,7 @@
    }
    ```
 
-4. 调用[getWantAgent()](../reference/apis/js-apis-wantAgent.md#wantagentgetwantagent)方法进行创建WantAgent。
+4. 调用[getWantAgent()](../reference/apis/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)方法进行创建WantAgent。
 
    ```typescript
    // 创建WantAgent

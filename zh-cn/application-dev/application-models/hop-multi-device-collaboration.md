@@ -238,7 +238,7 @@
 
 4. 连接一个后台服务。
    - 实现IAbilityConnection接口。IAbilityConnection提供了以下方法供开发者实现：onConnect()是用来处理连接Service成功的回调，onDisconnect()是用来处理Service异常终止的回调，onFailed()是用来处理连接Service失败的回调。
-   - 设置目标组件参数，包括目标设备ID、包名、ability名。
+   - 设置目标组件参数，包括目标设备ID、Bundle名称、Ability名称。
    - 调用connectServiceExtensionAbility发起连接。
    - 连接成功，收到目标设备返回的服务句柄。
    - 进行跨设备调用，获得目标端服务返回的结果。

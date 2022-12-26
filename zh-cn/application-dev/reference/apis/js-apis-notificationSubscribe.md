@@ -28,10 +28,10 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 **参数：**
 
-| 名称       | 类型                      | 必填 | 描述             |
+| 参数名       | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
 | subscriber | [NotificationSubscriber](#notificationsubscriber)    | 是   | 通知订阅对象。     |
-| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 是   | 订阅信息。         |
+| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 是   | 通知订阅信息。 |
 | callback   | AsyncCallback\<void\>     | 是   | 订阅动作回调函数。 |
 
 **错误码：**
@@ -71,7 +71,7 @@ NotificationSubscribe.subscribe(subscriber, info, subscribeCallback);
 
 subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): void
 
-订阅通知并指定订阅信息（callback形式）。
+订阅当前用户下所有应用的通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -81,7 +81,7 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 **参数：**
 
-| 名称       | 类型                   | 必填 | 描述             |
+| 参数名       | 类型                   | 必填 | 说明             |
 | ---------- | ---------------------- | ---- | ---------------- |
 | subscriber | [NotificationSubscriber](#notificationsubscriber) | 是   | 通知订阅对象。     |
 | callback   | AsyncCallback\<void\>  | 是   | 订阅动作回调函数。 |
@@ -129,10 +129,10 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 **参数：**
 
-| 名称       | 类型                      | 必填 | 描述         |
+| 参数名       | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](#notificationsubscriber)    | 是   | 通知订阅对象。 |
-| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 否   | 订阅信息。     |
+| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 否   | 通知订阅信息。   |
 
 **错误码：**
 
@@ -146,17 +146,13 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 ```js
 function onConsumeCallback(data) {
-    if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribe success");
-    }
+    console.info("Consume callback: " + JSON.stringify(data));
 }
 var subscriber = {
     onConsume: onConsumeCallback
 };
 NotificationSubscribe.subscribe(subscriber).then(() => {
-	console.info("subscribe sucess");
+	console.info("subscribe success");
 });
 ```
 
@@ -176,7 +172,7 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 **参数：**
 
-| 名称       | 类型                   | 必填 | 描述                 |
+| 参数名       | 类型                   | 必填 | 说明                 |
 | ---------- | ---------------------- | ---- | -------------------- |
 | subscriber | [NotificationSubscriber](#notificationsubscriber) | 是   | 通知订阅对象。         |
 | callback   | AsyncCallback\<void\>  | 是   | 取消订阅动作回调函数。 |
@@ -199,11 +195,11 @@ function unsubscribeCallback(err) {
         console.info("unsubscribe success");
     }
 }
-function onCancelCallback(data) {
+function onDisconnectCallback(data) {
 	console.info("Cancel callback: " + JSON.stringify(data));
 }
 var subscriber = {
-    onCancel: onCancelCallback
+    onDisconnect: onDisconnectCallback
 }
 NotificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
@@ -224,7 +220,7 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 **参数：**
 
-| 名称       | 类型                   | 必填 | 描述         |
+| 参数名       | 类型                   | 必填 | 说明         |
 | ---------- | ---------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](#notificationsubscriber) | 是   | 通知订阅对象。 |
 
@@ -239,14 +235,14 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 **示例：**
 
 ```js
-function onCancelCallback(data) {
+function onDisconnectCallback(data) {
 	console.info("Cancel callback: " + JSON.stringify(data));
 }
 var subscriber = {
-    onCancel: onCancelCallback
+    onDisconnect: onDisconnectCallback
 };
 NotificationSubscribe.unsubscribe(subscriber).then(() => {
-	console.info("unsubscribe sucess");
+	console.info("unsubscribe success");
 });
 ```
 
@@ -266,9 +262,9 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 **参数：**
 
-| 名称            | 类型                                | 必填 | 说明                 |
+| 参数名            | 类型                                | 必填 | 说明                 |
 | --------------- |   ----------------------------------| ---- | -------------------- |
-| bundle          | [BundleOption](#bundleoption)       | 是   | 指定包信息。           |
+| bundle          | [BundleOption](#bundleoption)       | 是   | 指定应用的包信息。           |
 | notificationKey | [NotificationKey](#notificationkey) | 是   | 通知键值。             |
 | reason          | [RemoveReason](#removereason)      | 是   | 通知删除原因。         |
 | callback        | AsyncCallback\<void\>               | 是   | 删除指定通知回调函数。 |
@@ -320,9 +316,9 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 **参数：**
 
-| 名称            | 类型            | 必填 | 说明       |
+| 参数名            | 类型            | 必填 | 说明       |
 | --------------- | --------------- | ---- | ---------- |
-| bundle          | [BundleOption](#bundleoption)    | 是   | 指定包信息。 |
+| bundle          | [BundleOption](#bundleoption)    | 是   | 指定应用的包信息。 |
 | notificationKey | [NotificationKey](#notificationkey) | 是   | 通知键值。   |
 | reason          | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 
@@ -348,7 +344,7 @@ var notificationKey = {
 }
 var reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 NotificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
-	console.info("remove sucess");
+	console.info("remove success");
 });
 ```
 
@@ -368,9 +364,9 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 **参数：**
 
-| 名称     | 类型                  | 必填 | 说明                 |
+| 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | 是   | 通知唯一ID。           |
+| hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](#onconsume)回调的入参[SubscribeCallbackData](#subscribecallbackdata)获取其内部[NotificationRequest](#notificationrequest)对象中的hashCode。 |
 | reason   | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 | callback | AsyncCallback\<void\> | 是   | 删除指定通知回调函数。 |
 
@@ -415,7 +411,7 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 **参数：**
 
-| 名称     | 类型       | 必填 | 说明       |
+| 参数名     | 类型       | 必填 | 说明       |
 | -------- | ---------- | ---- | ---------- |
 | hashCode | string | 是   | 通知唯一ID。 |
 | reason   | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
@@ -435,7 +431,7 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 var hashCode = 'hashCode'
 var reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 NotificationSubscribe.remove(hashCode, reason).then(() => {
-	console.info("remove sucess");
+	console.info("remove success");
 });
 ```
 
@@ -445,7 +441,7 @@ NotificationSubscribe.remove(hashCode, reason).then(() => {
 
 removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
-删除指定包的所有通知（Callback形式）。
+删除指定应用的所有通知（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -455,10 +451,10 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称     | 类型                  | 必填 | 描述                         |
+| 参数名     | 类型                  | 必填 | 说明                         |
 | -------- | --------------------- | ---- | ---------------------------- |
-| bundle   | [BundleOption](#bundleoption)          | 是   | 指定包信息。                   |
-| callback | AsyncCallback\<void\> | 是   | 删除指定包的所有通知回调函数。 |
+| bundle   | [BundleOption](#bundleoption)          | 是   | 指定应用的包信息。                   |
+| callback | AsyncCallback\<void\> | 是   | 删除指定应用的所有通知回调函数。 |
 
 **错误码：**
 
@@ -501,7 +497,7 @@ removeAll(callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称     | 类型                  | 必填 | 描述                 |
+| 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<void\> | 是   | 删除所有通知回调函数。 |
 
@@ -533,7 +529,7 @@ NotificationSubscribe.removeAll(removeAllCallback);
 
 removeAll(bundle?: BundleOption): Promise\<void\>
 
-删除所有通知（Promise形式）。
+删除指定应用的所有通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -543,9 +539,9 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 **参数：**
 
-| 名称   | 类型         | 必填 | 描述       |
+| 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | 否   | 指定包信息。 |
+| bundle | [BundleOption](#bundleoption) | 否   | 指定应用的包信息。 |
 
 **错误码：**
 
@@ -559,8 +555,9 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 **示例：**
 
 ```js
+// 不指定应用时，删除所有通知
 NotificationSubscribe.removeAll().then(() => {
-	console.info("removeAll sucess");
+	console.info("removeAll success");
 });
 ```
 
@@ -568,7 +565,7 @@ NotificationSubscribe.removeAll().then(() => {
 
 removeAll(userId: number, callback: AsyncCallback\<void>): void
 
-删除所有通知（callback形式）。
+删除指定用户下的所有通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -578,10 +575,10 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称   | 类型         | 必填 | 描述       |
+| 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| userId | number | 是   | 接收通知用户的Id。 |
-| callback | AsyncCallback\<void\> | 是   | 删除所有通知回调函数。 |
+| userId | number | 是   | 用户ID。 |
+| callback | AsyncCallback\<void\> | 是   | 删除指定用户所有通知回调函数。 |
 
 **错误码：**
 
@@ -612,7 +609,7 @@ NotificationSubscribe.removeAll(userId, removeAllCallback);
 
 removeAll(userId: number): Promise\<void>
 
-删除所有通知（Promise形式）。
+删除指定用户下的所有通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -622,9 +619,9 @@ removeAll(userId: number): Promise\<void>
 
 **参数：**
 
-| 名称   | 类型         | 必填 | 描述       |
+| 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| userId | number | 是   | 接收通知用户的Id。 |
+| userId | number | 是   | 用户ID。 |
 
 **错误码：**
 
@@ -655,7 +652,7 @@ NotificationSubscribe.removeAll(userId, removeAllCallback);
 
 ## NotificationSubscriber
 
-提供订阅者接收到新通知或取消通知时的回调方法。
+作为订阅通知接口[subscribe](#notificationsubscribe)的入参，提供订阅者接收到新通知、取消通知等的回调方法。
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
@@ -663,7 +660,7 @@ NotificationSubscribe.removeAll(userId, removeAllCallback);
 
 onConsume?: (data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 
-接收通知回调函数。
+接收到新通知的回调函数。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -673,7 +670,7 @@ onConsume?: (data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | [SubscribeCallbackData](#subscribecallbackdata) | 是 | 回调返回接收到的通知信息。 |
+| data | [SubscribeCallbackData](#subscribecallbackdata) | 是 | 新接收到的通知信息。 |
 
 **示例：**
 
@@ -703,7 +700,7 @@ NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 
-删除通知回调函数。
+取消通知的回调函数。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -713,7 +710,7 @@ onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | [SubscribeCallbackData](#subscribecallbackdata) | 是 | 回调返回接收到的通知信息。 |
+| data | [SubscribeCallbackData](#subscribecallbackdata) | 是 | 需要取消的通知信息。 |
 
 **示例：**
 
@@ -743,7 +740,7 @@ NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 onUpdate?:(data: [NotificationSortingMap](#notificationsortingmap)) => void
 
-更新通知排序回调函数。
+更新通知排序的回调函数。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -753,7 +750,7 @@ onUpdate?:(data: [NotificationSortingMap](#notificationsortingmap)) => void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | [NotificationSortingMap](#notificationsortingmap) | 是 | 回调返回接收到的通知信息。 |
+| data | [NotificationSortingMap](#notificationsortingmap) | 是 | 最新的通知排序列表。 |
 
 **示例：**
 
@@ -766,8 +763,8 @@ function subscribeCallback(err) {
     }
 };
 
-function onUpdateCallback() {
-    console.info('===> onUpdate in test');
+function onUpdateCallback(map) {
+    console.info('===> onUpdateCallback map:' + JSON.stringify(map));
 }
 
 var subscriber = {
@@ -781,7 +778,7 @@ NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 onConnect?:() => void
 
-注册订阅回调函数。
+订阅完成的回调函数。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -813,7 +810,7 @@ NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 onDisconnect?:() => void
 
-取消订阅回调函数。
+取消订阅的回调函数。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -829,16 +826,30 @@ function subscribeCallback(err) {
         console.info("subscribeCallback");
     }
 };
+function unsubscribeCallback(err) {
+    if (err.code) {
+        console.info("unsubscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("unsubscribeCallback");
+    }
+};
 
+function onConnectCallback() {
+    console.info('===> onConnect in test');
+}
 function onDisconnectCallback() {
     console.info('===> onDisconnect in test');
 }
 
 var subscriber = {
+    onConnect: onConnectCallback,
     onDisconnect: onDisconnectCallback
 };
 
+// 订阅通知后会收到onConnect回调
 NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+// 取消订阅后会收到onDisconnect回调
+NotificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
 
 ### onDestroy
@@ -877,7 +888,7 @@ NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
 
-免打扰时间选项变更回调函数。
+免打扰时间选项发生变更时的回调函数。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -900,8 +911,8 @@ function subscribeCallback(err) {
     }
 };
 
-function onDoNotDisturbDateChangeCallback() {
-    console.info('===> onDoNotDisturbDateChange in test');
+function onDoNotDisturbDateChangeCallback(mode) {
+    console.info('===> onDoNotDisturbDateChange:' + mode);
 }
 
 var subscriber = {
@@ -956,19 +967,19 @@ NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称   | 可读 | 可写 | 类型   | 说明     |
-| ------ | ---- | ---- | ------ | -------- |
-| bundle | 是   | 是   | string | 包名。   |
-| uid    | 是   | 是   | number | 用户id。 |
+| 名称   | 类型   | 可读 | 可写 | 说明   |
+| ------ | ------ |---- | --- |  ------ |
+| bundle | string | 是  | 是  | 应用的包信息。 |
+| uid    | number | 是  | 是  | 用户ID。 |
 
 ## NotificationKey
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称  | 可读 | 可写 | 类型   | 说明       |
-| ----- | ---- | ---- | ------ | ---------- |
-| id    | 是   | 是   | number | 通知ID。   |
-| label | 是   | 是   | string | 通知标签。 |
+| 名称  | 类型   | 可读 | 可写 | 说明     |
+| ----- | ------ | ---- | --- | -------- |
+| id    | number | 是  | 是  | 通知ID。   |
+| label | string | 是  | 是  | 通知标签。 |
 
 ## SubscribeCallbackData
 
@@ -976,13 +987,13 @@ NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称            | 可读 | 可写 | 类型                                              | 说明     |
-| --------------- | ---- | --- | ------------------------------------------------- | -------- |
-| request         | 是  | 否  | [NotificationRequest](js-apis-notificationManager.md#notificationrequest) | 通知内容。 |
-| sortingMap      | 是  | 否  | [NotificationSortingMap](#notificationsortingmap) | 排序信息。 |
-| reason          | 是  | 否  | number                                            | 删除原因。 |
-| sound           | 是  | 否  | string                                            | 通知声音。 |
-| vibrationValues | 是  | 否  | Array\<number\>                                   | 通知震动。 |
+| 名称            | 类型                                              | 可读                                            | 可写                                            | 说明     |
+| --------------- | ------------------------------------------------- | -------- | -------- | -------- |
+| request         | [NotificationRequest](js-apis-notificationManager.md#notificationrequest) | 是 | 否 | 通知内容。 |
+| sortingMap      | [NotificationSortingMap](#notificationsortingmap) | 是 | 否 | 排序信息。 |
+| reason          | number                                            | 是                                           | 否                                           | 删除原因。 |
+| sound           | string                                            | 是                                           | 否                                           | 通知声音。 |
+| vibrationValues | Array\<number\>                                   | 是                                  | 否                                  | 通知震动。 |
 
 
 ## EnabledNotificationCallbackData
@@ -991,11 +1002,11 @@ NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称   | 可读 | 可写 | 类型    | 描述             |
-| ------ | ---- | --- | ------- | ---------------- |
-| bundle | 是  | 否  | string  | 应用的包名。       |
-| uid    | 是  | 否  | number  | 应用的uid。        |
-| enable | 是  | 否  | boolean | 应用通知使能状态。 |
+| 名称   | 类型    | 可读  | 可写  | 描述             |
+| ------ | ------- | ---------------- | ---------------- | ---------------- |
+| bundle | string  | 是 | 否 | 应用的包名。       |
+| uid    | number  | 是 | 否 | 应用的uid。        |
+| enable | boolean | 是 | 否 | 应用通知使能状态。 |
 
 
 ## NotificationSorting
@@ -1006,11 +1017,11 @@ NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称     | 可读 | 可写 | 类型                                  | 说明         |
-| -------- | ---- | --- | ------------------------------------- | ------------ |
-| slot     | 是  | 否  | [NotificationSlot](js-apis-notificationManager.md#notificationslot) | 通知通道内容。 |
-| hashCode | 是  | 否  | string                                | 通知唯一标识。 |
-| ranking  | 是  | 否  | number                                | 通知排序序号。 |
+| 名称     | 类型                                  | 可读 | 可写 | 说明         |
+| -------- | ------------------------------------- | ---- | --- | ------------ |
+| slot     | [NotificationSlot](js-apis-notificationManager.md#notificationslot) | 是  | 否  | 通知通道内容。 |
+| hashCode | string                                | 是  | 否  | 通知唯一标识。 |
+| ranking  | number                                | 是  | 否  | 通知排序序号。 |
 
 
 ## NotificationSortingMap
@@ -1021,10 +1032,10 @@ NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称           | 可读 | 可写 | 类型                                                         | 说明             |
-| -------------- | ---- | --- | ------------------------------------------------------------ | ---------------- |
-| sortings       | 是  | 否  | {[key: string]: [NotificationSorting](#notificationsorting)} | 通知排序信息数组。 |
-| sortedHashCode | 是  | 否  | Array\<string\>                                              | 通知唯一标识数组。 |
+| 名称           | 类型                                                         | 可读 | 可写 | 说明             |
+| -------------- | ------------------------------------------------------------ | ---- | --- | ---------------- |
+| sortings       | {[key: string]: [NotificationSorting](#notificationsorting)} | 是  | 否  | 通知排序信息数组。 |
+| sortedHashCode | Array\<string\>                                              | 是  | 否  | 通知唯一标识数组。 |
 
 
 ## NotificationSubscribeInfo
@@ -1035,10 +1046,10 @@ NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称        | 可读 | 可写 | 类型            | 描述                            |
-| ----------- | --- | ---- | --------------- | ------------------------------- |
-| bundleNames | 是  | 是  | Array\<string\> | 指定订阅哪些包名的APP发来的通知。 |
-| userId      | 是  | 是  | number          | 指定订阅哪个用户下发来的通知。    |
+| 名称        | 类型            | 可读 | 可写 | 说明                            |
+| ----------- | --------------- | --- | ---- | ------------------------------- |
+| bundleNames | Array\<string\> | 是  | 是  | 指定订阅哪些包名的APP发来的通知。 |
+| userId      | number          | 是  | 是  | 指定订阅哪个用户下发来的通知。    |
 
 
 ## NotificationUserInput
@@ -1047,9 +1058,9 @@ NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：SystemCapability.Notification.Notification
 
-| 名称     | 可读 | 可写 | 类型   | 描述                          |
-| -------- | --- | ---- | ------ | ----------------------------- |
-| inputKey | 是  | 是  | string | 用户输入时用于标识此输入的key。 |
+| 名称     | 类型   | 可读 | 可写 | 说明                          |
+| -------- | ------ | --- | ---- | ----------------------------- |
+| inputKey | string | 是  | 是  | 用户输入时用于标识此输入的key。 |
 
 ## RemoveReason
 
@@ -1057,7 +1068,7 @@ NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称                 | 值  | 描述                  |
+| 名称                 | 值  | 说明                  |
 | -------------------- | --- | -------------------- |
 | CLICK_REASON_REMOVE  | 1   | 点击通知后删除通知。    |
 | CANCEL_REASON_REMOVE | 2   | 用户删除通知。         |

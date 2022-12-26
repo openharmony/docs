@@ -3,7 +3,7 @@
 
 ## 场景介绍
 
-订阅者完成业务需要时，需要主动取消订阅，订阅者通过调用[unsubscribe()](../reference/apis/js-apis-commonEvent.md#commoneventunsubscribe)方法取消订阅事件。
+订阅者完成业务需要时，需要主动取消订阅，订阅者通过调用[unsubscribe()](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerunsubscribe)方法取消订阅事件。
 
 
 ## 接口说明

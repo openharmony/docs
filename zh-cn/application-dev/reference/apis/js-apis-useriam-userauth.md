@@ -277,9 +277,14 @@ start : () => void
 | -------- | ------- |
 | 201 | Permission verification failed. |
 | 401 | Incorrect parameters. |
+| 12500001 | Execution failed. |
 | 12500002 | General operation error. |
+| 12500003 | The operation is canceled. |
+| 12500004 | The operation is time-out. |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
+| 12500007 | The authentication task is busy. |
+| 12500009 | The authenticator is locked. |
 | 12500010 | The type of credential has not been enrolled. |
 
 **示例：**
@@ -813,6 +818,7 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 | TYPE_NOT_SUPPORT        | 5      | 不支持的认证类型。   |
 | TRUST_LEVEL_NOT_SUPPORT | 6      | 不支持的认证等级。   |
 | BUSY                    | 7      | 忙碌状态。           |
+| INVALID_PARAMETERS      | 8      | 无效参数。           |
 | LOCKED                  | 9      | 认证器已锁定。       |
 | NOT_ENROLLED            | 10     | 用户未录入认证信息。 |
 

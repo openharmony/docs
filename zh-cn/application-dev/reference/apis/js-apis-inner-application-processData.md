@@ -9,7 +9,7 @@
 | 名称                     | 类型     | 可读 | 可写 | 说明                       |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
 | pid<sup>8+</sup>         | number   | 是   | 否   | 进程ID。                    |
-| bundleName<sup>8+</sup>  | string   | 是   | 否  | 应用包名。                  |
+| bundleName<sup>8+</sup>  | string   | 是   | 否  | Bundle名称。          |
 | uid<sup>8+</sup>         | number   | 是   | 否   | 用户ID。                  |
 | isContinuousTask<sup>9+</sup>         | boolean   | 是   | 否   | 判断过程是否为连续任务。                  |
 | isKeepAlive<sup>9+</sup>         | boolean   | 是   | 否   | 判断该过程是否保持活跃。                  |

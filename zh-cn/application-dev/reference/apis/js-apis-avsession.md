@@ -978,9 +978,9 @@ setLaunchAbility(ability: WantAgent): Promise\<void>
 
 **参数：**
 
-| 参数名  | 类型                              | 必填 | 说明                                                        |
-| ------- | --------------------------------- | ---- | ----------------------------------------------------------- |
-| ability | [WantAgent](js-apis-wantAgent.md) | 是   | 应用的相关属性信息，如bundleName，abilityName，deviceId等。 |
+| 参数名  | 类型                                          | 必填 | 说明                                                        |
+| ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
+| ability | [WantAgent](js-apis-app-ability-wantAgent.md) | 是   | 应用的相关属性信息，如bundleName，abilityName，deviceId等。 |
 
 **返回值：**
 
@@ -1048,10 +1048,10 @@ setLaunchAbility(ability: WantAgent, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型                              | 必填 | 说明                                                        |
-| -------- | --------------------------------- | ---- | ----------------------------------------------------------- |
-| ability  | [WantAgent](js-apis-wantAgent.md) | 是   | 应用的相关属性信息，如bundleName，abilityName，deviceId等。 |
-| callback | AsyncCallback<void\>              | 是   | 回调函数。当Ability设置成功，err为undefined，否则返回错误对象。 |
+| 参数名   | 类型                                          | 必填 | 说明                                                         |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| ability  | [WantAgent](js-apis-app-ability-wantAgent.md) | 是   | 应用的相关属性信息，如bundleName，abilityName，deviceId等。  |
+| callback | AsyncCallback<void\>                          | 是   | 回调函数。当Ability设置成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
@@ -2204,9 +2204,9 @@ getLaunchAbility(): Promise\<WantAgent>
 
 **返回值：**
 
-| 类型                                        | 说明                                                         |
-| ------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[WantAgent](js-apis-wantAgent.md)\> | Promise对象，返回在[setLaunchAbility](#setlaunchability)保存的对象，包括应用的相关属性信息，如bundleName，abilityName，deviceId等。 |
+| 类型                                                    | 说明                                                         |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise<[WantAgent](js-apis-app-ability-wantAgent.md)\> | Promise对象，返回在[setLaunchAbility](#setlaunchability)保存的对象，包括应用的相关属性信息，如bundleName，abilityName，deviceId等。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
@@ -2239,9 +2239,9 @@ getLaunchAbility(callback: AsyncCallback\<WantAgent>): void
 
 **参数：**
 
-| 参数名   | 类型                                              | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[WantAgent](js-apis-wantAgent.md)\> | 是   | 回调函数。返回在[setLaunchAbility](#setlaunchability)保存的对象，包括应用的相关属性信息，如bundleName，abilityName，deviceId等。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback<[WantAgent](js-apis-app-ability-wantAgent.md)\> | 是   | 回调函数。返回在[setLaunchAbility](#setlaunchability)保存的对象，包括应用的相关属性信息，如bundleName，abilityName，deviceId等。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
