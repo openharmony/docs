@@ -58,7 +58,7 @@ import rpc from '@ohos.rpc';
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   console.log("RpcClient: data is " + data);
   ```
@@ -73,7 +73,7 @@ reclaim(): void
 
 **示例：**
 
-  ```
+  ```ts
   let reply = rpc.MessageSequence.create();
   reply.reclaim();
   ```
@@ -103,7 +103,7 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -144,7 +144,7 @@ readRemoteObject(): IRemoteObject
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -185,7 +185,7 @@ writeInterfaceToken(token: string): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeInterfaceToken("aaa");
@@ -219,7 +219,7 @@ readInterfaceToken(): string
 
 **示例：**
 
-  ```
+```ts
 class Stub extends rpc.RemoteObject {
     onRemoteRequest(code, data, reply, option) {
         try {
@@ -250,7 +250,7 @@ getSize(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let size = data.getSize();
   console.log("RpcClient: size is " + size);
@@ -272,7 +272,7 @@ getCapacity(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let result = data.getCapacity();
   console.log("RpcClient: capacity is " + result);
@@ -294,7 +294,7 @@ setSize(size: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.setSize(16);
@@ -329,7 +329,7 @@ setCapacity(size: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.setCapacity(100);
@@ -356,7 +356,7 @@ getWritableBytes(): number
 
 **示例：**
 
-  ```
+```ts
 class Stub extends rpc.RemoteObject {
     onRemoteRequest(code, data, reply, option) {
         let getWritableBytes = data.getWritableBytes();
@@ -382,7 +382,7 @@ getReadableBytes(): number
 
 **示例：**
 
-  ```
+  ```ts
 class Stub extends rpc.RemoteObject {
     onRemoteRequest(code, data, reply, option) {
         let result = data.getReadableBytes();
@@ -408,7 +408,7 @@ getReadPosition(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let readPos = data.getReadPosition();
   console.log("RpcClient: readPos is " + readPos);
@@ -430,7 +430,7 @@ getWritePosition(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   data.writeInt(10);
   let bwPos = data.getWritePosition();
@@ -453,7 +453,7 @@ rewindRead(pos: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   data.writeInt(12);
   data.writeString("sequence");
@@ -485,7 +485,7 @@ rewindWrite(pos: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   data.writeInt(4);
   try {
@@ -523,7 +523,7 @@ writeByte(val: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeByte(2);
@@ -557,7 +557,7 @@ readByte(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeByte(2);
@@ -598,7 +598,7 @@ writeShort(val: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeShort(8);
@@ -632,7 +632,7 @@ readShort(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeShort(8);
@@ -673,7 +673,7 @@ writeInt(val: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeInt(10);
@@ -707,7 +707,7 @@ readInt(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeInt(10);
@@ -748,7 +748,7 @@ writeLong(val: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeLong(10000);
@@ -782,7 +782,7 @@ readLong(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeLong(10000);
@@ -823,7 +823,7 @@ writeFloat(val: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloat(1.2);
@@ -857,7 +857,7 @@ readFloat(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloat(1.2);
@@ -898,7 +898,7 @@ writeDouble(val: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeDouble(10.2);
@@ -932,7 +932,7 @@ readDouble(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeDouble(10.2);
@@ -973,7 +973,7 @@ writeBoolean(val: boolean): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeBoolean(false);
@@ -1007,7 +1007,7 @@ readBoolean(): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeBoolean(false);
@@ -1048,7 +1048,7 @@ writeChar(val: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeChar(97);
@@ -1082,7 +1082,7 @@ readChar(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeChar(97);
@@ -1123,7 +1123,7 @@ writeString(val: string): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeString('abc');
@@ -1157,7 +1157,7 @@ readString(): string
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeString('abc');
@@ -1198,7 +1198,7 @@ writeParcelable(val: Parcelable): void
 
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -1252,7 +1252,7 @@ readParcelable(dataIn: Parcelable): void
 
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -1307,7 +1307,7 @@ writeByteArray(byteArray: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
@@ -1342,7 +1342,7 @@ readByteArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
@@ -1384,7 +1384,7 @@ readByteArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let byteArrayVar = [1, 2, 3, 4, 5];
   try {
@@ -1426,7 +1426,7 @@ writeShortArray(shortArray: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeShortArray([11, 12, 13]);
@@ -1460,7 +1460,7 @@ readShortArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeShortArray([11, 12, 13]);
@@ -1501,7 +1501,7 @@ readShortArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeShortArray([11, 12, 13]);
@@ -1542,7 +1542,7 @@ writeIntArray(intArray: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeIntArray([100, 111, 112]);
@@ -1576,7 +1576,7 @@ readIntArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeIntArray([100, 111, 112]);
@@ -1617,7 +1617,7 @@ readIntArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeIntArray([100, 111, 112]);
@@ -1658,7 +1658,7 @@ writeLongArray(longArray: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeLongArray([1111, 1112, 1113]);
@@ -1692,7 +1692,7 @@ readLongArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeLongArray([1111, 1112, 1113]);
@@ -1733,7 +1733,7 @@ readLongArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeLongArray([1111, 1112, 1113]);
@@ -1774,7 +1774,7 @@ writeFloatArray(floatArray: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -1808,7 +1808,7 @@ readFloatArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -1849,7 +1849,7 @@ readFloatArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -1890,7 +1890,7 @@ writeDoubleArray(doubleArray: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -1924,7 +1924,7 @@ readDoubleArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -1965,7 +1965,7 @@ readDoubleArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -2006,7 +2006,7 @@ writeBooleanArray(booleanArray: boolean[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeBooleanArray([false, true, false]);
@@ -2040,7 +2040,7 @@ readBooleanArray(dataIn: boolean[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeBooleanArray([false, true, false]);
@@ -2081,7 +2081,7 @@ readBooleanArray(): boolean[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeBooleanArray([false, true, false]);
@@ -2122,7 +2122,7 @@ writeCharArray(charArray: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeCharArray([97, 98, 88]);
@@ -2156,7 +2156,7 @@ readCharArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeCharArray([97, 98, 88]);
@@ -2197,7 +2197,7 @@ readCharArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeCharArray([97, 98, 88]);
@@ -2239,7 +2239,7 @@ writeStringArray(stringArray: string[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeStringArray(["abc", "def"]);
@@ -2273,7 +2273,7 @@ readStringArray(dataIn: string[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeStringArray(["abc", "def"]);
@@ -2314,7 +2314,7 @@ readStringArray(): string[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeStringArray(["abc", "def"]);
@@ -2349,7 +2349,7 @@ writeNoException(): void
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -2391,7 +2391,7 @@ readException(): void
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -2464,7 +2464,7 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 
 **示例：**
 
-  ```
+  ```ts
   class MyParcelable {
       num: number;
       str: string;
@@ -2521,7 +2521,7 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 
 **示例：**
 
-  ```
+  ```ts
   class MyParcelable {
       num: number;
       str: string;
@@ -2581,7 +2581,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -2628,7 +2628,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -2681,7 +2681,7 @@ readRemoteObjectArray(): IRemoteObject[]
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -2721,7 +2721,7 @@ static closeFileDescriptor(fd: number): void
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let filePath = "path/to/file";
   let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
@@ -2763,7 +2763,7 @@ static dupFileDescriptor(fd: number) :number
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let filePath = "path/to/file";
   let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
@@ -2792,7 +2792,7 @@ containFileDescriptors(): boolean
 **示例：**
 
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
@@ -2837,7 +2837,7 @@ writeFileDescriptor(fd: number): void
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
@@ -2874,7 +2874,7 @@ readFileDescriptor(): number
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
@@ -2917,7 +2917,7 @@ writeAshmem(ashmem: Ashmem): void
 
 **示例：**
 
-  ```
+  ```ts
   let sequence = new rpc.MessageSequence();
   let ashmem;
   try {
@@ -2959,7 +2959,7 @@ readAshmem(): Ashmem
 
 **示例：**
 
-  ```
+  ```ts
   let sequence = new rpc.MessageSequence();
   let ashmem;
   try {
@@ -2999,7 +2999,7 @@ getRawDataCapacity(): number
 
 **示例：**
 
-  ```
+  ```ts
   let sequence = new rpc.MessageSequence();
   let result = sequence.getRawDataCapacity();
   console.log("RpcTest: sequence get RawDataCapacity result is : " + result);
@@ -3030,7 +3030,7 @@ writeRawData(rawData: number[], size: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
   try {
@@ -3071,7 +3071,7 @@ readRawData(size: number): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
   try {
@@ -3111,7 +3111,7 @@ static create(): MessageParcel
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   console.log("RpcClient: data is " + data);
   ```
@@ -3126,7 +3126,7 @@ reclaim(): void
 
 **示例：**
 
-  ```
+  ```ts
   let reply = rpc.MessageParcel.create();
   reply.reclaim();
   ```
@@ -3153,7 +3153,7 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -3194,7 +3194,7 @@ readRemoteObject(): IRemoteObject
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -3242,7 +3242,7 @@ writeInterfaceToken(token: string): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeInterfaceToken("aaa");
   console.log("RpcServer: writeInterfaceToken is " + result);
@@ -3265,7 +3265,7 @@ readInterfaceToken(): string
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let interfaceToken = data.readInterfaceToken();
@@ -3291,7 +3291,7 @@ getSize(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let size = data.getSize();
   console.log("RpcClient: size is " + size);
@@ -3313,7 +3313,7 @@ getCapacity(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.getCapacity();
   console.log("RpcClient: capacity is " + result);
@@ -3341,7 +3341,7 @@ setSize(size: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let setSize = data.setSize(16);
   console.log("RpcClient: setSize is " + setSize);
@@ -3369,7 +3369,7 @@ setCapacity(size: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.setCapacity(100);
   console.log("RpcClient: setCapacity is " + result);
@@ -3391,7 +3391,7 @@ getWritableBytes(): number
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let getWritableBytes = data.getWritableBytes();
@@ -3417,7 +3417,7 @@ getReadableBytes(): number
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteRequest(code, data, reply, option) {
           let result = data.getReadableBytes();
@@ -3443,7 +3443,7 @@ getReadPosition(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let readPos = data.getReadPosition();
   console.log("RpcClient: readPos is " + readPos);
@@ -3465,7 +3465,7 @@ getWritePosition(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   data.writeInt(10);
   let bwPos = data.getWritePosition();
@@ -3494,7 +3494,7 @@ rewindRead(pos: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   data.writeInt(12);
   data.writeString("parcel");
@@ -3527,7 +3527,7 @@ rewindWrite(pos: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   data.writeInt(4);
   data.rewindWrite(0);
@@ -3558,7 +3558,7 @@ writeByte(val: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
   console.log("RpcClient: writeByte is: " + result);
@@ -3580,7 +3580,7 @@ readByte(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
   console.log("RpcClient: writeByte is: " + result);
@@ -3610,7 +3610,7 @@ writeShort(val: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
   console.log("RpcClient: writeShort is: " + result);
@@ -3632,7 +3632,7 @@ readShort(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
   console.log("RpcClient: writeShort is: " + result);
@@ -3662,7 +3662,7 @@ writeInt(val: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
   console.log("RpcClient: writeInt is " + result);
@@ -3684,7 +3684,7 @@ readInt(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
   console.log("RpcClient: writeInt is " + result);
@@ -3714,7 +3714,7 @@ writeLong(val: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
   console.log("RpcClient: writeLong is " + result);
@@ -3736,7 +3736,7 @@ readLong(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
   console.log("RpcClient: writeLong is " + result);
@@ -3766,7 +3766,7 @@ writeFloat(val: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
   console.log("RpcClient: writeFloat is " + result);
@@ -3788,7 +3788,7 @@ readFloat(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
   console.log("RpcClient: writeFloat is " + result);
@@ -3818,7 +3818,7 @@ writeDouble(val: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
   console.log("RpcClient: writeDouble is " + result);
@@ -3840,7 +3840,7 @@ readDouble(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
   console.log("RpcClient: writeDouble is " + result);
@@ -3870,7 +3870,7 @@ writeBoolean(val: boolean): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
   console.log("RpcClient: writeBoolean is " + result);
@@ -3892,7 +3892,7 @@ readBoolean(): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
   console.log("RpcClient: writeBoolean is " + result);
@@ -3922,7 +3922,7 @@ writeChar(val: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
   console.log("RpcClient: writeChar is " + result);
@@ -3944,7 +3944,7 @@ readChar(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
   console.log("RpcClient: writeChar is " + result);
@@ -3974,7 +3974,7 @@ writeString(val: string): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
   console.log("RpcClient: writeString  is " + result);
@@ -3996,7 +3996,7 @@ readString(): string
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
   console.log("RpcClient: writeString  is " + result);
@@ -4026,7 +4026,7 @@ writeSequenceable(val: Sequenceable): boolean
 
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -4073,7 +4073,7 @@ readSequenceable(dataIn: Sequenceable): boolean
 
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -4123,7 +4123,7 @@ writeByteArray(byteArray: number[]): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
@@ -4146,7 +4146,7 @@ readByteArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
@@ -4171,7 +4171,7 @@ readByteArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
@@ -4202,7 +4202,7 @@ writeShortArray(shortArray: number[]): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
   console.log("RpcClient: writeShortArray is " + result);
@@ -4224,7 +4224,7 @@ readShortArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
   console.log("RpcClient: writeShortArray is " + result);
@@ -4248,7 +4248,7 @@ readShortArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
   console.log("RpcClient: writeShortArray is " + result);
@@ -4278,7 +4278,7 @@ writeIntArray(intArray: number[]): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
   console.log("RpcClient: writeIntArray is " + result);
@@ -4300,7 +4300,7 @@ readIntArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
   console.log("RpcClient: writeIntArray is " + result);
@@ -4324,7 +4324,7 @@ readIntArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
   console.log("RpcClient: writeIntArray is " + result);
@@ -4354,7 +4354,7 @@ writeLongArray(longArray: number[]): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
   console.log("RpcClient: writeLongArray is " + result);
@@ -4376,7 +4376,7 @@ readLongArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
   console.log("RpcClient: writeLongArray is " + result);
@@ -4400,7 +4400,7 @@ readLongArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
   console.log("RpcClient: writeLongArray is " + result);
@@ -4430,7 +4430,7 @@ writeFloatArray(floatArray: number[]): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
   console.log("RpcClient: writeFloatArray is " + result);
@@ -4452,7 +4452,7 @@ readFloatArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
   console.log("RpcClient: writeFloatArray is " + result);
@@ -4476,7 +4476,7 @@ readFloatArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
   console.log("RpcClient: writeFloatArray is " + result);
@@ -4506,7 +4506,7 @@ writeDoubleArray(doubleArray: number[]): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
   console.log("RpcClient: writeDoubleArray is " + result);
@@ -4528,7 +4528,7 @@ readDoubleArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
   console.log("RpcClient: writeDoubleArray is " + result);
@@ -4552,7 +4552,7 @@ readDoubleArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
   console.log("RpcClient: writeDoubleArray is " + result);
@@ -4582,7 +4582,7 @@ writeBooleanArray(booleanArray: boolean[]): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
   console.log("RpcClient: writeBooleanArray is " + result);
@@ -4604,7 +4604,7 @@ readBooleanArray(dataIn: boolean[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
   console.log("RpcClient: writeBooleanArray is " + result);
@@ -4628,7 +4628,7 @@ readBooleanArray(): boolean[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
   console.log("RpcClient: writeBooleanArray is " + result);
@@ -4658,7 +4658,7 @@ writeCharArray(charArray: number[]): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 88]);
   console.log("RpcClient: writeCharArray is " + result);
@@ -4680,7 +4680,7 @@ readCharArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
   console.log("RpcClient: writeCharArray is " + result);
@@ -4704,7 +4704,7 @@ readCharArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
   console.log("RpcClient: writeCharArray is " + result);
@@ -4734,7 +4734,7 @@ writeStringArray(stringArray: string[]): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
   console.log("RpcClient: writeStringArray is " + result);
@@ -4756,7 +4756,7 @@ readStringArray(dataIn: string[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
   console.log("RpcClient: writeStringArray is " + result);
@@ -4780,7 +4780,7 @@ readStringArray(): string[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
   console.log("RpcClient: writeStringArray is " + result);
@@ -4798,7 +4798,7 @@ writeNoException(): void
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -4840,7 +4840,7 @@ readException(): void
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -4906,7 +4906,7 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
 
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -4950,7 +4950,7 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
 
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -5002,7 +5002,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -5048,7 +5048,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -5095,7 +5095,7 @@ readRemoteObjectArray(): IRemoteObject[]
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -5143,7 +5143,7 @@ static closeFileDescriptor(fd: number): void
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let filePath = "path/to/file";
   let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
@@ -5172,7 +5172,7 @@ static dupFileDescriptor(fd: number) :number
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let filePath = "path/to/file";
   let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
@@ -5195,7 +5195,7 @@ containFileDescriptors(): boolean
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
@@ -5229,7 +5229,7 @@ writeFileDescriptor(fd: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
@@ -5254,7 +5254,7 @@ readFileDescriptor(): number
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
@@ -5286,7 +5286,7 @@ writeAshmem(ashmem: Ashmem): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
   let isWriteSuccess = parcel.writeAshmem(ashmem);
@@ -5309,7 +5309,7 @@ readAshmem(): Ashmem
 
 **示例：**
 
-  ```
+  ```ts
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
   let isWriteSuccess = parcel.writeAshmem(ashmem);
@@ -5334,7 +5334,7 @@ getRawDataCapacity(): number
 
 **示例：**
 
-  ```
+  ```ts
   let parcel = new rpc.MessageParcel();
   let result = parcel.getRawDataCapacity();
   console.log("RpcTest: parcel get RawDataCapacity result is : " + result);
@@ -5363,7 +5363,7 @@ writeRawData(rawData: number[], size: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
   let isWriteSuccess = parcel.writeRawData(arr, arr.length);
@@ -5392,7 +5392,7 @@ readRawData(size: number): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
   let isWriteSuccess = parcel.writeRawData(arr, arr.length);
@@ -5426,7 +5426,7 @@ marshalling(dataOut: MessageSequence): boolean
   | boolean | true：封送成功，false：封送失败。
 **示例：**
 
-  ```
+  ```ts
   class MyParcelable {
       num: number;
       str: string;
@@ -5476,7 +5476,7 @@ unmarshalling(dataIn: MessageSequence): boolean
 
 **示例：**
 
-  ```
+  ```ts
   class MyParcelable {
       num: number;
       str: string;
@@ -5531,7 +5531,7 @@ marshalling(dataOut: MessageParcel): boolean
   | boolean | true：封送成功，false：封送失败。
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -5581,7 +5581,7 @@ unmarshalling(dataIn: MessageParcel): boolean
 
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -5629,7 +5629,7 @@ asObject(): IRemoteObject
 
 **示例：**
 
-  ```
+  ```ts
   class TestAbility extends rpc.RemoteObject {
       asObject() {
           return this;
@@ -5640,7 +5640,7 @@ asObject(): IRemoteObject
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -5688,7 +5688,7 @@ onRemoteDied(): void
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -6073,7 +6073,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6136,7 +6136,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6207,7 +6207,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6271,7 +6271,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6339,7 +6339,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6410,7 +6410,7 @@ getLocalInterface(interface: string): IRemoteBroker
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6463,7 +6463,7 @@ queryLocalInterface(interface: string): IRemoteBroker
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6512,7 +6512,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6571,7 +6571,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6625,7 +6625,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6685,7 +6685,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6740,7 +6740,7 @@ getDescriptor(): string
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6787,7 +6787,7 @@ getInterfaceDescriptor(): string
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6827,7 +6827,7 @@ isObjectDead(): boolean
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6882,7 +6882,7 @@ MessageOption构造函数。
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.MessageOption {
     constructor(async) {
         super(async);
@@ -6907,7 +6907,7 @@ MessageOption构造函数。
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.MessageOption {
     constructor(syncFlags,waitTime) {
         super(syncFlags,waitTime);
@@ -6930,7 +6930,7 @@ isAsync(): boolean;
 
 **示例：**
 
-  ```
+  ```ts
   let option = new rpc.MessageOption();
   let isAsync = option.isAsync();
   ```
@@ -6945,7 +6945,7 @@ setAsync(async: boolean): void;
 
 **示例：**
 
-  ```
+  ```ts
   let option = new rpc.MessageOption();
   let setAsync = option.setAsync(true);
   console.log("Set synchronization flag");
@@ -6967,7 +6967,7 @@ getFlags(): number
 
 **示例：**
 
-  ```
+  ```ts
   try {
       let option = new rpc.MessageOption();
       console.info("create object successfully.");
@@ -6998,7 +6998,7 @@ setFlags(flags: number): void
 
 **示例：**
 
-  ```
+  ```ts
   try {
       let option = new rpc.MessageOption();
       option.setFlags(1)
@@ -7026,7 +7026,7 @@ getWaitTime(): number
 
 **示例：**
 
-  ```
+  ```ts
   try {
       let option = new rpc.MessageOption();
       let time = option.getWaitTime();
@@ -7055,7 +7055,7 @@ setWaitTime(waitTime: number): void
 
 **示例：**
 
-  ```
+  ```ts
   try {
       let option = new rpc.MessageOption();
       option.setWaitTime(16);
@@ -7086,7 +7086,7 @@ static getContextObject(): IRemoteObject
 
 **示例：**
 
-  ```
+  ```ts
   let samgr = rpc.IPCSkeleton.getContextObject();
   console.log("RpcServer: getContextObject result: " + samgr);
   ```
@@ -7107,7 +7107,7 @@ static getCallingPid(): number
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callerPid = rpc.IPCSkeleton.getCallingPid();
@@ -7133,7 +7133,7 @@ static getCallingUid(): number
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callerUid = rpc.IPCSkeleton.getCallingUid();
@@ -7159,7 +7159,7 @@ static getCallingTokenId(): number;
   
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
@@ -7186,7 +7186,7 @@ static getCallingDeviceID(): string
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callerDeviceID = rpc.IPCSkeleton.getCallingDeviceID();
@@ -7212,7 +7212,7 @@ static getLocalDeviceID(): string
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let localDeviceID = rpc.IPCSkeleton.getLocalDeviceID();
@@ -7238,7 +7238,7 @@ static isLocalCalling(): boolean
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let isLocalCalling = rpc.IPCSkeleton.isLocalCalling();
@@ -7265,7 +7265,7 @@ static flushCmdBuffer(object: IRemoteObject): void
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7304,7 +7304,7 @@ static flushCommands(object: IRemoteObject): number
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -7345,7 +7345,7 @@ static resetCallingIdentity(): string
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
@@ -7372,7 +7372,7 @@ static restoreCallingIdentity(identity: string): void
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callingIdentity = null;
@@ -7411,7 +7411,7 @@ static setCallingIdentity(identity: string): boolean
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callingIdentity = null;
@@ -7473,7 +7473,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -7539,7 +7539,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -7609,7 +7609,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7660,7 +7660,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7710,7 +7710,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -7779,7 +7779,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里处理�
 
 **示例：**
 
-  ```ets
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -7841,7 +7841,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
 **重载onRemoteMessageRequest方法同步处理请求示例：**
 
-  ```ets
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7861,7 +7861,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
   **重载onRemoteMessageRequest方法异步处理请求示例：**
 
-  ```ets
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7884,7 +7884,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
 **同时重载onRemoteMessageRequest和onRemoteRequest方法同步处理请求示例：**
 
-  ```ets
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7915,7 +7915,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
   **同时重载onRemoteMessageRequest和onRemoteRequest方法异步处理请求示例：**
 
-  ```ets
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7961,7 +7961,7 @@ getCallingUid(): number
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7987,7 +7987,7 @@ getCallingPid(): number
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -8020,7 +8020,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8069,7 +8069,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8117,7 +8117,7 @@ getDescriptor(): string
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8161,7 +8161,7 @@ getInterfaceDescriptor(): string
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8203,7 +8203,7 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8250,7 +8250,7 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8315,7 +8315,7 @@ static create(name: string, size: number): Ashmem
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem;
   try {
       ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -8352,7 +8352,7 @@ static createAshmem(name: string, size: number): Ashmem
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
   console.log("RpcTest: get ashemm by createAshmem : " + ashmem + " size is : " + size);
@@ -8381,7 +8381,7 @@ static create(ashmem: Ashmem): Ashmem
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem2;
   try {
       let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -8418,7 +8418,7 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let ashmem2 = rpc.Ashmem.createAshmemFromExisting(ashmem);
   let size = ashmem2.getAshmemSize();
@@ -8435,7 +8435,7 @@ closeAshmem(): void
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.closeAshmem();
   ```
@@ -8450,7 +8450,7 @@ unmapAshmem(): void
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.unmapAshmem();
   ```
@@ -8471,7 +8471,7 @@ getAshmemSize(): number
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
   console.log("RpcTest: get ashmem is " + ashmem + " size is : " + size);
@@ -8501,7 +8501,7 @@ mapTypedAshmem(mapType: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.mapTypedAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
@@ -8535,7 +8535,7 @@ mapAshmem(mapType: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapReadAndWrite = ashmem.mapAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
   console.log("RpcTest: map ashmem result is  : " + mapReadAndWrite);
@@ -8559,7 +8559,7 @@ mapReadWriteAshmem(): void
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.mapReadWriteAshmem();
@@ -8587,7 +8587,7 @@ mapReadAndWriteAshmem(): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
   console.log("RpcTest: map ashmem result is  : " + mapResult);
@@ -8611,7 +8611,7 @@ mapReadonlyAshmem(): void
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.mapReadonlyAshmem();
@@ -8639,7 +8639,7 @@ mapReadOnlyAshmem(): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadOnlyAshmem();
   console.log("RpcTest: Ashmem mapReadOnlyAshmem result is : " + mapResult);
@@ -8669,7 +8669,7 @@ setProtectionType(protectionType: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.setProtection(ashmem.PROT_READ);
@@ -8703,7 +8703,7 @@ setProtection(protectionType: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let result = ashmem.setProtection(ashmem.PROT_READ);
   console.log("RpcTest: Ashmem setProtection result is : " + result);
@@ -8735,7 +8735,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.mapReadWriteAshmem();
   var ByteArrayVar = [1, 2, 3, 4, 5];
@@ -8773,7 +8773,7 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
   console.info("RpcTest map ashmem result is " + mapResult);
@@ -8813,7 +8813,7 @@ readAshmem(size: number, offset: number): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.mapReadWriteAshmem();
   var ByteArrayVar = [1, 2, 3, 4, 5];
@@ -8852,7 +8852,7 @@ readFromAshmem(size: number, offset: number): number[]
 
 **示例：**
 
- ```
+ ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
   console.info("RpcTest map ashmem result is " + mapResult);
