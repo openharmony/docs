@@ -63,7 +63,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 | 参数名     | 类型                        | 必填 | 说明                       |
 | ----------- | --------------------------- | ---- | ---------------------------- |
-| bundleName  | string                      | 是   | 应用程序包名称。             |
+| bundleName  | string                      | 是   | 应用Bundle名称。     |
 | moduleName  | string                      | 是   | 应用程序模块名称。           |
 | upgradeFlag | [UpgradeFlag](#upgradeflag) | 是   | 仅供内部系统使用标志位       |
 | callback    | AsyncCallback\<void>        | 是   | 回调函数。当函数调用成功，err为null，否则为错误对象。 |
@@ -113,7 +113,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 | 参数名      | 类型                        | 必填 | 说明                   |
 | ----------- | --------------------------- | ---- | ---------------------- |
-| bundleName  | string                      | 是   | 应用程序包名称。       |
+| bundleName  | string                      | 是   | 应用Bundle名称。 |
 | moduleName  | string                      | 是   | 应用程序模块名称。     |
 | upgradeFlag | [UpgradeFlag](#upgradeflag) | 是   | 仅供内部系统使用标志位。|
 
@@ -166,7 +166,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCall
 
 | 参数名      | 类型                   | 必填 | 说明                                          |
 | ---------- | ---------------------- | ---- | --------------------------------------------- |
-| bundleName | string                 | 是   | 应用程序包名称。                              |
+| bundleName | string                 | 是   | 应用Bundle名称。                      |
 | moduleName | string                 | 是   | 应用程序模块名称。                            |
 | callback   | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示可以移除；返回false表示不可移除。 |
 
@@ -214,7 +214,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string): Promise\<boolean>;
 
 | 参数名     | 类型   | 必填 | 说明               |
 | ---------- | ------ | ---- | ------------------ |
-| bundleName | string | 是   | 应用程序包名称。   |
+| bundleName | string | 是   | 应用Bundle名称。   |
 | moduleName | string | 是   | 应用程序模块名称。 |
 
 **返回值：**
@@ -265,8 +265,8 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback:
 
 | 参数名         | 类型                                                         | 必填 | 说明                                                         |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleName     | string                                                       | 是   | 应用程序包名称。                                             |
-| bundlePackFlag | [BundlePackFlag](#bundlepackflag)                            | 是   | 指示要查询的应用包标志。                                       |
+| bundleName     | string                                                       | 是   | 应用Bundle名称。                                             |
+| bundlePackFlag | [BundlePackFlag](#bundlepackflag)                            | 是   | 指示要查询的应用包标志。                                     |
 | callback       | AsyncCallback<[BundlePackInfo](js-apis-bundleManager-packInfo.md)> | 是   | 回调函数。当函数调用成功，err为null，data为获取到的BundlePackInfo信息。否则为错误对象。 |
 
 **错误码：**
@@ -311,7 +311,7 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\
 
 | 参数名         | 类型                              | 必填 | 说明                   |
 | -------------- | --------------------------------- | ---- | ---------------------- |
-| bundleName     | string                            | 是   | 应用程序包名称。       |
+| bundleName     | string                            | 是   | 应用程序Bundle名称。 |
 | bundlePackFlag | [BundlePackFlag](#bundlepackflag) | 是   | 指示要查询的应用包标志。|
 
 **返回值：**

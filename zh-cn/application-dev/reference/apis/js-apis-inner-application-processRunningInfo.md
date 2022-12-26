@@ -15,7 +15,7 @@
 | pid | number | 是 | 否 | 进程ID。 |
 | uid | number | 是 | 否 | 用户ID。 |
 | processName | string | 是 | 否 | 进程名称。 |
-| bundleNames | Array&lt;string&gt; | 是 | 否 | 进程中所有运行的包名称。 |
+| bundleNames | Array&lt;string&gt; | 是 | 否 | 进程中所有运行的Bundle名称。 |
 
 ## 使用说明
 

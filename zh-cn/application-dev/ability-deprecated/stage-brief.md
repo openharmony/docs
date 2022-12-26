@@ -2,13 +2,13 @@
 
 ## 设计思想
 
-​Stage模型的设计，是为了提供给开发者一个更好的开发方式，更好的适用于多设备、分布式场景。
+Stage模型的设计，是为了提供给开发者一个更好的开发方式，更好的适用于多设备、分布式场景。
 
-​Stage模型的设计思想如下图所示。
+Stage模型的设计思想如下图所示。
 
 ![stagedesign](figures/stagedesign.png)
 
-​Stage模型的设计基于如下三个出发点：
+Stage模型的设计基于如下三个出发点：
 
 - **应用进程的有序管理**
 
@@ -32,7 +32,7 @@ Stage模型重新定义了Ability的生命周期。系统在架构上，将应�
 -  **Bundle**：通过appid标识的OpenHarmony应用，Bundle可以包含多个HAP，每个应用都有一个bundleName，但是bundleName并不能唯一标识一个应用，appid中包含bundleName以及其他的更多信息，能够唯一标识一个应用；
 -  **AbilityStage**：对应HAP的运行期对象，在HAP首次加载到进程中时创建，运行期开发者可见；
 -  **Application**：对应Bundle的运行期对象，运行期开发者不可见；
--  **Context**：提供运行期开发者可以调用的各种能力，Ability组件和各种ExtensionAbility都有各自不同的Context类，他们都继承自基类Context，基类提供包名、moduleName、路径等信息；
+-  **Context**：提供运行期开发者可以调用的各种能力，Ability组件和各种ExtensionAbility都有各自不同的Context类，他们都继承自基类Context，基类提供Bundle名称、moduleName、路径等信息；
 -  **Ability**：提供生命周期回调，持有AbilityContext，支持组件的跨端迁移和多端协同;
 -  **ExtensionAbility**：基于场景的扩展能力统称，系统定义了多种场景的ExtensionAbility类，它们持有各自的ExtensionContext;
 -  **WindowStage**：本地窗口管理器；

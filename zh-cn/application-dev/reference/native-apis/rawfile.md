@@ -215,10 +215,10 @@ bool OH_ResourceManager_GetRawFileDescriptor (const RawFile * rawFile, RawFileDe
 
 **参数：**
 
-| Name       | 描述                               |
-| ---------- | -------------------------------- |
-| rawFile    | 表示指向[RawFile](#rawfile)的指针。      |
-| descriptor | 显示rawfile文件描述符，以及在HAP包中的起始位置和长度。 |
+| Name       | 描述                                                 |
+| ---------- | ---------------------------------------------------- |
+| rawFile    | 表示指向[RawFile](#rawfile)的指针。                  |
+| descriptor | 显示rawfile文件描述符，以及在HAP中的起始位置和长度。 |
 
 **返回：**
 
@@ -482,9 +482,9 @@ bool OH_ResourceManager_ReleaseRawFileDescriptor (const RawFileDescriptor & desc
 
 **参数：**
 
-| Name       | 描述                               |
-| ---------- | -------------------------------- |
-| descriptor | 包含rawfile文件描述符，以及在HAP包中的起始位置和长度。 |
+| Name       | 描述                                                 |
+| ---------- | ---------------------------------------------------- |
+| descriptor | 包含rawfile文件描述符，以及在HAP中的起始位置和长度。 |
 
 **返回：**
 

@@ -44,12 +44,12 @@ want操作的常数。
 |  INTENT_PARAMS_INTENT                       | ability.want.params.INTENT               | 指示用行为选择器来展示选择的操作。                             |
 |  INTENT_PARAMS_TITLE                        | ability.want.params.TITLE                | 指示与行为选择器一起使用时的字符序列对话框标题。                |
 |  ACTION_FILE_SELECT            | ohos.action.fileSelect                   | 指示选择文件的操作。                                          |
-|  PARAMS_STREAM                 | ability.params.stream                    | 指示发送数据时与目标关联的数据流的URI                          |                                     |
+|  PARAMS_STREAM                 | ability.params.stream                    | 指示发送数据时与目标关联的数据流的URI                          |
 |  ACTION_APP_ACCOUNT_AUTH      | account.appAccount.action.auth     | 指示提供auth服务的操作。                                      |
 |  ACTION_MARKET_DOWNLOAD    | ohos.want.action.marketDownload     | 表示从应用程序市场下载应用程序的的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 |  ACTION_MARKET_CROWDTEST    | ohos.want.action.marketCrowdTest     | 指示从应用程序市场众测应用程序的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 |   DLP_PARAMS_SANDBOX    |ohos.dlp.params.sandbox  | 指示沙盒标志的参数的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
-|   DLP_PARAMS_BUNDLE_NAME    |ohos.dlp.params.bundleName  |指示DLP包名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
+|   DLP_PARAMS_BUNDLE_NAME    |ohos.dlp.params.bundleName  |指示DLP Bundle名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 |   DLP_PARAMS_MODULE_NAME    |ohos.dlp.params.moduleName      |指示DLP模块名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 |   DLP_PARAMS_ABILITY_NAME   |ohos.dlp.params.abilityName      |指示DLP能力名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 |   DLP_PARAMS_INDEX    |ohos.dlp.params.index      |指示DLP索引参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |

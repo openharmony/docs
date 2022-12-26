@@ -15,7 +15,7 @@
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceType | Array\<string> | 是 | 是 | 表示设备类型。|
-| targetBundle | string | 是 | 是 | 表示目标包名。 |
+| targetBundle | string | 是 | 是 | 表示目标Bundle名称。 |
 | description | string | 是 | 是 | 表示设备过滤的描述。 |
 | filter | any | 是 | 是 | 表示设备过滤的参数。 |
 | continuationMode | [ContinuationMode](js-apis-continuation-continuationManager.md#continuationmode) | 是 | 是 | 表示协同的模式。 |

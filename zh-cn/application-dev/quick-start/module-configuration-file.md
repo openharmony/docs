@@ -441,7 +441,7 @@ metadata中指定shortcut信息，其中：
 | shortcutId | 标识快捷方式的ID。字符串的最大长度为63字节。 | 字符串 | 该标签不可缺省。 |
 | label | 标识快捷方式的标签信息，即快捷方式对外显示的文字描述信息。取值可以是描述性内容，也可以是标识label的资源索引。字符串最大长度为255字节。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | icon | 标识快捷方式的图标，标签值为资源文件的索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| [wants](../application-models/want-overview.md) | 标识快捷方式内定义的目标wants信息集合，每个wants可配置bundleName和abilityName两个子标签。<br/>bundleName：表示快捷方式的目标包名，字符串类型。<br/>abilityName：表示快捷方式的目标组件名，字符串类型。 | 对象 | 该标签可缺省，缺省为空。 |
+| [wants](../application-models/want-overview.md) | 标识快捷方式内定义的目标wants信息集合，每个wants可配置bundleName和abilityName两个子标签。<br/>bundleName：表示快捷方式的目标Bundle名称，字符串类型。<br/>abilityName：表示快捷方式的目标组件名，字符串类型。 | 对象 | 该标签可缺省，缺省为空。 |
 
 
 1. 在/resource/base/profile/目录下配置shortcuts_config.json配置文件。

@@ -99,7 +99,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 
 | 参数名           | 类型                                                 | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP包的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP包，且这些HAP包的签名需要保持一致。 |
+| hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
 | installParam           | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                                     |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，安装应用成功，err为undefined，否则为错误对象。 |
 

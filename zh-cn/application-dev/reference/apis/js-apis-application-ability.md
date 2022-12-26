@@ -225,10 +225,10 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-want.md) | 是 | Want类型参数，如ability名称，包名等。 | 
-  | launchParams | AbilityConstant.LaunchParam | 是 | Ability启动的原因、上次异常退出的原因信息。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | 是 | Want类型参数，如Ability名称，Bundle名称等。 |
+| launchParams | AbilityConstant.LaunchParam | 是 | Ability启动的原因、上次异常退出的原因信息。 |
 
 **示例：**
     
@@ -724,7 +724,7 @@ off(method: string): void;
     }
   }
   ```
-  
+
 ## OnReleaseCallBack
 
 (msg: string): void;
