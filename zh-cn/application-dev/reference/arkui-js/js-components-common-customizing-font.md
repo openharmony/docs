@@ -13,8 +13,8 @@ font-face用于定义字体样式。应用可以在style中定义font-face来指
 
 ```
 @font-face {   
-  font-family: HWfont; 
-  src: url('/common/HWfont.ttf'); 
+  font-family: font; 
+  src: url('/common/font.ttf'); 
 }
 ```
 
@@ -48,10 +48,10 @@ font-face用于定义字体样式。应用可以在style中定义font-face来指
 
 ```
 @font-face {
-  font-family: HWfont;
-  src: url("/common/HWfont.ttf");
+  font-family: font;
+  src: url("/common/font.ttf");
 }
 .demo-text {
-  font-family: HWfont;
+  font-family: font;
 }
 ```
