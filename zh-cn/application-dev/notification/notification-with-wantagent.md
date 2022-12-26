@@ -83,12 +83,12 @@
    ```typescript
    // 创建WantAgent
    wantAgent.getWantAgent(wantAgentInfo, (err, data) => {
-       if (err.code === 0) {
+       if (err) {
            console.error('[WantAgent]getWantAgent err=' + JSON.stringify(err));
-       } else {
-           console.info('[WantAgent]getWantAgent success');
-           wantAgentObj = data;
+   		return;
        }
+       console.info('[WantAgent]getWantAgent success');
+       wantAgentObj = data;
    });
    ```
 
