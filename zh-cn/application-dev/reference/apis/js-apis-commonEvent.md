@@ -14,9 +14,9 @@ import CommonEvent from '@ohos.commonEvent';
 
 ## Support
 
-本枚举是CommonEvent模块所定义的事件类型枚举。名称为系统事件的宏；值为具体事件。
+本枚举是CommonEvent模块所定义的公共事件类型枚举。名称为系统公共事件的宏；值为具体公共事件。
 
-全部枚举定义请参见[系统事件定义](./commonEvent-definitions.md)。
+全部枚举定义请参见[系统公共事件定义](./commonEvent-definitions.md)。
 
 
 **系统能力：** SystemCapability.Notification.CommonEvent
