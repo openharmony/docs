@@ -23,6 +23,11 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 
 启动新的Ability（callback形式）。
 
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
@@ -65,6 +70,11 @@ featureAbility.startAbility(
 startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 启动新的Ability（Promise形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -140,6 +150,11 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 
 启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（callback形式）。
 
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
@@ -180,6 +195,11 @@ featureAbility.startAbilityForResult(
 startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（Promise形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
