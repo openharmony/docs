@@ -24,10 +24,11 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 | 参数名     | 类型                       | 必填 | 说明                    |
 | -------- | -------------------------- | ---- | ----------------------- |
-| info     | WantAgentInfo              | 是   | WantAgent信息。           |
+| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | 是   | WantAgent信息。           |
 | callback | AsyncCallback\<WantAgent\> | 是   | 创建WantAgent的回调方法。 |
 
 **错误码：**
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -52,33 +53,31 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
-
 
 **示例：**
 
 ```ts
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -90,15 +89,15 @@ var wantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed' + JSON.stringify(err));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -117,7 +116,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 | 参数名 | 类型          | 必填 | 说明          |
 | ---- | ------------- | ---- | ------------- |
-| info | WantAgentInfo | 是   | WantAgent信息。 |
+| info | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | 是   | WantAgent信息。 |
 
 **返回值：**
 
@@ -126,6 +125,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 | Promise\<WantAgent\> | 以Promise形式返回WantAgent。 |
 
 **错误码：**
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -150,30 +150,29 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -212,6 +211,7 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 获取WantAgent实例的包名的回调方法。 |
 
 **错误码：**
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -241,26 +241,26 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
 ```ts
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -272,7 +272,7 @@ var wantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed' + JSON.stringify(wantAgent));
@@ -291,9 +291,9 @@ function getWantAgentCallback(err, data) {
         console.info('getBundleName failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -321,6 +321,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 | Promise\<string\> | 以Promise形式返回获取WantAgent实例的包名。 |
 
 **错误码：**
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -345,32 +346,31 @@ getBundleName(agent: WantAgent): Promise\<string\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
  //wantAgent对象
-var wantAgent;
+let wantAgent;
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -382,7 +382,7 @@ var wantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
@@ -397,9 +397,9 @@ function getWantAgentCallback(err, data) {
         console.info('getBundleName failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -422,6 +422,7 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 | callback | AsyncCallback\<number\> | 是   | 获取WantAgent实例的用户ID的回调方法。 |
 
 **错误码：**
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -446,33 +447,32 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -484,7 +484,7 @@ var wantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed' + JSON.stringify(err));
@@ -503,9 +503,9 @@ function getWantAgentCallback(err, data) {
         console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -533,6 +533,7 @@ getUid(agent: WantAgent): Promise\<number\>
 | Promise\<number\> | 以Promise形式返回获取WantAgent实例的用户ID。 |
 
 **错误码：**
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -557,32 +558,31 @@ getUid(agent: WantAgent): Promise\<number\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -594,7 +594,7 @@ var wantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
@@ -609,9 +609,9 @@ function getWantAgentCallback(err, data) {
         console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -635,7 +635,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 | callback | AsyncCallback\<Want\> | 是   | 获取WantAgent对象want的回调方法。 |
 
 **错误码：**
-|错误码ID    |错误信息            |
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -660,32 +660,31 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -697,7 +696,7 @@ var wantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed' + JSON.stringify(wantAgent));
@@ -716,9 +715,9 @@ function getWantAgentCallback(err, data) {
         console.info('getWant failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -748,6 +747,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 | Promise\<Want\> | 以Promise形式返回获取WantAgent对象的want。 |
 
 **错误码：**
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -772,32 +772,31 @@ getWant(agent: WantAgent): Promise\<Want\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -809,7 +808,7 @@ var wantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
@@ -824,9 +823,9 @@ function getWantAgentCallback(err, data) {
         console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -849,6 +848,7 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\> | 是   | 取消WantAgent实例的回调方法。 |
 
 **错误码：**
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -873,32 +873,31 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -910,7 +909,7 @@ var wantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed' + JSON.stringify(wantAgent));
@@ -929,9 +928,9 @@ function getWantAgentCallback(err, data) {
         console.info('cancel failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -959,6 +958,7 @@ cancel(agent: WantAgent): Promise\<void\>
 | Promise\<void\> | 以Promise形式获取异步返回结果。 |
 
 **错误码：**
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -983,32 +983,31 @@ cancel(agent: WantAgent): Promise\<void\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -1020,7 +1019,7 @@ var wantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
@@ -1035,9 +1034,9 @@ function getWantAgentCallback(err, data) {
         console.info('cancel failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -1059,6 +1058,7 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 | callback    | AsyncCallback\<CompleteData\> | 否   | 主动激发WantAgent实例的回调方法。 |
 
 **错误码：**
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -1083,36 +1083,35 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 // triggerInfo
-var triggerInfo = {
+let triggerInfo = {
         code: 0 //自定义义结果码
     }
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -1124,7 +1123,7 @@ var wantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed' + JSON.stringify(wantAgent));
@@ -1143,9 +1142,9 @@ function getWantAgentCallback(err, data) {
         console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -1156,7 +1155,7 @@ try{
 
 equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
 
-判断两个WantAgent实例是否相等（callback形式）。
+判断两个WantAgent实例是否相等（Callback形式）,以此来判断是否是来自同一应用的相同操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1169,6 +1168,7 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 | callback   | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。 |
 
 **错误码：**
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -1193,33 +1193,32 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
 //wantAgent对象
-var wantAgent1;
-var wantAgent2;
+let wantAgent1;
+let wantAgent2;
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -1231,7 +1230,7 @@ var wantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
@@ -1251,9 +1250,9 @@ function getWantAgentCallback(err, data) {
         console.info('equal failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -1264,7 +1263,7 @@ try{
 
 equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
-判断两个WantAgent实例是否相等（Promise形式）。
+判断两个WantAgent实例是否相等（Promise形式）,以此来判断是否是来自同一应用的相同操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1282,6 +1281,7 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 | Promise\<boolean\> | 以Promise形式返回获取判断两个WantAgent实例是否相等的结果。 |
 
 **错误码：**
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -1306,33 +1306,32 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
 //wantAgent对象
-var wantAgent1;
-var wantAgent2;
+let wantAgent1;
+let wantAgent2;
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -1344,7 +1343,7 @@ var wantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
@@ -1360,9 +1359,9 @@ function getWantAgentCallback(err, data) {
         console.info('equal failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -1383,6 +1382,7 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 | callback   | AsyncCallback\<number> | 是   | 获取一个WantAgent的OperationType信息的回调方法。 |
 
 **错误码：**
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -1407,32 +1407,31 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -1444,7 +1443,7 @@ var wantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed' + JSON.stringify(wantAgent));
@@ -1463,9 +1462,9 @@ function getWantAgentCallback(err, data) {
         console.info('getOperationTypeCallback failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -1491,6 +1490,7 @@ getOperationType(agent: WantAgent): Promise\<number>;
 | Promise\<number> | 以Promise形式返回获取operationType的结果。 |
 
 **错误码：**
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -1515,32 +1515,31 @@ getOperationType(agent: WantAgent): Promise\<number>;
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -1552,7 +1551,7 @@ var wantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
@@ -1567,9 +1566,9 @@ function getWantAgentCallback(err, data) {
         console.info('getOperationType failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
