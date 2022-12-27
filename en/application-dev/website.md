@@ -38,35 +38,30 @@
     - [ArkUI Overview](ui/arkui-overview.md)
     - ArkTS-based Declarative Development Paradigm
       - [Overview](ui/ui-ts-overview.md)
-      - Framework Overview
-        - File Organization
-          - [Directory Structure](ui/ts-framework-directory.md)
-          - [Rules for Accessing Application Code Files](ui/ts-framework-file-access-rules.md)
-        - Resource Management
-          - [Resource File Categories](ui/ui-ts-basic-resource-file-categories.md)
-          - [Accessing Resources](ui/ts-resource-access.md)
-        - [Pixel Units](ui/ts-pixel-units.md)
-      - Componentization
-          - [Initialization of Custom Components' Member Variables](ui/ts-custom-component-initialization.md)
-          - [Custom Component Lifecycle Callbacks](ui/ts-custom-component-lifecycle-callbacks.md)
-          - [Component Creation and Re-initialization](ui/ts-component-creation-re-initialization.md)
-      - Common Component Development Guidelines
-        - [Button](ui/ui-ts-basic-components-button.md)
-        - [Web](ui/ui-ts-components-web.md)
-      - Common Layout Development Guidelines
-        - [Flex Layout](ui/ui-ts-layout-flex.md)
-        - [Grid Layout](ui/ui-ts-layout-grid-container.md)
-        - [Media Query](ui/ui-ts-layout-mediaquery.md)
-      - Experiencing the Declarative UI
-        - [Creating a Declarative UI Project](ui/ui-ts-creating-project.md)
-        - [Getting to Know Components](ui/ui-ts-components.md)
+      - [Declarative UI Development Guidelines](ui/ui-ts-developing-intro.md)
+      - Declarative UI Development Examples
         - [Creating a Simple Page](ui/ui-ts-creating-simple-page.md)
-      - Defining Page Layout and Connection
-        - [Building a Food Data Model](ui/ui-ts-building-data-model.md)
-        - [Building a Food Category List Layout](ui/ui-ts-building-category-list-layout.md)
-        - [Building a Food Category Grid Layout](ui/ui-ts-building-category-grid-layout.md)
-        - [Implementing Page Redirection and Data Transmission](ui/ui-ts-page-redirection-data-transmission.md)
-      - [Recommendations for Improving Performance](ui/ts-performance-improvement-recommendation.md)
+        - Building a Comprehensive Example
+          - [Building a Food Data Model](ui/ui-ts-building-data-model.md)
+          - [Building a Food Category List Layout](ui/ui-ts-building-category-list-layout.md)
+          - [Building a Food Category Grid Layout](ui/ui-ts-building-category-grid-layout.md)
+          - [Implementing Page Redirection and Data Transmission](ui/ui-ts-page-redirection-data-transmission.md) 
+        - Adding a  Splash Screen Animation
+          - [Using the Drawing Feature](ui/ui-ts-drawing-feature.md)
+          - [Using the Animation Feature](ui/ui-ts-animation-feature.md)
+        - [Common Components](ui/ui-ts-components-intro.md)
+        - Common Layout Development
+          - Adaptive Layouts
+            - [Linear Layout](ui/ui-ts-layout-linear.md)
+            - [Statck Layout](ui/ui-ts-layout-stack.md)
+            - [Flex Layout](ui/ui-ts-layout-flex.md)
+            - [Grid Layout](ui/ui-ts-layout-grid.md)
+          - Responsive Layouts
+            - [Grid Layout](ui/ui-ts-layout-grid-container-new.md)
+            - [Media Query](ui/ui-ts-layout-mediaquery.md)
+        - [Custom Component Lifecycle Callbacks](ui/ui-ts-custom-component-lifecycle-callbacks.md)
+        - [Web Component Development](ui/ui-ts-components-web.md)
+        - [Recommendations for Improving Performance](ui/ui-ts-performance-improvement-recommendation.md)
     - JavaScript-compatible Web-like Development Paradigm
       - [Overview](ui/ui-js-overview.md)
       - Framework
@@ -217,12 +212,15 @@
       - [DataShare Overview](database/database-datashare-overview.md)
       - [DataShare Development](database/database-datashare-guidelines.md)
   - Task Management
-    - Background Task Management
+    - Background Task 
       - [Background Task Management Overview](task-management/background-task-overview.md)
-      - [Background Task Management Development](task-management/background-task-dev-guide.md)
-    - Work Scheduler
-      - [Work Scheduler Overview](task-management/work-scheduler-overview.md)
+      - [Transient Task Development](task-management/transient-task-dev-guide.md)
+      - [Continuous Task Development](task-management/continuous-task-dev-guide.md)
       - [Work Scheduler Development](task-management/work-scheduler-dev-guide.md)
+      - [Efficiency Resource Request Development](task-management/efficiency-resources-apply-dev-guide.md)
+    - Agent-Powered Scheduled Reminder
+      - [Agent-Powered Scheduled Reminder Overview](task-management/background-agent-scheduled-reminder-overview.md)
+      - [Agent-Powered Scheduled Reminder Development](task-management/background-agent-scheduled-reminder-guide.md)
   - Device
     - USB Service
       - [USB Service Overview](device/usb-overview.md)
@@ -242,7 +240,7 @@
       - [Sample Server Development](device/sample-server-guidelines.md)
   - Device Usage Statistics
     - [Device Usage Statistics Overview](device-usage-statistics/device-usage-statistics-overview.md)
-    - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-dev-guide.md)
+    - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-use-guide.md)
   - DFX
     - Application Event Logging
       - [Overview of Application Event Logging](dfx/hiappevent-overview.md)
@@ -603,7 +601,7 @@
       - [EventHub](reference/apis/js-apis-eventhub.md)
     - Bundle Management
       - [@ohos.bundle](reference/apis/js-apis-Bundle.md)
-      - [@ohos.bundle.defaultAppManager](reference/apis/js-apis-bundle-defaultAppManager.md)
+      - [@ohos.bundle.defaultAppManager](reference/apis/js-apis-defaultAppManager.md)
       - [@ohos.bundle.innerBundleManager)](reference/apis/js-apis-Bundle-InnerBundleManager.md)
       - [@ohos.bundleState](reference/apis/js-apis-deviceUsageStatistics.md)
       - [@ohos.distributedBundle](reference/apis/js-apis-Bundle-distributedBundle.md)
@@ -614,14 +612,14 @@
       - [BundleInstaller](reference/apis/js-apis-bundle-BundleInstaller.md)
       - [BundleStatusCallback](reference/apis/js-apis-Bundle-BundleStatusCallback.md)
       - [CustomizeData](reference/apis/js-apis-bundle-CustomizeData.md)
-      - [DispatchInfo](reference/apis/js-apis-dispatchInfo.md)
+      - [DispatchInfo](reference/apis/js-apis-bundleManager-dispatchInfo.md)
       - [ElementName](reference/apis/js-apis-bundle-ElementName.md)
-      - [ExtensionAbilityInfo](reference/apis/js-apis-bundle-ExtensionAbilityInfo.md)
+      - [ExtensionAbilityInfo](reference/apis/js-apis-bundleManager-extensionAbilityInfo.md)
       - [HapModuleInfo](reference/apis/js-apis-bundle-HapModuleInfo.md)
       - [LauncherAbilityInfo](reference/apis/js-apis-bundle-LauncherAbilityInfo.md)
-      - [Metadata](reference/apis/js-apis-bundle-Metadata.md)
+      - [Metadata](reference/apis/js-apis-bundleManager-metadata.md)
       - [ModuleInfo](reference/apis/js-apis-bundle-ModuleInfo.md)
-      - [PackInfo](reference/apis/js-apis-bundle-PackInfo.md)
+      - [PackInfo](reference/apis/js-apis-bundleManager-packInfo.md)
       - [PermissionDef](reference/apis/js-apis-bundle-PermissionDef.md)
       - [RemoteAbilityInfo](reference/apis/js-apis-bundle-remoteAbilityInfo.md)
       - [ShortcutInfo](reference/apis/js-apis-bundle-ShortcutInfo.md)
@@ -630,7 +628,6 @@
       - [@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)
       - [@ohos.prompt](reference/apis/js-apis-prompt.md)
       - [@ohos.router](reference/apis/js-apis-router.md)
-      - [@ohos.uiAppearance](reference/apis/js-apis-uiappearance.md)
     - Graphics
       - [@ohos.animation.windowAnimationManager](reference/apis/js-apis-windowAnimationManager.md)
       - [@ohos.display](reference/apis/js-apis-display.md)
@@ -656,10 +653,8 @@
       - [@ohos.workScheduler](reference/apis/js-apis-workScheduler.md)
       - [@ohos.WorkSchedulerExtensionAbility](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
     - Custom Management
-      - [@ohos.configPolicy](reference/apis/js-apis-config-policy.md)
+      - [@ohos.configPolicy](reference/apis/js-apis-configPolicy.md)
       - [@ohos.EnterpriseAdminExtensionAbility](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
-      - [@ohos.enterpriseDeviceManager](reference/apis/js-apis-enterprise-device-manager.md)
-      - [DeviceSettingsManager](reference/apis/js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)
     - Security
       - [@ohos.abilityAccessCtrl](reference/apis/js-apis-abilityAccessCtrl.md)
       - [@ohos.privacyManager](reference/apis/js-apis-privacyManager.md)
@@ -700,11 +695,7 @@
       - [@ohos.net.connection](reference/apis/js-apis-net-connection.md)
       - [@ohos.net.ethernet](reference/apis/js-apis-net-ethernet.md)
       - [@ohos.net.http](reference/apis/js-apis-http.md)
-      - [@ohos.net.policy](reference/apis/js-apis-net-policy.md)
-      - [@ohos.net.sharing](reference/apis/js-apis-net-sharing.md)
       - [@ohos.net.socket](reference/apis/js-apis-socket.md)
-      - [@ohos.net.statistics](reference/apis/js-apis-net-statistics.md)
-      - [@ohos.net.tlsSocket](reference/apis/js-apis-tlsSocket.md)
       - [@ohos.net.webSocket](reference/apis/js-apis-webSocket.md)
       - [@ohos.request](reference/apis/js-apis-request.md)
     - Connectivity

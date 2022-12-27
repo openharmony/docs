@@ -1,6 +1,6 @@
 # Using the Animation Feature
 
-The animation feature provides component animation and inter-page animation, and opens the animation capability APIs for [interpolation calculation](../reference/apis/js-apis-curve.md) and [matrix transformation](../reference/apis/js-apis-matrix4.md), allowing you to design animation effects to a great extent.
+The animation feature provides component animation and inter-page animation, and opens the animation capability APIs for interpolation calculation and matrix transformation, allowing you to design animation effects to a great extent.
 
 This section describes the following animation effects:
 
