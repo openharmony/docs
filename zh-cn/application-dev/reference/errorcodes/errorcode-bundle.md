@@ -43,11 +43,11 @@ The specified ability name is not found.
 
 **可能原因**<br/>
 1. 输入的abilityName有误。
-2. 系统中对应的应用没有安装abilityName对应的组件。
+2. 系统中对应的应用不存在该abilityName对应的ability。
 
 **处理步骤**<br/>
 1. 检查abilityName拼写是否正确。
-2. 确认对应的应用是否安装该组件。
+2. 确认对应的应用是否存在该abilityName对应的ability。
 
 ## 17700004 指定的用户不存在
 
