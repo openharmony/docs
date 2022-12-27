@@ -217,12 +217,15 @@
       - [DataShare Overview](database/database-datashare-overview.md)
       - [DataShare Development](database/database-datashare-guidelines.md)
   - Task Management
-    - Background Task Management
+    - Background Task 
       - [Background Task Management Overview](task-management/background-task-overview.md)
-      - [Background Task Management Development](task-management/background-task-dev-guide.md)
-    - Work Scheduler
-      - [Work Scheduler Overview](task-management/work-scheduler-overview.md)
+      - [Transient Task Development](task-management/transient-task-dev-guide.md)
+      - [Continuous Task Development](task-management/continuous-task-dev-guide.md)
       - [Work Scheduler Development](task-management/work-scheduler-dev-guide.md)
+      - [Efficiency Resource Request Development](task-management/efficiency-resources-apply-dev-guide.md)
+    - Agent-Powered Scheduled Reminder
+      - [Agent-Powered Scheduled Reminder Overview](task-management/background-agent-scheduled-reminder-overview.md)
+      - [Agent-Powered Scheduled Reminder Development](task-management/background-agent-scheduled-reminder-guide.md)
   - Device
     - USB Service
       - [USB Service Overview](device/usb-overview.md)
@@ -242,7 +245,7 @@
       - [Sample Server Development](device/sample-server-guidelines.md)
   - Device Usage Statistics
     - [Device Usage Statistics Overview](device-usage-statistics/device-usage-statistics-overview.md)
-    - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-dev-guide.md)
+    - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-use-guide.md)
   - DFX
     - Application Event Logging
       - [Overview of Application Event Logging](dfx/hiappevent-overview.md)
