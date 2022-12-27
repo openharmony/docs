@@ -197,12 +197,12 @@ Disables listening for hot swap events of an input device.
 **Example**
 
 ```js
-callback: function(data) {
+function callback(data) {
   console.log("type: " + data.type + ", deviceId: " + data.deviceId);
 }
 
 try {
-  inputDevice.on("change", this.callback);
+  inputDevice.on("change", callback);
 } catch (error) {
   console.info("oninputdevcie " + error.code + " " + error.message)
 }
@@ -212,7 +212,7 @@ inputDevice.on("change", listener);
 
 // Disable this listener.
 try {
-  inputDevice.off("change", this.callback);
+  inputDevice.off("change", callback);
 } catch (error) {
   console.info("offinputdevcie " + error.code + " " + error.message)
 }

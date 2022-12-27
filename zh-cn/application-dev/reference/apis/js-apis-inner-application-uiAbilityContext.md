@@ -450,7 +450,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 启动一个Ability并在该Ability销毁时返回执行结果（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -525,7 +525,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 启动一个Ability并在该Ability销毁时返回执行结果（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -604,7 +604,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 启动一个Ability并在该Ability销毁时返回执行结果（promise形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -807,7 +807,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 启动一个新的ServiceExtensionAbility（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -869,7 +869,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 启动一个新的ServiceExtensionAbility（Promise形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1048,7 +1048,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 停止同一应用程序内指定账户的服务（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1111,7 +1111,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 停止同一应用程序内指定账户的服务（Promise形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1450,7 +1450,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 将当前Ability连接到一个使用AbilityInfo.AbilityType.SERVICE模板的指定account的Ability。
 
-**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1710,7 +1710,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 根据want和accountId启动Ability（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1784,7 +1784,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 根据want、accountId及startOptions启动Ability（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1862,7 +1862,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 根据want、accountId和startOptions启动Ability（Promise形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
