@@ -183,4 +183,4 @@ ar-AE.json
 
 ## 获取语言
 
-获取语言功能请参考[应用配置](../reference/apis/js-apis-application-configuration.md)。
+获取语言功能请参考[应用配置](../reference/apis/js-apis-app-ability-configuration.md)。
