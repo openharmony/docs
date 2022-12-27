@@ -72,7 +72,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
       if (error.code) {
         // 处理业务逻辑错误
         console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
         return;
       }
       // 执行正常业务
@@ -80,8 +80,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -130,7 +130,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
+    bundleName: "com.example.myapplication",
     abilityName: "MainAbility"
   };
   var options = {
@@ -142,7 +142,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
       if (error.code) {
         // 处理业务逻辑错误
         console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
         return;
       }
       // 执行正常业务
@@ -151,7 +151,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
   } catch (paramError) {
     // 处理入参错误异常
     console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -208,7 +208,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
     abilityName: "MyAbility"
   };
   var options = {
-  	windowMode: 0,
+    windowMode: 0,
   };
 
   try {
@@ -220,12 +220,12 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
       .catch((error) => {
         // 处理业务逻辑错误
         console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
     console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -273,7 +273,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
+    bundleName: "com.example.myapplication",
     abilityName: "MainAbility"
   };
 
@@ -282,17 +282,16 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
       if (error.code) {
         // 处理业务逻辑错误
         console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
         return;
       }
       // 执行正常业务
-      console.log("startAbilityForResult succeed, result.resultCode = " +
-        result.resultCode)
+      console.log("startAbilityForResult succeed, result.resultCode = " + result.resultCode)
     });
   } catch (paramError) {
     // 处理入参错误异常
     console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -342,7 +341,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
+    bundleName: "com.example.myapplication",
     abilityName: "MainAbility"
   };
   var options = {
@@ -354,17 +353,16 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
       if (error.code) {
         // 处理业务逻辑错误
         console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
         return;
       }
       // 执行正常业务
-      console.log("startAbilityForResult succeed, result.resultCode = " +
-        result.resultCode)
+      console.log("startAbilityForResult succeed, result.resultCode = " + result.resultCode)
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(paramError.code) +
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -419,11 +417,11 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
   ```ts
   var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "MainAbility"
   };
   var options = {
-  	windowMode: 0,
+    windowMode: 0,
   };
 
   try {
@@ -435,12 +433,12 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
       .catch((error) => {
         // 处理业务逻辑错误
         console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(paramError.code) +
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -494,7 +492,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
+    bundleName: "com.example.myapplication",
     abilityName: "MainAbility"
   };
   var accountId = 100;
@@ -504,17 +502,17 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
       if (error.code) {
         // 处理业务逻辑错误
         console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
         return;
       }
       // 执行正常业务
       console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
-        result.resultCode + ' result.want = ' + JSON.stringify(result.want))
+      result.resultCode + ' result.want = ' + JSON.stringify(result.want))
     });
   } catch (paramError) {
     // 处理入参错误异常
     console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -570,7 +568,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
+    bundleName: "com.example.myapplication",
     abilityName: "MainAbility"
   };
   var accountId = 100;
@@ -583,17 +581,16 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
       if (error.code) {
         // 处理业务逻辑错误
         console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
         return;
       }
       // 执行正常业务
-      console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
-        result.resultCode + ' result.want = ' + JSON.stringify(result.want))
+      console.log("startAbilityForResultWithAccount succeed")
     });
   } catch (paramError) {
     // 处理入参错误异常
     console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -654,7 +651,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
+    bundleName: "com.example.myapplication",
     abilityName: "MainAbility"
   };
   var accountId = 100;
@@ -667,17 +664,17 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
       .then((result) => {
         // 执行正常业务
         console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
-          result.resultCode)
+        result.resultCode)
       })
       .catch((error) => {
         // 处理业务逻辑错误
         console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 ## UIAbilityContext.startServiceExtensionAbility
@@ -719,8 +716,8 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "ServiceExtensionAbility"
   };
 
   try {
@@ -728,7 +725,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
       if (error.code) {
         // 处理业务逻辑错误
         console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
         return;
       }
       // 执行正常业务
@@ -737,7 +734,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
   } catch (paramError) {
     // 处理入参错误异常
     console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -779,8 +776,8 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "ServiceExtensionAbility"
   };
 
   try {
@@ -792,12 +789,12 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
       .catch((error) => {
         // 处理业务逻辑错误
         console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
     console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -840,8 +837,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "ServiceExtensionAbility"
   };
   var accountId = 100;
 
@@ -850,7 +847,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
       if (error.code) {
         // 处理业务逻辑错误
         console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
         return;
       }
       // 执行正常业务
@@ -859,7 +856,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
   } catch (paramError) {
     // 处理入参错误异常
     console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -905,8 +902,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "ServiceExtensionAbility"
   };
   var accountId = 100;
 
@@ -919,12 +916,12 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
       .catch((error) => {
         // 处理业务逻辑错误
         console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
     console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 ## UIAbilityContext.stopServiceExtensionAbility
@@ -963,8 +960,8 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "ServiceExtensionAbility"
   };
 
   try {
@@ -972,7 +969,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
       if (error.code) {
         // 处理业务逻辑错误
         console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
         return;
       }
       // 执行正常业务
@@ -981,7 +978,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
   } catch (paramError) {
     // 处理入参错误异常
     console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -1020,8 +1017,8 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "ServiceExtensionAbility"
   };
 
   try {
@@ -1033,12 +1030,12 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
       .catch((error) => {
         // 处理业务逻辑错误
         console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
     console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -1082,8 +1079,8 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "ServiceExtensionAbility"
   };
   var accountId = 100;
 
@@ -1092,7 +1089,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
       if (error.code) {
         // 处理业务逻辑错误
         console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
         return;
       }
       // 执行正常业务
@@ -1101,7 +1098,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
   } catch (paramError) {
     // 处理入参错误异常
     console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -1144,8 +1141,8 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "ServiceExtensionAbility"
   };
   var accountId = 100;
 
@@ -1158,12 +1155,12 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
       .catch((error) => {
         // 处理业务逻辑错误
         console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
     console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -1251,12 +1248,12 @@ terminateSelf(): Promise&lt;void&gt;;
       .catch((error) => {
         // 处理业务逻辑错误
         console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (error) {
     // 捕获同步的参数错误
     console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
-      ' error.message: ' + JSON.stringify(error.message));
+    ' error.message: ' + JSON.stringify(error.message));
   }
   ```
 
@@ -1291,8 +1288,8 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
   ```ts
   var want = {
-    bundleName: "com.extreme.myapplication",
-    abilityName: "SecondAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "MainAbility"
   }
   var resultCode = 100;
   // 返回给接口调用方AbilityResult信息
@@ -1306,16 +1303,16 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
       if (error.code) {
         // 处理业务逻辑错误
         console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
         return;
       }
       // 执行正常业务
       console.log('terminateSelfWithResult succeed');
     });
   } catch (paramError) {
-      // 处理入参错误异常
-      console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(paramError.code) +
-        ' error.message: ' + JSON.stringify(paramError.message));
+    // 处理入参错误异常
+    console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(paramError.code) +
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -1356,8 +1353,8 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
   ```ts
   var want = {
-    bundleName: "com.extreme.myapplication",
-    abilityName: "SecondAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "MainAbility"
   }
   var resultCode = 100;
   // 返回给接口调用方AbilityResult信息
@@ -1375,12 +1372,12 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
       .catch((error) => {
         // 处理业务逻辑错误
         console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
     console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -1424,13 +1421,19 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "ServiceExtensionAbility"
   };
   var options = {
-    onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
-    onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-    onFailed(code) { console.log('----------- onFailed -----------') }
+    onConnect(elementName, remote) {
+      console.log('----------- onConnect -----------')
+    },
+    onDisconnect(elementName) {
+      console.log('----------- onDisconnect -----------')
+    },
+    onFailed(code) {
+      console.log('----------- onFailed -----------')
+    }
   }
 
   var connection = null;
@@ -1439,7 +1442,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
   } catch (paramError) {
     // 处理入参错误异常
     console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -1488,14 +1491,20 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "ServiceExtensionAbility"
   };
   var accountId = 100;
   var options = {
-    onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
-    onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-    onFailed(code) { console.log('----------- onFailed -----------') }
+    onConnect(elementName, remote) {
+      console.log('----------- onConnect -----------')
+    },
+    onDisconnect(elementName) {
+      console.log('----------- onDisconnect -----------')
+    },
+    onFailed(code) {
+      console.log('----------- onFailed -----------')
+    }
   }
 
   var connection = null;
@@ -1504,7 +1513,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
   } catch (paramError) {
     // 处理入参错误异常
     console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -1604,7 +1613,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
       if (error.code) {
         // 处理业务逻辑错误
         console.log('disconnectServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
         return;
       }
       // 执行正常业务
@@ -1613,7 +1622,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
   } catch (paramError) {
     // 处理入参错误异常
     console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -1646,10 +1655,10 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
   // 后台启动Ability，不配置parameters
   var wantBackground = {
-      bundleName: "com.example.myservice",
-      moduleName: "entry",
-      abilityName: "MainAbility",
-      deviceId: ""
+    bundleName: "com.example.myservice",
+    moduleName: "entry",
+    abilityName: "MainAbility",
+    deviceId: ""
   };
 
   try {
@@ -1659,14 +1668,14 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
         caller = obj;
         console.log('startAbilityByCall succeed');
       }).catch((error) => {
-        // 处理业务逻辑错误
-        console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
-      });
+      // 处理业务逻辑错误
+      console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
+      ' error.message: ' + JSON.stringify(error.message));
+    });
   } catch (paramError) {
     // 处理入参错误异常
     console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -1677,13 +1686,13 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
   // 前台启动Ability，将parameters中的"ohos.aafwk.param.callAbilityToForeground"配置为true
   var wantForeground = {
-      bundleName: "com.example.myservice",
-      moduleName: "entry",
-      abilityName: "MainAbility",
-      deviceId: "",
-      parameters: {
-        "ohos.aafwk.param.callAbilityToForeground": true
-      }
+    bundleName: "com.example.myservice",
+    moduleName: "entry",
+    abilityName: "MainAbility",
+    deviceId: "",
+    parameters: {
+      "ohos.aafwk.param.callAbilityToForeground": true
+    }
   };
 
   try {
@@ -1693,14 +1702,14 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
         caller = obj;
         console.log('startAbilityByCall succeed');
       }).catch((error) => {
-        // 处理业务逻辑错误
-        console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
-      });
+      // 处理业务逻辑错误
+      console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
+      ' error.message: ' + JSON.stringify(error.message));
+    });
   } catch (paramError) {
     // 处理入参错误异常
     console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -1754,7 +1763,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
+    bundleName: "com.example.myapplication",
     abilityName: "MainAbility"
   };
   var accountId = 100;
@@ -1764,7 +1773,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
       if (error.code) {
         // 处理业务逻辑错误
         console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
         return;
       }
       // 执行正常业务
@@ -1773,7 +1782,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
   } catch (paramError) {
     // 处理入参错误异常
     console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -1829,7 +1838,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
+    bundleName: "com.example.myapplication",
     abilityName: "MainAbility"
   };
   var accountId = 100;
@@ -1842,7 +1851,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
       if (error.code) {
         // 处理业务逻辑错误
         console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
         return;
       }
       // 执行正常业务
@@ -1851,7 +1860,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
   } catch (paramError) {
     // 处理入参错误异常
     console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -1906,7 +1915,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
+    bundleName: "com.example.myapplication",
     abilityName: "MainAbility"
   };
   var accountId = 100;
@@ -1923,12 +1932,12 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
       .catch((error) => {
         // 处理业务逻辑错误
         console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
     console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    ' error.message: ' + JSON.stringify(paramError.message));
   }
   ```
 
@@ -1951,10 +1960,9 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
   ```ts
   this.context.setMissionLabel("test", (result) => {
-      console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
+    console.log('setMissionLabel:' + JSON.stringify(result));
   });
   ```
-
 
 ## UIAbilityContext.setMissionLabel
 
@@ -1980,9 +1988,9 @@ setMissionLabel(label: string): Promise&lt;void&gt;;
 
   ```ts
   this.context.setMissionLabel("test").then(() => {
-      console.log('success');
+    console.log('success');
   }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
+    console.log('failed:' + JSON.stringify(error));
   });
   ```
 ## UIAbilityContext.setMissionIcon
@@ -2005,25 +2013,25 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
-    import image from '@ohos.multimedia.image';
-    var imagePixelMap;
-    var color = new ArrayBuffer(0);
-    var initializationOptions = {
-       size: {
-           height: 100,
-           width: 100
-       }
-    };
-    image.createPixelMap(color, initializationOptions)
-       .then((data) => {
-           imagePixelMap = data;
-       })
-       .catch((err) => {
-           console.log('--------- createPixelMap fail, err: ---------', err)
-       });
-    this.context.setMissionIcon(imagePixelMap, (err) => {
-       console.log('---------- setMissionIcon fail, err: -----------', err);
+  import image from '@ohos.multimedia.image';
+  var imagePixelMap;
+  var color = new ArrayBuffer(0);
+  var initializationOptions = {
+    size: {
+      height: 100,
+      width: 100
+    }
+  };
+  image.createPixelMap(color, initializationOptions)
+    .then((data) => {
+      imagePixelMap = data;
     })
+    .catch((err) => {
+      console.log('--------- createPixelMap fail, err: ---------', err)
+    });
+  this.context.setMissionIcon(imagePixelMap, (err) => {
+    console.log('---------- setMissionIcon fail, err: -----------', err);
+  })
   ```
 
 
@@ -2052,29 +2060,28 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 **示例：**
 
   ```ts
-    import image from '@ohos.multimedia.image';
-    var imagePixelMap;
-    var color = new ArrayBuffer(0);
-    var initializationOptions = {
-      size: {
-          height: 100,
-          width: 100
-      }
-    };
-    image.createPixelMap(color, initializationOptions)
-      .then((data) => {
-          imagePixelMap = data;
-      })
-      .catch((err) => {
-          console.log('--------- createPixelMap fail, err: ---------', err)
-      });
-    this.context.setMissionIcon(imagePixelMap)
-      .then(() => {
-          console.log('-------------- setMissionIcon success -------------');
-      })
-      .catch((err) => {
-          console.log('-------------- setMissionIcon fail, err: -------------', err);
-      });
+  var imagePixelMap;
+  var color = new ArrayBuffer(0);
+  var initializationOptions = {
+    size: {
+      height: 100,
+      width: 100
+    }
+  };
+  image.createPixelMap(color, initializationOptions)
+    .then((data) => {
+      imagePixelMap = data;
+    })
+    .catch((err) => {
+      console.log('--------- createPixelMap fail, err: ---------', err)
+    });
+  this.context.setMissionIcon(imagePixelMap)
+    .then(() => {
+      console.log('-------------- setMissionIcon success -------------');
+    })
+    .catch((err) => {
+      console.log('-------------- setMissionIcon fail, err: -------------', err);
+    });
   ```
 ## UIAbilityContext.restoreWindowStage
 
@@ -2093,8 +2100,8 @@ restoreWindowStage(localStorage: LocalStorage) : void;
 **示例：**
 
   ```ts
-    var storage = new LocalStorage();
-    this.context.restoreWindowStage(storage);
+  var storage = new LocalStorage();
+  this.context.restoreWindowStage(storage);
   ```
 
 ## UIAbilityContext.isTerminating
