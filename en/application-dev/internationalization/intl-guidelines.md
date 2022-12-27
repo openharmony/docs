@@ -45,7 +45,7 @@ Use [Locale](../reference/apis/js-apis-intl.md#locale) APIs to maximize or minim
    
    ```js
    var locale = "zh-CN";
-   var options = {caseFirst: false, calendar: "chinese", collation: "pinyin"};
+   var options = {caseFirst: "false", calendar: "chinese", collation: "pinyin"};
    var localeObj = new intl.Locale(locale, options);
    ```
 
@@ -347,4 +347,4 @@ The following sample is provided to help you better understand how to develop in
 
 -[`International`: Internationalization (JS) (API8)](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/International)
 
--[`International`: Internationalization (eTS) (API8) (Full SDK)](https://gitee.com/openharmony/applications_app_samples/tree/master/common/International)
+-[`International`: Internationalization (ArkTS) (API8) (Full SDK)](https://gitee.com/openharmony/applications_app_samples/tree/master/common/International)
