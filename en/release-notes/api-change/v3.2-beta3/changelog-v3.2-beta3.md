@@ -56,7 +56,7 @@ In earlier versions, these privileges are configured in the **config.json** or *
 
 **Change Impacts**
 
-JS and native APIs are not involved. If your application needs to use any of these privileges, apply for it. For details about how to apply for and configure the privileges, see [Application Privilege Configuration](../device-dev/subsystems/subsys-app-privilege-config-guide.md).
+JS and native APIs are not involved. If your application needs to use any of these privileges, apply for it. For details about how to apply for and configure the privileges, see [Application Privilege Configuration](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 
 **Key API/Component Changes**
 
@@ -64,7 +64,7 @@ N/A
 
 **Adaptation Guide**
 
-See [Application Privilege Configuration](../device-dev/subsystems/subsys-app-privilege-config-guide.md).
+See [Application Privilege Configuration](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 
 ```json
 {
@@ -95,7 +95,7 @@ In earlier versions, these privileges are configured in the **config.json** or *
 
 **Change Impacts**
 
-JS and native APIs are not involved. If your application needs to use any of these privileges, apply for it. For details, see [Configuration Mode](../device-dev/subsystems/subsys-app-privilege-config-guide.md#configuration-mode).
+JS and native APIs are not involved. If your application needs to use any of these privileges, apply for it. For details, see [Configuration Mode](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md#configuration-mode).
 
 **Key API/Component Changes**
 
@@ -103,7 +103,7 @@ N/A
 
 **Adaptation Guide**
 
-See [Configuration Mode](../device-dev/subsystems/subsys-app-privilege-config-guide.md#configuration-mode).
+See [Configuration Mode](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md#configuration-mode).
 
 ```json
 {
