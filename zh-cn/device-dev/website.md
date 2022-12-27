@@ -149,6 +149,8 @@
   - 标准系统芯片移植案例
 
       - [标准系统方案之瑞芯微RK3568移植案例](porting/porting-dayu200-on_standard-demo.md)
+      - [标准系统方案之瑞芯微RK3566移植案例](https://gitee.com/openharmony/vendor_kaihong/blob/master/khdvk_3566b/porting-khdvk_3566b-on_standard-demo.md)
+      - [标准系统方案之扬帆移植案例](porting/porting-yangfan-on_standard-demo.md)
 
 - 子系统开发
 
@@ -217,7 +219,7 @@
            - [虚拟文件系统](kernel/kernel-small-bundles-fs-virtual.md)
            - [支持的文件系统](kernel/kernel-small-bundles-fs-support.md)
            - [适配新的文件系统](kernel/kernel-small-bundles-fs-new.md)
-           - [Plimitsfs文件系统](kernel-small-plimits.md)
+           - [Plimitsfs文件系统](kernel/kernel-small-plimits.md)
        - 调测与工具
          - Shell
            - [Shell介绍](kernel/kernel-small-debug-shell-overview.md)
@@ -384,6 +386,7 @@
        - [产品配置规则](subsystems/subsys-build-product.md)
        - [子系统配置规则](subsystems/subsys-build-subsystem.md)
        - [部件配置规则](subsystems/subsys-build-component.md)
+       - [部件编译构建规范](subsystems/subsys-build-component-building-rules.md)
        - [模块配置规则](subsystems/subsys-build-module.md)
        - [芯片解决方案配置规则](subsystems/subsys-build-chip_solution.md)
        - [特性配置规则](subsystems/subsys-build-feature.md)
@@ -394,6 +397,7 @@
        - [查看NinjaTrace](subsystems/subsys-build-reference.md)
        - [HAP编译构建指导](subsystems/subsys-build-gn-hap-compilation-guide.md)
        - [常见问题](subsystems/subsys-build-FAQ.md)
+  -  [ArkCompiler](subsystems/subsys-arkcompiler-guide.md)
   -  [分布式远程启动](subsystems/subsys-remote-start.md)
   -  图形图像
      - [图形图像概述](subsystems/subsys-graphics-overview.md)
@@ -458,6 +462,8 @@
        - [系统参数](subsystems/subsys-boot-init-sysparam.md)
        - [沙盒管理](subsystems/subsys-boot-init-sandbox.md)
        - [插件](subsystems/subsys-boot-init-plugin.md)
+       - [组件化启动](subsystems/subsys-boot-init-sub-unit.md)
+       - [init运行日志规范化](subsystems/subsys-boot-init-log.md)
      - [appspawn应用孵化组件](subsystems/subsys-boot-appspawn.md)
      - [bootstrap服务启动组件](subsystems/subsys-boot-bootstrap.md)
      - [常见问题](subsystems/subsys-boot-faqs.md)
