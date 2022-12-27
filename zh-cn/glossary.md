@@ -73,7 +73,7 @@
     
 - ### FA模型
 
-    Ability框架提供的一种开发模型。API version 8及更早版本的应用开发仅支持FA模型。FA模型将Ability分为[FA（Feature Ability）](#fa)和[PA（Particle Ability）](#pa)两种类型，其中FA支持Page Ability模板，PA支持Service ability、Data ability、以及Form ability模板。详情可参考[FA模型综述](application-dev/ability-deprecated/fa-brief.md)。
+    Ability框架提供的一种开发模型。API version 8及更早版本的应用开发仅支持FA模型。FA模型将Ability分为[FA（Feature Ability）](#fa)和[PA（Particle Ability）](#pa)两种类型，其中FA支持Page Ability模板，PA支持Service ability、Data ability、以及Form ability模板。详情可参考[FA模型综述](application-dev/application-models/fa-model-development-overview.md)。
 
 ## H
 
