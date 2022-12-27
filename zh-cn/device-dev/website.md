@@ -217,6 +217,7 @@
            - [虚拟文件系统](kernel/kernel-small-bundles-fs-virtual.md)
            - [支持的文件系统](kernel/kernel-small-bundles-fs-support.md)
            - [适配新的文件系统](kernel/kernel-small-bundles-fs-new.md)
+           - [Plimitsfs文件系统](kernel-small-plimits.md)
        - 调测与工具
          - Shell
            - [Shell介绍](kernel/kernel-small-debug-shell-overview.md)
