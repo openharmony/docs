@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```js
-import i18n from '@ohos.i18n';
+import I18n from '@ohos.i18n';
 ```
 
 
@@ -51,7 +51,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 **示例：** 
   ```js
   try {
-    var displayCountry = i18n.System.getDisplayCountry("zh-CN", "en-GB");
+    var displayCountry = I18n.System.getDisplayCountry("zh-CN", "en-GB"); // displayCountry = "China"
   } catch(error) {
     console.error(`call System.getDisplayCountry failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -90,7 +90,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 **示例：** 
   ```js
   try {
-    var displayLanguage = i18n.System.getDisplayLanguage("zh", "en-GB");
+    var displayLanguage = I18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
   } catch(error) {
     console.error(`call System.getDisplayLanguage failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -121,7 +121,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 **示例：** 
   ```js
   try {
-    var systemLanguages = i18n.System.getSystemLanguages();
+    var systemLanguages = I18n.System.getSystemLanguages(); // [ "en-Latn-US", "zh-Hans" ]
   } catch(error) {
     console.error(`call System.getSystemLanguages failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -131,7 +131,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 static getSystemCountries(language: string): Array&lt;string&gt;
 
-获取针对输入语言系统支持的区域列表。
+获取针对输入语言系统支持的国家或地区列表。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -158,7 +158,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 **示例：** 
   ```js
   try {
-    var systemCountries = i18n.System.getSystemCountries('zh');
+    var systemCountries = I18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ]，共计240个国家或地区
   } catch(error) {
     console.error(`call System.getSystemCountries failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -168,7 +168,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 static isSuggested(language: string, region?: string): boolean
 
-判断当前语言和区域是否匹配。
+判断当前语言和地区是否匹配。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -196,7 +196,7 @@ static isSuggested(language: string, region?: string): boolean
 **示例：** 
   ```js
   try {
-    var res = i18n.System.isSuggested('zh', 'CN');
+    var res = I18n.System.isSuggested('zh', 'CN');  // res = true
   } catch(error) {
     console.error(`call System.isSuggested failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -227,7 +227,7 @@ static getSystemLanguage(): string
 **示例：** 
   ```js
   try {
-    var systemLanguage = i18n.System.getSystemLanguage();
+    var systemLanguage = I18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
   } catch(error) {
     console.error(`call System.getSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -262,7 +262,7 @@ static setSystemLanguage(language: string): void
 **示例：** 
   ```js
   try {
-    i18n.System.setSystemLanguage('zh');
+    I18n.System.setSystemLanguage('zh'); // 设置系统当前语言为 "zh"
   } catch(error) {
     console.error(`call System.setSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -293,7 +293,7 @@ static getSystemRegion(): string
 **示例：** 
   ```js
   try {
-    var systemRegion = i18n.System.getSystemRegion();
+    var systemRegion = I18n.System.getSystemRegion(); // 获取系统当前地区设置
   } catch(error) {
     console.error(`call System.getSystemRegion failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -328,7 +328,7 @@ static setSystemRegion(region: string): void
 **示例：** 
   ```js
   try {
-    i18n.System.setSystemRegion('CN');
+    I18n.System.setSystemRegion('CN');  // 设置系统当前地区为 "CN"
   } catch(error) {
     console.error(`call System.setSystemRegion failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -359,7 +359,7 @@ static getSystemLocale(): string
 **示例：** 
   ```js
   try {
-    var systemLocale = i18n.System.getSystemLocale();
+    var systemLocale = I18n.System.getSystemLocale();  // 获取系统当前Locale
   } catch(error) {
     console.error(`call System.getSystemLocale failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -394,7 +394,7 @@ static setSystemLocale(locale: string): void
 **示例：** 
   ```js
   try {
-    i18n.System.setSystemLocale('zh-CN');
+    I18n.System.setSystemLocale('zh-CN');  // 设置系统当前Locale为 "zh-CN"
   } catch(error) {
     console.error(`call System.setSystemLocale failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -425,7 +425,7 @@ static is24HourClock(): boolean
 **示例：** 
   ```js
   try {
-    var is24HourClock = i18n.System.is24HourClock();
+    var is24HourClock = I18n.System.is24HourClock();  // 系统24小时开关是否开启
   } catch(error) {
     console.error(`call System.is24HourClock failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -461,7 +461,7 @@ static set24HourClock(option: boolean): void
   ```js
   // 将系统时间设置为24小时制
   try {
-    i18n.System.set24HourClock(true);
+    I18n.System.set24HourClock(true);
   } catch(error) {
     console.error(`call System.set24HourClock failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -500,7 +500,7 @@ static addPreferredLanguage(language: string, index?: number): void
   var language = 'zh-CN';
   var index = 0;
   try {
-    i18n.System.addPreferredLanguage(language, index);
+    I18n.System.addPreferredLanguage(language, index); // 将zh-CN添加到系统偏好语言列表的第1位
   } catch(error) {
     console.error(`call System.addPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -537,7 +537,7 @@ static removePreferredLanguage(index: number): void
   // 删除系统偏好语言列表中的第一个偏好语言
   var index = 0;
   try {
-    i18n.System.removePreferredLanguage(index);
+    I18n.System.removePreferredLanguage(index);
   } catch(error) {
     console.error(`call System.removePreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -568,7 +568,7 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 **示例：** 
   ```js
   try {
-    var preferredLanguageList = i18n.System.getPreferredLanguageList();
+    var preferredLanguageList = I18n.System.getPreferredLanguageList(); // 获取系统当前偏好语言列表
   } catch(error) {
     console.error(`call System.getPreferredLanguageList failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -599,7 +599,7 @@ static getFirstPreferredLanguage(): string
 **示例：** 
   ```js
   try {
-    var firstPreferredLanguage = i18n.System.getFirstPreferredLanguage();
+    var firstPreferredLanguage = I18n.System.getFirstPreferredLanguage();  // 获取系统当前偏好语言列表中的第一个偏好语言
   } catch(error) {
     console.error(`call System.getFirstPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -630,7 +630,7 @@ static getAppPreferredLanguage(): string
 **示例：** 
   ```js
   try {
-    var appPreferredLanguage = i18n.System.getAppPreferredLanguage();
+    var appPreferredLanguage = I18n.System.getAppPreferredLanguage(); // 获取应用偏好语言
   } catch(error) {
     console.error(`call System.getAppPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -665,7 +665,7 @@ static setUsingLocalDigit(flag: boolean): void
 **示例：** 
   ```ts
   try {
-    i18n.System.setUsingLocalDigit(true);
+    I18n.System.setUsingLocalDigit(true); // 打开本地化数字开关
   } catch(error) {
     console.error(`call System.setUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -696,14 +696,14 @@ static getUsingLocalDigit(): boolean
 **示例：** 
   ```ts
   try {
-    var status = i18n.System.getUsingLocalDigit();
+    var status = I18n.System.getUsingLocalDigit();  // 判断本地化数字开关是否打开
   } catch(error) {
     console.error(`call System.getUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`)
   }
   ```
 
 
-## i18n.isRTL<sup>7+</sup>
+## I18n.isRTL<sup>7+</sup>
 
 isRTL(locale: string): boolean
 
@@ -725,12 +725,12 @@ isRTL(locale: string): boolean
 
 **示例：** 
   ```js
-  i18n.isRTL("zh-CN");// 中文不是RTL语言，返回false
-  i18n.isRTL("ar-EG");// 阿语是RTL语言，返回true
+  I18n.isRTL("zh-CN");// 中文不是RTL语言，返回false
+  I18n.isRTL("ar-EG");// 阿语是RTL语言，返回true
   ```
 
 
-## i18n.getCalendar<sup>8+</sup>
+## I18n.getCalendar<sup>8+</sup>
 
 getCalendar(locale: string, type? : string): Calendar
 
@@ -753,7 +753,7 @@ getCalendar(locale: string, type? : string): Calendar
 
 **示例：** 
   ```js
-  i18n.getCalendar("zh-Hans", "gregory");
+  I18n.getCalendar("zh-Hans", "chinese"); // 获取中国农历日历对象
   ```
 
 
@@ -776,7 +776,7 @@ setTime(date: Date): void
 
 **示例：** 
   ```js
-  var calendar = i18n.getCalendar("en-US", "gregory");
+  var calendar = I18n.getCalendar("en-US", "gregory");
   var date = new Date(2021, 10, 7, 8, 0, 0, 0);
   calendar.setTime(date);
   ```
@@ -798,7 +798,7 @@ setTime(time: number): void
 
 **示例：** 
   ```js
-  var calendar = i18n.getCalendar("en-US", "gregory");
+  var calendar = I18n.getCalendar("en-US", "gregory");
   calendar.setTime(10540800000);
   ```
 
@@ -824,7 +824,7 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 
 **示例：** 
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
+  var calendar = I18n.getCalendar("zh-Hans");
   calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
   ```
 
@@ -845,7 +845,7 @@ setTimeZone(timezone: string): void
 
 **示例：** 
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
+  var calendar = I18n.getCalendar("zh-Hans");
   calendar.setTimeZone("Asia/Shanghai");
   ```
 
@@ -866,9 +866,9 @@ getTimeZone(): string
 
 **示例：** 
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
+  var calendar = I18n.getCalendar("zh-Hans");
   calendar.setTimeZone("Asia/Shanghai");
-  calendar.getTimeZone(); // Asia/Shanghai"
+  var timezone = calendar.getTimeZone(); // timezone = "Asia/Shanghai"
   ```
 
 
@@ -888,8 +888,8 @@ getFirstDayOfWeek(): number
 
 **示例：** 
   ```js
-  var calendar = i18n.getCalendar("en-US", "gregory");
-  calendar.getFirstDayOfWeek();
+  var calendar = I18n.getCalendar("en-US", "gregory");
+  var firstDayOfWeek = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 1
   ```
 
 
@@ -909,8 +909,9 @@ setFirstDayOfWeek(value: number): void
 
 **示例：** 
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
-  calendar.setFirstDayOfWeek(0);
+  var calendar = I18n.getCalendar("zh-Hans");
+  calendar.setFirstDayOfWeek(3);
+  var firstDayOfWeek = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 3
   ```
 
 
@@ -930,8 +931,8 @@ getMinimalDaysInFirstWeek(): number
 
 **示例：** 
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
-  calendar.getMinimalDaysInFirstWeek();
+  var calendar = I18n.getCalendar("zh-Hans");
+  var minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 1
   ```
 
 
@@ -951,8 +952,9 @@ setMinimalDaysInFirstWeek(value: number): void
 
 **示例：** 
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
+  var calendar = I18n.getCalendar("zh-Hans");
   calendar.setMinimalDaysInFirstWeek(3);
+  var minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 3
   ```
 
 
@@ -978,9 +980,9 @@ get(field: string): number
 
 **示例：** 
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
+  var calendar = I18n.getCalendar("zh-Hans");
   calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
-  calendar.get("hour_of_day"); // 8
+  hourOfDay = calendar.get("hour_of_day"); // hourOfDay = 8
   ```
 
 
@@ -1006,8 +1008,8 @@ getDisplayName(locale: string): string
 
 **示例：** 
   ```js
-  var calendar = i18n.getCalendar("en-US", "buddhist");
-  calendar.getDisplayName("zh"); // 佛历
+  var calendar = I18n.getCalendar("en-US", "buddhist");
+  var calendarName = calendar.getDisplayName("zh"); // calendarName = "佛历"
   ```
 
 
@@ -1033,7 +1035,7 @@ isWeekend(date?: Date): boolean
 
 **示例：** 
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
+  var calendar = I18n.getCalendar("zh-Hans");
   calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
   calendar.isWeekend(); // false
   var date = new Date(2011, 11, 6, 9, 0, 0);
@@ -1061,7 +1063,7 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 
 **示例：** 
   ```js
-  var phoneNumberFormat= new i18n.PhoneNumberFormat("CN", {"type": "E164"});
+  var phoneNumberFormat= new I18n.PhoneNumberFormat("CN", {"type": "E164"});
   ```
 
 
@@ -1087,8 +1089,8 @@ isValidNumber(number: string): boolean
 
 **示例：** 
   ```js
-  var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
-  phonenumberfmt.isValidNumber("15812312312");
+  var phonenumberfmt = new I18n.PhoneNumberFormat("CN");
+  var isValidNumber = phonenumberfmt.isValidNumber("15812312312"); // isValidNumber = true
   ```
 
 
@@ -1114,8 +1116,8 @@ format(number: string): string
 
 **示例：** 
   ```js
-  var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
-  phonenumberfmt.format("15812312312");
+  var phonenumberfmt = new I18n.PhoneNumberFormat("CN");
+  var formattedPhoneNumber = phonenumberfmt.format("15812312312"); // formattedPhoneNumber = "158 1231 2312"
   ```
 
 
@@ -1142,8 +1144,8 @@ getLocationName(number: string, locale: string): string
 
 **示例：** 
   ```js
-  var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
-  phonenumberfmt.getLocationName("15812312345", "zh-CN");
+  var phonenumberfmt = new I18n.PhoneNumberFormat("CN");
+  var locationName = phonenumberfmt.getLocationName("15812312345", "zh-CN"); // locationName = "广东省湛江市"
   ```
 
 
@@ -1192,7 +1194,7 @@ getInstance(locale?:string): IndexUtil
 
 **示例：** 
   ```js
-  var indexUtil= i18n.getInstance("zh-CN");
+  var indexUtil= I18n.getInstance("zh-CN");
   ```
 
 
@@ -1215,7 +1217,9 @@ getIndexList(): Array&lt;string&gt;
 
 **示例：** 
   ```js
-  var indexUtil = i18n.getInstance("zh-CN");
+  var indexUtil = I18n.getInstance("zh-CN");
+  // indexList = [ "...", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+  //              "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "..." ]
   var indexList = indexUtil.getIndexList();
   ```
 
@@ -1236,7 +1240,7 @@ addLocale(locale: string): void
 
 **示例：** 
   ```js
-  var indexUtil = i18n.getInstance("zh-CN");
+  var indexUtil = I18n.getInstance("zh-CN");
   indexUtil.addLocale("en-US");
   ```
 
@@ -1263,12 +1267,12 @@ getIndex(text: string): string
 
 **示例：** 
   ```js
-  var indexUtil= i18n.getInstance("zh-CN");
-  indexUtil.getIndex("hi");  // 返回hi
+  var indexUtil= I18n.getInstance("zh-CN");
+  var index = indexUtil.getIndex("hi");  // index = "H"
   ```
 
 
-## i18n.getLineInstance<sup>8+</sup>
+## I18n.getLineInstance<sup>8+</sup>
 
 getLineInstance(locale: string): BreakIterator
 
@@ -1290,7 +1294,7 @@ getLineInstance(locale: string): BreakIterator
 
 **示例：** 
   ```js
-  var iterator = i18n.getLineInstance("en");
+  var iterator = I18n.getLineInstance("en");
   ```
 
 
@@ -1313,8 +1317,8 @@ setLineBreakText(text: string): void
 
 **示例：** 
   ```js
-  var iterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  var iterator = I18n.getLineInstance("en");
+  iterator.setLineBreakText("Apple is my favorite fruit."); // 设置短句文本
   ```
 
 
@@ -1334,9 +1338,9 @@ getLineBreakText(): string
 
 **示例：** 
   ```js
-  var iterator = i18n.getLineInstance("en");
+  var iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.getLineBreakText(); // Apple is my favorite fruit.
+  var breakText = iterator.getLineBreakText(); // breakText = "Apple is my favorite fruit."
   ```
 
 
@@ -1356,9 +1360,9 @@ current(): number
 
 **示例：** 
   ```js
-  var iterator = i18n.getLineInstance("en");
+  var iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.current(); // 0
+  var currentPos = iterator.current(); // currentPos = 0
   ```
 
 
@@ -1380,7 +1384,7 @@ first(): number
   ```js
   var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.first(); // 0
+  var firstPos = iterator.first(); // firstPos = 0
   ```
 
 
@@ -1400,9 +1404,9 @@ last(): number
 
 **示例：** 
   ```js
-  var iterator = i18n.getLineInstance("en");
+  var iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.last(); // 27
+  var lastPos = iterator.last(); // lastPos = 27
   ```
 
 
@@ -1428,11 +1432,11 @@ next(index?: number): number
 
 **示例：** 
   ```js
-  var iterator = i18n.getLineInstance("en");
+  var iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.first(); // 0
-  iterator.next(); // 6
-  iterator.next(10); // -1
+  var pos = iterator.first(); // pos = 0
+  pos = iterator.next(); // pos = 6
+  pos = iterator.next(10); // pos = -1
   ```
 
 
@@ -1452,11 +1456,11 @@ previous(): number
 
 **示例：** 
   ```js
-  var iterator = i18n.getLineInstance("en");
+  var iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.first(); // 0
-  iterator.next(3); // 12
-  iterator.previous(); // 9
+  var pos = iterator.first(); // pos = 0
+  pos = iterator.next(3); // pos = 12
+  pos = iterator.previous(); // pos = 9
   ```
 
 
@@ -1482,11 +1486,11 @@ following(offset: number): number
 
 **示例：** 
   ```js
-  var iterator = i18n.getLineInstance("en");
+  var iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.following(0); // 6
-  iterator.following(100); // -1
-  iterator.current(); // 27
+  var pos = iterator.following(0); // pos = 6
+  pos = iterator.following(100); // pos = -1
+  pos = iterator.current(); // pos = 27
   ```
 
 
@@ -1512,14 +1516,14 @@ isBoundary(offset: number): boolean
 
 **示例：** 
   ```js
-  var iterator = i18n.getLineInstance("en");
+  var iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.isBoundary(0); // true;
-  iterator.isBoundary(5); // false;
+  var isBoundary = iterator.isBoundary(0); // isBoundary = true;
+  isBoundary = iterator.isBoundary(5); // isBoundary = false;
   ```
 
 
-## i18n.getTimeZone<sup>7+</sup>
+## I18n.getTimeZone<sup>7+</sup>
 
 getTimeZone(zoneID?: string): TimeZone
 
@@ -1541,7 +1545,7 @@ getTimeZone(zoneID?: string): TimeZone
 
 **示例：** 
   ```js
-  var timezone = i18n.getTimeZone();
+  var timezone = I18n.getTimeZone();
   ```
 
 
@@ -1564,8 +1568,8 @@ getID(): string
 
 **示例：** 
   ```js
-  var timezone = i18n.getTimeZone();
-  timezone.getID();
+  var timezone = I18n.getTimeZone();
+  var timezoneID = timezone.getID(); // timezoneID = "Asia/Shanghai"
   ```
 
 
@@ -1573,7 +1577,7 @@ getID(): string
 
 getDisplayName(locale?: string, isDST?: boolean): string
 
-获取时区对象在指定区域的表示。
+获取时区的本地化表示。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1592,8 +1596,8 @@ getDisplayName(locale?: string, isDST?: boolean): string
 
 **示例：** 
   ```js
-  var timezone = i18n.getTimeZone();
-  timezone.getDisplayName("zh-CN", false);
+  var timezone = I18n.getTimeZone();
+  var timezoneName = timezone.getDisplayName("zh-CN", false); // timezoneName = "中国标准时间"
   ```
 
 
@@ -1613,8 +1617,8 @@ getRawOffset(): number
 
 **示例：** 
   ```js
-  var timezone = i18n.getTimeZone();
-  timezone.getRawOffset();
+  var timezone = I18n.getTimeZone();
+  var offset = timezone.getRawOffset(); // offset = 28800000
   ```
 
 
@@ -1634,8 +1638,8 @@ getOffset(date?: number): number
 
 **示例：** 
   ```js
-  var timezone = i18n.getTimeZone();
-  timezone.getOffset(1234567890);
+  var timezone = I18n.getTimeZone();
+  var offset = timezone.getOffset(1234567890); // offset = 28800000
   ```
 
 
@@ -1655,7 +1659,8 @@ static getAvailableIDs(): Array&lt;string&gt;
 
 **示例：** 
   ```ts
-  var ids = i18n.TimeZone.getAvailableIDs();
+  // ids = ["America/Adak", "America/Anchorage", "America/Bogota", "America/Denver", "America/Los_Angeles", "America/Montevideo", "America/Santiago", "America/Sao_Paulo", "Asia/Ashgabat", "Asia/Hovd", "Asia/Jerusalem", "Asia/Magadan", "Asia/Omsk", "Asia/Shanghai", "Asia/Tokyo", "Asia/Yerevan", "Atlantic/Cape_Verde", "Australia/Lord_Howe", "Europe/Dublin", "Europe/London", "Europe/Moscow", "Pacific/Auckland", "Pacific/Easter", "Pacific/Pago-Pago"], 当前共支持24个时区
+  var ids = I18n.TimeZone.getAvailableIDs();
   ```
 
 
@@ -1675,7 +1680,8 @@ static getAvailableZoneCityIDs(): Array&lt;string&gt;
 
 **示例：** 
   ```ts
-  var cityIDs = i18n.TimeZone.getAvailableZoneCityIDs();
+  // cityIDs = ["Auckland", "Magadan", "Lord Howe Island", "Tokyo", "Shanghai", "Hovd", "Omsk", "Ashgabat", "Yerevan", "Moscow", "Tel Aviv", "Dublin", "London", "Praia", "Montevideo", "Brasília", "Santiago", "Bogotá", "Easter Island", "Salt Lake City", "Los Angeles", "Anchorage", "Adak", "Pago Pago"]，当前共支持24个时区城市
+  var cityIDs = I18n.TimeZone.getAvailableZoneCityIDs();
   ```
 
 
@@ -1702,7 +1708,7 @@ static getCityDisplayName(cityID: string, locale: string): string
 
 **示例：** 
   ```ts
-  var displayName = i18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN");
+  var displayName = I18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN"); // displayName = "上海(中国)"
   ```
 
 
@@ -1728,7 +1734,7 @@ static getTimezoneFromCity(cityID: string): TimeZone
 
 **示例：** 
   ```ts
-  var timezone = i18n.TimeZone.getTimezoneFromCity("Shanghai");
+  var timezone = I18n.TimeZone.getTimezoneFromCity("Shanghai");
   ```
 
 
@@ -1751,7 +1757,9 @@ static getAvailableIDs(): string[]
 
 **示例：** 
   ```ts
-  i18n.Transliterator.getAvailableIDs();
+  // ids = ["ASCII-Latin", "Accents-Any", "Amharic-Latin/BGN", ...]，共支持671个id
+  // 每一个id由使用中划线分割的两部分组成，格式为 source-destination
+  var ids = I18n.Transliterator.getAvailableIDs();
   ```
 
 
@@ -1777,7 +1785,7 @@ static getInstance(id: string): Transliterator
 
 **示例：** 
   ```ts
-  var transliterator = i18n.Transliterator.getInstance("Any-Latn");
+  var transliterator = I18n.Transliterator.getInstance("Any-Latn");
   ```
 
 
@@ -1803,8 +1811,8 @@ transform(text: string): string
 
 **示例：** 
   ```ts
-  var transliterator = i18n.Transliterator.getInstance("Any-Latn");
-  transliterator.transform("中国");
+  var transliterator = I18n.Transliterator.getInstance("Any-Latn");
+  var res = transliterator.transform("中国"); // res = "zhōng guó"
   ```
 
 
@@ -1833,7 +1841,7 @@ static isDigit(char: string): boolean
 
 **示例：** 
   ```js
-  var isdigit = i18n.Unicode.isDigit("1");  // 返回true
+  var isdigit = I18n.Unicode.isDigit("1");  // isdigit = true
   ```
 
 
@@ -1859,7 +1867,7 @@ static isSpaceChar(char: string): boolean
 
 **示例：** 
   ```js
-  var isspacechar = i18n.Unicode.isSpaceChar("a");  // 返回false
+  var isspacechar = I18n.Unicode.isSpaceChar("a");  // isspacechar = false
   ```
 
 
@@ -1885,7 +1893,7 @@ static isWhitespace(char: string): boolean
 
 **示例：** 
   ```js
-  var iswhitespace = i18n.Unicode.isWhitespace("a");  // 返回false
+  var iswhitespace = I18n.Unicode.isWhitespace("a");  // iswhitespace = false
   ```
 
 
@@ -1911,7 +1919,7 @@ static isRTL(char: string): boolean
 
 **示例：** 
   ```js
-  var isrtl = i18n.Unicode.isRTL("a");  // 返回false
+  var isrtl = I18n.Unicode.isRTL("a");  // isrtl = false
   ```
 
 
@@ -1937,7 +1945,7 @@ static isIdeograph(char: string): boolean
 
 **示例：** 
   ```js
-  var isideograph = i18n.Unicode.isIdeograph("a");  // 返回false
+  var isideograph = I18n.Unicode.isIdeograph("a");  // isideograph = false
   ```
 
 
@@ -1963,7 +1971,7 @@ static isLetter(char: string): boolean
 
 **示例：** 
   ```js
-  var isletter = i18n.Unicode.isLetter("a");  // 返回true
+  var isletter = I18n.Unicode.isLetter("a");  // isletter = true
   ```
 
 
@@ -1989,7 +1997,7 @@ static isLowerCase(char: string): boolean
 
 **示例：** 
   ```js
-  var islowercase = i18n.Unicode.isLowerCase("a");  // 返回true
+  var islowercase = I18n.Unicode.isLowerCase("a");  // islowercase = true
   ```
 
 
@@ -2015,7 +2023,7 @@ static isUpperCase(char: string): boolean
 
 **示例：** 
   ```js
-  var isuppercase = i18n.Unicode.isUpperCase("a");  // 返回false
+  var isuppercase = I18n.Unicode.isUpperCase("a");  // isuppercase = false
   ```
 
 
@@ -2041,7 +2049,7 @@ static getType(char: string): string
 
 **示例：** 
   ```js
-  var type = i18n.Unicode.getType("a");
+  var type = I18n.Unicode.getType("a"); // type = "U_LOWERCASE_LETTER"
   ```
 
 
@@ -2074,7 +2082,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 
 **示例：** 
   ```js
-  i18n.I18NUtil.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
+  var res = I18n.I18NUtil.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long"); // res = 236.588 liters
   ```
 
 
@@ -2100,11 +2108,11 @@ static getDateOrder(locale: string): string
 
 **示例：** 
   ```js
-  i18n.I18NUtil.getDateOrder("zh-CN");
+  var order = I18n.I18NUtil.getDateOrder("zh-CN");  // order = "y-L-d"
   ```
 
 
-## i18n.getDisplayCountry<sup>(deprecated)</sup>
+## I18n.getDisplayCountry<sup>(deprecated)</sup>
 
 getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
 
@@ -2130,12 +2138,12 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 
 **示例：** 
   ```js
-  i18n.getDisplayCountry("zh-CN", "en-GB", true);
-  i18n.getDisplayCountry("zh-CN", "en-GB");
+  var countryName = I18n.getDisplayCountry("zh-CN", "en-GB", true); // countryName = true
+  countryName = I18n.getDisplayCountry("zh-CN", "en-GB"); // countryName = true
   ```
 
 
-## i18n.getDisplayLanguage<sup>(deprecated)</sup>
+## I18n.getDisplayLanguage<sup>(deprecated)</sup>
 
 getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
 
@@ -2161,12 +2169,12 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 
 **示例：** 
   ```js
-  i18n.getDisplayLanguage("zh", "en-GB", true);
-  i18n.getDisplayLanguage("zh", "en-GB");
+  var languageName = I18n.getDisplayLanguage("zh", "en-GB", true); // languageName = "Chinese"
+  languageName = I18n.getDisplayLanguage("zh", "en-GB"); // languageName = "Chinese"
   ```
 
 
-## i18n.getSystemLanguage<sup>(deprecated)</sup>
+## I18n.getSystemLanguage<sup>(deprecated)</sup>
 
 getSystemLanguage(): string
 
@@ -2184,11 +2192,11 @@ getSystemLanguage(): string
 
 **示例：** 
   ```js
-  i18n.getSystemLanguage();
+  var systemLanguage = I18n.getSystemLanguage(); // 返回当前系统语言
   ```
 
 
-## i18n.getSystemRegion<sup>(deprecated)</sup>
+## I18n.getSystemRegion<sup>(deprecated)</sup>
 
 getSystemRegion(): string
 
@@ -2206,11 +2214,11 @@ getSystemRegion(): string
 
 **示例：** 
   ```js
-  i18n.getSystemRegion();
+  var region = I18n.getSystemRegion(); // 返回当前系统地区
   ```
 
 
-## i18n.getSystemLocale<sup>(deprecated)</sup>
+## I18n.getSystemLocale<sup>(deprecated)</sup>
 
 getSystemLocale(): string
 
@@ -2228,11 +2236,11 @@ getSystemLocale(): string
 
 **示例：** 
   ```js
-  i18n.getSystemLocale();
+  var locale = I18n.getSystemLocale(); // 返回系统Locale
   ```
 
 
-## i18n.is24HourClock<sup>(deprecated)</sup>
+## I18n.is24HourClock<sup>(deprecated)</sup>
 
 is24HourClock(): boolean
 
@@ -2250,11 +2258,11 @@ is24HourClock(): boolean
 
 **示例：** 
   ```js
-  var is24HourClock = i18n.is24HourClock();
+  var is24HourClock = I18n.is24HourClock();
   ```
 
 
-## i18n.set24HourClock<sup>(deprecated)</sup>
+## I18n.set24HourClock<sup>(deprecated)</sup>
 
 set24HourClock(option: boolean): boolean
 
@@ -2281,11 +2289,11 @@ set24HourClock(option: boolean): boolean
 **示例：** 
   ```js
   // 将系统时间设置为24小时制
-  var success = i18n.set24HourClock(true);
+  var success = I18n.set24HourClock(true);
   ```
 
 
-## i18n.addPreferredLanguage<sup>(deprecated)</sup>
+## I18n.addPreferredLanguage<sup>(deprecated)</sup>
 
 addPreferredLanguage(language: string, index?: number): boolean
 
@@ -2315,11 +2323,11 @@ addPreferredLanguage(language: string, index?: number): boolean
   // 将语言zh-CN添加到系统偏好语言列表中
   var language = 'zh-CN';
   var index = 0;
-  var success = i18n.addPreferredLanguage(language, index);
+  var success = I18n.addPreferredLanguage(language, index);
   ```
 
 
-## i18n.removePreferredLanguage<sup>(deprecated)</sup>
+## I18n.removePreferredLanguage<sup>(deprecated)</sup>
 
 removePreferredLanguage(index: number): boolean
 
@@ -2347,11 +2355,11 @@ removePreferredLanguage(index: number): boolean
   ```js
   // 删除系统偏好语言列表中的第一个偏好语言
   var index = 0;
-  var success = i18n.removePreferredLanguage(index);
+  var success = I18n.removePreferredLanguage(index);
   ```
 
 
-## i18n.getPreferredLanguageList<sup>(deprecated)</sup>
+## I18n.getPreferredLanguageList<sup>(deprecated)</sup>
 
 getPreferredLanguageList(): Array&lt;string&gt;
 
@@ -2369,11 +2377,11 @@ getPreferredLanguageList(): Array&lt;string&gt;
 
 **示例：** 
   ```js
-  var preferredLanguageList = i18n.getPreferredLanguageList();
+  var preferredLanguageList = I18n.getPreferredLanguageList(); // 获取系统偏好语言列表
   ```
 
 
-## i18n.getFirstPreferredLanguage<sup>(deprecated)</sup>
+## I18n.getFirstPreferredLanguage<sup>(deprecated)</sup>
 
 getFirstPreferredLanguage(): string
 
@@ -2391,7 +2399,7 @@ getFirstPreferredLanguage(): string
 
 **示例：** 
   ```js
-  var firstPreferredLanguage = i18n.getFirstPreferredLanguage();
+  var firstPreferredLanguage = I18n.getFirstPreferredLanguage();
   ```
 
 
