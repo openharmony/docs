@@ -38,35 +38,30 @@
     - [ArkUI Overview](ui/arkui-overview.md)
     - ArkTS-based Declarative Development Paradigm
       - [Overview](ui/ui-ts-overview.md)
-      - Framework Overview
-        - File Organization
-          - [Directory Structure](ui/ts-framework-directory.md)
-          - [Rules for Accessing Application Code Files](ui/ts-framework-file-access-rules.md)
-        - Resource Management
-          - [Resource File Categories](ui/ui-ts-basic-resource-file-categories.md)
-          - [Accessing Resources](ui/ts-resource-access.md)
-        - [Pixel Units](ui/ts-pixel-units.md)
-      - Componentization
-          - [Initialization of Custom Components' Member Variables](ui/ts-custom-component-initialization.md)
-          - [Custom Component Lifecycle Callbacks](ui/ts-custom-component-lifecycle-callbacks.md)
-          - [Component Creation and Re-initialization](ui/ts-component-creation-re-initialization.md)
-      - Common Component Development Guidelines
-        - [Button](ui/ui-ts-basic-components-button.md)
-        - [Web](ui/ui-ts-components-web.md)
-      - Common Layout Development Guidelines
-        - [Flex Layout](ui/ui-ts-layout-flex.md)
-        - [Grid Layout](ui/ui-ts-layout-grid-container.md)
-        - [Media Query](ui/ui-ts-layout-mediaquery.md)
-      - Experiencing the Declarative UI
-        - [Creating a Declarative UI Project](ui/ui-ts-creating-project.md)
-        - [Getting to Know Components](ui/ui-ts-components.md)
+      - [Declarative UI Development Guidelines](ui/ui-ts-developing-intro.md)
+      - Declarative UI Development Examples
         - [Creating a Simple Page](ui/ui-ts-creating-simple-page.md)
-      - Defining Page Layout and Connection
-        - [Building a Food Data Model](ui/ui-ts-building-data-model.md)
-        - [Building a Food Category List Layout](ui/ui-ts-building-category-list-layout.md)
-        - [Building a Food Category Grid Layout](ui/ui-ts-building-category-grid-layout.md)
-        - [Implementing Page Redirection and Data Transmission](ui/ui-ts-page-redirection-data-transmission.md)
-      - [Recommendations for Improving Performance](ui/ts-performance-improvement-recommendation.md)
+        - Building a Comprehensive Example
+          - [Building a Food Data Model](ui/ui-ts-building-data-model.md)
+          - [Building a Food Category List Layout](ui/ui-ts-building-category-list-layout.md)
+          - [Building a Food Category Grid Layout](ui/ui-ts-building-category-grid-layout.md)
+          - [Implementing Page Redirection and Data Transmission](ui/ui-ts-page-redirection-data-transmission.md) 
+        - Adding a  Splash Screen Animation
+          - [Using the Drawing Feature](ui/ui-ts-drawing-feature.md)
+          - [Using the Animation Feature](ui/ui-ts-animation-feature.md)
+        - [Common Components](ui/ui-ts-components-intro.md)
+        - Common Layout Development
+          - Adaptive Layouts
+            - [Linear Layout](ui/ui-ts-layout-linear.md)
+            - [Statck Layout](ui/ui-ts-layout-stack.md)
+            - [Flex Layout](ui/ui-ts-layout-flex.md)
+            - [Grid Layout](ui/ui-ts-layout-grid.md)
+          - Responsive Layouts
+            - [Grid Layout](ui/ui-ts-layout-grid-container-new.md)
+            - [Media Query](ui/ui-ts-layout-mediaquery.md)
+        - [Custom Component Lifecycle Callbacks](ui/ui-ts-custom-component-lifecycle-callbacks.md)
+        - [Web Component Development](ui/ui-ts-components-web.md)
+        - [Recommendations for Improving Performance](ui/ui-ts-performance-improvement-recommendation.md)
     - JavaScript-compatible Web-like Development Paradigm
       - [Overview](ui/ui-js-overview.md)
       - Framework
