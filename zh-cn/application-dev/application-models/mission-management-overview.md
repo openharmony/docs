@@ -11,7 +11,8 @@
 - MissionList：一个从桌面开始启动的任务列表，记录了任务之间的启动关系，上一个任务由下一个任务启动，最底部的任务由桌面启动，这里称之为任务链。
 
 - MissionListManager：系统任务管理模块，内部维护了当前所有的任务链，与最近任务列表保持一致。
-    **图1** 任务管理示意图  
+    
+  **图1** 任务管理示意图  
   ![mission-list-manager](figures/mission-list-manager.png)
 
 
