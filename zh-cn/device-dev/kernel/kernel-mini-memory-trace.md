@@ -42,7 +42,7 @@ OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细�
      - IDENTITY类型UINTPTR，表示事件操作的主体对象。
      - Params类型UINTPTR，表示事件的参数。
      - 对文件fd读写操作的简易插桩示例：
-          
+       
         ```
         /* 假设自定义读操作为type: 1, 写操作为type: 2 */
         LOS_TRACE_EASY(1, fd, flag, size);  /* 在读fd文件的适当位置插入 */
@@ -62,7 +62,7 @@ OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细�
 
         2. 定义FS模块的具体事件类型
 
-          
+        
         ```
         /* 定义规范为#TYPE# = TRACE_#MOD#_FLAG | NUMBER,  */
         FS_READ  = TRACE_FS_FLAG | 0; /* 读文件 */
@@ -71,7 +71,7 @@ OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细�
 
         3. 定义事件参数
 
-          
+        
         ```
         /* 定义规范为#TYPE#_PARAMS(IDENTITY, parma1...) IDENTITY, ... */
         #define FS_READ_PARAMS(fp, fd, flag, size)  fp, fd, flag, size /* 宏定义的参数对应于Trace缓冲区中记录的事件参数，用户可对任意参数字段进行裁剪 */
@@ -80,7 +80,7 @@ OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细�
 
         4. 在目标代码中插桩
 
-          
+        
         ```
         /* 定义规范为LOS_TRACE(#TYPE#, #TYPE#_PARAMS(IDENTITY, parma1...)) */
         LOS_TRACE(FS_READ, fp, fd, flag, size); /* 读文件操作的代码桩 */
@@ -178,7 +178,9 @@ OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细�
 
 示例代码如下：
 
-  
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数ExampleTraceTest。
+
+
 ```
 #include "los_trace.h"
 UINT32 g_traceTestTaskId;
@@ -200,9 +202,9 @@ VOID Example_Trace(VOID)
     LOS_TraceStop();    
     LOS_TraceRecordDump(FALSE);
 }
-UINT32 Example_Trace_test(VOID){
+UINT32 ExampleTraceTest(VOID){
     UINT32 ret;    
-    TSK_INIT_PARAM_S traceTestTask;
+    TSK_INIT_PARAM_S traceTestTask = { 0 };
     /* 创建用于trace测试的任务 */    
     memset(&traceTestTask, 0, sizeof(TSK_INIT_PARAM_S));    
     traceTestTask.pfnTaskEntry = (TSK_ENTRY_FUNC)Example_Trace;    
@@ -229,7 +231,7 @@ UINT32 Example_Trace_test(VOID){
 
 输出结果如下：
 
-  
+
 ```
 ***TraceInfo begin***
 clockFreq = 50000000
@@ -258,7 +260,7 @@ Index   Time(cycles)      EventType      CurTask   Identity      params
 
 下面以序号为0的输出项为例，进行说明。
 
-  
+
 ```
 Index   Time(cycles)      EventType      CurTask   Identity      params
 0       0x366d5e88        0x45           0x1       0x0           0x1f         0x4

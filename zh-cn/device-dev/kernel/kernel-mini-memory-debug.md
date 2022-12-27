@@ -62,7 +62,9 @@ typedef struct {
 
 #### 示例代码
 
-  代码实现如下：
+代码实现如下：
+
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数MemTest。
 
 ```
 #include <stdio.h>
@@ -71,20 +73,20 @@ typedef struct {
 #include "los_memory.h"
 #include "los_config.h"
 
-
+#define TEST_TASK_PRIO  5
 void MemInfoTaskFunc(void)
 {
     LOS_MEM_POOL_STATUS poolStatus = {0};
 
-  /* pool为要统计信息的内存地址，此处以OS_SYS_MEM_ADDR为例 */
+    /* pool为要统计信息的内存地址，此处以OS_SYS_MEM_ADDR为例 */
     void *pool = OS_SYS_MEM_ADDR;
     LOS_MemInfoGet(pool, &poolStatus);
     /* 算出内存池当前的碎片率百分比 */
-    unsigned char fragment = 100 - poolStatus.maxFreeNodeSize * 100 / poolStatus.totalFreeSize;
+    float fragment = 100 - poolStatus.maxFreeNodeSize * 100.0 / poolStatus.totalFreeSize;
     /* 算出内存池当前的使用率百分比 */
-    unsigned char usage = LOS_MemTotalUsedGet(pool) * 100 / LOS_MemPoolSizeGet(pool);
-    printf("usage = %d, fragment = %d, maxFreeSize = %d, totalFreeSize = %d, waterLine = %d\n", usage, fragment, poolStatus.maxFreeNodeSize, 
-           poolStatus.totalFreeSize, poolStatus.usageWaterLine);
+    float usage = LOS_MemTotalUsedGet(pool) * 100.0 / LOS_MemPoolSizeGet(pool);
+    printf("usage = %f, fragment = %f, maxFreeSize = %d, totalFreeSize = %d, waterLine = %d\n", usage, fragment, 
+    		poolStatus.maxFreeNodeSize, poolStatus.totalFreeSize, poolStatus.usageWaterLine);
 }
 
 int MemTest(void)
@@ -93,9 +95,9 @@ int MemTest(void)
     unsigned int taskID;
     TSK_INIT_PARAM_S taskStatus = {0};
     taskStatus.pfnTaskEntry = (TSK_ENTRY_FUNC)MemInfoTaskFunc;
-    taskStatus.uwStackSize  = 0x1000;
+    taskStatus.uwStackSize  = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
     taskStatus.pcName       = "memInfo";
-    taskStatus.usTaskPrio   = 10;
+    taskStatus.usTaskPrio   = TEST_TASK_PRIO;
     ret = LOS_TaskCreate(&taskID, &taskStatus);
     if (ret != LOS_OK) {
         printf("task create failed\n");
@@ -112,7 +114,9 @@ int MemTest(void)
 
 
 ```
-usage = 22, fragment = 3, maxFreeSize = 49056, totalFreeSize = 50132, waterLine = 1414
+usage = 0.458344, fragment = 0.000000, maxFreeSize = 16474928, totalFreeSize = 16474928, waterLine = 76816
+
+根据实际运行环境，上文中的数据会有差异，非固定结果
 ```
 ## 内存泄漏检测
 
@@ -179,6 +183,10 @@ node        size   LR[0]      LR[1]       LR[2]
 
 代码实现如下：
 
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数MemLeakTest。
+
+qemu中进行验证时，由于代码段位置特殊需调整ld文件_stext位置到text段的起始位置
+
 
 ```
 #include <stdio.h>
@@ -198,7 +206,7 @@ void MemLeakTest(void)
 
 #### 结果验证
 
-编译运行输出log如下：
+编译运行输出示例log如下：
 
 
 ```
@@ -216,7 +224,9 @@ node         size   LR[0]       LR[1]       LR[2]
 0x20002594:  0x120  0x08000e0c  0x08000e56  0x08000c8a 
 0x20002aac:  0x56   0x08000e0c  0x08000e56  0x08004220 
 0x20003ac4:  0x1d   0x08001458  0x080014e0  0x080041e6 
-0x20003ae0:  0x1d   0x080041ee  0x08000cc2  0x00000000 
+0x20003ae0:  0x1d   0x080041ee  0x08000cc2  0x00000000
+
+根据实际运行环境，上文中的数据会有差异，非固定结果
 ```
 
 对比两次log，差异如下，这些内存节点就是疑似泄漏的内存块：
@@ -224,7 +234,9 @@ node         size   LR[0]       LR[1]       LR[2]
 
 ```
 0x20003ac4:  0x1d   0x08001458  0x080014e0  0x080041e6 
-0x20003ae0:  0x1d   0x080041ee  0x08000cc2  0x00000000 
+0x20003ae0:  0x1d   0x080041ee  0x08000cc2  0x00000000
+
+根据实际运行环境，上文中的数据会有差异，非固定结果
 ```
 
 部分汇编文件如下:
@@ -246,6 +258,8 @@ node         size   LR[0]       LR[1]       LR[2]
   0x80041f0: 0xf7fd 0xf933  BL       LOS_MemUsedNodeShow    ; 0x800145a
   0x80041f4: 0xbd10         POP      {R4, PC}
   0x80041f6: 0x0000         MOVS     R0, R0
+  
+  根据实际运行环境，上文中的数据会有差异，非固定结果
 ```
 
 其中，通过查找0x080041ee，就可以发现该内存节点是在MemLeakTest接口里申请的且是没有释放的。
@@ -295,6 +309,8 @@ LOSCFG_BASE_MEM_NODE_INTEGRITY_CHECK：开关宏，默认关闭；若打开这�
 
 代码实现如下：
 
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数MemIntegrityTest。
+
 
 ```
 #include <stdio.h>
@@ -320,20 +336,28 @@ void MemIntegrityTest(void)
 
 
 ```
-[ERR][OsMemMagicCheckPrint], 2028, memory check error!
-memory used but magic num wrong, magic num = 0x00000000   /* 提示信息，检测到哪个字段被破坏了，用例构造了将下个节点的头4个字节清零，即魔鬼数字字段 */
 
- broken node head: 0x20003af0  0x00000000  0x80000020, prev node head: 0x20002ad4  0xabcddcba  0x80000020   
-/* 被破坏节点和其前节点关键字段信息，分别为其前节点地址、节点的魔鬼数字、节点的sizeAndFlag；可以看出被破坏节点的魔鬼数字字段被清零，符合用例场景 */
+/* 提示信息，检测到哪个字段被破坏了，用例构造了将下个节点的头4个字节清零，即魔鬼数字字段 */
+[ERR][IT_TST_INI][OsMemMagicCheckPrint], 1664, memory check error!
+memory used but magic num wrong, magic num = 0x0
 
- broken node head LR info:  /* 节点的LR信息需要开启内存检测功能才有有效输出 */
- LR[0]:0x0800414e
- LR[1]:0x08000cc2
- LR[2]:0x00000000
+ /* 被破坏节点和其前节点关键字段信息，分别为其前节点地址、节点的魔鬼数字、节点的sizeAndFlag；可以看出被破坏节点的魔鬼数字字段被清零，符合用例场景 */
+ broken node head: 0x2103d7e8  0x0  0x80000020, prev node head: 0x2103c7cc  0xabcddcba  0x80000020
 
- pre node head LR info:   /* 通过LR信息，可以在汇编文件中查找前节点是哪里申请，然后排查其使用的准确性 */
- LR[0]:0x08004144
- LR[1]:0x08000cc2
- LR[2]:0x00000000
-[ERR]Memory interity check error, cur node: 0x20003b10, pre node: 0x20003af0   /* 被破坏节点和其前节点的地址 */
+ /* 节点的LR信息需要开启内存检测功能才有有效输出 */
+ broken node head LR info:
+ LR[0]:0x2101906c
+ LR[1]:0x0
+ LR[2]:0x0
+
+ /* 通过LR信息，可以在汇编文件中查找前节点是哪里申请，然后排查其使用的准确性 */
+ pre node head LR info:
+ LR[0]:0x2101906c
+ LR[1]:0x0
+ LR[2]:0x0
+ 
+ /* 被破坏节点和其前节点的地址 */
+[ERR][IT_TST_INI]Memory integrity check error, cur node: 0x2103d784, pre node: 0x0
+
+ 根据实际运行环境，上文中的数据会有差异，非固定结果
 ```
