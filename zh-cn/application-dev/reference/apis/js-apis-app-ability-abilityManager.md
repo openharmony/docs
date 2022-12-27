@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityManager (AbilityManager)
 
-AbilityManager模块提供对Ability相关信息和状态信息进行获取、新增、修改等能力。
+AbilityManager模块提供获取、新增、修改Ability相关信息和状态信息进行的能力。
 
 > **说明：**
 >
@@ -15,25 +15,25 @@ import abilityManager from '@ohos.app.ability.abilityManager'
 
 ## AbilityState
 
-Ability的状态信息。
+Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)返回Abiltiy的状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统API**: 此枚举类型为系统接口内部定义，三方应用不支持调用。
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
-| INITIAL | 0 | 表示ability为initial状态。| 
-| FOREGROUND | 9 | 表示ability为foreground状态。  | 
-| BACKGROUND | 10 | 表示ability为background状态。  | 
-| FOREGROUNDING | 11 | 表示ability为foregrounding状态。  | 
-| BACKGROUNDING | 12 | 表示ability为backgrounding状态。  | 
+| INITIAL | 0 | 表示ability为初始化状态。| 
+| FOREGROUND | 9 | 表示ability为前台状态。  | 
+| BACKGROUND | 10 | 表示ability为后台状态。  | 
+| FOREGROUNDING | 11 | 表示ability为前台调度中状态。  | 
+| BACKGROUNDING | 12 | 表示ability为后台调度中状态。  | 
 
 ## updateConfiguration
 
 updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
-通过修改配置来更新配置（callback形式）。
+通过传入修改的配置项来更新配置（callback形式）。
 
 **需要权限**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -43,23 +43,32 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | [Configuration](js-apis-app-ability-configuration.md)   | 是    | 新的配置项。 |
-| callback  | AsyncCallback\<void>                   | 是    | 被指定的回调方法。      |
+| config    | [Configuration](js-apis-app-ability-configuration.md)   | 是    | 新的配置项，仅需配置需要更新的项。 |
+| callback  | AsyncCallback\<void>                   | 是    | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。      |
 
 **示例**：
 
 ```ts
 var config = {
-  language: 'chinese' 
+  language: 'Zh-Hans',
+  colorMode: COLOR_MODE_LIGHT,
+  direction: DIRECTION_VERTICAL,
+  screenDensity: SCREEN_DENSITY_SDPI,
+  displayId: 1,
+  hasPointerDevice: true,
 }
 
 try {
-  abilityManager.updateConfiguration(config, () => {
-    console.log('------------ updateConfiguration -----------');
-  })
+    abilityManager.updateConfiguration(config, (err) => {
+        if (err.code != 0) {
+            console.log("updateConfiguration fail, err: " + JSON.stringify(err));
+        } else {
+            console.log("updateConfiguration success.");
+        }
+    })
 } catch (paramError) {
-  console.log('error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+        ' error.message: ' + JSON.stringify(paramError.message));
 }
 ```
 
@@ -77,30 +86,35 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | [Configuration](js-apis-app-ability-configuration.md)   | 是    | 新的配置项。 |
+| config    | [Configuration](js-apis-app-ability-configuration.md)   | 是    | 新的配置项，仅需配置需要更新的项。 |
 
 **返回值：**
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<void> | 返回执行结果。 |
+| Promise\<void> | 以Promise方式返回接口运行结果息，可进行错误处理或其他自定义处理。 |
 
 **示例**：
 
 ```ts
 var config = {
-  language: 'chinese' 
+  language: 'Zh-Hans',
+  colorMode: COLOR_MODE_LIGHT,
+  direction: DIRECTION_VERTICAL,
+  screenDensity: SCREEN_DENSITY_SDPI,
+  displayId: 1,
+  hasPointerDevice: true,
 }
 
 try {
-  abilityManager.updateConfiguration(config).then(() => {
-    console.log('updateConfiguration success');
-  }).catch((err) => {
-    console.log('updateConfiguration fail');
-  })
+    abilityManager.updateConfiguration(config).then(() => {
+        console.log('updateConfiguration success.');
+    }).catch((err) => {
+        console.log('updateConfiguration fail, err: ' + JSON.stringify(err));
+    })
 } catch (paramError) {
-  console.log('error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+        ' error.message: ' + JSON.stringify(paramError.message));
 }
 ```
 
@@ -118,18 +132,22 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | 是    | 被指定的回调方法。      |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | 是    | 以回调方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。      |
 
 **示例**：
 
 ```ts
 try {
-  abilityManager.getAbilityRunningInfos((err,data) => { 
-    console.log("getAbilityRunningInfos err: "  + err + " data: " + JSON.stringify(data));
-  });
+    abilityManager.getAbilityRunningInfos((err,data) => {
+        if (err.code != 0) {
+            console.log("getAbilityRunningInfos fail, error: " + JSON.stringify(err));
+        } else {
+            console.log("getAbilityRunningInfos success, data: " + JSON.stringify(data));
+        }
+    });
 } catch (paramError) {
-  console.log('error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+        ' error.message: ' + JSON.stringify(paramError.message));
 }
 ```
 
@@ -147,20 +165,20 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | 返回执行结果。 |
+| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | 以Promise方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。 |
 
 **示例**：
 
 ```ts
 try {
-  abilityManager.getAbilityRunningInfos().then((data) => {
-    console.log("getAbilityRunningInfos  data: " + JSON.stringify(data))
-  }).catch((err) => {
-    console.log("getAbilityRunningInfos err: "  + err)
-  });
+    abilityManager.getAbilityRunningInfos().then((data) => {
+        console.log("getAbilityRunningInfos success, data: " + JSON.stringify(data))
+    }).catch((err) => {
+        console.log("getAbilityRunningInfos fail, err: "  + JSON.stringify(err));
+    });
 } catch (paramError) {
-  console.log('error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+        ' error.message: ' + JSON.stringify(paramError.message));
 }
 ```
 
@@ -179,7 +197,7 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | upperLimit | number                                   | 是 | 获取消息数量的最大限制。 |
-| callback  | AsyncCallback\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>>  | 是    | 被指定的回调方法。      |
+| callback  | AsyncCallback\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>>  | 是    | 以回调方式返回接口运行结果及运行中的extension信息，可进行错误处理或其他自定义处理。      |
 
 **示例**：
 
@@ -187,12 +205,16 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 var upperLimit = 0;
 
 try {
-  abilityManager.getExtensionRunningInfos(upperLimit, (err,data) => { 
-    console.log("getExtensionRunningInfos err: "  + err + " data: " + JSON.stringify(data));
-  });
+    abilityManager.getExtensionRunningInfos(upperLimit, (err,data) => { 
+        if (err.code != 0) {
+            console.log("getExtensionRunningInfos fail, err: " + JSON.stringify(err));
+        } else {
+            console.log("getExtensionRunningInfos success, data: " + JSON.stringify(data));
+        }
+    });
 } catch (paramError) {
-  console.log('error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+        ' error.message: ' + JSON.stringify(paramError.message));
 }
 ```
 
@@ -216,7 +238,7 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>> | 返回执行结果。 |
+| Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>> | 以Promise方式返回接口运行结果及运行中的extension信息，可进行错误处理或其他自定义处理。 |
 
 **示例**：
 
@@ -224,14 +246,14 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 var upperLimit = 0;
 
 try {
-  abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
-    console.log("getAbilityRunningInfos data: " + JSON.stringify(data));
-  }).catch((err) => {
-    console.log("getAbilityRunningInfos err: "  + err);
-  })
+    abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
+        console.log("getExtensionRunningInfos success, data: " + JSON.stringify(data));
+    }).catch((err) => {
+        console.log("getExtensionRunningInfos fail, err: "  + JSON.stringify(err));
+    })
 } catch (paramError) {
-  console.log('error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+        ' error.message: ' + JSON.stringify(paramError.message));
 }
 ```
 
@@ -247,13 +269,17 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)>  | 是    | 被指定的回调方法。      |
+| callback  | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)>  | 是    | 以回调方式返回接口运行结果及应用名，可进行错误处理或其他自定义处理。      |
 
 **示例**：
 
 ```ts
 abilityManager.getTopAbility((err,data) => { 
-    console.log("getTopAbility err: "  + err + " data: " + JSON.stringify(data));
+    if (err.code != 0) {
+        console.log("getTopAbility fail, err: " + JSON.stringify(err));
+    } else {
+        console.log("getTopAbility success, data: " + JSON.stringify(data));
+    }
 });
 ```
 
@@ -269,14 +295,14 @@ getTopAbility(): Promise\<ElementName>;
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<[ElementName](js-apis-bundleManager-elementName.md)>| 返回执行结果。 |
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)>| 以Promise方式返回接口运行结果及应用名，可进行错误处理或其他自定义处理。 |
 
 **示例**：
 
 ```ts
 abilityManager.getTopAbility().then((data) => {
-    console.log("getTopAbility data: " + JSON.stringify(data));
+    console.log("getTopAbility success, data: " + JSON.stringify(data));
 }).catch((err) => {
-    console.log("getTopAbility err: "  + err);
+    console.log("getTopAbility fail, err: "  + JSON.stringify(err));
 })
 ```
