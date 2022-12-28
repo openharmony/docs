@@ -88,6 +88,8 @@ onChange(event: (index: number) => void)
 
 当前显示的子组件索引变化时触发该事件,返回值为当前显示的子组件的索引值。
 
+**说明**：Swiper组件结合LazyForEach使用时，不能在onChange事件里触发子页面UI的刷新。
+
 **返回值：**
 
 | 名称    |   类型    | 参数描述 |
