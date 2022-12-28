@@ -7,7 +7,7 @@
 本文将从如下场景分别介绍：
 
 - [配置文件权限声明](#配置文件权限声明)
-- [ACL方式声明](#ACL方式声明)
+- [ACL方式声明](#acl方式声明)
 - [向用户申请授权](#向用户申请授权)
 - [user_grant权限预授权](#user_grant权限预授权)
 
@@ -22,11 +22,11 @@
 | name      | 是       | 权限名称。                                                   |
 | reason    | 否       | 描述申请权限的原因。<br />> 说明：当申请的权限为user_grant权限时，此字段必填。 |
 | usedScene | 否       | 描述权限使用的场景和时机。<br />> 说明：当申请的权限为user_grant权限时，此字段必填。 |
-| abilities | 否       | 标识需要使用到该权限的Ability，标签为数组形式。<br/>**适用模型：**Stage模型 |
-| ability   | 否       | 标识需要使用到该权限的Ability，标签为数组形式。<br/>**适用模型：**FA模型 |
+| abilities | 否       | 标识需要使用到该权限的Ability，标签为数组形式。<br/>**适用模型**：Stage模型 |
+| ability   | 否       | 标识需要使用到该权限的Ability，标签为数组形式。<br/>**适用模型**：FA模型 |
 | when      | 否       | 标识权限使用的时机，值为`inuse/always`。<br />- inuse：表示为仅允许前台使用。<br />- always：表示前后台都可使用。 |
 
-### Stage模型配置
+### Stage模型
 
 使用Stage模型的应用，需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中声明权限。
 
@@ -60,7 +60,7 @@
 }
 ```
 
-### FA模型配置
+### FA模型
 
 使用FA模型的应用，需要在config.json配置文件中声明权限。
 
@@ -96,7 +96,9 @@
 
 ## ACL方式声明
 
-应用在申请`system_basic`等级权限时，高于应用默认的`normal`等级。当应用需要申请权限项的等级高于应用默认的等级时，需要通过ACL方式进行声明使用。例如应用在申请访问用户公共目录下音乐类型的文件，需要申请` ohos.permission.WRITE_AUDIO`权限，该权限为`system_basic`等级；以及应用在申请截取屏幕图像功能，该权限为`system_core`等级，需要申请` ohos.permission.CAPTURE_SCREEN`权限。此时需要将相关权限项配置到[HarmonyAppProvision配置文件](app-provision-structure.md)的`acl`字段中。
+应用在申请`system_basic`等级权限时，高于应用默认的`normal`等级。当应用需要申请权限项的等级高于应用默认的等级时，需要通过ACL方式进行声明使用。
+
+例如应用在申请访问用户公共目录下音乐类型的文件，需要申请` ohos.permission.WRITE_AUDIO`权限，该权限为`system_basic`等级；以及应用在申请截取屏幕图像功能，该权限为`system_core`等级，需要申请` ohos.permission.CAPTURE_SCREEN`权限。此时需要将相关权限项配置到[HarmonyAppProvision配置文件](app-provision-structure.md)的`acl`字段中。
 
 ```json
 {
@@ -121,7 +123,7 @@
 
 以允许应用读取日历信息为例进行说明。
 
-1. 申请`ohos.permission.READ_CALENDAR`权限，配置方式请参见[访问控制授权申请](#Stage模型)。
+1. 申请`ohos.permission.READ_CALENDAR`权限，配置方式请参见[访问控制授权申请](#stage模型配置)。
 
 2. 可以在UIAbility的onWindowStageCreate()回调中调用[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口动态申请权限，也可以根据业务需要在UI界面中向用户申请授权。根据[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口返回值判断是否已获取目标权限，如果当前已经获取权限，则可以继续正常访问目标接口。
    
