@@ -14,7 +14,7 @@ import appRecovery from '@ohos.app.ability.appRecovery'
 
 ## appRecovery.RestartFlag
 
-[enableAppRecovery](#apprecoveryenableapprecovery)接口重启选项参数。
+应用重启标志，[enableAppRecovery](#apprecoveryenableapprecovery)接口重启选项参数，该类型为枚举。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -28,7 +28,7 @@ import appRecovery from '@ohos.app.ability.appRecovery'
 
 ## appRecovery.SaveOccasionFlag
 
-[enableAppRecovery](#apprecoveryenableapprecovery)接口状态保存时机选项参数。
+保存条件标志，[enableAppRecovery](#apprecoveryenableapprecovery)接口状态保存时的选项参数，该类型为枚举。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -39,7 +39,7 @@ import appRecovery from '@ohos.app.ability.appRecovery'
 
 ## appRecovery.SaveModeFlag  
 
-[enableAppRecovery](#apprecoveryenableapprecovery)接口状态保存方式的参数。
+状态保存标志，[enableAppRecovery](#apprecoveryenableapprecovery)接口状态保存方式的参数，该类型为枚举。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -50,7 +50,7 @@ import appRecovery from '@ohos.app.ability.appRecovery'
 
 ## appRecovery.enableAppRecovery
 
-enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMode?: SaveModeFlag) : void;
+enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion?: [SaveOccasionFlag](#apprecoverysaveoccasionflag), saveMode?: [SaveModeFlag](#apprecoverysavemodeflag)) : void;
 
 使能应用恢复功能，参数按顺序填入。
 
@@ -60,9 +60,9 @@ enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| restart | [RestartFlag](#apprecoveryrestartflag) | 否 | 发生对应故障时是否重启，默认为不重启。 |
-| saveOccasion | [SaveOccasionFlag](#apprecoverysaveoccasionflag) | 否 | 状态保存时机，默认为故障时保存。 |
-| saveMode | [SaveModeFlag](#apprecoverysavemodeflag) | 否 | 状态保存方式， 默认为文件缓存。 |
+| restart | [RestartFlag](#apprecoveryrestartflag) | 否 | 枚举类型，发生对应故障时是否重启，默认为不重启。 |
+| saveOccasion | [SaveOccasionFlag](#apprecoverysaveoccasionflag) | 否 | 枚举类型，状态保存时机，默认为故障时保存。 |
+| saveMode | [SaveModeFlag](#apprecoverysavemodeflag) | 否 | 枚举类型，状态保存方式， 默认为文件缓存。 |
 
 **示例：**
     
@@ -94,7 +94,6 @@ var observer = {
         appRecovery.restartApp();
     }
 }
-
 ```
 
 ## appRecovery.saveAppState
@@ -109,7 +108,7 @@ saveAppState(): boolean;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 保存成功与否。 |
+| boolean | 保存成功与否。true：保存成功，false：保存失败。 |
 
 **示例：**
     

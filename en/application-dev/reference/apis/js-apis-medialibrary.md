@@ -1,7 +1,6 @@
-# MediaLibrary
+# @ohos.multimedia.medialibrary (Media Library Management)
 
 > **NOTE**
->
 > The APIs of this module are supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -193,7 +192,7 @@ media.getFileAssets(imagesFetchOp).then(function(fetchFileResult) {
 
 ### on<sup>8+</sup>
 
-on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback: Callback&lt;void&gt;): void
+on(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange', callback: Callback&lt;void&gt;): void
 
 Subscribes to the media library changes. This API uses an asynchronous callback to return the result.
 
@@ -215,7 +214,7 @@ media.on('imageChange', () => {
 ```
 ### off<sup>8+</sup>
 
-off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback?: Callback&lt;void&gt;): void
+off(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange', callback?: Callback&lt;void&gt;): void
 
 Unsubscribes from the media library changes. This API uses an asynchronous callback to return the result.
 
@@ -885,7 +884,7 @@ Obtains information about online peer devices. This API uses a promise to return
 
 | Type                 | Description                  |
 | ------------------- | -------------------- |
-|  Promise\<Array\<PeerInfo>> | Promise used to return the online peer devices, in an array of **PeerInfo** objects.|
+|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | Promise used to return the online peer devices, in an array of **PeerInfo** objects.|
 
 **Example**
 
@@ -921,7 +920,7 @@ Obtains information about online peer devices. This API uses an asynchronous cal
 
 | Type                 | Description                  |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<PeerInfo>> | Promise used to return the online peer devices, in an array of **PeerInfo** objects.|
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | Promise used to return the online peer devices, in an array of **PeerInfo** objects.|
 
 **Example**
 
@@ -956,7 +955,7 @@ Obtains information about all peer devices. This API uses a promise to return th
 
 | Type                 | Description                  |
 | ------------------- | -------------------- |
-|  Promise\<Array\<PeerInfo>> | Promise used to return all peer devices, in an array of **PeerInfo** objects.|
+|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | Promise used to return all peer devices, in an array of **PeerInfo** objects.|
 
 **Example**
 
@@ -992,7 +991,7 @@ Obtains information about online peer devices. This API uses an asynchronous cal
 
 | Type                 | Description                  |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<PeerInfo>> | Promise used to return all peer devices, in an array of **PeerInfo** objects.|
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | Promise used to return all peer devices, in an array of **PeerInfo** objects.|
 
 **Example**
 
@@ -1014,6 +1013,11 @@ async function example() {
 
 Provides APIs for encapsulating file asset attributes.
 
+> **NOTE**
+> 
+> 1. The system attempts to parse the file content if the file is an audio or video file. The actual field values will be restored from the passed values during scanning on some devices.
+> 2. Some devices may not support the modification of **orientation**. You are advised to use [ModifyImageProperty](js-apis-image.md#modifyimageproperty9) of the **image** module.
+
 ### Attributes
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -1025,7 +1029,7 @@ Provides APIs for encapsulating file asset attributes.
 | mimeType                  | string                   | Yes  | No  | Extended file attributes.                                          |
 | mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | Yes  | No  | Media type.                                              |
 | displayName               | string                   | Yes  | Yes  | Display file name, including the file name extension.                                |
-| title                     | string                   | Yes  | Yes  | Title in the file.                                              |
+| title                     | string                   | Yes  | Yes  | Title in the file. By default, it carries the file name without extension.                                              |
 | relativePath<sup>8+</sup> | string                   | Yes  | Yes  | Relative public directory of the file.                                      |
 | parent<sup>8+</sup>       | number                   | Yes  | No  | Parent directory ID.                                              |
 | size                      | number                   | Yes  | No  | File size, in bytes.                                |
@@ -2486,29 +2490,33 @@ Enumerates media types.
 
 Enumerates key file information.
 
+> **NOTE**
+> 
+> The **bucket_id** field may change after file rename or movement. Therefore, you must obtain the field again before using it.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 | Name         | Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| ID            | file_id             | File ID.                                                  |
-| RELATIVE_PATH | relative_path       | Relative public directory of the file.                                          |
-| DISPLAY_NAME  | display_name        | Display file name.                                                  |
-| PARENT        | parent              | Parent directory ID.                                                  |
-| MIME_TYPE     | mime_type           | Extended file attributes.                                              |
-| MEDIA_TYPE    | media_type          | Media type.                                                  |
-| SIZE          | size                | File size, in bytes.                                    |
-| DATE_ADDED    | date_added          | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)            |
-| DATE_MODIFIED | date_modified       | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)            |
-| DATE_TAKEN    | date_taken          | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)            |
-| TITLE         | title               | Title in the file.                                                  |
-| ARTIST        | artist              | Artist of the file.                                                      |
-| AUDIOALBUM    | audio_album         | Audio album.                                                      |
-| DURATION      | duration            | Duration, in ms.                                      |
-| WIDTH         | width               | Image width, in pixels.                                    |
-| HEIGHT        | height              | Image height, in pixels.                                    |
-| ORIENTATION   | orientation         | Image display direction (clockwise rotation angle, for example, 0, 90, and 180, in degrees).|
-| ALBUM_ID      | bucket_id           | ID of the album to which the file belongs.                                      |
-| ALBUM_NAME    | bucket_display_name | Name of the album to which the file belongs.                                        |
+| ID            | "file_id"             | File ID.                                                  |
+| RELATIVE_PATH | "relative_path"       | Relative public directory of the file.                                          |
+| DISPLAY_NAME  | "display_name"        | Display file name.                                                  |
+| PARENT        | "parent"              | Parent directory ID.                                                  |
+| MIME_TYPE     | "mime_type"           | Extended file attributes.                                              |
+| MEDIA_TYPE    | "media_type"          | Media type.                                                  |
+| SIZE          | "size"                | File size, in bytes.                                    |
+| DATE_ADDED    | "date_added"          | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)            |
+| DATE_MODIFIED | "date_modified"       | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)            |
+| DATE_TAKEN    | "date_taken"          | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)            |
+| TITLE         | "title"               | Title in the file.                                                  |
+| ARTIST        | "artist"              | Artist of the file.                                                      |
+| AUDIOALBUM    | "audio_album"         | Audio album.                                                      |
+| DURATION      | "duration"            | Duration, in ms.                                      |
+| WIDTH         | "width"               | Image width, in pixels.                                    |
+| HEIGHT        | "height"              | Image height, in pixels.                                    |
+| ORIENTATION   | "orientation"         | Image display direction (clockwise rotation angle, for example, 0, 90, and 180, in degrees).|
+| ALBUM_ID      | "bucket_id"           | ID of the album to which the file belongs.                                      |
+| ALBUM_NAME    | "bucket_display_name" | Name of the album to which the file belongs.                                        |
 
 ## DirectoryType<sup>8+</sup>
 
@@ -2573,8 +2581,6 @@ Describes the image size.
 
 Implements the media asset option.
 
-> **NOTE**
->
 > This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -2598,5 +2604,5 @@ Describes media selection option.
 
 | Name   | Type    | Readable| Writable| Description                  |
 | ----- | ------ | ---- | ---- | -------------------- |
-| type  | string | Yes   | Yes | Media type, which can be **image**, **media**, or **video**. Currently, only **media** is supported.|
+| type  | 'image' &#124; 'video' &#124; 'media' | Yes   | Yes | Media type, which can be **image**, **media**, or **video**. Currently, only **media** is supported.|
 | count | number | Yes   | Yes | Number of media assets selected. The value starts from 1, which indicates that one media asset can be selected.           |

@@ -189,7 +189,7 @@
     var context = this.context
     var AtManager = abilityAccessCtrl.createAtManager();
     //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
-      AtManager.requestPermissionsFromUser(context, ["ohos.permission.MANAGE_DISPOSED_APP_STATUS"]).then((data) => {
+      AtManager.requestPermissionsFromUser(context, ["ohos.permission.CAMERA"]).then((data) => {
         console.log("data type:" + typeof(data));
         console.log("data:" + data);
         console.log("data permissions:" + data.permissions);

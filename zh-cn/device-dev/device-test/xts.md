@@ -191,7 +191,7 @@ XTS子系统当前包括acts与tools软件包：
 5. 测试套件编译命令。
    随版本编译，debug版本编译时会同步编译acts测试套件。
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > ![icon-note.gif](../public_sys-resources/icon-note.gif) **说明：**
    > acts测试套件编译中间件为静态库，最终链接到版本镜像中 。
 
 ### C语言用例执行指导（适用于轻量系统产品用例开发）
@@ -324,7 +324,7 @@ XTS子系统当前包括acts与tools软件包：
 
 5. 测试套件编译命令。
      随版本编译，debug版本编译时会同步编译acts测试套件
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > ![icon-note.gif](../public_sys-resources/icon-note.gif) **说明：**
    > 小型系统acts独立编译成可执行文件（bin格式）， 在编译产物的suites\acts目录下归档。
 
 

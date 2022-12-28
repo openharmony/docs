@@ -1,16 +1,14 @@
-# SysCap
+# SystemCapability
 
 ## Overview
 
 ### System Capabilities and APIs
 
-SysCap is short for System Capability. It refers to a standalone feature in the operating system, for example, Bluetooth, Wi-Fi, NFC, or camera. Each SysCap corresponds to a set of bound APIs, whose availability depends on the support of the target device. Such a set of APIs can be provided in DevEco Studio for association.
+SysCap is short for SystemCapability. It refers to a standalone feature in the operating system, for example, Bluetooth, Wi-Fi, NFC, or camera. Each SysCap corresponds to a set of APIs, whose availability depends on the support of the target device. Such a set of APIs can be provided in DevEco Studio for association.
 
 ![image-20220326064841782](figures/image-20220326064841782.png)
 
 For details about the SysCap sets in OpenHarmony, see [SysCap List](../reference/syscap-list.md).
-
-
 
 ### Supported SysCap Set, Associated SysCap Set, and Required SysCap Set
 
@@ -20,8 +18,6 @@ The associated SysCap set covers the system capabilities of associated APIs that
 
 ![image-20220326064913834](figures/image-20220326064913834.png)
 
-
-
 ### Devices and Supported SysCap Sets
 
 Each device provides a SysCap set that matches its hardware capability.
@@ -29,23 +25,17 @@ The SDK classifies devices into general devices and custom devices. The general 
 
 ![image-20220326064955505](figures/image-20220326064955505.png)
 
-
-
 ### Mapping Between Devices and SDK Capabilities
 
-The SDK provides a full set of APIs for DevEco Studio. DevEco Studio identifies the supported SysCap set based on the devices supported by the project, filters the APIs contained in the SysCap set, and provides the supported APIs for association (to autocomplete input).
+The SDK provides a full set of APIs for DevEco Studio. DevEco Studio identifies the supported SysCap set based on the devices selected for the project, filters the APIs contained in the SysCap set, and provides the supported APIs for association (to autocomplete input).
 
 ![image-20220326065043006](figures/image-20220326065043006.png)
-
-
 
 ## How to Develop
 
 ### Obtaining the PCID
 
 The Product Compatibility ID (PCID) contains the SysCap information supported by the current device. For the moment, you can obtain the PCID of a device from the device vendor. In the future, you'll be able to obtain the PCIDs of all devices from the authentication center, which is in development.
-
-
 
 ### Importing the PCID
 
@@ -54,8 +44,6 @@ DevEco Studio allows Product Compatibility ID (PCID) imports for projects. After
 Right-click the project directory and choose **Import Product Compatibility ID** from the shortcut menu to upload the PCID file and import it to the **syscap.json** file.
 
 ![20220329-103626](figures/20220329-103626.gif)
-
-
 
 ### Configuring the Associated SysCap Set and Required SysCap Set
 
@@ -91,15 +79,11 @@ Exercise caution when modifying the required SysCap set. Incorrect modifications
 }
 ```
 
-
-
 ### Single-Device Application Development
 
 By default, the associated SysCap set and required SysCap set of the application are the same as the supported SysCap set of the device. Exercise caution when modifying the required SysCap set.
 
 ![image-20220326065124911](figures/image-20220326065124911.png)
-
-
 
 ### Cross-Device Application Development
 
@@ -107,35 +91,32 @@ By default, the associated SysCap set of an application is the union of multiple
 
 ![image-20220326065201867](figures/image-20220326065201867.png)
 
-
-
 ### Checking Whether an API Is Available
 
-Use **canIUse** if you want to check whether a project supports a specific SysCap.
+- Method 1: Use the **canIUse** API predefined in OpenHarmony.
 
-```
-if (canIUse("SystemCapability.ArkUI.ArkUI.Full")) {
-	console.log("This application supports SystemCapability.ArkUI.ArkUI.Full.");
-} else {
-	console.log("This application does not support SystemCapability.ArkUI.ArkUI.Full".);
-}
-```
+   ```
+   if (canIUse("SystemCapability.ArkUI.ArkUI.Full")) {
+   	   console.log("This application supports SystemCapability.ArkUI.ArkUI.Full.");
+   } else {
+	   console.log("This application does not support SystemCapability.ArkUI.ArkUI.Full".);
+   }
+   ```
 
-You can import a module using the **import** API. If the current device does not support the module, the import result is **undefined**. Before using an API, you must make sure the API is available.
+- Method 2: Import a module using the **import** API. If the current device does not support the module, the import result is **undefined**. Before using an API, you must make sure the API is available.
 
-```
-import geolocation from '@ohos.geolocation';
+   ```
+   import geolocation from '@ohos.geolocation';
 
-if (geolocation) {
-	geolocation.getCurrentLocation((location) => {
-		console.log(location.latitude, location.longitude);
-	});
-} else {
-	console.log('This device does not support location information.');
-}
-```
-
-
+   if (geolocation) {
+	   geolocation.getCurrentLocation((location) => {
+		   console.log(location.latitude, location.longitude);
+	   });
+   } else {
+	   console.log('This device does not support location information.');
+   }
+   ```
+You can also find out the SysCap to which an API belongs by referring to the API reference document.
 
 ### Checking the Differences Between Devices with a Specific SysCap
 
@@ -158,7 +139,6 @@ authenticator.execute('FACE_ONLY', 'S1', (err, result) => {
 	}
 })
 ```
-
 
 ### How Do SysCap Differences Arise Between Devices
 

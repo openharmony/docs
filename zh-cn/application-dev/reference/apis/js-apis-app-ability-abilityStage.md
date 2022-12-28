@@ -25,13 +25,13 @@ onCreate(): void
 
 **示例：**
     
-  ```ts
-  class MyAbilityStage extends AbilityStage {
-      onCreate() {
-          console.log("MyAbilityStage.onCreate is called")
-      }
-  }
-  ```
+```ts
+class MyAbilityStage extends AbilityStage {
+    onCreate() {
+        console.log("MyAbilityStage.onCreate is called");
+    }
+}
+```
 
 
 ## AbilityStage.onAcceptWant
@@ -56,14 +56,14 @@ onAcceptWant(want: Want): string;
 
 **示例：**
     
-  ```ts
-  class MyAbilityStage extends AbilityStage {
-      onAcceptWant(want) {
-          console.log("MyAbilityStage.onAcceptWant called");
-          return "com.example.test";
-      }
-  }
-  ```
+```ts
+class MyAbilityStage extends AbilityStage {
+    onAcceptWant(want) {
+        console.log("MyAbilityStage.onAcceptWant called");
+        return "com.example.test";
+    }
+}
+```
 
 
 ## AbilityStage.onConfigurationUpdate
@@ -82,13 +82,13 @@ onConfigurationUpdate(newConfig: Configuration): void;
 
 **示例：**
     
-  ```ts
-  class MyAbilityStage extends AbilityStage {
-      onConfigurationUpdate(config) {
-          console.log('onConfigurationUpdate, language:' + config.language);
-      }
-  }
-  ```
+```ts
+class MyAbilityStage extends AbilityStage {
+    onConfigurationUpdate(config) {
+        console.log('onConfigurationUpdate, language:' + config.language);
+    }
+}
+```
 
 ## AbilityStage.onMemoryLevel
 
@@ -106,22 +106,22 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 **示例：**
     
-  ```ts
-  class MyAbilityStage extends AbilityStage {
+```ts
+class MyAbilityStage extends AbilityStage {
     onMemoryLevel(level) {
         console.log('onMemoryLevel, level:' + JSON.stringify(level));
     } 
-  }
-  ```
+}
+```
 
 ## AbilityStage.context
 
 context: AbilityStageContext;
 
-指示有关上下文的配置信息。
+指示AbilityStage的上下文。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 属性名      | 类型                        | 说明                                                         |
 | ----------- | --------------------------- | ------------------------------------------------------------ |
-| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 在启动能力阶段进行初始化时回调。 |
+| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 在Ability启动阶段进行初始化时回调，获取到该Ability的context值。 |

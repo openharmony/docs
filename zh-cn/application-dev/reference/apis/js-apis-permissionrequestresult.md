@@ -25,7 +25,7 @@
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 let atManager = abilityAccessCtrl.createAtManager();
 try {
-  atManager.requestPermissionsFromUser(this.context, ["ohos.permission.MANAGE_DISPOSED_APP_STATUS"]).then((data) => {
+  atManager.requestPermissionsFromUser(this.context, ["ohos.permission.CAMERA"]).then((data) => {
       console.info("data:" + JSON.stringify(data));
       console.info("data permissions:" + data.permissions);
       console.info("data authResults:" + data.authResults);
