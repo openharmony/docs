@@ -219,7 +219,7 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
 
 onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
-启动模式为单例的ability再次被拉起时会回调执行该方法。
+当传入新的Want，ability再次被拉起时会回调执行该方法。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
