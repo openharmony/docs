@@ -1,9 +1,8 @@
 # Geographic Location
 
-> **Note：**
-> - The APIs of this module are no longer maintained since API version 7. It is recommended that you use [`@ohos.geolocation`](js-apis-geolocation.md) instead.
-> 
+> **NOTE**
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are no longer maintained since API version 9. You are advised to use [geoLocationManager](js-apis-geoLocationManager.md) instead.
 
 
 ## Modules to Import
@@ -19,11 +18,14 @@ import geolocation from '@system.geolocation';
 ohos.permission.LOCATION
 
 
-## geolocation.getLocation
+## geolocation.getLocation<sup>(deprecated) </sup>
 
 getLocation(Object): void
 
 Obtains the geographic location.
+
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation).
 
 **System capability**: SystemCapability.Location.Location.Lite
 
@@ -31,7 +33,7 @@ Obtains the geographic location.
 
 | Parameter | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| timeout | number | No | Timeout&nbsp;duration,&nbsp;in&nbsp;milliseconds.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**30000**.<br/>The&nbsp;timeout&nbsp;duration&nbsp;is&nbsp;necessary&nbsp;in&nbsp;case&nbsp;the&nbsp;request&nbsp;to&nbsp;obtain&nbsp;the&nbsp;geographic&nbsp;location&nbsp;is&nbsp;rejected&nbsp;for&nbsp;the&nbsp;lack&nbsp;of&nbsp;the&nbsp;required&nbsp;permission,&nbsp;weak&nbsp;positioning&nbsp;signal,&nbsp;or&nbsp;incorrect&nbsp;location&nbsp;settings.&nbsp;After&nbsp;the&nbsp;timeout&nbsp;duration&nbsp;expires,&nbsp;the&nbsp;fail&nbsp;function&nbsp;will&nbsp;be&nbsp;called.<br/>The&nbsp;value&nbsp;is&nbsp;a&nbsp;32-digit&nbsp;positive&nbsp;integer.&nbsp;If&nbsp;the&nbsp;value&nbsp;set&nbsp;is&nbsp;less&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;**0**,&nbsp;the&nbsp;default&nbsp;value&nbsp;will&nbsp;be&nbsp;used. |
+| timeout | number | No | Timeout&nbsp;duration,&nbsp;in&nbsp;milliseconds.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**30000**.<br>The&nbsp;timeout&nbsp;duration&nbsp;is&nbsp;necessary&nbsp;in&nbsp;case&nbsp;the&nbsp;request&nbsp;to&nbsp;obtain&nbsp;the&nbsp;geographic&nbsp;location&nbsp;is&nbsp;rejected&nbsp;for&nbsp;the&nbsp;lack&nbsp;of&nbsp;the&nbsp;required&nbsp;permission,&nbsp;weak&nbsp;positioning&nbsp;signal,&nbsp;or&nbsp;incorrect&nbsp;location&nbsp;settings.&nbsp;After&nbsp;the&nbsp;timeout&nbsp;duration&nbsp;expires,&nbsp;the&nbsp;fail&nbsp;function&nbsp;will&nbsp;be&nbsp;called.<br>The&nbsp;value&nbsp;is&nbsp;a&nbsp;32-digit&nbsp;positive&nbsp;integer.&nbsp;If&nbsp;the&nbsp;value&nbsp;set&nbsp;is&nbsp;less&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;**0**,&nbsp;the&nbsp;default&nbsp;value&nbsp;will&nbsp;be&nbsp;used. |
 | coordType | string | No | Coordinate&nbsp;system&nbsp;type.&nbsp;Available&nbsp;types&nbsp;can&nbsp;be&nbsp;obtained&nbsp;by&nbsp;**getSupportedCoordTypes**.&nbsp;The&nbsp;default&nbsp;type&nbsp;is&nbsp;**wgs84**. |
 | success | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful. |
 | fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
@@ -75,11 +77,14 @@ export default {
 ```
 
 
-## geolocation.getLocationType
+## geolocation.getLocationType<sup>(deprecated) </sup>
 
 getLocationType(Object): void
 
 Obtains the supported location types.
+
+> **NOTE**
+> This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Location.Location.Lite
 
@@ -115,11 +120,14 @@ export default {
 ```
 
 
-## geolocation.subscribe
+## geolocation.subscribe<sup>(deprecated) </sup>
 
 subscribe(Object): void
 
 Listens to the geographical location. If this method is called multiple times, the last call takes effect.
+
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.on('locationChange')](js-apis-geoLocationManager.md#geolocationmanageronlocationchange).
 
 **System capability**: SystemCapability.Location.Location.Lite
 
@@ -167,11 +175,14 @@ export default {
 ```
 
 
-## geolocation.unsubscribe
+## geolocation.unsubscribe<sup>(deprecated) </sup>
 
 unsubscribe(): void
 
 Cancels listening to the geographical location.
+
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.off('locationChange')](js-apis-geoLocationManager.md#geolocationmanagerofflocationchange).
 
 **System capability**: SystemCapability.Location.Location.Lite
 
@@ -186,11 +197,14 @@ export default {
 ```
 
 
-## geolocation.getSupportedCoordTypes
+## geolocation.getSupportedCoordTypes<sup>(deprecated) </sup>
 
 getSupportedCoordTypes(): Array&lt;string&gt;
 
 Obtains coordinate system types supported by the device.
+
+> **NOTE**
+> This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Location.Location.Lite
 
