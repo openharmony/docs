@@ -19,7 +19,7 @@ Run **hdc\_std shell param get persist.ace.testmode.enabled**.
 If the value is **0**, run the **hdc\_std shell param set persist.ace.testmode.enabled 1** to enable the test mode.
 
 
-## Why Is Private Displayed in Logs When the Format Parameter Type of hilog in C++ Code Is %d or %s?
+## Why is private displayed in logs when the format parameter type of HiLog in C++ code is %d or %s?
 
 When format parameters such as **%d** and **%s** are directly used, the standard system uses **private** to replace the actual data for printing by default to prevent data leakage. To print the actual data, replace **%d** with **%{public}d** or replace **%s** with **%{public}s**.
 
@@ -35,7 +35,7 @@ Applicable to: OpenHarmony SDK 3.2.2.5
 
 You are advised to use the [HiLog](../reference/apis/js-apis-hilog.md) for log printing. For details about how to set the **domain** parameter, see the [Development Guide](../reference/apis/js-apis-hilog.md#hilogisloggable).
 
-## What is the maximum length of a log record when HiLog Is used? Is it configurable?
+## What is the maximum length of a log record when HiLog is used? Is it configurable?
 
 Applicable to: OpenHarmony SDK 3.2.2.5
 

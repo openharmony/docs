@@ -4,9 +4,9 @@
 OpenHarmony的进程模型如下图所示：
 
 
-- 应用中（同一包名）的所有UIAbility、ServiceExtensionAbility、DataShareExtensionAbility运行在同一个独立进程中，即图中绿色部分的“Main Process”。
+- 应用中（同一Bundle名称）的所有UIAbility、ServiceExtensionAbility、DataShareExtensionAbility运行在同一个独立进程中，即图中绿色部分的“Main Process”。
 
-- 应用中（同一包名）的同一类型ExtensionAbility（除ServiceExtensionAbility和DataShareExtensionAbility外）运行在一个独立进程中，即图中蓝色部分的“FormExtensionAbility Process”、“InputMethodExtensionAbility Process”、其他ExtensionAbility Process。
+- 应用中（同一Bundle名称）的同一类型ExtensionAbility（除ServiceExtensionAbility和DataShareExtensionAbility外）运行在一个独立进程中，即图中蓝色部分的“FormExtensionAbility Process”、“InputMethodExtensionAbility Process”、其他ExtensionAbility Process。
 
 - WebView拥有独立的渲染进程，即图中黄色部分的“Render Process”。
 

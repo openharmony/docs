@@ -10,6 +10,7 @@
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager'
 ```
+
 ## 权限列表
 
 | 权限                                       | 权限等级     | 描述            |
@@ -27,7 +28,7 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 包信息标志，指示需要获取的包信息的内容。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称                                      | 值         | 说明                                                         |
 | ----------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -45,7 +46,7 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 应用信息标志，指示需要获取的应用信息的内容。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
  **系统接口：** 系统接口，不支持三方应用调用。
 
@@ -58,9 +59,9 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 ### AbilityFlag
 
-功能组件信息标志，指示需要获取的功能组件信息的内容。
+Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
  **系统接口：** 系统接口，不支持三方应用调用。
 
@@ -77,7 +78,7 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 扩展组件信息标志，指示需要获取的扩展组件信息的内容。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
  **系统接口：** 系统接口，不支持三方应用调用。
 
@@ -92,7 +93,7 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 指示扩展组件的类型。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|-----|
@@ -115,9 +116,9 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 ### PermissionGrantState
 
-指示权限授予信息。
+指示权限授予状态。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
@@ -128,7 +129,7 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 标识该组件所支持的窗口模式。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
@@ -140,21 +141,21 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 指示组件的启动方式。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
-| SINGLETON        | 0   | ability的启动模式,表示单实例。 |
-| STANDARD         | 1   | ability的启动模式,表示普通多实例。 |
-| SPECIFIED        | 2   | ability的启动模式,表示该ability内部根据业务自己置顶多实例。 |
+| SINGLETON        | 0   | ability的启动模式，表示单实例。 |
+| STANDARD         | 1   | ability的启动模式，表示普通多实例。 |
+| SPECIFIED        | 2   | ability的启动模式，表示该ability内部根据业务自己置顶多实例。 |
 
 ### AbilityType
 
 指示Ability组件的类型。
 
- **模型约束:** 仅可在FA模型下使用
+ **模型约束：** 仅可在FA模型下使用
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 |  名称   | 值   |                            说明                            |
 | :-----: | ---- | :--------------------------------------------------------: |
@@ -166,7 +167,7 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 标识该Ability的显示模式。该标签仅适用于page类型的Ability。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称                               |值 |说明 |
 |:----------------------------------|---|---|
@@ -184,7 +185,7 @@ import bundleManager from '@ohos.bundle.bundleManager'
 | AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|表示受开关控制的自动竖向旋转模式。|
 | LOCKED                             |12|表示锁定模式。|
 
-## 方法
+## 接口
 
 ### bundleManager.getBundleInfoForSelf
 
@@ -272,7 +273,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 
 | 参数名  | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 表示要查询的应用程序包名称。    |
+| bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。|
 | userId      | number | 是   | 表示用户ID。  |
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的bundleInfo；否则为错误对象。 |
@@ -345,7 +346,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 表示要查询的应用程序包名称。    |
+| bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。|
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的BundleInfo；否则为错误对象。 |
 
@@ -396,7 +397,7 @@ getBundleInfo(bundleName: string, bundleFlags: [number](#bundleflag), userId?: n
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 表示要查询的应用程序包名称。 |
+| bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。       |
 | userId      | number | 否   | 表示用户ID。  |
 
@@ -469,7 +470,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 
 | 参数名    | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------- |
-| bundleName | string | 是   | 表示要查询的应用程序包名称。 |
+| bundleName | string | 是   | 表示要查询的应用Bundle名称。 |
 | appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。    |
 | userId     | number | 是   | 表示用户ID。  |
 | callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的ApplicationInfo；否则为错误对象。 |
@@ -521,7 +522,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), cal
 
 | 参数名    | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------- |
-| bundleName | string | 是   | 表示要查询的应用程序包名称。 |
+| bundleName | string | 是   | 表示要查询的应用Bundle名称。 |
 | appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。    |
 | callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的ApplicationInfo；否则为错误对象。 |
 
@@ -571,7 +572,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 
 | 参数名    | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------- |
-| bundleName | string | 是   | 表示要查询的应用程序包名称。 |
+| bundleName | string | 是   | 表示要查询的应用Bundle名称。 |
 | appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。    |
 | userId     | number | 否   | 表示用户ID。 |
 
@@ -614,7 +615,7 @@ try {
 
 getAllBundleInfo(bundleFlags: [number](#bundleflag), userId: number, callback: AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>>): void;
 
-以异步方法根据给定的bundleFlags和userId获取多个BundleInfo，使用callback形式返回结果。
+以异步方法根据给定的bundleFlags和userId获取系统中所有的BundleInfo，使用callback形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -662,7 +663,7 @@ try {
 
 getAllBundleInfo(bundleFlags: [number](#bundleflag), callback: AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>>): void;
 
-以异步方法根据给定的bundleFlags获取多个BundleInfo，使用callback形式返回结果。
+以异步方法根据给定的bundleFlags获取系统中所有的BundleInfo，使用callback形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -708,7 +709,7 @@ try {
 
 getAllBundleInfo(bundleFlags: [number](#bundleflag), userId?: number): Promise<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>>;
 
-以异步方法根据给定的bundleFlags和userId获取多个BundleInfo，使用Promise形式返回结果。
+以异步方法根据给定的bundleFlags和userId获取系统中所有的BundleInfo，使用Promise形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -758,7 +759,7 @@ try {
 
 getAllApplicationInfo(appFlags: [number](#applicationflag), userId: number, callback: AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>>): void;
 
-以异步方法根据给定的appFlags和userId获取多个ApplicationInfo，使用callback形式返回结果。
+以异步方法根据给定的appFlags和userId获取系统中所有的ApplicationInfo，使用callback形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -806,7 +807,7 @@ try {
 
 getAllApplicationInfo(appFlags: [number](#applicationflag), callback: AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>>): void;
 
-以异步方法根据给定的appFlags获取多个ApplicationInfo，使用callback形式返回结果。
+以异步方法根据给定的appFlags获取系统中所有的ApplicationInfo，使用callback形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -852,7 +853,7 @@ try {
 
 getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Promise<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>>;
 
-以异步方法根据给定的appFlags和userId获取多个ApplicationInfo，使用Promise形式返回结果。
+以异步方法根据给定的appFlags和userId获取系统中所有的ApplicationInfo，使用Promise形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -915,7 +916,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId: numbe
 
 | 参数名      | 类型   | 必填 | 说明                                                  |
 | ------------ | ------ | ---- | ------------------------------------------------------- |
-| want         | Want   | 是   | 表示包含要查询的应用程序包名称的Want。                    |
+| want         | Want   | 是   | 表示包含要查询的应用Bundle名称的Want。                 |
 | abilityFlags | [number](#abilityflag) | 是   | 指定返回的AbilityInfo所包含的信息。                       |
 | userId       | number | 是   | 表示用户ID。                               |
 | callback | AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<AbilityInfo>；否则为错误对象。 |
@@ -972,7 +973,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), callback: Asy
 
 | 参数名      | 类型   | 必填 | 说明                                                  |
 | ------------ | ------ | ---- | -------------------------------------------------------|
-| want         | Want   | 是   | 表示包含要查询的应用程序包名称的Want。                    |
+| want         | Want   | 是   | 表示包含要查询的应用Bundle名称的Want。                 |
 | abilityFlags | [number](#abilityflag) | 是   | 指定返回的AbilityInfo所包含的信息。       |
 | callback | AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<AbilityInfo>；否则为错误对象。 |
 
@@ -1027,7 +1028,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: numb
 
 | 参数名      | 类型   | 必填 | 说明                                                  |
 | ------------ | ------ | ---- | ------------------------------------------------------- |
-| want         | Want   | 是   | 表示包含要查询的应用程序包名称的Want。                    |
+| want         | Want   | 是   | 表示包含要查询的应用Bundle名称的Want。                 |
 | abilityFlags | [number](#abilityflag) | 是   | 表示指定返回的AbilityInfo所包含的信息。 |
 | userId       | number | 否   | 表示用户ID。                               |
 
@@ -1106,10 +1107,10 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want                  | Want                                                         | 是   | 表示包含要查询的应用程序包名称的Want。                         |
-| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                   |
-| extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。      |
-| userId                | number                                                       | 是   | 表示用户ID。                                                   |
+| want                  | Want                                                         | 是   | 表示包含要查询的应用Bundle名称的Want。                       |
+| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                 |
+| extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。    |
+| userId                | number                                                       | 是   | 表示用户ID。                                                 |
 | callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | 是   | 回调函数，当获取成功时，err为null，data为获取到Array\<ExtensionAbilityInfo>；否则为错误对象。 |
 
 **错误码：**
@@ -1164,9 +1165,9 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want                  | Want                                                         | 是   | 表示包含要查询的应用程序包名称的Want。                         |
-| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                   |
-| extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。      |
+| want                  | Want                                                         | 是   | 表示包含要查询的应用Bundle名称的Want。                       |
+| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                 |
+| extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。    |
 | callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | 是   | 回调函数，当获取成功时，err为null，data为获取到Array\<ExtensionAbilityInfo>；否则为错误对象。 |
 
 **错误码：**
@@ -1218,9 +1219,9 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 **参数：**
 
-| 参数名                | 类型                                          | 必填 | 说明                                                    |
-| --------------------- | --------------------------------------------- | ---- | ------------------------------------------------------- |
-| want                  | Want                                          | 是   | 表示包含要查询的应用程序包名称的Want。                    |
+| 参数名                | 类型                                          | 必填 | 说明                                                      |
+| --------------------- | --------------------------------------------- | ---- | --------------------------------------------------------- |
+| want                  | Want                                          | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
 | extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
 | extensionAbilityFlags | [number](#extensionabilityflag)               | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。 |
 | userId                | number                                        | 否   | 表示用户ID。                                              |
@@ -1290,7 +1291,7 @@ try {
 
 getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void;
 
-以异步方法根据给定的uid获取bundleName，使用callback形式返回结果。
+以异步方法根据给定的uid获取对应的bundleName，使用callback形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1335,7 +1336,7 @@ try {
 
 getBundleNameByUid(uid: number): Promise\<string>;
 
-以异步方法根据给定的uid获取bundleName，使用Promise形式返回结果。
+以异步方法根据给定的uid获取对应的bundleName，使用Promise形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1482,7 +1483,7 @@ try {
 
 cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void;
 
-以异步方法根据给定的bundleName清理BundleCache，并获取清理结果，使用callback形式返回结果。
+以异步方法根据给定的bundleName清理BundleCache，使用callback形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1529,7 +1530,7 @@ try {
 
 cleanBundleCacheFiles(bundleName: string): Promise\<void>;
 
-以异步方法根据给定的bundleName清理BundleCache，并获取清理结果，使用Promise形式返回结果。
+以异步方法根据给定的bundleName清理BundleCache，使用Promise形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1547,7 +1548,7 @@ cleanBundleCacheFiles(bundleName: string): Promise\<void>;
 
 | 类型           | 说明                                                         |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | Promise对象，返回true表示清理应用缓存目录数据成功，返回false表示清理应用缓存目录数据失败。 |
+| Promise\<void> | 无返回结果的Promise对象。当清理应用缓存目录数据失败会抛出错误对象。 |
 
 **错误码：**
 
@@ -1565,9 +1566,9 @@ import bundleManager from '@ohos.bundle.bundleManager'
 let bundleName = "com.ohos.myapplication";
 
 try {
-    bundleManager.cleanBundleCacheFiles(bundleName).then(()=> {
+    bundleManager.cleanBundleCacheFiles(bundleName).then(() => {
         console.info('cleanBundleCacheFiles successfully.');
-    }).catch(err=> {
+    }).catch(err => {
         console.error('cleanBundleCacheFiles failed:' + err.message);
     });
 } catch (err) {
@@ -1579,7 +1580,7 @@ try {
 
 setApplicationEnabled(bundleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void;
 
-设置指定应用的禁用使能状态，使用callback形式返回结果。
+设置指定应用的禁用或使能状态，使用callback形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1593,7 +1594,7 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean, callback: AsyncCal
 | ---------- | ------- | ---- | ------------------------------------- |
 | bundleName | string  | 是   | 指定应用的bundleName。                |
 | isEnabled  | boolean | 是   | 值为true表示使能，值为false表示禁用。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数，当设置应用禁用使能状态成功时，err为null，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，当设置应用禁用或使能状态成功时，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -1626,7 +1627,7 @@ try {
 
 setApplicationEnabled(bundleName: string, isEnabled: boolean): Promise\<void>;
 
-设置指定应用的禁用使能状态，使用Promise形式返回结果。
+设置指定应用的禁用或使能状态，使用Promise形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1662,9 +1663,9 @@ import bundleManager from '@ohos.bundle.bundleManager'
 let bundleName = "com.ohos.myapplication";
 
 try {
-    bundleManager.setApplicationEnabled(bundleName, false).then(()=> {
+    bundleManager.setApplicationEnabled(bundleName, false).then(() => {
         console.info('setApplicationEnabled successfully.');
-    }).catch(err=> {
+    }).catch(err => {
         console.error('setApplicationEnabled failed:' + err.message);
     });
 } catch (err) {
@@ -1676,7 +1677,7 @@ try {
 
 setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isEnabled: boolean, callback: AsyncCallback\<void>): void;
 
-设置指定组件的禁用使能状态，使用callback形式返回结果。
+设置指定组件的禁用或使能状态，使用callback形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1690,7 +1691,7 @@ setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isE
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 需要被设置的组件。              |
 | isEnabled| boolean     | 是   | 值为true表示使能，值为false表示禁用。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数，当设置组件禁用使能状态成功时，err为null，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，当设置组件禁用或使能状态成功时，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -1711,7 +1712,7 @@ let want = {
     bundleName : "com.example.myapplication",
     abilityName : "com.example.myapplication.MainAbility"
 };
-var info;
+let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
@@ -1737,7 +1738,7 @@ try {
 
 setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isEnabled: boolean): Promise\<void>;
 
-设置指定组件的禁用使能状态，使用Promise形式返回结果。
+设置指定组件的禁用或使能状态，使用Promise形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1777,16 +1778,16 @@ let want = {
     bundleName : "com.example.myapplication",
     abilityName : "com.example.myapplication.MainAbility"
 };
-var info;
+let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
         console.info('queryAbilityInfo successfully. Data: ' + JSON.stringify(abilitiesInfo));
         info = abilitiesInfo[0];
 
-        bundleManager.setAbilityEnabled(info, false).then(()=> {
+        bundleManager.setAbilityEnabled(info, false).then(() => {
             console.info('setAbilityEnabled successfully.');
-        }).catch(err=> {
+        }).catch(err => {
             console.error('setAbilityEnabled failed:' + err.message);
         });
     }).catch(error => {
@@ -1801,7 +1802,7 @@ try {
 
 isApplicationEnabled(bundleName: string, callback: AsyncCallback\<boolean>): void;
 
-以异步的方法获取指定应用的禁用使能状态，使用callback形式返回结果。
+以异步的方法获取指定应用的禁用或使能状态，使用callback形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1845,7 +1846,7 @@ try {
 
 isApplicationEnabled(bundleName: string): Promise\<boolean>;
 
-以异步的方法获取指定应用的禁用使能状态，使用Promise形式返回结果。
+以异步的方法获取指定应用的禁用或使能状态，使用Promise形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1892,7 +1893,7 @@ try {
 
 isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), callback: AsyncCallback\<boolean>): void;
 
-以异步的方法获取指定组件的禁用使能状态，使用callback形式返回结果。
+以异步的方法获取指定组件的禁用或使能状态，使用callback形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1924,7 +1925,7 @@ let want = {
     bundleName : "com.example.myapplication",
     abilityName : "com.example.myapplication.MainAbility"
 };
-var info;
+let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
@@ -1950,7 +1951,7 @@ try {
 
 isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): Promise\<boolean>;
 
-以异步的方法获取指定组件的禁用使能状态，使用Promise形式返回结果。
+以异步的方法获取指定组件的禁用或使能状态，使用Promise形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1987,7 +1988,7 @@ let want = {
     bundleName : "com.example.myapplication",
     abilityName : "com.example.myapplication.MainAbility"
 };
-var info;
+let info;
 
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
@@ -2011,7 +2012,7 @@ try {
 
 getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallback\<Want>): void;
 
-以异步方法根据给定的bundleName和userId获取用于启动应用程序主要功能，使用callback形式返回结果。
+以异步方法根据给定的bundleName和userId获取用于启动应用程序的Want参数，使用callback形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2061,7 +2062,7 @@ try {
 
 getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void;
 
-以异步方法根据给定的bundleName获取用于启动应用程序主要功能，使用callback形式返回结果。
+以异步方法根据给定的bundleName获取用于启动应用程序的Want参数，使用callback形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2109,7 +2110,7 @@ try {
 
 getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>;
 
-以异步方法根据给定的bundleName和userId获取用于启动应用程序主要功能，使用Promise形式返回结果。
+以异步方法根据给定的bundleName和userId获取用于启动应用程序的Want参数，使用Promise形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2391,7 +2392,7 @@ try {
 
 getPermissionDef(permissionName: string, callback: AsyncCallback\<[PermissionDef](js-apis-bundleManager-permissionDef.md)>): void;
 
-以异步方法根据给定的permissionName获取PermissionDef，使用callback形式返回结果。
+以异步方法根据给定的permissionName获取权限定义结构体PermissionDef信息，使用callback形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2436,7 +2437,7 @@ try {
 
 getPermissionDef(permissionName: string): Promise\<[PermissionDef](js-apis-bundleManager-permissionDef.md)>;
 
-以异步方法根据给定的permissionName获取PermissionDef，使用Promise形式返回结果。
+以异步方法根据给定的permissionName获取权限定义结构体PermissionDef信息，使用Promise形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2706,13 +2707,13 @@ try {
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
 
-以同步方法根据给定的bundleName、applicationFlags和userId获取ApplicationInfo
+以同步方法根据给定的bundleName、applicationFlags和userId获取ApplicationInfo。
 
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 **参数：**
 
@@ -2758,7 +2759,7 @@ try {
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
 
-以同步方法根据给定的bundleName和applicationFlags获取ApplicationInfo
+以同步方法根据给定的bundleName和applicationFlags获取ApplicationInfo。
 
 **系统接口：** 此接口为系统接口。
 

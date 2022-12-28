@@ -248,7 +248,7 @@ import window from '@ohos.window';
 
 | 名称       | 值 | 说明           |
 | ---------- | ------ | -------------- |
-| DEFAULT    | 0      | 默认色域模式。 |
+| DEFAULT    | 0      | 默认SRGB色域模式。 |
 | WIDE_GAMUT | 1      | 广色域模式。   |
 
 ## ScaleOptions<sup>9+</sup>
@@ -1548,6 +1548,8 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 移动窗口位置，使用callback异步回调。
 
+全屏模式窗口不支持该操作。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -1588,6 +1590,8 @@ try {
 moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 移动窗口位置，使用Promise异步回调。
+
+全屏模式窗口不支持该操作。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1640,6 +1644,8 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置的宽度与高度受到此约束限制。
 
+全屏模式窗口不支持该操作。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -1686,6 +1692,8 @@ resize(width: number, height: number): Promise&lt;void&gt;
 系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
 
 设置的宽度与高度受到此约束限制。
+
+全屏模式窗口不支持该操作。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4314,6 +4322,8 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 移动窗口位置，使用callback异步回调。
 
+全屏模式窗口不支持该操作。
+
 > **说明：**
 > 
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[moveWindowTo()](#movewindowto9)。
@@ -4345,6 +4355,8 @@ windowClass.moveTo(300, 300, (err)=>{
 moveTo(x: number, y: number): Promise&lt;void&gt;
 
 移动窗口位置，使用Promise异步回调。
+
+全屏模式窗口不支持该操作。
 
 > **说明：**
 > 
@@ -4388,6 +4400,8 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 设置的宽度与高度受到此约束限制。
 
+全屏模式窗口不支持该操作。
+
 > **说明：**
 > 
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[resize()](#resize9)。
@@ -4425,6 +4439,8 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
 
 设置的宽度与高度受到此约束限制。
+
+全屏模式窗口不支持该操作。
 
 > **说明：**
 > 

@@ -1,6 +1,6 @@
 # @ohos.app.ability.wantAgent (WantAgent模块)
 
-app.ability.WantAgent模块提供了触发、取消、比较WantAgent实例和获取bundle名称的能力，包括创建WantAgent实例、获取实例的用户ID、获取want信息等。该模块将会取代[@ohos.wantAgent](js-apis-wantAgent.md)模块，建议优先使用本模块。
+app.ability.WantAgent模块提供了创建WantAgent实例、获取实例的用户ID、获取want信息、比较WantAgent实例和获取bundle名称等能力。该模块将会取代[@ohos.wantAgent](js-apis-wantAgent.md)模块，建议优先使用本模块。
 
 > **说明：**
 > 
@@ -117,7 +117,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 | 参数名 | 类型          | 必填 | 说明          |
 | ---- | ------------- | ---- | ------------- |
-| info | WantAgentInfo | 是   | WantAgent信息。 |
+| info | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | 是   | WantAgent信息。 |
 
 **返回值：**
 
@@ -632,7 +632,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 | 参数名     | 类型                  | 必填 | 说明                            |
 | -------- | --------------------- | ---- | ------------------------------- |
 | agent    | WantAgent             | 是   | WantAgent对象。                   |
-| callback | AsyncCallback\<Want\> | 是   | 获取WantAgent对象want的回调方法。 |
+| callback | AsyncCallback\<[Want](js-apis-app-ability-want.md)\> | 是   | 获取WantAgent对象want的回调方法。 |
 
 **错误码：**
 |错误码ID    |错误信息            |
@@ -1042,10 +1042,6 @@ try{
 }
 ```
 
-
-//TODO WantAgent.trigger Callback
-
-
 ## WantAgent.trigger
 
 trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<CompleteData\>): void
@@ -1059,8 +1055,8 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 | 参数名        | 类型                          | 必填 | 说明                            |
 | ----------- | ----------------------------- | ---- | ------------------------------- |
 | agent       | WantAgent                     | 是   | WantAgent对象。                   |
-| triggerInfo | TriggerInfo                   | 是   | TriggerInfo对象。                 |
-| callback    | AsyncCallback\<CompleteData\> | 否   | 主动激发WantAgent实例的回调方法。 |
+| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | 是   | TriggerInfo对象。                 |
+| callback    | AsyncCallback\<[CompleteData](#completedata)\> | 否   | 主动激发WantAgent实例的回调方法。 |
 
 **错误码：**
 | 错误码ID    | 错误信息            |
@@ -1096,7 +1092,7 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 var wantAgent;
 // triggerInfo
 var triggerInfo = {
-        code: 0
+        code: 0 //自定义义结果码
     }
 //WantAgentInfo对象
 var wantAgentInfo = {

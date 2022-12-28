@@ -38,7 +38,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 |
+| want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
 | callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
@@ -105,7 +105,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 |
+| want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 
 **返回值：**
@@ -245,6 +245,11 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 根据account启动Ability（callback形式）。
 
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
@@ -315,6 +320,11 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
 
 根据account启动Ability（callback形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -391,6 +401,11 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void>;
 
 根据account启动Ability（Promise形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -599,7 +614,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 启动一个新的ServiceExtensionAbility（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -666,7 +681,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 启动一个新的ServiceExtensionAbility（Promise形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -858,7 +873,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 使用帐户停止同一应用程序内的服务（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -921,7 +936,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 使用帐户停止同一应用程序内的服务（Promise形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1079,7 +1094,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 |
+| want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | ConnectOptions类型的回调函数，返回服务连接成功、断开或连接失败后的信息。 |
 
 **返回值：**
@@ -1299,6 +1314,11 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

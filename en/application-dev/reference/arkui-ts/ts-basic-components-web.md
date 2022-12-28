@@ -672,6 +672,316 @@ Sets whether to enable web debugging.
   }
   ```
 
+### blockNetwork<sup>9+</sup>
+
+blockNetwork(block: boolean)
+
+Sets whether to block online downloads.
+
+**Parameters**
+
+| Name| Type| Mandatory| Default Value| Description                           |
+| ------ | -------- | ---- | ------ | ----------------------------------- |
+| block  | boolean  | Yes  | false  | Whether to block online downloads.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State block: boolean = true
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .blockNetwork(this.block)
+      }
+    }
+  }
+  ```
+
+### defaultFixedFontSize<sup>9+</sup>
+
+defaultFixedFontSize(size: number)
+
+Sets the default fixed font size of the web page.
+
+**Parameters**
+
+| Name| Type| Mandatory| Default Value| Description                    |
+| ------ | -------- | ---- | ------ | ---------------------------- |
+| size   | number   | Yes  | 13     | Default fixed font size of the web page. The value is a non-negative integer ranging from 1 to 72. If the value is less than 1, the value 1 is used. If the value is greater than 72, the value 72 is used.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State size: number = 16
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .defaultFixedFontSize(this.size)
+      }
+    }
+  }
+  ```
+
+### defaultFontSize<sup>9+</sup>
+
+defaultFontSize(size: number)
+
+Sets the default font size of the web page.
+
+**Parameters**
+
+| Name| Type| Mandatory| Default Value| Description                |
+| ------ | -------- | ---- | ------ | ------------------------ |
+| size   | number   | Yes  | 16     | Default font size of the web page. The value is a non-negative integer ranging from 1 to 72. If the value is less than 1, the value 1 is used. If the value is greater than 72, the value 72 is used.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State size: number = 13
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .defaultFontSize(this.size)
+      }
+    }
+  }
+  ```
+
+### minFontSize<sup>9+</sup>
+
+minFontSize(size: number)
+
+Sets the minimum font size of the web page.
+
+**Parameters**
+
+| Name| Type| Mandatory| Default Value| Description                |
+| ------ | -------- | ---- | ------ | ------------------------ |
+| size   | number   | Yes  | 8      | Minimum font size of the web page. The value is a non-negative integer ranging from 1 to 72. If the value is less than 1, the value 1 is used. If the value is greater than 72, the value 72 is used.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State size: number = 13
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .minFontSize(this.size)
+      }
+    }
+  }
+  ```
+
+### webFixedFont<sup>9+</sup>
+
+webFixedFont(family: string)
+
+Sets the fixed font family of the web page.
+
+**Parameters**
+
+| Name| Type| Mandatory| Default Value   | Description                    |
+| ------ | -------- | ---- | --------- | ---------------------------- |
+| family | string   | Yes  | monospace | Fixed font family of the web page.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "monospace"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webFixedFont(this.family)
+      }
+    }
+  }
+  ```
+
+### webSansSerifFont<sup>9+</sup>
+
+webSansSerifFont(family: string)
+
+Sets the sans serif font family of the web page.
+
+**Parameters**
+
+| Name| Type| Mandatory| Default Value    | Description                         |
+| ------ | -------- | ---- | ---------- | --------------------------------- |
+| family | string   | Yes  | sans-serif | Sans serif font family of the web page.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "sans-serif"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webSansSerifFont(this.family)
+      }
+    }
+  }
+  ```
+
+### webSerifFont<sup>9+</sup>
+
+webSerifFont(family: string)
+
+Sets the serif font family of the web page.
+
+**Parameters**
+
+| Name| Type| Mandatory| Default Value| Description                    |
+| ------ | -------- | ---- | ------ | ---------------------------- |
+| family | string   | Yes  | serif  | Serif font family of the web page.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "serif"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webSerifFont(this.family)
+      }
+    }
+  }
+  ```
+
+### webStandardFont<sup>9+</sup>
+
+webStandardFont(family: string)
+
+Sets the standard font family of the web page.
+
+**Parameters**
+
+| Name| Type| Mandatory| Default Value    | Description                       |
+| ------ | -------- | ---- | ---------- | ------------------------------- |
+| family | string   | Yes  | sans serif | Standard font family of the web page.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "sans-serif"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webStandardFont(this.family)
+      }
+    }
+  }
+  ```
+
+### webFantasyFont<sup>9+</sup>
+
+webFantasyFont(family: string)
+
+Sets the fantasy font family of the web page.
+
+**Parameters**
+
+| Name| Type| Mandatory| Default Value | Description                      |
+| ------ | -------- | ---- | ------- | ------------------------------ |
+| family | string   | Yes  | fantasy | Fantasy font family of the web page.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "fantasy"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webFantasyFont(this.family)
+      }
+    }
+  }
+  ```
+
+### webCursiveFont<sup>9+</sup>
+
+webCursiveFont(family: string)
+
+Sets the cursive font family of the web page.
+
+**Parameters**
+
+| Name| Type| Mandatory| Default Value | Description                      |
+| ------ | -------- | ---- | ------- | ------------------------------ |
+| family | string   | Yes  | cursive | Cursive font family of the web page.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "cursive"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webCursiveFont(this.family)
+      }
+    }
+  }
+  ```
+
 ## Events
 
 The universal events are not supported.
@@ -1635,7 +1945,7 @@ Invoked when an SSL error occurs during resource loading.
 
 ### onClientAuthenticationRequest<sup>9+</sup>
 
-onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string>, issuers : Array<string>}) => void)
+onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array\<string>, issuers : Array\<string>}) => void)
 
 Invoked when an SSL client certificate request is received.
 
@@ -1646,7 +1956,7 @@ Invoked when an SSL client certificate request is received.
 | handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | The user's operation. |
 | host     | string                                   | Host name of the server that requests a certificate.   |
 | port     | number                                   | Port number of the server that requests a certificate.   |
-| keyTypes | Array\<string>                          | Acceptable asymmetric private key types.   |
+| keyTypes | Array\<string>                           | Acceptable asymmetric private key types.   |
 | issuers  | Array\<string>                           | Issuer of the certificate that matches the private key.|
 
   **Example**
@@ -1978,14 +2288,14 @@ Registers a callback for window creation.
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
         .multiWindowAccess(true)
         .onWindowNew((event) => {
           console.log("onWindowNew...")
-          var popController: WebController = new WebController()
+          var popController: web_webview.WebviewController = new web_webview.WebviewController()
           event.handler.setWebController(popController)
         })
       }
@@ -2059,9 +2369,184 @@ Invoked to notify the caller of the search result on the web page.
   }
   ```
 
+### onDataResubmitted<sup>9+</sup>
+
+onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
+
+Invoked when the web form data is resubmitted.
+
+**Parameters**
+
+| Name | Type                                            | Description              |
+| ------- | ---------------------------------------------------- | ---------------------- |
+| handler | [DataResubmissionHandler](#dataresubmissionhandler9) | Handler for resubmitting web form data.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onDataResubmitted((event) => {
+          console.log('onDataResubmitted')
+          event.handler.resend();
+        })
+      }
+    }
+  }
+  ```
+
+### onPageVisible<sup>9+</sup>
+
+onPageVisible(callback: (event: {url: string}) => void)
+
+Invoked when the old page is not displayed and the new page is about to be visible.
+
+**Parameters**
+
+| Name| Type| Description                                         |
+| ------ | -------- | ------------------------------------------------- |
+| url    | string   | URL of the new page that is able to be visible when the old page is not displayed.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onPageVisible((event) => {
+          console.log('onPageVisible url:' + event.url)
+        })
+      }
+    }
+  }
+  ```
+
+### onInterceptKeyEvent<sup>9+</sup>
+
+onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
+
+Invoked when the key event is intercepted, before being consumed by the Webview.
+
+**Parameters**
+
+| Name| Type                                               | Description            |
+| ------ | ------------------------------------------------------- | -------------------- |
+| event  | [KeyEvent](ts-universal-events-key.md#keyevent) | Key event that is triggered.|
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | Whether to continue to transfer the key event to the Webview kernel.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onInterceptKeyEvent((event) => {
+          	if (event.keyCode == 2017 || event.keyCode == 2018) {
+            console.info(`onInterceptKeyEvent get event.keyCode ${event.keyCode}`)
+            return true;
+          }
+          return false;
+        })
+      }
+    }
+  }
+  ```
+
+### onTouchIconUrlReceived<sup>9+</sup>
+
+onTouchIconUrlReceived(callback: (event: {url: string, precomposed: boolean}) => void)
+
+Invoked when an apple-touch-icon URL is received.
+
+**Parameters**
+
+| Name     | Type| Description                          |
+| ----------- | -------- | ---------------------------------- |
+| url         | string   | Received apple-touch-icon URL.|
+| precomposed | boolean  | Whether the apple-touch-icon is precomposed.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.baidu.com', controller: this.controller })
+         .onTouchIconUrlReceived((event) => {
+          console.log('onTouchIconUrlReceived:' + JSON.stringify(event))
+        })
+      }
+    }
+  }
+  ```
+
+### onFaviconReceived<sup>9+</sup>
+
+onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
+
+Invoked when this web page receives a new favicon.
+
+**Parameters**
+
+| Name | Type                                      | Description                           |
+| ------- | ---------------------------------------------- | ----------------------------------- |
+| favicon | [PixelMap](../apis/js-apis-image.md#pixelmap7) | **PixelMap** object of the received favicon.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  import image from "@ohos.multimedia.image"
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State icon: image.PixelMap = undefined;
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onFaviconReceived((event) => {
+          console.log('onFaviconReceived:' + JSON.stringify(event))
+          this.icon = event.favicon;
+        })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
-Implements the **ConsoleMessage** object. For details about the sample code, see [onConsole](#onconsole).
+Implements the **ConsoleMessage** object. For the sample code, see [onConsole](#onconsole).
 
 ### getLineNumber
 
@@ -2113,7 +2598,7 @@ Obtains the path and name of the web page source file.
 
 ## JsResult
 
-Implements the **JsResult** object, which indicates the result returned to the **\<Web>** component to indicate the user operation performed in the dialog box. For details about the sample code, see [onAlert Event](#onalert).
+Implements the **JsResult** object, which indicates the result returned to the **\<Web>** component to indicate the user operation performed in the dialog box. For the sample code, see [onAlert Event](#onalert).
 
 ### handleCancel
 
@@ -2141,7 +2626,7 @@ Notifies the **\<Web>** component of the user's confirm operation in the dialog 
 
 ## FullScreenExitHandler<sup>9+</sup>
 
-Implements a **FullScreenExitHandler** object for listening for exiting full screen mode. For the sample code, see [onFullScreenEnter](#onfullscreenenter9).
+Implements a **FullScreenExitHandler** object for listening for exiting full screen mode. For the sample code, see onFullScreenEnter.
 
 ### exitFullScreen<sup>9+</sup>
 
@@ -2151,23 +2636,23 @@ Exits full screen mode.
 
 ## ControllerHandler<sup>9+</sup>
 
-Implements a **WebController** object for new **\<Web>** components. For the sample code, see [onWindowNew](#onwindownew9).
+Implements a **WebviewController** object for new **\<Web>** components. For the sample code, see [onWindowNew](#onwindownew9).
 
 ### setWebController<sup>9+</sup>
 
-setWebController(controller: WebController): void
+setWebController(controller: WebviewController): void
 
-Sets a **WebController** object.
+Sets a **WebviewController** object.
 
 **Parameters**
 
 | Name       | Type         | Mandatory  | Default Value | Description                     |
 | ---------- | ------------- | ---- | ---- | ------------------------- |
-| controller | WebController | Yes   | -    | **WebController** object to set.|
+| controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **\<Web>** component.|
 
 ## WebResourceError
 
-Implements the **WebResourceError** object. For details about the sample code, see [onErrorReceive](#onerrorreceive).
+Implements the **WebResourceError** object. For the sample code, see [onErrorReceive](#onerrorreceive).
 
 ### getErrorCode
 
@@ -2195,7 +2680,7 @@ Obtains error information about resource loading.
 
 ## WebResourceRequest
 
-Implements the **WebResourceRequest** object. For details about the sample code, see [onErrorReceive](#onerrorreceive).
+Implements the **WebResourceRequest** object. For the sample code, see [onErrorReceive](#onerrorreceive).
 
 ### getRequestHeader
 
@@ -2269,7 +2754,7 @@ Describes the request/response header returned by the **\<Web>** component.
 
 ## WebResourceResponse
 
-Implements the **WebResourceResponse** object. For details about the sample code, see [onHttpErrorReceive](#onhttperrorreceive).
+Implements the **WebResourceResponse** object. For the sample code, see [onHttpErrorReceive](#onhttperrorreceive).
 
 ### getReasonMessage
 
@@ -2417,7 +2902,7 @@ Sets the status code of the resource response.
 
 ## FileSelectorResult<sup>9+</sup>
 
-Notifies the **\<Web>** component of the file selection result. For details about the sample code, see [onShowFileSelector](#onshowfileselector9).
+Notifies the **\<Web>** component of the file selection result. For the sample code, see [onShowFileSelector](#onshowfileselector9).
 
 ### handleFileList<sup>9+</sup>
 
@@ -2433,7 +2918,7 @@ Instructs the **\<Web>** component to select a file.
 
 ## FileSelectorParam<sup>9+</sup>
 
-Implements the **FileSelectorParam** object. For details about the sample code, see [onShowFileSelector](#onshowfileselector9).
+Implements the **FileSelectorParam** object. For the sample code, see [onShowFileSelector](#onshowfileselector9).
 
 ### getTitle<sup>9+</sup>
 
@@ -2485,7 +2970,7 @@ Checks whether multimedia capabilities are invoked.
 
 ## HttpAuthHandler<sup>9+</sup>
 
-Implements the **HttpAuthHandler** object. For details about the sample code, see [onHttpAuthRequest](#onhttpauthrequest9).
+Implements the **HttpAuthHandler** object. For the sample code, see [onHttpAuthRequest](#onhttpauthrequest9).
 
 ### cancel<sup>9+</sup>
 
@@ -2526,7 +3011,7 @@ Uses the password cached on the server for authentication.
 
 ## SslErrorHandler<sup>9+</sup>
 
-Implements an **SslErrorHandler** object. For details about the sample code, see [onSslErrorEventReceive Event](#onsslerroreventreceive9).
+Implements an **SslErrorHandler** object. For the sample code, see [onSslErrorEventReceive Event](#onsslerroreventreceive9).
 
 ### handleCancel<sup>9+</sup>
 
@@ -2542,7 +3027,7 @@ Continues using the SSL certificate.
 
 ## ClientAuthenticationHandler<sup>9+</sup>
 
-Implements a **ClientAuthenticationHandler** object returned by the **\<Web>** component. For details about the sample code, see [onClientAuthenticationRequest](#onclientauthenticationrequest9).
+Implements a **ClientAuthenticationHandler** object returned by the **\<Web>** component. For the sample code, see [onClientAuthenticationRequest](#onclientauthenticationrequest9).
 
 ### confirm<sup>9+</sup>
 
@@ -2571,7 +3056,7 @@ Ignores this request.
 
 ## PermissionRequest<sup>9+</sup>
 
-Implements the **PermissionRequest** object. For details about the sample code, see [onPermissionRequest](#onpermissionrequest9).
+Implements the **PermissionRequest** object. For the sample code, see [onPermissionRequest](#onpermissionrequest9).
 
 ### deny<sup>9+</sup>
 
@@ -2617,7 +3102,7 @@ Grants the permission for resources requested by the web page.
 
 ## WebContextMenuParam<sup>9+</sup>
 
-Provides the information about the context menu that is displayed when a page element is long pressed. For details about the sample code, see [onContextMenuShow](#oncontextmenushow9).
+Provides the information about the context menu that is displayed when a page element is long pressed. For the sample code, see [onContextMenuShow](#oncontextmenushow9).
 
 ### x<sup>9+</sup>
 
@@ -2655,9 +3140,9 @@ Obtains the URL of the destination link.
 | ------ | ------------------------- |
 | string | If it is a link that is being long pressed, the URL that has passed the security check is returned.|
 
-### getUnfilterendLinkUrl<sup>9+</sup>
+### getUnfilteredLinkUrl<sup>9+</sup>
 
-getUnfilterendLinkUrl(): string
+getUnfilteredLinkUrl(): string
 
 Obtains the URL of the destination link.
 
@@ -2693,7 +3178,7 @@ Checks whether image content exists.
 
 ## WebContextMenuResult<sup>9+</sup>
 
-Implements the response event executed when a context menu is displayed. For details about the sample code, see [onContextMenuShow](#oncontextmenushow9).
+Implements a **WebContextMenuResult** object. For the sample code, see onContextMenuShow.
 
 ### closeContextMenu<sup>9+</sup>
 
@@ -2709,7 +3194,7 @@ Copies the image specified in **WebContextMenuParam**.
 
 ## JsGeolocation
 
-Implements the **PermissionRequest** object. For details about the sample code, see [onGeolocationShow Event](#ongeolocationshow).
+Implements the **PermissionRequest** object. For the sample code, see [onGeolocationShow Event](#ongeolocationshow).
 
 ### invoke
 
@@ -2727,7 +3212,7 @@ Sets the geolocation permission status of a web page.
 
 ## WebController
 
-Implements a **WebController** object to control the behavior of the **\<Web>** component. A **WebController** can control only one **\<Web>** component, and the APIs in the **WebController** can be invoked only after it has been bound to the target **\<Web>** component.
+Implements a **WebController** to control the behavior of the **\<Web>** component. A **WebController** can control only one **\<Web>** component, and the APIs in the **WebController** can be invoked only after it has been bound to the target **\<Web>** component.
 
 ### Creating an Object
 
@@ -4008,7 +4493,7 @@ Searches for and highlights the next match.
   ```
 
 ## HitTestValue<sup>9+</sup>
-Implements the **HitTestValue** object. For details about the sample code, see [getHitTestValue](#gethittestvalue9).
+Implements the **HitTestValue** object. For the sample code, see [getHitTestValue](#gethittestvalue9).
 
 ### getType<sup>9+</sup>
 getType(): HitTestType
@@ -4528,7 +5013,7 @@ Implements the **WebDataBase** object.
 
 static existHttpAuthCredentials(): boolean
 
-Checks whether any saved HTTP authentication credentials exist. This API returns the result synchronously. 
+Checks whether any saved HTTP authentication credentials exist. This API returns the result synchronously.
 
 **Return value**
 
@@ -4591,14 +5076,14 @@ Deletes all HTTP authentication credentials saved in the cache. This API returns
 
 static getHttpAuthCredentials(host: string, realm: string): Array\<string\>
 
-Retrieves HTTP authentication credentials for a given host and domain. This API returns the result synchronously. 
+Retrieves HTTP authentication credentials for a given host and realm. This API returns the result synchronously.
 
 **Parameters**
 
 | Name  | Type  | Mandatory  | Default Value | Description            |
 | ----- | ------ | ---- | ---- | ---------------- |
-| host  | string | Yes   | -    | Host for which you want to obtain the HTTP authentication credentials.|
-| realm | string | Yes   | -    | Realm for which you want to obtain the HTTP authentication credentials. |
+| host  | string | Yes   | -    | Host to which HTTP authentication credentials apply.|
+| realm | string | Yes   | -    | Realm to which HTTP authentication credentials apply. |
 
 **Return value**
 
@@ -4644,7 +5129,7 @@ Saves HTTP authentication credentials for a given host and realm. This API retur
 
 | Name     | Type  | Mandatory  | Default Value | Description            |
 | -------- | ------ | ---- | ---- | ---------------- |
-| host     | string | Yes   | -    | Host for which you want to obtain the HTTP authentication credentials.|
+| host     | string | Yes   | -    | Host to which HTTP authentication credentials apply.|
 | realm    | string | Yes   | -    | Realm to which HTTP authentication credentials apply. |
 | username | string | Yes   | -    | User name.            |
 | password | string | Yes   | -    | Password.             |
@@ -5374,8 +5859,8 @@ Stores this web page. This API uses an asynchronous callback to return the resul
 
 | Name     | Type                                    | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | Yes| Save path. The value cannot be null.|
-| autoName | boolean | Yes| Whether to automatically generate a file name.<br>The value **false** means not to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
+| baseName | string | Yes| Save path. The value cannot be null.
+| autoName | boolean | Yes| Whether to automatically generate a file name.<br>The value **false** means not to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.
 | callback | AsyncCallback<string> | Yes   | Callback used to return the save path if the operation is successful and null otherwise.|
 
 **Example**
@@ -5414,8 +5899,8 @@ Stores this web page. This API uses a promise to return the result.
 
 | Name     | Type                                    | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | Yes| Save path. The value cannot be null.|
-| autoName | boolean | Yes| Whether to automatically generate a file name.<br>The value **false** means not to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
+| baseName | string | Yes| Save path. The value cannot be null.
+| autoName | boolean | Yes| Whether to automatically generate a file name.<br>The value **false** means not to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.
 
 **Return value**
 
@@ -5666,6 +6151,64 @@ Sets the message port in this object. For the complete sample code, see [postMes
             this.controller.postMessage({message: msgEvent, uri: "*"})
           })
         Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+## DataResubmissionHandler<sup>9+</sup>
+
+Implements the **DataResubmissionHandler** for resubmitting or canceling the web form data.
+
+### resend<sup>9+</sup>
+
+resend(): void
+
+Resends the web form data.
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onDataResubmitted((event) => {
+          console.log('onDataResubmitted')
+          event.handler.resend();
+        })
+      }
+    }
+  }
+  ```
+
+###  cancel<sup>9+</sup>
+
+cancel(): void
+
+Cancels the resending of web form data.
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onDataResubmitted((event) => {
+          console.log('onDataResubmitted')
+          event.handler.cancel();
+        })
       }
     }
   }

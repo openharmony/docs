@@ -16,8 +16,8 @@ Input error. The specified ability name does not exist.
 
 **处理步骤**
 
-1. 检查包名称是否正确。
-2. 检查包名对应的Ability是否正确。
+1. 检查Bundle名称是否正确。
+2. 检查Bundle名称对应的Ability是否正确。
 
 ## 16000002 接口调用Ability类型错误
 

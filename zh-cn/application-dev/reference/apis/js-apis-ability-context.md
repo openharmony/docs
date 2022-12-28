@@ -30,8 +30,8 @@ class MainAbility extends Ability {
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| abilityInfo | AbilityInfo | 是 | 否 | Abilityinfo相关信息 |
-| currentHapModuleInfo | HapModuleInfo | 是 | 否 | 当前hap包的信息 |
+| abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是 | 否 | Abilityinfo相关信息 |
+| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前hap包的信息 |
 | config | [Configuration](js-apis-application-configuration.md) | 是 | 否 | 表示配置信息。 |
 
 ## AbilityContext.startAbility
@@ -39,6 +39,11 @@ class MainAbility extends Ability {
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 启动Ability（callback形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -88,6 +93,11 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
 
 启动Ability（callback形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -141,6 +151,11 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 启动Ability（promise形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -198,7 +213,12 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-启动Ability并在该Ability退出的时候返回执行结果（callback形式）。
+启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#abilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（callback形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -248,7 +268,12 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-启动Ability并在该Ability退出的时候返回执行结果（callback形式）。
+启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#abilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（callback形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -303,7 +328,12 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
 
-启动Ability并在该Ability退出的时候返回执行结果（promise形式）。
+启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#abilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（promise形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -363,7 +393,12 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 启动一个Ability并在该Ability帐号销毁时返回执行结果（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -375,7 +410,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| callback | AsyncCallback\<AbilityResult\> | 是 | 启动Ability的回调函数，返回Ability结果。 |
+| callback | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)\> | 是 | 启动Ability的回调函数，返回Ability结果。 |
 
 **错误码：**
 
@@ -420,7 +455,12 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 启动一个Ability并在该Ability帐号销毁时返回执行结果（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -481,7 +521,12 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 启动一个Ability并在该Ability帐号销毁时返回执行结果（promise形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -499,7 +544,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;AbilityResult&gt; | 返回一个Promise，包含Ability结果。 |
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 返回一个Promise，包含Ability结果。 |
 
 **错误码：**
 
@@ -646,7 +691,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 启动一个新的ServiceExtensionAbility（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -701,7 +746,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 启动一个新的ServiceExtensionAbility（Promise形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -782,8 +827,14 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
   };
 
   try {
+    this.context.startAbility(want, (error) => {
+      if (error.code != 0) {
+        console.log("start ability fail, err: " + JSON.stringify(err));
+      }
+    })
+
     this.context.stopServiceExtensionAbility(want, (error) => {
-      if (error.code) {
+      if (error.code != 0) {
         // 处理业务逻辑错误
         console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
           ' error.message: ' + JSON.stringify(error.message));
@@ -832,6 +883,12 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
   };
 
   try {
+    this.context.startAbility(want, (error) => {
+      if (error.code != 0) {
+        console.log("start ability fail, err: " + JSON.stringify(err));
+      }
+    })
+
     this.context.stopServiceExtensionAbility(want)
       .then((data) => {
         // 执行正常业务
@@ -855,7 +912,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 使用帐户停止同一应用程序内的服务（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -887,6 +944,12 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
   var accountId = 100;
 
   try {
+    this.context.startAbilityWithAccount(want, accountId, (error) => {
+      if (error.code != 0) {
+        console.log("start ability fail, err: " + JSON.stringify(err));
+      }
+    })
+
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
@@ -910,7 +973,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 使用帐户停止同一应用程序内的服务（Promise形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -941,6 +1004,12 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
   var accountId = 100;
 
   try {
+    this.context.startAbilityWithAccount(want, accountId, (error) => {
+      if (error.code != 0) {
+        console.log("start ability fail, err: " + JSON.stringify(err));
+      }
+    })
+
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
       .then((data) => {
         // 执行正常业务
@@ -1034,7 +1103,7 @@ terminateSelf(): Promise&lt;void&gt;;
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void;
 
-停止Ability，配合startAbilityForResult使用，返回给接口调用方AbilityResult信息（callback形式）。
+停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#abilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#abilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1090,6 +1159,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
 停止Ability，配合startAbilityForResult使用，返回给接口调用方AbilityResult信息（promise形式）。
+停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#abilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#abilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1206,7 +1276,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 使用AbilityInfo.AbilityType.SERVICE模板和account将当前Ability连接到一个Ability。
 
-**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1361,6 +1431,11 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。
 
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
@@ -1450,7 +1525,12 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 根据account启动Ability（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1506,7 +1586,12 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 根据account启动Ability（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1566,7 +1651,12 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 根据account启动Ability（Promise形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1618,65 +1708,6 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
   }
   ```
 
-## AbilityContext.requestPermissionsFromUser
-
-requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void;
-
-拉起弹窗请求用户授权（callback形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| permissions | Array&lt;string&gt; | 是 | 权限列表。 |
-| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
-
-**示例：**
-
-  ```ts
-       var permissions=['com.example.permission']
-       this.context.requestPermissionsFromUser(permissions,(result) => {
-       console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
-  });
-
-  ```
-
-
-## AbilityContext.requestPermissionsFromUser
-
-requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;PermissionRequestResult&gt;;
-
-拉起弹窗请求用户授权（promise形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| permissions | Array&lt;string&gt; | 是 | 权限列表。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;[PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)&gt; | 返回一个Promise，包含接口的结果。 |
-
-**示例：**
-
-  ```ts
-   var permissions=['com.example.permission']
-       this.context.requestPermissionsFromUser(permissions).then((data) => {
-      console.log('success:' + JSON.stringify(data));
-  }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
-  });
-
-  ```
-
-
 ## AbilityContext.setMissionLabel
 
 setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
@@ -1696,7 +1727,7 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
   ```ts
   this.context.setMissionLabel("test",(result) => {
-      console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
+      console.log('setMissionLabel result:' + JSON.stringify(result));
   });
   ```
 
@@ -1744,7 +1775,7 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | image.PixelMap | 是 | 在最近的任务中显示的ability图标。 |
+| icon | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 在最近的任务中显示的ability图标。 |
 | callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
 
 **示例：**
@@ -1786,7 +1817,7 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | image.PixelMap | 是 | 在最近的任务中显示的ability图标。 |
+| icon | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 在最近的任务中显示的ability图标。 |
 
 **返回值：**
 

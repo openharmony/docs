@@ -235,7 +235,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode) | 是    | 向系统申请的后台模式。                              |
-| wantAgent | [WantAgent](js-apis-wantAgent.md)  | 是    | 通知参数，用于指定长时任务通知点击后跳转的界面。                 |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定长时任务通知点击后跳转的界面。                 |
 | callback  | AsyncCallback&lt;void&gt;          | 是    | callback形式返回启动长时任务的结果。                   |
 
 **错误码**：
@@ -309,7 +309,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode) | 是    | 向系统申请的后台模式。                              |
-| wantAgent | [WantAgent](js-apis-wantAgent.md)  | 是    | 通知参数，用于指定长时任务通知点击跳转的界面。                  |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定长时任务通知点击跳转的界面。                  |
 
 **返回值**：
 

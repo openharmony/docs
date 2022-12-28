@@ -91,11 +91,11 @@ Ability配置中缺少startWindowIcon属性配置，需要在module.json5中abil
 
 推荐使用方式参考：[Stage模型的Context详细介绍](../application-models/application-context-stage.md)。
 
-## 如何在应用A中去获取应用B的Hap包的安装路径
+## 如何在应用A中去获取应用B的HAP的安装路径
 
 适用于：OpenHarmony SDK 3.0以上版本， API9 Stage模型
 
-首先需要申请系统权限，具体参看文档：[自动化签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)。导入bundle模块，通过调用bundle.getApplicationInfo()接口，通过包名获取应用信息。然后通过application.moduleSourceDirs获取应用存储路径。
+首先需要申请系统权限，具体参看文档：[自动化签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)。导入bundle模块，通过调用bundle.getApplicationInfo()接口，通过Bundle名称获取应用信息。然后通过application.moduleSourceDirs获取应用存储路径。
 
 ## 调用方使用startAbilityForResult，被调用方如何返回数据
 

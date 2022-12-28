@@ -79,29 +79,29 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
     onCreate(want, launchParam) {
         console.log("MainAbility onCreate")
     }
-
+   
     onDestroy() {
         console.log("MainAbility onDestroy")
     }
-
+   
     onWindowStageCreate(windowStage) {
         console.log("MainAbility onWindowStageCreate")
-
+   
         windowStage.loadContent("pages/index").then(() => {
             console.log("MainAbility load content succeed")
         }).catch((error) => {
             console.error("MainAbility load content failed with error: " + JSON.stringify(error))
         })
     }
-
+   
     onWindowStageDestroy() {
         console.log("MainAbility onWindowStageDestroy")
     }
-
+   
     onForeground() {
         console.log("MainAbility onForeground")
     }
-
+   
     onBackground() {
         console.log("MainAbility onBackground")
     }
@@ -110,7 +110,7 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
 ### 获取AbilityStage及Ability的配置信息
 AbilityStage类及Ability类均拥有context属性，应用可以通过`this.context`获取Ability实例的上下文，进而获取详细的配置信息。
 
-如下示例展示了AbilityStage通过context属性获取包代码路径、hap包名、Ability名以及系统语言的方法。具体示例代码如下：
+如下示例展示了AbilityStage通过context属性获取包代码路径、HAP名称、Ability名称以及系统语言的方法。具体示例代码如下：
 
 ```ts
 import AbilityStage from "@ohos.application.AbilityStage"
@@ -130,7 +130,7 @@ export default class MyAbilityStage extends AbilityStage {
 }
 ```
 
-如下示例展示了Ability通过context属性获取包代码路径、hap包名、Ability名以及系统语言的方法。具体示例代码如下：
+如下示例展示了Ability通过context属性获取包代码路径、HAP名称、Ability名称以及系统语言的方法。具体示例代码如下：
 ```ts
 import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {
@@ -148,29 +148,8 @@ export default class MainAbility extends Ability {
     }
 }
 ```
-### 应用向用户申请授权
-应用需要获取用户的隐私信息或使用系统能力时，比如获取位置信息、使用相机拍摄照片或录制视频等，需要向用户申请授权。在开发过程中，首先需要明确涉及的敏感权限并在module.json5中声明需要的权限，同时通过接口`requestPermissionsFromUser`以动态弹窗的方式向用户申请授权。以访问日历为例，具体示例代码如下：
-
-在module.json5声明需要的权限：
-```json
-"requestPermissions": [
-    {
-    "name": "ohos.permission.READ_CALENDAR"
-    }
-]
-```
-通过动态弹窗向用户申请授权：
-```ts
-let context = this.context
-let permissions: Array<string> = ['ohos.permission.READ_CALENDAR']
-context.requestPermissionsFromUser(permissions).then((data) => {
-    console.log("Succeed to request permission from user with data: " + JSON.stringify(data))
-}).catch((error) => {
-    console.log("Failed to request permission from user with error: " + JSON.stringify(error))
-})
-```
 ### 系统环境变化通知
-环境变化，包括全局配置的变化和Ability配置的变化。全局配置指全局的、系统的配置，目前包括“语言”和“颜色模式”，全局配置的变化一般由“设置”中的配置项或“控制中心”中的图标触发。Ability配置指与单个Ability实例相关的配置，目前包括“displayId”（物理屏幕Id）、“屏幕分辨率”，“横竖屏”，这些配置与Ability所在的Display有关，Ability配置的变化一般由窗口触发。配置项目前均定义在[Configuration](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-configuration.md)类中。
+环境变化，包括全局配置的变化和Ability配置的变化。全局配置指全局的、系统的配置，目前包括“语言”和“颜色模式”，全局配置的变化一般由“设置”中的配置项或“控制中心”中的图标触发。Ability配置指与单个Ability实例相关的配置，目前包括“displayId”（物理屏幕Id）、“屏幕分辨率”，“横竖屏”，这些配置与Ability所在的Display有关，Ability配置的变化一般由窗口触发。配置项目前均定义在[Configuration](../reference/apis/js-apis-application-configuration.md)类中。
 
 对于Stage模型的应用，配置发生变化时，不会重启Ability，会触发应用的`onConfigurationUpdated(config: Configuration)`回调，若应用希望根据配置变化做相应处理，可以重写`onConfigurationUpdated`回调，若无需处理配置变化，则可以不必实现`onConfigurationUpdated`回调。应该注意的是，回调中的Configuration对象包括当前Ability所有的配置，不仅是发生变化的配置。
 
@@ -271,7 +250,7 @@ function getRemoteDeviceId() {
     }
 }
 ```
-向用户申请数据同步'ohos.permission.DISTRIBUTED_DATASYNC'的权限。申请授权示例代码见[应用向用户申请授权](#应用向用户申请授权)。
+向用户申请数据同步'ohos.permission.DISTRIBUTED_DATASYNC'的权限。申请授权示例代码见[abilityAccessCtrl.requestPermissionsFromUse](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)。
 ### 指定页面启动Ability
 当Ability的启动模式设置为单例时，若Ability已被拉起，再次启动Ability会触发onNewWant回调。应用开发者可以通过want传递启动参数，比如希望指定页面启动Ability，可以通过want中的uri参数或parameters参数传递pages信息。目前，Stage模型中Ability暂时无法直接使用router的能力，可以将启动参数传递给自定义组件，在自定义组件的生命周期中调用router接口显示指定页面。具体示例代码如下：
 

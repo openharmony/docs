@@ -108,7 +108,7 @@ To keep pace with the rapid development of the IoT industry, the OpenHarmony lig
 
   **Figure 4** LiteOS-A kernel architecture
 
-  ![](figures/architecture-of-the-openharmony-liteos-a-kernel.png "architecture-of-the-openharmony-liteos-a-kernel")
+  ![](figures/Liteos-a-architecture.png "Liteos-a-architecture.png")
 
 
 ### How to Use

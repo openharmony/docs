@@ -6,7 +6,7 @@
 
 ## 概览
 
-[短信](https://gitee.com/openharmony/applications_mms/tree/master)是OpenHarmony中预置的系统应用，主要包含信息查看、发送短信、接收短信、短信送达报告、删除短信等功能。在不同类型设备上，短信应用的功能完全相同，故短信应用适合使用[部署模型A](introduction.md#部署模型)（即：不同类型的设备上安装运行相同的HAP包或HAP包组合）。
+[短信](https://gitee.com/openharmony/applications_mms/tree/master)是OpenHarmony中预置的系统应用，主要包含信息查看、发送短信、接收短信、短信送达报告、删除短信等功能。在不同类型设备上，短信应用的功能完全相同，故短信应用适合使用[部署模型A](introduction.md#部署模型)（即：不同类型的设备上安装运行相同的HAP或HAP组合）。
 
 本案例中，在会话详情页面利用[方舟开发框架](introduction.md#方舟开发框架)提供的“一多”能力，用一套代码同时适配默认设备和平板。
 
@@ -59,7 +59,7 @@
 短信应用在开发阶段，采用了一层工程结构。由于功能较为简单，所以并没有规划共用的feature和common目录，仅采用了一层product目录。
 
 - 业务形态层（product）
-  该目录采用IDE工程默认创建的entry目录，开发者可根据需要在创建Module时自行更改该目录名。不同产品形态，编译出相同的短信HAP包。
+  该目录采用IDE工程默认创建的entry目录，开发者可根据需要在创建Module时自行更改该目录名。不同产品形态，编译出相同的短信HAP。
 
 
 

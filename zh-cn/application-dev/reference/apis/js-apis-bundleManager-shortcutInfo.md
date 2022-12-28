@@ -15,9 +15,9 @@
 
 | 名称                      | 类型   | 可读 | 可写 | 说明                 |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
-| targetBundle              | string | 是   | 否   | 快捷方式的目标bundleName |
-| targetModule              | string | 是   | 否   | 快捷方式的目标moduleName   |
-| targetAbility             | string | 是   | 否   | 快捷方式所需的目标abilityName |
+| targetBundle              | string | 是   | 否   | 快捷方式的目标bundleName。 |
+| targetModule              | string | 是   | 否   | 快捷方式的目标moduleName。  |
+| targetAbility             | string | 是   | 否   | 快捷方式所需的目标abilityName。 |
 
 ## ShortcutInfo
 
@@ -27,14 +27,14 @@
 
 | 名称                    | 类型                                       | 可读 | 可写 | 说明                         |
 | ----------------------- | ------------------------------------------ | ---- | ---- | ---------------------------- |
-| id                      | string                                     | 是   | 否   | 快捷方式所属应用程序的Id     |
-| bundleName              | string                                     | 是   | 否   | 包含快捷方式的包名称         |
-| moduleName | string                                     | 是   | 否   | 快捷方式的模块名             |
-| hostAbility             | string                                     | 是   | 否   | 快捷方式的本地Ability名称    |
-| icon                    | string                                     | 是   | 否   | 快捷方式的图标               |
-| iconId     | number                                     | 是   | 否   | 快捷方式的图标Id             |
-| label                   | string                                     | 是   | 否   | 快捷方式的标签               |
-| labelId    | number                                     | 是   | 否   | 快捷方式的标签Id             |
-| wants                   | Array\<[ShortcutWant](#shortcutwant)> | 是   | 否   | 快捷方式所需要的信息         |
+| id                      | string                                     | 是   | 否   | 快捷方式所属应用程序的ID。  |
+| bundleName              | string                                     | 是   | 否   | 包含快捷方式的Bundle名称。 |
+| moduleName | string                                     | 是   | 否   | 快捷方式的模块名。            |
+| hostAbility             | string                                     | 是   | 否   | 快捷方式的本地Ability名称。   |
+| icon                    | string                                     | 是   | 否   | 快捷方式的图标。             |
+| iconId     | number                                     | 是   | 否   | 快捷方式的图标ID。           |
+| label                   | string                                     | 是   | 否   | 快捷方式的标签。              |
+| labelId    | number                                     | 是   | 否   | 快捷方式的标签ID。           |
+| wants                   | Array\<[ShortcutWant](#shortcutwant)> | 是   | 否   | 快捷方式所需要的信息。        |
 
 <!--no_check-->

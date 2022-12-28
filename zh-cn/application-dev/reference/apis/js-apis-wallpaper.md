@@ -1,6 +1,6 @@
 # @ohos.wallpaper (壁纸)
 
-壁纸管理服务是OpenHarmony中系统服务，是主题框架的部分组成，主要为系统提供壁纸管理服务能力，支持系统显示、设置、切换壁纸等功能。
+壁纸管理服务是OpenHarmony中的系统服务，主要为系统提供壁纸管理服务能力，支持系统显示、设置、切换壁纸等功能。
 
 > **说明：**
 > 
@@ -63,7 +63,12 @@ getColorsSync(wallpaperType: WallpaperType): Array&lt;RgbaColor&gt;
 **示例**：
 
 ```js
-let colors = wallpaper.getColorsSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
+try {
+    let colors = wallpaper.getColorsSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
+    console.log(`success to getColorsSync: ${JSON.stringify(colors)}`);
+} catch (error) {
+    console.error(`failed to getColorsSync because: ${JSON.stringify(error)}`);
+}
 ```
 
 ## wallpaper.getIdSync<sup>9+</sup>
@@ -84,12 +89,17 @@ getIdSync(wallpaperType: WallpaperType): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回壁纸的ID。如果配置了这种壁纸类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1~2^31-1。 |
+| number | 返回壁纸的ID。如果配置了这种壁纸类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1到（2^31-1）。 |
 
 **示例**：
 
 ```js
-let id = wallpaper.getIdSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
+try {
+    let id = wallpaper.getIdSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
+    console.log(`success to getIdSync: ${JSON.stringify(id)}`);
+} catch (error) {
+    console.error(`failed to getIdSync because: ${JSON.stringify(error)}`);
+}
 ```
 
 ## wallpaper.getMinHeightSync<sup>9+</sup>
@@ -187,7 +197,7 @@ restore(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，移除壁纸成功，error为undefined 否则返回error信息。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，移除壁纸成功，error为undefined，否则返回error信息。 |
 
 **示例：**
 
@@ -221,7 +231,7 @@ restore(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -249,7 +259,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType, callback
 | -------- | -------- | -------- | -------- |
 | source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
 | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined 否则返回error信息。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
 
 **示例：**
 
@@ -307,7 +317,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -365,7 +375,12 @@ getFileSync(wallpaperType: WallpaperType): number;
 **示例：**
 
 ```js
-let file = wallpaper.getFileSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
+try {
+    let file = wallpaper.getFileSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
+    console.log(`success to getFileSync: ${JSON.stringify(file)}`);
+} catch (error) {
+    console.error(`failed to getFileSync because: ${JSON.stringify(error)}`);
+}
 ```
 
 ## wallpaper.getImage<sup>9+</sup>
@@ -385,7 +400,7 @@ getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
 
 **示例：**
 
@@ -422,7 +437,7 @@ getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
+| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
 
 **示例：**
 
@@ -452,10 +467,14 @@ on(type: 'colorChange', callback: (colors: Array&lt;RgbaColor&gt;, wallpaperType
 **示例：**
 
 ```js
-let listener = (colors, wallpaperType) => {
-    console.log(`wallpaper color changed.`);
-};
-wallpaper.on('colorChange', listener);
+try {
+    let listener = (colors, wallpaperType) => {
+        console.log(`wallpaper color changed.`);
+    };
+    wallpaper.on('colorChange', listener);
+} catch (error) {
+    console.error(`failed to on because: ${JSON.stringify(error)}`);
+}
 ```
 
 ## wallpaper.off('colorChange')<sup>9+</sup>
@@ -479,11 +498,25 @@ off(type: 'colorChange', callback?: (colors: Array&lt;RgbaColor&gt;, wallpaperTy
 let listener = (colors, wallpaperType) => {
     console.log(`wallpaper color changed.`);
 };
-wallpaper.on('colorChange', listener);
-// 取消订阅listener
-wallpaper.off('colorChange', listener);
-// 取消所有'colorChange'类型的订阅
-wallpaper.off('colorChange');
+try {
+    wallpaper.on('colorChange', listener);
+} catch (error) {
+    console.error(`failed to on because: ${JSON.stringify(error)}`);
+}
+
+try {
+    // 取消订阅listener
+    wallpaper.off('colorChange', listener);
+} catch (error) {
+    console.error(`failed to off because: ${JSON.stringify(error)}`);
+}
+
+try {
+    // 取消所有'colorChange'类型的订阅
+    wallpaper.off('colorChange');
+} catch (error) {
+    console.error(`failed to off because: ${JSON.stringify(error)}`);
+}
 ```
 
 ## wallpaper.getColors<sup>(deprecated)</sup>
@@ -568,7 +601,7 @@ getId(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-| callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回壁纸的ID。如果配置了指定类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1~2^31-1。 |
+| callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回壁纸的ID。如果配置了指定类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1到（2^31-1）。 |
 
 **示例：**
 
@@ -604,7 +637,7 @@ getId(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;number&gt; | 壁纸的ID。如果配置了这种壁纸类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1~2^31-1。 |
+| Promise&lt;number&gt; | 壁纸的ID。如果配置了这种壁纸类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1到（2^31-1）。 |
 
 **示例：**
 
@@ -867,7 +900,7 @@ reset(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，移除壁纸成功，error为undefined 否则返回error信息。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，移除壁纸成功，error为undefined，否则返回error信息。 |
 
 **示例：**
 
@@ -905,7 +938,7 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -937,7 +970,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 | -------- | -------- | -------- | -------- |
 | source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
 | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined 否则返回error信息。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
 
 **示例：**
 
@@ -999,7 +1032,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1123,7 +1156,7 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-| callback | AsyncCallback&lt;image.PixelMap&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
+| callback | AsyncCallback&lt;image.PixelMap&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
 
 **示例：**
 
@@ -1163,7 +1196,7 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;image.PixelMap&gt; | 调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
+| Promise&lt;image.PixelMap&gt; | 调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
 
 **示例：**
 
