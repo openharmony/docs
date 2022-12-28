@@ -121,6 +121,12 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 获取dataAbilityHelper对象。
 
+使用规则：
+ - 跨应用访问dataAbility，对端应用需配置关联启动
+ - 调用方应用位于后台时，使用该接口访问dataAbility需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标dataAbility的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
@@ -528,6 +534,12 @@ featureAbility.terminateSelf().then((data) => {
 connectAbility(request: Want, options:ConnectOptions): number
 
 将当前Ability与指定的ServiceAbility进行连接。
+
+使用规则：
+ - 跨应用连接serviceAbility，对端应用需配置关联启动
+ - 调用方应用位于后台时，使用该接口连接serviceAbility需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标serviceAbility的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
