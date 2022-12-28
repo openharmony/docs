@@ -73,7 +73,7 @@ The figure below shows the general development process.
 ![](figures/using-ADC-process.png)
 
 
-#### Opening an ADC Device.
+#### Opening an ADC Device
 
 Call **AdcOpen** to open an ADC device.
 
