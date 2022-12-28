@@ -4361,7 +4361,7 @@ registerInputer(authType: AuthType, inputer: IInputer): void;
   let authType = account_osAccount.AuthType.DOMAIN;
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
-    InputerMgr.registerInputer(authType, {
+    inputerMgr.registerInputer(authType, {
         onGetData: (authSubType, callback) => {
           callback.onSetData(authSubType, password);
         }

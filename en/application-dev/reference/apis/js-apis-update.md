@@ -39,6 +39,14 @@ Obtains an **OnlineUpdater** object.
 | ------------------- | ---- |
 | [Updater](#updater) | **OnlineUpdater** object.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -71,6 +79,14 @@ Obtains a **Restorer** object for restoring factory settings.
 | --------------------- | ------ |
 | [Restorer](#restorer) | **Restorer** object for restoring factory settings.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -95,6 +111,14 @@ Obtains a **LocalUpdater** object.
 | ----------------------------- | ------ |
 | [LocalUpdater](#localupdater) | **LocalUpdater** object.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -102,7 +126,7 @@ try {
   let localUpdater = update.getLocalUpdater();
 } catch(error) {
   console.error(`Fail to get localUpdater error: ${error}`);
-}
+};
 ```
 
 ## Updater
@@ -122,6 +146,14 @@ Checks whether a new version is available. This API uses an asynchronous callbac
 | Name     | Type                                      | Mandatory  | Description            |
 | -------- | ---------------------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<[CheckResult](#checkresult)> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -146,6 +178,14 @@ Checks whether a new version is available. This API uses a promise to return the
 | Type                                   | Description                 |
 | ------------------------------------- | ------------------- |
 | Promise\<[CheckResult](#checkresult)> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -175,6 +215,14 @@ Obtains information about the new version. This API uses an asynchronous callbac
 | -------- | ---------------------------------------- | ---- | --------------- |
 | callback | AsyncCallback\<[NewVersionInfo](#newversioninfo)> | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -199,6 +247,14 @@ Obtains information about the new version. This API uses a promise to return the
 | Type                                      | Description                  |
 | ---------------------------------------- | -------------------- |
 | Promise\<[NewVersionInfo](#newversioninfo)> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -226,8 +282,16 @@ Obtains the description file of the new version. This API uses an asynchronous c
 | Name               | Type                                      | Mandatory  | Description            |
 | ------------------ | ---------------------------------------- | ---- | -------------- |
 | versionDigestInfo  | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.        |
-| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.        |
-| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>>) | Yes   | Callback used to return the result.|
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.       |
+| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -272,6 +336,14 @@ Obtains the description file of the new version. This API uses a promise to retu
 | ---------------------------------------- | ------------------- |
 | Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -309,6 +381,14 @@ Obtains information about the current version. This API uses an asynchronous cal
 | -------- | ---------------------------------------- | ---- | ---------------- |
 | callback | AsyncCallback\<[CurrentVersionInfo](#currentversioninfo)> | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -334,6 +414,14 @@ Obtains information about the current version. This API uses a promise to return
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
 | Promise\<[CurrentVersionInfo](#currentversioninfo)> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -362,7 +450,15 @@ Obtains the description file of the current version. This API uses an asynchrono
 | Name               | Type                                      | Mandatory  | Description             |
 | ------------------ | ---------------------------------------- | ---- | --------------- |
 | descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.         |
-| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>>) | Yes   | Callback used to return the result.|
+| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -401,6 +497,14 @@ Obtains the description file of the current version. This API uses a promise to 
 | ---------------------------------------- | -------------------- |
 | Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -433,6 +537,14 @@ Obtains information about the update task. This API uses an asynchronous callbac
 | -------- | ------------------------------------- | ---- | ---------------- |
 | callback | AsyncCallback\<[TaskInfo](#taskinfo)> | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -456,6 +568,14 @@ Obtains information about the update task. This API uses a promise to return the
 | Type                             | Description                 |
 | ------------------------------- | ------------------- |
 | Promise\<[TaskInfo](#taskinfo)> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -483,7 +603,15 @@ Downloads the new version. This API uses an asynchronous callback to return the 
 | ----------------- | --------------------------------------- | ---- | ---------------------------------- |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                            |
 | downloadOptions   | [DownloadOptions](#downloadoptions)     | Yes   | Download options.                              |
-| callback          | AsyncCallback\<void>                    | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -526,6 +654,14 @@ Downloads the new version. This API uses a promise to return the result.
 | -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -562,7 +698,15 @@ Resumes download of the new version. This API uses an asynchronous callback to r
 | --------------------- | ---------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.                              |
 | resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | Yes   | Options for resuming download.                              |
-| callback              | AsyncCallback\<void>                     | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback              | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -604,6 +748,14 @@ Resumes download of the new version. This API uses a promise to return the resul
 | -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -639,7 +791,15 @@ Pauses download of the new version. This API uses an asynchronous callback to re
 | -------------------- | ---------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.                              |
 | pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | Yes   | Options for pausing download.                              |
-| callback             | AsyncCallback\<void>                     | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback             | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -681,6 +841,14 @@ Resumes download of the new version. This API uses a promise to return the resul
 | -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -716,7 +884,15 @@ Updates the version. This API uses an asynchronous callback to return the result
 | ----------------- | --------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                              |
 | upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | Yes   | Update options.                                |
-| callback          | AsyncCallback\<void>                    | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -758,6 +934,14 @@ Updates the version. This API uses a promise to return the result.
 | -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -793,7 +977,15 @@ Clears errors. This API uses an asynchronous callback to return the result.
 | ----------------- | --------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                              |
 | clearOptions      | [ClearOptions](#clearoptions)           | Yes   | Clear options.                                |
-| callback          | AsyncCallback\<void>                    | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -835,6 +1027,14 @@ Clears errors. This API uses a promise to return the result.
 | -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -844,7 +1044,7 @@ const versionDigestInfo = {
 };
 
 // Options for clearing errors
-lconstet clearOptions = {
+const clearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
 };
 updater.clearError(versionDigestInfo, clearOptions).then(() => {
@@ -870,6 +1070,14 @@ Obtains the update policy. This API uses an asynchronous callback to return the 
 | -------- | ---------------------------------------- | ---- | --------------- |
 | callback | AsyncCallback\<[UpgradePolicy](#upgradepolicy)> | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -894,6 +1102,14 @@ Obtains the update policy. This API uses a promise to return the result.
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
 | Promise\<[UpgradePolicy](#upgradepolicy)> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -923,6 +1139,14 @@ Sets the update policy. This API uses an asynchronous callback to return the res
 | policy   | [UpgradePolicy](#upgradepolicy) | Yes   | Update policy.         |
 | callback | AsyncCallback\<void>            | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -930,7 +1154,7 @@ const policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // Automatic update period, in minutes
-}
+};
 updater.setUpgradePolicy(policy, (err) => {
   console.log(`setUpgradePolicy result: ${err}`);
 });
@@ -958,6 +1182,14 @@ Sets the update policy. This API uses a promise to return the result.
 | -------------- | ------------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -965,7 +1197,7 @@ const policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // Automatic update period, in minutes
-}
+};
 updater.setUpgradePolicy(policy).then(() => {
   console.log(`setUpgradePolicy success`);
 }).catch(err => {
@@ -987,7 +1219,15 @@ Terminates the update. This API uses an asynchronous callback to return the resu
 
 | Name     | Type                  | Mandatory  | Description                                    |
 | -------- | -------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -1013,6 +1253,14 @@ Terminates the update. This API uses a promise to return the result.
 | -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -1037,6 +1285,14 @@ Enables listening for update events. This API uses an asynchronous callback to r
 | ----------------- | ---------------------------------------- | ---- | ---- |
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
 | taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -1065,6 +1321,14 @@ Disables listening for update events. This API uses an asynchronous callback to 
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
 | taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | No   | Event callback.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -1084,7 +1348,7 @@ updater.off(eventClassifyInfo, (eventInfo) => {
 
 factoryReset(callback: AsyncCallback\<void>): void
 
-Restore the device to its factory settings. This API uses an asynchronous callback to return the result.
+Restores the scale to its factory settings. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
@@ -1094,7 +1358,15 @@ Restore the device to its factory settings. This API uses an asynchronous callba
 
 | Name     | Type                  | Mandatory  | Description                                    |
 | -------- | -------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -1108,7 +1380,7 @@ restorer.factoryReset((err) => {
 
 factoryReset(): Promise\<void>
 
-Restore the device to its factory settings. This API uses a promise to return the result.
+Restores the scale to its factory settings. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
@@ -1119,6 +1391,14 @@ Restore the device to its factory settings. This API uses a promise to return th
 | Type            | Description                        |
 | -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -1149,6 +1429,14 @@ Verifies the update package. This API uses an asynchronous callback to return th
 | upgradeFile | [UpgradeFile](#upgradefile) | Yes   | Update file.            |
 | certsFile   | string                      | Yes   | Path of the certificate file.          |
 | callback    | AsyncCallback\<void>        | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -1186,6 +1474,14 @@ Verifies the update package. This API uses a promise to return the result.
 | -------------- | ---------------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
@@ -1214,7 +1510,15 @@ Installs the update package. This API uses an asynchronous callback to return th
 | Name        | Type                                | Mandatory  | Description                                     |
 | ----------- | ---------------------------------- | ---- | --------------------------------------- |
 | upgradeFile | Array<[UpgradeFile](#upgradefile)> | Yes   | Update file.                                   |
-| callback    | AsyncCallback\<void>               | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback    | AsyncCallback\<void>               | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -1245,10 +1549,18 @@ Installs the update package. This API uses a promise to return the result.
 | -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
 ```ts
-localUpdater upgradeFiles = [{
+const upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
 }];
@@ -1272,6 +1584,14 @@ Enables listening for update events. This API uses an asynchronous callback to r
 | ----------------- | ---------------------------------------- | ---- | ---- |
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
 | taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -1300,7 +1620,15 @@ Disables listening for update events. This API uses an asynchronous callback to 
 | Name              | Type                                      | Mandatory  | Description  |
 | ----------------- | ---------------------------------------- | ---- | ---- |
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
-| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | No   | Event callback.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -1337,7 +1665,7 @@ Enumerates update service types.
 | Name     | Type                               | Mandatory  | Description  |
 | ------- | ----------------------------------- | ---- | ---- |
 | vendor  | [BusinessVendor](#businessvendor)   | Yes   | Application vendor. |
-| subType | [BusinessSubType](#businesssubtype) | Yes   | Type  |
+| subType | [BusinessSubType](#businesssubtype) | Yes   | Update service type.  |
 
 ## CheckResult
 
@@ -1377,7 +1705,7 @@ Represents a version component.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Parameter             | Type                               | Mandatory  | Description      |
+| Name             | Type                               | Mandatory  | Description      |
 | --------------- | ----------------------------------- | ---- | -------- |
 | componentId     | string                              | Yes   | Component ID.    |
 | componentType   | [ComponentType](#componenttype)     | Yes   | Component type.    |
@@ -1498,7 +1826,7 @@ Represents an update policy.
 
 ## UpgradePeriod
 
-Represents a period for automatic update.
+Represents an automatic update period.
 
 **System capability**: SystemCapability.Update.UpdateService
 
@@ -1509,7 +1837,7 @@ Represents a period for automatic update.
 
 ## TaskInfo
 
-Represents task information.
+Task information.
 
 **System capability**: SystemCapability.Update.UpdateService
 
@@ -1520,7 +1848,7 @@ Represents task information.
 
 ## EventInfo
 
-Represents event type information.
+Represents event information.
 
 **System capability**: SystemCapability.Update.UpdateService
 
@@ -1554,7 +1882,7 @@ Represents an error message.
 | Name          | Type  | Mandatory  | Description  |
 | ------------ | ------ | ---- | ---- |
 | errorCode    | number | Yes   | Error code. |
-| errorMessage | string | Yes   | Error description.|
+| errorMessage | string | Yes   | Error message.|
 
 ## EventClassifyInfo
 
@@ -1592,11 +1920,11 @@ Represents an event callback.
 
 ## BusinessVendor
 
-Device vendor.
+Represents a device vendor.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name   | Default Value     | Description  |
+| Name   | Value     | Description  |
 | ------ | -------- | ---- |
 | PUBLIC | "public" | Open source.  |
 
@@ -1606,7 +1934,7 @@ Represents an update type.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name     | Default Value | Description  |
+| Name     | Value | Description  |
 | -------- | ---- | ---- |
 | FIRMWARE | 1    | Firmware.  |
 
@@ -1616,7 +1944,7 @@ Represents a component type.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name | Default Value | Description  |
+| Name | Value | Description  |
 | ---- | ---- | ---- |
 | OTA  | 1    | Firmware.  |
 
@@ -1626,7 +1954,7 @@ Represents an update mode.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name     | Default Value       | Description  |
+| Name     | Value       | Description  |
 | -------- | ---------- | ---- |
 | UPGRADE  | "upgrade"  | Differential package. |
 | RECOVERY | "recovery" | Recovery package. |
@@ -1637,7 +1965,7 @@ Represents an effective mode.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name          | Default Value | Description  |
+| Name          | Value | Description  |
 | ------------- | ---- | ---- |
 | COLD          | 1    | Cold update. |
 | LIVE          | 2    | Live update. |
@@ -1649,7 +1977,7 @@ Represents a description file type.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name    | Default Value | Description  |
+| Name    | Value | Description  |
 | ------- | ---- | ---- |
 | CONTENT | 0    | Content.  |
 | URI     | 1    | Link.  |
@@ -1660,18 +1988,18 @@ Represents a description file format.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name       | Default Value | Description  |
+| Name       | Value | Description  |
 | ---------- | ---- | ---- |
 | STANDARD   | 0    | Standard format.|
 | SIMPLIFIED | 1    | Simple format.|
 
 ## NetType
 
-Enumerates network types.
+Represents a network type.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name              | Default Value | Description       |
+| Name              | Value | Description       |
 | ----------------- | ---- | --------- |
 | CELLULAR          | 1    | Data network.     |
 | METERED_WIFI      | 2    | Wi-Fi hotspot.   |
@@ -1685,7 +2013,7 @@ Represents an update command.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Default Value | Description   |
+| Name                 | Value | Description   |
 | -------------------- | ---- | ----- |
 | DOWNLOAD             | 1    | Download.   |
 | INSTALL              | 2    | Install.   |
@@ -1699,7 +2027,7 @@ Enumerates update states.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name             | Default Value | Description  |
+| Name             | Value | Description  |
 | ---------------- | ---- | ---- |
 | WAITING_DOWNLOAD | 20   | Waiting for download. |
 | DOWNLOADING      | 21   | Downloading. |
@@ -1718,7 +2046,7 @@ Represents an event type.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name | Default Value       | Description  |
+| Name  | Value       | Description  |
 | ---- | ---------- | ---- |
 | TASK | 0x01000000 | Task event.|
 
@@ -1728,22 +2056,22 @@ Enumerates event IDs.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                   | Default Value       | Description    |
+| Name                    | Value       | Description    |
 | ---------------------- | ---------- | ------ |
-| EVENT_TASK_BASE        | 0x01000000 | Indicates a task event.  |
-| EVENT_TASK_RECEIVE     | 0x01000001 | Indicates that a task is received.  |
-| EVENT_TASK_CANCEL      | 0x01000010 | Indicates that a task is cancelled.  |
-| EVENT_DOWNLOAD_WAIT    | 0x01000011 | Indicates the state of waiting for the download.   |
-| EVENT_DOWNLOAD_START   | 0x01000100 | Indicates that the download starts.  |
-| EVENT_DOWNLOAD_UPDATE  | 0x01000101 | Indicates the download progress update.|
-| EVENT_DOWNLOAD_PAUSE   | 0x01000110 | Indicates that the download is paused.  |
-| EVENT_DOWNLOAD_RESUME  | 0x01000111 | Indicates that the download is resumed.  |
-| EVENT_DOWNLOAD_SUCCESS | 0x01001000 | Indicates that the download succeeded.  |
-| EVENT_DOWNLOAD_FAIL    | 0x01001001 | Indicates that the download failed.  |
-| EVENT_UPGRADE_WAIT     | 0x01001010 | Indicates the state of waiting for the update.   |
-| EVENT_UPGRADE_START    | 0x01001011 | Indicates that the update starts.  |
-| EVENT_UPGRADE_UPDATE   | 0x01001100 | Indicates that the update is in progress.   |
-| EVENT_APPLY_WAIT       | 0x01001101 | Indicates the state of waiting for applying the update.   |
-| EVENT_APPLY_START      | 0x01001110 | Indicates the state of applying the update.  |
-| EVENT_UPGRADE_SUCCESS  | 0x01001111 | Indicates that the update succeeded.  |
-| EVENT_UPGRADE_FAIL     | 0x01010000 | Indicates that the update failed.  |
+| EVENT_TASK_BASE        | 0x01000000 | Task event.  |
+| EVENT_TASK_RECEIVE     | 0x01000001 | Task received.  |
+| EVENT_TASK_CANCEL      | 0x01000010 | Task cancelled.  |
+| EVENT_DOWNLOAD_WAIT    | 0x01000011 | Waiting for download.   |
+| EVENT_DOWNLOAD_START   | 0x01000100 | Download started.  |
+| EVENT_DOWNLOAD_UPDATE  | 0x01000101 | Download progress update.|
+| EVENT_DOWNLOAD_PAUSE   | 0x01000110 | Download paused.  |
+| EVENT_DOWNLOAD_RESUME  | 0x01000111 | Download resumed.  |
+| EVENT_DOWNLOAD_SUCCESS | 0x01001000 | Download succeeded.  |
+| EVENT_DOWNLOAD_FAIL    | 0x01001001 | Download failed.  |
+| EVENT_UPGRADE_WAIT     | 0x01001010 | Waiting for update.   |
+| EVENT_UPGRADE_START    | 0x01001011 | Update started.  |
+| EVENT_UPGRADE_UPDATE   | 0x01001100 | Update in progress.   |
+| EVENT_APPLY_WAIT       | 0x01001101 | Waiting for applying the update.   |
+| EVENT_APPLY_START      | 0x01001110 | Applying the update.  |
+| EVENT_UPGRADE_SUCCESS  | 0x01001111 | Update succeeded.  |
+| EVENT_UPGRADE_FAIL     | 0x01010000 | Update failed.  |

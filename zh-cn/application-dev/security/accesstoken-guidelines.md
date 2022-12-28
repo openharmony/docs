@@ -218,7 +218,37 @@ onWindowStageCreate() {
 - `app_signature`字段配置为应用的指纹信息。指纹信息的配置参见[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson中配置)。
 - `permissions`字段中name配置为需要预授权的`user_grant`类型的权限名；`permissions`字段中`userCancellable`表示为用户是否能够取消该预授权，配置为true，表示支持用户取消授权，为false则表示不支持用户取消授权。
 
+<<<<<<< .mine
 > 说明：当前仅支持预置应用配置该文件。
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+  //ability的onWindowStageCreate生命周期
+  onWindowStageCreate() {
+    var context = this.context
+    var AtManager = abilityAccessCtrl.createAtManager();
+    //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
+      AtManager.requestPermissionsFromUser(context, ["ohos.permission.CAMERA"]).then((data) => {
+        console.log("data type:" + typeof(data));
+        console.log("data:" + data);
+        console.log("data permissions:" + data.permissions);
+        console.log("data result:" + data.authResults);
+      }).catch((err) => {
+          console.error('Failed to start ability', err.code);
+      })
+  }
+>>>>>>> .theirs
 
 ```json
 [

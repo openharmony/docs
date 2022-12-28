@@ -19,7 +19,6 @@ Typical operations involve the following:
 
 **Available APIs**
 
-For details about the APIs, see [Certificate](../reference/apis/js-apis-cert.md).
 
 The table below describes the APIs used in this guide.
 
@@ -172,7 +171,6 @@ Typical operations involve the following:
 
 **Available APIs**
 
-For details about the APIs, see [Certificate](../reference/apis/js-apis-cert.md).
 
 The table below describes the APIs used in this guide.
 
@@ -320,7 +318,6 @@ You need to use the certificate chain validator in certificate chain verificatio
 
 **Available APIs**
 
-For details about the APIs, see [Certificate](../reference/apis/js-apis-cert.md).
 
 The table below describes the APIs used in this guide.
 
@@ -432,7 +429,6 @@ Typical operations involve the following:
 
 **Available APIs**
 
-For details about the APIs, see [Certificate](../reference/apis/js-apis-cert.md).
 
 The table below describes the APIs used in this guide.
 

@@ -112,6 +112,8 @@ For details about the error codes, see [Screen Hopping Error Codes](../errorcode
 **Example**
 
 ```js
+let sinkDeviceDescriptor = "descriptor";
+let srcInputDeviceId = 0;
 try {
   inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId, (error) => {
     if (error) {
@@ -160,6 +162,8 @@ For details about the error codes, see [Screen Hopping Error Codes](../errorcode
 **Example**
 
 ```js
+let sinkDeviceDescriptor = "descriptor";
+let srcInputDeviceId = 0;
 try {
   inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId).then(() => {
     console.log(`Start Keyboard mouse crossing success.`);
@@ -249,6 +253,7 @@ Checks whether screen hopping is enabled. This API uses an asynchronous callback
 **Example**
 
 ```js
+let deviceDescriptor = "descriptor";
 try {
   inputDeviceCooperate.getState(deviceDescriptor, (error, data) => {
     if (error) {
@@ -324,7 +329,7 @@ try {
   inputDeviceCooperate.on('cooperation', (data) => {
     console.log(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
   });
-} catch (err) {
+} catch (error) {
   console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
@@ -342,7 +347,7 @@ Disables listening for screen hopping events.
 | Name               | Type                                                             | Mandatory   | Description                          |
 | --------             | ----------------------------                                     | ----   | ----------------------------   |
 | type                 | string                                                           |  Yes   | Event type. The value is **cooperation**.        |
-| callback             | AsyncCallback<void> |  No | Callback to be unregistered. If this parameter is not specified, all callbacks registered by the current application will be unregistered.|
+| callback             | AsyncCallback\<void> |  No | Callback to be unregistered. If this parameter is not specified, all callbacks registered by the current application will be unregistered.|
 
 
 
@@ -350,25 +355,25 @@ Disables listening for screen hopping events.
 
 ```js
 // Unregister a single callback.
-callback: function(event) {
+function callback(event) {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
   return false;
 }
 try {
-  inputDeviceCooperate.on('cooperation', this.callback);
-  inputDeviceCooperate.off("cooperation", this.callback);
+  inputDeviceCooperate.on('cooperation', callback);
+  inputDeviceCooperate.off("cooperation", callback);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ```js
 // Unregister all callbacks.
-callback: function(event) {
+function callback(event) {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
   return false;
 }
 try {
-  inputDeviceCooperate.on('cooperation', this.callback);
+  inputDeviceCooperate.on('cooperation', callback);
   inputDeviceCooperate.off("cooperation");
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
