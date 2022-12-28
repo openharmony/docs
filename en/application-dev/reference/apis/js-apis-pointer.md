@@ -135,6 +135,8 @@ Sets the mouse movement speed. This API uses an asynchronous callback to return 
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name      | Type                       | Mandatory  | Description                                   |
@@ -165,6 +167,8 @@ setPointerSpeed(speed: number): Promise&lt;void&gt;
 Sets the mouse movement speed. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -197,6 +201,8 @@ getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 Obtains the mouse movement speed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -253,6 +259,8 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 Obtains the mouse pointer style. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
 
 **Parameters**
 

@@ -11,3 +11,4 @@
   - [Development of Distributed Call Chain Tracing](hitracechain-guidelines.md)
 - Error Management
   - [Development of Error Manager](errormanager-guidelines.md)
+  - [Development of Application Recovery](apprecovery-guidelines.md)
