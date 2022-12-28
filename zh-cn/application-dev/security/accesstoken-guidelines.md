@@ -123,7 +123,7 @@
 
 以允许应用读取日历信息为例进行说明。
 
-1. 申请`ohos.permission.READ_CALENDAR`权限，配置方式请参见[访问控制授权申请](#stage模型配置)。
+1. 申请`ohos.permission.READ_CALENDAR`权限，配置方式请参见[访问控制授权申请](#stage模型)。
 
 2. 可以在UIAbility的onWindowStageCreate()回调中调用[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口动态申请权限，也可以根据业务需要在UI界面中向用户申请授权。根据[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口返回值判断是否已获取目标权限，如果当前已经获取权限，则可以继续正常访问目标接口。
    
