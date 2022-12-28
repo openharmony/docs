@@ -90,7 +90,7 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 
 示例如下：
 
-该示例仅涉及修改"apl"字段，其余信息请根据实际情况。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。
+该示例仅涉及修改"apl"字段，其余信息请根据实际情况。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](app-provision-structure.md)。
 
 ```json
 {
@@ -152,13 +152,13 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 如[权限的工作流程](#权限的工作流程)所示，如果应用需要获取目标权限，那么需要先进行权限申请。
 
 - 权限申请
-开发者需要在配置文件中[声明目标权限](accesstoken-guidelines.md#权限申请声明)。
+
+   开发者需要在配置文件中[声明目标权限](accesstoken-guidelines.md#权限申请声明)。
 
 - 权限授权
 
-如果目标权限是system_grant类型，开发者在进行权限申请后，系统会在安装应用时自动为其进行权限预授予，开发者不需要做其他操作即可使用权限。
-<br/>
-如果目标权限是user_grant类型，开发者在进行权限申请后，在运行时触发动态弹窗，请求用户授权，具体操作见[user_grant权限请求授权的步骤详解](#user_grant权限请求授权的步骤详解)。
+   - 如果目标权限是system_grant类型，开发者在进行权限申请后，系统会在安装应用时自动为其进行权限预授予，开发者不需要做其他操作即可使用权限。
+   - 如果目标权限是user_grant类型，开发者在进行权限申请后，在运行时触发动态弹窗，请求用户授权，具体操作见[user_grant权限请求授权的步骤详解](#user_grant权限请求授权的步骤详解)。
 
 ### user_grant权限请求授权的步骤详解
 
@@ -218,4 +218,4 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#acl方式使用说�
 }
 ```
 
-Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。
+Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](app-provision-structure.md)。

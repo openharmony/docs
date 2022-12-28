@@ -9,7 +9,7 @@ The **\<Radio>** component allows users to select from a set of mutually exclusi
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs

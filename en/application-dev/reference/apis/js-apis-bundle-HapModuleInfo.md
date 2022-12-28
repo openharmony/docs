@@ -1,14 +1,14 @@
 # HapModuleInfo
 
-
+The **HapModuleInfo** module provides information about an HAP module. Unless otherwise specified, the information is obtained through [GET_BUNDLE_DEFAULT](js-apis-Bundle.md).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-The **HapModuleInfo** module provides module information. Unless otherwise specified, all attributes are obtained through **GET_BUNDLE_DEFAULT**.
+## HapModuleInfo<sup>(deprecated)<sup>
 
-## HapModuleInfo
+> This API is deprecated since API version 9. You are advised to use [bundleManager-HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) instead.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
@@ -29,7 +29,3 @@ The **HapModuleInfo** module provides module information. Unless otherwise speci
 | moduleName                        | string                                                       | Yes  | No  | Module name.              |
 | mainAbilityName                   | string                                                       | Yes  | No  | Name of the main ability.     |
 | installationFree                  | boolean                                                      | Yes  | No  | Whether installation-free is supported.      |
-| mainElementName<sup>9+</sup>      | string                                                       | Yes  | No  | Information about the main ability.     |
-| extensionAbilityInfo<sup>9+</sup> | Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)> | Yes  | No  | Information about the Extension ability.|
-| metadata<sup>9+</sup>             | Array\<[Metadata](js-apis-bundle-Metadata.md)>               | Yes  | No  | Metadata of the ability.     |
-| hashValue<sup>9+</sup>            | string                                                       | Yes  | No  | Hash value of the module.<br>The value is obtained by passing **GET_BUNDLE_WITH_HASH_VALUE**.|

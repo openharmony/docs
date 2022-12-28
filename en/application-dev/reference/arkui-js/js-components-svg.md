@@ -4,9 +4,9 @@ The **\<svg>** component is a basic container. It can be used as the root node o
 
 
 >  **NOTE**
-> - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-> 
-> - The width and height must be defined for the **<svg>** parent component or **<svg>** component. Otherwise, the component is not drawn.
+>  - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  - The width and height must be defined for the **\<svg>** parent component or **\<svg>** component. Otherwise, the component is not drawn.
 
 ## Required Permissions
 
@@ -15,21 +15,21 @@ None
 
 ## Child Components
 
-The following are supported: [\<svg>](js-components-svg.md), [\<rect>](js-components-svg-rect.md), [\<circle>](js-components-svg-circle.md), [\<ellipse>](../arkui-js/js-components-svg-ellipse.md), [\<path>](js-components-svg-path.md), [\<line](../arkui-js/js-components-svg-line.md), [\<polygon>](../arkui-js/js-components-svg-polygon.md), [\<polyline>](js-components-svg-polyline.md), [\<text>](js-components-svg-text.md), [\<animate>](js-components-svg-animate.md), and [\<animateTransform>](js-components-svg-animateTransform.md).
+The following are supported: [\<svg>](js-components-svg.md), [\<rect>](js-components-svg-rect.md), [\<circle>](js-components-svg-circle.md), [\<ellipse>](../arkui-js/js-components-svg-ellipse.md), [\<path>](js-components-svg-path.md), [\<line](../arkui-js/js-components-svg-line.md), [\<polygon>](../arkui-js/js-components-svg-polygon.md), [\<polyline>](js-components-svg-polyline.md), [\<text>](js-components-svg-text.md), [\<animate>](js-components-svg-animate.md), and [\<animateTransform>](js-components-svg-animatetransform.md).
 
 
 ## Attributes
 
 The [universal attributes](../arkui-js/js-components-svg-common-attributes.md) and the attributes listed below are supported. The configured universal attributes are passed to the child components.
 
-| Name| Type| Default Value| Mandatory| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| id | string | - | No| Unique ID of the component.|
-| width | &lt;length&gt;\|&lt;percentage&gt; | - | No| Component width.|
-| height | &lt;length&gt;\|&lt;percentage&gt; | - | No| Component height.|
-| x | &lt;length&gt;\|&lt;percentage&gt; | - | No| X-coordinate of the current **\<svg>** component. The settings do not work for the root **\<svg>** node. |
-| y | &lt;length&gt;\|&lt;percentage&gt; |  | No| Y-coordinate of the current **\<svg>** component. The settings do not work for the root **\<svg>** node. |
-| viewBox | string | - | No| View box of the current **\<svg>** component. The supported format is \<number number number number>. The four parameters indicate **min-x**, **min-y**, **width**, and **height**, respectively. The width and height of the view box are different from those of the **\<svg>** component. The view box is scaled in center-aligned mode. |
+| Name    | Type                               | Default Value | Mandatory | Description                              |
+| ------- | ---------------------------------- | ------------- | --------- | ---------------------------------------- |
+| id      | string                             | -             | No        | Unique ID of the component.              |
+| width   | &lt;length&gt;\|&lt;percentage&gt; | -             | No        | Component width.                         |
+| height  | &lt;length&gt;\|&lt;percentage&gt; | -             | No        | Component height.                        |
+| x       | &lt;length&gt;\|&lt;percentage&gt; | -             | No        | X-coordinate of the current **\<svg>** component. The settings do not work for the root **\<svg>** node. |
+| y       | &lt;length&gt;\|&lt;percentage&gt; |               | No        | Y-coordinate of the current **\<svg>** component. The settings do not work for the root **\<svg>** node. |
+| viewBox | string                             | -             | No        | View box of the current **\<svg>** component. The supported format is \<number number number number>. The four parameters indicate **min-x**, **min-y**, **width**, and **height**, respectively. The width and height of the view box are different from those of the **\<svg>** component. The view box is scaled in center-aligned mode. |
 
 
 ## Example

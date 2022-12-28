@@ -24,7 +24,7 @@
 
 ## 运行机制
 
-软件定时器是系统资源，在模块初始化的时候已经分配了一块连续的内存，系统支持的最大定时器个数由los_config.h中的LOSCFG_BASE_CORE_SWTMR_LIMIT宏配置。
+软件定时器是系统资源，在模块初始化的时候已经分配了一块连续的内存，系统支持的最大定时器个数由los_config.h中的LOSCFG_BASE_CORE_SWTMR_LIMIT宏配置，该值按产品实际需要设定。
 
 软件定时器使用了系统的一个队列和一个任务资源，软件定时器的触发遵循队列规则，先进先出。定时时间短的定时器总是比定时时间长的靠近队列头，满足优先被触发的准则。
 
@@ -64,11 +64,11 @@ OpenHarmony LiteOS-M内核的软件定时器模块提供下面几种功能，接
 
   **表1** 软件定时器接口
 
-| 功能分类 | 接口描述 | 
+| 功能分类 | 接口描述 |
 | -------- | -------- |
-| 创建、删除定时器 | -&nbsp;LOS_SwtmrCreate：创建定时器<br/>-&nbsp;LOS_SwtmrDelete：删除定时器 | 
-| 启动、停止定时器 | -&nbsp;LOS_SwtmrStart：启动定时器<br/>-&nbsp;LOS_SwtmrStop：停止定时器 | 
-| 获得软件定时器剩余Tick数 | LOS_SwtmrTimeGet：获得软件定时器剩余Tick数 | 
+| 创建、删除定时器 | -&nbsp;LOS_SwtmrCreate：创建定时器。<br/>-&nbsp;LOS_SwtmrDelete：删除定时器。 |
+| 启动、停止定时器 | -&nbsp;LOS_SwtmrStart：启动定时器。<br/>-&nbsp;LOS_SwtmrStop：停止定时器。 |
+| 获得软件定时器剩余Tick数 | LOS_SwtmrTimeGet：获得软件定时器剩余Tick数。 |
 
 
 ## 开发流程
@@ -130,86 +130,107 @@ OpenHarmony LiteOS-M内核的软件定时器模块提供下面几种功能，接
 
 代码实现如下：
 
-  
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数ExampleSwtmr。
+
+
 ```
 #include "los_swtmr.h"
 
-/* Timer count */
-UINT32 g_timerCount1 = 0;   
+/* 定时器间隔时间 */
+#define SWTMR_INTERVAL_LONG      1000
+#define SWTMR_INTERVAL_SHORT     100
+
+/* 定时器触发次数计数 */
+UINT32 g_timerCount1 = 0;
 UINT32 g_timerCount2 = 0;
 
-/* 任务ID */
-UINT32 g_testTaskId01;
-
-void Timer1_Callback(UINT32 arg) // 回调函数1 
+/* 回调函数1，单次触发定时器的回调函数 */
+void Timer1Callback(UINT32 arg)
 {
-    UINT32 tick_last1;
     g_timerCount1++;
-    tick_last1 = (UINT32)LOS_TickCountGet(); // 获取当前Tick数
-    printf("g_timerCount1=%d, tick_last1=%d\n", g_timerCount1, tick_last1);
-}  
+    printf("g_timerCount1=%d\n", g_timerCount1);
+}
 
-void Timer2_Callback(UINT32 arg) // 回调函数2 
+/* 回调函数2，多次触发定时器的回调函数 */
+void Timer2Callback(UINT32 arg)
 {
-    UINT32 tick_last2;
-    tick_last2 = (UINT32)LOS_TickCountGet();
     g_timerCount2++;
-    printf("g_timerCount2=%d tick_last2=%d\n", g_timerCount2, tick_last2);
-}  
+    printf("g_timerCount2=%d\n", g_timerCount2);
+}
 
-void Timer_example(void)  
+void SwtmrTest(void)
 {
     UINT32 ret;
-    UINT32 id1; // timer id1
-    UINT32 id2; // timer id2
+    UINT32 id1; // 定时器id1，单次触发定时器
+    UINT32 id2; // 定时器id2，周期触发定时器
     UINT32 tickCount;
 
-    /*创建单次软件定时器，Tick数为1000，启动到1000Tick数时执行回调函数1 */ 
-    LOS_SwtmrCreate(1000, LOS_SWTMR_MODE_ONCE, Timer1_Callback, &id1, 1);
+#if (LOSCFG_BASE_CORE_SWTMR_ALIGN == 1)
+    /* 创建单次软件定时器，Tick数为1000，启动到1000Tick数时执行回调函数1 */
+    LOS_SwtmrCreate(SWTMR_INTERVAL_LONG, LOS_SWTMR_MODE_ONCE, Timer1Callback, &id1, 0,
+                    OS_SWTMR_ROUSES_IGNORE, OS_SWTMR_ALIGN_SENSITIVE);
 
-    /*创建周期性软件定时器，每100Tick数执行回调函数2 */
-    LOS_SwtmrCreate(100, LOS_SWTMR_MODE_PERIOD, Timer2_Callback, &id2, 1);
-    printf("create Timer1 success\n");
+    /* 创建周期性软件定时器，每100Tick数执行回调函数2 */
+    LOS_SwtmrCreate(SWTMR_INTERVAL_SHORT, LOS_SWTMR_MODE_PERIOD, Timer2Callback, &id2, 0,
+                    OS_SWTMR_ROUSES_IGNORE, OS_SWTMR_ALIGN_SENSITIVE);
+#else
+    /* 创建单次软件定时器，Tick数为1000，启动到1000Tick数时执行回调函数1 */
+    LOS_SwtmrCreate(SWTMR_INTERVAL_LONG, LOS_SWTMR_MODE_ONCE, Timer1Callback, &id1, 0);
 
-    LOS_SwtmrStart(id1); //启动单次软件定时器 
-    printf("start Timer1 success\n");
+    /* 创建周期性软件定时器，每100Tick数执行回调函数2 */
+    LOS_SwtmrCreate(SWTMR_INTERVAL_SHORT, LOS_SWTMR_MODE_PERIOD, Timer2Callback, &id2, 0);
+#endif
 
-    LOS_TaskDelay(200); //延时200Tick数
-    LOS_SwtmrTimeGet(id1, &tickCount); // 获得单次软件定时器剩余Tick数
-    printf("tickCount=%d\n", tickCount);
+    /* 启动单次软件定时器 */
+    ret = LOS_SwtmrStart(id1);
+    printf("start Timer1 %s\n", (ret == LOS_OK) ? "success" : "failed");
 
-    LOS_SwtmrStop(id1); // 停止软件定时器
-    printf("stop Timer1 success\n");
+    /* 短时间延时，定时器还未触发 */
+    LOS_TaskDelay(SWTMR_INTERVAL_SHORT);
+
+    /* 单次定时器还未到时间触发，此时停止应该成功 */
+    ret = LOS_SwtmrStop(id1);
+    printf("stop timer1 %s\n", (ret == LOS_OK) ? "success" : "failed");
 
     LOS_SwtmrStart(id1);
-    LOS_TaskDelay(1000);
+    
+    /* 长时间延时，定时器触发 */
+    LOS_TaskDelay(SWTMR_INTERVAL_LONG);
 
-    LOS_SwtmrStart(id2); // 启动周期性软件定时器
-    printf("start Timer2\n");
+    /* 单次定时器触发后自删除，此时停止失败才是正常 */
+    ret = LOS_SwtmrStop(id1);
+    printf("timer1 self delete test %s\n", (ret != LOS_OK) ? "success" : "failed");
 
-    LOS_TaskDelay(1000);
+    /* 启动周期性软件定时器 */
+    ret = LOS_SwtmrStart(id2);
+    printf("start Timer2 %s\n", (ret == LOS_OK) ? "success" : "failed");
+
+    /* 长时间延时，定时器周期触发 */
+    LOS_TaskDelay(SWTMR_INTERVAL_LONG);
+
     LOS_SwtmrStop(id2);
-    ret = LOS_SwtmrDelete(id2);  // 删除软件定时器
+
+    ret = LOS_SwtmrDelete(id2);
     if (ret == LOS_OK) {
         printf("delete Timer2 success\n");
     }
 }
 
-UINT32 Example_TaskEntry(VOID)
+UINT32 ExampleSwtmr(VOID)
 {
     UINT32 ret;
-    TSK_INIT_PARAM_S task1;
+    TSK_INIT_PARAM_S taskParam = { 0 };
+    UINT32 taskId;
 
     /* 锁任务调度 */
     LOS_TaskLock();
 
-    /* 创建任务1 */
-    (VOID)memset(&task1, 0, sizeof(TSK_INIT_PARAM_S));
-    task1.pfnTaskEntry = (TSK_ENTRY_FUNC)Timer_example;
-    task1.pcName       = "TimerTsk";
-    task1.uwStackSize  = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
-    task1.usTaskPrio   = 5;
-    ret = LOS_TaskCreate(&g_testTaskId01, &task1);
+    /* 创建任务 */
+    taskParam.pfnTaskEntry = (TSK_ENTRY_FUNC)SwtmrTest;
+    taskParam.pcName       = "TimerTsk";
+    taskParam.uwStackSize  = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
+    taskParam.usTaskPrio   = 5;
+    ret = LOS_TaskCreate(&taskId, &taskParam);
     if (ret != LOS_OK) {
         printf("TimerTsk create failed.\n");
         return LOS_NOK;
@@ -217,7 +238,6 @@ UINT32 Example_TaskEntry(VOID)
 
     /* 解锁任务调度 */
     LOS_TaskUnlock();
-
     return LOS_OK;
 }
 ```
@@ -227,24 +247,22 @@ UINT32 Example_TaskEntry(VOID)
 
 编译烧录运行，输出结果如下：
 
-  
+
 ```
-create Timer1 success
 start Timer1 success
-tickCount=798
-stop Timer1 success
-g_timerCount1=1, tick_last1=1208
-delete Timer1 success
-start Timer2
-g_timerCount2=1 tick_last2=1313
-g_timerCount2=2 tick_last2=1413
-g_timerCount2=3 tick_last2=1513
-g_timerCount2=4 tick_last2=1613
-g_timerCount2=5 tick_last2=1713
-g_timerCount2=6 tick_last2=1813
-g_timerCount2=7 tick_last2=1913
-g_timerCount2=8 tick_last2=2013
-g_timerCount2=9 tick_last2=2113
-g_timerCount2=10 tick_last2=2213
+stop timer1 success
+g_timerCount1=1
+timer1 self delete test success
+start Timer2 success
+g_timerCount2=1
+g_timerCount2=2
+g_timerCount2=3
+g_timerCount2=4
+g_timerCount2=5
+g_timerCount2=6
+g_timerCount2=7
+g_timerCount2=8
+g_timerCount2=9
+g_timerCount2=10
 delete Timer2 success
 ```

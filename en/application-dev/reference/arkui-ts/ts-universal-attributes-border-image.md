@@ -10,29 +10,19 @@ You can draw an image around a component.
 
 | Name        | Type                                    | Description                                     |
 | ---------- | ---------------------------------------- | --------------------------------------- |
-| borderImage     | BorderImageOption | Border image or border gradient.                           |
+| borderImage     | [BorderImageOption](#borderimageoption) | Border image or border gradient.                           |
 
 ## BorderImageOption
 
 | Name        | Type                                    | Description                                     |
 | ---------- | ---------------------------------------- | --------------------------------------- |
 | source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | Source or gradient color of the border image.                           |
-| slice      | [Length](ts-types.md#length)\| EdgeWidths | Slice width of the border image.<br>Default value: **0**                  |
-| width      | [Length](ts-types.md#length)\| EdgeWidths | Width of the border image.<br>Default value: **0**                    |
-| outset     | [Length](ts-types.md#length)\| EdgeWidths | Amount by which the border image is extended beyond the border box.<br>Default value: **0**                |
-| RepeatMode | RepeatMode                               | Repeat mode of the border image.<br>Default value: **RepeatMode.Stretch**|
+| slice      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Slice width of the border image.<br>Default value: **0**                  |
+| width      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Width of the border image.<br>Default value: **0**                    |
+| outset     | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Amount by which the border image is extended beyond the border box.<br>Default value: **0**                |
+| repeat | [RepeatMode](#repeatmode)                               | Repeat mode of the border image.<br>Default value: **RepeatMode.Stretch**|
 | fill       | boolean                                  | Whether to fill the center of the border image.<br>Default value: **false**              |
 
-## EdgeWidths
-
-At least one parameter must be passed to reference an **EdgeWidth** object.
-
-| Name| Type| Mandatory|Description|
-| -------- | -------- |-------- |-------- |
-| left | [Length](ts-types.md#length) | No| Distance on the left.|
-| right | [Length](ts-types.md#length) | No| Distance on the right.|
-| top | [Length](ts-types.md#length) | No| Distance at the top.|
-| bottom | [Length](ts-types.md#length) | No| Distance on the bottom.|
 
 ## RepeatMode
 
@@ -51,19 +41,31 @@ At least one parameter must be passed to reference an **EdgeWidth** object.
 @Entry
 @Component
 struct Index {
+  @State outSetValue: number = 40
 
   build() {
     Row() {
       Column() {
-        Text('This is\nborderImage.').textAlign(TextAlign.Center)
+        Text('This is borderImage.').textAlign(TextAlign.Center).fontSize(50)
           .borderImage({
-            source: "borderOrigin.png",
-            slice: {top:"31%", bottom:"31%", left:"31%", right:"31%"},
-            width: {top:"20px", bottom:"20px", left:"20px", right:"20px"},
-            outset: {top:"5px", bottom:"5px", left:"5px", right:"5px"},
+            source: $r('app.media.heart'),
+            slice: `${this.outSetValue}%`,
+            width: `${this.outSetValue}px`,
+            outset: '5px',
             repeat: RepeatMode.Repeat,
             fill: false
-          });
+          })
+        Slider({
+          value: this.outSetValue,
+          min: 0,
+          max: 100,
+          style: SliderStyle.OutSet
+        })
+          .margin({ top: 30 })
+          .onChange((value: number, mode: SliderChangeMode) => {
+            this.outSetValue = value
+            console.info('value:' + value + 'mode:' + mode.toString())
+          })
       }
       .width('100%')
     }
@@ -72,7 +74,7 @@ struct Index {
 }
 ```
 
-![en-us_image_borderImage](figures/borderImage.png)
+![en-us_image_borderImage](figures/borderImage.gif)
 
 
 ```ts
@@ -80,20 +82,21 @@ struct Index {
 @Entry
 @Component
 struct Index {
-
   build() {
     Row() {
       Column() {
-        Text('This is\ngradient color.').textAlign(TextAlign.Center)
+        Text('This is gradient color.').textAlign(TextAlign.Center).width(68)
           .borderImage({
-            source: {angle:90,
+            source: {
+              angle: 90,
               direction: GradientDirection.Left,
-              colors: [[0xAEE1E1, 0.0], [0xD3E0DC, 0.3], [0xFCD1D1, 1.0]]},
-            slice: {top:10, bottom:10, left:10, right:10},
-            width: {top:"10px", bottom:"10px", left: "10px", right:"10px"},
+              colors: [[0xAEE1E1, 0.0], [0xD3E0DC, 0.3], [0xFCD1D1, 1.0]]
+            },
+            slice: { top: 10, bottom: 10, left: 10, right: 10 },
+            width: { top: "10px", bottom: "10px", left: "10px", right: "10px" },
             repeat: RepeatMode.Stretch,
             fill: false
-          });
+          })
       }
       .width('100%')
     }

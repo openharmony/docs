@@ -5,9 +5,11 @@ Lightweight storage provides applications with data processing capability and al
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> -  The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs of this module are no longer maintained since API Version 9. You are advised to use [`@ohos.data.preferences`](js-apis-data-preferences.md).
+> -  The APIs of this module are no longer maintained since API version 9. You are advised to use [`@ohos.data.preferences`](js-apis-data-preferences.md).
+> 
+> -  The APIs of this module can be used only in the FA model.
 
 
 ## Modules to Import
@@ -20,10 +22,10 @@ import data_storage from '@ohos.data.storage';
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Name             | Type   | Readable | Writable | Description                                                 |
-| ---------------- | ------ | -------- | -------- | ----------------------------------------------------------- |
-| MAX_KEY_LENGTH   | string | Yes      | No       | Maximum length of a key. It must be less than 80 bytes.     |
-| MAX_VALUE_LENGTH | string | Yes      | No       | Maximum length of a value. It must be less than 8192 bytes. |
+| Name            | Type| Readable| Writable| Description                                 |
+| ---------------- | -------- | ---- | ---- | ------------------------------------- |
+| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key. It must be less than 80 bytes.    |
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value. It must be less than 8192 bytes.|
 
 
 ## data_storage.getStorageSync
@@ -36,31 +38,31 @@ Reads the specified file and loads its data to the **Storage** instance for data
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description              |
-| ---- | ------ | --------- | ------------------------ |
-| path | string | Yes       | Path of the target file. |
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Path of the target file.|
 
 **Return value**
 
-| Type                | Description                                            |
-| ------------------- | ------------------------------------------------------ |
-| [Storage](#storage) | **Storage** instance used for data storage operations. |
+| Type               | Description                                             |
+| ------------------- | ------------------------------------------------- |
+| [Storage](#storage) | **Storage** instance used for data storage operations.|
 
 **Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
-    path = filePath;
-    console.info("======================>getFilesDirPromise====================>");
-});  
+  path = filePath;
+  console.info("======================>getFilesDirPromise====================>");
 
-let storage = data_storage.getStorageSync(path + '/mystore');
-storage.putSync('startup', 'auto');
-storage.flushSync();
+  let storage = data_storage.getStorageSync(path + '/mystore');
+  storage.putSync('startup', 'auto');
+  storage.flushSync();
+});
 ```
 
 
@@ -74,31 +76,31 @@ Reads the specified file and loads its data to the **Storage** instance for data
 
 **Parameters**
 
-| Name     | Type                                     | Mandatory | Description                                   |
-| -------- | ---------------------------------------- | --------- | --------------------------------------------- |
-| path     | string                                   | Yes       | Path of the target file.                      |
-| callback | AsyncCallback&lt;[Storage](#storage)&gt; | Yes       | Callback used to return the execution result. |
+| Name  | Type                                    | Mandatory| Description                      |
+| -------- | ---------------------------------------- | ---- | -------------------------- |
+| path     | string                                   | Yes  | Path of the target file.|
+| callback | AsyncCallback&lt;[Storage](#storage)&gt; | Yes  | Callback used to return the execution result.                |
 
 **Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
-    path = filePath;
-    console.info("======================>getFilesDirPromise====================>");
-});  
+  path = filePath;
+  console.info("======================>getFilesDirPromise====================>");
 
-data_storage.getStorage(path + '/mystore', function (err, storage) {
+  data_storage.getStorage(path + '/mystore', function (err, storage) {
     if (err) {
-        console.info("Failed to get the storage. path: " + path + '/mystore');
-        return;
+      console.info("Failed to get the storage. path: " + path + '/mystore');
+      return;
     }
     storage.putSync('startup', 'auto');
     storage.flushSync();
-})
+  })
+});
 ```
 
 
@@ -112,35 +114,35 @@ Reads the specified file and loads its data to the **Storage** instance for data
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description              |
-| ---- | ------ | --------- | ------------------------ |
-| path | string | Yes       | Path of the target file. |
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Path of the target file.|
 
 **Return value**
 
-| Type                               | Description                        |
-| ---------------------------------- | ---------------------------------- |
-| Promise&lt;[Storage](#storage)&gt; | Promise used to return the result. |
+| Type                              | Description                           |
+| ---------------------------------- | ------------------------------- |
+| Promise&lt;[Storage](#storage)&gt; | Promise used to return the result.|
 
 **Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
-    path = filePath;
-    console.info("======================>getFilesDirPromise====================>");
-});  
+  path = filePath;
+  console.info("======================>getFilesDirPromise====================>");
 
-let getPromise = data_storage.getStorage(path + '/mystore');
-getPromise.then((storage) => {
+  let getPromise = data_storage.getStorage(path + '/mystore');
+  getPromise.then((storage) => {
     storage.putSync('startup', 'auto');
     storage.flushSync();
-}).catch((err) => {
+  }).catch((err) => {
     console.info("Failed to get the storage. path: " + path + '/mystore');
-})
+  })
+});
 ```
 
 
@@ -154,25 +156,24 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description              |
-| ---- | ------ | --------- | ------------------------ |
-| path | string | Yes       | Path of the target file. |
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Path of the target file.|
 
 **Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
     console.info("======================>getFilesDirPromise====================>");
+
+    data_storage.deleteStorageSync(path + '/mystore');
 });  
-
-data_storage.deleteStorageSync(path + '/mystore');
 ```
-
 
 ## data_storage.deleteStorage
 
@@ -184,9 +185,9 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                     |
-| -------- | ------------------------- | --------- | ------------------------------- |
-| path     | string                    | Yes       | Path of the target file.        |
+| Name  | Type                     | Mandatory| Description                      |
+| -------- | ------------------------- | ---- | -------------------------- |
+| path     | string                    | Yes  | Path of the target file.|
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value. |
 
 **Example**
@@ -194,20 +195,20 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
-    path = filePath;
-    console.info("======================>getFilesDirPromise====================>");
-});  
+  path = filePath;
+  console.info("======================>getFilesDirPromise====================>");
 
-data_storage.deleteStorage(path + '/mystore', function (err) {
+  data_storage.deleteStorage(path + '/mystore', function (err) {
     if (err) {
-        console.info("Failed to delete the storage with err: " + err);
-        return;
+      console.info("Failed to delete the storage with err: " + err);
+      return;
     }
     console.info("Succeeded in deleting the storage.");
-})
+  })
+});
 ```
 
 
@@ -221,13 +222,14 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description              |
-| ---- | ------ | --------- | ------------------------ |
-| path | string | Yes       | Path of the target file. |
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Path of the target file.|
 
 **Return value**
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
+
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
@@ -235,19 +237,19 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
-    path = filePath;
-    console.info("======================>getFilesDirPromise====================>");
-});  
+  path = filePath;
+  console.info("======================>getFilesDirPromise====================>");
 
-let promisedelSt = data_storage.deleteStorage(path + '/mystore');
-promisedelSt.then(() => {
+  let promisedelSt = data_storage.deleteStorage(path + '/mystore');
+  promisedelSt.then(() => {
     console.info("Succeeded in deleting the storage.");
-}).catch((err) => {
+  }).catch((err) => {
     console.info("Failed to delete the storage with err: " + err);
-})
+  })
+});
 ```
 
 
@@ -260,24 +262,23 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-
-| Name | Type   | Mandatory | Description              |
-| ---- | ------ | --------- | ------------------------ |
-| path | string | Yes       | Path of the target file. |
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Path of the target file.|
 
 **Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
     console.info("======================>getFilesDirPromise====================>");
+    
+    data_storage.removeStorageFromCacheSync(path + '/mystore');
 });  
-
-data_storage.removeStorageFromCacheSync(path + '/mystore');
 ```
 
 
@@ -291,9 +292,9 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                     |
-| -------- | ------------------------- | --------- | ------------------------------- |
-| path     | string                    | Yes       | Path of the target file.        |
+| Name  | Type                     | Mandatory| Description                      |
+| -------- | ------------------------- | ---- | -------------------------- |
+| path     | string                    | Yes  | Path of the target file.|
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value. |
 
 **Example**
@@ -301,20 +302,20 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
-    path = filePath;
-    console.info("======================>getFilesDirPromise====================>");
-});  
+  path = filePath;
+  console.info("======================>getFilesDirPromise====================>");
 
-data_storage.removeStorageFromCache(path + '/mystore', function (err) {
+  data_storage.removeStorageFromCache(path + '/mystore', function (err) {
     if (err) {
-        console.info("Failed to remove storage from cache with err: " + err);
-        return;
+      console.info("Failed to remove storage from cache with err: " + err);
+      return;
     }
     console.info("Succeeded in removing storage from cache.");
-})
+  })
+});
 ```
 
 
@@ -328,14 +329,14 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description              |
-| ---- | ------ | --------- | ------------------------ |
-| path | string | Yes       | Path of the target file. |
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Path of the target file.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
@@ -343,26 +344,24 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
-    path = filePath;
-    console.info("======================>getFilesDirPromise====================>");
-});  
+  path = filePath;
+  console.info("======================>getFilesDirPromise====================>");
 
-let promiserevSt = data_storage.removeStorageFromCache(path + '/mystore')
-promiserevSt.then(() => {
+  let promiserevSt = data_storage.removeStorageFromCache(path + '/mystore')
+  promiserevSt.then(() => {
     console.info("Succeeded in removing storage from cache.");
-}).catch((err) => {
+  }).catch((err) => {
     console.info("Failed to remove storage from cache with err: " + err);
-})
+  })
+});
 ```
-
 
 ## Storage
 
 Provides APIs for obtaining and modifying storage data.
-
 
 ### getSync
 
@@ -374,16 +373,16 @@ Obtains the value corresponding to a key. If the value is null or not in the def
 
 **Parameters**
 
-| Name     | Type                    | Mandatory | Description                                                  |
-| -------- | ----------------------- | --------- | ------------------------------------------------------------ |
-| key      | string                  | Yes       | Key of the data. It cannot be empty.                         |
-| defValue | [ValueType](#valuetype) | Yes       | Default value to be returned if the value of the specified key does not exist. It can be a number, string, or Boolean value. |
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| key      | string                  | Yes  | Key of the data. It cannot be empty.                             |
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned if the value of the specified key does not exist. It can be a number, string, or Boolean value.|
 
 **Return value**
 
-| Type      | Description                                                  |
-| --------- | ------------------------------------------------------------ |
-| ValueType | Value corresponding to the specified key. If the value is null or not in the default value format, the default value is returned. |
+| Type     | Description                                                    |
+| --------- | -------------------------------------------------------- |
+| ValueType | Value corresponding to the specified key. If the value is null or not in the default value format, the default value is returned.|
 
 **Example**
 
@@ -403,11 +402,11 @@ Obtains the value corresponding to a key. If the value is null or not in the def
 
 **Parameters**
 
-| Name     | Type                           | Mandatory | Description                                                  |
-| -------- | ------------------------------ | --------- | ------------------------------------------------------------ |
-| key      | string                         | Yes       | Key of the data. It cannot be empty.                         |
-| defValue | [ValueType](#valuetype)        | Yes       | Default value to be returned. It can be a number, string, or Boolean value. |
-| callback | AsyncCallback&lt;ValueType&gt; | Yes       | Callback used to return the execution result.                |
+| Name  | Type                          | Mandatory| Description                                     |
+| -------- | ------------------------------ | ---- | ----------------------------------------- |
+| key      | string                         | Yes  | Key of the data. It cannot be empty.          |
+| defValue | [ValueType](#valuetype)        | Yes  | Default value to be returned. It can be a number, string, or Boolean value.|
+| callback | AsyncCallback&lt;ValueType&gt; | Yes  | Callback used to return the execution result.                               |
 
 **Example**
 
@@ -432,18 +431,19 @@ Obtains the value corresponding to a key. If the value is null or not in the def
 
 **Parameters**
 
-| Name     | Type                    | Mandatory | Description                                                  |
-| -------- | ----------------------- | --------- | ------------------------------------------------------------ |
-| key      | string                  | Yes       | Key of the data. It cannot be empty.                         |
-| defValue | [ValueType](#valuetype) | Yes       | Default value to be returned. It can be a number, string, or Boolean value. |
+| Name  | Type                   | Mandatory| Description                                     |
+| -------- | ----------------------- | ---- | ----------------------------------------- |
+| key      | string                  | Yes  | Key of the data. It cannot be empty.          |
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. It can be a number, string, or Boolean value.|
 
 **Return value**
 
-| Type                     | Description                        |
-| ------------------------ | ---------------------------------- |
-| Promise&lt;ValueType&gt; | Promise used to return the result. |
+| Type                    | Description                           |
+| ------------------------ | ------------------------------- |
+| Promise&lt;ValueType&gt; | Promise used to return the result.|
 
 **Example**
+
 ```js
 let promiseget = storage.get('startup', 'default');
 promiseget.then((value) => {
@@ -464,15 +464,15 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description                                                  |
-| ----- | ----------------------- | --------- | ------------------------------------------------------------ |
-| key   | string                  | Yes       | Key of the data. It cannot be empty.                         |
-| value | [ValueType](#valuetype) | Yes       | New value to store. It can be a number, string, or Boolean value. |
+| Name| Type                   | Mandatory| Description                                     |
+| ------ | ----------------------- | ---- | ----------------------------------------- |
+| key    | string                  | Yes  | Key of the data. It cannot be empty.            |
+| value  | [ValueType](#valuetype) | Yes  | New value to store. It can be a number, string, or Boolean value.|
 
 **Example**
 
 ```js
-storage.putSync('startup', 'auto')
+storage.putSync('startup', 'auto');
 ```
 
 
@@ -486,10 +486,10 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                                                  |
-| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| key      | string                    | Yes       | Key of the data. It cannot be empty.                         |
-| value    | [ValueType](#valuetype)   | Yes       | New value to store. It can be a number, string, or Boolean value. |
+| Name  | Type                     | Mandatory| Description                                     |
+| -------- | ------------------------- | ---- | ----------------------------------------- |
+| key      | string                    | Yes  | Key of the data. It cannot be empty.            |
+| value    | [ValueType](#valuetype)   | Yes  | New value to store. It can be a number, string, or Boolean value.|
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value.                              |
 
 **Example**
@@ -515,18 +515,19 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description                                                  |
-| ----- | ----------------------- | --------- | ------------------------------------------------------------ |
-| key   | string                  | Yes       | Key of the data. It cannot be empty.                         |
-| value | [ValueType](#valuetype) | Yes       | New value to store. It can be a number, string, or Boolean value. |
+| Name| Type                   | Mandatory| Description                                     |
+| ------ | ----------------------- | ---- | ----------------------------------------- |
+| key    | string                  | Yes  | Key of the data. It cannot be empty.            |
+| value  | [ValueType](#valuetype) | Yes  | New value to store. It can be a number, string, or Boolean value.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
+| Type               | Description                       |
+| ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
+
 ```js
 let promiseput = storage.put('startup', 'auto');
 promiseput.then(() => {
@@ -547,15 +548,15 @@ Checks whether the storage object contains data with a given key.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                          |
-| ---- | ------ | --------- | ------------------------------------ |
-| key  | string | Yes       | Key of the data. It cannot be empty. |
+| Name| Type  | Mandatory| Description                           |
+| ------ | ------ | ---- | ------------------------------- |
+| key    | string | Yes  | Key of the data. It cannot be empty.|
 
 **Return value**
 
-| Type    | Description                                                  |
-| ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the storage object contains data with the specified key; returns **false** otherwise. |
+| Type   | Description                                 |
+| ------- | ------------------------------------- |
+| boolean | Returns **true** if the storage object contains data with the specified key; returns **false** otherwise.|
 
 **Example**
 
@@ -577,16 +578,16 @@ Checks whether the storage object contains data with a given key. This API uses 
 
 **Parameters**
 
-| Name     | Type                         | Mandatory | Description                                   |
-| -------- | ---------------------------- | --------- | --------------------------------------------- |
-| key      | string                       | Yes       | Key of the data. It cannot be empty.          |
-| callback | AsyncCallback&lt;boolean&gt; | Yes       | Callback used to return the execution result. |
+| Name  | Type                        | Mandatory| Description                           |
+| -------- | ---------------------------- | ---- | ------------------------------- |
+| key      | string                       | Yes  | Key of the data. It cannot be empty.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the execution result.                     |
 
 **Return value**
 
-| Type    | Description                                                  |
-| ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the storage object contains data with the specified key; returns **false** otherwise. |
+| Type   | Description                           |
+| ------- | ------------------------------- |
+| boolean | Returns **true** if the storage object contains data with the specified key; returns **false** otherwise.|
 
 **Example**
 
@@ -613,15 +614,15 @@ Checks whether the storage object contains data with a given key. This API uses 
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                          |
-| ---- | ------ | --------- | ------------------------------------ |
-| key  | string | Yes       | Key of the data. It cannot be empty. |
+| Name| Type  | Mandatory| Description                           |
+| ------ | ------ | ---- | ------------------------------- |
+| key    | string | Yes  | Key of the data. It cannot be empty.|
 
 **Return value**
 
-| Type                   | Description                        |
-| ---------------------- | ---------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. |
+| Type                  | Description                       |
+| ---------------------- | --------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -647,14 +648,14 @@ Deletes data with the specified key from this storage object.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                          |
-| ---- | ------ | --------- | ------------------------------------ |
-| key  | string | Yes       | Key of the data. It cannot be empty. |
+| Name| Type  | Mandatory| Description                             |
+| ------ | ------ | ---- | --------------------------------- |
+| key    | string | Yes  | Key of the data. It cannot be empty.|
 
 **Example**
 
 ```js
-storage.deleteSync('startup')
+ storage.deleteSync('startup');
 ```
 
 
@@ -668,9 +669,9 @@ Deletes data with the specified key from this storage object. This API uses an a
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                          |
-| -------- | ------------------------- | --------- | ------------------------------------ |
-| key      | string                    | Yes       | Key of the data. It cannot be empty. |
+| Name  | Type                     | Mandatory| Description                           |
+| -------- | ------------------------- | ---- | ------------------------------- |
+| key      | string                    | Yes  | Key of the data. It cannot be empty.|
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value.      |
 
 **Example**
@@ -696,14 +697,14 @@ Deletes data with the specified key from this storage object. This API uses a pr
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description      |
-| ---- | ------ | --------- | ---------------- |
-| key  | string | Yes       | Key of the data. |
+| Name| Type  | Mandatory| Description                 |
+| ------ | ------ | ---- | --------------------- |
+| key    | string | Yes  | Key of the data.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
+| Type               | Description                       |
+| ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
@@ -729,7 +730,7 @@ Saves the modification of this object to the **Storage** instance and synchroniz
 **Example**
 
 ```js
-storage.flushSync()
+storage.flushSync();
 ```
 
 
@@ -743,8 +744,8 @@ Saves the modification of this object to the **Storage** instance and synchroniz
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                     |
-| -------- | ------------------------- | --------- | ------------------------------- |
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value. |
 
 **Example**
@@ -770,8 +771,8 @@ Saves the modification of this object to the **Storage** instance and synchroniz
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
+| Type               | Description                       |
+| ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
@@ -797,7 +798,7 @@ Clears this **Storage** object.
 **Example**
 
 ```js
-storage.clearSync()
+storage.clearSync();
 ```
 
 
@@ -811,8 +812,8 @@ Clears this **Storage** object. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                     |
-| -------- | ------------------------- | --------- | ------------------------------- |
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value. |
 
 **Example**
@@ -837,9 +838,8 @@ Clears this **Storage** object. This API uses a promise to return the result.
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Return value**
-
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
+| Type               | Description                       |
+| ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
@@ -864,15 +864,15 @@ Subscribes to data changes. The **StorageObserver** needs to be implemented. Whe
 
 **Parameters**
 
-| Name     | Type                                                | Description                                                  |
-| -------- | --------------------------------------------------- | ------------------------------------------------------------ |
-| type     | string                                              | Event type. The value **change** indicates data change events. |
-| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback used to return data changes.                        |
+| Name  | Type                                               |  Mandatory| Description                                    |
+| -------- | --------------------------------------------------- | ------ |---------------------------------------- |
+| type     | string                                              |Yes| Event type. The value **change** indicates data change events.|
+| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Yes|Callback used to return data changes.                          |
 
 **Example**
 
 ```js
-var observer = function (key) {
+let observer = function (key) {
     console.info("The key of " + key + " changed.");
 }
 storage.on('change', observer);
@@ -891,15 +891,15 @@ Unsubscribes from data changes.
 
 **Parameters**
 
-| Name     | Type                                                | Description                                                  |
-| -------- | --------------------------------------------------- | ------------------------------------------------------------ |
-| type     | string                                              | Event type. The value **change** indicates data change events. |
-| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback used to return data changes.                        |
+| Name  | Type                                               | Mandatory|  Description                                |
+| -------- | --------------------------------------------------- | ------ |---------------------------------------- |
+| type     | string                                              |Yes| Event type. The value **change** indicates data change events.|
+| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Yes|Callback used to return data changes.                |
 
 **Example**
 
 ```js
-var observer = function (key) {
+let observer = function (key) {
     console.info("The key of " + key + " changed.");
 }
 storage.off('change', observer);
@@ -910,9 +910,9 @@ storage.off('change', observer);
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Name | Type   | Mandatory | Description   |
-| ---- | ------ | --------- | ------------- |
-| key  | string | No        | Data changed. |
+| Name| Type| Mandatory| Description            |
+| ---- | -------- | ---- | ---------------- |
+| key  | string   | No  | Data changed.|
 
 ## ValueType
 
@@ -920,8 +920,8 @@ Enumerates the value types.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Type    | Description                   |
-| ------- | ----------------------------- |
-| number  | The value is a number.        |
-| string  | The value is a string.        |
-| boolean | The value is of Boolean type. |
+| Type   | Description                |
+| ------- | -------------------- |
+| number  | The value is a number.  |
+| string  | The value is a string.  |
+| boolean | The value is of Boolean type.|

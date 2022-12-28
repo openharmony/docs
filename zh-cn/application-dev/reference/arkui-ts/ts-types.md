@@ -18,6 +18,8 @@
 
   filename：工程中resources/rawfile目录下的文件名称。
 
+  **说明：** 在引用资源类型时，注意其数据类型要与属性方法本身的类型一致，例如某个属性方法支持设置string | Resource，那么在使用Resource引用类型时，其数据类型也应当为string。
+
 ## Length
 
 长度类型，用于描述尺寸单位。
@@ -138,12 +140,12 @@
 
 设置文本样式。
 
-| 名称     | 类型                                       | 必填   | 说明                                       |
-| ------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| size   | [Length](#length)                        | 否    | 设置文本尺寸，Length为number类型时，使用fp单位。          |
-| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。 |
-| family | string \| [Resource](#resource)          | 否    | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。 |
-| style  | [FontStyle](ts-appendix-enums.md#fontstyle) | 否    | 设置文本的字体样式。                               |
+| 名称   | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| size   | [Length](#length)                                            | 否   | 设置文本尺寸，Length为number类型时，使用fp单位。不支持设置百分比字符串。 |
+| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否   | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。 |
+| family | string \| [Resource](#resource)                              | 否   | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。当前只支持'sans-serif'字体。 |
+| style  | [FontStyle](ts-appendix-enums.md#fontstyle)                  | 否   | 设置文本的字体样式。                                         |
 
 ## Area<sup>8+</sup>
 
@@ -155,7 +157,6 @@
 | height         | [Length](#length)      | 目标元素的高度，作为返回值时，类型为number，单位vp。 |
 | position       | [Position](#position8) | 目标元素左上角相对父元素左上角的位置。            |
 | globalPosition | [Position](#position8) | 目标元素左上角相对页面左上角的位置。             |
-
 
 ## Position<sup>8+</sup>
 
@@ -213,5 +214,5 @@
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | 该方法类型必须使用@Builder装饰器修饰。具体用法见[@Builder](../../ui/ts-component-based-builder.md)。 |
+| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | 该方法类型必须使用@Builder装饰器修饰。具体用法见[@Builder](../../quick-start/arkts-dynamic-ui-elememt-building.md#builder)。 |
 

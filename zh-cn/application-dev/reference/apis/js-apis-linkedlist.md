@@ -1,6 +1,6 @@
-# 线性容器LinkedList
+# @ohos.util.LinkedList (线性容器LinkedList)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 LinkedList底层通过双向链表实现，双向链表的每个节点都包含对前一个元素和后一个元素的引用。当需要查询元素时，可以从头遍历，也可以从尾部遍历，插入、删除效率高，查询效率低。LinkedList允许元素为null。
@@ -20,16 +20,13 @@ LinkedList和[ArrayList](js-apis-arraylist.md)相比，存取数据的效率不�
 import LinkedList from '@ohos.util.LinkedList';  
 ```
 
-
-
-
 ## LinkedList
 
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | LinkedList的元素个数。 |
 
@@ -41,6 +38,14 @@ constructor()
 LinkedList的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200012 | The LinkedList's constructor cannot be directly invoked. |
 
 
 **示例：**
@@ -70,6 +75,14 @@ add(element: T): boolean
 | -------- | -------- |
 | boolean | 插入成功返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -77,9 +90,10 @@ let linkedList = new LinkedList();
 let result = linkedList.add("a");
 let result1 = linkedList.add(1);
 let b = [1, 2, 3];
-linkedList.add(b);
+let result2 = linkedList.add(b);
 let c = {name : "Dylon", age : "13"};
-let result3 = linkedList.add(false);
+let result3 = linkedList.add(c);
+let result4 = linkedList.add(false);
 ```
 
 ### addFirst
@@ -96,6 +110,14 @@ addFirst(element: T): void
 | -------- | -------- | -------- | -------- |
 | element | T | 是 | 待插入的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The addFirst method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -105,6 +127,7 @@ linkedList.addFirst(1);
 let b = [1, 2, 3];
 linkedList.addFirst(b);
 let c = {name : "Dylon", age : "13"};
+linkedList.addFirst(c);
 linkedList.addFirst(false);
 ```
 
@@ -122,6 +145,15 @@ insert(index: number, element: T): void
 | -------- | -------- | -------- | -------- |
 | element | T | 是 | 插入元素。 |
 | index | number | 是 | 插入位置索引。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The insert method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
@@ -152,6 +184,14 @@ has(element: T): boolean
 | -------- | -------- |
 | boolean | 包含指定元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -180,6 +220,14 @@ get(index: number): T
 | 类型 | 说明 |
 | -------- | -------- |
 | T | 根据下标查找到的元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
 
 **示例：**
 
@@ -215,6 +263,14 @@ getLastIndexOf(element: T): number
 | -------- | -------- |
 | number | 返回指定元素最后一次出现时的下标值，查找失败返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getLastIndexOf method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -248,6 +304,14 @@ getIndexOf(element: T): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 返回指定元素第一次出现时的下标值，查找失败返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getIndexOf method cannot be bound. |
 
 **示例：**
 
@@ -283,6 +347,15 @@ removeByIndex(index: number): T
 | -------- | -------- |
 | T | 返回删除的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The removeByIndex method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
+
 **示例：**
 
 ```ts
@@ -309,6 +382,15 @@ removeFirst(): T
 | -------- | -------- |
 | T | 返回删除的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The removeFirst method cannot be bound. |
+| 10200010 | The container is empty. |
+
 **示例：**
 
 ```ts
@@ -334,6 +416,15 @@ removeLast(): T
 | 类型 | 说明 |
 | -------- | -------- |
 | T | 返回删除的元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The removeLast method cannot be bound. |
+| 10200010 | The container is empty. |
 
 **示例：**
 
@@ -367,6 +458,14 @@ remove(element: T): boolean
 | -------- | -------- |
 | boolean | 删除成功返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -397,6 +496,15 @@ removeFirstFound(element: T): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 删除成功返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The removeFirstFound method cannot be bound. |
+| 10200010 | The container is empty. |
 
 **示例：**
 
@@ -429,6 +537,15 @@ removeLastFound(element: T): boolean
 | -------- | -------- |
 | boolean | 删除成功返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The removeLastFound method cannot be bound. |
+| 10200010 | The container is empty. |
+
 **示例：**
 
 ```ts
@@ -454,6 +571,14 @@ clone(): LinkedList&lt;T&gt;
 | -------- | -------- |
 | LinkedList&lt;T&gt; | 返回LinkedList对象实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The clone method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -467,7 +592,7 @@ let result = linkedList.clone();
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, LinkedList?: LinkedList&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, LinkedList?: LinkedList&lt;T&gt;) => void,
 thisArg?: Object): void
 
 通过回调函数来遍历LinkedList实例对象上的元素以及元素对应的下标。
@@ -478,7 +603,7 @@ thisArg?: Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -488,6 +613,14 @@ callbackfn的参数说明：
 | value | T | 是 | 当前遍历到的元素。 |
 | index | number | 否 | 当前遍历到的下标值。 |
 | LinkedList | LinkedList&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
 
 **示例：**
 
@@ -509,6 +642,14 @@ clear(): void
 清除LinkedList中的所有元素，并把length置为0。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
 
 **示例：**
 
@@ -542,6 +683,15 @@ set(index: number, element: T): T
 | -------- | -------- |
 | T | 返回替换后的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The set method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
+
 **示例：**
 
 ```ts
@@ -567,6 +717,14 @@ convertToArray(): Array&lt;T&gt;
 | -------- | -------- |
 | Array&lt;T&gt; | 返回转换后的数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The convertToArray method cannot be bound. |
+
 **示例：**
 ```ts
 let linkedList = new LinkedList();
@@ -590,6 +748,14 @@ getFirst(): T
 | 类型 | 说明 |
 | -------- | -------- |
 | T | 返回对应元素，如果为空返回undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getFirst method cannot be bound. |
 
 **示例：**
 
@@ -616,6 +782,14 @@ getLast(): T
 | -------- | -------- |
 | T | 返回对应元素，如果为空返回undefined。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getLast method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -640,6 +814,14 @@ linkedList.getLast();
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 

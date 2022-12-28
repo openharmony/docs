@@ -1,6 +1,6 @@
-# 媒体库管理
+# @ohos.multimedia.medialibrary (媒体库管理)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 该组件从API Version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
@@ -45,6 +45,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 let media = mediaLibrary.getMediaLibrary(context);
 ```
+
 ## mediaLibrary.getMediaLibrary
 
 getMediaLibrary(): MediaLibrary
@@ -52,8 +53,6 @@ getMediaLibrary(): MediaLibrary
 获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如音频、视频、图片、文档等）。
 
 此接口仅可在FA模型下使用。
-
-> **说明**： 从API Version 8开始，该接口不再维护，推荐使用新接口[mediaLibrary.getMediaLibrary<sup>8+</sup>](#medialibrarygetmedialibrary8)。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -193,7 +192,7 @@ media.getFileAssets(imagesFetchOp).then(function(fetchFileResult) {
 
 ### on<sup>8+</sup>
 
-on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback: Callback&lt;void&gt;): void
+on(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange', callback: Callback&lt;void&gt;): void
 
 打开媒体库变更通知，使用callback方式返回异步结果。
 
@@ -203,8 +202,8 @@ on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|
 
 | 参数名      | 类型                   | 必填   | 说明                                       |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| type     | string               | 是    | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
-| callback | callback&lt;void&gt; | 是    | 回调返回空                                    |
+| type     | 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange'               | 是    | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
+| callback | Callback&lt;void&gt; | 是    | 回调返回空                                    |
 
 **示例：**
 
@@ -215,7 +214,7 @@ media.on('imageChange', () => {
 ```
 ### off<sup>8+</sup>
 
-off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback?: Callback&lt;void&gt;): void
+off(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange', callback?: Callback&lt;void&gt;): void
 
 关闭媒体库变更通知，使用callback方式返回异步结果。
 
@@ -225,8 +224,8 @@ off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'
 
 | 参数名      | 类型                   | 必填   | 说明                                       |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| type     | string               | 是    | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
-| callback | callback&lt;void&gt; | 否    | 回调返回空                                    |
+| type     | 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange'               | 是    | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
+| callback | Callback&lt;void&gt; | 否    | 回调返回空                                    |
 
 **示例：**
 
@@ -300,12 +299,17 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 **示例：**
 
 ```js
-let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
-media.getPublicDirectory(DIR_CAMERA).then(function(dicResult){
-    console.info("getPublicDirectory successfully:"+ JSON.stringify(dicResult));
-}).catch(function(err){
-    console.info("getPublicDirectory failed with error:"+ err);
-});
+async function example() {
+    // 使用Promise方式创建Image类型文件
+    let mediaType = mediaLibrary.MediaType.IMAGE;
+    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+    const path = await media.getPublicDirectory(DIR_IMAGE);
+    media.createAsset(mediaType, 'imagePromise.jpg', path + 'myPicture/').then((fileAsset) => {
+        console.info('createAsset successfully, message = ' + JSON.stringify(fileAsset));
+    }).catch((err) => {
+        console.info('createAsset failed, message = ' + err);
+    });
+}
 ```
 
 ### deleteAsset<sup>8+</sup>
@@ -341,8 +345,6 @@ async function example() {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
     };
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     let asset = await fetchFileResult.getFirstObject();
     if (asset == undefined) {
@@ -385,8 +387,6 @@ async function example() {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
     };
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     let asset = await fetchFileResult.getFirstObject();
     if (asset == undefined) {
@@ -554,7 +554,6 @@ release(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-var media = mediaLibrary.getMediaLibrary(context);
 media.release((err) => {
     // do something
 });
@@ -660,7 +659,7 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
 
 startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
 
-启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
+启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
 > **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
@@ -670,7 +669,7 @@ startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCal
 
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（"https://"，"dataability://"）列表。 |
+| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（"https://"，"datashare://"）列表。 |
 | index    | number                    | 是    | 开始显示的图片序号。                               |
 | callback | AsyncCallback&lt;void&gt; | 是    | 图片预览回调，失败时返回错误信息。                        |
 
@@ -678,8 +677,8 @@ startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCal
 
 ```js
 let images = [
-    "dataability:///media/xxxx/2",
-    "dataability:///media/xxxx/3"
+    "datashare:///media/xxxx/2",
+    "datashare:///media/xxxx/3"
 ];
 /* 网络图片使用方式
 let images = [
@@ -702,7 +701,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index, (err) => {
 
 startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-启动图片预览界面，可以预览列表中首张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
+启动图片预览界面，可以预览列表中首张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
 > **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
@@ -712,15 +711,15 @@ startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&g
 
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（"https://"，"dataability://"）列表。 |
+| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（"https://"，"datashare://"）列表。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 图片预览回调，失败时返回错误信息。                        |
 
 **示例：**
 
 ```js
 let images = [
-    "dataability:///media/xxxx/2",
-    "dataability:///media/xxxx/3"
+    "datashare:///media/xxxx/2",
+    "datashare:///media/xxxx/3"
 ];
 /* 网络图片使用方式
 let images = [
@@ -742,7 +741,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, (err) => {
 
 startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
 
-启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
+启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
 
 > **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
@@ -752,7 +751,7 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 
 | 参数名    | 类型                  | 必填   | 说明                                       |
 | ------ | ------------------- | ---- | ---------------------------------------- |
-| images | Array&lt;string&gt; | 是    | 预览的图片URI（"https://"，"dataability://"）列表。 |
+| images | Array&lt;string&gt; | 是    | 预览的图片URI（"https://"，"datashare://"）列表。 |
 | index  | number              | 否    | 开始显示的图片序号，不选择时默认为0。                      |
 
 **返回值：**
@@ -765,8 +764,8 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 
 ```js
 let images = [
-    "dataability:///media/xxxx/2",
-    "dataability:///media/xxxx/3"
+    "datashare:///media/xxxx/2",
+    "datashare:///media/xxxx/3"
 ];
 /* 网络图片使用方式
 let images = [
@@ -798,7 +797,7 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 | 参数名      | 类型                                       | 必填   | 说明                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | option   | [MediaSelectOption](#mediaselectoptiondeprecated)  | 是    | 媒体选择选项。                              |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 媒体选择回调，返回选择的媒体URI（dataability://）列表。 |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 媒体选择回调，返回选择的媒体URI（datashare://）列表。 |
 
 **示例：**
 
@@ -838,7 +837,7 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                                 | 说明                                       |
 | ---------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise实例，用于异步获取选择的媒体URI（dataability://）列表。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise实例，用于异步获取选择的媒体URI（datashare://）列表。 |
 
 **示例：**
 
@@ -871,14 +870,12 @@ getActivePeers(): Promise\<Array\<PeerInfo>>;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-|  Promise\<Array\<PeerInfo>> | 返回获取的所有在线对端设备的PeerInfo |
+|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有在线对端设备的PeerInfo |
 
 **示例：**
 
 ```js
 async function example() {
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
     media.getActivePeers().then((devicesInfo) => {
         if (devicesInfo != undefined) {
             for (let i = 0; i < devicesInfo.length; i++) {
@@ -909,14 +906,12 @@ getActivePeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<PeerInfo>> | 返回获取的所有在线对端设备的PeerInfo |
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有在线对端设备的PeerInfo |
 
 **示例：**
 
 ```js
 async function example() {
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
     media.getActivePeers((err, devicesInfo) => {
         if (devicesInfo != undefined) {
             for (let i = 0; i < devicesInfo.length; i++) {
@@ -946,14 +941,12 @@ getAllPeers(): Promise\<Array\<PeerInfo>>;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-|  Promise\<Array\<PeerInfo>> | 返回获取的所有对端设备的PeerInfo |
+|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有对端设备的PeerInfo |
 
 **示例：**
 
 ```js
 async function example() {
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
     media.getAllPeers().then((devicesInfo) => {
         if (devicesInfo != undefined) {
             for (let i = 0; i < devicesInfo.length; i++) {
@@ -984,14 +977,12 @@ getAllPeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<PeerInfo>> | 返回获取的所有对端设备的PeerInfo |
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有对端设备的PeerInfo |
 
 **示例：**
 
 ```js
 async function example() {
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
     media.getAllPeers((err, devicesInfo) => {
         if (devicesInfo != undefined) {
             for (let i = 0; i < devicesInfo.length; i++) {
@@ -1008,6 +999,10 @@ async function example() {
 
 提供封装文件属性的方法。
 
+> **说明：**
+> 1. title字段默认为去掉后缀的文件名，音频和视频文件会尝试解析文件内容，部分设备写入后在触发扫描时会被还原。
+> 2. orientation字段部分设备可能不支持修改，建议使用image组件的[ModifyImageProperty](js-apis-image.md#modifyimageproperty9)接口。
+
 ### 属性
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
@@ -1015,7 +1010,7 @@ async function example() {
 | 名称                      | 类型                     | 可读 | 可写 | 说明                                                   |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
 | id                        | number                   | 是   | 否   | 文件资源编号                                           |
-| uri                       | string                   | 是   | 否   | 文件资源uri（如：dataability:///media/image/2)         |
+| uri                       | string                   | 是   | 否   | 文件资源uri（如：datashare:///media/image/2)         |
 | mimeType                  | string                   | 是   | 否   | 文件扩展属性                                           |
 | mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | 是   | 否   | 媒体类型                                               |
 | displayName               | string                   | 是   | 是   | 显示文件名，包含后缀名                                 |
@@ -2465,40 +2460,43 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称  |  说明 |
-| ----- |  ---- |
-| FILE  |  文件 |
-| IMAGE |  图片 |
-| VIDEO |  视频 |
-| AUDIO |  音频 |
+| 名称  |  值 |  说明 |
+| ----- |  ---- | ---- |
+| FILE  |  0 | 文件 |
+| IMAGE |  1 | 图片 |
+| VIDEO |  2 | 视频 |
+| AUDIO |  3 | 音频 |
 
 ## FileKey<sup>8+</sup>
 
 枚举，文件关键信息。
 
+> **说明：**
+> bucket_id字段在文件重命名或移动后可能会发生变化，开发者使用前需要重新获取。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称          | 默认值              | 说明                                                       |
+| 名称          | 值              | 说明                                                       |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| ID            | file_id             | 文件编号                                                   |
-| RELATIVE_PATH | relative_path       | 相对公共目录路径                                           |
-| DISPLAY_NAME  | display_name        | 显示名字                                                   |
-| PARENT        | parent              | 父目录id                                                   |
-| MIME_TYPE     | mime_type           | 文件扩展属性                                               |
-| MEDIA_TYPE    | media_type          | 媒体类型                                                   |
-| SIZE          | size                | 文件大小（单位：字节）                                     |
-| DATE_ADDED    | date_added          | 添加日期（添加文件时间到1970年1月1日的秒数值）             |
-| DATE_MODIFIED | date_modified       | 修改日期（修改文件时间到1970年1月1日的秒数值）             |
-| DATE_TAKEN    | date_taken          | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）             |
-| TITLE         | title               | 文件标题                                                   |
-| ARTIST        | artist              | 作者                                                       |
-| AUDIOALBUM    | audio_album         | 专辑                                                       |
-| DURATION      | duration            | 持续时间（单位：毫秒）                                       |
-| WIDTH         | width               | 图片宽度（单位：像素）                                     |
-| HEIGHT        | height              | 图片高度（单位：像素）                                     |
-| ORIENTATION   | orientation         | 图片显示方向，即顺时针旋转角度，如0，90，180。（单位：度） |
-| ALBUM_ID      | bucket_id           | 文件所归属的相册编号                                       |
-| ALBUM_NAME    | bucket_display_name | 文件所归属相册名称                                         |
+| ID            | "file_id"             | 文件编号                                                   |
+| RELATIVE_PATH | "relative_path"       | 相对公共目录路径                                           |
+| DISPLAY_NAME  | "display_name"        | 显示名字                                                   |
+| PARENT        | "parent"              | 父目录id                                                   |
+| MIME_TYPE     | "mime_type"           | 文件扩展属性                                               |
+| MEDIA_TYPE    | "media_type"          | 媒体类型                                                   |
+| SIZE          | "size"                | 文件大小（单位：字节）                                     |
+| DATE_ADDED    | "date_added"          | 添加日期（添加文件时间到1970年1月1日的秒数值）             |
+| DATE_MODIFIED | "date_modified"       | 修改日期（修改文件时间到1970年1月1日的秒数值）             |
+| DATE_TAKEN    | "date_taken"          | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）             |
+| TITLE         | "title"               | 文件标题                                                   |
+| ARTIST        | "artist"              | 作者                                                       |
+| AUDIOALBUM    | "audio_album"         | 专辑                                                       |
+| DURATION      | "duration"            | 持续时间（单位：毫秒）                                       |
+| WIDTH         | "width"               | 图片宽度（单位：像素）                                     |
+| HEIGHT        | "height"              | 图片高度（单位：像素）                                     |
+| ORIENTATION   | "orientation"         | 图片显示方向，即顺时针旋转角度，如0，90，180。（单位：度） |
+| ALBUM_ID      | "bucket_id"           | 文件所归属的相册编号                                       |
+| ALBUM_NAME    | "bucket_display_name" | 文件所归属相册名称                                         |
 
 ## DirectoryType<sup>8+</sup>
 
@@ -2506,14 +2504,14 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称          |  说明               |
-| ------------- |  ------------------ |
-| DIR_CAMERA    |  表示Camera文件路径 |
-| DIR_VIDEO     |  表示视频路径       |
-| DIR_IMAGE     |  表示图片路径       |
-| DIR_AUDIO     |  表示音频路径       |
-| DIR_DOCUMENTS |  表示文档路径       |
-| DIR_DOWNLOAD  |  表示下载路径       |
+| 名称          | 值 |  说明               |
+| ------------- | --- | ------------------ |
+| DIR_CAMERA    |  0 | 表示Camera文件路径 |
+| DIR_VIDEO     |  1 |  表示视频路径       |
+| DIR_IMAGE     |  2 | 表示图片路径       |
+| DIR_AUDIO     |  3 | 表示音频路径       |
+| DIR_DOCUMENTS |  4 | 表示文档路径       |
+| DIR_DOWNLOAD  |  5 |  表示下载路径       |
 
 ## DeviceType<sup>8+</sup>
 
@@ -2523,15 +2521,15 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
-| 名称         |  说明       |
-| ------------ |  ---------- |
-| TYPE_UNKNOWN |  未识别设备 |
-| TYPE_LAPTOP  |  笔记本电脑 |
-| TYPE_PHONE   |  手机       |
-| TYPE_TABLET  |  平板电脑   |
-| TYPE_WATCH   |  智能手表   |
-| TYPE_CAR     |  车载设备   |
-| TYPE_TV      |  电视设备   |
+| 名称         |  值 | 说明       |
+| ------------ | --- | ---------- |
+| TYPE_UNKNOWN |  0 | 未识别设备 |
+| TYPE_LAPTOP  |  1 | 笔记本电脑 |
+| TYPE_PHONE   |  2 | 手机       |
+| TYPE_TABLET  |  3 | 平板电脑   |
+| TYPE_WATCH   |  4 | 智能手表   |
+| TYPE_CAR     |  5 | 车载设备   |
+| TYPE_TV      |  6 | 电视设备   |
 
 ## MediaFetchOptions<sup>7+</sup>
 
@@ -2539,14 +2537,14 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称                    | 类型                | 可读 | 可写 | 必填 | 说明                                                         |
-| ----------------------- | ------------------- | ---- | ---- | ---- | ------------------------------------------------------------ |
-| selections              | string              | 是   | 是   | 是   | 检索条件，使用[FileKey](#filekey8)中的枚举值作为检索条件的列名。示例：<br />selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?', |
-| selectionArgs           | Array&lt;string&gt; | 是   | 是   | 是   | 检索条件的值，对应selections中检索条件列的值。<br />示例：<br />selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order                   | string              | 是   | 是   | 否   | 检索结果排序方式，使用[FileKey](#filekey8)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br />升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " ASC"<br />降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
-| uri<sup>8+</sup>        | string              | 是   | 是   | 否   | 文件URI                                                      |
-| networkId<sup>8+</sup>  | string              | 是   | 是   | 否   | 注册设备网络ID                                               |
-| extendArgs<sup>8+</sup> | string              | 是   | 是   | 否   | 扩展的检索参数，目前没有扩展检索参数                         |
+| 名称                    | 类型                | 可读 | 可写 | 说明                                                         |
+| ----------------------- | ------------------- | ---- | ---- | ------------------------------------------------------------ |
+| selections              | string              | 是   | 是   | 检索条件，使用[FileKey](#filekey8)中的枚举值作为检索条件的列名。示例：<br/>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?', |
+| selectionArgs           | Array&lt;string&gt; | 是   | 是   | 检索条件的值，对应selections中检索条件列的值。<br/>示例：<br/>selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
+| order                   | string              | 是   | 是   | 检索结果排序方式，使用[FileKey](#filekey8)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br/>升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " ASC"<br/>降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
+| uri<sup>8+</sup>        | string              | 是   | 是   | 文件URI                                                      |
+| networkId<sup>8+</sup>  | string              | 是   | 是   | 注册设备网络ID                                               |
+| extendArgs<sup>8+</sup> | string              | 是   | 是   | 扩展的检索参数，目前没有扩展检索参数                         |
 
 ## Size<sup>8+</sup>
 
@@ -2568,11 +2566,11 @@ async function example() {
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
 
-| 名称         | 类型   | 必填 | 描述                                                         |
-| ------------ | ------ | ---- | ------------------------------------------------------------ |
-| src          | string | 是   | 本地文件应用沙箱路径。                                       |
-| mimeType     | string | 是   | 媒体MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型。<br/>包括：'image/\*'、'video/\*'、'audio/\*'、 'file\*'。 |
-| relativePath | string | 否   | 自定义媒体资源保存位置，例：Pictures/ 不填则保存到默认路径。 <br/> image类型默认路径Pictures/ <br/> video类型默认路径Videos/ <br/> audio类型默认路径Audios/ <br/> file类型默认路径Documents/ 。 |
+| 名称         | 类型   | 可读 | 可写 | 说明                                                         |
+| ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| src          | string | 是   | 是   | 本地文件应用沙箱路径。                                       |
+| mimeType     | string | 是   | 是   | 媒体MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型。<br/>包括：'image/\*'、'video/\*'、'audio/\*'、 'file\*'。 |
+| relativePath | string | 是   | 是   | 自定义媒体资源保存位置，例：Pictures/ 不填则保存到默认路径。 <br/> image类型默认路径Pictures/ <br/> video类型默认路径Videos/ <br/> audio类型默认路径Audios/ <br/> file类型默认路径Documents/ 。 |
 
 ## MediaSelectOption<sup>(deprecated)</sup>
 
@@ -2582,8 +2580,8 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称    | 类型     | 必填   | 描述                   |
-| ----- | ------ | ---- | -------------------- |
-| type  | string | 是    | 媒体类型，包括：image, video, media，当前仅支持media类型 |
-| count | number | 是    | 媒体选择，count = 1表示单选，count大于1表示多选。            |
+| 名称    | 类型     | 可读 | 可写 | 说明                   |
+| ----- | ------ | ---- | ---- | -------------------- |
+| type  | 'image' &#124; 'video' &#124; 'media' | 是    | 是  | 媒体类型，包括：image, video, media，当前仅支持media类型 |
+| count | number | 是    | 是  | 媒体选择，count = 1表示单选，count大于1表示多选。            |
 

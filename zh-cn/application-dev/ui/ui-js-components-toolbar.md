@@ -153,17 +153,17 @@ toolbar-item{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     itemColor:'black'
   },
   itemClick(){
     this.itemColor= "red";
-    prompt.showToast({duration:2000,message:'item click'});
+    promptAction.showToast({duration:2000,message:'item click'});
   },
   itemLongPress(){
-    prompt.showToast({duration:2000,message:'item long press'});
+    promptAction.showToast({duration:2000,message:'item long press'});
     this.itemColor= "blue";
   },
 }
@@ -210,7 +210,6 @@ toolbar-item{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     active: 0,

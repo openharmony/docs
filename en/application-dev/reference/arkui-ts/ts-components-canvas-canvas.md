@@ -3,13 +3,8 @@
 The **\<Canvas>** component can be used to customize drawings.
 
 > **NOTE**
->
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+> 
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Child Components
 
@@ -37,7 +32,8 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | ----------------------------- | ---- | -------------------- |
 | onReady(event: () => void) | -   | Triggered when a canvas is ready. When this event is triggered, the width and height of the canvas can be obtained, and you can use the canvas APIs to draw images.|
 
-## Example
+
+**Example**
 
 ```ts
 // xxx.ets
@@ -53,8 +49,8 @@ struct CanvasExample {
         .width('100%')
         .height('100%')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.fillRect(0,30,100,100)
+        .onReady(() => {
+          this.context.fillRect(0, 30, 100, 100)
         })
     }
     .width('100%')
@@ -62,3 +58,4 @@ struct CanvasExample {
   }
 }
 ```
+  ![en-us_image_0000001194032666](figures/en-us_image_0000001194032666.png)

@@ -2,7 +2,7 @@
 
 ## Overview<a name="section315316685115"></a>
 
-If HiSysEvent logging is required for a component, you need to define a YAML file and [configure the YAML file path](#section123181432175135) in the **bundle.js** file. During compilation, the OpenHarmony compilation framework will use the Python compilation script to parse and verify all the YAML files configured in the **bundle.js** file. On completion, the compilation framework will summarize the configuration information in the YAML files and convert the information into a JSON file named **hisysevent.def**. After that, the compilation framework will put the JSON file to a specified path as the basis for the system to determine whether to log system events.
+If HiSysEvent logging is required for a component, you need to define a YAML file and [configure the YAML file path](#section123181432175135) in the **bundle.json** file. During compilation, the OpenHarmony compilation framework will use the Python compilation script to parse and verify all the YAML files configured in the **bundle.json** file. On completion, the compilation framework will summarize the configuration information in the YAML files and convert the information into a JSON file named **hisysevent.def**. After that, the compilation framework will put the JSON file to a specified path as the basis for the system to determine whether to log system events.
 
 ### Basic Concepts<a name="section123181432175143"></a>
 
@@ -88,7 +88,7 @@ Understanding the following concepts would be helpful for you in configuring HiS
 
 ### Configuring the YAML File Path<a name="section123181432175135"></a>
 
-In the **bundle.js** file, use the ```hisysevent_config``` attribute to specify the YAML file path.
+In the **bundle.json** file, use the ```hisysevent_config``` attribute to specify the YAML file path.
 
 ```
 {
@@ -132,7 +132,7 @@ In the **bundle.js** file, use the ```hisysevent_config``` attribute to specify 
 ```
 
 >![](../public_sys-resources/icon-note.gif) **Note:**
->The YAML file can be placed in any directory of the component project as needed. You only need to specify the path in the **bundle.js** file.
+>The YAML file can be placed in any directory of the component project as needed. You only need to specify the path in the **bundle.json** file.
 
 ### Compiling the YAML File<a name="section123181432175137"></a>
 

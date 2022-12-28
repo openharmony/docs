@@ -1,4 +1,4 @@
-# 媒体服务
+# @ohos.multimedia.media (媒体服务)
 
 > **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -52,7 +52,7 @@ createVideoPlayer(callback: AsyncCallback\<[VideoPlayer](#videoplayer8)>): void
 
 | 参数名   | 类型                                        | 必填 | 说明                           |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | 是   | 回调函数。异步返回VideoPlayer实例，可用于管理和播放视频媒体。 |
+| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | 是   | 回调函数。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
 
 **示例：**
 
@@ -79,9 +79,9 @@ createVideoPlayer(): Promise<[VideoPlayer](#videoplayer8)>
 
 **返回值：**
 
-| 类型                                  | 说明                                |
-| ------------------------------------- | ----------------------------------- |
-| Promise<[VideoPlayer](#videoplayer8)> | Promise对象。异步返回VideoPlayer实例，可用于管理和播放视频媒体。 |
+| 类型                                  | 说明                                                         |
+| ------------------------------------- | ------------------------------------------------------------ |
+| Promise<[VideoPlayer](#videoplayer8)> | Promise对象。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
 
 **示例：**
 
@@ -111,9 +111,9 @@ createAudioRecorder(): AudioRecorder
 
 **返回值:**
 
-| 类型                            | 说明                                      |
-| ------------------------------- | ----------------------------------------- |
-| [AudioRecorder](#audiorecorder) | 返回AudioRecorder类实例，失败时返回null。 |
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| [AudioRecorder](#audiorecorder) | 返回AudioRecorder类实例，失败时返回null。可用于录制音频媒体。 |
 
 **示例：**
 
@@ -130,11 +130,21 @@ createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder9)>):
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | 是   | 回调函数。异步返回VideoRecorder实例，可用于录制视频媒体。 |
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | 是   | 回调函数。异步返回VideoRecorder实例，失败时返回null。可用于录制视频媒体。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 5400101  | No memory. Return by callback. |
 
 **示例：**
 
@@ -160,11 +170,21 @@ createVideoRecorder(): Promise<[VideoRecorder](#videorecorder9)>
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
-| 类型                                      | 说明                                |
-| ----------------------------------------- | ----------------------------------- |
-| Promise<[VideoRecorder](#videorecorder9)> | Promise对象。异步返回VideoRecorder实例，可用于录制视频媒体。 |
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[VideoRecorder](#videorecorder9)> | Promise对象。异步返回VideoRecorder实例，失败时返回null。可用于录制视频媒体。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Return by promise. |
 
 **示例：**
 
@@ -228,7 +248,7 @@ Codec MIME类型枚举。
 | VIDEO_MPEG2  | 'video/mpeg2'         | 表示视频/mpeg2类型。     |
 | VIDEO_MPEG4  | 'video/mp4v-es'       | 表示视频/mpeg4类型。     |
 | VIDEO_VP8    | 'video/x-vnd.on2.vp8' | 表示视频/vp8类型。       |
-| AUDIO_AAC    | "audio/mp4a-latm"     | 表示音频/mp4a-latm类型。 |
+| AUDIO_AAC    | 'audio/mp4a-latm'     | 表示音频/mp4a-latm类型。 |
 | AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。    |
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
 
@@ -240,16 +260,16 @@ Codec MIME类型枚举。
 
 | 名称                     | 值              | 说明                                                         |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
-| MD_KEY_TRACK_INDEX       | "track_index"   | 表示轨道序号，其对应键值类型为number。                       |
-| MD_KEY_TRACK_TYPE        | "track_type"    | 表示轨道类型，其对应键值类型为number，参考[MediaType](#mediatype8)。 |
-| MD_KEY_CODEC_MIME        | "codec_mime"    | 表示codec_mime类型，其对应键值类型为string。                 |
-| MD_KEY_DURATION          | "duration"      | 表示媒体时长，其对应键值类型为number，单位为毫秒（ms）。     |
-| MD_KEY_BITRATE           | "bitrate"       | 表示比特率，其对应键值类型为number，单位为比特率（bps）。    |
-| MD_KEY_WIDTH             | "width"         | 表示视频宽度，其对应键值类型为number，单位为像素（px）。     |
-| MD_KEY_HEIGHT            | "height"        | 表示视频高度，其对应键值类型为number，单位为像素（px）。     |
-| MD_KEY_FRAME_RATE        | "frame_rate"    | 表示视频帧率，其对应键值类型为number，单位为100帧每秒（100fps）。 |
-| MD_KEY_AUD_CHANNEL_COUNT | "channel_count" | 表示声道数，其对应键值类型为number。                         |
-| MD_KEY_AUD_SAMPLE_RATE   | "sample_rate"   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。       |
+| MD_KEY_TRACK_INDEX       | 'track_index'   | 表示轨道序号，其对应键值类型为number。                       |
+| MD_KEY_TRACK_TYPE        | 'track_type'    | 表示轨道类型，其对应键值类型为number，参考[MediaType](#mediatype8)。 |
+| MD_KEY_CODEC_MIME        | 'codec_mime'    | 表示codec_mime类型，其对应键值类型为string。                 |
+| MD_KEY_DURATION          | 'duration'      | 表示媒体时长，其对应键值类型为number，单位为毫秒（ms）。     |
+| MD_KEY_BITRATE           | 'bitrate'       | 表示比特率，其对应键值类型为number，单位为比特率（bps）。    |
+| MD_KEY_WIDTH             | 'width'         | 表示视频宽度，其对应键值类型为number，单位为像素（px）。     |
+| MD_KEY_HEIGHT            | 'height'        | 表示视频高度，其对应键值类型为number，单位为像素（px）。     |
+| MD_KEY_FRAME_RATE        | 'frame_rate'    | 表示视频帧率，其对应键值类型为number，单位为100帧每秒（100fps）。 |
+| MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 表示声道数，其对应键值类型为number。                         |
+| MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。       |
 
 ## BufferingInfoType<sup>8+</sup>
 
@@ -338,7 +358,7 @@ audioPlayer.stop();
 
 reset(): void
 
-切换播放音频资源。
+重置播放音频资源。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -361,9 +381,9 @@ seek(timeMs: number): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                 |
-| ------ | ------ | ---- | ------------------------------------ |
-| timeMs | number | 是   | 指定的跳转时间节点，单位毫秒（ms）。 |
+| 参数名 | 类型   | 必填 | 说明                                                        |
+| ------ | ------ | ---- | ----------------------------------------------------------- |
+| timeMs | number | 是   | 指定的跳转时间节点，单位毫秒（ms），取值范围[0, duration]。 |
 
 **示例：**
 
@@ -426,9 +446,9 @@ getTrackDescription(callback: AsyncCallback<Array\<MediaDescription>>): void
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                       |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | 是   | 获取音频轨道信息回调方法。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                       |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | 是   | 音频轨道信息MediaDescription数组回调方法。 |
 
 **示例：**
 
@@ -441,10 +461,10 @@ function printfDescription(obj) {
     }
 }
 
-audioPlayer.getTrackDescription((error, arrlist) => {
-    if (arrlist != null) {
-        for (let i = 0; i < arrlist.length; i++) {
-            printfDescription(arrlist[i]);
+audioPlayer.getTrackDescription((error, arrList) => {
+    if (arrList != null) {
+        for (let i = 0; i < arrList.length; i++) {
+            printfDescription(arrList[i]);
         }
     } else {
         console.log(`audio getTrackDescription fail, error:${error}`);
@@ -462,9 +482,9 @@ getTrackDescription(): Promise<Array\<MediaDescription>>
 
 **返回值：**
 
-| 类型                                                   | 说明                            |
-| ------------------------------------------------------ | ------------------------------- |
-| Promise<Array<[MediaDescription](#mediadescription8)>> | 获取音频轨道信息Promise返回值。 |
+| 类型                                                   | 说明                                            |
+| ------------------------------------------------------ | ----------------------------------------------- |
+| Promise<Array<[MediaDescription](#mediadescription8)>> | 音频轨道信息MediaDescription数组Promise返回值。 |
 
 **示例：**
 
@@ -477,9 +497,9 @@ function printfDescription(obj) {
     }
 }
 let arrayDescription = null
-audioPlayer.getTrackDescription().then((arrlist) => {
-    if (arrlist != null) {
-        arrayDescription = arrlist;
+audioPlayer.getTrackDescription().then((arrList) => {
+    if (arrList != null) {
+        arrayDescription = arrList;
     } else {
         console.log('audio getTrackDescription fail');
     }
@@ -496,7 +516,7 @@ for (let i = 0; i < arrayDescription.length; i++) {
 
 on(type: 'bufferingUpdate', callback: (infoType: [BufferingInfoType](#bufferinginfotype8), value: number) => void): void
 
-开始订阅音频缓存更新事件。
+开始订阅音频缓存更新事件。仅网络播放支持该订阅事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -593,7 +613,7 @@ audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
 
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
-开始订阅音频播放时间更新事件。
+开始订阅音频播放时间更新事件。处于播放状态时，每隔1s上报一次该事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -647,7 +667,7 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
-| 名称    | 类型   | 描述                                           |
+| 名称    | 类型   | 说明                                           |
 | ------- | ------ | ---------------------------------------------- |
 | idle    | string | 音频播放空闲，dataload/reset成功后处于此状态。 |
 | playing | string | 音频正在播放，play成功后处于此状态。           |
@@ -702,10 +722,10 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名    | 类型     | 必填 | 说明                      |
-| --------- | -------- | ---- | ------------------------- |
-| surfaceId | string   | 是   | SurfaceId                 |
-| callback  | function | 是   | 设置SurfaceId的回调方法。 |
+| 参数名    | 类型                 | 必填 | 说明                      |
+| --------- | -------------------- | ---- | ------------------------- |
+| surfaceId | string               | 是   | SurfaceId                 |
+| callback  | AsyncCallback\<void> | 是   | 设置SurfaceId的回调方法。 |
 
 **示例：**
 
@@ -763,9 +783,9 @@ prepare(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                     |
-| -------- | -------- | ---- | ------------------------ |
-| callback | function | 是   | 准备播放视频的回调方法。 |
+| 参数名   | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<void> | 是   | 准备播放视频的回调方法。 |
 
 **示例：**
 
@@ -813,9 +833,9 @@ play(callback: AsyncCallback\<void>): void;
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                     |
-| -------- | -------- | ---- | ------------------------ |
-| callback | function | 是   | 开始播放视频的回调方法。 |
+| 参数名   | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<void> | 是   | 开始播放视频的回调方法。 |
 
 **示例：**
 
@@ -863,9 +883,9 @@ pause(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                     |
-| -------- | -------- | ---- | ------------------------ |
-| callback | function | 是   | 暂停播放视频的回调方法。 |
+| 参数名   | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<void> | 是   | 暂停播放视频的回调方法。 |
 
 **示例：**
 
@@ -913,9 +933,9 @@ stop(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                     |
-| -------- | -------- | ---- | ------------------------ |
-| callback | function | 是   | 停止播放视频的回调方法。 |
+| 参数名   | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<void> | 是   | 停止播放视频的回调方法。 |
 
 **示例：**
 
@@ -957,15 +977,15 @@ videoPlayer.stop().then(() => {
 
 reset(callback: AsyncCallback\<void>): void
 
-通过回调方式切换播放视频。
+通过回调方式重置播放视频。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                     |
-| -------- | -------- | ---- | ------------------------ |
-| callback | function | 是   | 切换播放视频的回调方法。 |
+| 参数名   | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<void> | 是   | 切换播放视频的回调方法。 |
 
 **示例：**
 
@@ -983,7 +1003,7 @@ videoPlayer.reset((err) => {
 
 reset(): Promise\<void>
 
-通过Promise方式切换播放视频。
+通过Promise方式重置播放视频。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1013,10 +1033,10 @@ seek(timeMs: number, callback: AsyncCallback\<number>): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                                 |
-| -------- | -------- | ---- | ------------------------------------ |
-| timeMs   | number   | 是   | 指定的跳转时间节点，单位毫秒（ms）。 |
-| callback | function | 是   | 跳转到指定播放位置的回调方法。       |
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| timeMs   | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms），取值范围为[0, duration]。 |
+| callback | AsyncCallback\<number> | 是   | 跳转到指定播放位置的回调方法。                               |
 
 **示例：**
 
@@ -1041,11 +1061,11 @@ seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                                 |
-| -------- | ---------------------- | ---- | ------------------------------------ |
-| timeMs   | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms）。 |
-| mode     | [SeekMode](#seekmode8) | 是   | 跳转模式。                           |
-| callback | function               | 是   | 跳转到指定播放位置的回调方法。       |
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| timeMs   | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms），取值范围为[0, duration]。 |
+| mode     | [SeekMode](#seekmode8) | 是   | 跳转模式。                                                   |
+| callback | AsyncCallback\<number> | 是   | 跳转到指定播放位置的回调方法。                               |
 
 **示例：**
 
@@ -1071,16 +1091,16 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 
 **参数：**
 
-| 参数名 | 类型                   | 必填 | 说明                                 |
-| ------ | ---------------------- | ---- | ------------------------------------ |
-| timeMs | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms）。 |
-| mode   | [SeekMode](#seekmode8) | 否   | 跳转模式。                           |
+| 参数名 | 类型                   | 必填 | 说明                                                         |
+| ------ | ---------------------- | ---- | ------------------------------------------------------------ |
+| timeMs | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms），取值范围为[0, duration]。 |
+| mode   | [SeekMode](#seekmode8) | 否   | 跳转模式。                                                   |
 
 **返回值：**
 
-| 类型           | 说明                                |
-| -------------- | ----------------------------------- |
-| Promise\<void> | 跳转到指定播放位置的Promise返回值。 |
+| 类型           | 说明                                        |
+| -------------- | ------------------------------------------- |
+| Promise\<number> | 跳转到指定播放位置的Promise返回值，单位ms。 |
 
 **示例：**
 
@@ -1110,10 +1130,10 @@ setVolume(vol: number, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                                                         |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| vol      | number   | 是   | 指定的相对音量大小，取值范围为[0.00-1.00]，1表示最大音量，即100%。 |
-| callback | function | 是   | 设置音量的回调方法。                                         |
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| vol      | number               | 是   | 指定的相对音量大小，取值范围为[0.00-1.00]，1表示最大音量，即100%。 |
+| callback | AsyncCallback\<void> | 是   | 设置音量的回调方法。                                         |
 
 **示例：**
 
@@ -1169,9 +1189,9 @@ release(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                     |
-| -------- | -------- | ---- | ------------------------ |
-| callback | function | 是   | 释放视频资源的回调方法。 |
+| 参数名   | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<void> | 是   | 释放视频资源的回调方法。 |
 
 **示例：**
 
@@ -1219,9 +1239,9 @@ getTrackDescription(callback: AsyncCallback<Array\<MediaDescription>>): void
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                       |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | 是   | 获取视频轨道信息回调方法。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                       |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | 是   | 视频轨道信息MediaDescription数组回调方法。 |
 
 **示例：**
 
@@ -1234,10 +1254,10 @@ function printfDescription(obj) {
     }
 }
 
-videoPlayer.getTrackDescription((error, arrlist) => {
-    if ((arrlist) != null) {
-        for (let i = 0; i < arrlist.length; i++) {
-            printfDescription(arrlist[i]);
+videoPlayer.getTrackDescription((error, arrList) => {
+    if ((arrList) != null) {
+        for (let i = 0; i < arrList.length; i++) {
+            printfDescription(arrList[i]);
         }
     } else {
         console.log(`video getTrackDescription fail, error:${error}`);
@@ -1255,9 +1275,9 @@ getTrackDescription(): Promise<Array\<MediaDescription>>
 
 **返回值：**
 
-| 类型                                                   | 说明                            |
-| ------------------------------------------------------ | ------------------------------- |
-| Promise<Array<[MediaDescription](#mediadescription8)>> | 获取视频轨道信息Promise返回值。 |
+| 类型                                                   | 说明                                            |
+| ------------------------------------------------------ | ----------------------------------------------- |
+| Promise<Array<[MediaDescription](#mediadescription8)>> | 视频轨道信息MediaDescription数组Promise返回值。 |
 
 **示例：**
 
@@ -1271,9 +1291,9 @@ function printfDescription(obj) {
 }
 
 let arrayDescription;
-videoPlayer.getTrackDescription().then((arrlist) => {
-    if (arrlist != null) {
-        arrayDescription = arrlist;
+videoPlayer.getTrackDescription().then((arrList) => {
+    if (arrList != null) {
+        arrayDescription = arrList;
     } else {
         console.log('video getTrackDescription fail');
     }
@@ -1295,10 +1315,10 @@ setSpeed(speed:number, callback: AsyncCallback\<number>): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                                                       |
-| -------- | -------- | ---- | ---------------------------------------------------------- |
-| speed    | number   | 是   | 指定播放视频速度，具体见[PlaybackSpeed](#playbackspeed8)。 |
-| callback | function | 是   | 设置播放速度的回调方法。                                   |
+| 参数名   | 类型                   | 必填 | 说明                                                       |
+| -------- | ---------------------- | ---- | ---------------------------------------------------------- |
+| speed    | number                 | 是   | 指定播放视频速度，具体见[PlaybackSpeed](#playbackspeed8)。 |
+| callback | AsyncCallback\<number> | 是   | 设置播放速度的回调方法。                                   |
 
 **示例：**
 
@@ -1331,9 +1351,9 @@ setSpeed(speed:number): Promise\<number>
 
 **返回值：**
 
-| 类型             | 说明                      |
-| ---------------- | ------------------------- |
-| Promise\<number> | 通过Promise获取设置结果。 |
+| 类型             | 说明                                                         |
+| ---------------- | ------------------------------------------------------------ |
+| Promise\<number> | 播放速度Promise返回值，具体见[PlaybackSpeed](#playbackspeed8)。 |
 
 **示例：**
 
@@ -1343,65 +1363,6 @@ let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 
 videoPlayer.setSpeed(speed).then(() => {
     console.info('setSpeed success');
-}).catch((error) => {
-   console.info(`video catchCallback, error:${error}`);
-});
-```
-
-### selectBitrate<sup>9+</sup>
-
-selectBitrate(bitrate:number, callback: AsyncCallback\<number>): void
-
-通过回调方式设置码率，通过[availableBitratesCollect](#onavailablebitratescollect9)获取当前码流支持的Bitrate。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
-
-**参数：**
-
-| 参数名   | 类型                   | 必填 | 说明                                                       |
-| -------- | ---------------------- | ---- | ---------------------------------------------------------- |
-| bitrate  | number                 | 是   | 指定码率播放，用于hls多码率场景，单位为bps。               |
-| callback | AsyncCallback\<number> | 是   | 设置播放码率的回调方法，返回设置的值表示成功，其他则失败。 |
-
-**示例：**
-
-```js
-let bitrate = 1024000;
-videoPlayer.selectBitrate(bitrate, (err, result) => {
-    if (err == null) {
-        console.info('selectBitrate success!');
-    } else {
-        console.info('selectBitrate fail!');
-    }
-});
-```
-
-### selectBitrate<sup>9+</sup>
-
-selectBitrate(bitrate:number): Promise\<number>
-
-通过Promise方式设置码率，通过[availableBitratesCollect](#onavailablebitratescollect9)获取当前码流支持的Bitrate。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
-
-**参数：**
-
-| 参数名  | 类型   | 必填 | 说明                                         |
-| ------- | ------ | ---- | -------------------------------------------- |
-| bitrate | number | 是   | 指定码率播放，用于hls多码率场景，单位为bps。 |
-
-**返回值：**
-
-| 类型             | 说明                      |
-| ---------------- | ------------------------- |
-| Promise\<number> | 通过Promise获取设置结果。 |
-
-**示例：**
-
-```js
-let bitrate = 1024000;
-videoPlayer.selectBitrate(bitrate).then(() => {
-    console.info('selectBitrate success');
 }).catch((error) => {
    console.info(`video catchCallback, error:${error}`);
 });
@@ -1434,7 +1395,7 @@ videoPlayer.on('playbackCompleted', () => {
 
 on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
 
-开始监听视频缓存更新事件。
+开始监听视频缓存更新事件。仅网络播放支持该订阅事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1556,7 +1517,7 @@ videoPlayer.on('availableBitratesCollect', (bitrates) => {
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-| 名称     | 类型   | 描述           |
+| 名称     | 类型   | 说明           |
 | -------- | ------ | -------------- |
 | idle     | string | 视频播放空闲。 |
 | prepared | string | 视频播放准备。 |
@@ -1571,7 +1532,7 @@ videoPlayer.on('availableBitratesCollect', (bitrates) => {
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-| 名称           | 值   | 描述                                                         |
+| 名称           | 值   | 说明                                                         |
 | -------------- | ---- | ------------------------------------------------------------ |
 | SEEK_NEXT_SYNC | 0    | 表示跳转到指定时间点的下一个关键帧，建议向后快进的时候用这个枚举值。 |
 | SEEK_PREV_SYNC | 1    | 表示跳转到指定时间点的上一个关键帧，建议向前快进的时候用这个枚举值。 |
@@ -1582,7 +1543,7 @@ videoPlayer.on('availableBitratesCollect', (bitrates) => {
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-| 名称                 | 值   | 描述                           |
+| 名称                 | 值   | 说明                           |
 | -------------------- | ---- | ------------------------------ |
 | SPEED_FORWARD_0_75_X | 0    | 表示视频播放正常播速的0.75倍。 |
 | SPEED_FORWARD_1_00_X | 1    | 表示视频播放正常播速。         |
@@ -1596,7 +1557,7 @@ videoPlayer.on('availableBitratesCollect', (bitrates) => {
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-| 名称                         | 默认值 | 描述       |
+| 名称                         | 值 | 说明     |
 | ---------------------------- | ------ | ---------- |
 | VIDEO_SCALE_TYPE_FIT     | 0      | 视频拉伸至与窗口等大。 |
 | VIDEO_SCALE_TYPE_FIT_CROP| 1      | 保持视频宽高比拉伸至填满窗口，内容可能会有裁剪。     |
@@ -1617,10 +1578,10 @@ function printfItemDescription(obj, key) {
     console.info('audio value is ' + property); //对应key值得value。其类型可为任意类型，具体key对应value的类型可参考[MediaDescriptionKey]
 }
 let audioPlayer = media.createAudioPlayer();
-audioPlayer.getTrackDescription((error, arrlist) => {
-    if (arrlist != null) {
-        for (let i = 0; i < arrlist.length; i++) {
-            printfItemDescription(arrlist[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
+audioPlayer.getTrackDescription((error, arrList) => {
+    if (arrList != null) {
+        for (let i = 0; i < arrList.length; i++) {
+            printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
         }
     } else {
         console.log(`audio getTrackDescription fail, error:${error}`);
@@ -1869,7 +1830,7 @@ audioRecorder.prepare(audioRecorderConfig);                            // prepar
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
-| 名称                  | 参数类型                                | 必填 | 说明                                                         |
+| 名称                  | 类型                                | 必填 | 说明                                                         |
 | --------------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | audioEncoder<sup>(deprecated)</sup>          | [AudioEncoder](#audioencoder)           | 否   | 音频编码格式，默认设置为AAC_LC。<br/>**说明：** 从API Version 8 开始废弃，建议使用audioEncoderMime替代。                             |
 | audioEncodeBitRate    | number                                  | 否   | 音频编码比特率，默认值为48000。                              |
@@ -1890,13 +1851,13 @@ audioRecorder.prepare(audioRecorderConfig);                            // prepar
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
-| 名称    | 默认值 | 说明                                                         |
-| ------- | ------ | ------------------------------------------------------------ |
-| DEFAULT | 0      | 默认编码格式。<br/>仅做接口定义，暂不支持使用。 |
-| AMR_NB  | 1      | AMR-NB(Adaptive Multi Rate-Narrow Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。 |
-| AMR_WB  | 2      | AMR-WB(Adaptive Multi Rate-Wide Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。 |
-| AAC_LC  | 3      | AAC-LC（Advanced&nbsp;Audio&nbsp;Coding&nbsp;Low&nbsp;Complexity）编码格式。 |
-| HE_AAC  | 4      | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>仅做接口定义，暂不支持使用。 |
+| 名称    | 值   | 说明                                                         |
+| ------- | ---- | ------------------------------------------------------------ |
+| DEFAULT | 0    | 默认编码格式。<br/>仅做接口定义，暂不支持使用。              |
+| AMR_NB  | 1    | AMR-NB(Adaptive Multi Rate-Narrow Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。 |
+| AMR_WB  | 2    | AMR-WB(Adaptive Multi Rate-Wide Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。 |
+| AAC_LC  | 3    | AAC-LC（Advanced&nbsp;Audio&nbsp;Coding&nbsp;Low&nbsp;Complexity）编码格式。 |
+| HE_AAC  | 4    | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>仅做接口定义，暂不支持使用。 |
 
 
 ## AudioOutputFormat<sup>(deprecated)</sup>
@@ -1908,13 +1869,13 @@ audioRecorder.prepare(audioRecorderConfig);                            // prepar
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
-| 名称     | 默认值 | 说明                                                         |
-| -------- | ------ | ------------------------------------------------------------ |
-| DEFAULT  | 0      | 默认封装格式。<br/>仅做接口定义，暂不支持使用。 |
-| MPEG_4   | 2      | 封装为MPEG-4格式。                                           |
-| AMR_NB   | 3      | 封装为AMR_NB格式。<br/>仅做接口定义，暂不支持使用。 |
-| AMR_WB   | 4      | 封装为AMR_WB格式。<br/>仅做接口定义，暂不支持使用。 |
-| AAC_ADTS | 6      | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。 |
+| 名称     | 值   | 说明                                                         |
+| -------- | ---- | ------------------------------------------------------------ |
+| DEFAULT  | 0    | 默认封装格式。<br/>仅做接口定义，暂不支持使用。              |
+| MPEG_4   | 2    | 封装为MPEG-4格式。                                           |
+| AMR_NB   | 3    | 封装为AMR_NB格式。<br/>仅做接口定义，暂不支持使用。          |
+| AMR_WB   | 4    | 封装为AMR_WB格式。<br/>仅做接口定义，暂不支持使用。          |
+| AAC_ADTS | 6    | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。 |
 
 ## VideoRecorder<sup>9+</sup>
 
@@ -1925,6 +1886,8 @@ audioRecorder.prepare(audioRecorderConfig);                            // prepar
 ### 属性
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
 
 | 名称               | 类型                                   | 可读 | 可写 | 说明             |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
@@ -1940,12 +1903,25 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                         | 必填 | 说明                                |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
 | config   | [VideoRecorderConfig](#videorecorderconfig9) | 是   | 配置视频录制的相关参数。            |
 | callback | AsyncCallback\<void>                         | 是   | 异步视频录制prepare方法的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 201      | Permission denied. Return by callback.     |
+| 401      | Parameter error. Return by callback.       |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400105  | Service died. Return by callback.          |
 
 **示例：**
 
@@ -1992,6 +1968,8 @@ prepare(config: VideoRecorderConfig): Promise\<void>;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名 | 类型                                         | 必填 | 说明                     |
@@ -2003,6 +1981,17 @@ prepare(config: VideoRecorderConfig): Promise\<void>;
 | 类型           | 说明                                     |
 | -------------- | ---------------------------------------- |
 | Promise\<void> | 异步视频录制prepare方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 201      | Permission denied. Return by promise.     |
+| 401      | Parameter error. Return by promise.       |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.          |
 
 **示例：**
 
@@ -2049,11 +2038,23 @@ getInputSurface(callback: AsyncCallback\<string>): void;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
 | callback | AsyncCallback\<string> | 是   | 异步获得surface的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
 
 **示例：**
 
@@ -2082,11 +2083,23 @@ getInputSurface(): Promise\<string>;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
 | Promise\<string> | 异步获得surface的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
 
 **示例：**
 
@@ -2111,11 +2124,23 @@ start(callback: AsyncCallback\<void>): void;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
 | callback | AsyncCallback\<void> | 是   | 异步开始视频录制的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
 
 **示例：**
 
@@ -2140,11 +2165,23 @@ start(): Promise\<void>;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
 | Promise\<void> | 异步开始视频录制方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
 
 **示例：**
 
@@ -2167,11 +2204,23 @@ pause(callback: AsyncCallback\<void>): void;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
 | callback | AsyncCallback\<void> | 是   | 异步暂停视频录制的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
 
 **示例：**
 
@@ -2196,11 +2245,23 @@ pause(): Promise\<void>;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
 | Promise\<void> | 异步暂停视频录制方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
 
 **示例：**
 
@@ -2221,11 +2282,23 @@ resume(callback: AsyncCallback\<void>): void;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
 | callback | AsyncCallback\<void> | 是   | 异步恢复视频录制的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
 
 **示例：**
 
@@ -2248,11 +2321,23 @@ resume(): Promise\<void>;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
 | Promise\<void> | 异步恢复视频录制方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
 
 **示例：**
 
@@ -2275,11 +2360,23 @@ stop(callback: AsyncCallback\<void>): void;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
 | callback | AsyncCallback\<void> | 是   | 异步停止视频录制的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
 
 **示例：**
 
@@ -2304,11 +2401,23 @@ stop(): Promise\<void>;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
 | Promise\<void> | 异步停止视频录制方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
 
 **示例：**
 
@@ -2329,11 +2438,21 @@ release(callback: AsyncCallback\<void>): void;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                             |
 | -------- | -------------------- | ---- | -------------------------------- |
 | callback | AsyncCallback\<void> | 是   | 异步释放视频录制资源的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 5400105  | Service died. Return by callback. |
 
 **示例：**
 
@@ -2356,11 +2475,21 @@ release(): Promise\<void>;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型           | 说明                                      |
 | -------------- | ----------------------------------------- |
 | Promise\<void> | 异步释放视频录制资源方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 5400105  | Service died. Return by callback. |
 
 **示例：**
 
@@ -2383,11 +2512,22 @@ reset(callback: AsyncCallback\<void>): void;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
 | callback | AsyncCallback\<void> | 是   | 异步重置视频录制的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 5400103  | I/O error. Return by callback.    |
+| 5400105  | Service died. Return by callback. |
 
 **示例：**
 
@@ -2412,11 +2552,22 @@ reset(): Promise\<void>;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
 | Promise\<void> | 异步重置视频录制方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400103  | I/O error. Return by promise.    |
+| 5400105  | Service died. Return by promise. |
 
 **示例：**
 
@@ -2444,6 +2595,15 @@ on(type: 'error', callback: ErrorCallback): void
 | type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：视频录制过程中发生错误，触发该事件。 |
 | callback | ErrorCallback | 是   | 录制错误事件回调方法。                                       |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 5400103  | I/O error. Return by callback.    |
+| 5400105  | Service died. Return by callback. |
+
 **示例：**
 
 ```js
@@ -2459,7 +2619,9 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-| 名称     | 类型   | 描述                   |
+**系统接口：** 该接口为系统接口
+
+| 名称     | 类型   | 说明                   |
 | -------- | ------ | ---------------------- |
 | idle     | string | 视频录制空闲。         |
 | prepared | string | 视频录制参数设置完成。 |
@@ -2474,20 +2636,24 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-| 名称            | 参数类型                                       | 必填 | 说明                                                         |
+**系统接口：** 该接口为系统接口
+
+| 名称            | 类型                                           | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
 | audioSourceType | [AudioSourceType](#audiosourcetype9)           | 是   | 视频录制的音频源类型。                                       |
 | videoSourceType | [VideoSourceType](#videosourcetype9)           | 是   | 视频录制的视频源类型。                                       |
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | 是   | 视频录制的profile。                                          |
 | rotation        | number                                         | 否   | 录制视频的旋转角度。                                         |
 | location        | [Location](#location)                          | 否   | 录制视频的地理位置。                                         |
-| url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png)|
+| url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |
 
 ## AudioSourceType<sup>9+</sup>
 
 表示视频录制中音频源类型的枚举。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
 
 | 名称                      | 值   | 说明                   |
 | ------------------------- | ---- | ---------------------- |
@@ -2500,6 +2666,8 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
+**系统接口：** 该接口为系统接口
+
 | 名称                          | 值   | 说明                            |
 | ----------------------------- | ---- | ------------------------------- |
 | VIDEO_SOURCE_TYPE_SURFACE_YUV | 0    | 输入surface中携带的是raw data。 |
@@ -2511,7 +2679,9 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-| 名称             | 参数类型                                     | 必填 | 说明             |
+**系统接口：** 该接口为系统接口
+
+| 名称             | 类型                                         | 必填 | 说明             |
 | ---------------- | -------------------------------------------- | ---- | ---------------- |
 | audioBitrate     | number                                       | 是   | 音频编码比特率。 |
 | audioChannels    | number                                       | 是   | 音频采集声道数。 |
@@ -2532,8 +2702,8 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 | 名称        | 值    | 说明                  |
 | ----------- | ----- | --------------------- |
-| CFT_MPEG_4  | "mp4" | 视频的容器格式，MP4。 |
-| CFT_MPEG_4A | "m4a" | 音频的容器格式，M4A。 |
+| CFT_MPEG_4  | 'mp4' | 视频的容器格式，MP4。 |
+| CFT_MPEG_4A | 'm4a' | 音频的容器格式，M4A。 |
 
 ## Location
 
@@ -2541,7 +2711,7 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-| 名称      | 参数类型 | 必填 | 说明             |
-| --------- | -------- | ---- | ---------------- |
-| latitude  | number   | 是   | 地理位置的纬度。 |
-| longitude | number   | 是   | 地理位置的经度。 |
+| 名称      | 类型   | 必填 | 说明             |
+| --------- | ------ | ---- | ---------------- |
+| latitude  | number | 是   | 地理位置的纬度。 |
+| longitude | number | 是   | 地理位置的经度。 |

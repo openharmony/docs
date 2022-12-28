@@ -1,12 +1,12 @@
-# 国际化-Intl
+# @ohos.intl (国际化-Intl)
 
  本模块提供基础的应用国际化能力，包括时间日期格式化、数字格式化、排序等，相关接口在ECMA 402标准中定义。
 [I18N模块](js-apis-i18n.md)提供其他非ECMA 402定义的国际化接口，与本模块共同使用可提供完整地国际化支持能力。 
 
 >  **说明：**
-> - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>  - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> - Intl模块包含国际化能力基础接口（在ECMA 402中定义），包括时间日期格式化、数字格式化、排序等，国际化增强能力请参考[I18N模块](js-apis-i18n.md)。
+>  - Intl模块包含国际化能力基础接口（在ECMA 402中定义），包括时间日期格式化、数字格式化、排序等，国际化增强能力请参考[I18N模块](js-apis-i18n.md)。
 
 
 ## 导入模块
@@ -21,9 +21,9 @@ import Intl from '@ohos.intl';
 
 ### 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Global.I18n
+**系统能力**：SystemCapability.Global.I18n
 
-| 名称              | 参数类型    | 可读   | 可写   | 说明                                       |
+| 名称              | 类型      | 可读   | 可写   | 说明                                       |
 | --------------- | ------- | ---- | ---- | ---------------------------------------- |
 | language        | string  | 是    | 否    | 与区域设置关联的语，&nbsp;如：zh。                    |
 | script          | string  | 是    | 否    | 语言的书写方式，如：Hans。                          |
@@ -61,9 +61,9 @@ constructor(locale: string, options?: LocaleOptions)
 
 **参数：** 
 
-| 参数名     | 类型            | 必填   | 说明                           |
-| ------- | ------------- | ---- | ---------------------------- |
-| locale  | string        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
+| 参数名                  | 类型                               | 必填   | 说明                           |
+| -------------------- | -------------------------------- | ---- | ---------------------------- |
+| locale               | string                           | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
 | options<sup>9+</sup> | [LocaleOptions](#localeoptions9) | 否    | 用于创建区域对象的选项。                 |
 
 **示例：** 
@@ -141,7 +141,7 @@ minimize(): Locale
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称              | 参数类型    | 可读   | 可写   | 说明                                       |
+| 名称              | 类型      | 可读   | 可写   | 说明                                       |
 | --------------- | ------- | ---- | ---- | ---------------------------------------- |
 | calendar        | string  | 是    | 是    | 日历参数，如："buddhist", "chinese", "coptic", "dangi", "ethioaa", "ethiopic", "gregory", "hebrew", "indian", "islamic", "islamic-umalqura", "islamic-tbla", "islamic-civil", "islamic-rgsa", "iso8601", "japanese", "persian", "roc", "islamicc"。 |
 | collation       | string  | 是    | 是    | 排序参数，取值包括："big5han", "compat", "dict", "direct", "ducet", "emoji", "eor", "gb2312", "phonebk", "phonetic", "pinyin", "reformed	", "search", "searchjl", "standard", "stroke", "trad", "unihan", "zhuyin"。 |
@@ -178,9 +178,9 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 
 **参数：** 
 
-| 参数名     | 类型                                  | 必填   | 说明                           |
-| ------- | ----------------------------------- | ---- | ---------------------------- |
-| locale  | string \| Array&lt;string&gt;       | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
+| 参数名                  | 类型                                   | 必填   | 说明                           |
+| -------------------- | ------------------------------------ | ---- | ---------------------------- |
+| locale               | string \| Array&lt;string&gt;        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
 | options<sup>9+</sup> | [DateTimeOptions](#datetimeoptions9) | 否    | 用于创建时间日期格式化的选项。              |
 
 **示例：** 
@@ -263,8 +263,8 @@ resolvedOptions(): DateTimeOptions
 
 **返回值：** 
 
-| 类型                                  | 说明                            |
-| ----------------------------------- | ----------------------------- |
+| 类型                                   | 说明                            |
+| ------------------------------------ | ----------------------------- |
 | [DateTimeOptions](#datetimeoptions9) | DateTimeFormat&nbsp;对象的格式化选项。 |
 
 **示例：** 
@@ -280,7 +280,7 @@ resolvedOptions(): DateTimeOptions
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称              | 参数类型    | 可读   | 可写   | 说明                                       |
+| 名称              | 类型      | 可读   | 可写   | 说明                                       |
 | --------------- | ------- | ---- | ---- | ---------------------------------------- |
 | locale          | string  | 是    | 否    | 区域参数，&nbsp;如：zh-Hans-CN。                 |
 | dateStyle       | string  | 是    | 是    | 日期显示格式，取值包括："long",&nbsp;"short",&nbsp;"medium",&nbsp;"full"。 |
@@ -330,9 +330,9 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 
 **参数：** 
 
-| 参数名     | 类型                              | 必填   | 说明                           |
-| ------- | ------------------------------- | ---- | ---------------------------- |
-| locale  | string \| Array&lt;string&gt;   | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
+| 参数名                  | 类型                               | 必填   | 说明                           |
+| -------------------- | -------------------------------- | ---- | ---------------------------- |
+| locale               | string \| Array&lt;string&gt;    | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
 | options<sup>9+</sup> | [NumberOptions](#numberoptions9) | 否    | 用于创建数字格式化的选项。                |
 
 **示例：** 
@@ -379,8 +379,8 @@ resolvedOptions(): NumberOptions
 
 **返回值：** 
 
-| 类型                              | 说明                          |
-| ------------------------------- | --------------------------- |
+| 类型                               | 说明                          |
+| -------------------------------- | --------------------------- |
 | [NumberOptions](#numberoptions9) | NumberFormat&nbsp;对象的格式化选项。 |
 
 
@@ -395,9 +395,9 @@ resolvedOptions(): NumberOptions
 
 表示设备支持的能力。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Global.I18n
+**系统能力**：SystemCapability.Global.I18n
 
-| 名称                       | 参数类型    | 可读   | 可写   | 说明                                       |
+| 名称                       | 类型      | 可读   | 可写   | 说明                                       |
 | ------------------------ | ------- | ---- | ---- | ---------------------------------------- |
 | locale                   | string  | 是    | 否    | 区域参数，&nbsp;如："zh-Hans-CN"。               |
 | currency                 | string  | 是    | 是    | 货币单位，&nbsp;如："EUR"，"CNY"，"USD"等。         |
@@ -447,9 +447,9 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 
 **参数：** 
 
-| 参数名     | 类型                                  | 必填   | 说明                           |
-| ------- | ----------------------------------- | ---- | ---------------------------- |
-| locale  | string \| Array&lt;string&gt;       | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
+| 参数名                  | 类型                                   | 必填   | 说明                           |
+| -------------------- | ------------------------------------ | ---- | ---------------------------- |
+| locale               | string \| Array&lt;string&gt;        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
 | options<sup>9+</sup> | [CollatorOptions](#collatoroptions9) | 否    | 用于创建排序对象的选项。                 |
 
 **示例：** 
@@ -496,8 +496,8 @@ resolvedOptions(): CollatorOptions
 
 **返回值：** 
 
-| 类型                                  | 说明                |
-| ----------------------------------- | ----------------- |
+| 类型                                   | 说明                |
+| ------------------------------------ | ----------------- |
 | [CollatorOptions](#collatoroptions9) | 返回的Collator对象的属性。 |
 
 **示例：** 
@@ -513,7 +513,7 @@ resolvedOptions(): CollatorOptions
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称                | 参数类型    | 可读   | 可写   | 说明                                       |
+| 名称                | 类型      | 可读   | 可写   | 说明                                       |
 | ----------------- | ------- | ---- | ---- | ---------------------------------------- |
 | localeMatcher     | string  | 是    | 是    | locale匹配算法，取值范围："best&nbsp;fit",&nbsp;"lookup"。 |
 | usage             | string  | 是    | 是    | 比较的用途，取值范围："sort",&nbsp;"search"。        |
@@ -551,9 +551,9 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 
 **参数：** 
 
-| 参数名     | 类型                                       | 必填   | 说明                           |
-| ------- | ---------------------------------------- | ---- | ---------------------------- |
-| locale  | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
+| 参数名                  | 类型                                       | 必填   | 说明                           |
+| -------------------- | ---------------------------------------- | ---- | ---------------------------- |
+| locale               | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
 | options<sup>9+</sup> | [PluralRulesOptions](#pluralrulesoptions9) | 否    | 用于创建单复数对象的选项。                |
 
 **示例：** 
@@ -595,7 +595,7 @@ select(n: number): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称                       | 参数类型   | 可读   | 可写   | 说明                                       |
+| 名称                       | 类型     | 可读   | 可写   | 说明                                       |
 | ------------------------ | ------ | ---- | ---- | ---------------------------------------- |
 | localeMatcher            | string | 是    | 是    | locale匹配算法，取值包括："best&nbsp;fit",&nbsp;"lookup"。 |
 | type                     | string | 是    | 是    | 排序的类型，取值包括："cardinal",&nbsp;"ordinal"。   |
@@ -633,9 +633,9 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 
 **参数：** 
 
-| 参数名     | 类型                                       | 必填   | 说明                           |
-| ------- | ---------------------------------------- | ---- | ---------------------------- |
-| locale  | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
+| 参数名                  | 类型                                       | 必填   | 说明                           |
+| -------------------- | ---------------------------------------- | ---- | ---------------------------- |
+| locale               | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
 | options<sup>9+</sup> | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions9) | 否    | 用于创建相对时间格式化对象的选项。            |
 
 **示例：** 
@@ -727,7 +727,7 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称            | 参数类型   | 可读   | 可写   | 说明                                       |
+| 名称            | 类型     | 可读   | 可写   | 说明                                       |
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
 | localeMatcher | string | 是    | 是    | locale匹配算法，取值包括："best&nbsp;fit",&nbsp;"lookup"。 |
 | numeric       | string | 是    | 是    | 输出消息的格式，取值包括："always",&nbsp;"auto"。      |
@@ -740,7 +740,7 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称              | 参数类型   | 可读   | 可写   | 说明                                       |
+| 名称              | 类型     | 可读   | 可写   | 说明                                       |
 | --------------- | ------ | ---- | ---- | ---------------------------------------- |
 | locale          | string | 是    | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。             |
 | numeric         | string | 是    | 是    | 输出消息的格式，取值包括："always",&nbsp;"auto"。      |

@@ -9,7 +9,7 @@ The **\<Tabs>** component is a container component that allows users to switch b
 
 ## Child Components
 
-This component can contain multiple [\<TabContent>](ts-container-tabcontent.md) components.
+Only the [\<TabContent>](ts-container-tabcontent.md) child component is supported.
 
 
 ## APIs
@@ -20,7 +20,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| barPosition | BarPosition | No| Tab bar position for creating the **\<Tabs>** container component.<br>Default value: **BarPosition.Start**|
+| barPosition | BarPosition | No| Position of the **\<Tabs>** component.<br>Default value: **BarPosition.Start**|
 | index | number | No| Initial tab index.<br>Default value: **0**|
 | controller | [TabsController](#tabscontroller) | No| Tab controller.|
 
@@ -49,12 +49,12 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Description|
 | -------- | -------- |
-| Scrollable | The width of each tab is defined by its label length. The tabs are scrollable when the total width exceeds the tab bar width.|
-| Fixed | The width of each tab is fixed, determined by evenly allocating the tab bar width among the tabs.|
+| Scrollable | The width of each tab is determined by the actual layout. The tabs are scrollable in the following case: In horizontal layout, the total width exceeds the tab bar width; in horizontal layout, the total height exceeds the tab bar height.|
+| Fixed | The width of each tab is determined by equally dividing the number of tabs by the bar width (or the bar height in vertical layout).|
 
 ## Events
 
-In addition to the universal events (ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 | Name| Description|
 | -------- | -------- |
@@ -62,7 +62,7 @@ In addition to the universal events (ts-universal-events-click.md), the followin
 
 ## TabsController
 
-Defines a tab controller, which is used to control switching of tabs.
+Defines a tab controller, which is used to control switching of tabs. One **TabsController** cannot control multiple **\<Tabs>** components.
 
 ### Objects to Import
 
@@ -91,36 +91,60 @@ Switches to the specified tab.
 @Entry
 @Component
 struct TabsExample {
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
+  @State currentIndex: number = 0
   private controller: TabsController = new TabsController()
+
+  @Builder TabBuilder(index: number, name: string) {
+    Column() {
+      Text(name)
+        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontSize(16)
+        .fontWeight(this.currentIndex === index ? 500 : 400)
+        .lineHeight(22)
+        .margin({ top: 17, bottom: 7 })
+      Divider()
+        .strokeWidth(2)
+        .color('#007DFF')
+        .opacity(this.currentIndex === index ? 1 : 0)
+    }.width('100%')
+  }
 
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
         TabContent() {
-          Column().width('100%').height('100%').backgroundColor(Color.Pink)
-        }.tabBar('pink')
+          Column().width('100%').height('100%').backgroundColor('#00CB87')
+        }.tabBar(this.TabBuilder(0, 'green'))
 
         TabContent() {
-          Column().width('100%').height('100%').backgroundColor(Color.Yellow)
-        }.tabBar('yellow')
+          Column().width('100%').height('100%').backgroundColor('#007DFF')
+        }.tabBar(this.TabBuilder(1, 'blue'))
 
         TabContent() {
-          Column().width('100%').height('100%').backgroundColor(Color.Blue)
-        }.tabBar('blue')
+          Column().width('100%').height('100%').backgroundColor('#FFBF00')
+        }.tabBar(this.TabBuilder(2, 'yellow'))
 
         TabContent() {
-          Column().width('100%').height('100%').backgroundColor(Color.Green)
-        }.tabBar('green')
+          Column().width('100%').height('100%').backgroundColor('#E67C92')
+        }.tabBar(this.TabBuilder(3, 'pink'))
       }
-      .vertical(true).scrollable(true).barMode(BarMode.Fixed)
-      .barWidth(70).barHeight(150).animationDuration(400)
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(360)
+      .barHeight(56)
+      .animationDuration(400)
       .onChange((index: number) => {
-        console.info(index.toString())
+        this.currentIndex = index
       })
-      .width('90%').backgroundColor(0xF5F5F5)
-    }.width('100%').height(150).margin({ top: 5 })
+      .width(360)
+      .height(296)
+      .margin({ top: 52 })
+      .backgroundColor('#F1F3F5')
+    }.width('100%')
   }
 }
 ```
 
-![en-us_image_0000001212218430](figures/en-us_image_0000001212218430.gif)
+![tabs2](figures/tabs2.gif)

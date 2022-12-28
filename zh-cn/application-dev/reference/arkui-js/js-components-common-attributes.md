@@ -35,6 +35,8 @@
 
 ## 示例
 
+### 示例1
+
 ```html
 <!-- xxx.hml -->
 <div id="container">
@@ -75,7 +77,7 @@
 ```
 
 ```js
-/* xxx.js */
+// xxx.js
 export default {
 	data: {
         visible: true,
@@ -100,3 +102,41 @@ export default {
 ```
 
 ![zh-cn-attributes](figures/zh-cn-attributes.gif)
+
+### 示例2
+
+```html
+<!-- xxx.hml -->
+<div class="container">
+    <div>
+        <text class="text1" dir='rtl' >hello world</text>
+    </div>
+    <div>
+        <text class="text2" dir='ltr' >hello world</text>
+    </div>
+</div>
+```
+
+```css
+/* xxx.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.text1{
+    width: 90%;
+    height: 100px;
+    background-color: aqua;
+}
+.text2{
+    width: 90%;
+    height: 100px;
+    background-color: blue;
+}
+```
+
+![zh-cn_image1](figures/zh-cn_image1.png)

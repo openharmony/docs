@@ -319,7 +319,7 @@ Checks whether the called number is an emergency number based on the specified p
 **Example**
 
 ```js
-call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, value) => {
+call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -403,7 +403,7 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 **Example**
 
 ```js
-call.formatPhoneNumber("138xxxxxxxx",{
+call.formatPhoneNumber("138xxxxxxxx", {
     countryCode: "CN"
 }, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -468,9 +468,7 @@ The phone number must match the specified country code. For example, for a China
 **Example**
 
 ```js
-call.formatPhoneNumberToE164("138xxxxxxxx",{
-    countryCode: "CN"
-}, (err, data) => {
+call.formatPhoneNumberToE164("138xxxxxxxx", "CN", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -504,9 +502,7 @@ All country codes are supported.
 **Example**
 
 ```js
-let promise = call.formatPhoneNumberToE164("138xxxxxxxx", {
-    countryCode: "CN"
-});
+let promise = call.formatPhoneNumberToE164("138xxxxxxxx", "CN");
 promise.then(data => {
     console.log(`formatPhoneNumberToE164 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -668,6 +664,8 @@ Ends a call. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
+**Required permission**: ohos.permission.ANSWER_CALL
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -692,6 +690,8 @@ hangup\(callId: number, callback: AsyncCallback<void\>\): void
 Ends a call based on the specified call ID. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -718,6 +718,8 @@ hangup\(callId?: number\): Promise<void\>
 Ends a call based on the specified call ID. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -752,6 +754,8 @@ Rejects a call. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
+**Required permission**: ohos.permission.ANSWER_CALL
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -777,6 +781,8 @@ Rejects a call based on the specified options. This API uses an asynchronous cal
 
 This is a system API.
 
+**Required permission**: ohos.permission.ANSWER_CALL
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -800,11 +806,13 @@ call.reject(rejectMessageOptions, (err, data) => {
 
 ## call.reject<sup>7+</sup>
 
-reject(callId: number, callback: AsyncCallback<void\>): <void\>
+reject(callId: number, callback: AsyncCallback\<void>): void
 
 Rejects a call based on the specified call ID. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -815,27 +823,24 @@ This is a system API.
 | callId   | number                    | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                     |
 
-**Return value**
-
-| Type               | Description                       |
-| ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
 ```js
-call.reject(1, (error, data) => {
+call.reject(1, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 ## call.reject<sup>7+</sup>
 
-reject\(callId: number, options: RejectMessageOption, callback: AsyncCallback<void\>\): void
+reject\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
 Rejects a call based on the specified call ID and options. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -866,6 +871,8 @@ reject(callId?: number, options?: RejectMessageOptions\): Promise<void\>
 Rejects a call based on the specified call ID and options. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -904,6 +911,8 @@ Holds a call based on the specified call ID. This API uses an asynchronous callb
 
 This is a system API.
 
+**Required permission**: ohos.permission.ANSWER_CALL
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -929,6 +938,8 @@ holdCall\(callId: number\): Promise<void\>
 Holds a call based on the specified call ID. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -963,6 +974,8 @@ Unholds a call based on the specified call ID. This API uses an asynchronous cal
 
 This is a system API.
 
+**Required permission**: ohos.permission.ANSWER_CALL
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -988,6 +1001,8 @@ unHoldCall\(callId: number\): Promise<void\>
 Unholds a call based on the specified call ID. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1022,6 +1037,8 @@ Switches a call. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
+**Required permission**: ohos.permission.ANSWER_CALL
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1047,6 +1064,8 @@ switchCall\(callId: number\): Promise<void\>
 Switches a call. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1317,6 +1336,8 @@ Obtains the call waiting status. This API uses an asynchronous callback to retur
 
 This is a system API.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1342,6 +1363,8 @@ getCallWaitingStatus\(slotId: number\): Promise<CallWaitingStatus\>
 Obtains the call waiting status. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1376,6 +1399,8 @@ Sets the call waiting switch. This API uses an asynchronous callback to return t
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1402,6 +1427,8 @@ setCallWaiting\(slotId: number, activate: boolean\): Promise<void\>
 Sets the call waiting switch. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1613,6 +1640,8 @@ Subscribes to **callDetailsChange** events. This API uses an asynchronous callba
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1625,8 +1654,8 @@ This is a system API.
 **Example**
 
 ```js
-call.on('callDetailsChange', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.on('callDetailsChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1637,6 +1666,8 @@ on\(type: 'callEventChange', callback: Callback<CallEventOptions\>\): void
 Subscribes to **callEventChange** events. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1650,8 +1681,8 @@ This is a system API.
 **Example**
 
 ```js
-call.on('callEventChange', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.on('callEventChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1662,6 +1693,8 @@ on\(type: 'callDisconnectedCause', callback: Callback<DisconnectedDetails\>): vo
 Subscribes to **callDisconnectedCause** events. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1675,8 +1708,8 @@ This is a system API.
 **Example**
 
 ```js
-call.on('callDisconnectedCause', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.on('callDisconnectedCause', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1687,6 +1720,8 @@ on\(type: 'mmiCodeResult', callback: Callback<MmiCodeResults\>\): void
 Subscribes to **mmiCodeResult** events. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1700,8 +1735,8 @@ This is a system API.
 **Example**
 
 ```js
-isNewCallAllowedcall.on('mmiCodeResult', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.on('mmiCodeResult', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1712,6 +1747,8 @@ off\(type: 'callDetailsChange', callback?: Callback<CallAttributeOptions\>\): vo
 Unsubscribes from **callDetailsChange** events. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1725,8 +1762,8 @@ This is a system API.
 **Example**
 
 ```js
-call.off('callDetailsChange', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.off('callDetailsChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1737,6 +1774,8 @@ off\(type: 'callEventChange', callback?: Callback<CallEventOptions\>\): void
 Unsubscribes from **callEventChange** events. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1750,8 +1789,8 @@ This is a system API.
 **Example**
 
 ```js
-call.off('callEventChange', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.off('callEventChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1762,6 +1801,8 @@ off\(type: 'callDisconnectedCause', callback?: Callback<DisconnectedDetails\>\):
 Unsubscribes from **callDisconnectedCause** events. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1775,8 +1816,8 @@ This is a system API.
 **Example**
 
 ```js
-call.off('callDisconnectedCause', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.off('callDisconnectedCause', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1787,6 +1828,8 @@ off\(type: 'mmiCodeResult', callback?: Callback<MmiCodeResults\>\): void
 Unsubscribes from **mmiCodeResult** events. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1800,8 +1843,8 @@ This is a system API.
 **Example**
 
 ```js
-call.off('mmiCodeResult', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.off('mmiCodeResult', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1924,6 +1967,8 @@ Obtains the call restriction status. This API uses an asynchronous callback to r
 
 This is a system API.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1950,6 +1995,8 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise<R
 Obtains the call restriction status. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1985,6 +2032,8 @@ Sets the call restriction status. This API uses an asynchronous callback to retu
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -2016,6 +2065,8 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise<void\>
 Sets the call restriction status. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2056,6 +2107,8 @@ Obtains call transfer information. This API uses an asynchronous callback to ret
 
 This is a system API.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -2069,9 +2122,6 @@ This is a system API.
 **Example**
 
 ```js
-let callTransferTyp={
-    CallTransferType: 1
-}
 call.getCallTransferInfo(0, callTransferTyp, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -2085,6 +2135,8 @@ getCallTransferInfo\(slotId: number, type: CallTransferType): Promise<CallTransf
 Obtains call transfer information. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2104,10 +2156,7 @@ This is a system API.
 **Example**
 
 ```js
-let callTransferTyp={
-    CallTransferType: 1
-}
-let promise = call.getCallTransferInfo(0, callTransferTyp);
+let promise = call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY);
 promise.then(data => {
     console.log(`getCallTransferInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -2122,6 +2171,8 @@ setCallTransfer\(slotId: number, info: CallTransferInfo, callback: AsyncCallback
 Sets call transfer information. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2154,6 +2205,8 @@ setCallTransfer\(slotId: number, info: CallTransferInfo): Promise<void\>
 Sets call transfer information. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2396,7 +2449,7 @@ This is a system API.
 let audioDeviceOptions={
     bluetoothAddress: "IEEE 802-2014"
 }
-call.setAudioDevice(1, bluetoothAddress, (err, value) => {
+call.setAudioDevice(1, audioDeviceOptions, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2460,7 +2513,10 @@ This is a system API.
 **Example**
 
 ```js
-call.joinConference(1, "138XXXXXXXX", (err, data) => {
+let callNumberList: Array<string> = [
+    "138XXXXXXXX"
+];
+call.joinConference(1, callNumberList, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2491,7 +2547,10 @@ This is a system API.
 **Example**
 
 ```js
-let promise = call.joinConference(1, "138XXXXXXXX");
+let callNumberList: Array<string> = [
+    "138XXXXXXXX"
+];
+let promise = call.joinConference(1, callNumberList);
 promise.then(data => {
     console.log(`joinConference success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -2567,6 +2626,8 @@ Enables the IMS switch. This API uses an asynchronous callback to return the res
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -2591,6 +2652,8 @@ enableImsSwitch(slotId: number): Promise<void\>
 Enables the IMS switch. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2625,6 +2688,8 @@ Disables the IMS switch. This API uses an asynchronous callback to return the re
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -2649,6 +2714,8 @@ disableImsSwitch(slotId: number): Promise<void\>
 Disables the IMS switch. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 

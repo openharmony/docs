@@ -15,7 +15,7 @@
 | -------- | -------- | -------- | -------- |
 | gesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定手势。<br/>- gesture:&nbsp;绑定的手势类型，&nbsp;<br>- mask:&nbsp;事件响应设置。 |
 | priorityGesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定优先识别手势。<br/>- gesture:&nbsp;绑定的手势类型，&nbsp;<br>- mask:&nbsp;事件响应设置。<br/>默认情况下，子组件优先识别通过gesture绑定的手势，当父组件配置priorityGesture时，子组件优先识别priorityGesture绑定的手势。 |
-| parallelGesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定可与子组件手势同时触发的手势。<br/>- gesture:&nbsp;绑定的手势类型。&nbsp;<br>- mask:&nbsp;事件响应设置。<br/>手势事件为非冒泡事件。父组件设置parallelGesture时，父子组件相同的手势事件都可以触发，实现类似冒泡效果。 |
+| parallelGesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定可与子组件手势同时触发的手势。<br/>- gesture:&nbsp;绑定的手势类型。&nbsp;<br>- mask:&nbsp;事件响应设置。<br/>手势事件为非冒泡事件。父组件设置parallelGesture时，父子组件相同的手势事件都可以触发，实现类似冒泡效果。若父子组件中同时绑定单击手势事件和双击手势事件，则只响应单击手势事件。 |
 
 
 ## GestureType
@@ -38,12 +38,13 @@
 
 ## 响应手势事件
 
-组件通过手势事件绑定不同GestureType的手势对象，各手势对象在响应手势操作的事件回调中提供手势相关信息。下面通过TapGesture手势对象的onAction事件响应点击事件，获取事件相关信息。其余手势对象的事件定义见各个手势对象章节。
+组件通过手势事件绑定不同GestureType的手势对象，各手势对象在响应手势操作的事件回调中提供手势相关信息。下面通过TapGesture手势对象的onAction事件响应点击事件，获取事件相关信息。其余手势对象的事件定义见各个手势对象章节。 若需绑定多种手势请使用 [组合手势](ts-combined-gestures.md)。
 
-- TapGesture事件说明
-  | 名称 | 功能描述 |
-  | -------- | -------- |
-  | onAction((event?:GestureEvent)&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 |
+**TapGesture事件说明**
+
+| 名称 | 功能描述 |
+| -------- | -------- |
+| onAction((event?:GestureEvent)&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 |
 
 ## GestureEvent对象说明
 | 名称 | 类型 | 描述 |
@@ -60,6 +61,10 @@
 | timestamp<sup>8+</sup> | number | 事件时间戳。 |
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。 |
 | source<sup>8+</sup> | [SourceType](#sourcetype枚举说明) | 事件输入设备。 |
+| pressure<sup>9+</sup> | number | 按压的压力大小。 |
+| tiltX<sup>9+</sup> | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。 |
+| tiltY<sup>9+</sup> | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。 |
+| sourceTool<sup>9+</sup> | [SourceTool](#sourcetool枚举说明) | 事件输入源。 |
 
 ## SourceType枚举说明
 | 名称 | 描述 |
@@ -77,6 +82,13 @@
 | localX | number | 相对于当前组件元素左上角的x轴坐标。 |
 | localY | number | 相对于当前组件元素左上角的y轴坐标。 |
 
+## SourceTool枚举说明
+| 名称 | 描述 |
+| -------- | -------- |
+| Unknown | 未知输入源。 |
+| Finger | 手指输入。 |
+| Pen | 手写笔输入。 |
+
 
 ## 示例
 
@@ -85,8 +97,8 @@
 @Entry
 @Component
 struct GestureSettingsExample {
-  @State priorityTestValue: string = '';
-  @State parallelTestValue: string = '';
+  @State priorityTestValue: string = ''
+  @State parallelTestValue: string = ''
 
   build() {
     Column() {
@@ -95,7 +107,7 @@ struct GestureSettingsExample {
           .gesture(
           TapGesture()
             .onAction(() => {
-              this.priorityTestValue += '\nText';
+              this.priorityTestValue += '\nText'
             }))
       }
       .height(200)
@@ -107,7 +119,7 @@ struct GestureSettingsExample {
       .priorityGesture(
       TapGesture()
         .onAction((event: GestureEvent) => {
-          this.priorityTestValue += '\nColumn';
+          this.priorityTestValue += '\nColumn'
         }), GestureMask.IgnoreInternal)
 
       Column() {
@@ -115,7 +127,7 @@ struct GestureSettingsExample {
           .gesture(
           TapGesture()
             .onAction(() => {
-              this.parallelTestValue += '\nText';
+              this.parallelTestValue += '\nText'
             }))
       }
       .height(200)
@@ -127,7 +139,7 @@ struct GestureSettingsExample {
       .parallelGesture(
       TapGesture()
         .onAction((event: GestureEvent) => {
-          this.parallelTestValue += '\nColumn';
+          this.parallelTestValue += '\nColumn'
         }), GestureMask.Normal)
     }
   }

@@ -1,8 +1,8 @@
-# 蜂窝数据
+# @ohos.telephony.data (蜂窝数据)
 
 蜂窝数据提供了移动数据管理能力，包括获取、设置默认移动数据的SIM卡，获取蜂窝数据业务的上下行和分组交换域（PS域）的连接状态，以及检查蜂窝数据业务和漫游是否启用等。
 
->**说明：** 
+>**说明：**
 >
 >本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
 
@@ -17,8 +17,6 @@ import data from '@ohos.telephony.data';
 getDefaultCellularDataSlotId(callback: AsyncCallback\<number\>): void 
 
 获取默认移动数据的SIM卡，使用callback方式作为异步方法。 
-
-**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
@@ -42,8 +40,6 @@ getDefaultCellularDataSlotId(): Promise\<number\>
 
 获取默认移动数据的SIM卡，使用Promise方式作为异步方法。 
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
-
 **系统能力**：SystemCapability.Telephony.CellularData
 
 **返回值：**
@@ -63,13 +59,11 @@ promise.then((data) => {
 });
 ```
 
-## data.getDefaultCellularDataSlotIdSync
+## data.getDefaultCellularDataSlotIdSync<sup>9+</sup>
 
 getDefaultCellularDataSlotIdSync(): number
 
 获取默认移动数据的SIM卡
-
-**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Telephony.CellularData
 

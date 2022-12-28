@@ -1,4 +1,4 @@
-# Nonlinear Container PlainArray 
+# @ohos.util.PlainArray (Nonlinear Container PlainArray) 
 
 > **NOTE**
 >
@@ -6,7 +6,7 @@
 
 **PlainArray** stores key-value (KV) pairs. Each key must be unique, be of the number type, and have only one value.
 
-**PlainArray** is based on generics and uses a lightweight structure. Keys in the array are searched using binary search, which map to values in other arrays.
+**PlainArray** is based on generics and uses a lightweight structure. Keys in the array are searched using binary search and are mapped to values in other arrays.
 
 Both **PlainArray** and **[LightWeightMap](js-apis-lightweightmap.md)** are used to store KV pairs in the lightweight structure. However, the key type of **PlainArray** can only be **number**.
 
@@ -20,8 +20,6 @@ This topic uses the following to identify the use of generics:
 ```ts
 import PlainArray from '@ohos.util.PlainArray';  
 ```
-
-
 
 ## PlainArray
 
@@ -41,6 +39,14 @@ constructor()
 A constructor used to create a **PlainArray** instance.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200012 | The PlainArray's constructor cannot be directly invoked. |
 
 **Example**
 
@@ -62,6 +68,14 @@ Checks whether this container is empty.
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
 
 **Example**
 
@@ -90,6 +104,14 @@ Checks whether this container contains the specified key.
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the specified key is contained; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
 
 **Example**
 
@@ -121,6 +143,14 @@ Obtains the value of the specified key in this container.
 | -------- | -------- |
 | T | Value of the key.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -150,6 +180,14 @@ Obtains the index of the first occurrence of an element with the specified key i
 | Type| Description|
 | -------- | -------- |
 | number | Returns the position index if obtained; returns **-1** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getIndexOfKey method cannot be bound. |
 
 **Example**
 
@@ -181,6 +219,14 @@ Obtains the index of the first occurrence of an element with the specified value
 | -------- | -------- |
 | number | Returns the position index if obtained; returns **-1** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getIndexOfValue method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -211,6 +257,14 @@ Obtains the key of the element at the specified position in this container.
 | -------- | -------- |
 | number | Returns the key of the element if obtained; returns **-1** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getKeyAt method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -240,14 +294,23 @@ Obtains the value of an element at the specified position in this container.
 | -------- | -------- |
 | T | Returns the value of the element if obtained; returns **undefined** otherwise.|
 
+  **Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getValueAt method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
+
 **Example**
 
-  ```ts
-  let plainArray = new PlainArray();
-  plainArray.add(1, "squirrel");
-  plainArray.add(2, "sparrow");
-  let result = plainArray.getKeyAt(1);
-  ```
+```ts
+let plainArray = new PlainArray();
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
+let result = plainArray.getValueAt(1);
+```
 
 ### clone
 
@@ -262,6 +325,14 @@ Clones this container and returns a copy. The modification to the copy does not 
 | Type| Description|
 | -------- | -------- |
 | PlainArray&lt;T&gt; | New **PlainArray** instance obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The clone method cannot be bound. |
 
 **Example**
 
@@ -287,6 +358,14 @@ Adds an element to this container.
 | -------- | -------- | -------- | -------- |
 | key | number | Yes| Key of the target element.|
 | value | T | Yes| Value of the target element.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
 
 **Example**
 
@@ -316,13 +395,20 @@ Removes an element with the specified key from this container.
 | -------- | -------- |
 | T | Value of the element removed.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **Example**
 
 ```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
-plainArray.remove(2);
 let result = plainArray.remove(2);
 ```
 
@@ -347,13 +433,20 @@ Removes an element at the specified position from this container.
 | -------- | -------- |
 | T | Element removed.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The removeAt method cannot be bound. |
+
 **Example**
 
 ```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
-plainArray.removeAt(1);
 let result = plainArray.removeAt(1);
 ```
 
@@ -378,6 +471,15 @@ Removes elements in a specified range from this container.
 | Type| Description|
 | -------- | -------- |
 | number | Number of elements removed.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The removeRangeFrom method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -404,6 +506,15 @@ Sets a value for an element at the specified position in this container.
 | index | number | Yes| Position index of the target element.|
 | value | T | Yes| Value of the target element.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The setValueAt method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
+
 **Example**
 
 ```ts
@@ -428,6 +539,14 @@ Obtains a string that contains all elements in this container.
 | -------- | -------- |
 | String | String obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The toString method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -446,6 +565,14 @@ Clears this container and sets its length to **0**.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -458,7 +585,7 @@ plainArray.clear();
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
+forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
@@ -468,7 +595,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -477,6 +604,14 @@ callbackfn
 | value | T | Yes| Value of the element that is currently traversed.|
 | index | number | No| Key of the element that is currently traversed.|
 | PlainArray | PlainArray&lt;T&gt;| No| Instance that invokes the **forEach** API.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
 
 **Example**
 
@@ -503,6 +638,14 @@ Obtains an iterator object that contains key-value pairs, where the key is of th
 | Type| Description|
 | -------- | -------- |
 | IterableIterator&lt;[number, T]&gt; | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **Example**
 

@@ -3,35 +3,21 @@
 
 ## **概述**
 
-**所属模块:**
+AudioAdapter音频适配器接口。
+
+提供音频适配器（声卡）对外支持的驱动能力，包括初始化端口、创建Render、创建Capture、获取端口能力集等。
+
+**Since:**
+
+1.0
+
+**Version:**
+
+1.0
+
+**相关模块:**
 
 [Audio](_audio.md)
-
-
-## **汇总**
-
-
-### Public 属性
-
-  | Public&nbsp;属性 | 描述 | 
-| -------- | -------- |
-| (&nbsp;[InitAllPorts](#initallports)&nbsp;)(struct&nbsp;AudioAdapter&nbsp;\*adapter) | 初始化一个音频适配器所有的端口驱动&nbsp;[更多...](#initallports) | 
-| (&nbsp;[CreateRender](#createrender)&nbsp;)(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;const&nbsp;struct&nbsp;[AudioDeviceDescriptor](_audio_device_descriptor.md)&nbsp;\*desc,&nbsp;const&nbsp;struct&nbsp;[AudioSampleAttributes](_audio_sample_attributes.md)&nbsp;\*attrs,&nbsp;struct&nbsp;[AudioRender](_audio_render.md)&nbsp;\*\*render) | 创建一个音频播放（render）接口的对象&nbsp;[更多...](#createrender) | 
-| (&nbsp;[DestroyRender](#destroyrender)&nbsp;)(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;struct&nbsp;[AudioRender](_audio_render.md)&nbsp;\*render) | 销毁一个音频播放（render）接口的对象&nbsp;[更多...](#destroyrender) | 
-| (&nbsp;[CreateCapture](#createcapture)&nbsp;)(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;const&nbsp;struct&nbsp;[AudioDeviceDescriptor](_audio_device_descriptor.md)&nbsp;\*desc,&nbsp;const&nbsp;struct&nbsp;[AudioSampleAttributes](_audio_sample_attributes.md)&nbsp;\*attrs,&nbsp;struct&nbsp;[AudioCapture](_audio_capture.md)&nbsp;\*\*capture) | 创建一个音频录音（capture）接口的对象&nbsp;[更多...](#createcapture) | 
-| (&nbsp;[DestroyCapture](#destroycapture)&nbsp;)(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;struct&nbsp;[AudioCapture](_audio_capture.md)&nbsp;\*capture) | 销毁一个音频录音（capture）接口的对象&nbsp;[更多...](#destroycapture) | 
-| (&nbsp;[GetPortCapability](#getportcapability)&nbsp;)(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;struct&nbsp;[AudioPort](_audio_port.md)&nbsp;\*port,&nbsp;struct&nbsp;[AudioPortCapability](_audio_port_capability.md)&nbsp;\*capability) | 获取一个音频适配器的端口驱动的能力集&nbsp;[更多...](#getportcapability) | 
-| (&nbsp;[SetPassthroughMode](#setpassthroughmode)&nbsp;)(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;struct&nbsp;[AudioPort](_audio_port.md)&nbsp;\*port,&nbsp;enum&nbsp;[AudioPortPassthroughMode](_audio.md#audioportpassthroughmode)&nbsp;mode) | 设置音频端口驱动的数据透传模式&nbsp;[更多...](#setpassthroughmode) | 
-| (&nbsp;[GetPassthroughMode](#getpassthroughmode)&nbsp;)(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;struct&nbsp;[AudioPort](_audio_port.md)&nbsp;\*port,&nbsp;enum&nbsp;[AudioPortPassthroughMode](_audio.md#audioportpassthroughmode)&nbsp;\*mode) | 获取音频端口驱动的数据透传模式&nbsp;[更多...](#getpassthroughmode) | 
-| (&nbsp;[UpdateAudioRoute](#updateaudioroute)&nbsp;)(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;const&nbsp;struct&nbsp;[AudioRoute](_audio_route.md)&nbsp;\*route,&nbsp;int32_t&nbsp;\*routeHandle) | 更新一个或多个发送端和接受端之间的路由&nbsp;[更多...](#updateaudioroute) | 
-| (&nbsp;[ReleaseAudioRoute](#releaseaudioroute)&nbsp;)(struct&nbsp;&nbsp;\*adapter,&nbsp;int32_t&nbsp;routeHandle) | 释放一个音频路由.&nbsp;[更多...](#releaseaudioroute) | 
-
-
-## **详细描述**
-
-AudioAdapter音频适配器接口
-
-提供音频适配器（声卡）对外支持的驱动能力，包括初始化端口、创建render、创建capture、获取端口能力集等
 
 **参见：**
 
@@ -39,13 +25,24 @@ AudioAdapter音频适配器接口
 
 [AudioCapture](_audio_capture.md)
 
-**Since：**
 
-1.0
+## **汇总**
 
-**Version：**
 
-1.0
+### Public 属性
+
+  | 名称 | 描述 | 
+| -------- | -------- |
+| ([InitAllPorts](#initallports))(struct&nbsp;AudioAdapter&nbsp;\*adapter) | 初始化一个音频适配器所有的端口驱动 | 
+| ([CreateRender](#createrender)&nbsp;)(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;const&nbsp;struct&nbsp;AudioDeviceDescriptor&nbsp;\*desc,&nbsp;const&nbsp;struct&nbsp;AudioSampleAttributes&nbsp;\*attrs,&nbsp;struct&nbsp;AudioRender&nbsp;\*\*render) | 创建一个音频播放（Render）接口的对象 | 
+| ([DestroyRender](#destroyrender)&nbsp;)(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;struct&nbsp;AudioRender&nbsp;\*render) | 销毁一个音频播放（Render）接口的对象 | 
+| ([CreateCapture](#createcapture))(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;const&nbsp;struct&nbsp;AudioDeviceDescriptor&nbsp;\*desc,&nbsp;const&nbsp;struct&nbsp;AudioSampleAttributes&nbsp;\*attrs,&nbsp;struct&nbsp;AudioCapture&nbsp;\*\*capture) | 创建一个音频录音（Capture）接口的对象 | 
+| ([DestroyCapture](#destroycapture))(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;struct&nbsp;AudioCapture&nbsp;\*capture) | 销毁一个音频录音（Capture）接口的对象 | 
+| ([GetPortCapability](#getportcapability)&nbsp;)(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;struct&nbsp;AudioPort&nbsp;\*port,&nbsp;struct&nbsp;AudioPortCapability&nbsp;\*capability) | 获取一个音频适配器的端口驱动的能力集 | 
+| ([SetPassthroughMode](#setpassthroughmode)&nbsp;)(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;struct&nbsp;AudioPort&nbsp;\*port,&nbsp;enum&nbsp;AudioPortPassthroughMode&nbsp;mode) | 设置音频端口驱动的数据透传模式 | 
+| ([GetPassthroughMode](#getpassthroughmode))(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;struct&nbsp;AudioPort&nbsp;\*port,&nbsp;enum&nbsp;AudioPortPassthroughMode&nbsp;\*mode) | 获取音频端口驱动的数据透传模式 | 
+| ([UpdateAudioRoute](#updateaudioroute))(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;const&nbsp;struct&nbsp;AudioRoute&nbsp;\*route,&nbsp;int32_t&nbsp;\*routeHandle) | 更新一个或多个发送端和接受端之间的路由 | 
+| ([ReleaseAudioRoute](#releaseaudioroute))(struct&nbsp;AudioAdapter&nbsp;\*adapter,&nbsp;int32_t&nbsp;routeHandle) | 释放一个音频路由 | 
 
 
 ## **类成员变量说明**
@@ -60,9 +57,9 @@ int32_t(* AudioAdapter::CreateCapture) (struct AudioAdapter *adapter, const stru
 
 **描述：**
 
-创建一个音频录音（capture）接口的对象
+创建一个音频录音（Capture）接口的对象。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
@@ -71,11 +68,11 @@ int32_t(* AudioAdapter::CreateCapture) (struct AudioAdapter *adapter, const stru
 | attrs | 指向要打开的音频采样属性的指针 | 
 | capture | 指向AudioCapture对象的二级指针 | 
 
-**返回：**
+**返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
-**参见：**
+**参见:**
 
 [GetPortCapability](#getportcapability)
 
@@ -91,9 +88,9 @@ int32_t(* AudioAdapter::CreateRender) (struct AudioAdapter *adapter, const struc
 
 **描述：**
 
-创建一个音频播放（render）接口的对象
+创建一个音频播放（Render）接口的对象。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
@@ -102,11 +99,11 @@ int32_t(* AudioAdapter::CreateRender) (struct AudioAdapter *adapter, const struc
 | attrs | 待打开的音频采样属性 | 
 | render | 获取的音频播放接口的对象实例保存到render中 | 
 
-**返回：**
+**返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
-**参见：**
+**参见:**
 
 [GetPortCapability](#getportcapability)
 
@@ -122,9 +119,9 @@ int32_t(* AudioAdapter::DestroyCapture) (struct AudioAdapter *adapter, struct Au
 
 **描述：**
 
-销毁一个音频录音（capture）接口的对象
+销毁一个音频录音（Capture）接口的对象。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
@@ -133,13 +130,13 @@ int32_t(* AudioAdapter::DestroyCapture) (struct AudioAdapter *adapter, struct Au
 
 **注意:**
 
-在音频录音过程中，不能销毁该接口对象
+在音频录音过程中，不能销毁该接口对象。
 
-**返回：**
+**返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
-**参见：**
+**参见:**
 
 [CreateCapture](#createcapture)
 
@@ -153,9 +150,9 @@ int32_t(* AudioAdapter::DestroyRender) (struct AudioAdapter *adapter, struct Aud
 
 **描述：**
 
-销毁一个音频播放（render）接口的对象
+销毁一个音频播放（Render）接口的对象。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
@@ -166,11 +163,11 @@ int32_t(* AudioAdapter::DestroyRender) (struct AudioAdapter *adapter, struct Aud
 
 在音频播放过程中，不能销毁该接口对象
 
-**返回：**
+**返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
-**参见：**
+**参见:**
 
 [CreateRender](#createrender)
 
@@ -184,9 +181,9 @@ int(* AudioAdapter::GetPassthroughMode) (struct AudioAdapter *adapter, struct Au
 
 **描述：**
 
-获取音频端口驱动的数据透传模式
+获取音频端口驱动的数据透传模式。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
@@ -194,11 +191,11 @@ int(* AudioAdapter::GetPassthroughMode) (struct AudioAdapter *adapter, struct Au
 | port | 待获取的端口 | 
 | mode | 获取的传输模式保存到mode中 | 
 
-**返回：**
+**返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
-**参见：**
+**参见:**
 
 [SetPassthroughMode](#setpassthroughmode)
 
@@ -212,9 +209,9 @@ int(* AudioAdapter::GetPortCapability) (struct AudioAdapter *adapter, struct Aud
 
 **描述：**
 
-获取一个音频适配器的端口驱动的能力集
+获取一个音频适配器的端口驱动的能力集。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
@@ -222,9 +219,9 @@ int(* AudioAdapter::GetPortCapability) (struct AudioAdapter *adapter, struct Aud
 | port | 待获取的端口 | 
 | capability | 获取的端口能力保存到capability中 | 
 
-**返回：**
+**返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
 
 ### InitAllPorts
@@ -236,19 +233,23 @@ int(* AudioAdapter::InitAllPorts) (struct AudioAdapter *adapter)
 
 **描述：**
 
-初始化一个音频适配器所有的端口驱动
+初始化一个音频适配器所有的端口驱动。
 
-在音频服务中，调用其他驱动接口前需要首先调用该接口检查端口是否已经初始化完成，如果端口驱动初始化完成，则函数返回值0， 否则返回负值，如果端口没有初始化完成，则需要等待一段时间（例如100ms）后重新进行检查，直到端口初始化完成后再继续操作
+在音频服务中，调用其他驱动接口前需要首先调用该接口检查端口是否已经初始化完成：
 
-**参数：**
+- 如果端口驱动初始化完成，则函数返回值0， 否则返回负值。
+
+- 如果端口没有初始化完成，则需要等待一段时间（例如100ms）后重新进行检查，直到端口初始化完成后再继续操作。
+
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
 | adapter | 待操作的音频适配器对象 | 
 
-**返回：**
+**返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
 
 ### ReleaseAudioRoute
@@ -260,18 +261,18 @@ int32_t(* AudioAdapter::ReleaseAudioRoute) (struct AudioAdapter *adapter, int32_
 
 **描述：**
 
-释放一个音频路由.
+释放一个音频路由。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
 | adapter | 待操作的音频适配器对象 | 
-| routeHandle | 待释放的路由句柄. | 
+| routeHandle | 待释放的路由句柄 | 
 
-**返回：**
+**返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
 
 ### SetPassthroughMode
@@ -283,9 +284,9 @@ int(* AudioAdapter::SetPassthroughMode) (struct AudioAdapter *adapter, struct Au
 
 **描述：**
 
-设置音频端口驱动的数据透传模式
+设置音频端口驱动的数据透传模式。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
@@ -293,11 +294,11 @@ int(* AudioAdapter::SetPassthroughMode) (struct AudioAdapter *adapter, struct Au
 | port | 待设置的端口 | 
 | mode | 待设置的传输模式 | 
 
-**返回：**
+**返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
-**参见：**
+**参见:**
 
 [GetPassthroughMode](#getpassthroughmode)
 
@@ -311,9 +312,9 @@ int32_t(* AudioAdapter::UpdateAudioRoute) (struct AudioAdapter *adapter, const s
 
 **描述：**
 
-更新一个或多个发送端和接受端之间的路由
+更新一个或多个发送端和接受端之间的路由。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
@@ -321,6 +322,6 @@ int32_t(* AudioAdapter::UpdateAudioRoute) (struct AudioAdapter *adapter, const s
 | route | 路由信息 | 
 | routeHandle | 生成的路由句柄 | 
 
-**返回：**
+**返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。

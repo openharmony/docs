@@ -27,6 +27,8 @@
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -49,7 +51,6 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -227,6 +228,8 @@ export default {
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -250,7 +253,6 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -324,6 +326,8 @@ export default {
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -346,7 +350,6 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -448,6 +451,8 @@ export default {
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -470,7 +475,6 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -591,6 +595,8 @@ export default {
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
@@ -625,7 +631,7 @@ text{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     compositeOperation: 'source-over'
@@ -668,7 +674,7 @@ export default {
     };
     // 图片获取失败触发方法
     img1.onerror = function() {
-      prompt.showToast({message:"error",duration:2000})
+      promptAction.showToast({message:"error",duration:2000})
     };
   },
   rotate(){
@@ -760,6 +766,8 @@ save方法可对画笔样式进行存储，restore可对存储的画笔进行恢
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
@@ -793,7 +801,7 @@ text{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     ctx: '',
@@ -806,7 +814,7 @@ export default {
   save(){
     // 画笔储存
     this.ctx.save();
-    prompt.showToast({message:"save succeed"});
+    promptAction.showToast({message:"save succeed"});
   },
   clear(){ 
     this.ctx.clearRect(0,0,600,500);

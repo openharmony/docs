@@ -1,351 +1,540 @@
-# hdc\_std<a name="EN-US_TOPIC_0000001080478129"></a>
+# hdc
 
-hdc\_std \(OpenHarmony Device Connector\) is a command line tool provided by OpenHarmony for debugging. With this tool, you can interact with real devices or simulators from a Windows or Linux OS.
 
-This section describes how to set up the hdc\_std environment and use its common commands.
+OpenHarmony Device Connector (hdc) is a command-line tool used for debugging. You can use it on a Windows, Linux, or macOS system to interact with real devices or simulators.
 
-## Preparations<a name="section05992022154916"></a>
 
-**Obtaining hdc\_std:**
+The following describes how to obtain and use hdc.
 
-Obtain **hdc\_std** from the **prebuilt** directory at [developtools\_hdc\_standard](https://gitee.com/openharmony/developtools_hdc_standard).
 
-**Example:**
+## How to Obtain
 
-To obtain hdc\_std on Windows, obtain the executable file **hdc\_std.exe** from **prebuilt/windows** and place it in a directory on the disk.
+**Obtaining hdc**
 
-## Important Notes<a name="section19543134915210"></a>
+Obtain hdc from the **toolchains** directory of the OpenHarmony SDK.
 
--   If an exception occurs when you are using hdc\_std, run the **hdc\_std kill** command to kill the hdc\_std service or run the **hdc\_std start -r** command to restart the service process.
--   If no device information is obtained after **hdc\_std list targets** is executed, use the task manager to check whether the **hdc.exe** process exists. If it exists, kill the process.
+**Example**
 
-## Option-related Commands<a name="section618522925119"></a>
+The following uses the Windows operating system as an example:
 
-The following commands are available:
+Obtain the SDK for Windows, and copy **hdc.exe** from **toolchains** to a directory on the disk.
 
-### -h/help -v/version<a name="section51533527212"></a>
 
-Obtains hdc help and version information.
+## NOTICE
 
-**Table 1** Command description
+- If an exception occurs when you are using hdc, run the **hdc kill** command to terminate the hdc service or run the **hdc start -r** command to restart the service process.
 
-  | Return Value | Description | 
-  | -------- | -------- |
-  | Required information | hdc help or version information. |
+- If no device information is obtained after **hdc list targets** is executed, check whether the hdc process exists in the **Task Manager**. If yes, terminate the process.
 
-Examples:
 
-hdc\_std -h / hdc\_std  help
-
-hdc\_std -v / hdc\_std  version
-
-### -t key<a name="section1180555115159"></a>
-
-Connects to a device with a specified key.
-
-**Table 2** Command description
-
-  | Parameter | Description | 
-  | -------- | -------- |
-  | key | Key that identifies the device. The value is in the *IP address:Port* format or is a USB serial number. | 
-  | **Return Value** | **Description** | 
-  | 1. error: device '***' not found<br/>2. Nothing&nbsp;to&nbsp;do... | 1. The device does not exist<br>2. The command appended to **-t key** does not exist. | 
-
-Examples:
-
-This option must be used together with a specific operation command. The following uses the shell command as an example:
-
-**hdc\_std list targets** \(obtain device information\)
-
-**hdc\_std  -t   _key_   shell** \(replace  _key_  with the device information obtained\)
-
->![](../public_sys-resources/icon-note.gif) **NOTE**<br>
->You can connect to multiple devices from the device you use for development. Each device has a unique key. The key can be  _IP address:Port number_  for a device connected through a network or the serial number for a device connected through USB.
-
-## Querying the Device List<a name="section174891132104218"></a>
-
-The following command is used to query the device list:
-
-### list targets\[-v\]<a name="section12911142313168"></a>
-
-Displays all the connected devices.
-
-**Table 3** Command description
-
-| Parameter | Description | 
-| -------- | -------- |
-| -v | Prints detailed device information. | 
-| **Return Value** | **Description** | 
-| 1. Device information<br/>2. [Empty] | 1. A list of connected devices.<br/>2. No device information is found. | 
-
-Examples:
-
-hdc\_std list targets
-
-hdc\_std list targets -v
-
-## Service Process Commands<a name="section680531510497"></a>
+## Option-related Commands
 
 The following commands are available:
 
-### target mount<a name="section396717571168"></a>
 
-Mounts a partition, such as **/system**, with the read and write permissions.
+- **-h/help -v/version**
+  Displays hdc help or version information.
 
-**Table 4** Command description
+  **Table 1** Command description
 
-  | Parameter | Description |  
+  | Return Value| Description|
   | -------- | -------- |
-  | None | None | 
-  | **Return Value** | **Description** | 
-  | 1. Mount&nbsp;finish<br/>2. Returned information | 1. Information returned when the operation is successful.<br/>2. Information returned when the operation fails. | 
+  | Required information| hdc help or version information.|
 
-Example:
+  Example:
 
-hdc\_std target mount
 
-### smode \[off\]<a name="section179951621713"></a>
+  ```
+  hdc -h / hdc help
+  ```
 
-Grants the root permission to a background service process. The **off** option is used to revoke the granted permission.
 
-Examples:
+  ```
+  hdc -v / hdc version
+  ```
 
-hdc\_std smode
+- **-l 0-5**
+  Sets the levels of the logs generated during the running of the tool. The default value is **LOG_INFO**.
 
-hdc\_std smode off
+  **Table 2** Command description
 
-### kill \[-r\]<a name="section419144621712"></a>
+  | Parameter| Description|
+  | -------- | -------- |
+  | 0 | LOG_OFF  |
+  | 1 | LOG_FATAL|
+  | 2 | LOG_WARN |
+  | 3 | LOG_INFO |
+  | 4 | LOG_DEBUG|
+  | 5 | LOG_ALL  |
 
-Stops a service process.
+  Example:
+
+  ```
+  hdc -l5 start
+  ```
+
+- **-t key**
+  Connects to a device based on the specified key.
+
+  **Table 3** Command description
+
+  | Parameter| Description|
+  | -------- | -------- |
+  | key | Key that identifies the device to connect. The value can be in the *IP address:port number* format or be a USB serial number.|
+  | Return Value| Description|
+  | 1. error: device '\*\*\*' not found<br>2. Nothing to do ...| 1. The device does not exist.<br>2. The command appended to **-t key** does not exist.|
+
+  Example:
+
+  **-t key** must be used with a command. The following uses **shell** as an example:
+
+  **hdc list targets** (Obtain device information.)
+
+  **hdc -t *key* shell** (Replace *key* with the device identifier obtained)
+
+  > **NOTE**<br>
+  > You can connect to multiple devices from the device you use for development. Each device has a unique key. The key can be *IP address:port number* for a device to be connected over the network or the serial number for a device to be connected through USB. A specific command must be used with this command.
+
+- **checkserver**
+  Obtains the client and server version information.
+
+  **Table 4** Command description
+
+  | Return Value| Description|
+  | -------- | -------- |
+  | Client version:  server version: | Client and server version information.|
+
+  Example:
+
+  ```
+  hdc checkserver
+  ```
+
+
+## Displaying Device Information
+
+Run the following command to display all connected devices:
+
+
+```
+list targets[-v]
+```
 
 **Table 5** Command description
 
-  | Parameter | Description |  
-  | -------- | -------- |
-  | -r | Triggers the service restart. | 
-  | **Return Value** | **Description** | 
-  | 1. Kill&nbsp;server&nbsp;finish<br/>2. Error information | 1. Information returned when the operation is successful.<br/>2. The operation fails. | 
+| Parameter| Description|
+| -------- | -------- |
+| -v | Displays detailed device information.|
+| Return Value| **Description**|
+| 1. Device information<br>2. [Empty]| 1. A list of connected devices.<br>2. No device information is found.|
+
 
 Example:
 
-hdc\_std kill
 
-### start \[-r\]<a name="section184811812183"></a>
 
-Starts a service process.
+```
+hdc list targets
+```
 
-**Table 6** Command description
 
-  | Parameter | Description |  
-  | -------- | -------- |
-  | -r | Restarts the service process if it has started. | 
-  | **Return Value** | **Description** | 
-  | None | None |
 
-Examples:
+```
+hdc list targets -v
+```
 
-hdc\_std start
 
-## Network Commands<a name="section71176123212"></a>
+## Service Process Commands
 
 The following commands are available:
 
-### tconn  _host_\[:_port_\]\[-remove\]<a name="section191911334206"></a>
 
-Connects to a device with a specified IP address and port number.
+- **target mount**
+  Mounts the **/system** partition in read/write mode.
 
-**Table 7** Command description
+  **Table 6** Command description
 
-  | Parameter | Description | 
+  | Parameter| Description|
   | -------- | -------- |
-  | host[:port] | IP address and port number of the device to be connected. | 
-  | -remove | Disconnects from the specified device. | 
-  | **Return Value** | **Description** | 
-  | 1. Error information<br/>2. None | 1. The operation fails.<br/>2. The operation is successful. | 
+  | –| –|
+  | Return Value| **Description**|
+  | 1. Mount&nbsp;finish<br>2. Error information| 1. The operation is successful.<br>2. The operation fails.|
 
-Example:
+  Example:
 
-hdc\_std tconn 192.168.0.100:8710
 
-### tmode usb<a name="section17840182562015"></a>
+  ```
+  hdc target mount
+  ```
 
-Restarts the daemon process and connects to the device using USB.
+- **target boot**
+  Boots the device.
 
-**Table 8** Command description
+  Example:
 
-  | Parameter | Description | 
+
+  ```
+  hdc target boot
+  ```
+
+- **smode [-r]**
+  Grants the **root** permission to the background hdc service. Use **off** to revoke the granted permissions.
+
+  Example:
+
+
+  ```
+  hdc smode
+  ```
+
+
+  ```
+  hdc smode -r
+  ```
+
+- **kill [-r]**
+  Terminates the hdc process.
+
+  **Table 7** Command description
+
+  | Parameter| Description|
   | -------- | -------- |
-  | None | None |
-  | **Return Value** | **Description** |
-  | 1. Error information<br/>2. None | 1. The operation fails.<br/>2. The operation is successful. | 
+  | -r | Restarts the hdc process.|
+  | Return Value| **Description**|
+  | 1. Kill&nbsp;server&nbsp;finish<br>2. Error information| 1. The operation is successful.<br>2. The operation fails.|
 
-Example:
+    Example:
 
-hdc\_std tmode usb
+  ```
+  hdc kill
+  ```
 
-### tmode port  _port-number_<a name="section101113462113"></a>
+- **start [-r]**
+  Starts the hdc process.
 
-Restarts the daemon process and connects to the device over TCP.
+  **Table 8** Command description
 
-**Table 9** Command description
+  | Parameter| Description|
+  | -------- | -------- |
+  | -r | Restarts the hdc process if it has started.|
+  | Return Value| Description|
+  | –| –|
 
-  | Parameter | Description | 
-  | -------- | -------- | 
-  | port-number | Port number used to connect to the device. | 
-  | **Return Value** | **Description** | 
-  | 1. Error information<br/>2. None | 1. The operation fails.<br/>2. The operation is successful. | 
+    Example:
 
-Example:
+  ```
+  hdc start
+  ```
 
-hdc\_std tmode port 8710
 
->![](../public_sys-resources/icon-note.gif) **NOTE**<br>
->After this command is executed, the remote daemon process exits and restarts, and the TCP connection is enabled by default. If you do not include **port-number** in this command, a random port will be used to connect to the device.
-
-## File Commands<a name="section173133523013"></a>
+## Network Commands
 
 The following commands are available:
 
-### file send  _local remote_<a name="section126223231307"></a>
 
-Sends a file to a remote device.
+- **tconn host[:port][-remove]**
+  Connects to a device with the specified IP address and port number.
 
-**Table 10** Command description
+  **Table 9** Command description
 
-  | Parameter | Description | 
+  | Parameter| Description|
   | -------- | -------- |
-  | local | Path of the file to send. | 
-  | remote | Destination path on the remote device. | 
-  | **Return Value** | **Description** |
-  | 1. Error information<br/>2. File transfer result | 1. The operation fails.<br/>2. The operation is successful. | 
+  | host[:port] | IP address and port number for the device to connect.|
+  | -remove | Disconnects from the specified device.|
+  | Return Value| Description|
+  | 1. Error information<br>2. –| 1. The operation fails.<br>2. The operation is successful.|
 
-Example:
+  Example:
 
-hdc\_std file send E:\\a.txt   /data/local/tmp/a.txt
 
-### file recv \[-a\]  _remote local_<a name="section26966541304"></a>
+  ```
+  hdc tconn 192.168.0.100:8710
+  ```
 
-Receives a file from a remote device.
+- **tmode usb**
+  Restarts the daemon process and connects to the device using USB preferentially.
 
-**Table 11** Command description
+  **Table 10** Command description
 
-  | Parameter | Description | 
+  | Parameter| Description|
   | -------- | -------- |
-  | -a | File retention timestamp mode. | 
-  | local | Path on the local device to receive the file. | 
-  | remote | File path on the remote device. | 
-  | **Return Value** | **Description** |
-  | 1. Error information<br/>2. None | 1. The operation fails.<br/>2. The operation is successful. | 
+  | –| –|
+  | Return Value| Description|
+  | 1. Error information<br>2. –| 1. The operation fails.<br>2. The operation is successful.|
 
-Example:
+  Example:
 
-hdc\_std file recv  /data/local/tmp/a.txt   ./a.txt
 
-## App Commands<a name="section2072647133819"></a>
+  ```
+  hdc tmode usb
+  ```
+
+- **tmode port port-number**
+  Restarts the daemon process and connects to the device over TCP preferentially. If the TCP connection fails, a USB connection will be initiated.
+
+  **Table 11** Command description
+
+  | Parameter| Description|
+  | -------- | -------- |
+  | port-number | Port used to connect to the device.|
+  | Return Value| Description|
+  | 1. Error information<br>2. –| 1. The operation fails.<br>2. The operation is successful.|
+
+  Example:
+
+
+  ```
+  hdc tmode port 8710
+  ```
+
+  > **NOTE**<br>
+  > After this command is executed, the remote daemon process exits and restarts, and a TCP connection is set up by default. If the port number is not specified in the command, a random port will be used to connect to the device.
+
+- **fport localnode remotenode**
+  Forwards data from a host port to a device port.
+
+  Example:
+
+
+  ```
+  hdc fport tcp:1234 tcp:1080
+  ```
+
+- **rport remotenode localnode**
+  Forwards data from a device port to a host port.
+
+  Example:
+
+
+  ```
+  hdc rport tcp:2080 tcp:2345
+  ```
+
+- **fport ls**
+  Lists all port forwarding tasks.
+
+  **Table 12** Command description
+
+  | Parameter| Description|
+  | -------- | -------- |
+  | –| –|
+  | Return Value| **Description**|
+  | 'tcp:1234 tcp:1080'     [Forward] | Forward port forwarding task.|
+  | 'tcp:2080 tcp:2345'     [Reverse] | Reverse port forwarding task.|
+
+  Example:
+
+
+  ```
+  hdc fport ls
+  ```
+
+- **fport rm**
+  Deletes a port forwarding task.
+
+  Example:
+
+
+  ```
+  hdc fport rm tcp:1234 tcp:1080
+  ```
+
+
+## File Commands
 
 The following commands are available:
 
-### install \[-r/-d/-g\]  _package_<a name="section49615195111"></a>
 
-Installs the OpenHarmony application.
+- **file send local remote**
+  Sends a file to a remote device.
 
-**Table 12** Command description
+  **Table 13** Command description
 
-  | Parameter | Description | 
+  | Parameter| Description|
   | -------- | -------- |
-  | package | OpenHarmony application installation package. | 
-  | -r | Replaces an existing application. | 
-  | -d | Allows downgraded installation. | 
-  | -g | Grants permission dynamically. | 
-  | **Return Value** | **Description** |
-  | 1. Error information<br/>2. None | 1. The operation fails.<br/>2. The operation is successful. | 
+  | local | Path of the file to send.|
+  | remote | Destination path on the remote device.|
+  | Return Value| Description|
+  | 1. Error information<br>2. File transfer result| 1. The operation fails.<br>2. The operation is successful.|
 
-Example:
+  Example:
 
-hdc\_std install  _hwadmin.hap_
 
-### uninstall \[-k\]  _package_<a name="section167618461814"></a>
+  ```
+  hdc file send E:\a.txt   /data/local/tmp/a.txt
+  ```
 
-Uninstalls the OpenHarmony application.
+- **file recv [-a] remote local**
+  Receives a file from a remote device.
 
-**Table 13** Command description
+  **Table 14** Command description
 
-  | Parameter | Description | 
+  | Parameter| Description|
   | -------- | -------- |
-  | package | OpenHarmony application installation package. | 
-  | -k | Retains **/data/cache**. | 
-  | **Return Value** | **Description** |
-  | 1. Error information<br/>2. None | 1. The operation fails.<br/>2. The operation is successful. | 
+  | -a | Retains the file timestamp.|
+  | local | Destination path on the local device.|
+  | remote | File path on the remote device.|
+  | Return Value| Description|
+  | 1. Error information<br>2. –| 1. The operation fails.<br>2. The operation is successful.|
 
-Example:
+  Example:
 
-hdc\_std uninstall  _package_
 
-## Debugging Commands<a name="section112861250195015"></a>
+  ```
+  hdc file recv  /data/local/tmp/a.txt   ./a.txt
+  ```
+
+
+## App Commands
 
 The following commands are available:
 
-### hilog<a name="section32171612221"></a>
 
-Obtains logs for debugging.
+- **install [-r/-d/-g] *package***
+  Installs an OpenHarmony app.
 
-**Table 14** Command description
+  **Table 15** Command description
 
-  | Parameter | Description | 
+  | Parameter| Description|
   | -------- | -------- |
-  | None | None | 
-  | **Return Value** | **Description** |
-  | Returned information | Obtained logs. | 
+  | package | OpenHarmony app installation package.|
+  | -r | Replaces the existing app.|
+  | -d | Allows downgrade installation.|
+  | -g | Grants permissions dynamically.|
+  | Return Value| Description|
+  | 1. Error information<br>2. –| 1. The operation fails.<br>2. The operation is successful.|
 
-Example:
-
-hdc\_std hilog
-
-### shell \[_command_\]<a name="section524235625"></a>
-
-Executes a command remotely or enters an interactive command environment.
-
-**Table 15** Command description
-
-  | Parameter | Description |
-  | -------- | -------- |  
-  | command | Command to be executed. | 
-  | **Return Value** | **Description** |
-  | Returned information | Execution result of the command. | 
-
-Examples:
-
-hdc\_std shell
-
-## Troubleshooting<a name="section592920255582"></a>
-
-### hdc\_std Fails to Connect to a Device<a name="section74019384588"></a>
-
--  **Symptom**
-
-   **\[Empty\]** is displayed in the output after the **hdc\_std list targets** command is executed.
-
--  **Solutions**
-    1.  The device cannot be identified.
-
-        Check whether **HDC Device** exists in the universal serial bus device of the device manager. If **HDC Device** does not exist, the device cannot be connected. In this case, remove and then insert the device or burn the latest image for the device.
-
-    2.  hdc\_std works improperly.
-
-        Run the **hdc kill** or **hdc start -r** command to kill or restart the hdc service. Then, run the **hdc list targets** command to check whether device information can be obtained.
-
-    3.  hdc\_std does not match the device.
-
-        If the latest image is burnt on the device, the latest hdc\_std version must be used. As hdc\_std is updated continuously, obtain hdc\_std of the latest version from the **developtools\_hdc\_standard** repository in the **prebuilt** directory.
+  Example:
 
 
+  ```
+  hdc install hwadmin.hap
+  ```
 
-## hdc\_std Fails to Run<a name="section6825095917"></a>
+- **uninstall [-k] package**
+  Uninstalls an OpenHarmony app.
 
--  **Symptom**
+  **Table 16** Command description
 
-    The **hdc\_std.exe** file does not run after being clicked.
+  | Parameter| Description|
+  | -------- | -------- |
+  | package | OpenHarmony app installation package.|
+  | -k | Retains **/data/cache**.|
+  | Return Value| Description|
+  | 1. Error information<br>2. –| 1. The operation fails.<br>2. The operation is successful.|
 
--  **Solutions**
+  Example:
 
-   **hdc\_std.exe** requires no installation. It can be directly used on a disk or added to environment variables. Open the cmd window and run the **hdc\_std** command to use **hdc\_std.exe**.
+
+  ```
+  hdc uninstall package
+  ```
+
+
+## Debugging Commands
+
+The following commands are available:
+
+
+- **hilog**
+  Obtains logs for debugging.
+
+  **Table 17** Command description
+
+  | Parameter| Description|
+  | -------- | -------- |
+  | –| –|
+  | Return Value| **Description**|
+  | Log obtained| Log information obtained.|
+
+  Example: Obtain log information.
+
+
+  ```
+  hdc hilog
+  ```
+
+  Clear the cached logs.
+
+
+  ```
+  hdc shell "hilog -r"
+  ```
+
+- **shell [_command_]**
+  Executes a command remotely or enters an interactive command environment.
+
+  **Table 18** Command description
+
+  | Parameter| Description|
+  | -------- | -------- |
+  | command | Command to execute.|
+  | Return Value| **Description**|
+  | Returned information| Command execution result.|
+
+  Example:
+
+
+  ```
+  hdc shell
+  ```
+
+- **jpid**
+  Obtains the list of processes that can be debugged.
+
+  Example:
+
+
+  ```
+  hdc jpid
+  ```
+
+
+## FAQs
+
+
+### Failed to Connect the Target Device
+
+- **Symptom**
+  After the **hdc list targets** command is executed, **[Empty]** is displayed.
+
+- **Solution**
+  - The device cannot be identified.
+      Check whether **HDC Device** exists under the **Universal Serial Bus controllers** in the **Device Manager**. If **HDC Device** does not exist, the device cannot be connected. In this case, disconnect and then reconnect the USB connection between the test PC and the OpenHarmony device, or burn the latest image.
+  - hdc works improperly.
+      Run the **hdc kill** command to terminate the hdc process or run the **hdc start -r** command to restart the hdc service. Then, run the **hdc list targets** command to check whether device information can be obtained.
+  - The hdc version does not match the device.
+      If the latest image is burnt on the device, the latest hdc version must be used.
+
+
+### Failed to Run hdc
+
+- **Symptom**
+  The **hdc.exe** file cannot be executed.
+
+- **Solution**
+  1. Check the running environment.
+      Ubuntu 18.04 64-bit or later is recommended for Linux.<br>If **libc++.so** is incorrectly referenced, run the **ldd** or **readelf** command to check the referenced library. <br>Windows 10 64-bit is recommended for Windows. If the Windows winusb library of an earlier version is missing, use Zadig to update the library. For composite devices, use Zadig tool to install the libusb-win32 driver.
+  2. Run **hdc.exe**.
+      **hdc.exe** requires no installation. You can use it after placing it to a local directory or adding the tool path to environment variables. Run **cmd** and then the **hdc** command to start the tool.
+
+
+### Accessing a hdc Server from the hdc Client
+
+- **Scenario**
+
+  Use hdc to connect to a remote server from the local client.
+
+- **Procedure**
+  1. Shut down the local hdc server.
+      ```
+      hdc kill
+      ```
+  2. Run **-s [ip:]port -m** to start the remote server.
+      ```
+      hdc -s severIP:8710 -m
+      ```
+  3. Run **-s [ip:]port** *command* to execute a command on the remote server.
+      ```
+      hdc -s severIP:8710 list targets
+      ```

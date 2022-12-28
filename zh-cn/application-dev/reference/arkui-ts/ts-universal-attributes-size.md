@@ -1,6 +1,6 @@
 # 尺寸设置
 
-用于设置组件的宽高、边距等显示尺寸进行设置。
+用于设置组件的宽高、边距。
 
 >  **说明：**
 >
@@ -17,8 +17,8 @@
 | size           | {<br/>width?:&nbsp;[Length](ts-types.md#length),<br/>height?:&nbsp;[Length](ts-types.md#length)<br/>} | 设置高宽尺寸。                                  |
 | padding        | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 设置内边距属性。<br/>参数为Length类型时，四个方向内边距同时生效。<br>默认值：0 <br>padding设置百分比时，上下左右内边距均以父容器的width作为基础值。 |
 | margin         | [Margin](ts-types.md#margin)&nbsp;\|&nbsp;[Length](ts-types.md#length)  | 设置外边距属性。<br/>参数为Length类型时，四个方向外边距同时生效。<br>默认值：0 <br>margin设置百分比时，上下左右外边距均以父容器的width作为基础值。|
-| constraintSize | {<br/>minWidth?:&nbsp;[Length](ts-types.md#length),<br/>maxWidth?:&nbsp;[Length](ts-types.md#length),<br/>minHeight?:&nbsp;[Length](ts-types.md#length),<br/>maxHeight?:&nbsp;[Length](ts-types.md#length)<br/>} | 设置约束尺寸，组件布局时，进行尺寸范围限制。constraintSize的优先级高于Width和Height。<br>默认值：<br>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>} |
-| layoutWeight   | number&nbsp;\|&nbsp;string               | 容器尺寸确定时，元素与兄弟节点主轴布局尺寸按照权重进行分配，忽略本身尺寸设置，表示自适应占满剩余空间。<br>**说明：**<br/>仅在Row/Column/Flex布局中生效。<br>默认值：0 |
+| constraintSize | {<br/>minWidth?:&nbsp;[Length](ts-types.md#length),<br/>maxWidth?:&nbsp;[Length](ts-types.md#length),<br/>minHeight?:&nbsp;[Length](ts-types.md#length),<br/>maxHeight?:&nbsp;[Length](ts-types.md#length)<br/>} | 设置约束尺寸，组件布局时，进行尺寸范围限制。constraintSize的优先级高于Width和Height。若设置的minWidth大于maxWidth，则minWidth生效，minHeight与maxHeight同理。<br>默认值：<br>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>} |
+| layoutWeight   | number&nbsp;\|&nbsp;string               | 父容器尺寸确定时，设置了layoutWeight属性的子元素与兄弟元素占主轴尺寸按照权重进行分配，忽略元素本身尺寸设置，表示自适应占满剩余空间。<br>**说明：**<br/>仅在Row/Column/Flex布局中生效。|
 
 
 ## 示例
@@ -31,30 +31,41 @@ struct SizeExample {
   build() {
     Column({ space: 10 }) {
       Text('margin and padding:').fontSize(12).fontColor(0xCCCCCC).width('90%')
-      // 宽度80 ,高度80 ,内外边距20
       Row() {
+        // 宽度80 ,高度80 ,外边距20(蓝色区域），内边距10（白色区域）
         Row() {
-          Row().size({ width: '100%', height: '100%' }).backgroundColor(0xAFEEEE)
-        }.width(80).height(80).padding(20).margin(20).backgroundColor(0xFDF5E6)
-      }.backgroundColor(0xFFA500)
+          Row().size({ width: '100%', height: '100%' }).backgroundColor(Color.Yellow)
+        }
+        .width(80)
+        .height(80)
+        .padding(10)
+        .margin(20)
+        .backgroundColor(Color.White)
+      }.backgroundColor(Color.Blue)
+
+      Text('constraintSize').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Text('this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text')
+        .width('90%')
+        .constraintSize({ maxWidth: 200 })
 
       Text('layoutWeight').fontSize(12).fontColor(0xCCCCCC).width('90%')
-      // 容器尺寸确定时，元素与兄弟节点主轴布局尺寸按照权重进行分配，忽略本身尺寸设置。
+      // 父容器尺寸确定时，设置了layoutWeight的子元素在主轴布局尺寸按照权重进行分配，忽略本身尺寸设置。
       Row() {
-        // 权重1
+        // 权重1，占主轴剩余空间1/3
         Text('layoutWeight(1)')
           .size({ width: '30%', height: 110 }).backgroundColor(0xFFEFD5).textAlign(TextAlign.Center)
           .layoutWeight(1)
-        // 权重2
+        // 权重2，占主轴剩余空间2/3
         Text('layoutWeight(2)')
           .size({ width: '30%', height: 110 }).backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
           .layoutWeight(2)
-        // 权重默认0
+        // 未设置layoutWeight属性，组件按照自身尺寸渲染
         Text('no layoutWeight')
           .size({ width: '30%', height: 110 }).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
       }.size({ width: '90%', height: 140 }).backgroundColor(0xAFEEEE)
     }.width('100%').margin({ top: 5 })
-  }}
+  }
+}
 ```
 
-![zh-cn_image_0000001174264384](figures/zh-cn_image_0000001174264384.gif)
+![size](figures/size.png)

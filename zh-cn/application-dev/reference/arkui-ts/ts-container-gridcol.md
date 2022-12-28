@@ -15,11 +15,11 @@ GridCol(option?:{span?: number | GridColColumnOption, offset?: number | GridColC
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明                                                         |
-| ------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| span   | number \| GridColColumnOption | 否   | 占用列数。span为0表示该元素不参与布局计算，即不会被渲染。<br/>默认值：1。 |
-| offset | number \| GridColColumnOption | 否   | 相对于前一个栅格子组件偏移的列数。<br/>默认值：0。           |
-| order  | number \| GridColColumnOption | 否   | 元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。<br/>默认值：0。 |
+| 参数名 | 类型                                                  | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| span   | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 占用列数。span为0表示该元素不参与布局计算，即不会被渲染。<br/>默认值：1。 |
+| offset | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 相对于前一个栅格子组件偏移的列数。<br/>默认值：0。           |
+| order  | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。<br/>默认值：0。 |
 
 ## 属性
 

@@ -8,6 +8,10 @@ SysCap is short for System Capability. It refers to a standalone feature in the 
 
 ![image-20220326064841782](figures/image-20220326064841782.png)
 
+For details about the SysCap sets in OpenHarmony, see [SysCap List](../reference/syscap-list.md).
+
+
+
 ### Supported SysCap Set, Associated SysCap Set, and Required SysCap Set
 
 The supported SysCap set, associated SysCap set, and required SysCap set are collections of SysCaps.
@@ -60,14 +64,14 @@ You can add APIs to the associated SysCap set in DevEco Studio by adding system 
 Exercise caution when modifying the required SysCap set. Incorrect modifications may result in the application being unable to be distributed to the target device.
 
 ```json
-/* syscap.json */
+// syscap.json
 {
 	"devices": {
-		"general": [            /* General devices. Each general device supports a SysCap set. Multiple general devices can be configured. */
+		"general": [            // General devices. Each general device supports a SysCap set. Multiple general devices can be configured.
 			"default",
 			"car"
 		],
-		"custom": [             /* Custom devices. */
+		"custom": [             // Custom devices.
 			{
 				"Custom device": [
 					"SystemCapability.Communication.SoftBus.Core"
@@ -75,12 +79,12 @@ Exercise caution when modifying the required SysCap set. Incorrect modifications
 			}
 		]
 	},
-	"development": {             /* The SysCap set in addedSysCaps and the SysCap set supported by each device configured in devices form the associated SysCap set. */
+	"development": {             // The SysCap set in addedSysCaps and the SysCap set supported by each device configured in devices form the associated SysCap set.
 		"addedSysCaps": [
 			"SystemCapability.Location.Location.Lite"
 		]
 	},
-	"production": {              /* Used to generate the RPCID. Exercise caution when adding this parameter. Under incorrect settings, applications may fail to be distributed to target devices. */
+	"production": {              // Used to generate the RPCID. Exercise caution when adding this parameter. Under incorrect settings, applications may fail to be distributed to target devices.
 		"addedSysCaps": [],      // Intersection of SysCap sets supported by devices configured in devices. It is the required SysCap set with addedSysCaps set and removedSysCaps set.
 		"removedSysCaps": []     // When the required SysCap set is a capability subset of a device, the application can be distributed to the device.
 	}

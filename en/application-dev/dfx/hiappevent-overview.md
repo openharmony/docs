@@ -1,8 +1,8 @@
 # Overview of Application Event Logging
 
-HiAppEvent provides event logging APIs for applications to log the fault, statistical, security, and user behavior events reported during running. Based on event information, you will be able to analyze the running status of your application.
+The HiAppEvent module provides event logging APIs for applications to log the fault, statistical, security, and user behavior events reported during running. Based on event information, you will be able to analyze the running status of your application.
 
-The HiAppEvent module can be used to develop application event-related functions, including flushing application events to a disk and querying historical application events.
+You can use this module to develop application event-related functions, including flushing application events to a disk, querying and clearing application events, and customizing application event logging configuration.
 
 ## Basic Concepts
 

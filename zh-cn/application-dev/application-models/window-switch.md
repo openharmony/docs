@@ -1,0 +1,7 @@
+# window接口切换
+
+
+  | FA模型接口 | Stage模型接口对应d.ts文件 | Stage模型对应接口 | 
+| -------- | -------- | -------- |
+| [create(id:&nbsp;string,&nbsp;type:&nbsp;WindowType,&nbsp;callback:&nbsp;AsyncCallback&lt;Window&gt;):&nbsp;void;](../reference/apis/js-apis-window.md#windowcreatedeprecated)<br/>[create(id:&nbsp;string,&nbsp;type:&nbsp;WindowType):&nbsp;Promise&lt;Window&gt;;](../reference/apis/js-apis-window.md#windowcreatedeprecated-1) | \@ohos.window.d.ts | [createSubWindow(name:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;Window&gt;):&nbsp;void;](../reference/apis/js-apis-window.md#createsubwindow9)<br/>[createSubWindow(name:&nbsp;string):&nbsp;Promise;](../reference/apis/js-apis-window.md#createsubwindow9-1)<br/>FA模型应用通过window.create(id,&nbsp;WindowType.TYPE_APP)接口创建应用子窗口，Stage模型应用可使用WindowStage.CreateSubWindow()接口代替 |
+| [getTopWindow(callback:&nbsp;AsyncCallback&lt;Window&gt;):&nbsp;void;](../reference/apis/js-apis-window.md#windowgettopwindowdeprecated)<br/>[getTopWindow():&nbsp;Promise&lt;Window&gt;;](../reference/apis/js-apis-window.md#windowgettopwindowdeprecated-1) | \@ohos.window.d.ts | [getLastWindow(ctx:&nbsp;BaseContext,&nbsp;callback:&nbsp;AsyncCallback&lt;Window&gt;):&nbsp;void;](../reference/apis/js-apis-window.md#windowgetlastwindow9)<br/>[getLastWindow(ctx:&nbsp;BaseContext):&nbsp;Promise&lt;Window&gt;;](../reference/apis/js-apis-window.md#windowgetlastwindow9-1) |

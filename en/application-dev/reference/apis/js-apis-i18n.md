@@ -1,54 +1,26 @@
 # Internationalization – I18N
 
-This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402.
-
+ This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402.
 The [Intl](js-apis-intl.md) module provides basic I18N capabilities through the standard I18N APIs defined in ECMA 402. It works with the I18N module to provide a complete suite of I18N capabilities.
 
-
-> **NOTE**
-> 
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**
+>  - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+>  - This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402. For details about the basic I18N capabilities, see [Intl](js-apis-intl.md).
 
 
 ## Modules to Import
 
-```
+```js
 import i18n from '@ohos.i18n';
 ```
 
 
-## i18n.getDisplayLanguage
+## System<sup>9+</sup>
 
-getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
+### getDisplayCountry<sup>9+</sup>
 
-Obtains the localized script for the specified language.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name         | Type     | Mandatory  | Description              |
-| ------------ | ------- | ---- | ---------------- |
-| language     | string  | Yes   | Specified language.           |
-| locale       | string  | Yes   | Locale ID.    |
-| sentenceCase | boolean | No   | Whether to use sentence case for the localized script.|
-
-**Return value**
-
-| Type    | Description           |
-| ------ | ------------- |
-| string | Localized script for the specified language.|
-
-**Example**
-  ```js
-  i18n.getDisplayLanguage("zh", "en-GB", true);
-  i18n.getDisplayLanguage("zh", "en-GB");
-  ```
-
-
-## i18n.getDisplayCountry
-
-getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
+static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
 
 Obtains the localized script for the specified country.
 
@@ -68,10 +40,666 @@ Obtains the localized script for the specified country.
 | ------ | ------------- |
 | string | Localized script for the specified country.|
 
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
 **Example**
   ```js
-  i18n.getDisplayCountry("zh-CN", "en-GB", true);
-  i18n.getDisplayCountry("zh-CN", "en-GB");
+  try {
+    var displayCountry = i18n.System.getDisplayCountry("zh-CN", "en-GB");
+  } catch(error) {
+    console.error(`call System.getDisplayCountry failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getDisplayLanguage<sup>9+</sup>
+
+static getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
+
+Obtains the localized script for the specified language.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name         | Type     | Mandatory  | Description              |
+| ------------ | ------- | ---- | ---------------- |
+| language     | string  | Yes   | Specified language.           |
+| locale       | string  | Yes   | Locale ID.    |
+| sentenceCase | boolean | No   | Whether to use sentence case for the localized script.|
+
+**Return value**
+
+| Type    | Description           |
+| ------ | ------------- |
+| string | Localized script for the specified language.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  try {
+    var displayLanguage = i18n.System.getDisplayLanguage("zh", "en-GB");
+  } catch(error) {
+    console.error(`call System.getDisplayLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getSystemLanguages<sup>9+</sup>
+
+static getSystemLanguages(): Array&lt;string&gt;
+
+Obtains the list of system languages.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type                 | Description          |
+| ------------------- | ------------ |
+| Array&lt;string&gt; | List of the IDs of system languages.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  try {
+    var systemLanguages = i18n.System.getSystemLanguages();
+  } catch(error) {
+    console.error(`call System.getSystemLanguages failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getSystemCountries<sup>9+</sup>
+
+static getSystemCountries(language: string): Array&lt;string&gt;
+
+Obtains the list of countries and regions supported for the specified language.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name     | Type    | Description   |
+| -------- | ------ | ----- |
+| language | string | Language ID.|
+
+**Return value**
+
+| Type                 | Description          |
+| ------------------- | ------------ |
+| Array&lt;string&gt; | List of the IDs of the countries and regions supported for the specified language.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  try {
+    var systemCountries = i18n.System.getSystemCountries('zh');
+  } catch(error) {
+    console.error(`call System.getSystemCountries failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### isSuggested<sup>9+</sup>
+
+static isSuggested(language: string, region?: string): boolean
+
+Checks whether the system language matches the specified region.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description           |
+| -------- | ------ | ---- | ------------- |
+| language | string | Yes   | Valid language ID, for example, **zh**.|
+| region   | string | No   | Valid region ID, for example, **CN**. |
+
+**Return value**
+
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the system language matches the specified region; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  try {
+    var res = i18n.System.isSuggested('zh', 'CN');
+  } catch(error) {
+    console.error(`call System.isSuggested failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getSystemLanguage<sup>9+</sup>
+
+static getSystemLanguage(): string
+
+Obtains the system language.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type    | Description     |
+| ------ | ------- |
+| string | System language ID.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  try {
+    var systemLanguage = i18n.System.getSystemLanguage();
+  } catch(error) {
+    console.error(`call System.getSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### setSystemLanguage<sup>9+</sup>
+
+static setSystemLanguage(language: string): void
+
+Sets the system language. Currently, this API does not support real-time updating of the system language.
+
+This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name     | Type    | Description   |
+| -------- | ------ | ----- |
+| language | string | Language ID.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  try {
+    i18n.System.setSystemLanguage('zh');
+  } catch(error) {
+    console.error(`call System.setSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getSystemRegion<sup>9+</sup>
+
+static getSystemRegion(): string
+
+Obtains the system region.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type    | Description     |
+| ------ | ------- |
+| string | System region ID.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  try {
+    var systemRegion = i18n.System.getSystemRegion();
+  } catch(error) {
+    console.error(`call System.getSystemRegion failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### setSystemRegion<sup>9+</sup>
+
+static setSystemRegion(region: string): void
+
+Sets the system region.
+
+This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Description   |
+| ------ | ------ | ----- |
+| region | string | Region ID.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  try {
+    i18n.System.setSystemRegion('CN');
+  } catch(error) {
+    console.error(`call System.setSystemRegion failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getSystemLocale<sup>9+</sup>
+
+static getSystemLocale(): string
+
+Obtains the system locale.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type    | Description     |
+| ------ | ------- |
+| string | System locale ID.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  try {
+    var systemLocale = i18n.System.getSystemLocale();
+  } catch(error) {
+    console.error(`call System.getSystemLocale failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### setSystemLocale<sup>9+</sup>
+
+static setSystemLocale(locale: string): void
+
+Sets the system locale.
+
+This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Description             |
+| ------ | ------ | --------------- |
+| locale | string | System locale ID, for example, **zh-CN**.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  try {
+    i18n.System.setSystemLocale('zh-CN');
+  } catch(error) {
+    console.error(`call System.setSystemLocale failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### is24HourClock<sup>9+</sup>
+
+static is24HourClock(): boolean
+
+Checks whether the 24-hour clock is used.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the 24-hour clock is used; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  try {
+    var is24HourClock = i18n.System.is24HourClock();
+  } catch(error) {
+    console.error(`call System.is24HourClock failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### set24HourClock<sup>9+</sup>
+
+static set24HourClock(option: boolean): void
+
+Sets the 24-hour clock.
+
+This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                                      |
+| ------ | ------- | ---- | ---------------------------------------- |
+| option | boolean | Yes   | Whether to enable the 24-hour clock. The value **true** means to enable the 24-hour clock, and the value **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  // Set the system time to the 24-hour clock.
+  try {
+    i18n.System.set24HourClock(true);
+  } catch(error) {
+    console.error(`call System.set24HourClock failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### addPreferredLanguage<sup>9+</sup>
+
+static addPreferredLanguage(language: string, index?: number): void
+
+Adds a preferred language to the specified position on the preferred language list.
+
+This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description        |
+| -------- | ------ | ---- | ---------- |
+| language | string | Yes   | Preferred language to add. |
+| index    | number | No   | Position to which the preferred language is added.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  // Add zh-CN to the preferred language list.
+  var language = 'zh-CN';
+  var index = 0;
+  try {
+    i18n.System.addPreferredLanguage(language, index);
+  } catch(error) {
+    console.error(`call System.addPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### removePreferredLanguage<sup>9+</sup>
+
+static removePreferredLanguage(index: number): void
+
+Deletes a preferred language from the specified position on the preferred language list.
+
+This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description                   |
+| ----- | ------ | ---- | --------------------- |
+| index | number | Yes   | Position of the preferred language to delete.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  // Delete the first preferred language from the preferred language list.
+  var index = 0;
+  try {
+    i18n.System.removePreferredLanguage(index);
+  } catch(error) {
+    console.error(`call System.removePreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getPreferredLanguageList<sup>9+</sup>
+
+static getPreferredLanguageList(): Array&lt;string&gt;
+
+Obtains the list of preferred languages.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type                 | Description       |
+| ------------------- | --------- |
+| Array&lt;string&gt; | List of preferred languages.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  try {
+    var preferredLanguageList = i18n.System.getPreferredLanguageList();
+  } catch(error) {
+    console.error(`call System.getPreferredLanguageList failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getFirstPreferredLanguage<sup>9+</sup>
+
+static getFirstPreferredLanguage(): string
+
+Obtains the first language in the preferred language list.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type    | Description            |
+| ------ | -------------- |
+| string | First language in the preferred language list.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  try {
+    var firstPreferredLanguage = i18n.System.getFirstPreferredLanguage();
+  } catch(error) {
+    console.error(`call System.getFirstPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getAppPreferredLanguage<sup>9+</sup>
+
+static getAppPreferredLanguage(): string
+
+Obtains the preferred language of an application.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type    | Description      |
+| ------ | -------- |
+| string | Preferred language of the application.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```js
+  try {
+    var appPreferredLanguage = i18n.System.getAppPreferredLanguage();
+  } catch(error) {
+    console.error(`call System.getAppPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### setUsingLocalDigit<sup>9+</sup>
+
+static setUsingLocalDigit(flag: boolean): void
+
+Sets whether to turn on the local digit switch.
+
+This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type     | Mandatory  | Description                             |
+| ---- | ------- | ---- | ------------------------------- |
+| flag | boolean | Yes   | Whether to turn on the local digit switch. The value **true** means to turn on the local digit switch, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```ts
+  try {
+    i18n.System.setUsingLocalDigit(true);
+  } catch(error) {
+    console.error(`call System.setUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getUsingLocalDigit<sup>9+</sup>
+
+static getUsingLocalDigit(): boolean
+
+Checks whether the local digit switch is turned on.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Result indicating whether the local digit switch is turned on. The value **true** indicates that the local digit switch is turned on, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**Example**
+  ```ts
+  try {
+    var status = i18n.System.getUsingLocalDigit();
+  } catch(error) {
+    console.error(`call System.getUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 
@@ -99,235 +727,6 @@ Checks whether the localized script for the specified language is displayed from
   ```js
   i18n.isRTL("zh-CN");// Since Chinese is not written from right to left, false is returned.
   i18n.isRTL("ar-EG");// Since Arabic is written from right to left, true is returned.
-  ```
-
-
-## i18n.getSystemLanguage
-
-getSystemLanguage(): string
-
-Obtains the system language.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Return value**
-
-| Type    | Description     |
-| ------ | ------- |
-| string | System language ID.|
-
-**Example**
-  ```js
-  i18n.getSystemLanguage();
-  ```
-
-
-## i18n.setSystemLanguage
-
-setSystemLanguage(language: string): boolean
-
-Sets the system language. Currently, this API does not support real-time updating of the system language.
-
-This is a system API.
-
-**Permission required**: ohos.permission.UPDATE_CONFIGURATION
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name     | Type    | Description   |
-| -------- | ------ | ----- |
-| language | string | Language ID.|
-
-**Return value**
-
-| Type     | Description                                   |
-| ------- | ------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
-**Example**
-  ```js
-  i18n.setSystemLanguage('zh');
-  ```
-
-
-## i18n.getSystemLanguages<sup>9+</sup>
-
-getSystemLanguages(): Array&lt;string&gt;
-
-Obtains the list of system languages.
-
-**System capability**: SystemCapability.Global.I18n
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Return value**
-
-| Type                 | Description          |
-| ------------------- | ------------ |
-| Array&lt;string&gt; | List of the IDs of system languages.|
-
-**Example**
-  ```js
-  i18n.getSystemLanguages();
-  ```
-
-
-## i18n.getSystemCountries<sup>9+</sup>
-
-getSystemCountries(language: string): Array&lt;string&gt;
-
-Obtains the list of countries and regions supported for the specified language.
-
-**System capability**: SystemCapability.Global.I18n
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name     | Type    | Description   |
-| -------- | ------ | ----- |
-| language | string | Language ID.|
-
-**Return value**
-
-| Type                 | Description          |
-| ------------------- | ------------ |
-| Array&lt;string&gt; | List of the IDs of the countries and regions supported for the specified language.|
-
-**Example**
-  ```js
-  i18n.getSystemCountries('zh');
-  ```
-
-
-## i18n.getSystemRegion
-
-getSystemRegion(): string
-
-Obtains the system region.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Return value**
-
-| Type    | Description     |
-| ------ | ------- |
-| string | System region ID.|
-
-**Example**
-  ```js
-  i18n.getSystemRegion();
-  ```
-
-
-## i18n.setSystemRegion
-
-setSystemRegion(region: string): boolean
-
-Sets the system region.
-
-This is a system API.
-
-**Permission required**: ohos.permission.UPDATE_CONFIGURATION
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name   | Type    | Description   |
-| ------ | ------ | ----- |
-| region | string | Region ID.|
-
-**Return value**
-
-| Type     | Description                                   |
-| ------- | ------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
-**Example**
-  ```js
-  i18n.setSystemRegion('CN');
-  ```
-
-
-## i18n.getSystemLocale
-
-getSystemLocale(): string
-
-Obtains the system locale.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Return value**
-
-| Type    | Description     |
-| ------ | ------- |
-| string | System locale ID.|
-
-**Example**
-  ```js
-  i18n.getSystemLocale();
-  ```
-
-
-## i18n.setSystemLocale
-
-setSystemLocale(locale: string): boolean
-
-Sets the system locale.
-
-This is a system API.
-
-**Permission required**: ohos.permission.UPDATE_CONFIGURATION
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name   | Type    | Description             |
-| ------ | ------ | --------------- |
-| locale | string | System locale ID, for example, **zh-CN**.|
-
-**Return value**
-
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
-**Example**
-  ```js
-  i18n.setSystemLocale('zh-CN');
-  ```
-
-
-## i18n.isSuggested<sup>9+</sup>
-
-isSuggested(language: string, region?: string): boolean
-
-Checks whether the system language matches the specified region.
-
-**System capability**: SystemCapability.Global.I18n
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name     | Type    | Mandatory  | Description           |
-| -------- | ------ | ---- | ------------- |
-| language | string | Yes   | Valid language ID, for example, **zh**.|
-| region   | string | No   | Valid region ID, for example, **CN**. |
-
-**Return value**
-
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
-| boolean | Returns **true** if the system language matches the specified region; returns **false** otherwise.|
-
-**Example**
-  ```js
-  i18n.isSuggested('zh', 'CN');
   ```
 
 
@@ -589,7 +988,7 @@ Obtains the value of the specified field in the **Calendar** object.
 
 getDisplayName(locale: string): string
 
-Obtains the name of the **Calendar** object displayed for the specified locale.
+Obtains the **Calendar** object name displayed for the specified locale.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -603,7 +1002,7 @@ Obtains the name of the **Calendar** object displayed for the specified locale.
 
 | Type    | Description                 |
 | ------ | ------------------- |
-| string | Name of the **Calendar** object displayed for the specified locale.|
+| string | **Calendar** object name displayed for the specified locale.|
 
 **Example**
   ```js
@@ -653,7 +1052,8 @@ Creates a **PhoneNumberFormat** object.
 
 **System capability**: SystemCapability.Global.I18n
 
-Parameters
+**Parameters**
+
 | Name    | Type                                      | Mandatory  | Description              |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | country | string                                   | Yes   | Country or region to which the phone number to be formatted belongs.|
@@ -715,8 +1115,9 @@ Formats a phone number.
 **Example**
   ```js
   var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
-  phonenumberfmt.isValidNumber("15812312312");
+  phonenumberfmt.format("15812312312");
   ```
+
 
 ### getLocationName<sup>9+</sup>
 
@@ -728,21 +1129,21 @@ Obtains the home location of a phone number.
 
 **Parameters**
 
-| Name   | Type    | Mandatory  | Description        |
-| ------ | ------ | ---- | ---------- |
+| Name   | Type    | Mandatory  | Description  |
+| ------ | ------ | ---- | ---- |
 | number | string | Yes   | Phone number.|
 | locale | string | Yes   | Locale ID.|
 
 **Return value**
 
-| Type    | Description        |
-| ------ | ---------- |
+| Type    | Description      |
+| ------ | -------- |
 | string | Home location of the phone number.|
 
 **Example**
   ```js
   var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
-  phonenumberfmt.isValidNumber("15812312312");
+  phonenumberfmt.getLocationName("15812312345", "zh-CN");
   ```
 
 
@@ -767,39 +1168,6 @@ Defines the measurement unit information.
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
 | unit          | string | Yes   | Yes   | Name of the measurement unit, for example, **meter**, **inch**, or **cup**.|
 | measureSystem | string | Yes   | Yes   | Measurement system. The value can be **SI**,&nbsp;**US**, or&nbsp;**UK**.|
-
-
-## Util<sup>(deprecated)</sup>
-
-
-### unitConvert<sup>(deprecated)</sup>
-
-static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
-
-Converts one measurement unit into another and formats the unit based on the specified locale and style.
-
-> **NOTE**
-> This API is deprecated since API version 9. You are advised to use [unitConvert](#unitconvert9) instead.
->
-> This API is supported since API version 8.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name     | Type                    | Mandatory  | Description                                      |
-| -------- | ---------------------- | ---- | ---------------------------------------- |
-| fromUnit | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted.                                |
-| toUnit   | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted to.                                |
-| value    | number                 | Yes   | Value of the measurement unit to be converted.                            |
-| locale   | string                 | Yes   | Locale used for formatting, for example, **zh-Hans-CN**.               |
-| style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **narrow**.|
-
-**Return value**
-
-| Type    | Description                     |
-| ------ | ----------------------- |
-| string | Character string obtained after formatting based on the measurement unit specified by **toUnit**.|
 
 
 ## getInstance<sup>8+</sup>
@@ -896,254 +1264,8 @@ Obtains the index of a text object.
 **Example**
   ```js
   var indexUtil= i18n.getInstance("zh-CN");
-  indexUtil.getIndex("hi"); // Return h.
+  indexUtil.getIndex("hi"); // Return hi.
   ```
-
-
-## Character<sup>(deprecated)</sup>
-
-
-### isDigit<sup>(deprecated)</sup>
-
-static isDigit(char: string): boolean
-
-Checks whether the input character string is composed of digits.
-
-> **NOTE**
-> This API is deprecated since API version 9. You are advised to use [isDigit](#isdigit9) instead.
->
-> This API is supported since API version 8.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
-
-**Return value**
-
-| Type     | Description                                  |
-| ------- | ------------------------------------ |
-| boolean | Returns **true** if the input character is a digit; returns **false** otherwise.|
-
-
-
-### isSpaceChar<sup>(deprecated)</sup>
-
-static isSpaceChar(char: string): boolean
-
-Checks whether the input character is a space.
-
-> **NOTE**
-> This API is deprecated since API version 9. You are advised to use [isSpaceChar](#isspacechar9) instead.
->
-> This API is supported since API version 8.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
-
-**Return value**
-
-| Type     | Description                                    |
-| ------- | -------------------------------------- |
-| boolean | Returns **true** if the input character is a space; returns **false** otherwise.|
-
-
-
-### isWhitespace<sup>(deprecated)</sup>
-
-static isWhitespace(char: string): boolean
-
-Checks whether the input character is a white space.
-
-> **NOTE**
-> This API is deprecated since API version 9. You are advised to use [isWhitespace](#iswhitespace9) instead.
->
-> This API is supported since API version 8.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
-
-**Return value**
-
-| Type     | Description                                    |
-| ------- | -------------------------------------- |
-| boolean | Returns **true** if the input character is a white space; returns **false** otherwise.|
-
-
-
-### isRTL<sup>(deprecated)</sup>
-
-static isRTL(char: string): boolean
-
-Checks whether the input character is of the right to left (RTL) language.
-
-> **NOTE**
-> This API is deprecated since API version 9. You are advised to use [isRTL](#isrtl9) instead.
->
-> This API is supported since API version 8.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
-
-**Return value**
-
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is of the RTL language; returns **false** otherwise.|
-
-
-
-### isIdeograph<sup>(deprecated)</sup>
-
-static isIdeograph(char: string): boolean
-
-Checks whether the input character is an ideographic character.
-
-> **NOTE**
-> This API is deprecated since API version 9. You are advised to use [isIdeograph](#isideograph9) instead.
->
-> This API is supported since API version 8.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
-
-**Return value**
-
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is an ideographic character; returns **false** otherwise.|
-
-
-
-### isLetter<sup>(deprecated)</sup>
-
-static isLetter(char: string): boolean
-
-Checks whether the input character is a letter.
-
-> **NOTE**
-> This API is deprecated since API version 9. You are advised to use [isLetter](#isletter9) instead.
->
-> This API is supported since API version 8.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
-
-**Return value**
-
-| Type     | Description                                  |
-| ------- | ------------------------------------ |
-| boolean | Returns **true** if the input character is a letter; returns **false** otherwise.|
-
-
-
-### isLowerCase<sup>(deprecated)</sup>
-
-static isLowerCase(char: string): boolean
-
-Checks whether the input character is a lowercase letter.
-
-> **NOTE**
-> This API is deprecated since API version 9. You are advised to use [isLowerCase](#islowercase9) instead.
->
-> This API is supported since API version 8.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
-
-**Return value**
-
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is a lowercase letter; returns **false** otherwise.|
-
-
-
-### isUpperCase<sup>(deprecated)</sup>
-
-static isUpperCase(char: string): boolean
-
-Checks whether the input character is an uppercase letter.
-
-> **NOTE**
-> This API is deprecated since API version 9. You are advised to use [isUpperCase](#isuppercase9) instead.
->
-> This API is supported since API version 8.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
-
-**Return value**
-
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is an uppercase letter; returns **false** otherwise.|
-
-
-
-### getType<sup>(deprecated)</sup>
-
-static getType(char: string): string
-
-Obtains the type of the input character string.
-
-> **NOTE**
-> This API is deprecated since API version 9. You are advised to use [getType](#gettype9) instead.
->
-> This API is supported since API version 8.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
-
-**Return value**
-
-| Type    | Description         |
-| ------ | ----------- |
-| string | Type of the input character.|
-
 
 
 ## i18n.getLineInstance<sup>8+</sup>
@@ -1274,7 +1396,7 @@ Puts the [BreakIterator](#breakiterator8) object to the last text boundary, whic
 
 | Type    | Description                |
 | ------ | ------------------ |
-| number | Offset of the last text boundary of the processed text.|
+| number | Offset to the last text boundary of the processed text.|
 
 **Example**
   ```js
@@ -1397,177 +1519,6 @@ Checks whether the position specified by the offset is a text boundary. If **tru
   ```
 
 
-## i18n.is24HourClock<sup>7+</sup>
-
-is24HourClock(): boolean
-
-Checks whether the 24-hour clock is used.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Return value**
-
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
-| boolean | Returns **true** if the 24-hour clock is used; returns **false** otherwise.|
-
-**Example**
-  ```js
-  var is24HourClock = i18n.is24HourClock();
-  ```
-
-
-## i18n.set24HourClock<sup>7+</sup>
-
-set24HourClock(option: boolean): boolean
-
-Sets the 24-hour clock.
-
-**Permission required**: ohos.permission.UPDATE_CONFIGURATION
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name   | Type     | Mandatory  | Description                                      |
-| ------ | ------- | ---- | ---------------------------------------- |
-| option | boolean | Yes   | Whether to enable the 24-hour clock. The value **true** means to enable the 24-hour clock, and the value **false** means the opposite.|
-
-**Return value**
-
-| Type     | Description                           |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the 24-hour clock is enabled; returns **false** otherwise.|
-
-**Example**
-  ```js
-  // Set the system time to the 24-hour clock.
-  var success = i18n.set24HourClock(true);
-  ```
-
-
-## i18n.addPreferredLanguage<sup>8+</sup>
-
-addPreferredLanguage(language: string, index?: number): boolean
-
-Adds a preferred language to the specified position on the preferred language list.
-
-**Permission required**: ohos.permission.UPDATE_CONFIGURATION
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name     | Type    | Mandatory  | Description        |
-| -------- | ------ | ---- | ---------- |
-| language | string | Yes   | Preferred language to add. |
-| index    | number | No   | Position to which the preferred language is added.|
-
-**Return value**
-
-| Type     | Description                           |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the preferred language is successfully added; returns **false** otherwise.|
-
-**Example**
-  ```js
-  // Add zh-CN to the preferred language list.
-  var language = 'zh-CN';
-  var index = 0;
-  var success = i18n.addPreferredLanguage(language, index);
-  ```
-
-
-## i18n.removePreferredLanguage<sup>8+</sup>
-
-removePreferredLanguage(index: number): boolean
-
-Deletes a preferred language from the specified position on the preferred language list.
-
-**Permission required**: ohos.permission.UPDATE_CONFIGURATION
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name  | Type    | Mandatory  | Description                   |
-| ----- | ------ | ---- | --------------------- |
-| index | number | Yes   | Position of the preferred language to delete.|
-
-**Return value**
-
-| Type     | Description                           |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the preferred language is deleted; returns **false** otherwise.|
-
-**Example**
-  ```js
-  // Delete the first preferred language from the preferred language list.
-  var index = 0;
-  var success = i18n.removePreferredLanguage(index);
-  ```
-
-
-## i18n.getPreferredLanguageList<sup>8+</sup>
-
-getPreferredLanguageList(): Array&lt;string&gt;
-
-Obtains the list of preferred languages.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Return value**
-
-| Type                 | Description       |
-| ------------------- | --------- |
-| Array&lt;string&gt; | List of preferred languages.|
-
-**Example**
-  ```js
-  var preferredLanguageList = i18n.getPreferredLanguageList();
-  ```
-
-
-## i18n.getFirstPreferredLanguage<sup>8+</sup>
-
-getFirstPreferredLanguage(): string
-
-Obtains the first language in the preferred language list.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Return value**
-
-| Type    | Description            |
-| ------ | -------------- |
-| string | First language in the preferred language list.|
-
-**Example**
-  ```js
-  var firstPreferredLanguage = i18n.getFirstPreferredLanguage();
-  ```
-
-
-## i18n.getAppPreferredLanguage<sup>9+</sup>
-
-getAppPreferredLanguage(): string
-
-Obtains the preferred language of an application.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Return value**
-
-| Type    | Description            |
-| ------ | -------------- |
-| string | Preferred language of the application.|
-
-**Example**
-  ```js
-  var appPreferredLanguage = i18n.getAppPreferredLanguage();
-  ```
-
-
 ## i18n.getTimeZone<sup>7+</sup>
 
 getTimeZone(zoneID?: string): TimeZone
@@ -1630,7 +1581,7 @@ Obtains the representation of a **TimeZone** object in the specified locale.
 
 | Name   | Type     | Mandatory  | Description                  |
 | ------ | ------- | ---- | -------------------- |
-| locale | string  | No   | System locale ID.               |
+| locale | string  | No   | Locale ID.               |
 | isDST  | boolean | No   | Whether to consider DST when obtaining the representation of the **TimeZone** object.|
 
 **Return value**
@@ -1687,6 +1638,7 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
   timezone.getOffset(1234567890);
   ```
 
+
 ### getAvailableIDs<sup>9+</sup>
 
 static getAvailableIDs(): Array&lt;string&gt;
@@ -1697,12 +1649,12 @@ Obtains the list of time zone IDs supported by the system.
 
 **Return value**
 
-| Type    | Description                      |
-| ------ | ----------------------- |
+| Type                 | Description         |
+| ------------------- | ----------- |
 | Array&lt;string&gt; | List of time zone IDs supported by the system.|
 
 **Example**
-  ```js
+  ```ts
   var ids = i18n.TimeZone.getAvailableIDs();
   ```
 
@@ -1717,12 +1669,12 @@ Obtains the list of time zone city IDs supported by the system.
 
 **Return value**
 
-| Type    | Description                      |
-| ------ | ----------------------- |
+| Type                 | Description           |
+| ------------------- | ------------- |
 | Array&lt;string&gt; | List of time zone city IDs supported by the system.|
 
 **Example**
-  ```js
+  ```ts
   var cityIDs = i18n.TimeZone.getAvailableZoneCityIDs();
   ```
 
@@ -1737,19 +1689,19 @@ Obtains the localized display of a time zone city in the specified locale.
 
 **Parameters**
 
-| Name   | Type    | Mandatory  | Description   |
-| ------ | ------ | ---- | ----- |
+| Name   | Type    | Mandatory  | Description    |
+| ------ | ------ | ---- | ------ |
 | cityID | string | Yes   | Time zone city ID.|
-| locale | string | Yes   | Locale ID.|
+| locale | string | Yes   | Locale ID.  |
 
 **Return value**
 
-| Type    | Description                     |
-| ------ | ----------------------- |
+| Type    | Description                |
+| ------ | ------------------ |
 | string | Localized display of the time zone city in the specified locale.|
 
 **Example**
-  ```js
+  ```ts
   var displayName = i18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN");
   ```
 
@@ -1764,69 +1716,21 @@ Obtains the **TimeZone** object corresponding to the specified time zone city ID
 
 **Parameters**
 
-| Name   | Type    | Mandatory  | Description   |
-| ------ | ------ | ---- | ----- |
+| Name   | Type    | Mandatory  | Description    |
+| ------ | ------ | ---- | ------ |
 | cityID | string | Yes   | Time zone city ID.|
 
 **Return value**
 
-| Type    | Description                     |
-| ------ | ----------------------- |
+| Type      | Description         |
+| -------- | ----------- |
 | TimeZone | **TimeZone** object corresponding to the specified time zone city ID.|
 
 **Example**
-  ```js
+  ```ts
   var timezone = i18n.TimeZone.getTimezoneFromCity("Shanghai");
   ```
 
-
-## i18n.setUsingLocalDigit<sup>9+</sup>
-
-setUsingLocalDigit(flag: boolean): boolean
-
-Sets whether to turn on the local digit switch.
-This is a system API.
-
-**Permission required**: ohos.permission.UPDATE_CONFIGURATION
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-
-| Name   | Type    | Mandatory  | Description   |
-| ------ | ------ | ---- | ----- |
-| flag | boolean | Yes   | Whether to turn on the local digit switch. The value **true** means to turn on the local digit switch, and the value **false** indicates the opposite.|
-
-**Return value**
-
-| Type      | Description          |
-| -------- | ------------ |
-| boolean | Result indicating whether the local digit switch is successfully set. The value **true** indicates that the local digit switch is successfully set, and the value **false** indicates the opposite.|
-
-**Example**
-  ```js
-  var status = i18n.setUsingLocalDigit(true);
-  ```
-
-
-## i18n.getUsingLocalDigit<sup>9+</sup>
-
-getUsingLocalDigit(): boolean
-
-Checks whether the local digit switch is turned on.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Return value**
-
-| Type      | Description          |
-| -------- | ------------ |
-| boolean | Result indicating whether the local digit switch is turned on. The value **true** indicates that the local digit switch is turned on, and the value **false** indicates the opposite.|
-
-**Example**
-  ```js
-  var status = i18n.getUsingLocalDigit();
-  ```
 
 ## Transliterator<sup>9+</sup>
 
@@ -1841,12 +1745,12 @@ Obtains a list of IDs supported by the **Transliterator** object.
 
 **Return value**
 
-| Type    | Description          |
-| ------ | ------------ |
+| Type      | Description        |
+| -------- | ---------- |
 | string[] | List of IDs supported by the **Transliterator** object.|
 
 **Example**
-  ```
+  ```ts
   i18n.Transliterator.getAvailableIDs();
   ```
 
@@ -1861,18 +1765,18 @@ Creates a **Transliterator** object.
 
 **Parameters**
 
-| Name   | Type     | Mandatory  | Description                  |
-| ------ | ------- | ---- | -------------------- |
-| id | string  | Yes   | ID supported by the **Transliterator** object.               |
+| Name | Type    | Mandatory  | Description      |
+| ---- | ------ | ---- | -------- |
+| id   | string | Yes   | ID supported by the **Transliterator** object.|
 
 **Return value**
 
-| Type    | Description           |
-| ------ | ------------- |
+| Type                                | Description   |
+| ---------------------------------- | ----- |
 | [Transliterator](#transliterator9) | **Transliterator** object.|
 
 **Example**
-  ```
+  ```ts
   var transliterator = i18n.Transliterator.getInstance("Any-Latn");
   ```
 
@@ -1887,21 +1791,22 @@ Converts the input string from the source format to the target format.
 
 **Parameters**
 
-| Name   | Type     | Mandatory  | Description                  |
-| ------ | ------- | ---- | -------------------- |
-| text | string  | Yes   | Input string.               |
+| Name | Type    | Mandatory  | Description    |
+| ---- | ------ | ---- | ------ |
+| text | string | Yes   | Input string.|
 
 **Return value**
 
-| Type    | Description           |
-| ------ | ------------- |
+| Type    | Description      |
+| ------ | -------- |
 | string | Target string.|
 
 **Example**
-  ```
+  ```ts
   var transliterator = i18n.Transliterator.getInstance("Any-Latn");
   transliterator.transform ("China");
   ```
+
 
 ## Unicode<sup>9+</sup>
 
@@ -2197,3 +2102,534 @@ Obtains the sequence of the year, month, and day in the specified locale.
   ```js
   i18n.I18NUtil.getDateOrder("zh-CN");
   ```
+
+
+## i18n.getDisplayCountry<sup>(deprecated)</sup>
+
+getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
+
+Obtains the localized script for the specified country.
+
+This API is deprecated since API version 9. You are advised to use [System.getDisplayCountry](#getdisplaycountry9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name         | Type     | Mandatory  | Description              |
+| ------------ | ------- | ---- | ---------------- |
+| country      | string  | Yes   | Specified country.           |
+| locale       | string  | Yes   | Locale ID.    |
+| sentenceCase | boolean | No   | Whether to use sentence case for the localized script.|
+
+**Return value**
+
+| Type    | Description           |
+| ------ | ------------- |
+| string | Localized script for the specified country.|
+
+**Example**
+  ```js
+  i18n.getDisplayCountry("zh-CN", "en-GB", true);
+  i18n.getDisplayCountry("zh-CN", "en-GB");
+  ```
+
+
+## i18n.getDisplayLanguage<sup>(deprecated)</sup>
+
+getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
+
+Obtains the localized script for the specified language.
+
+This API is deprecated since API version 9. You are advised to use [System.getDisplayLanguage](#getdisplaylanguage9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name         | Type     | Mandatory  | Description              |
+| ------------ | ------- | ---- | ---------------- |
+| language     | string  | Yes   | Specified language.           |
+| locale       | string  | Yes   | Locale ID.    |
+| sentenceCase | boolean | No   | Whether to use sentence case for the localized script.|
+
+**Return value**
+
+| Type    | Description           |
+| ------ | ------------- |
+| string | Localized script for the specified language.|
+
+**Example**
+  ```js
+  i18n.getDisplayLanguage("zh", "en-GB", true);
+  i18n.getDisplayLanguage("zh", "en-GB");
+  ```
+
+
+## i18n.getSystemLanguage<sup>(deprecated)</sup>
+
+getSystemLanguage(): string
+
+Obtains the system language.
+
+This API is deprecated since API version 9. You are advised to use [System.getSystemLanguage](#getsystemlanguage9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type    | Description     |
+| ------ | ------- |
+| string | System language ID.|
+
+**Example**
+  ```js
+  i18n.getSystemLanguage();
+  ```
+
+
+## i18n.getSystemRegion<sup>(deprecated)</sup>
+
+getSystemRegion(): string
+
+Obtains the system region.
+
+This API is deprecated since API version 9. You are advised to use [System.getSystemRegion](#getsystemregion9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type    | Description     |
+| ------ | ------- |
+| string | System region ID.|
+
+**Example**
+  ```js
+  i18n.getSystemRegion();
+  ```
+
+
+## i18n.getSystemLocale<sup>(deprecated)</sup>
+
+getSystemLocale(): string
+
+Obtains the system locale.
+
+This API is deprecated since API version 9. You are advised to use [System.getSystemLocale](#getsystemlocale9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type    | Description     |
+| ------ | ------- |
+| string | System locale ID.|
+
+**Example**
+  ```js
+  i18n.getSystemLocale();
+  ```
+
+
+## i18n.is24HourClock<sup>(deprecated)</sup>
+
+is24HourClock(): boolean
+
+Checks whether the 24-hour clock is used.
+
+This API is deprecated since API version 9. You are advised to use [System.is24HourClock](#is24hourclock9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the 24-hour clock is used; returns **false** otherwise.|
+
+**Example**
+  ```js
+  var is24HourClock = i18n.is24HourClock();
+  ```
+
+
+## i18n.set24HourClock<sup>(deprecated)</sup>
+
+set24HourClock(option: boolean): boolean
+
+Sets the 24-hour clock.
+
+This API is deprecated since API version 9. You are advised to use [System.set24HourClock](#set24hourclock9) instead.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                                      |
+| ------ | ------- | ---- | ---------------------------------------- |
+| option | boolean | Yes   | Whether to enable the 24-hour clock. The value **true** means to enable the 24-hour clock, and the value **false** means the opposite.|
+
+**Return value**
+
+| Type     | Description                           |
+| ------- | ----------------------------- |
+| boolean | Returns **true** if the 24-hour clock is enabled; returns **false** otherwise.|
+
+**Example**
+  ```js
+  // Set the system time to the 24-hour clock.
+  var success = i18n.set24HourClock(true);
+  ```
+
+
+## i18n.addPreferredLanguage<sup>(deprecated)</sup>
+
+addPreferredLanguage(language: string, index?: number): boolean
+
+Adds a preferred language to the specified position on the preferred language list.
+
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.addPreferredLanguage](#addpreferredlanguage9) instead.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description        |
+| -------- | ------ | ---- | ---------- |
+| language | string | Yes   | Preferred language to add. |
+| index    | number | No   | Position to which the preferred language is added.|
+
+**Return value**
+
+| Type     | Description                           |
+| ------- | ----------------------------- |
+| boolean | Returns **true** if the preferred language is successfully added; returns **false** otherwise.|
+
+**Example**
+  ```js
+  // Add zh-CN to the preferred language list.
+  var language = 'zh-CN';
+  var index = 0;
+  var success = i18n.addPreferredLanguage(language, index);
+  ```
+
+
+## i18n.removePreferredLanguage<sup>(deprecated)</sup>
+
+removePreferredLanguage(index: number): boolean
+
+Deletes a preferred language from the specified position on the preferred language list.
+
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.removePreferredLanguage](#removepreferredlanguage9) instead.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description                   |
+| ----- | ------ | ---- | --------------------- |
+| index | number | Yes   | Position of the preferred language to delete.|
+
+**Return value**
+
+| Type     | Description                           |
+| ------- | ----------------------------- |
+| boolean | Returns **true** if the preferred language is deleted; returns **false** otherwise.|
+
+**Example**
+  ```js
+  // Delete the first preferred language from the preferred language list.
+  var index = 0;
+  var success = i18n.removePreferredLanguage(index);
+  ```
+
+
+## i18n.getPreferredLanguageList<sup>(deprecated)</sup>
+
+getPreferredLanguageList(): Array&lt;string&gt;
+
+Obtains the list of preferred languages.
+
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.getPreferredLanguageList](#getpreferredlanguagelist9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type                 | Description       |
+| ------------------- | --------- |
+| Array&lt;string&gt; | List of preferred languages.|
+
+**Example**
+  ```js
+  var preferredLanguageList = i18n.getPreferredLanguageList();
+  ```
+
+
+## i18n.getFirstPreferredLanguage<sup>(deprecated)</sup>
+
+getFirstPreferredLanguage(): string
+
+Obtains the first language in the preferred language list.
+
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.getFirstPreferredLanguage](#getfirstpreferredlanguage9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type    | Description            |
+| ------ | -------------- |
+| string | First language in the preferred language list.|
+
+**Example**
+  ```js
+  var firstPreferredLanguage = i18n.getFirstPreferredLanguage();
+  ```
+
+
+## Util<sup>(deprecated)</sup>
+
+
+### unitConvert<sup>(deprecated)</sup>
+
+static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
+
+Converts one measurement unit into another and formats the unit based on the specified locale and style.
+
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [unitConvert](#unitconvert9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name     | Type                    | Mandatory  | Description                                      |
+| -------- | ---------------------- | ---- | ---------------------------------------- |
+| fromUnit | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted.                                |
+| toUnit   | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted to.                                |
+| value    | number                 | Yes   | Value of the measurement unit to be converted.                            |
+| locale   | string                 | Yes   | Locale used for formatting, for example, **zh-Hans-CN**.               |
+| style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **narrow**.|
+
+**Return value**
+
+| Type    | Description                     |
+| ------ | ----------------------- |
+| string | Character string obtained after formatting based on the measurement unit specified by **toUnit**.|
+
+
+## Character<sup>(deprecated)</sup>
+
+
+### isDigit<sup>(deprecated)</sup>
+
+static isDigit(char: string): boolean
+
+Checks whether the input character string is composed of digits.
+
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isDigit](#isdigit9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                  |
+| ------- | ------------------------------------ |
+| boolean | Returns **true** if the input character is a digit; returns **false** otherwise.|
+
+
+### isSpaceChar<sup>(deprecated)</sup>
+
+static isSpaceChar(char: string): boolean
+
+Checks whether the input character is a space.
+
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isSpaceChar](#isspacechar9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                    |
+| ------- | -------------------------------------- |
+| boolean | Returns **true** if the input character is a space; returns **false** otherwise.|
+
+
+### isWhitespace<sup>(deprecated)</sup>
+
+static isWhitespace(char: string): boolean
+
+Checks whether the input character is a white space.
+
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isWhitespace](#iswhitespace9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                    |
+| ------- | -------------------------------------- |
+| boolean | Returns **true** if the input character is a white space; returns **false** otherwise.|
+
+
+### isRTL<sup>(deprecated)</sup>
+
+static isRTL(char: string): boolean
+
+Checks whether the input character is of the right to left (RTL) language.
+
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isRTL](#isrtl9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is of the RTL language; returns **false** otherwise.|
+
+
+### isIdeograph<sup>(deprecated)</sup>
+
+static isIdeograph(char: string): boolean
+
+Checks whether the input character is an ideographic character.
+
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isIdeograph](#isideograph9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is an ideographic character; returns **false** otherwise.|
+
+
+### isLetter<sup>(deprecated)</sup>
+
+static isLetter(char: string): boolean
+
+Checks whether the input character is a letter.
+
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isLetter](#isletter9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                  |
+| ------- | ------------------------------------ |
+| boolean | Returns **true** if the input character is a letter; returns **false** otherwise.|
+
+
+### isLowerCase<sup>(deprecated)</sup>
+
+static isLowerCase(char: string): boolean
+
+Checks whether the input character is a lowercase letter.
+
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isLowerCase](#islowercase9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is a lowercase letter; returns **false** otherwise.|
+
+
+### isUpperCase<sup>(deprecated)</sup>
+
+static isUpperCase(char: string): boolean
+
+Checks whether the input character is an uppercase letter.
+
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isUpperCase](#isuppercase9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is an uppercase letter; returns **false** otherwise.|
+
+
+### getType<sup>(deprecated)</sup>
+
+static getType(char: string): string
+
+Obtains the type of the input character string.
+
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [getType](#gettype9) instead.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type    | Description         |
+| ------ | ----------- |
+| string | Type of the input character.|

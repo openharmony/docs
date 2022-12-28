@@ -4,7 +4,7 @@
 
 ### 功能简介
 
-为了快速开发传感器驱动，基于HDF（Hardware Driver Foundation）驱动框架开发了马达（Vibrator）驱动模型。马达驱动模型，屏蔽设备驱动与系统交互的实现，为硬件服务层提供统一稳定的驱动接口能力，为驱动开发者提供开放的接口和解析接口的能力，用于不同操作系统马达设备部件的部署指导和马达设备部件驱动的开发。马达驱动模型如图1所示：
+为了快速开发马达驱动，基于HDF（Hardware Driver Foundation）驱动框架开发了马达（Vibrator）驱动模型。马达驱动模型，屏蔽设备驱动与系统交互的实现，为硬件服务层提供统一稳定的驱动接口能力，为驱动开发者提供开放的接口和解析接口的能力，用于不同操作系统马达设备部件的部署指导和马达设备部件驱动的开发。马达驱动模型如图1所示：
 
 **图 1** 马达驱动模型图
 
@@ -12,7 +12,17 @@
 
 ### 基本概念
 
-系统通过调用马达实现对设备的振动控制。目前，马达只有两种振动方式：
+根据振动原理的不同，目前马达可以分为两种：
+
+- 转子马达
+
+  转子马达依靠旋转带动配重振动，分为普通转子和币型转子两种。转子马达的启停反应慢，并且无法实现多种振动模式，但其优点是成本低且体积小。
+
+- 线性马达
+
+  线性马达依靠磁力快速抖动配重来振动，分为纵向线性马达和横向线性马达两种。线性马达的启停都非常快，可以实现不同振感且具有良好的方向性。
+
+系统通过调用马达驱动接口实现对设备的振动控制。目前，马达只有两种振动方式：
 
 - 单次振动
 
@@ -20,7 +30,7 @@
 
 - 周期振动
 
-  周期振动是指按照预置的效果模式控制振动。例如：预置效果为“haptic.clock.timer” = [600, 600, 200, 600]，等待600ms，振动600ms，等待200ms，振动600ms。
+  周期振动是指按照预置的效果模式控制振动。例如：预置效果为“haptic.clock.timer” = [600, 600, 200, 600]，表示等待600ms，振动600ms，等待200ms，振动600ms。
 
 ### 运作机制
 
@@ -30,18 +40,18 @@
 
 ![Vibrator驱动运行图](figures/Vibrator驱动运行图.png)
 
-马达驱动模型以标准系统Hi3516DV300产品为例，介绍整个驱动加载及运行流程：
+以标准系统Hi3516DV300产品为例，介绍马达模块驱动加载及运行流程：
 
-1. 从device_info.hcs配置文件中的Vibrator Host读取Vibrator管理配置信息。
-2. 解析Vibrator管理配置信息，并关联对应马达抽象驱动。
-3. 从linear_vibrator_config.hcs配置文件中读取Vibrator数据配置信息。
-4. 解析Vibrator数据配置信息，并关联对应Haptic驱动。
-5. 客户端下发Vibrator Stub控制到服务端。
-6. Vibrator Stub控制调用马达服务。
-7. 初始化马达抽象驱动接口。
-8. Haptic中起线程，解析效果模块。
-9. Haptic调用马达抽象驱动中的Start接口。
-10. 马达抽象驱动调用马达差异化驱动中的Start接口。
+1. Device Manager从device_info.hcs配置文件中读取Vibrator管理配置信息。
+2. HCS Parser解析Vibrator管理配置信息，并加载对应的马达抽象驱动。
+3. Device Manager从linear_vibrator_config.hcs配置文件中读取Vibrator数据配置信息。
+4. HCS Parser解析Vibrator数据配置信息，并加载对应的Haptic驱动。
+5. Vibrator Proxy获取到Vibrator HDI接口服务实例后，通过IPC（Inter-Process Communication）调用到Vibrator Stub。
+6. Vibrator Stub主要处理与IPC相关的业务逻辑，完成参数反序列化后调用Vibrator Controller。
+7. Vibrator Controller中是HDI接口的真正实现，通过IPC调用Vibrator抽象驱动接口。
+8. 在Haptic驱动中起线程，解析效果模块。
+9. Haptic驱动调用马达抽象驱动中的Start接口。
+10. 马达抽象驱动进一步调用马达差异化驱动中的Start接口，控制马达设备以给定的效果振动。
 
 ## 开发指导
 
@@ -51,36 +61,36 @@
 
 ### 接口说明
 
-马达驱动模型支持静态HCS配置和动态参数两种振动效果配置能力。马达硬件服务调用StartOnce接口动态配置持续振动；调用Start接口启动静态配置的振动效果。马达驱动模型对HDI开放的API接口能力，如下表所示。
+马达驱动模型支持静态HCS配置和动态参数两种振动效果配置能力。马达硬件服务调用StartOnce接口动态配置持续振动，调用Start接口启动静态配置的振动效果。马达驱动模型对外开放的API接口能力，如下表所示。
 
 **表 1** 马达驱动模型对外API接口能力介绍
 
 | 接口名                                  | 功能描述                                           |
 | -------------------------------------- | ------------------------------------------------ |
-| int32_t  StartOnce(uint32_t duration)                        | 按照指定持续时间触发振动马达，duration为振动持续时长。       |
-| int32_t  Start(const char *effectType)                       | 按照指定预置效果启动马达，effectType表示预置的预置效果。     |
-| int32_t  Stop(enum VibratorMode mode)                        | 按照指定的振动模式停止马达振动。                             |
-| int32_t EnableVibratorModulation(uint32_t duration, int32_t intensity, int32_t frequency) | 按照指定振幅、频率、持续时间触发振动马达。duration为振动持续时长，intensity为振动强度，frequency为振动频率。 |
-| int32_t GetVibratorInfo(struct VibratorInfo **vibratorInfo); | 获取马达信息，包括是否支持振幅和频率的设置及振幅和频率的设置范围 。 |
+| int32_t (*StartOnce)([in] uint32_t duration)                        | 控制马达以执行给定持续时间的单次振动，duration表示单次振动的持续时间。       |
+| int32_t (*Start)([in] const char *effectType)                        | 控制马达以预置效果执行周期性振动，effectType表示指向预设效果类型的指针。     |
+| int32_t (*Stop)([in] enum VibratorMode mode)                         | 停止马达振动，mode表示振动模式，可以是单次或周期性的。                             |
+| int32_t (*EnableVibratorModulation)(uint32_t duration, int32_t intensity, int32_t frequency) | 根据传入的振动效果启动马达，duration表示马达振动的持续时间，intensity表示振动周期内的马达振幅，frequency表示振动周期内的马达频率。 |
+| int32_t (*GetVibratorInfo)([out] struct VibratorInfo **vibratorInfo) | 获取系统中支持设置振幅和频率的所有马达信息，vibratorInfo表示指向马达信息的指针。 |
 
 ### 开发步骤
 
 Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能力接口，包括马达一次振动、马达效果配置震动、马达停止。基于HDF驱动框架开发的马达驱动模型，实现跨操作系统迁移、器件差异配置等功能。具体的开发步骤如下：
 
-1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成马达抽象驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现，配置资源和HCS解析。
+1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成马达抽象驱动开发（主要由Bind、Init、Release、Dispatch函数接口实现），配置资源和HCS解析。
 
-   - 调用HDF_INIT将驱动入口注册到HDF框架中，在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出马达驱动模型，使用HCS作为配置描述源码。HCS配置字段详细介绍参考[配置管理](driver-hdf-manage.md)。其中Driver Entry入口函数定义如下：
+   - 调用HDF_INIT将驱动入口注册到HDF框架中。在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出马达驱动模型，使用HCS作为配置描述源码。HCS配置字段详细介绍参考[配置管理](driver-hdf-manage.md)。其中Driver Entry入口函数定义如下：
 
      ```c
      /* 注册马达抽象驱动入口数据结构体对象 */
      struct HdfDriverEntry g_vibratorDriverEntry = {
-         .moduleVersion = 1, // 马达模块版本号
-         .moduleName = "HDF_VIBRATOR", // 马达模块名，要与device_info.hcs文件里的马达moduleName字段值一样
-         .Bind = BindVibratorDriver, // 马达绑定函数
-         .Init = InitVibratorDriver, // 马达初始化函数
+         .moduleVersion = 1,               // 马达模块版本号
+         .moduleName = "HDF_VIBRATOR",     // 马达模块名，要与device_info.hcs文件里的马达moduleName字段值一样
+         .Bind = BindVibratorDriver,       // 马达绑定函数
+         .Init = InitVibratorDriver,       // 马达初始化函数
          .Release = ReleaseVibratorDriver, // 马达资源释放函数
      };
-     
+     /* 调用HDF_INIT将驱动入口注册到HDF框架中 */
      HDF_INIT(g_vibratorDriverEntry);
      ```
 
@@ -152,18 +162,19 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
      ```c
      /* 马达设备HCS配置 */
      vibrator :: host {
-                 hostName = "vibrator_host";
-                 device_vibrator :: device {
-                     device0 :: deviceNode {
-                         policy = 2; // 驱动服务发布的策略
-                         priority = 100; // 驱动启动优先级（0-200），值越大优先级越低，建议配置100，优先级相同则不保证device的加载顺序
-                         preload = 0; // 驱动按需加载字段，0表示加载，2表示不加载
-                         permission = 0664; // 驱动创建设备节点权限
-                         moduleName = "HDF_VIBRATOR"; // 驱动名称，该字段的值必须和驱动入口结构的moduleName值一致
-                         serviceName = "hdf_misc_vibrator"; // 驱动对外发布服务的名称，必须唯一 
-                         deviceMatchAttr = "hdf_vibrator_driver"; // 驱动私有数据匹配的关键字，必须和驱动私有数据配置表中的match_attr值相等
-                     }
-                 }
+         hostName = "vibrator_host";
+         device_vibrator :: device {
+             device0 :: deviceNode {
+                 policy = 2;                              // 驱动服务发布的策略
+                 priority = 100;                          // 驱动启动优先级（0-200），值越大优先级越低，建议配置100，优先级相同则不保证device的加载顺序
+                 preload = 0;                             // 驱动按需加载字段，0表示加载，2表示不加载
+                 permission = 0664;                       // 驱动创建设备节点权限
+                 moduleName = "HDF_VIBRATOR";             // 驱动名称，该字段的值必须和驱动入口结构的moduleName值一致
+                 serviceName = "hdf_misc_vibrator";       // 驱动对外发布服务的名称，必须唯一
+                 deviceMatchAttr = "hdf_vibrator_driver"; // 驱动私有数据匹配的关键字，必须和驱动私有数据配置表中的match_attr值相等
+            }
+        }
+     }
      ```
 
 2. 创建马达效果模型，解析马达效果HCS配置。
@@ -202,23 +213,23 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
      }
      ```
 
-   - 马达效果模型使用HCS作为配置描述源码，hcs配置文件字段详细介绍参考[配置管理](driver-hdf-manage.md)。
+   - 马达效果模型使用HCS作为配置描述源码，HCS配置文件字段详细介绍参考[配置管理](driver-hdf-manage.md)。
 
-     ```hcs
+     ```c
      /* 马达数据配置模板（vibrator_config.hcs） */
      root {
          vibratorConfig {
              boardConfig {
-                 match_attr = "hdf_vibrator_driver"; // 需要和马达设备配置match_attr字段保持一致
+                 match_attr = "hdf_vibrator_driver"; // 需要和马达设备配置文件中的match_attr字段保持一致
                  vibratorAttr {
                      /* 0：转子；1：线性 */
-                     deviceType = 1; // 设备类型
-                     supportPreset = 1; // 支持的预设类型
+                     deviceType = 1;                 // 设备类型
+                     supportPreset = 1;              // 支持的预设类型
                  }
                  vibratorHapticConfig {
                      haptic_clock_timer {
                          effectName = "haptic.clock.timer";
-                         type = 1; // 0：内置模式；1：时间序列
+                         type = 1;                   // 0：内置模式；1：时间序列
                          seq = [600, 600, 200, 600]; // 时间序列
                      }
                      haptic_default_effect {
@@ -232,9 +243,9 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
      }
      ```
 
-3. 完成马达振动和停止接口开发，会根据振动效果的模式创建和销毁定时器。
+3. 完成马达信息获取、振动模式设置和停止的接口开发，并实现根据振动模式创建和销毁定时器。
 
-   马达硬件服务调用StartOnce接口动态配置持续振动时间；调用StartEffect接口启动静态配置的振动效果，为驱动开发者提供抽象的配置接口能力。
+   马达硬件服务调用StartOnce接口动态配置持续振动时间，调用StartEffect接口启动静态配置的振动效果，为驱动开发者提供抽象的配置接口能力。
 
    ```c
    /* 按照指定持续时间触发振动马达，duration为振动持续时长。 */
@@ -259,7 +270,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
        return HDF_SUCCESS;
    }
    
-   /* 按照预置效果启动马达，effectType表示预置的预置效果。 */
+   /* 按照预置效果启动马达，effectType表示预置的振动效果。 */
    static int32_t StartEffect(struct HdfSBuf *data, struct HdfSBuf *reply)
    {
        int32_t ret;
@@ -313,11 +324,11 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
        int32_t intensity;
        int32_t frequency;
        int32_t ret;
-    .....
+       .....
        (void)OsalMutexLock(&drvData->mutex);
        drvData->mode = VIBRATOR_MODE_ONCE;
        (void)OsalMutexUnlock(&drvData->mutex);
-    /* 设置振幅和频率 */
+       /* 设置振幅和频率 */
        ret = drvData->ops.SetParameter(intensity, frequency);
        if (ret != HDF_SUCCESS) {
            HDF_LOGE("%s: set parameter failed", __func__);
@@ -380,7 +391,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
      }
      
      /* 注册马达信息接口 */
-      int32_t RegisterVibratorInfo(struct VibratorInfo *vibratorInfo)
+     int32_t RegisterVibratorInfo(struct VibratorInfo *vibratorInfo)
      {
          struct VibratorDriverData *drvData = GetVibratorDrvData();
      
@@ -407,29 +418,29 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
      static int32_t StopModulationParameter()
      {
          uint8_t value[DRV2605L_VALUE_BUTT];
-      struct Drv2605lDriverData *drvData = NULL;
+         struct Drv2605lDriverData *drvData = NULL;
          drvData = GetDrv2605lDrvData();
      
-      CHECK_VIBRATOR_NULL_PTR_RETURN_VALUE(drvData, HDF_FAILURE);
+         CHECK_VIBRATOR_NULL_PTR_RETURN_VALUE(drvData, HDF_FAILURE);
          CHECK_VIBRATOR_NULL_PTR_RETURN_VALUE(drvData->drv2605lCfgData, HDF_FAILURE);
      
          value[DRV2605L_ADDR_INDEX] = (uint8_t)DRV2605_REG_MODE;
          value[DRV2605L_VALUE_INDEX] = (uint8_t)DRV2605_MODE_STANDBY;
          if (WriteDrv2605l(&drvData->drv2605lCfgData->vibratorBus.i2cCfg, value, sizeof(value)) != HDF_SUCCESS) {
              HDF_LOGE("%s: i2c addr [%0X] write failed", __func__, value[DRV2605L_ADDR_INDEX]);
-          return HDF_FAILURE;
+             return HDF_FAILURE;
          }
      
          value[DRV2605L_ADDR_INDEX] = (uint8_t)DRV2605_REG_RTPIN;
          value[DRV2605L_VALUE_INDEX] = (uint8_t)&drvData->drv2605lCfgData->vibratorAttr.defaultIntensity;
          if (WriteDrv2605l(&drvData->drv2605lCfgData->vibratorBus.i2cCfg, value, sizeof(value)) != HDF_SUCCESS) {
-          HDF_LOGE("%s: i2c addr [%0X] write failed", __func__, value[DRV2605L_ADDR_INDEX]);
+             HDF_LOGE("%s: i2c addr [%0X] write failed", __func__, value[DRV2605L_ADDR_INDEX]);
          }
      
          value[DRV2605L_ADDR_INDEX] = (uint8_t)DRV2605_REG_LRARESON;
          value[DRV2605L_VALUE_INDEX] = (uint8_t)&drvData->drv2605lCfgData->vibratorAttr.defaultFrequency;
          if (WriteDrv2605l(&drvData->drv2605lCfgData->vibratorBus.i2cCfg, value, sizeof(value)) != HDF_SUCCESS) {
-          HDF_LOGE("%s: i2c addr [%0X] write failed", __func__, value[DRV2605L_ADDR_INDEX]);
+             HDF_LOGE("%s: i2c addr [%0X] write failed", __func__, value[DRV2605L_ADDR_INDEX]);
          }
      
          return HDF_SUCCESS;
@@ -439,7 +450,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
      static void SetModulationParameter(int32_t intensity, int32_t frequency)
      {
          uint8_t value[DRV2605L_VALUE_BUTT];
-      struct Drv2605lDriverData *drvData = NULL;
+         struct Drv2605lDriverData *drvData = NULL;
          drvData = GetDrv2605lDrvData();
      
          CHECK_VIBRATOR_NULL_PTR_RETURN_VALUE(drvData, HDF_FAILURE);
@@ -453,7 +464,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
              }
          } else {
              HDF_LOGD("%s: the setting of intensity 0 is not supported and \
-              will be set as the system default intensity", __func__);
+                 will be set as the system default intensity", __func__);
          }
      
          if (frequency != 0) {
@@ -472,9 +483,9 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
 
 ### 调测验证
 
-驱动开发完成后，在传感器单元测试里面开发自测试用例，验证驱动基本功能。测试环境采用开发者自测试平台。
+驱动开发完成后，在马达单元测试里面开发自测试用例，验证驱动基本功能。测试环境采用开发者自测试平台。
 
-```
+```c++
 /* 用例执行前，初始化马达接口实例。 */
 void HdfVibratorTest::SetUpTestCase()
 {

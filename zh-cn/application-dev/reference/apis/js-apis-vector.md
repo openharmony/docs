@@ -1,6 +1,6 @@
-# 线性容器Vector
+# @ohos.util.Vector (线性容器Vector)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 Vector是一种线性数据结构，底层基于数组实现。当Vector的内存用尽时，会自动分配更大的连续内存区，将原先的元素复制到新的内存区，并释放旧的内存区。使用Vector能够高效快速地访问元素。
@@ -25,7 +25,7 @@ import Vector from '@ohos.util.Vector';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | Vector的元素个数。 |
 
@@ -72,7 +72,7 @@ let vector = new Vector();
 let result = vector.add("a");
 let result1 = vector.add(1);
 let b = [1, 2, 3];
-vector.add(b);
+let result2 = vector.add(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = vector.add(c);
 ```
@@ -285,13 +285,11 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.removeByRange(2,4);
-vector.removeByRange(4,3);
-vector.removeByRange(2,6);
 ```
 
 ### replaceAllElements
 
-replaceAllElements(callbackfn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => T,
+replaceAllElements(callbackFn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => T,
 thisArg?: Object): void
 
 用户操作Vector中的元素，用操作后的元素替换原元素并返回操作后的元素。
@@ -302,7 +300,7 @@ thisArg?: Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -331,7 +329,7 @@ vector.replaceAllElements((value: number, index: number) => {
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => void,
 thisArg?: Object): void
 
 通过回调函数来遍历Vector实例对象上的元素以及元素对应的下标。
@@ -342,7 +340,7 @@ thisArg?: Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -430,9 +428,10 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-let result = vector.subVector(2,4);
-let result1 = vector.subVector(4,3);
-let result2 = vector.subVector(2,6);
+vector.add(6);
+vector.add(8);
+let result = vector.subVector(0,4);
+let result1 = vector.subVector(2,4);
 
 ```
 

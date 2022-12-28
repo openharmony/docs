@@ -1,8 +1,8 @@
-# How to Contribute<a name="EN-US_TOPIC_0000001055208082"></a>
+# How to Contribute
 
-## Contributing Code<a name="en-us_topic_0000001053868136_section10170447161315"></a>
+## Contributing Code
 
-## Before You Start<a name="en-us_topic_0000001053868136_section2734837154520"></a>
+## Before You Start
 
 **Signing the Developer Certificate of Origin**
 
@@ -12,25 +12,25 @@ Click [here](https://dco.openharmony.cn/#/sign) to sign the DCO, and click [here
 
 **Code of Conduct**
 
-OpenHarmony is an open source community that relies entirely on the friendly, welcoming environment of the community. Read and abide by the community's  [Code of Conduct](code-of-conduct.md#EN-US_TOPIC_0000001055368056)  before contributing to the community.
+OpenHarmony is an open source community that relies entirely on the friendly, welcoming environment of the community. Read and abide by the community's [Code of Conduct](code-of-conduct.md) before contributing to the community.
 
 ## **Finding the SIG Group You Are Interested**
 
 For details about how to participate in Special Interest Group (SIG), see **SIG Governance**.
 
-## Starting Contributing<a name="en-us_topic_0000001053868136_section184321756134618"></a>
+## Starting Contributing
 
-For details about how to contribute to code, see  [Code Contributing ](code-contribution.md).
+For details about how to contribute to code, see [Code Contributing ](code-contribution.md).
 
 ## Auto-Test
 
 For details about how to develop test cases based on test requirements, see [Test Subsystem](../readme/test.md).
 
-## Contributing Documents<a name="en-us_topic_0000001053868136_section11234185012131"></a>
+## Contributing Documents
 
-For details, see  [Documentation Contribution](documentation-contribution.md).
+For details, see [Documentation Contribution](documentation-contribution.md).
 
-## Communication in Community<a name="en-us_topic_0000001053868136_section98614457153"></a>
+## Communication in Community
 
-For details, see  [Communication in Community](communication-in-community.md#EN-US_TOPIC_0000001054608107).
+For details, see [Communication in Community](communication-in-community.md).
 

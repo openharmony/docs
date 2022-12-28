@@ -1,18 +1,26 @@
 # Background Task Management Overview
 
-Frequent activities of background applications cause user devices to consume power quickly and respond slowly. To meet performance and power consumption requirements, the system allows applications to execute only activities within the specifications in the background. Activities beyond the specifications are suspended by default, and resources allocated to them will be reclaimed when the available resources are insufficient.
+Frequent activities of background applications cause user devices to consume power quickly and respond slowly. To meet performance and power consumption requirements, the system allows applications in the background to execute only activities within the specifications. Activities beyond the specifications are suspended by default, and resources allocated to them will be reclaimed when the available resources are insufficient.
+If an application or a service module running in the background has a service to continue, it can request a [transient task](#transient-tasks) to delay the suspension or a [continuous task](#continuous-tasks) to prevent the suspension. If an application needs to execute a non-real-time task when running in the background, it can request a [Work Scheduler Task](#work-scheduler-tasks). A privileged application can also request [efficiency resources](#efficiency-resources) for more flexibility.
 
 
 ## Background Task Types
 
-Background tasks described in this document refer to the services that need to be continued when the respective applications or service modules are running in the background (not visible to the users). For more targeted management of background applications and service modules, OpenHarmony classifies applications and service modules into the following types:
+For more targeted management of background applications, OpenHarmony classifies background tasks into the following types and provides an extended resource request mode:
 
-- **No background task**: An application or service module does not need further processing when switched to the background.
+**No background task**: An application or service module does not need further processing when switched to the background.
 
-- **Transient task**: If an application or service module has an urgent, short task that must continue in the background until it is completed, such as data compression, the application or service module can request a transient task for delayed suspension.
+**Transient task**: If an application or service module has an urgent, short task that must continue in the background until it is completed, such as data compression, the application or service module can request a transient task for delayed suspension.
 
-- **Continuous task**: If an application or service module has a user-initiated, perceivable task that needs to run in an extended period of time in the background, it can request a continuous task so that it will not be suspended. Examples of continuous tasks include music playback, navigation, device connection, and VoIP.
+**Continuous task**: If an application or service module has a user-initiated, perceivable task that needs to run in an extended period of time in the background, it can request a continuous task so that it will not be suspended. Examples of continuous tasks include music playback, navigation, device connection, and VoIP.
 
+**Work Scheduler task**: The Work Scheduler provides a mechanism for applications to execute non-real-time tasks when the system is idle. If the preset conditions are met, the tasks will be placed in the execution queue and scheduled when the system is idle.
+
+**Efficiency resources**: If an application needs to ensure that it will not be suspended within a period of time or can normally use certain system resources when it is suspended, it can request efficiency resources, including CPU, WORK_SCHEDULER, software, and hardware resources. Different types of efficiency resources come with different privileges. For example, the CPU resources enable an application or process to keep running without being suspended, and the WORK_SCHEDULER resources allow for more task execution time before the application or process is suspended.
+
+## Selecting a Background Task
+
+![Background Task Selection](public_sys-resources/bgtask_choice.png)
 
 ## Transient Tasks
 
@@ -61,3 +69,66 @@ OpenHarmony provides 9 background modes for services that require continuous tas
 - Ensure that the requested continuous task background mode matches the application type. If the background mode does not match the application type, the system will suspend the task once it detects the issue.
 - If a requested continuous task is not actually executed, the system will suspend the task once it detects the issue.
 - Each ability can request only one continuous task at a time.
+
+## Work Scheduler Tasks
+The Work Scheduler provides a mechanism for an application to execute a non-real-time task, for example, data learning, when the system is idle. The system places the Work Scheduler tasks requested by applications in a queue and determines the optimal scheduling time of each task based on the storage space, power consumption, temperature, and more. Persistence is supported. This means that a requested Work Scheduler task can be triggered when the application exits or the device restarts.
+
+### Restrictions on Using Work Scheduler Tasks
+
+The use of the Work Scheduler must comply with the following restrictions and rules:
+
+- **Timeout**: The Work Scheduler callback can run only within the specified period of time. After the timeout, the callback automatically stops. The default timeout duration is 2 minutes. System applications can request [efficiency resources](efficiency-resources-apply-dev-guide.md) to obtain a longer duration (20 minutes in the charging state and 10 minutes in the non-charging state).
+- **Execution frequency**: The system controls the execution frequency of Work Scheduler tasks based on the activity level of their respective applications. If an application has applied for the WORK_SCHEDULER resources through the efficiency resource API, the execution frequency is not limited within the validity period of the resources.
+
+    | Application Group            |     Work Scheduler Task Execution Frequency      |
+    | --------------------|------------------------- |
+    | Active| At a minimum interval of 2 hours|
+    | Used every day| At a minimum interval of 4 hours|
+    | Frequently used| At a minimum interval of 24 hours|
+    | Infrequently used| At a minimum interval of 48 hours|
+    | Restricted| Prohibited|
+    | Unused| Prohibited|
+    | [Exemption group for efficiency resources](../reference/apis/js-apis-backgroundTaskManager.md#resourcetype9) | Unlimited|
+
+- **WorkInfo setting**
+
+  - **workId**, **bundleName**, and **abilityName** are mandatory. **bundleName** must be set to the name of the current application. Otherwise, the verification will fail.
+
+  - At least one condition must be set.
+
+  - The repeat interval must be at least 20 minutes and must work with the Always repeat pattern or repeat times.
+
+  - The carried parameters can be of the number, string, or boolean type.
+
+## Efficiency Resources
+Efficiency resources are classified into CPU, WORK_SCHEDULER, software, and hardware resources.
+
+An application or process is assigned the privileges associated with the obtained efficiency resources.
+  * With the CPU resources, the application or process will not be suspended.
+  * With the WORK_SCHEDULER resources, the application or process has more time to execute a task and is not restricted by the execution frequency.
+  * With the COMMON_EVENT resources, the application can still receive common events when it is suspended in the background.
+  * With the TIMER resources, the application can use the timer to execute precise scheduled tasks.
+  * With the hardware resources, the application can still be woken up by related services to execute tasks when it is suspended in the background.
+
+**Table 2** Efficiency resource types
+
+| Name                    | Value | Description                   |
+| ----------------------- | ---- | --------------------- |
+| CPU                     | 1    | CPU resources, which prevent the application from being suspended.            |
+| COMMON_EVENT            | 2    | A type of software resources, which prevent common events from being proxied when the application is suspended. |
+| TIMER                   | 4    | A type of software resources, which prevent timers from being proxied when the application is suspended.   |
+| WORK_SCHEDULER          | 8    | WORK_SCHEDULER resources, which ensure that the application has more time to execute the task.     |
+| BLUETOOTH               | 16   | A type of hardware resources, which prevent Bluetooth resources from being proxied when the application is suspended. |
+| GPS                     | 32   | A type of hardware resources, which prevent GPS resources from being proxied when the application is suspended. |
+| AUDIO                   | 64   | A type of hardware resources, which prevent audio resources from being proxied when the application is suspended.|
+
+### Restrictions on Using Efficiency Resources
+- Applications or processes are responsible for requesting and releasing efficiency resources. A process can release the resources requested by itself, whereas an application can release the resources requested by both itself and its processes. For example, an application requests CPU resources, and its process requests CPU and WORK_SCHEDULER resources. If the application initiates CPU resource release, the CPU resources requested by the process are also released. However, the WORK_SCHEDULER resources are not released. If the process initiates CPU resource release, the CPU resources requested by the application are retained until being released by the application.
+
+- If persistent resources and non-persistent resources of the same type are requested, the persistent resources overwrite the non-persistent resources and they will not be released upon a timeout. For example, if an application first requests 10-second CPU resources and then requests persistent CPU resources at the 5th second, the CPU resources become persistent and will not be released at the tenth second. If the application releases the CPU resources at the 8th second, both types of CPU resources are released.
+
+- The WORK_SCHEDULER resources can be requested and released by applications, but not by processes.
+
+- To use efficiency resources, an application must first submit a request to the application center to obtain corresponding privileges.
+
+  <!--no_check-->

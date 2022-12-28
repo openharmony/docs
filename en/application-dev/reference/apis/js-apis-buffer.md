@@ -1,7 +1,6 @@
 # Buffer
 
 > **NOTE**
-> 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 A **Buffer** object represents a fixed-length sequence of bytes. It is used to store binary data.
@@ -14,7 +13,57 @@ You can use the APIs provided by the **Buffer** module to process images and a l
 import buffer from '@ohos.buffer';
 ```
 
+## BufferEncoding
+
+Enumerates the supported encoding formats of strings.
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Encoding Format   | Description                |
+| ------- | -------------------- |
+| ascii  | ASCII format.  |
+| utf8  | UTF-8  |
+| utf-8 | UTF-8 format.|
+| utf16le | UTF-16LE format.|
+| ucs2 | UTF-16LE format.|
+| ucs-2 | UTF-16LE format.|
+| base64 | Base64 format.|
+| base64url | Base64 format.|
+| latin1 | ASCII format.|
+| binary | Binary format.|
+| hex | Hexadecimal format.|
+
 ## Buffer
+
+### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| length | number | Yes| No| Length of the buffer, in bytes.|
+| buffer | ArrayBuffer | Yes| No| **ArrayBuffer** object.|
+| byteOffset | number | Yes| No| Offset of the buffer in the memory pool.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200013 | Cannot set property ${propertyName} of Buffer which has only a getter. |
+
+**Example**
+
+```ts
+import buffer from '@ohos.buffer';
+
+let buf = buffer.from("1236");
+console.log(JSON.stringify(buf.length));
+let arrayBuffer = buf.buffer;
+console.log(JSON.stringify(new Uint8Array(arrayBuffer)));
+console.log(JSON.stringify(buf.byteOffset));
+```
 
 ### alloc
 
@@ -30,7 +79,7 @@ Allocates and initializes a **Buffer** instance of the specified size.
 | -------- | -------- | -------- | -------- |
 | size | number | Yes| Size of the **Buffer** instance to allocate, in bytes.|
 | fill | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;number | No| Pre-filled value. The default value is **0**.|
-| encoding | BufferEncoding | No| Encoding format (valid only when **fill** is a string). The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **fill** is a string). The default value is **utf-8**.|
 
 **Return value**
 
@@ -120,7 +169,7 @@ Obtains the number of bytes of a string based on the encoding format.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypedArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | Yes| Target string.|
-| encoding | BufferEncoding | No| Encoding format. The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format. The default value is **utf-8**.|
 
 **Return value**
 
@@ -169,8 +218,7 @@ let buf1 = buffer.from('1234');
 let buf2 = buffer.from('0123');
 let res = buf1.compare(buf2);
 
-console.log(Number(res).toString());
-// Print 1
+console.log(Number(res).toString()); // Print 1.
 ```
 
 ### concat
@@ -193,6 +241,14 @@ Concatenates an array of **Buffer** instances into a new instance of the specifi
 | Type| Description|
 | -------- | -------- |
 | Buffer | **Buffer** instance created.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "totalLength" is out of range. |
 
 **Example**
 
@@ -256,6 +312,14 @@ Creates a **Buffer** instance that shares memory with the specified array of **B
 | -------- | -------- |
 | Buffer | **Buffer** instance with shared memory.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[byteOffset/length]" is out of range. |
+
 **Example**
 
 ```ts
@@ -307,8 +371,8 @@ Creates a **Buffer** instance based on the specified object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | object | Object | Yes| Object that supports **Symbol.toPrimitive** or **valueOf()**.|
-| offsetOrEncoding | number&nbsp;\|&nbsp;string | No| Byte offset or encoding format.|
-| length | number | No| Length of the **Buffer** instance to create.|
+| offsetOrEncoding | number&nbsp;\|&nbsp;string | Yes| Byte offset or encoding format.|
+| length | number | Yes| Length of the **Buffer** instance to create.|
 
 **Return value**
 
@@ -337,7 +401,7 @@ Creates a **Buffer** instance based on a string in the given encoding format.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | string | String | Yes| String.|
-| encoding | BufferEncoding | No| Encoding format of the string. The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format of the string. The default value is **utf-8**.|
 
 **Return value**
 
@@ -481,6 +545,14 @@ Copies data at the specified position in this **Buffer** instance to the specifi
 | -------- | -------- |
 | number |  Total length of the data copied, in bytes.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[targetStart/sourceStart/sourceEnd]" is out of range. |
+
 **Example**
 
 ```ts
@@ -548,7 +620,6 @@ let buf3 = buffer.from('ABCD');
 
 console.log(buf1.equals(buf2).toString());	// Print: true
 console.log(buf1.equals(buf3).toString());	// Print: false
-
 ```
 
 ### fill
@@ -566,13 +637,21 @@ Fills this **Buffer** instance at the specified position. By default, data is fi
 | value | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array&nbsp;\|&nbsp;number | Yes| Value to fill.|
 | offset | number | No| Offset to the start position in this **Buffer** instance where data is filled. The default value is **0**.|
 | end | number | No| Offset to the end position in this **Buffer** instance (not inclusive). The default value is the length of this **Buffer** instance.|
-| encoding | BufferEncoding | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
 | Buffer | **Buffer** instance filled with the specified value.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[offset/end]" is out of range. |
 
 **Example**
 
@@ -597,8 +676,8 @@ Checks whether this **Buffer** instance contains the specified value.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
-| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**. |
-| encoding | BufferEncoding | No| Encoding format used if **value** is a string. The default value is **utf-8**.|
+| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format used if **value** is a string. The default value is **utf-8**.|
 
 **Return value**
 
@@ -629,8 +708,8 @@ Obtains the index of the first occurrence of the specified value in this **Buffe
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
-| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**. |
-| encoding | BufferEncoding | No| Encoding format used if **value** is a string. The default value is **utf-8**.|
+| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format used if **value** is a string. The default value is **utf-8**.|
 
 **Return value**
 
@@ -686,8 +765,8 @@ Obtains the index of the last occurrence of the specified value in this **Buffer
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
-| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**. |
-| encoding | BufferEncoding | No| Encoding format used if **value** is a string. The default value is **utf-8**.|
+| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format used if **value** is a string. The default value is **utf-8**.|
 
 **Return value**
 
@@ -726,6 +805,14 @@ Reads a signed, big-endian 64-bit Big integer from this **Buffer** instance at t
 | -------- | -------- |
 | bigint | A signed, big-endian 64-bit Big integer. |
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -734,6 +821,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.log(buf.readBigInt64BE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(8);
+buf1.writeBigInt64BE(0x0102030405060708n, 0);
 ```
 
 ### readBigInt64LE
@@ -756,6 +846,14 @@ Reads a signed, little-endian 64-bit Big integer from this **Buffer** instance a
 | -------- | -------- |
 | bigint | A signed, little-endian 64-bit Big integer. |
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -764,6 +862,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.log(buf.readBigInt64LE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(8);
+buf1.writeBigInt64BE(0x0102030405060708n, 0);
 ```
 
 ### readBigUInt64BE
@@ -786,6 +887,14 @@ Reads an unsigned, big-endian 64-bit Big integer from this **Buffer** instance a
 | -------- | -------- |
 | bigint | An unsigned, big-endian 64-bit Big integer. |
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -794,6 +903,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.log(buf.readBigUInt64BE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(8);
+buf1.writeBigUInt64BE(0xdecafafecacefaden, 0);
 ```
 
 ### readBigUInt64LE
@@ -816,6 +928,14 @@ Reads an unsigned, little-endian 64-bit Big integer from this **Buffer** instanc
 | -------- | -------- |
 | bigint | An unsigned, little-endian 64-bit Big integer. |
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -824,6 +944,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.log(buf.readBigUInt64LE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(8);
+buf1.writeBigUInt64BE(0xdecafafecacefaden, 0);
 ```
 
 ### readDoubleBE
@@ -846,6 +969,14 @@ Reads a big-endian double-precision floating-point number from this **Buffer** i
 | -------- | -------- |
 | number | A big-endian double-precision floating-point number. |
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -853,6 +984,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readDoubleBE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(8);
+buf1.writeDoubleBE(123.456, 0);
 ```
 
 ### readDoubleLE
@@ -875,6 +1009,14 @@ Reads a little-endian double-precision floating-point number from this **Buffer*
 | -------- | -------- |
 | number | A little-endian double-precision floating-point number. |
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -882,6 +1024,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readDoubleLE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(8);
+buf1.writeDoubleLE(123.456, 0);
 ```
 
 ### readFloatBE
@@ -904,6 +1049,14 @@ Reads a big-endian single-precision floating-point number from this **Buffer** i
 | -------- | -------- |
 | number | A big-endian single-precision floating-point number. |
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -911,6 +1064,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readFloatBE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeFloatBE(0xcabcbcbc, 0);
 ```
 
 ### readFloatLE
@@ -933,6 +1089,14 @@ Reads a little-endian single-precision floating-point number from this **Buffer*
 | -------- | -------- |
 | number | A little-endian single-precision floating-point number. |
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -940,6 +1104,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readFloatLE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeFloatLE(0xcabcbcbc, 0);
 ```
 
 ### readInt8
@@ -962,6 +1129,14 @@ Reads a signed 8-bit integer from this **Buffer** instance at the specified offs
 | -------- | -------- |
 | number | A signed 8-bit integer. |
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -970,6 +1145,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([-1, 5]);
 console.log(buf.readInt8(0).toString());	// Print: -1
 console.log(buf.readInt8(1).toString());	// Print: 5
+
+let buf1 = buffer.allocUninitializedFromPool(2);
+buf1.writeInt8(0x12);
 ```
 
 ### readInt16BE
@@ -992,6 +1170,14 @@ Reads a signed, big-endian 16-bit integer from this **Buffer** instance at the s
 | -------- | -------- |
 | number | A signed, big-endian 16-bit integer.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -999,6 +1185,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0, 5]);
 console.log(buf.readInt16BE(0).toString());	// Print: 5
+
+let buf1 = buffer.alloc(2);
+buf1.writeInt16BE(0x1234, 0);
 ```
 
 ### readInt16LE
@@ -1021,6 +1210,14 @@ Reads a signed, little-endian 16-bit integer from this **Buffer** instance at th
 | -------- | -------- |
 | number | A signed, little-endian 16-bit integer.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -1028,6 +1225,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0, 5]);
 console.log(buf.readInt16LE(0).toString());	// Print: 1280
+
+let buf1 = buffer.alloc(2);
+buf1.writeInt16BE(0x1234, 0);
 ```
 
 ### readInt32BE
@@ -1050,6 +1250,14 @@ Reads a signed, big-endian 32-bit integer from this **Buffer** instance at the s
 | -------- | -------- |
 | number | A signed, big-endian 32-bit integer.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -1057,6 +1265,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0, 0, 0, 5]);
 console.log(buf.readInt32BE(0).toString());	// Print: 5
+
+let buf1 = buffer.alloc(4);
+buf1.writeInt32BE(0x12345678, 0);
 ```
 
 ### readInt32LE
@@ -1079,6 +1290,14 @@ Reads a signed, little-endian 32-bit integer from this **Buffer** instance at th
 | -------- | -------- |
 | number | A signed, little-endian 32-bit integer.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -1086,6 +1305,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0, 0, 0, 5]);
 console.log(buf.readInt32LE(0).toString());	// Print: 83886080
+
+let buf1 = buffer.alloc(4);
+buf1.writeInt32BE(0x12345678, 0);
 ```
 
 ### readIntBE
@@ -1110,6 +1332,14 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 | -------- | -------- |
 | number | Data read.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[offset/byteLength]" is out of range. |
+
 **Example**
 
 ```ts
@@ -1118,6 +1348,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from("ab");
 let num = buf.readIntBE(0, 1);
 console.log(num.toString()); // 97
+
+let buf1 = buffer.allocUninitializedFromPool(6);
+buf1.writeIntBE(0x123456789011, 0, 6);
 ```
 
 
@@ -1143,6 +1376,14 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 | -------- | -------- |
 | number | Data read.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[offset/byteLength]" is out of range. |
+
 **Example**
 
 ```ts
@@ -1150,6 +1391,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readIntLE(0, 6).toString(16));
+
+let buf1 = buffer.allocUninitializedFromPool(6);
+buf1.writeIntLE(0x123456789011, 0, 6);
 ```
 
 ### readUInt8
@@ -1173,6 +1417,14 @@ Reads an unsigned 8-bit integer from this **Buffer** instance at the specified o
 | -------- | -------- |
 | number | An unsigned 8-bit integer.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -1181,6 +1433,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([1, -2]);
 console.log(buf.readUInt8(0).toString());
 console.log(buf.readUInt8(1).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeUInt8(0x42);
 ```
 
 ### readUInt16BE
@@ -1204,6 +1459,14 @@ Reads an unsigned, big-endian 16-bit integer from this **Buffer** instance at th
 | -------- | -------- |
 | number | An unsigned, big-endian 16-bit integer.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -1212,6 +1475,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([0x12, 0x34, 0x56]);
 console.log(buf.readUInt16BE(0).toString(16));
 console.log(buf.readUInt16BE(1).toString(16));
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeUInt16BE(0x1234, 0);
 ```
 
 ### readUInt16LE
@@ -1235,6 +1501,14 @@ Reads an unsigned, little-endian 16-bit integer from this **Buffer** instance at
 | -------- | -------- |
 | number | An unsigned, little-endian 16-bit integer.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -1243,6 +1517,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([0x12, 0x34, 0x56]);
 console.log(buf.readUInt16LE(0).toString(16));
 console.log(buf.readUInt16LE(1).toString(16));
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeUInt16LE(0x1234, 0);
 ```
 
 ### readUInt32BE
@@ -1266,6 +1543,14 @@ Reads an unsigned, big-endian 32-bit integer from this **Buffer** instance at th
 | -------- | -------- |
 | number | An unsigned, big-endian 32-bit integer.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -1273,6 +1558,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
 console.log(buf.readUInt32BE(0).toString(16));
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeUInt32BE(0x12345678, 0);
 ```
 
 ### readUInt32LE
@@ -1296,6 +1584,14 @@ Reads an unsigned, little-endian 32-bit integer from this **Buffer** instance at
 | -------- | -------- |
 | number | An unsigned, little-endian 32-bit integer.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **Example**
 
 ```ts
@@ -1303,6 +1599,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
 console.log(buf.readUInt32LE(0).toString(16));
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeUInt32LE(0x12345678, 0);
 ```
 
 ### readUIntBE
@@ -1327,6 +1626,14 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 | -------- | -------- |
 | number | Data read.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[offset/byteLength]" is out of range. |
+
 **Example**
 
 ```ts
@@ -1334,6 +1641,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readUIntBE(0, 6).toString(16));
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeUIntBE(0x13141516, 0, 4);
 ```
 
 ### readUIntLE
@@ -1356,7 +1666,15 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 | Type| Description|
 | -------- | -------- |
-| number | Data read.|
+| number | A signed, big-endian 64-bit integer.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[offset/byteLength]" is out of range. |
 
 **Example**
 
@@ -1365,6 +1683,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readUIntLE(0, 6).toString(16));
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeUIntLE(0x13141516, 0, 4);
 ```
 
 ### subarray
@@ -1418,6 +1739,14 @@ Interprets this **Buffer** instance as an array of unsigned 16-bit integers and 
 | -------- | -------- |
 | Buffer | **Buffer** instance swapped.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200009 | Buffer size must be a multiple of 16-bits |
+
 **Example**
 
 ```ts
@@ -1445,6 +1774,14 @@ Interprets this **Buffer** instance as an array of unsigned 32-bit integers and 
 | -------- | -------- |
 | Buffer | **Buffer** instance swapped.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200009 | Buffer size must be a multiple of 32-bits |
+
 **Example**
 
 ```ts
@@ -1471,6 +1808,14 @@ Interprets this **Buffer** instance as an array of unsigned 64-bit integers and 
 | Type| Description|
 | -------- | -------- |
 | Buffer | **Buffer** instance swapped.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200009 | Buffer size must be a multiple of 64-bits |
 
 **Example**
 
@@ -1584,7 +1929,7 @@ Writes a string of the specified length to this **Buffer** instance at the speci
 | str | string | Yes| String to write.|
 | offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 | length | number | No| Maximum number of bytes to write. The default value is the length of the **Buffer** instance minus the offset.|
-| encoding | BufferEncoding | No| Encoding format of the string. The default value is **utf-8**.|
+| encoding | string | No| Encoding format of the string. The default value is **utf-8**.|
 
 
 **Return value**
@@ -1592,6 +1937,14 @@ Writes a string of the specified length to this **Buffer** instance at the speci
 | Type| Description|
 | -------- | -------- |
 | number | Number of bytes written.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[offset/length]" is out of range. |
 
 **Example**
 
@@ -1629,6 +1982,14 @@ Writes a signed, big-endian 64-bit Big integer to this **Buffer** instance at th
 | -------- | -------- |
 | number | Number of bytes written.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **Example**
 
 ```ts
@@ -1659,6 +2020,14 @@ Writes a signed, little-endian 64-bit Big integer to this **Buffer** instance at
 | Type| Description|
 | -------- | -------- |
 | number | Number of bytes written.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **Example**
 
@@ -1691,6 +2060,14 @@ Writes an unsigned, big-endian 64-bit Big integer to this **Buffer** instance at
 | -------- | -------- |
 | number | Number of bytes written.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **Example**
 
 ```ts
@@ -1721,6 +2098,14 @@ Writes an unsigned, little-endian 64-bit Big integer to this **Buffer** instance
 | Type| Description|
 | -------- | -------- |
 | number | Number of bytes written.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **Example**
 
@@ -1753,6 +2138,14 @@ Writes a big-endian double-precision floating-point number to this **Buffer** in
 | -------- | -------- |
 | number | Number of bytes written.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **Example**
 
 ```ts
@@ -1784,6 +2177,14 @@ Writes a little-endian double-precision floating-point number to this **Buffer**
 | -------- | -------- |
 | number | Number of bytes written.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **Example**
 
 ```ts
@@ -1814,6 +2215,14 @@ Writes a big-endian single-precision floating-point number to this **Buffer** in
 | Type| Description|
 | -------- | -------- |
 | number | Number of bytes written.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **Example**
 
@@ -1847,6 +2256,14 @@ Writes a little-endian single-precision floating-point number to this **Buffer**
 | -------- | -------- |
 | number | Number of bytes written.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **Example**
 
 ```ts
@@ -1877,6 +2294,14 @@ Writes a signed 8-bit integer to this **Buffer** instance at the specified offse
 | Type| Description|
 | -------- | -------- |
 | number | Number of bytes written.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **Example**
 
@@ -1911,6 +2336,14 @@ Writes a signed, big-endian 16-bit integer to this **Buffer** instance at the sp
 | -------- | -------- |
 | number | Number of bytes written.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **Example**
 
 ```ts
@@ -1943,6 +2376,14 @@ Writes a signed, little-endian 16-bit integer to this **Buffer** instance at the
 | -------- | -------- |
 | number | Number of bytes written.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **Example**
 
 ```ts
@@ -1973,6 +2414,14 @@ Writes a signed, big-endian 32-bit integer to this **Buffer** instance at the sp
 | Type| Description|
 | -------- | -------- |
 | number | Number of bytes written.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **Example**
 
@@ -2006,6 +2455,14 @@ Writes a signed, little-endian 32-bit integer to this **Buffer** instance at the
 | -------- | -------- |
 | number | Number of bytes written.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **Example**
 
 ```ts
@@ -2037,6 +2494,14 @@ Writes a big-endian signed value of the specified length to this **Buffer** inst
 | Type| Description|
 | -------- | -------- |
 | number | Number of bytes written.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
 
 **Example**
 
@@ -2071,6 +2536,14 @@ Writes a little-endian signed value of the specified length to this **Buffer** i
 | -------- | -------- |
 | number | Number of bytes written.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
+
 **Example**
 
 ```ts
@@ -2101,6 +2574,14 @@ Writes an unsigned 8-bit integer to this **Buffer** instance at the specified of
 | Type| Description|
 | -------- | -------- |
 | number | Number of bytes written.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **Example**
 
@@ -2136,6 +2617,14 @@ Writes an unsigned, big-endian 16-bit integer to this **Buffer** instance at the
 | -------- | -------- |
 | number | Number of bytes written.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **Example**
 
 ```ts
@@ -2167,6 +2656,14 @@ Writes an unsigned, little-endian 16-bit integer to this **Buffer** instance at 
 | Type| Description|
 | -------- | -------- |
 | number | Number of bytes written.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **Example**
 
@@ -2200,6 +2697,14 @@ Writes an unsigned, big-endian 32-bit integer to this **Buffer** instance at the
 | -------- | -------- |
 | number | Number of bytes written.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **Example**
 
 ```ts
@@ -2230,6 +2735,14 @@ Writes an unsigned, little-endian 32-bit integer to this **Buffer** instance at 
 | Type| Description|
 | -------- | -------- |
 | number | Number of bytes written.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **Example**
 
@@ -2263,6 +2776,14 @@ Writes an unsigned big-endian value of the specified length to this **Buffer** i
 | -------- | -------- |
 | number | Number of bytes written.|
 
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
+
 **Example**
 
 ```ts
@@ -2294,6 +2815,14 @@ Writes an unsigned little-endian value of the specified length to this **Buffer*
 | Type| Description|
 | -------- | -------- |
 | number | Number of bytes written.|
+
+**Error codes**
+
+For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
 
 **Example**
 
@@ -2364,7 +2893,6 @@ A constructor used to create a **Blob** instance.
 
 
 **Example**
-
 ```ts
 import buffer from '@ohos.buffer';
 
@@ -2372,7 +2900,7 @@ let blob = new buffer.Blob(['a', 'b', 'c']);
 let blob1 = new buffer.Blob(['a', 'b', 'c'], {endings:'native', type: 'MIME'});
 ```
 
-### encode
+### arrayBuffer
 
 arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 
@@ -2386,14 +2914,14 @@ Puts the **Blob** data into an **ArrayBuffer** instance. This API uses a promise
 | Promise&lt;ArrayBuffer&gt; | Promise used to return the **ArrayBuffer** containing the **Blob** data.|
 
 **Example**
-  ```ts
-  let blob = new buffer.Blob(['a', 'b', 'c']);
-  let pro = blob.arrayBuffer();
-  pro.then(val => {
-    let uintarr = new Uint8Array(val);
-    console.log(uintarr.toString());
-  });
-  ```
+```ts
+let blob = new buffer.Blob(['a', 'b', 'c']);
+let pro = blob.arrayBuffer();
+pro.then(val => {
+  let uintarr = new Uint8Array(val);
+  console.log(uintarr.toString());
+});
+```
 ### slice
 
 slice(start?: number, end?: number, type?: string): Blob
@@ -2416,13 +2944,13 @@ Creates a **Blob** instance by copying specified data from this **Blob** instanc
 | Blob | **Blob** instance created. |
 
 **Example**
-  ```ts
-  let blob = new buffer.Blob(['a', 'b', 'c']);
-  let blob2 = blob.slice(0, 2);
-  let blob3 = blob.slice(0, 2, "MIME");
-  ```
+```ts
+let blob = new buffer.Blob(['a', 'b', 'c']);
+let blob2 = blob.slice(0, 2);
+let blob3 = blob.slice(0, 2, "MIME");
+```
 
-  ### text
+### text
 
 text(): Promise&lt;string&gt;
 
@@ -2436,10 +2964,10 @@ Returns text in UTF-8 format.
 | Promise&lt;string&gt; | Promise used to return the text encoded in UTF-8.|
 
 **Example**
-  ```ts
-  let blob = new buffer.Blob(['a', 'b', 'c']);
-  let pro = blob.text();
-  pro.then(val => {
-      console.log(val)
-  });
-  ```
+```ts
+let blob = new buffer.Blob(['a', 'b', 'c']);
+let pro = blob.text();
+pro.then(val => {
+    console.log(val)
+});
+```

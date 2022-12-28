@@ -589,7 +589,7 @@ Obtains the account information list of the active SIM card. This API uses an as
 **Example**
 
 ```js
-sim.getActiveSimAccountInfoList(0, (err, data) => {
+sim.getActiveSimAccountInfoList((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -689,7 +689,7 @@ promise.then(data => {
 
 ## sim.**setShowName**<sup>8+</sup>
 
-setShowName\(slotId: number, name: string,callback: AsyncCallback<void\>\): void
+setShowName\(slotId: number, name: string, callback: AsyncCallback<void\>\): void
 
 Sets a display name for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -710,7 +710,7 @@ Sets a display name for the SIM card in the specified slot. This API uses an asy
 **Example**
 
 ```js
-const name='China Mobile';
+let name = "ShowName";
 sim.setShowName(0, name, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -744,7 +744,7 @@ Sets a display name for the SIM card in the specified slot. This API uses a prom
 **Example**
 
 ```js
-const name='China Mobile';
+let name = "ShowName";
 let promise = sim.setShowName(0, name);
 promise.then(data => {
     console.log(`setShowName success, promise: data->${JSON.stringify(data)}`);
@@ -818,7 +818,7 @@ promise.then(data => {
 
 ## sim.**setShowNumber**<sup>8+</sup>
 
-setShowNumber\(slotId: number, number: string,callback: AsyncCallback<void\>\): void
+setShowNumber\(slotId: number, number: string, callback: AsyncCallback<void\>\): void
 
 Sets a display number for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -848,7 +848,7 @@ sim.setShowNumber(0, number, (err, data) => {
 
 ## sim.**setShowNumber**<sup>8+</sup>
 
-setShowNumber\(slotId: number,number: string\): Promise\<void\>
+setShowNumber\(slotId: number, number: string\): Promise\<void\>
 
 Sets a display number for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -885,7 +885,7 @@ promise.then(data => {
 
 ## sim.**getShowNumber**<sup>8+</sup>
 
-getShowNumber(slotId: number,callback: AsyncCallback<string\>): void
+getShowNumber(slotId: number, callback: AsyncCallback<string\>): void
 
 Obtains the display number of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -1096,9 +1096,9 @@ Sets the lock status of the SIM card in the specified slot. This API uses an asy
 
 ```js
 let lockInfo = {
-    lockType = 1,
-    password = "1234",
-    state = 0
+    lockType: sim.LockType.PIN_LOCK,
+    password: "1234",
+    state: sim.LockState.LOCK_OFF
 };
 sim.setLockState(0, lockInfo, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1135,9 +1135,9 @@ Sets the lock status of the SIM card in the specified slot. This API uses a prom
 
 ```js
 let lockInfo = {
-    lockType = 1,
-    password = "1234",
-    state = 0
+    lockType: sim.LockType.PIN_LOCK,
+    password: "1234",
+    state: sim.LockState.LOCK_OFF
 };
 let promise = sim.setLockState(0, lockInfo);
 promise.then(data => {
@@ -1154,6 +1154,8 @@ getLockState(slotId: number, lockType: LockType, callback: AsyncCallback<LockSta
 Obtains the lock status of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1181,6 +1183,8 @@ getLockState(slotId: number, lockType: LockType): Promise<LockState\>
 Obtains the lock status of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1344,7 +1348,7 @@ promise.then(data => {
 
 ## sim.**unlockPin**<sup>7+</sup>
 
-unlockPin(slotId: number,pin: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPin(slotId: number, pin: string, callback: AsyncCallback<LockStatusResponse\>): void
 
 Unlocks PIN of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -1374,7 +1378,7 @@ sim.unlockPin(0, pin, (err, data) => {
 
 ## sim.**unlockPin**<sup>7+</sup>
 
-unlockPin(slotId: number,pin: string): Promise&lt;LockStatusResponse\>
+unlockPin(slotId: number, pin: string): Promise&lt;LockStatusResponse\>
 
 Unlocks the PIN of the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -1411,7 +1415,7 @@ promise.then(data => {
 
 ## sim.**unlockPuk**<sup>7+</sup>
 
-unlockPuk(slotId: number,newPin: string,puk: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPuk(slotId: number, newPin: string, puk: string ,callback: AsyncCallback<LockStatusResponse\>): void
 
 Unlocks the PUK of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -1443,7 +1447,7 @@ sim.unlockPuk(0, newPin, puk, (err, data) => {
 
 ## sim.**unlockPuk**<sup>7+</sup>
 
-unlockPuk(slotId: number,newPin: string,puk: string): Promise&lt;LockStatusResponse\>
+unlockPuk(slotId: number, newPin: string, puk: string): Promise&lt;LockStatusResponse\>
 
 Unlocks the PUK of the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -1482,7 +1486,7 @@ promise.then(data => {
 
 ## sim.**unlockPin**2<sup>8+</sup>
 
-unlockPin2(slotId: number,pin2: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPin2(slotId: number, pin2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
 Unlocks PIN 2 of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -1512,7 +1516,7 @@ sim.unlockPin2(0, pin2, (err, data) => {
 
 ## sim.**unlockPin**2<sup>8+</sup>
 
-unlockPin2(slotId: number,pin2: string): Promise&lt;LockStatusResponse\>
+unlockPin2(slotId: number, pin2: string): Promise&lt;LockStatusResponse\>
 
 Unlocks PIN 2 of the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -1539,7 +1543,7 @@ Unlocks PIN 2 of the SIM card in the specified slot. This API uses a promise to 
 
 ```js
 let pin2='1234';
-let promise = sim.unlockPin2(0,pin2);
+let promise = sim.unlockPin2(0, pin2);
 promise.then(data => {
     console.log(`unlockPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1851,7 +1855,7 @@ Sets voice mailbox information for the SIM card in the specified slot. This API 
 **Example**
 
 ```js
-sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com" , (err, data) => {
+sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2236,12 +2240,11 @@ Adds contact numbers for the SIM card in the specified slot. This API uses an as
 
 ```js
 let diallingNumbersInof = {
-    alphaTag = "alpha",
-    number = "138xxxxxxxx",
-    recordNumber = 123,
-    pin2 = "1234"
+    alphaTag: "alpha",
+    number: "138xxxxxxxx",
+    pin2: "1234"
 };
-sim.addIccDiallingNumbers(0, 1, diallingNumbersInof, (err, data) => {
+sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2277,12 +2280,10 @@ Adds contact numbers for the SIM card in the specified slot. This API uses a pro
 
 ```js
 let diallingNumbersInof = {
-    alphaTag = "alpha",
-    number = "138xxxxxxxx",
-    recordNumber = 123,
-    pin2 = "1234"
+    alphaTag: "alpha",
+    number: "138xxxxxxxx"
 };
-let promise = sim.addIccDiallingNumbers(0, 1, diallingNumbersInof);
+let promise = sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
     console.log(`addIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -2315,12 +2316,10 @@ Deletes contact numbers from the SIM card in the specified slot. This API uses a
 
 ```js
 let diallingNumbersInof = {
-    alphaTag = "alpha",
-    number = "138xxxxxxxx",
-    recordNumber = 123,
-    pin2 = "1234"
+    alphaTag: "alpha",
+    number: "138xxxxxxxx"
 };
-sim.delIccDiallingNumbers(0, 1, diallingNumbersInof, (err, data) => {
+sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2356,12 +2355,10 @@ Deletes contact numbers from the SIM card in the specified slot. This API uses a
 
 ```js
 let diallingNumbersInof = {
-    alphaTag = "alpha",
-    number = "138xxxxxxxx",
-    recordNumber = 123,
-    pin2 = "1234"
+    alphaTag: "alpha",
+    number: "138xxxxxxxx"
 };
-let promise = sim.delIccDiallingNumbers(0, 1, diallingNumbersInof);
+let promise = sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
     console.log(`delIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -2394,12 +2391,10 @@ Updates contact numbers for the SIM card in the specified slot. This API uses an
 
 ```js
 let diallingNumbersInof = {
-    alphaTag = "alpha",
-    number = "138xxxxxxxx",
-    recordNumber = 123,
-    pin2 = "1234"
+    alphaTag: "alpha",
+    number: "138xxxxxxxx"
 };
-sim.updateIccDiallingNumbers(0, 1, diallingNumbersInof, (err, data) => {
+sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2435,12 +2430,12 @@ Updates contact numbers for the SIM card in the specified slot. This API uses a 
 
 ```js
 let diallingNumbersInof = {
-    alphaTag = "alpha",
-    number = "138xxxxxxxx",
-    recordNumber = 123,
-    pin2 = "1234"
+    alphaTag: "alpha",
+    number: "138xxxxxxxx",
+    recordNumber: 123,
+    pin2: "1234"
 };
-let promise = sim.updateIccDiallingNumbers(0, 1, diallingNumbersInof);
+let promise = sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
     console.log(`updateIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -2602,8 +2597,8 @@ Unlocks the SIM card in the specified slot. This API uses an asynchronous callba
 
 ```js
 let persoLockInfo = {
-    lockType = 0,
-    password = "1234"
+    lockType: sim.PersoLockType.PN_PIN_LOCK,
+    password: "1234"
 };
 sim.unlockSimLock(0, persoLockInfo, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -2640,8 +2635,8 @@ Unlocks the SIM card in the specified slot. This API uses a promise to return th
 
 ```js
 let persoLockInfo = {
-    lockType = 0,
-    password = "1234"
+    lockType: sim.PersoLockType.PN_PIN_LOCK,
+    password: "1234"
 };
 let promise = sim.unlockSimLock(0, persoLockInfo);
 promise.then(data => {
@@ -2683,8 +2678,6 @@ getOpKey(slotId: number): Promise<string\>
 
 Obtains the opkey of the SIM card in the specified slot. This API uses a promise to return the result.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.Telephony.CoreService
 
 **Parameters**
@@ -2716,8 +2709,6 @@ getOpName(slotId: number, callback: AsyncCallback<string\>): void
 
 Obtains the OpName of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.Telephony.CoreService
 
 **Parameters**
@@ -2741,8 +2732,6 @@ sim.getOpName(0, (err, data) => {
 getOpName(slotId: number): Promise<string\>
 
 Obtains the OpName of the SIM card in the specified slot. This API uses a promise to return the result.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 

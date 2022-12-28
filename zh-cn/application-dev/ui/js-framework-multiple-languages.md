@@ -8,7 +8,7 @@
 
 ## 定义资源文件
 
-资源文件用于存放应用在多种语言场景下的资源内容，开发框架使用JSON文件保存资源定义。在[文件组织](../ui/js-framework-file.md)中指定的i18n文件夹内放置语言资源文件，其中语言资源文件的命名是由语言、文字、国家或地区的限定词通过中划线连接组成，其中文字和国家或地区可以省略，如zh-Hant-HK（中国香港地区使用的繁体中文）、zh-CN（中国使用的简体中文）、zh（中文）。命名规则如下：
+资源文件用于存放应用在多种语言场景下的资源内容，开发框架使用JSON文件保存资源定义。在[文件组织](js-framework-file.md)中指定的i18n文件夹内放置语言资源文件，其中语言资源文件的命名是由语言、文字、国家或地区的限定词通过中划线连接组成，其中文字和国家或地区可以省略，如zh-Hant-HK（中国香港地区使用的繁体中文）、zh-CN（中国使用的简体中文）、zh（中文）。命名规则如下：
 
 ```
 language[-script-region].json
@@ -119,7 +119,7 @@ ar-AE.json
     <text>{{ replaceObject }}</text>
     <!-- 先在js中获取资源内容，并将占位符{0}替换为“Hello world”，再在text中显示“Array type parameter substitution-Hello world” -->
     <text>{{ replaceArray }}</text>
-
+  
     <!-- 获取图片路径 -->
     <image src="{{ $t('files.image') }}" class="image"></image>
     <!-- 先在js中获取图片路径，再在image中显示图片 -->
@@ -150,9 +150,9 @@ ar-AE.json
 
   表4 单复数格式化
 
-  | 属性   | 类型       | 参数          | 必填   | 描述                                       |
-  | ---- | -------- | ----------- | ---- | ---------------------------------------- |
-  | $tc  | Function | 请见表 $tc参数说明 | 是    | 根据系统语言完成单复数替换：this.$tc('strings.people')<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;说明：<br/>>&nbsp;定义资源的内容通过json格式的key为“zero”、“one”、“two”、“few”、“many”和“other”区分。 |
+  | 属性 | 类型     | 参数               | 必填 | 描述                                                         |
+  | ---- | -------- | ------------------ | ---- | ------------------------------------------------------------ |
+  | $tc  | Function | 请见表 $tc参数说明 | 是   | 根据系统语言完成单复数替换：this.$tc('strings.people')<br/>> 说明：<br/>>&nbsp;定义资源的内容通过json格式的key为“zero”、“one”、“two”、“few”、“many”和“other”区分。 |
 
   表5 $tc参数说明
 
@@ -183,4 +183,4 @@ ar-AE.json
 
 ## 获取语言
 
-获取语言功能请参考[应用配置](../reference/apis/js-apis-configuration.md)。
+获取语言功能请参考[应用配置](../reference/apis/js-apis-app-ability-configuration.md)。

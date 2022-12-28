@@ -27,7 +27,7 @@ Image(src: string | PixelMap | Resource)
 
 | 参数名 | 参数类型                                                     | 必填 | 参数描述                                                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src    | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 是   | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持跨包/跨模块调用该Image组件，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`dataability://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。 |
+| src    | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 是   | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持跨包/跨模块调用该Image组件，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`datashare://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。<br/>\- 支持file:///data/storage路径前缀的字符串，用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。 |
 
 ## 属性
 
@@ -35,14 +35,14 @@ Image(src: string | PixelMap | Resource)
 
 | 名称                  | 参数类型                                                | 描述                                                         |
 | --------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
-| alt                   | string \| [Resource](ts-types.md#resource类型) | 加载时显示的占位图，支持本地图片和网络图片。                 |
+| alt                   | string \| [Resource](ts-types.md#resource类型) | 加载时显示的占位图，支持本地图片。                 |
 | objectFit             | [ImageFit](ts-appendix-enums.md#imagefit)                           | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover                  |
-| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | 设置图片的重复样式。<br/>默认值：NoRepeat<br/>**说明：**<br/>svg类型图源不支持该属性。 |
+| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | 设置图片的重复样式。<br/>默认值：ImageRepeat.NoRepeat<br/>**说明：**<br/>svg类型图源不支持该属性。 |
 | interpolation         | [ImageInterpolation](#imageinterpolation)               | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>默认值：ImageInterpolation.None<br/>**说明：**<br/>svg类型图源不支持该属性。<br/>PixelMap资源不支持该属性。 |
 | renderMode            | [ImageRenderMode](#imagerendermode)                     | 设置图片渲染的模式。<br/>默认值：ImageRenderMode.Original<br/>**说明：**<br/>svg类型图源不支持该属性。 |
 | sourceSize            | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | 设置图片裁剪尺寸，将原始图片解码成pixelMap，指定尺寸的图片，单位为px。<br/>**说明：**<br/>PixelMap资源不支持该属性。 |
 | matchTextDirection     | boolean | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。<br/>默认值：false   |
-| fitOriginalSize        | boolean | 图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。<br/>默认值：true    |
+| fitOriginalSize        | boolean | 图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。<br/>默认值：false    |
 | fillColor              | [ResourceColor](ts-types.md#resourcecolor) | 填充颜色。设置的填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片的fill颜色。 |
 | autoResize             | boolean | 是否需要在图片解码过程中对图源做resize操作，该操作会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。<br/>默认值：true |
 | syncLoad<sup>8+</sup> | boolean                                  | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false |
@@ -52,6 +52,7 @@ Image(src: string | PixelMap | Resource)
 >  **说明：**
 >
 >  使用快捷组合键对Image组件复制的前提是，该组件必须处于获焦状态。将Image组件的属性focusable设置为true，即可使用TAB键将焦点切换到Image组件上，再将Image组件的focusOnTouch属性设置为true，即可实现点击获焦。
+>  图片设置svg图源时，支持的标签范围有限，目前支持的svg标签包括svg、rect、circle、ellipse、path、line、polyline、polygon、animate、animateMotion、animateTransform。
 
 ### ImageInterpolation
 
@@ -73,11 +74,11 @@ Image(src: string | PixelMap | Resource)
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
+| 名称                                                         | 功能描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onComplete(callback:&nbsp;(event?:&nbsp;{&nbsp;width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;componentWidth:&nbsp;number,<br>&nbsp;componentHeight:&nbsp;number,&nbsp;loadingStatus:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 图片成功加载时触发该回调，返回成功加载的图片尺寸。<br>- width：图片的宽，单位为像素。<br/>- height：图片的高，单位为像素。<br/>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。<br/>- loadingStatus：图片加载成功的状态。<br/> |
-| onError(callback:&nbsp;(event?:&nbsp;{&nbsp;componentWidth:&nbsp;number,&nbsp;componentHeight:&nbsp;number&nbsp;, message<sup>9+</sup>: string })&nbsp;=&gt;&nbsp;void) | 图片加载出现异常时触发该回调。<br>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。<br/> |
-| onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 当加载的源文件为带动效的svg图片时，当svg动效播放完成时会触发这个回调，如果动效为无限循环动效，则不会触发这个回调。 |
+| onError(callback:&nbsp;(event?:&nbsp;{&nbsp;componentWidth:&nbsp;number,&nbsp;componentHeight:&nbsp;number&nbsp;, message<sup>9+</sup>: string })&nbsp;=&gt;&nbsp;void) | 图片加载出现异常时触发该回调。<br>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。 |
+| onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)                | 当加载的源文件为带动效的svg图片时，当svg动效播放完成时会触发这个回调，如果动效为无限循环动效，则不会触发这个回调。 |
 
 ## 示例
 
@@ -160,7 +161,7 @@ struct ImageExample1 {
 ```tsx
 // @ts-nocheck
 import http from '@ohos.net.http';
-import ResponseCode from '@ohos.net.http';
+import ResponseCode from '@ohos.net.http'
 import image from '@ohos.multimedia.image'
 
 
@@ -175,7 +176,7 @@ struct Index {
     Column({space: 10}) {
       Button("获取网络图片")
         .onClick(() => {
-          this.httpRequest();
+          this.httpRequest()
         })
       Image(this.image).height(100).width(100)
     }
@@ -186,7 +187,7 @@ struct Index {
 
   // 网络图片请求方法
   private httpRequest() {
-    let httpRequest = http.createHttp();
+    let httpRequest = http.createHttp()
 	
     httpRequest.request(
       "https://www.example.com/xxx.png",   // 请填写一个具体的网络图片地址
@@ -206,7 +207,7 @@ struct Index {
               this.image = pixelMap
             })
           } else {
-            console.log("response code: " + code);
+            console.log("response code: " + code)
           }
         }
       }
@@ -319,7 +320,7 @@ struct ImageExample3 {
             .onError(() => {
               console.log('load image fail')
             })
-            .overlay('\nwidth: ' + String(this.width) + ' height: ' + String(this.height), {
+            .overlay('\nwidth: ' + String(this.widthValue) + ' height: ' + String(this.heightValue), {
               align: Alignment.Bottom,
               offset: { x: 0, y: 20 }
             })
@@ -348,3 +349,58 @@ struct ImageExample3 {
 ```
 
 ![zh-cn_image_0000001205972610](figures/zh-cn_image_0000001205972610.gif)
+
+###  渲染沙箱路径图片
+
+```ts
+import fileio from '@ohos.fileio'
+import fs from '@ohos.file.fs'
+import context from '@ohos.application.context'
+
+@Entry
+@Component
+struct LoadImageExample {
+  @State resourcesPath: string = ''
+  @State sandboxPath: string = ''
+  context: context.AbilityContext
+
+  aboutToAppear() {
+    this.context = getContext(this) as context.AbilityContext
+  }
+
+  build() {
+    Column() {
+      Button('读取沙箱图片')
+        .margin({ bottom: 10, top: 10 })
+        .onClick(() => {
+          this.sandboxPath = this.context.getApplicationContext().filesDir + '/icon.png'
+          console.log(`读取沙箱图片=========>${this.sandboxPath}`)
+          let fd = fs.openSync(this.sandboxPath, 0o100)
+          console.log(`create file========>${fd}`)
+          let srcPath = this.context.bundleCodeDir + '/entry/resources/base/media/icon.png'
+          console.log('mySrcpath' + srcPath)
+          fileio.copyFileSync(srcPath, this.sandboxPath) // 复制图片到沙箱路径
+          this.sandboxPath = 'file://' + this.context.getApplicationContext().filesDir + '/icon.png'
+        })
+      Button('读取资源图片')
+        .margin({ bottom: 10 })
+        .onClick(() => {
+          this.resourcesPath = 'file://' + this.context.bundleCodeDir + '/entry/resources/base/media/icon.png'
+        })
+      Text(`资源图片路径:${this.resourcesPath}`)
+        .fontSize(20)
+        .margin({ bottom: 10 })
+      Image(this.resourcesPath)
+        .width(100)
+        .height(100)
+      Text(`沙箱图片路径:${this.sandboxPath}`)
+        .fontSize(20)
+        .margin({ bottom: 10 })
+      Image(this.sandboxPath)
+        .width(100)
+        .height(100)
+    }
+    .width('100%').height('100%')
+  }
+}
+```

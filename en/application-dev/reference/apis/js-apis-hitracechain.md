@@ -18,7 +18,7 @@ Enumerates trace flag types.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-| Name | Default Value | Description |
+| Name | Value | Description |
 | -------- | -------- | -------- |
 | DEFAULT           | 0      | Default flag. |
 | INCLUDE_ASYNC     | 1      | Asynchronous call flag. By default, only synchronous calls are traced. If this flag is set, both synchronous and asynchronous calls will be traced. |
@@ -35,7 +35,7 @@ Enumerates trace point types.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-| Name| Default Value | Description |
+| Name| Value | Description |
 | -------- | -------- | -------- |
 | CS       | 0 | Client Send (CS) trace point. |
 | CR       | 1 | Client Receive (CS) trace point. |
@@ -49,7 +49,7 @@ Enumerates communication modes.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-| Name| Default Value | Description |
+| Name| Value | Description |
 | -------- | -------- | -------- |
 | DEFAULT  | 0 | Default communication mode. |
 | THREAD   | 1 | Inter-thread communication. |
@@ -71,7 +71,7 @@ Defines a **HiTraceId** object.
 
 ## hiTraceChain.begin
 
-begin(name: string, flags: number = HiTraceFlag.DEFAULT): HiTraceId
+begin(name: string, flags?: number): HiTraceId
 
 Starts call chain tracing. This API works in synchronous manner.
 
@@ -82,9 +82,9 @@ Starts call chain tracing. This API works in synchronous manner.
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | name  | string | Yes| Traced service name. |
-| flags | number | Yes| Trace flag combination. For details, see [HiTraceFlag](#hitraceflag). |
+| flags | number | No| Trace flag combination. For details, see [HiTraceFlag](#hitraceflag). |
 
-**Return Value**
+**Return value**
 
 | Type | Description |
 | -------- | -------- |
@@ -113,7 +113,7 @@ Stops call chain tracing. This API works in synchronous manner.
 **Example**
 
 ```js
-let asyncTraceId = hiTraceChain.begin("business");
+let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // End the call chain tracing after the service logic is executed for several times.
 hiTraceChain.end(asyncTraceId);
 ```
@@ -126,7 +126,7 @@ Obtains the trace ID. This API works in synchronous manner.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-**Return Value**
+**Return value**
 
 | Type | Description |
 | -------- | -------- |
@@ -135,7 +135,7 @@ Obtains the trace ID. This API works in synchronous manner.
 **Example**
 
 ```js
-let traceId = hiTraceChain.begin("business");
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // Obtain the current trace ID after the service logic is executed for several times.
 let curTraceId = hiTraceChain.getId();
 ```
@@ -158,7 +158,7 @@ Sets a trace ID. This API works in synchronous manner.
 
 ```js
 let asyncTraceId;
-let traceId = hiTraceChain.begin("business");
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // Set the current trace ID after the service logic is executed for several times.
 hiTraceChain.setId(asyncTraceId);
 ```
@@ -174,7 +174,7 @@ Clears the trace ID. This API works in synchronous manner.
 **Example**
 
 ```js
-let traceId = hiTraceChain.begin("business");
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // Clear the current trace ID after the service logic is executed for several times.
 hiTraceChain.clearId();
 ```
@@ -187,7 +187,7 @@ Creates a trace span. This API works in synchronous manner.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-**Return Value**
+**Return value**
 
 | Type | Description |
 | -------- | -------- |
@@ -196,7 +196,7 @@ Creates a trace span. This API works in synchronous manner.
 **Example**
 
 ```js
-let traceId = hiTraceChain.begin("business");
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // Create a trace span after the service logic is executed for several times.
 let spanTraceId = hiTraceChain.createSpan();
 ```
@@ -240,7 +240,7 @@ Checks whether a **HiTraceId** instance is valid. This API works in synchronous 
 | -------- | -------- | -------- | -------- |
 | id  | [HiTraceId](#hitraceid) | Yes| **HiTraceId** instance. |
 
-**Return Value**
+**Return value**
 
 | Type | Description |
 | -------- | -------- |
@@ -249,7 +249,7 @@ Checks whether a **HiTraceId** instance is valid. This API works in synchronous 
 **Example**
 
 ```js
-let traceId = hiTraceChain.begin("business");
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 let traceIdIsvalid = hiTraceChain.isValid(traceId);
 ```
 
@@ -268,7 +268,7 @@ Checks whether the specified trace flag in the **HiTraceId** instance is enabled
 | id  | [HiTraceId](#hitraceid) | Yes | **HiTraceId** instance. |
 | flag | [HiTraceFlag](#hitraceflag) | Yes | Specified trace flag. |
 
-**Return Value**
+**Return value**
 
 | Type | Description |
 | -------- | -------- |
@@ -291,6 +291,7 @@ Enables the specified trace flag in the **HiTraceId** instance. This API works i
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Parameters**
+
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | id | [HiTraceId](#hitraceid) | Yes | **HiTraceId** instance. |

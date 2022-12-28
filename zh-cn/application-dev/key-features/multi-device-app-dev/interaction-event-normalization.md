@@ -22,7 +22,7 @@
 | 缩放 | [PinchGesture](../../reference/arkui-ts/ts-basic-gestures-pinchgesture.md) | √ | √ | √ | 
 | 旋转 | [RotationGesture](../../reference/arkui-ts/ts-basic-gestures-rotationgesture.md) | √ | NA | √ | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 点击事件（onClick）其实是点击手势（TapGesture）的一个特殊场景（单指单次点击）。该场景使用的非常广泛，为了方便开发者使用及符合传统开发习惯，所以专门提供了开发接口。
 > 
 > - 触控板支持长按输入的功能正在开发中。

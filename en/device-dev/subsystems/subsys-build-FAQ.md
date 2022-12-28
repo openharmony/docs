@@ -2,7 +2,7 @@
 
 ## Common Build Problems and Solutions
 
-###  "usr/sbin/ninja: invalid option -- w" Displayed During the Build Process
+###  "usr/sbin/ninja: invalid option -- w"
 
 - **Symptom**
 
@@ -16,7 +16,7 @@
 
   Uninstall Ninja and GN, and [install Ninja and GN of the required version](../../device-dev/get-code/gettools-ide.md).
 
-### "/usr/bin/ld: cannot find -lncurses" Displayed During the Build Process
+### "/usr/bin/ld: cannot find -lncurses"
 
 - **Symptom**
 
@@ -32,7 +32,7 @@
   sudo apt-get install lib32ncurses5-dev
   ```
 
-### "line 77: mcopy: command not found" Displayed During the Build Process
+### "line 77: mcopy: command not found"
 
 - **Symptom**
 
@@ -48,7 +48,7 @@
   sudo apt-get install dosfstools mtools
   ```
 
-### "riscv32-unknown-elf-gcc: error trying to exec 'cc1': execvp: No such file or directory" Displayed During the Build Process
+### "riscv32-unknown-elf-gcc: error trying to exec 'cc1': execvp: No such file or directory"
 
 - **Symptom**
 
@@ -56,19 +56,23 @@
 
 - **Possible Causes**
 
-  You do not have the permission to access files in the RISC-V compiler directory.
+   You do not have the permission to access files in the RISC-V compiler directory.
 
 - **Solution**
 
   1. Run the following command to locate **gcc_riscv32**:
+  
+     ```shell
+     which riscv32-unknown-elf-gcc 
+     ```
 
-  ```shell
-  which riscv32-unknown-elf-gcc
-  ```
-
+     
+  
   2. Run the **chmod** command to change the directory permission to **755**.
+  
+     
 
-### "No module named 'Crypto'" Displayed During the Build Process
+### "No module named 'Crypto'"
 
 - **Symptom**
 
@@ -76,7 +80,7 @@
 
 - **Possible Causes**
 
-  Crypto is not installed in Python 3.
+   Crypto is not installed in Python3.
 
 - **Solution**
 
@@ -92,7 +96,7 @@
      sudo pip3 install pycryptodome
      ```
 
-### "xx.sh : xx unexpected operator" Displayed During the Build Process
+### "xx.sh : xx unexpected operator"
 
 - **Symptom**
 
@@ -109,4 +113,21 @@
   sudo ln -s /bin/bash /bin/sh
   ```
 
-  
+
+### "some services are not authenticated. Listed as follows"
+
+- **Symptom**
+
+  The build fails, and "some services are not authenticated. Listed as follows" is displayed.
+
+- **Possible Causes**
+
+  For the processes listed in the error information, the UID is set to **root** or **system** in the process configuration files. However, these processes are not high-privilege processes defined by the product.
+
+- **Solution**
+
+  Modify the process configuration file to reduce the privilege level. Do not set **UID** to **root** or **system** unless necessary.
+
+  If a process must have the **root** or **system** privilege due to service requirements, modify the **high_privilege_process_list.json** file with the approval of security experts. The **high_privilege_process_list.json** file is located in **vendor/**{*company_name*}/{*product_name*}**/security_config**. For example, the file for rk3586 is **//vendor/hihope/rk3568/security_config/high_privilege_process_list.json**.
+
+

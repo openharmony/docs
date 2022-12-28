@@ -1,6 +1,6 @@
-# 非线性容器HashMap 
+# @ohos.util.HashMap (非线性容器HashMap)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 HashMap底层使用数组+链表+红黑树的方式实现，查询、插入和删除的效率都很高。HashMap存储内容基于key-value的键值对映射，不能有重复的key，且一个key只能对应一个value。
@@ -27,7 +27,7 @@ import HashMap from '@ohos.util.HashMap';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | HashMap的元素个数。 |
 
@@ -39,6 +39,14 @@ constructor()
 HashMap的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200012 | The HashMap's constructor cannot be directly invoked. |
 
 **示例：**
 
@@ -60,6 +68,14 @@ isEmpty(): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 为空返回true，不为空返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
 
 **示例：**
 
@@ -88,6 +104,14 @@ hasKey(key: K): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 包含指定Key返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The hasKey method cannot be bound. |
 
 **示例：**
 
@@ -119,6 +143,14 @@ hasValue(value: V): boolean
 | -------- | -------- |
 | boolean | 包含指定value返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The hasValue method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -149,6 +181,14 @@ get(key: K): V
 | -------- | -------- |
 | V | 返回key映射的value值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -172,6 +212,14 @@ setAll(map: HashMap<K, V>): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | map | HashMap<K, V> | 是 | 被添加元素的hashMap。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The setAll method cannot be bound. |
 
 **示例：**
 
@@ -205,6 +253,14 @@ set(key: K, value: V): Object
 | -------- | -------- |
 | Object | 返回添加后的hashMap。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The set method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -233,6 +289,14 @@ remove(key: K): V
 | -------- | -------- |
 | V | 返回删除元素的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -250,6 +314,14 @@ clear(): void
 清除HashMap中的所有元素,并把length置为0。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
 
 **示例：**
 
@@ -274,6 +346,14 @@ keys(): IterableIterator&lt;K&gt;
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;K&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The keys method cannot be bound. |
 
 **示例：**
 
@@ -303,6 +383,14 @@ values(): IterableIterator&lt;V&gt;
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;V&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
 
 **示例：**
 
@@ -340,6 +428,14 @@ replace(key: K, newValue: V): boolean
 | -------- | -------- |
 | boolean | 是否成功对已有数据进行替换 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The replace method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -351,7 +447,7 @@ let result = hashMap.replace("sparrow", 357);
 
 ### forEach
 
-forEach(callbackfn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
 
 通过回调函数来遍历HashMap实例对象上的元素以及元素对应的下标。
 
@@ -361,7 +457,7 @@ forEach(callbackfn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?:
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -370,6 +466,14 @@ callbackfn的参数说明：
 | value | V | 否 | 当前遍历到的元素键值对的值。 |
 | key | K | 否 | 当前遍历到的元素键值对的键。 |
 | map | HashMap<K, V> | 否 | 当前调用forEach方法的实例对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
 
 **示例：**
 
@@ -396,6 +500,14 @@ entries(): IterableIterator&lt;[K, V]&gt;
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;[K, V]&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
 
 **示例：**
 
@@ -426,6 +538,14 @@ while(temp != undefined) {
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;[K, V]&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 ```ts

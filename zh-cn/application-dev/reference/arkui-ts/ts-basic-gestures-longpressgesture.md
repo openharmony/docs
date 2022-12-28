@@ -36,7 +36,7 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 @Entry
 @Component
 struct LongPressGestureExample {
-  @State count: number = 0;
+  @State count: number = 0
 
   build() {
     Column() {
@@ -47,12 +47,12 @@ struct LongPressGestureExample {
           // 由于repeat设置为true，长按动作存在时会连续触发，触发间隔为duration（默认值500ms）
           .onAction((event: GestureEvent) => {
             if (event.repeat) {
-              this.count++;
+              this.count++
             }
           })
             // 长按动作一结束触发
           .onActionEnd(() => {
-            this.count = 0;
+            this.count = 0
           })
         )
     }

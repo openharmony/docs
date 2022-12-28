@@ -173,9 +173,7 @@ JS API 文档模板路径：[https://](https://gitee.com/openharmony/docs/blob/m
 
 ### 内容写作
 
-概述模板链接：[concept-overview-template.md](template/concept-overview-template.md)
-
-开发指导模板链接：[guide-template.md](template/guide-template.md)
+开发指南模板链接：[guide-template.md](template/guide-template.md)
 
 **每一个文档必须包含的内容**：
 

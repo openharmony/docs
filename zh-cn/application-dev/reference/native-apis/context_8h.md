@@ -33,7 +33,7 @@
 | [OH_AI_ContextDestroy](_mind_spore.md#oh_ai_contextdestroy) (OH_AI_ContextHandle \*context) | 释放上下文对象。 |
 | [OH_AI_ContextSetThreadNum](_mind_spore.md#oh_ai_contextsetthreadnum) (OH_AI_ContextHandle context, int32_t thread_num) | 设置运行时的线程数量。 |
 | [OH_AI_ContextGetThreadNum](_mind_spore.md#oh_ai_contextgetthreadnum) (const OH_AI_ContextHandle context) | 获取线程数量。 |
-| [OH_AI_ContextSetThreadAffinityMode](_mind_spore.md#oh_ai_contextsetthreadaffinitymode) (OH_AI_ContextHandle context, int mode) | 设置运行时线程绑定CPU核心的策略，按照CPU物理核频率分为大核与小核。 |
+| [OH_AI_ContextSetThreadAffinityMode](_mind_spore.md#oh_ai_contextsetthreadaffinitymode) (OH_AI_ContextHandle context, int mode) | 设置运行时线程绑定CPU核心的策略，按照CPU物理核频率分为大、中、小三种类型的核心，并且仅需绑大核或者绑中核，不需要绑小核。 |
 | [OH_AI_ContextGetThreadAffinityMode](_mind_spore.md#oh_ai_contextgetthreadaffinitymode) (const OH_AI_ContextHandle context) | 获取运行时线程绑定CPU核心的策略。 |
 | [OH_AI_ContextSetThreadAffinityCoreList](_mind_spore.md#oh_ai_contextsetthreadaffinitycorelist) (OH_AI_ContextHandle context, const int32_t \*core_list, size_t core_num) | 设置运行时线程绑定CPU核心的列表。 |
 | [OH_AI_ContextGetThreadAffinityCoreList](_mind_spore.md#oh_ai_contextgetthreadaffinitycorelist) (const OH_AI_ContextHandle context, size_t \*core_num) | 获取CPU绑核列表。 |

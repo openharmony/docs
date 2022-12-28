@@ -1,4 +1,4 @@
-# Linear Container List
+# @ohos.util.List (Linear Container List)
 
 > **NOTE**
 >
@@ -26,7 +26,7 @@ import List from '@ohos.util.List';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type | Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | Yes| No| Number of elements in a list (called container later).|
 
@@ -39,6 +39,13 @@ A constructor used to create a **List** instance.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200012 | The List's constructor cannot be directly invoked. |
 
 **Example**
 
@@ -67,16 +74,25 @@ Adds an element at the end of this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **Example**
 
 ```ts
 let list = new List();
-let result = list.add("a");
-let result1 = list.add(1);
+let result1 = list.add("a");
+let result2 = list.add(1);
 let b = [1, 2, 3];
-list.add(b);
+let result3 = list.add(b);
 let c = {name : "Dylon", age : "13"};
-let result3 = list.add(false);
+let result4 = list.add(c);
+let result5 = list.add(false);
 ```
 
 ### insert
@@ -93,6 +109,15 @@ Inserts an element at the specified position in this container.
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 | index | number | Yes| Index of the position where the element is to be inserted.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The insert method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -123,6 +148,14 @@ Checks whether this container has the specified element.
 | -------- | -------- |
 | boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -151,6 +184,14 @@ Obtains the element at the specified position in this container.
 | Value Type | Description|
 | -------- | -------- |
 | T | Element obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
 
 **Example**
 
@@ -186,6 +227,14 @@ Obtains the index of the last occurrence of the specified element in this contai
 | -------- | -------- |
 | number | Returns the index if obtained; returns **-1** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getLastIndexOf method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -219,6 +268,14 @@ Obtains the index of the first occurrence of the specified element in this conta
 | Value Type | Description|
 | -------- | -------- |
 | number | Returns the position index if obtained; returns **-1** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getIndexOf method cannot be bound. |
 
 **Example**
 
@@ -254,6 +311,14 @@ Compares whether a specified object is equal to this container.
 | Value Type | Description|
 | -------- | -------- |
 | boolean | Returns **true** if the two are equal; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The equal method cannot be bound. |
 
 **Example**
 
@@ -292,6 +357,15 @@ Removes an element at the specified position from this container.
 | -------- | -------- |
 | T | Element removed.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The removeByIndex method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
+
 **Example**
 
 ```ts
@@ -324,6 +398,14 @@ Removes the first occurrence of the specified element from this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -337,7 +419,7 @@ let result = list.remove(2);
 
 ### replaceAllElements
 
-replaceAllElements(callbackfn: (value: T, index?: number, list?: List&lt;T&gt;) => T,
+replaceAllElements(callbackFn: (value: T, index?: number, list?: List&lt;T&gt;) => T,
 thisArg?: Object): void
 
 Replaces all elements in this container with new elements, and returns the new ones.
@@ -348,7 +430,7 @@ Replaces all elements in this container with new elements, and returns the new o
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked for the replacement.|
+| callbackFn | function | Yes| Callback invoked for the replacement.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -358,6 +440,14 @@ callbackfn
 | value | T | Yes| Value of the element that is currently traversed.|
 | index | number | No| Position index of the element that is currently traversed.|
 | list | List&lt;T&gt; | No| Instance that invokes the **replaceAllElements** method.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The replaceAllElements method cannot be bound. |
 
 **Example**
 
@@ -377,7 +467,7 @@ list.replaceAllElements((value: number, index: number) => {
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, List?: List&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, List?: List&lt;T&gt;) => void,
 thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
@@ -388,7 +478,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -398,6 +488,14 @@ callbackfn
 | value | T | Yes| Value of the element that is currently traversed.|
 | index | number | No| Position index of the element that is currently traversed.|
 | List | List&lt;T&gt; | No| Instance that invokes the **forEach** method.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
 
 **Example**
 
@@ -410,7 +508,6 @@ list.add(4);
 list.forEach((value, index) => {
   console.log("value: " + value, index);
 });
-
 ```
 
 ### sort
@@ -433,6 +530,14 @@ comparator
 | -------- | -------- | -------- | -------- |
 | firstValue | T | Yes| Previous element.|
 | secondValue | T | Yes| Next element.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The sort method cannot be bound. |
 
 **Example**
 
@@ -467,6 +572,15 @@ Obtains elements within a range in this container, including the element at the 
 | -------- | -------- |
 | List&lt;T&gt; | New **List** instance obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getSubList method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
+
 **Example**
 
 ```ts
@@ -487,6 +601,14 @@ clear(): void
 Clears this container and sets its length to **0**.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
 
 **Example**
 
@@ -520,6 +642,15 @@ Replaces an element at the specified position in this container with a given ele
 | -------- | -------- |
 | T | New element.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The set method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
+
 **Example**
 
 ```ts
@@ -529,7 +660,6 @@ list.add(4);
 list.add(5);
 list.add(4);
 list.set(2, "b");
-
 ```
 
 ### convertToArray
@@ -545,6 +675,14 @@ Converts this container into an array.
 | Value Type | Description|
 | -------- | -------- |
 | Array&lt;T&gt; | Array obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The convertToArray method cannot be bound. |
 
 **Example**
 
@@ -571,6 +709,14 @@ Checks whether this container is empty (contains no element).
 | -------- | -------- |
 | boolean | Returns **true** if the container is empty; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -595,6 +741,14 @@ Obtains the first element in this container.
 | Value Type | Description|
 | -------- | -------- |
 | T | The first element obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getFirst method cannot be bound. |
 
 **Example**
 
@@ -621,6 +775,14 @@ Obtains the last element in this container.
 | -------- | -------- |
 | T | The last element obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getLast method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -645,6 +807,14 @@ Obtains an iterator, each item of which is a JavaScript object.
 | Value Type | Description|
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **Example**
 

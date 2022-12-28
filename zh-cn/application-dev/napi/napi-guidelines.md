@@ -1,10 +1,10 @@
 # Native API在应用工程中的使用指导
 
-OpenHarmony的应用必须用js来桥接native。需要使用[ace_napi](https://gitee.com/openharmony/arkui_napi/tree/master)仓中提供的napi接口来处理js交互。napi提供的接口名与三方Node.js一致，目前支持部分接口，符号表见仓下的该文件`libnapi.ndk.json`。
+OpenHarmony的应用必须用js来桥接native。需要使用[ace_napi](https://gitee.com/openharmony/arkui_napi/tree/master)仓中提供的napi接口来处理js交互。napi提供的接口名与三方Node.js一致，目前支持部分接口，符号表见ace_napi仓中的`libnapi.ndk.json`文件。
 
 ## 开发流程
 
-IDE中会包含使用Native API的默认工程，使用`File`->`New`->`Create Project`创建`Native C++`模板工程。创建后在`main`目录下会包含`cpp`目录，可以使用ace_napi仓下提供的napi接口进行开发。
+在DevEco Studio的模板工程中包含使用Native API的默认工程，使用`File`->`New`->`Create Project`创建`Native C++`模板工程。创建后在`main`目录下会包含`cpp`目录，可以使用ace_napi仓下提供的napi接口进行开发。
 
 js侧通过`import`引入native侧包含处理js逻辑的so，如：`import hello from 'libhello.so'`，意为使用libhello.so的能力，native侧通过napi接口创建的js对象会给到应用js侧的`hello`对象。
 
@@ -29,15 +29,15 @@ ark引擎会对js对象线程使用进行保护，使用不当会引起应用cra
 
 ### 头文件引入限制
 
-在使用napi的对象和方法时需要引用"napi/native_api.h"。否则在只引入三方库头文件时，会出现未支持**接口无法找到的编译报错**。
+在使用napi的对象和方法时需要引用"napi/native_api.h"。否则在只引入三方库头文件时，会出现接口无法找到的编译报错。
 
 ### napi_create_async_work接口说明
 
 napi_create_async_work里有两个回调：
 
-* execute：用于异步处理业务逻辑。因为不在JS线程中，所以不允许调用napi的接口。业务逻辑的返回值可以返回到complete回调中处理。
+* execute：用于异步处理业务逻辑。因为不在js线程中，所以不允许调用napi的接口。业务逻辑的返回值可以返回到complete回调中处理。
 
-* complete：可以调用napi的接口，将execute中的返回值封装成JS对象返回。此回调在JS线程中执行。
+* complete：可以调用napi的接口，将execute中的返回值封装成js对象返回。此回调在js线程中执行。
 
 ```c++
 napi_status napi_create_async_work(napi_env env,
@@ -51,11 +51,11 @@ napi_status napi_create_async_work(napi_env env,
 
 
 
-## 示例一 storage 模块——同步异步接口封装
+## storage 模块——同步异步接口封装
 
 ### 模块简介
 
-本例通过实现 `storage` 模块展示了同步和异步方法的封装。`storage ` 模块实现了数据的保存、获取、删除、清除功能。
+本示例通过实现 `storage` 模块展示了同步和异步方法的封装。`storage ` 模块实现了数据的保存、获取、删除、清除功能。
 
 ### 接口声明
 
@@ -82,7 +82,7 @@ export default storage;
 
 完整代码参见仓下路径：[OpenHarmony/arkui_napi](https://gitee.com/openharmony/arkui_napi/tree/master)仓库`sample/native_module_storage/`
 
-#### 模块注册
+**1、模块注册** 
 
 如下，注册了4个同步接口（`getSync`、`setSync`、`removeSync`、`clearSync`）、4个异步接口（`get`、`set`、`remove`、`clear`）。
 
@@ -123,7 +123,7 @@ extern "C" __attribute__((constructor)) void StorageRegister()
 }
 ```
 
-#### getSync 函数实现
+**2、getSync 函数实现** 
 
 如上注册时所写，`getSync` 对应的函数是 `JSStorageGetSync` 。从 `gKeyValueStorage` 中获取数据后，创建一个字符串对象并返回。
 
@@ -169,7 +169,7 @@ static napi_value JSStorageGetSync(napi_env env, napi_callback_info info)
 }
 ```
 
-#### get 函数实现
+**3、get 函数实现** 
 
 如上注册时所写，`get`对应的函数式`JSStorageGet`。
 
@@ -269,7 +269,7 @@ static napi_value JSStorageGet(napi_env env, napi_callback_info info)
 }
 ```
 
-### JS Sample Code
+**4、js示例代码** 
 
 ```js
 import storage from 'libstorage.so';
@@ -293,11 +293,11 @@ export default {
 
 
 
-## 示例二 NetServer 模块——native与js对象绑定
+## NetServer 模块——native与js对象绑定
 
 ### 模块简介
 
-本例展示了`on/off/once`订阅方法的实现，同时也包含了 C++ 与 JS 对象通过 wrap 接口的绑定。NetServer 模块实现了一个网络服务。
+本示例展示了`on/off/once`订阅方法的实现，同时也包含了 C++ 与 js对象通过 wrap 接口的绑定。NetServer 模块实现了一个网络服务。
 
 ### 接口声明
 
@@ -315,7 +315,7 @@ export class NetServer {
 
 完整代码参见：[OpenHarmony/arkui_napi](https://gitee.com/openharmony/arkui_napi/tree/master)仓库`sample/native_module_netserver/`
 
-#### 模块注册
+**1、模块注册** 
 
 ```c
 static napi_value NetServer::Export(napi_env env, napi_value exports)
@@ -339,7 +339,7 @@ static napi_value NetServer::Export(napi_env env, napi_value exports)
 }
 ```
 
-#### 在构造函数中绑定 C++ 与 JS 对象
+**2、在构造函数中绑定 C++ 与 JS 对象**
 
 ```c
 napi_value NetServer::JS_Constructor(napi_env env, napi_callback_info cbinfo)
@@ -366,7 +366,7 @@ napi_value NetServer::JS_Constructor(napi_env env, napi_callback_info cbinfo)
 }
 ```
 
-#### 从 JS 对象中取出 C++ 对象
+**3、从 JS 对象中取出 C++ 对象** 
 
 ```c
 napi_value NetServer::JS_Start(napi_env env, napi_callback_info cbinfo)
@@ -436,7 +436,7 @@ int NetServer::Start(int port)
 }
 ```
 
-#### 注册或释放（on/off/once）事件，以 on 为例
+**4、注册或释放（on/off/once）事件，以 on 为例** 
 
 ```c
 napi_value NetServer::JS_On(napi_env env, napi_callback_info cbinfo)
@@ -476,7 +476,7 @@ napi_value NetServer::JS_On(napi_env env, napi_callback_info cbinfo)
 }
 ```
 
-### JS Sample Code
+**5、js示例代码**
 
 ```javascript
 import { NetServer } from 'libnetserver.so';
@@ -492,17 +492,17 @@ export default {
 
 
 
-## 示例三 在非JS线程中回调JS接口
+## 在非JS线程中回调JS接口
 
 ### 模块简介
 
-本模块介绍如何在非JS线程中回调JS应用的回调函数。例如JS应用中注册了某个sensor的监听，这个sensor的数据是由一个SA服务来上报的，当SA通过IPC调到客户端时，此时的执行线程是一个IPC通信线程，与应用的JS线程是两个不同的线程。这时就需要将执行JS回调的任务抛到JS线程中才能执行，否则会出现崩溃。
+本示例介绍如何在非JS线程中回调JS应用的回调函数。例如JS应用中注册了某个sensor的监听，这个sensor的数据是由一个SA服务来上报的，当SA通过IPC调到客户端时，此时的执行线程是一个IPC通信线程，与应用的JS线程是两个不同的线程。这时就需要将执行JS回调的任务抛到JS线程中才能执行，否则会出现崩溃。
 
 ### 具体实现
 
 完整代码参见：[OpenHarmony/arkui_napi](https://gitee.com/openharmony/arkui_napi/tree/master)仓库`sample/native_module_callback/`
 
-#### 模块注册
+**1、模块注册**
 
 如下，注册了1个接口`test`，会传入一个参数，类型为包含一个参数的函数。
 
@@ -537,7 +537,7 @@ extern "C" __attribute__((constructor)) void CallbackTestRegister()
 }
 ```
 
-#### 获取env中的loop，抛任务回JS线程
+**2、获取env中的loop，抛任务回JS线程** 
 
 ```c++
 #include <thread>
@@ -628,7 +628,7 @@ static napi_value JSTest(napi_env env, napi_callback_info info)
 }
 ```
 
-### JS Sample Code
+**3、js示例代码** 
 
 ```js
 import callback from 'libcallback.so';
@@ -641,8 +641,11 @@ export default {
   }
 }
 ```
+
 ## 相关实例
-针对Native API的开发，有以下相关实例可供参考：
-- [`NativeAPI`：NativeAPI（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/Native/NativeAPI)
-- [第一个Native C++应用（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
-- [Native Component（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/XComponent)
+
+针对Native API的开发，有以下相关完整实例可供参考：
+
+- [第一个Native C++应用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
+
+- [Native Component（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/XComponent)

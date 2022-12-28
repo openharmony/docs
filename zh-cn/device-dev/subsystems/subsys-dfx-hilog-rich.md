@@ -53,7 +53,7 @@ HiLog是OpenHarmony日志系统，提供给系统框架、服务、以及应用�
    ```
    #undef LOG_DOMAIN
    #undef LOG_TAG
-   #define LOG_DOMAIN 0  // 标识业务领域，范围0x0~0xFFFFF
+   #define LOG_DOMAIN 0xD003200  // 标识业务领域，范围0xD000000~0xD0FFFFF
    #define LOG_TAG "MY_TAG"
    ```
 
@@ -82,7 +82,7 @@ HiLog是OpenHarmony日志系统，提供给系统框架、服务、以及应用�
      
    ```
    class MyClass {
-   static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0, "MY_TAG"}; 
+   static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_TAG"}; 
    ......
    }
    ```
@@ -91,7 +91,7 @@ HiLog是OpenHarmony日志系统，提供给系统框架、服务、以及应用�
      
    ```
    using namespace OHOS::HiviewDFX;
-   static constexpr HiLogLabel LABEL = {LOG_CORE, 0, "MY_TAG"}; 
+   static constexpr HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_TAG"}; 
    ```
 
      打印日志：

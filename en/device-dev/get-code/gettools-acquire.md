@@ -7,7 +7,7 @@ OpenHarmony provides the following two types of Docker environments for you to q
 -   Standalone Docker environment: applicable when using Ubuntu or Windows to build a distribution
 -   HPM-based Docker environment: applicable when using the HarmonyOS Package Manager \(HPM\) to build a distribution
 
-**Table  1**  Docker image
+**Table  1** Docker image
 
 <a name="table11986917191214"></a>
 <table><thead align="left"><tr id="row149861417121215"><th class="cellrowborder" valign="top" width="15.831583158315832%" id="mcps1.2.6.1.1"><p id="p798611714124"><a name="p798611714124"></a><a name="p798611714124"></a>Docker Environment</p>
@@ -67,11 +67,12 @@ OpenHarmony provides the following two types of Docker environments for you to q
 
 Before using the Docker environment, perform the following operations:
 
-1.  Install Docker. For details, see  [Install Docker Engine](https://docs.docker.com/engine/install/).
-2.  Obtain the OpenHarmony source code. For details, see  [Source Code Acquisition](sourcecode-acquire.md).
+1.  Install Docker. For details, see [Install Docker Engine](https://docs.docker.com/engine/install/).
+2.  Obtain the OpenHarmony source code. For details, see [Source Code Acquisition](sourcecode-acquire.md).
 
-    >![](../public_sys-resources/icon-note.gif) **NOTE**<br>
-    >You do not need to obtain the source code for the HPM-based Docker environment.
+    > **NOTE**
+    > 
+    > You do not need to obtain the source code for the HPM-based Docker environment.
 
 
 ## Standalone Docker Environment<a name="section2858536103611"></a>
@@ -94,7 +95,7 @@ The Docker image of OpenHarmony is hosted on HUAWEI CLOUD SWR. Using the Docker 
     docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:1.0.0
     ```
 
-    Run the following command in Windows \(assuming that the source code directory is  **D:\\OpenHarmony**\):
+    Run the following command in Windows \(assuming that the source code directory is **D:\\OpenHarmony**\):
 
     ```
     docker run -it -v D:\OpenHarmony:/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:1.0.0
@@ -111,17 +112,17 @@ Set the build path to the current path.
 hb set
 ```
 
-**Figure  1**  Setting page<a name="fig7947145854013"></a>  
+**Figure 1** Setting page<a name="fig7947145854013"></a>  
 ![](figure/setting-page.png "setting-page")
 
->![](../public_sys-resources/icon-note.gif) **NOTE**<br>
->The mapping between the development board and the building GUI:
+> **NOTE**<br>
+> The mapping between the development board and the building GUI:
 >
->-   Hi3861: wifiiot\_hispark\_pegasus@hisilicon
->-   Hi3516: ipcamera\_hispark\_taurus@hisilicon
->-   Hi3518: ipcamera\_hispark\_aries@hisilicon
+> -   Hi3861: wifiiot\_hispark\_pegasus@hisilicon
+> -   Hi3516: ipcamera\_hispark\_taurus@hisilicon
+> -   Hi3518: ipcamera\_hispark\_aries@hisilicon
 
-1.  Select  **ipcamera\_hispark\_taurus@hisilicon**  and press  **Enter**.
+1.  Select **ipcamera\_hispark\_taurus@hisilicon** and press **Enter**.
 2.  Start building.
 
     ```
@@ -130,7 +131,7 @@ hb set
 
 3.  View the build result.
 
-    The files will be generated in the  **out/hispark\_taurus/ipcamera\_hispark\_taurus**  directory.
+    The files will be generated in the **out/hispark\_taurus/ipcamera\_hispark\_taurus** directory.
 
 
 ### Setting Up the Docker Environment for Standard-System Devices \(reference memory ≥ 128 MB\)<a name="section13585262391"></a>
@@ -156,17 +157,17 @@ Run the following script to start building for standard-system devices \(referen
 ./build.sh --product-name {product_name} --ccache
 ```
 
-**product\_name**  indicates the platform supported by the current distribution, for example, hispark_taurus_standard and rk3568.
+**product\_name** indicates the platform supported by the current distribution, for example, hispark_taurus_standard and rk3568.
 
-Files generated during building are stored in the  **out/{device_name}/**  directory, and the generated image is stored in the  **out/{device_name}/packages/phone/images/**  directory.
+Files generated during building are stored in the **out/{device_name}/** directory, and the generated image is stored in the **out/{device_name}/packages/phone/images/** directory.
 
 
 >![](../public_sys-resources/icon-note.gif) **NOTE**<br>
->You can exit Docker by simply running the  **exit**  command.
+>You can exit Docker by simply running the **exit** command.
 
 ## HPM-based Docker Environment<a name="section485713518337"></a>
 
-**docker\_dist**  is a template component in the  [HPM](https://hpm.harmonyos.com/#/en/home)  system. It helps to quickly initialize an HPM project and use the Docker image to quickly build a distribution of OpenHarmony, greatly simplifying environment configurations needed for building. After configuring the Ubuntu and hpm-cli development environments, perform the following steps to access the Docker environment:
+**docker\_dist** is a template component in the  [HPM](https://hpm.harmonyos.com/#/en/home)  system. It helps to quickly initialize an HPM project and use the Docker image to quickly build a distribution of OpenHarmony, greatly simplifying environment configurations needed for building. After configuring the Ubuntu and hpm-cli development environments, perform the following steps to access the Docker environment:
 
 ### Setting Up the Docker Environment<a name="section3295842510"></a>
 
@@ -176,20 +177,20 @@ Files generated during building are stored in the  **out/{device_name}/**  direc
     hpm init -t @ohos/docker_dist
     ```
 
-2.  Modify the  **publishAs**  field.
+2.  Modify the **publishAs** field.
 
-    The obtained bundle is of the template type. Open the  **bundle.json**  file in the current directory and change the value of  **publishAs**  from  **template**  to  **distribution**  as needed.
+    The obtained bundle is of the template type. Open the **bundle.json** file in the current directory and change the value of **publishAs** from **template** to **distribution** as needed.
 
 
 ### Obtaining and Building Source Code<a name="section69141039143518"></a>
 
 Start building. Docker can be automatically installed only in Ubuntu. If you are using any other operating system, manually install Docker before pulling the image.
 
--   **Automatically Installing Docker \(Ubuntu\)**
+-  **Automatically Installing Docker \(Ubuntu\)**
 
     Running the following command will automatically install Docker, pull the Docker image, and start the pulling and building of the corresponding solution in the container.
 
-    **Method 1:**
+   **Method 1:**
 
     Add a parameter to specify the solution. For example:
 
@@ -197,9 +198,9 @@ Start building. Docker can be automatically installed only in Ubuntu. If you are
     hpm run docker solution={product}
     ```
 
-    **\{product\}**  indicates the solution, for example,  **@ohos/hispark\_taurus**,  **@ohos/hispark\_aries**, and  **@ohos/hispark\_pegasus**.
+   **\{product\}** indicates the solution, for example, **@ohos/hispark\_taurus**, **@ohos/hispark\_aries**, and **@ohos/hispark\_pegasus**.
 
-    **Method 2:**
+   **Method 2:**
 
     Set an environment variable to specify the solution, and then run the build command.
 
@@ -209,7 +210,7 @@ Start building. Docker can be automatically installed only in Ubuntu. If you are
         export solution={product}
         ```
 
-        **\{product\}**  indicates the solution, for example,  **@ohos/hispark\_taurus**,  **@ohos/hispark\_aries**, and  **@ohos/hispark\_pegasus**.
+       **\{product\}** indicates the solution, for example, **@ohos/hispark\_taurus**, **@ohos/hispark\_aries**, and **@ohos/hispark\_pegasus**.
 
     2.  Obtain and build the source code.
 
@@ -217,7 +218,7 @@ Start building. Docker can be automatically installed only in Ubuntu. If you are
         hpm run docker
         ```
 
-    This example uses the  **@ohos/hispark\_taurus**  solution for illustration. If the execution is successful, the output is as follows:
+    This example uses the **@ohos/hispark\_taurus** solution for illustration. If the execution is successful, the output is as follows:
 
     ```
     ...
@@ -226,7 +227,7 @@ Start building. Docker can be automatically installed only in Ubuntu. If you are
     ```
 
 
--   **Manually Installing Docker \(Non-Ubuntu\)**
+-  **Manually Installing Docker \(Non-Ubuntu\)**
 
     Perform the following operations to install Docker:
 

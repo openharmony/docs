@@ -1,8 +1,8 @@
-# 弹窗
+# @system.prompt (弹窗)
 
 创建并显示文本提示框、对话框和操作菜单。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
 > - 从API Version 8 开始，该接口不再维护，推荐使用新接口[`@ohos.prompt`](js-apis-prompt.md)。
 >

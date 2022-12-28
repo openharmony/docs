@@ -12,7 +12,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 ## 获取源码概述
 
-本文档将介绍如何获取OpenHarmony源码并说明OpenHarmony的源码目录结构。OpenHarmony的代码以[组件](../hpm-part/Readme-CN.md)的形式开放，开发者可以通过如下其中一种方式获取：
+本文档将介绍如何获取OpenHarmony源码并说明OpenHarmony的源码目录结构。OpenHarmony的代码以[组件](../hpm-part/hpm-part-about.md)的形式开放，开发者可以通过如下其中一种方式获取：
 
 - **获取方式1**：从码云代码仓库获取。通过repo或git工具从代码仓库中下载，此方式可获取最新代码。
 
@@ -77,7 +77,12 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
-> Master主干为开发分支，开发者可通过Master主干获取最新特性。发布版本代码相对比较稳定，开发者可基于发布版本代码进行商用功能开发。
+>
+> 发布版本代码相对比较稳定，开发者可基于发布版本代码进行商用功能开发。Master主干为开发分支，开发者可通过Master主干获取最新特性。
+
+- **OpenHarmony发布版本代码获取**
+
+  OpenHarmony发布版本获取源码方式请参考[Release Notes](../../release-notes/Readme.md)。
 
 - **OpenHarmony主干代码获取**
   
@@ -97,10 +102,6 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
   repo sync -c
   repo forall -c 'git lfs pull'
   ```
-
-- **OpenHarmony发布版本代码获取**
-
-  OpenHarmony发布版本获取源码方式请参考[Release Notes](../../release-notes/Readme.md)。
 
 
 ## 获取方式2：从DevEco Marketplace获取
@@ -197,12 +198,12 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 | Hi3516解决方案-Linux（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz.sha256) |
 | RELEASE-NOTES | 3.0 | [站点](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/zh-cn/release-notes/OpenHarmony-v3.0-LTS.md) | - |
 | **最新发布版本源码** | **版本信息** | **下载站点** | **SHA256校验码** |
-| 全量代码Beta版本（标准、轻量和小型系统） | 3.2 Beta2 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/code-v3.2-Beta2.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/code-v3.2-Beta2.tar.gz.sha256) |
-| RK3568标准系统解决方案（二进制） | 3.2 Beta2 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/dayu200_standard_arm64.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/dayu200_standard_arm64.tar.gz.sha256) |
-| Hi3861解决方案（二进制） | 3.2 Beta2 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/hispark_pegasus.tar.gz.sha256) |
-| Hi3516解决方案-LiteOS（二进制） | 3.2 Beta2 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/hispark_taurus_LiteOS.tar.gz.sha256) |
-| Hi3516解决方案-Linux（二进制） | 3.2 Beta2 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/hispark_taurus_Linux.tar.gz.sha256) |
-| RELEASE-NOTES | 3.2 Beta2 | [站点](../../release-notes/OpenHarmony-v3.2-beta2.md) | - |
+| 全量代码Beta版本（标准、轻量和小型系统） | 3.2 Beta3 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/code-v3.2-Beta3.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/code-v3.2-Beta3.tar.gz.sha256) |
+| RK3568标准系统解决方案（二进制） | 3.2 Beta3 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/dayu200_standard_arm32.tar.gz.sha256) |
+| Hi3861解决方案（二进制） | 3.2 Beta3 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/hispark_pegasus.tar.gz.sha256) |
+| Hi3516解决方案-LiteOS（二进制） | 3.2 Beta3 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/hispark_taurus_LiteOS.tar.gz.sha256) |
+| Hi3516解决方案-Linux（二进制） | 3.2 Beta3 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/hispark_taurus_Linux.tar.gz.sha256) |
+| RELEASE-NOTES | 3.2 Beta3 | [站点](../../release-notes/OpenHarmony-v3.2-beta3.md) | - |
 | **编译工具链** | **版本信息** | **下载站点** | **SHA256校验码** |
 | 编译工具链获取清单 | - | [站点](https://repo.huaweicloud.com/openharmony/os/2.0/tool_chain/) | - |
 

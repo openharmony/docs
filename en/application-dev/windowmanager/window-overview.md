@@ -63,4 +63,8 @@ You are advised to use the stage model for window development.
 
 ## Constraints
 
-You cannot develop system windows in the FA model.
+-  You cannot develop system windows in the FA model.
+
+-  The main window and subwindow have the following size limits: [320, 2560] in width and [240, 2560] in height, both in units of vp.
+
+-  The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.

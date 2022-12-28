@@ -1,4 +1,4 @@
-# 色彩管理
+# @ohos.graphics.colorSpaceManager (色彩管理)
 
 本模块提供管理抽象化色域对象的一些基础能力，包括色域对象的创建与色域基础属性的获取等。
 
@@ -33,7 +33,7 @@ import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.ColorManager.Core
 
-| 名称                          | 参数类型 | 可读 | 可写 | 说明                                                         |
+| 名称                          | 类型 | 可读 | 可写 | 说明                                                         |
 | ---------------------------- | -------- | ---- | ---- | ----------------------------------------------------- |
 | redX                         | number   | 是   | 是   | 标准红色在色彩空间的x坐标值。 |
 | redY                         | number   | 是   | 是   | 标准红色在色彩空间的y坐标值。 |
@@ -63,6 +63,14 @@ create(colorSpaceName: ColorSpace): ColorSpaceManager
 | 类型                | 说明                     |
 | ------------------ | ------------------------ |
 | [ColorSpaceManager](#colorspacemanager)  | 返回当前创建的色域对象实例。               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[色彩管理错误码](../errorcodes/errorcode-colorspace-manager.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 18600001 | Parameter value is abnormal. |
 
 **示例：**
 
@@ -95,6 +103,14 @@ create(primaries: ColorSpacePrimaries, gamma: number): ColorSpaceManager
 | 类型                | 说明                     |
 | ------------------ | ------------------------ |
 | [ColorSpaceManager](#colorspacemanager)  | 返回当前创建的色域对象实例。<br>色域类型定义为[ColorSpace](#colorspace)枚举值`CUSTOM`。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[色彩管理错误码](../errorcodes/errorcode-colorspace-manager.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 18600001 | Parameter value is abnormal. |
 
 **示例：**
 
@@ -138,11 +154,19 @@ getColorSpaceName(): ColorSpace
 | ------------------ | ------------------------ |
 | [ColorSpace](#colorspace)  | 返回色域类型枚举值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[色彩管理错误码](../errorcodes/errorcode-colorspace-manager.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 18600001 | Parameter value is abnormal. |
+
 **示例：**
 
 ```js
 try {
-    let csType = colorSpace.getColorSpaceName();
+    colorSpace.getColorSpaceName();
 } catch (err) {
     console.log(`Fail to get colorSpace's name. Cause: ` + JSON.stringify(err));
 }
@@ -162,11 +186,19 @@ getWhitePoint(): Array\<number\>
 | ------------------ | ------------------------ |
 | Array\<number\>  | 返回色域白点值[x, y]。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[色彩管理错误码](../errorcodes/errorcode-colorspace-manager.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 18600001 | Parameter value is abnormal. |
+
 **示例：**
 
 ```js
 try {
-    let wp = colorSpace.getWhitePoint();
+    colorSpace.getWhitePoint();
 } catch (err) {
     console.log(`Failed to get white point. Cause: ` + JSON.stringify(err));
 }
@@ -186,13 +218,20 @@ getGamma(): number
 | ------------------ | ------------------------ |
 | number  | 返回色域gamma值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[色彩管理错误码](../errorcodes/errorcode-colorspace-manager.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 18600001 | Parameter value is abnormal. |
+
 **示例：**
 
 ```js
 try {
-    let gamma = colorSpace.getGamma();
+    colorSpace.getGamma();
 } catch (err) {
     console.log(`Failed to get gamma. Cause: ` + JSON.stringify(err));
 }
 ```
-

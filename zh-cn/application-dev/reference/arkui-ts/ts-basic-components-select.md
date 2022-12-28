@@ -12,9 +12,9 @@
 
 ## 接口
 
-Select(options: Array\<SelectOption\>)
+Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
 
-**SelectOption对象说明：**
+## SelectOption对象说明
 
 | 参数名 | 参数类型                            | 必填 | 参数描述       |
 | ------ | ----------------------------------- | ---- | -------------- |
@@ -26,7 +26,7 @@ Select(options: Array\<SelectOption\>)
 | 名称                    | 参数类型                              | 描述                                          |
 | ----------------------- | ------------------------------------- | --------------------------------------------- |
 | selected                | number                                | 设置下拉菜单初始选项的索引，第一项的索引为0。 |
-| value                   | string                                | 设置下拉按钮本身的文本显示。                  |
+| value                   | string                                | 设置下拉按钮本身的文本内容。                  |
 | font                    | [Font](ts-types.md#font)          | 设置下拉按钮本身的文本样式。                  |
 | fontColor               | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉按钮本身的文本颜色。                  |
 | selectedOptionBgColor   | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单选中项的背景色。                  |
@@ -51,19 +51,20 @@ Select(options: Array\<SelectOption\>)
 struct SelectExample {
   build() {
     Column() {
-      Select([{ value: 'aaa', icon: "/common/1.png" },
-              { value: 'bbb', icon: "/common/2.png" },
-              { value: 'ccc', icon: "/common/3.png" },
-              { value: 'ddd', icon: "/common/4.png" }])
+      Select([{ value: 'aaa', icon: "/common/public_icon.svg" },
+        { value: 'bbb', icon: "/common/public_icon.svg" },
+        { value: 'ccc', icon: "/common/public_icon.svg" },
+        { value: 'ddd', icon: "/common/public_icon.svg" }])
         .selected(2)
-        .value('TTT')
-        .font({ size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
-        .selectedOptionFont({ size: 40, weight: 500, family: 'serif', style: FontStyle.Normal })
-        .optionFont({ size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
+        .value('TTTTT')
+        .font({ size: 16, weight: 500 })
+        .fontColor('#182431')
+        .selectedOptionFont({ size: 16, weight: 400 })
+        .optionFont({ size: 16, weight: 400 })
         .onSelect((index: number) => {
-          console.info("Select:" + index)
+          console.info('Select:' + index)
         })
-    }
+    }.width('100%')
   }
 }
 ```

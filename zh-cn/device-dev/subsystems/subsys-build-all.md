@@ -74,7 +74,9 @@ OpenHarmony编译子系统是以GN和Ninja构建为基座，对构建和配置�
 - 安装方式二：apt-get和pip3 install命令安装
   ```shell
   apt-get update -y 
-  apt-get install -y apt-utils binutils bison flex bc build-essential make mtd-utils gcc-arm-linux-gnueabi u-boot-tools python3.9.2 python3-pip git zip unzip curl wget gcc g++ ruby dosfstools mtools default-jre default-jdk scons python3-distutils perl openssl libssl-dev cpio git-lfs m4 ccache zlib1g-dev tar rsync liblz4-tool genext2fs binutils-dev device-tree-compiler e2fsprogs git-core gnupg gnutls-bin gperf lib32ncurses5-dev libffi-dev zlib* libelf-dev libx11-dev libgl1-mesa-dev lib32z1-dev xsltproc x11proto-core-dev libc6-dev-i386 libxml2-dev lib32z-dev libdwarf-dev 
+  apt-get install -y  
+  # 如果是ubuntu20.04系统请直接安装python3.9，如果是ubuntu18.04请改为安装python3.8
+  apt-get install -y apt-utils binutils bison flex bc build-essential make mtd-utils gcc-arm-linux-gnueabi u-boot-tools python3.9 python3-pip git zip unzip curl wget gcc g++ ruby dosfstools mtools default-jre default-jdk scons python3-distutils perl openssl libssl-dev cpio git-lfs m4 ccache zlib1g-dev tar rsync liblz4-tool genext2fs binutils-dev device-tree-compiler e2fsprogs git-core gnupg gnutls-bin gperf lib32ncurses5-dev libffi-dev zlib* libelf-dev libx11-dev libgl1-mesa-dev lib32z1-dev xsltproc x11proto-core-dev libc6-dev-i386 libxml2-dev lib32z-dev libdwarf-dev 
   apt-get install -y grsync xxd libglib2.0-dev libpixman-1-dev kmod jfsutils reiserfsprogs xfsprogs squashfs-tools  pcmciautils quota ppp libtinfo-dev libtinfo5 libncurses5 libncurses5-dev libncursesw5 libstdc++6  gcc-arm-none-eabi vim ssh locales doxygen
   apt-get install -y libxinerama-dev libxcursor-dev libxrandr-dev libxi-dev
   # python需要安装以下模块，repo文件在上一章节约束与限制的源码获取中得到。
@@ -92,7 +94,7 @@ OpenHarmony编译子系统是以GN和Ninja构建为基座，对构建和配置�
   # export PATH=~/.local/bin:$PATH
   ```
 
-  ![icon-note.gif](public_sys-resources/icon-note.gif)**注意**：上述安装ohos-build的过程中会安装编译工具hb，但有时会出现hb安装不成功的情况，若安装不成功，则按照[hb安装](../../device-dev/quick-start/quickstart-lite-env-setup.md#安装hb)重新安装。
+  ![icon-note.gif](../public_sys-resources/icon-note.gif)**注意**：上述安装ohos-build的过程中会安装编译工具hb，但有时会出现hb安装不成功的情况，若安装不成功，则按照[hb安装](../../device-dev/quick-start/quickstart-pkg-install-tool.md#安装hb)重新安装。
 
 
 ## 配置规则
@@ -326,8 +328,9 @@ optional arguments:
   -h, --help  show this help message and exit
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 设备开发过程中详细的编译环境搭建及编译步骤请参考[快速入门中的环境搭建及编译章节。](../quick-start/Readme-CN.md)
+> **说明：**
+>
+> - 设备开发过程中详细的编译环境搭建及编译步骤请参考[快速入门中的环境搭建及编译章节。](../quick-start/quickstart-overview.md)
 > - OpenHarmony还为开发者提供了Docker编译环境，可以省略编译工具的安装，具体使用请参考[Docker编译指导。](../get-code/gettools-acquire.md)
 
 ### 新增并编译不同配置

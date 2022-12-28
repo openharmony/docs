@@ -1,6 +1,6 @@
-# 非线性容器HashSet 
+# @ohos.util.HashSet (非线性容器HashSet)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 HashSet基于[HashMap](js-apis-hashmap.md)实现。在HashSet中，只对value对象进行处理。
@@ -24,7 +24,7 @@ import HashSet from '@ohos.util.HashSet';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | HashSet的元素个数。 |
 
@@ -48,6 +48,14 @@ HashSet的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200012 | The HashSet's constructor cannot be directly invoked. |
+
 **示例：**
 
 ```ts
@@ -68,6 +76,14 @@ isEmpty(): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 为空返回true，不为空返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
 
 **示例：**
 
@@ -96,6 +112,14 @@ has(value: T): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 包含指定元素返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
 
 **示例：**
 
@@ -127,6 +151,14 @@ add(value: T): boolean
 | -------- | -------- |
 | boolean | 成功增加元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -155,6 +187,14 @@ remove(value: T): boolean
 | -------- | -------- |
 | boolean | 成功删除指定元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -172,6 +212,14 @@ clear(): void
 清除HashSet中的所有元素,并把length置为0。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
 
 **示例：**
 
@@ -197,6 +245,14 @@ values(): IterableIterator&lt;T&gt;
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -208,13 +264,13 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-} 
+}
 ```
 
 
 ### forEach
 
-forEach(callbackfn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
@@ -224,7 +280,7 @@ forEach(callbackfn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisAr
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -233,6 +289,14 @@ callbackfn的参数说明：
 | value | T | 否 | 当前遍历到的元素键值对的值。 |
 | key | T | 否 | 当前遍历到的元素键值对的值（和value相同）。 |
 | set | HashSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
 
 **示例：**
 
@@ -258,6 +322,14 @@ entries(): IterableIterator<[T, T]>
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator<[T, T]> | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
 
 **示例：**
 
@@ -288,6 +360,14 @@ while(temp != undefined) {
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | 返回一个迭代器 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 

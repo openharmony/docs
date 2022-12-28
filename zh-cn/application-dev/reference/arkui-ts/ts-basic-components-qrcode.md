@@ -3,6 +3,7 @@
 用于显示单个二维码的组件。
 
 >  **说明：**
+>
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -44,17 +45,21 @@ QRCode(value: string)
 @Component
 struct QRCodeExample {
   private value: string = 'hello world'
-
   build() {
     Column({ space: 5 }) {
-      Text('normal').fontSize(9).width('90%').fontColor(0xCCCCCC)
+      Text('normal').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
       QRCode(this.value).width(200).height(200)
 
-      Text('color').fontSize(9).width('90%').fontColor(0xCCCCCC)
+      // 设置二维码颜色
+      Text('color').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
       QRCode(this.value).color(0xF7CE00).width(200).height(200)
+
+      // 设置二维码背景色
+      Text('backgroundColor').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
+      QRCode(this.value).width(200).height(200).backgroundColor(Color.Orange)
     }.width('100%').margin({ top: 5 })
   }
 }
 ```
 
-![zh-cn_image_0000001219662669](figures/zh-cn_image_0000001219662669.png)
+![qrcode](figures/qrcode.png)

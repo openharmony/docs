@@ -53,5 +53,5 @@ The following description is provided for each API in the reference document to 
 
 OpenHarmony supports two development languages: JS and TS.
 
-- When a code block is labeled with `js`, the sample code can be used in the JS and eTS projects.
-- When a code block is labeled with `ts`, the sample code can be used only in the eTS project.
+- When a code block is labeled with `js`, the sample code can be used in the JS and ArkTS projects.
+- When a code block is labeled with `ts`, the sample code can be used only in the ArkTS project.

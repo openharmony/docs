@@ -1,16 +1,10 @@
 # Counter
 
->  **NOTE**
->
->  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **\<Counter>** component provides an operation to increase or decrease the number.
 
-
-## Required Permissions
-
-None
+> **NOTE**
+>
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -29,8 +23,8 @@ The universal events and gestures are not supported. Only the following events a
 
 | Name| Description|
 | -------- | -------- |
-| onInc(event: () =&gt; void) | Invoked when the number of monitored objects is increased. |
-| onDec(event: () =&gt; void) | Invoked when the number of monitored objects is decreased. |
+| onInc(event: () =&gt; void) | Invoked when the number of monitored objects is increased.|
+| onDec(event: () =&gt; void) | Invoked when the number of monitored objects is decreased.|
 
 
 ## Example

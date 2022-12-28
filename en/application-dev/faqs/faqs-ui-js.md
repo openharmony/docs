@@ -1,7 +1,5 @@
 # ArkUI (JavaScript) Development
 
-
-
 ## How do I convert the fields in an XML file into JavaScript objects?
 
 Applicable to: OpenHarmony SDK 3.2.3.5, stage model of API version 9
@@ -13,38 +11,37 @@ Example:
 
 ```
 import convertxml from '@ohos.convertxml';
-// Code snippet
-xml =
+// XML strings
+let xml =
   '<?xml version="1.0" encoding="utf-8"?>' +
   '<note importance="high" logged="true">' +
   '    <title>Happy</title>' +
   '    <todo>Work</todo>' +
   '    <todo>Play</todo>' +
   '</note>';
-let conv = new convertxml.ConvertXML(); 
+let conv = new convertxml.ConvertXML();
 // Options for conversion. For details, see the reference document.
-let options = {trim : false, declarationKey:"_declaration",
-  instructionKey : "_instruction", attributesKey : "_attributes",
-  textKey : "_text", cdataKey:"_cdata", doctypeKey : "_doctype",
-  commentKey : "_comment", parentKey : "_parent", typeKey : "_type",
-  nameKey : "_name", elementsKey : "_elements"}
-let result:any = conv.convert(xml, options) // Convert fields in the XML file into JavaScript objects.
+let options = {
+  trim: false,
+  declarationKey: "_declaration",
+  instructionKey: "_instruction",
+  attributesKey: "_attributes",
+  textKey: "_text",
+  cdataKey: "_cdata",
+  doctypeKey: "_doctype",
+  commentKey: "_comment",
+  parentKey: "_parent",
+  typeKey: "_type",
+  nameKey: "_name",
+  elementsKey: "_elements"
+}
+let result: any = conv.convert(xml, options) // Convert fields in the XML file into JavaScript objects.
 console.log('Test: ' + JSON.stringify(result))
-console.log('Test: ' + result._declaration._attributes.version) // vesion field in XML file
-console.log('Test: ' + result._elements[0]._elements[0]._elements[0]._text) // title field in XML file
+console.log('Test: ' + result._declaration._attributes.version) // version field in the XML file
+console.log('Test: ' + result._elements[0]._elements[0]._elements[0]._text) // title field in the XML file
 ```
 
-Reference: [XML-to-JavaScript Conversion](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-convertxml.md)
-
-## What are the differences between JavaScript, TypeScript, and eTS?
-
-Applicable to: OpenHarmony SDK 3.2.3.5, stage model of API version 9
-
-- JavaScript: a lightweight, weakly-typed programming language, most commonly known as the scripting language for web pages.
-
-- TypeScript: a superset of JavaScript, with additions of static typing and more object-oriented APIs, enums, etc.
-
-- eTS: a superset of TypeScript and the programming language for OpenHarmony ArkUI development, which powers UI development through a declarative development paradigm.
+For details, see [XML-to-JavaScript Conversion](../reference/apis/js-apis-convertxml.md).
 
 ## How do I convert the time to the HHMMSS format?
 
@@ -93,4 +90,5 @@ export default class DateTimeUtil{
     return `${this.fill(hours)}${this.fill(minutes)}${this.fill(seconds)}`
   }
 }
+
 ```

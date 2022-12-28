@@ -9,15 +9,15 @@ You can use APIs provided in the following table to obtain the system language a
 
 ### Available APIs
 
-| Module | API | Description | 
+| Module | API | Description |
 | -------- | -------- | -------- |
-| ohos.i18n | getSystemLanguage(): string | Obtains the system language. | 
-| ohos.i18n | getSystemRegion(): string | Obtains the system region. | 
-| ohos.i18n | getSystemLocale(): string | Obtains the system locale. | 
-| ohos.i18n | isRTL(locale: string): boolean<sup>7+</sup> | Checks whether the locale uses a right-to-left (RTL) language. | 
-| ohos.i18n | is24HourClock(): boolean<sup>7+</sup> | Checks whether the system uses a 24-hour clock. | 
-| ohos.i18n | getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string | Obtains the localized display of a language. | 
-| ohos.i18n | getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string | Obtains the localized display of a country name. | 
+| ohos.i18n | getSystemLanguage(): string | Obtains the system language. |
+| ohos.i18n | getSystemRegion(): string | Obtains the system region. |
+| ohos.i18n | getSystemLocale(): string | Obtains the system locale. |
+| ohos.i18n | isRTL(locale: string): boolean<sup>7+</sup> | Checks whether the locale uses a right-to-left (RTL) language. |
+| ohos.i18n | is24HourClock(): boolean<sup>7+</sup> | Checks whether the system uses a 24-hour clock. |
+| ohos.i18n | getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string | Obtains the localized display of a language. |
+| ohos.i18n | getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string | Obtains the localized display of a country name. |
 
 
 ### How to Develop
@@ -26,7 +26,7 @@ You can use APIs provided in the following table to obtain the system language a
 
     Call the **getSystemLanguage** method to obtain the system language (**i18n** is the name of the imported module).
 
-   
+
     ```js
    var language = i18n.getSystemLanguage();
    ```
@@ -42,7 +42,7 @@ You can use APIs provided in the following table to obtain the system language a
 3. Obtain the system locale.
 
     Call the **getSystemLocale** method to obtain the system locale.
-     
+    
     ```js
    var locale = i18n.getSystemLocale();
    ```
@@ -51,7 +51,7 @@ You can use APIs provided in the following table to obtain the system language a
 
     Call the **isRTL** method to check whether the locale's language is RTL.
 
-   
+
     ```js
    var rtl = i18n.isRTL("zh-CN");
    ```
@@ -67,7 +67,7 @@ You can use APIs provided in the following table to obtain the system language a
 6. Obtain the localized display of a language.
 
     Call the **getDisplayLanguage** method to obtain the localized display of a language. **language** indicates the language to be localized, **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
-     
+    
     ```js
    var language = "en";
    var locale = "zh-CN";
@@ -78,7 +78,7 @@ You can use APIs provided in the following table to obtain the system language a
 7. Obtain the localized display of a country.
 
     Call the **getDisplayCountry** method to obtain the localized display of a country name. **country** indicates the country code (a two-letter code in compliance with ISO-3166, for example, CN), **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
-     
+    
     ```js
    var country = "US";
    var locale = "zh-CN";
@@ -116,7 +116,7 @@ You can use APIs provided in the following table to obtain the system language a
 
     Call the **getCalendar** method to obtain the time zone object of a specific locale and type (**i18n** is the name of the imported module). **type** indicates the valid calendar type, for example, **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic_civil**, **islamic_tbla**, **islamic_umalqura**, **japanese**, and **persian**. If **type** is left unspecified, the default calendar type of the locale is used.
 
-   
+
     ```js
    var calendar = i18n.getCalendar("zh-CN", "gregory");
    ```
@@ -135,7 +135,7 @@ You can use APIs provided in the following table to obtain the system language a
 3. Set the year, month, day, hour, minute, and second for the **Calendar** object.
 
     Call the **set** method to set the year, month, day, hour, minute, and second for the **Calendar** object.
-     
+    
     ```js
    calendar.set(2021, 12, 21, 6, 0, 0)
    ```
@@ -144,7 +144,7 @@ You can use APIs provided in the following table to obtain the system language a
 
     Call the **setTimeZone** and **getTimeZone** methods to set and obtain the time zone for the **Calendar** object. The **setTimeZone** method requires an input string to indicate the time zone to be set.
 
-   
+
     ```js
    calendar.setTimeZone("Asia/Shanghai");
    var timezone = calendar.getTimeZone();
@@ -163,7 +163,7 @@ You can use APIs provided in the following table to obtain the system language a
 6. Set and obtain the minimum count of days in the first week for the **Calendar** object.
 
     Call the **setMinimalDaysInFirstWeek** and **getMinimalDaysInFirstWeek** methods to set and obtain the minimum count of days in the first week for the **Calendar** object.
-     
+    
     ```js
    calendar.setMinimalDaysInFirstWeek(3);
    var minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek();
@@ -173,7 +173,7 @@ You can use APIs provided in the following table to obtain the system language a
 
     Call the **getDisplayName** method to obtain the localized display of the **Calendar** object.
 
-   
+
     ```js
    var localizedName = calendar.getDisplayName("zh-CN");
    ```
@@ -196,11 +196,11 @@ You can use APIs provided in the following table to obtain the system language a
 
 ### Available APIs
 
-| Module | API | Description | 
+| Module | API | Description |
 | -------- | -------- | -------- |
-| ohos.i18n | constructor(country: string, options?: PhoneNumberFormatOptions)<sup>8+</sup> | Instantiates a **PhoneNumberFormat** object. | 
-| ohos.i18n | isValidNumber(number: string): boolean<sup>8+</sup> | Checks whether the value of **number** is a phone number in the correct format. | 
-| ohos.i18n | format(number: string): string<sup>8+</sup> | Formats the value of **number** based on the specified country and style. | 
+| ohos.i18n | constructor(country: string, options?: PhoneNumberFormatOptions)<sup>8+</sup> | Instantiates a **PhoneNumberFormat** object. |
+| ohos.i18n | isValidNumber(number: string): boolean<sup>8+</sup> | Checks whether the value of **number** is a phone number in the correct format. |
+| ohos.i18n | format(number: string): string<sup>8+</sup> | Formats the value of **number** based on the specified country and style. |
 
 
 ### How to Develop
@@ -209,7 +209,7 @@ You can use APIs provided in the following table to obtain the system language a
 
     Call the **PhoneNumberFormat** constructor to instantiate a **PhoneNumberFormat** object. The country code and formatting options of the phone number need to be passed into this constructor. The formatting options are optional, including a style option. Values of this option include: **E164**, **INTERNATIONAL**, **NATIONAL**, and **RFC3966**.
 
-   
+
     ```js
    var phoneNumberFormat = new i18n.PhoneNumberFormat("CN", {type: "E164"});
    ```
@@ -223,7 +223,7 @@ You can use APIs provided in the following table to obtain the system language a
 
 3. Format a phone number.
     Call the **format** method of **PhoneNumberFormat** to format the input phone number.
-     
+    
     ```js
    var formattedNumber = phoneNumberFormat.format("15812341234");
    ```
@@ -236,15 +236,15 @@ The **unitConvert** API is provided to help you implement measurement conversion
 
 ### Available APIs
 
-| Module | API | Description | 
+| Module | API | Description |
 | -------- | -------- | -------- |
-| ohos.i18n | unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string<sup>8+</sup> | Converts one measurement unit (**fromUnit**) into another (**toUnit**) and formats the unit based on the specified locale and style. | 
+| ohos.i18n | unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string<sup>8+</sup> | Converts one measurement unit (**fromUnit**) into another (**toUnit**) and formats the unit based on the specified locale and style. |
 
 
 ### How to Develop
 
 1. Convert a measurement unit.
-   Call the [unitConvert](../reference/apis/js-apis-i18n.md#unitconvert8) method to convert a measurement unit and format the display result.
+   Call the [unitConvert](../reference/apis/js-apis-i18n.md#unitconvert9) method to convert a measurement unit and format the display result.
 
    
     ```js
@@ -254,7 +254,7 @@ The **unitConvert** API is provided to help you implement measurement conversion
    var locale = "en-US";
    var style = "long";
    i18n.Util.unitConvert(fromUtil, toUtil, number, locale, style);
-   ```
+    ```
 
 
 ## Alphabet Index
@@ -278,7 +278,7 @@ The **unitConvert** API is provided to help you implement measurement conversion
 
     Call the **getInstance** method to instantiate an **IndexUtil** object for a specific locale. When the **locale** parameter is empty, instantiate an **IndexUtil** object of the default locale.
 
-   
+
     ```js
    var indexUtil = i18n.getInstance("zh-CN");
    ```
@@ -294,7 +294,7 @@ The **unitConvert** API is provided to help you implement measurement conversion
 3. Add an index.
 
     Call the **addLocale** method to add the alphabet index of a new locale to the current index list.
-     
+    
     ```js
    indexUtil.addLocale("ar")
    ```
@@ -302,7 +302,7 @@ The **unitConvert** API is provided to help you implement measurement conversion
 4. Obtain the index of a string.
 
     Call the **getIndex** method to obtain the alphabet index of a string.
-     
+    
     ```js
    var text = "access index";
    indexUtil.getIndex(text);
@@ -336,7 +336,7 @@ When a text is displayed in more than one line, [BreakIterator8](../reference/ap
 
     Call the **getLineInstance** method to instantiate a **BreakIterator** object.
 
-   
+
     ```js
    var locale = "en-US"
    var breakIterator = i18n.getLineInstance(locale);
@@ -357,7 +357,7 @@ When a text is displayed in more than one line, [BreakIterator8](../reference/ap
 
     Call the **current** method to obtain the current position of the **BreakIterator** object in the text being processed.
 
-   
+
     ```js
    var pos = breakIterator.current();
    ```
@@ -383,7 +383,9 @@ When a text is displayed in more than one line, [BreakIterator8](../reference/ap
 
     Call the **isBoundary** method to determine whether a position is a break point. If yes, **true** is returned and the **BreakIterator** object is moved to this position. If no, **false** is returned and the **BreakIterator** object is moved to a break point after this position.
 
-   
+
     ```js
    var isboundary = breakIterator.isBoundary(5);
+   ```
+
    ```

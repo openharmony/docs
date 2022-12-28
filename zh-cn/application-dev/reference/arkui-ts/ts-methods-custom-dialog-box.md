@@ -18,13 +18,14 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 
 | 参数名                    | 参数类型                                     | 必填                  | 参数描述                   |
 | ---------------------- | ---------------------------------------- | ------------------------- | ---------------------- |
-| builder                | [CustomDialog](../../ui/ts-component-based-customdialog.md) | 是     | 自定义弹窗内容构造器。            |
+| builder                | [CustomDialog](../../quick-start/arkts-dynamic-ui-elememt-building.md#customdialog) | 是     | 自定义弹窗内容构造器。            |
 | cancel                 | ()&nbsp;=&gt;&nbsp;void                            | 否              | 点击遮障层退出时的回调。           |
 | autoCancel             | boolean                                            | 否              | 是否允许点击遮障层退出。<br>默认值：true           |
 | alignment              | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明)           | 否              | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default        |
-| offset                 | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 否    | 弹窗相对alignment所在位置的偏移量。 |
+| offset                 | [Offset](ts-types.md#offset) | 否    | 弹窗相对alignment所在位置的偏移量。 |
 | customStyle            | boolean                                  | 否                    | 弹窗容器样式是否自定义。<br>默认值：false           |
-| gridCount<sup>8+</sup> | number                                   | 否                    | 弹窗宽度占栅格宽度的个数。              |
+| gridCount<sup>8+</sup> | number                                   | 否                    | 弹窗宽度占[栅格宽度](../../ui/ui-ts-layout-grid-container-new.md)的个数。<br>默认值为4，异常值按默认值处理，最大栅格数为系统最大栅格数。 |
+
 
 ## CustomDialogController
 
@@ -91,17 +92,28 @@ struct CustomDialogUser {
   @State textValue: string = ''
   @State inputValue: string = 'click me'
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogExample({ cancel: this.onCancel, confirm: this.onAccept, textValue: $textValue, inputValue: $inputValue }),
+    builder: CustomDialogExample({
+      cancel: this.onCancel,
+      confirm: this.onAccept,
+      textValue: $textValue,
+      inputValue: $inputValue
+    }),
     cancel: this.existApp,
-    autoCancel: true
+    autoCancel: true,
+    alignment: DialogAlignment.Default,
+    offset: { dx: 0, dy: -20 },
+    gridCount: 4,
+    customStyle: false
   })
 
   onCancel() {
     console.info('Callback when the first button is clicked')
   }
+
   onAccept() {
     console.info('Callback when the second button is clicked')
   }
+
   existApp() {
     console.info('Click the callback in the blank area')
   }

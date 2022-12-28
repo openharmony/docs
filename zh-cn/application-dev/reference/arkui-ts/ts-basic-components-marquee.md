@@ -51,10 +51,10 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 @Component
 struct MarqueeExample {
   @State start: boolean = false
-  @State fromStart: boolean = true
-  @State step: number = 50
-  @State loop: number = 3
-  @State src: string = "Running Marquee starts rolling"
+  private fromStart: boolean = true
+  private step: number = 50
+  private loop: number = Infinity
+  private src: string = "Running Marquee starts rolling"
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -65,29 +65,31 @@ struct MarqueeExample {
         fromStart: this.fromStart,
         src: this.src
       })
-        .width(400)
-        .fontColor(Color.White)
-        .fontSize(50)
-        .allowScale(false)
-        .fontWeight(FontWeight.Bold)
-        .backgroundColor(Color.Black)
-        .margin({bottom:40})
+        .width(360)
+        .height(80)
+        .fontColor('#FFFFFF')
+        .fontSize(48)
+        .fontWeight(700)
+        .backgroundColor('#182431')
+        .margin({ bottom: 40 })
         .onStart(() => {
-          console.log('Marquee animation complete onStart')
+          console.info('Marquee animation complete onStart')
         })
         .onBounce(() => {
-          console.log('Marquee animation complete onBounce')
+          console.info('Marquee animation complete onBounce')
         })
         .onFinish(() => {
-          console.log('Marquee animation complete onFinish')
+          console.info('Marquee animation complete onFinish')
         })
-        Button('start')
-          .onClick(() => {
-            this.start = true
-          })
-          .width(200)
-          .height(60)
-          .margin({bottom:20})
+      Button('Start')
+        .onClick(() => {
+          this.start = true
+        })
+        .width(120)
+        .height(40)
+        .fontSize(16)
+        .fontWeight(500)
+        .backgroundColor('#007DFF')
     }
     .width('100%')
     .height('100%')
@@ -95,4 +97,4 @@ struct MarqueeExample {
 }
 ```
 
-![zh-cn_image_0000001193499234](figures/zh-cn_image_0000001193499234.gif)
+![marquee](figures/marquee.gif)

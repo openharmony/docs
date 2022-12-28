@@ -16,7 +16,7 @@
 
 应用开发中使用的各类自定义资源文件，需要统一存放于应用的resources目录下，便于使用和维护。resources目录包括两大类目录，一类为base目录与限定词目录，另一类为rawfile目录，其基础目录结构如下所示。
 
-  
+
 ```
 resources
 |---base  // 默认存在的目录
@@ -34,8 +34,8 @@ resources
 
 base目录默认存在，而限定词目录需要开发者自行创建，其名称可以由一个或多个表征应用场景或设备特征的限定词组合而成。应用使用某资源时，系统会根据当前设备状态优先从相匹配的限定词目录中寻找该资源。只有当resources目录中没有与设备状态匹配的限定词目录，或者在限定词目录中找不到该资源时，才会去base目录中查找。rawfile是原始文件目录，它不会根据设备状态去匹配不同的资源，故不在本文的讨论范文内。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 请访问[声明式开发范式资源文件分类](../../ui/ui-ts-basic-resource-file-categories.md)，了解限定词目录的命名规则、创建流程、匹配规则等，本文不展开介绍。
+> **说明：**
+> - 请访问[声明式开发范式资源文件分类](../../quick-start/resource-categories-and-access.md#资源分类)，了解限定词目录的命名规则、创建流程、匹配规则等，本文不展开介绍。
 > 
 > - 没有设备状态匹配的限定词目录，或者在限定词目录中找不到目标资源时，会继续在base目录中查找。**强烈建议对于所有应用自定义资源都在base目录中定义默认值**，防止出现找不到资源值的异常场景。
 > 
@@ -50,7 +50,7 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
 
 在element目录的各个资源文件中，以“name-value”的形式定义资源，如下所示。而在media目录中，直接以文件名作为name，故开发者将文件放入media目录即可，无需再额外定义name。
 
-  
+
 ```
 // color.json
 {
@@ -72,8 +72,8 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
 
 在工程中，通过 "$r('app.type.name')" 的形式引用应用资源。app代表是应用内resources目录中定义的资源；type 代表资源类型（或资源的存放位置），可以取 color、float、string、plural和media，name代表资源命名，由开发者添加资源时确定。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 可以查看[声明式范式访问应用资源](../../ui/ts-resource-access.md)，了解资源访问的更多细节。
+> **说明：**
+> 可以查看[声明式范式访问应用资源](../../quick-start/resource-categories-and-access.md#应用资源)，了解资源访问的更多细节。
 
 
 ### 示例
@@ -91,7 +91,7 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
 
 ![zh-cn_image_0000001325731389](figures/zh-cn_image_0000001325731389.png)
 
-  
+
 ```
 @Entry
 @Component
@@ -120,7 +120,7 @@ struct Index {
 
 可以查看本文[应用UX设计中关于资源的介绍](design-resources.md)，获取OpenHarmony支持的系统资源ID及其在不同配置下的取值。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 仅声明式开发范式支持使用分层参数，类Web开发范式不支持。
 > 
 > - 系统资源可以保证不同团队开发出的应用有较为一致的视觉风格。对于系统预置应用，强烈建议使用系统资源；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源。

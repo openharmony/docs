@@ -1,20 +1,17 @@
-# ShortcutInfo
-
-
+# shortcutInfo
 
 > **说明：**
->
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 
-应用配置文件中定义的快捷方式信息，FA模型配置在[config.json](../../quick-start/package-structure.md)文件中进行配置，Stage模型配置参考[ shortcuts对象内部结构](../../quick-start/stage-structure.md#shortcuts对象内部结构)
+应用配置文件中定义的快捷方式信息，FA模型配置在[config.json](../../quick-start/application-configuration-file-overview-fa.md)文件中进行配置，Stage模型在开发视图的resources/base/profile下面定义配置文件即可。
 
 
 
-## ShortcutWant
+## ShortcutWant<sup>(deprecated)<sup>
 
-快捷方式所指向的目标信息。
+> 从API version 9开始不再维护，建议使用[bundleManager-ShortcutWant](js-apis-bundleManager-shortcutInfo.md)替代
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
@@ -23,27 +20,26 @@
 | 名称                      | 类型   | 可读 | 可写 | 说明                 |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
 | targetBundle              | string | 是   | 否   | 快捷方式的目标捆绑包 |
-| targetModule<sup>9+</sup> | string | 是   | 否   | 快捷方式的目标模块   |
 | targetClass               | string | 是   | 否   | 快捷方式所需的目标类 |
 
-## ShortcutInfo
+## ShortcutInfo<sup>(deprecated)<sup>
 
-快捷方式属性信息。
+> 从API version 9开始不再维护，建议使用[bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)替代。
+
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称                    | 类型                                       | 可读 | 可写 | 说明                         |
 | ----------------------- | ------------------------------------------ | ---- | ---- | ---------------------------- |
-| id                      | string                                     | 是   | 否   | 快捷方式所属应用程序的Id     |
-| bundleName              | string                                     | 是   | 否   | 包含快捷方式的包名称         |
-| hostAbility             | string                                     | 是   | 否   | 快捷方式的本地Ability信息    |
-| icon                    | string                                     | 是   | 否   | 快捷方式的图标               |
-| iconId<sup>8+</sup>     | number                                     | 是   | 否   | 快捷方式的图标Id             |
-| label                   | string                                     | 是   | 否   | 快捷方式的标签               |
-| labelId<sup>8+</sup>    | number                                     | 是   | 否   | 快捷方式的标签Id             |
-| disableMessage          | string                                     | 是   | 否   | 快捷方式的禁用消息           |
-| wants                   | Array&lt;[ShortcutWant](#shortcutwant)&gt; | 是   | 否   | 快捷方式所需要的信息         |
-| isStatic                | boolean                                    | 是   | 否   | 快捷方式是否为静态           |
-| isHomeShortcut          | boolean                                    | 是   | 否   | 快捷方式是否为主页面快捷方式 |
-| isEnabled               | boolean                                    | 是   | 否   | 是否启用快捷方式             |
-| moduleName<sup>9+</sup> | string                                     | 是   | 否   | 快捷方式的模块名             |
+| id                      | string                                     | 是   | 否   | 快捷方式所属应用程序的Id。     |
+| bundleName              | string                                     | 是   | 否   | 包含该快捷方式的Bundle名称。 |
+| hostAbility             | string                                     | 是   | 否   | 快捷方式的本地Ability信息。    |
+| icon                    | string                                     | 是   | 否   | 快捷方式的图标。               |
+| iconId<sup>8+</sup>     | number                                     | 是   | 否   | 快捷方式的图标Id。             |
+| label                   | string                                     | 是   | 否   | 快捷方式的名称。               |
+| labelId<sup>8+</sup>    | number                                     | 是   | 否   | 快捷方式的名称Id。             |
+| disableMessage          | string                                     | 是   | 否   | 快捷方式的禁用消息。           |
+| wants                   | Array&lt;[ShortcutWant](#shortcutwant)&gt; | 是   | 否   | 快捷方式意图列表。         |
+| isStatic                | boolean                                    | 是   | 否   | 快捷方式是否为静态。           |
+| isHomeShortcut          | boolean                                    | 是   | 否   | 快捷方式是否为主页面快捷方式。 |
+| isEnabled               | boolean                                    | 是   | 否   | 是否启用快捷方式。             |

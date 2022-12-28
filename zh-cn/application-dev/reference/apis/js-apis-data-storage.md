@@ -1,4 +1,4 @@
-# 轻量级存储
+# @ohos.data.storage (轻量级存储)
 
 轻量级存储为应用提供key-value键值型的文件数据处理能力，支持应用对数据进行轻量级存储及查询。数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型。
 
@@ -22,10 +22,10 @@ import data_storage from '@ohos.data.storage';
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.Preferences.Core
 
-| 名称             | 参数类型 | 可读 | 可写 | 说明                                  |
+| 名称             | 类型 | 可读 | 可写 | 说明                                  |
 | ---------------- | -------- | ---- | ---- | ------------------------------------- |
-| MAX_KEY_LENGTH   | string   | 是   | 否   | key的最大长度限制，需小于80字节。     |
-| MAX_VALUE_LENGTH | string   | 是   | 否   | value的最大长度限制，需小于8192字节。 |
+| MAX_KEY_LENGTH   | number   | 是   | 否   | key的最大长度限制，需小于80字节。     |
+| MAX_VALUE_LENGTH | number   | 是   | 否   | value的最大长度限制，需小于8192字节。 |
 
 
 ## data_storage.getStorageSync
@@ -53,8 +53,8 @@ getStorageSync(path: string): Storage
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -86,8 +86,8 @@ getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -129,8 +129,8 @@ getStorage(path: string): Promise&lt;Storage&gt;
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -165,8 +165,8 @@ deleteStorageSync(path: string): void
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
     console.info("======================>getFilesDirPromise====================>");
@@ -195,8 +195,8 @@ deleteStorage(path: string, callback: AsyncCallback&lt;void&gt;): void
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -237,8 +237,8 @@ deleteStorage(path: string): Promise&lt;void&gt;
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -271,8 +271,8 @@ removeStorageFromCacheSync(path: string): void
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
     console.info("======================>getFilesDirPromise====================>");
@@ -302,8 +302,8 @@ removeStorageFromCache(path: string, callback: AsyncCallback&lt;void&gt;): void
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -344,8 +344,8 @@ removeStorageFromCache(path: string): Promise&lt;void&gt;
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -864,15 +864,15 @@ on(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                                                | 说明                                     |
-| -------- | --------------------------------------------------- | ---------------------------------------- |
-| type     | string                                              | 事件类型，固定值'change'，表示数据变更。 |
-| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | 回调对象实例。                           |
+| 参数名   | 类型                                                |  必填| 说明                                     |
+| -------- | --------------------------------------------------- | ------ |---------------------------------------- |
+| type     | string                                              |是| 事件类型，固定值'change'，表示数据变更。 |
+| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | 是|回调对象实例。                           |
 
 **示例：**
 
 ```js
-var observer = function (key) {
+let observer = function (key) {
     console.info("The key of " + key + " changed.");
 }
 storage.on('change', observer);
@@ -891,15 +891,15 @@ off(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                                                | 说明                                     |
-| -------- | --------------------------------------------------- | ---------------------------------------- |
-| type     | string                                              | 事件类型，固定值'change'，表示数据变更。 |
-| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | 需要取消的回调对象实例。                 |
+| 参数名   | 类型                                                | 必填 |  说明                                 |
+| -------- | --------------------------------------------------- | ------ |---------------------------------------- |
+| type     | string                                              |是| 事件类型，固定值'change'，表示数据变更。 |
+| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | 是|需要取消的回调对象实例。                 |
 
 **示例：**
 
 ```js
-var observer = function (key) {
+let observer = function (key) {
     console.info("The key of " + key + " changed.");
 }
 storage.off('change', observer);
@@ -910,7 +910,7 @@ storage.off('change', observer);
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
-| 名称 | 参数类型 | 必填 | 说明             |
+| 名称 | 类型 | 必填 | 说明             |
 | ---- | -------- | ---- | ---------------- |
 | key  | string   | 否   | 变更的数据内容。 |
 

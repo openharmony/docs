@@ -24,11 +24,11 @@
 
 **表1** 首选项实例创建接口
 
-| 包名                  | 接口名                                                       | 描述                                                         |
+| Bundle名称            | 接口名                                                       | 描述                                                         |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ohos.data.preferences | getPreferences(context: Context, name: string): Promise\<Preferences> | 读取指定首选项持久化文件，将数据加载到Preferences实例，用于数据操作。 |
 
-### 存取数据
+### 数据处理
 
 通过put系列方法，可以增加或修改Preferences实例中的数据。
 
@@ -36,13 +36,16 @@
 
 通过调用getAll系列方法，可以获取Preferences中包含所有键值的Object对象。
 
-**表2** 首选项存取接口
+通过调用delete系列方法，可以删除Preferences中名为给定Key的存储键值对。
+
+**表2** 首选项数据处理接口
 
 | 类名        | 接口名                                                     | 描述                                                         |
 | ----------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
 | Preferences | put(key: string, value: ValueType): Promise\<void>         | 支持存入值为number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型的数据。 |
 | Preferences | get(key: string, defValue: ValueType): Promise\<ValueType> | 支持获取值为number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型的数据。 |
-| Preferences | getAll(): Promise<Object>                                  | 支持获取含有所有键值的Object对象。                           |
+| Preferences | getAll(): Promise\<Object>                                  | 支持获取含有所有键值的Object对象。                           |
+| Preferences | delete(key: string): Promise\<void>                         | 支持从Preferences实例中删除名为给定Key的存储键值对。         |
 
 
 ### 数据持久化
@@ -72,7 +75,7 @@
 
 **表6** 首选项删除接口
 
-| 包名                  | 接口名                                                       | 描述                                                         |
+| Bundle名称            | 接口名                                                       | 描述                                                         |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ohos.data.preferences | deletePreferences(context: Context, name: string): Promise\<void> | 从缓存中移除已加载的Preferences对象，同时从设备上删除对应的文件。 |
 | ohos.data.preferences | removePreferencesFromCache(context: Context, name: string): Promise\<void> | 仅从缓存中移除已加载的Preferences对象，主要用于释放内存。    |
@@ -205,4 +208,4 @@
 
 针对首选项开发，有以下相关实例可供参考：
 
-- [`Preferences`：首选项（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Preferences)
+- [`Preferences`：首选项（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Preferences)

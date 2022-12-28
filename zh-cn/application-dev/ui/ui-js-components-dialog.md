@@ -119,22 +119,22 @@ button{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   canceldialog(e){
-    prompt.showToast({
+    promptAction.showToast({
       message: 'dialogCancel'
     })
   },
   opendialog(){
     this.$element('dialogId').show()
-     prompt.showToast({
+     promptAction.showToast({
       message: 'dialogShow'
     })
   },
   confirmClick(e) {
     this.$element('dialogId').close()
-    prompt.showToast({
+    promptAction.showToast({
       message: 'dialogClose'
     })
   },

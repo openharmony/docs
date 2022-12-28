@@ -1,4 +1,4 @@
-# Nonlinear Container TreeMap 
+# @ohos.util.TreeMap (Nonlinear Container TreeMap)
 
 > **NOTE**
 >
@@ -47,6 +47,14 @@ A constructor used to create a **TreeMap** instance.
 | -------- | -------- | -------- | -------- |
 | comparator | function | No| Custom comparator.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200012 | The TreeMap's constructor cannot be directly invoked. |
+
 **Example**
 
 ```ts
@@ -67,6 +75,14 @@ Checks whether this container is empty (contains no element).
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
 
 **Example**
 
@@ -95,6 +111,14 @@ Checks whether this container has the specified key.
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the specified key is contained; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The hasKey method cannot be bound. |
 
 **Example**
 
@@ -126,6 +150,14 @@ Checks whether this container has the specified value.
 | -------- | -------- |
 | boolean | Returns **true** if the specified value is contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The hasValue method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -156,6 +188,14 @@ Obtains the value of the specified key in this container.
 | -------- | -------- |
 | V | Value of the key.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -179,6 +219,14 @@ Obtains the first key in this container.
 | Type| Description|
 | -------- | -------- |
 | K | Key obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getFirstKey method cannot be bound. |
 
 **Example**
 
@@ -204,6 +252,14 @@ Obtains the last key in this container.
 | -------- | -------- |
 | K | Key obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getLastKey method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -227,6 +283,14 @@ Adds all elements in a **TreeMap** instance to this container.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | map | TreeMap<K, V> | Yes| **TreeMap** instance whose elements are to be added to the current container.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The setAll method cannot be bound. |
 
 **Example**
 
@@ -260,6 +324,14 @@ Adds an element to this container.
 | -------- | -------- |
 | Object | Container that contains the new element.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The set method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -287,6 +359,14 @@ Removes the element with the specified key from this container.
 | Type| Description|
 | -------- | -------- |
 | V | Value of the element removed.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
 
 **Example**
 
@@ -317,6 +397,14 @@ Obtains the key that is placed in front of the input key in this container.
 | Type| Description|
 | -------- | -------- |
 | K | Key obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getLowerKey method cannot be bound. |
 
 **Example**
 
@@ -349,6 +437,14 @@ Obtains the key that is placed next to the input key in this container.
 | -------- | -------- |
 | K | Key obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getHigherKey method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -380,6 +476,14 @@ Replaces an element in this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is replaced successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The replace method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -396,6 +500,14 @@ clear(): void
 Clears this container and sets its length to **0**.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
 
 **Example**
 
@@ -421,6 +533,14 @@ Obtains an iterator that contains all the keys in this container.
 | -------- | -------- |
 | IterableIterator&lt;K&gt; | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The keys method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -432,7 +552,7 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-} 
+}
 ```
 
 
@@ -449,6 +569,14 @@ Obtains an iterator that contains all the values in this container.
 | Type| Description|
 | -------- | -------- |
 | IterableIterator&lt;V&gt; | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
 
 **Example**
 
@@ -467,7 +595,7 @@ while(temp != undefined) {
 
 ### forEach
 
-forEach(callbackfn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
@@ -477,7 +605,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -486,6 +614,14 @@ callbackfn
 | value | V | No| Value of the element that is currently traversed.|
 | key | K | No| Key of the element that is currently traversed.|
 | map | TreeMap<K, V> | No| Instance that invokes the **forEach** method.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
 
 **Example**
 
@@ -512,6 +648,14 @@ Obtains an iterator that contains all the elements in this container.
 | Type| Description|
 | -------- | -------- |
 | IterableIterator<[K, V]> | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
 
 **Example**
 
@@ -541,6 +685,14 @@ Obtains an iterator, each item of which is a JavaScript object.
 | Type| Description|
 | -------- | -------- |
 | IterableIterator<[K, V]> | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **Example**
 

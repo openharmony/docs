@@ -24,9 +24,9 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 
 | Name| Description|
 | -------- | -------- |
-| onAction(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Callback invoked when a long press gesture is recognized.|
-| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Callback invoked when the finger used for a long press gesture is lift.|
-| onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after a long press gesture is recognized.|
+| onAction(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when a long press gesture is recognized.|
+| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the finger used for a long press gesture is lift.|
+| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after a long press gesture is recognized.|
 
 
 ## Example
@@ -39,21 +39,28 @@ struct LongPressGestureExample {
   @State count: number = 0
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Text('LongPress onAction:' + this.count)
+    Column() {
+      Text('LongPress onAction:' + this.count).fontSize(28)
+        // Touch and hold the text with one finger to trigger the gesture event.
+        .gesture(
+        LongPressGesture({ repeat: true })
+          // When repeat is set to true, the event callback is triggered continuously when the gesture is detected. The triggering interval is specified by duration (500 ms by default).
+          .onAction((event: GestureEvent) => {
+            if (event.repeat) {
+              this.count++
+            }
+          })
+            // Triggered when the long press gesture ends.
+          .onActionEnd(() => {
+            this.count = 0
+          })
+        )
     }
-    .height(200).width(300).padding(60).border({ width:1 }).margin(30)
-    .gesture(
-      LongPressGesture({ repeat: true })
-        // Repeatedly triggered when the long press gesture exists.
-        .onAction((event: GestureEvent) => {
-          if (event.repeat) { this.count++ }
-        })
-        // Triggered when the long press gesture ends.
-        .onActionEnd(() => {
-          this.count = 0
-        })
-    )
+    .height(200)
+    .width(300)
+    .padding(20)
+    .border({ width: 3 })
+    .margin(30)
   }
 }
 ```

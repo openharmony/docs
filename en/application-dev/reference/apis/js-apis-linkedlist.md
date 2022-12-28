@@ -1,4 +1,4 @@
-# Linear Container LinkedList
+# @ohos.util.LinkedList (Linear Container LinkedList)
 
 > **NOTE**
 >
@@ -21,9 +21,6 @@ This topic uses the following to identify the use of generics:
 import LinkedList from '@ohos.util.LinkedList';  
 ```
 
-
-
-
 ## LinkedList
 
 ### Attributes
@@ -42,6 +39,14 @@ constructor()
 A constructor used to create a **LinkedList** instance.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200012 | The LinkedList's constructor cannot be directly invoked. |
 
 
 **Example**
@@ -71,6 +76,14 @@ Adds an element at the end of this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -78,9 +91,10 @@ let linkedList = new LinkedList();
 let result = linkedList.add("a");
 let result1 = linkedList.add(1);
 let b = [1, 2, 3];
-linkedList.add(b);
+let result2 = linkedList.add(b);
 let c = {name : "Dylon", age : "13"};
-let result3 = linkedList.add(false);
+let result3 = linkedList.add(c);
+let result4 = linkedList.add(false);
 ```
 
 ### addFirst
@@ -97,6 +111,14 @@ Adds an element at the top of this container.
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The addFirst method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -106,6 +128,7 @@ linkedList.addFirst(1);
 let b = [1, 2, 3];
 linkedList.addFirst(b);
 let c = {name : "Dylon", age : "13"};
+linkedList.addFirst(c);
 linkedList.addFirst(false);
 ```
 
@@ -123,6 +146,15 @@ Inserts an element at the specified position in this container.
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 | index | number | Yes| Index of the position where the element is to be inserted.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The insert method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
 
 **Example**
 
@@ -153,6 +185,14 @@ Checks whether this container has the specified element.
 | -------- | -------- |
 | boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -181,6 +221,14 @@ Obtains an element at the specified position in this container.
 | Type| Description|
 | -------- | -------- |
 | T | Element obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
 
 **Example**
 
@@ -216,6 +264,14 @@ Obtains the index of the last occurrence of the specified element in this contai
 | -------- | -------- |
 | number | Returns the position index if obtained; returns **-1** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getLastIndexOf method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -249,6 +305,14 @@ Obtains the index of the first occurrence of the specified element in this conta
 | Type| Description|
 | -------- | -------- |
 | number | Returns the position index if obtained; returns **-1** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getIndexOf method cannot be bound. |
 
 **Example**
 
@@ -284,6 +348,15 @@ Removes an element at the specified position from this container.
 | -------- | -------- |
 | T | Element removed.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The removeByIndex method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
+
 **Example**
 
 ```ts
@@ -310,6 +383,15 @@ Removes the first element from this container.
 | -------- | -------- |
 | T | Element removed.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The removeFirst method cannot be bound. |
+| 10200010 | The container is empty. |
+
 **Example**
 
 ```ts
@@ -335,6 +417,15 @@ Removes the last element from this container.
 | Type| Description|
 | -------- | -------- |
 | T | Element removed.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The removeLast method cannot be bound. |
+| 10200010 | The container is empty. |
 
 **Example**
 
@@ -368,6 +459,14 @@ Removes the first occurrence of the specified element from this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -398,6 +497,15 @@ Removes the first occurrence of the specified element from this container.
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The removeFirstFound method cannot be bound. |
+| 10200010 | The container is empty. |
 
 **Example**
 
@@ -430,6 +538,15 @@ Removes the last occurrence of the specified element from this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The removeLastFound method cannot be bound. |
+| 10200010 | The container is empty. |
+
 **Example**
 
 ```ts
@@ -455,6 +572,14 @@ Clones this container and returns a copy. The modification to the copy does not 
 | -------- | -------- |
 | LinkedList&lt;T&gt; | New **LinkedList** instance obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The clone method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -468,7 +593,7 @@ let result = linkedList.clone();
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, LinkedList?: LinkedList&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, LinkedList?: LinkedList&lt;T&gt;) => void,
 thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
@@ -479,7 +604,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -489,6 +614,14 @@ callbackfn
 | value | T | Yes| Value of the element that is currently traversed.|
 | index | number | No| Position index of the element that is currently traversed.|
 | LinkedList | LinkedList&lt;T&gt; | No| Instance that invokes the **forEach** API.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
 
 **Example**
 
@@ -510,6 +643,14 @@ clear(): void
 Clears this container and sets its length to **0**.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
 
 **Example**
 
@@ -543,6 +684,15 @@ Replaces an element at the specified position in this container with a given ele
 | -------- | -------- |
 | T | New element.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The set method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
+
 **Example**
 
 ```ts
@@ -568,6 +718,14 @@ Converts this container into an array.
 | -------- | -------- |
 | Array&lt;T&gt; | Array obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The convertToArray method cannot be bound. |
+
 **Example**
 ```ts
 let linkedList = new LinkedList();
@@ -591,6 +749,14 @@ Obtains the first element in this container.
 | Type| Description|
 | -------- | -------- |
 | T | Returns the element if obtained; returns **undefined** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getFirst method cannot be bound. |
 
 **Example**
 
@@ -617,6 +783,14 @@ Obtains the last element in this container.
 | -------- | -------- |
 | T | Returns the element if obtained; returns **undefined** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getLast method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -641,6 +815,14 @@ Obtains an iterator, each item of which is a JavaScript object.
 | Type| Description|
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **Example**
 

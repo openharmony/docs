@@ -98,7 +98,7 @@ LiteOS-M内核的编译构建系统是一个基于gn和ninja的组件化构建�
 
 ### 搭建系统基础环境
 
-在搭建各个开发板环境前，需要完成OpenHarmony系统基础环境搭建。系统基础环境主要是指OpenHarmony的编译环境和开发环境，详细介绍请参考官方站点[开发环境准备](../quick-start/quickstart-lite-env-setup.md)。开发者需要根据环境搭建文档完成环境搭建。
+在搭建各个开发板环境前，需要完成OpenHarmony系统基础环境搭建。系统基础环境主要是指OpenHarmony的编译环境和开发环境，详细介绍请参考官方站点[快速入门环境搭建部分](../quick-start/quickstart-overview.md)。开发者需要根据环境搭建文档完成环境搭建。
 
 ### 获取OpenHarmony源码
 

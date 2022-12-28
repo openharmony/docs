@@ -1,14 +1,14 @@
-# Getting Started with eTS in Stage Model
+# Getting Started with ArkTS in Stage Model
 
 
 > **NOTE**
->
-> To use eTS, your DevEco Studio must be V3.0.0.900 Beta3 or later.
->
-> For best possible results, use [DevEco Studio V3.0.0.993](https://developer.harmonyos.com/cn/develop/deveco-studio#download) for your development.
+> 
+> To use ArkTS, your DevEco Studio must be V3.0.0.900 Beta3 or later.
+> 
+> For best possible results, use [DevEco Studio V3.1.0.100](https://developer.harmonyos.com/cn/develop/deveco-studio) for your development.
 
 
-## Creating an eTS Project
+## Creating an ArkTS Project
 
 1. If you are opening DevEco Studio for the first time, click **Create Project**. If a project is already open, choose **File** > **New** > **Create Project** from the menu bar. On the **OpenHarmony** tab of the **Choose Your Ability Template** page, select **Empty Ability** and click **Next**.
 
@@ -29,37 +29,32 @@
 3. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
 
 
-## eTS Project Directory Structure
+## ArkTS Project Directory Structure (Stage Model)
 
 ![en-us_image_0000001364054489](figures/en-us_image_0000001364054489.png)
 
-- **AppScope > app.json5**: application-level configuration information.
-
 - **entry**: OpenHarmony project module, which can be built into an OpenHarmony Ability Package ([HAP](../../glossary.md#hap)).
   - **src > main > ets**: a collection of eTS source code.
-  - **src > main > ets > Application > AbilityStage.ts**: implementation of AbilityStage APIs.
-  - **src > main > ets > MainAbility**: entry to your application/service.
-  - **src > main > ets > MainAbility > MainAbility.ets**: ability lifecycle file.
-  - **src > main > ets > pages**: pages contained in **MainAbility**.
-  - **src > main > resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files. For details about resource files, see [Resource File Categories](../ui/ui-ts-basic-resource-file-categories.md).
+  - **src > main > ets > entryability**: entry to your application/service.
+  - **src > main > ets > pages**: pages included in your application/service.
+  - **src > main > resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files. For details about resource files, see [Resource Categories and Access](resource-categories-and-access.md#resource-categories).
   - **src > main > module.json5**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file. For details about the configuration file, see [Application Package Structure Configuration File (Stage Model)](stage-structure.md).
   - **build-profile.json5**: current module information and build configuration options, including **buildOption** and **targets**.
-  - **hvigorfile.js**: module-level compilation and build task script. You can customize related tasks and code implementation.
+  - **hvigorfile.ts**: module-level build script. You can customize related tasks and code implementation.
 
 - **build-profile.json5**: application-level configuration information, including the signature and product configuration.
 
-- **hvigorfile.js**: application-level compilation and build task script.
+- **hvigorfile.ts**: application-level build script.
 
 
 ## Building the First Page
 
 1. Use the **\<Text>** component.
 
-   After the project synchronization is complete, choose **entry** > **src** > **main** > **ets** > **MainAbility** > **pages** in the **Project** window and open the **index.ets** file. You can see that the file contains a **\<Text>** component. The sample code in the **index.ets** file is shown below:
-
+   After the project synchronization is complete, choose **entry** > **src** > **main** > **ets** > **pages** in the **Project** window and open the **Index.ets** file. You can see that the file contains a **\<Text>** component. The sample code in the **Index.ets** file is shown below:
    
    ```ts
-   // index.ets
+   // Index.ets
    @Entry
    @Component
    struct Index {
@@ -81,11 +76,10 @@
 
 2. Add a **\<Button>** component.
 
-   On the default page, add a **\<Button>** component to respond to user clicks and implement redirection to another page. The sample code in the **index.ets** file is shown below:
-
+   On the default page, add a **\<Button>** component to respond to user clicks and implement redirection to another page. The sample code in the **Index.ets** file is shown below:
    
    ```ts
-   // index.ets
+   // Index.ets
    @Entry
    @Component
    struct Index {
@@ -127,30 +121,30 @@
 
 1. Create the second page.
 
-   - Create the second page file: In the **Project** window, choose **entry** > **src** > **main** > **ets**. Right-click the **pages** folder, choose **New** > **eTS File**, name the page **second**, and click **Finish**. Below is the structure of the **second** folder.
+   - Create the second page file: In the **Project** window, choose **entry** > **src** > **main** > **ets**. Right-click the **pages** folder, choose **New** > **ArkTS File**, name the page **Second**, and click **Finish**. Below is the structure of the **Second** folder.
 
       ![09](figures/09.png)
 
       > **NOTE**
+      >
       > You can also right-click the **pages** folder and choose **New** > **Page** from the shortcut menu. In this scenario, you do not need to manually configure page routes.
-   - Configure the route for the second page: In the **Project** window, choose **entry** > **src** > **main** > **resources** > **base** > **profile**. In the **main_pages.json** file, set **pages/second** under **src**. The sample code is as follows:
+   - Configure the route for the second page: In the **Project** window, choose **entry** > **src** > **main** > **resources** > **base** > **profile**. In the **main_pages.json** file, set **pages/Second** under **src**. The sample code is as follows:
      
       ```json
       {
         "src": [
-          "pages/index",
-          "pages/second"
+          "pages/Index",
+          "pages/Second"
         ]
       }
       ```
 
 2. Add **\<Text>** and **\<Button>** components.
 
-   Add **\<Text>** and **\<Button>** components and set their styles, as you do for the first page. The sample code in the **second.ets** file is shown below:
-
+   Add **\<Text>** and **\<Button>** components and set their styles, by referring to the first page. The sample code in the **Second.ets** file is shown below:
    
    ```ts
-   // second.ets
+   // Second.ets
    @Entry
    @Component
    struct Second {
@@ -185,15 +179,15 @@
 
 ## Implementing Page Redirection
 
-You can implement page redirection through the [page router](../reference/apis/js-apis-router.md#routerpush), which finds the target page based on the page URL. Import the **router** module and then perform the steps below:
+You can implement page redirection through the [page router](../reference/apis/js-apis-router.md), which finds the target page based on the page URL. Import the **router** module and then perform the steps below:
 
 1. Implement redirection from the first page to the second page.
 
-   In the **index.ets** file of the first page, bind the **onClick** event to the **Next** button so that clicking the button redirects the user to the second page. The sample code in the **index.ets** file is shown below:
-
+   In the **index.ets** file of the first page, bind the **onClick** event to the **Next** button so that clicking the button redirects the user to the second page. The sample code in the **Index.ets** file is shown below:
    
    ```ts
-   // index.ets
+   // Index.ets
+   // Import the router module.
    import router from '@ohos.router';
    
    @Entry
@@ -222,7 +216,7 @@ You can implement page redirection through the [page router](../reference/apis/j
            .height('5%')
            // Bind the onClick event to the Next button so that clicking the button redirects the user to the second page.
            .onClick(() => {
-             router.push({ url: 'pages/second' })
+             router.push({ url: 'pages/Second' })
            })
          }
          .width('100%')
@@ -234,11 +228,11 @@ You can implement page redirection through the [page router](../reference/apis/j
 
 2. Implement redirection from the second page to the first page.
 
-   In the **second.ets** file of the second page, bind the **onClick** event to the **Back** button so that clicking the button redirects the user back to the first page. The sample code in the **second.ets** file is shown below:
-
+   In the **Second.ets** file of the second page, bind the **onClick** event to the **Back** button so that clicking the button redirects the user back to the first page. The sample code in the **Second.ets** file is shown below:
    
    ```ts
-   // second.ets
+   // Second.ets
+   // Import the router module.
    import router from '@ohos.router';
    
    @Entry
@@ -276,9 +270,9 @@ You can implement page redirection through the [page router](../reference/apis/j
    }
    ```
 
-3. Open the **index.ets** file and click ![en-us_image_0000001311015192](figures/en-us_image_0000001311015192.png) in the Previewer to refresh the file. The display effect is shown in the figure below.
+3. Open the **Index.ets** file and click ![en-us_image_0000001311015192](figures/en-us_image_0000001311015192.png) in the Previewer to refresh the file. The display effect is shown in the figure below.
 
-   ![en-us_image_0000001364254773](figures/en-us_image_0000001364254773.png)
+   ![en-us_image_0000001364254729](figures/en-us_image_0000001364254729.png)
 
 
 ## Running the Application on a Real Device
@@ -291,6 +285,6 @@ You can implement page redirection through the [page router](../reference/apis/j
 
 3. On the toolbar in the upper right corner of the editing window, click ![en-us_image_0000001364054485](figures/en-us_image_0000001364054485.png). The display effect is shown in the figure below.
 
-   ![en-us_image_0000001311334972](figures/en-us_image_0000001311334972.png)
+   ![en-us_image_0000001364254729](figures/en-us_image_0000001364254729.png)
 
-Congratulations! You have finished developing your OpenHarmony application in eTS in the stage model. To learn more about OpenHarmony application development, see [Application Development Overview](../application-dev-guide.md).
+Congratulations! You have finished developing your OpenHarmony application in ArkTS in the stage model. To learn more about OpenHarmony application development, see [Application Development Overview](../application-dev-guide.md).

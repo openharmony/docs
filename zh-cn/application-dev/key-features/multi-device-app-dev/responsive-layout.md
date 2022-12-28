@@ -28,7 +28,7 @@
 | md | [520,&nbsp;840) | 
 | lg | [840,&nbsp;+∞) | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 以设备屏幕宽度作为参照物，也可以实现类似的效果。考虑到应用可能以非全屏窗口的形式显示，以应用窗口宽度为参照物更为通用。
 > 
 > - 开发者可以根据实际使用场景决定适配哪些断点。如xs断点对应的一般是智能穿戴类设备，如果确定某页面不会在智能穿戴设备上显示，则可以不适配xs断点。
@@ -45,7 +45,7 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
 
 通过窗口对象监听断点变化的核心是获取窗口对象及注册窗口尺寸变化的回调函数。
 
-1. 在Ability的[onWindowStageCreate](../../ability/stage-ability.md)生命周期回调中，获取并记录[窗口](../../reference/apis/js-apis-window.md)对象。
+1. 在Ability的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，获取并记录[窗口](../../reference/apis/js-apis-window.md)对象。
    
    ```
    // MainAbility.ts
@@ -129,7 +129,7 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
 本小节仅介绍**媒体查询跟断点的结合**，即如何借助媒体查询能力，监听断点的变化，读者可以自行查阅官网中关于[媒体查询](../../ui/ui-ts-layout-mediaquery.md)的相关介绍了解更详细的用法。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 类Web开发范式，支持在js文件和css文件中使用媒体查询，请查看[js媒体查询](../../reference/apis/js-apis-mediaquery.md)和[css媒体查询](../../reference/arkui-js/js-components-common-mediaquery.md)了解详细用法。
 
 
@@ -275,7 +275,7 @@ struct MediaQuerySample {
 | -------- | -------- |
 | ![zh-cn_image_0000001336486244](figures/zh-cn_image_0000001336486244.jpg) | ![zh-cn_image_0000001386646685](figures/zh-cn_image_0000001386646685.jpg) | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - ArkUI在API 9对栅格组件做了重构，推出了新的栅格组件[GridRow](../../reference/arkui-ts/ts-container-gridrow.md)和[GridCol](../../reference/arkui-ts/ts-container-gridcol.md)，同时原有的[GridContainer组件](../../reference/arkui-ts/ts-container-gridcontainer.md)及[栅格设置](../../reference/arkui-ts/ts-universal-attributes-grid.md)已经废弃。
 > 
 > - 本文中提到的栅格组件，如无特别说明，都是指GridRow和GridCol组件。
@@ -291,7 +291,7 @@ struct MediaQuerySample {
 
 - 栅格组件支持开发者修改断点的取值范围，除了默认的四个断点，还支持开发者启用xl和xxl两个额外的断点。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 断点并非越多越好，通常每个断点都需要开发者“精心适配”以达到最佳显示效果。
 
 **示例1：**

@@ -1,13 +1,11 @@
 # Stepper
 
-应用步骤方式切换页面的组件。
+步骤导航器组件，适用于引导用户按照步骤完成任务的导航场景。
 
 
 >  **说明：**
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 
 
 ## 子组件
@@ -24,7 +22,7 @@ Stepper(value?: { index?: number })
 
 | 参数名 | 参数类型 | 必填  | 参数描述 |
 | ------| -------- | --------------- | -------- |
-| index | number   | 否 | 设置步骤导航器显示第几个StepperItem。<br/>默认值：0 |
+| index | number   | 否 | 设置步骤导航器当前显示StepperItem的索引值。<br/>默认值：0 |
 
 
 ## 属性
@@ -38,92 +36,110 @@ Stepper(value?: { index?: number })
 | -------- | -------- |
 | onFinish(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 步骤导航器最后一个StepperItem的nextLabel被点击时触发该回调&nbsp;。 |
 | onSkip(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 当前显示的StepperItem状态为ItemState.Skip时，nextLabel被点击时触发该回调。 |
-| onChange(callback:&nbsp;(prevIndex?:&nbsp;number,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 点击左边或者右边文本按钮进行步骤切换时触发该事件。<br/>-&nbsp;prevIndex：切换前的步骤页索引值。<br/>-&nbsp;index：切换后的步骤页（前一页或者下一页）索引值。 |
-| onNext(callback:&nbsp;(index?:&nbsp;number,&nbsp;pendingIndex?:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 点击切换下一步骤时触发该事件。<br/>-&nbsp;index：当前步骤页索引值。<br/>-&nbsp;pendingIndex：下一步骤页索引值。 |
-| onPrevious(callback:&nbsp;(index?:&nbsp;number,&nbsp;pendingIndex?:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 点击切换上一步骤时触发该事件。<br/>-&nbsp;index：当前步骤页索引值。<br/>-&nbsp;pendingIndex：上一步骤页索引值。 |
+| onChange(callback:&nbsp;(prevIndex?:&nbsp;number,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 点击当前StepperItem的prevLabel或nextLabel进行步骤切换时触发该回调。<br/>-&nbsp;prevIndex：切换前的步骤页索引值。<br/>-&nbsp;index：切换后的步骤页（前一页或者下一页）索引值。 |
+| onNext(callback:&nbsp;(index?:&nbsp;number,&nbsp;pendingIndex?:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 点击StepperItem的nextLabel切换下一步骤时触发该回调。<br/>-&nbsp;index：当前步骤页索引值。<br/>-&nbsp;pendingIndex：下一步骤页索引值。 |
+| onPrevious(callback:&nbsp;(index?:&nbsp;number,&nbsp;pendingIndex?:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 点击StepperItem的prevLabel切换上一步骤时触发该回调。<br/>-&nbsp;index：当前步骤页索引值。<br/>-&nbsp;pendingIndex：上一步骤页索引值。 |
 
 
 ## 示例
 
 ```ts
 // xxx.ets
+@Styles function itemStyle () {
+  .width(336)
+  .height(621)
+  .margin({ top: 48, left: 12 })
+  .borderRadius(24)
+  .backgroundColor('#FFFFFF')
+}
+
+@Extend(Text) function itemTextStyle () {
+  .fontColor('#182431')
+  .fontSize(36)
+  .fontWeight(500)
+  .opacity(0.4)
+  .margin({ top: 82, bottom: 40 })
+}
+
 @Entry
 @Component
 struct StepperExample {
   @State currentIndex: number = 0
   @State firstState: ItemState = ItemState.Normal
   @State secondState: ItemState = ItemState.Normal
+  @State thirdState: ItemState = ItemState.Normal
 
   build() {
     Stepper({
       index: this.currentIndex
     }) {
+      // 第一个步骤页
       StepperItem() {
-        Text('Page One')
-          .fontSize(35)
-          .fontColor(Color.Blue)
-          .width(200)
-          .lineHeight(50)
-          .margin({ top: 250 })
+        Column() {
+          Text('Page One')
+            .itemTextStyle()
+          Button('change status:' + this.firstState)
+            .backgroundColor('#007dFF')
+            .onClick(() => {
+              this.firstState = this.firstState === ItemState.Skip ? ItemState.Normal : ItemState.Skip
+            })
+        }.itemStyle()
       }
-      .nextLabel('')
-      .position({ x: '35%', y: 0 })
-
+      .nextLabel('Next')
+      .status(this.firstState)
+      // 第二个步骤页
       StepperItem() {
-        Text('Page Two')
-          .fontSize(35)
-          .fontColor(Color.Blue)
-          .width(200)
-          .lineHeight(50)
-          .margin({ top: 250 })
-          .onClick(() => {
-            this.firstState = this.firstState === ItemState.Skip ? ItemState.Normal : ItemState.Skip
-          })
+        Column() {
+          Text('Page Two')
+            .itemTextStyle()
+          Button('change status:' + this.secondState)
+            .backgroundColor('#007dFF')
+            .onClick(() => {
+              this.secondState = this.secondState === ItemState.Disabled ? ItemState.Normal : ItemState.Disabled
+            })
+        }.itemStyle()
       }
       .nextLabel('Next')
       .prevLabel('Previous')
-      .status(this.firstState)
-      .position({ x: '35%', y: 0 })
-
-      StepperItem() {
-        Text('Page Three')
-          .fontSize(35)
-          .fontColor(Color.Blue)
-          .width(200)
-          .lineHeight(50)
-          .margin({ top: 250 })
-          .onClick(() => {
-            this.secondState = this.secondState === ItemState.Waiting ? ItemState.Normal : ItemState.Waiting
-          })
-      }
-      .position({ x: '35%', y: 0 })
       .status(this.secondState)
-
+      // 第三个步骤页
       StepperItem() {
-        Text('Page four')
-          .fontSize(35)
-          .fontColor(Color.Blue)
-          .width(200)
-          .lineHeight(50)
-          .margin({ top: 250 })
+        Column() {
+          Text('Page Three')
+            .itemTextStyle()
+          Button('change status:' + this.thirdState)
+            .backgroundColor('#007dFF')
+            .onClick(() => {
+              this.thirdState = this.thirdState === ItemState.Waiting ? ItemState.Normal : ItemState.Waiting
+            })
+        }.itemStyle()
       }
-      .position({ x: '35%', y: 0 })
+      .status(this.thirdState)
+      // 第四个步骤页
+      StepperItem() {
+        Column() {
+          Text('Page Four')
+            .itemTextStyle()
+        }.itemStyle()
+      }
       .nextLabel('Finish')
     }
+    .backgroundColor('#F1F3F5')
     .onFinish(() => {
-      console.log('onFinish')
+      // 此处可处理点击最后一页的Finish时的逻辑，例如路由跳转等
+      console.info('onFinish')
     })
     .onSkip(() => {
-      console.log('onSkip')
+      // 此处可处理点击跳过时的逻辑，例如动态修改Stepper的index值使其跳转到某一步骤页等
+      console.info('onSkip')
     })
     .onChange((prevIndex: number, index: number) => {
       this.currentIndex = index
     })
-    .align(Alignment.Center)
   }
 }
 ```
 
 
-![zh-cn_image_0000001250678457](figures/zh-cn_image_0000001250678457.gif)
+![stepper](figures/stepper.gif)
 

@@ -105,7 +105,7 @@ export default {
 
 > **NOTE**
 > - For wearables, the input type can only be **button**, **radio**, or **checkbox**.
-> 
+>
 > - The settings of **checked** take effect only when the input type is set to **checkbox** or **radio**. The default value of **checked** is **false**.
 
 

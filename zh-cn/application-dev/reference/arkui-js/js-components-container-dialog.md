@@ -130,30 +130,30 @@
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
-  showDialog(e) {
+  showDialog() {
     this.$element('simpledialog').show()
   },
-  cancelDialog(e) {
-    prompt.showToast({
+  cancelDialog() {
+    promptAction.showToast({
       message: 'Dialog cancelled'
     })
   },
-  cancelSchedule(e) {
+  cancelSchedule() {
     this.$element('simpledialog').close()
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Successfully cancelled'
     })
   },
-  setSchedule(e) {
+  setSchedule() {
     this.$element('simpledialog').close()
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Successfully confirmed'
     })
   },
-  doubleclick(e){
-    prompt.showToast({
+  doubleclick(){
+    promptAction.showToast({
       message: 'doubleclick'
     })
   }

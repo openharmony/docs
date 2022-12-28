@@ -1,4 +1,4 @@
-# AbilityManager
+# @ohos.application.abilityManager
 
 The **AbilityManager** module provides APIs for obtaining, adding, and modifying ability running information and state information.
 
@@ -9,7 +9,7 @@ The **AbilityManager** module provides APIs for obtaining, adding, and modifying
 
 ## Modules to Import
 
-```js
+```ts
 import AbilityManager from '@ohos.application.abilityManager'
 ```
 
@@ -43,12 +43,12 @@ Updates the configuration. This API uses an asynchronous callback to return the 
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | Configuration                            | Yes   | New configuration.|
+| config    | [Configuration](js-apis-application-configuration.md)   | Yes   | New configuration.|
 | callback  | AsyncCallback\<void>                   | Yes   | Callback used to return the result.     |
 
 **Example**
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 var config = {
@@ -74,7 +74,7 @@ Updates the configuration. This API uses a promise to return the result.
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | Configuration                            | Yes   | New configuration.|
+| config    | [Configuration](js-apis-application-configuration.md)   | Yes   | New configuration.|
 
 **Return value**
 
@@ -84,7 +84,7 @@ Updates the configuration. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 var config = {
@@ -116,7 +116,7 @@ Obtains the ability running information. This API uses an asynchronous callback 
 
 **Example**
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 abilitymanager.getAbilityRunningInfos((err,data) => { 
@@ -142,7 +142,7 @@ Obtains the ability running information. This API uses a promise to return the r
 
 **Example**
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
  
 abilitymanager.getAbilityRunningInfos().then((data) => {
@@ -171,7 +171,7 @@ Obtains the extension running information. This API uses an asynchronous callbac
 
 **Example**
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 var upperLimit = 0;
@@ -205,7 +205,7 @@ Obtains the extension running information. This API uses a promise to return the
 
 **Example**
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 var upperLimit = 0;
@@ -233,7 +233,7 @@ Obtains the top ability, which is the ability that has the window focus. This AP
 
 **Example**
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 abilitymanager.getTopAbility((err,data) => { 
@@ -257,7 +257,7 @@ Obtains the top ability, which is the ability that has the window focus. This AP
 
 **Example**
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 abilitymanager.getTopAbility().then((data) => {

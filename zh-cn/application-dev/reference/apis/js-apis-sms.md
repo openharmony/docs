@@ -1,8 +1,8 @@
-# 短信服务
+# @ohos.telephony.sms (短信服务)
 
 短信服务提供了管理短信的一些基础能力，包括创建、发送短信，获取、设置发送短信的默认SIM卡槽ID，获取、设置短信服务中心（SMSC）地址，以及检查当前设备是否具备短信发送和接收能力等。
 
->**说明：** 
+>**说明：**
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -870,7 +870,7 @@ promise.then(data => {
 
 ## sms.isImsSmsSupported<sup>8+</sup>
 
-isImsSmsSupported(callback: AsyncCallback<boolean\>): void
+isImsSmsSupported(slotId: number, callback: AsyncCallback<boolean\>): void
 
 如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS。使用callback异步回调。
 
@@ -882,12 +882,14 @@ isImsSmsSupported(callback: AsyncCallback<boolean\>): void
 
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
+| slotId   | number                       | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
 
 **示例：**
 
 ```js
-sms.isImsSmsSupported((err, data) => {
+let slotId = 0;
+sms.isImsSmsSupported(slotId, (err, data) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -895,13 +897,19 @@ sms.isImsSmsSupported((err, data) => {
 
 ## sms.isImsSmsSupported<sup>8+</sup>
 
-isImsSmsSupported(): Promise<boolean\>
+isImsSmsSupported(slotId: number): Promise<boolean\>
 
 如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS。使用Promise异步回调。
 
 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名 | 类型   | 必填  | 说明                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 
 **返回值：**
 
@@ -912,7 +920,8 @@ isImsSmsSupported(): Promise<boolean\>
 **示例：**
 
 ```js
-let promise = sms.isImsSmsSupported();
+let slotId = 0;
+let promise = sms.isImsSmsSupported(slotId);
 promise.then(data => {
     console.log(`isImsSmsSupported success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1116,19 +1125,19 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名                   | 类型                                    | 说明                                                         |
-| ------------------------ | --------------------------------------- | ------------------------------------------------------------ |
-| hasReplyPath             | boolean                                 | 收到的短信是否包含“TP-Reply-Path”，默认为false。<br/>“TP-Reply-Path”：设备根据发送SMS消息的短消息中心进行回复。 |
-| isReplaceMessage         | boolean                                 | 收到的短信是否为“替换短信”，默认为false。<br/>“替换短信”有关详细信息，参见 “3GPP TS 23.040 9.2.3.9”。 |
-| isSmsStatusReportMessage | boolean                                 | 当前消息是否为“短信状态报告”，默认为false。<br/>“短信状态报告”是一种特定格式的短信，被用来从Service Center到Mobile Station传送状态报告。 |
-| messageClass             | [ShortMessageClass](#shortmessageclass) | 短信类型。                                                   |
-| pdu                      | Array&lt;number&gt;                     | SMS消息中的协议数据单元 （PDU）。                            |
-| protocolId               | number                                  | 发送短信时使用的协议标识。                                   |
-| scAddress                | string                                  | 短消息服务中心（SMSC）地址。                                 |
-| scTimestamp              | number                                  | SMSC时间戳。                                                 |
-| status                   | number                                  | SMS-STATUS-REPORT消息中的短信状态指示短信服务中心（SMSC）发送的短信状态。 |
-| visibleMessageBody       | string                                  | 短信正文。                                                   |
-| visibleRawAddress        | string                                  | 发送者地址。                                                 |
+|         名称             |                  类型                   | 必填 | 说明                                                         |
+| ------------------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| hasReplyPath             | boolean                                 |  是  | 收到的短信是否包含“TP-Reply-Path”，默认为false。<br/>“TP-Reply-Path”：设备根据发送SMS消息的短消息中心进行回复。  |
+| isReplaceMessage         | boolean                                 |  是  | 收到的短信是否为“替换短信”，默认为false。<br/>“替换短信”有关详细信息，参见 “3GPP TS 23.040 9.2.3.9”。 |
+| isSmsStatusReportMessage | boolean                                 |  是  | 当前消息是否为“短信状态报告”，默认为false。<br/>“短信状态报告”是一种特定格式的短信，被用来从Service Center到Mobile Station传送状态报告。|
+| messageClass             | [ShortMessageClass](#shortmessageclass) |  是  | 短信类型。                                                   |
+| pdu                      | Array&lt;number&gt;                     |  是  | SMS消息中的协议数据单元 （PDU）。                            |
+| protocolId               | number                                  |  是  | 发送短信时使用的协议标识。                                   |
+| scAddress                | string                                  |  是  | 短消息服务中心（SMSC）地址。                                 |
+| scTimestamp              | number                                  |  是  | SMSC时间戳。                                                 |
+| status                   | number                                  |  是  | SMS-STATUS-REPORT消息中的短信状态指示短信服务中心（SMSC）发送的短信状态。 |
+| visibleMessageBody       | string                                  |  是  | 短信正文。                                                   |
+| visibleRawAddress        | string                                  |  是  | 发送者地址。                                                 |
 
 
 ## ShortMessageClass
@@ -1152,7 +1161,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名           | 类型                                                         | 必填 | 说明                                                         |
+|       名称       | 类型                                                         | 必填 | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | slotId           | number                                                       | 是   | 用于发送短信的SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2      |
 | destinationHost  | string                                                       | 是   | 短信的发送地址。                                             |
@@ -1169,11 +1178,11 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名     | 类型                            | 必填 | 说明                                                         |
-| ---------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+|   名称     | 类型                            | 必填 |                                               说明                                         |
+| ---------- | ------------------------------- | ---- | ----------------------------------------------------------------------------------------- |
 | isLastPart | boolean                         | 否   | 指定这是否是长短信的最后一部分。true表示这是长短信的最后一部分，false表示不是。默认为false。 |
-| result     | [SendSmsResult](#sendsmsresult) | 是   | 短信发送结果。                                               |
-| url        | string                          | 是   | 存储发送短信的URI。                                          |
+| result     | [SendSmsResult](#sendsmsresult) | 是   | 短信发送结果。                                                                             |
+| url        | string                          | 是   | 存储发送短信的URI。                                                                        |
 
 
 ## IDeliveryShortMessageCallback
@@ -1182,9 +1191,9 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名 | 类型                | 必填 | 说明           |
-| ------ | ------------------- | ---- | -------------- |
-| pdu    | Array&lt;number&gt; | 是   | 短信送达报告。 |
+| 名称 | 类型                | 必填 | 说明           |
+| ---- | ------------------- | ---- | -------------- |
+| pdu  | Array&lt;number&gt; | 是   | 短信送达报告。 |
 
 
 ## SendSmsResult
@@ -1208,9 +1217,9 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名      | 类型                                                         | 必填 | 说明      |
-| ----------- | ------------------------------------------------------------ | ---- | --------- |
-| messageType | [MessageType](#messagetype8)                                 | 是   | 消息类型。  |
+|     名称    | 类型                                                         | 必填 |    说明    |
+| ----------- | ------------------------------------------------------------ | ---- | ---------- |
+| messageType | [MessageType](#messagetype8)                                 | 是   | 消息类型。 |
 | mmsType     | [MmsSendReq](#mmssendreq8) \|[MmsSendConf](#mmssendconf8) \|[MmsNotificationInd](#mmsnotificationind8) \|[MmsRespInd](#mmsrespind8) \|[MmsRetrieveConf](#mmsretrieveconf8)\|[MmsAcknowledgeInd](#mmsacknowledgeind8)\|[MmsDeliveryInd](#mmsdeliveryind8)\|[MmsReadOrigInd](#mmsreadorigind8)\|[MmsReadRecInd](#mmsreadrecind8) | 是   | PDU头类型 |
 | attachment  | Array<[MmsAttachment](#mmsattachment8)\>                     | 否   | 附件      |
 
@@ -1222,7 +1231,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名           | 类型                                 | 必填 | 说明         |
+|       名称       | 类型                                 | 必填 | 说明         |
 | ---------------- | ------------------------------------ | ---- | ------------ |
 | from             | [MmsAddress](#mmsaddress8)           | 是   | 彩信来源     |
 | transactionId    | string                               | 是   | 事务ID       |
@@ -1248,7 +1257,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名        | 类型                               | 必填 | 说明     |
+|     名称      | 类型                               | 必填 | 说明     |
 | ------------- | ---------------------------------- | ---- | -------- |
 | responseState | number                             | 是   | 响应状态 |
 | transactionId | string                             | 是   | 事务ID   |
@@ -1263,7 +1272,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名          | 类型                               | 必填 | 说明     |
+|      名称       | 类型                               | 必填 | 说明     |
 | --------------- | ---------------------------------- | ---- | -------- |
 | transactionId   | string                             | 是   | 事务ID   |
 | messageClass    | number                             | 是   | 消息类   |
@@ -1284,7 +1293,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名        | 类型                               | 必填 | 说明     |
+|      名称     | 类型                               | 必填 | 说明     |
 | ------------- | ---------------------------------- | ---- | -------- |
 | transactionId | string                             | 是   | 事务ID   |
 | version       | [MmsVersionType](#mmsversiontype8) | 是   | 版本     |
@@ -1298,7 +1307,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名         | 类型                                 | 必填 | 说明     |
+|      名称      | 类型                                 | 必填 | 说明     |
 | -------------- | ------------------------------------ | ---- | -------- |
 | transactionId  | string                               | 是   | 事务ID   |
 | messageId      | string                               | 是   | 消息ID   |
@@ -1323,7 +1332,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名     | 类型                               | 必填 | 说明     |
+|    名称    | 类型                               | 必填 | 说明     |
 | ---------- | ---------------------------------- | ---- | -------- |
 | version    | [MmsVersionType](#mmsversiontype8) | 是   | 版本     |
 | messageId  | string                             | 是   | 消息ID   |
@@ -1340,7 +1349,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名     | 类型                               | 必填 | 说明     |
+|    名称    | 类型                               | 必填 | 说明     |
 | ---------- | ---------------------------------- | ---- | -------- |
 | version    | [MmsVersionType](#mmsversiontype8) | 是   | 版本     |
 | messageId  | string                             | 是   | 消息ID   |
@@ -1357,7 +1366,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名                  | 类型                                 | 必填 | 说明               |
+|          名称           | 类型                                 | 必填 | 说明               |
 | ----------------------- | ------------------------------------ | ---- | ------------------ |
 | contentId               | string                               | 是   | 内容ID             |
 | contentLocation         | string                               | 是   | 内容位置           |
@@ -1378,7 +1387,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名  | 类型                         | 必填 | 说明   |
+|   名称  | 类型                         | 必填 | 说明   |
 | ------- | ---------------------------- | ---- | ------ |
 | address | string                       | 是   | 地址   |
 | charset | [MmsCharSets](#mmscharsets8) | 是   | 字符集 |
@@ -1391,7 +1400,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名                    | 值   | 说明                 |
+|          名称             | 值   | 说明                 |
 | ------------------------- | ---- | -------------------- |
 | TYPE_MMS_SEND_REQ         | 128  | 彩信发送请求类型     |
 | TYPE_MMS_SEND_CONF        | 129  | 彩信发送配置类型     |
@@ -1411,7 +1420,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名     | 值   | 说明           |
+|    名称    | 值   | 说明           |
 | ---------- | ---- | -------------- |
 | MMS_LOW    | 128  | 彩信优先级低   |
 | MMS_NORMAL | 129  | 彩信优先级正常 |
@@ -1425,7 +1434,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名          | 值   | 说明        |
+|      名称       | 值   | 说明        |
 | --------------- | ---- | ----------- |
 | MMS_VERSION_1_0 | 0x10 | 彩信版本1_0 |
 | MMS_VERSION_1_1 | 0x11 | 彩信版本1_1 |
@@ -1440,7 +1449,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名          | 值     | 说明                |
+|      名称       | 值     | 说明                |
 | --------------- | ------ | ------------------- |
 | BIG5            | 0X07EA | BIG5格式            |
 | ISO_10646_UCS_2 | 0X03E8 | ISO_10646_UCS_2格式 |
@@ -1465,7 +1474,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名     | 值   | 说明     |
+|    名称    | 值   | 说明     |
 | ---------- | ---- | -------- |
 | FROM_DATA  | 0    | 数据来源 |
 | ATTACHMENT | 1    | 附件     |
@@ -1479,7 +1488,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名  | 值   | 说明 |
+|  名称   | 值   | 说明 |
 | ------- | ---- | ---- |
 | MMS_YES | 128  | YES  |
 | MMS_NO  | 129  | NO   |
@@ -1492,7 +1501,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名         | 类型                 | 必填 | 说明         |
+|      名称      | 类型                 | 必填 | 说明         |
 | -------------- | -------------------- | ---- | ------------ |
 | slotId         | number               | 是   | 卡槽ID       |
 | enable         | boolean              | 是   | 可行         |
@@ -1508,7 +1517,7 @@ SIM卡消息状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名                    | 值   | 说明                        |
+|           名称            | 值   | 说明                        |
 | ------------------------- | ---- | --------------------------- |
 | SIM_MESSAGE_STATUS_FREE   | 0    | SIM卡上的状态可用空间       |
 | SIM_MESSAGE_STATUS_READ   | 1    | 消息已读状态                |
@@ -1524,7 +1533,7 @@ SIM卡消息状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名    | 值   | 说明 |
+|   名称    | 值   | 说明 |
 | --------- | ---- | ---- |
 | TYPE_GSM  | 1    | GSM  |
 | TYPE_CDMA | 2    | CMDA |
@@ -1537,7 +1546,7 @@ SIM卡消息状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名               | 值   | 说明         |
+|         名称         | 值   | 说明         |
 | -------------------- | ---- | ------------ |
 | SMS_ENCODING_UNKNOWN | 0    | 未知短信编码 |
 | SMS_ENCODING_7BIT    | 1    | 7位短信编码  |
@@ -1552,7 +1561,7 @@ SIM卡消息选项。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名 | 类型                                   | 必填 | 说明           |
+|  名称  | 类型                                   | 必填 | 说明           |
 | ------ | -------------------------------------- | ---- | -------------- |
 | slotId | number                                 | 是   | 卡槽ID         |
 | smsc   | string                                 | 是   | 短消息业务中心 |
@@ -1567,7 +1576,7 @@ SIM卡消息选项。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名    | 类型                                   | 必填 | 说明           |
+|   名称    | 类型                                   | 必填 | 说明           |
 | --------- | -------------------------------------- | ---- | -------------- |
 | slotId    | number                                 | 是   | 卡槽ID         |
 | msgIndex  | number                                 | 是   | 消息索引       |
@@ -1583,7 +1592,7 @@ SIM卡短消息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名           | 类型                                   | 必填 | 说明          |
+|       名称       | 类型                                   | 必填 | 说明          |
 | ---------------- | -------------------------------------- | ---- | ------------- |
 | shortMessage     | [ShortMessage](#shortmessage)          | 是   | 短消息        |
 | simMessageStatus | [SimMessageStatus](#simmessagestatus7) | 是   | SIM卡消息状态 |
@@ -1597,7 +1606,7 @@ SIM卡短消息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名    | 类型                               | 必填 | 说明   |
+|    名称   | 类型                               | 必填 | 说明   |
 | --------- | ---------------------------------- | ---- | ------ |
 | messageId | string                             | 是   | 消息ID |
 | date      | number                             | 是   | 日期   |
@@ -1613,7 +1622,7 @@ SIM卡短消息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名        | 类型                               | 必填 | 说明     |
+|     名称      | 类型                               | 必填 | 说明     |
 | ------------- | ---------------------------------- | ---- | -------- |
 | transactionId | string                             | 是   | 事件ID   |
 | status        | number                             | 是   | 状态     |
@@ -1628,7 +1637,7 @@ SIM卡短消息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名               | 类型                                     | 必填 | 说明         |
+|        名称          | 类型                                     | 必填 | 说明         |
 | -------------------- | ---------------------------------------- | ---- | ------------ |
 | splitCount           | number                                   | 是   | 拆分计数     |
 | encodeCount          | number                                   | 是   | 编码计数     |

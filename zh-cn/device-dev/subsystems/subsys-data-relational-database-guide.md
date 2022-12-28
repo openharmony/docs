@@ -20,15 +20,6 @@
 | RdbHelper | std::shared_ptr\<RdbStore\> GetRdbStore(const RdbStoreConfig &config, int version, RdbOpenCallback &openCallback, int &errCode) | 根据配置创建或打开数据库。 |
 | RdbHelper | int DeleteRdbStore(const std::string &path) | 删除指定的数据库。 |
 
-### 数据库的加密
-
-关系型数据库提供数据库加密的能力，在创建数据库时若指定了密钥，则会创建为加密数据库。再次使用此数据库时，需要指定该密钥，才能正确打开数据库。
-
-表2 数据库修改密钥API
-| 类名 | 接口名 | 描述 |
-|  ----  |  ----  |  ----  |
-| RdbStore | int ChangeEncryptKey(const std::vector<uint8_t> &newKey) | 为数据库设置新的加密密钥。注：仅支持加密数据库更换加密密钥。 |
-
 ### 数据库谓词的使用
 
 关系型数据库提供了用于设置数据库操作条件的谓词AbsRdbPredicates，其中包括两个实现子类RdbPredicates和RawRdbPredicates：
@@ -36,7 +27,7 @@
 - RdbPredicates：开发者无需编写复杂的SQL语句，仅通过调用该类中条件相关的方法，如equalTo、notEqualTo、groupBy、orderByAsc、beginsWith等，就可自动完成SQL语句拼接，方便用户聚焦业务操作。
 - RawRdbPredicates：可满足复杂SQL语句的场景，支持开发者自己设置where条件子句和whereArgs参数。不支持equalTo等条件接口的使用。
 
-  表3 数据库谓词API
+  表2 数据库谓词API
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |
   | RdbPredicates | AbsPredicates *EqualTo(std::string field, std::string value) | 设置谓词条件，满足field字段与value值相等。 |
@@ -58,7 +49,7 @@
 
   关系型数据库提供了插入数据的接口，通过ValuesBucket输入要存储的数据，通过返回值判断是否插入成功，插入成功时返回最新插入数据所在的行号，失败时则返回-1。
 
-  表4 数据表插入API
+  表3 数据表插入API
 
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |
@@ -68,7 +59,7 @@
   
   调用删除接口，通过AbsRdbPredicates指定删除条件。该接口的返回值表示删除的数据行数，可根据此值判断是否删除成功。如果删除失败，则返回0。
 
-  表5 数据表删除API
+  表4 数据表删除API
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |
   | RdbStore | int Delete(int &deletedRows, const AbsRdbPredicates &predicates) | 删除数据。<ul><li> deletedRows：删除的记录条数。 </li><li> predicates：Rdb谓词，指定了删除操作的表名和条件。AbsRdbPredicates的实现类有两个：RdbPredicates和RawRdbPredicates。<ul><li> RdbPredicates：支持调用谓词提供的equalTo等接口，设置删除条件。</li><li> RawRdbPredicates：仅支持设置表名、where条件子句、whereArgs三个参数，不支持equalTo等接口调用。 </li></ul></li></ul> |
@@ -77,7 +68,7 @@
 
   调用更新接口，传入要更新的数据，并通过AbsRdbPredicates指定更新条件。该接口的返回值表示更新操作影响的行数。如果更新失败，则返回0。
 
-  表6 数据表更新API
+  表5 数据表更新API
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |
   | RdbStore | int Update(int &changedRows, const ValuesBucket &values, const AbsRdbPredicates &predicates) | 更新数据库表中符合谓词指定条件的数据。<ul><li> changedRows：更新的记录条数。 </li><li> values：以ValuesBucket存储的要更新的数据。 </li><li> predicates：指定了更新操作的表名和条件。AbsRdbPredicates的实现类有两个：RdbPredicates和RawRdbPredicates。<ul><li> RdbPredicates：支持调用谓词提供的equalTo等接口，设置更新条件。</li><li> RawRdbPredicates：仅支持设置表名、where条件子句、whereArgs三个参数，不支持equalTo等接口调用。 </li></ul></li></ul> |
@@ -89,7 +80,7 @@
   - 直接调用查询接口。使用该接口，会将包含查询条件的谓词自动拼接成完整的SQL语句进行查询操作，无需用户传入原生的SQL语句。
   - 执行原生的SQL语句进行查询操作。
 
-  表7 数据表查询API
+  表6 数据表查询API
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |
   | RdbStore | std::unique_ptr<AbsSharedResultSet> Query(const AbsRdbPredicates &predicates, const std::vector\<std::string\> columns) | 查询数据。<ul><li> predicates：谓词，可以设置查询条件。AbsRdbPredicates的实现类有两个：RdbPredicates和RawRdbPredicates。<ul><li> RdbPredicates：支持调用谓词提供的equalTo等接口，设置查询条件。</li><li> RawRdbPredicates：仅支持设置表名、where条件子句、whereArgs三个参数，不支持equalTo等接口调用。 </li></ul> <li> columns：规定查询返回的列。</li></ul></li></ul> |
@@ -99,7 +90,7 @@
 
 关系型数据库提供了查询返回的结果集ResultSet，其指向查询结果中的一行数据，供用户对查询结果进行遍历和访问。ResultSet对外API如下所示。
 
-表8 结果集API
+表7 结果集API
 | 类名 | 接口名 | 描述 |
 |  ----  |  ----  |  ----  |
 | ResultSet | int GoTo(int offset) | 从结果集当前位置移动指定偏移量。 |
@@ -120,7 +111,7 @@
 
 用户可以对当前数据库中的列表设置为分布式列表。
 
-表9 设置分布式列表
+表8 设置分布式列表
 | 类名 | 接口名 | 描述 |
 |  ----  |  ----  |  ----  |
 | RdbStore | bool SetDistributedTables(const std::vector<std::string>& tables) | 设置分布式列表。<ul><li> tables：要设置的分布式列表表名 </li></ul>
@@ -129,28 +120,28 @@
 
 用户根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名。
 
-表10 根据本地表名获取指定远程设备的分布式表名
+表9 根据本地表名获取指定远程设备的分布式表名
 | 类名 | 接口名 | 描述 |
 |  ----  |  ----  |  ----  |
 | RdbStore | std::string ObtainDistributedTableName(const std::string& device, const std::string& table) | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名。<ul><li> device：远程设备ID </li><li> table：本地表名</li></ul>
 
 ### 在设备之间同步数据
 
-表11 在设备之间同步数据
+表10 在设备之间同步数据
 | 类名 | 接口名 | 描述 |
 |  ----  |  ----  |  ----  |
 | RdbStore | bool Sync(const SyncOption& option, const AbsRdbPredicates& predicate, const SyncCallback& callback) | 在设备之间同步数据。<ul><li> option：同步选项；mode：同步模式(PUSH表示数据从本地设备推送到远程设备/PULL表示数据从远程设备拉至本地设备)；isBlock：是否阻塞 </li><li> callback：指定的callback回调函数</li></ul>
 
 ### 注册数据库的观察者
 
-表12 注册数据库的观察者
+表11 注册数据库的观察者
 | 类名 | 接口名 | 描述 |
 |  ----  |  ----  |  ----  |
 | RdbStore | bool Subscribe(const SubscribeOption& option, RdbStoreObserver *observer) | 注册数据库的观察者。当分布式数据库中的数据发生更改时，将调用回调。<ul><li> option：订阅类型；</li><li> observer：指分布式数据库中数据更改事件的观察者</li></ul>
 
 ### 从数据库中删除指定类型的指定观察者
 
-表13 从数据库中删除指定类型的指定观察者
+表12 从数据库中删除指定类型的指定观察者
 | 类名 | 接口名 | 描述 |
 |  ----  |  ----  |  ----  |
 | RdbStore | bool UnSubscribe(const SubscribeOption& option, RdbStoreObserver *observer) | 从数据库中删除指定类型的指定观察者。<ul><li> option：订阅类型；</li><li> observer：指已注册的数据更改观察者</li></ul>
@@ -163,7 +154,7 @@
 
   关系型数据库提供了备份数据库文件的接口，通过databasePath指定的备份文件名（支持路径）备份当前数据库文件。通过返回值判断是否备份成功，成功时返回0，失败时则返回相应的错误码。
 
-  表14 数据库备份API
+  表13 数据库备份API
 
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |
@@ -173,7 +164,7 @@
 
   关系型数据库提供了恢复数据库文件的接口，通过backupPath指定的备份文件名（支持路径）恢复当前数据库文件。通过返回值判断是否恢复成功，成功时返回0，失败时则返回相应的错误码。
 
-  表15 数据库恢复API
+  表14 数据库恢复API
 
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |
@@ -183,7 +174,7 @@
 
   事务（Transaction）是一个对数据库执行工作单元。通过返回值判断事务是否成功，成功时返回0，失败时则返回相应的错误码。
 
-  表16 事务API
+  表15 事务API
 
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |

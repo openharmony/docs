@@ -341,8 +341,8 @@ Defines the page routing parameters.
 
 | Name    | Type  | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| uri    | string | Yes   | URI of the destination page, in either of the following formats:<br>1. Absolute path, which is provided by the **pages** list in the **config.json** file. Example:<br>- pages/index/index<br> -pages/detail/detail<br>2. Specific path. If the URI is a slash (/), the home page is displayed.|
-| params | Object | No   | Data that needs to be passed to the destination page during redirection. After the destination page is displayed, it can use the passed data, for example, **this.data1** (**data1** is a key in **params**). If there is the same key (for example, **data1**) on the destination page, the passed **data1** value will replace the original value on the destination page.|
+| uri    | string | Yes   | URI of the target page, in either of the following formats:<br>1. Absolute path, which is provided by the **pages** list in the **config.json** file. Example:<br>- pages/index/index<br> - pages/detail/detail<br>2. Specific path. If the URI is a slash (/), the home page is displayed.|
+| params | Object | No   | Data that needs to be passed to the target page during redirection. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.|
 
 
 ## BackRouterOptions
@@ -354,7 +354,7 @@ Defines the parameters for routing back.
 | Name    | Type  | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
 | uri    | string | No   | URI of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If this parameter is not set, the application returns to the previous page.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Full|
-| params | Object | No   | Data that needs to be passed to the destination page during redirection.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Lite|
+| params | Object | No   | Data that needs to be passed to the target page during redirection.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Lite|
 
 ## RouterState
 
@@ -379,11 +379,11 @@ Defines the **EnableAlertBeforeBackPage** parameters.
 | message  | string                   | Yes  | Content displayed in the confirm dialog box.                                  |
 | success  | (errMsg: string) => void | No  | Called when the **OK** button in the confirm dialog box is clicked. **errMsg** indicates the returned information.|
 | cancel   | (errMsg: string) => void | No  | Called when the **Cancel** button in the confirm dialog box is clicked. **errMsg** indicates the returned information.|
-| complete | () => void               | No  | Called when the API call is complete.                          |
+| complete | () => void               | No  | Called when the dialog box is closed.                          |
 
 ## DisableAlertBeforeBackPageOptions<sup>6+</sup>
 
-Define the **DisableAlertBeforeBackPage** parameters.
+Defines the **DisableAlertBeforeBackPage** parameters.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -391,7 +391,7 @@ Define the **DisableAlertBeforeBackPage** parameters.
 | -------- | ------------------------ | ---- | -------------------------------------------------- |
 | success  | (errMsg: string) => void | No  | Called when the dialog box is closed. **errMsg** indicates the returned information.|
 | cancel   | (errMsg: string) => void | No  | Called when the dialog box fails to be closed. **errMsg** indicates the returned information.|
-| complete | () => void               | No  | Called when the API call is complete.                          |
+| complete | () => void               | No  | Called when the dialog box is closed.                          |
 
 ## ParamsInterface
 

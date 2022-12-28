@@ -4,44 +4,44 @@
 - [简介](introduction.md)
 - [从一个例子开始](start-with-a-example.md)
 - 应用UX设计
-    - [设计原则和要点](design-principles.md)
-    - 应用架构设计
-        - [应用导航结构设计要求](navigation-design.md)
-        - [应用页面结构设计](page-design.md)
-    - 界面布局
-        - [概述](interface-layout-design-intro.md)
-        - 布局基础
-            - [栅格系统](design-grid.md)
-            - [自适应布局](design-adaptive-layout.md)
-            - [响应式布局](design-responsive-layout.md)
-        - [布局基础运用案例](design-layout-cases.md)
-    - 人机交互
-        - [交互基础](interaction-basics.md)
-        - [常见输入方式](common-input-modes.md)
-        - [交互事件归一](design-interaction-event-normalization.md)
-    - 视觉风格
-        - [视觉基础](visual-basics.md)
-        - [色彩](visual-style-color.md)
-        - [字体](visual-style-font.md)
-        - [图标](visual-style-icon.md)
-    - [多态控件](design-polymorphic-controls.md)
-    - [设计自检表](design-checklist.md)
-    - [设计交付](design-delivery.md)
-    - [资源](design-resources.md)
+  - [设计原则和要点](design-principles.md)
+  - 应用架构设计
+    - [应用导航结构设计要求](navigation-design.md)
+    - [应用页面结构设计](page-design.md)
+  - 界面布局
+    - [概述](interface-layout-design-intro.md)
+    - 布局基础
+      - [栅格系统](design-grid.md)
+      - [自适应布局](design-adaptive-layout.md)
+      - [响应式布局](design-responsive-layout.md)
+    - [布局基础运用案例](design-layout-cases.md)
+  - 人机交互
+    - [交互基础](interaction-basics.md)
+    - [常见输入方式](common-input-modes.md)
+    - [交互事件归一](design-interaction-event-normalization.md)
+  - 视觉风格
+    - [视觉基础](visual-basics.md)
+    - [色彩](visual-style-color.md)
+    - [字体](visual-style-font.md)
+    - [图标](visual-style-icon.md)
+  - [多态控件](design-polymorphic-controls.md)
+  - [设计自检表](design-checklist.md)
+  - [设计交付](design-delivery.md)
+  - [资源](design-resources.md)
 - [工程管理](ide-using.md)
 - 页面开发的一多能力介绍
-    - [简介](page-development-intro.md)
-    - 布局能力
-        - [布局简介](layout-intro.md)
-        - [自适应布局](adaptive-layout.md)
-        - [响应式布局](responsive-layout.md)
-        - [典型布局场景](typical-layout-scenario.md)
-        - 典型页面场景
-            - [应用市场首页](appgallery-home-page.md)
-            - [音乐专辑页](music-album-page.md)
-    - [交互归一](interaction-event-normalization.md)
-    - [多态组件](polymorphic-controls.md)
-    - [资源使用](resource-usage.md)
+  - [简介](page-development-intro.md)
+  - 布局能力
+    - [布局简介](layout-intro.md)
+    - [自适应布局](adaptive-layout.md)
+    - [响应式布局](responsive-layout.md)
+    - [典型布局场景](typical-layout-scenario.md)
+    - 典型页面场景
+      - [应用市场首页](appgallery-home-page.md)
+      - [音乐专辑页](music-album-page.md)
+  - [交互归一](interaction-event-normalization.md)
+  - [多态组件](polymorphic-controls.md)
+  - [资源使用](resource-usage.md)
 - [功能开发的一多能力介绍](development-intro.md)
 - [案例应用](case.md)
 - [常见问题](faq.md)

@@ -1,16 +1,19 @@
-# 后台代理提醒
+# @ohos.reminderAgent (后台代理提醒)
 
 本模块提供后台代理提醒的能力。
 
 开发应用时，开发者可以调用后台提醒发布的接口创建定时提醒，包括倒计时、日历、闹钟三种提醒类型。使用后台代理提醒能力后，应用可以被冻结或退出，计时和弹出提醒的功能将被后台系统服务代理。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
+> 从API Version 9 开始，该接口不再维护，推荐使用新接口[@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
 
-```
+```js
 import reminderAgent from'@ohos.reminderAgent';
 ```
 
@@ -88,7 +91,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 目标reminder的id号。 |
+| reminderId | number | 是 | 目标reminder的id号，[publishReminder](#reminderagentpublishreminder)方法调用成功后获得。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步回调。 |
 
 **示例**：
@@ -112,7 +115,7 @@ cancelReminder(reminderId: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 目标reminder的id号。 |
+| reminderId | number | 是 | 目标reminder的id号，[publishReminder](#reminderagentpublishreminder)方法调用成功后获得。 |
 
 **返回值**：
 
@@ -389,7 +392,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | ACTION_BUTTON_TYPE_CLOSE | 0 | 表示关闭提醒的按钮。 |
 | ACTION_BUTTON_TYPE_SNOOZE | 1 | 表示延迟提醒的按钮。 |
@@ -401,7 +404,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | REMINDER_TYPE_TIMER | 0 | 表示提醒类型：倒计时。 |
 | REMINDER_TYPE_CALENDAR | 1 | 表示提醒类型：日历。 |
@@ -414,7 +417,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | title | string | 是 | 按钮显示的标题。 |
 | type | [ActionButtonType](#actionbuttontype) | 是 | 按钮的类型。 |
@@ -426,9 +429,9 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pkgName | string | 是 | 指明点击提醒通知栏后跳转的目标hap包名。 |
+| pkgName | string | 是 | 指明点击提醒通知栏后跳转的目标HAP名。 |
 | abilityName | string | 是 | 指明点击提醒通知栏后跳转的目标ability名称。 |
 
 
@@ -438,9 +441,9 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pkgName | string | 是 | 指明提醒到达时自动拉起的目标hap包名（如果设备在使用中，则只弹出通知横幅框）。 |
+| pkgName | string | 是 | 指明提醒到达时自动拉起的目标HAP名（如果设备在使用中，则只弹出通知横幅框）。 |
 | abilityName | string | 是 | 指明提醒到达时自动拉起的目标ability名（如果设备在使用中，则只弹出通知横幅框）。 |
 
 
@@ -450,15 +453,15 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderType | ReminderType | 是 | 指明提醒类型。 |
-| actionButton | [ActionButton?,&nbsp;ActionButton?] | 否 | 弹出的提醒通知栏中显示的按钮（参数可选，支持0/1/2个按钮）。 |
-| wantAgent | WantAgent | 否 | 点击通知后需要跳转的目标ability信息。 |
-| maxScreenWantAgent | MaxScreenWantAgent | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |
-| ringDuration | number | 否 | 指明响铃时长。 |
-| snoozeTimes | number | 否 | 指明延迟提醒次数。 |
-| timeInterval | number | 否 | 执行延迟提醒间隔。 |
+| reminderType | [ReminderType](#remindertype) | 是 | 指明提醒类型。 |
+| actionButton | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮（参数可选，支持0/1/2个按钮）。 |
+| wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
+| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |
+| ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
+| snoozeTimes | number | 否 | 指明延迟提醒次数，默认0次。 |
+| timeInterval | number | 否 | 执行延迟提醒间隔（单位：秒），默认0秒。 |
 | title | string | 否 | 指明提醒标题。 |
 | content | string | 否 | 指明提醒内容。 |
 | expiredContent | string | 否 | 指明提醒过期后需要显示的内容。 |
@@ -475,7 +478,7 @@ ReminderRequestCalendar extends ReminderRequest
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | dateTime | [LocalDateTime](#localdatetime) | 是 | 指明提醒的目标时间。 |
 | repeatMonths | Array&lt;number&gt; | 否 | 指明重复提醒的月份。 |
@@ -490,11 +493,11 @@ ReminderRequestAlarm extends ReminderRequest
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | hour | number | 是 | 指明提醒的目标时刻。 |
 | minute | number | 是 | 指明提醒的目标分钟。 |
-| daysOfWeek | Array&lt;number&gt; | 否 | 指明每周哪几天需要重复提醒。 |
+| daysOfWeek | Array&lt;number&gt; | 否 | 指明每周哪几天需要重复提醒。范围为周一到周末，对应数字为1到7。 |
 
 
 ## ReminderRequestTimer
@@ -505,7 +508,7 @@ ReminderRequestTimer extends ReminderRequest
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | triggerTimeInSeconds | number | 是 | 指明倒计时的秒数。 |
 
@@ -516,7 +519,7 @@ ReminderRequestTimer extends ReminderRequest
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | year | number | 是 | 年 |
 | month | number | 是 | 月 |

@@ -1,12 +1,10 @@
 #  Canvas
 
-> **说明：** 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
 提供画布组件，用于自定义绘制图形。
 
-## 权限列表
-
-无
+> **说明：** 
+> 
+>  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
 
@@ -18,9 +16,9 @@ Canvas(context?: CanvasRenderingContext2D)
 
 **参数：**
 
-  | 参数名     | 参数类型                                     | 必填   | 默认值  | 参数描述                         |
-  | ------- | ---------------------------------------- | ---- | ---- | ---------------------------- |
-  | context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | 否    | -    | 见CanvasRenderingContext2D对象。 |
+| 参数名     | 参数类型                                     | 必填   | 默认值  | 参数描述                         |
+| ------- | ---------------------------------------- | ---- | ---- | ---------------------------- |
+| context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | 否    | -    | 见CanvasRenderingContext2D对象。 |
 
 ## 属性
 
@@ -34,7 +32,8 @@ Canvas(context?: CanvasRenderingContext2D)
 | ----------------------------- | ---- | -------------------- |
 | onReady(event: () => void) | 无    | Canvas组件初始化完成时的事件回调，该事件之后Canvas组件宽高确定且可获取，可使用Canvas相关API进行绘制。 |
 
-## 示例
+
+**示例：**
 
 ```ts
 // xxx.ets
@@ -50,8 +49,8 @@ struct CanvasExample {
         .width('100%')
         .height('100%')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.fillRect(0,30,100,100)
+        .onReady(() => {
+          this.context.fillRect(0, 30, 100, 100)
         })
     }
     .width('100%')
@@ -59,3 +58,4 @@ struct CanvasExample {
   }
 }
 ```
+  ![zh-cn_image_0000001194032666](figures/zh-cn_image_0000001194032666.png)

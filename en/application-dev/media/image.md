@@ -21,45 +21,47 @@ let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: {
 // Create a PixelMap object.
 const color = new ArrayBuffer(96);
 let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 2, width: 3 } }
-        image.createPixelMap(color, opts, pixelmap => {
-            expect(pixelmap !== null).assertTrue();
-            console.info('TC_001-1 success');
-            done();
-        })
+image.createPixelMap(color, opts, (err, pixelmap) => {
+    console.log('Succeeded in creating pixelmap.');
+})
+
 // Read pixels.
-pixelmap.readPixels(area,(data) => {
- 	if(data !== null) {
-		var bufferArr = new Uint8Array(area.pixels);
-        var res = true;
-        for (var i = 0; i < bufferArr.length; i++) {
-			console.info('TC_021-1 buffer ' + bufferArr[i]);
-				if(res) {
-					if(bufferArr[i] == 0) {
-						res = false;
-                        console.info('TC_021-1 Success');
-                        expect(true).assertTrue();
-                        done();
-                        break;
-                        }
-                    }
-                }
+const area = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+}
+pixelmap.readPixels(area,() => {
+    var bufferArr = new Uint8Array(area.pixels);
+    var res = true;
+    for (var i = 0; i < bufferArr.length; i++) {
+        console.info(' buffer ' + bufferArr[i]);
+        if(res) {
+            if(bufferArr[i] == 0) {
+                res = false;
+                console.log('readPixels end.');
+                break;
+            }
+        }
+    }
+})
  
 // Store pixels.
 const readBuffer = new ArrayBuffer(96);
 pixelmap.readPixelsToBuffer(readBuffer,() => {
-var bufferArr = new Uint8Array(readBuffer);
-var res = true;
-for (var i = 0; i < bufferArr.length; i++) {
-    if(res) {
-        if (bufferArr[i] !== 0) {
-            res = false;
-            console.info('TC_020-1 Success');
-            expect(true).assertTrue();
-            done();
-            break;
+    var bufferArr = new Uint8Array(readBuffer);
+    var res = true;
+    for (var i = 0; i < bufferArr.length; i++) {
+        if(res) {
+            if (bufferArr[i] !== 0) {
+                res = false;
+                console.log('readPixelsToBuffer end.');
+                break;
+            }
         }
     }
-}
+})
     
 // Write pixels.
 pixelmap.writePixels(area,() => {
@@ -71,56 +73,51 @@ pixelmap.writePixels(area,() => {
             if(res) {
                 if (readArr[i] !== 0) {
                     res = false;
-                    console.info('TC_022-1 Success');
-                    expect(true).assertTrue();
-                    done();
+                    console.log('readPixels end.please check buffer');
                     break;
                 }
             }
         }
+    })
+})
   
 // Write pixels to the buffer.
 pixelmap.writeBufferToPixels(writeColor).then(() => {
     const readBuffer = new ArrayBuffer(96);
     pixelmap.readPixelsToBuffer(readBuffer).then (() => {
-    	var bufferArr = new Uint8Array(readBuffer);
-     	var res = true;
-     	for (var i = 0; i < bufferArr.length; i++) {
-     		if(res) {
-     			if (bufferArr[i] !== i) {
-     				res = false;
-                    console.info('TC_023 Success');
-                    expect(true).assertTrue()
-                    done();
+        var bufferArr = new Uint8Array(readBuffer);
+        var res = true;
+        for (var i = 0; i < bufferArr.length; i++) {
+            if(res) {
+                if (bufferArr[i] !== i) {
+                    res = false;
+                    console.log('readPixels end.please check buffer');
                     break;
                 }
             }
         }
+    })
+})
 
 // Obtain image information.
-pixelmap.getImageInfo( imageInfo => {
+pixelmap.getImageInfo((error, imageInfo) => {
     if (imageInfo !== null) {
-        console.info('TC_024-1 imageInfo is ready');
-        expect(imageInfo.size.height == 4).assertTrue();
-        expect(imageInfo.size.width == 6).assertTrue();
-        expect(imageInfo.pixelFormat == 4).assertTrue();
-        done();
+	    console.log('Succeeded in getting imageInfo');
     } 
 })
 
 // Release the PixelMap object.
 pixelmap.release(()=>{
-    expect(true).assertTrue();
-    console.log('TC_027-1 suc');
-    done();
+    console.log('Succeeded in releasing pixelmap');
 })
 
-let path = '/data/local/tmp/test.jpg';
 // Create an image source (uri).
-const imageSourceApi = image.createImageSource(path); // '/data/local/tmp/test.jpg'
+let path = '/data/local/tmp/test.jpg';
+const imageSourceApi = image.createImageSource(path);
 
 // Create an image source (fd).
-const imageSourceApi = image.createImageSource(29);
+let fd = 29;
+const imageSourceApi = image.createImageSource(fd);
 
 // Create an image source (data).
 const data = new ArrayBuffer(96);
@@ -128,15 +125,15 @@ const imageSourceApi = image.createImageSource(data);
 
 // Release the image source.
 imageSourceApi.release(() => {
-    console.info('TC_044-1 Success');
-    })
+    console.log('Succeeded in releasing imagesource');
+})
     
 // Encode the image.
 const imagePackerApi = image.createImagePacker();
-imagePackerApi.packing(imageSourceApi, packOpts, data => {
-    console.info('TC_062-1 finished');
-    expect(data !== null).assertTrue();
-    done();
+const imageSourceApi = image.createImageSource(0);
+let packOpts = { format:"image/jpeg", quality:98 };
+imagePackerApi.packing(imageSourceApi, packOpts, (err, data) => {
+    console.log('Succeeded in packing');
 })
  
 // Release the ImagePacker object.
@@ -163,60 +160,37 @@ let decodingOptions = {
     };
     
 // Create a pixel map in callback mode.
-imageSourceApi.createPixelMap(decodingOptions, pixelmap => {
-    console.info('TC_050 createPixelMap ');
-    expect(pixelmap !== null ).assertTrue();
-    done();
-    })
-}  
+imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
+    console.log('Succeeded in creating pixelmap.');
+})
 
 // Create a pixel map in promise mode.
 imageSourceApi.createPixelMap().then(pixelmap => {
-    console.info('TC_050-11 createPixelMap ');
-    expect(pixelmap !== null ).assertTrue();
-    done();
+    console.log('Succeeded in creating pixelmap.');
 })
 
 // Capture error information when an exception occurs during function invoking.
 catch(error => {
-    console.log('TC_050-11 error: ' + error);
-    expect().assertFail();
-    done();
+    console.log('Failed in creating pixelmap.' + error);
 })
 
 // Obtain the number of bytes in each line of pixels.
-pixelmap.getBytesNumberPerRow( num => {
-	console.info('TC_025-1 num is ' + num);
-	expect(num == expectNum).assertTrue();
-	done();
-})
+var num = pixelmap.getBytesNumberPerRow();
 
 // Obtain the total number of pixel bytes.
-pixelmap.getPixelBytesNumber(num => {
-    console.info('TC_026-1 num is ' + num);
-    expect(num == expectNum).assertTrue();
-    done();
-})
+var pixelSize = pixelmap.getPixelBytesNumber();
 
 // Obtain the pixel map information.
-pixelmap.getImageInfo( imageInfo => {})
- 
-// Print the failure information.
-console.info('TC_024-1 imageInfo is empty');
-expect(false).assertTrue()
+pixelmap.getImageInfo().then( imageInfo => {});
 
 // Release the PixelMap object.
 pixelmap.release(()=>{
-    expect(true).assertTrue();
-    console.log('TC_027-1 suc');
-    done();
+    console.log('Succeeded in releasing pixelmap');
 })    
 
 // Capture release failure information.
 catch(error => {
-    console.log('TC_027-1 error: ' + error);
-    expect().assertFail();
-    done();
+    console.log('Failed in releasing pixelmap.' + error);
 })
 ```
 
@@ -230,9 +204,7 @@ const imageSourceApi = image.createImageSource(path); // '/data/local/tmp/test.p
  
 // Print the error message if the image source fails to be created.
 if (imageSourceApi == null) {
-    console.info('TC_062 create image source failed');
-    expect(false).assertTrue();
-    done();
+    console.log('Failed in creating imageSource.');
 }
    
 // Create an image packer if the image source is successfully created.
@@ -240,9 +212,7 @@ const imagePackerApi = image.createImagePacker();
 
 // Print the error information if the image packer fails to be created.
 if (imagePackerApi == null) {
-    console.info('TC_062 create image packer failed');
-    expect(false).assertTrue();
-    done();
+    console.log('Failed in creating imagePacker.');
 }
 
 // Set encoding parameters if the image packer is successfully created.
@@ -252,19 +222,15 @@ let packOpts = { format:["image/jpeg"], // The supported encoding format is jpg.
 // Encode the image.
 imagePackerApi.packing(imageSourceApi, packOpts)
 .then( data => {
-    console.info('TC_062 finished');
-    expect(data !== null).assertTrue();
-    done();
+    console.log('Succeeded in packing');
 })
-             
+         
 // Release the image packer after the encoding is complete.
 imagePackerApi.release();
 
 // Obtain the image source information.
-imageSourceApi.getImageInfo(imageInfo => {
-    console.info('TC_045 imageInfo');
-    expect(imageInfo !== null).assertTrue();
-    done();
+imageSourceApi.getImageInfo((err, imageInfo) => {
+    console.log('Succeeded in getting imageInfo');
 })
 
 // Update incremental data.
@@ -283,8 +249,9 @@ public async init(surfaceId: any) {
     var receiver = image.createImageReceiver(8 * 1024, 8, image.ImageFormat.JPEG, 1);
 
     // Obtain the surface ID.
-    var surfaceId = await receiver.getReceivingSurfaceId();
-
+    receiver.getReceivingSurfaceId((err, surfaceId) => {
+        console.info("receiver getReceivingSurfaceId success");
+    });
     // Register a surface listener, which is triggered after the buffer of the surface is ready.
     receiver.on('imageArrival', () => {
         // Obtain the latest buffer of the surface.

@@ -1,16 +1,22 @@
 # Video Playback Development
 
-## When to Use
+## Introduction
 
-You can use video playback APIs to convert video data into visible signals, play the signals using output devices, and manage playback tasks. This document describes development for the following video playback scenarios: full-process, normal playback, video switching, and loop playback.
+You can use video playback APIs to convert audio data into audible analog signals and play the signals using output devices. You can also manage playback tasks. For example, you can start, suspend, stop playback, release resources, set the volume, seek to a playback position, set the playback speed, and obtain track information. This document describes development for the following video playback scenarios: full-process, normal playback, video switching, and loop playback.
+
+## Working Principles
+
+The following figures show the video playback state transition and the interaction with external modules for video playback.
 
 **Figure 1** Video playback state transition
 
 ![en-us_image_video_state_machine](figures/en-us_image_video_state_machine.png)
 
-**Figure 2** Layer 0 diagram of video playback
+**Figure 2** Interaction with external modules for video playback
 
 ![en-us_image_video_player](figures/en-us_image_video_player.png)
+
+**NOTE**: When a third-party application calls a JS interface provided by the JS interface layer, the framework layer invokes the audio component through the media service of the native framework to output the audio data decoded by the software to the audio HDI. The graphics subsystem outputs the image data decoded by the codec HDI at the hardware interface layer to the display HDI. In this way, video playback is implemented.
 
 *Note: Video playback requires hardware capabilities such as display, audio, and codec.*
 
