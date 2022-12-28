@@ -11,7 +11,7 @@ Currently, the APIs support only the development of an application that adopts t
 
 ## Available APIs
 
-The application recovery APIs are provided by the **appRecovery** module, which can be imported via **import**. For details, please refer to [Development Example](#Development Example). This document describes behaviors of APIs in API version 9, and the content will update with changes.
+The application recovery APIs are provided by the **appRecovery** module, which can be imported via **import**. For details, please refer to [Development Example](#development-example). This document describes behaviors of APIs in API version 9, and the content will update with changes.
 
 ### Available APIs
 
