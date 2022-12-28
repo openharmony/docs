@@ -77,6 +77,7 @@ Pushes the component and data to the component user.
 | name      | string   | Yes   | Component name.          |
 | data      | KVObject | No   | Component data value.         |
 | extraData | KVObject | No   | Additional data value.         |
+| jsonPath | string | No   |  Path of the **external.json** file that stores template paths.      |
 
 **Example**
 
@@ -103,6 +104,7 @@ Requests the component from the component provider.
 | want | Want     | Yes   | Ability information of the component provider.|
 | name | string   | Yes   | Name of the requested component.        |
 | data | KVObject | Yes   | Additional data.          |
+| jsonPath | string | No   |  Path of the **external.json file** that stores template paths. If this parameter is not null or not set, request communication is not triggered.      |
 
 **RequestCallbackParameters**
 
@@ -111,12 +113,6 @@ Requests the component from the component provider.
 | componentTemplate | PluginComponentTemplate | Component template.|
 | data              | KVObject                | Component data.|
 | extraData         | KVObject                | Additional data.|
-
-**KVObject**
-
-| Name  | Type                                      | Description                                      |
-| ---- | ---------------------------------------- | ---------------------------------------- |
-| key  | number \| string \| boolean \| Array \| KVObject | Key of the **KVObject**. **KVObject** uses **key** and **value** to store data. If **key** is of the string type, **value** can be of the number, string, boolean, array type or another **KVObject**.|
 
 **Example**
 
@@ -155,6 +151,20 @@ Listens for events of the request type and returns the requested data, or listen
 
 For details, see [PluginComponent Tools](#plugincomponent-tools).
 
+**KVObject**
+
+| Name  | Type                                      | Description                                      |
+| ---- | ---------------------------------------- | ---------------------------------------- |
+| key  | number \| string \| boolean \| Array \| KVObject | Key of the **KVObject**. **KVObject** uses **key** and **value** to store data. If **key** is of the string type, **value** can be of the number, string, boolean, array type or another **KVObject**.|
+
+
+**Description of the external.json file**
+
+The **external.json** file is created by developers. This file stores component names and template paths in key-value pairs. The component name is the key, and the corresponding template path is the value.
+
+**Example**
+
+For details, see [external.json](#externaljson).
 
 ## Example
 
@@ -294,7 +304,7 @@ export default {
     pluginComponentManager.on("request", onRequestListener)
   },
   Push() {
-        // The component provider proactively sends data.
+    // The component provider proactively sends data.
     pluginComponentManager.push(
       {
         want: {
@@ -347,3 +357,11 @@ export default {
   }
 }
 ```
+
+
+### external.json
+```json
+{
+  "plugintemplate": "ets/pages/plugintemplate.js",
+  "plugintemplate2": "ets/pages/plugintemplate2.js"
+}
