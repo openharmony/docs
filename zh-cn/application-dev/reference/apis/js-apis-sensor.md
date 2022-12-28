@@ -3619,7 +3619,7 @@ try {
 
 ## ProximityResponse
 
-接近光传感器数据，继承于[Response](#response)。123
+接近光传感器数据，继承于[Response](#response)。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
