@@ -45,15 +45,21 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
 
 以实现对用户点击按钮行为的事件打点及订阅为例，说明开发步骤。
 
-1. 新建一个ets应用工程，编辑工程中的“entry > src > main > ets  > Application> MyAbilityStage.ts” 文件，在应用启动时添加对用户点击按钮事件的订阅，完整示例代码如下：
+1. 新建一个ets应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ts” 文件，在onCreate函数中添加对用户点击按钮事件的订阅，完整示例代码如下：
 
    ```js
-   import AbilityStage from "@ohos.application.AbilityStage"
+   import hilog from '@ohos.hilog';
+   import Ability from '@ohos.application.Ability'
+   import Window from '@ohos.window'
    import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent'
    
-   export default class MyAbilityStage extends AbilityStage {
-       onCreate() {
-           console.log("[Demo] MyAbilityStage onCreate")
+   export default class EntryAbility extends Ability {
+       onCreate(want, launchParam) {
+           hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
+           hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+           hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
+           hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
+   
            hiAppEvent.addWatcher({
                // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
                name: "watcher1",
@@ -65,7 +71,7 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
                onTrigger: function (curRow, curSize, holder) {
                    // 返回的holder对象为null，表示订阅过程发生异常，因此在记录错误日志后直接返回
                    if (holder == null) {
-                       console.error("HiAppEvent holder is null")
+                       hilog.error(0x0000, 'testTag', "HiAppEvent holder is null")
                        return
                    }
                    let eventPkg = null
@@ -73,11 +79,11 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
                    // 返回的事件包对象为null，表示当前订阅数据已被全部取出，此次订阅回调触发结束
                    while ((eventPkg = holder.takeNext()) != null) {
                        // 开发者可以对事件包中的事件打点数据进行自定义处理，此处是将事件打点数据打印在日志中
-                       console.info(`HiAppEvent eventPkg.packageId=${eventPkg.packageId}`)
-                       console.info(`HiAppEvent eventPkg.row=${eventPkg.row}`)
-                       console.info(`HiAppEvent eventPkg.size=${eventPkg.size}`)
+                       hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.packageId=%{public}d`, eventPkg.packageId)
+                       hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.row=%{public}d`, eventPkg.row)
+                       hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.size=%{public}d`, eventPkg.size)
                        for (const eventInfo of eventPkg.data) {
-                           console.info(`HiAppEvent eventPkg.info=${eventInfo}`)
+                           hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.info=%{public}s`, eventInfo)
                        }
                    }
                }
@@ -85,10 +91,11 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
        }
    }
 
-2. 编辑工程中的“entry > src > main > ets  > Application> MyAbilityStage.ts” 文件，添加一个按钮并在其onClick函数中进行事件打点，以记录按钮点击事件，完整示例代码如下：
+2. 编辑工程中的“entry > src > main > ets  > pages > Index.ets” 文件，添加一个按钮并在其onClick函数中进行事件打点，以记录按钮点击事件，完整示例代码如下：
 
    ```js
    import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent'
+   import hilog from '@ohos.hilog'
    
    @Entry
    @Component
@@ -114,9 +121,9 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
                // 事件参数定义
                params: { click_time: 100 }
              }).then(() => {
-               console.log(`HiAppEvent success to write event`)
+               hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
              }).catch((err) => {
-               console.error(`HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+               hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
              })
            })
          }
