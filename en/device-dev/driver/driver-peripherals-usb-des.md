@@ -70,7 +70,7 @@ The USB Device DDK provides the capability of developing USB drivers on the devi
 
 - The Adapter module is provided by the composite device configuration driver and common function driver.
 
-## How to Develop
+## Development Guidelines
 
 The USB driver development in kernel mode is complex. Therefore, you need to have a deep understanding of the USB protocol. The USB DDK is introduced to help you to develop USB drivers in user mode more conveniently.
 
@@ -84,69 +84,69 @@ The following table lists the APIs related to USB host driver development (commo
 
   **Table 1** APIs for USB host driver development (common mode)
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| int32_t&nbsp;UsbInitHostSdk(struct&nbsp;UsbSession&nbsp;\*\*session); | Initializes the USB host driver DDK.| 
-| const&nbsp;struct&nbsp;UsbInterface&nbsp;\*UsbClaimInterface(const<br>struct&nbsp;UsbSession&nbsp;\*session,&nbsp;uint8_t&nbsp;busNum,&nbsp;uint8_t<br>usbAddr,&nbsp;uint8_t&nbsp;interfaceIndex); | Obtains a USB interface.| 
-| UsbInterfaceHandle&nbsp;\*UsbOpenInterface(const&nbsp;struct<br>UsbInterface&nbsp;\*interfaceObj); | Opens a USB interface.| 
-| int32_t&nbsp;UsbGetPipeInfo(const&nbsp;UsbInterfaceHandle<br>\*interfaceHandle,&nbsp;uint8_t&nbsp;settingIndex,&nbsp;uint8_t&nbsp;pipeId,<br>struct&nbsp;UsbPipeInfo&nbsp;\*pipeInfo); | Obtains USB pipe information.| 
-| struct&nbsp;UsbRequest&nbsp;\*UsbAllocRequest(const<br>UsbInterfaceHandle&nbsp;\*interfaceHandle,&nbsp;int32_t&nbsp;isoPackets<br>,&nbsp;int32_t&nbsp;length); | Allocates a request object.| 
-| int32_t&nbsp;UsbFillRequest(const&nbsp;struct&nbsp;UsbRequest<br>\*request,&nbsp;const&nbsp;UsbInterfaceHandle&nbsp;\*interfaceHandle,<br>const&nbsp;struct&nbsp;UsbRequestParams&nbsp;\*params); | Fills in a request.| 
-| int32_t&nbsp;UsbSubmitRequestSync(const&nbsp;struct&nbsp;UsbRequest<br>\*request); | Sends a synchronous request.| 
+| int32_t&nbsp;UsbInitHostSdk(struct&nbsp;UsbSession&nbsp;\*\*session); | Initializes the USB host driver DDK.|
+| const&nbsp;struct&nbsp;UsbInterface&nbsp;\*UsbClaimInterface(const<br>struct&nbsp;UsbSession&nbsp;\*session,&nbsp;uint8_t&nbsp;busNum,&nbsp;uint8_t<br>usbAddr,&nbsp;uint8_t&nbsp;interfaceIndex); | Obtains a USB interface.|
+| UsbInterfaceHandle&nbsp;\*UsbOpenInterface(const&nbsp;struct<br>UsbInterface&nbsp;\*interfaceObj); | Opens a USB interface.|
+| int32_t&nbsp;UsbGetPipeInfo(const&nbsp;UsbInterfaceHandle<br>\*interfaceHandle,&nbsp;uint8_t&nbsp;settingIndex,&nbsp;uint8_t&nbsp;pipeId,<br>struct&nbsp;UsbPipeInfo&nbsp;\*pipeInfo); | Obtains USB pipe information.|
+| struct&nbsp;UsbRequest&nbsp;\*UsbAllocRequest(const<br>UsbInterfaceHandle&nbsp;\*interfaceHandle,&nbsp;int32_t&nbsp;isoPackets<br>,&nbsp;int32_t&nbsp;length); | Allocates a request object.|
+| int32_t&nbsp;UsbFillRequest(const&nbsp;struct&nbsp;UsbRequest<br>\*request,&nbsp;const&nbsp;UsbInterfaceHandle&nbsp;\*interfaceHandle,<br>const&nbsp;struct&nbsp;UsbRequestParams&nbsp;\*params); | Fills in a request.|
+| int32_t&nbsp;UsbSubmitRequestSync(const&nbsp;struct&nbsp;UsbRequest<br>\*request); | Sends a synchronous request.|
 
 The following table lists the APIs related to USB host driver development (expert mode). For details about the API definitions, see the [source code](https://gitee.com/openharmony/drivers_peripheral/blob/master/usb/interfaces/ddk/host/usb_raw_api.h).
 
   **Table 2** APIs for USB host driver development (expert mode)
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| int32_t&nbsp;UsbRawInit(struct&nbsp;UsbSession&nbsp;\*\*session); | Initializes the USB raw APIs.| 
-| UsbRawHandle&nbsp;\*UsbRawOpenDevice(const&nbsp;struct<br>UsbSession&nbsp;\*session,&nbsp;uint8_t&nbsp;busNum,&nbsp;uint8_t<br>usbAddr); | Opens a USB device.| 
-| int32_t&nbsp;UsbRawSendControlRequest(const&nbsp;struct<br>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbControlRequestData<br>\*requestData); | Performs a control transfer synchronously.| 
-| int32_t&nbsp;UsbRawSendBulkRequest(const&nbsp;struct<br>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbRequestData<br>\*requestData); | Performs a bulk transfer synchronously.| 
-| int32_t&nbsp;UsbRawSendInterruptRequest(const&nbsp;struct<br>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbRequestData<br>\*requestData); | Performs an interrupt transfer synchronously.| 
-| int32_t&nbsp;UsbRawGetConfigDescriptor(const&nbsp;UsbRawDevice<br>\*rawDev,&nbsp;uint8_t&nbsp;configIndex,&nbsp;struct<br>UsbRawConfigDescriptor&nbsp;\*\*config); | Obtains the configuration descriptor of a device.| 
-| int32_t&nbsp;UsbRawFillInterruptRequest(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br>UsbRawFillRequestData&nbsp;\*fillData); | Fills in an interrupt transfer request.| 
-| int32_t&nbsp;UsbRawFillIsoRequest(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br>UsbRawFillRequestData&nbsp;\*fillData); | Fills in an isochronous transfer request.| 
-| int32_t&nbsp;UsbRawSubmitRequest(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request); | Submits a transfer request.| 
-| int32_t&nbsp;UsbRawCancelRequest(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request); | Cancels a transfer request.| 
-| int32_t&nbsp;UsbRawHandleRequests(const&nbsp;UsbRawHandle<br>\*devHandle); | Handles a transfer request event.| 
+| int32_t&nbsp;UsbRawInit(struct&nbsp;UsbSession&nbsp;\*\*session); | Initializes the USB raw APIs.|
+| UsbRawHandle&nbsp;\*UsbRawOpenDevice(const&nbsp;struct<br>UsbSession&nbsp;\*session,&nbsp;uint8_t&nbsp;busNum,&nbsp;uint8_t<br>usbAddr); | Opens a USB device.|
+| int32_t&nbsp;UsbRawSendControlRequest(const&nbsp;struct<br>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbControlRequestData<br>\*requestData); | Performs a control transfer synchronously.|
+| int32_t&nbsp;UsbRawSendBulkRequest(const&nbsp;struct<br>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbRequestData<br>\*requestData); | Performs a bulk transfer synchronously.|
+| int32_t&nbsp;UsbRawSendInterruptRequest(const&nbsp;struct<br>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbRequestData<br>\*requestData); | Performs an interrupt transfer synchronously.|
+| int32_t&nbsp;UsbRawGetConfigDescriptor(const&nbsp;UsbRawDevice<br>\*rawDev,&nbsp;uint8_t&nbsp;configIndex,&nbsp;struct<br>UsbRawConfigDescriptor&nbsp;\*\*config); | Obtains the configuration descriptor of a device.|
+| int32_t&nbsp;UsbRawFillInterruptRequest(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br>UsbRawFillRequestData&nbsp;\*fillData); | Fills in an interrupt transfer request.|
+| int32_t&nbsp;UsbRawFillIsoRequest(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br>UsbRawFillRequestData&nbsp;\*fillData); | Fills in an isochronous transfer request.|
+| int32_t&nbsp;UsbRawSubmitRequest(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request); | Submits a transfer request.|
+| int32_t&nbsp;UsbRawCancelRequest(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request); | Cancels a transfer request.|
+| int32_t&nbsp;UsbRawHandleRequests(const&nbsp;UsbRawHandle<br>\*devHandle); | Handles a transfer request event.|
 
 The following table lists the APIs for USB device management on the device side. For details about the API definitions, see the [source code](https://gitee.com/openharmony/drivers_peripheral/blob/master/usb/interfaces/ddk/device/usbfn_device.h).
 
   **Table 3** APIs for USB device management on the device side
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| const&nbsp;struct&nbsp;UsbFnDevice&nbsp;\*UsbFnCreateDevice(const<br>char&nbsp;\*udcName,&nbsp;const&nbsp;struct&nbsp;UsbFnDescriptorData<br>\*descriptor); | Creates a USB device.| 
-| int32_t&nbsp;UsbFnRemoveDevice(struct&nbsp;UsbFnDevice<br>\*fnDevice); | Deletes a USB device.| 
-| const&nbsp;struct&nbsp;UsbFnDevice&nbsp;\*UsbFnGetDevice(const&nbsp;char<br>\*udcName); | Obtains a USB device.| 
+| const&nbsp;struct&nbsp;UsbFnDevice&nbsp;\*UsbFnCreateDevice(const<br>char&nbsp;\*udcName,&nbsp;const&nbsp;struct&nbsp;UsbFnDescriptorData<br>\*descriptor); | Creates a USB device.|
+| int32_t&nbsp;UsbFnRemoveDevice(struct&nbsp;UsbFnDevice<br>\*fnDevice); | Deletes a USB device.|
+| const&nbsp;struct&nbsp;UsbFnDevice&nbsp;\*UsbFnGetDevice(const&nbsp;char<br>\*udcName); | Obtains a USB device.|
 
 The following table lists the APIs for USB interface definition on the device side. For details about the API definitions, see the [source code](https://gitee.com/openharmony/drivers_peripheral/blob/master/usb/interfaces/ddk/device/usbfn_interface.h).
 
   **Table 4** APIs for USB interface definition on the device side
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| int32_t&nbsp;UsbFnStartRecvInterfaceEvent(struct<br>UsbFnInterface&nbsp;\*interface,&nbsp;uint32_t&nbsp;eventMask,<br>UsbFnEventCallback&nbsp;callback,&nbsp;void&nbsp;\*context); | Starts receiving events.| 
-| int32_t&nbsp;UsbFnStopRecvInterfaceEvent(struct<br>UsbFnInterface&nbsp;\*interface); | Stops receiving events.| 
-| UsbFnInterfaceHandle&nbsp;UsbFnOpenInterface(struct&nbsp;UsbFnInterface&nbsp;\*interface); | Opens an interface.| 
-| int32_t&nbsp;UsbFnCloseInterface(UsbFnInterfaceHandle&nbsp;handle); | Closes an interface.| 
-| int32_t&nbsp;UsbFnGetInterfacePipeInfo(struct&nbsp;UsbFnInterface<br>\*interface,&nbsp;uint8_t&nbsp;pipeId,&nbsp;struct&nbsp;UsbFnPipeInfo&nbsp;\*info); | Obtains pipe information.| 
-| int32_t&nbsp;UsbFnSetInterfaceProp(const&nbsp;struct&nbsp;UsbFnInterface<br>\*interface,&nbsp;const&nbsp;char&nbsp;\*name,&nbsp;const&nbsp;char&nbsp;\*value); | Sets custom properties.| 
+| int32_t&nbsp;UsbFnStartRecvInterfaceEvent(struct<br>UsbFnInterface&nbsp;\*interface,&nbsp;uint32_t&nbsp;eventMask,<br>UsbFnEventCallback&nbsp;callback,&nbsp;void&nbsp;\*context); | Starts receiving events.|
+| int32_t&nbsp;UsbFnStopRecvInterfaceEvent(struct<br>UsbFnInterface&nbsp;\*interface); | Stops receiving events.|
+| UsbFnInterfaceHandle&nbsp;UsbFnOpenInterface(struct&nbsp;UsbFnInterface&nbsp;\*interface); | Opens an interface.|
+| int32_t&nbsp;UsbFnCloseInterface(UsbFnInterfaceHandle&nbsp;handle); | Closes an interface.|
+| int32_t&nbsp;UsbFnGetInterfacePipeInfo(struct&nbsp;UsbFnInterface<br>\*interface,&nbsp;uint8_t&nbsp;pipeId,&nbsp;struct&nbsp;UsbFnPipeInfo&nbsp;\*info); | Obtains pipe information.|
+| int32_t&nbsp;UsbFnSetInterfaceProp(const&nbsp;struct&nbsp;UsbFnInterface<br>\*interface,&nbsp;const&nbsp;char&nbsp;\*name,&nbsp;const&nbsp;char&nbsp;\*value); | Sets custom properties.|
 
 The following table lists the APIs for USB data request on the device side. For details about the API definitions, see the [source code](https://gitee.com/openharmony/drivers_peripheral/blob/master/usb/interfaces/ddk/device/usbfn_request.h).
 
   **Table 5** APIs for USB data request on the device side
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| struct&nbsp;UsbFnRequest<br>\*UsbFnAllocCtrlRequest(UsbFnInterfaceHandle&nbsp;handle,<br>uint32_t&nbsp;len); | Allocates a control transfer request.| 
-| struct&nbsp;UsbFnRequest&nbsp;\*UsbFnAllocRequest(UsbFnInterfaceHandle&nbsp;handle,<br>uint8_t&nbsp;pipe,&nbsp;uint32_t&nbsp;len); | Allocates a data request.| 
-| int32_t&nbsp;UsbFnFreeRequest(struct&nbsp;UsbFnRequest&nbsp;\*req); | Releases a request.| 
-| int32_t&nbsp;UsbFnSubmitRequestAsync(struct&nbsp;UsbFnRequest<br>\*req); | Sends an asynchronous request.| 
-| int32_t&nbsp;UsbFnSubmitRequestSync(struct&nbsp;UsbFnRequest<br>\*req,&nbsp;uint32_t&nbsp;timeout); | Sends a synchronous request.| 
-| int32_t&nbsp;UsbFnCancelRequest(struct&nbsp;UsbFnRequest&nbsp;\*req); | Cancels a request.| 
+| struct&nbsp;UsbFnRequest<br>\*UsbFnAllocCtrlRequest(UsbFnInterfaceHandle&nbsp;handle,<br>uint32_t&nbsp;len); | Allocates a control transfer request.|
+| struct&nbsp;UsbFnRequest&nbsp;\*UsbFnAllocRequest(UsbFnInterfaceHandle&nbsp;handle,<br>uint8_t&nbsp;pipe,&nbsp;uint32_t&nbsp;len); | Allocates a data request.|
+| int32_t&nbsp;UsbFnFreeRequest(struct&nbsp;UsbFnRequest&nbsp;\*req); | Releases a request.|
+| int32_t&nbsp;UsbFnSubmitRequestAsync(struct&nbsp;UsbFnRequest<br>\*req); | Sends an asynchronous request.|
+| int32_t&nbsp;UsbFnSubmitRequestSync(struct&nbsp;UsbFnRequest<br>\*req,&nbsp;uint32_t&nbsp;timeout); | Sends a synchronous request.|
+| int32_t&nbsp;UsbFnCancelRequest(struct&nbsp;UsbFnRequest&nbsp;\*req); | Cancels a request.|
 
 
 ### How to Develop
@@ -1000,7 +1000,7 @@ HDF_INIT(g_usbSerialDriverEntry); // Driver entry.
 ```
 
 #### Developing Driver Using Host Raw APIs
-  
+
 ```cpp
 root {
     module = "usb_pnp_device";
