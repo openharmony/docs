@@ -102,7 +102,7 @@ try {
   let localUpdater = update.getLocalUpdater();
 } catch(error) {
   console.error(`Fail to get localUpdater error: ${error}`);
-}
+};
 ```
 
 ## Updater
@@ -844,7 +844,7 @@ const versionDigestInfo = {
 };
 
 // Options for clearing errors
-lconstet clearOptions = {
+const clearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
 };
 updater.clearError(versionDigestInfo, clearOptions).then(() => {
@@ -1248,7 +1248,7 @@ Installs the update package. This API uses a promise to return the result.
 **Example**
 
 ```ts
-localUpdater upgradeFiles = [{
+const upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
 }];
