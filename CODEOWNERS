@@ -363,7 +363,7 @@ zh-cn/application-dev/reference/apis/js-apis-hitracechain.md @stone2050 @zengyaw
 zh-cn/application-dev/reference/apis/js-apis-hitracemeter.md @stone2050 @zengyawen @stesen @elsen-liu
 zh-cn/application-dev/reference/apis/js-apis-http.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-huks.md @gaoyong @zengyawen @niejiteng @jumozhanjiang
-zh-cn/application-dev/reference/apis/js-apis-i18n.md @Buda-Liu @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis/js-apis-i18n.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-image.md @zhangqiang183  @zengyawen @chenyuheng @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-inputconsumer.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-inputdevice.md @mayunteng_1 @ningningW @cococoler @alien0208
@@ -374,7 +374,7 @@ zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-context.md @f
 zh-cn/application-dev/reference/apis/js-apis-inputmethod.md @feng-aiwen @ningningW @SuperShrimp @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md @feng-aiwen @ningningW @SuperShrimp @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-inputmonitor.md @mayunteng_1 @ningningW @cococoler @alien0208
-zh-cn/application-dev/reference/apis/js-apis-intl.md @Buda-Liu @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis/js-apis-intl.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-keycode.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-keyevent.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-lightweightmap.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
@@ -408,7 +408,7 @@ zh-cn/application-dev/reference/apis/js-apis-queue.md @gongjunsong @ge-yafang @f
 zh-cn/application-dev/reference/apis/js-apis-radio.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-reminderAgent.md @jayleehw @RayShih @li-weifeng2 @currydavids
 zh-cn/application-dev/reference/apis/js-apis-request.md @feng-aiwen @ningningW @nagexiucai @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @Buda-Liu @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-router.md @huaweimaxuchu @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-rpc.md @xuepianpian @RayShih @zhaopeng_gitee @vagrant_world
 zh-cn/application-dev/reference/apis/js-apis-runninglock.md @aqxyjay @zengyawen @aqxyjay @alien0208
