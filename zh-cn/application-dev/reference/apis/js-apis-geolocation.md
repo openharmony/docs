@@ -481,7 +481,7 @@ getCurrentLocation(request?: CurrentLocationRequest) : Promise&lt;Location&gt;
   
   ```
   var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
-  locationEventListener.getCurrentLocation(requestInfo).then((result) => {
+  geolocation.getCurrentLocation(requestInfo).then((result) => {
       console.log('current location: ' + JSON.stringify(result));
   });
   ```
