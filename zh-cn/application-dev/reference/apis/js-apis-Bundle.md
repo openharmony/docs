@@ -312,7 +312,7 @@ SystemCapability.BundleManager.BundleFramework
 let bundleName = "com.example.myapplication";
 let bundleFlags = 1;
 let options = {
-  "userId" : 100
+    "userId": 100
 };
 bundle.getBundleInfo(bundleName, bundleFlags, options)
 .then((data) => {
@@ -395,7 +395,7 @@ SystemCapability.BundleManager.BundleFramework
 let bundleName = "com.example.myapplication";
 let bundleFlags = 1;
 let options = {
-  "userId" : 100
+    "userId": 100
 };
 bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
     if (err) {
