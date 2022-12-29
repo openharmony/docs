@@ -2123,6 +2123,222 @@ struct WebComponent {
 }
 ```
 
+### scrollTo
+
+scrollTo(x:number, y:number): void
+
+将页面滚动到指定的绝对位置。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明               |
+| ------ | -------- | ---- | ---------------------- |
+| x   | number   | 是   | 绝对位置的水平坐标，当传入数值为负数时，按照传入0处理。 |
+| y   | number   | 是   | 绝对位置的垂直坐标，当传入数值为负数时，按照传入0处理。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('scrollTo')
+        .onClick(() => {
+          try {
+            this.controller.scrollTo(50, 50);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+```html
+<!--xxx.html-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo</title>
+    <style>
+        body {
+            width:3000px;
+            height:3000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+        }
+    </style>
+</head>
+<body>
+Scroll Test
+</body>
+</html>
+```
+
+### scrollBy
+
+scrollBy(deltaX:number, deltaY:number): void
+
+将页面滚动指定的偏移量。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明               |
+| ------ | -------- | ---- | ---------------------- |
+| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 |
+| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('scrollBy')
+        .onClick(() => {
+          try {
+            this.controller.scrollBy(50, 50);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+```html
+<!--xxx.html-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo</title>
+    <style>
+        body {
+            width:3000px;
+            height:3000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+        }
+    </style>
+</head>
+<body>
+Scroll Test
+</body>
+</html>
+```
+
+### slideScroll
+
+slideScroll(vx:number, vy:number): void
+
+按照指定速度模拟对页面的轻扫滚动动作。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明               |
+| ------ | -------- | ---- | ---------------------- |
+| vx     | number   | 是   | 轻扫滚动的水平速度分量，其中水平向右为速度正方向。 |
+| vy     | number   | 是   | 轻扫滚动的垂直速度分量，其中垂直向下为速度正方向。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('slideScroll')
+        .onClick(() => {
+          try {
+            this.controller.slideScroll(500, 500);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+```html
+<!--xxx.html-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo</title>
+    <style>
+        body {
+            width:3000px;
+            height:3000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+        }
+    </style>
+</head>
+<body>
+Scroll Test
+</body>
+</html>
+```
+
 ### getOriginalUrl
 
 getOriginalUrl(): string
