@@ -1,6 +1,6 @@
 # @ohos.convertxml (xml转换JavaScript)
 
-本模块提供转换xml文本为JavaScript对象的选项。
+本模块提供转换xml文本为JavaScript对象的功能。
 
 > **说明：**
 >
@@ -109,7 +109,7 @@ console.log(result);
 
 转换选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称              | 类型 | 必填 | 说明                                                        |
 | ----------------- | -------- | ---- | ----------------------------------------------------------- |
