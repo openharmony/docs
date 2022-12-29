@@ -2564,7 +2564,6 @@ ExtensionAbility的类型
 | ENTERPRISE_ADMIN<sup>9+</sup>  | 11   | ExtensionAbility的类型包括企业管理员   |
 | THUMBNAIL<sup>9+</sup> | 13 | ExtensionAbility的类型包括缩略图 |
 | PREVIEW<sup>9+</sup> | 14 | ExtensionAbility的类型包括预览 |
-| PRINT<sup>9+</sup> | 15 | ExtensionAbility的类型包括打印框架 |
 | UNSPECIFIED<sup>9+</sup>       | 255   | ExtensionAbility未指定类型     |
 
 ## ExtensionFlag<sup>9+</sup>
