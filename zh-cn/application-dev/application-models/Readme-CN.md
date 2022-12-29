@@ -49,6 +49,7 @@
     - [任务管理场景介绍](mission-management-overview.md)
     - [任务管理与启动模式](mission-management-launch-type.md)
     - [页面栈及任务链](page-mission-stack.md)
+  - [Stage模型应用配置文件](config-file-stage.md)
 - FA模型开发指导
   - [FA模型开发概述](fa-model-development-overview.md)
   - FA模型应用组件
@@ -93,6 +94,7 @@
     - [线程模型](thread-model-fa.md)
     - [线程间通信](itc-fa-overview.md)
   - [任务管理](mission-management-fa.md)
+  - [FA模型应用配置文件](config-file-fa.md)
 - FA模型与Stage模型应用组件互通指导
   - [FA模型与Stage模型应用组件互通综述](fa-stage-interaction-overview.md)
   - [FA模型启动Stage模型UIAbility](start-uiability-from-fa.md)
