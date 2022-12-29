@@ -25,16 +25,16 @@ Ability信息，系统应用可以通过[bundleManager.queryAbilityInfo](js-apis
 | type                  | [AbilityType](js-apis-bundleManager.md#abilitytype)      | 是   | 否   | Ability类型<br />此属性仅可在FA模型下使用。 |
 | orientation           | [DisplayOrientation](js-apis-bundleManager.md#displayorientation)  | 是   | 否   | Ability的显示模式。                         |
 | launchType            | [LaunchType](js-apis-bundleManager.md#launchtype)        | 是   | 否   | Ability的启动模式。                         |
-| permissions           | Array\<string>                                           | 是   | 否   | 被其他应用Ability调用时需要申请的权限集合，通过调用[bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)接口，传入GET_ABILITY_INFO_WITH_PERMISSION获取。 |
+| permissions           | Array\<string>                                           | 是   | 否   | 被其他应用Ability调用时需要申请的权限集合，通过调用[bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)接口，abilityFlags参数传入GET_ABILITY_INFO_WITH_PERMISSION获取。 |
 | readPermission        | string                                                   | 是   | 否   | 读取Ability数据所需的权限<br />此属性仅可在FA模型下使用。 |
 | writePermission       | string                                                   | 是   | 否   | 向Ability写数据所需的权限<br />此属性仅可在FA模型下使用。 |
 | uri                   | string                                                   | 是   | 否   | 获取Ability的统一资源标识符（URI）<br />此属性仅可在FA模型下使用。 |
 | deviceTypes           | Array\<string>                                           | 是   | 否   | Ability支持的设备类型。                     |
-| applicationInfo       | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md)     | 是   | 否   | 应用程序的配置信息，通过调用[bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)接口，传入GET_ABILITY_INFO_WITH_APPLICATION获取。 |
-| metadata              | Array\<[Metadata](js-apis-bundleManager-metadata.md)>           | 是   | 否   | ability的元信息，通过调用[bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)接口，传入GET_ABILITY_INFO_WITH_METADATA获取。 |
-| enabled               | boolean                                                  | 是   | 否   | ability是否可用。                           |
-| supportWindowModes    | Array\<[SupportWindowMode](js-apis-bundleManager.md#supportwindowmode)> | 是   | 否   | ability支持的窗口模式。                      |
-| windowSize|[WindowSize](#windowsize)                                            |    是   | 否   | 表示窗口尺寸。|
+| applicationInfo       | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md)     | 是   | 否   | 应用程序的配置信息，通过调用[bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)接口，abilityFlags参数传入GET_ABILITY_INFO_WITH_APPLICATION获取。 |
+| metadata              | Array\<[Metadata](js-apis-bundleManager-metadata.md)>           | 是   | 否   | Ability的元信息，通过调用[bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)接口，abilityFlags参数传入GET_ABILITY_INFO_WITH_METADATA获取。 |
+| enabled               | boolean                                                  | 是   | 否   | Ability是否可用。                           |
+| supportWindowModes    | Array\<[SupportWindowMode](js-apis-bundleManager.md#supportwindowmode)> | 是   | 否   | Ability支持的窗口模式。                      |
+| windowSize|[WindowSize](#windowsize)                                            |    是   | 否   | Ability窗口尺寸。|
 
 ## WindowSize
 
