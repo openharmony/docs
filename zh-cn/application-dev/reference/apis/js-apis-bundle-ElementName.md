@@ -17,8 +17,8 @@ ElementName信息，标识Ability的基本信息，通过接口[Context.getEleme
 
 | 名称                     | 类型     | 可读 | 可写 | 说明                       |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
-| deviceId                | string   | 是   | 是   | 设备id。                   |
-| bundleName              | string   | 是   | 是   | 应用Bundle名称。          |
-| abilityName             | string   | 是   | 是   | Ability名称。               |
+| deviceId                | string   | 是   | 是   | 设备id值。                   |
+| bundleName              | string   | 是   | 是   | 应用Bundle的名称。          |
+| abilityName             | string   | 是   | 是   | Ability的名称。               |
 | uri                     | string   | 是   | 是   | 资源标识符。                 |
-| shortName               | string   | 是   | 是   | Ability短名称。               |
+| shortName               | string   | 是   | 是   | Ability的短名称。               |
