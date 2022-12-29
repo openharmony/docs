@@ -2,7 +2,7 @@
 
 ServiceExtensionContext模块是ServiceExtensionAbility的上下文环境，继承自ExtensionContext。
 
-ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力和接口，包括启动、停止、绑定、解绑Ability。
+ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力，包括启动、停止、绑定、解绑Ability。
 
 > **说明：**
 > 
@@ -95,7 +95,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
-启动Ability。通过Promise返回结果。
+启动Ability，结果以Promise的形式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -112,7 +112,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | 返回一个Promise，包含启动的结果。 |
 
 **错误码：**
 
@@ -171,7 +171,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability。
+启动Ability，结果以Callback的形式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
