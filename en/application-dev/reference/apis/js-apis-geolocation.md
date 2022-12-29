@@ -19,9 +19,9 @@ The system provides the following location permissions:
 
 If your application needs to access the device location information, it must first apply for required permissions. Specifically speaking:
 
-API versions earlier than 9: Apply for **ohos.permission.LOCATION**.
+- API versions earlier than 9: Apply for **ohos.permission.LOCATION**.
 
-API version 9 and later: Apply for **ohos.permission.APPROXIMATELY_LOCATION**, or apply for **ohos.permission.APPROXIMATELY_LOCATION** and **ohos.permission.LOCATION**. Note that **ohos.permission.LOCATION** cannot be applied for separately.
+- API version 9 and later: Apply for **ohos.permission.APPROXIMATELY\_LOCATION**, or apply for **ohos.permission.APPROXIMATELY\_LOCATION** and **ohos.permission.LOCATION**. Note that **ohos.permission.LOCATION** cannot be applied for separately.
 
 | API Version| Location Permission| Permission Application Result| Location Accuracy|
 | -------- | -------- | -------- | -------- |
@@ -30,7 +30,7 @@ API version 9 and later: Apply for **ohos.permission.APPROXIMATELY_LOCATION**, o
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION | Success| Location accurate to 5 kilometers|
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION| Success| Location accurate to meters|
 
-If your application needs to access the device location information when running in the background, it must be configured to be able to run in the background and be granted the **ohos.permission.LOCATION_IN_BACKGROUND** permission. In this way, the system continues to report device location information after your application moves to the background.
+If your application needs to access the device location information when running in the background, it must be configured to be able to run in the background and be granted the **ohos.permission.LOCATION\_IN\_BACKGROUND** permission. In this way, the system continues to report device location information after your application moves to the background.
 
 You can declare the required permission in your application's configuration file. For details, see [Access Control (Permission) Development](../../security/accesstoken-guidelines.md).
 
