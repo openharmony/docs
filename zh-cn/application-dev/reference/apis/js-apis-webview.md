@@ -100,7 +100,7 @@ struct WebComponent {
 
 ### postMessageEvent
 
-postMessageEvent(message: string): void
+postMessageEvent(message: WebMessage): void
 
 发送消息。完整示例代码参考[postMessage](#postmessage)
 
@@ -110,7 +110,7 @@ postMessageEvent(message: string): void
 
 | 参数名  | 类型   | 必填 | 说明           |
 | ------- | ------ | ---- | :------------- |
-| message | string | 是   | 要发送的消息。 |
+| message | [WebMessage](#webmessage) | 是   | 要发送的消息。 |
 
 **错误码：**
 
@@ -152,7 +152,7 @@ struct WebComponent {
 
 ### onMessageEvent
 
-onMessageEvent(callback: (result: string) => void): void
+onMessageEvent(callback: (result: WebMessage) => void): void
 
 注册回调函数，接收HTML5侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)
 
@@ -162,7 +162,7 @@ onMessageEvent(callback: (result: string) => void): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | :------------------- |
-| result | string | 是   | 接收到的消息。 |
+| result | [WebMessage](#webmessage) | 是   | 接收到的消息。 |
 
 **错误码：**
 
@@ -191,7 +191,17 @@ struct WebComponent {
           try {
             this.ports = this.controller.createWebMessagePorts();
             this.ports[1].onMessageEvent((msg) => {
-              console.log("received message from html5, on message:" + msg);
+              if (typeof(msg) == "string") {
+                console.log("received string message from html5, string is:" + msg);
+              } else if (typeof(msg) == "object") {
+                if (msg instanceof ArrayBuffer) {
+                  console.log("received arraybuffer from html5, length is:" + msg.byteLength);
+                } else {
+                  console.log("not support");
+                }
+              } else {
+                console.log("not support");
+              }
             })
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -1436,8 +1446,21 @@ struct WebComponent {
             // 2、将其中一个消息端口发送到HTML侧，由HTML侧保存并使用。
             this.controller.postMessage('__init_port__', [this.ports[0]], '*');
             // 3、另一个消息端口在应用侧注册回调事件。
-            this.ports[1].onMessageEvent((result: string) => {
-                var msg = 'Got msg from HTML: ' + result;
+            this.ports[1].onMessageEvent((result: WebMessage) => {
+                var msg = 'Got msg from HTML:';    
+                if (typeof(result) == "string") {
+                  console.log("received string message from html5, string is:" + result);
+                  msg = msg + result;
+                } else if (typeof(result) == "object") {
+                  if (result instanceof ArrayBuffer) {
+                    console.log("received arraybuffer from html5, length is:" + result.byteLength);
+                    msg = msg + "lenght is " + result.byteLength;
+                  } else {
+                    console.log("not support");
+                  }
+                } else {
+                  console.log("not support");
+                }
                 this.receivedFromHtml = msg;
               })
           } catch (error) {
@@ -1495,7 +1518,21 @@ window.addEventListener('message', function (event) {
             h5Port = event.ports[0]; // 1. 保存从ets侧发送过来的端口
             h5Port.onmessage = function (event) {
               // 2. 接收ets侧发送过来的消息.
-              var msg = 'Got message from ets:' + event.data;
+              var msg = 'Got message from ets:';
+              var result = event.data;
+              if (typeof(result) == "string") {
+                console.log("received string message from html5, string is:" + result);
+                msg = msg + result;
+              } else if (typeof(result) == "object") {
+                if (result instanceof ArrayBuffer) {
+                  console.log("received arraybuffer from html5, length is:" + result.byteLength);
+                  msg = msg + "lenght is " + result.byteLength;
+                } else {
+                  console.log("not support");
+                }
+              } else {
+                console.log("not support");
+              }
               output.innerHTML = msg;
             }
         }
@@ -4399,6 +4436,15 @@ Web组件返回的请求/响应头对象。
 | ---- | ---- | ---- | ---- |---- |
 | type | [HitTestTypeV9](#hittesttypev9) | 是 | 否 | 当前被点击区域的元素类型。|
 | extra | string        | 是 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
+
+## WebMessage
+
+用于描述[WebMessagePort](#webmessageport)所支持的数据类型。
+
+| 类型       | 说明                                     |
+| -------- | -------------------------------------- |
+| string   | 字符串类型数据。 |
+| ArrayBuffer   | 二进制类型数据。 |
 
 ## WebStorageOrigin
 
