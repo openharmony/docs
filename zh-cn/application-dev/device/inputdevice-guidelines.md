@@ -16,8 +16,8 @@ import inputDevice from '@ohos.multimodalInput.inputDevice';
 
 | 实例名 | 接口名  | 说明 |
 | ----------- | ------------------------------------------------------------ | -------------------------- |
-| inputDevice | function getDeviceList(callback: AsyncCallback\<Array\<number>>): void; | 获取输入设备列表。 |
-| inputDevice | function getKeyboardType(deviceId: number, callback: AsyncCallback\<KeyboardType>): void; | 获取输入设备的键盘类型。 |
+| inputDevice | function getDeviceList(): Promise\<Array\<number>>; | 获取输入设备列表。 |
+| inputDevice | function getKeyboardType(deviceId: number): Promise\<KeyboardType>; | 获取输入设备的键盘类型。 |
 | inputDevice | function on(type: "change", listener: Callback\<DeviceListener>): void; | 监听输入设备的热插拔事件。 |
 | inputDevice | function off(type: "change", listener?: Callback\<DeviceListener>): void; | 取消监听输入设备的热插拔事件。 |
 
@@ -51,7 +51,7 @@ try {
   // 2.监听设备热插拔
   inputDevice.on("change", (data) => {
     console.log(`Device event info: ${JSON.stringify(data)}`);
-    inputDevice.getKeyboardType(data.deviceId, (error, type) => {
+    inputDevice.getKeyboardType(data.deviceId).then((type) => {
       console.log("The keyboard type is: " + type);
       if (type === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
         // 物理键盘已插入

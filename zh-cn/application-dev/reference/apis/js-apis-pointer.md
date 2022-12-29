@@ -122,9 +122,13 @@ isPointerVisible(): Promise&lt;boolean&gt;
 **示例**：
 
 ```js
-pointer.isPointerVisible().then((visible) => {
-  console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
-});
+try {
+  pointer.isPointerVisible().then((visible) => {
+    console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
+  });
+} catch (error) {
+  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
 ```
 
 ## pointer.setPointerSpeed<sup>9+</sup>
