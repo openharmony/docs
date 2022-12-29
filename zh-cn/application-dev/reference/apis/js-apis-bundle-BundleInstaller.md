@@ -165,9 +165,9 @@ bundle.getBundleInstaller().then(installer => {
 
 | 名称        | 类型    | 可读 | 可写 | 说明               |
 | ----------- | ------- | ---- | ---- | ------------------ |
-| userId      | number  | 是   | 否   | 指示用户id, 默认值：调用方的userId |
-| installFlag | number  | 是   | 否   | 指示安装标志, 默认值：1, 取值范围：</br>1: 覆盖安装, </br>16: 免安装|
-| isKeepData  | boolean | 是   | 否   | 指示参数是否有数据，默认值：false |
+| userId      | number  | 是   | 是   | 指示用户id, 默认值：调用方的userId |
+| installFlag | number  | 是   | 是   | 指示安装标志, 默认值：1, 取值范围：</br>1: 覆盖安装, </br>16: 免安装|
+| isKeepData  | boolean | 是   | 是   | 指示参数是否有数据，默认值：false |
 
 ## InstallStatus<sup>(deprecated)<sup>
 

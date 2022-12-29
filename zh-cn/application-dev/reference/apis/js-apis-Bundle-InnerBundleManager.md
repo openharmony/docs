@@ -22,7 +22,7 @@ SystemCapability.BundleManager.BundleFramework
 getLauncherAbilityInfos(bundleName: string, userId: number, callback: AsyncCallback&lt;Array&lt;LauncherAbilityInfo&gt;&gt;) : void;
 
 以异步方法根据给定的Bundle名称获取LauncherAbilityInfos，使用callback形式返回结果。
-> 从API version 9开始不再支持。建议使用[launcherBundleManager#getLauncherAbilityInfo](js-apis-launcherBundleManager.md)替代。
+> 从API version 9开始不再支持。建议使用[launcherBundleManager.getLauncherAbilityInfo](js-apis-launcherBundleManager.md#launcherbundlemanagergetlauncherabilityinfo9)替代。
 
 **需要权限：**
 
@@ -50,7 +50,7 @@ SystemCapability.BundleManager.BundleFramework
 getLauncherAbilityInfos(bundleName: string, userId: number) : Promise&lt;Array&lt;LauncherAbilityInfo&gt;&gt;
 
 以异步方法根据给定的Bundle名称获取LauncherAbilityInfos，使用Promise形式返回结果。
-> 从API version 9开始不再支持。建议使用[launcherBundleManager#getLauncherAbilityInfo](js-apis-launcherBundleManager.md)替代。
+> 从API version 9开始不再支持。建议使用[launcherBundleManager.getLauncherAbilityInfo](js-apis-launcherBundleManager.md#launcherbundlemanagergetlauncherabilityinfo9)替代。
 
 **需要权限：**
 
@@ -82,7 +82,7 @@ SystemCapability.BundleManager.BundleFramework
 on(type:"BundleStatusChange", bundleStatusCallback : BundleStatusCallback, callback: AsyncCallback&lt;string&gt;) : void;
 
 注册Callback。
-> 从API version 9开始不再支持。建议使用[bundleMonitor#on](js-apis-bundleMonitor.md)替代。
+> 从API version 9开始不再支持。建议使用[bundleMonitor.on](js-apis-bundleMonitor.md#bundlemonitoron)替代。
 
 **需要权限：**
 
@@ -109,7 +109,7 @@ SystemCapability.BundleManager.BundleFramework
 on(type:"BundleStatusChange", bundleStatusCallback : BundleStatusCallback) : Promise&lt;string&gt;
 
 注册Callback。
-> 从API version 9开始不再支持。建议使用[bundleMonitor#on](js-apis-bundleMonitor.md)替代。
+> 从API version 9开始不再支持。建议使用[bundleMonitor.on](js-apis-bundleMonitor.md#bundlemonitoron)替代。
 
 **需要权限：**
 
@@ -141,7 +141,7 @@ SystemCapability.BundleManager.BundleFramework
 off(type:"BundleStatusChange", callback: AsyncCallback&lt;string&gt;) : void;
 
 取消注册Callback。
-> 从API version 9开始不再支持。建议使用[bundleMonitor#off](js-apis-bundleMonitor.md)替代。
+> 从API version 9开始不再支持。建议使用[bundleMonitor.off](js-apis-bundleMonitor.md#bundlemonitoroff)替代。
 
 **需要权限：**
 
@@ -167,7 +167,7 @@ SystemCapability.BundleManager.BundleFramework
 off(type:"BundleStatusChange") : Promise&lt;string&gt;
 
 取消注册Callback。
-> 从API version 9开始不再支持。建议使用[bundleMonitor#off](js-apis-bundleMonitor.md)替代。
+> 从API version 9开始不再支持。建议使用[bundleMonitor.off](js-apis-bundleMonitor.md#bundlemonitoroff)替代。
 
 **需要权限：**
 
@@ -198,7 +198,7 @@ SystemCapability.BundleManager.BundleFramework
 getAllLauncherAbilityInfos(userId: number, callback: AsyncCallback&lt;Array&lt;LauncherAbilityInfo&gt;&gt;) : void;
 
 以异步方法获取所有的LauncherAbilityInfos，使用callback形式返回结果。
-> 从API version 9开始不再支持。建议使用[launcherBundleManager#getAllLauncherAbilityInfo](js-apis-launcherBundleManager.md)替代。
+> 从API version 9开始不再支持。建议使用[launcherBundleManager.getAllLauncherAbilityInfo](js-apis-launcherBundleManager.md#launcherbundlemanagergetalllauncherabilityinfo9)替代。
 
 **需要权限：**
 
@@ -224,7 +224,7 @@ SystemCapability.BundleManager.BundleFramework
 getAllLauncherAbilityInfos(userId: number) : Promise&lt;Array&lt;LauncherAbilityInfo&gt;&gt;
 
 以异步方法获取LauncherAbilityInfos，使用Promise形式返回结果。
-> 从API version 9开始不再支持。建议使用[launcherBundleManager#getAllLauncherAbilityInfo](js-apis-launcherBundleManager.md)替代。
+> 从API version 9开始不再支持。建议使用[launcherBundleManager.getAllLauncherAbilityInfo](js-apis-launcherBundleManager.md#launcherbundlemanagergetalllauncherabilityinfo9)替代。
 
 **需要权限：**
 
@@ -255,7 +255,7 @@ SystemCapability.BundleManager.BundleFramework
 getShortcutInfos(bundleName :string, callback: AsyncCallback&lt;Array&lt;ShortcutInfo&gt;&gt;) : void;
 
 以异步方法根据给定的Bundle名称获取快捷方式信息，使用callback形式返回结果。
-> 从API version 9开始不再支持。建议使用[launcherBundleManager#getShortcutInfo](js-apis-launcherBundleManager.md)替代。
+> 从API version 9开始不再支持。建议使用[launcherBundleManager.getShortcutInfo](js-apis-launcherBundleManager.md#launcherbundlemanagergetshortcutinfo9)替代。
 
 **需要权限：**
 
@@ -281,7 +281,7 @@ SystemCapability.BundleManager.BundleFramework
 getShortcutInfos(bundleName : string) : Promise&lt;Array&lt;ShortcutInfo&gt;&gt;
 
 以异步方法根据给定的Bundle名称获取快捷方式信息，使用Promise形式返回结果。
-> 从API version 9开始不再支持。建议使用[launcherBundleManager#getShortcutInfo](js-apis-launcherBundleManager.md)替代。
+> 从API version 9开始不再支持。建议使用[launcherBundleManager.getShortcutInfo](js-apis-launcherBundleManager.md#launcherbundlemanagergetshortcutinfo9)替代。
 
 **需要权限：**
 
@@ -306,4 +306,3 @@ SystemCapability.BundleManager.BundleFramework
 | 类型                                                     | 说明                          |
 | -------------------------------------------------------- | ----------------------------- |
 | Promise\<Array<[ShortcutInfo](js-apis-bundle-ShortcutInfo.md)>> | Promise形式返回快捷方式信息。 |
-
