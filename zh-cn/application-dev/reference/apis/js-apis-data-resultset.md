@@ -6,543 +6,13 @@
 > 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## ResultSetV9<sup>9+</sup>
-
-提供通过查询数据库生成的数据库结果集的访问方法。
-
-### 使用说明
-
-需要通过[RdbStoreV9.query()](js-apis-data-rdb.md#query)获取resultSetV9对象。
-
-```js
-import dataRdb from '@ohos.data.rdb';
-let predicatesV9 = new dataRdb.RdbPredicatesV9("EMPLOYEE");
-predicatesV9.equalTo("AGE", 18);
-let promise = rdbStoreV9.query(predicatesV9, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSetV9) => {
-    console.log(TAG + "resultSet columnNames:" + resultSetV9.columnNames);
-    console.log(TAG + "resultSet columnCount:" + resultSetV9.columnCount);
-});
-```
-
-### 属性<sup>9+</sup>
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-| 名称         | 类型            | 必填 | 说明                             |
-| ------------ | ------------------- | ---- | -------------------------------- |
-| columnNames  | Array&lt;string&gt; | 是   | 获取结果集中所有列的名称。       |
-| columnCount  | number              | 是   | 获取结果集中的列数。             |
-| rowCount     | number              | 是   | 获取结果集中的行数。             |
-| rowIndex     | number              | 是   | 获取结果集当前行的索引。         |
-| isAtFirstRow | boolean             | 是   | 检查结果集是否位于第一行。       |
-| isAtLastRow  | boolean             | 是   | 检查结果集是否位于最后一行。     |
-| isEnded      | boolean             | 是   | 检查结果集是否位于最后一行之后。 |
-| isStarted    | boolean             | 是   | 检查指针是否移动过。             |
-| isClosed     | boolean             | 是   | 检查当前结果集是否关闭。         |
-
-### getColumnIndex<sup>9+</sup>
-
-getColumnIndex(columnName: string): number
-
-根据指定的列名获取列索引。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明                       |
-| ---------- | ------ | ---- | -------------------------- |
-| columnName | string | 是   | 表示结果集中指定列的名称。 |
-
-**返回值：**
-
-| 类型   | 说明               |
-| ------ | ------------------ |
-| number | 返回指定列的索引。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800013     | The column value is  null or the column type is incompatible. |
-
-**示例：**
-
-  ```js
-resultSetV9.goToFirstRow();
-const id = resultSetV9.getLong(resultSetV9.getColumnIndex("ID"));
-const name = resultSetV9.getString(resultSetV9.getColumnIndex("NAME"));
-const age = resultSetV9.getLong(resultSetV9.getColumnIndex("AGE"));
-const salary = resultSetV9.getDouble(resultSetV9.getColumnIndex("SALARY"));
-  ```
-
-### getColumnName<sup>9+</sup>
-
-getColumnName(columnIndex: number): string
-
-根据指定的列索引获取列名。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名      | 类型   | 必填 | 说明                       |
-| ----------- | ------ | ---- | -------------------------- |
-| columnIndex | number | 是   | 表示结果集中指定列的索引。 |
-
-**返回值：**
-
-| 类型   | 说明               |
-| ------ | ------------------ |
-| string | 返回指定列的名称。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800013     | The column value is  null or the column type is incompatible. |
-
-**示例：**
-
-  ```js
-const id = resultSetV9.getColumnName(0);
-const name = resultSetV9.getColumnName(1);
-const age = resultSetV9.getColumnName(2);
-  ```
-
-### goTo<sup>9+</sup>
-
-goTo(offset:number): boolean
-
-向前或向后转至结果集的指定行，相对于其当前位置偏移。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                         |
-| ------ | ------ | ---- | ---------------------------- |
-| offset | number | 是   | 表示相对于当前位置的偏移量。 |
-
-**返回值：**
-
-| 类型    | 说明                                          |
-| ------- | --------------------------------------------- |
-| boolean | 如果成功移动结果集，则为true；否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
-
-**示例：**
-
-  ```js
-let predicatesV9goto = new dataRdb.RdbPredicatesV9("EMPLOYEE");
-let promisequerygoto = rdbStoreV9.query(predicatesV9goto, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promisequerygoto.then((resultSetV9) => {
-    resultSetV9.goTo(1);
-    resultSetV9.close();
-}).catch((err) => {
-    console.log('query failed');
-});
-  ```
-
-### goToRow<sup>9+</sup>
-
-goToRow(position: number): boolean
-
-转到结果集的指定行。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                     |
-| -------- | ------ | ---- | ------------------------ |
-| position | number | 是   | 表示要移动到的指定位置。 |
-
-**返回值：**
-
-| 类型    | 说明                                          |
-| ------- | --------------------------------------------- |
-| boolean | 如果成功移动结果集，则为true；否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
-
-**示例：**
-
-  ```js
-let predicatesV9gotorow = new dataRdb.RdbPredicatesV9("EMPLOYEE");
-let promisequerygotorow = rdbStoreV9.query(predicatesV9gotorow, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promisequerygotorow.then((resultSetV9) => {
-    resultSetV9.goToRow(5);
-    resultSetV9.close();
-}).catch((err) => {
-    console.log('query failed');
-});
-  ```
-
-### goToFirstRow<sup>9+</sup>
-
-goToFirstRow(): boolean
-
-
-转到结果集的第一行。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**返回值：**
-
-| 类型    | 说明                                          |
-| ------- | --------------------------------------------- |
-| boolean | 如果成功移动结果集，则为true；否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
-
-**示例：**
-
-  ```js
-let predicatesV9goFirst = new dataRdb.RdbPredicatesV9("EMPLOYEE");
-let promisequerygoFirst = rdbStoreV9.query(predicatesV9goFirst, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promisequerygoFirst.then((resultSetV9) => {
-    resultSetV9.goToFirstRow();
-    resultSetV9.close();
-}).catch((err) => {
-    console.log('query failed');
-});
-  ```
-
-### goToLastRow<sup>9+</sup>
-
-goToLastRow(): boolean
-
-转到结果集的最后一行。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**返回值：**
-
-| 类型    | 说明                                          |
-| ------- | --------------------------------------------- |
-| boolean | 如果成功移动结果集，则为true；否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
-
-**示例：**
-
-  ```js
-let predicatesV9goLast = new dataRdb.RdbPredicatesV9("EMPLOYEE");
-let promisequerygoLast = rdbStoreV9.query(predicatesV9goLast, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promisequerygoLast.then((resultSetV9) => {
-    resultSetV9.goToLastRow();
-    resultSetV9.close();
-}).catch((err) => {
-    console.log('query failed');
-});
-  ```
-
-### goToNextRow<sup>9+</sup>
-
-goToNextRow(): boolean
-
-转到结果集的下一行。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**返回值：**
-
-| 类型    | 说明                                          |
-| ------- | --------------------------------------------- |
-| boolean | 如果成功移动结果集，则为true；否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
-
-**示例：**
-
-  ```js
-let predicatesV9goNext = new dataRdb.RdbPredicatesV9("EMPLOYEE");
-let promisequerygoNext = rdbStoreV9.query(predicatesV9goNext, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promisequerygoNext.then((resultSetV9) => {
-    resultSetV9.goToNextRow();
-    resultSetV9.close();
-}).catch((err) => {
-    console.log('query failed');
-});
-  ```
-
-### goToPreviousRow<sup>9+</sup>
-
-goToPreviousRow(): boolean
-
-转到结果集的上一行。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**返回值：**
-
-| 类型    | 说明                                          |
-| ------- | --------------------------------------------- |
-| boolean | 如果成功移动结果集，则为true；否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
-
-**示例：**
-
-  ```js
-let predicatesV9goPrev = new dataRdb.RdbPredicatesV9("EMPLOYEE");
-let promisequerygoPrev = rdbStoreV9.query(predicatesV9goPrev, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promisequerygoPrev.then((resultSetV9) => {
-    resultSetV9.goToPreviousRow();
-    resultSetV9.close();
-}).catch((err) => {
-    console.log('query failed');
-});
-  ```
-
-### getBlob<sup>9+</sup>
-
-getBlob(columnIndex: number): Uint8Array
-
-以字节数组的形式获取当前行中指定列的值。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名      | 类型   | 必填 | 说明                    |
-| ----------- | ------ | ---- | ----------------------- |
-| columnIndex | number | 是   | 指定的列索引，从0开始。 |
-
-**返回值：**
-
-| 类型       | 说明                             |
-| ---------- | -------------------------------- |
-| Uint8Array | 以字节数组的形式返回指定列的值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800013     | The column value is  null or the column type is incompatible. |
-
-**示例：**
-
-  ```js
-const codes = resultSetV9.getBlob(resultSetV9.getColumnIndex("CODES"));
-  ```
-
-### getString<sup>9+</sup>
-
-getString(columnIndex: number): string
-
-以字符串形式获取当前行中指定列的值。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名      | 类型   | 必填 | 说明                    |
-| ----------- | ------ | ---- | ----------------------- |
-| columnIndex | number | 是   | 指定的列索引，从0开始。 |
-
-**返回值：**
-
-| 类型   | 说明                         |
-| ------ | ---------------------------- |
-| string | 以字符串形式返回指定列的值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800013     | The column value is  null or the column type is incompatible. |
-
-**示例：**
-
-  ```js
-const name = resultSetV9.getString(resultSetV9.getColumnIndex("NAME"));
-  ```
-
-### getLong<sup>9+</sup>
-
-getLong(columnIndex: number): number
-
-以Long形式获取当前行中指定列的值。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名      | 类型   | 必填 | 说明                    |
-| ----------- | ------ | ---- | ----------------------- |
-| columnIndex | number | 是   | 指定的列索引，从0开始。 |
-
-**返回值：**
-
-| 类型   | 说明                       |
-| ------ | -------------------------- |
-| number | 以Long形式返回指定列的值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800013     | The column value is  null or the column type is incompatible. |
-
-**示例：**
-
-  ```js
-const age = resultSetV9.getLong(resultSetV9.getColumnIndex("AGE"));
-  ```
-
-### getDouble<sup>9+</sup>
-
-getDouble(columnIndex: number): number
-
-以double形式获取当前行中指定列的值。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名      | 类型   | 必填 | 说明                    |
-| ----------- | ------ | ---- | ----------------------- |
-| columnIndex | number | 是   | 指定的列索引，从0开始。 |
-
-**返回值：**
-
-| 类型   | 说明                         |
-| ------ | ---------------------------- |
-| number | 以double形式返回指定列的值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800013     | The column value is  null or the column type is incompatible. |
-
-**示例：**
-
-  ```js
-const salary = resultSetV9.getDouble(resultSetV9.getColumnIndex("SALARY"));
-  ```
-
-### isColumnNull<sup>9+</sup>
-
-isColumnNull(columnIndex: number): boolean
-
-检查当前行中指定列的值是否为null。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名      | 类型   | 必填 | 说明                    |
-| ----------- | ------ | ---- | ----------------------- |
-| columnIndex | number | 是   | 指定的列索引，从0开始。 |
-
-**返回值：**
-
-| 类型    | 说明                                                      |
-| ------- | --------------------------------------------------------- |
-| boolean | 如果当前行中指定列的值为null，则返回true，否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800013     | The column value is  null or the column type is incompatible. |
-
-**示例：**
-
-  ```js
-const isColumnNull = resultSetV9.isColumnNull(resultSetV9.getColumnIndex("CODES"));
-  ```
-
-### close<sup>9+</sup>
-
-close(): void
-
-关闭结果集。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**示例：**
-
-  ```js
-let predicatesV9Close = new dataRdb.RdbPredicatesV9("EMPLOYEE");
-let promiseClose = rdbStoreV9.query(predicatesV9Close, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promiseClose.then((resultSetV9) => {
-    resultSetV9.close();
-}).catch((err) => {
-    console.log('resultset close failed');
-});
-  ```
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
-
 ## ResultSet<sup>(deprecated)</sup>
 
 提供通过查询数据库生成的数据库结果集的访问方法。
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[ResultSetV9](#resultsetv99)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset9)替代。
 
 ### 使用说明
 
@@ -563,7 +33,7 @@ promise.then((resultSet) => {
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[属性](#属性9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.属性](js-apis-data-relationalStore.md#属性9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -587,7 +57,7 @@ getColumnIndex(columnName: string): number
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[getColumnIndex](#getcolumnindex9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.getColumnIndex](js-apis-data-relationalStore.md#getcolumnindex9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -621,7 +91,8 @@ getColumnName(columnIndex: number): string
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[getColumnName](#getcolumnname9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.getColumnName](js-apis-data-relationalStore.md#getcolumnname9)替代。
+
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -653,7 +124,7 @@ goTo(offset:number): boolean
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[goTo](#goto9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.goTo](js-apis-data-relationalStore.md#goto9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -690,7 +161,7 @@ goToRow(position: number): boolean
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[goToRow](#gotorow9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.goToRow](js-apis-data-relationalStore.md#gotorow9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -727,7 +198,8 @@ goToFirstRow(): boolean
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[goToFirstRow](#gotofirstrow9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.goToFirstRow](js-apis-data-relationalStore.md#gotofirstrow9)替代。
+
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -758,7 +230,7 @@ goToLastRow(): boolean
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[goToLastRow](#gotolastrow9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.goToLastRow](js-apis-data-relationalStore.md#gotolastrow9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -789,7 +261,7 @@ goToNextRow(): boolean
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[goToNextRow](#gotonextrow9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.goToNextRow](js-apis-data-relationalStore.md#gotonextrow9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -820,7 +292,7 @@ goToPreviousRow(): boolean
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[goToPreviousRow](#gotopreviousrow9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.goToPreviousRow](js-apis-data-relationalStore.md#gotopreviousrow9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -851,7 +323,7 @@ getBlob(columnIndex: number): Uint8Array
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[getBlob](#getblob9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.getBlob](js-apis-data-relationalStore.md#getblob9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -881,7 +353,7 @@ getString(columnIndex: number): string
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[getString](#getstring9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.getString](js-apis-data-relationalStore.md#getstring9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -911,7 +383,7 @@ getLong(columnIndex: number): number
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[getLong](#getlong9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.getLong](js-apis-data-relationalStore.md#getlong9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -941,7 +413,7 @@ getDouble(columnIndex: number): number
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[getDouble](#getdouble9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.getDouble](js-apis-data-relationalStore.md#getdouble9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -971,7 +443,8 @@ isColumnNull(columnIndex: number): boolean
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[isColumnNull](#iscolumnnull9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.isColumnNull](js-apis-data-relationalStore.md#iscolumnnull9)替代。
+
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1001,7 +474,7 @@ close(): void
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[close](#close9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.close](js-apis-data-relationalStore.md#close9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
