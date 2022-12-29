@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 ```
 
 ## 权限列表
@@ -210,7 +210,7 @@ getBundleInfoForSelf(bundleFlags: [number](#bundleflag)): Promise\<[BundleInfo](
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 try {
     bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
@@ -241,7 +241,7 @@ getBundleInfoForSelf(bundleFlags: [number](#bundleflag), callback: AsyncCallback
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 
 try {
@@ -292,7 +292,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 
 ```ts
 // 额外获取AbilityInfo
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY;
 let userId = 100;
@@ -312,7 +312,7 @@ try {
 
 ```ts
 // 额外获取ApplicationInfo中的metadata
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA;
 let userId = 100;
@@ -364,7 +364,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 ```ts
 // 额外获取extensionAbility
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY;
 
@@ -421,7 +421,7 @@ getBundleInfo(bundleName: string, bundleFlags: [number](#bundleflag), userId?: n
 
 ```ts
 // 额外获取ApplicationInfo和SignatureInfo
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let userId = 100;
@@ -438,7 +438,7 @@ try {
 ```
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 
@@ -488,7 +488,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 **示例：** 
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
 let userId = 100;
@@ -539,7 +539,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), cal
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
 
@@ -595,7 +595,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
 let userId = 100;
@@ -642,7 +642,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId: number, callback: A
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 let userId = 100;
 
@@ -689,7 +689,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), callback: AsyncCallback<Arr
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 
 try {
@@ -741,7 +741,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId?: number): Promise<A
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 
 try {
@@ -786,7 +786,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId: number, call
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
 let userId = 100;
 
@@ -833,7 +833,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), callback: AsyncCallb
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
 
 try {
@@ -885,7 +885,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Pr
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
 
 try {
@@ -936,7 +936,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId: numbe
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want = {
@@ -992,7 +992,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), callback: Asy
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let want = {
     bundleName : "com.example.myapplication",
@@ -1053,7 +1053,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: numb
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want = {
@@ -1073,7 +1073,7 @@ try {
 ```
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let want = {
     bundleName : "com.example.myapplication",
@@ -1127,7 +1127,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let userId = 100;
@@ -1184,7 +1184,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let want = {
@@ -1246,7 +1246,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
@@ -1268,7 +1268,7 @@ try {
 ```
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let want = {
@@ -1317,7 +1317,7 @@ getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void;
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let uid = 20010005;
 try {
     bundleManager.getBundleNameByUid(uid, (err, data) => {
@@ -1367,7 +1367,7 @@ getBundleNameByUid(uid: number): Promise\<string>;
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let uid = 20010005;
 try {
     bundleManager.getBundleNameByUid(uid).then((data) => {
@@ -1411,7 +1411,7 @@ getBundleArchiveInfo(hapFilePath: string, bundleFlags: [number](#bundleflag), ca
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let hapFilePath = "/data/xxx/test.hap";
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 
@@ -1464,7 +1464,7 @@ getBundleArchiveInfo(hapFilePath: string,  bundleFlags: [number](#bundleflag)): 
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let hapFilePath = "/data/xxx/test.hap";
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 
@@ -1510,7 +1510,7 @@ cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = "com.ohos.myapplication";
 
 try {
@@ -1562,7 +1562,7 @@ cleanBundleCacheFiles(bundleName: string): Promise\<void>;
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = "com.ohos.myapplication";
 
 try {
@@ -1607,7 +1607,7 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean, callback: AsyncCal
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = "com.ohos.myapplication";
 
 try {
@@ -1659,7 +1659,7 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean): Promise\<void>;
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = "com.ohos.myapplication";
 
 try {
@@ -1705,7 +1705,7 @@ setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isE
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want = {
@@ -1771,7 +1771,7 @@ setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isE
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want = {
@@ -1826,7 +1826,7 @@ isApplicationEnabled(bundleName: string, callback: AsyncCallback\<boolean>): voi
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 
 try {
@@ -1875,7 +1875,7 @@ isApplicationEnabled(bundleName: string): Promise\<boolean>;
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 
 try {
@@ -1918,7 +1918,7 @@ isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), call
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want = {
@@ -1981,7 +1981,7 @@ isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): Pro
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want = {
@@ -2041,7 +2041,7 @@ getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallba
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let userId = 100;
 
@@ -2090,7 +2090,7 @@ getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 
 try {
@@ -2144,7 +2144,7 @@ getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>;
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let userId = 100;
 
@@ -2191,7 +2191,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let moduleName = 'entry';
 let abilityName = 'MainAbility';
 let metadataName = 'com.example.myapplication.metadata';
@@ -2246,7 +2246,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let moduleName = 'entry';
 let abilityName = 'MainAbility';
 
@@ -2262,7 +2262,7 @@ try {
 ```
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let moduleName = 'entry';
 let abilityName = 'MainAbility';
 let metadataName = 'com.example.myapplication.metadata';
@@ -2308,7 +2308,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
 let metadataName = 'com.example.myapplication.metadata';
@@ -2362,7 +2362,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
 let metadataName = 'com.example.myapplication.metadata';
@@ -2418,7 +2418,7 @@ getPermissionDef(permissionName: string, callback: AsyncCallback\<[PermissionDef
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let permission = "ohos.permission.GET_BUNDLE_INFO";
 try {
     bundleManager.getPermissionDef(permission, (err, data) => {
@@ -2468,7 +2468,7 @@ getPermissionDef(permissionName: string): Promise\<[PermissionDef](js-apis-bundl
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let permissionName = "ohos.permission.GET_BUNDLE_INFO";
 try {
     bundleManager.getPermissionDef(permissionName).then((data) => {
@@ -2517,7 +2517,7 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, cal
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 let abilityName = 'MainAbility';
@@ -2576,7 +2576,7 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Pr
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 let abilityName = 'MainAbility';
@@ -2628,7 +2628,7 @@ getAbilityIcon(bundleName: string, moduleName: string, abilityName: string, call
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 let abilityName = 'MainAbility';
@@ -2687,7 +2687,7 @@ getAbilityIcon(bundleName: string, moduleName: string, abilityName: string): Pro
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 let abilityName = 'MainAbility';
@@ -2742,7 +2742,7 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let applicationFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
 let userId = 100;
@@ -2756,7 +2756,7 @@ try {
 ```
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let applicationFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
 
@@ -2807,7 +2807,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 let userId = 100;
@@ -2821,7 +2821,7 @@ try {
 ```
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 try {
