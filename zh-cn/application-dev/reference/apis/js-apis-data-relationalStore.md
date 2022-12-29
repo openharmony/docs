@@ -4,9 +4,9 @@
 
 该模块提供以下关系型数据库相关的常用功能：
 
-- [RdbPredicates](#rdbpredicates9)： 数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
-- [RdbStore](#rdbstore9)：提供管理关系数据库(RDB)方法的接口。
-- [Resultset](#resultset9)：提供用户调用关系型数据库查询接口之后返回的结果集合。
+- [RdbPredicates](#rdbpredicates)： 数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
+- [RdbStore](#rdbstore)：提供管理关系数据库(RDB)方法的接口。
+- [Resultset](#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
 
 > **说明：**
 > 
@@ -18,9 +18,9 @@
 import data_rdb from '@ohos.data.relationalStore';
 ```
 
-## data_rdb.getRdbStore<sup>9+</sup>
+## data_rdb.getRdbStore
 
-getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void
+getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void
 
 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用callback异步回调。
 
@@ -32,8 +32,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 | -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                        | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | config   | [StoreConfig](#storeconfig)               | 是   | 与此RDB存储相关的数据库配置。                                |
-| version  | number                                         | 是   | 数据库版本。<br>目前暂不支持通过version自动识别数据库升级降级操作，只能由开发者自行维护。                                                 |
-| callback | AsyncCallback&lt;[RdbStore](#rdbstore9)&gt; | 是   | 指定callback回调函数，返回RdbStore对象。                   |
+| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是   | 指定callback回调函数，返回RdbStore对象。                   |
 
 **错误码：**
 
@@ -58,9 +57,16 @@ const STORE_CONFIG = {
     name: "RdbTest.db",
     securityLevel: data_rdb.SecurityLevel.S1
 }
-data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, RdbStore) {
+data_rdb.getRdbStore(context, STORE_CONFIG, function (err, RdbStore) {
     if (err) {
         console.info("Get RdbStore failed, err: " + err)
+        return
+    }    
+    if (rdbStore.openStatus == OpenStatus.ON_CREATA) {
+        console.log("RdbStore status is ON_CREATA")
+    } else if (rdbStore.openStatus == OpenStatus.ON_OPEN) {
+        console.log("RdbStore status is ON_OPEN")
+    } else {
         return
     }
     console.log("Get RdbStore successfully.")
@@ -84,18 +90,25 @@ const STORE_CONFIG = {
     name: "RdbTest.db",
     securityLevel: data_rdb.SecurityLevel.S1
 }
-data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, RdbStore) {
+data_rdb.getRdbStore(context, STORE_CONFIG, function (err, RdbStore) {
     if (err) {
         console.info("Get RdbStore failed, err: " + err)
+        return
+    }
+    if (rdbStore.openStatus == OpenStatus.ON_CREATA) {
+        console.log("RdbStore status is ON_CREATA")
+    } else if (rdbStore.openStatus == OpenStatus.ON_OPEN) {
+        console.log("RdbStore status is ON_OPEN")
+    } else {
         return
     }
     console.log("Get RdbStore successfully.")
 })
 ```
 
-## data_rdb.getRdbStore<sup>9+</sup>
+## data_rdb.getRdbStore
 
-getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
+getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用Promise异步回调。
 
@@ -107,13 +120,12 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 | ------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
-| version | number                           | 是   | 数据库版本。<br>目前暂不支持通过version自动识别数据库升级降级操作，只能由开发者自行维护。                                                 |
 
 **返回值**：
 
 | 类型                                      | 说明                              |
 | ----------------------------------------- | --------------------------------- |
-| Promise&lt;[RdbStore](#rdbstore9)&gt; | Promise对象。返回RdbStore对象。 |
+| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise对象。返回RdbStore对象。 |
 
 **错误码：**
 
@@ -138,8 +150,15 @@ const STORE_CONFIG = {
     name: "RdbTest.db",
     securityLevel: data_rdb.SecurityLevel.S1
 }
-let promise = data_rdb.getRdbStore(context, STORE_CONFIG, 1);
+let promise = data_rdb.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
+    if (rdbStore.openStatus == OpenStatus.ON_CREATA) {
+        console.log("RdbStore status is ON_CREATA")
+    } else if (rdbStore.openStatus == OpenStatus.ON_OPEN) {
+        console.log("RdbStore status is ON_OPEN")
+    } else {
+        return
+    }
     console.log("Get RdbStore successfully.")
 }).catch((err) => {
     console.log("Get RdbStore failed, err: " + err)
@@ -163,15 +182,22 @@ const STORE_CONFIG = {
     name: "RdbTest.db",
     securityLevel: data_rdb.SecurityLevel.S1
 }
-let promise = data_rdb.getRdbStore(context, STORE_CONFIG, 1);
+let promise = data_rdb.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
+    if (rdbStore.openStatus == OpenStatus.ON_CREATA) {
+        console.log("RdbStore status is ON_CREATA")
+    } else if (rdbStore.openStatus == OpenStatus.ON_OPEN) {
+        console.log("RdbStore status is ON_OPEN")
+    } else {
+        return
+    }
     console.log("Get RdbStore successfully.")
 }).catch((err) => {
     console.log("Get RdbStore failed, err: " + err)
 })
 ```
 
-## data_rdb.deleteRdbStore<sup>9+</sup>
+## data_rdb.deleteRdbStore
 
 deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -236,7 +262,7 @@ data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
 })
 ```
 
-## data_rdb.deleteRdbStore<sup>9+</sup>
+## data_rdb.deleteRdbStore
 
 deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
@@ -304,7 +330,7 @@ promise.then(()=>{
 })
 ```
 
-## StoreConfig<sup>9+</sup>
+## StoreConfig
 
 管理关系数据库配置。
 
@@ -316,7 +342,7 @@ promise.then(()=>{
 | securityLevel | SecurityLevel | 是   | 设置数据库安全级别                                        |
 | encrypt       | boolean       | 否   | 指定数据库是否加密。<br/> true:加密。<br/> false:非加密。 |
 
-## SecurityLevel<sup>9+</sup>
+## SecurityLevel
 
 数据库的安全级别枚举。
 
@@ -329,7 +355,7 @@ promise.then(()=>{
 | S3   | 3    | 表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。 |
 | S4   | 4    | 表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。例如，包含认证凭据、财务数据等信息的数据库。 |
 
-## ValueType<sup>9+</sup>
+## ValueType
 
 用于表示允许的数据字段类型。
 
@@ -341,7 +367,7 @@ promise.then(()=>{
 | string  | 表示值类型为字符。   |
 | boolean | 表示值类型为布尔值。 |
 
-## ValuesBucket<sup>9+</sup>
+## ValuesBucket
 
 用于存储键值对的类型。
 
@@ -351,7 +377,7 @@ promise.then(()=>{
 | ------ | ----------------------------------------------------------- |
 | string | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null |
 
-## SyncMode<sup>9+</sup>
+## SyncMode
 
 指数据库同步模式。
 
@@ -362,7 +388,7 @@ promise.then(()=>{
 | SYNC_MODE_PUSH | 0    | 表示数据从本地设备推送到远程设备。 |
 | SYNC_MODE_PULL | 1    | 表示数据从远程设备拉至本地设备。   |
 
-## SubscribeType<sup>9+</sup>
+## SubscribeType
 
 描述订阅类型。
 
@@ -388,11 +414,11 @@ promise.then(()=>{
 | ON_CONFLICT_IGNORE   | 4    | 表示当冲突发生时，跳过包含违反约束的行并继续处理 SQL 语句的后续行。 |
 | ON_CONFLICT_REPLACE  | 5    | 表示当冲突发生时，在插入或更新当前行之前删除导致约束违例的预先存在的行，并且命令会继续正常执行。 |
 
-## RdbPredicates<sup>9+</sup>
+## RdbPredicates
 
 表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。
 
-### constructor<sup>9+</sup>
+### constructor
 
 constructor(name: string)
 
@@ -412,7 +438,7 @@ constructor(name: string)
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 ```
 
-### inDevices<sup>9+</sup>
+### inDevices
 
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
@@ -431,7 +457,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -440,7 +466,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.inDevices(['12345678abcde'])
 ```
 
-### inAllDevices<sup>9+</sup>
+### inAllDevices
 
 inAllDevices(): RdbPredicates
 
@@ -453,7 +479,7 @@ inAllDevices(): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -462,7 +488,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.inAllDevices()
 ```
 
-### equalTo<sup>9+</sup>
+### equalTo
 
 equalTo(field: string, value: ValueType): RdbPredicates
 
@@ -482,7 +508,7 @@ equalTo(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -492,7 +518,7 @@ predicates.equalTo("NAME", "lisi")
 ```
 
 
-### notEqualTo<sup>9+</sup>
+### notEqualTo
 
 notEqualTo(field: string, value: ValueType): RdbPredicates
 
@@ -512,7 +538,7 @@ notEqualTo(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -522,7 +548,7 @@ predicates.notEqualTo("NAME", "lisi")
 ```
 
 
-### beginWrap<sup>9+</sup>
+### beginWrap
 
 beginWrap(): RdbPredicates
 
@@ -535,7 +561,7 @@ beginWrap(): RdbPredicates
 
 | 类型                                 | 说明                      |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回带有左括号的Rdb谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回带有左括号的Rdb谓词。 |
 
 **示例：**
 
@@ -549,7 +575,7 @@ predicates.equalTo("NAME", "lisi")
     .endWrap()
 ```
 
-### endWrap<sup>9+</sup>
+### endWrap
 
 endWrap(): RdbPredicates
 
@@ -561,7 +587,7 @@ endWrap(): RdbPredicates
 
 | 类型                                 | 说明                      |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回带有右括号的Rdb谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回带有右括号的Rdb谓词。 |
 
 **示例：**
 
@@ -575,7 +601,7 @@ predicates.equalTo("NAME", "lisi")
     .endWrap()
 ```
 
-### or<sup>9+</sup>
+### or
 
 or(): RdbPredicates
 
@@ -587,7 +613,7 @@ or(): RdbPredicates
 
 | 类型                                 | 说明                      |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回带有或条件的Rdb谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回带有或条件的Rdb谓词。 |
 
 **示例：**
 
@@ -598,7 +624,7 @@ predicates.equalTo("NAME", "Lisa")
     .equalTo("NAME", "Rose")
 ```
 
-### and<sup>9+</sup>
+### and
 
 and(): RdbPredicates
 
@@ -610,7 +636,7 @@ and(): RdbPredicates
 
 | 类型                                 | 说明                      |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回带有和条件的Rdb谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回带有和条件的Rdb谓词。 |
 
 **示例：**
 
@@ -621,7 +647,7 @@ predicates.equalTo("NAME", "Lisa")
     .equalTo("SALARY", 200.5)
 ```
 
-### contains<sup>9+</sup>
+### contains
 
 contains(field: string, value: string): RdbPredicates
 
@@ -640,7 +666,7 @@ contains(field: string, value: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -649,7 +675,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.contains("NAME", "os")
 ```
 
-### beginsWith<sup>9+</sup>
+### beginsWith
 
 beginsWith(field: string, value: string): RdbPredicates
 
@@ -668,7 +694,7 @@ beginsWith(field: string, value: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -677,7 +703,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.beginsWith("NAME", "os")
 ```
 
-### endsWith<sup>9+</sup>
+### endsWith
 
 endsWith(field: string, value: string): RdbPredicates
 
@@ -696,7 +722,7 @@ endsWith(field: string, value: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -705,7 +731,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.endsWith("NAME", "se")
 ```
 
-### isNull<sup>9+</sup>
+### isNull
 
 isNull(field: string): RdbPredicates
 
@@ -723,7 +749,7 @@ isNull(field: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
 
@@ -732,7 +758,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.isNull("NAME")
 ```
 
-### isNotNull<sup>9+</sup>
+### isNotNull
 
 isNotNull(field: string): RdbPredicates
 
@@ -750,7 +776,7 @@ isNotNull(field: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -759,7 +785,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.isNotNull("NAME")
 ```
 
-### like<sup>9+</sup>
+### like
 
 like(field: string, value: string): RdbPredicates
 
@@ -778,7 +804,7 @@ like(field: string, value: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -787,7 +813,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.like("NAME", "%os%")
 ```
 
-### glob<sup>9+</sup>
+### glob
 
 glob(field: string, value: string): RdbPredicates
 
@@ -806,7 +832,7 @@ glob(field: string, value: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -815,7 +841,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.glob("NAME", "?h*g")
 ```
 
-### between<sup>9+</sup>
+### between
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
@@ -835,7 +861,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -844,7 +870,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.between("AGE", 10, 50)
 ```
 
-### notBetween<sup>9+</sup>
+### notBetween
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
@@ -864,7 +890,7 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -873,7 +899,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.notBetween("AGE", 10, 50)
 ```
 
-### greaterThan<sup>9+</sup>
+### greaterThan
 
 greaterThan(field: string, value: ValueType): RdbPredicates
 
@@ -892,7 +918,7 @@ greaterThan(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -901,7 +927,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.greaterThan("AGE", 18)
 ```
 
-### lessThan<sup>9+</sup>
+### lessThan
 
 lessThan(field: string, value: ValueType): RdbPredicates
 
@@ -920,7 +946,7 @@ lessThan(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -929,7 +955,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.lessThan("AGE", 20)
 ```
 
-### greaterThanOrEqualTo<sup>9+</sup>
+### greaterThanOrEqualTo
 
 greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
@@ -948,7 +974,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -957,7 +983,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.greaterThanOrEqualTo("AGE", 18)
 ```
 
-### lessThanOrEqualTo<sup>9+</sup>
+### lessThanOrEqualTo
 
 lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
@@ -976,7 +1002,7 @@ lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -985,7 +1011,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.lessThanOrEqualTo("AGE", 20)
 ```
 
-### orderByAsc<sup>9+</sup>
+### orderByAsc
 
 orderByAsc(field: string): RdbPredicates
 
@@ -1003,7 +1029,7 @@ orderByAsc(field: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -1012,7 +1038,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.orderByAsc("NAME")
 ```
 
-### orderByDesc<sup>9+</sup>
+### orderByDesc
 
 orderByDesc(field: string): RdbPredicates
 
@@ -1030,7 +1056,7 @@ orderByDesc(field: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -1039,7 +1065,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.orderByDesc("AGE")
 ```
 
-### distinct<sup>9+</sup>
+### distinct
 
 distinct(): RdbPredicates
 
@@ -1051,7 +1077,7 @@ distinct(): RdbPredicates
 
 | 类型                                 | 说明                           |
 | ------------------------------------ | ------------------------------ |
-| [RdbPredicates](#rdbpredicates9) | 返回可用于过滤重复记录的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回可用于过滤重复记录的谓词。 |
 
 **示例：**
 
@@ -1060,7 +1086,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose").distinct()
 ```
 
-### limitAs<sup>9+</sup>
+### limitAs
 
 limitAs(value: number): RdbPredicates
 
@@ -1078,7 +1104,7 @@ limitAs(value: number): RdbPredicates
 
 | 类型                                 | 说明                                 |
 | ------------------------------------ | ------------------------------------ |
-| [RdbPredicates](#rdbpredicates9) | 返回可用于设置最大数据记录数的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回可用于设置最大数据记录数的谓词。 |
 
 **示例：**
 
@@ -1087,7 +1113,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose").limitAs(3)
 ```
 
-### offsetAs<sup>9+</sup>
+### offsetAs
 
 offsetAs(rowOffset: number): RdbPredicates
 
@@ -1105,7 +1131,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 | 类型                                 | 说明                                 |
 | ------------------------------------ | ------------------------------------ |
-| [RdbPredicates](#rdbpredicates9) | 返回具有指定返回结果起始位置的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回具有指定返回结果起始位置的谓词。 |
 
 **示例：**
 
@@ -1114,7 +1140,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose").offsetAs(3)
 ```
 
-### groupBy<sup>9+</sup>
+### groupBy
 
 groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
@@ -1132,7 +1158,7 @@ groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
 | 类型                                 | 说明                   |
 | ------------------------------------ | ---------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回分组查询列的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回分组查询列的谓词。 |
 
 **示例：**
 
@@ -1141,7 +1167,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.groupBy(["AGE", "NAME"])
 ```
 
-### indexedBy<sup>9+</sup>
+### indexedBy
 
 indexedBy(field: string): RdbPredicates
 
@@ -1160,7 +1186,7 @@ indexedBy(field: string): RdbPredicates
 
 | 类型                                 | 说明                                  |
 | ------------------------------------ | ------------------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回具有指定索引列的RdbPredicates。 |
+| [RdbPredicates](#rdbpredicates) | 返回具有指定索引列的RdbPredicates。 |
 
 **示例：**
 
@@ -1169,7 +1195,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.indexedBy("SALARY_INDEX")
 ```
 
-### in<sup>9+</sup>
+### in
 
 in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
@@ -1188,7 +1214,7 @@ in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -1197,7 +1223,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.in("AGE", [18, 20])
 ```
 
-### notIn<sup>9+</sup>
+### notIn
 
 notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
@@ -1216,7 +1242,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates9) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -1225,13 +1251,13 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.notIn("NAME", ["Lisa", "Rose"])
 ```
 
-## RdbStore<sup>9+</sup>
+## RdbStore
 
 提供管理关系数据库(RDB)方法的接口。
 
 在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据，具体可见[关系型数据库开发指导](../../database/database-relational-guidelines.md)。
 
-### insert<sup>9+</sup>
+### insert
 
 insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void
 
@@ -1300,7 +1326,7 @@ rdbStore.insert("EMPLOYEE", valueBucket, data_rdb.ConflictResolution.ON_CONFLICT
 })
 ```
 
-### insert<sup>9+</sup>
+### insert
 
 insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 
@@ -1377,7 +1403,7 @@ promise.then((rowId) => {
 })
 ```
 
-### batchInsert<sup>9+</sup>
+### batchInsert
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;):void
 
@@ -1425,7 +1451,7 @@ rdbStore.batchInsert("EMPLOYEE", valueBuckets, function(status, insertNum) {
 })
 ```
 
-### batchInsert<sup>9+</sup>
+### batchInsert
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&gt;
 
@@ -1477,7 +1503,7 @@ promise.then((insertNum) => {
 })
 ```
 
-### update<sup>9+</sup>
+### update
 
 update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
@@ -1490,7 +1516,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 | 参数名     | 类型                                 | 必填 | 说明                                                         |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)        | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [RdbPredicates](#rdbpredicates9) | 是   | RdbPredicates的实例对象指定的更新条件。                    |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的更新条件。                    |
 | callback   | AsyncCallback&lt;number&gt;          | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
 **示例：**
@@ -1526,7 +1552,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | 参数名     | 类型                                        | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [RdbPredicates](#rdbpredicates9)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
+| predicates | [RdbPredicates](#rdbpredicates)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
 | conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。                                           |
 | callback   | AsyncCallback&lt;number&gt;                 | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
@@ -1550,7 +1576,7 @@ rdbStore.update(valueBucket, predicates, data_rdb.ConflictResolution.ON_CONFLICT
 })
 ```
 
-### update<sup>9+</sup>
+### update
 
 update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 
@@ -1563,7 +1589,7 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 | 参数名       | 类型                                 | 必填 | 说明                                                         |
 | ------------ | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | values       | [ValuesBucket](#valuesbucket)        | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [RdbPredicates](#rdbpredicates9) | 是   | RdbPredicates的实例对象指定的更新条件。                    |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的更新条件。                    |
 
 **返回值**：
 
@@ -1603,7 +1629,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | 参数名     | 类型                                        | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [RdbPredicates](#rdbpredicates9)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
+| predicates | [RdbPredicates](#rdbpredicates)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
 | conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。                                           |
 
 **返回值**：
@@ -1631,7 +1657,7 @@ promise.then(async (ret) => {
 })
 ```
 
-### update<sup>9+</sup>
+### update
 
 update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
 
@@ -1671,7 +1697,7 @@ rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, ret) {
 })
 ```
 
-### update<sup>9+</sup>
+### update
 
 update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
 
@@ -1715,7 +1741,7 @@ promise.then(async (ret) => {
 })
 ```
 
-### delete<sup>9+</sup>
+### delete
 
 delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
@@ -1727,7 +1753,7 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 | 参数名     | 类型                                 | 必填 | 说明                                      |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicates](#rdbpredicates9) | 是   | RdbPredicates的实例对象指定的删除条件。 |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的删除条件。 |
 | callback   | AsyncCallback&lt;number&gt;          | 是   | 指定callback回调函数。返回受影响的行数。  |
 
 **示例：**
@@ -1744,7 +1770,7 @@ rdbStore.delete(predicates, function (err, rows) {
 })
 ```
 
-### delete<sup>9+</sup>
+### delete
 
 delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
@@ -1756,7 +1782,7 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
 | 参数名     | 类型                                 | 必填 | 说明                                      |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicates](#rdbpredicates9) | 是   | RdbPredicates的实例对象指定的删除条件。 |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的删除条件。 |
 
 **返回值**：
 
@@ -1777,7 +1803,7 @@ promise.then((rows) => {
 })
 ```
 
-### delete<sup>9+</sup>
+### delete
 
 delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
 
@@ -1810,7 +1836,7 @@ rdbStore.delete("EMPLOYEE", predicates, function (err, rows) {
 })
 ```
 
-### delete<sup>9+</sup>
+### delete
 
 delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
 
@@ -1847,7 +1873,7 @@ promise.then((rows) => {
 })
 ```
 
-### query<sup>9+</sup>
+### query
 
 query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
@@ -1859,7 +1885,7 @@ query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCa
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| predicates | [RdbPredicates](#rdbpredicates9)                         | 是   | RdbPredicates的实例对象指定的查询条件。                   |
+| predicates | [RdbPredicates](#rdbpredicates)                         | 是   | RdbPredicates的实例对象指定的查询条件。                   |
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
 | callback   | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
@@ -1878,7 +1904,7 @@ rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (e
 })
 ```
 
-### query<sup>9+</sup>
+### query
 
 query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
@@ -1890,7 +1916,7 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 
 | 参数名     | 类型                                 | 必填 | 说明                                             |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
-| predicates | [RdbPredicates](#rdbpredicates9) | 是   | RdbPredicates的实例对象指定的查询条件。        |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。        |
 | columns    | Array&lt;string&gt;                  | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
 **返回值**：
@@ -1913,7 +1939,7 @@ promise.then((resultSet) => {
 })
   ```
 
-### query<sup>9+</sup>
+### query
 
 query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
@@ -1948,7 +1974,7 @@ rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
 })
 ```
 
-### query<sup>9+</sup>
+### query
 
 query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
@@ -1987,7 +2013,7 @@ promise.then((resultSet) => {
 })
 ```
 
-### remoteQuery<sup>9+</sup>
+### remoteQuery
 
 remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt; , callback: AsyncCallback&lt;ResultSet&gt;): void
 
@@ -2001,7 +2027,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | device     | string                                                       | 是   | 指定的远程设备的networkId。                                 |
 | table      | string                                                       | 是   | 指定的目标表名。                                            |
-| predicates | [RdbPredicates](#rdbpredicates9)                         | 是   | RdbPredicates的实例对象，指定查询的条件。                 |
+| predicates | [RdbPredicates](#rdbpredicates)                         | 是   | RdbPredicates的实例对象，指定查询的条件。                 |
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
 | callback   | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
@@ -2021,7 +2047,7 @@ rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "
 })
 ```
 
-### remoteQuery<sup>9+</sup>
+### remoteQuery
 
 remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
 
@@ -2035,7 +2061,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
 | device     | string                               | 是   | 指定的远程设备的networkId。                      |
 | table      | string                               | 是   | 指定的目标表名。                                 |
-| predicates | [RdbPredicates](#rdbpredicates9) | 是   | RdbPredicates的实例对象，指定查询的条件。      |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象，指定查询的条件。      |
 | columns    | Array&lt;string&gt;                  | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
 **返回值**：
@@ -2058,7 +2084,7 @@ promise.then((resultSet) => {
 })
 ```
 
-### querySql<sup>9+</sup>
+### querySql
 
 querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
@@ -2087,7 +2113,7 @@ rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", 
 })
 ```
 
-### querySql<sup>9+</sup>
+### querySql
 
 querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt;
 
@@ -2120,7 +2146,7 @@ promise.then((resultSet) => {
 })
 ```
 
-### executeSql<sup>9+</sup>
+### executeSql
 
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
@@ -2149,7 +2175,7 @@ rdbStore.executeSql(SQL_CREATE_TABLE, null, function(err) {
 })
 ```
 
-### executeSql<sup>9+</sup>
+### executeSql
 
 executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
@@ -2182,7 +2208,7 @@ promise.then(() => {
 })
 ```
 
-### beginTransaction<sup>9+</sup>
+### beginTransaction
 
 beginTransaction():void
 
@@ -2197,7 +2223,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 let context = featureAbility.getContext()
 const STORE_CONFIG = { name: "RdbTest.db",
                      securityLevel: data_rdb.SecurityLevel.S1}
-data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
+data_rdb.getRdbStore(context, STORE_CONFIG, async function (err, rdbStore) {
     rdbStore.beginTransaction()
 	const valueBucket = {
 		"name": "lisi",
@@ -2210,7 +2236,7 @@ data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
 })
 ```
 
-### commit<sup>9+</sup>
+### commit
 
 commit():void
 
@@ -2225,7 +2251,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 let context = featureAbility.getContext()
 const STORE_CONFIG = { name: "RdbTest.db",
                      securityLevel: data_rdb.SecurityLevel.S1}
-data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
+data_rdb.getRdbStore(context, STORE_CONFIG, async function (err, rdbStore) {
     rdbStore.beginTransaction()
 	const valueBucket = {
 		"name": "lisi",
@@ -2238,7 +2264,7 @@ data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
 })
 ```
 
-### rollBack<sup>9+</sup>
+### rollBack
 
 rollBack():void
 
@@ -2253,7 +2279,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 let context = featureAbility.getContext()
 const STORE_CONFIG = { name: "RdbTest.db",
                      securityLevel: data_rdb.SecurityLevel.S1}
-data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
+data_rdb.getRdbStore(context, STORE_CONFIG, async function (err, rdbStore) {
     try {
 		rdbStore.beginTransaction()
 		const valueBucket = {
@@ -2271,7 +2297,7 @@ data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
 })
 ```
 
-### backup<sup>9+</sup>
+### backup
 
 backup(destName:string, callback: AsyncCallback&lt;void&gt;):void
 
@@ -2298,7 +2324,7 @@ rdbStore.backup("dbBackup.db", function(err) {
 })
 ```
 
-### backup<sup>9+</sup>
+### backup
 
 backup(destName:string): Promise&lt;void&gt;
 
@@ -2329,7 +2355,7 @@ promiseBackup.then(()=>{
 })
 ```
 
-### restore<sup>9+</sup>
+### restore
 
 restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
 
@@ -2356,7 +2382,7 @@ rdbStore.restore("dbBackup.db", function(err) {
 })
 ```
 
-### restore<sup>9+</sup>
+### restore
 
 restore(srcName:string): Promise&lt;void&gt;
 
@@ -2387,7 +2413,7 @@ promiseRestore.then(()=>{
 })
 ```
 
-### setDistributedTables<sup>9+</sup>
+### setDistributedTables
 
 setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -2416,7 +2442,7 @@ rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
 })
 ```
 
-### setDistributedTables<sup>9+</sup>
+### setDistributedTables
 
  setDistributedTables(tables: Array&lt;string&gt;): Promise&lt;void&gt;
 
@@ -2449,7 +2475,7 @@ promise.then(() => {
 })
 ```
 
-### obtainDistributedTableName<sup>9+</sup>
+### obtainDistributedTableName
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
@@ -2479,7 +2505,7 @@ rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, 
 })
 ```
 
-### obtainDistributedTableName<sup>9+</sup>
+### obtainDistributedTableName
 
  obtainDistributedTableName(device: string, table: string): Promise&lt;string&gt;
 
@@ -2513,7 +2539,7 @@ promise.then((tableName) => {
 })
 ```
 
-### sync<sup>9+</sup>
+### sync
 
 sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void
 
@@ -2527,8 +2553,8 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 | 参数名     | 类型                                               | 必填 | 说明                                                         |
 | ---------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| mode       | [SyncMode](#syncmode9)                             | 是   | 指同步模式。该值可以是推、拉。                               |
-| predicates | [RdbPredicates](#rdbpredicates9)               | 是   | 约束同步数据和设备。                                         |
+| mode       | [SyncMode](#syncmode)                             | 是   | 指同步模式。该值可以是推、拉。                               |
+| predicates | [RdbPredicates](#rdbpredicates)               | 是   | 约束同步数据和设备。                                         |
 | callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
 
 **示例：**
@@ -2548,7 +2574,7 @@ rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, resul
 })
 ```
 
-### sync<sup>9+</sup>
+### sync
 
  sync(mode: SyncMode, predicates: RdbPredicates): Promise&lt;Array&lt;[string, number]&gt;&gt;
 
@@ -2562,8 +2588,8 @@ rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, resul
 
 | 参数名     | 类型                                 | 必填 | 说明                           |
 | ---------- | ------------------------------------ | ---- | ------------------------------ |
-| mode       | [SyncMode](#syncmode9)               | 是   | 指同步模式。该值可以是推、拉。 |
-| predicates | [RdbPredicates](#rdbpredicates9) | 是   | 约束同步数据和设备。           |
+| mode       | [SyncMode](#syncmode)               | 是   | 指同步模式。该值可以是推、拉。 |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | 约束同步数据和设备。           |
 
 **返回值**：
 
@@ -2587,7 +2613,7 @@ promise.then((resultSet) =>{
 })
 ```
 
-### on('dataChange')<sup>9+</sup>
+### on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
@@ -2600,7 +2626,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | 参数名   | 类型                                | 必填 | 说明                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
-| type     | [SubscribeType](#subscribetype9)    | 是   | 指在{@code SubscribeType}中定义的订阅类型。 |
+| type     | [SubscribeType](#subscribetype)    | 是   | 指在{@code SubscribeType}中定义的订阅类型。 |
 | observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指分布式数据库中数据更改事件的观察者。      |
 
 **示例：**
@@ -2618,7 +2644,7 @@ try {
 }
 ```
 
-### off('dataChange')<sup>9+</sup>
+### off('dataChange')
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
@@ -2631,7 +2657,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | 参数名   | 类型                                | 必填 | 说明                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
-| type     | [SubscribeType](#subscribetype9)    | 是   | 指在{@code SubscribeType}中定义的订阅类型。 |
+| type     | [SubscribeType](#subscribetype)    | 是   | 指在{@code SubscribeType}中定义的订阅类型。 |
 | observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指已注册的数据更改观察者。                  |
 
 **示例：**
@@ -2649,13 +2675,13 @@ try {
 }
 ```
 
-## ResultSet<sup>9+</sup>
+## ResultSet
 
 提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
 
 ### 使用说明
 
-需要通过[RdbStore.query()](#query9)获取resultSet对象。
+需要通过[RdbStore.query()](#query)获取resultSet对象。
 
 ```js
 import dataRdb from '@ohos.data.rdb';
@@ -2668,7 +2694,7 @@ promise.then((resultSet) => {
 });
 ```
 
-### 属性<sup>9+</sup>
+### 属性
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2684,7 +2710,7 @@ promise.then((resultSet) => {
 | isStarted    | boolean             | 是   | 检查指针是否移动过。             |
 | isClosed     | boolean             | 是   | 检查当前结果集是否关闭。         |
 
-### getColumnIndex<sup>9+</sup>
+### getColumnIndex
 
 getColumnIndex(columnName: string): number
 
@@ -2722,7 +2748,7 @@ const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
 const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
   ```
 
-### getColumnName<sup>9+</sup>
+### getColumnName
 
 getColumnName(columnIndex: number): string
 
@@ -2758,7 +2784,7 @@ const name = resultSet.getColumnName(1);
 const age = resultSet.getColumnName(2);
   ```
 
-### goTo<sup>9+</sup>
+### goTo
 
 goTo(offset:number): boolean
 
@@ -2799,7 +2825,7 @@ promise.then((resultSet) => {
 });
   ```
 
-### goToRow<sup>9+</sup>
+### goToRow
 
 goToRow(position: number): boolean
 
@@ -2840,7 +2866,7 @@ promise.then((resultSet) => {
 });
   ```
 
-### goToFirstRow<sup>9+</sup>
+### goToFirstRow
 
 goToFirstRow(): boolean
 
@@ -2876,7 +2902,7 @@ promise.then((resultSet) => {
 });
   ```
 
-### goToLastRow<sup>9+</sup>
+### goToLastRow
 
 goToLastRow(): boolean
 
@@ -2911,7 +2937,7 @@ promise.then((resultSet) => {
 });
   ```
 
-### goToNextRow<sup>9+</sup>
+### goToNextRow
 
 goToNextRow(): boolean
 
@@ -2946,7 +2972,7 @@ promise.then((resultSet) => {
 });
   ```
 
-### goToPreviousRow<sup>9+</sup>
+### goToPreviousRow
 
 goToPreviousRow(): boolean
 
@@ -2981,7 +3007,7 @@ promise.then((resultSet) => {
 });
   ```
 
-### getBlob<sup>9+</sup>
+### getBlob
 
 getBlob(columnIndex: number): Uint8Array
 
@@ -3015,7 +3041,7 @@ getBlob(columnIndex: number): Uint8Array
 const codes = resultSet.getBlob(resultSet.getColumnIndex("CODES"));
   ```
 
-### getString<sup>9+</sup>
+### getString
 
 getString(columnIndex: number): string
 
@@ -3049,7 +3075,7 @@ getString(columnIndex: number): string
 const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
   ```
 
-### getLong<sup>9+</sup>
+### getLong
 
 getLong(columnIndex: number): number
 
@@ -3083,7 +3109,7 @@ getLong(columnIndex: number): number
 const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
   ```
 
-### getDouble<sup>9+</sup>
+### getDouble
 
 getDouble(columnIndex: number): number
 
@@ -3117,7 +3143,7 @@ getDouble(columnIndex: number): number
 const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
   ```
 
-### isColumnNull<sup>9+</sup>
+### isColumnNull
 
 isColumnNull(columnIndex: number): boolean
 
@@ -3151,7 +3177,7 @@ isColumnNull(columnIndex: number): boolean
 const isColumnNull = resultSet.isColumnNull(resultSet.getColumnIndex("CODES"));
   ```
 
-### close<sup>9+</sup>
+### close
 
 close(): void
 

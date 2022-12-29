@@ -4,15 +4,13 @@
 
 > **说明：**
 > 
+> 从API Version 9开始，该接口不再维护，推荐使用新接口[@ohos.data.relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)。
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## ResultSet<sup>(deprecated)</sup>
 
 提供通过查询数据库生成的数据库结果集的访问方法。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset9)替代。
 
 ### 使用说明
 
@@ -30,10 +28,6 @@ promise.then((resultSet) => {
 ```
 
 ### 属性<sup>(deprecated)</sup>
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.属性](js-apis-data-relationalStore.md#属性9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -54,10 +48,6 @@ promise.then((resultSet) => {
 getColumnIndex(columnName: string): number
 
 根据指定的列名获取列索引。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.getColumnIndex](js-apis-data-relationalStore.md#getcolumnindex9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -89,11 +79,6 @@ getColumnName(columnIndex: number): string
 
 根据指定的列索引获取列名。
 
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.getColumnName](js-apis-data-relationalStore.md#getcolumnname9)替代。
-
-
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -121,10 +106,6 @@ getColumnName(columnIndex: number): string
 goTo(offset:number): boolean
 
 向前或向后转至结果集的指定行，相对于其当前位置偏移。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.goTo](js-apis-data-relationalStore.md#goto9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -159,10 +140,6 @@ goToRow(position: number): boolean
 
 转到结果集的指定行。
 
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.goToRow](js-apis-data-relationalStore.md#gotorow9)替代。
-
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -196,11 +173,6 @@ goToFirstRow(): boolean
 
 转到结果集的第一行。
 
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.goToFirstRow](js-apis-data-relationalStore.md#gotofirstrow9)替代。
-
-
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **返回值：**
@@ -227,10 +199,6 @@ goToFirstRow(): boolean
 goToLastRow(): boolean
 
 转到结果集的最后一行。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.goToLastRow](js-apis-data-relationalStore.md#gotolastrow9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -259,10 +227,6 @@ goToNextRow(): boolean
 
 转到结果集的下一行。
 
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.goToNextRow](js-apis-data-relationalStore.md#gotonextrow9)替代。
-
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **返回值：**
@@ -289,10 +253,6 @@ goToNextRow(): boolean
 goToPreviousRow(): boolean
 
 转到结果集的上一行。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.goToPreviousRow](js-apis-data-relationalStore.md#gotopreviousrow9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -321,10 +281,6 @@ getBlob(columnIndex: number): Uint8Array
 
 以字节数组的形式获取当前行中指定列的值。
 
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.getBlob](js-apis-data-relationalStore.md#getblob9)替代。
-
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -350,10 +306,6 @@ getBlob(columnIndex: number): Uint8Array
 getString(columnIndex: number): string
 
 以字符串形式获取当前行中指定列的值。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.getString](js-apis-data-relationalStore.md#getstring9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -381,10 +333,6 @@ getLong(columnIndex: number): number
 
 以Long形式获取当前行中指定列的值。
 
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.getLong](js-apis-data-relationalStore.md#getlong9)替代。
-
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -410,10 +358,6 @@ getLong(columnIndex: number): number
 getDouble(columnIndex: number): number
 
 以double形式获取当前行中指定列的值。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.getDouble](js-apis-data-relationalStore.md#getdouble9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -441,11 +385,6 @@ isColumnNull(columnIndex: number): boolean
 
 检查当前行中指定列的值是否为null。
 
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.isColumnNull](js-apis-data-relationalStore.md#iscolumnnull9)替代。
-
-
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -471,10 +410,6 @@ isColumnNull(columnIndex: number): boolean
 close(): void
 
 关闭结果集。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ResultSet.close](js-apis-data-relationalStore.md#close9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

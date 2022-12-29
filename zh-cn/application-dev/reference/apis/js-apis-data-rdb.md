@@ -1,34 +1,29 @@
-# @ohos.data.rdb<sup>(deprecated)</sup> (关系型数据库)
-
-从API version 9开始，本模块被@ohos.data.relationalStore代替。
+# @ohos.data.rdb (关系型数据库)
 
 关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。
 
 该模块提供以下关系型数据库相关的常用功能：
 
-- [RdbPredicates](#rdbpredicatesdeprecated)： 数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
-- [RdbStore](#rdbstoredeprecated)：提供管理关系数据库(RDB)方法的接口。
+- [RdbPredicates](#rdbpredicates)： 数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
+- [RdbStore](#rdbstore)：提供管理关系数据库(RDB)方法的接口。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 从API Version 9开始，该接口不再维护，推荐使用新接口[@ohos.data.relationalStore](js-apis-data-relationalStore.md)。
 >
->从API version 9开始，本模块被@ohos.data.relationalStore代替。
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 
 ## 导入模块
 
 ```js
 import data_rdb from '@ohos.data.rdb';
 ```
-## data_rdb.getRdbStore<sup>(deprecated)</sup>
+## data_rdb.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void
 
 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用callback异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.getRdbStore](js-apis-data-relationalStore.md#data_rdbgetrdbstore9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -84,15 +79,11 @@ data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
 })
 ```
 
-## data_rdb.getRdbStore<sup>(deprecated)</sup>
+## data_rdb.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
 
 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用Promise异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.getRdbStore](js-apis-data-relationalStore.md#data_rdbgetrdbstore9-1)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -151,15 +142,11 @@ promise.then(async (rdbStore) => {
 })
 ```
 
-## data_rdb.deleteRdbStore<sup>(deprecated)</sup>
+## data_rdb.deleteRdbStore
 
 deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除数据库，使用callback异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.deleteRdbStore](js-apis-data-relationalStore.md#data_rdbdeleterdbstore9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -212,15 +199,11 @@ data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
 })
 ```
 
-## data_rdb.deleteRdbStore<sup>(deprecated)</sup>
+## data_rdb.deleteRdbStore
 
 deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 使用指定的数据库文件配置删除数据库，使用Promise异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.deleteRdbStore](js-apis-data-relationalStore.md#data_rdbdeleterdbstore9-1)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -287,13 +270,9 @@ promise.then(()=>{
 | S3   | 3    | 表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。 |
 | S4   | 4    | 表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。例如，包含认证凭据、财务数据等信息的数据库。 |
 
-## ValueType<sup>(deprecated)</sup>
+## ValueType
 
 用于表示允许的数据字段类型。
-
-> **说明：**
->
-> 从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ValueType](js-apis-data-relationalStore.md#valuetype9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -304,13 +283,9 @@ promise.then(()=>{
 | boolean | 表示值类型为布尔值。 |
 
 
-## ValuesBucket<sup>(deprecated)</sup>
+## ValuesBucket
 
 用于存储键值对的类型。
-
-> **说明：**
->
-> 从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.ValuesBucket](js-apis-data-relationalStore.md#valuesbucket9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -318,13 +293,9 @@ promise.then(()=>{
 | ------ | ----------------------------------------------------------- |
 | string | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null |
 
-## SyncMode<sup>(deprecated)</sup>
+## SyncMode<sup>8+</sup>
 
 指数据库同步模式。
-
-> **说明：**
->
-> 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.SyncMode](js-apis-data-relationalStore.md#syncmode9)替代。
 
 **系统能力：**SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -333,13 +304,9 @@ promise.then(()=>{
 | SYNC_MODE_PUSH | 0    | 表示数据从本地设备推送到远程设备。 |
 | SYNC_MODE_PULL | 1    | 表示数据从远程设备拉至本地设备。   |
 
-## SubscribeType<sup>(deprecated)</sup>
+## SubscribeType<sup>8+</sup>
 
 描述订阅类型。
-
-> **说明：**
->
-> 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.SubscribeType](js-apis-data-relationalStore.md#subscribetype9)替代。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -349,14 +316,9 @@ promise.then(()=>{
 | --------------------- | ---- | ------------------ |
 | SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。 |
 
-## StoreConfig<sup>(deprecated)</sup>
+## StoreConfig
 
 管理关系数据库配置。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.StoreConfig](js-apis-data-relationalStore.md#storeconfig9)替代。
-
 
 **系统能力：**SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -364,24 +326,15 @@ promise.then(()=>{
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 数据库文件名。 |
 
-## RdbPredicates<sup>(deprecated)</sup>
+## RdbPredicates
 
 表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。
 
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates9)替代。
-
-
-### constructor<sup>(deprecated)</sup>
+### constructor
 
 constructor(name: string)
 
 构造函数。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.constructor](js-apis-data-relationalStore.md#constructor9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -397,15 +350,11 @@ constructor(name: string)
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 ```
 
-### inDevices<sup>(deprecated)</sup>
+### inDevices<sup>8+</sup>
 
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 同步分布式数据库时连接到组网内指定的远程设备。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.inDevices](js-apis-data-relationalStore.md#indevices9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -428,15 +377,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.inDevices(['12345678abcde'])
 ```
 
-### inAllDevices<sup>(deprecated)</sup>
+### inAllDevices
 
 inAllDevices(): RdbPredicates
 
 同步分布式数据库时连接到组网内所有的远程设备。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.inAllDevices](js-apis-data-relationalStore.md#inalldevices9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -453,16 +398,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.inAllDevices()
 ```
 
-### equalTo<sup>(deprecated)</sup>
+### equalTo
 
 equalTo(field: string, value: ValueType): RdbPredicates
 
 配置谓词以匹配数据字段为ValueType且值等于指定值的字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.equalTo](js-apis-data-relationalStore.md#equalto9)替代。
-
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -487,15 +427,11 @@ predicates.equalTo("NAME", "lisi")
 ```
 
 
-### notEqualTo<sup>(deprecated)</sup>
+### notEqualTo
 
 notEqualTo(field: string, value: ValueType): RdbPredicates
 
 配置谓词以匹配数据字段为ValueType且值不等于指定值的字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.notEqualTo](js-apis-data-relationalStore.md#notequalto9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -520,15 +456,11 @@ predicates.notEqualTo("NAME", "lisi")
 ```
 
 
-### beginWrap<sup>(deprecated)</sup>
+### beginWrap
 
 beginWrap(): RdbPredicates
 
 向谓词添加左括号。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.beginWrap](js-apis-data-relationalStore.md#beginwrap9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -550,15 +482,11 @@ predicates.equalTo("NAME", "lisi")
     .endWrap()
 ```
 
-### endWrap<sup>(deprecated)</sup>
+### endWrap
 
 endWrap(): RdbPredicates
 
 向谓词添加右括号。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.endWrap](js-apis-data-relationalStore.md#endwrap9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -580,15 +508,11 @@ predicates.equalTo("NAME", "lisi")
     .endWrap()
 ```
 
-### or<sup>(deprecated)</sup>
+### or
 
 or(): RdbPredicates
 
 将或条件添加到谓词中。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.or](js-apis-data-relationalStore.md#or9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -607,15 +531,11 @@ predicates.equalTo("NAME", "Lisa")
     .equalTo("NAME", "Rose")
 ```
 
-### and<sup>(deprecated)</sup>
+### and
 
 and(): RdbPredicates
 
 向谓词添加和条件。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.and](js-apis-data-relationalStore.md#and9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -634,16 +554,11 @@ predicates.equalTo("NAME", "Lisa")
     .equalTo("SALARY", 200.5)
 ```
 
-### contains<sup>(deprecated)</sup>
+### contains
 
 contains(field: string, value: string): RdbPredicates
 
 配置谓词以匹配数据字段为string且value包含指定值的字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.contains](js-apis-data-relationalStore.md#contains9)替代。
-
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -667,15 +582,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.contains("NAME", "os")
 ```
 
-### beginsWith<sup>(deprecated)</sup>
+### beginsWith
 
 beginsWith(field: string, value: string): RdbPredicates
 
 配置谓词以匹配数据字段为string且值以指定字符串开头的字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.beginsWith](js-apis-data-relationalStore.md#beginswith9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -699,15 +610,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.beginsWith("NAME", "os")
 ```
 
-### endsWith<sup>(deprecated)</sup>
+### endsWith
 
 endsWith(field: string, value: string): RdbPredicates
 
 配置谓词以匹配数据字段为string且值以指定字符串结尾的字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.endsWith](js-apis-data-relationalStore.md#endswith9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -731,15 +638,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.endsWith("NAME", "se")
 ```
 
-### isNull<sup>(deprecated)</sup>
+### isNull
 
 isNull(field: string): RdbPredicates
 
 配置谓词以匹配值为null的字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.isNull](js-apis-data-relationalStore.md#isnull9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -761,15 +664,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.isNull("NAME")
 ```
 
-### isNotNull<sup>(deprecated)</sup>
+### isNotNull
 
 isNotNull(field: string): RdbPredicates
 
 配置谓词以匹配值不为null的指定字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.isNotNull](js-apis-data-relationalStore.md#isnotnull9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -792,16 +691,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.isNotNull("NAME")
 ```
 
-### like<sup>(deprecated)</sup>
+### like
 
 like(field: string, value: string): RdbPredicates
 
 配置谓词以匹配数据字段为string且值类似于指定字符串的字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.like](js-apis-data-relationalStore.md#like9)替代。
-
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -825,16 +719,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.like("NAME", "%os%")
 ```
 
-### glob<sup>(deprecated)</sup>
+### glob
 
 glob(field: string, value: string): RdbPredicates
 
 配置RdbPredicates匹配数据字段为string的指定字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.glob](js-apis-data-relationalStore.md#glob9)替代。
-
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -858,15 +747,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.glob("NAME", "?h*g")
 ```
 
-### between<sup>(deprecated)</sup>
+### between
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 将谓词配置为匹配数据字段为ValueType且value在给定范围内的指定字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.between](js-apis-data-relationalStore.md#between9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -891,15 +776,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.between("AGE", 10, 50)
 ```
 
-### notBetween<sup>(deprecated)</sup>
+### notBetween
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 配置RdbPredicates以匹配数据字段为ValueType且value超出给定范围的指定字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.notBetweens](js-apis-data-relationalStore.md#notbetween9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -924,15 +805,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.notBetween("AGE", 10, 50)
 ```
 
-### greaterThan<sup>(deprecated)</sup>
+### greaterThan
 
 greaterThan(field: string, value: ValueType): RdbPredicates
 
 配置谓词以匹配数据字段为ValueType且值大于指定值的字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.greaterThan](js-apis-data-relationalStore.md#greaterthan9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -956,16 +833,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.greaterThan("AGE", 18)
 ```
 
-### lessThan<sup>(deprecated)</sup>
+### lessThan
 
 lessThan(field: string, value: ValueType): RdbPredicates
 
 配置谓词以匹配数据字段为valueType且value小于指定值的字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.lessThan](js-apis-data-relationalStore.md#lessthan9)替代。
-
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -989,15 +861,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.lessThan("AGE", 20)
 ```
 
-### greaterThanOrEqualTo<sup>(deprecated)</sup>
+### greaterThanOrEqualTo
 
 greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 配置谓词以匹配数据字段为ValueType且value大于或等于指定值的字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.greaterThanOrEqualTo](js-apis-data-relationalStore.md#greaterthanorequalto9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1021,15 +889,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.greaterThanOrEqualTo("AGE", 18)
 ```
 
-### lessThanOrEqualTo<sup>(deprecated)</sup>
+### lessThanOrEqualTo
 
 lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 配置谓词以匹配数据字段为ValueType且value小于或等于指定值的字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.lessThanOrEqualTo](js-apis-data-relationalStore.md#lessthanorequalto9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1053,15 +917,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.lessThanOrEqualTo("AGE", 20)
 ```
 
-### orderByAsc<sup>(deprecated)</sup>
+### orderByAsc
 
 orderByAsc(field: string): RdbPredicates
 
 配置谓词以匹配其值按升序排序的列。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.orderByAsc](js-apis-data-relationalStore.md#orderbyasc9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1084,15 +944,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.orderByAsc("NAME")
 ```
 
-### orderByDesc<sup>(deprecated)</sup>
+### orderByDesc
 
 orderByDesc(field: string): RdbPredicates
 
 配置谓词以匹配其值按降序排序的列。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.orderByDesc](js-apis-data-relationalStore.md#orderbydesc9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1115,16 +971,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.orderByDesc("AGE")
 ```
 
-### distinct<sup>(deprecated)</sup>
+### distinct
 
 distinct(): RdbPredicates
 
 配置谓词以过滤重复记录并仅保留其中一个。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.distinct](js-apis-data-relationalStore.md#distinct9)替代。
-
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1141,15 +992,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose").distinct()
 ```
 
-### limitAs<sup>(deprecated)</sup>
+### limitAs
 
 limitAs(value: number): RdbPredicates
 
 设置最大数据记录数的谓词。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.limitAs](js-apis-data-relationalStore.md#limitas9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1172,15 +1019,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose").limitAs(3)
 ```
 
-### offsetAs<sup>(deprecated)</sup>
+### offsetAs
 
 offsetAs(rowOffset: number): RdbPredicates
 
 配置RdbPredicates以指定返回结果的起始位置。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.offsetAs](js-apis-data-relationalStore.md#offsetas9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1203,15 +1046,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose").offsetAs(3)
 ```
 
-### groupBy<sup>(deprecated)</sup>
+### groupBy
 
 groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
 配置RdbPredicates按指定列分组查询结果。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.groupBy](js-apis-data-relationalStore.md#groupby9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1234,15 +1073,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.groupBy(["AGE", "NAME"])
 ```
 
-### indexedBy<sup>(deprecated)</sup>
+### indexedBy
 
 indexedBy(field: string): RdbPredicates
 
 配置RdbPredicates以指定索引列。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.indexedBy](js-apis-data-relationalStore.md#indexedby9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1266,15 +1101,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.indexedBy("SALARY_INDEX")
 ```
 
-### in<sup>(deprecated)</sup>
+### in
 
 in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 配置RdbPredicates以匹配数据字段为ValueType数组且值在给定范围内的指定字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.in](js-apis-data-relationalStore.md#in9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1298,15 +1129,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.in("AGE", [18, 20])
 ```
 
-### notIn<sup>(deprecated)</sup>
+### notIn
 
 notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 将RdbPredicates配置为匹配数据字段为ValueType且值超出给定范围的指定字段。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbPredicates.notIn](js-apis-data-relationalStore.md#notin9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1330,25 +1157,17 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.notIn("NAME", ["Lisa", "Rose"])
 ```
 
-## RdbStore<sup>(deprecated)</sup>
+## RdbStore
 
 提供管理关系数据库(RDB)方法的接口。
 
-> **说明：**
->
-> 从 API Version 7开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore](js-apis-data-relationalStore.md#rdbstore9)替代。
-
 在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据，具体可见[关系型数据库开发指导](../../database/database-relational-guidelines.md)。
 
-### insert<sup>(deprecated)</sup>
+### insert
 
 insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void
 
 向目标表中插入一行数据，使用callback异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.insert](js-apis-data-relationalStore.md#insert9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1378,16 +1197,11 @@ rdbStore.insert("EMPLOYEE", valueBucket, function (status, rowId) {
 })
 ```
 
-### insert<sup>(deprecated)</sup>
+### insert
 
 insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 
 向目标表中插入一行数据，使用Promise异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.insert](js-apis-data-relationalStore.md#insert9-1)替代。
-
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1421,15 +1235,11 @@ promise.then((rowId) => {
 })
 ```
 
-### batchInsert<sup>(deprecated)</sup>
+### batchInsert
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;):void
 
 向目标表中插入一组数据，使用callback异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.batchInsert](js-apis-data-relationalStore.md#batchinsert9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1473,15 +1283,11 @@ rdbStore.batchInsert("EMPLOYEE", valueBuckets, function(status, insertNum) {
 })
 ```
 
-### batchInsert<sup>(deprecated)</sup>
+### batchInsert
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&gt;
 
 向目标表中插入一组数据，使用Promise异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.batchInsert](js-apis-data-relationalStore.md#batchinsert9-1)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1529,15 +1335,11 @@ promise.then((insertNum) => {
 })
 ```
 
-### update<sup>(deprecated)</sup>
+### update
 
 update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 根据RdbPredicates的指定实例对象更新数据库中的数据，使用callback异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.update](js-apis-data-relationalStore.md#update9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1569,15 +1371,11 @@ rdbStore.update(valueBucket, predicates, function (err, ret) {
 })
 ```
 
-### update<sup>(deprecated)</sup>
+### update
 
 update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 
 根据RdbPredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.update](js-apis-data-relationalStore.md#update9-1)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1613,15 +1411,11 @@ promise.then(async (ret) => {
 })
 ```
 
-### delete<sup>(deprecated)</sup>
+### delete
 
 delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 根据RdbPredicates的指定实例对象从数据库中删除数据，使用callback异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.delete](js-apis-data-relationalStore.md#delete9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1646,16 +1440,11 @@ rdbStore.delete(predicates, function (err, rows) {
 })
 ```
 
-### delete<sup>(deprecated)</sup>
+### delete
 
 delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
 根据RdbPredicates的指定实例对象从数据库中删除数据，使用Promise异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.delete](js-apis-data-relationalStore.md#delete9-1)替代。
-
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1684,15 +1473,11 @@ promise.then((rows) => {
 })
 ```
 
-### query<sup>(deprecated)</sup>
+### query
 
 query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 根据指定条件查询数据库中的数据，使用callback异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.query](js-apis-data-relationalStore.md#query9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1719,15 +1504,11 @@ rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (e
 })
 ```
 
-### query<sup>(deprecated)</sup>
+### query
 
 query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
 根据指定条件查询数据库中的数据，使用Promise异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.query](js-apis-data-relationalStore.md#query9-1)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1758,15 +1539,11 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
   })
   ```
 
-### querySql<sup>(deprecated)</sup>
+### querySql
 
 querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 根据指定SQL语句查询数据库中的数据，使用callback异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.querySql](js-apis-data-relationalStore.md#querysql9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1791,16 +1568,11 @@ rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", 
 })
 ```
 
-### querySql<sup>(deprecated)</sup>
+### querySql
 
 querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt;
 
 根据指定SQL语句查询数据库中的数据，使用Promise异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.querySql](js-apis-data-relationalStore.md#querysql9-1)替代。
-
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1829,15 +1601,11 @@ promise.then((resultSet) => {
 })
 ```
 
-### executeSql<sup>(deprecated)</sup>
+### executeSql
 
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
 执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.executeSql](js-apis-data-relationalStore.md#executesql9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1862,15 +1630,11 @@ rdbStore.executeSql(SQL_CREATE_TABLE, null, function(err) {
 })
 ```
 
-### executeSql<sup>(deprecated)</sup>
+### executeSql
 
 executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 执行包含指定参数但不返回值的SQL语句，使用Promise异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.executeSql](js-apis-data-relationalStore.md#executesql9-1)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1899,16 +1663,12 @@ promise.then(() => {
 })
 ```
 
-### beginTransaction<sup>(deprecated)</sup>
+### beginTransaction
 
 beginTransaction():void
 
 在开始执行SQL语句之前，开始事务。
 
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.beginTransaction](js-apis-data-relationalStore.md#begintransaction9)替代。
-
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **示例：**
@@ -1930,16 +1690,12 @@ data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
 })
 ```
 
-### commit<sup>(deprecated)</sup>
+### commit
 
 commit():void
 
 提交已执行的SQL语句。
 
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.commit](js-apis-data-relationalStore.md#commit9)替代。
-
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **示例：**
@@ -1961,15 +1717,11 @@ data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
 })
 ```
 
-### rollBack<sup>(deprecated)</sup>
+### rollBack
 
 rollBack():void
 
 回滚已经执行的SQL语句。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.rollBack](js-apis-data-relationalStore.md#rollback9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1997,15 +1749,11 @@ data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
 })
 ```
 
-### setDistributedTables<sup>(deprecated)</sup>
+### setDistributedTables
 
 setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 设置分布式列表，使用callback异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.setDistributedTables](js-apis-data-relationalStore.md#setdistributedtables9)替代。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2030,15 +1778,11 @@ rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
 })
 ```
 
-### setDistributedTables<sup>(deprecated)</sup>
+### setDistributedTables
 
  setDistributedTables(tables: Array&lt;string&gt;): Promise&lt;void&gt;
 
 设置分布式列表，使用Promise异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.setDistributedTables](js-apis-data-relationalStore.md#setdistributedtables9-1)替代。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2067,16 +1811,11 @@ promise.then(() => {
 })
 ```
 
-### obtainDistributedTableName<sup>(deprecated)</sup>
+### obtainDistributedTableName
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 使用callback异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.obtainDistributedTableName](js-apis-data-relationalStore.md#obtaindistributedtablename9)替代。
-
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2102,15 +1841,11 @@ rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, 
 })
 ```
 
-### obtainDistributedTableName<sup>(deprecated)</sup>
+### obtainDistributedTableName
 
  obtainDistributedTableName(device: string, table: string): Promise&lt;string&gt;
 
 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，使用Promise异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.obtainDistributedTableName](js-apis-data-relationalStore.md#obtaindistributedtablename9-1)替代。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2140,15 +1875,11 @@ promise.then((tableName) => {
 })
 ```
 
-### sync<sup>(deprecated)</sup>
+### sync<sup>8+</sup>
 
 sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void
 
 在设备之间同步数据, 使用callback异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.sync](js-apis-data-relationalStore.md#sync9)替代。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2158,7 +1889,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mode | [SyncMode](#syncmodedeprecated) | 是 | 指同步模式。该值可以是推、拉。 |
+| mode | [SyncMode](#syncmode8) | 是 | 指同步模式。该值可以是推、拉。 |
 | predicates | [RdbPredicates](#rdbpredicates) | 是 | 约束同步数据和设备。 |
 | callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是 | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。|
 
@@ -2179,15 +1910,11 @@ rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, resul
 })
 ```
 
-### sync<sup>(deprecated)</sup>
+### sync
 
  sync(mode: SyncMode, predicates: RdbPredicates): Promise&lt;Array&lt;[string, number]&gt;&gt;
 
 在设备之间同步数据，使用Promise异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.sync](js-apis-data-relationalStore.md#sync9-1)替代。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2197,7 +1924,7 @@ rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, resul
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mode | [SyncMode](#syncmodedeprecated) | 是 | 指同步模式。该值可以是推、拉。 |
+| mode | [SyncMode](#syncmode8) | 是 | 指同步模式。该值可以是推、拉。 |
 | predicates | [RdbPredicates](#rdbpredicates) | 是 | 约束同步数据和设备。 |
 
 **返回值**：
@@ -2222,15 +1949,11 @@ promise.then((result) =>{
 })
 ```
 
-### on('dataChange')<sup>(deprecated)</sup>
+### on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
 注册数据库的观察者。当分布式数据库中的数据发生更改时，将调用回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.on](js-apis-data-relationalStore.md#ondatachange9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2239,7 +1962,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 取值为'dataChange'，表示数据更改。 |
-| type | [SubscribeType](#subscribetypedeprecated) | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
+| type | [SubscribeType](#subscribetype8) | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
 | observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指分布式数据库中数据更改事件的观察者。 |
 
 **示例：**
@@ -2257,15 +1980,11 @@ try {
 }
 ```
 
-### off('dataChange')<sup>(deprecated)</sup>
+### off('dataChange')
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
 从数据库中删除指定类型的指定观察者, 使用callback异步回调。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[@ohos.data.relationalStore.RdbStore.off](js-apis-data-relationalStore.md#offdatachange9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2274,7 +1993,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 取值为'dataChange'，表示数据更改。 |
-| type | [SubscribeType](#subscribetypedeprecated)    | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
+| type | [SubscribeType](#subscribetype8)    | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
 | observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指已注册的数据更改观察者。|
 
 **示例：**
