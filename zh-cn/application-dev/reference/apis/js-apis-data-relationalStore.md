@@ -6,7 +6,7 @@
 
 - [RdbPredicates](#rdbpredicates9)： 数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
 - [RdbStore](#rdbstore9)：提供管理关系数据库(RDB)方法的接口。
-- [Resultset](#Resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
+- [Resultset](#resultset9)：提供用户调用关系型数据库查询接口之后返回的结果集合。
 
 > **说明：**
 > 
@@ -33,7 +33,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 | context  | Context                                        | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | config   | [StoreConfig](#storeconfig)               | 是   | 与此RDB存储相关的数据库配置。                                |
 | version  | number                                         | 是   | 数据库版本。<br>目前暂不支持通过version自动识别数据库升级降级操作，只能由开发者自行维护。                                                 |
-| callback | AsyncCallback&lt;[RdbStore](#RdbStore)&gt; | 是   | 指定callback回调函数，返回RdbStore对象。                   |
+| callback | AsyncCallback&lt;[RdbStore](#rdbstore9)&gt; | 是   | 指定callback回调函数，返回RdbStore对象。                   |
 
 **错误码：**
 
@@ -1279,7 +1279,7 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callb
 | -------- | ------------------------------------------- | ---- | ---------------------------------------------------------- |
 | table    | string                                      | 是   | 指定的目标表名。                                           |
 | values   | [ValuesBucket](#valuesbucket)               | 是   | 表示要插入到表中的数据行。                                 |
-| conflict | [ConflictResolution](#conflictResolution10) | 是   | 指定冲突解决方式。                                         |
+| conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。                                         |
 | callback | AsyncCallback&lt;number&gt;                 | 是   | 指定callback回调函数。如果操作成功，返回行ID；否则返回-1。 |
 
 **示例：**
@@ -1352,7 +1352,7 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promi
 | -------- | ------------------------------------------- | ---- | -------------------------- |
 | table    | string                                      | 是   | 指定的目标表名。           |
 | values   | [ValuesBucket](#valuesbucket)               | 是   | 表示要插入到表中的数据行。 |
-| conflict | [ConflictResolution](#conflictResolution10) | 是   | 指定冲突解决方式。         |
+| conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。         |
 
 **返回值**：
 
@@ -1527,7 +1527,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [RdbPredicates](#rdbpredicates9)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
-| conflict   | [ConflictResolution](#conflictResolution10) | 是   | 指定冲突解决方式。                                           |
+| conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。                                           |
 | callback   | AsyncCallback&lt;number&gt;                 | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
 **示例：**
@@ -1604,7 +1604,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [RdbPredicates](#rdbpredicates9)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
-| conflict   | [ConflictResolution](#conflictResolution10) | 是   | 指定冲突解决方式。                                           |
+| conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。                                           |
 
 **返回值**：
 
@@ -2527,7 +2527,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 | 参数名     | 类型                                               | 必填 | 说明                                                         |
 | ---------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| mode       | [SyncMode](#syncmode8)                             | 是   | 指同步模式。该值可以是推、拉。                               |
+| mode       | [SyncMode](#syncmode9)                             | 是   | 指同步模式。该值可以是推、拉。                               |
 | predicates | [RdbPredicates](#rdbpredicates9)               | 是   | 约束同步数据和设备。                                         |
 | callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
 
@@ -2562,7 +2562,7 @@ rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, resul
 
 | 参数名     | 类型                                 | 必填 | 说明                           |
 | ---------- | ------------------------------------ | ---- | ------------------------------ |
-| mode       | [SyncMode](#syncmode8)               | 是   | 指同步模式。该值可以是推、拉。 |
+| mode       | [SyncMode](#syncmode9)               | 是   | 指同步模式。该值可以是推、拉。 |
 | predicates | [RdbPredicates](#rdbpredicates9) | 是   | 约束同步数据和设备。           |
 
 **返回值**：
@@ -2600,7 +2600,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | 参数名   | 类型                                | 必填 | 说明                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
-| type     | [SubscribeType](#subscribetype8)    | 是   | 指在{@code SubscribeType}中定义的订阅类型。 |
+| type     | [SubscribeType](#subscribetype9)    | 是   | 指在{@code SubscribeType}中定义的订阅类型。 |
 | observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指分布式数据库中数据更改事件的观察者。      |
 
 **示例：**
@@ -2631,7 +2631,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | 参数名   | 类型                                | 必填 | 说明                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
-| type     | [SubscribeType](#subscribetype8)    | 是   | 指在{@code SubscribeType}中定义的订阅类型。 |
+| type     | [SubscribeType](#subscribetype9)    | 是   | 指在{@code SubscribeType}中定义的订阅类型。 |
 | observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指已注册的数据更改观察者。                  |
 
 **示例：**

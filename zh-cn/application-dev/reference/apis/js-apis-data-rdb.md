@@ -2158,7 +2158,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mode | [SyncMode](#syncmode8) | 是 | 指同步模式。该值可以是推、拉。 |
+| mode | [SyncMode](#syncmodedeprecated) | 是 | 指同步模式。该值可以是推、拉。 |
 | predicates | [RdbPredicates](#rdbpredicates) | 是 | 约束同步数据和设备。 |
 | callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是 | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。|
 
@@ -2197,7 +2197,7 @@ rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, resul
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mode | [SyncMode](#syncmode8) | 是 | 指同步模式。该值可以是推、拉。 |
+| mode | [SyncMode](#syncmodedeprecated) | 是 | 指同步模式。该值可以是推、拉。 |
 | predicates | [RdbPredicates](#rdbpredicates) | 是 | 约束同步数据和设备。 |
 
 **返回值**：
@@ -2239,7 +2239,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 取值为'dataChange'，表示数据更改。 |
-| type | [SubscribeType](#subscribetype8) | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
+| type | [SubscribeType](#subscribetypedeprecated) | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
 | observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指分布式数据库中数据更改事件的观察者。 |
 
 **示例：**
@@ -2274,7 +2274,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 取值为'dataChange'，表示数据更改。 |
-| type | [SubscribeType](#subscribetype8)    | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
+| type | [SubscribeType](#subscribetypedeprecated)    | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
 | observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指已注册的数据更改观察者。|
 
 **示例：**
