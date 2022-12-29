@@ -1,6 +1,6 @@
 # ProcessData
 
-定义进程数据，可以通过[registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver8)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的onProcessCreated生命周期回调获取。
+进程数据的对象定义。使用接口[registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver8)注册生命周期变化监听后，当应用或组件的生命周期变化时，系统通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的onProcessCreated等方法回调给开发者。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -9,10 +9,10 @@
 | 名称                     | 类型     | 可读 | 可写 | 说明                       |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
 | pid<sup>8+</sup>         | number   | 是   | 否   | 进程ID。                    |
-| bundleName<sup>8+</sup>  | string   | 是   | 否  | Bundle名称。          |
-| uid<sup>8+</sup>         | number   | 是   | 否   | 用户ID。                  |
-| isContinuousTask<sup>9+</sup>         | boolean   | 是   | 否   | 判断过程是否为连续任务。                  |
-| isKeepAlive<sup>9+</sup>         | boolean   | 是   | 否   | 判断该过程是否保持活跃。                  |
+| bundleName<sup>8+</sup>  | string   | 是   | 否  | 应用包名。                  |
+| uid<sup>8+</sup>         | number   | 是   | 否   | 应用的uid。                  |
+| isContinuousTask<sup>9+</sup>         | boolean   | 是   | 否   | 是否为长时任务，true表示是，false表示不是                 |
+| isKeepAlive<sup>9+</sup>         | boolean   | 是   | 否   | 是否为常驻进程，true表示是，false表示不是                   |
 
 **示例：**
 ```ts
