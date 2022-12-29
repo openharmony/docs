@@ -49,7 +49,7 @@
    ```js
    try {
       I18n.System.setSystemLanguage("en"); // 将系统语言设置为 "en"
-      var language = I18n.System.getSystemLanguage(); // language = "en"
+      let language = I18n.System.getSystemLanguage(); // language = "en"
    } catch(error) {
       console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
    }
@@ -63,7 +63,7 @@
    ```js
    try {
       I18n.System.setSystemRegion("CN"); // 将系统国家设置为 "CN"
-      var region = I18n.System.getSystemRegion(); // region = "CN"
+      let region = I18n.System.getSystemRegion(); // region = "CN"
    } catch(error) {
       console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
    }
@@ -77,7 +77,7 @@
    ```js
    try {
       I18n.System.setSystemLocale("zh-Hans-CN"); // 将系统Locale设置为 "zh-Hans-CN"
-      var locale = I18n.System.getSystemLocale(); // locale = "zh-Hans-CN"
+      let locale = I18n.System.getSystemLocale(); // locale = "zh-Hans-CN"
    } catch(error) {
       console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
    }
@@ -88,9 +88,8 @@
    调用isRTL接口获取Locale的语言是否为从右到左语言。
 
    ```js
-   
    try {
-      var rtl = I18n.isRTL("zh-CN"); // rtl = false
+      let rtl = I18n.isRTL("zh-CN"); // rtl = false
       rtl = I18n.isRTL("ar"); // rtl = true
    } catch(error) {
       console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
@@ -103,10 +102,9 @@
    调用is24HourClock接口来判断当前是否打开系统24小时制设置。
 
    ```js
-   
    try {
       I18n.System.set24HourClock(true);
-      var hourClock = I18n.System.is24HourClock(); // hourClock = true
+      let hourClock = I18n.System.is24HourClock(); // hourClock = true
    } catch(error) {
       console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
    }
@@ -117,12 +115,11 @@
    调用getDisplayLanguage接口获取某一语言的本地化表示。其中，language表示待本地化显示的语言，locale表示本地化的Locale，sentenceCase结果是否需要首字母大写。
 
    ```js
-   
    try {
-      var language = "en";
-      var locale = "zh-CN";
-      var sentenceCase = false;
-      var localizedLanguage = I18n.System.getDisplayLanguage(language, locale, sentenceCase); // localizedLanguage = "英语"
+      let language = "en";
+      let locale = "zh-CN";
+      let sentenceCase = false;
+      let localizedLanguage = I18n.System.getDisplayLanguage(language, locale, sentenceCase); // localizedLanguage = "英语"
    } catch(error) {
       console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
    }
@@ -133,12 +130,11 @@
    调用getDisplayCountry接口获取某一国家的本地化表示。其中，country表示待本地化显示的国家，locale表示本地化的Locale，sentenceCase结果是否需要首字母大写。
 
    ```js
-   
    try {
-      var country = "US";
-      var locale = "zh-CN";
-      var sentenceCase = false;
-      var localizedCountry = I18n.System.getDisplayCountry(country, locale, sentenceCase); // localizedCountry = "美国"
+      let country = "US";
+      let locale = "zh-CN";
+      let sentenceCase = false;
+      let localizedCountry = I18n.System.getDisplayCountry(country, locale, sentenceCase); // localizedCountry = "美国"
    } catch(error) {
       console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
    }
@@ -151,8 +147,8 @@
    ```js
    
    try {
-      var languageList = I18n.System.getSystemLanguages();  // languageList = ["en-Latn-US", "zh-Hans"]
-      var countryList = I18n.System.getSystemCountries("zh"); // countryList = ["ZW", "YT", ..., "CN", "DE"], 共240个国家和地区
+      let languageList = I18n.System.getSystemLanguages();  // languageList = ["en-Latn-US", "zh-Hans"]
+      let countryList = I18n.System.getSystemCountries("zh"); // countryList = ["ZW", "YT", ..., "CN", "DE"], 共240个国家和地区
    } catch(error) {
       console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
    }
@@ -164,7 +160,7 @@
    
    ```js
    try {
-      var isSuggest = I18n.System.isSuggested("zh", "CN"); // isSuggest = true
+      let isSuggest = I18n.System.isSuggested("zh", "CN"); // isSuggest = true
    } catch(error) {
       console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
    }
@@ -181,10 +177,10 @@
    ```js
    try {
       I18n.System.addPreferredLanguage("en-GB", 0); // 将"en-GB"设置为系统偏好语言列表的第一个语言
-      var list = I18n.System.getPreferredLanguageList(); // 获取当前系统偏好语言列表 list = ["en-GB", ...]
+      let list = I18n.System.getPreferredLanguageList(); // 获取当前系统偏好语言列表 list = ["en-GB", ...]
       I18n.System.removePreferredLanguage(list.length - 1); // 移除当前系统偏好语言列表中的最后一个偏好语言
-      var firstPreferredLanguage = I18n.System.getFirstPreferredLanguage(); // firstPreferredLanguage = "en-GB"
-      var appPreferredLanguage = I18n.System.getAppPreferredLanguage(); // 当应用中包含 "en-GB"资源时，应用偏好语言为"en-GB"
+      let firstPreferredLanguage = I18n.System.getFirstPreferredLanguage(); // firstPreferredLanguage = "en-GB"
+      let appPreferredLanguage = I18n.System.getAppPreferredLanguage(); // 当应用中包含 "en-GB"资源时，应用偏好语言为"en-GB"
    } catch(error) {
       console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
    }
@@ -199,7 +195,7 @@
 ```js
 try {
    I18n.System.setUsingLocalDigit(true); // 打开本地化数字开关
-   var status = I18n.System.getUsingLocalDigit(); // status = true
+   let status = I18n.System.getUsingLocalDigit(); // status = true
 } catch(error) {
    console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
 }
@@ -239,7 +235,7 @@ try {
    调用getCalendar接口获取指定locale和type的时区对象（i18n为导入的模块）。其中，type表示合法的日历类型，目前合法的日历类型包括："buddhist", "chinese", "coptic", "ethiopic", "hebrew", "gregory", "indian", "islamic_civil", "islamic_tbla", "islamic_umalqura", "japanese", "persian"。当type没有给出时，采用区域默认的日历类型。
 
    ```js
-   var calendar = I18n.getCalendar("zh-CN", "chinese"); // 创建中文农历日历
+   let calendar = I18n.getCalendar("zh-CN", "chinese"); // 创建中文农历日历
    ```
 
 3. 设置日历对象的时间。
@@ -247,9 +243,9 @@ try {
      调用setTime接口设置日历对象的时间。setTime接口接收两种类型的参数。一种是传入一个Date对象，另一种是传入一个数值表示从1970.1.1 00:00:00 GMT逝去的毫秒数。
 
    ```js
-   var date1 = new Date();
+   let date1 = new Date();
    calendar.setTime(date1);
-   var date2 = 1000;
+   let date2 = 1000;
    calendar.setTime(date2);
    ```
 
@@ -267,7 +263,7 @@ try {
 
    ```js
    calendar.setTimeZone("Asia/Shanghai");
-   var timezone = calendar.getTimeZone();  // timezone = "China Standard Time"
+   let timezone = calendar.getTimeZone();  // timezone = "China Standard Time"
    ```
 
 6. 设置、获取日历对象的一周起始日。
@@ -276,7 +272,7 @@ try {
 
    ```js
    calendar.setFirstDayOfWeek(1);
-   var firstDayOfWeek = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 1
+   let firstDayOfWeek = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 1
    ```
 
 7. 设置、获取日历对象第一周的最小天数。
@@ -284,14 +280,14 @@ try {
 
    ```js
    calendar.setMinimalDaysInFirstWeek(3);
-   var minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 3
+   let minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 3
    ```
 
 8. 获取日历对象的本地化显示。
    调用getDisplayName来获取日历对象的本地化显示。
 
    ```js
-   var localizedName = calendar.getDisplayName("zh-CN"); // localizedName = "农历"
+   let localizedName = calendar.getDisplayName("zh-CN"); // localizedName = "农历"
    ```
 
 9. 判断某一个日期是否为周末。
@@ -299,8 +295,8 @@ try {
    调用isWeekend接口来判断输入的Date是否为周末。
 
    ```js
-   var date = new Date(2022, 12, 12, 12, 12, 12);
-   var weekend = calendar.isWeekend(date); // weekend = false
+   let date = new Date(2022, 12, 12, 12, 12, 12);
+   let weekend = calendar.isWeekend(date); // weekend = false
    ```
 
 ## 电话号码格式化
@@ -329,7 +325,7 @@ try {
    调用PhoneNumberFormat的构造函数来实例化电话号码格式化对象，需要传入电话号码的国家代码及格式化选项。其中，格式化选项是可选的，包括style选项，该选项的取值包括："E164", "INTERNATIONAL", "NATIONAL", "RFC3966"。
 
    ```js
-   var phoneNumberFormat = new I18n.PhoneNumberFormat("CN", {type: "E164"});
+   let phoneNumberFormat = new I18n.PhoneNumberFormat("CN", {type: "E164"});
    ```
 
 3. 判断电话号码格式是否正确。
@@ -337,7 +333,7 @@ try {
      调用isValidNumber接口来判断输入的电话号码的格式是否正确。
 
    ```js
-   var validNumber = phoneNumberFormat.isValidNumber("15812341234"); // validNumber = true
+   let validNumber = phoneNumberFormat.isValidNumber("15812341234"); // validNumber = true
    ```
 
 4. 电话号码格式化。
@@ -345,7 +341,7 @@ try {
      调用电话号码格式化对象的format接口来对输入的电话号码进行格式化。
 
    ```js
-   var formattedNumber = phoneNumberFormat.format("15812341234"); // formattedNumber = "+8615812341234"
+   let formattedNumber = phoneNumberFormat.format("15812341234"); // formattedNumber = "+8615812341234"
    ```
 
 ## 度量衡转换
@@ -371,12 +367,12 @@ try {
    调用[unitConvert](../reference/apis/js-apis-i18n.md#unitconvert9)接口实现度量衡单位转换，并进行格式化显示的功能。
 
    ```js
-   var fromUnit = {unit: "cup", measureSystem: "US"};
-   var toUnit = {unit: "liter", measureSystem: "SI"};
-   var number = 1000;
-   var locale = "en-US";
-   var style = "long";
-   var converttedUnit = I18n.I18NUtil.unitConvert(fromUnit, toUnit, number, locale, style); // converttedUnit = "236.588 liters"
+   let fromUnit = {unit: "cup", measureSystem: "US"};
+   let toUnit = {unit: "liter", measureSystem: "SI"};
+   let number = 1000;
+   let locale = "en-US";
+   let style = "long";
+   let converttedUnit = I18n.I18NUtil.unitConvert(fromUnit, toUnit, number, locale, style); // converttedUnit = "236.588 liters"
    ```
 
 ## 字母表索引
@@ -406,7 +402,7 @@ try {
 
 
    ```js
-   var indexUtil = I18n.getInstance("zh-CN");
+   let indexUtil = I18n.getInstance("zh-CN");
    ```
 
 3. 获取索引列表。
@@ -414,7 +410,7 @@ try {
      调用getIndexList接口来获取当前Locale对应的字母表索引列表。
 
    ```js
-   var indexList = indexUtil.getIndexList(); // indexList = ["...", "A", "B", "C", ..., "X", "Y", "Z", "..."]
+   let indexList = indexUtil.getIndexList(); // indexList = ["...", "A", "B", "C", ..., "X", "Y", "Z", "..."]
    ```
 
 4. 增加新的索引。
@@ -430,8 +426,8 @@ try {
      调用getIndex接口来获取某一字符串对应的字母表索引。
 
    ```js
-   var text = "access index";
-   var index = indexUtil.getIndex(text); // index = "A"
+   let text = "access index";
+   let index = indexUtil.getIndex(text); // index = "A"
    ```
 
 ## 获取文本断点位置
@@ -466,8 +462,8 @@ try {
    调用getLineInstance接口来实例化断行对象。
 
    ```js
-   var locale = "en-US"
-   var breakIterator = I18n.getLineInstance(locale);
+   let locale = "en-US"
+   let breakIterator = I18n.getLineInstance(locale);
    ```
 
 3. 设置、访问要断行处理的文本。
@@ -475,9 +471,9 @@ try {
    调用setLineBreakText接口和getLineBreakText接口来设置、访问要断行处理的文本。
 
    ```js
-   var text = "Apple is my favorite fruit";
+   let text = "Apple is my favorite fruit";
    breakIterator.setLineBreakText(text);
-   var breakText = breakIterator.getLineBreakText();  // breakText = "Apple is my favorite fruit"
+   let breakText = breakIterator.getLineBreakText();  // breakText = "Apple is my favorite fruit"
    ```
 
 4. 获取断行对象当前的位置。
@@ -485,7 +481,7 @@ try {
    调用current接口来获取断行对象在当前处理文本中的位置。
 
    ```js
-   var pos = breakIterator.current(); // pos = 0
+   let pos = breakIterator.current(); // pos = 0
    ```
 
 5. 设置断行对象的位置。
@@ -493,15 +489,15 @@ try {
    系统提供了很多接口可以用于调整断行对象在处理文本中的位置，包括first, last, next, previous, following。
 
    ```js
-   var firstPos = breakIterator.first(); // 将断行对象设置到第一个分割点的位置，即文本的起始位置；firstPos = 0
-   var lastPos = breakIterator.last();  // 将断行对象设置到最后一个分割点的位置，即文本末尾的下一个位置；lastPos = 26
+   let firstPos = breakIterator.first(); // 将断行对象设置到第一个分割点的位置，即文本的起始位置；firstPos = 0
+   let lastPos = breakIterator.last();  // 将断行对象设置到最后一个分割点的位置，即文本末尾的下一个位置；lastPos = 26
    // 将断行对象向前或向后移动一定数量的分割点。
    // 当传入正数时，向后移动；当传入负数时，向前移动；当未传入数值时，则向后移动一个位置；
    // 当移动超出了文本的长度范围，则返回-1；
-   var nextPos = breakIterator.next(-2); // nextPos = 12
-   var previousPos = breakIterator.previous();  // 将断行对象向前移动向前移动一个分割点，当超出文本长度范围时返回-1； previousPos = 9
+   let nextPos = breakIterator.next(-2); // nextPos = 12
+   let previousPos = breakIterator.previous();  // 将断行对象向前移动向前移动一个分割点，当超出文本长度范围时返回-1； previousPos = 9
    // 将断行对象移动到offset指定位置的后面一个分割点。如果offset所指定的位置的下一个分割点超出了文本的长度范围，则返回-1；
-   var followingPos = breakIterator.following(10); // followingPos = 12
+   let followingPos = breakIterator.following(10); // followingPos = 12
    ```
 
 6. 判断某个位置是否为分割点。
@@ -509,7 +505,7 @@ try {
    调用isBoundary接口来判断一个接口是否为分割点；如果该位置是分割点，则返回true，并且将断行对象移动到该位置；如果该位置不是分割点，则返回false，并且将断行对象移动到该位置后的一个分割点。
 
    ```js
-   var isboundary = breakIterator.isBoundary(5); // isboundary = false
+   let isboundary = breakIterator.isBoundary(5); // isboundary = false
    ```
 
 ## 获取时区
@@ -543,16 +539,16 @@ try {
    调用getTimeZone接口来获取时区对象。
 
    ```js
-   var timezone = I18n.getTimeZone(); // 使用默认参数可以获取系统时区对象。
+   let timezone = I18n.getTimeZone(); // 使用默认参数可以获取系统时区对象。
    ```
 
    获取时区ID、本地化显示、时区偏移量、某一时刻的时区偏移量信息。
    
    ```js
-   var timezoneID = timezone.getID(); // timezoneID = "Asia/Shanghai"
-   var timezoneDisplayName = timezone.getDisplayName(); // timezoneDisplayName = "中国标准时间"
-   var rawOffset = timezone.getRawOffset(); // rawOffset = 28800000
-   var offset = timezone.getOffset(new Date()); // offset = 28800000
+   let timezoneID = timezone.getID(); // timezoneID = "Asia/Shanghai"
+   let timezoneDisplayName = timezone.getDisplayName(); // timezoneDisplayName = "中国标准时间"
+   let rawOffset = timezone.getRawOffset(); // rawOffset = 28800000
+   let offset = timezone.getOffset(new Date().getTime()); // offset = 28800000
    ```
 
 3. 获取系统支持的时区ID。
@@ -561,9 +557,9 @@ try {
    时区ID列表中的时区ID可以作为getTimeZone接口的参数，来创建TimeZone对象。
 
    ```js
-   var timezoneIDs = I18n.TimeZone.getAvailableIDs(); // timezoneIDs = ["America/Adak", ...]，共包含24个时区ID
-   var timezone = I18n.getTimeZone(timezoneIDs[0]);
-   var timezoneDisplayName = timezone.getDisplayName(); // timezoneDisplayName = "夏威夷-阿留申时间"
+   let timezoneIDs = I18n.TimeZone.getAvailableIDs(); // timezoneIDs = ["America/Adak", ...]，共包含24个时区ID
+   let timezone = I18n.getTimeZone(timezoneIDs[0]);
+   let timezoneDisplayName = timezone.getDisplayName(); // timezoneDisplayName = "夏威夷-阿留申时间"
    ```
 
 4. 获取系统支持的时区城市ID。
@@ -573,10 +569,10 @@ try {
    调用getTimezoneFromCity接口基于时区城市ID创建时区对象。
 
    ```js
-   var zoneCityIDs = I18n.TimeZone.getAvailableZoneCityIDs(); // ["Auckland", "Magadan", ...]
-   var cityDisplayName = I18n.TimeZone.getCityDisplayName(zoneCityIDs[0], "zh-Hans"); // cityDisplayName = "奥克兰(新西兰)"
-   var timezone = I18n.TimeZone.getTimezoneFromCity(zoneCityIDs[0]);
-   var timezoneDisplayName = timezone.getDisplayName(); // timezoneDisplayName = "新西兰时间"
+   let zoneCityIDs = I18n.TimeZone.getAvailableZoneCityIDs(); // ["Auckland", "Magadan", ...]
+   let cityDisplayName = I18n.TimeZone.getCityDisplayName(zoneCityIDs[0], "zh-Hans"); // cityDisplayName = "奥克兰(新西兰)"
+   let timezone = I18n.TimeZone.getTimezoneFromCity(zoneCityIDs[0]);
+   let timezoneDisplayName = timezone.getDisplayName(); // timezoneDisplayName = "新西兰时间"
    ```
 
 ## 获取音译对象
@@ -605,7 +601,7 @@ try {
    每个ID的格式为 source-destination，例如 ASCII-Latin，表示将ASCII转换为Latin的音译ID。
 
    ```js
-   var ids = I18n.Transliterator.getAvailableIDs(); // ids = ["ASCII-Latin", "Accents-Any", ... ]，共支持671个语言
+   let ids = I18n.Transliterator.getAvailableIDs(); // ids = ["ASCII-Latin", "Accents-Any", ... ]，共支持671个语言
    ```
 
 3. 创建音译对象，获取音译字符串。
@@ -614,8 +610,8 @@ try {
    调用transform接口，获取音译字符串。
 
    ```js
-   var transliterator = I18n.Transliterator.getInstance("Any-Latn"); // Any-Latn表示将任意文本转换为Latn文本
-   var transformText = transliterator.transform("你好"); // transformText = "nǐ hǎo "
+   let transliterator = I18n.Transliterator.getInstance("Any-Latn"); // Any-Latn表示将任意文本转换为Latn文本
+   let transformText = transliterator.transform("你好"); // transformText = "nǐ hǎo "
    ```
 
 ## 字符类型判断
@@ -649,56 +645,56 @@ try {
    判断字符是否是数字。
 
    ```js
-   var isDigit = I18n.Unicode.isDigit("1"); // isDigit = true
+   let isDigit = I18n.Unicode.isDigit("1"); // isDigit = true
    isDigit = I18n.Unicode.isDigit("a"); // isDigit = false
    ```
 
    判断字符是否是空格符。
 
    ```js
-   var isSpaceChar = I18n.Unicode.isSpaceChar(" "); // isSpaceChar = true
+   let isSpaceChar = I18n.Unicode.isSpaceChar(" "); // isSpaceChar = true
    isSpaceChar = I18n.Unicode.isSpaceChar("\n"); // isSpaceChar = false
    ```
 
    判断字符是否是空白符。
 
    ```js
-   var isWhitespace = I18n.Unicode.isWhitespace(" "); // isWhitespace = true
+   let isWhitespace = I18n.Unicode.isWhitespace(" "); // isWhitespace = true
    isWhitespace = I18n.Unicode.isWhitespace("\n"); // isWhitespace = true
    ```
 
    判断字符是否是从左到右书写的文字。
 
    ```js
-   var isRTL = I18n.Unicode.isRTL("مرحبًا"); // isRTL = true，阿拉伯语的文字是从左到右书写的文字
+   let isRTL = I18n.Unicode.isRTL("مرحبًا"); // isRTL = true，阿拉伯语的文字是从左到右书写的文字
    isRTL = I18n.Unicode.isRTL("a"); // isRTL = false
    ```
 
    判断字符是否是表意文字。
 
    ```js
-   var isIdeograph = I18n.Unicode.isIdeograph("你好"); // isIdeograph = true
+   let isIdeograph = I18n.Unicode.isIdeograph("你好"); // isIdeograph = true
    isIdeograph = I18n.Unicode.isIdeograph("a"); // isIdeograph = false
    ```
 
    判断字符是否是字母。
 
    ```js
-   var isLetter = I18n.Unicode.isLetter("a"); // isLetter = true
+   let isLetter = I18n.Unicode.isLetter("a"); // isLetter = true
    isLetter = I18n.Unicode.isLetter("."); // isLetter = false
    ```
 
    判断字符是否是小写字母。
 
    ```js
-   var isLowerCase = I18n.Unicode.isLowerCase("a"); // isLetter = true
+   let isLowerCase = I18n.Unicode.isLowerCase("a"); // isLetter = true
    isLowerCase = I18n.Unicode.isLowerCase("A"); // isLetter = false
    ```
 
    判断字符是否是大写字母。
 
    ```js
-   var isUpperCase = I18n.Unicode.isUpperCase("a"); // isUpperCase = false
+   let isUpperCase = I18n.Unicode.isUpperCase("a"); // isUpperCase = false
    isUpperCase = I18n.Unicode.isUpperCase("A"); // isUpperCase = true
    ```
 
@@ -707,7 +703,7 @@ try {
    调用getType接口获取字符的类型。
 
    ```js
-   var type = I18n.Unicode.getType("a"); // type = U_LOWER_CASE_LETTER
+   let type = I18n.Unicode.getType("a"); // type = U_LOWER_CASE_LETTER
    ```
 
 ## 获取日期中年月日的排列顺序
@@ -732,5 +728,5 @@ try {
    接口返回一个字符串，由"y"，"L"，"d"三部分组成，分别表示年、月、日，使用中划线进行拼接。例如，"y-L-d"。
 
    ```js
-   var order = I18n.I18NUtil.getDateOrder("zh-CN"); // order = "y-L-d"，表示中文中年月日的顺序为年-月-日。
+   let order = I18n.I18NUtil.getDateOrder("zh-CN"); // order = "y-L-d"，表示中文中年月日的顺序为年-月-日。
    ```
