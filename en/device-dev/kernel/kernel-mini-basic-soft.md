@@ -32,20 +32,18 @@ The software timer counts time in ticks. When a software timer is created and st
 
 When a tick interrupt occurs, the tick interrupt handler scans the global timing list for expired timers. If such timers are found, the timers are recorded.
 
-When the tick interrupt handling function is complete, the software timer task (with the highest priority) is woken up. In this task, the timeout callback function for the recorded timer is called.
+When the tick interrupt handler is complete, the software timer task (with the highest priority) will be woken up. In this task, the timeout callback for the recorded timer is called.
 
 
 ### Timer States
 
 - OS_SWTMR_STATUS_UNUSED
-  
   The timer is not in use. When the timer module is initialized, all timer resources in the system are set to this state.
+
 - OS_SWTMR_STATUS_CREATED
-  
   The timer is created but not started or the timer is stopped. When **LOS_SwtmrCreate** is called for a timer that is not in use or **LOS_SwtmrStop** is called for a newly started timer, the timer changes to this state.
-  
+
 - OS_SWTMR_STATUS_TICKING
-  
   The timer is running (counting). When **LOS_SwtmrStart** is called for a newly created timer, the timer enters this state.
 
 
@@ -64,15 +62,13 @@ The OpenHarmony LiteOS-M kernel provides the following types of software timers:
 
 The following table describes APIs available for the OpenHarmony LiteOS-M software timer module. For more details about the APIs, see the API reference.
 
-  **Table 1** Software timer APIs
+**Table 1** Software timer APIs
 
-| API| Description|
+| Category| Description|
 | -------- | -------- |
-| LOS_SwtmrCreate| Creates a timer.|
-| LOS_SwtmrDelete| Deletes a timer.|
-| LOS_SwtmrStart| Starts a timer.|
-| LOS_SwtmrStop| Stops a timer.|
-| LOS_SwtmrTimeGet| Obtains the remaining ticks of a software timer.|
+| Creating or deleting a timer| **LOS_SwtmrCreate**: creates a timer.<br>**LOS_SwtmrDelete**: deletes a timer.|
+| Starting or stopping a timer| **LOS_SwtmrStart**: starts a timer.<br>**LOS_SwtmrStop**: Stops a timer.|
+| Obtaining remaining ticks of a software timer| **LOS_SwtmrTimeGet**: obtains the remaining ticks of a software timer.|
 
 
 ## How to Develop
@@ -96,14 +92,14 @@ The typical development process of software timers is as follows:
 
 6. Call **LOS_SwtmrDelete** to delete the software timer.
 
->![](../public_sys-resources/icon-note.gif) **NOTE**
-> - Avoid too many operations in the callback function of the software timer. Do not use APIs or perform operations that may cause task suspension or blocking.
+> **NOTE**
+> - Avoid too many operations in the callback of the software timer. Do not use APIs or perform operations that may cause task suspension or blocking.
 > 
 > - The software timers use a queue and a task resource of the system. The priority of the software timer tasks is set to **0** and cannot be changed.
 > 
 > - The number of software timer resources that can be configured in the system is the total number of software timer resources available to the entire system, not the number of software timer resources available to users. For example, if the system software timer occupies one more resource, the number of software timer resources available to users decreases by one.
 > 
-> - If a one-shot software timer is created, the system automatically deletes the timer and reclaims resources after the timer times out and the callback function is executed.
+> - If a one-shot software timer is created, the system automatically deletes the timer and reclaims resources after the timer times out and the callback is invoked.
 > 
 > - For a one-shot software timer that will not be automatically deleted after expiration, you need to call **LOS_SwtmrDelete** to delete it and reclaim the timer resource to prevent resource leakage.
 
@@ -122,7 +118,7 @@ The following programming example demonstrates how to:
 
 ### Sample Code
 
-Prerequisites
+**Prerequisites**
 
 - In **los_config.h**, **LOSCFG_BASE_CORE_SWTMR** is enabled.
 
@@ -134,86 +130,107 @@ Prerequisites
 
 The sample code is as follows:
 
+The sample code is compiled and verified in **./kernel/liteos_m/testsuites/src/osTest.c**. Call **ExampleSwtmr** in **TestTaskEntry**.
+
 
 ```
 #include "los_swtmr.h"
 
-/* Timer count */
-UINT32 g_timerCount1 = 0;   
+/* Timer interval. */
+#define SWTMR_INTERVAL_LONG      1000
+#define SWTMR_INTERVAL_SHORT     100
+
+/* Number of times that the timers are triggered. */
+UINT32 g_timerCount1 = 0;
 UINT32 g_timerCount2 = 0;
 
-/* Task ID*/
-UINT32 g_testTaskId01;
-
-void Timer1_Callback(UINT32 arg) //Callback 1
+/* Callback 1, for the one-shot software timer. */
+void Timer1Callback(UINT32 arg)
 {
-    UINT32 tick_last1;
     g_timerCount1++;
-    tick_last1 = (UINT32)LOS_TickCountGet(); // Obtain the current number of ticks.
-    printf("g_timerCount1=%d, tick_last1=%d\n", g_timerCount1, tick_last1);
-}  
+    printf("g_timerCount1=%d\n", g_timerCount1);
+}
 
-void Timer2_Callback(UINT32 arg) //Callback 2
+/* Callback 2, for the periodic software timer. */
+void Timer2Callback(UINT32 arg)
 {
-    UINT32 tick_last2;
-    tick_last2 = (UINT32)LOS_TickCountGet();
     g_timerCount2++;
-    printf("g_timerCount2=%d tick_last2=%d\n", g_timerCount2, tick_last2);
-}  
+    printf("g_timerCount2=%d\n", g_timerCount2);
+}
 
-void Timer_example(void)  
+void SwtmrTest(void)
 {
     UINT32 ret;
-    UINT32 id1; // timer id1
-    UINT32 id2; // timer id2
+    UINT32 id1; // One-shot software timer.
+    UINT32 id2; // Periodic software timer.
     UINT32 tickCount;
 
-    /* Create a one-shot software timer, with the number of ticks set to 1000. When the number of ticks reaches 1000, callback function 1 is executed. */
-    LOS_SwtmrCreate(1000, LOS_SWTMR_MODE_ONCE, Timer1_Callback, &id1, 1);
+#if (LOSCFG_BASE_CORE_SWTMR_ALIGN == 1)
+    /* Create a one-shot software timer, with the number of ticks set to 1000. Invoke callback 1 when the number of ticks reaches 1000. */
+    LOS_SwtmrCreate(SWTMR_INTERVAL_LONG, LOS_SWTMR_MODE_ONCE, Timer1Callback, &id1, 0,
+                    OS_SWTMR_ROUSES_IGNORE, OS_SWTMR_ALIGN_SENSITIVE);
 
-    /* Create a periodic software timer and execute callback function 2 every 100 ticks. */
-    LOS_SwtmrCreate(100, LOS_SWTMR_MODE_PERIOD, Timer2_Callback, &id2, 1);
-    printf("create Timer1 success\n");
+    /* Create a periodic software timer and invoke callback 2 every 100 ticks. */
+    LOS_SwtmrCreate(SWTMR_INTERVAL_SHORT, LOS_SWTMR_MODE_PERIOD, Timer2Callback, &id2, 0,
+                    OS_SWTMR_ROUSES_IGNORE, OS_SWTMR_ALIGN_SENSITIVE);
+#else
+    /* Create a one-shot software timer, with the number of ticks set to 1000. Callback 1 will be invoked when the number of ticks reaches 1000. */
+    LOS_SwtmrCreate(SWTMR_INTERVAL_LONG, LOS_SWTMR_MODE_ONCE, Timer1Callback, &id1, 0);
 
-    LOS_SwtmrStart(id1); // Start the one-shot software timer.
-    printf("start Timer1 success\n");
+    /* Create a periodic software timer and invoke callback 2 every 100 ticks. */
+    LOS_SwtmrCreate(SWTMR_INTERVAL_SHORT, LOS_SWTMR_MODE_PERIOD, Timer2Callback, &id2, 0);
+#endif
 
-    LOS_TaskDelay(200); // Delay 200 ticks.
-    LOS_SwtmrTimeGet(id1, &tickCount);  // Obtain the number of remaining ticks of the one-short software timer.
-    printf("tickCount=%d\n", tickCount);
+    /* Start the one-time software timer. */
+    ret = LOS_SwtmrStart(id1);
+    printf("start Timer1 %s\n", (ret == LOS_OK) ? "success" : "failed");
 
-    LOS_SwtmrStop(id1); // Stop the software timer.
-    printf("stop Timer1 success\n");
+    /* Short delay. The timer is not triggered yet. */
+    LOS_TaskDelay(SWTMR_INTERVAL_SHORT);
+
+    /* The one-short timer is not triggered yet. The timer can be stopped successfully. */
+    ret = LOS_SwtmrStop(id1);
+    printf("stop timer1 %s\n", (ret == LOS_OK) ? "success" : "failed");
 
     LOS_SwtmrStart(id1);
-    LOS_TaskDelay(1000);
+    
+    /* Long-time delay, triggered by the timer. */
+    LOS_TaskDelay(SWTMR_INTERVAL_LONG);
 
-    LOS_SwtmrStart(id2); // Start the periodic software timer.
-    printf("start Timer2\n");
+    /* The timer is automatically deleted after being triggered. The stop operation should fail. */
+    ret = LOS_SwtmrStop(id1);
+    printf("timer1 self delete test %s\n", (ret != LOS_OK) ? "success" : "failed");
 
-    LOS_TaskDelay(1000);
+    /* Start the periodic software timer. */
+    ret = LOS_SwtmrStart(id2);
+    printf("start Timer2 %s\n", (ret == LOS_OK) ? "success" : "failed");
+
+    /* Long-time delay, triggered periodically by the timer. */
+    LOS_TaskDelay(SWTMR_INTERVAL_LONG);
+
     LOS_SwtmrStop(id2);
-    ret = LOS_SwtmrDelete(id2);  // Delete the software timer.
+
+    ret = LOS_SwtmrDelete(id2);
     if (ret == LOS_OK) {
         printf("delete Timer2 success\n");
     }
 }
 
-UINT32 Example_TaskEntry(VOID)
+UINT32 ExampleSwtmr(VOID)
 {
     UINT32 ret;
-    TSK_INIT_PARAM_S task1;
+    TSK_INIT_PARAM_S taskParam = { 0 };
+    UINT32 taskId;
 
     /* Lock task scheduling. */
     LOS_TaskLock();
 
-    /* Create task 1. */
-    (VOID)memset(&task1, 0, sizeof(TSK_INIT_PARAM_S));
-    task1.pfnTaskEntry = (TSK_ENTRY_FUNC)Timer_example;
-    task1.pcName       = "TimerTsk";
-    task1.uwStackSize  = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
-    task1.usTaskPrio   = 5;
-    ret = LOS_TaskCreate(&g_testTaskId01, &task1);
+    /* Create a task. */
+    taskParam.pfnTaskEntry = (TSK_ENTRY_FUNC)SwtmrTest;
+    taskParam.pcName       = "TimerTsk";
+    taskParam.uwStackSize  = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
+    taskParam.usTaskPrio   = 5;
+    ret = LOS_TaskCreate(&taskId, &taskParam);
     if (ret != LOS_OK) {
         printf("TimerTsk create failed.\n");
         return LOS_NOK;
@@ -221,7 +238,6 @@ UINT32 Example_TaskEntry(VOID)
 
     /* Unlock task scheduling. */
     LOS_TaskUnlock();
-
     return LOS_OK;
 }
 ```
@@ -233,22 +249,20 @@ The output is as follows:
 
 
 ```
-create Timer1 success
 start Timer1 success
-tickCount=798
-stop Timer1 success
-g_timerCount1=1, tick_last1=1208
-delete Timer1 success
-start Timer2
-g_timerCount2=1 tick_last2=1313
-g_timerCount2=2 tick_last2=1413
-g_timerCount2=3 tick_last2=1513
-g_timerCount2=4 tick_last2=1613
-g_timerCount2=5 tick_last2=1713
-g_timerCount2=6 tick_last2=1813
-g_timerCount2=7 tick_last2=1913
-g_timerCount2=8 tick_last2=2013
-g_timerCount2=9 tick_last2=2113
-g_timerCount2=10 tick_last2=2213
+stop timer1 success
+g_timerCount1=1
+timer1 self delete test success
+start Timer2 success
+g_timerCount2=1
+g_timerCount2=2
+g_timerCount2=3
+g_timerCount2=4
+g_timerCount2=5
+g_timerCount2=6
+g_timerCount2=7
+g_timerCount2=8
+g_timerCount2=9
+g_timerCount2=10
 delete Timer2 success
 ```

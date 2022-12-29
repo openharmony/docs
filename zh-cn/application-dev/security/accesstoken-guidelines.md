@@ -14,19 +14,31 @@
 >
 > 当权限校验结果显示当前应用尚未被授权该权限时，再通过动态弹框授权方式给用户提供手动授权入口。
 
+应用可申请的权限，可查询[应用权限列表](permission-list.md)
+
 ## 接口说明
 
-以下仅列举本指导使用的接口，更多说明可以查阅[API参考](../reference/apis/js-apis-ability-context.md)。
+以下仅列举本指导使用的接口，不同模型下使用的拉起权限弹窗的接口有差异，更多说明可以查阅[完整示例](##完整示例)。
 
+### FA模型
 | 接口名                                                       | 描述                                             |
 | ------------------------------------------------------------ | --------------------------------------------------- |
 | requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void; | 拉起弹窗请求用户授权。 |
+> 详细可查阅[API参考](../reference/apis/js-apis-ability-context.md)
+
+
+### Stage模型
+
+| 接口名                                                       | 描述                                             |
+| ------------------------------------------------------------ | --------------------------------------------------- |
+| requestPermissionsFromUser(context: Context, permissions: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void; | 拉起弹窗请求用户授权。 |
+> 详细可查阅[API参考](../reference/apis/js-apis-abilityAccessCtrl.md)
 
 ## 权限申请声明
 
-应用需要在工程配置文件中，对需要的权限逐个声明，没有在配置文件中声明的权限，应用将无法获得授权。Ability框架提供了两种模型，分别为FA模型和Stage模型，更多信息可以参考[Ability框架概述](../ability/ability-brief.md)。
+应用需要在工程配置文件中，对需要的权限逐个声明，没有在配置文件中声明的权限，应用将无法获得授权。OpenHarmony提供了两种应用模型，分别为FA模型和Stage模型，更多信息可以参考[应用模型解读](../application-models/application-model-description.md)。
 
-不同的Ability框架模型的应用包结构不同，所使用的配置文件不同，请开发者在申请权限时注意区分。
+不同的应用模型的应用包结构不同，所使用的配置文件不同，请开发者在申请权限时注意区分。
 
 配置文件标签说明如下表。
 
@@ -111,11 +123,11 @@
 
 ## ACL方式声明
 
-如上述示例所示，权限"ohos.permission.PERMISSION2"的权限等级为system_basic，高于此时应用的APL等级，用户的最佳做法是使用ACL方式。
+如上述示例所示，权限"ohos.permission.PERMISSION2"的权限等级为system_basic，高于此时应用的APL等级，开发者的最佳做法是使用ACL方式。
 
-在配置文件声明的基础上，应用还需要在Profile文件中声明不满足申请条件部分的权限。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。
+在配置文件声明的基础上，应用还需要在Profile文件中声明不满足申请条件部分的权限。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](app-provision-structure.md)。
 
-该场景中，用户应该在字段"acls"中做声明如下：
+该场景中，开发者应该在字段"acls"中做声明如下：
 
 ```json
 {
@@ -147,6 +159,7 @@
 2. 调用requestPermissionsFromUser接口请求权限。运行过程中，该接口会根据应用是否已获得目标权限决定是否拉起动态弹框请求用户授权。
 3. 根据requestPermissionsFromUser接口返回值判断是否已获取目标权限。如果当前已经获取权限，则可以继续正常访问目标接口。
 
+### FA模型下的示例代码
 ```js
   //ability的onWindowStageCreate生命周期
   onWindowStageCreate() {
@@ -165,11 +178,58 @@
 
 ```
 > **说明：**
-> 动态授权申请接口的使用详见[API参考](../reference/apis/js-apis-ability-context.md)。
+> FA模型的动态授权申请接口的使用详见[API参考](../reference/apis/js-apis-ability-context.md)。
 
+### stage 模型下的示例代码
+```js
+  import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+
+  //ability的onWindowStageCreate生命周期
+  onWindowStageCreate() {
+    var context = this.context
+    var AtManager = abilityAccessCtrl.createAtManager();
+    //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
+      AtManager.requestPermissionsFromUser(context, ["ohos.permission.CAMERA"]).then((data) => {
+        console.log("data type:" + typeof(data));
+        console.log("data:" + data);
+        console.log("data permissions:" + data.permissions);
+        console.log("data result:" + data.authResults);
+      }).catch((err) => {
+          console.error('Failed to start ability', err.code);
+      })
+  }
+
+```
+> **说明：**
+> stage模型的动态授权申请接口的使用详见[API参考](../reference/apis/js-apis-abilityAccessCtrl.md)。
+
+## user_grant权限预授权
+当前正常情况下，user_grant类型的权限默认不授权，需要时应通过拉起弹框由用户确认是否授予。对于一些预置应用，比如截屏应用，不希望出现弹框，则可以通过预授权的方式完成user_grant类型权限的授权。[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json)在设备上的路径为system/etc/app/install_list_permission.json，设备开机启动时会读取该配置文件，在应用安装会对在文件中配置的user_grant类型权限授权。当前仅支持预置应用配置该文件。
+预授权配置文件字段内容包括bundleName、app_signature、permissions。
+1. 这里的权限仅对user_grant类型的权限生效[查看权限等级和类型](permission-list.md)。
+2. userCancellable配置为true，表示支持用户取消授权，为false则表示不支持用户取消授权。
+
+```json
+[
+  {
+    "bundleName": "com.ohos.myapplication", // Bundle名称
+    "app_signature":[], // 指纹信息
+    "permissions":[
+      {
+        "name":"xxxx", // 权限名，不可缺省
+        "userCancellable":false // 用户不可取消授权，不可缺省
+      },
+      {
+        "name":"yyy", // 权限名，不可缺省
+        "userCancellable":true // 用户可取消授权，不可缺省
+      }
+    ]
+  }
+]
+```
 ## 相关实例
 
 针对访问控制，有以下相关实例可供参考：
 
-- [`AbilityAccessCtrl`：访问权限控制（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Safety/AbilityAccessCtrl)
-- [为应用添加运行时权限（eTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)
+- [`AbilityAccessCtrl`：访问权限控制（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Safety/AbilityAccessCtrl)
+- [为应用添加运行时权限（ArkTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)

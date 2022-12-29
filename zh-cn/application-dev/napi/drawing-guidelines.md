@@ -4,7 +4,7 @@
 
 Native Drawing模块提供了一系列的接口用于基本图形和字体的绘制。常见的应用场景举例：
 * 2D图形绘制。
-* 文本绘制和显示。
+* 文本绘制。
 
 ## 接口说明
 
@@ -138,7 +138,7 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
     OH_Drawing_BitmapDestory(cBitmap);
     ```
 
-## 文本绘制显示开发步骤
+## 文本绘制开发步骤
 
 以下步骤描述了在OpenHarmony中，如何使用**Native Drawing**模块的文字显示功能：
 1. **创建画布和bitmap实例**。
@@ -182,7 +182,7 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
     OH_Drawing_SetTextStyleLocale(txtStyle, "en");
     ```
 
-4. **生成最终文字显示效果**。
+4. **生成最终文本显示效果**。
 
     ```c++
     OH_Drawing_TypographyCreate* handler = OH_Drawing_CreateTypographyHandler(typoStyle,
@@ -196,8 +196,9 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
     // 设置页面最大宽度
     double maxWidth = 800.0;
     OH_Drawing_TypographyLayout(typography, maxWidth);
-    // 设置文字显示起始位置
+    // 设置文本在画布上绘制的起始位置
     double position[2] = {10.0, 15.0};
+    // 将文本绘制到画布上
     OH_Drawing_TypographyPaint(typography, cCanvas, position[0], position[1]);
     ```
 
@@ -205,4 +206,4 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
 
 针对Drawing模块的使用，有以下相关实例可供参考：
 * [Drawing模块2D图形绘制](https://gitee.com/openharmony/graphic_graphic_2d/blob/master/rosen/samples/2d_graphics/drawing_c_sample.cpp)。
-* [Drawing模块文本绘制显示](https://gitee.com/openharmony/graphic_graphic_2d/blob/master/rosen/samples/text/renderservice/drawing_text_c_sample.cpp)。
+* [Drawing模块文本绘制](https://gitee.com/openharmony/graphic_graphic_2d/blob/master/rosen/samples/text/renderservice/drawing_text_c_sample.cpp)。

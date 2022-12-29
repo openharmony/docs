@@ -1,4 +1,4 @@
-# EnterpriseAdminExtensionAbility
+# @ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)
 
 本模块提供企业管理员应用拓展能力。
 
@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import EnterpriseAdminExtensionAbility from '@ohos.EnterpriseAdminExtensionAbility'
+import EnterpriseAdminExtensionAbility from '@ohos.enterprise.EnterpriseAdminExtensionAbility'
 ```
 
 ## EnterpriseAdminExtensionAbility.onAdminEnabled
@@ -23,6 +23,8 @@ onAdminEnabled(): void
 设备管理员被激活事件回调。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **示例：**
 
@@ -41,11 +43,65 @@ onAdminDisabled(): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统API**: 此接口为系统接口。
+
 **示例：**
 
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAdminDisabled() {
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onBundleAdded
+
+onBundleAdded(bundleName: string): void
+
+应用安装事件回调。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 安装应用Bundle名称。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onBundleAdded(bundleName: string) {
+    console.log("added bundle name: " + bundleName);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onBundleRemoved
+
+onBundleRemoved(bundleName: string): void
+
+应用卸载事件回调。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 卸载应用Bundle名称。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onBundleAdded(bundleName: string) {
+    console.log("removed bundle name: " + bundleName);
   }
 };
 ```

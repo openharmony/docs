@@ -6,12 +6,14 @@ You can set your application to use the reminder agent APIs to create scheduled 
 
 > **NOTE**
 >
+> This module is deprecated since API version 9. You are advised to use [@ohos.reminderAgentManager](js-apis-reminderAgentManager.md) instead.
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```js
 import reminderAgent from'@ohos.reminderAgent';
 ```
 
@@ -20,7 +22,7 @@ import reminderAgent from'@ohos.reminderAgent';
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&gt;): void
 
-Publishes a reminder through the reminder agent. This API uses an asynchronous callback to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](../reference/apis/js-apis-notification.md#notificationrequestenablenotification8).
+Publishes a reminder through the reminder agent. This API uses an asynchronous callback to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8).
 
 **Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -28,10 +30,10 @@ Publishes a reminder through the reminder agent. This API uses an asynchronous c
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Asynchronous callback used to return the published reminder's ID.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
+  | callback | AsyncCallback&lt;number&gt; | Yes| Asynchronous callback used to return the published reminder's ID.|
 
 **Example**
 ```js
@@ -49,21 +51,21 @@ Publishes a reminder through the reminder agent. This API uses an asynchronous c
 
 publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
-Publishes a reminder through the reminder agent. This API uses a promise to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](../reference/apis/js-apis-notification.md#notificationrequestenablenotification8).
+Publishes a reminder through the reminder agent. This API uses a promise to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8).
 
 **Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the published reminder's ID.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the published reminder's ID.|
 
 **Example**
 ```js
@@ -89,7 +91,7 @@ Cancels the reminder with the specified ID. This API uses an asynchronous callba
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| reminderId | number | Yes| ID of the reminder to cancel.|
+| reminderId | number | Yes| ID of the reminder to cancel. The value is obtained by calling [publishReminder](#reminderagentpublishreminder).|
 | callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
 
 **Example**
@@ -113,7 +115,7 @@ Cancels the reminder with the specified ID. This API uses a promise to return th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| reminderId | number | Yes| ID of the reminder to cancel.|
+| reminderId | number | Yes| ID of the reminder to cancel. The value is obtained by calling [publishReminder](#reminderagentpublishreminder).|
 
 **Return value**
 
@@ -453,10 +455,10 @@ Defines the reminder to publish.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| reminderType | ReminderType | Yes| Type of the reminder.|
-| actionButton | [ActionButton?,&nbsp;ActionButton?] | No| Button displayed in the reminder notification. (The parameter is optional. Up to two buttons are supported.)|
-| wantAgent | WantAgent | No| Information about the ability that is redirected to when the notification is clicked.|
-| maxScreenWantAgent | MaxScreenWantAgent | No| Information about the ability that is automatically started when the reminder arrives. If the device is in use, a notification will be displayed.|
+| reminderType | [ReminderType](#remindertype) | Yes| Type of the reminder.|
+| actionButton | [ActionButton](#actionbutton) | No| Button displayed in the reminder notification. (The parameter is optional. Up to two buttons are supported.)|
+| wantAgent | [WantAgent](#wantagent) | No| Information about the ability that is redirected to when the notification is clicked.|
+| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | No| Information about the ability that is automatically started when the reminder arrives. If the device is in use, a notification will be displayed.|
 | ringDuration | number | No| Ringing duration.|
 | snoozeTimes | number | No| Number of reminder snooze times.|
 | timeInterval | number | No| Reminder snooze interval.|

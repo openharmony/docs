@@ -146,20 +146,18 @@ The following table describes the subsystems of OpenHarmony. For details about t
 
 ## Supported Development Boards
 
-Currently, the OpenHarmony community supports 17 types of development boards, which are listed in [Development Boards Supported](device-dev/dev-board-on-the-master.md). The following table describes three of them, which are the first three integrated into the OpenHarmony master.  You can visit http://ci.openharmony.cn/dailys/dailybuilds to obtain daily builds. 
+Currently, the OpenHarmony community supports 22 types of development boards, which are listed in [Development Boards Supported](device-dev/dev-board-on-the-master.md). The following table describes three of them, which are the first three integrated into the OpenHarmony master.  You can visit http://ci.openharmony.cn/dailys/dailybuilds to obtain daily builds. 
 
 | System Type| Board Model| Chip Model| <div style="width:200pt">Function Description and Use Case</div> | Application Scenario| Code Repository |
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| Standard system| Runhe HH-SCDAYU200| RK3568 | <div style="width:200pt">Function description:<br>Bolstered by the Rockchip RK3568, the HH-SCDAYU200 development board integrates the dual-core GPU and efficient NPU. Its quad-core 64-bit Cortex-A55 processor uses the advanced 22 nm fabrication process and is clocked at up to 2.0 GHz. The board is packed with Bluetooth, Wi-Fi, audio, video, and camera features, with a wide range of expansion ports to accommodate various video input and outputs. It comes with dual GE auto-sensing RJ45 ports, so it can be used in multi-connectivity products, such as network video recorders (NVRs) and industrial gateways.<br>Use case:<br>[DAYU200 Use Case](device-dev/porting/porting-dayu200-on_standard-demo.md)</div> | Entertainment, easy travel, and smart home, such as kitchen hoods, ovens, and treadmills.| [device_soc_rockchip](https://gitee.com/openharmony/device_soc_rockchip)<br>[device_board_hihope](https://gitee.com/openharmony/device_board_hihope)<br>[vendor_hihope](https://gitee.com/openharmony/vendor_hihope) <br> |
+| Standard system| Runhe HH-SCDAYU200| RK3568 | <div style="width:200pt">Function description:<br>Bolstered by the Rockchip RK3568, the HH-SCDAYU200 development board integrates the dual-core GPU and efficient NPU. Its quad-core 64-bit Cortex-A55 processor uses the advanced 22 nm fabrication process and is clocked at up to 2.0 GHz. The board is packed with Bluetooth, Wi-Fi, audio, video, and camera features, with a wide range of expansion ports to accommodate various video input and outputs. It comes with dual GE auto-sensing RJ45 ports, so it can be used in multi-connectivity products, such as network video recorders (NVRs) and industrial gateways.</div> | Entertainment, easy travel, and smart home, such as kitchen hoods, ovens, and treadmills.| [device_soc_rockchip](https://gitee.com/openharmony/device_soc_rockchip)<br>[device_board_hihope](https://gitee.com/openharmony/device_board_hihope)<br>[vendor_hihope](https://gitee.com/openharmony/vendor_hihope) <br> |
 | Small system| Hispark_Taurus | Hi3516DV300 | <div style="width:200pt">Function Description:<br>Hi3516D V300 is the next-generation system on chip (SoC) for smart HD IP cameras. It integrates the next-generation image signal processor (ISP), H.265 video compression encoder, and high-performance NNIE engine, and delivers high performance in terms of low bit rate, high image quality, intelligent processing and analysis, and low power consumption.</div> | Smart device with screens, such as refrigerators with screens and head units.| [device_soc_hisilicon](https://gitee.com/openharmony/device_soc_hisilicon)<br>[device_board_hisilicon](https://gitee.com/openharmony/device_board_hisilicon)<br>[vendor_hisilicon](https://gitee.com/openharmony/vendor_hisilicon) <br> |
 | Mini system| Multi-modal V200Z-R | BES2600 | <div style="width:200pt">Function description:<br>The multi-modal V200Z-R development board is a high-performance, multi-functional, and cost-effective AIoT SoC powered by the BES2600WM chip of Bestechnic. It integrates a quad-core ARM processor with a frequency of up to 1 GHz as well as dual-mode Wi-Fi and dual-mode Bluetooth. The board supports the 802.11 a/b/g/n/ and BT/BLE 5.2 standards. It is able to accommodate RAM of up to 42 MB and flash memory of up to 32 MB, and supports the MIPI display serial interface (DSI) and camera serial interface (CSI). It is applicable to various AIoT multi-modal VUI and GUI interaction scenarios.<br>Use case:<br>[Multi-modal V200Z-R Use Case](device-dev/porting/porting-bes2600w-on-minisystem-display-demo.md)</div> | Smart hardware, and smart devices with screens, such as speakers and watches.| [device_soc_bestechnic](https://gitee.com/openharmony/device_soc_bestechnic)<br>[device_board_fnlink](https://gitee.com/openharmony/device_board_fnlink)<br>[vendor_bestechnic](https://gitee.com/openharmony/vendor_bestechnic) <br> |
 
 ## Getting Started
 
-- [Getting Started for Device Development](device-dev/quick-start/quickstart-ide-lite-overview.md)
+- [Getting Started for Device Development](device-dev/quick-start/quickstart-overview.md)
 - [Getting Started for Application Development](application-dev/quick-start/start-overview.md)
-
-
 
 ## Code Repository Addresses
 
@@ -172,6 +170,8 @@ OpenHarmony third-party components: [https://gitee.com/openharmony-tpc](https://
 OpenHarmony archived projects: [https://gitee.com/openharmony-retired](https://gitee.com/openharmony-retired)
 
 ## OpenHarmony Documentation
+
+[Official website](https://www.openharmony.cn/)
 
 [Chinese version](https://gitee.com/openharmony/docs/tree/master/zh-cn)
 
@@ -197,7 +197,7 @@ For details about how to contribute, see [How to contribute](contribute/how-to-c
 
 OpenHarmony complies with Apache License Version 2.0. For details, see the LICENSE in each repository.
 
-OpenHarmony uses third-party open-source software and licenses. For details, see [Third-Party Open-Source Software](https://gitee.com/openharmony/docs/blob/master/en/contribute/third-party-open-source-software-and-license-notice.md).
+OpenHarmony uses third-party open-source software and licenses. For details, see [Open Source Software and License Notice](https://gitee.com/openharmony/docs/blob/master/en/contribute/open-source-software-and-license-notice.md).
 
 ## Contact Info
 

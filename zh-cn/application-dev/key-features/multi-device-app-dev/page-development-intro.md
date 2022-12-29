@@ -18,8 +18,8 @@
 - [资源使用](resource-usage.md)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 开发多设备上同一页面时，建议开发者多使用[自定义组件](../../ui/ts-component-based-component.md)，既可以增加代码的可读性和可维护性，同时也可以尽可能的实现代码复用。
+> **说明：**
+> 开发多设备上同一页面时，建议开发者多使用自定义组件，既可以增加代码的可读性和可维护性，同时也可以尽可能的实现代码复用。
 
 
 
@@ -35,5 +35,4 @@
 | [音乐专辑页](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/MusicAlbum) | 声明式开发范式 | 本章配套的示例代码，以音乐专辑页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
 | [蔬菜百科首页](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Vegetable) | 声明式开发范式 | 一多示例页面，以蔬菜百科首页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
 | [天气](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Weather) | 声明式开发范式 | 一多示例应用，以天气应用为例，演示如何使用一多能力实现包含多个页面的应用。 |
-
 

@@ -22,20 +22,21 @@ ListItem(value?: string)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| sticky | [Sticky](#sticky枚举说明) | 设置ListItem吸顶效果。<br/>默认值：Sticky.None |
-| editable  | boolean&nbsp;\|&nbsp;[EditMode](#editmode枚举说明) | 当前ListItem元素是否可编辑，进入编辑模式后可删除或移动列表项。<br/>默认值：false |
+| sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated枚举说明) | 设置ListItem吸顶效果。<br/>默认值：Sticky.None<br/>从API version9开始废弃，推荐使用[List组件sticky属性](ts-container-list.md#属性)。 |
+| editable<sup>(deprecated)</sup>  | boolean&nbsp;\|&nbsp;[EditMode](#editmodedeprecated枚举说明) | 当前ListItem元素是否可编辑，进入编辑模式后可删除或移动列表项。<br/>从API version9开始废弃。<br/>默认值：false |
 | selectable<sup>8+</sup> | boolean | 当前ListItem元素是否可以被鼠标框选。<br/>**说明：**<br/>外层List容器的鼠标框选开启时，ListItem的框选才生效。<br/>默认值：true |
 | swipeAction<sup>9+</sup> | {<br/>start?:&nbsp;CustomBuilder,<br/>end?:CustomBuilder,<br/>edgeEffect?:&nbsp;[SwipeEdgeEffect](#swipeedgeeffect9枚举说明),<br/>} | 用于设置ListItem的划出组件。<br/>- start:&nbsp;ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。<br/>- end:&nbsp;ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。<br/>- edgeEffect:&nbsp;滑动效果。<br/> |
 
-## Sticky枚举说明
+## Sticky<sup>(deprecated)</sup>枚举说明
+从API version9开始废弃，推荐使用[List组件stickyStyle枚举](ts-container-list.md#stickystyle9枚举说明)。
 | 名称 | 描述 |
 | -------- | -------- |
 | None | 无吸顶效果。 |
 | Normal | 当前item吸顶。 |
 | Opacity | 当前item吸顶显示透明度变化效果。 |
 
-## EditMode枚举说明
-
+## EditMode<sup>(deprecated)</sup>枚举说明
+从API version9开始废弃。
 | 名称     | 描述        |
 | ------ | --------- |
 | None   | 编辑操作不限制。    |
@@ -63,35 +64,18 @@ ListItem(value?: string)
 @Component
 struct ListItemExample {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @State editFlag: boolean = false
 
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ListItem() {
-          Text('sticky:Normal , click me edit list')
-            .width('100%').height(40).fontSize(12).fontColor(0xFFFFFF)
-            .textAlign(TextAlign.Center).backgroundColor(0x696969)
-            .onClick(() => {
-              this.editFlag = !this.editFlag
-            })
-        }.sticky(Sticky.Normal)
-
         ForEach(this.arr, (item) => {
           ListItem() {
             Text('' + item)
               .width('100%').height(100).fontSize(16)
               .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-          }.editable(this.editFlag)
+          }
         }, item => item)
-      }
-      .editMode(true)
-      .onItemDelete((index: number) => {
-        console.info(this.arr[index - 1] + 'Delete')
-        this.arr.splice(index - 1,1)
-        this.editFlag = false
-        return true
-      }).width('90%')
+      }.width('90%')
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
 }

@@ -1,8 +1,8 @@
-# Application Permission List
+# App Permission List
 
-Before applying for required permissions, read and understand the [permission workflow](accesstoken-overview.md#permission-workflow). Then, determine whether the app can apply for the target permissions based on the table below.
+Before applying for required permissions, read and understand the [permission workflows](accesstoken-overview.md#permission-workflows). Then, determine whether the app can apply for the target permissions based on the table below.
 
-For details about permission usage examples, see [Access Control Development](accesstoken-guidelines.md).
+For details about permission usage examples, see [Permission Application Guide](accesstoken-guidelines.md).
 
 | Permission                                                  | APL    | Authorization Mode    | Enable ACL| Description                                                    |
 | -------------------------------------------------------- | ------------ | ------------ | ------- | ------------------------------------------- |
@@ -94,7 +94,10 @@ For details about permission usage examples, see [Access Control Development](ac
 | ohos.permission.MANAGE_SECURE_SETTINGS                   | system_basic | system_grant | TRUE    | Allows an app to modify security settings.                                |
 | ohos.permission.READ_DFX_SYSEVENT                        | system_basic | system_grant | FALSE   | Allows an app to obtain all app account information.                                  |
 | ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN           | system_core  | system_grant | TRUE    | Allows an app to activate the device administrator app.                                |
-| ohos.permission.EDM_MANAGE_DATETIME                      | normal       | system_grant | FALSE   | Allows the device administrator app to set the system time.                            |
+| ohos.permission.SET_ENTERPRISE_INFO                      | system_basic | system_grant | TRUE   | Allows the device administrator app to set enterprise information.                            |
+| ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT       | system_basic | system_grant | TRUE   | Allows the device administrator app to subscribe to management events.                            |
+| ohos.permission.ENTERPRISE_SET_DATETIME                  | system_basic | system_grant | TRUE   | Allows the device administrator app to set the system time.                            |
+| ohos.permission.ENTERPRISE_GET_DEVICE_INFO               | system_basic | system_grant | TRUE   | Allows the device administrator app to obtain device information.                                |
 | ohos.permission.NFC_TAG                                  | normal       | system_grant | FALSE   | Allows an app to read NFC tag information.                                       |
 | ohos.permission.NFC_CARD_EMULATION                       | normal       | system_grant | FALSE   | Allows an app to implement card emulation.                                    |
 | ohos.permission.PERMISSION_USED_STATS                    | system_basic | system_grant | TRUE    | Allows a system application to access the permission usage records.                              |
@@ -139,7 +142,24 @@ For details about permission usage examples, see [Access Control Development](ac
 | ohos.permission.WRITE_IMAGEVIDEO                         | system_basic | user_grant   | TRUE    | Allows modification to the images or video files in a user's directory.                        |
 | ohos.permission.WRITE_AUDIO                              | system_basic | user_grant   | TRUE    | Audio modification to the audio files in a user's directory.                              |
 | ohos.permission.WRITE_DOCUMENT                           | system_basic | user_grant   | TRUE    | Allows modification to the files in a user's directory.                                  |
-| ohos.permission.ABILITY_BACKGROUND_COMMUNICATION         | system_basic | system_grant | TRUE    | Allows an app to start the Ability component in the background and establish a connection with it.    |
-| ohos.permission.securityguard.REPORT_SECURITY_INFO       | system_basic | system_grant | FALSE   | Allows an app to report risk data for security guard.                      |
-| ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT  | system_basic | system_grant | TRUE    | Allows an app to obtain the device risk status.                                    |
-| ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO    | system_core  | system_grant | FALSE   | Allows an app to obtain detailed risk data.                                    |
+| ohos.permission.<br>ABILITY_BACKGROUND_COMMUNICATION         | system_basic | system_grant | TRUE    | Allows an app to start the Ability component in the background and establish a connection with it.    |
+| ohos.permission.<br>securityguard.REPORT_SECURITY_INFO       | system_basic | system_grant | FALSE   | Allows an app to report risk data for security guard.                      |
+| ohos.permission.<br>securityguard.REQUEST_SECURITY_MODEL_RESULT  | system_basic | system_grant | TRUE    | Allows an app to obtain the device risk status.                                    |
+| ohos.permission.<br>securityguard.REQUEST_SECURITY_EVENT_INFO    | system_core  | system_grant | FALSE   | Allows an app to obtain detailed risk data.                                    |
+| ohos.permission.<br>READ_ACCESSIBILITY_CONFIG                    | system_basic | system_grant | FALSE   | Allows an app to read the accessibility configuration.                                  |
+| ohos.permission.<br>WRITE_ACCESSIBILITY_CONFIG                   | system_basic | system_grant | FALSE   | Allows an app to set the accessibility configuration.                                  |
+| ohos.permission.<br>ACCESS_CERT_MANAGER_INTERNAL             | system_basic  | system_grant | FALSE   | Allows an app to install, uninstall, enable, and disable certificates and credentials.           |
+| ohos.permission.<br>ACCESS_CERT_MANAGER                      | normal        | system_grant | FALSE   | Allows an app to manage private credentials and query certificate status.             |
+| ohos.permission.<br>ACCESS_PUSH_SERVICE                      | system_basic  | system_grant | TRUE    | Allows an app to to access the Ability of the push service.                                    |
+| ohos.permission.<br>RECEIVER_STARTUP_COMPLETED               | system_basic  | system_grant | FALSE   | Allows an app to subscribe to the startup broadcast.                                    |
+| ohos.permission.<br>MANAGE_CAMERA_CONFIG                     | system_basic  | system_grant | FALSE   | Allows an app to enable or disable cameras globally.                                    |
+| ohos.permission.READ_WHOLE_CALENDAR                     | system_basic  | uesr_grant | TRUE    | Allows an app to read all calendar information.                                    |
+| ohos.permission.WRITE_WHOLE_CALENDAR                     | system_basic  | uesr_grant | TRUE    | Allows an app to add, remove, or change all calendar events.                                    |
+| ohos.permission.ENFORCE_USER_IAM     | system_core  | system_grant | TRUE    | Allows an SA to delete user information from the IAM subsystem without a token.                               |
+| ohos.permission.ACCESS_AUTH_RESPOOL     | system_core  | system_grant | TRUE    | Allows an SA to register the executor.                               |
+| ohos.permission.MOUNT_UNMOUNT_MANAGER     | system_basic  | system_grant | FALSE    | Allows an app to mount and unmount external cards.                               |
+| ohos.permission.MOUNT_FORMAT_MANAGER     | system_basic  | system_grant | FALSE    | Allows an app to format external cards.                               |
+| ohos.permission.STORAGE_MANAGER     | system_basic  | system_grant | TRUE    | Allows an app to call the interfaces of the Storage Manager service to query space statistics and volume information.                               |
+| ohos.permission.BACKUP     | system_basic  | system_grant | TRUE    | Allows an app to have backup and restore capabilities.                               |
+| ohos.permission.FILE_ACCESS_MANAGER     | system_basic  | system_grant | TRUE    | Allows a file management app to access user data files through the FAF.                 |
+| ohos.permission.MANAGE_AUDIO_CONFIG                      | system_basic        | system_grant | TRUE   | Allows an app to to mute microphones globally.          |

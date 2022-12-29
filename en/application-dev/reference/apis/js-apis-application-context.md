@@ -1,183 +1,41 @@
-# Context
+# @ohos.application.context
 
-The **Context** module provides the context for running code. You can use the APIs to query and set the application information and resource manager.
+The **Context** module provides all level-2 module APIs for developers to export.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs of this module can be used only in the stage model.
 
-## Usage
+## Modules to Import
 
-You must extend **AbilityContext** to implement this module.
-
- ```js
-import AbilityContext from '@ohos.application.Ability'
-  class MainAbility extends AbilityContext {
-    onWindowStageCreate(windowStage) {
-      let test = "com.example.test";
-      let context = this.context.createBundleContext(test);
-    }
-  }
+```ts
+import context from '@ohos.application.context'
 ```
 
-## Attributes
+**System capability**: SystemCapability.Ability.AbilityBase
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| resourceManager | resmgr.ResourceManager; | Yes| No| **ResourceManager** object.|
-| applicationInfo | ApplicationInfo | Yes| No| Information about the application.|
-| cacheDir | string | Yes| No| Cache directory of the application on the internal storage.|
-| tempDir | string | Yes| No| Temporary file directory of the application.|
-| filesDir | string | Yes| No| File directory of the application on the internal storage.|
-| databaseDir | string | Yes| No| Storage directory of local data.|
-| bundleCodeDir | string | Yes| No| Application installation path.|
-| distributedFilesDir | string | Yes| No| Storage directory of distributed application data files.|
-| eventHub | [EventHub](js-apis-eventhub.md) | Yes| No| Event hub information.|
-| area | [AreaMode](#areamode) | Yes| Yes| Area in which the file to be access is located.|
-| preferencesDir | string | Yes| Yes| Preferences directory of the application.|
-
-## Context.createBundleContext
-
-createBundleContext(bundleName: string): Context;
-
-Creates a context for a given application.
-
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Application bundle name.|
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | Context | Context created.|
+| Name       | Readable/Writable| Type                | Mandatory| Description                                                        |
+| ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| AbilityContext    | Read Only    | [AbilityContext](js-apis-ability-context.md)               | No  | Level-2 module **AbilityContext**.                               |
+| AbilityStageContext   | Read Only    | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)               | No  | Level-2 module **AbilityStageContext**.|
+| ApplicationContext   | Read Only    | [ApplicationContext](js-apis-inner-application-applicationContext.md)               | No  | Level-2 module **ApplicationContext**.|
+| BaseContext   | Read Only    | [BaseContext](js-apis-inner-application-baseContext.md)               | No  | Level-2 module **BaseContext**.|
+| Context   | Read Only    | [Context](js-apis-inner-application-context.md)               | No  | Level-2 module **Context**.|
+| ExtensionContext   | Read Only    | [ExtensionContext](js-apis-inner-application-extensionContext.md)               | No  | Level-2 module **ExtensionContext**.|
+| FormExtensionContext   | Read Only    | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)               | No  | Level-2 module **FormExtensionContext**.|
+| EventHub   | Read Only    | [EventHub](js-apis-inner-application-eventHub.md)               | No  | Level-2 module **EventHub**.|
+| PermissionRequestResult   | Read Only    | [PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)               | No  | Level-2 module **PermissionRequestResult**.|
 
 **Example**
-
-  ```js
-  import AbilityContext from '@ohos.application.Ability'
-      class MainAbility extends AbilityContext {
-          onWindowStageCreate(windowStage) {
-              let test = "com.example.test";
-              let context = this.context.createBundleContext(test);
-      }
-}
-
-  ```
-
-
-## Context.createModuleContext
-
-createModuleContext(moduleName: string): Context;
-
-Creates a context for a given HAP.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | moduleName | string | Yes| HAP name in the application.|
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | Context | Context created.|
-
-**Example**
-
-  ```js
-  import AbilityContext from '@ohos.application.Ability'
-      class MainAbility extends AbilityContext {
-          onWindowStageCreate(windowStage) {
-              let moduleName = "module";
-              let context = this.context.createModuleContext(moduleName);
-      }
-}
-
-  ```
-
-
-## Context.createModuleContext
-
-createModuleContext(bundleName: string, moduleName: string): Context;
-
-Creates a context for a given HAP in an application.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Application bundle name.|
-  | moduleName | string | Yes| HAP name in the application.|
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | Context | Context created.|
-
-**Example**
-
-  ```js
-  import AbilityContext from '@ohos.application.Ability'
-      class MainAbility extends AbilityContext {
-          onWindowStageCreate(windowStage) {
-              let bundleName = "com.example.bundle";
-              let moduleName = "module";
-              let context = this.context.createModuleContext(bundleName, moduleName);
-      }
-}
-
-  ```
-
-
-## Context.getApplicationContext
-
-getApplicationContext(): ApplicationContext;
-
-Obtains the context of this application.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| ApplicationContext | Current application context.|
-
-**Example**
-
-  ```js
-  // This part is mandatory.
-  let applicationContext = this.context.getApplicationContext();
-  ```
-
-
-## AreaMode
-
-Defines the area where the file to be access is located. Each area has its own content.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-| Name           | Value   | Description           |
-| --------------- | ---- | --------------- |
-| EL1             | 0    | Device-level encryption area.  |
-| EL2             | 1    | User credential encryption area. The default value is **EL2**.|
+```ts
+let abilityContext: context.AbilityContext;
+let abilityStageContext: context.AbilityStageContext;
+let applicationContext: context.ApplicationContext;
+let baseContext: context.BaseContext;
+let context: context.Context;
+let extensionContext: context.ExtensionContext;  
+let formExtensionContext: context.FormExtensionContext;
+let eventHub: context.EventHub;
+let permissionRequestResult: context.PermissionRequestResult;
+```

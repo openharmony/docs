@@ -83,6 +83,31 @@
     > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
     > 当同时通过-t、-o及-n指定了相关订阅规则参数设置，则判断设置的事件标签是否为空，若不为空，则使用事件标签规则进行订阅，否则使用事件领域及事件名称订阅规则进行订阅。
 
+- 通过事件类型的方式实时订阅HiSysEvent事件：
+
+    ```
+    hisysevent -r -g [FAULT|STATISTIC|SECURITY|BEHAVIOR]
+    ```
+
+    选项说明：
+
+    | 选项名称 | 功能说明 |
+    | -------- | -------- |
+    | -g | 设置实时订阅的HiSysEvent事件类型，用来过滤订阅的HiSysEvent事件，有“FAULT”、“STATISTIC”、“SECURITY”及“BEHAVIOR”四种事件类型。 |
+
+    命令实例：
+
+    ```
+    # hisysevent -r -o "RELIABILITY" -n "APP_FREEZE" -g FAULT
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501963989773,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805201309","HAPPEN_TIME":1501963989773,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"16367997008075110557","info_":""}
+    # hisysevent -r -o "POWER\w{0,8}" -n "POWER_RUNNINGLOCK" -c REGULAR -g STATISTIC
+    {"domain_":"POWER","name_":"POWER_RUNNINGLOCK","type_":2,"time_":1667485283785,"tz_":"+0000","pid_":538,"tid_":684,"uid_":5523,"PID":360,"UID":1001,"STATE":0,"TYPE":1,"NAME":"telRilRequestRunningLock","LOG_LEVEL":2,"TAG":"DUBAI_TAG_RUNNINGLOCK_REMOVE","MESSAGE":"token=25956496","level_":"MINOR","tag_":"PowerStats","id_":"11994072552538324655","info_":""}
+    # hisysevent -r -o "ACCOU\w+" -c REGULAR -g SECURITY
+    {"domain_":"ACCOUNT","name_":"PERMISSION_EXCEPTION","type_":3,"time_":1667484405993,"tz_":"+0000","pid_":614,"tid_":614,"uid_":3058,"CALLER_UID":1024,"CALLER_PID":523,"PERMISSION_NAME":"ohos.permission.MANAGE_LOCAL_ACCOUNTS","level_":"CRITICAL","tag_":"security","id_":"15077995598140341422","info_":""}
+    # hisysevent -r -o MULTIMODALINPUT -g BEHAVIOR
+    {"domain_":"MULTIMODALINPUT","name_":"Z_ORDER_WINDOW_CHANGE","type_":4,"time_":1667549852735,"tz_":"+0000","pid_":2577,"tid_":2588,"uid_":6696,"OLD_ZORDER_FIRST_WINDOWID":-1,"NEW_ZORDER_FIRST_WINDOWID":2,"OLD_ZORDER_FIRST_WINDOWPID":-1,"NEW_ZORDER_FIRST_WINDOWPID":1458,"MSG":"The ZorderFirstWindow changing succeeded","level_":"MINOR","tag_":"PowerStats","id_":"16847308118559691400","info_":""}
+    ```
+
 
 ## 查询历史HiSysEvent事件相关命令
 
@@ -137,6 +162,56 @@
     ```
     # hisysevent -l -s 1501964222980 -e 1501964222996 -m 1
     {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501964222980,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805201702","HAPPEN_TIME":1501964222980,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"10435592800188571430","info_":""}
+    ```
+
+- 通过事件领域及事件名称的方式查询历史HiSysEvent事件：
+
+    ```
+    hisysevent -l -o <domain> -n <eventName> [-c WHOLE_WORD]
+    ```
+
+    选项说明：
+
+    | 选项名称 | 功能说明 |
+    | -------- | -------- |
+    | -o | 设置查询历史HiSysEvent事件领域，用来过滤查询的HiSysEvent事件。 |
+    | -n | 设置查询历史HiSysEvent事件名称，用来过滤查询的HiSysEvent事件。 |
+    | -c | 设置查询历史HiSysEvent事件领域及事件名称的匹配规则，查询只支持“WHOLE_WORD”匹配规则。 |
+
+    命令实例：
+
+    ```
+    # hisysevent -l -n "APP_FREEZE"
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501963989773,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805201309","HAPPEN_TIME":1501963989773,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"16367997008075110557","info_":""}
+    # hisysevent -r -o "RELIABILITY"
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501963989773,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805201544","HAPPEN_TIME":1501963989773,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"13456525196455104060","info_":""}
+    # hisysevent -r -o "RELIABILITY" -n "APP_FREEZE" -c WHOLE_WORD
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501963989773,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805201633","HAPPEN_TIME":1501963989773,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"12675246910904037271","info_":""}
+    ```
+
+- 通过事件类型的方式查询历史HiSysEvent事件：
+
+    ```
+    hisysevent -l -g [FAULT|STATISTIC|SECURITY|BEHAVIOR]
+    ```
+
+    选项说明：
+
+    | 选项名称 | 功能说明 |
+    | -------- | -------- |
+    | -g | 设置查询历史HiSysEvent事件类型，用来过滤查询的HiSysEvent事件，有“FAULT”、“STATISTIC”、“SECURITY”及“BEHAVIOR”四种事件类型。 |
+
+    命令实例：
+
+    ```
+    # hisysevent -l -o "RELIABILITY" -g FAULT
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501963989773,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805201309","HAPPEN_TIME":1501963989773,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"16367997008075110557","info_":""}
+    # hisysevent -l -n "POWER_RUNNINGLOCK" -c WHOLE_WORD -g STATISTIC
+    {"domain_":"POWER","name_":"POWER_RUNNINGLOCK","type_":2,"time_":1667485283785,"tz_":"+0000","pid_":538,"tid_":684,"uid_":5523,"PID":360,"UID":1001,"STATE":0,"TYPE":1,"NAME":"telRilRequestRunningLock","LOG_LEVEL":2,"TAG":"DUBAI_TAG_RUNNINGLOCK_REMOVE","MESSAGE":"token=25956496","level_":"MINOR","tag_":"PowerStats","id_":"11994072552538324655","info_":""}
+    # hisysevent -l -g SECURITY
+    {"domain_":"ACCOUNT","name_":"PERMISSION_EXCEPTION","type_":3,"time_":1667484405993,"tz_":"+0000","pid_":614,"tid_":614,"uid_":3058,"CALLER_UID":1024,"CALLER_PID":523,"PERMISSION_NAME":"ohos.permission.MANAGE_LOCAL_ACCOUNTS","level_":"CRITICAL","tag_":"security","id_":"15077995598140341422","info_":""}
+    # hisysevent -l -o MULTIMODALINPUT -g BEHAVIOR
+    {"domain_":"MULTIMODALINPUT","name_":"Z_ORDER_WINDOW_CHANGE","type_":4,"time_":1667549852735,"tz_":"+0000","pid_":2577,"tid_":2588,"uid_":6696,"OLD_ZORDER_FIRST_WINDOWID":-1,"NEW_ZORDER_FIRST_WINDOWID":2,"OLD_ZORDER_FIRST_WINDOWPID":-1,"NEW_ZORDER_FIRST_WINDOWPID":1458,"MSG":"The ZorderFirstWindow changing succeeded","level_":"MINOR","tag_":"PowerStats","id_":"16847308118559691400","info_":""}
     ```
 
 ## 系统事件合法性校验模式

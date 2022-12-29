@@ -1,6 +1,6 @@
 # Size
 
-The size attributes are used to set the width, height, padding, and margin of a component.
+The size attributes set the width, height, and margin of a component.
 
 >  **NOTE**
 >
@@ -16,9 +16,9 @@ The size attributes are used to set the width, height, padding, and margin of a 
 | height         | [Length](ts-types.md#length)             | Height of the component. By default, the height required to fully hold the component content is used. If the height of the component is greater than that of the parent container, the range of the parent container is drawn.             |
 | size           | {<br>width?: [Length](ts-types.md#length),<br>height?: [Length](ts-types.md#length)<br>} | Size of the component.                                 |
 | padding        | [Padding](ts-types.md#padding) \| [Length](ts-types.md#length) | Padding of the component.<br>When the parameter is of the **Length** type, the four paddings take effect.<br>Default value: **0**<br>When **padding** is set to a percentage, the width of the parent container is used as the basic value.|
-| margin         | [Margin](ts-types.md#margin)) \| [Length](ts-types.md#length)  | Margin of the component.<br>When the parameter is of the **Length** type, the four margins take effect.<br>Default value: **0**<br>When **margin** is set to a percentage, the width of the parent container is used as the basic value.|
-| constraintSize | {<br>minWidth?: [Length](ts-types.md#length),<br>maxWidth?: [Length](ts-types.md#length),<br>minHeight?: [Length](ts-types.md#length),<br>maxHeight?: [Length](ts-types.md#length)<br>} | Constraint size of the component, which is used to limit the size range during component layout. **constraintSize** takes precedence over **width** and **height**.<br>Default value:<br>{<br>minWidth: 0,<br>maxWidth: Infinity,<br>minHeight: 0,<br>maxHeight: Infinity<br>} |
-| layoutWeight   | number \| string               | Weight of the component during layout. When the container size is determined, the layout of the component and sibling components is allocated based on the weight along the main axis. The component size setting is ignored.<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** layouts.<br>Default value: **0**|
+| margin         | [Margin](ts-types.md#margin) \| [Length](ts-types.md#length)  | Margin of the component.<br>When the parameter is of the **Length** type, the four margins take effect.<br>Default value: **0**<br>When **margin** is set to a percentage, the width of the parent container is used as the basic value.|
+| constraintSize | {<br>minWidth?: [Length](ts-types.md#length),<br>maxWidth?: [Length](ts-types.md#length),<br>minHeight?: [Length](ts-types.md#length),<br>maxHeight?: [Length](ts-types.md#length)<br>} | Constraint size of the component, which is used to limit the size range during component layout. **constraintSize** takes precedence over **width** and **height**. If the value of **minWidth** is greater than that of **maxWidth**, only the value of **minWidth** takes effect. The same rule applies to **minHeight** and **maxHeight**.<br>Default value:<br>{<br>minWidth: 0,<br>maxWidth: Infinity,<br>minHeight: 0,<br>maxHeight: Infinity<br>} |
+| layoutWeight   | number \| string               | Weight of the component during layout. When the container size is determined, the container space is allocated along the main axis among the component and sibling components based on the layout weight, and the component size setting is ignored.<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** layouts.|
 
 
 ## Example
@@ -31,30 +31,41 @@ struct SizeExample {
   build() {
     Column({ space: 10 }) {
       Text('margin and padding:').fontSize(12).fontColor(0xCCCCCC).width('90%')
-      // The width is 80, the height is 80, the padding is 20, and the margin is 20.
       Row() {
+        // Width: 80; height: 80; margin: 20 (blue area); padding: 10 (white area)
         Row() {
-          Row().size({ width: '100%', height: '100%' }).backgroundColor(0xAFEEEE)
-        }.width(80).height(80).padding(20).margin(20).backgroundColor(0xFDF5E6)
-      }.backgroundColor(0xFFA500)
+          Row().size({ width: '100%', height: '100%' }).backgroundColor(Color.Yellow)
+        }
+        .width(80)
+        .height(80)
+        .padding(10)
+        .margin(20)
+        .backgroundColor(Color.White)
+      }.backgroundColor(Color.Blue)
+
+      Text('constraintSize').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Text('this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text')
+        .width('90%')
+        .constraintSize({ maxWidth: 200 })
 
       Text('layoutWeight').fontSize(12).fontColor(0xCCCCCC).width('90%')
-      // When the container size is determined, the layout of the component and sibling components is allocated based on the weight along the main axis. The component size setting is ignored.
+      // When the container size is determined, the component occupies the space along the main axis based on the layout weight, and the component size setting is ignored.
       Row() {
-        // Weight 1
+        // Weight 1: The component occupies 1/3 of the remaining space along the main axis.
         Text('layoutWeight(1)')
           .size({ width: '30%', height: 110 }).backgroundColor(0xFFEFD5).textAlign(TextAlign.Center)
           .layoutWeight(1)
-        // Weight 2
+        // Weight 2: The component occupies 2/3 of the remaining space along the main axis.
         Text('layoutWeight(2)')
           .size({ width: '30%', height: 110 }).backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
           .layoutWeight(2)
-        // The default weight is 0.
+        // If layoutWeight is not set, the component is rendered based on its own size setting.
         Text('no layoutWeight')
           .size({ width: '30%', height: 110 }).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
       }.size({ width: '90%', height: 140 }).backgroundColor(0xAFEEEE)
     }.width('100%').margin({ top: 5 })
-  }}
+  }
+}
 ```
 
-![en-us_image_0000001257138367](figures/en-us_image_0000001257138367.gif)
+![size](figures/size.png)

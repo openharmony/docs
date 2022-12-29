@@ -20,46 +20,44 @@
 | -------- | -------- | -------- | -------- |
 | type | [TransitionType](ts-appendix-enums.md#transitiontype)  | 否 | 默认包括组件新增和删除。<br/>默认值：TransitionType.All<br/>**说明：**<br/>不指定Type时说明插入删除使用同一种效果。 |
 | opacity | number | 否 | 设置组件转场时的透明度效果，为插入时起点和删除时终点的值。<br/>默认值：1 |
-| translate | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number<br/>} | 否 | 设置组件转场时的平移效果，为插入时起点和删除时终点的值。<br/>-x：横向的平移距离。<br/>-y：纵向的平移距离。<br/>-z：竖向的平移距离。 |
-| scale | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number,<br/>centerX?&nbsp;:&nbsp;number,<br/>centerY?&nbsp;:&nbsp;number<br/>} | 否 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>-x：横向放大倍数（或缩小比例）。<br/>-y：纵向放大倍数（或缩小比例）。<br/>-z：竖向放大倍数（或缩小比例）。<br/>-&nbsp;centerX、centerY缩放中心点。<br/>-&nbsp;中心点为0时，默认的是组件的左上角。<br/> |
-| rotate | {<br/>x?:&nbsp;number,<br/>y?:&nbsp;number,<br/>z?:&nbsp;number,<br/>angle?:&nbsp;Angle,<br/>centerX?:&nbsp;Length,<br/>centerY?:&nbsp;Length<br/>} | 否 | 设置组件转场时的旋转效果，为插入时起点和删除时终点的值。<br/>-x：横向的旋转向量。<br/>-y：纵向的旋转向量。<br/>-z：竖向的旋转向量。<br/>-&nbsp;centerX,centerY指旋转中心点。<br/>-&nbsp;中心点为（0，0）时，默认的是组件的左上角。 |
+| translate | {<br/>x?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>y?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>z?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 否 | 设置组件转场时的平移效果，为插入时起点和删除时终点的值。<br/>-x：横向的平移距离。<br/>-y：纵向的平移距离。<br/>-z：竖向的平移距离。 |
+| scale | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number,<br/>centerX?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerY?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 否 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>-x：横向放大倍数（或缩小比例）。<br/>-y：纵向放大倍数（或缩小比例）。<br/>-z：竖向放大倍数（或缩小比例）。<br/>-&nbsp;centerX、centerY指缩放中心点，centerX和centerY默认值是"50%"。<br/>-&nbsp;中心点为0时，默认的是组件的左上角。<br/> |
+| rotate | {<br/>x?:&nbsp;number,<br/>y?:&nbsp;number,<br/>z?:&nbsp;number,<br/>angle?:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerX?:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerY?:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 否 | 设置组件转场时的旋转效果，为插入时起点和删除时终点的值。<br/>-x：横向的旋转向量。<br/>-y：纵向的旋转向量。<br/>-z：竖向的旋转向量。<br/>-&nbsp;centerX,centerY指旋转中心点，centerX和centerY默认值是"50%"。<br/>-&nbsp;中心点为（0，0）时，默认的是组件的左上角。 |
 
 
 ## 示例
-
-示例功能通过一个Button控制第二个Button的出现和消失，并通过transition配置第二个Button出现和消失的过场动画。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TransitionExample {
-  @State btn: boolean = false
-  @State show: string = "show"
+  @State flag: boolean = true
+  @State show: string = 'show'
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center,}) {
-      Button(this.show).width(80).height(30).backgroundColor(0x317aff).margin({bottom:50})
+    Column() {
+      Button(this.show).width(80).height(30).margin(30)
         .onClick(() => {
+          // 点击Button控制Image的显示和消失
           animateTo({ duration: 1000 }, () => {
-            this.btn = !this.btn
-            if(this.btn){
-              this.show = "hide"
-            }else{
-              this.show = "show"
+            if (this.flag) {
+              this.show = 'hide'
+            } else {
+              this.show = 'show'
             }
+            this.flag = !this.flag
           })
         })
-      if (this.btn) {
-        // 插入和删除配置为不同的过渡效果
-        Button() {
-          Image($r('app.media.bg1')).width("80%").height(300)
-        }.transition({ type: TransitionType.Insert, scale : {x:0,y:1.0} })
-        .transition({ type: TransitionType.Delete, scale: { x: 1.0, y: 0.0 } })
+      if (this.flag) {
+        // Image的显示和消失配置为不同的过渡效果
+        Image($r('app.media.testImg')).width(300).height(300)
+          .transition({ type: TransitionType.Insert, scale: { x: 0, y: 1.0 } })
+          .transition({ type: TransitionType.Delete, rotate: { angle: 180 } })
       }
-    }.height(400).width("100%").padding({top:100})
+    }.width('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001174582850](figures/zh-cn_image_0000001174582850.gif)
+![animateTo](figures/animateTo.gif)

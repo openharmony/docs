@@ -1,4 +1,4 @@
-# Access Control (Permission) Development
+# Permission Application Guide
 
 ## When to Use
 
@@ -13,14 +13,14 @@ In this example, the app requires the **ohos.permission.PERMISSION1** and **ohos
 > In this scenario, the required permissions include a **user_grant** permission. You can check whether the caller has the required permission through permission verification.
 >
 > If the permission verification result indicates that the app has not obtained that permission, dynamic user authorization is required.
->
+
 ## Available APIs
 
-The table below lists only the API used in this guide. For more information, see the [API Reference](../reference/apis/js-apis-abilityAccessCtrl.md).
+The table below lists only the API used in this guide. For more information, see [Ability Access control](../reference/apis/js-apis-ability-context.md).
 
 | API                                                      | Description                                            |
 | ------------------------------------------------------------ | --------------------------------------------------- |
-| verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt; | Verifies whether an app has the specified permission. This API uses a promise to return the result.|
+| requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void; | Requests permissions from the user by displaying a dialog box. This API uses an asynchronous callback to return the result.|
 
 ## Declaring Permissions
 
@@ -88,10 +88,10 @@ For the apps based on the stage model, declare the required permissions in the *
         "name" : "ohos.permission.PERMISSION1",
         "reason": "$string:reason",
         "usedScene": {
-                     "abilities": [
-                         "FormAbility"
-                     ],
-                     "when":"inuse"
+          "abilities": [
+            "FormAbility"
+          ],
+          "when":"inuse"
         }
       },
       {
@@ -101,7 +101,7 @@ For the apps based on the stage model, declare the required permissions in the *
           "abilities": [
             "FormAbility"
           ],
-        "when":"always"
+          "when":"always"
         }
       }
     ]
@@ -115,7 +115,7 @@ The permission level of **ohos.permission.PERMISSION2** is **system_basic**, whi
 
 In addition to declaring all the permissions in the configuration file, you must declare the permissions whose levels are higher that the app's APL in the app's profile. For details about the fields in the profile, see [HarmonyAppProvision Configuration File](../quick-start/app-provision-structure.md).
 
-In this example, declare the permission under the **acls** field:
+For example, declare the required permission in the **acls** field:
 
 ```json
 {
@@ -137,22 +137,22 @@ If the verification result indicates that the app has the permission, the app ca
 
 > **CAUTION**
 >
-> The permissions authorized by user are not permanent, because the user may revoke the authorization at any time. Therefore, even if the user has granted the requested permission to an app, the app's permission must be verified before the app calls an API protected by the permission.
+> The permission authorized by a user is not permanent, because the user may revoke the authorization at any time. Each time before the API protected by the permission is called, call **requestPermissionsFromUser()** to request the permission.
 
 ## Example
 
-The procedure is as follows:
+The procedure for requesting user authorization is as follows:
 
 1. Obtain the ability context.
-2. Call **requestPermissionsFromUser** to verify whether the app has required permissions.
-3. Proceed based on the permission verification result.
+2. Call **requestPermissionsFromUser()** to request user authorization. The API determines whether to display a dialog box to request user authorization based on whether the app has the permission.
+3. Check whether the app has the permission based on the return value. If the app has the permission, the API can be invoked.
 
 ```js
-  // OnWindowStageCreate lifecycle of the ability
+  // OnWindowStageCreate of the ability
   onWindowStageCreate() {
     var context = this.context
     let array:Array<string> = ["ohos.permission.PERMISSION2"];
-    // requestPermissionsFromUser determines whether to invoke a pop-up window based on the permission authorization status.
+    // requestPermissionsFromUser determines whether to display a dialog box based on the permission authorization status.
     context.requestPermissionsFromUser(array).then(function(data) {
       console.log("data type:" + typeof(data));
       console.log("data:" + data);
@@ -165,4 +165,4 @@ The procedure is as follows:
 
 ```
 > **NOTE**<br>
-> For details about how to use **requestPermissionsFromUser**, see [API Reference](../reference/apis/js-apis-ability-context.md).
+> For details about the APIs, see [AbilityContext](../reference/apis/js-apis-ability-context.md).

@@ -21,45 +21,47 @@ let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: {
 // 创建pixelmap对象
 const color = new ArrayBuffer(96);
 let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 2, width: 3 } }
-        image.createPixelMap(color, opts, pixelmap => {
-            expect(pixelmap !== null).assertTrue();
-            console.info('TC_001-1 success');
-            done();
-        })
+image.createPixelMap(color, opts, (err, pixelmap) => {
+    console.log('Succeeded in creating pixelmap.');
+})
+
 // 用于读像素
-pixelmap.readPixels(area,(data) => {
- 	if(data !== null) {
-		var bufferArr = new Uint8Array(area.pixels);
-        var res = true;
-        for (var i = 0; i < bufferArr.length; i++) {
-			console.info('TC_021-1 buffer ' + bufferArr[i]);
-				if(res) {
-					if(bufferArr[i] == 0) {
-						res = false;
-                        console.info('TC_021-1 Success');
-                        expect(true).assertTrue();
-                        done();
-                        break;
-                        }
-                    }
-                }
+const area = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+}
+pixelmap.readPixels(area,() => {
+    var bufferArr = new Uint8Array(area.pixels);
+    var res = true;
+    for (var i = 0; i < bufferArr.length; i++) {
+        console.info(' buffer ' + bufferArr[i]);
+        if(res) {
+            if(bufferArr[i] == 0) {
+                res = false;
+                console.log('readPixels end.');
+                break;
+            }
+        }
+    }
+})
  
 // 用于存像素
 const readBuffer = new ArrayBuffer(96);
 pixelmap.readPixelsToBuffer(readBuffer,() => {
-var bufferArr = new Uint8Array(readBuffer);
-var res = true;
-for (var i = 0; i < bufferArr.length; i++) {
-    if(res) {
-        if (bufferArr[i] !== 0) {
-            res = false;
-            console.info('TC_020-1 Success');
-            expect(true).assertTrue();
-            done();
-            break;
+    var bufferArr = new Uint8Array(readBuffer);
+    var res = true;
+    for (var i = 0; i < bufferArr.length; i++) {
+        if(res) {
+            if (bufferArr[i] !== 0) {
+                res = false;
+                console.log('readPixelsToBuffer end.');
+                break;
+            }
         }
     }
-}
+})
     
 // 用于写像素
 pixelmap.writePixels(area,() => {
@@ -71,56 +73,51 @@ pixelmap.writePixels(area,() => {
             if(res) {
                 if (readArr[i] !== 0) {
                     res = false;
-                    console.info('TC_022-1 Success');
-                    expect(true).assertTrue();
-                    done();
+                    console.log('readPixels end.please check buffer');
                     break;
                 }
             }
         }
+    })
+})
   
 // 用于写像素到缓冲区
 pixelmap.writeBufferToPixels(writeColor).then(() => {
     const readBuffer = new ArrayBuffer(96);
     pixelmap.readPixelsToBuffer(readBuffer).then (() => {
-    	var bufferArr = new Uint8Array(readBuffer);
-     	var res = true;
-     	for (var i = 0; i < bufferArr.length; i++) {
-     		if(res) {
-     			if (bufferArr[i] !== i) {
-     				res = false;
-                    console.info('TC_023 Success');
-                    expect(true).assertTrue()
-                    done();
+        var bufferArr = new Uint8Array(readBuffer);
+        var res = true;
+        for (var i = 0; i < bufferArr.length; i++) {
+            if(res) {
+                if (bufferArr[i] !== i) {
+                    res = false;
+                    console.log('readPixels end.please check buffer');
                     break;
                 }
             }
         }
+    })
+})
 
 // 用于获取图片信息
-pixelmap.getImageInfo( imageInfo => {
+pixelmap.getImageInfo((error, imageInfo) => {
     if (imageInfo !== null) {
-        console.info('TC_024-1 imageInfo is ready');
-        expect(imageInfo.size.height == 4).assertTrue();
-        expect(imageInfo.size.width == 6).assertTrue();
-        expect(imageInfo.pixelFormat == 4).assertTrue();
-        done();
+	    console.log('Succeeded in getting imageInfo');
     } 
 })
 
 // 用于释放pixelmap
 pixelmap.release(()=>{
-    expect(true).assertTrue();
-    console.log('TC_027-1 suc');
-    done();
+    console.log('Succeeded in releasing pixelmap');
 })
 
-let path = '/data/local/tmp/test.jpg';
 // 用于创建imagesource(uri)
-const imageSourceApi = image.createImageSource(path); // '/data/local/tmp/test.jpg'
+let path = '/data/local/tmp/test.jpg';
+const imageSourceApi = image.createImageSource(path);
 
 // 用于创建imagesource(fd)
-const imageSourceApi = image.createImageSource(29);
+let fd = 29;
+const imageSourceApi = image.createImageSource(fd);
 
 // 用于创建imagesource(data)
 const data = new ArrayBuffer(96);
@@ -128,15 +125,15 @@ const imageSourceApi = image.createImageSource(data);
 
 // 用于释放imagesource
 imageSourceApi.release(() => {
-    console.info('TC_044-1 Success');
-    })
+    console.log('Succeeded in releasing imagesource');
+})
     
 // 用于编码
 const imagePackerApi = image.createImagePacker();
-imagePackerApi.packing(imageSourceApi, packOpts, data => {
-    console.info('TC_062-1 finished');
-    expect(data !== null).assertTrue();
-    done();
+const imageSourceApi = image.createImageSource(0);
+let packOpts = { format:"image/jpeg", quality:98 };
+imagePackerApi.packing(imageSourceApi, packOpts, (err, data) => {
+    console.log('Succeeded in packing');
 })
  
 // 用于释放imagepacker
@@ -163,76 +160,51 @@ let decodingOptions = {
     };
     
 // 用于回调方式创建pixelmap
-imageSourceApi.createPixelMap(decodingOptions, pixelmap => {
-    console.info('TC_050 createPixelMap ');
-    expect(pixelmap !== null ).assertTrue();
-    done();
-    })
-}  
+imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
+    console.log('Succeeded in creating pixelmap.');
+})
 
 // 用于promise创建pixelmap
 imageSourceApi.createPixelMap().then(pixelmap => {
-    console.info('TC_050-11 createPixelMap ');
-    expect(pixelmap !== null ).assertTrue();
-    done();
+    console.log('Succeeded in creating pixelmap.');
 })
 
 // 函数调用发生异常时，捕捉错误信息
 catch(error => {
-    console.log('TC_050-11 error: ' + error);
-    expect().assertFail();
-    done();
+    console.log('Failed in creating pixelmap.' + error);
 })
 
 // 用于获取像素每行字节数
-pixelmap.getBytesNumberPerRow( num => {
-	console.info('TC_025-1 num is ' + num);
-	expect(num == expectNum).assertTrue();
-	done();
-})
+var num = pixelmap.getBytesNumberPerRow();
 
 // 用于获取像素总字节数
-pixelmap.getPixelBytesNumber(num => {
-    console.info('TC_026-1 num is ' + num);
-    expect(num == expectNum).assertTrue();
-    done();
-})
+var pixelSize = pixelmap.getPixelBytesNumber();
 
 // 用于获取pixelmap信息
-pixelmap.getImageInfo( imageInfo => {})
- 
-// 用于打印获取失败信息
-console.info('TC_024-1 imageInfo is empty');
-expect(false).assertTrue()
+pixelmap.getImageInfo().then( imageInfo => {});
 
 // 用于释放pixelmap
 pixelmap.release(()=>{
-    expect(true).assertTrue();
-    console.log('TC_027-1 suc');
-    done();
+    console.log('Succeeded in releasing pixelmap');
 })    
 
 // 用于捕捉释放失败信息
 catch(error => {
-    console.log('TC_027-1 error: ' + error);
-    expect().assertFail();
-    done();
+    console.log('Failed in releasing pixelmap.' + error);
 })
 ```
 
 ### 编码场景
 
 ```js
-let path = '/data/local/tmp/test.png' // 设置创建imagesource的路径
+let path = '/data/local/tmp/test.png'; // 设置创建imagesource的路径
 
 // 用于设置imagesource
 const imageSourceApi = image.createImageSource(path); // '/data/local/tmp/test.png'
  
 // 如果创建imagesource失败，打印错误信息
 if (imageSourceApi == null) {
-    console.info('TC_062 create image source failed');
-    expect(false).assertTrue();
-    done();
+    console.log('Failed in creating imageSource.');
 }
    
 // 如果创建imagesource成功，则创建imagepacker
@@ -240,9 +212,7 @@ const imagePackerApi = image.createImagePacker();
 
 // 如果创建失败，打印错误信息
 if (imagePackerApi == null) {
-    console.info('TC_062 create image packer failed');
-    expect(false).assertTrue();
-    done();
+    console.log('Failed in creating imagePacker.');
 }
 
 // 如果创建imagepacker成功，则设置编码参数
@@ -252,19 +222,15 @@ let packOpts = { format:["image/jpeg"], // 支持编码的格式为jpg
 // 用于编码
 imagePackerApi.packing(imageSourceApi, packOpts)
 .then( data => {
-    console.info('TC_062 finished');
-    expect(data !== null).assertTrue();
-    done();
+    console.log('Succeeded in packing');
 })
-             
+         
 // 编码完成，释放imagepacker
 imagePackerApi.release();
 
 // 用于获取imagesource信息
-imageSourceApi.getImageInfo(imageInfo => {
-    console.info('TC_045 imageInfo');
-    expect(imageInfo !== null).assertTrue();
-    done();
+imageSourceApi.getImageInfo((err, imageInfo) => {
+    console.log('Succeeded in getting imageInfo');
 })
 
 // 用于更新增量数据
@@ -283,8 +249,9 @@ public async init(surfaceId: any) {
     var receiver = image.createImageReceiver(8 * 1024, 8, image.ImageFormat.JPEG, 1);
 
     // 获取Surface ID
-    var surfaceId = await receiver.getReceivingSurfaceId();
-
+    receiver.getReceivingSurfaceId((err, surfaceId) => {
+        console.info("receiver getReceivingSurfaceId success");
+    });
     // 注册Surface的监听，在surface的buffer准备好后触发
     receiver.on('imageArrival', () => {
         // 去获取Surface中最新的buffer
@@ -303,5 +270,5 @@ public async init(surfaceId: any) {
 
 针对图片开发，有以下相关实例可供参考：
 
-- [`Image`：图片处理（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/Image)
-- [`GamePuzzle`：拼图（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/GamePuzzle)
+- [`Image`：图片处理（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/Image)
+- [`GamePuzzle`：拼图（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/GamePuzzle)

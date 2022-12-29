@@ -1,6 +1,6 @@
-# 非线性容器TreeMap  
+# @ohos.util.TreeMap (非线性容器TreeMap) 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 TreeMap可用于存储具有关联关系的key-value键值对集合，存储元素中key值唯一，每个key对应一个value。
@@ -27,7 +27,7 @@ import TreeMap from '@ohos.util.TreeMap';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | TreeMap的元素个数。 |
 
@@ -45,6 +45,14 @@ TreeMap的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | comparator | function | 否 | 用户自定义的比较函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200012 | The TreeMap's constructor cannot be directly invoked. |
 
 **示例：**
 
@@ -66,6 +74,14 @@ isEmpty(): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 为空返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
 
 **示例：**
 
@@ -94,6 +110,14 @@ hasKey(key: K): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 包含指定key返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The hasKey method cannot be bound. |
 
 **示例：**
 
@@ -125,6 +149,14 @@ hasValue(value: V): boolean
 | -------- | -------- |
 | boolean | 包含指定元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The hasValue method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -155,6 +187,14 @@ get(key: K): V
 | -------- | -------- |
 | V | 返回key映射的value值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -178,6 +218,14 @@ getFirstKey(): K
 | 类型 | 说明 |
 | -------- | -------- |
 | K | 返回排序第一的key。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getFirstKey method cannot be bound. |
 
 **示例：**
 
@@ -203,6 +251,14 @@ getLastKey(): K
 | -------- | -------- |
 | K | 返回排序最后的key |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getLastKey method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -226,6 +282,14 @@ setAll(map: TreeMap<K, V>): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | map | TreeMap<K, V> | 是 | 被添加元素的treeMap。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The setAll method cannot be bound. |
 
 **示例：**
 
@@ -259,6 +323,14 @@ set(key: K, value: V): Object
 | -------- | -------- |
 | Object | 返回添加后的treeMap |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The set method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -286,6 +358,14 @@ remove(key: K): V
 | 类型 | 说明 |
 | -------- | -------- |
 | V | 返回删除元素的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
 
 **示例：**
 
@@ -316,6 +396,14 @@ getLowerKey(key: K): K
 | 类型 | 说明 |
 | -------- | -------- |
 | K | 返回排序中key前一位的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getLowerKey method cannot be bound. |
 
 **示例：**
 
@@ -348,6 +436,14 @@ getHigherKey(key: K): K
 | -------- | -------- |
 | K | 返回排序中key后一位的数据。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getHigherKey method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -379,6 +475,14 @@ replace(key: K, newValue: V): boolean
 | -------- | -------- |
 | boolean | 对指定key对应的元素替换成功返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The replace method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -395,6 +499,14 @@ clear(): void
 清除容器中的所有元素，并把length置为0。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
 
 **示例：**
 
@@ -420,6 +532,14 @@ keys(): IterableIterator&lt;K&gt;
 | -------- | -------- |
 | IterableIterator&lt;K&gt; | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The keys method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -431,7 +551,7 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-} 
+}
 ```
 
 
@@ -448,6 +568,14 @@ values(): IterableIterator&lt;V&gt;
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;V&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
 
 **示例：**
 
@@ -466,7 +594,7 @@ while(temp != undefined) {
 
 ### forEach
 
-forEach(callbackfn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
@@ -476,7 +604,7 @@ forEach(callbackfn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?:
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -485,6 +613,14 @@ callbackfn的参数说明：
 | value | V | 否 | 当前遍历到的元素键值对的值。 |
 | key | K | 否 | 当前遍历到的元素键值对的键。 |
 | map | TreeMap<K, V> | 否 | 当前调用forEach方法的实例对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
 
 **示例：**
 
@@ -511,6 +647,14 @@ entries(): IterableIterator<[K, V]>
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator<[K, V]> | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
 
 **示例：**
 
@@ -540,6 +684,14 @@ while(temp != undefined) {
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator<[K, V]> | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 

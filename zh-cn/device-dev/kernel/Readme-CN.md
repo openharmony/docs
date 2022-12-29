@@ -13,8 +13,9 @@
                 - [互斥锁](kernel-mini-basic-ipc-mutex.md)
                 - [消息队列](kernel-mini-basic-ipc-queue.md)
                 - [信号量](kernel-mini-basic-ipc-sem.md)
-            - [时间管理](kernel-basic-mini-time.md)
+            - [时间管理](kernel-mini-basic-time.md)
             - [软件定时器](kernel-mini-basic-soft.md)
+            - [双向链表](kernel-mini-basic-list.md)
         - 扩展组件
             - [C++支持](kernel-mini-extend-support.md)
             - [CPU占用率](kernel-mini-extend-cpup.md)
@@ -27,7 +28,6 @@
             - [LMS调测](kernel-mini-memory-lms.md)
         - 附录
             - [内核编码规范](kernel-mini-appx-code.md)
-            - [双向链表](kernel-mini-appx-data-list.md)
             - [标准库支持](kernel-mini-appx-lib.md)
     - 小型系统内核（LiteOS-A）
         - [小型系统内核概述](kernel-small-overview.md)
@@ -65,6 +65,7 @@
                 - [虚拟文件系统](kernel-small-bundles-fs-virtual.md)
                 - [支持的文件系统](kernel-small-bundles-fs-support.md)
                 - [适配新的文件系统](kernel-small-bundles-fs-new.md)
+                - [Plimitsfs文件系统](kernel-small-plimits.md)
         - 调测与工具
             - Shell
                 - [Shell介绍](kernel-small-debug-shell-overview.md)

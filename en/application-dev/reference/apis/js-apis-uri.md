@@ -1,4 +1,4 @@
-# URI String Parsing
+# @ohos.uri (URI String Parsing)
 
 > **NOTE**
 >
@@ -40,18 +40,18 @@ A constructor used to create a URI instance.
 
 **Parameters**
 
-| Name| Type.| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| uri | string | Yes| Yes| Input object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| Input object.|
 
 **Example**
 
 ```js
-let mm = 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
-new uri.URI(mm); // Output 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
+let mm = 'https://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
+new uri.URI(mm); // Output 'https://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
 ```
 ```js
-new uri.URI('http://username:password@host:8080'); // Output 'http://username:password@host:8080';
+new uri.URI('https://username:password@host:8080'); // Output 'https://username:password@host:8080';
 ```
 
 
@@ -65,19 +65,23 @@ Obtains the query string applicable to this URI.
 
 **Return value**
 
-| Type.| Description|
+| Type| Description|
 | -------- | -------- |
 | string | Website address in a serialized string.|
 
 **Example**
 
 ```js
-const result = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const result = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 result.toString()
 ```
 
 
-### equals
+### equals<sup>(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [equalsTo<sup>9+</sup>](#equalsto9) instead.
 
 equals(other: URI): boolean
 
@@ -87,22 +91,49 @@ Checks whether this URI is the same as another URI object.
 
 **Parameters**
 
-| Name| Type.| Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | other | [URI](#uri) | Yes| URI object to compare.|
 
 **Return value**
 
-| Type.| Description|
+| Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the two URIs are the same; returns **false** otherwise.|
 
 **Example**
 
 ```js
-const uriInstance = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-const uriInstance1 = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da#fragment');
+const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da#fragment');
 uriInstance.equals(uriInstance1);
+```
+### equalsTo<sup>9+</sup>
+
+equalsTo(other: URI): boolean
+
+Checks whether this URI is the same as another URI object.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| other | [URI](#uri) | Yes| URI object to compare.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the two URIs are the same; returns **false** otherwise.|
+
+**Example**
+
+```js
+const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da#fragment');
+uriInstance.equalsTo(uriInstance1);
 ```
 
 ### checkIsAbsolute
@@ -115,14 +146,14 @@ Checks whether this URI is an absolute URI (whether the scheme component is defi
 
 **Return value**
 
-| Type.| Description|
+| Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the URI is an absolute URI; returns **false** otherwise.|
 
 **Example**
 
 ```js
-const uriInstance = new uri.URI('http://username:password@www.qwer.com:8080?query=pppppp');
+const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080?query=pppppp');
 uriInstance.checkIsAbsolute();
 ```
 
@@ -137,13 +168,14 @@ Normalizes the path of this URI.
 
 **Return value**
 
-| Type.| Description|
+| Type| Description|
 | -------- | -------- |
 | URI | URI with the normalized path.|
 
 **Example**
+
 ```js
-const uriInstance = new uri.URI('http://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
+const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
 let uriInstance1 = uriInstance.normalize();
 uriInstance1.path;
 ```

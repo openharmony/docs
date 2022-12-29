@@ -37,16 +37,18 @@ A constructor used to create a **FaceAuthManager** object.
   ```js
   import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 
-  let faceAuthManager = new userIAM_faceAuth.FaceAuthManager()
+  let faceAuthManager = new userIAM_faceAuth.FaceAuthManager();
   ```
 
 ### setSurfaceId
 
-setSurfaceId(surfaceId: string): ResultCode;
+setSurfaceId(surfaceId: string): void;
 
 Sets an [XComponent surface ID](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) for the face preview page in the face enrollment process.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.FaceAuth
+
+**Required permissions**: ohos.permission.MANAGE_USER_IDM
 
 **Parameters**
 
@@ -54,28 +56,17 @@ Sets an [XComponent surface ID](../arkui-ts/ts-basic-components-xcomponent.md#ge
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | surfaceId       | string     | Yes  | ID of the surface held by the [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
 
-**Return value**
-
-| Type      | Description                                                        |
-| ---------- | ------------------------------------------------------------ |
-| [ResultCode](#resultcode) | Operation result code.|
-
 **Example**
 
   ```js
-  import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
+  import faceAuth from '@ohos.userIAM.faceAuth';
 
-  let faceAuthManager = new userIAM_faceAuth.FaceAuthManager()
-  faceAuthManager.setSurfaceId("0");
+  let surfaceId = "123456";
+  let manager = new faceAuth.FaceAuthManager();
+  try {
+      manager.setSurfaceId(surfaceId);
+      console.info("Set the surface ID successfully");
+  } catch (e) {
+      console.error("Failed to set the surface ID, error = " + e);
+  }
   ```
-
-## ResultCode
-
- Enumerates the operation result codes.
-
- **System capability**: SystemCapability.UserIAM.UserAuth.FaceAuth
-
-| Name                   | Default Value| Description                |
-| ----------------------- | ------ | -------------------- |
-| SUCCESS                 | 0      | The operation is successful.          |
-| FAIL                    | 1      | The operation fails.          |

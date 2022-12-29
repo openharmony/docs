@@ -1,4 +1,4 @@
-# 传感器
+# @system.sensor (传感器)
 
 ## 模块说明
 
@@ -7,7 +7,7 @@ sensor模块提供订阅传感器数据基本能力，主要包含查询传感�
 根据传感器的用途，可以将传感器分为六大类：运动类传感器、环境类传感器、方向类传感器、光线类传感器、健康类传感器、其他类传感器（如霍尔传感器），每一大类传感器包含不同类型的传感器，某种类型的传感器可能是单一的物理传感器，也可能是由多个物理传感器复合而成。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
 > - 从API Version 8开始，该接口不再维护，推荐使用新接口[`@ohos.sensor`](js-apis-sensor.md)。
 > - 本模块首批接口从API version 4开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -69,7 +69,7 @@ sensor.subscribeAccelerometer({
 });
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeAccelerometer
@@ -122,7 +122,7 @@ sensor.subscribeCompass({
 });
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeCompass
@@ -173,7 +173,7 @@ sensor.subscribeProximity({
 });
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeProximity
@@ -224,7 +224,7 @@ sensor.subscribeLight({
 });
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeLight
@@ -277,7 +277,7 @@ sensor.subscribeStepCounter({
 });
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeStepCounter
@@ -331,7 +331,7 @@ sensor.subscribeBarometer({
 });
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
 
 
@@ -386,7 +386,7 @@ sensor.subscribeHeartRate({
 });
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
 
 
@@ -440,7 +440,7 @@ sensor.subscribeOnBodyState({
 });
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeOnBodyState
@@ -533,7 +533,7 @@ sensor.subscribeDeviceOrientation({
 });
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeDeviceOrientation<sup>6+</sup>
@@ -594,7 +594,7 @@ sensor.subscribeGyroscope({
 });
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeGyroscope<sup>6+</sup>

@@ -2,7 +2,7 @@
 
 ## When to Use
 
-In Host mode, you can obtain the list of connected devices, enable or disable the devices, manage device access permissions, and perform data transfer or control transfer.
+In Host mode, you can obtain the list of connected USB devices, enable or disable the devices, manage device access permissions, and perform data transfer or control transfer.
 
 ## APIs
 
@@ -16,6 +16,7 @@ The following table lists the USB APIs currently available. For details, see the
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | hasRight(deviceName: string): boolean                        | Checks whether the user, for example, the application or system, has the device access permissions. The value **true** is returned if the user has the device access permissions; the value **false** is returned otherwise. |
 | requestRight(deviceName: string): Promise\<boolean>          | Requests the temporary permission for a given application to access the USB device. |
+| removeRight(deviceName: string): boolean                     | Removes the permission for a given application to access the USB device. |
 | connectDevice(device: USBDevice): Readonly\<USBDevicePipe>   | Connects to the USB device based on the device information returned by `getDevices()`. |
 | getDevices(): Array<Readonly\<USBDevice>>                    | Obtains the USB device list.                                 |
 | setConfiguration(pipe: USBDevicePipe, config: USBConfig): number | Sets the USB device configuration.                           |
@@ -38,7 +39,7 @@ You can set a USB device as the USB host to connect to other USB devices for dat
     // Import the USB API package.
     import usb from '@ohos.usb';
     // Obtain the USB device list.
-    var deviceList = usb.getDevices();
+    let deviceList = usb.getDevices();
     /*
     Example deviceList structure
     [
@@ -81,21 +82,21 @@ You can set a USB device as the USB host to connect to other USB devices for dat
                     number: 1,
                     type: 3,
                     interfaceId: 0,
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ],
+                 }
+               ]
+             }
+           ]
+         }
+       ]
+     }
+   ]
     */
     ```
 
 2.  Obtain the device operation permissions.
 
     ```js
-    var deviceName = deviceList[0].name;
+    let deviceName = deviceList[0].name;
     // Request the permissions to operate a specified device.
     usb.requestRight(deviceName).then(hasRight => {
       console.info("usb device request right result: " + hasRight);
@@ -108,7 +109,7 @@ You can set a USB device as the USB host to connect to other USB devices for dat
 
     ```js
     // Open the device, and obtain the USB device pipe for data transfer.
-    var pipe = usb.connectDevice(deviceList[0]);
+    let pipe = usb.connectDevice(deviceList[0]);
     /*
     Claim the corresponding interface from deviceList.
     interface1 must be one present in the device configuration.
@@ -127,7 +128,7 @@ You can set a USB device as the USB host to connect to other USB devices for dat
     usb.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then(dataLength => {
     if (dataLength >= 0) {
       console.info("usb readData result Length : " + dataLength);
-      var resultStr = this.ab2str(dataUint8Array); // Convert uint8 data into a string.
+      let resultStr = this.ab2str(dataUint8Array); // Convert uint8 data into a string.
       console.info("usb readData buffer : " + resultStr);
     } else {
       console.info("usb readData failed : " + dataLength);

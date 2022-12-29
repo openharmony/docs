@@ -8,10 +8,9 @@
 
 ## 属性
 
-| 名称       | 参数类型                          | 描述                       |
-| ------- | ----------------------------- | ------------------------- |
-| overlay | value:&nbsp;string,<br/>options?:&nbsp;{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment),&nbsp;<br/>offset?:&nbsp;{<br>  x?:&nbsp;number,<br>  y?:&nbsp;number<br> }<br/>} | 在当前组件上，增加遮罩文本，布局与当前组件相同。<br>默认值：<br>{<br/>align:&nbsp;Alignment.Center,<br/>offset:&nbsp;{0,&nbsp;0}<br/>} |
-
+| 名称 | 参数类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| overlay | value:&nbsp;string,<br/>options?:&nbsp;{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment),&nbsp;<br/>offset?:&nbsp;{x?:&nbsp;number, y?:&nbsp;number}<br/>} | {<br/>align:&nbsp;Alignment.Center,<br/>offset:&nbsp;{0,&nbsp;0}<br/>} | 在当前组件上，增加遮罩文本。<br/> value: 遮罩文本内容。<br/>options: 文本定位，align设置文本相对于组件的方位，[offset](ts-universal-attributes-location.md)为文本基于自身左上角的偏移量。文本默认处于组件左上角。<br>两者都设置时效果重叠，文本相对于组件方位定位后再基于当前位置文本的左上角进行偏移。 |
 
 ## 示例
 
@@ -28,7 +27,10 @@ struct OverlayExample {
         Column() {
           Image($r('app.media.img'))
             .width(240).height(240)
-            .overlay("Winter is a beautiful season, especially when it snows.", { align: Alignment.Bottom, offset: { x: 0, y: -15 } })
+            .overlay("Winter is a beautiful season, especially when it snows.", {
+              align: Alignment.Bottom,
+              offset: { x: 0, y: -15 }
+            })
         }.border({ color: Color.Black, width: 2 })
       }.width('100%')
     }.padding({ top: 20 })

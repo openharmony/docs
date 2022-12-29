@@ -146,7 +146,7 @@ OpenHarmony支持如下几种系统类型：
 
 ## 支持的开发板
 
-当前OpenHarmony社区支持17款开发板，下表介绍3款（此处选择三种系统类型首款进入OpenHarmony主干的开发板），更多开发板信息，请参考[社区支持的开发板清单](device-dev/dev-board-on-the-master.md)，社区每日构建版本获取地址请参考http://ci.openharmony.cn/dailys/dailybuilds
+当前OpenHarmony社区支持22款开发板，下表介绍3款（此处选择三种系统类型首款进入OpenHarmony主干的开发板），更多开发板信息，请参考[社区支持的开发板清单](device-dev/dev-board-on-the-master.md)，社区每日构建版本获取地址请参考http://ci.openharmony.cn/dailys/dailybuilds
 
  |系统类型 | 	 开发板型号|	 芯片型号  |	 主要能力及适配案例  |	 典型应用场景  |	开发板代码仓|
   |--------  |	 --------|	 --------|	 --------|	 --------  |	 --------  |
@@ -156,7 +156,7 @@ OpenHarmony支持如下几种系统类型：
 
 ## 快速入门
 
-- [设备开发快速入门](device-dev/quick-start/quickstart-ide-lite-overview.md)
+- [设备开发快速入门](device-dev/quick-start/quickstart-overview.md)
 - [应用开发快速入门](application-dev/quick-start/start-overview.md)
 
 

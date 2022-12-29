@@ -89,6 +89,19 @@ Service configuration allows you to configure services on demand to create diffe
         "secon" : "u:r:distributedsche:s0" // SELinux tag setting for service processes. In this example, u:r:distributedsche:s0 is the SELinux tag.
     }
     ```
+
+- SELinux tag
+
+  To enable the SELinux policy for a service, add the SELinux tag to the service in the **secon** field. For example, to add the SELinux tag to watchdog_service, use the following code snippet:
+
+    ```
+    "services" : [{
+              "name" : "watchdog_service",
+              "secon" : "u:r:watchdog_service:s0"
+    }]
+    ```
+    Note that you need to define the tag in SELinux. For details, see the appropriate SELinux guide.
+
 - init service FD proxy (for standard system or higher)
 
   FD proxy is an extended mechanism for on-demand startup. It can ensure that the FD state handle is not lost before the service process exits. Specifically, a service process sends the FD to the init process before it exits, and then reclaims the FD from the init process when it is started again.
@@ -150,7 +163,7 @@ By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, a
    | API    | Function| Description |
    | ---------- |  ----------  |--------|
    | int *ServiceGetFd(const char *serviceName, size_t *outfdCount) | Obtains the proxy FD from the init process.| Return value: Returns the pointer to the fd array if the operation is successful; returns **NULL** otherwise. (Note: Manual release is required.)<br>Arguments:<br> **serviceName**: service name.<br>**outfdCount**: length of the returned FD array.|
-   | int ServiceSaveFd(const char *serviceName, int *fds, int fdCount) | Requests the init process for FD proxy.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> **fds**: pointer to the FD array for FD proxy.<br>**fdCount**: length of the FD array
+   | int ServiceSaveFd(const char *serviceName, int *fds, int fdCount) | Requests the init process for FD proxy.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> **fds**: pointer to the FD array for FD proxy.<br>**fdCount**: length of the FD array.
    | int ServiceSaveFdWithPoll(const char *serviceName, int *fds, int fdCount)  | Requests FD proxy in poll mode.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> **fds**: pointer to the FD array.<br> **fdCount**: length of the FD array.
 
   **Table 4** Service control APIs
@@ -162,6 +175,22 @@ By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, a
    | int ServiceSetReady(const char *serviceName) | Sets a service as being ready.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.|
    | int StartServiceByTimer(const char *serviceName, uint64_t timeout) | Starts a service by timer.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> timeout: timeout interval.|
    | int StopServiceTimer(const char *serviceName)  | Stops a service timer.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.|
+
+-  DAC configuration for service control APIs
+
+   Go to **/base/startup/init/services/etc/group** and add the correct user ID to **servicectrl**. For example:
+
+   ```java
+   servicectrl:x:1050:root,shell,system,samgr,hdf_devmgr
+   ```
+
+-  SELinux configuration for service control APIs
+
+   Add the required SELinux permissions to the **init.te** file. For example, grant the system parameter write permission for services such as **init**, **samgr**, and **hdf_devmgr**.
+
+   ```java
+   allow { init samgr hdf_devmgr } servicectrl_param:parameter_service { set };
+   ```
 
 ### How to Develop
    The following describes how to add a system service named **MySystemApp**:

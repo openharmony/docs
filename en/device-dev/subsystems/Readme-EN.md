@@ -12,10 +12,10 @@
       - [Building a Chipset Solution](subsys-build-chip_solution.md)
       - [Configuring Features](subsys-build-feature.md)
       - [Configuring System Capabilities](subsys-build-syscap.md)
-      - [Setting deps and external_deps](subsys-build-reference.md#deps-and-external_deps)
-      - [Information Collected by the Open Source Software Notice](subsys-build-reference.md#information-collected-by-the-open-source-software-notice)
-      - [Configuring Parameters for Accelerating Local Build](subsys-build-reference.md#parameters-for-accelerating-local-build)
-      - [Viewing Ninja Build Information](subsys-build-reference.md#viewing-ninja-build-information)
+      - [Setting deps and external_deps](subsys-build-reference.md)
+      - [Information Collected by the Open Source Software Notice](subsys-build-reference.md)
+      - [Configuring Parameters for Accelerating Local Build](subsys-build-reference.md)
+      - [Viewing Ninja Build Information](subsys-build-reference.md)
       - [HAP Build Guide](subsys-build-gn-hap-compilation-guide.md)
       - [FAQs](subsys-build-FAQ.md)
 - [Distributed Remote Startup](subsys-remote-start.md)
@@ -39,21 +39,7 @@
   - [Utils Overview](subsys-utils-overview.md)
   - [Utils Development](subsys-utils-guide.md)
   - [Utils FAQ](subsys-utils-faqs.md)
-- AI Framework
-  - [AI Engine Framework](subsys-aiframework-guide.md)
-  - [Development Environment](subsys-aiframework-envbuild.md)
-  - Technical Specifications
-    - [Code Management](subsys-aiframework-tech-codemanage.md)
-    - [Naming](subsys-aiframework-tech-name.md)
-    - [API Development](subsys-aiframework-tech-interface.md)
-  - Development Guidelines
-    - [SDK](subsys-aiframework-devguide-sdk.md)
-    - [Plug-in](subsys-aiframework-devguide-plugin.md)
-    - [Configuration File](subsys-aiframework-devguide-conf.md)
-  - Development Examples
-    - [KWS SDK](subsys-aiframework-demo-sdk.md)
-    - [KWS Plug-in](subsys-aiframework-demo-plugin.md)
-    - [KWS Configuration File](subsys-aiframework-demo-conf.md)
+- [AI Framework Development](subsys-ai-aiframework-devguide.md)
 - Data Management
   - RDB
     - [RDB Overview](subsys-data-relational-database-overview.md)
@@ -85,6 +71,8 @@
   - [Development on IPC Authentication](subsys-security-communicationverify.md)
   - [Development on Device Security Level Management](subsys-security-devicesecuritylevel.md)
   - [Development on HUKS](subsys-security-huks-guide.md)
+  - [Application Privilege Configuration Guide](subsys-app-privilege-config-guide.md)
+  - [Preset Application Configuration Guide](subsys-preinstall-app-config-guide.md)
 - Startup
   - [Startup](subsys-boot-overview.md)
   - init Module
@@ -94,18 +82,21 @@
       - [Parameter Management](subsys-boot-init-sysparam.md)
       - [Sandbox Management](subsys-boot-init-sandbox.md)
       - [Plug-in Management](subsys-boot-init-plugin.md)
+      - [Component-based Startup](subsys-boot-init-sub-unit.md)
+      - [init Run Log Standardization](subsys-boot-init-log.md)
   - [appspawn Module](subsys-boot-appspawn.md)
   - [bootstrap Module](subsys-boot-bootstrap.md)
   - [FAQs](subsys-boot-faqs.md)
   - [Reference](subsys-boot-ref.md)
-- [Test Case Development](subsys-testguide-test.md)
 - DFX
   - [DFX Overview](subsys-dfx-overview.md)
   - [HiLog Development](subsys-dfx-hilog-rich.md)
   - [HiLog\_Lite Development](subsys-dfx-hilog-lite.md)
-  - [HiTrace Development](subsys-dfx-hitrace.md)
+  - [HiTraceChain Development](subsys-dfx-hitracechain.md)
+  - [HiTraceMeter Development](subsys-dfx-hitracemeter.md)
   - [HiCollie Development](subsys-dfx-hicollie.md)
   - HiSysEvent Development
+    - [HiSysEvent Overview](subsys-dfx-hisysevent-overview.md)
     - [HiSysEvent Logging Configuration](subsys-dfx-hisysevent-logging-config.md)
     - [HiSysEvent Logging](subsys-dfx-hisysevent-logging.md)
     - [HiSysEvent Listening](subsys-dfx-hisysevent-listening.md)
@@ -117,7 +108,5 @@
   - [Hiview Development](subsys-dfx-hiview.md)
 - R&D Tools
   - [bytrace](subsys-toolchain-bytrace-guide.md)
-  - [hdc\_std](subsys-toolchain-hdc-guide.md)
+  - [hdc_std](subsys-toolchain-hdc-guide.md)
   - [hiperf](subsys-toolchain-hiperf.md)
-- [XTS Test Case Development](subsys-xts-guide.md)
-

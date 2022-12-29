@@ -11,7 +11,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
   使用import方法引入功能模块：
 
   ```js
-  import router from '@system.router';
+  import router from '@ohos.router';
   ```
 
 - 代码引用
@@ -25,9 +25,9 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 ## 对象
 
 - 应用对象
-  | 属性   | 类型     | 描述                                       |
-  | ---- | ------ | ---------------------------------------- |
-  | $def | Object | 使用this.$app.$def获取在app.js中暴露的对象。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;应用对象不支持数据绑定，需主动触发UI更新。 |
+  | 属性 | 类型   | 描述                                                         |
+  | ---- | ------ | ------------------------------------------------------------ |
+  | $def | Object | 使用this.$app.$def获取在app.js中暴露的对象。<br/>> **说明：**<br/>>&nbsp;应用对象不支持数据绑定，需主动触发UI更新。 |
 
   示例代码
 
@@ -103,7 +103,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
     getAppVersion() {
       this.$set('keyMap.Version', '3.0');
       console.info("keyMap.Version = " + this.keyMap.Version); // keyMap.Version = 3.0
-
+  
       this.$delete('keyMap');
       console.info("keyMap.Version = " + this.keyMap); // log print: keyMap.Version = undefined
     }
@@ -164,8 +164,8 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
        images: [
          { src: '/common/frame1.png' },
          { src: '/common/frame2.png' },
-         { src: '/common/frame3.png' },
-       ],
+         { src: '/common/frame3.png' }
+       ]
      },
      handleClick() {
        const animator = this.$refs.animator; // 获取ref属性为animator的DOM元素
@@ -196,8 +196,8 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
        images: [
          { src: '/common/frame1.png' },
          { src: '/common/frame2.png' },
-         { src: '/common/frame3.png' },
-       ],
+         { src: '/common/frame3.png' }
+       ]
      },
      handleClick() {
        const animator = this.$element('animator'); // 获取id属性为animator的DOM元素
@@ -248,7 +248,7 @@ export default {
 <element name='childComp' src='../child/child.hml'></element>
 <div class="item" onclick="textClicked">
   <text class="text-style" onclick="parentClicked">parent component click</text>
-  <text class="text-style" if="{{show}}">hello parent component!</text>
+  <text class="text-style" if="{{showValue}}">hello parent component!</text>
   <childComp id = "selfDefineChild"></childComp>
 </div>
 ```
@@ -257,11 +257,11 @@ export default {
 // parent.js
 export default {
   data: {
-    show: false,
+    showValue: false,
     text: 'I am parent component!',
   },
   parentClicked () {
-    this.show = !this.show;
+    this.showValue = !this.showValue;
     console.info('parent component get parent text');
     console.info(`${this.$parent().text}`);
     console.info("parent component get child function");

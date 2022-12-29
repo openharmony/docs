@@ -1,99 +1,59 @@
 # 快速入门
-- 轻量和小型系统快速入门（IDE方式，推荐）
-    - [轻量与小型系统入门概述](quickstart-ide-lite-overview.md)
-    - 准备轻量与小型系统环境
-        - [搭建Windows+Ubuntu混合开发环境](quickstart-ide-lite-env-setup-win-ubuntu.md)
-        - [获取源码](quickstart-ide-lite-sourcecode-acquire.md)
-    - [导入源码工程](quickstart-ide-lite-create-project.md)
-    - 运行“Hello World”
-        - Hi3861开发板
-            - [编写“Hello World”程序](quickstart-ide-lite-steps-hi3861-helloworld.md)
-            - [编译](quickstart-ide-lite-steps-hi3861-building.md)
-            - [烧录](quickstart-ide-lite-steps-hi3861-burn.md)
-            - [联网](quickstart-ide-lite-steps-hi3861-netconfig.md)
-            - [调试验证](quickstart-ide-lite-steps-hi3861-debug.md)
-            - [运行](quickstart-ide-lite-steps-hi3861-running.md)
-        - Hi3516开发板
-            - [编写“Hello World”程序](quickstart-ide-lite-steps-hi3516-helloworld.md)
-            - [编译](quickstart-ide-lite-steps-hi3516-building.md)
-            - [烧录](quickstart-ide-lite-steps-hi3516-burn.md)
-            - [运行](quickstart-ide-lite-steps-hi3516-running.md)
-    - 附录
-        - [Hi3861开发板介绍](quickstart-ide-lite-introduction-hi3861.md)
-        - [Hi3516开发板介绍](quickstart-ide-lite-introduction-hi3516.md)
-        - [编译形态整体说明](quickstart-build.md)
-- 轻量和小型系统快速入门（安装包方式）
-    - [轻量与小型系统入门概述](quickstart-lite-overview.md)
-    - [搭建轻量与小型系统环境](quickstart-lite-env-setup.md)
-    - 运行“Hello World”
-        - Hi3861开发板
-            - [安装Hi3861开发板环境](quickstart-lite-steps-hi3861-setting.md)
-            - [编写“Hello World”程序](quickstart-lite-steps-hi3861-helloworld.md)
-            - [编译](quickstart-lite-steps-hi3861-building.md)
-            - [烧录](quickstart-lite-steps-hi3861-burn.md)
-            - [联网](quickstart-lite-steps-hi3861-netconfig.md)
-            - [调试验证](quickstart-lite-steps-hi3861-debug.md)
-            - [运行](quickstart-lite-steps-hi3861-running.md)
-        - Hi3516开发板
-            - [安装Hi3516开发板环境](quickstart-lite-steps-hi3516-setting.md)
-            - [编写“Hello World”程序](quickstart-lite-steps-hi3516-helloworld.md)
-            - [编译](quickstart-lite-steps-hi3516-building.md)
-            - [烧录](quickstart-lite-steps-hi3516-burn.md)
-            - [运行](quickstart-lite-steps-hi3516-running.md)
-    - 常见问题
-        - [hb安装异常](quickstart-lite-faq-hb.md)
-        - [编译异常](quickstart-lite-faq-compose.md)
-        - [烧录异常](quickstart-lite-faq-burning.md)
-    - 附录
-        - 开发板介绍
-            - [Hi3861开发板介绍](quickstart-lite-introduction-hi3861.md)
-            - [Hi3516开发板介绍](quickstart-lite-introduction-hi3516.md)
-        - [参考信息](quickstart-lite-reference.md)
-        - [使用HiTool烧录代码](quickstart-lite-hitool.md)
-        - [编译形态整体说明](quickstart-build.md)
-- 标准系统快速入门（IDE方式，推荐）
-    - [标准系统入门概述](quickstart-ide-standard-overview.md)
-    - 准备标准系统环境
-        - [搭建Windows+Ubuntu混合开发环境](quickstart-ide-standard-env-setup-win-ubuntu.md)
-        - [获取源码](quickstart-ide-standard-sourcecode-acquire.md)
-    - [导入源码工程](quickstart-ide-standard-create-project.md)
-    - 运行“Hello World”
-        - Hi3516开发板
-            - [编写“Hello World”程序](quickstart-ide-standard-running-hi3516-create.md)
-            - [编译](quickstart-ide-standard-running-hi3516-build.md)
-            - [烧录](quickstart-ide-standard-running-hi3516-burning.md)
-            - [运行](quickstart-ide-standard-running-hi3516-running.md)
-        - RK3568开发板
-            - [编写“Hello World”程序](quickstart-ide-standard-running-rk3568-create.md)
-            - [编译](quickstart-ide-standard-running-rk3568-build.md)
-            - [烧录](quickstart-ide-standard-running-rk3568-burning.md)
-            - [运行](quickstart-ide-standard-running-rk3568-running.md)
-    - 附录
-        - [Hi3516开发板介绍](quickstart-ide-standard-board-introduction-hi3516.md)
-        - [RK3568开发板介绍](quickstart-ide-standard-board-introduction-rk3568.md)
-        - [编译形态整体说明](quickstart-build.md)
-- 标准系统快速入门（安装包方式）
-    - [标准系统入门概述](quickstart-standard-overview.md)
-    - [搭建标准系统环境](quickstart-standard-env-setup.md)
-    - 运行“Hello World”
-        - Hi3516开发板
-            - [编写“Hello World”程序](quickstart-std-3516-create.md)
-            - [编译](quickstart-standard-running-hi3516-build.md)
-            - [烧录](quickstart-standard-running-hi3516-burning.md)
-            - [运行](quickstart-standard-running-hi3516-running.md)
-        - RK3568开发板
-            - [编写“Hello World”程序](quickstart-standard-running-rk3568-create.md)
-            - [编译](quickstart-standard-running-rk3568-build.md)
-            - [烧录](quickstart-standard-running-rk3568-burning.md)
-            - [运行](quickstart-standard-running-rk3568-running.md)
-    - 常见问题
-        - [hb安装异常](quickstart-standard-faq-hb.md)
-        - [编译异常](quickstart-standard-faq-compose.md)
-        - [烧录异常](quickstart-standard-faq-burning.md)
-    - 附录
-        - 开发板介绍
-            - [Hi3516开发板介绍](quickstart-standard-board-introduction-hi3516.md)
-            - [RK3568开发板介绍](quickstart-standard-board-introduction-rk3568.md)
-        - [参考信息](quickstart-standard-reference.md)
-        - [使用HiTool烧录代码](quickstart-standard-hitool.md)
-        - [编译形态整体说明](quickstart-build.md)
+
+- [快速入门概述](quickstart-overview.md)
+- 基于IDE入门
+    - 搭建开发环境
+        - [搭建Windows环境](quickstart-ide-env-win.md)
+        - [搭建Ubuntu环境](quickstart-ide-env-ubuntu.md)
+        - [配置远程访问环境](quickstart-ide-env-remote.md)
+    - [创建工程并获取源码](quickstart-ide-import-project.md)
+    - 轻量系统（基于Hi3861开发板）
+        - [编写“Hello World”程序](quickstart-ide-3861-helloworld.md)
+        - [编译](quickstart-ide-3861-build.md)
+        - [烧录](quickstart-ide-3861-burn.md)
+        - [运行](quickstart-ide-3861-running.md)
+    - 小型系统（基于Hi3516开发板）
+        - [编写“Hello World”程序](quickstart-ide-3516-helloworld.md)
+        - [编译](quickstart-ide-3516-build.md)
+        - [烧录](quickstart-ide-3516-burn.md)
+        - [运行](quickstart-ide-3516-running.md)
+    - 标准系统（基于RK3568开发板）
+        - [编写“Hello World”程序](quickstart-ide-3568-helloworld.md)
+        - [编译](quickstart-ide-3568-build.md)
+        - [烧录](quickstart-ide-3568-burn.md)
+        - [运行](quickstart-ide-3568-running.md)
+- 基于命令行入门
+    - 搭建开发环境
+        - [准备开发环境](quickstart-pkg-prepare.md)
+        - [安装库和工具集](quickstart-pkg-install-package.md)
+        - [获取源码](quickstart-pkg-sourcecode.md)
+        - [安装编译工具](quickstart-pkg-install-tool.md)
+    - 轻量系统（基于Hi3861开发板）
+        - [安装Hi3861开发板特有环境](quickstart-pkg-3861-tool.md)
+        - [编写“Hello World”程序](quickstart-pkg-3861-helloworld.md)
+        - [编译](quickstart-pkg-3861-build.md)
+        - [烧录](quickstart-pkg-3861-burn.md)
+        - [运行](quickstart-pkg-3861-running.md)
+    - 小型系统（基于Hi3516开发板）
+        - [编写“Hello World”程序](quickstart-pkg-3516-helloworld.md)
+        - [编译](quickstart-pkg-3516-build.md)
+        - [烧录](quickstart-pkg-3516-burn.md)
+        - [运行](quickstart-pkg-3516-running.md)
+    - 标准系统（基于RK3568开发板）
+        - [编写“Hello World”程序](quickstart-pkg-3568-helloworld.md)
+        - [编译](quickstart-pkg-3568-build.md)
+        - [烧录](quickstart-pkg-3568-burn.md)
+        - [运行](quickstart-pkg-3568-running.md)
+    - 常用信息
+        - [配置代理](quickstart-pkg-common-proxy.md)
+        - [使用build.sh脚本编译源码](quickstart-pkg-common-build.md)
+        - [hb安装异常处理](quickstart-pkg-common-hberr.md)
+        - [编译异常处理](quickstart-pkg-common-builderr.md)
+        - [烧录异常处理](quickstart-pkg-common-burnerr.md)
+- 附录
+    - [Hi3516开发板介绍](quickstart-appendix-hi3516.md)
+    - [Hi3861开发板介绍](quickstart-appendix-hi3861.md)
+    - [RK3568开发板介绍](quickstart-appendix-rk3568.md)
+    - [编译形态整体说明](quickstart-appendix-compiledform.md)
+    - [Hi3516标准系统入门（IDE方式）](quickstart-appendix-hi3516-ide.md)
+    - [Hi3516标准系统入门（命令行方式）](quickstart-appendix-hi3516-pkg.md)

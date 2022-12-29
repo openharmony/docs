@@ -1,8 +1,9 @@
-# Bluetooth
+# @ohos.bluetooth
 
 The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -202,7 +203,7 @@ Obtains the connection state of a profile.
 
 | Name      | Type       | Mandatory  | Description                                   |
 | --------- | --------- | ---- | ------------------------------------- |
-| ProfileId | profileId | Yes   | ID of the target profile, for example, **PROFILE_A2DP_SOURCE**.|
+| ProfileId | profileId | Yes   | ID of the profile to obtain, for example, **PROFILE_A2DP_SOURCE**.|
 
 **Return value**
 
@@ -223,7 +224,7 @@ cancelPairedDevice(deviceId: string): boolean
 
 Cancels a paired remote device.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -389,7 +390,7 @@ startBluetoothDiscovery(): boolean
 
 Starts Bluetooth scan to discover remote devices.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH  and ohos.permission.LOCATION
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1280,10 +1281,6 @@ Obtains the connected devices.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Parameters**
-
-No value is returned.
-
 **Return value**
 
 | Type                 | Description           |
@@ -1293,7 +1290,7 @@ No value is returned.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE)
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let retArray = a2dpSrc.getConnectionDevices();
 ```
 
@@ -1322,7 +1319,7 @@ Obtains the connection state of the profile.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE)
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let ret = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1356,7 +1353,7 @@ Sets up an Advanced Audio Distribution Profile (A2DP) connection.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE)
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let ret = a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1386,7 +1383,7 @@ Disconnects an A2DP connection.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1416,7 +1413,7 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1446,7 +1443,7 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1475,7 +1472,7 @@ Obtains the playing state of a device.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1510,7 +1507,8 @@ Sets up a Hands-free Profile (HFP) connection of a device.
 **Example**
 
 ```js
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetooth.HandsFreeAudioGatewayProfile;
 let ret = hfpAg.connect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1540,7 +1538,8 @@ Disconnects the HFP connection of a device.
 **Example**
 
 ```js
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetooth.HandsFreeAudioGatewayProfile;
 let ret = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1570,7 +1569,8 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetooth.HandsFreeAudioGatewayProfile;
 hfpAg.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1600,7 +1600,8 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetooth.HandsFreeAudioGatewayProfile;
 hfpAg.on('connectionStateChange', onReceiveEvent);
 hfpAg.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1617,7 +1618,7 @@ connect(device: string): boolean
 
 Connects to the HidHost service of a device.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1638,7 +1639,7 @@ This is a system API.
 **Example**
 
 ```js
-let hidHostProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
+let hidHostProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_HID_HOST) as bluetooth.HidHostProfile;
 let ret = hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1649,7 +1650,7 @@ disconnect(device: string): boolean
 
 Disconnects from the HidHost service of a device.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1670,7 +1671,7 @@ This is a system API.
 **Example**
 
 ```js
-let hidHostProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
+let hidHostProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_HID_HOST) as bluetooth.HidHostProfile;
 let ret = hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1700,7 +1701,7 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
+let hidHost = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_HID_HOST) as bluetooth.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1730,7 +1731,7 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
+let hidHost = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_HID_HOST) as bluetooth.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 hidHost.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1747,7 +1748,7 @@ disconnect(device: string): boolean
 
 Disconnects from the Personal Area Network (PAN) service of a device.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1768,7 +1769,7 @@ This is a system API.
 **Example**
 
 ```js
-let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let panProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_PAN_NETWORK) as bluetooth.PanProfile;
 let ret = panProfile.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1798,7 +1799,7 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let panProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_PAN_NETWORK) as bluetooth.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1828,7 +1829,7 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let panProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_PAN_NETWORK) as bluetooth.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 panProfile.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1840,7 +1841,7 @@ setTethering(enable: boolean): void
 
 Sets tethering.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1861,7 +1862,7 @@ This is a system API.
 **Example**
 
 ```js
-let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let panProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_PAN_NETWORK) as bluetooth.PanProfile;
 let ret = panProfile.setTethering(true);
 ```
 
@@ -1872,7 +1873,7 @@ isTetheringOn(): boolean
 
 Obtains the tethering state.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1885,7 +1886,7 @@ This is a system API.
 **Example**
 
 ```js
-let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let panProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_PAN_NETWORK) as bluetooth.PanProfile;
 let ret = panProfile.isTetheringOn();
 ```
 
@@ -2217,7 +2218,7 @@ function ReadCharacteristicReq(CharacteristicReadReq) {
   let characteristicUuid = CharacteristicReadReq.characteristicUuid;
 
   let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
-  
+
   let ret = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
@@ -2294,10 +2295,10 @@ function WriteCharacteristicReq(CharacteristicWriteReq) {
   let needRsp = CharacteristicWriteReq.needRsp;
   let value =  new Uint8Array(CharacteristicWriteReq.value);
   let characteristicUuid = CharacteristicWriteReq.characteristicUuid;
-  
+
   cccValue[0] = value[0];
   let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
-  
+
   let ret = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
@@ -2374,7 +2375,7 @@ function ReadDescriptorReq(DescriptorReadReq) {
   let descriptorUuid = DescriptorReadReq.descriptorUuid;
 
   let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
-  
+
   let ret = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
@@ -2454,7 +2455,7 @@ function WriteDescriptorReq(DescriptorWriteReq) {
 
   descValue[0] = value[0];
   let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
-  
+
   let ret = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
@@ -2691,8 +2692,6 @@ Obtains all services of the remote BLE device. This API uses a promise to return
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Parameters**
-
 **Return value**
 
 | Type                                      | Description                         |
@@ -2826,7 +2825,7 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 | Name       | Type                                      | Mandatory  | Description                     |
 | ---------- | ---------------------------------------- | ---- | ----------------------- |
 | descriptor | [BLEDescriptor](#bledescriptor)          | Yes   | Descriptor to read.               |
-| callback   | AsyncCallback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback invoked to return the descriptor read.|
+| callback   | AsyncCallback&lt;[BLEDescriptor](#bledescriptor)&gt; | Yes   | Callback invoked to return the descriptor read.|
 
 **Return value**
 
@@ -3305,7 +3304,7 @@ Enumerates the scan modes.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                                      | Default Value | Description             |
+| Name                                      | Value | Description             |
 | ---------------------------------------- | ---- | --------------- |
 | SCAN_MODE_NONE                           | 0    | No scan mode.        |
 | SCAN_MODE_CONNECTABLE                    | 1    | Connectable mode.       |
@@ -3320,7 +3319,7 @@ Enumerates the pairing states.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                | Default Value | Description    |
+| Name                | Value | Description    |
 | ------------------ | ---- | ------ |
 | BOND_STATE_INVALID | 0    | Invalid pairing.|
 | BOND_STATE_BONDING | 1    | Pairing. |
@@ -3346,7 +3345,7 @@ Enumerates the SPP link types.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name        | Default Value | Description           |
+| Name        | Value | Description           |
 | ---------- | ---- | ------------- |
 | SPP_RFCOMM | 0    | Radio frequency communication (RFCOMM) link type.|
 
@@ -3506,7 +3505,7 @@ Enumerates the profile connection states.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                 | Default Value | Description            |
+| Name                 | Value | Description            |
 | ------------------- | ---- | -------------- |
 | STATE_DISCONNECTED  | 0    | Disconnected. |
 | STATE_CONNECTING    | 1    | Connecting.|
@@ -3554,7 +3553,7 @@ Enumerates the scan duty options.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                   | Default Value | Description          |
+| Name                   | Value | Description          |
 | --------------------- | ---- | ------------ |
 | SCAN_MODE_LOW_POWER   | 0    | Low-power mode, which is the default value.|
 | SCAN_MODE_BALANCED    | 1    | Balanced mode.     |
@@ -3567,7 +3566,7 @@ Enumerates the hardware match modes of BLE scan filters.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                   | Default Value | Description                                      |
+| Name                   | Value | Description                                      |
 | --------------------- | ---- | ---------------------------------------- |
 | MATCH_MODE_AGGRESSIVE | 1    | Hardware reports the scan result with a lower threshold of signal strength and few number of matches in a duration. This is the default value.|
 | MATCH_MODE_STICKY     | 2    | Hardware reports the scan result with a higher threshold of signal strength and sightings.      |
@@ -3592,7 +3591,7 @@ Enumerates the Bluetooth states.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                   | Default Value | Description                |
+| Name                   | Value | Description                |
 | --------------------- | ---- | ------------------ |
 | STATE_OFF             | 0    | Bluetooth is turned off.          |
 | STATE_TURNING_ON      | 1    | Bluetooth is being turned on.         |
@@ -3637,7 +3636,7 @@ Defines the content of a BLE advertisement packet.
 
 | Name              | Type               | Readable  | Writable  | Description                |
 | ---------------- | ------------------- | ---- | ---- | ------------------ |
-| manufactureId    | Array&lt;string&gt; | Yes   | Yes   | Manufacturer ID allocated by the Bluetooth SIG.|
+| manufactureId    | number  | Yes   | Yes   | Manufacturer ID allocated by the Bluetooth SIG.|
 | manufactureValue | ArrayBuffer         | Yes   | Yes   | Manufacturer data.    |
 
 
@@ -3709,7 +3708,7 @@ Enumerates the major classes of Bluetooth devices.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                 | Default Value   | Description        |
+| Name                 | Value   | Description        |
 | ------------------- | ------ | ---------- |
 | MAJOR_MISC          | 0x0000 | Miscellaneous device.   |
 | MAJOR_COMPUTER      | 0x0100 | Computer.  |
@@ -3730,7 +3729,7 @@ Enumerates the major and minor classes of Bluetooth devices.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                                      | Default Value   | Description             |
+| Name                                      | Value   | Description             |
 | ---------------------------------------- | ------ | --------------- |
 | COMPUTER_UNCATEGORIZED                   | 0x0100 | Unclassified computer.    |
 | COMPUTER_DESKTOP                         | 0x0104 | Desktop computer.     |
@@ -3826,7 +3825,7 @@ Enumerates the A2DP playing states.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name               | Default Value   | Description     |
+| Name               | Value   | Description     |
 | ----------------- | ------ | ------- |
 | STATE_NOT_PLAYING | 0x0000 | Not playing. |
 | STATE_PLAYING     | 0x0001 | Playing.|
@@ -3838,9 +3837,9 @@ Enumerates the Bluetooth profiles. API version 9 is added with **PROFILE_HID_HOS
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                              | Default Value   | Description             |
+| Name                              | Value   | Description             |
 | -------------------------------- | ------ | --------------- |
-| PROFILE_A2DP_SOURCE              | 0x0001 | A2DP profile.|
-| PROFILE_HANDS_FREE_AUDIO_GATEWAY | 0x0004 | HFP profile. |
-| PROFILE_HID_HOST<sup>9+</sup> | 0x0006 | Human Interface Device (HID) profile. |
-| PROFILE_PAN_NETWORK<sup>9+</sup> | 0x0007 | PAN profile. |
+| PROFILE_A2DP_SOURCE              | 1 | A2DP profile.|
+| PROFILE_HANDS_FREE_AUDIO_GATEWAY | 4 | HFP profile. |
+| PROFILE_HID_HOST<sup>9+</sup> | 6 | Human Interface Device (HID) profile. |
+| PROFILE_PAN_NETWORK<sup>9+</sup> | 7 | PAN profile. |

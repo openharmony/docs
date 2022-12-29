@@ -1,7 +1,6 @@
-# MediaLibrary
+# @ohos.multimedia.medialibrary (Media Library Management)
 
 > **NOTE**
->
 > The APIs of this module are supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -46,6 +45,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 let media = mediaLibrary.getMediaLibrary(context);
 ```
+
 ## mediaLibrary.getMediaLibrary
 
 getMediaLibrary(): MediaLibrary
@@ -53,10 +53,6 @@ getMediaLibrary(): MediaLibrary
 Obtains a **MediaLibrary** instance, which is used to access and modify personal media data such as audios, videos, images, and documents.
 
 This API can be used only in the FA model.
-
-> **NOTE**
->
-> This API is no longer maintained since API version 8. You are advised to use [mediaLibrary.getMediaLibrary<sup>8+</sup>](#medialibrarygetmedialibrary8) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -196,7 +192,7 @@ media.getFileAssets(imagesFetchOp).then(function(fetchFileResult) {
 
 ### on<sup>8+</sup>
 
-on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback: Callback&lt;void&gt;): void
+on(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange', callback: Callback&lt;void&gt;): void
 
 Subscribes to the media library changes. This API uses an asynchronous callback to return the result.
 
@@ -206,8 +202,8 @@ Subscribes to the media library changes. This API uses an asynchronous callback 
 
 | Name     | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| type     | string               | Yes   | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
-| callback | callback&lt;void&gt; | Yes   | Void callback.                                   |
+| type     | 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange'               | Yes   | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
+| callback | Callback&lt;void&gt; | Yes   | Void callback.                                   |
 
 **Example**
 
@@ -218,7 +214,7 @@ media.on('imageChange', () => {
 ```
 ### off<sup>8+</sup>
 
-off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback?: Callback&lt;void&gt;): void
+off(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange', callback?: Callback&lt;void&gt;): void
 
 Unsubscribes from the media library changes. This API uses an asynchronous callback to return the result.
 
@@ -228,8 +224,8 @@ Unsubscribes from the media library changes. This API uses an asynchronous callb
 
 | Name     | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| type     | string               | Yes   | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
-| callback | callback&lt;void&gt; | No   | Void callback.                                   |
+| type     | 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange'               | Yes   | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
+| callback | Callback&lt;void&gt; | No   | Void callback.                                   |
 
 **Example**
 
@@ -303,12 +299,17 @@ Creates a media asset. This API uses a promise to return the result.
 **Example**
 
 ```js
-let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
-media.getPublicDirectory(DIR_CAMERA).then(function(dicResult){
-    console.info("getPublicDirectory successfully:"+ JSON.stringify(dicResult));
-}).catch(function(err){
-    console.info("getPublicDirectory failed with error:"+ err);
-});
+async function example() {
+    // Create an image file in promise mode.
+    let mediaType = mediaLibrary.MediaType.IMAGE;
+    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+    const path = await media.getPublicDirectory(DIR_IMAGE);
+    media.createAsset(mediaType, 'imagePromise.jpg', path + 'myPicture/').then((fileAsset) => {
+        console.info('createAsset successfully, message = ' + JSON.stringify(fileAsset));
+    }).catch((err) => {
+        console.info('createAsset failed, message = ' + err);
+    });
+}
 ```
 
 ### deleteAsset<sup>8+</sup>
@@ -344,8 +345,6 @@ async function example() {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
     };
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     let asset = await fetchFileResult.getFirstObject();
     if (asset == undefined) {
@@ -388,8 +387,6 @@ async function example() {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
     };
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     let asset = await fetchFileResult.getFirstObject();
     if (asset == undefined) {
@@ -557,7 +554,6 @@ Call this API when you no longer need to use the APIs in the **MediaLibrary** in
 **Example**
 
 ```js
-var media = mediaLibrary.getMediaLibrary(context);
 media.release((err) => {
     // do something
 });
@@ -667,7 +663,7 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
 
 startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
 
-Starts image preview, with the first image to preview specified. This API can be used to preview local images whose URIs start with **dataability://** or online images whose URIs start with **https://**. It uses an asynchronous callback to return the execution result.
+Starts image preview, with the first image to preview specified. This API can be used to preview local images whose URIs start with **datashare://** or online images whose URIs start with **https://**. It uses an asynchronous callback to return the execution result.
 
 > **NOTE**
 >
@@ -679,7 +675,7 @@ Starts image preview, with the first image to preview specified. This API can be
 
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| images   | Array&lt;string&gt;       | Yes   | URIs of the images to preview. The value can start with either **dataability://** or **https://**.|
+| images   | Array&lt;string&gt;       | Yes   | URIs of the images to preview. The value can start with either **https://** or **datashare://**.|
 | index    | number                    | Yes   | Index of the first image to preview.                              |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the image preview result. If the preview fails, an error message is returned.                       |
 
@@ -687,8 +683,8 @@ Starts image preview, with the first image to preview specified. This API can be
 
 ```js
 let images = [
-    "dataability:///media/xxxx/2",
-    "dataability:///media/xxxx/3"
+    "datashare:///media/xxxx/2",
+    "datashare:///media/xxxx/3"
 ];
 /* Preview online images.
 let images = [
@@ -711,7 +707,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index, (err) => {
 
 startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Starts image preview. This API can be used to preview local images whose URIs start with **dataability://** or online images whose URIs start with **https://**. It uses an asynchronous callback to return the execution result.
+Starts image preview. This API can be used to preview local images whose URIs start with **datashare://** or online images whose URIs start with **https://**. It uses an asynchronous callback to return the execution result.
 
 > **NOTE**
 >
@@ -723,15 +719,15 @@ Starts image preview. This API can be used to preview local images whose URIs st
 
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| images   | Array&lt;string&gt;       | Yes   | URIs of the images to preview. The value can start with either **https://** or **dataability://**.|
+| images   | Array&lt;string&gt;       | Yes   | URIs of the images to preview. The value can start with either **https://** or **datashare://**.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the image preview result. If the preview fails, an error message is returned.                       |
 
 **Example**
 
 ```js
 let images = [
-    "dataability:///media/xxxx/2",
-    "dataability:///media/xxxx/3"
+    "datashare:///media/xxxx/2",
+    "datashare:///media/xxxx/3"
 ];
 /* Preview online images.
 let images = [
@@ -753,7 +749,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, (err) => {
 
 startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
 
-Starts image preview, with the first image to preview specified. This API can be used to preview local images whose URIs start with dataability:// or online images whose URIs start with https://. It uses a promise to return the execution result.
+Starts image preview, with the first image to preview specified. This API can be used to preview local images whose URIs start with **datashare://** or online images whose URIs start with **https://**. It uses a promise to return the execution result.
 
 > **NOTE**
 >
@@ -765,7 +761,7 @@ Starts image preview, with the first image to preview specified. This API can be
 
 | Name   | Type                 | Mandatory  | Description                                      |
 | ------ | ------------------- | ---- | ---------------------------------------- |
-| images | Array&lt;string&gt; | Yes   | URIs of the images to preview. The value can start with either **dataability://** or **https://**.|
+| images | Array&lt;string&gt; | Yes   | URIs of the images to preview. The value can start with either **https://** or **datashare://**.|
 | index  | number              | No   | Index of the first image to preview. If this parameter is not specified, the default value **0** is used.                     |
 
 **Return value**
@@ -778,8 +774,8 @@ Starts image preview, with the first image to preview specified. This API can be
 
 ```js
 let images = [
-    "dataability:///media/xxxx/2",
-    "dataability:///media/xxxx/3"
+    "datashare:///media/xxxx/2",
+    "datashare:///media/xxxx/3"
 ];
 /* Preview online images.
 let images = [
@@ -813,7 +809,7 @@ Starts media selection. This API uses an asynchronous callback to return the lis
 | Name     | Type                                      | Mandatory  | Description                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | option   | [MediaSelectOption](#mediaselectoptiondeprecated)  | Yes   | Media selection option.                             |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the list of URIs (starting with **dataability://**) that store the selected media assets.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the list of URIs (starting with **datashare://**) that store the selected media assets.|
 
 **Example**
 
@@ -855,7 +851,7 @@ Starts media selection. This API uses a promise to return the list of URIs that 
 
 | Type                                | Description                                      |
 | ---------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the list of URIs (starting with **dataability://**) that store the selected media assets.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the list of URIs (starting with **datashare://**) that store the selected media assets.|
 
 **Example**
 
@@ -888,14 +884,12 @@ Obtains information about online peer devices. This API uses a promise to return
 
 | Type                 | Description                  |
 | ------------------- | -------------------- |
-|  Promise\<Array\<PeerInfo>> | Promise used to return the online peer devices, in an array of **PeerInfo** objects.|
+|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | Promise used to return the online peer devices, in an array of **PeerInfo** objects.|
 
 **Example**
 
 ```js
 async function example() {
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
     media.getActivePeers().then((devicesInfo) => {
         if (devicesInfo != undefined) {
             for (let i = 0; i < devicesInfo.length; i++) {
@@ -926,14 +920,12 @@ Obtains information about online peer devices. This API uses an asynchronous cal
 
 | Type                 | Description                  |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<PeerInfo>> | Promise used to return the online peer devices, in an array of **PeerInfo** objects.|
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | Promise used to return the online peer devices, in an array of **PeerInfo** objects.|
 
 **Example**
 
 ```js
 async function example() {
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
     media.getActivePeers((err, devicesInfo) => {
         if (devicesInfo != undefined) {
             for (let i = 0; i < devicesInfo.length; i++) {
@@ -963,14 +955,12 @@ Obtains information about all peer devices. This API uses a promise to return th
 
 | Type                 | Description                  |
 | ------------------- | -------------------- |
-|  Promise\<Array\<PeerInfo>> | Promise used to return all peer devices, in an array of **PeerInfo** objects.|
+|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | Promise used to return all peer devices, in an array of **PeerInfo** objects.|
 
 **Example**
 
 ```js
 async function example() {
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
     media.getAllPeers().then((devicesInfo) => {
         if (devicesInfo != undefined) {
             for (let i = 0; i < devicesInfo.length; i++) {
@@ -1001,14 +991,12 @@ Obtains information about online peer devices. This API uses an asynchronous cal
 
 | Type                 | Description                  |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<PeerInfo>> | Promise used to return all peer devices, in an array of **PeerInfo** objects.|
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | Promise used to return all peer devices, in an array of **PeerInfo** objects.|
 
 **Example**
 
 ```js
 async function example() {
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
     media.getAllPeers((err, devicesInfo) => {
         if (devicesInfo != undefined) {
             for (let i = 0; i < devicesInfo.length; i++) {
@@ -1025,6 +1013,11 @@ async function example() {
 
 Provides APIs for encapsulating file asset attributes.
 
+> **NOTE**
+> 
+> 1. The system attempts to parse the file content if the file is an audio or video file. The actual field values will be restored from the passed values during scanning on some devices.
+> 2. Some devices may not support the modification of **orientation**. You are advised to use [ModifyImageProperty](js-apis-image.md#modifyimageproperty9) of the **image** module.
+
 ### Attributes
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -1032,11 +1025,11 @@ Provides APIs for encapsulating file asset attributes.
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
 | id                        | number                   | Yes  | No  | File asset ID.                                          |
-| uri                       | string                   | Yes  | No  | File asset URI, for example, **dataability:///media/image/2**.        |
+| uri                       | string                   | Yes  | No  | File asset URI, for example, **datashare:///media/image/2**.        |
 | mimeType                  | string                   | Yes  | No  | Extended file attributes.                                          |
 | mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | Yes  | No  | Media type.                                              |
 | displayName               | string                   | Yes  | Yes  | Display file name, including the file name extension.                                |
-| title                     | string                   | Yes  | Yes  | Title in the file.                                              |
+| title                     | string                   | Yes  | Yes  | Title in the file. By default, it carries the file name without extension.                                              |
 | relativePath<sup>8+</sup> | string                   | Yes  | Yes  | Relative public directory of the file.                                      |
 | parent<sup>8+</sup>       | number                   | Yes  | No  | Parent directory ID.                                              |
 | size                      | number                   | Yes  | No  | File size, in bytes.                                |
@@ -2016,7 +2009,7 @@ Obtains the next file asset in the result set. This API uses an asynchronous cal
 
 | Name   | Type                                         | Mandatory| Description                                     |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes  | Callback used to return the next file asset.|
+| callback| AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes  | Callback used to return the next file asset.|
 
 **Example**
 
@@ -2486,40 +2479,44 @@ Enumerates media types.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name |  Description|
-| ----- |  ---- |
-| FILE  |  File.|
-| IMAGE |  Image.|
-| VIDEO |  Video.|
-| AUDIO |  Audio.|
+| Name |  Value|  Description|
+| ----- |  ---- | ---- |
+| FILE  |  0 | File.|
+| IMAGE |  1 | Image.|
+| VIDEO |  2 | Video.|
+| AUDIO |  3 | Audio.|
 
 ## FileKey<sup>8+</sup>
 
 Enumerates key file information.
 
+> **NOTE**
+> 
+> The **bucket_id** field may change after file rename or movement. Therefore, you must obtain the field again before using it.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name         | Default Value             | Description                                                      |
+| Name         | Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| ID            | file_id             | File ID.                                                  |
-| RELATIVE_PATH | relative_path       | Relative public directory of the file.                                          |
-| DISPLAY_NAME  | display_name        | Display file name.                                                  |
-| PARENT        | parent              | Parent directory ID.                                                  |
-| MIME_TYPE     | mime_type           | Extended file attributes.                                              |
-| MEDIA_TYPE    | media_type          | Media type.                                                  |
-| SIZE          | size                | File size, in bytes.                                    |
-| DATE_ADDED    | date_added          | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)            |
-| DATE_MODIFIED | date_modified       | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)            |
-| DATE_TAKEN    | date_taken          | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)            |
-| TITLE         | title               | Title in the file.                                                  |
-| ARTIST        | artist              | Artist of the file.                                                      |
-| AUDIOALBUM    | audio_album         | Audio album.                                                      |
-| DURATION      | duration            | Duration, in ms.                                      |
-| WIDTH         | width               | Image width, in pixels.                                    |
-| HEIGHT        | height              | Image height, in pixels.                                    |
-| ORIENTATION   | orientation         | Image display direction (clockwise rotation angle, for example, 0, 90, and 180, in degrees).|
-| ALBUM_ID      | bucket_id           | ID of the album to which the file belongs.                                      |
-| ALBUM_NAME    | bucket_display_name | Name of the album to which the file belongs.                                        |
+| ID            | "file_id"             | File ID.                                                  |
+| RELATIVE_PATH | "relative_path"       | Relative public directory of the file.                                          |
+| DISPLAY_NAME  | "display_name"        | Display file name.                                                  |
+| PARENT        | "parent"              | Parent directory ID.                                                  |
+| MIME_TYPE     | "mime_type"           | Extended file attributes.                                              |
+| MEDIA_TYPE    | "media_type"          | Media type.                                                  |
+| SIZE          | "size"                | File size, in bytes.                                    |
+| DATE_ADDED    | "date_added"          | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)            |
+| DATE_MODIFIED | "date_modified"       | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)            |
+| DATE_TAKEN    | "date_taken"          | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)            |
+| TITLE         | "title"               | Title in the file.                                                  |
+| ARTIST        | "artist"              | Artist of the file.                                                      |
+| AUDIOALBUM    | "audio_album"         | Audio album.                                                      |
+| DURATION      | "duration"            | Duration, in ms.                                      |
+| WIDTH         | "width"               | Image width, in pixels.                                    |
+| HEIGHT        | "height"              | Image height, in pixels.                                    |
+| ORIENTATION   | "orientation"         | Image display direction (clockwise rotation angle, for example, 0, 90, and 180, in degrees).|
+| ALBUM_ID      | "bucket_id"           | ID of the album to which the file belongs.                                      |
+| ALBUM_NAME    | "bucket_display_name" | Name of the album to which the file belongs.                                        |
 
 ## DirectoryType<sup>8+</sup>
 
@@ -2527,14 +2524,14 @@ Enumerates directory types.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name         |  Description              |
-| ------------- |  ------------------ |
-| DIR_CAMERA    |  Directory of camera files.|
-| DIR_VIDEO     |  Directory of video files.      |
-| DIR_IMAGE     |  Directory of image files.      |
-| DIR_AUDIO     |  Directory of audio files.      |
-| DIR_DOCUMENTS |  Directory of documents.      |
-| DIR_DOWNLOAD  |  Download directory.      |
+| Name         | Value|  Description              |
+| ------------- | --- | ------------------ |
+| DIR_CAMERA    |  0 | Directory of camera files.|
+| DIR_VIDEO     |  1 |  Directory of video files.      |
+| DIR_IMAGE     |  2 | Directory of image files.      |
+| DIR_AUDIO     |  3 | Directory of audio files.      |
+| DIR_DOCUMENTS |  4 | Directory of documents.      |
+| DIR_DOWNLOAD  |  5 |  Download directory.      |
 
 ## DeviceType<sup>8+</sup>
 
@@ -2544,15 +2541,15 @@ Enumerates device types.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
-| Name        |  Description      |
-| ------------ |  ---------- |
-| TYPE_UNKNOWN |  Unknown.|
-| TYPE_LAPTOP  |  Laptop.|
-| TYPE_PHONE   |  Phone.      |
-| TYPE_TABLET  |  Tablet.  |
-| TYPE_WATCH   |  Smart watch.  |
-| TYPE_CAR     |  Vehicle-mounted device.  |
-| TYPE_TV      |  TV.  |
+| Name        |  Value| Description      |
+| ------------ | --- | ---------- |
+| TYPE_UNKNOWN |  0 | Unknown.|
+| TYPE_LAPTOP  |  1 | Laptop.|
+| TYPE_PHONE   |  2 | Phone.      |
+| TYPE_TABLET  |  3 | Tablet.  |
+| TYPE_WATCH   |  4 | Smart watch.  |
+| TYPE_CAR     |  5 | Vehicle-mounted device.  |
+| TYPE_TV      |  6 | TV.  |
 
 ## MediaFetchOptions<sup>7+</sup>
 
@@ -2560,14 +2557,14 @@ Describes options for fetching media files.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name                   | Type               | Readable| Writable| Mandatory| Description                                                        |
-| ----------------------- | ------------------- | ---- | ---- | ---- | ------------------------------------------------------------ |
-| selections              | string              | Yes  | Yes  | Yes  | Conditions for fetching files. The enumerated values in [FileKey](#filekey8) are used as the column names of the conditions. Example:<br>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?', |
-| selectionArgs           | Array&lt;string&gt; | Yes  | Yes  | Yes  | Value of the condition, which corresponds to the value of the condition column in **selections**.<br>Example:<br>selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order                   | string              | Yes  | Yes  | No  | Sorting mode of the search results, which can be ascending or descending. The enumerated values in [FileKey](#filekey8) are used as the columns for sorting the search results. Example:<br>Ascending: order: mediaLibrary.FileKey.DATE_ADDED + " ASC"<br>Descending: order: mediaLibrary.FileKey.DATE_ADDED + " DESC"|
-| uri<sup>8+</sup>        | string              | Yes  | Yes  | No  | File URI.                                                     |
-| networkId<sup>8+</sup>  | string              | Yes  | Yes  | No  | Network ID of the registered device.                                              |
-| extendArgs<sup>8+</sup> | string              | Yes  | Yes  | No  | Extended parameters for fetching the files. Currently, no extended parameters are available.                        |
+| Name                   | Type               | Readable| Writable| Description                                                        |
+| ----------------------- | ------------------- | ---- | ---- | ------------------------------------------------------------ |
+| selections              | string              | Yes  | Yes  | Conditions for fetching files. The enumerated values in [FileKey](#filekey8) are used as the column names of the conditions. Example:<br>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?', |
+| selectionArgs           | Array&lt;string&gt; | Yes  | Yes  | Value of the condition, which corresponds to the value of the condition column in **selections**.<br>Example:<br>selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
+| order                   | string              | Yes  | Yes  | Sorting mode of the search results, which can be ascending or descending. The enumerated values in [FileKey](#filekey8) are used as the columns for sorting the search results. Example:<br>Ascending: order: mediaLibrary.FileKey.DATE_ADDED + " ASC"<br>Descending: order: mediaLibrary.FileKey.DATE_ADDED + " DESC"|
+| uri<sup>8+</sup>        | string              | Yes  | Yes  | File URI.                                                     |
+| networkId<sup>8+</sup>  | string              | Yes  | Yes  | Network ID of the registered device.                                              |
+| extendArgs<sup>8+</sup> | string              | Yes  | Yes  | Extended parameters for fetching the files. Currently, no extended parameters are available.                        |
 
 ## Size<sup>8+</sup>
 
@@ -2584,18 +2581,16 @@ Describes the image size.
 
 Implements the media asset option.
 
-> **NOTE**
->
 > This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 
-| Name        | Type  | Mandatory| Description                                                        |
-| ------------ | ------ | ---- | ------------------------------------------------------------ |
-| src          | string | Yes  | Application sandbox oath of the local file.                                      |
-| mimeType     | string | Yes  | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>The value can be 'image/\*', 'video/\*', 'audio/\*' or 'file\*'.|
-| relativePath | string | No  | Custom path for storing media assets, for example, 'Pictures/'. If this parameter is unspecified, media assets are stored in the default path.<br> Default path of images: 'Pictures/'<br> Default path of videos: 'Videos/'<br> Default path of audios: 'Audios/'<br> Default path of files: 'Documents/'|
+| Name        | Type  | Readable| Writable| Description                                                        |
+| ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| src          | string | Yes  | Yes  | Application sandbox oath of the local file.                                      |
+| mimeType     | string | Yes  | Yes  | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>The value can be 'image/\*', 'video/\*', 'audio/\*' or 'file\*'.|
+| relativePath | string | Yes  | Yes  | Custom path for storing media assets, for example, 'Pictures/'. If this parameter is unspecified, media assets are stored in the default path.<br> Default path of images: 'Pictures/'<br> Default path of videos: 'Videos/'<br> Default path of audios: 'Audios/'<br> Default path of files: 'Documents/'|
 
 ## MediaSelectOption<sup>(deprecated)</sup>
 
@@ -2607,7 +2602,7 @@ Describes media selection option.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name   | Type    | Mandatory  | Description                  |
-| ----- | ------ | ---- | -------------------- |
-| type  | string | Yes   | Media type, which can be **image**, **media**, or **video**. Currently, only **media** is supported.|
-| count | number | Yes   | Number of media assets selected. The value starts from 1, which indicates that one media asset can be selected.           |
+| Name   | Type    | Readable| Writable| Description                  |
+| ----- | ------ | ---- | ---- | -------------------- |
+| type  | 'image' &#124; 'video' &#124; 'media' | Yes   | Yes | Media type, which can be **image**, **media**, or **video**. Currently, only **media** is supported.|
+| count | number | Yes   | Yes | Number of media assets selected. The value starts from 1, which indicates that one media asset can be selected.           |

@@ -1,6 +1,6 @@
 # \<stepper> Development
 
-When multiple steps are required to complete a task, you can use the **<stepper>** component to navigate your users through the whole process. For details, see [stepper](../reference/arkui-js/js-components-container-stepper.md).
+When multiple steps are required to complete a task, you can use the **\<stepper>** component to navigate your users through the whole process. For details, see [stepper](../reference/arkui-js/js-components-container-stepper.md).
 
 
 > **NOTE**

@@ -22,18 +22,18 @@ StepperItem()
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| prevLabel | string | When the **\<Stepper>** contains more than one page, the default value for all pages except the first page is **Back**.|
-| nextLabel | string | When the stepper contains more than one page, the default value for the last page is **Start**, and the default value for other pages is **Next**.|
-| status | ItemState | Status of the **\<StepperItem>**.<br>Default value: **ItemState.Normal**|
+| prevLabel | string | Text label of the button on the left. When the **\<Stepper>** contains more than one page, the default value for all pages except the first page is **Back**.|
+| nextLabel | string | Text label of the button on the right. The default value is **Start** for the last page and **Next** for the other pages.|
+| status | ItemState | Display status of **nextLabel** in the stepper.<br>Default value: **ItemState.Normal**|
 
 ## ItemState
 
-| Name| Description|
-| -------- | -------- |
-| Normal | The right button is clickable and can navigate users to the next **\<StepperItem>** when it is clicked.|
-| Disabled | The right button is grayed out and unavailable.|
-| Waiting | The right button is not displayed, and a progress bar is displayed instead.|
-| Skip | The current **\<StepperItem>** is skipped, and the next **\<StepperItem>** is displayed.|
+|   Name   |   Value   | Description|
+| -------- | -------- |-------- |
+| Normal |  0  |The button on the right is clickable and can navigate users to the next **\<StepperItem>** when it is clicked.|
+| Disabled |  1  |The button on the right is grayed out and unavailable.|
+| Waiting |  2  | The button on the right is not displayed, and a progress bar is displayed instead.|
+| Skip |  3  |The button on the right reads "Skip". You can define the processing logic for this state in the **onSkip** callback of the stepper.|
 
 
 ## Example

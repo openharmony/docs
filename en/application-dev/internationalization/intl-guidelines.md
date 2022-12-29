@@ -13,13 +13,13 @@ Use [Locale](../reference/apis/js-apis-intl.md#locale) APIs to maximize or minim
 
 ### Available APIs
 
-| Module | API | Description | 
+| Module | API | Description |
 | -------- | -------- | -------- |
-| ohos.intl | constructor()<sup>8+</sup> | Instantiates a **Locale** object. | 
-| ohos.intl | constructor(locale?: string, options?: options) | Instantiates a **Locale** object based on the locale parameter and options. | 
-| ohos.intl | toString(): string | Converts locale information into a string. | 
-| ohos.intl | maximize(): Locale | Maximizes locale information. | 
-| ohos.intl | minimize(): Locale | Minimizes locale information. | 
+| ohos.intl | constructor()<sup>8+</sup> | Instantiates a **Locale** object. |
+| ohos.intl | constructor(locale?: string, options?: options) | Instantiates a **Locale** object based on the locale parameter and options. |
+| ohos.intl | toString(): string | Converts locale information into a string. |
+| ohos.intl | maximize(): Locale | Maximizes locale information. |
+| ohos.intl | minimize(): Locale | Minimizes locale information. |
 
 
 ### How to Develop
@@ -45,7 +45,7 @@ Use [Locale](../reference/apis/js-apis-intl.md#locale) APIs to maximize or minim
    
    ```js
    var locale = "zh-CN";
-   var options = {caseFirst: false, calendar: "chinese", collation: "pinyin"};
+   var options = {caseFirst: "false", calendar: "chinese", collation: "pinyin"};
    var localeObj = new intl.Locale(locale, options);
    ```
 
@@ -81,13 +81,13 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md#datetimeformat) APIs to f
 
 ### Available APIs
 
-| Module | API | Description | 
+| Module | API | Description |
 | -------- | -------- | -------- |
-| ohos.intl | constructor()<sup>8+</sup> | Creates a **DateTimeFormat** object. | 
-| ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: DateTimeOptions) | Creates a **DateTimeFormat** object and sets the locale and other formatting-related attributes. | 
-| ohos.intl | format(date: Date): string | Calculates the date and time based on the locale and other formatting-related attributes of the **DateTimeFormat** object. | 
-| ohos.intl | formatRange(startDate: Date, endDate: Date): string | Calculates the period based on the locale and other formatting-related attributes of the **DateTimeFormat** object. | 
-| ohos.intl | resolvedOptions(): DateTimeOptions | Obtains the related attributes of the **DateTimeFormat** object. | 
+| ohos.intl | constructor()<sup>8+</sup> | Creates a **DateTimeFormat** object. |
+| ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: DateTimeOptions) | Creates a **DateTimeFormat** object and sets the locale and other formatting-related attributes. |
+| ohos.intl | format(date: Date): string | Calculates the date and time based on the locale and other formatting-related attributes of the **DateTimeFormat** object. |
+| ohos.intl | formatRange(startDate: Date, endDate: Date): string | Calculates the period based on the locale and other formatting-related attributes of the **DateTimeFormat** object. |
+| ohos.intl | resolvedOptions(): DateTimeOptions | Obtains the related attributes of the **DateTimeFormat** object. |
 
 
 ### How to Develop
@@ -144,12 +144,12 @@ Use [NumberFormat](../reference/apis/js-apis-intl.md#numberformat) APIs to forma
 
 ### Available APIs
 
-| Module | API | Description | 
+| Module | API | Description |
 | -------- | -------- | -------- |
-| ohos.intl | constructor()<sup>8+</sup> | Creates a **NumberFormat** object. | 
-| ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: NumberOptions) | Creates a **NumberFormat** object and sets the locale and other formatting-related attributes. | 
-| ohos.intl | format(number: number): string | Calculates the number based on the locale and other formatting-related attributes of the **NumberFormat** object. | 
-| ohos.intl | resolvedOptions(): NumberOptions | Obtains attributes of the **NumberFormat** object. | 
+| ohos.intl | constructor()<sup>8+</sup> | Creates a **NumberFormat** object. |
+| ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: NumberOptions) | Creates a **NumberFormat** object and sets the locale and other formatting-related attributes. |
+| ohos.intl | format(number: number): string | Calculates the number based on the locale and other formatting-related attributes of the **NumberFormat** object. |
+| ohos.intl | resolvedOptions(): NumberOptions | Obtains attributes of the **NumberFormat** object. |
 
 
 ### How to Develop
@@ -195,12 +195,12 @@ Use [Collator](../reference/apis/js-apis-intl.md#collator8) APIs to sort strings
 
 ### Available APIs
 
-| Module | API | Description | 
+| Module | API | Description |
 | -------- | -------- | -------- |
-| ohos.intl | constructor()<sup>8+</sup> | Creates a **Collator** object. | 
-| ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: CollatorOptions)<sup>8+</sup> | Creates a **Collator** object and sets the locale and other related attributes. | 
-| ohos.intl | compare(first: string, second: string): number<sup>8+</sup> | Calculates the comparison result of two strings based on the locale and other attributes of the **Collator** object. | 
-| ohos.intl | resolvedOptions(): CollatorOptions<sup>8+</sup> | Obtains attributes of the **Collator** object. | 
+| ohos.intl | constructor()<sup>8+</sup> | Creates a **Collator** object. |
+| ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: CollatorOptions)<sup>8+</sup> | Creates a **Collator** object and sets the locale and other related attributes. |
+| ohos.intl | compare(first: string, second: string): number<sup>8+</sup> | Calculates the comparison result of two strings based on the locale and other attributes of the **Collator** object. |
+| ohos.intl | resolvedOptions(): CollatorOptions<sup>8+</sup> | Obtains attributes of the **Collator** object. |
 
 
 ### How to Develop
@@ -214,7 +214,7 @@ Use [Collator](../reference/apis/js-apis-intl.md#collator8) APIs to sort strings
    var collator = new intl.Collator();
    ```
 
-   Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions8).
+   Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions9).
    
    ```js
    var collator= new intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"});
@@ -246,11 +246,11 @@ Use [PluralRules](../reference/apis/js-apis-intl.md#pluralrules8) APIs to determ
 
 ### Available APIs
 
-| Module | API | Description | 
+| Module | API | Description |
 | -------- | -------- | -------- |
-| ohos.intl | constructor()<sup>8+</sup> | Creates a **PluralRules** object. | 
-| ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: PluralRulesOptions)<sup>8+</sup> | Creates a **PluralRules** object and sets the locale and other related attributes. | 
-| ohos.intl | select(n: number): string<sup>8+</sup> | Determines the singular-plural type based on the locale and other formatting-related attributes of the **PluralRules** object. | 
+| ohos.intl | constructor()<sup>8+</sup> | Creates a **PluralRules** object. |
+| ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: PluralRulesOptions)<sup>8+</sup> | Creates a **PluralRules** object and sets the locale and other related attributes. |
+| ohos.intl | select(n: number): string<sup>8+</sup> | Determines the singular-plural type based on the locale and other formatting-related attributes of the **PluralRules** object. |
 
 
 ### How to Develop
@@ -264,7 +264,7 @@ Use [PluralRules](../reference/apis/js-apis-intl.md#pluralrules8) APIs to determ
    var pluralRules = new intl.PluralRules();
    ```
 
-   Alternatively, use your own locale and formatting parameters to create a **PluralRules** object. For a full list of parameters, see [PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions8).
+   Alternatively, use your own locale and formatting parameters to create a **PluralRules** object. For a full list of parameters, see [PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions9).
    
    ```js
    var pluralRules = new intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
@@ -287,13 +287,13 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8) 
 
 ### Available APIs
 
-| Module | API | Description | 
+| Module | API | Description |
 | -------- | -------- | -------- |
-| ohos.intl | constructor()<sup>8+</sup> | Creates a **RelativeTimeFormat** object. | 
-| ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: RelativeTimeFormatInputOptions)<sup>8+</sup> | Creates a **RelativeTimeFormat** object and sets the locale and other formatting-related attributes. | 
-| ohos.intl | format(value: number, unit: string): string<sup>8+</sup> | Calculates the relative time format based on the locale and other formatting-related attributes of the **RelativeTimeFormat** object. | 
-| ohos.intl | formatToParts(value: number, unit: string): Array&lt;object&gt;<sup>8+</sup> | Returns each part of the relative time format based on the locale and other formatting-related attributes of the **RelativeTimeFormat** object. | 
-| ohos.intl | resolvedOptions(): RelativeTimeFormatResolvedOptions<sup>8+</sup> | Obtains attributes of the **RelativeTimeFormat** object. | 
+| ohos.intl | constructor()<sup>8+</sup> | Creates a **RelativeTimeFormat** object. |
+| ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: RelativeTimeFormatInputOptions)<sup>8+</sup> | Creates a **RelativeTimeFormat** object and sets the locale and other formatting-related attributes. |
+| ohos.intl | format(value: number, unit: string): string<sup>8+</sup> | Calculates the relative time format based on the locale and other formatting-related attributes of the **RelativeTimeFormat** object. |
+| ohos.intl | formatToParts(value: number, unit: string): Array&lt;object&gt;<sup>8+</sup> | Returns each part of the relative time format based on the locale and other formatting-related attributes of the **RelativeTimeFormat** object. |
+| ohos.intl | resolvedOptions(): RelativeTimeFormatResolvedOptions<sup>8+</sup> | Obtains attributes of the **RelativeTimeFormat** object. |
 
 
 ### How to Develop
@@ -307,7 +307,7 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8) 
    var relativeTimeFormat = new intl.RelativeTimeFormat();
    ```
 
-   Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions8).
+   Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions9).
    
    ```js
    var relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
@@ -347,4 +347,4 @@ The following sample is provided to help you better understand how to develop in
 
 -[`International`: Internationalization (JS) (API8)](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/International)
 
--[`International`: Internationalization (eTS) (API8) (Full SDK)](https://gitee.com/openharmony/applications_app_samples/tree/master/common/International)
+-[`International`: Internationalization (ArkTS) (API8) (Full SDK)](https://gitee.com/openharmony/applications_app_samples/tree/master/common/International)

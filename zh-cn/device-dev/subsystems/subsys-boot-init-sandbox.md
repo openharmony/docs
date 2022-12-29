@@ -23,6 +23,7 @@
   | src-path | 需要mount的目录/文件路径 |
   | sandbox-path | 沙盒里面需要挂载至的目录/文件 |
   | sandbox-flags | mount的挂载标志位, 缺省"bind rec"标志位 |
+  | ignore | 是否忽略mount失败，设置为1 则忽略失败，继续往下执行 |
   | target-name | 需要link的目录 |
   | link-name | 沙盒内link后的目录 |
 
@@ -43,13 +44,13 @@
 bool InitSandboxWithName(const char *name); // 解析JSON至结构体
 
 typedef struct {
-    mountlist_t *mounts;                    // 待 mount 的目录
-    mountlist_t *fileMounts;                // 待 mount 的文件
-    linklist_t *links;                      // 待 link 的目录
-    char *rootPath;                         // 沙盒的根路径 -> /mnt/sandbox/system|vendor|xxx
-    char name[MAX_BUFFER_LEN];              // 沙盒名称，system沙盒、chipset沙盒等
-    bool isCreated;                         // 沙盒创建标志
-    int ns;                                 // namespace
+    ListNode pathMountsHead;   // sandbox mount_path list head
+    ListNode fileMountsHead;   // sandbox mount_file list head
+    ListNode linksHead;        // sandbox symbolic link list head
+    char *rootPath;            // /mnt/sandbox/system|vendor|xxx
+    char name[MAX_BUFFER_LEN]; // name of sandbox. i.e system, chipset etc.
+    bool isCreated;            // sandbox already created or not
+    int ns;                    // namespace
 } sandbox_t;
 ```
 ### 开发步骤

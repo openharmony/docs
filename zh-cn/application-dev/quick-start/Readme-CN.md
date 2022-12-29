@@ -1,12 +1,42 @@
-# 快速开始
+# 入门
 
 - 快速入门
   - [开发准备](start-overview.md)
-  - [使用eTS语言开发（Stage模型）](start-with-ets-stage.md)
-  - [使用eTS语言开发（FA模型）](start-with-ets-fa.md)
-  - [使用JS语言开发（FA模型）](start-with-js-fa.md)
+  - [使用ArkTS语言开发（Stage模型）](start-with-ets-stage.md)
+  - [使用ArkTS语言开发（FA模型）](start-with-ets-fa.md)
+  - [使用JS语言开发（FA模型）](start-with-js-fa.md)  
 - 开发基础知识
-  - [应用包结构说明(FA模型)](package-structure.md)
-  - [应用包结构说明(Stage模型)](stage-structure.md)
-  - [SysCap说明](syscap.md)
-  - [HarmonyAppProvision配置文件](app-provision-structure.md)
+  - 应用程序包基础知识
+    - [应用程序包概述](application-package-overview.md)
+    - 应用程序包结构
+      - [Stage模型应用程序包结构](application-package-structure-stage.md)
+      - [FA模型应用程序包结构](application-package-structure-fa.md)
+      - [HAR包结构](har-structure.md)
+    - 应用程序包多HAP机制
+      - [多HAP机制设计目标](multi-hap-objective.md)
+      - [多HAP构建视图](multi-hap-build-view.md)
+      - [多HAP的开发调试与发布部署流程](multi-hap-release-deployment.md)
+      - [多HAP使用规则](multi-hap-rules.md)
+      - [多HAP运行机制及数据通信方式](multi-hap-principles.md)
+    - [应用程序包安装和卸载流程](application-package-install-uninstall.md)
+  - 应用配置文件（Stage模型）
+    - [应用配置文件概述（Stage模型）](application-configuration-file-overview-stage.md)
+    - [app.json5配置文件](app-configuration-file.md)
+    - [module.json5配置文件](module-configuration-file.md)
+  - 应用配置文件（FA模型）
+    - [应用配置文件概述（FA模型）](application-configuration-file-overview-fa.md)
+    - [app对象内部结构](app-structure.md)
+    - [deviceConfig内部结构](deviceconfig-structure.md)
+    - [module对象内部结构](module-structure.md)
+  - [资源分类与访问](resource-categories-and-access.md)
+- 学习ArkTS语言
+  - [初识ArkTS语言](arkts-get-started.md)
+  - ArkTS语法（声明式UI）
+    - [基本UI描述](arkts-basic-ui-description.md)
+    - 状态管理
+      - [基本概念](arkts-state-mgmt-concepts.md)
+      - [页面级变量的状态管理](arkts-state-mgmt-page-level.md)
+      - [应用级变量的状态管理](arkts-state-mgmt-application-level.md)
+    - [动态构建UI元素](arkts-dynamic-ui-elememt-building.md)
+    - [渲染控制](arkts-rendering-control.md)
+    - [使用限制与扩展](arkts-restrictions-and-extensions.md)

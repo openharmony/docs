@@ -1,6 +1,6 @@
-# 线性容器Stack
+# @ohos.util.Stack (线性容器Stack)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 Stack基于数组的数据结构实现，特点是先进后出，只能在一端进行数据的插入和删除。
@@ -18,16 +18,13 @@ Stack和[Queue](js-apis-queue.md)相比，Queue基于循环队列实现，只能
 import Stack from '@ohos.util.Stack';  
 ```
 
-
-
-
 ## Stack
 
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | Stack的元素个数。 |
 
@@ -39,6 +36,14 @@ constructor()
 Stack的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200012 | The Stack's constructor cannot be directly invoked. |
 
 **示例：**
 
@@ -67,6 +72,14 @@ push(item: T): T
 | -------- | -------- |
 | T | 返回被添加进去的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The push method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -74,7 +87,7 @@ let stack = new Stack();
 let result = stack.push("a");
 let result1 = stack.push(1);
 let b = [1, 2, 3];
-stack.push(b);
+let result2 = stack.push(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = stack.push(c);
 ```
@@ -92,6 +105,14 @@ pop(): T
 | 类型 | 说明 |
 | -------- | -------- |
 | T | 返回删除的元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The pop method cannot be bound. |
 
 **示例：**
 
@@ -118,6 +139,14 @@ peek(): T
 | 类型 | 说明 |
 | -------- | -------- |
 | T | 返回栈顶元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The peek method cannot be bound. |
 
 **示例：**
 
@@ -150,6 +179,14 @@ locate(element: T): number
 | -------- | -------- |
 | number | 找到就返回下标值，查找失败返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The locate method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -163,7 +200,7 @@ let result = stack.locate(2);
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
 thisArg?: Object): void
 
 通过回调函数来遍历Stack实例对象上的元素以及元素对应的下标。
@@ -174,7 +211,7 @@ thisArg?: Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -184,6 +221,14 @@ callbackfn的参数说明：
 | value | T | 是 | 当前遍历到的元素。 |
 | index | number | 否 | 当前遍历到的下标值。 |
 | stack | Stack&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
 
 **示例：**
 
@@ -212,6 +257,14 @@ isEmpty(): boolean
 | -------- | -------- |
 | boolean | 为空返回true，不为空返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -236,6 +289,14 @@ let result = stack.isEmpty();
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 ```ts

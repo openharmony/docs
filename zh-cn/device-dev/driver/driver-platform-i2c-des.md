@@ -3,9 +3,13 @@
 
 ## 概述
 
-I2C（Inter Integrated Circuit）总线是由Philips公司开发的一种简单、双向二线制同步串行总线。
+### 功能简介
 
-I2C以主从方式工作，通常有一个主设备和一个或者多个从设备，主从设备通过SDA（SerialData）串行数据线以及SCL（SerialClock）串行时钟线两根线相连，如图1所示。
+I2C（Inter Integrated Circuit）总线是由Philips公司开发的一种简单、双向二线制同步串行总线。由于其硬件连接简单、成本低廉，因此被广泛应用于各种短距离通信的场景。
+
+### 运作机制
+
+I2C以主从方式工作，通常有一个主设备和一个或者多个从设备，主从设备通过SDA（SerialData）串行数据线以及SCL（SerialClock）串行时钟线两根线相连（如图1）。
 
 I2C数据的传输必须以一个起始信号作为开始条件，以一个结束信号作为传输的停止条件。数据传输以字节为单位，高位在前，逐个bit进行传输。
 
@@ -19,37 +23,40 @@ I2C接口定义了完成I2C传输的通用方法集合，包括：
 
     ![image](figures/I2C物理连线示意图.png "I2C物理连线示意图")
 
-
-## 接口说明
-
-  **表1** I2C驱动API接口功能介绍
-
-| 功能分类 | 接口描述 | 
-| -------- | -------- |
-| I2C控制器管理接口 | -&nbsp;I2cOpen：打开I2C控制器<br/>-&nbsp;I2cClose：关闭I2C控制器 | 
-| I2C消息传输接口 | I2cTransfer：自定义传输 | 
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
-> 本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
-
-
 ## 使用指导
 
+### 场景介绍
+
+I2C通常用于与各类支持I2C协议的传感器、执行器或输入输出设备进行通信。
+
+### 接口说明
+
+I2C模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/i2c_if.h。
+
+**表1** I2C驱动API接口功能介绍
+
+|  接口名  | 接口描述 |
+| -------- | -------- |
+| DevHandle I2cOpen(int16_t number) | 打开I2C控制器 |
+| void I2cClose(DevHandle handle) | 关闭I2C控制器 |
+| int32_t I2cTransfer(DevHandle handle, struct I2cMsg \*msgs, int16_t count) | 自定义传输 |
 
 ### 使用流程
 
 使用I2C设备的一般流程如下图所示。
 
-  **图2** I2C设备使用流程图
+**图2** I2C设备使用流程图
 
-  ![image](figures/I2C设备使用流程图.png "I2C设备使用流程图")
+![image](figures/I2C设备使用流程图.png "I2C设备使用流程图")
 
 
-### 打开I2C控制器
+#### 打开I2C控制器
 
 在进行I2C通信前，首先要调用I2cOpen打开I2C控制器。
 
+```c
 DevHandle I2cOpen(int16_t number);
+```
 
   **表2** I2cOpen参数和返回值描述
 
@@ -62,8 +69,7 @@ DevHandle I2cOpen(int16_t number);
 
 假设系统中存在8个I2C控制器，编号从0到7，以下代码示例为获取3号控制器：
 
-
-```
+```c
 DevHandle i2cHandle = NULL;  /* I2C控制器句柄 /
 
 /* 打开I2C控制器 */
@@ -75,11 +81,13 @@ if (i2cHandle == NULL) {
 ```
 
 
-### 进行I2C通信
+#### 进行I2C通信
 
 消息传输
 
+```c
 int32_t I2cTransfer(DevHandle handle, struct I2cMsg \*msgs, int16_t count);
+```
 
   **表3** I2cTransfer参数和返回值描述
 
@@ -92,10 +100,10 @@ int32_t I2cTransfer(DevHandle handle, struct I2cMsg \*msgs, int16_t count);
 | 正整数 | 成功传输的消息结构体数目 | 
 | 负数 | 执行失败 | 
 
-I2C传输消息类型为I2cMsg，每个传输消息结构体表示一次读或写，通过一个消息数组，可以执行若干次的读写组合操作。
+I2C传输消息类型为I2cMsg，每个传输消息结构体表示一次读或写，通过一个消息数组，可以执行若干次的读写组合操作。组合读写示例：
 
 
-```
+```c
 int32_t ret;
 uint8_t wbuff[2] = { 0x12, 0x13 };
 uint8_t rbuff[2] = { 0 };
@@ -126,11 +134,13 @@ if (ret != 2) {
 > - 本函数可能会引起系统休眠，不允许在中断上下文调用
 
 
-### 关闭I2C控制器
+#### 关闭I2C控制器
 
 I2C通信完成之后，需要关闭I2C控制器，关闭函数如下所述：
 
+```c
 void I2cClose(DevHandle handle); 
+```
 
   **表4** I2cClose参数和返回值描述
 
@@ -138,23 +148,24 @@ void I2cClose(DevHandle handle);
 | -------- | -------- |
 | handle | I2C控制器设备句柄 | 
 
+关闭I2C控制器示例：
 
-```
+```c
 I2cClose(i2cHandle); /* 关闭I2C控制器 */
 ```
 
 
-## 使用示例
+### 使用示例
 
 本例程以操作开发板上的I2C设备为例，详细展示I2C接口的完整使用流程。
 
-本例拟对Hi3516DV300某开发板上TouchPad设备进行简单的寄存器读写访问，基本硬件信息如下：
+本例拟对Hi3516DV300开发板上TouchPad设备进行简单的寄存器读写访问，基本硬件信息如下：
 
 - SOC：hi3516dv300。
 
-- Touch IC：I2C地址为0x38, IC内部寄存器位宽为1字节。
+- Touch IC：I2C地址为0x38，IC内部寄存器位宽为1字节。
 
-- 原理图信息：TouchPad设备挂接在3号I2C控制器下；IC的复位管脚为3号GPIO。
+- 硬件连接：TouchPad设备挂接在3号I2C控制器下；IC的复位管脚为3号GPIO。
 
 本例程首先对Touch IC进行复位操作（开发板上电默认会给TouchIC供电，本例程不考虑供电），然后对其内部寄存器进行随机读写，测试I2C通路是否正常。
 
@@ -163,8 +174,7 @@ I2cClose(i2cHandle); /* 关闭I2C控制器 */
 
 示例如下：
 
-
-```
+```c
 #include "i2c_if.h"          /* I2C标准接口头文件 */
 #include "gpio_if.h"         /* GPIO标准接口头文件 */
 #include "hdf_log.h"         /* 标准日志打印头文件 */

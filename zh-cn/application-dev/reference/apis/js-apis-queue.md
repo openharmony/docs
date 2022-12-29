@@ -1,6 +1,6 @@
-# 线性容器Queue
+# @ohos.util.Queue (线性容器Queue)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 Queue的特点是先进先出，在尾部增加元素，在头部删除元素。根据循环队列的数据结构实现。
@@ -25,7 +25,7 @@ import Queue from '@ohos.util.Queue';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | Queue的元素个数。 |
 
@@ -37,6 +37,14 @@ constructor()
 Queue的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200012 | The Queue's constructor cannot be directly invoked. |
 
 **示例：**
 
@@ -65,15 +73,22 @@ add(element: T): boolean
 | -------- | -------- |
 | boolean | 插入成功返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **示例：**
 
 ```ts
 let queue = new Queue();
 let result = queue.add("a");
 let result1 = queue.add(1);
-queue.add(1);
 let b = [1, 2, 3];
-queue.add(b);
+let result2 = queue.add(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = queue.add(c);
 ```
@@ -91,6 +106,14 @@ pop(): T
 | 类型 | 说明 |
 | -------- | -------- |
 | T | 返回删除的元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The pop method cannot be bound. |
 
 **示例：**
 
@@ -112,11 +135,19 @@ getFirst(): T
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**参数：**
+**返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
 | T | 返回获取的元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getFirst method cannot be bound. |
 
 **示例：**
 
@@ -131,7 +162,7 @@ let result = queue.getFirst();
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
 thisArg?: Object): void
 
 通过回调函数来遍历Queue实例对象上的元素以及元素对应的下标。
@@ -142,7 +173,7 @@ thisArg?: Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -152,6 +183,14 @@ callbackfn的参数说明：
 | value | T | 是 | 当前遍历到的元素。 |
 | index | number | 否 | 当前遍历到的下标值。 |
 | Queue | Queue&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
 
 **示例：**
 
@@ -164,7 +203,6 @@ queue.add(4);
 queue.forEach((value, index) => {
   console.log("value:" + value, index);
 });
-
 ```
 
 ### [Symbol.iterator]
@@ -180,6 +218,14 @@ queue.forEach((value, index) => {
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 ```ts

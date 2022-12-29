@@ -28,26 +28,29 @@ Obtain a **Preferences** instance for data operations. A **Preferences** instanc
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ohos.data.preferences | getPreferences(context: Context, name: string): Promise\<Preferences> | Obtains a **Preferences** instance.|
 
-### Accessing Data
+### Processing Data
 
-Call the **put()** method to add or modify data in a **Preferences** instance.
+Call **put()** to add or modify data in a **Preferences** instance.
 
-Call the **get()** method to read data from a **Preferences** instance.
+Call **get()** to read data from a **Preferences** instance.
 
 Call **getAll()** to obtain an **Object** instance that contains all KV pairs in a **Preferences** instance.
 
-**Table 2** APIs for accessing **Preferences** data
+Call **delete()** to delete the KV pair of the specified key from the **Preferences** instance.
+
+**Table 2** APIs for processing **Preferences** data
 
 | Class       | API                                                    | Description                                                        |
 | ----------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
 | Preferences | put(key: string, value: ValueType): Promise\<void>         | Writes data to the **Preferences** instance. The value to write can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
 | Preferences | get(key: string, defValue: ValueType): Promise\<ValueType> | Obtains data from the **Preferences** instance. The value to read can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
-| Preferences | getAll(): Promise<Object>                                  | Obtains an **Object** instance that contains all KV pairs in the **Preferences** instance.                          |
+| Preferences | getAll(): Promise\<Object>                                  | Obtains an **Object** instance that contains all KV pairs in the **Preferences** instance.                          |
+| Preferences | delete(key: string): Promise\<void>                         | Deletes the KV pair of the specified key from the **Preferences** instance.        |
 
 
 ### Storing Data Persistently
 
-Call the **flush()** method to write the cached data back to its text file for persistent storage.
+Call **flush()** to write the cached data back to its text file for persistent storage.
 
 **Table 4** API for data persistence
 
@@ -68,7 +71,7 @@ You can subscribe to data changes. When the value of the subscribed key is chang
 
 ### Deleting Data
 
-Use the following APIs to delete a **Preferences** instance or data file.
+You can use the following APIs to delete a **Preferences** instance or data file.
 
 **Table 6** APIs for deleting **Preferences**
 
@@ -88,15 +91,22 @@ Use the following APIs to delete a **Preferences** instance or data file.
 2. Obtain a **Preferences** instance.
 
    Read the specified file and load its data to the **Preferences** instance for data operations.
-   
+
    FA model:
 
    ```js
    // Obtain the context.
    import featureAbility from '@ohos.ability.featureAbility'
-   var context = featureAbility.getContext()
-
+   let context = featureAbility.getContext();
+   
+   let preferences = null;
    let promise = data_preferences.getPreferences(context, 'mystore');
+   
+   promise.then((pref) => {
+       preferences = pref;
+   }).catch((err) => {
+       console.info("Failed to get the preferences.");
+   })
    ```
 
    Stage model:
@@ -104,53 +114,52 @@ Use the following APIs to delete a **Preferences** instance or data file.
    ```ts
    // Obtain the context.
    import Ability from '@ohos.application.Ability'
-   var context
-   class MainAbility extends Ability{
+   let context = null;
+   let preferences = null;
+   export default class MainAbility extends Ability {
        onWindowStageCreate(windowStage){
-           context = this.context
+           context = this.context;
        }
    }
-
+   
    let promise = data_preferences.getPreferences(context, 'mystore');
-   ```
-
-3. Write data.
-
-   Use the **preferences.put()** method to write data to the **Preferences** instance.
-
-   ```js
-   promise.then((preferences) => {
-       let putPromise = preferences.put('startup', 'auto');
-       putPromise.then(() => {
-           console.info("Put the value of 'startup' successfully.");
-       }).catch((err) => {
-           console.info("Failed to put the value of 'startup'. Cause: " + err);
-       })
+   
+   promise.then((pref) => {
+       preferences = pref;
    }).catch((err) => {
        console.info("Failed to get the preferences.");
    })
    ```
 
-4. Read data.
+3. Write data.
 
-   Use the **preferences.get()** method to read data.
+   Use **preferences.put()** to write data to the **Preferences** instance.
 
    ```js
-   promise.then((preferences) => {
-     let getPromise = preferences.get('startup', 'default');
-     getPromise.then((value) => {
-       console.info("The value of 'startup' is " + value);
-     }).catch((err) => {
-       console.info("Failed to get the value of 'startup'. Cause: " + err);
-     })
+   let putPromise = preferences.put('startup', 'auto');
+   putPromise.then(() => {
+       console.info("Put the value of 'startup' successfully.");
    }).catch((err) => {
-       console.info("Failed to get the preferences.")
-   });
+       console.info("Failed to put the value of 'startup'. Cause: " + err);
+   })
    ```
+   
+4. Read data.
 
+   Use **preferences.get()** to read data.
+
+   ```js
+   let getPromise = preferences.get('startup', 'default');
+   getPromise.then((value) => {
+       console.info("The value of 'startup' is " + value);
+   }).catch((err) => {
+       console.info("Failed to get the value of 'startup'. Cause: " + err);
+   })
+   ```
+   
 5. Store data persistently.
 
-   Use the **flush()** method to flush data from the **Preferences** instance to its file.
+   Use **flush()** to flush data from the **Preferences** instance to its file.
 
    ```js
    preferences.flush();
@@ -161,16 +170,17 @@ Use the following APIs to delete a **Preferences** instance or data file.
    Specify an observer as the callback to subscribe to data changes for an application. When the value of the subscribed key is changed and saved by **flush()**, the observer callback will be invoked to return the new data.
 
    ```js
-   var observer = function (key) {
+   let observer = function (key) {
        console.info("The key" + key + " changed.");
    }
    preferences.on('change', observer);
-   preferences.put('startup', 'auto', function (err) {
+   // The data is changed from 'auto' to 'manual'.
+   preferences.put('startup', 'manual', function (err) {
        if (err) {
            console.info("Failed to put the value of 'startup'. Cause: " + err);
            return;
        }
-        console.info("Put the value of 'startup' successfully.");
+       console.info("Put the value of 'startup' successfully.");
        preferences.flush(function (err) {
            if (err) {
                console.info("Failed to flush data. Cause: " + err);
@@ -183,7 +193,7 @@ Use the following APIs to delete a **Preferences** instance or data file.
 
 7. Delete the specified file.
 
-   Use the **deletePreferences** method to delete the **Preferences** instance and its persistent file and backup and corrupted files. After the specified files are deleted, the application cannot use that instance to perform any data operation. Otherwise, data inconsistency will be caused. The deleted data and files cannot be restored.
+   Use **deletePreferences()** to delete the **Preferences** instance and its persistent file and backup and corrupted files. After the specified files are deleted, the application cannot use that instance to perform any data operation. Otherwise, data inconsistency will be caused. The deleted data and files cannot be restored.
 
    ```js
    let proDelete = data_preferences.deletePreferences(context, 'mystore');

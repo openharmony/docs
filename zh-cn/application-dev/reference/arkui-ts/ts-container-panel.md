@@ -27,8 +27,8 @@ Panel(show: boolean)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| type | PanelType | 设置可滑动面板的类型。<br/>默认值：PanelType.Foldable |
-| mode | PanelMode | 设置可滑动面板的初始状态。 |
+| type | [PanelType](#paneltype枚举说明) | 设置可滑动面板的类型。<br/>默认值：PanelType.Foldable |
+| mode | [PanelMode](#panelmode枚举说明) | 设置可滑动面板的初始状态。 |
 | dragBar | boolean | 设置是否存在dragbar，true表示存在，false表示不存在。<br/>默认值：true |
 | fullHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Full状态下的高度。 |
 | halfHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Half状态下的高度，默认为屏幕尺寸的一半。 |
@@ -58,7 +58,7 @@ Panel(show: boolean)
 | 名称 | 功能描述 |
 | -------- | -------- |
 | onChange(event:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&nbsp;PanelMode)&nbsp;=&gt;&nbsp;void) | 当可滑动面板发生状态变化时触发，&nbsp;返回的height值为内容区高度值，当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。 |
-| onHeightChange(callback: (value: number) => void)<sup>9+</sup> |当可滑动面板发生高度变化时触发，返回的height值为内容区高度值，当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。因用户体验设计原因，panel最高只能滑到 fullHeight-8vp。 |
+| onHeightChange(callback: (value: number) => void)<sup>9+</sup> |当可滑动面板发生高度变化时触发，返回的height值为内容区高度值，默认返回值单位为px。当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。因用户体验设计原因，panel最高只能滑到 fullHeight-8vp。 |
 
 ## 示例
 
@@ -70,7 +70,7 @@ struct PanelExample {
   @State show: boolean = false
 
   build() {
-    Stack() {
+    Column() {
       Text('2021-09-30    Today Calendar: 1.afternoon......Click for details')
         .width('90%').height(50).borderRadius(10)
         .backgroundColor(0xFFFFFF).padding({ left: 20 })

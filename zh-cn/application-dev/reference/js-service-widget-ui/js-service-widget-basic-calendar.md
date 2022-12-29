@@ -122,8 +122,9 @@ calendardata示例：
 | $event.currentYear  | string | 当前显示的年份。 |
 | $event.currentMonth | string | 当前显示的月份。 |
 
-
 ## 示例
+
+当前数据仅为示例数据，实际使用时请补充完整的日期数据。
 
 
 ```html

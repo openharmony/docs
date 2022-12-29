@@ -1,4 +1,4 @@
-# 数据共享结果集
+# @ohos.data.dataShareResultSet (数据共享结果集)
 
 **结果集(DataShareResultSet)** 可提供访问由查询数据库生成的结果集的相关方法，根据提供的行数，查询相应的值，也可查询指定数据类型的值。
 
@@ -53,7 +53,7 @@ dataShareHelper.query(uri, da, columns).then((data) => {
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
-| 名称        | 参数类型      | 必填 | 说明                     |
+| 名称        | 类型      | 必填 | 说明                     |
 | ----------- | ------------- | ---- | ------------------------ |
 | columnNames | Array&lt;string&gt; | 是   | 结果集中所有列的名称。   |
 | columnCount | number        | 是   | 结果集中的列数。         |

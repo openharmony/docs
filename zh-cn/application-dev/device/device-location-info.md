@@ -10,68 +10,42 @@
 
 ## 接口说明
 
-获取设备的位置信息，所使用的接口说明如下。
-
-  **表1** 获取位置信息API功能介绍
-
-| 接口名                                                       | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;) : void | 开启位置变化订阅，并发起定位请求。                           |
-| off(type: 'locationChange', callback?: Callback&lt;Location&gt;) : void | 关闭位置变化订阅，并删除对应的定位请求。                     |
-| on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;) : void | 订阅位置服务状态变化。                                       |
-| off(type: 'locationServiceState', callback: Callback&lt;boolean&gt;) : void | 取消订阅位置服务状态变化。                                   |
-| on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;) : void; | 订阅缓存GNSS位置上报。                                       |
-| off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Location&gt;&gt;) : void; | 取消订阅缓存GNSS位置上报。                                   |
-| on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;) : void; | 订阅卫星状态信息更新事件。                                   |
-| off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;) : void; | 取消订阅卫星状态信息更新事件。                               |
-| on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;) : void; | 订阅GNSS NMEA信息上报。                                      |
-| off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;) : void; | 取消订阅GNSS NMEA信息上报。                                  |
-| on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void; | 添加围栏，并订阅该围栏事件上报。                             |
-| off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void; | 删除围栏，并取消订阅该围栏事件。                             |
-| getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;) : void | 获取当前位置，使用callback回调异步返回结果。                 |
-| getCurrentLocation(request?: CurrentLocationRequest) : Promise&lt;Location&gt; | 获取当前位置，使用Promise方式异步返回结果。                  |
-| getLastLocation(callback: AsyncCallback&lt;Location&gt;) : void | 获取上一次位置，使用callback回调异步返回结果。               |
-| getLastLocation() : Promise&lt;Location&gt;                  | 获取上一次位置，使用Promise方式异步返回结果。                |
-| isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;) : void | 判断位置服务是否已经打开，使用callback回调异步返回结果。     |
-| isLocationEnabled() : Promise&lt;boolean&gt;                 | 判断位置服务是否已经开启，使用Promise方式异步返回结果。      |
-| requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;) : void | 请求打开位置服务，使用callback回调异步返回结果。             |
-| requestEnableLocation() : Promise&lt;boolean&gt;             | 请求打开位置服务，使用Promise方式异步返回结果。              |
-| enableLocation(callback: AsyncCallback&lt;boolean&gt;) : void | 打开位置服务，使用callback回调异步返回结果。                 |
-| enableLocation() : Promise&lt;boolean&gt;                    | 打开位置服务，使用Promise方式异步返回结果。                  |
-| disableLocation(callback: AsyncCallback&lt;boolean&gt;) : void | 关闭位置服务，使用callback回调异步返回结果。                 |
-| disableLocation() : Promise&lt;boolean&gt;                   | 关闭位置服务，使用Promise方式异步返回结果。                  |
-| getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;) : void; | 获取缓存GNSS位置的个数，使用callback回调异步返回结果。       |
-| getCachedGnssLocationsSize() : Promise&lt;number&gt;;        | 获取缓存GNSS位置的个数，使用Promise方式异步返回结果。        |
-| flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;) : void; | 获取所有的GNSS缓存位置，并清空GNSS缓存队列，使用callback回调异步返回结果。 |
-| flushCachedGnssLocations() : Promise&lt;boolean&gt;;         | 获取所有的GNSS缓存位置，并清空GNSS缓存队列，使用Promise方式异步返回结果。 |
-| sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;) : void; | 给位置服务子系统发送扩展命令，使用callback回调异步返回结果。 |
-| sendCommand(command: LocationCommand) : Promise&lt;boolean&gt;; | 给位置服务子系统发送扩展命令，使用Promise方式异步返回结果。  |
-| isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback&lt;boolean&gt;) : void; | 查询用户是否同意定位服务的隐私申明，使用callback回调异步返回结果。 |
-| isLocationPrivacyConfirmed(type : LocationPrivacyType,) : Promise&lt;boolean&gt;; | 查询用户是否同意定位服务的隐私申明，使用Promise方式异步返回结果。 |
-| setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolean, callback: AsyncCallback&lt;boolean&gt;) : void; | 设置并记录用户是否同意定位服务的隐私申明，使用callback回调异步返回结果。 |
-| setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolean) : Promise&lt;boolean&gt;; | 设置并记录用户是否同意定位服务的隐私申明，使用Promise方式异步返回结果。 |
+获取设备的位置信息，所使用的接口说明参见：[位置服务](../reference/apis/js-apis-geoLocationManager.md)。
 
 
 ## 开发步骤
 
-如需要获取设备位置相关接口信息，请参考[位置服务](../reference/apis/js-apis-geolocation.md)。
+如需要获取设备位置相关接口信息，请参考[位置服务](../reference/apis/js-apis-geoLocationManager.md)。
 
 1. 应用在使用系统能力前，需要检查是否已经获取用户授权访问设备位置信息。如未获得授权，可以向用户申请需要的位置权限，申请方式请参考下文。
      系统提供的定位权限有：
    - ohos.permission.LOCATION
    
+   - ohos.permission.APPROXIMATELY_LOCATION
+   
    - ohos.permission.LOCATION_IN_BACKGROUND
 
-   访问设备的位置信息，必须申请ohos.permission.LOCATION权限，并且获得用户授权。
+   访问设备的位置信息，必须申请权限，并且获得用户授权。
+   
+   API9之前的版本，申请ohos.permission.LOCATION即可。
+   
+   API9及之后的版本，需要申请ohos.permission.APPROXIMATELY_LOCATION或者同时申请ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION；无法单独申请ohos.permission.LOCATION。
+   
+   | target API level | 申请位置权限 | 申请结果 | 位置的精确度 |
+   | -------- | -------- | -------- | -------- |
+   | 小于9 | ohos.permission.LOCATION | 成功 | 获取到精准位置，精准度在米级别。 |
+   | 大于等于9 | ohos.permission.LOCATION | 失败 | 无法获取位置。 |
+   | 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION | 成功 | 获取到模糊位置，精确度为5公里。 |
+   | 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION | 成功 | 获取到精准位置，精准度在米级别。 |
 
    如果应用在后台运行时也需要访问设备位置，除需要将应用声明为允许后台运行外，还必须申请ohos.permission.LOCATION_IN_BACKGROUND权限，这样应用在切入后台之后，系统可以继续上报位置信息。
 
    开发者可以在应用配置文件中声明所需要的权限，具体可参考[授权申请指导](../security/accesstoken-guidelines.md)。
 
-2. 导入geolocation模块，所有与基础定位能力相关的功能API，都是通过该模块提供的。
+2. 导入geoLocationManager模块，所有与基础定位能力相关的功能API，都是通过该模块提供的。
    
-   ```
-   import geolocation from '@ohos.geolocation';
+   ```ts
+   import geoLocationManager from '@ohos.geoLocationManager';
    ```
 
 3. 实例化LocationRequest对象，用于告知系统该向应用提供何种类型的位置服务，以及位置结果上报的频率。<br/>
@@ -80,7 +54,7 @@
    为了面向开发者提供贴近其使用场景的API使用方式，系统定义了几种常见的位置能力使用场景，并针对使用场景做了适当的优化处理，应用可以直接匹配使用，简化开发复杂度。系统当前支持场景如下表所示。
 
    
-   ```
+   ```ts
        export enum LocationRequestScenario {
             UNSET = 0x300,
             NAVIGATION,
@@ -104,8 +78,8 @@
 
      以导航场景为例，实例化方式如下：
    
-   ```
-   var requestInfo = {'scenario': geolocation.LocationRequestScenario.NAVIGATION, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+   ```ts
+   var requestInfo = {'scenario': geoLocationManager.LocationRequestScenario.NAVIGATION, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
    ```
 
    **方式二：**
@@ -113,7 +87,7 @@
    如果定义的现有场景类型不能满足所需的开发场景，系统提供了基本的定位优先级策略类型。
 
    
-   ```
+   ```ts
        export enum LocationRequestPriority {
             UNSET = 0x200,
             ACCURACY,
@@ -133,14 +107,14 @@
 
      以定位精度优先策略为例，实例化方式如下：
    
-   ```
-   var requestInfo = {'priority': geolocation.LocationRequestPriority.ACCURACY, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+   ```ts
+   var requestInfo = {'priority': geoLocationManager.LocationRequestPriority.ACCURACY, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
    ```
 
 4. 实例化Callback对象，用于向系统提供位置上报的途径。
      应用需要自行实现系统定义好的回调接口，并将其实例化。系统在定位成功确定设备的实时位置结果时，会通过该接口上报给应用。应用程序可以在接口的实现中完成自己的业务逻辑。
      
-   ```
+   ```ts
    var locationChange = (location) => {
        console.log('locationChanger: data: ' + JSON.stringify(location));
    };
@@ -148,26 +122,25 @@
 
 5. 启动定位。
    
-   ```
-   geolocation.on('locationChange', requestInfo, locationChange);
+   ```ts
+   geoLocationManager.on('locationChange', requestInfo, locationChange);
    ```
 
 6. （可选）结束定位。
    
-   ```
-   geolocation.off('locationChange', locationChange);
+   ```ts
+   geoLocationManager.off('locationChange', locationChange);
    ```
 
 如果应用使用场景不需要实时的设备位置，可以获取系统缓存的最近一次历史定位结果。
      
-   ```
-   geolocation.getLastLocation((err, data) => {
-       if (err) {
-           console.log('getLastLocation: err: ' + JSON.stringify(err));
-       } else {
-           console.log('getLastLocation: data: ' + JSON.stringify(data));
-       }
-   });
+   ```ts
+   import geoLocationManager from '@ohos.geoLocationManager';
+   try {
+       var location = geoLocationManager.getLastLocation();
+   } catch (err) {
+       console.error("errCode:" + err.code + ",errMessage:" + err.message);
+   }
    ```
 
    此接口的使用需要应用向用户申请ohos.permission.LOCATION权限。

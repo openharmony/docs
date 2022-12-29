@@ -1,6 +1,6 @@
-# Buffer
+# @ohos.buffer (Buffer)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 Buffer对象用于表示固定长度的字节序列,是专门存放二进制数据的缓存区。
@@ -13,17 +13,57 @@ Buffer对象用于表示固定长度的字节序列,是专门存放二进制数�
 import buffer from '@ohos.buffer';
 ```
 
+## BufferEncoding
+
+表示支持的编码格式字符串。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 编码格式    | 说明                 |
+| ------- | -------------------- |
+| ascii  | 表示ascii格式。   |
+| utf8  | 表示utf8格式。   |
+| utf-8 | 表示utf8格式。 |
+| utf16le | 表示utf16小端序格式。 |
+| ucs2 | 表示utf16小端序格式。 |
+| ucs-2 | 表示utf16小端序格式。 |
+| base64 | 表示base64格式。 |
+| base64url | 表示base64格式。 |
+| latin1 | 表示ascii格式。 |
+| binary | 表示二进制格式。 |
+| hex | 表示十六进制格式。 |
+
 ## Buffer
 
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | buffer的字节长度。 |
 | buffer | ArrayBuffer | 是 | 否 | ArrayBuffer对象。 |
 | byteOffset | number | 是 | 否 | 当前buffer所在内存池的偏移量。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200013 | Cannot set property ${propertyName} of Buffer which has only a getter. |
+
+**示例：**
+
+```ts
+import buffer from '@ohos.buffer';
+
+let buf = buffer.from("1236");
+console.log(JSON.stringify(buf.length));
+let arrayBuffer = buf.buffer;
+console.log(JSON.stringify(new Uint8Array(arrayBuffer)));
+console.log(JSON.stringify(buf.byteOffset));
+```
 
 ### alloc
 
@@ -39,7 +79,7 @@ alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding):
 | -------- | -------- | -------- | -------- |
 | size | number | 是 | 指定的Buffer实例长度，单位：字节。 |
 | fill | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;number | 否 | 预填充的值，默认值: 0 |
-| encoding | BufferEncoding | 否 | 编码方式（当`fill`为string时，才有意义）。 默认值: 'utf-8' |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码方式（当`fill`为string时，才有意义）。 默认值: 'utf-8' |
 
 **返回值：**
 
@@ -129,7 +169,7 @@ byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | Share
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypedArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | 是 | 指定字符串。 |
-| encoding | BufferEncoding | 否 | 编码方式。 默认值: 'utf-8' |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码方式。 默认值: 'utf-8' |
 
 **返回值：**
 
@@ -178,8 +218,7 @@ let buf1 = buffer.from('1234');
 let buf2 = buffer.from('0123');
 let res = buf1.compare(buf2);
 
-console.log(Number(res).toString());
-// 打印 1
+console.log(Number(res).toString()); // 打印 1
 ```
 
 ### concat
@@ -202,6 +241,14 @@ concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 | 类型 | 说明 |
 | -------- | -------- |
 | Buffer | 返回新Buffer的实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "totalLength" is out of range. |
 
 **示例：**
 
@@ -265,6 +312,14 @@ from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?:
 | -------- | -------- |
 | Buffer | 返回一个共享内存的Buffer实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[byteOffset/length]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -316,8 +371,8 @@ from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | object | Object | 是 | 支持Symbol.toPrimitive或valueOf()的对象 |
-| offsetOrEncoding | number&nbsp;\|&nbsp;string | 否 | 字节偏移量或编码。 |
-| length | number | 否 | 字节长度。 |
+| offsetOrEncoding | number&nbsp;\|&nbsp;string | 是 | 字节偏移量或编码。 |
+| length | number | 是 | 字节长度。 |
 
 **返回值：**
 
@@ -346,7 +401,7 @@ from(string: String, encoding?: BufferEncoding): Buffer
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | string | String | 是 | 字符串 |
-| encoding | BufferEncoding | 否 | 编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。 默认值: 'utf-8'。 |
 
 **返回值：**
 
@@ -454,6 +509,14 @@ compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, s
 | -------- | -------- |
 | number | 比较结果。-1:前排序，0:与buf相同，1:后排序。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[targetStart/targetEnd/sourceStart/sourceEnd]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -489,6 +552,14 @@ copy(target: Buffer| Uint8Array, targetStart?: number, sourceStart?: number, sou
 | 类型 | 说明 |
 | -------- | -------- |
 | number |  复制的字节总长度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[targetStart/sourceStart/sourceEnd]" is out of range. |
 
 **示例：**
 
@@ -557,7 +628,6 @@ let buf3 = buffer.from('ABCD');
 
 console.log(buf1.equals(buf2).toString());	// 打印: true
 console.log(buf1.equals(buf3).toString());	// 打印: false
-
 ```
 
 ### fill
@@ -575,13 +645,21 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 | value | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array&nbsp;\|&nbsp;number | 是 | 用于填充的值。 |
 | offset | number | 否 | 起始偏移量。 默认值: 0。 |
 | end | number | 否 | 结束偏移量（不包括在内）。 默认值: buf.length。 |
-| encoding | BufferEncoding | 否 | 字符编码格式（`value`为string才有意义）。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式（`value`为string才有意义）。 默认值: 'utf-8'。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
 | Buffer | 填充后的Buffer实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[offset/end]" is out of range. |
 
 **示例：**
 
@@ -607,7 +685,7 @@ includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, enco
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
 | byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | BufferEncoding | 否 | 字符编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf-8'。 |
 
 **返回值：**
 
@@ -639,7 +717,7 @@ indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encod
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
 | byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | BufferEncoding | 否 | 字符编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf-8'。 |
 
 **返回值：**
 
@@ -696,7 +774,7 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
 | byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | BufferEncoding | 否 | 字符编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf-8'。 |
 
 **返回值：**
 
@@ -735,6 +813,14 @@ readBigInt64BE(offset?: number): bigint
 | -------- | -------- |
 | bigint | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -743,6 +829,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.log(buf.readBigInt64BE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(8);
+buf1.writeBigInt64BE(0x0102030405060708n, 0);
 ```
 
 ### readBigInt64LE
@@ -765,6 +854,14 @@ readBigInt64LE(offset?: number): bigint
 | -------- | -------- |
 | bigint | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -773,6 +870,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.log(buf.readBigInt64LE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(8);
+buf1.writeBigInt64BE(0x0102030405060708n, 0);
 ```
 
 ### readBigUInt64BE
@@ -795,6 +895,14 @@ readBigUInt64BE(offset?: number): bigint
 | -------- | -------- |
 | bigint | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -803,6 +911,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.log(buf.readBigUInt64BE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(8);
+buf1.writeBigUInt64BE(0xdecafafecacefaden, 0);
 ```
 
 ### readBigUInt64LE
@@ -825,6 +936,14 @@ readBigUInt64LE(offset?: number): bigint
 | -------- | -------- |
 | bigint | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -833,6 +952,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.log(buf.readBigUInt64LE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(8);
+buf1.writeBigUInt64BE(0xdecafafecacefaden, 0);
 ```
 
 ### readDoubleBE
@@ -855,6 +977,14 @@ readDoubleBE(offset?: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -862,6 +992,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readDoubleBE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(8);
+buf1.writeDoubleBE(123.456, 0);
 ```
 
 ### readDoubleLE
@@ -884,6 +1017,14 @@ readDoubleLE(offset?: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -891,6 +1032,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readDoubleLE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(8);
+buf1.writeDoubleLE(123.456, 0);
 ```
 
 ### readFloatBE
@@ -913,6 +1057,14 @@ readFloatBE(offset?: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -920,6 +1072,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readFloatBE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeFloatBE(0xcabcbcbc, 0);
 ```
 
 ### readFloatLE
@@ -942,6 +1097,14 @@ readFloatLE(offset?: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -949,6 +1112,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readFloatLE(0).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeFloatLE(0xcabcbcbc, 0);
 ```
 
 ### readInt8
@@ -971,6 +1137,14 @@ readInt8(offset?: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -979,6 +1153,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([-1, 5]);
 console.log(buf.readInt8(0).toString());	// 打印: -1
 console.log(buf.readInt8(1).toString());	// 打印: 5
+
+let buf1 = buffer.allocUninitializedFromPool(2);
+buf1.writeInt8(0x12);
 ```
 
 ### readInt16BE
@@ -1001,6 +1178,14 @@ readInt16BE(offset?: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1008,6 +1193,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0, 5]);
 console.log(buf.readInt16BE(0).toString());	// 打印: 5
+
+let buf1 = buffer.alloc(2);
+buf1.writeInt16BE(0x1234, 0);
 ```
 
 ### readInt16LE
@@ -1030,6 +1218,14 @@ readInt16LE(offset?: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1037,6 +1233,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0, 5]);
 console.log(buf.readInt16LE(0).toString());	// 打印: 1280
+
+let buf1 = buffer.alloc(2);
+buf1.writeInt16BE(0x1234, 0);
 ```
 
 ### readInt32BE
@@ -1059,6 +1258,14 @@ readInt32BE(offset?: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1066,6 +1273,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0, 0, 0, 5]);
 console.log(buf.readInt32BE(0).toString());	// 打印: 5
+
+let buf1 = buffer.alloc(4);
+buf1.writeInt32BE(0x12345678, 0);
 ```
 
 ### readInt32LE
@@ -1088,6 +1298,14 @@ readInt32LE(offset?: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1095,6 +1313,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0, 0, 0, 5]);
 console.log(buf.readInt32LE(0).toString());	// 打印: 83886080
+
+let buf1 = buffer.alloc(4);
+buf1.writeInt32BE(0x12345678, 0);
 ```
 
 ### readIntBE
@@ -1119,6 +1340,14 @@ readIntBE(offset: number, byteLength: number): number
 | -------- | -------- |
 | number | 读取的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[offset/byteLength]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1127,6 +1356,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from("ab");
 let num = buf.readIntBE(0, 1);
 console.log(num.toString()); // 97
+
+let buf1 = buffer.allocUninitializedFromPool(6);
+buf1.writeIntBE(0x123456789011, 0, 6);
 ```
 
 
@@ -1152,6 +1384,14 @@ readIntLE(offset: number, byteLength: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[offset/byteLength]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1159,6 +1399,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readIntLE(0, 6).toString(16));
+
+let buf1 = buffer.allocUninitializedFromPool(6);
+buf1.writeIntLE(0x123456789011, 0, 6);
 ```
 
 ### readUInt8
@@ -1182,6 +1425,14 @@ readUInt8(offset?: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1190,6 +1441,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([1, -2]);
 console.log(buf.readUInt8(0).toString());
 console.log(buf.readUInt8(1).toString());
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeUInt8(0x42);
 ```
 
 ### readUInt16BE
@@ -1213,6 +1467,14 @@ readUInt16BE(offset?: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1221,6 +1483,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([0x12, 0x34, 0x56]);
 console.log(buf.readUInt16BE(0).toString(16));
 console.log(buf.readUInt16BE(1).toString(16));
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeUInt16BE(0x1234, 0);
 ```
 
 ### readUInt16LE
@@ -1244,6 +1509,14 @@ readUInt16LE(offset?: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1252,6 +1525,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from([0x12, 0x34, 0x56]);
 console.log(buf.readUInt16LE(0).toString(16));
 console.log(buf.readUInt16LE(1).toString(16));
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeUInt16LE(0x1234, 0);
 ```
 
 ### readUInt32BE
@@ -1275,6 +1551,14 @@ readUInt32BE(offset?: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1282,6 +1566,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
 console.log(buf.readUInt32BE(0).toString(16));
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeUInt32BE(0x12345678, 0);
 ```
 
 ### readUInt32LE
@@ -1305,6 +1592,14 @@ readUInt32LE(offset?: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "offset" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1312,6 +1607,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
 console.log(buf.readUInt32LE(0).toString(16));
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeUInt32LE(0x12345678, 0);
 ```
 
 ### readUIntBE
@@ -1336,6 +1634,14 @@ readUIntBE(offset: number, byteLength: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[offset/byteLength]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1343,6 +1649,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readUIntBE(0, 6).toString(16));
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeUIntBE(0x13141516, 0, 4);
 ```
 
 ### readUIntLE
@@ -1367,6 +1676,14 @@ readUIntLE(offset: number, byteLength: number): number
 | -------- | -------- |
 | number | 读取出的内容。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[offset/byteLength]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1374,6 +1691,9 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readUIntLE(0, 6).toString(16));
+
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeUIntLE(0x13141516, 0, 4);
 ```
 
 ### subarray
@@ -1427,6 +1747,14 @@ swap16(): Buffer
 | -------- | -------- |
 | Buffer | 交换之后的Buffer实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200009 | Buffer size must be a multiple of 16-bits |
+
 **示例：**
 
 ```ts
@@ -1454,6 +1782,14 @@ swap32(): Buffer
 | -------- | -------- |
 | Buffer | 交换之后的Buffer实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200009 | Buffer size must be a multiple of 32-bits |
+
 **示例：**
 
 ```ts
@@ -1480,6 +1816,14 @@ swap64(): Buffer
 | 类型 | 说明 |
 | -------- | -------- |
 | Buffer | 交换之后的Buffer实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200009 | Buffer size must be a multiple of 64-bits |
 
 **示例：**
 
@@ -1593,7 +1937,7 @@ write(str: string, offset?: number, length?: number, encoding?: string): number
 | str | string | 是 | 要写入Buffer的字符串。 |
 | offset | number | 否 | 偏移量。 默认值: 0。 |
 | length | number | 否 | 最大字节长度。 默认值: (buf.length - offset)。|
-| encoding | BufferEncoding | 否 | 字符编码。 默认值: 'utf-8'。 |
+| encoding | string | 否 | 字符编码。 默认值: 'utf-8'。 |
 
 
 **返回值：**
@@ -1601,6 +1945,14 @@ write(str: string, offset?: number, length?: number, encoding?: string): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 返回写入的字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[offset/length]" is out of range. |
 
 **示例：**
 
@@ -1638,6 +1990,14 @@ writeBigInt64BE(value: bigint, offset?: number): number
 | -------- | -------- |
 | number | 写入的字节数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1668,6 +2028,14 @@ writeBigInt64LE(value: bigint, offset?: number): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 写入的字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **示例：**
 
@@ -1700,6 +2068,14 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 | -------- | -------- |
 | number | 写入的字节数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1730,6 +2106,14 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 写入的字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **示例：**
 
@@ -1762,6 +2146,14 @@ writeDoubleBE(value: number, offset?: number): number
 | -------- | -------- |
 | number | 写入的字节数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1793,6 +2185,14 @@ writeDoubleLE(value: number, offset?: number): number
 | -------- | -------- |
 | number | 写入的字节数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1823,6 +2223,14 @@ writeFloatBE(value: number, offset?: number): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 写入的字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **示例：**
 
@@ -1856,6 +2264,14 @@ writeFloatLE(value: number, offset?: number): number
 | -------- | -------- |
 | number | 写入的字节数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1886,6 +2302,14 @@ writeInt8(value: number, offset?: number): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 写入的字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **示例：**
 
@@ -1920,6 +2344,14 @@ writeInt16BE(value: number, offset?: number): number
 | -------- | -------- |
 | number | 写入的字节数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1952,6 +2384,14 @@ writeInt16LE(value: number, offset?: number): number
 | -------- | -------- |
 | number | 写入的字节数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -1982,6 +2422,14 @@ writeInt32BE(value: number, offset?: number): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 写入的字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **示例：**
 
@@ -2015,6 +2463,14 @@ writeInt32LE(value: number, offset?: number): number
 | -------- | -------- |
 | number | 写入的字节数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -2046,6 +2502,14 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 写入的字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
 
 **示例：**
 
@@ -2080,6 +2544,14 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 | -------- | -------- |
 | number | 写入的字节数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -2110,6 +2582,14 @@ writeUInt8(value: number, offset?: number): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 写入的字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **示例：**
 
@@ -2145,6 +2625,14 @@ writeUInt16BE(value: number, offset?: number): number
 | -------- | -------- |
 | number | 写入的字节数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -2176,6 +2664,14 @@ writeUInt16LE(value: number, offset?: number): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 写入的字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **示例：**
 
@@ -2209,6 +2705,14 @@ writeUInt32BE(value: number, offset?: number): number
 | -------- | -------- |
 | number | 写入的字节数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -2239,6 +2743,14 @@ writeUInt32LE(value: number, offset?: number): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 写入的字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset]" is out of range. |
 
 **示例：**
 
@@ -2272,6 +2784,14 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 | -------- | -------- |
 | number | 写入的字节数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
+
 **示例：**
 
 ```ts
@@ -2303,6 +2823,14 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 写入的字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
 
 **示例：**
 
@@ -2351,7 +2879,7 @@ console.log(newBuf.toString('ascii'));
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | size | number | 是 | 否 | Blob实例的总字节大小。 |
 | type | string | 是 | 否 | Blob实例的内容类型。 |
@@ -2373,7 +2901,6 @@ Blob的构造函数。
 
 
 **示例：**
-
 ```ts
 import buffer from '@ohos.buffer';
 
@@ -2381,7 +2908,7 @@ let blob = new buffer.Blob(['a', 'b', 'c']);
 let blob1 = new buffer.Blob(['a', 'b', 'c'], {endings:'native', type: 'MIME'});
 ```
 
-### encode
+### arrayBuffer
 
 arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 
@@ -2395,14 +2922,14 @@ arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 | Promise&lt;ArrayBuffer&gt; | 返回包含Blob数据的ArrayBuffer的Promise。 |
 
 **示例：**
-  ```ts
-  let blob = new buffer.Blob(['a', 'b', 'c']);
-  let pro = blob.arrayBuffer();
-  pro.then(val => {
-    let uintarr = new Uint8Array(val);
-    console.log(uintarr.toString());
-  });
-  ```
+```ts
+let blob = new buffer.Blob(['a', 'b', 'c']);
+let pro = blob.arrayBuffer();
+pro.then(val => {
+  let uintarr = new Uint8Array(val);
+  console.log(uintarr.toString());
+});
+```
 ### slice
 
 slice(start?: number, end?: number, type?: string): Blob
@@ -2425,11 +2952,11 @@ slice(start?: number, end?: number, type?: string): Blob
 | Blob | 新的Blob实例对象。 |
 
 **示例：**
-  ```ts
-  let blob = new buffer.Blob(['a', 'b', 'c']);
-  let blob2 = blob.slice(0, 2);
-  let blob3 = blob.slice(0, 2, "MIME");
-  ```
+```ts
+let blob = new buffer.Blob(['a', 'b', 'c']);
+let blob2 = blob.slice(0, 2);
+let blob3 = blob.slice(0, 2, "MIME");
+```
 
 ### text
 
@@ -2445,10 +2972,10 @@ text(): Promise&lt;string&gt;
 | Promise&lt;string&gt; | 包含以UTF8编码的文本的Promise。 |
 
 **示例：**
-  ```ts
-  let blob = new buffer.Blob(['a', 'b', 'c']);
-  let pro = blob.text();
-  pro.then(val => {
-      console.log(val)
-  });
-  ```
+```ts
+let blob = new buffer.Blob(['a', 'b', 'c']);
+let pro = blob.text();
+pro.then(val => {
+    console.log(val)
+});
+```

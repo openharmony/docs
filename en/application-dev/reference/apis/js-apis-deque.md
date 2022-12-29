@@ -1,4 +1,4 @@
-# Linear Container Deque
+# @ohos.util.Deque (Linear Container Deque)
 
 > **NOTE**
 >
@@ -39,6 +39,14 @@ A constructor used to create a **Deque** instance.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200012 | The Deque's constructor cannot be directly invoked. |
+
 **Example**
 
 ```ts
@@ -59,6 +67,14 @@ Inserts an element at the front of this container.
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The insertFront method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -68,6 +84,7 @@ deque.insertFront(1);
 let b = [1, 2, 3];
 deque.insertFront(b);
 let c = {name : "Dylon", age : "13"};
+deque.insertFront(c);
 deque.insertFront(false);
 ```
 
@@ -85,6 +102,14 @@ Inserts an element at the end of this container.
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The insertEnd method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -94,6 +119,7 @@ deque.insertEnd(1);
 let b = [1, 2, 3];
 deque.insertEnd(b);
 let c = {name : "Dylon", age : "13"};
+deque.insertEnd(c);
 deque.insertEnd(false);
 ```
 
@@ -117,6 +143,14 @@ Checks whether this container has the specified element.
 | -------- | -------- |
 | boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -139,6 +173,14 @@ Removes the first element of this container.
 | Type| Description|
 | -------- | -------- |
 | T | Element removed.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The popFirst method cannot be bound. |
 
 **Example**
 
@@ -166,6 +208,14 @@ Removes the last element of this container.
 | -------- | -------- |
 | T | Element removed.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The popLast method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -180,7 +230,7 @@ let result = deque.popLast();
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, deque?: Deque&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, deque?: Deque&lt;T&gt;) => void,
 thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
@@ -191,7 +241,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -201,6 +251,14 @@ callbackfn
 | value | T | Yes| Value of the element that is currently traversed.|
 | index | number | No| Position index of the element that is currently traversed.|
 | deque | Deque&lt;T&gt; | No| Instance that invokes the **forEach** method.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
 
 **Example**
 
@@ -229,6 +287,14 @@ Obtains the first element of this container.
 | -------- | -------- |
 | T | Element obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getFirst method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -254,6 +320,14 @@ Obtains the last element of this container.
 | -------- | -------- |
 | T | Element obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getLast method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -278,6 +352,14 @@ Obtains an iterator, each item of which is a JavaScript object.
 | Type| Description|
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **Example**
 ```ts

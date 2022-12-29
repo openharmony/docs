@@ -1,4 +1,4 @@
-# Nonlinear Container LightWeightMap 
+# @ohos.util.LightWeightMap (Nonlinear Container LightWeightMap) 
 
 > **NOTE**
 >
@@ -22,8 +22,6 @@ This topic uses the following to identify the use of generics:
 import LightWeightMap from '@ohos.util.LightWeightMap';  
 ```
 
-
-
 ## LightWeightMap
 
 ### Attributes
@@ -42,6 +40,15 @@ constructor()
 A constructor used to create a **LightWeightMap** instance.
 
 **System capability**: SystemCapability.Utils.Lang
+
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200012 | The LightWeightMap's constructor cannot be directly invoked. |
 
 **Example**
 
@@ -63,6 +70,14 @@ Checks whether this container is empty (contains no element).
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
 
 **Example**
 
@@ -91,6 +106,14 @@ Checks whether this container contains all elements of the specified **LightWeig
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if all the elements in the specified **LightWeightMap** instance are contained; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The hasAll method cannot be bound. |
 
 **Example**
 
@@ -124,6 +147,14 @@ Checks whether this container contains the specified key.
 | -------- | -------- |
 | boolean | Returns **true** if the specified key is contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The hasKey method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -155,6 +186,14 @@ Checks whether this container contains the specified value.
 | -------- | -------- |
 | boolean | Returns **true** if the specified value is contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The hasValue method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -172,6 +211,14 @@ increaseCapacityTo(minimumCapacity: number): void
 Increases the capacity of this container.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The increaseCapacityTo method cannot be bound. |
 
 **Parameters**
 
@@ -207,6 +254,14 @@ Obtains the value of the specified key in this container.
 | -------- | -------- |
 | V | Value of the key.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -236,6 +291,14 @@ Obtains the index of the first occurrence of an element with the specified key i
 | Type| Description|
 | -------- | -------- |
 | number | Returns the position index if obtained; returns **-1** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getIndexOfKey method cannot be bound. |
 
 **Example**
 
@@ -267,6 +330,14 @@ Obtains the index of the first occurrence of an element with the specified value
 | -------- | -------- |
 | number | Returns the position index if obtained; returns **-1** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getIndexOfValue method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -297,6 +368,15 @@ Obtains the key of an element at the specified position in this container.
 | -------- | -------- |
 | K | Returns the key if obtained; returns **undefined** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getKeyAt method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
+
 **Example**
 
 ```ts
@@ -320,6 +400,14 @@ Adds all elements in a **LightWeightMap** instance to this container.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | map | LightWeightMap<K, V> | Yes| **LightWeightMap** instance whose elements are to be added to the current container.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The setAll method cannot be bound. |
 
 **Example**
 
@@ -352,6 +440,14 @@ Adds an element to this container.
 | -------- | -------- |
 | Object | Container that contains the new element.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The set method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -379,6 +475,14 @@ Removes an element with the specified key from this container.
 | Type| Description|
 | -------- | -------- |
 | V | Value of the element removed.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
 
 **Example**
 
@@ -409,6 +513,14 @@ Removes an element at the specified position from this container.
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The removeAt method cannot be bound. |
 
 **Example**
 
@@ -441,6 +553,15 @@ Sets a value for an element at the specified position in this container.
 | -------- | -------- |
 | boolean | Returns **true** if the value is set successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The setValueAt method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
+
 **Example**
 
 ```ts
@@ -471,6 +592,15 @@ Obtains the value of an element at the specified position in this container.
 | -------- | -------- |
 | V | Value obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getValueAt method cannot be bound. |
+| 10200001 | The parameter value is out of range. |
+
 **Example**
 
 ```ts
@@ -488,6 +618,14 @@ clear(): void
 Clears this container and sets its length to **0**.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
 
 **Example**
 
@@ -512,6 +650,14 @@ Obtains an iterator that contains all the keys in this container.
 | Type| Description|
 | -------- | -------- |
 | IterableIterator&lt;K&gt; | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The keys method cannot be bound. |
 
 **Example**
 
@@ -542,6 +688,14 @@ Obtains an iterator that contains all the values in this container.
 | -------- | -------- |
 | IterableIterator&lt;V&gt; | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -553,13 +707,13 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-} 
+}
 ```
 
 
 ### forEach
 
-forEach(callbackfn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
@@ -569,7 +723,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -578,6 +732,14 @@ callbackfn
 | value | V | No| Value of the element that is currently traversed.|
 | key | K | No| Key of the element that is currently traversed.|
 | map | LightWeightMap<K, V> | No| Instance that invokes the **forEach** method.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
 
 **Example**
 
@@ -604,6 +766,14 @@ Obtains an iterator that contains all the elements in this container.
 | Type| Description|
 | -------- | -------- |
 | IterableIterator<[K, V]> | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
 
 **Example**
 
@@ -634,14 +804,22 @@ Concatenates the elements in this container into a string and returns the string
 | -------- | -------- |
 | String | String obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The toString method cannot be bound. |
+
 **Example**
 
-  ```ts
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("squirrel", 123);
-  lightWeightMap.set("sparrow", 356);
-  let iter = lightWeightMap.toString();
-  ```
+```ts
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+let iter = lightWeightMap.toString();
+```
 
 ### [Symbol.iterator]
 
@@ -656,6 +834,14 @@ Obtains an iterator, each item of which is a JavaScript object.
 | Type| Description|
 | -------- | -------- |
 | IterableIterator<[K, V]> | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **Example**
 

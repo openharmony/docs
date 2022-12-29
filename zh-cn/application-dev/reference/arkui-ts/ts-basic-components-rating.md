@@ -21,7 +21,7 @@ Rating(options?: { rating: number, indicator?: boolean })
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | rating | number | 是 | 设置并接收评分值。<br/>默认值：0 |
-| indicator | boolean | 否 | 仅作为指示器使用，不可操作。<br/>默认值：false |
+| indicator | boolean | 否 | 设置评分组件作为指示器使用，不可改变评分。<br/>默认值：false, 可进行评分 |
 
 
 ## 属性
@@ -47,21 +47,51 @@ Rating(options?: { rating: number, indicator?: boolean })
 @Entry
 @Component
 struct RatingExample {
-  @State rating: number = 1
-  @State indicator: boolean = false
+  @State rating: number = 3.5
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Text('current score is ' + this.rating).fontSize(20)
-      Rating({ rating: this.rating, indicator: this.indicator })
-        .stars(5)
-        .stepSize(0.5)
-        .onChange((value: number) => {
-          this.rating = value
-        })
-    }.width(350).height(200).padding(35)
+    Column() {
+      Column() {
+        Rating({ rating: this.rating, indicator: false })
+          .stars(5)
+          .stepSize(0.5)
+          .margin({ top: 24 })
+          .onChange((value: number) => {
+            this.rating = value
+          })
+        Text('current score is ' + this.rating)
+          .fontSize(16)
+          .fontColor('rgba(24,36,49,0.60)')
+          .margin({ top: 16 })
+      }.width(360).height(113).backgroundColor('#FFFFFF').margin({ top: 68 })
+
+      Row() {
+        Image('common/testImage.jpg')
+          .width(40)
+          .height(40)
+          .borderRadius(20)
+          .margin({ left: 24 })
+        Column() {
+          Text('Yue')
+            .fontSize(16)
+            .fontColor('#182431')
+            .fontWeight(500)
+          Row() {
+            Rating({ rating: 3.5, indicator: true }).margin({ top: 1, right: 8 })
+            Text('2021/06/02')
+              .fontSize(10)
+              .fontColor('#182431')
+          }
+        }.margin({ left: 12 }).alignItems(HorizontalAlign.Start)
+
+        Text('1st Floor')
+          .fontSize(10)
+          .fontColor('#182431')
+          .position({ x: 295, y: 8 })
+      }.width(360).height(56).backgroundColor('#FFFFFF').margin({ top: 64 })
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
 }
 ```
 
-![zh-cn_image_0000001219662659](figures/zh-cn_image_0000001219662659.gif)
+![rating](figures/rating.gif)

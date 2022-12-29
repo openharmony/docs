@@ -16,16 +16,16 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | fingers | number | No| Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5.<br>Default value: **2**|
-| distance | number | No| Minimum recognition distance, in vp.<br>Default value: **3.0**|
+| distance | number | No| Minimum recognition distance, in vp.<br>Default value: **3**|
 
 
 ## Events
 
 | Name| Description|
 | -------- | -------- |
-| onActionStart(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when a pinch gesture is recognized.|
-| onActionUpdate(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when the user moves the finger in a pinch gesture on the screen.|
-| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when the finger used for a pinch gesture is lift.|
+| onActionStart(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when a pinch gesture is recognized.|
+| onActionUpdate(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the user moves the finger in a pinch gesture on the screen.|
+| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the finger used for a pinch gesture is lift.|
 | onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after a pinch gesture is recognized.|
 
 
@@ -37,27 +37,41 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 @Component
 struct PinchGestureExample {
   @State scaleValue: number = 1
+  @State pinchValue: number = 1
+  @State pinchX: number = 0
+  @State pinchY: number = 0
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Text('PinchGesture scale:' + this.scale)
-    }
-    .height(100).width(200).padding(20).border({ width: 1 }).margin(80)
-    .scale({ x: this.scaleValue, y: this.scaleValue, z: this.scaleValue })
-    .gesture(
-      PinchGesture()
+    Column() {
+      Column() {
+        Text('PinchGesture scale:\n' + this.scaleValue)
+        Text('PinchGesture center:\n(' + this.pinchX + ',' + this.pinchY + ')')
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin({ top: 100 })
+      .scale({ x: this.scaleValue, y: this.scaleValue, z: 1 })
+      // The gesture event is triggered by pinching three fingers together.
+      .gesture(
+      PinchGesture({ fingers: 3 })
         .onActionStart((event: GestureEvent) => {
           console.info('Pinch start')
         })
         .onActionUpdate((event: GestureEvent) => {
-          this.scaleValue = event.scale
+          this.scaleValue = this.pinchValue * event.scale
+          this.pinchX = event.pinchCenterX
+          this.pinchY = event.pinchCenterY
         })
         .onActionEnd(() => {
+          this.pinchValue = this.scaleValue
           console.info('Pinch end')
         })
-    )
+      )
+    }.width('100%')
   }
 }
 ```
 
-![en-us_image_0000001257058419](figures/en-us_image_0000001257058419.gif)
+ ![en-us_image_0000001174582848](figures/en-us_image_0000001174582848.png)

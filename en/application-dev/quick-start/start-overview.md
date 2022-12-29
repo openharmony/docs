@@ -1,10 +1,8 @@
-# Preparations
+# Before You Start
 
 This document is intended for novices at developing OpenHarmony applications. It will introduce you to the OpenHarmony project directory structure and application development process, by walking you through a stripped-down, real-world example – building two pages and implementing redirection between them. The following figure shows how the pages look on the DevEco Studio Previewer.
 
-
 ![en-us_image_0000001364254729](figures/en-us_image_0000001364254729.png)
-
 
 Before you begin, there are two basic concepts that will help you better understand OpenHarmony: UI framework and ability.
 
@@ -16,11 +14,11 @@ Before you begin, there are two basic concepts that will help you better underst
 
 OpenHarmony provides a UI development framework, known as ArkUI. ArkUI provides a full range of capabilities you may need for application UI development, ranging from components to layout calculation, animation, UI interaction, and drawing capabilities.
 
-ArkUI comes with two development paradigms: JavaScript-based web-like development paradigm (web-like development paradigm for short) and TypeScript-based declarative development paradigm (declarative development paradigm for short). You can choose whichever development paradigm that aligns with your practice.
+ArkUI comes with two development paradigms: ArkTS-based declarative development paradigm (declarative development paradigm for short) and JavaScript-compatible web-like development paradigm (web-like development paradigm for short). You can choose whichever development paradigm that aligns with your practice.
 
 | **Development Paradigm**| **Programming Language**| **UI Update Mode**| **Applicable To**| **Intended Audience**|
 | -------- | -------- | -------- | -------- | -------- |
-| Declarative development paradigm| Extended TypeScript (eTS)| Data-driven| Applications involving technological sophistication and teamwork| Mobile application and system application developers|
+| Declarative development paradigm| ArkTS| Data-driven| Applications involving technological sophistication and teamwork| Mobile application and system application developers|
 | Web-like development paradigm| JavaScript| Data-driven| Applications and service widgets with simple UIs| Frontend web developers|
 
 For more details, see [UI Development](../ui/arkui-overview.md).
@@ -36,7 +34,7 @@ The ability framework model has two forms:
 
 - **Stage model**: introduced since API version 9. For details, see [Stage Model Overview](../ability/stage-brief.md).
 
-The project directory structure of the FA model is different from that of the stage model. The stage model only works with the eTS programming language.
+The project directory structure of the FA model is different from that of the stage model. The stage model only works with the ArkTS programming language.
 
 For details about the differences between the FA model and stage model, see [Ability Framework Overview](../ability/ability-brief.md).
 
@@ -45,8 +43,8 @@ This document provides an ability with two pages. For more information about abi
 
 ## Tool Preparation
 
-1. Download the latest version of [DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio#download).
+1. Download the latest version of [DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio).
 
 2. Install DevEco Studio and configure the development environment. For details, see [Setting Up the Development Environment](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-setting-up-environment-0000001263160443).
 
-When you are done, follow the instructions in [Getting Started with eTS in Stage Model](start-with-ets-stage.md), [Getting Started with eTS in FA Model](start-with-ets-fa.md), and [Getting Started with JavaScript in FA Model](start-with-js-fa.md).
+When you are done, follow the instructions in [Getting Started with ArkTS in Stage Model](start-with-ets-stage.md), [Getting Started with ArkTS in FA Model](start-with-ets-fa.md), and [Getting Started with JavaScript in FA Model](start-with-js-fa.md).

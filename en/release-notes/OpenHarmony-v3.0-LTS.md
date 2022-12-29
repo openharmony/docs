@@ -127,7 +127,7 @@ This version has the following updates to OpenHarmony 2.2 Beta2.
 
 ### API Updates
 
-For details, see [JS API Differences](api-change/v3.0-LTS/js-apidiff-v3.0-lts.md).
+For details, see [JS API Differences](api-diff/v3.0-LTS/js-apidiff-v3.0-lts.md).
 
 
 ### Chip and Development Board Adaptation
@@ -179,6 +179,6 @@ Table 5 Issues resolved for the standard system
 | [I48IM7](https://gitee.com/openharmony/hiviewdfx_hilog/issues/I48IM7) | During the hilog pressure test, **hilogd** restarts unexpectedly, and the **hilog** command cannot be used.| In the pressure test, there is a low probability that the log output is abnormal. The log output is normal in the commissioning scenario.| October 30|
 | I48YPH | [DSoftBus - Networking] During the testing of the getting-offline - discovery - networking cycle, there are 3 failures among all the 110 attempts.| There is a low probability that this issue occurs. If a networking failure occurs, initiate the networking again.| October 30|
 | [I4BVVW](https://gitee.com/openharmony/communication_dsoftbus/issues/I4BVVW) | [DSoftBus - Networking] The success rate of self-networking between a standard-system device and mobile phone is 97%.| There is a low probability that the networking fails.| October 30|
-| [I4BXWY](https://gitee.com/openharmony/multimedia_media_standard/issues/I4BXWY) | For Hi3516, noises occur during playback of an audio recording.| This issue occurs only when this development board is used.| October 30|
-| [I4BXY1](https://gitee.com/openharmony/multimedia_camera_standard/issues/I4BXY1) | There is no sound in the first few seconds of a video recording, the sound and image are out of sync, frame freezing occurs, and noises occur when the audio source was far away during recording.| This issue occurs only when this development board is used.| October 30|
+| I4BXWY | For Hi3516, noises occur during playback of an audio recording.| This issue occurs only when this development board is used.| October 30|
+| I4BXY1 | There is no sound in the first few seconds of a video recording, the sound and image are out of sync, frame freezing occurs, and noises occur when the audio source was far away during recording.| This issue occurs only when this development board is used.| October 30|
 | [3ZJ1D](https://gitee.com/openharmony/kernel_liteos_a/issues/I3ZJ1D) | There is a possibility that the user mode fails in the XTS pressure test of the permission case.| There is a low probability that the UID of a child process fails to be set in the XTS pressure test scenario where child processes are repeatedly created.| October 30|

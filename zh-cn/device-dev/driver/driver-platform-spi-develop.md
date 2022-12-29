@@ -1,30 +1,70 @@
 # SPI
 
-
 ## 概述
 
-SPI即串行外设接口（Serial Peripheral Interface）。在HDF框架中，SPI的接口适配模式采用独立服务模式，在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用。
+### 功能简介
 
-  **图1** SPI独立服务模式结构图
+SPI即串行外设接口（Serial Peripheral Interface），是一种高速的，全双工，同步的通信总线。SPI是由Motorola公司开发，用于在主设备和从设备之间进行通信。
 
-  ![image](figures/独立服务模式结构图.png "SPI独立服务模式结构图")
+### 运作机制
 
-## 接口说明
+在HDF框架中，SPI的接口适配模式采用独立服务模式（如图1），在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，若设备过多可能增加内存占用。
+
+独立服务模式下，核心层不会统一发布一个服务供上层使用，因此这种模式下驱动要为每个控制器发布一个服务，具体表现为：
+
+- 驱动适配者需要实现HdfDriverEntry的Bind钩子函数以绑定服务。
+- device_info.hcs文件中deviceNode的policy字段为1或2，不能为0。
+
+**图1** SPI独立服务模式结构图<a name="fig1"></a>  
+
+![image](figures/独立服务模式结构图.png "RTC独立服务模式结构图")
+
+SPI以主从方式工作，通常有一个主设备和一个或者多个从设备。主设备和从设备之间一般用4根线相连，它们分别是：
+  - SCLK：时钟信号，由主设备产生；
+  - MOSI：主设备数据输出，从设备数据输入；
+  - MISO：主设备数据输入，从设备数据输出；
+  - CS：片选，从设备使能信号，由主设备控制。
+
+一个主设备和两个从设备的连接示意图如下所示，Device A和Device B共享主设备的SCLK、MISO和MOSI三根引脚，Device A的片选CS0连接主设备的CS0，Device B的片选CS1连接主设备的CS1。
+
+  **图2** SPI主从设备连接示意图<a name="fig2"></a>  
+
+  ![image](figures/SPI主从设备连接示意图.png "SPI主从设备连接示意图")
+
+- SPI通信通常由主设备发起，通过以下步骤完成一次通信：
+  1. 通过CS选中要通信的从设备，在任意时刻，一个主设备上最多只能有一个从设备被选中。
+  2. 通过SCLK给选中的从设备提供时钟信号。
+  3. 基于SCLK时钟信号，主设备数据通过MOSI发送给从设备，同时通过MISO接收从设备发送的数据，完成通信。
+
+- 根据SCLK时钟信号的CPOL（Clock Polarity，时钟极性）和CPHA（Clock Phase，时钟相位）的不同组合，SPI有以下四种工作模式：
+  - CPOL=0，CPHA=0 时钟信号idle状态为低电平，第一个时钟边沿采样数据。
+  - CPOL=0，CPHA=1 时钟信号idle状态为低电平，第二个时钟边沿采样数据。
+  - CPOL=1，CPHA=0 时钟信号idle状态为高电平，第一个时钟边沿采样数据。
+  - CPOL=1，CPHA=1 时钟信号idle状态为高电平，第二个时钟边沿采样数据。
+
+## 开发指导
+
+### 场景介绍
+
+SPI通常用于与闪存、实时时钟、传感器以及模数/数模转换器等支持SPI协议的设备进行通信。当驱动开发者需要将SPI设备适配到OpenHarmony时，需要进行SPI驱动适配，下文将介绍如何进行SPI驱动适配。
+
+### 接口说明
+
+为了保证上层在调用SPI接口时能够正确的操作硬件，核心层在//drivers/hdf_core/framework/support/platform/include/spi/spi_core.h中定义了以下钩子函数。驱动适配者需要在适配层实现这些函数的具体功能，并与这些钩子函数挂接，从而完成接口层与核心层的交互。
 
 SpiCntlrMethod定义：
 
-  
-```
+```c
 struct SpiCntlrMethod {
-  int32_t (*GetCfg)(struct SpiCntlr *cntlr, struct SpiCfg *cfg);
-  int32_t (*SetCfg)(struct SpiCntlr *cntlr, struct SpiCfg *cfg);
-  int32_t (*Transfer)(struct SpiCntlr *cntlr, struct SpiMsg *msg, uint32_t count);
-  int32_t (*Open)(struct SpiCntlr *cntlr);
-  int32_t (*Close)(struct SpiCntlr *cntlr);
+    int32_t (*GetCfg)(struct SpiCntlr *cntlr, struct SpiCfg *cfg);
+    int32_t (*SetCfg)(struct SpiCntlr *cntlr, struct SpiCfg *cfg);
+    int32_t (*Transfer)(struct SpiCntlr *cntlr, struct SpiMsg *msg, uint32_t count);
+    int32_t (*Open)(struct SpiCntlr *cntlr);
+    int32_t (*Close)(struct SpiCntlr *cntlr);
 };
 ```
 
-  **表1** SpiCntlrMethod结构体成员的回调函数功能说明
+  **表1** SpiCntlrMethod结构体成员的钩子函数功能说明
 
 | 成员函数 | 入参 | 返回值 | 功能 | 
 | -------- | -------- | -------- | -------- |
@@ -35,7 +75,7 @@ struct SpiCntlrMethod {
 | Close | cntlr：结构体指针，核心层SPI控制器。 | HDF_STATUS相关状态 | 关闭SPI | 
 
 
-## 开发步骤
+### 开发步骤
 
 SPI模块适配HDF框架的三个必选环节是实例化驱动入口，配置属性文件，以及实例化核心层接口函数。
 
@@ -57,10 +97,9 @@ SPI模块适配HDF框架的三个必选环节是实例化驱动入口，配置�
 
    【可选】针对新增驱动程序，建议验证驱动基本功能，例如SPI控制状态，中断响应情况等。
 
+### 开发实例
 
-## 开发实例
-
-下方将以spi_hi35xx.c为示例，展示需要厂商提供哪些内容来完整实现设备功能。
+下方将以//device/soc/hisilicon/common/platform/spi/spi_hi35xx.c为示例，展示需要驱动适配者提供哪些内容来完整实现设备功能。
 
 1. 首先需要实例化驱动入口。
 
@@ -71,162 +110,169 @@ SPI模块适配HDF框架的三个必选环节是实例化驱动入口，配置�
    一般在加载驱动时HDF会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
 
    SPI驱动入口参考：
-     
-   ```
+
+   ```c
    struct HdfDriverEntry g_hdfSpiDevice = {
        .moduleVersion = 1,
-       .moduleName = "HDF_PLATFORM_SPI",//【必要且与HCS文件中里面的moduleName匹配】
-       .Bind = HdfSpiDeviceBind,        //见Bind参考
-       .Init = HdfSpiDeviceInit,        //见Init参考
-       .Release = HdfSpiDeviceRelease,  //见Release参考
+       .moduleName = "HDF_PLATFORM_SPI", //【必要且与HCS文件中里面的moduleName匹配】
+       .Bind = HdfSpiDeviceBind,         //见Bind开发参考
+       .Init = HdfSpiDeviceInit,         //见Init开发参考
+       .Release = HdfSpiDeviceRelease,   //见Release开发参考
    };
-   // 调用HDF_INIT将驱动入口注册到HDF框架中
+   /* 调用HDF_INIT将驱动入口注册到HDF框架中 */
    HDF_INIT(g_hdfSpiDevice);
    ```
 
-2. 完成驱动入口注册之后，在device_info.hcs文件中添加deviceNode信息，并在spi_config.hcs中配置器件属性。
+2. 完成驱动入口注册之后，在//vendor/hisilicon/hispark_taurus/hdf_config/device_info/device_info.hcs文件中添加deviceNode信息，并在spi_config.hcs中配置器件属性。
 
    deviceNode信息与驱动入口注册相关，器件属性值与核心层SpiCntlr成员的默认值或限制范围有密切关系。
 
-   本例只有一个SPI控制器，如有多个器件信息，则需要在device_info文件增加deviceNode信息，以及在spi_config文件中增加对应的器件属性。
+   本例只有一个SPI控制器，如有多个器件信息，则需要在device_info.hcs文件增加deviceNode信息，以及在spi_config文件中增加对应的器件属性。
 
    - device_info.hcs配置参考
-   
-       
-     ```
+
+     ```c
      root {
-       device_info {
-         match_attr = "hdf_manager";
-         platform :: host {
-           hostName = "platform_host";
-           priority = 50;
-           device_spi :: device {                           //为每一个SPI控制器配置一个HDF设备节点
-             device0 :: deviceNode {
-               policy = 1;
-               priority = 60;
-               permission = 0644;
-               moduleName = "HDF_PLATFORM_SPI";
-               serviceName = "HDF_PLATFORM_SPI_0";
-               deviceMatchAttr = "hisilicon_hi35xx_spi_0";
+         device_info {
+             match_attr = "hdf_manager";
+             platform :: host {
+                 hostName = "platform_host";
+                 priority = 50;
+                 device_spi :: device { //为每一个SPI控制器配置一个HDF设备节点
+                     device0 :: deviceNode {
+                       policy = 2;
+                       priority = 60;
+                       permission = 0644;
+                       moduleName = "HDF_PLATFORM_SPI";
+                       serviceName = "HDF_PLATFORM_SPI_0";
+                       deviceMatchAttr = "hisilicon_hi35xx_spi_0";
+                     }
+                     device1 :: deviceNode {
+                       policy = 2;
+                       priority = 60;
+                       permission = 0644;
+                       moduleName = "HDF_PLATFORM_SPI";             // 【必要】用于指定驱动名称，该字段的值必须和驱动入口结构的moduleName值一致。
+                       serviceName = "HDF_PLATFORM_SPI_1";          // 【必要且唯一】驱动对外发布服务的名称。
+                       deviceMatchAttr = "hisilicon_hi35xx_spi_1";  // 需要与spi_config.hcs配置文件中的match_attr匹配。
+                     }
+                     ...
+                 }
              }
-             device1 :: deviceNode {
-               policy = 1;
-               priority = 60;
-               permission = 0644;
-               moduleName = "HDF_PLATFORM_SPI";             // 【必要】用于指定驱动名称，该字段的值必须和驱动入口结构的moduleName值一致。
-               serviceName = "HDF_PLATFORM_SPI_1";          // 【必要且唯一】驱动对外发布服务的名称。
-               deviceMatchAttr = "hisilicon_hi35xx_spi_1";  // 需要与设备hcs文件中的match_attr匹配。
-             }
-             ...
-           }
          }
-       }
      }
      ```
    
    - spi_config.hcs配置参考
    
        
-     ```
+     ```c
      root {
-       platform {
-         spi_config {                        // 每一个SPI控制器配置私有数据
-           template spi_controller {           // 模板公共参数，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省。
-             serviceName = "";
-             match_attr = "";
-             transferMode = 0;               // 数据传输模式：中断传输(0)、流控传输(1)、DMA传输(2)
-             busNum = 0;                     // 总线号
-             clkRate = 100000000;
-             bitsPerWord = 8;                // 传输位宽
-             mode = 19;                      // SPI 数据的输入输出模式
-             maxSpeedHz = 0;                 // 最大时钟频率
-             minSpeedHz = 0;                 // 最小时钟频率
-             speed = 2000000;                // 当前消息传输速度
-             fifoSize = 256;                 // FIFO大小
-             numCs = 1;                      // 片选号
-             regBase = 0x120c0000;           // 地址映射需要
-             irqNum = 100;                   // 中断号
-             REG_CRG_SPI = 0x120100e4;       // CRG_REG_BASE(0x12010000) + 0x0e4
-             CRG_SPI_CKEN = 0;
-             CRG_SPI_RST = 0;
-             REG_MISC_CTRL_SPI = 0x12030024; // MISC_REG_BASE(0x12030000) + 0x24
-             MISC_CTRL_SPI_CS = 0;
-             MISC_CTRL_SPI_CS_SHIFT = 0;
-           }      
-           controller_0x120c0000 :: spi_controller {
-             busNum = 0;                           // 【必要】总线号
-             CRG_SPI_CKEN = 0x10000;               // (0x1 << 16) 0:close clk, 1:open clk 
-             CRG_SPI_RST = 0x1;                    // (0x1 << 0) 0:cancel reset, 1:reset 
-             match_attr = "hisilicon_hi35xx_spi_0";// 【必要】需要和device_info.hcs中的deviceMatchAttr值一致
-           }      
-           controller_0x120c1000 :: spi_controller {
-             busNum = 1;
-             CRG_SPI_CKEN = 0x20000;    // (0x1 << 17) 0:close clk, 1:open clk
-             CRG_SPI_RST = 0x2;         // (0x1 << 1) 0:cancel reset, 1:reset 
-             match_attr = "hisilicon_hi35xx_spi_1"; 
-             regBase = 0x120c1000;      // 【必要】地址映射需要
-             irqNum = 101;              // 【必要】中断号
-           }
-           ...
-           // 【可选】可新增，但需要在device_info.hcs添加对应的节点。
+         platform {
+             spi_config {                            // 每一个SPI控制器配置私有数据
+                 template spi_controller {           // 模板公共参数，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省。
+                     serviceName = "";
+                     match_attr = "";
+                     transferMode = 0;               // 数据传输模式：中断传输(0)、流控传输(1)、DMA传输(2)
+                     busNum = 0;                     // 总线号
+                     clkRate = 100000000;
+                     bitsPerWord = 8;                // 传输位宽
+                     mode = 19;                      // SPI 数据的输入输出模式
+                     maxSpeedHz = 0;                 // 最大时钟频率
+                     minSpeedHz = 0;                 // 最小时钟频率
+                     speed = 2000000;                // 当前消息传输速度
+                     fifoSize = 256;                 // FIFO大小
+                     numCs = 1;                      // 片选号
+                     regBase = 0x120c0000;           // 地址映射需要
+                     irqNum = 100;                   // 中断号
+                     REG_CRG_SPI = 0x120100e4;       // CRG_REG_BASE(0x12010000) + 0x0e4
+                     CRG_SPI_CKEN = 0;
+                     CRG_SPI_RST = 0;
+                     REG_MISC_CTRL_SPI = 0x12030024; // MISC_REG_BASE(0x12030000) + 0x24
+                     MISC_CTRL_SPI_CS = 0;
+                     MISC_CTRL_SPI_CS_SHIFT = 0;
+                 }
+                 controller_0x120c0000 :: spi_controller {
+                     busNum = 0;                            // 【必要】总线号
+                     CRG_SPI_CKEN = 0x10000;                // (0x1 << 16) 0:close clk, 1:open clk
+                     CRG_SPI_RST = 0x1;                     // (0x1 << 0) 0:cancel reset, 1:reset
+                     match_attr = "hisilicon_hi35xx_spi_0"; // 【必要】需要和device_info.hcs中的deviceMatchAttr值一致
+                 }
+                 controller_0x120c1000 :: spi_controller {
+                     busNum = 1;
+                     CRG_SPI_CKEN = 0x20000;    // (0x1 << 17) 0:close clk, 1:open clk
+                     CRG_SPI_RST = 0x2;         // (0x1 << 1) 0:cancel reset, 1:reset
+                     match_attr = "hisilicon_hi35xx_spi_1";
+                     regBase = 0x120c1000;      // 【必要】地址映射需要
+                     irqNum = 101;              // 【必要】中断号
+                 }
+                 ...
+                 /* 【可选】可新增，但需要在device_info.hcs添加对应的节点。 */
+             }
          }
-       }
      }
      ```
 
-3. 完成属性文件配置之后，下一步就是以核心层SpiCntlr对象的初始化为核心，包括厂商自定义结构体（传递参数和数据），实例化SpiCntlr成员SpiCntlrMethod（让用户可以通过接口来调用驱动底层函数），实现HdfDriverEntry成员函数（Bind、Init、Release）。
+     需要注意的是，新增spi_config.hcs配置文件后，必须在hdf.hcs文件中将其包含，否则配置文件无法生效。
+
+     例如：本例中spi_config.hcs所在路径为device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/spi/spi_config.hcs，则必须在产品对应的hdf.hcs中添加如下语句：
+
+     ```c
+     #include "../../../../device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/spi/spi_config.hcs" // 配置文件相对路径
+     ```
+
+3. 完成属性文件配置之后，下一步就是以核心层SpiCntlr对象的初始化为核心，包括驱动适配者自定义结构体（传递参数和数据），实例化SpiCntlr成员SpiCntlrMethod（让用户可以通过接口来调用驱动底层函数），实现HdfDriverEntry成员函数（Bind、Init、Release）。
 
    - 自定义结构体参考
 
      从驱动的角度看，自定义结构体是参数和数据的载体，而且spi_config.hcs文件中的数值会被HDF读入并通过DeviceResourceIface来初始化结构体成员，一些重要数值也会传递给核心层对象，例如设备号、总线号等。
 
         
-      ```
-      struct Pl022 {//对应于hcs中的参数
-          struct SpiCntlr *cntlr;
-          struct DListHead deviceList;
-          struct OsalSem sem;
-          volatile unsigned char *phyBase;
-          volatile unsigned char *regBase;
-          uint32_t irqNum;
-          uint32_t busNum;
-          uint32_t numCs;
-          uint32_t curCs;
-          uint32_t speed;
-          uint32_t fifoSize;
-          uint32_t clkRate;
-          uint32_t maxSpeedHz;
-          uint32_t minSpeedHz;
-          uint32_t regCrg;
-          uint32_t clkEnBit;
-          uint32_t clkRstBit;
-          uint32_t regMiscCtrl;
-          uint32_t miscCtrlCsShift;
-          uint32_t miscCtrlCs;
-          uint16_t mode;
-          uint8_t bitsPerWord;
-          uint8_t transferMode;
-      };
-      
-      // SpiCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值。
-      struct SpiCntlr {
-          struct IDeviceIoService service;
-          struct HdfDeviceObject *device;
-          uint32_t busNum;
-          uint32_t numCs;
-          uint32_t curCs;
-          struct OsalMutex lock;
-          struct SpiCntlrMethod *method;
-          struct DListHead list;
-          void *priv;
-      };
-      ```
+     ```c
+     struct Pl022 { //对应于spi_config.hcs中的参数
+         struct SpiCntlr *cntlr;
+         struct DListHead deviceList;
+         struct OsalSem sem;
+         volatile unsigned char *phyBase;
+         volatile unsigned char *regBase;
+         uint32_t irqNum;
+         uint32_t busNum;
+         uint32_t numCs;
+         uint32_t curCs;
+         uint32_t speed;
+         uint32_t fifoSize;
+         uint32_t clkRate;
+         uint32_t maxSpeedHz;
+         uint32_t minSpeedHz;
+         uint32_t regCrg;
+         uint32_t clkEnBit;
+         uint32_t clkRstBit;
+         uint32_t regMiscCtrl;
+         uint32_t miscCtrlCsShift;
+         uint32_t miscCtrlCs;
+         uint16_t mode;
+         uint8_t bitsPerWord;
+         uint8_t transferMode;
+     };
+     
+     /* SpiCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值。 */
+     struct SpiCntlr {
+         struct IDeviceIoService service;
+         struct HdfDeviceObject *device;
+         uint32_t busNum;
+         uint32_t numCs;
+         uint32_t curCs;
+         struct OsalMutex lock;
+         struct SpiCntlrMethod *method;
+         struct DListHead list;
+         void *priv;
+     };
+     ```
 
-   - SpiCntlr成员回调函数结构体SpiCntlrMethod的实例化，其他成员在Init函数中初始化。
+   - SpiCntlr成员钩子函数结构体SpiCntlrMethod的实例化，其他成员在Init函数中初始化。
 
         
-      ```
-      // spi_hi35xx.c中的示例：钩子函数的实例化
+      ```c
+      /* spi_hi35xx.c中的示例：钩子函数的实例化 */
       struct SpiCntlrMethod g_method = {
           .Transfer = Pl022Transfer,
           .SetCfg = Pl022SetCfg,
@@ -240,7 +286,7 @@ SPI模块适配HDF框架的三个必选环节是实例化驱动入口，配置�
 
       入参：
 
-      HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
+      HdfDeviceObject是整个驱动对外提供的接口参数，具备HCS配置文件的信息。
 
       返回值：
 
@@ -251,7 +297,7 @@ SPI模块适配HDF框架的三个必选环节是实例化驱动入口，配置�
       将SpiCntlr对象同HdfDeviceObject进行了关联。
 
         
-      ```
+      ```c
       static int32_t HdfSpiDeviceBind(struct HdfDeviceObject *device)
       {
           ...
@@ -260,28 +306,28 @@ SPI模块适配HDF框架的三个必选环节是实例化驱动入口，配置�
       
       struct SpiCntlr *SpiCntlrCreate(struct HdfDeviceObject *device)
       {
-          struct SpiCntlr *cntlr = NULL;                           // 创建核心层SpiCntlr对象
+          struct SpiCntlr *cntlr = NULL;                            // 创建核心层SpiCntlr对象
           ...
-          cntlr = (struct SpiCntlr *)OsalMemCalloc(sizeof(*cntlr));// 分配内存
+          cntlr = (struct SpiCntlr *)OsalMemCalloc(sizeof(*cntlr)); // 分配内存
           ...
-          cntlr->device = device;                                  // 使HdfDeviceObject与SpiCntlr可以相互转化的前提
-          device->service = &(cntlr->service);                     // 使HdfDeviceObject与SpiCntlr可以相互转化的前提
-          (void)OsalMutexInit(&cntlr->lock);                       // 锁初始化
-          DListHeadInit(&cntlr->list);                             // 添加对应的节点
+          cntlr->device = device;                                   // 使HdfDeviceObject与SpiCntlr可以相互转化的前提
+          device->service = &(cntlr->service);                      // 使HdfDeviceObject与SpiCntlr可以相互转化的前提
+          (void)OsalMutexInit(&cntlr->lock);                        // 锁初始化
+          DListHeadInit(&cntlr->list);                              // 添加对应的节点
           cntlr->priv = NULL;
           return cntlr;
       }
       ```
 
-   - Init函数参考
+   - Init函数开发参考
 
       入参：
 
-      HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
+      HdfDeviceObject是整个驱动对外提供的接口参数，具备HCS配置文件的信息。
 
       返回值：
 
-      HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS定义）。
+      HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/hdf_core/framework/include/utils/hdf_base.h中HDF_STATUS定义）。
 
         **表2** HDF_STATUS返回值描述
       
@@ -299,55 +345,55 @@ SPI模块适配HDF框架的三个必选环节是实例化驱动入口，配置�
       初始化自定义结构体对象，初始化SpiCntlr成员。
 
         
-      ```
+      ```c
       static int32_t HdfSpiDeviceInit(struct HdfDeviceObject *device)
       {
-      int32_t ret;
-      struct SpiCntlr *cntlr = NULL;
-      ...
-      cntlr = SpiCntlrFromDevice(device); // 这里有HdfDeviceObject到SpiCntlr的强制转化，通过service成员，赋值见Bind函数。
-                                          // return (device == NULL) ? NULL : (struct SpiCntlr *)device->service;
-      ...
-      ret = Pl022Init(cntlr, device);     // 【必要】实例化厂商自定义操作对象，示例见下。
-      ...
-      ret = Pl022Probe(cntlr->priv);
-      ...
-      return ret;
+          int32_t ret;
+          struct SpiCntlr *cntlr = NULL;
+          ...
+          cntlr = SpiCntlrFromDevice(device); // 这里有HdfDeviceObject到SpiCntlr的强制转换，通过service成员，赋值见Bind函数。
+                                              // return (device == NULL) ? NULL : (struct SpiCntlr *)device->service;
+          ...
+          ret = Pl022Init(cntlr, device);     // 【必要】实例化驱动适配者自定义操作对象，示例见下。
+          ...
+          ret = Pl022Probe(cntlr->priv);
+          ...
+          return ret;
       }
       
       static int32_t Pl022Init(struct SpiCntlr *cntlr, const struct HdfDeviceObject *device)
       {
-      int32_t ret;
-      struct Pl022 *pl022 = NULL;
-      ...
-      pl022 = (struct Pl022 *)OsalMemCalloc(sizeof(*pl022));// 申请内存
-      ...
-      ret = SpiGetBaseCfgFromHcs(pl022, device->property);  // 初始化busNum、numCs、speed、fifoSize、clkRate、mode、bitsPerWord、transferMode参数值。
-      ...
-      ret = SpiGetRegCfgFromHcs(pl022, device->property);   // 初始化regBase、phyBase、irqNum、regCrg、clkEnBit、clkRstBit、regMiscCtrl、regMiscCtrl、 miscCtrlCs、miscCtrlCsShift参数值。
-      ...
-      // 计算最大、最小速度对应的频率。
-      pl022->maxSpeedHz = (pl022->clkRate) / ((SCR_MIN + 1) * CPSDVSR_MIN);
-      pl022->minSpeedHz = (pl022->clkRate) / ((SCR_MAX + 1) * CPSDVSR_MAX);
-      DListHeadInit(&pl022->deviceList); // 初始化DList链表
-      pl022->cntlr = cntlr;              // 使Pl022与SpiCntlr可以相互转化的前提
-      cntlr->priv = pl022;               // 使Pl022与SpiCntlr可以相互转化的前提
-      cntlr->busNum = pl022->busNum;     // 给SpiCntlr的busNum赋值
-      cntlr->method = &g_method;         // SpiCntlrMethod的实例化对象的挂载
-      ...
-      ret = Pl022CreatAndInitDevice(pl022);
-      if (ret != 0) {
-          Pl022Release(pl022);           // 初始化失败就释放Pl022对象
-          return ret;
-      }
-      return 0;
-      }
+          int32_t ret;
+          struct Pl022 *pl022 = NULL;
+          ...
+          pl022 = (struct Pl022 *)OsalMemCalloc(sizeof(*pl022)); // 申请内存
+          ...
+          ret = SpiGetBaseCfgFromHcs(pl022, device->property);   // 初始化busNum、numCs、speed、fifoSize、clkRate、mode、bitsPerWord、transferMode参数值。
+          ...
+          ret = SpiGetRegCfgFromHcs(pl022, device->property);    // 初始化regBase、phyBase、irqNum、regCrg、clkEnBit、clkRstBit、regMiscCtrl、regMiscCtrl、 miscCtrlCs、miscCtrlCsShift参数值。
+          ...
+          // 计算最大、最小速度对应的频率。
+          pl022->maxSpeedHz = (pl022->clkRate) / ((SCR_MIN + 1) * CPSDVSR_MIN);
+          pl022->minSpeedHz = (pl022->clkRate) / ((SCR_MAX + 1) * CPSDVSR_MAX);
+          DListHeadInit(&pl022->deviceList); // 初始化DList链表
+          pl022->cntlr = cntlr;              // 使Pl022与SpiCntlr可以相互转化的前提
+          cntlr->priv = pl022;               // 使Pl022与SpiCntlr可以相互转化的前提
+          cntlr->busNum = pl022->busNum;     // 给SpiCntlr的busNum赋值
+          cntlr->method = &g_method;         // SpiCntlrMethod的实例化对象的挂载
+          ...
+          ret = Pl022CreatAndInitDevice(pl022);
+          if (ret != 0) {
+              Pl022Release(pl022);           // 初始化失败则释放Pl022对象
+              return ret;
+          }
+          return 0;
+          }
       ```
-   - Release函数参考
+   - Release函数开发参考
 
       入参：
 
-      HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
+      HdfDeviceObject是整个驱动对外提供的接口参数，具备HCS配置文件的信息。
 
       返回值：
 
@@ -360,17 +406,16 @@ SPI模块适配HDF框架的三个必选环节是实例化驱动入口，配置�
       > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
       > 所有强制转换获取相应对象的操作前提是在Init函数中具备对应赋值的操作。
 
-        
-      ```
+      ```c
       static void HdfSpiDeviceRelease(struct HdfDeviceObject *device)
       {
           struct SpiCntlr *cntlr = NULL;
           ...
-          cntlr = SpiCntlrFromDevice(device);             // 这里有HdfDeviceObject到SpiCntlr的强制转化，通过service成员，赋值见Bind函数
+          cntlr = SpiCntlrFromDevice(device);             // 这里有HdfDeviceObject到SpiCntlr的强制转换，通过service成员，赋值见Bind函数
                                                           // return (device==NULL) ?NULL:(struct SpiCntlr *)device->service;
           ...
           if (cntlr->priv != NULL) {
-              Pl022Remove((struct Pl022 *)cntlr->priv);   // 这里有SpiCntlr到Pl022的强制转化 
+              Pl022Remove((struct Pl022 *)cntlr->priv);   // 这里有SpiCntlr到Pl022的强制转换
           }
           SpiCntlrDestroy(cntlr);                         // 释放Pl022对象
       }

@@ -8,12 +8,14 @@
 - 用户认证
   - [用户认证开发概述](userauth-overview.md)
   - [用户认证开发指导](userauth-guidelines.md)
-- 密钥管理
-  - [HUKS开发概述](huks-overview.md)
-  - [HUKS开发指导](huks-guidelines.md)
+- 通用密钥库
+  - [通用密钥库开发概述](huks-overview.md)
+  - [通用密钥库开发指导](huks-guidelines.md)
+  - [通用密钥库密码算法规格](huks-appendix.md)
 - 加密算法库框架
   - [加密算法库框架概述](cryptoFramework-overview.md)
   - [加密算法框架开发指导](cryptoFramework-guidelines.md)
 - Hap包签名工具
   - [Hap包签名工具概述](hapsigntool-overview.md)
   - [Hap包签名工具指导](hapsigntool-guidelines.md)
+  - [HarmonyAppProvision配置文件](app-provision-structure.md)

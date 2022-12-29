@@ -23,7 +23,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 | 参数名 | 参数类型 | 必填   | 参数描述           |
 | ---- | ---------- | -----| -------------- |
-| type | ToggleType | 是   | 开关类型。 |
+| type | [ToggleType](#toggletype枚举说明) | 是   | 开关类型。 |
 | isOn | boolean    | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false |
 
 
@@ -57,21 +57,20 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 @Entry
 @Component
 struct ToggleExample {
-
   build() {
     Column({ space: 10 }) {
       Text('type: Switch').fontSize(12).fontColor(0xcccccc).width('90%')
       Flex({ justifyContent: FlexAlign.SpaceEvenly, alignItems: ItemAlign.Center }) {
         Toggle({ type: ToggleType.Switch, isOn: false })
-          .selectedColor(0xed6f21)
-          .switchPointColor(0xe5ffffff)
+          .selectedColor('#007DFF')
+          .switchPointColor('#FFFFFF')
           .onChange((isOn: boolean) => {
             console.info('Component status:' + isOn)
           })
 
         Toggle({ type: ToggleType.Switch, isOn: true })
-          .selectedColor(0x39a2db)
-          .switchPointColor(0xe5ffffff)
+          .selectedColor('#007DFF')
+          .switchPointColor('#FFFFFF')
           .onChange((isOn: boolean) => {
             console.info('Component status:' + isOn)
           })
@@ -80,15 +79,15 @@ struct ToggleExample {
       Text('type: Checkbox').fontSize(12).fontColor(0xcccccc).width('90%')
       Flex({ justifyContent: FlexAlign.SpaceEvenly, alignItems: ItemAlign.Center }) {
         Toggle({ type: ToggleType.Checkbox, isOn: false })
-          .size({ width: 28, height: 28 })
-          .selectedColor(0xed6f21)
+          .size({ width: 20, height: 20 })
+          .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
             console.info('Component status:' + isOn)
           })
 
         Toggle({ type: ToggleType.Checkbox, isOn: true })
-          .size({ width: 28, height: 28 })
-          .selectedColor(0x39a2db)
+          .size({ width: 20, height: 20 })
+          .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
             console.info('Component status:' + isOn)
           })
@@ -97,17 +96,17 @@ struct ToggleExample {
       Text('type: Button').fontSize(12).fontColor(0xcccccc).width('90%')
       Flex({ justifyContent: FlexAlign.SpaceEvenly, alignItems: ItemAlign.Center }) {
         Toggle({ type: ToggleType.Button, isOn: false }) {
-          Text('status button').padding({ left: 12, right: 12 })
-        }
-        .selectedColor(0xed6f21)
+          Text('status button').fontColor('#182431').fontSize(12)
+        }.width(106)
+        .selectedColor('rgba(0,125,255,0.20)')
         .onChange((isOn: boolean) => {
           console.info('Component status:' + isOn)
         })
 
         Toggle({ type: ToggleType.Button, isOn: true }) {
-          Text('status button').padding({ left: 12, right: 12 })
-        }
-        .selectedColor(0x39a2db)
+          Text('status button').fontColor('#182431').fontSize(12)
+        }.width(106)
+        .selectedColor('rgba(0,125,255,0.20)')
         .onChange((isOn: boolean) => {
           console.info('Component status:' + isOn)
         })
@@ -117,4 +116,4 @@ struct ToggleExample {
 }
 ```
 
-![zh-cn_image_0000001174104402](figures/zh-cn_image_0000001174104402.gif)
+![toggle](figures/toggle.gif)

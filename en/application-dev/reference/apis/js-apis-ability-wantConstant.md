@@ -1,14 +1,14 @@
-# wantConstant
+# @ohos.ability.wantConstant
 
 The **wantConstant** module provides the actions, entities, and flags used in **Want** objects.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module are supported since API version 6 and deprecated since API version 9. You are advised to use [@ohos.app.ability.wantConstant](js-apis-app-ability-wantConstant.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
-```js
+```ts
 import wantConstant from '@ohos.ability.wantConstant';
 ```
 
@@ -46,6 +46,7 @@ Enumerates the action constants of the **Want** object.
 |  ACTION_FILE_SELECT<sup>7+</sup>            | ohos.action.fileSelect                   | Action of selecting a file.                                         |
 |  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | URI of the data stream associated with the target when the data is sent.                         |
 |  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | Action of providing the OAuth service.                                    |
+|  ACTION_APP_ACCOUNT_AUTH <sup>9+</sup>     | account.appAccount.action.auth     | Action of providing the authentication service.                                     |
 |  ACTION_MARKET_DOWNLOAD <sup>9+</sup>    | ohos.want.action.marketDownload     | Action of downloading an application from the application market.<br>**System API**: This is a system API and cannot be called by third-party applications. |
 |  ACTION_MARKET_CROWDTEST <sup>9+</sup>    | ohos.want.action.marketCrowdTest     | Action of crowdtesting an application from the application market.<br>**System API**: This is a system API and cannot be called by third-party applications. |
 |   DLP_PARAMS_SANDBOX<sup>9+</sup>    |ohos.dlp.params.sandbox  | Action of obtaining the sandbox flag.<br>**System API**: This is a system API and cannot be called by third-party applications. |

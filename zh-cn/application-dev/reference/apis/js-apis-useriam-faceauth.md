@@ -1,4 +1,4 @@
-# 人脸认证
+# @ohos.userIAM.faceAuth (人脸认证)
 
 提供人脸录入相关接口。
 
@@ -30,23 +30,25 @@ constructor()
 
 | 类型                   | 说明                 |
 | ---------------------- | -------------------- |
-| [FaceAuthManager](#faceauthmanager) | 人脸认证管理器对象 |
+| [FaceAuthManager](#faceauthmanager) | 人脸认证管理器对象。 |
 
 **示例：**
 
-  ```js
-  import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
+```js
+import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 
-  let faceAuthManager = new userIAM_faceAuth.FaceAuthManager()
-  ```
+let faceAuthManager = new userIAM_faceAuth.FaceAuthManager();
+```
 
 ### setSurfaceId
 
-setSurfaceId(surfaceId: string): ResultCode;
+setSurfaceId(surfaceId: string): void;
 
-设置录入流程中人脸预览界面 [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID, 返回值表示操作是否成功。
+该接口仅用于在录入人脸时，设置人脸预览界面 [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID，需要配合[人脸录入接口](./js-apis-osAccount.md#addcredential8)来使用。
 
 **系统能力：** SystemCapability.UserIAM.UserAuth.FaceAuth
+
+**需要权限：** ohos.permission.MANAGE_USER_IDM
 
 **参数：**
 
@@ -54,28 +56,28 @@ setSurfaceId(surfaceId: string): ResultCode;
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | surfaceId       | string     | 是   | [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID。 |
 
-**返回值：**
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
 
-| 类型       | 说明                                                         |
-| ---------- | ------------------------------------------------------------ |
-| [ResultCode](#resultcode) | 表示操作是否成功 |
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 12700001 | The operation is failed. |
 
 **示例：**
 
-  ```js
-  import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
+```js
+import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 
-  let faceAuthManager = new userIAM_faceAuth.FaceAuthManager()
-  faceAuthManager.setSurfaceId("0");
-  ```
-
-## ResultCode
-
- 表示执行结果的枚举。
-
- **系统能力：** SystemCapability.UserIAM.UserAuth.FaceAuth
-
-| 名称                    | 默认值 | 描述                 |
-| ----------------------- | ------ | -------------------- |
-| SUCCESS                 | 0      | 执行成功。           |
-| FAIL                    | 1      | 执行失败。           |
+// 该surfaceId应该从XComponent控件获取，此处仅用作示例。
+let surfaceId = "123456";
+let manager = new userIAM_faceAuth.FaceAuthManager();
+try {
+    manager.setSurfaceId(surfaceId);
+    console.info("set surface id success");
+} catch (e) {
+    console.error("set surface id failed, error = " + e);
+}
+```

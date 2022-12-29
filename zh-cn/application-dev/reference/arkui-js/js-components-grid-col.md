@@ -92,11 +92,11 @@ grid-col是栅格布局容器grid-row的子容器组件。
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   getCol(e) {
     this.$element('mygrid').getColumns(function (result) {
-      prompt.showToast({
+      promptAction.showToast({
         message: e.target.id + ' result = ' + result,
         duration: 3000,
       });
@@ -104,7 +104,7 @@ export default {
   },
   getColWidth(e) {
     this.$element('mygrid').getColumnWidth(function (result) {
-      prompt.showToast({
+      promptAction.showToast({
         message: e.target.id + ' result = ' + result,
         duration: 3000,
       });

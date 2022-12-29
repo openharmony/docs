@@ -64,7 +64,7 @@ Creates a Locale object.
 | Name    | Type           | Mandatory  | Description                          |
 | ------- | ------------- | ---- | ---------------------------- |
 | locale  | string        | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options | LocaleOptions | No   | Options for creating the **Locale** object.                |
+| options<sup>9+</sup> | [LocaleOptions](#localeoptions9) | No   | Options for creating the **Locale** object.                |
 
 **Example**
   ```
@@ -181,7 +181,7 @@ Creates a **DateTimeOptions** object for the specified locale.
 | Name    | Type                                 | Mandatory  | Description                          |
 | ------- | ----------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;       | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options | [DateTimeOptions](#datetimeoptions) | No   | Options for creating a **DateTimeFormat** object.             |
+| options<sup>9+</sup> | [DateTimeOptions](#datetimeoptions9) | No   | Options for creating a **DateTimeFormat** object.             |
 
 **Example**
   ```
@@ -265,7 +265,7 @@ Obtains the formatting options for **DateTimeFormat** object.
 
 | Type                                 | Description                           |
 | ----------------------------------- | ----------------------------- |
-| [DateTimeOptions](#datetimeoptions) | Formatting options for **DateTimeFormat** objects.|
+| [DateTimeOptions](#datetimeoptions9) | Formatting options for **DateTimeFormat** objects.|
 
 **Example**
   ```
@@ -332,7 +332,7 @@ Parameters
 | Name    | Type                             | Mandatory  | Description                          |
 | ------- | ------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;   | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options | [NumberOptions](#numberoptions) | No   | Options for creating a **NumberFormat** object.               |
+| options<sup>9+</sup> | [NumberOptions](#numberoptions9) | No   | Options for creating a **NumberFormat** object.               |
 
 **Example**
   ```
@@ -380,7 +380,7 @@ Obtains the options of the **NumberFormat** object.
 
 | Type                             | Description                         |
 | ------------------------------- | --------------------------- |
-| [NumberOptions](#numberoptions) | Formatting options for **NumberFormat** objects.|
+| [NumberOptions](#numberoptions9) | Formatting options for **NumberFormat** objects.|
 
 
 **Example**
@@ -404,7 +404,7 @@ Provides the device capability.
 | currencyDisplay          | string  | Yes   | Yes   | Currency display mode. The value can be **symbol**, **narrowSymbol**, **code**, or **name**.|
 | unit                     | string  | Yes   | Yes   | Unit name, for example, **meter**, **inch**, or **hectare**.       |
 | unitDisplay              | string  | Yes   | Yes   | Unit display format. The value can be **long**, **short**, or **narrow**.|
-| unitUsage<sup>8+</sup>                | string  | Yes   | Yes   | Unit usage scenario. The value can be any of the following: **default**, **area-land-agricult**, **area-land-commercl**, **area-land-residntl**, **length-person**, **length-person-small**, **length-rainfall**, **length-road**, **length-road-small**, **length-snowfall**, **length-vehicle**, **length-visiblty**, **length-visiblty-small**, **length-person-informal**, **length-person-small-informal**, **length-road-informal**, **speed-road-travel**, **speed-wind**, **temperature-person**, **temperature-weather**, **volume-vehicle-fuel**.|
+| unitUsage                | string  | Yes   | Yes   | Unit usage scenario. The value can be any of the following: **default**, **area-land-agricult**, **area-land-commercl**, **area-land-residntl**, **length-person**, **length-person-small**, **length-rainfall**, **length-road**, **length-road-small**, **length-snowfall**, **length-vehicle**, **length-visiblty**, **length-visiblty-small**, **length-person-informal**, **length-person-small-informal**, **length-road-informal**, **speed-road-travel**, **speed-wind**, **temperature-person**, **temperature-weather**, **volume-vehicle-fuel**.|
 | signDisplay              | string  | Yes   | Yes   | Number sign display format. The value can be **auto**, **never**, **always**, or **expectZero**.|
 | compactDisplay           | string  | Yes   | Yes   | Compact display format. The value can be **long** or **short**.     |
 | notation                 | string  | Yes   | Yes   | Number formatting specification. The value can be **standard**, **scientific**, **engineering**, or **compact**.|
@@ -449,7 +449,7 @@ Creates a Collator object.
 | Name    | Type                                 | Mandatory  | Description                          |
 | ------- | ----------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;       | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options | [CollatorOptions](#collatoroptions) | No   | Options for creating a **Collator** object.                |
+| options<sup>9+</sup> | [CollatorOptions](#collatoroptions9) | No   | Options for creating a **Collator** object.                |
 
 **Example**
   ```
@@ -497,9 +497,10 @@ Returns properties reflecting the locale and collation options of a **Collator**
 
 | Type                                 | Description               |
 | ----------------------------------- | ----------------- |
-| [CollatorOptions](#collatoroptions) | Properties of the **Collator** object.|
+| [CollatorOptions](#collatoroptions9) | Properties of the **Collator** object.|
 
 **Example**
+
   ```
   var collator = new Intl.Collator("zh-Hans");
   var options = collator.resolvedOptions();
@@ -552,7 +553,7 @@ Parameters
 | Name    | Type                                      | Mandatory  | Description                          |
 | ------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;            | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options | [PluralRulesOptions](#pluralrulesoptions) | No   | Options for creating a **PluralRules** object.               |
+| options<sup>9+</sup> | [PluralRulesOptions](#pluralrulesoptions9) | No   | Options for creating a **PluralRules** object.               |
 
 **Example**
   ```
@@ -634,7 +635,7 @@ Creates a **RelativeTimeFormat** object.
 | Name    | Type                                      | Mandatory  | Description                          |
 | ------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;            | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions) | No   | Options for creating a **RelativeTimeFormat** object.           |
+| options<sup>9+</sup> | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions9) | No   | Options for creating a **RelativeTimeFormat** object.           |
 
 **Example**
   ```
@@ -710,7 +711,7 @@ Obtains the formatting options for **RelativeTimeFormat** objects.
 
 | Type                                      | Description                               |
 | ---------------------------------------- | --------------------------------- |
-| [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptions) | Formatting options for **RelativeTimeFormat** objects.|
+| [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptions8) | Formatting options for **RelativeTimeFormat** objects.|
 
 **Example**
   ```

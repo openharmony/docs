@@ -1,14 +1,14 @@
-# WantAgent模块
+# @ohos.wantAgent (WantAgent模块)
 
-WantAgent模块提供了触发、取消、比较WantAgent实例和获取bundle名称的能力，包括创建WantAgent实例、获取实例的用户ID、获取want信息等。
+WantAgent模块提供了创建WantAgent实例、获取实例的用户ID、获取want信息、比较WantAgent实例和获取bundle名称等能力。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 7开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.wantAgent](js-apis-app-ability-wantAgent.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 ```
 
@@ -22,14 +22,14 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写  | 类型                       | 必填 | 描述                    |
-| -------- | --- | ---- | -------------------------- | ---- | ----------------------- |
-| info     | 是   | 否   | WantAgentInfo              | 是   | WantAgent信息。           |
-| callback | 是   | 否   | AsyncCallback\<WantAgent\> | 是   | 创建WantAgent的回调方法。 |
+| 参数名     | 类型                       | 必填 | 说明                    |
+| -------- | -------------------------- | ---- | ----------------------- |
+| info     | WantAgentInfo              | 是   | WantAgent信息。           |
+| callback | AsyncCallback\<WantAgent\> | 是   | 创建WantAgent的回调方法。 |
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 //getWantAgent回调
@@ -79,9 +79,9 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 **参数：**
 
-| 名称 | 可读 | 可写  | 类型          | 必填 | 描述          |
-| ---- | --- | ---- | ------------- | ---- | ------------- |
-| info | 是   | 否   | WantAgentInfo | 是   | WantAgent信息。 |
+| 参数名 | 类型          | 必填 | 说明          |
+| ---- | ------------- | ---- | ------------- |
+| info | WantAgentInfo | 是   | WantAgent信息。 |
 
 **返回值：**
 
@@ -91,7 +91,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -134,20 +134,20 @@ WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 
 getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
-获取WantAgent实例的包名（callback形式）。
+获取WantAgent实例的Bundle名称（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
-| 名称     | 可读 | 可写  | 类型                    | 必填 | 描述                              |
-| -------- | --- | ---- | ----------------------- | ---- | --------------------------------- |
-| agent    | 是   | 否   | WantAgent               | 是   | WantAgent对象。                     |
-| callback | 是   | 否   | AsyncCallback\<string\> | 是   | 获取WantAgent实例的包名的回调方法。 |
+| 参数名     | 类型                    | 必填 | 说明                              |
+| -------- | ----------------------- | ---- | --------------------------------- |
+| agent    | WantAgent               | 是   | WantAgent对象。                     |
+| callback | AsyncCallback\<string\> | 是   | 获取WantAgent实例的包名的回调方法。 |
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -206,27 +206,26 @@ WantAgent.getBundleName(wantAgent, getBundleNameCallback)
 
 getBundleName(agent: WantAgent): Promise\<string\>
 
-获取WantAgent实例的包名（Promise形式）。
+获取WantAgent实例的Bundle名称（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
-| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
-| ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
+| 参数名  | 类型      | 必填 | 说明          |
+| ----- | --------- | ---- | ------------- |
+| agent | WantAgent | 是   | WantAgent对象。 |
 
 **返回值：**
 
-| 类型                                                        | 说明                                                         |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<string\> | 以Promise形式返回获取WantAgent实例的包名。 |
+| 类型              | 说明                                             |
+| ----------------- | ------------------------------------------------ |
+| Promise\<string\> | 以Promise形式返回获取WantAgent实例的Bundle名称。 |
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
-
 
 //wantAgent对象
 var wantAgent;
@@ -281,14 +280,14 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                    | 必填 | 描述                                |
-| -------- | --- | ---- | ----------------------- | ---- | ----------------------------------- |
-| agent    | 是   | 否  | WantAgent               | 是   | WantAgent对象。                       |
-| callback | 是   | 否  | AsyncCallback\<number\> | 是   | 获取WantAgent实例的用户ID的回调方法。 |
+| 参数名     | 类型                    | 必填 | 说明                                |
+| -------- | ----------------------- | ---- | ----------------------------------- |
+| agent    | WantAgent               | 是   | WantAgent对象。                       |
+| callback | AsyncCallback\<number\> | 是   | 获取WantAgent实例的用户ID的回调方法。 |
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -353,9 +352,9 @@ getUid(agent: WantAgent): Promise\<number\>
 
 **参数：**
 
-| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
-| ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
+| 参数名  | 类型      | 必填 | 说明          |
+| ----- | --------- | ---- | ------------- |
+| agent | WantAgent | 是   | WantAgent对象。 |
 
 **返回值：**
 
@@ -365,7 +364,7 @@ getUid(agent: WantAgent): Promise\<number\>
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -424,14 +423,14 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                            |
-| -------- | --- | ---- | --------------------- | ---- | ------------------------------- |
-| agent    | 是   | 否  | WantAgent             | 是   | WantAgent对象。                   |
-| callback | 是   | 否  | AsyncCallback\<Want\> | 是   | 获取WantAgent对象want的回调方法。 |
+| 参数名     | 类型                  | 必填 | 说明                            |
+| -------- | --------------------- | ---- | ------------------------------- |
+| agent    | WantAgent             | 是   | WantAgent对象。                   |
+| callback | AsyncCallback\<Want\> | 是   | 获取WantAgent对象want的回调方法。 |
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -498,9 +497,9 @@ getWant(agent: WantAgent): Promise\<Want\>
 
 **参数：**
 
-| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
-| ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
+| 参数名  | 类型      | 必填 | 说明          |
+| ----- | --------- | ---- | ------------- |
+| agent | WantAgent | 是   | WantAgent对象。 |
 
 **返回值：**
 
@@ -510,7 +509,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -567,14 +566,14 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                        |
-| -------- | --- | ---- | --------------------- | ---- | --------------------------- |
-| agent    | 是   | 否  | WantAgent             | 是   | WantAgent对象。               |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 取消WantAgent实例的回调方法。 |
+| 参数名     | 类型                  | 必填 | 说明                        |
+| -------- | --------------------- | ---- | --------------------------- |
+| agent    | WantAgent             | 是   | WantAgent对象。               |
+| callback | AsyncCallback\<void\> | 是   | 取消WantAgent实例的回调方法。 |
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -639,9 +638,9 @@ cancel(agent: WantAgent): Promise\<void\>
 
 **参数：**
 
-| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
-| ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
+| 参数名  | 类型      | 必填 | 说明          |
+| ----- | --------- | ---- | ------------- |
+| agent | WantAgent | 是   | WantAgent对象。 |
 
 **返回值：**
 
@@ -651,7 +650,7 @@ cancel(agent: WantAgent): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -708,15 +707,15 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<Complet
 
 **参数：**
 
-| 名称        | 可读 | 可写 | 类型                          | 必填 | 描述                            |
-| ----------- | --- | ---- | ----------------------------- | ---- | ------------------------------- |
-| agent       | 是   | 否  | WantAgent                     | 是   | WantAgent对象。                   |
-| triggerInfo | 是   | 否  | TriggerInfo                   | 是   | TriggerInfo对象。                 |
-| callback    | 是   | 否  | AsyncCallback\<CompleteData\> | 是   | 主动激发WantAgent实例的回调方法。 |
+| 参数名        | 类型                          | 必填 | 说明                            |
+| ----------- | ----------------------------- | ---- | ------------------------------- |
+| agent       | WantAgent                     | 是   | WantAgent对象。                   |
+| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                     | 是   | TriggerInfo对象。                 |
+| callback    | AsyncCallback\<CompleteData\> | 否   | 主动激发WantAgent实例的回调方法。 |
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -785,15 +784,15 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 
 **参数：**
 
-| 名称       | 可读 | 可写 | 类型                     | 必填 | 描述                                    |
-| ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
-| agent      | 是   | 否  | WantAgent                | 是   | WantAgent对象。                           |
-| otherAgent | 是   | 否  | WantAgent                | 是   | WantAgent对象。                           |
-| callback   | 是   | 否  | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。 |
+| 参数名       | 类型                     | 必填 | 说明                                    |
+| ---------- | ------------------------ | ---- | --------------------------------------- |
+| agent      | WantAgent                | 是   | WantAgent对象。                           |
+| otherAgent | WantAgent                | 是   | WantAgent对象。                           |
+| callback   | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。 |
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -860,10 +859,10 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 **参数：**
 
-| 名称       | 可读 | 可写 | 类型      | 必填 | 描述          |
-| ---------- | --- | ---- | --------- | ---- | ------------- |
-| agent      | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
-| otherAgent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
+| 参数名       | 类型      | 必填 | 说明          |
+| ---------- | --------- | ---- | ------------- |
+| agent      | WantAgent | 是   | WantAgent对象。 |
+| otherAgent | WantAgent | 是   | WantAgent对象。 |
 
 **返回值：**
 
@@ -873,7 +872,7 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 
@@ -930,14 +929,14 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 
 **参数：**
 
-| 名称       | 可读 | 可写 | 类型                     | 必填 | 描述                                    |
-| ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
-| agent      | 是   | 否  | WantAgent                | 是   | WantAgent对象。                           |
-| callback   | 是   | 否  | AsyncCallback\<number> | 是   | 获取一个WantAgent的OperationType信息的回调方法。 |
+| 参数名       | 类型                     | 必填 | 说明                                    |
+| ---------- | ------------------------ | ---- | --------------------------------------- |
+| agent      | WantAgent                | 是   | WantAgent对象。                           |
+| callback   | AsyncCallback\<number> | 是   | 获取一个WantAgent的OperationType信息的回调方法。 |
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 //wantAgent对象
@@ -991,9 +990,9 @@ getOperationType(agent: WantAgent): Promise\<number>;
 
 **参数：**
 
-| 名称       | 可读 | 可写 | 类型      | 必填 | 描述          |
-| ---------- | --- | ---- | --------- | ---- | ------------- |
-| agent      | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
+| 参数名       | 类型      | 必填 | 说明          |
+| ---------- | --------- | ---- | ------------- |
+| agent      | WantAgent | 是   | WantAgent对象。 |
 
 **返回值：**
 
@@ -1003,7 +1002,7 @@ getOperationType(agent: WantAgent): Promise\<number>;
 
 **示例：**
 
-```js
+```ts
 import WantAgent from '@ohos.wantAgent';
 
 //wantAgent对象
@@ -1050,39 +1049,22 @@ WantAgent.getOperationType(wantAgent).then((OperationType) => {
 ```
 
 
-
-## WantAgentInfo
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称           | 可读 | 可写 | 类型                            | 必填 | 描述                   |
-| -------------- | --- | ---- | ------------------------------- | ---- | ---------------------- |
-| wants          | 是  | 是  | Array\<Want\>                   | 是   | 将被执行的动作列表。     |
-| operationType  | 是  | 是  | wantAgent.OperationType         | 是   | 动作类型。               |
-| requestCode    | 是  | 是  | number                          | 是   | 使用者定义的一个私有值。 |
-| wantAgentFlags | 是  | 是  | Array<wantAgent.WantAgentFlags> | 否   | 动作执行属性。           |
-| extraInfo      | 是  | 是  | {[key: string]: any}            | 否   | 额外数据。               |
-
-
-
 ## WantAgentFlags
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                | 值             | 说明                                                         |
 | ------------------- | -------------- | ------------------------------------------------------------ |
-| ONE_TIME_FLAG       | WantAgentFlags | WantAgent仅能使用一次。                                      |
-| NO_BUILD_FLAG       | WantAgentFlags | 如果描述WantAgent对象不存在，则不创建它，直接返回null。      |
-| CANCEL_PRESENT_FLAG | WantAgentFlags | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。 |
-| UPDATE_PRESENT_FLAG | WantAgentFlags | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。 |
-| CONSTANT_FLAG       | WantAgentFlags | WantAgent是不可变的。                                        |
-| REPLACE_ELEMENT     | WantAgentFlags | 当前Want中的element属性可被WantAgent.trigger()中Want的element属性取代 |
-| REPLACE_ACTION      | WantAgentFlags | 当前Want中的action属性可被WantAgent.trigger()中Want的action属性取代 |
-| REPLACE_URI         | WantAgentFlags | 当前Want中的uri属性可被WantAgent.trigger()中Want的uri属性取代 |
-| REPLACE_ENTITIES    | WantAgentFlags | 当前Want中的entities属性可被WantAgent.trigger()中Want的entities属性取代 |
-| REPLACE_BUNDLE      | WantAgentFlags | 当前Want中的bundleName属性可被WantAgent.trigger()中Want的bundleName属性取代 |
-
-
+| ONE_TIME_FLAG       | 0 | WantAgent仅能使用一次。                                      |
+| NO_BUILD_FLAG       | 1 | 如果说明WantAgent对象不存在，则不创建它，直接返回null。      |
+| CANCEL_PRESENT_FLAG | 2 | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。 |
+| UPDATE_PRESENT_FLAG | 3 | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。 |
+| CONSTANT_FLAG       | 4 | WantAgent是不可变的。                                        |
+| REPLACE_ELEMENT     | 5 | 当前Want中的element属性可被WantAgent.trigger()中Want的element属性取代 |
+| REPLACE_ACTION      | 6 | 当前Want中的action属性可被WantAgent.trigger()中Want的action属性取代 |
+| REPLACE_URI         | 7 | 当前Want中的uri属性可被WantAgent.trigger()中Want的uri属性取代 |
+| REPLACE_ENTITIES    | 8 | 当前Want中的entities属性可被WantAgent.trigger()中Want的entities属性取代 |
+| REPLACE_BUNDLE      | 9 | 当前Want中的bundleName属性可被WantAgent.trigger()中Want的bundleName属性取代 |
 
 ## OperationType
 
@@ -1090,35 +1072,20 @@ WantAgent.getOperationType(wantAgent).then((OperationType) => {
 
 | 名称              | 值            | 说明                      |
 | ----------------- | ------------- | ------------------------- |
-| UNKNOWN_TYPE      | OperationType | 不识别的类型。            |
-| START_ABILITY     | OperationType | 开启一个有页面的Ability。 |
-| START_ABILITIES   | OperationType | 开启多个有页面的Ability。 |
-| START_SERVICE     | OperationType | 开启一个无页面的ability。 |
-| SEND_COMMON_EVENT | OperationType | 发送一个公共事件。        |
-
-
+| UNKNOWN_TYPE      | 0 | 不识别的类型。            |
+| START_ABILITY     | 1 | 开启一个有页面的Ability。 |
+| START_ABILITIES   | 2 | 开启多个有页面的Ability。 |
+| START_SERVICE     | 3 | 开启一个无页面的ability。 |
+| SEND_COMMON_EVENT | 4 | 发送一个公共事件。        |
 
 ## CompleteData 
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称           | 可读 | 可写 | 类型                           | 必填 | 描述                    |
-| -------------- | --- | ---- | ------------------------------ | ---- | ---------------------- |
-| info           | 是  | 是  | WantAgent                       | 是   | 触发的wantAgent。       |
-| want           | 是  | 是  | Want                            | 是   | 存在的被触发的want。     |
-| finalCode      | 是  | 是  | number                          | 是   | 触发wantAgent的请求代码。|
-| finalData      | 是  | 是  | string                          | 否   | 公共事件收集的最终数据。  |
-| extraInfo      | 是  | 是  | {[key: string]: any}            | 否   | 额外数据。               |
-
-
-
-## TriggerInfo
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称       | 可读 | 可写 | 类型                 | 必填 | 描述        |
-| ---------- | --- | ---- | -------------------- | ---- | ----------- |
-| code       | 是  | 是  | number               | 是   | result code。 |
-| want       | 是  | 是  | Want                 | 否   | Want。        |
-| permission | 是  | 是  | string               | 否   | 权限定义。    |
-| extraInfo  | 是  | 是  | {[key: string]: any} | 否   | 额外数据。    |
+| 名称           | 类型                           | 必填 | 说明                    |
+| -------------- | ------------------------------ | ---- | ---------------------- |
+| info           | WantAgent                       | 是   | 触发的wantAgent。       |
+| want           | Want                            | 是   | 存在的被触发的want。     |
+| finalCode      | number                          | 是   | 触发wantAgent的请求代码。|
+| finalData      | string                          | 否   | 公共事件收集的最终数据。  |
+| extraInfo      | {[key: string]: any}            | 否   | 额外数据。               |

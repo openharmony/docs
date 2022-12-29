@@ -1,6 +1,6 @@
-# 加密算法
+# @system.cipher (加密算法)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
 > 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -12,10 +12,54 @@
 import cipher from '@system.cipher';
 ```
 
+## CipherResponse
+
+调用cipher接口后，返回的内容。
+
+**系统能力**：SystemCapability.Security.Cipher
+
+| 参数名 | 类型   | 必填 | 说明         |
+| ------ | ------ | ---- | ------------ |
+| text   | string | 是   | 返回的内容。 |
+
+## CipherRsaOptions
+
+调用cipher rsa方法时，传入的参数。
+
+**系统能力**：SystemCapability.Security.Cipher
+
+| 参数名         | 类型                                 | 必填 | 说明                                                         |
+| -------------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| action         | string                               | 是   | 加密类型，可选项有：<br/>1. encrypt 加密<br/>2. decrypt 解密 |
+| text           | string                               | 是   | 待加密或解密的文本内容。待加密的文本内容应该是一段普通文本，长度不能超过 keySize / 8 - 66，其中 keySize 是密钥的长度（例如密钥长度为 1024 时，text 不能超过 62 个字节）。待解密的文本内容应该是经过 base64 编码的一段二进制值。base64 编码使用默认风格。 |
+| key            | string                               | 是   | 加密的密钥，RSA的密钥。加密时key为公钥，解密时key为私钥。      |
+| transformation | string                               | 否   | RSA算法的填充项，默认为RSA/None/OAEPWithSHA256AndMGF1Padding。 |
+| success        | (data: [CipherResponse](#cipherresponse)) => void       | 否   | 接口调用成功的回调函数。                                     |
+| fail           | (data: string, code: number) => void | 否   | 接口调用失败的回调函数。                                     |
+| complete       | () => void                           | 否   | 接口调用结束的回调函数。                                     |
+
+## CipherAesOptions
+
+调用cipher aes方法时，传入的参数。
+
+**系统能力**：SystemCapability.Security.Cipher
+
+| 参数名         | 类型                                 | 必填 | 说明                                                         |
+| -------------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| action         | string                               | 是   | 加密类型，可选项有：<br/>1. encrypt 加密<br/>2. decrypt 解密 |
+| text           | string                               | 是   | 待加密或解密的文本内容。待加密的文本内容应该是一段普通文本。待解密的文本内容应该是经过 base64 编码的一段二进制值。base64 编码使用默认风格。 |
+| key            | string                               | 是   | 加密或解密使用到的密钥，经过 base64 编码后生成的字符串。 |
+| transformation | string                               | 否   | AES算法的加密模式和填充项，默认AES/CBC/PKCS5Padding。          |
+| iv             | string                               | 否   | AES加解密的初始向量，经过base64编码后的字符串，默认值为key值。 |
+| ivOffset       | string                               | 否   | AES加解密的初始向量偏移，默认值0，仅支持0。                  |
+| ivLen          | string                               | 否   | AES加解密的初始向量字节长度，当前为预留字段，默认值16，仅支持16。 |
+| success        | (data: [CipherResponse](#cipherresponse)) => void       | 否   | 接口调用成功的回调函数。                                     |
+| fail           | (data: string, code: number) => void | 否   | 接口调用失败的回调函数。                                     |
+| complete       | () => void                           | 否   | 接口调用结束的回调函数。                                     |
 
 ## cipher.rsa
 
-rsa(Object): void
+rsa(options: CipherRsaOptions): void
 
 RSA 算法加解密。
 
@@ -25,13 +69,7 @@ RSA 算法加解密。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| action | string | 是 | 加密类型，可选项有：<br/>1.&nbsp;encrypt&nbsp;加密<br/>2.&nbsp;decrypt&nbsp;解密 |
-| text | string | 是 | 待加密或解密的文本内容。待加密的文本内容应该是一段普通文本，长度不能超过&nbsp;keySize&nbsp;/&nbsp;8&nbsp;-&nbsp;66，其中&nbsp;keySize&nbsp;是密钥的长度（例如密钥长度为&nbsp;1024&nbsp;时，text&nbsp;不能超过&nbsp;62&nbsp;个字节）。待解密的文本内容应该是经过&nbsp;base64&nbsp;编码的一段二进制值。base64&nbsp;编码使用默认风格。 |
-| key | string | 是 | 加密的密钥，RSA的密钥。加密时key为公钥，解密时key为私钥 |
-| transformation | string | 否 | RSA算法的填充项，默认为RSA/None/OAEPWithSHA256AndMGF1Padding |
-| success | Function | 否 | 接口调用成功的回调函数。 |
-| fail | Function | 否 | 接口调用失败的回调函数。 |
-| complete | Function | 否 | 接口调用结束的回调函数。 |
+| options | [CipherRsaOptions](#cipherrsaoptions) | 是 | rsa加解密需要设置的参数 |
 
 **示例：**
 
@@ -99,7 +137,7 @@ export default {
 
 ## cipher.aes
 
-aes(Object): void
+aes(options: CipherAesOptions): void
 
 AES 算法加解密。
 
@@ -109,16 +147,7 @@ AES 算法加解密。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| action | string | 是 | 加密类型，可选项有：<br/>1.&nbsp;encrypt&nbsp;加密<br/>2.&nbsp;decrypt&nbsp;解密 |
-| text | string | 是 | 待加密或解密的文本内容。待加密的文本内容应该是一段普通文本。待解密的文本内容应该是经过&nbsp;base64&nbsp;编码的一段二进制值。base64&nbsp;编码使用默认风格 |
-| key | string | 是 | 加密或解密使用到的密钥，经过&nbsp;base64&nbsp;编码后生成的字符串 |
-| transformation | string | 否 | AES算法的加密模式和填充项，默认AES/CBC/PKCS5Padding |
-| iv | string | 否 | AES加解密的初始向量，经过base64编码后的字符串，默认值为key值 |
-| ivOffset | string | 否 | AES加解密的初始向量偏移，默认值0，仅支持0。 |
-| ivLen | string | 否 | AES加解密的初始向量字节长度，当前为预留字段，默认值16，仅支持16。 |
-| success | Function | 否 | 接口调用成功的回调函数。 |
-| fail | Function | 否 | 接口调用失败的回调函数。 |
-| complete | Function | 否 | 接口调用结束的回调函数。 |
+| options | [CipherAesOptions](#cipheraesoptions) | 是 | aes加解密需要设置的参数 |
 
 **示例：**
 
@@ -159,7 +188,7 @@ export default {
          console.log(`handling success:${data.text}`);          
         },            
        fail: function(data, code) {               
-         console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`); 
+         console.log(`### cipher.aes encrypt fail ### ${code}:${data}`); 
        },
        complete: function() {
          console.log(`operation complete!`);

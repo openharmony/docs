@@ -1,6 +1,7 @@
-# 文件交互
+# @ohos.document (文件交互)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口从API9开始废弃。不建议使用以下接口，调用以下接口将抛出异常。
 
@@ -12,7 +13,7 @@ import document from '@ohos.document';
 
 ## document.choose<sup>(deprecated)</sup>
 
-choose(types? : string[]): Promise&lt;string&gt;
+choose(types?: string[]): Promise&lt;string&gt;
 
 通过文件管理器选择文件，异步返回文件URI，使用promise形式返回结果。
 
@@ -70,7 +71,7 @@ choose(types:string[], callback:AsyncCallback&lt;string&gt;): void
 
   | 参数名   | 类型                        | 必填 | 说明                         |
   | -------- | --------------------------- | ---- | ---------------------------- |
-  | types    | string[]                      | 否   | 限定选择文件的类型 |
+  | types    | string[]                      | 是   | 限定选择文件的类型 |
   | callback | AsyncCallback&lt;string&gt; | 是   | 异步获取对应文件URI（注：当前返回错误码） |
 
 **示例：**
@@ -93,7 +94,7 @@ show(uri:string, type:string):Promise&lt;void&gt;
 
 **参数：**
 
-  | 参数 | 类型   | 必填 | 说明                         |
+  | 参数名 | 类型   | 必填 | 说明                         |
   | ---- | ------ | ---- | ---------------------------- |
   | uri | string | 是   | 待打开的文件URI |
   | type | string | 是   | 待打开文件的类型 |

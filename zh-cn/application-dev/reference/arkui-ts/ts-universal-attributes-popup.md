@@ -1,6 +1,6 @@
 # Popup控制
 
-设置组件点击时弹出的气泡框状态。
+给组件绑定popup弹窗，并设置弹窗内容，交互逻辑和显示状态。
 
 >  **说明：**
 >
@@ -12,7 +12,7 @@
 
 | 名称           | 参数类型                             | 描述                                        |
 | ---------- | ------------------------------------- | --------------------------------------- |
-| bindPopup  | show:&nbsp;boolean,<br/>popup:&nbsp;PopupOptions&nbsp;\|&nbsp;CustomPopupOptions<sup>8+</sup> | 给组件绑定Popup，点击弹出弹窗。<br/>show:&nbsp;创建页面弹窗提示是否默认显示，默认值为false。<br/>popup:&nbsp;配置当前弹窗提示的参数。 |
+| bindPopup  | show:&nbsp;boolean,<br/>popup:&nbsp;[PopupOptions](#popupoptions类型说明)&nbsp;\|&nbsp;[CustomPopupOptions](#custompopupoptions8类型说明)<sup>8+</sup> | 给组件绑定Popup弹窗，设置参数show为true弹出弹框。<br/>show:&nbsp;弹窗显示状态，默认值为false，隐藏弹窗。<br/>popup:&nbsp;配置当前弹窗提示的参数。 |
 
 ## PopupOptions类型说明
 
@@ -20,10 +20,11 @@
 | -------------------------| ------------------------------------------------| -----| ----------------------------------------- |
 | message                  | string                                          | 是    | 弹窗信息内容。                                     |
 | placementOnTop           | boolean                                         | 否    | 是否在组件上方显示，默认值为false。                  |
-| arrowOffset<sup>9+</sup> | [Length](ts-types.md#length)                    | 否    | popup箭头在弹窗处的偏移。箭头在气泡上下方时，默认居左；箭头在气泡左右侧时，默认居上。      |
 | primaryButton            | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否    | 第一个按钮。<br/>value:&nbsp;弹窗里主按钮的文本。<br/>action:&nbsp;点击主按钮的回调函数。 |
 | secondaryButton          | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否    | 第二个按钮。<br/>value:&nbsp;弹窗里辅助按钮的文本。<br/>action:&nbsp;点击辅助按钮的回调函数。 |
 | onStateChange            | (event:&nbsp;{&nbsp;isVisible:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void | 否    | 弹窗状态变化事件回调，参数isVisible为弹窗当前的显示状态。      |
+| arrowOffset<sup>9+</sup> | [Length](ts-types.md#length)                                 | 否   | popup箭头在弹窗处的偏移。箭头在气泡上下方时，默认居左；箭头在气泡左右侧时，默认居上。 |
+| showInSubWindow<sup>9+</sup> | boolean | 否 | 是否在子窗口显示气泡，默认值为false。 |
 
 ## CustomPopupOptions<sup>8+</sup>类型说明
 
@@ -31,90 +32,90 @@
 | -------------------------| ------------------------- | ---- | ---------------------------------------------------- |
 | builder                  | [CustomBuilder](ts-types.md#custombuilder8)  | 是   | 提示气泡内容的构造器。                                          |
 | placement                | [Placement](ts-appendix-enums.md#placement8) | 否   | 气泡组件优先显示的位置，当前位置显示不下时，会自动调整位置。<br/>默认值：Placement.Bottom     |
-| arrowOffset<sup>9+</sup> | [Length](ts-types.md#length)                 | 否   | popup箭头在弹窗处的偏移。箭头在气泡上下方时，默认居左；箭头在气泡左右侧时，默认居上。          |
 | maskColor                | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 提示气泡遮障层的颜色。                                          |
 | popupColor               | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 提示气泡的颜色。                                               |
 | enableArrow              | boolean                                      | 否   | 是否显示箭头。<br/>从API Version 9开始，如果箭头所在方位侧的气泡长度不足以显示下箭头，则会默认不显示箭头。比如：placement设置为Left，但气泡高度小于箭头的宽度（32vp），则实际不会显示箭头。<br/>默认值：true |
-| autoCancel               | boolean                                      | 否   | 页面有操作时，是否自动关闭气泡<br/>默认值：true                        |
+| autoCancel               | boolean                                      | 否   | 页面有操作时，是否自动关闭气泡。<br/>默认值：true                        |
 | onStateChange            | (event:&nbsp;{&nbsp;isVisible:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void | 否    | 弹窗状态变化事件回调，参数为弹窗当前的显示状态。 |
+| arrowOffset<sup>9+</sup> | [Length](ts-types.md#length) | 否 | popup箭头在弹窗处的偏移。箭头在气泡上下方时，默认居左；箭头在气泡左右侧时，默认居上。 |
+| showInSubWindow<sup>9+</sup> | boolean | 否 | 是否在子窗口显示气泡，默认值为false。 |
 
 
 ## 示例
-
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct PopupExample {
-  @State noHandlePopup: boolean = false
   @State handlePopup: boolean = false
   @State customPopup: boolean = false
 
+  // popup构造器定义弹框内容
   @Builder popupBuilder() {
     Row({ space: 2 }) {
-      Image('/resource/ic_public_thumbsup.svg').width(24).height(24).margin({ left: -5 })
+      Image($r("app.media.image")).width(24).height(24).margin({ left: -5 })
       Text('Custom Popup').fontSize(10)
-    }.width(100).height(50).backgroundColor(Color.White)
+    }.width(100).height(50).padding(5)
   }
 
   build() {
     Flex({ direction: FlexDirection.Column }) {
-      Button('no handle popup')
+      // PopupOptions 类型设置弹框内容
+      Button('PopupOptions')
         .onClick(() => {
-          this.noHandlePopup = !this.noHandlePopup
+          this.handlePopup = !this.handlePopup
         })
-        .bindPopup(this.noHandlePopup, {
-          message: 'content1 content1',
-          placementOnTop: false,
+        .bindPopup(this.handlePopup, {
+          message: 'This is a popup with PopupOptions',
+          placementOnTop: true,
+          showInSubWindow:false,
+          primaryButton: {
+            value: 'confirm',
+            action: () => {
+              this.handlePopup = !this.handlePopup
+              console.info('confirm Button click')
+            }
+          },
+          // 第二个按钮
+          secondaryButton: {
+            value: 'cancel',
+            action: () => {
+              this.handlePopup = !this.handlePopup
+              console.info('cancel Button click')
+            }
+          },
           onStateChange: (e) => {
-            console.info(e.isVisible.toString())
+            console.info(JSON.stringify(e.isVisible))
             if (!e.isVisible) {
-              this.noHandlePopup = false
+              this.handlePopup = false
             }
           }
         })
         .position({ x: 100, y: 50 })
 
-      Button('with handle popup')
-        .onClick(() => {
-          this.handlePopup = !this.handlePopup
-        })
-        .bindPopup(this.handlePopup, {
-          message: 'content2 content2',
-          placementOnTop: true,
-          primaryButton: {
-            value: 'ok',
-            action: () => {
-              this.handlePopup = !this.handlePopup
-              console.info('secondaryButton click')
-            }
-          },
-          onStateChange: (e) => {
-            console.info(e.isVisible.toString())
-          }
-        })
-        .position({ x: 100, y: 200 })
 
-      Button('custom popup')
+      // CustomPopupOptions 类型设置弹框内容
+      Button('CustomPopupOptions')
         .onClick(() => {
           this.customPopup = !this.customPopup
         })
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
-          placement: Placement.Bottom,
+          placement: Placement.Top,
           maskColor: 0x33000000,
-          popupColor: Color.White,
+          popupColor: Color.Yellow,
           enableArrow: true,
+          showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
               this.customPopup = false
             }
           }
         })
-        .position({ x: 100, y: 350 })
+        .position({ x: 80, y: 200 })
     }.width('100%').padding({ top: 5 })
   }
 }
 ```
 
-![zh-cn_image_0000001187055946](figures/zh-cn_image_0000001187055946.gif)
+![figures/popup.gif](figures/popup.gif)

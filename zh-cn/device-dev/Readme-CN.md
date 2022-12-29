@@ -6,8 +6,7 @@
   - [术语](../glossary.md) 
   - [版本说明](../release-notes/Readme.md) 
 - 快速开始
-  - [轻量和小型系统快速入门](quick-start/quickstart-ide-lite-overview.md) 	
-  - [标准系统快速入门](quick-start/quickstart-ide-standard-overview.md) 
+  - [快速入门](quick-start/Readme-CN.md) 	
 - 兼容性与安全       
   - [隐私与安全规范](security/Readme-CN.md)
 - 移植
@@ -26,7 +25,8 @@
       - 小型系统芯片移植案例
           - [小型设备STM32MP1芯片移植案例](porting/porting-stm32mp15xx-on-smallsystem.md)
       - 标准系统芯片移植案例
-          - [标准系统方案之瑞芯微RK3568移植案例](porting/porting-dayu200-on_standard-demo.md) 	
+          - [标准系统方案之瑞芯微RK3568移植案例](porting/porting-dayu200-on_standard-demo.md) 
+          - [标准系统方案之瑞芯微RK3566移植案例](https://gitee.com/openharmony/vendor_kaihong/blob/master/khdvk_3566b/porting-khdvk_3566b-on_standard-demo.md)	
 - 子系统开发
   - 内核 
     - [轻量系统内核](kernel/kernel-mini-overview.md)
@@ -54,10 +54,8 @@
   - [轻量和小型系统设备开发示例](guide/device-wlan-led-control.md) 
   - [标准系统设备开发示例](guide/device-clock-guide.md) 
 - 调测
-  - [测试用例开发](subsystems/subsys-testguide-test.md)	
+  - [设备测试](device-test/Readme-CN.md)	
   - [调测工具](subsystems/subsys-toolchain-hdc-guide.md) 
-- XTS认证
-  - [XTS认证](subsystems/subsys-xts-guide.md)
 - 工具
   - [Docker编译环境](get-code/gettools-acquire.md)
   - [IDE集成开发环境](get-code/gettools-ide.md)
@@ -67,5 +65,6 @@
 - 参考
   - [常见问题-设备开发](faqs/Readme-CN.md)
   - [HDI接口参考](reference/hdi-apis/Readme-CN.md)
+  - [CMSIS API参考](reference/kernel/cmsis/Readme-CN.md)
 - 贡献
   - [参与贡献](../contribute/贡献文档.md) 

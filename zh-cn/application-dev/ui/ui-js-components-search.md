@@ -62,7 +62,7 @@
 
 ## 添加样式
 
-通过color、placeholder和caret-color样式来设置搜索框的文本颜色、提示文本颜色和光标颜色。
+通过color、placeholder-color和caret-color样式来设置搜索框的文本颜色、提示文本颜色和光标颜色。
 
 
 ```html
@@ -84,7 +84,9 @@
   background-color: #F1F3F5;
 }
 search{
-  color: black;  placeholder-color: black;  caret-color: red;
+  color: black;
+  placeholder-color: black;
+  caret-color: red;
 }
 ```
 
@@ -130,34 +132,34 @@ text{
 
 ```js
 // index.js
-import prompt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 export default {
   search(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
   },
   translate(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
   },
   share(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
   },
   change(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
   },
   submit(e){
-    prompt.showToast({
+    promptAction.showToast({
       message: 'submit',
       duration: 3000,
     });
@@ -216,7 +218,7 @@ export default {
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     showsearch: true,
@@ -241,13 +243,13 @@ export default {
     }
   },
   submit(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: '搜索！',
       duration: 2000
     })
   },
   change(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: '内容:' + e.text,
       duration: 2000
     })

@@ -1,21 +1,17 @@
 # Menu
 
-The menu bound to a component through [bindContextMenu](./ts-universal-attributes-menu.md#atrributes) on a page can be closed as needed.
+The menu bound to a component through [bindContextMenu](./ts-universal-attributes-menu.md#attributes) on a page can be closed as needed.
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## ContextMenu.close
+
 |Name|Description|
 |----|---|
-| close(): void | Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#atrributes) on a page.|
+| close(): void | Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#attributes) on a page.|
 
 
 ## Example
@@ -27,25 +23,36 @@ None
 struct Index {
   @Builder MenuBuilder() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Text('close')
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-        .onClick(() => {
-          ContextMenu.close();
-        })
-    }.height(400)
-    .backgroundColor(Color.Pink)
-
+      Button('Test ContextMenu1')
+      Divider().strokeWidth(2).margin(5)
+      Button('Test ContextMenu2')
+      Divider().strokeWidth(2).margin(5)
+      Button('Test ContextMenu3')
+    }
+    .width(200)
+    .height(160)
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Column() {
-        Text("Text")
-      }.bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
+        Text("Test ContextMenu")
+          .fontSize(20)
+          .width('100%')
+          .height(500)
+          .backgroundColor(0xAFEEEE)
+          .textAlign(TextAlign.Center)
+      }
+      .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
+      .onDragStart(()=>{
+        // Close the menu when the component is dragged.
+        ContextMenu.close()
+      })
     }
     .width('100%')
     .height('100%')
   }
 }
 ```
+
+![contextmenu_close.gif](figures/contextmenu_close.gif)

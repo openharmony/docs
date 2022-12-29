@@ -24,9 +24,9 @@ Scroll(scroller?: Scroller)
 
 | 名称             | 参数类型                                     | 描述        |
 | -------------- | ---------------------------------------- | --------- |
-| scrollable     | ScrollDirection                          | 设置滚动方向。<br/>默认值：ScrollDirection.Vertical |
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off |
-| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color   | 设置滚动条的颜色。 |
+| scrollable     | [ScrollDirection](#scrolldirection枚举说明)                        | 设置滚动方向。<br/>默认值：ScrollDirection.Vertical |
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Auto |
+| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color)   | 设置滚动条的颜色。 |
 | scrollBarWidth | string&nbsp;\|&nbsp;number         | 设置滚动条的宽度。 |
 | edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)            | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.None |
 
@@ -161,6 +161,7 @@ scrollBy(dx: Length, dy: Length): void
 
 
 ## 示例
+### 示例1
 
 ```ts
 // xxx.ets
@@ -186,10 +187,11 @@ struct ScrollExample {
           }, item => item)
         }.width('100%')
       }
-      .scrollable(ScrollDirection.Vertical)
-      .scrollBar(BarState.On)
-      .scrollBarColor(Color.Gray)
-      .scrollBarWidth(30)
+      .scrollable(ScrollDirection.Vertical)  // 滚动方向纵向
+      .scrollBar(BarState.On)  // 滚动条常驻显示
+      .scrollBarColor(Color.Gray)  // 滚动条颜色
+      .scrollBarWidth(30) // 滚动条宽度
+      .edgeEffect(EdgeEffect.None)
       .onScroll((xOffset: number, yOffset: number) => {
         console.info(xOffset + ' ' + yOffset)
       })
@@ -199,7 +201,7 @@ struct ScrollExample {
       .onScrollEnd(() => {
         console.info('Scroll Stop')
       })
-      
+
       Button('scroll 150')
         .onClick(() => { // 点击后下滑指定距离150.0vp
           this.scroller.scrollBy(0,150)
@@ -227,24 +229,28 @@ struct ScrollExample {
 
 ![zh-cn_image_0000001174104386](figures/zh-cn_image_0000001174104386.gif)
 
-
+### 示例2
 ```ts
 @Entry
 @Component
 struct NestedScroll {
-  @State listPosition: number = 0 // 0代表滚动到List顶部，1代表中间值，2代表滚动到List底部。
+  @State listPosition: number = 0; // 0代表滚动到List顶部，1代表中间值，2代表滚动到List底部。
   private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  private scroller: Scroller = new Scroller()
+  private scrollerForScroll: Scroller = new Scroller()
+  private scrollerForList: Scroller = new Scroller()
 
   build() {
     Flex() {
-      Scroll(this.scroller) {
+      Scroll(this.scrollerForScroll) {
         Column() {
           Text("Scroll Area")
             .width("100%").height("40%").backgroundColor(0X330000FF)
             .fontSize(16).textAlign(TextAlign.Center)
+            .onClick(() => {
+              this.scrollerForList.scrollToIndex(5)
+            })
 
-          List({ space: 20 }) {
+          List({ space: 20, scroller: this.scrollerForList }) {
             ForEach(this.arr, (item) => {
               ListItem() {
                 Text("ListItem" + item)
@@ -253,7 +259,9 @@ struct NestedScroll {
               }.width("100%").height(100)
             }, item => item)
           }
-          .width("100%").height("50%").edgeEffect(EdgeEffect.None)
+          .width("100%")
+          .height("50%")
+          .edgeEffect(EdgeEffect.None)
           .onReachStart(() => {
             this.listPosition = 0
           })
@@ -262,11 +270,11 @@ struct NestedScroll {
           })
           .onScrollBegin((dx: number, dy: number) => {
             if ((this.listPosition == 0 && dy >= 0) || (this.listPosition == 2 && dy <= 0)) {
-              this.scroller.scrollBy(0, -dy)
+              this.scrollerForScroll.scrollBy(0, -dy)
               return { dxRemain: dx, dyRemain: 0 }
             }
-            this.listPosition = 1;
-            return { dxRemain: dx, dyRemain: dy }
+            this.listPosition = 1
+            return { dxRemain: dx, dyRemain: dy };
           })
 
           Text("Scroll Area")

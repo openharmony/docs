@@ -1,14 +1,14 @@
-# ErrorCode
+# @ohos.ability.errorCode
 
-The **ErrorCode** module defines the error codes that can be used when the ability is started. 
+The **ErrorCode** module defines the error codes that can be used when the ability is started.
 
-> **NOTE**
-> 
+ **NOTE**
+
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
-```
+```ts
 import errorCode from '@ohos.ability.errorCode'
 ```
 

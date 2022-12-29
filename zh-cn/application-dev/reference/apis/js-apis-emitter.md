@@ -1,4 +1,4 @@
-# Emitter
+# @ohos.events.emitter (Emitter)
 
 本模块提供发送和处理进程内事件的能力，包括对持续订阅事件或单次订阅事件的处理，取消订阅事件，发送事件到事件队列。
 
@@ -26,10 +26,10 @@ on(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)
 
 **参数：**
 
-| 参数名   | 类型                                | 必填 | 说明                     |
-| -------- | ----------------------------------- | ---- | ------------------------ |
-| event    | [InnerEvent](#innerevent)           | 是   | 持续订阅的事件           |
-| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收订阅事件时的回调处理 |
+| 参数名   | 类型                                | 必填 | 说明                                    |
+| -------- | ----------------------------------- | ---- | --------------------------------------- |
+| event    | [InnerEvent](#innerevent)           | 是   | 持续订阅的事件，其中EventPriority不生效 |
+| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收订阅事件时的回调处理                |
 
 **示例：**
 
@@ -53,10 +53,10 @@ once(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdat
 
 **参数：**
 
-| 参数名   | 类型                                | 必填 | 说明                     |
-| -------- | ----------------------------------- | ---- | ------------------------ |
-| event    | [InnerEvent](#innerevent)           | 是   | 单次订阅的事件           |
-| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收订阅事件时的回调处理 |
+| 参数名   | 类型                                | 必填 | 说明                                    |
+| -------- | ----------------------------------- | ---- | --------------------------------------- |
+| event    | [InnerEvent](#innerevent)           | 是   | 单次订阅的事件，其中EventPriority不生效 |
+| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收订阅事件时的回调处理                |
 
 **示例：**
 
@@ -139,7 +139,7 @@ emitter.emit(innerEvent, eventData);
 
 **系统能力**: 以下各项对应的系统能力均为 SystemCapability.Notification.Emitter
 
-| 名称     | 参数类型                        | 可读 | 可写 | 说明                               |
+| 名称     | 类型                        | 可读 | 可写 | 说明                               |
 | -------- | ------------------------------- | ---- | ---- | ---------------------------------- |
 | eventId  | number                          | 是   | 是   | 事件的ID，由开发者定义用来辨别事件。 |
 | priority | [EventPriority](#eventpriority) | 是   | 是   | 事件被投递的优先级。         |
@@ -150,6 +150,6 @@ emitter.emit(innerEvent, eventData);
 
 **系统能力**: 以下各项对应的系统能力均为 SystemCapability.Notification.Emitter
 
-| 名称 | 参数类型           | 可读 | 可写 | 说明           |
+| 名称 | 类型           | 可读 | 可写 | 说明           |
 | ---- | ------------------ | ---- | ---- | -------------- |
 | data | [key: string]: any | 是   | 是   | 发送事件时传递的数据，数据类型支持字符串、整型和布尔型。 |

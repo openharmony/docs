@@ -8,7 +8,7 @@ The Keycode module provides keycodes for a key device.
 ## Modules to Import
 
 ```js
-import {KeyCode} from '@ohos.multimodalInput.keyCode'
+import {KeyCode} from '@ohos.multimodalInput.keyCode';
 ```
 
 ## KeyCode
@@ -96,7 +96,7 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode'
 | KEYCODE_EQUALS | number | Yes| No| Key =|
 | KEYCODE_LEFT_BRACKET | number | Yes| No| Key [|
 | KEYCODE_RIGHT_BRACKET | number | Yes| No| Key ]|
-| KEYCODE_BACKSLASH | number | Yes| No| Key \|
+| KEYCODE_BACKSLASH | number | Yes| No| Key \\|
 | KEYCODE_SEMICOLON | number | Yes| No| Key ;|
 | KEYCODE_APOSTROPHE | number | Yes| No| Key ' |
 | KEYCODE_SLASH | number | Yes| No| Key /|

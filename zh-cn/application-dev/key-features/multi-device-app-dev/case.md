@@ -6,7 +6,7 @@
 
 ## 概览
 
-[短信](https://gitee.com/openharmony/applications_mms/tree/master)是OpenHarmony中预置的系统应用，主要包含信息查看、发送短信、接收短信、短信送达报告、删除短信等功能。在不同类型设备上，短信应用的功能完全相同，故短信应用适合使用[部署模型A](introduction.md#部署模型)（即：不同类型的设备上安装运行相同的HAP包或HAP包组合）。
+[短信](https://gitee.com/openharmony/applications_mms/tree/master)是OpenHarmony中预置的系统应用，主要包含信息查看、发送短信、接收短信、短信送达报告、删除短信等功能。在不同类型设备上，短信应用的功能完全相同，故短信应用适合使用[部署模型A](introduction.md#部署模型)（即：不同类型的设备上安装运行相同的HAP或HAP组合）。
 
 本案例中，在会话详情页面利用[方舟开发框架](introduction.md#方舟开发框架)提供的“一多”能力，用一套代码同时适配默认设备和平板。
 
@@ -59,7 +59,7 @@
 短信应用在开发阶段，采用了一层工程结构。由于功能较为简单，所以并没有规划共用的feature和common目录，仅采用了一层product目录。
 
 - 业务形态层（product）
-  该目录采用IDE工程默认创建的entry目录，开发者可根据需要在创建Module时自行更改该目录名。不同产品形态，编译出相同的短信HAP包。
+  该目录采用IDE工程默认创建的entry目录，开发者可根据需要在创建Module时自行更改该目录名。不同产品形态，编译出相同的短信HAP。
 
 
 
@@ -70,7 +70,7 @@
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![overview_phone](figures/overview_phone.png) | ![overview_tablet](figures/overview_tablet.png) | 
+| ![overview_default](figures/overview_default.png) | ![overview_tablet](figures/overview_tablet.png) | 
 
 会话详情页面在默认设备和平板上的样式如上图所示，会话详情页面可以划分为三个部分：
 
@@ -82,7 +82,7 @@
 
 接下来我们详细介绍各部分的实现。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 为了方便理解，我们对会话详情页面做了一定的精简，本小节仅介绍会话详情页面最基础的实现。
 
 
@@ -107,7 +107,7 @@
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![contact_details_phone](figures/contact_details_phone.png) | ![contact_details_tablet](figures/contact_details_tablet.png) | 
+| ![contact_details_default](figures/contact_details_default.png) | ![contact_details_tablet](figures/contact_details_tablet.png) | 
 
 
 ```
@@ -127,7 +127,7 @@
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![top_title_blank_phone](figures/top_title_blank_phone.png) | ![top_title_blank_tablet](figures/top_title_blank_tablet.png) | 
+| ![top_title_blank_default](figures/top_title_blank_default.png) | ![top_title_blank_tablet](figures/top_title_blank_tablet.png) | 
 
 
 ```
@@ -165,7 +165,7 @@
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![top_title_done_phone](figures/top_title_done_phone.png) | ![top_title_done_tablet](figures/top_title_done_tablet.png) | 
+| ![top_title_done_default](figures/top_title_done_default.png) | ![top_title_done_tablet](figures/top_title_done_tablet.png) | 
 
 
 ```
@@ -213,7 +213,7 @@
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![bottom_input_phone](figures/bottom_input_phone.png) | ![bottom_input_tablet](figures/bottom_input_tablet.png) | 
+| ![bottom_input_default](figures/bottom_input_default.png) | ![bottom_input_tablet](figures/bottom_input_tablet.png) | 
 
 
 ```
@@ -262,7 +262,7 @@
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![message_bubble_basic_phone](figures/message_bubble_basic_phone.png) | ![message_bubble_basic_tablet](figures/message_bubble_basic_tablet.png) | 
+| ![message_bubble_basic_default](figures/message_bubble_basic_default.png) | ![message_bubble_basic_tablet](figures/message_bubble_basic_tablet.png) | 
 
 
 ```
@@ -294,7 +294,7 @@ struct MessageBubble {
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![message_bubble_radius_phone](figures/message_bubble_radius_phone.png) | ![message_bubble_radius_tablet](figures/message_bubble_radius_tablet.png) | 
+| ![message_bubble_radius_default](figures/message_bubble_radius_default.png) | ![message_bubble_radius_tablet](figures/message_bubble_radius_tablet.png) | 
 
 
 ```
@@ -332,7 +332,7 @@ struct MessageBubble {
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![message_bubble_recv_phone](figures/message_bubble_recv_phone.png) | ![message_bubble_recv_tablet](figures/message_bubble_recv_tablet.png) | 
+| ![message_bubble_recv_default](figures/message_bubble_recv_default.png) | ![message_bubble_recv_tablet](figures/message_bubble_recv_tablet.png) | 
 
 
 ```
@@ -380,7 +380,7 @@ struct MessageBubble {
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![message_bubble_send_phone](figures/message_bubble_send_phone.png) | ![message_bubble_send_tablet](figures/message_bubble_send_tablet.png) | 
+| ![message_bubble_send_default](figures/message_bubble_send_default.png) | ![message_bubble_send_tablet](figures/message_bubble_send_tablet.png) | 
 
 
 ```
@@ -473,7 +473,7 @@ const globalMessageList:any[] = [
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![message_list_phone](figures/message_list_phone.png) | ![message_list_tablet](figures/message_list_tablet.png) | 
+| ![message_list_default](figures/message_list_default.png) | ![message_list_tablet](figures/message_list_tablet.png) | 
 
 
 ```
@@ -526,11 +526,11 @@ struct Conversation {
 
 - 通过[Flex组件](../../reference/arkui-ts/ts-container-flex.md)将三个部分组合起来，注意justifyContent: FlexAlign.SpaceBetween配置项是将Flex组件中的元素按照主轴方向均匀分配，其中第一个元素与顶部对齐，最后一个元素与底部对齐。
 
-- 通过[List组件](../../reference/arkui-ts/ts-container-list.md)和[ForEach语法](../../ui/ts-rending-control-syntax-foreach.md)，显示整个消息列表。
+- 通过[List组件](../../reference/arkui-ts/ts-container-list.md)和[ForEach语法](../../quick-start/arkts-rendering-control.md#循环渲染)，显示整个消息列表。
 
   | 默认设备 | 平板 | 
   | -------- | -------- |
-  | ![overview_phone](figures/overview_phone.png) | ![overview_tablet](figures/overview_tablet.png) | 
+  | ![overview_default](figures/overview_default.png) | ![overview_tablet](figures/overview_tablet.png) | 
 
   
 ```

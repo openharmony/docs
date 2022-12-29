@@ -102,10 +102,12 @@ You must install the software packages required for build. The command is as fol
 - Method 2: Run the **apt-get install** and **pip3 install** commands.
   ```shell
   apt-get update -y 
-  apt-get install -y apt-utils binutils bison flex bc build-essential make mtd-utils gcc-arm-linux-gnueabi u-boot-tools python3.9.2 python3-pip git zip unzip curl wget gcc g++ ruby dosfstools mtools default-jre default-jdk scons python3-distutils perl openssl libssl-dev cpio git-lfs m4 ccache zlib1g-dev tar rsync liblz4-tool genext2fs binutils-dev device-tree-compiler e2fsprogs git-core gnupg gnutls-bin gperf lib32ncurses5-dev libffi-dev zlib* libelf-dev libx11-dev libgl1-mesa-dev lib32z1-dev xsltproc x11proto-core-dev libc6-dev-i386 libxml2-dev lib32z-dev libdwarf-dev 
+  apt-get install -y  
+  # Install Python 3.9 for Ubuntu 20.04, and install Python 3.8 for Ubuntu 18.04.
+  apt-get install -y apt-utils binutils bison flex bc build-essential make mtd-utils gcc-arm-linux-gnueabi u-boot-tools python3.9 python3-pip git zip unzip curl wget gcc g++ ruby dosfstools mtools default-jre default-jdk scons python3-distutils perl openssl libssl-dev cpio git-lfs m4 ccache zlib1g-dev tar rsync liblz4-tool genext2fs binutils-dev device-tree-compiler e2fsprogs git-core gnupg gnutls-bin gperf lib32ncurses5-dev libffi-dev zlib* libelf-dev libx11-dev libgl1-mesa-dev lib32z1-dev xsltproc x11proto-core-dev libc6-dev-i386 libxml2-dev lib32z-dev libdwarf-dev 
   apt-get install -y grsync xxd libglib2.0-dev libpixman-1-dev kmod jfsutils reiserfsprogs xfsprogs squashfs-tools  pcmciautils quota ppp libtinfo-dev libtinfo5 libncurses5 libncurses5-dev libncursesw5 libstdc++6  gcc-arm-none-eabi vim ssh locales doxygen
   apt-get install -y libxinerama-dev libxcursor-dev libxrandr-dev libxi-dev
-  # The following modules must be installed for Python. You can obtain the **repo** file from the source code of the build environment mentioned in **Constraints**.
+  # The following modules must be installed for Python. You can obtain the repo file from the source code of the build environment you use.
   chmod +x /usr/bin/repo 
   pip3 install --trusted-host https://repo.huaweicloud.com -i https://repo.huaweicloud.com/repository/pypi/simple requests setuptools pymongo kconfiglib pycryptodome ecdsa ohos-build pyyaml prompt_toolkit==1.0.14 redis json2html yagmail python-jenkins 
   pip3 install esdk-obs-python --trusted-host pypi.org 
@@ -120,7 +122,7 @@ You must install the software packages required for build. The command is as fol
   # export PATH=~/.local/bin:$PATH
   ```
 
-  ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The hb tool will be installed during the installation of ohos-build. If the hb installation fails, see [Installing hb](../../device-dev/quick-start/quickstart-lite-env-setup.md#installing-hb).
+  ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The hb tool will be installed during the installation of ohos-build. If the hb installation fails, see [Installing hb](../../device-dev/quick-start/quickstart-pkg-install-tool.md).
 
 
 ## Configuration Rules
@@ -170,10 +172,10 @@ misc/
 ├── scripts/                      
 ├── subsystem_config.json         
 ├── subsystem_config_example.json 
-├── templates/                  # C/C++ build templates
+├── templates/                    # C/C++ build templates
 ├── test.gni*                     
-├── toolchain                   # Build toolchain configuration
-├── tools                       # Common tools
+├── toolchain                     # Build toolchain configuration
+├── tools                         # Common tools
 ├── version.gni                   
 ├── zip.py*                       
 
@@ -207,18 +209,21 @@ Then, run the build commands in command line (CLI) mode or hb mode.
      ./build.sh --product-name {product_name} --gn-args is_debug=true
      ```
 
-     ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>Due to the limitation of the image size, the full build for the debug version may fail to be burnt. You are advised to build the binary file for each module separately. Run the following command to build a module separately:
-
-     ```shell
-     ./build.sh --product-name {product_name} --gn-args is_debug=true --build-target {target_name}
-     ```
-
+     >![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
+     >Due to the limitation of the image size, the full build for the debug version may fail to be burnt. You are advised to build the binary file for each module separately. Run the following command to build a module separately:
+     >
+     >```
+     >./build.sh --product-name {product_name} --gn-args is_debug=true --build-target {target_name}
+     >```
+     >
+     >
+     
      **{product_name}** specifies the product platform supported by the current distribution, for example, **hispark_taurus_standard**.
-
+     
      The image generated is stored in the **out/{device_name}/packages/phone/images/** directory.
-
+     
    - The **./build.sh** command supports the following options:
-
+   
      ```shell
      -h, --help                                        # Display help information and exit.
      --source-root-dir=SOURCE_ROOT_DIR                 # Specify the path.
@@ -240,6 +245,9 @@ Then, run the build commands in command line (CLI) mode or hb mode.
      --device-type=DEVICE_TYPE                         # Specify the device type. The default value is default.
      --build-variant=BUILD_VARIANT                     #Specify the device operation mode. The default value is user.
      ```
+   
+     
+
 
    2. Using the hb tool
 
@@ -357,7 +365,9 @@ Then, run the build commands in command line (CLI) mode or hb mode.
         -h, --help  show this help message and exit
       ```
 
-      
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> - For details about how to set up the build environment and perform the build, see the related topics in [Getting Started](../quick-start/Readme-EN.md).
+> - OpenHarmony also provides the Docker environment, which spares the installation of the build tool. For details, see [Docker Environment](../get-code/gettools-acquire.md).
 
 ### Building Procedures 
 
@@ -375,6 +385,7 @@ You can add and build a product, component, chipset solution, and module. For de
 ## Reference
 
 - [deps and external_deps](subsys-build-reference.md#deps-and-external_deps)
+- [Using Sanitizer](subsys-build-reference.md#using-sanitizer)
 - [Information Collected by the Open Source Software Notice](subsys-build-reference.md#information-collected-by-the-open-source-software-notice)
 - [Parameters for Accelerating Local Build](subsys-build-reference.md#parameters-for-accelerating-local-build)
 - [Viewing Ninja Build Information](subsys-build-reference.md#viewing-ninja-build-information)

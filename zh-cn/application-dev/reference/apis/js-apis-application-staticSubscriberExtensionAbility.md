@@ -1,4 +1,4 @@
-# StaticSubscriberExtensionAbility
+# @ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)
 
 StaticSubscriberExtensionAbility模块提供静态订阅者ExtensionAbility的类别的能力。
 
@@ -8,7 +8,7 @@ StaticSubscriberExtensionAbility模块提供静态订阅者ExtensionAbility的�
 > 本模块接口仅可在Stage模型下使用。
 ## 导入模块
 
-```
+```ts
 import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
 ```
 
@@ -24,13 +24,13 @@ onReceiveEvent(event: CommonEventData): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | event | [CommonEventData](js-apis-commonEvent.md#commoneventdata) | 是 | 静态订阅者通用事件回调。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| event | [CommonEventData](js-apis-commonEventManager.md#commoneventdata) | 是 | 静态订阅者通用事件回调。 |
 
 **示例：**
     
-  ```js
+  ```ts
   var StaticSubscriberExtensionAbility = requireNapi("application.StaticSubscriberExtensionAbility")
   {
       onReceiveEvent(event){

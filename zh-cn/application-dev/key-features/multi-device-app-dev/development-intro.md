@@ -25,7 +25,7 @@
 2. 在安装阶段，核心安装逻辑：安装的应用调用的系统能力是设备系统能力的子集。满足这个条件，用户才能安装该应用。
 
 3. If/Else的动态逻辑判断。伪代码简单示例如下：
-     
+   
    ```
    if (该设备有系统能力1) {
        运行系统能力1相关的代码;
@@ -64,7 +64,7 @@ IDE中提供了API的联想功能，方便开发者使用系统能力。当开�
 
 开发者可以通过canIUse接口，判断目标设备是否支持某系统能力，进而执行不同的业务逻辑。
 
-  
+
 ```
 import geolocation from'@ohos.geolocation';
 
@@ -93,5 +93,5 @@ struct Index {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 开发者通过 import 方式导入的模块，若当前设备不支持该模块，import 的结果为 undefined。故开发者在使用 API 时，需要判断其是否存在。

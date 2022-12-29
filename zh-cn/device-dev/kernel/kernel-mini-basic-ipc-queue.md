@@ -3,7 +3,7 @@
 
 ## 基本概念
 
-队列又称消息队列，是一种常用于任务间通信的数据结构。队列接收来自任务或中断的不固定长度消息，并根据不同的接口确定传递的消息是否存放在队列空间中。
+消息队列又称队列，是一种任务间通信的机制。消息队列接收来自任务或中断的不固定长度消息，并根据不同的接口确定传递的消息是否存放在队列空间中。
 
 任务能够从队列里面读取消息，当队列中的消息为空时，挂起读取任务；当队列中有新消息时，挂起的读取任务被唤醒并处理新消息。任务也能够往队列里写入消息，当队列已经写满消息时，挂起写入任务；当队列中有空闲消息节点时，挂起的写入任务被唤醒并写入消息。
 
@@ -12,44 +12,40 @@
 消息队列提供了异步处理机制，允许将一个消息放入队列，但不立即处理。同时队列还有缓冲消息的作用，可以使用队列实现任务异步通信，队列具有如下特性：
 
 - 消息以先进先出的方式排队，支持异步读写。
-
 - 读队列和写队列都支持超时机制。
-
 - 每读取一条消息，就会将该消息节点设置为空闲。
-
 - 发送消息类型由通信双方约定，可以允许不同长度（不超过队列的消息节点大小）的消息。
-
 - 一个任务能够从任意一个消息队列接收和发送消息。
-
 - 多个任务能够从同一个消息队列接收和发送消息。
-
-- 创建队列时所需的队列空间，接口内系统自行动态申请内存。
+- 创建普通队列时所需的队列空间，由系统自行动态申请内存。
+- 创建静态队列时所需的队列空间，由用户传入。这块空间在队列删除之后也由用户去释放。
 
 
 ## 运行机制
 
-
 ### 队列控制块
 
-  
+队列会在初始化时给分配一个属于自己的控制块，控制块包含了队列的名称、状态等信息。删除队列时会释放该控制块。
+
+队列控制块数据结构如下：
+
+
 ```
-/**
-  * 队列控制块数据结构
-  */
 typedef struct 
 {
-    UINT8       *queue;                          /* 队列消息内存空间的指针 */
-    UINT16      queueState;                      /* 队列状态 */
-    UINT16      queueLen;                        /* 队列中消息节点个数，即队列长度 */
-    UINT16      queueSize;                       /* 消息节点大小 */
-    UINT16      queueID;                         /* 队列ID */
-    UINT16      queueHead;                       /* 消息头节点位置（数组下标）*/
-    UINT16      queueTail;                       /* 消息尾节点位置（数组下标）*/
-    UINT16      readWriteableCnt[OS_READWRITE_LEN]; /* 数组下标0的元素表示队列中可读消息数，                              
-                                                    数组下标1的元素表示队列中可写消息数 */
-    LOS_DL_LIST readWriteList[OS_READWRITE_LEN];    /* 读取或写入消息的任务等待链表， 
-                                                    下标0：读取链表，下标1：写入链表 */
-    LOS_DL_LIST memList;                         /* 内存块链表 */
+    UINT8       *queue;                          		/* 队列消息内存空间的指针 */
+    UINT8 		*queueName								/* 队列名称 */
+    UINT16      queueState;                      		/* 队列状态 */
+    UINT16      queueLen;                        		/* 队列中消息节点个数，即队列长度 */
+    UINT16      queueSize;                       		/* 消息节点大小 */
+    UINT16      queueID;                         		/* 队列ID */
+    UINT16      queueHead;                       		/* 消息头节点位置（数组下标）*/
+    UINT16      queueTail;                       		/* 消息尾节点位置（数组下标）*/
+    UINT16      readWriteableCnt[OS_READWRITE_LEN]; 	/* 数组下标0的元素表示队列中可读消息数，                              
+                                                    		数组下标1的元素表示队列中可写消息数 */
+    LOS_DL_LIST readWriteList[OS_READWRITE_LEN];    	/* 读取或写入消息的任务等待链表， 
+                                                       		下标0：读取链表，下标1：写入链表 */
+    LOS_DL_LIST memList;                         		/* 内存块链表 */
 } LosQueueCB;
 ```
 
@@ -81,12 +77,12 @@ typedef struct
 
 ## 接口说明
 
-  | 功能分类 | 接口描述 | 
+| 功能分类 | 接口描述 |
 | -------- | -------- |
-| 创建/删除消息队列 | -&nbsp;LOS_QueueCreate：创建一个消息队列，由系统动态申请队列空间。<br/>-&nbsp;LOS_QueueDelete：根据队列ID删除一个指定队列。 | 
-| 读/写队列（不带拷贝） | -&nbsp;LOS_QueueRead：读取指定队列头节点中的数据（队列节点中的数据实际上是一个地址）。<br/>-&nbsp;LOS_QueueWrite：向指定队列尾节点中写入入参bufferAddr的值（即buffer的地址）。<br/>-&nbsp;LOS_QueueWriteHead：向指定队列头节点中写入入参bufferAddr的值（即buffer的地址）。 | 
-| 读/写队列（带拷贝） | -&nbsp;LOS_QueueReadCopy：读取指定队列头节点中的数据。<br/>-&nbsp;LOS_QueueWriteCopy：向指定队列尾节点中写入入参bufferAddr中保存的数据。<br/>-&nbsp;LOS_QueueWriteHeadCopy：向指定队列头节点中写入入参bufferAddr中保存的数据。 | 
-| 获取队列信息 | LOS_QueueInfoGet：获取指定队列的信息，包括队列ID、队列长度、消息节点大小、头节点、尾节点、可读节点数量、可写节点数量、等待读操作的任务、等待写操作的任务。 | 
+| 创建/删除消息队列 | &nbsp;LOS_QueueCreate：创建一个消息队列，由系统动态申请队列空间。<br/>LOS_QueueCreateStatic：创建一个消息队列，由用户传入队列空间。<br/>&nbsp;LOS_QueueDelete：根据队列ID删除一个指定队列，静态消息队列删除后，队列空间需要用例自行处理。 |
+| 读/写队列（不带拷贝） | &nbsp;LOS_QueueRead：读取指定队列头节点中的数据（队列节点中的数据实际上是一个地址）。<br/>&nbsp;LOS_QueueWrite：向指定队列尾节点中写入入参bufferAddr的值（即buffer的地址）。<br/>&nbsp;LOS_QueueWriteHead：向指定队列头节点中写入入参bufferAddr的值（即buffer的地址）。 |
+| 读/写队列（带拷贝） | &nbsp;LOS_QueueReadCopy：读取指定队列头节点中的数据。<br/>&nbsp;LOS_QueueWriteCopy：向指定队列尾节点中写入入参bufferAddr中保存的数据。<br/>&nbsp;LOS_QueueWriteHeadCopy：向指定队列头节点中写入入参bufferAddr中保存的数据。 |
+| 获取队列信息 | LOS_QueueInfoGet：获取指定队列的信息，包括队列ID、队列长度、消息节点大小、头节点、尾节点、可读节点数量、可写节点数量、等待读操作的任务、等待写操作的任务。 |
 
 
 ## 开发流程
@@ -140,11 +136,14 @@ typedef struct
 
 示例代码如下：
 
-  
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数ExampleQueue。
+
+
 ```
 #include "los_task.h"
 #include "los_queue.h"
-static UINT32 g_queue;
+
+STATIC UINT32 g_queue;
 #define BUFFER_LEN 50
 
 VOID SendEntry(VOID)
@@ -154,7 +153,7 @@ VOID SendEntry(VOID)
     UINT32 len = sizeof(abuf);
 
     ret = LOS_QueueWriteCopy(g_queue, abuf, len, 0);
-    if(ret != LOS_OK) {
+    if (ret != LOS_OK) {
         printf("send message failure, error: %x\n", ret);
     }
 }
@@ -165,17 +164,17 @@ VOID RecvEntry(VOID)
     CHAR readBuf[BUFFER_LEN] = {0};
     UINT32 readLen = BUFFER_LEN;
 
-    //休眠1s
+    /* 休眠1s */
     usleep(1000000);
     ret = LOS_QueueReadCopy(g_queue, readBuf, &readLen, 0);
-    if(ret != LOS_OK) {
+    if (ret != LOS_OK) {
         printf("recv message failure, error: %x\n", ret);
     }
 
-    printf("recv message: %s\n", readBuf);
+    printf("recv message: %s.\n", readBuf);
 
     ret = LOS_QueueDelete(g_queue);
-    if(ret != LOS_OK) {
+    if (ret != LOS_OK) {
         printf("delete the queue failure, error: %x\n", ret);
     }
 
@@ -186,25 +185,28 @@ UINT32 ExampleQueue(VOID)
 {
     printf("start queue example.\n");
     UINT32 ret = 0;
-    UINT32 task1, task2;
-    TSK_INIT_PARAM_S initParam = {0};
-
-    initParam.pfnTaskEntry = (TSK_ENTRY_FUNC)SendEntry;
-    initParam.usTaskPrio = 9;
-    initParam.uwStackSize = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
-    initParam.pcName = "SendQueue";
+    UINT32 task1;
+    UINT32 task2;
+    TSK_INIT_PARAM_S taskParam1 = { 0 };
+    TSK_INIT_PARAM_S taskParam2 = { 0 };
 
     LOS_TaskLock();
-    ret = LOS_TaskCreate(&task1, &initParam);
+
+    taskParam1.pfnTaskEntry = (TSK_ENTRY_FUNC)SendEntry;
+    taskParam1.usTaskPrio = 9;
+    taskParam1.uwStackSize = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
+    taskParam1.pcName = "SendQueue";
+    ret = LOS_TaskCreate(&task1, &taskParam1);
     if(ret != LOS_OK) {
         printf("create task1 failed, error: %x\n", ret);
         return ret;
     }
 
-    initParam.pcName = "RecvQueue";
-    initParam.pfnTaskEntry = (TSK_ENTRY_FUNC)RecvEntry;
-    initParam.usTaskPrio = 10;
-    ret = LOS_TaskCreate(&task2, &initParam);
+    taskParam2.pfnTaskEntry = (TSK_ENTRY_FUNC)RecvEntry;
+    taskParam2.usTaskPrio = 10;
+    taskParam2.uwStackSize = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
+    taskParam2.pcName = "RecvQueue";
+    ret = LOS_TaskCreate(&task2, &taskParam2);
     if(ret != LOS_OK) {
         printf("create task2 failed, error: %x\n", ret);
         return ret;
@@ -227,7 +229,7 @@ UINT32 ExampleQueue(VOID)
 编译运行得到的结果为：
 
 
-  
+
 ```
 start queue example.
 create the queue success.

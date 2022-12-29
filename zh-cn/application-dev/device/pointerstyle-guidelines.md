@@ -1,0 +1,119 @@
+# 鼠标光标开发指导
+
+## 场景介绍
+
+鼠标光标控制提供对鼠标光标显示隐藏、光标样式查询设置的能力。使用场景例如：用户在全屏观看视频时，开发者可以控制鼠标光标的显示隐藏；当用户执行取色时，开发者可以将鼠标光标样式切换为取色器样式。
+
+## 导入模块
+
+```js
+import pointer from '@ohos.multimodalInput.pointer';
+```
+
+## 接口说明
+
+鼠标光标控制常用接口如下表所示，接口详细介绍请参见[ohos.multimodalInput.pointer文档](../reference/apis/js-apis-pointer.md)
+
+| 实例名  | 接口名                                                       | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| pointer | function isPointerVisible(callback: AsyncCallback\<boolean>): void; | 获取鼠标指针显示或隐藏状态。                                 |
+| pointer | function setPointerVisible(visible: boolean, callback: AsyncCallback\<void>): void; | 设置鼠标指针显示或隐藏状态，改接口会影响全局鼠标光标的显示状态。 |
+| pointer | function setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback\<void>): void; | 设置鼠标光标样式，改接口会影响指定窗口鼠标光标样式。         |
+| pointer | function getPointerStyle(windowId: number, callback: AsyncCallback\<PointerStyle>): void; | 查询鼠标光标样式。                                           |
+
+## 设置鼠标光标隐藏
+
+用户在全屏观看视频时，可以调用鼠标光标的隐藏接口设置鼠标光标不可见，提升用户体验。
+
+## 开发步骤
+
+1. 应用切换到全屏播放。
+2. 在应用中调用鼠标光标隐藏接口隐藏光标。
+3. 应用退出全屏播放。
+4. 在应用中调用鼠标光标显示接口显示光标。
+
+```js
+import pointer from '@ohos.multimodalInput.pointer';
+
+// 1.应用切换到全屏播放
+// 2.调用鼠标光标隐藏接口隐藏光标
+try {
+  pointer.setPointerVisible(false, (error) => {
+    if (error) {
+      console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Set pointer visible success.`);
+  });
+} catch (error) {
+  console.log(`The mouse pointer hide attributes is failed. ${JSON.stringify(error, [`code`, `message`])}`);
+}
+
+// 3.应用退出全屏播放
+// 4.调用鼠标光标显示接口显示光标
+try {
+  pointer.setPointerVisible(true, (error) => {
+    if (error) {
+      console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Set pointer visible success.`);
+  });
+} catch (error) {
+  console.log(`Set pointer visible failed, ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## 设置鼠标光标样式
+
+当开发者设计取色器特性时，可以将鼠标光标样式切换为取色器样式，完成取色后，设置鼠标光标样式为默认样式，该接口设置和查询当前应用内指定窗口的光标样式，总共可设置39种光标样式，具体参考[光标样式](../reference/apis/js-apis-pointer.md#pointerstyle9)。
+
+### 开发步骤
+
+1. 开发者使能取色功能。
+2. 调用窗口实例获取对应的窗口id。
+3. 设置鼠标光标样式为取色器样式。
+4. 取色结束。
+5. 设置鼠标光标样式为默认样式。
+
+```js
+import window from '@ohos.window';
+
+// 1.开发者使能取色功能
+// 2.调用窗口实例获取对应的窗口id
+window.getTopWindow((error, windowClass) => {
+  windowClass.getProperties((error, data) => {
+    var windowId = data.id;
+    if (windowId < 0) {
+      console.log(`Invalid windowId`);
+      return;
+    }
+    try {
+      // 3.设置鼠标光标样式为取色器样式
+      pointer.setPointerStyle(windowId, pointer.PointerStyle.COLOR_SUCKER).then(() => {
+        console.log(`Successfully set mouse pointer style`);
+      });
+    } catch (error) {
+      console.log(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(message)}`);
+    }
+  });
+});
+// 4.取色结束
+window.getTopWindow((error, windowClass) => {
+  windowClass.getProperties((error, data) => {
+    var windowId = data.id;
+    if (windowId < 0) {
+      console.log(`Invalid windowId`);
+      return;
+    }
+    try {
+      // 5.设置鼠标光标样式为默认样式
+      pointer.setPointerStyle(windowId, pointer.PointerStyle.DEFAULT).then(() => {
+        console.log(`Successfully set mouse pointer style`);
+      });
+    } catch (error) {
+      console.log(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(message)}`);
+    }
+  });
+});
+```

@@ -16,7 +16,7 @@ Not supported
 
 TimePicker(options?: {selected?: Date})
 
-Creates a time picker whose default time range is from 00:00 to 23:59.
+Creates a time picker, which is in 24-hour format by default.
 
 **Parameters**
 
@@ -38,7 +38,8 @@ Creates a time picker whose default time range is from 00:00 to 23:59.
 | ---------------------------------------- | ----------- |
 | onChange(callback: (value: TimePickerResult ) =&gt; void) | Triggered when a time is selected.|
 
-### TimePickerResult
+## TimePickerResult
+
 | Name    | Type  | Description     |
 | ------ | ------ | ------- |
 | hour   | number | Hour portion of the selected time.|
@@ -48,27 +49,34 @@ Creates a time picker whose default time range is from 00:00 to 23:59.
 ## Example
 
 
-### Time Selector
+### Time Picker
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TimePickerExample {
-  private selectedTime: Date = new Date('7/22/2022 8:00:00')
+  @State isMilitaryTime: boolean = false
+  private selectedTime: Date = new Date('2022-07-22T08:00:00')
 
   build() {
     Column() {
+      Button ('Switch Time Format')
+        .margin({ top: 30 })
+        .onClick(() => {
+          this.isMilitaryTime = !this.isMilitaryTime
+        })
       TimePicker({
         selected: this.selectedTime,
       })
-      .useMilitaryTime(true)
-      .onChange((date: TimePickerResult) => {
-        console.info('select current date is: ' + JSON.stringify(date))
-      })
+        .useMilitaryTime(this.isMilitaryTime)
+        .onChange((value: TimePickerResult) => {
+          this.selectedTime.setHours(value.hour, value.minute)
+          console.info('select current date is: ' + JSON.stringify(value))
+        })
     }.width('100%')
   }
 }
 ```
 
-![en-us_image_0000001251292933](figures/en-us_image_0000001251292933.gif)
+![timePicker](figures/timePicker.gif)

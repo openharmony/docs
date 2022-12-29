@@ -53,4 +53,4 @@ radio模块提供了获取当前网络信号信息的方法。observer模块为�
 ## 相关实例
 
 针对蜂窝网络数据开发，有以下相关实例可供参考：
-- [`MobileNetwork`：蜂窝数据（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Telephony/MobileNetwork)
+- [`MobileNetwork`：蜂窝数据（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Telephony/MobileNetwork)
