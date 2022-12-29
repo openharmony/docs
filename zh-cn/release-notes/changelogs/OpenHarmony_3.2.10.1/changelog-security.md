@@ -447,7 +447,7 @@ properties[2] = {
     huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
     huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
 };
-//可选参数，如果在生成密钥阶段没有参数，则在使用密钥阶段必须传入。
+//可选参数，如果在生成密钥阶段没有传入，则在使用密钥阶段必须传入。
 properties[3] = {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
