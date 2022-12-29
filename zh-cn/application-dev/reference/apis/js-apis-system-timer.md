@@ -35,7 +35,7 @@ import systemTimer from '@ohos.systemTimer';
 
 | 名称      | 类型                                          | 必填 | 说明                                                         |
 | --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | number                                        | 是   | 定时器类型。<br>取值为1时，表示为系统启动时间定时器（定时器启动时间不能晚于当前设置的系统时间） ；<br>取值为2时，表示为唤醒定时器；<br>取值为4时，表示为精准定时器；<br>取值为5时，表示为IDLE模式定时器（暂不支持）。 |
+| type      | number                                        | 是   | 定时器类型。<br>取值为1，表示为系统启动时间定时器（定时器启动时间不能晚于当前设置的系统时间） ；<br>取值为2，表示为唤醒定时器；<br>取值为4，表示为精准定时器；<br>取值为8，表示为IDLE模式定时器（暂不支持）。 |
 | repeat    | boolean                                       | 是   | true为循环定时器，false为单次定时器。                        |
 | interval  | number                                        | 否   | 如果是循环定时器，repeat值应大于5000毫秒，非重复定时器置为0。 |
 | wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 否   | 设置通知的WantAgent，定时器到期后通知。（支持拉起应用MainAbility，暂不支持拉起ServiceAbility。） |
@@ -47,6 +47,8 @@ import systemTimer from '@ohos.systemTimer';
 createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 
 创建定时器，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -66,13 +68,17 @@ export default {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat: false
         };
-        systemTimer.createTimer(options, (error, data) => {
-            if (error) {
-                console.error(`Failed to create timer. Cause:` + JSON.stringify(error));
-                return;
-            }
-            console.log(`Succeeded in creating timer. Data:` + JSON.stringify(data));
-        });
+        try {
+            systemTimer.createTimer(options, (error) => {
+                if (error) {
+                    console.info(`Failed to create timer. message:${error.message}, code:${error.code}`);
+                    return;
+                }
+           		console.info(`Succeeded in creating timer.`);
+        	});
+        } catch(e) {
+            console.info(`Failed to create timer. message:${e.message}, code:${e.code}`);
+        }
     }
 }
 ```
@@ -82,6 +88,8 @@ export default {
 createTimer(options: TimerOptions): Promise&lt;number&gt;
 
 创建定时器，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -105,12 +113,16 @@ export default {
         let options = {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
-        };
-        systemTimer.createTimer(options).then((data) => {
-            console.log(`Succeeded in creating timer. Data:` + JSON.stringify(data));
-        }).catch((error) => {
-            console.error(`Failed to create timer. Cause:` + JSON.stringify(error));
-        });
+        };     
+        try {
+    		systemTimer.createTimer(options).then(() => {
+    			console.info(`Succeeded in creating timer.`);
+			}).catch((error) => {
+    			console.info(`Failed to create timer. message:${error.message}, code:${error.code}`);
+			});
+        } catch(e) {
+            console.info(`Failed to create timer. message:${e.message}, code:${e.code}`);
+        }
     }
 }
 ```
@@ -120,6 +132,8 @@ export default {
 startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&gt;): void
 
 开始定时器，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -143,12 +157,17 @@ export default {
       let timerId = await systemTimer.createTimer(options)
       let triggerTime = new Date().getTime()
       triggerTime += 3000
-      systemTimer.startTimer(timerId, triggerTime, (error) => {
-          if (error) {
-              console.error(`Failed to start timer. Cause:` + JSON.stringify(error));
-              return;
-          }
-      });
+      try {
+          systemTimer.startTimer(timerId, triggerTime, (error) => {
+              if (error) {
+                  console.info(`Failed to start timer. message:${error.message}, code:${error.code}`);
+                  return;
+              }
+              console.info(`Succeeded in starting timer.`);
+          });
+      } catch(e) {
+          console.info(`Failed to start timer. message:${e.message}, code:${e.code}`);
+      }
     }
 }
 ```
@@ -158,6 +177,8 @@ export default {
 startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 
 开始定时器，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -186,11 +207,15 @@ export default {
         let timerId = await systemTimer.createTimer(options)
         let triggerTime = new Date().getTime()
         triggerTime += 3000
-        systemTimer.startTimer(timerId, triggerTime).then((data) => {
-            console.log(`Succeeded in startting timer. Data:` + JSON.stringify(data));
-        }).catch((error) => {
-            console.error(`Failed to start timer. Cause:` + JSON.stringify(error));
-        });
+        try {
+            systemTimer.startTimer(timerId, triggerTime).then(() => {
+            	console.info(`Succeeded in starting timer.`);
+       		}).catch((error) => {
+            	console.info(`Failed to start timer. message:${error.message}, code:${error.code}`);
+        	});
+        } catch(e) {
+            console.info(`Failed to start timer. message:${e.message}, code:${e.code}`);
+        } 
     }
 }
 ```
@@ -200,6 +225,8 @@ export default {
 stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
 停止定时器，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -214,22 +241,27 @@ stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 export default {
-  async systemTimer () {
-      let options = {
-          type: systemTimer.TIMER_TYPE_REALTIME,
-          repeat:false
-      }
-      let timerId = await systemTimer.createTimer(options)
-      let triggerTime = new Date().getTime()
-      triggerTime += 3000
-      systemTimer.startTimer(timerId, triggerTime)
-      systemTimer.stopTimer(timerId, (error) => {
-          if (error) {
-              console.error(`Failed to stop timer. Cause:` + JSON.stringify(error));
-              return;
-          }
-      });
-  }
+    async systemTimer () {
+        let options = {
+            type: systemTimer.TIMER_TYPE_REALTIME,
+            repeat:false
+        }
+        let timerId = await systemTimer.createTimer(options)
+        let triggerTime = new Date().getTime()
+        triggerTime += 3000
+        systemTimer.startTimer(timerId, triggerTime)
+        try {
+            systemTimer.stopTimer(timerId, (error) => {
+                if (error) {
+                    console.info(`Failed to stop timer. message:${error.message}, code:${error.code}`);
+                    return;
+                }
+                console.info(`Succeeded in stopping timer.`);
+            });
+        } catch(e) {
+            console.info(`Failed to stop timer. message:${e.message}, code:${e.code}`);
+        }
+	}
 }
 ```
 
@@ -238,6 +270,8 @@ export default {
 stopTimer(timer: number): Promise&lt;void&gt;
 
 停止定时器，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -257,21 +291,25 @@ stopTimer(timer: number): Promise&lt;void&gt;
 
 ```js
 export default {
-  async systemTimer (){
-      let options = {
-          type: systemTimer.TIMER_TYPE_REALTIME,
-          repeat:false
-      }
-      let timerId = await systemTimer.createTimer(options)
-  	  let triggerTime = new Date().getTime()
-      triggerTime += 3000
-      systemTimer.startTimer(timerId, triggerTime)
-      systemTimer.stopTimer(timerId).then((data) => {
-          console.log(`Succeeded in stopping timer. Data:` + JSON.stringify(data));
-      }).catch((error) => {
-          console.error(`Failed to stop timer. Cause:` + JSON.stringify(error));
-      });
-  }
+    async systemTimer (){
+        let options = {
+            type: systemTimer.TIMER_TYPE_REALTIME,
+            repeat:false
+        }
+        let timerId = await systemTimer.createTimer(options)
+        let triggerTime = new Date().getTime()
+        triggerTime += 3000
+        systemTimer.startTimer(timerId, triggerTime)
+        try {
+            systemTimer.stopTimer(timerId).then(() => {
+                console.info(`Succeeded in stopping timer.`);
+            }).catch((error) => {
+                console.info(`Failed to stop timer. message:${error.message}, code:${error.code}`);
+            });
+        } catch(e) {
+            console.info(`Failed to stop timer. message:${e.message}, code:${e.code}`);
+        }
+    }
 }
 ```
 
@@ -280,6 +318,8 @@ export default {
 destroyTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
 销毁定时器，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -304,12 +344,17 @@ export default {
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime)
         systemTimer.stopTimer(timerId)
-        systemTimer.destroyTimer(timerId, (error) => {
-            if (error) {
-                console.error(`Failed to destroy timer. Cause:` + JSON.stringify(error));
-                return;
-            }
-        });
+        try {
+            systemTimer.destroyTimer(timerId, (error) => {
+                if (error) {
+                    console.info(`Failed to destroy timer. message:${error.message}, code:${error.code}`);
+                    return;
+                }
+                console.info(`Succeeded in destroying timer.`);
+        	});
+        } catch(e) {
+            console.info(`Failed to destroying timer. message:${e.message}, code:${e.code}`);
+        }
     }
 }
 ```
@@ -319,6 +364,8 @@ export default {
 destroyTimer(timer: number): Promise&lt;void&gt;
 
 销毁定时器，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -348,11 +395,15 @@ export default {
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime)
         systemTimer.stopTimer(timerId)
-        systemTimer.destroyTimer(timerId).then((data) => {
-            console.log(`Succeeded in destroying timer. Data:` + JSON.stringify(data));
-        }).catch((error) => {
-            console.error(`Failed to destroy timer. Cause:` + JSON.stringify(error));
-        });
+        try {
+            systemTimer.destroyTimer(timerId).then(() => {
+            	 console.info(`Succeeded in destroying timer.`);
+            }).catch((error) => {
+                console.info(`Failed to destroy timer. message:${error.message}, code:${error.code}`);
+            });
+        } catch(e) {
+            console.info(`Failed to destroying timer. message:${e.message}, code:${e.code}`);
+        }
     }
 }
 ```
