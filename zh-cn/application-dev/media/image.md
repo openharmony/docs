@@ -19,112 +19,111 @@ const color = new ArrayBuffer(96); // 用于存放图像像素数据
 let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 2, width: 3 } } // 图像像素数据
 
 // 创建pixelmap对象
-const color = new ArrayBuffer(96);
-let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 2, width: 3 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
     console.log('Succeeded in creating pixelmap.');
-})
 
-// 用于读像素
-const area = {
-    pixels: new ArrayBuffer(8),
-    offset: 0,
-    stride: 8,
-    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-}
-pixelmap.readPixels(area,() => {
-    var bufferArr = new Uint8Array(area.pixels);
-    var res = true;
-    for (var i = 0; i < bufferArr.length; i++) {
-        console.info(' buffer ' + bufferArr[i]);
-        if(res) {
-            if(bufferArr[i] == 0) {
-                res = false;
-                console.log('readPixels end.');
-                break;
-            }
-        }
+    // 用于读像素
+    const area = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     }
-})
- 
-// 用于存像素
-const readBuffer = new ArrayBuffer(96);
-pixelmap.readPixelsToBuffer(readBuffer,() => {
-    var bufferArr = new Uint8Array(readBuffer);
-    var res = true;
-    for (var i = 0; i < bufferArr.length; i++) {
-        if(res) {
-            if (bufferArr[i] !== 0) {
-                res = false;
-                console.log('readPixelsToBuffer end.');
-                break;
-            }
-        }
-    }
-})
-    
-// 用于写像素
-pixelmap.writePixels(area,() => {
-    const readArea = { pixels: new ArrayBuffer(20), offset: 0, stride: 8, region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
-    pixelmap.readPixels(readArea,() => {
-        var readArr = new Uint8Array(readArea.pixels);
+    pixelmap.readPixels(area,() => {
+        var bufferArr = new Uint8Array(area.pixels);
         var res = true;
-        for (var i = 0; i < readArr.length; i++) {
+        for (var i = 0; i < bufferArr.length; i++) {
+            console.info(' buffer ' + bufferArr[i]);
             if(res) {
-                if (readArr[i] !== 0) {
+                if(bufferArr[i] == 0) {
                     res = false;
-                    console.log('readPixels end.please check buffer');
+                    console.log('readPixels end.');
                     break;
                 }
             }
         }
     })
-})
-  
-// 用于写像素到缓冲区
-pixelmap.writeBufferToPixels(writeColor).then(() => {
+ 
+    // 用于存像素
     const readBuffer = new ArrayBuffer(96);
-    pixelmap.readPixelsToBuffer(readBuffer).then (() => {
+    pixelmap.readPixelsToBuffer(readBuffer,() => {
         var bufferArr = new Uint8Array(readBuffer);
         var res = true;
         for (var i = 0; i < bufferArr.length; i++) {
             if(res) {
-                if (bufferArr[i] !== i) {
+                if (bufferArr[i] !== 0) {
                     res = false;
-                    console.log('readPixels end.please check buffer');
+                    console.log('readPixelsToBuffer end.');
                     break;
                 }
             }
         }
     })
-})
+    
+    // 用于写像素
+    pixelmap.writePixels(area,() => {
+        const readArea = { pixels: new ArrayBuffer(20), offset: 0, stride: 8, region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
+        pixelmap.readPixels(readArea,() => {
+            var readArr = new Uint8Array(readArea.pixels);
+            var res = true;
+            for (var i = 0; i < readArr.length; i++) {
+                if(res) {
+                    if (readArr[i] !== 0) {
+                        res = false;
+                        console.log('readPixels end.please check buffer');
+                        break;
+                    }
+                }
+            }
+        })
+    })
 
-// 用于获取图片信息
-pixelmap.getImageInfo((error, imageInfo) => {
-    if (imageInfo !== null) {
-	    console.log('Succeeded in getting imageInfo');
-    } 
-})
+    const writeColor = new ArrayBuffer(96); //图像像素数据
+    // 用于写像素到缓冲区
+    pixelmap.writeBufferToPixels(writeColor).then(() => {
+        const readBuffer = new ArrayBuffer(96);
+        pixelmap.readPixelsToBuffer(readBuffer).then (() => {
+            var bufferArr = new Uint8Array(readBuffer);
+            var res = true;
+            for (var i = 0; i < bufferArr.length; i++) {
+                if(res) {
+                    if (bufferArr[i] !== i) {
+                        res = false;
+                        console.log('readPixels end.please check buffer');
+                        break;
+                    }
+                }
+            }
+        })
+    })
 
-// 用于释放pixelmap
-pixelmap.release(()=>{
-    console.log('Succeeded in releasing pixelmap');
+    // 用于获取图片信息
+    pixelmap.getImageInfo((error, imageInfo) => {
+        if (imageInfo !== null) {
+            console.log('Succeeded in getting imageInfo');
+        } 
+    })
+
+    // 用于释放pixelmap
+    pixelmap.release(()=>{
+        console.log('Succeeded in releasing pixelmap');
+    })
 })
 
 // 用于创建imagesource(uri)
 let path = '/data/local/tmp/test.jpg';
-const imageSourceApi = image.createImageSource(path);
+const imageSourceApi1 = image.createImageSource(path);
 
 // 用于创建imagesource(fd)
 let fd = 29;
-const imageSourceApi = image.createImageSource(fd);
+const imageSourceApi2 = image.createImageSource(fd);
 
 // 用于创建imagesource(data)
 const data = new ArrayBuffer(96);
-const imageSourceApi = image.createImageSource(data);
+const imageSourceApi3 = image.createImageSource(data);
 
 // 用于释放imagesource
-imageSourceApi.release(() => {
+imageSourceApi3.release(() => {
     console.log('Succeeded in releasing imagesource');
 })
     
@@ -167,30 +166,22 @@ imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
 // 用于promise创建pixelmap
 imageSourceApi.createPixelMap().then(pixelmap => {
     console.log('Succeeded in creating pixelmap.');
-})
 
-// 函数调用发生异常时，捕捉错误信息
-catch(error => {
+    // 用于获取像素每行字节数
+    var num = pixelmap.getBytesNumberPerRow();
+
+    // 用于获取像素总字节数
+    var pixelSize = pixelmap.getPixelBytesNumber();
+
+    // 用于获取pixelmap信息
+    pixelmap.getImageInfo().then( imageInfo => {});
+
+    // 用于释放pixelmap
+    pixelmap.release(()=>{
+        console.log('Succeeded in releasing pixelmap');
+    })
+}).catch(error => {
     console.log('Failed in creating pixelmap.' + error);
-})
-
-// 用于获取像素每行字节数
-var num = pixelmap.getBytesNumberPerRow();
-
-// 用于获取像素总字节数
-var pixelSize = pixelmap.getPixelBytesNumber();
-
-// 用于获取pixelmap信息
-pixelmap.getImageInfo().then( imageInfo => {});
-
-// 用于释放pixelmap
-pixelmap.release(()=>{
-    console.log('Succeeded in releasing pixelmap');
-})    
-
-// 用于捕捉释放失败信息
-catch(error => {
-    console.log('Failed in releasing pixelmap.' + error);
 })
 ```
 
@@ -216,7 +207,7 @@ if (imagePackerApi == null) {
 }
 
 // 如果创建imagepacker成功，则设置编码参数
-let packOpts = { format:["image/jpeg"], // 支持编码的格式为jpg
+let packOpts = { format:"image/jpeg", // 支持编码的格式为jpg
                  quality:98 } // 图片质量0-100
 
 // 用于编码
@@ -233,8 +224,9 @@ imageSourceApi.getImageInfo((err, imageInfo) => {
     console.log('Succeeded in getting imageInfo');
 })
 
+const array = new ArrayBuffer(100); //增量数据
 // 用于更新增量数据
-imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error, data)=> {})
+imageSourceApi.updateData(array, false, 0, 10,(error, data)=> {})
 
 ```
 
