@@ -21,6 +21,11 @@ let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: {
 // 创建pixelmap对象
 image.createPixelMap(color, opts, (err, pixelmap) => {
     console.log('Succeeded in creating pixelmap.');
+    // 创建pixelmap对象失败
+    if (err) {
+        console.info('create pixelmap failed, err' + err);
+        return
+    }
 
     // 用于读像素
     const area = {
@@ -30,9 +35,9 @@ image.createPixelMap(color, opts, (err, pixelmap) => {
         region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     }
     pixelmap.readPixels(area,() => {
-        var bufferArr = new Uint8Array(area.pixels);
-        var res = true;
-        for (var i = 0; i < bufferArr.length; i++) {
+        let bufferArr = new Uint8Array(area.pixels);
+        let res = true;
+        for (let i = 0; i < bufferArr.length; i++) {
             console.info(' buffer ' + bufferArr[i]);
             if(res) {
                 if(bufferArr[i] == 0) {
@@ -47,9 +52,9 @@ image.createPixelMap(color, opts, (err, pixelmap) => {
     // 用于存像素
     const readBuffer = new ArrayBuffer(96);
     pixelmap.readPixelsToBuffer(readBuffer,() => {
-        var bufferArr = new Uint8Array(readBuffer);
-        var res = true;
-        for (var i = 0; i < bufferArr.length; i++) {
+        let bufferArr = new Uint8Array(readBuffer);
+        let res = true;
+        for (let i = 0; i < bufferArr.length; i++) {
             if(res) {
                 if (bufferArr[i] !== 0) {
                     res = false;
@@ -64,9 +69,9 @@ image.createPixelMap(color, opts, (err, pixelmap) => {
     pixelmap.writePixels(area,() => {
         const readArea = { pixels: new ArrayBuffer(20), offset: 0, stride: 8, region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
         pixelmap.readPixels(readArea,() => {
-            var readArr = new Uint8Array(readArea.pixels);
-            var res = true;
-            for (var i = 0; i < readArr.length; i++) {
+            let readArr = new Uint8Array(readArea.pixels);
+            let res = true;
+            for (let i = 0; i < readArr.length; i++) {
                 if(res) {
                     if (readArr[i] !== 0) {
                         res = false;
@@ -83,9 +88,9 @@ image.createPixelMap(color, opts, (err, pixelmap) => {
     pixelmap.writeBufferToPixels(writeColor).then(() => {
         const readBuffer = new ArrayBuffer(96);
         pixelmap.readPixelsToBuffer(readBuffer).then (() => {
-            var bufferArr = new Uint8Array(readBuffer);
-            var res = true;
-            for (var i = 0; i < bufferArr.length; i++) {
+            let bufferArr = new Uint8Array(readBuffer);
+            let res = true;
+            for (let i = 0; i < bufferArr.length; i++) {
                 if(res) {
                     if (bufferArr[i] !== i) {
                         res = false;
@@ -98,7 +103,12 @@ image.createPixelMap(color, opts, (err, pixelmap) => {
     })
 
     // 用于获取图片信息
-    pixelmap.getImageInfo((error, imageInfo) => {
+    pixelmap.getImageInfo((err, imageInfo) => {
+        // 获取图片信息失败
+        if (err || imageInfo == null) {
+            console.info('getImageInfo failed, err' + err);
+            return
+        }
         if (imageInfo !== null) {
             console.log('Succeeded in getting imageInfo');
         } 
@@ -132,6 +142,10 @@ const imagePackerApi = image.createImagePacker();
 const imageSourceApi = image.createImageSource(0);
 let packOpts = { format:"image/jpeg", quality:98 };
 imagePackerApi.packing(imageSourceApi, packOpts, (err, data) => {
+    if (err) {
+        console.info('packing from imagePackerApi failed, err' + err);
+        return
+    }
     console.log('Succeeded in packing');
 })
  
@@ -160,6 +174,11 @@ let decodingOptions = {
     
 // 用于回调方式创建pixelmap
 imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
+    // 创建pixelmap对象失败
+    if (err) {
+        console.info('create pixelmap failed, err' + err);
+        return
+    }
     console.log('Succeeded in creating pixelmap.');
 })
 
@@ -168,10 +187,10 @@ imageSourceApi.createPixelMap().then(pixelmap => {
     console.log('Succeeded in creating pixelmap.');
 
     // 用于获取像素每行字节数
-    var num = pixelmap.getBytesNumberPerRow();
+    let num = pixelmap.getBytesNumberPerRow();
 
     // 用于获取像素总字节数
-    var pixelSize = pixelmap.getPixelBytesNumber();
+    let pixelSize = pixelmap.getPixelBytesNumber();
 
     // 用于获取pixelmap信息
     pixelmap.getImageInfo().then( imageInfo => {});
@@ -238,10 +257,15 @@ imageSourceApi.updateData(array, false, 0, 10,(error, data)=> {})
 public async init(surfaceId: any) {
 
     // 服务端代码，创建ImageReceiver
-    var receiver = image.createImageReceiver(8 * 1024, 8, image.ImageFormat.JPEG, 1);
+    let receiver = image.createImageReceiver(8 * 1024, 8, image.ImageFormat.JPEG, 1);
 
     // 获取Surface ID
     receiver.getReceivingSurfaceId((err, surfaceId) => {
+    // 获取Surface ID失败
+        if (err) {
+            console.info('getReceivingSurfaceId failed, err' + err);
+            return
+        }
         console.info("receiver getReceivingSurfaceId success");
     });
     // 注册Surface的监听，在surface的buffer准备好后触发
