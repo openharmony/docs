@@ -374,6 +374,20 @@ promise.then(()=>{
 | --------------------- | ---- | ------------------ |
 | SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。 |
 
+## ConflictResolution<sup>10+</sup>
+
+插入和修改接口的冲突解决方式。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称                 | 值   | 说明                                                         |
+| -------------------- | ---- | ------------------------------------------------------------ |
+| ON_CONFLICT_ROLLBACK | 1    | 表示当冲突发生时，中止SQL语句并回滚当前事务。                |
+| ON_CONFLICT_ABORT    | 2    | 表示当冲突发生时，中止当前SQL语句，并撤销当前 SQL 语句所做的任何更改，但是由同一事务中先前的 SQL 语句引起的更改被保留并且事务保持活动状态。 |
+| ON_CONFLICT_FAIL     | 3    | 表示当冲突发生时，中止当前 SQL 语句。但它不会撤销失败的 SQL 语句的先前更改，也不会结束事务。 |
+| ON_CONFLICT_IGNORE   | 4    | 表示当冲突发生时，跳过包含违反约束的行并继续处理 SQL 语句的后续行。 |
+| ON_CONFLICT_REPLACE  | 5    | 表示当冲突发生时，在插入或更新当前行之前删除导致约束违例的预先存在的行，并且命令会继续正常执行。 |
+
 ## RdbPredicates<sup>9+</sup>
 
 表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。
@@ -1251,6 +1265,41 @@ rdbStore.insert("EMPLOYEE", valueBucket, function (status, rowId) {
 })
 ```
 
+### insert<sup>10+</sup>
+
+insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callback: AsyncCallback&lt;number&gt;):void
+
+向目标表中插入一行数据，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                        | 必填 | 说明                                                       |
+| -------- | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| table    | string                                      | 是   | 指定的目标表名。                                           |
+| values   | [ValuesBucket](#valuesbucket)               | 是   | 表示要插入到表中的数据行。                                 |
+| conflict | [ConflictResolution](#conflictResolution10) | 是   | 指定冲突解决方式。                                         |
+| callback | AsyncCallback&lt;number&gt;                 | 是   | 指定callback回调函数。如果操作成功，返回行ID；否则返回-1。 |
+
+**示例：**
+
+```js
+const valueBucket = {
+    "NAME": "Lisa",
+    "AGE": 18,
+    "SALARY": 100.5,
+    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+}
+rdbStore.insert("EMPLOYEE", valueBucket, data_rdb.ConflictResolution.ON_CONFLICT_REPLACE, function (status, rowId) {
+    if (status) {
+        console.log("Insert is failed");
+        return;
+    }
+    console.log("Insert is successful, rowId = " + rowId);
+})
+```
+
 ### insert<sup>9+</sup>
 
 insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
@@ -1282,6 +1331,45 @@ const valueBucket = {
     "CODES": new Uint8Array([1, 2, 3, 4, 5]),
 }
 let promise = rdbStore.insert("EMPLOYEE", valueBucket)
+promise.then((rowId) => {
+    console.log("Insert is successful, rowId = " + rowId);
+}).catch((status) => {
+    console.log("Insert is failed");
+})
+```
+
+### insert<sup>10+</sup>
+
+insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promise&lt;number&gt;
+
+向目标表中插入一行数据，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                        | 必填 | 说明                       |
+| -------- | ------------------------------------------- | ---- | -------------------------- |
+| table    | string                                      | 是   | 指定的目标表名。           |
+| values   | [ValuesBucket](#valuesbucket)               | 是   | 表示要插入到表中的数据行。 |
+| conflict | [ConflictResolution](#conflictResolution10) | 是   | 指定冲突解决方式。         |
+
+**返回值**：
+
+| 类型                  | 说明                                              |
+| --------------------- | ------------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象。如果操作成功，返回行ID；否则返回-1。 |
+
+**示例：**
+
+```js
+const valueBucket = {
+    "NAME": "Lisa",
+    "AGE": 18,
+    "SALARY": 100.5,
+    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+}
+let promise = rdbStore.insert("EMPLOYEE", valueBucket, data_rdb.ConflictResolution.ON_CONFLICT_REPLACE)
 promise.then((rowId) => {
     console.log("Insert is successful, rowId = " + rowId);
 }).catch((status) => {
@@ -1425,6 +1513,43 @@ rdbStore.update(valueBucket, predicates, function (err, ret) {
 })
 ```
 
+### update<sup>10+</sup>
+
+update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolution, callback: AsyncCallback&lt;number&gt;):void
+
+根据RdbPredicates的指定实例对象更新数据库中的数据，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名     | 类型                                        | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| values     | [ValuesBucket](#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
+| predicates | [RdbPredicates](#rdbpredicates9)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
+| conflict   | [ConflictResolution](#conflictResolution10) | 是   | 指定冲突解决方式。                                           |
+| callback   | AsyncCallback&lt;number&gt;                 | 是   | 指定的callback回调方法。返回受影响的行数。                   |
+
+**示例：**
+
+```js
+const valueBucket = {
+    "NAME": "Rose",
+    "AGE": 22,
+    "SALARY": 200.5,
+    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+}
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "Lisa")
+rdbStore.update(valueBucket, predicates, data_rdb.ConflictResolution.ON_CONFLICT_REPLACE, function (err, ret) {
+    if (err) {
+        console.info("Updated failed, err: " + err)
+        return
+    }
+    console.log("Updated row count: " + ret)
+})
+```
+
 ### update<sup>9+</sup>
 
 update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
@@ -1458,6 +1583,47 @@ const valueBucket = {
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
 let promise = rdbStore.update(valueBucket, predicates)
+promise.then(async (ret) => {
+    console.log("Updated row count: " + ret)
+}).catch((err) => {
+    console.info("Updated failed, err: " + err)
+})
+```
+
+### update<sup>10+</sup>
+
+update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolution):Promise&lt;number&gt;
+
+根据RdbPredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名     | 类型                                        | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| values     | [ValuesBucket](#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
+| predicates | [RdbPredicates](#rdbpredicates9)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
+| conflict   | [ConflictResolution](#conflictResolution10) | 是   | 指定冲突解决方式。                                           |
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| Promise&lt;number&gt; | 指定的Promise回调方法。返回受影响的行数。 |
+
+**示例：**
+
+```js
+const valueBucket = {
+    "NAME": "Rose",
+    "AGE": 22,
+    "SALARY": 200.5,
+    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+}
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "Lisa")
+let promise = rdbStore.update(valueBucket, predicates, data_rdb.ConflictResolution.ON_CONFLICT_REPLACE)
 promise.then(async (ret) => {
     console.log("Updated row count: " + ret)
 }).catch((err) => {
