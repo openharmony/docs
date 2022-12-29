@@ -21,6 +21,11 @@ let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: {
 // 创建pixelmap对象
 image.createPixelMap(color, opts, (err, pixelmap) => {
     console.log('Succeeded in creating pixelmap.');
+    // 创建pixelmap对象失败
+    if (err) {
+        console.info('create pixelmap failed, err' + err);
+        return
+    }
 
     // 用于读像素
     const area = {
@@ -98,7 +103,12 @@ image.createPixelMap(color, opts, (err, pixelmap) => {
     })
 
     // 用于获取图片信息
-    pixelmap.getImageInfo((error, imageInfo) => {
+    pixelmap.getImageInfo((err, imageInfo) => {
+        // 获取图片信息失败
+        if (err || imageInfo == null) {
+            console.info('getImageInfo failed, err' + err);
+            return
+        }
         if (imageInfo !== null) {
             console.log('Succeeded in getting imageInfo');
         } 
@@ -132,6 +142,10 @@ const imagePackerApi = image.createImagePacker();
 const imageSourceApi = image.createImageSource(0);
 let packOpts = { format:"image/jpeg", quality:98 };
 imagePackerApi.packing(imageSourceApi, packOpts, (err, data) => {
+    if (err) {
+        console.info('packing from imagePackerApi failed, err' + err);
+        return
+    }
     console.log('Succeeded in packing');
 })
  
@@ -160,6 +174,11 @@ let decodingOptions = {
     
 // 用于回调方式创建pixelmap
 imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
+    // 创建pixelmap对象失败
+    if (err) {
+        console.info('create pixelmap failed, err' + err);
+        return
+    }
     console.log('Succeeded in creating pixelmap.');
 })
 
@@ -242,6 +261,11 @@ public async init(surfaceId: any) {
 
     // 获取Surface ID
     receiver.getReceivingSurfaceId((err, surfaceId) => {
+    // 获取Surface ID失败
+        if (err) {
+            console.info('getReceivingSurfaceId failed, err' + err);
+            return
+        }
         console.info("receiver getReceivingSurfaceId success");
     });
     // 注册Surface的监听，在surface的buffer准备好后触发
