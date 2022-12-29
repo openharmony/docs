@@ -16,12 +16,12 @@ The following table describes APIs available for mutual conversion between coord
 
 | API | Description | 
 | -------- | -------- |
-| isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;) : void | 判断（逆）地理编码服务状态，使用callback回调异步返回结果。 | 
-| isGeoServiceAvailable() : Promise&lt;boolean&gt; | 判断（逆）地理编码服务状态，使用Promise方式异步返回结果。 | 
-| getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;) : void | 调用逆地理编码服务，将坐标转换为地理描述，使用callback回调异步返回结果。 | 
-| getAddressesFromLocation(request: ReverseGeoCodeRequest) : Promise&lt;Array&lt;GeoAddress&gt;&gt; | 调用逆地理编码服务，将坐标转换为地理描述，使用Promise方式异步返回结果。 | 
-| getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;) : void | 调用地理编码服务，将地理描述转换为具体坐标，使用callback回调异步返回结果。 | 
-| getAddressesFromLocationName(request: GeoCodeRequest) : Promise&lt;Array&lt;GeoAddress&gt;&gt; | 调用地理编码服务，将地理描述转换为具体坐标，使用Promise方式异步返回结果。 | 
+| isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;) : void | Checks whether the (reverse) geocoding service is available. This API uses an asynchronous callback to return the result.| 
+| isGeoServiceAvailable() : Promise&lt;boolean&gt; | Checks whether the (reverse) geocoding service is available. This API uses a promise to return the result.| 
+| getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;) : void | Converts coordinates into geographic description through reverse geocoding. This API uses an asynchronous callback to return the result. | 
+| getAddressesFromLocation(request: ReverseGeoCodeRequest) : Promise&lt;Array&lt;GeoAddress&gt;&gt; | Converts coordinates into geographic description through reverse geocoding. This API uses a promise to return the result. | 
+| getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;) : void | Converts geographic description into coordinates through geocoding. This API uses an asynchronous callback to return the result. | 
+| getAddressesFromLocationName(request: GeoCodeRequest) : Promise&lt;Array&lt;GeoAddress&gt;&gt; | Converts geographic description into coordinates through geocoding. This API uses a promise to return the result. | 
 
 
 ## How to Develop
