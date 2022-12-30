@@ -3,7 +3,7 @@
 
 ## HDF Configuration Overview
 
-HDF Configuration Source (HCS) is the source code that describes the HDF configuration in key-value pairs. It decouples the configuration code from driver code, simplifying configuration management.
+HDF Configuration Source (HCS) provides the source code that describes the HDF configuration in key-value pairs. It decouples the configuration code from driver code, thereby facilitating configuration management.
 
 HDF Configuration Generator (HC-GEN) is a tool for converting an HDF configuration file into a file that can be read by the software.
 
@@ -31,24 +31,24 @@ The table below describes the keywords used in the HCS syntax.
 
   **Table 1** Keywords used in HCS syntax
 
-| Keyword| Description| Remarks| 
+| Keyword| Description| Remarks|
 | -------- | -------- | -------- |
-| root | Sets the root node.| - | 
-| include | References other HCS files.| - | 
-| delete | Deletes a node or an attribute.| Applicable only to the configuration tree referenced by **include**.| 
-| template | Defines a template node.| - | 
-| match_attr | Marks the node attribute for matching.| During configuration parsing, the attribute value can be used to locate the corresponding node.| 
+| root | Sets the root node.| - |
+| include | References other HCS files.| - |
+| delete | Deletes a node or an attribute.| Applicable only to the configuration tree referenced by **include**.|
+| template | Defines a template node.| - |
+| match_attr | Marks the node attribute for matching.| When parsing the configuration, the driver can use the attribute value as a parameter to call an API to locate the node that has this attribute. |
 
 
 ### Basic Structures
 
 The HCS has two structures: attribute and node.
 
-**Attribute**
+Attribute
 
 An attribute is the minimum, independent configuration unit. The syntax is as follows:
 
-  
+
 ```
   attribute_name = value;
 ```
@@ -57,7 +57,7 @@ An attribute is the minimum, independent configuration unit. The syntax is as fo
 
 - The **value** can be in any of the following formats:
 
-  - A binary, octal, decimal, or hexadecimal integer. For details, see the **Data Types** section.
+  - A binary, octal, decimal, or hexadecimal integer. For details, see [Data Types](#data-types).
   - String quoted by double quotation marks ("").
   - Node reference.
 
@@ -67,7 +67,7 @@ An attribute is the minimum, independent configuration unit. The syntax is as fo
 
 A node is a set of attributes. The syntax is as follows:
 
-  
+
 ```
   node_name {
       module = "sample";
@@ -97,7 +97,7 @@ Attributes automatically use built-in data types, including integer, string, arr
 
 - Octal: prefixed with **0**, for example, **0664**.
 
-- Decimal: signed or unsigned, without prefix, for example, **1024** or **+1024**. Negative integers can be read only via signed interfaces.
+- Decimal: signed or unsigned, without prefix, for example, **1024** or **+1024**. Negative integers can be read only via APIs with signed numbers.
 
 - Hexadecimal: prefixed with **0x**, for example, **0xff00** and **0xFF**.
 
@@ -109,13 +109,13 @@ A string is enclosed in double quotation marks ("").
 
 An array can hold either integers or strings, but not a mixture of them. The mixed use of **uint32_t** and **uint64_t** in an integer array will cause typecasting to **uint64**. The following is an example of an integer array and a string array:
 
-  
+
 ```
 attr_foo = [0x01, 0x02, 0x03, 0x04];
 attr_bar = ["hello", "world"];
 ```
 
-**Boolean**
+Boolean
 
 Boolean data type is a form of data with only two possible values: **true** and **false**.
 
@@ -126,7 +126,7 @@ Boolean data type is a form of data with only two possible values: **true** and 
 
 The keyword **include** is used to import other HCS files. The syntax is as follows:
 
-  
+
 ```
 #include "foo.hcs"
 #include "../bar.hcs"
@@ -143,14 +143,14 @@ The following two comment formats are supported:
 
 - Single-line comment
 
-    
+  
   ```
   // comment
   ```
 
 - Multi-line comment
 
-    
+  
   ```
   /*
   comment
@@ -165,13 +165,13 @@ The following two comment formats are supported:
 
 You can reference the content of a node to modify the content of another node. The syntax is as follows:
 
-  
+
 ```
  node :& source_node
 ```
 
 In this statement, the content of **node** is referenced to modify the content of **source_node**. 
-  
+
 Example:
 ```
 root {
@@ -196,7 +196,7 @@ root {
 
 The configuration tree generated is as follows:
 
-  
+
 ```
 root {
     module = "sample";
@@ -222,7 +222,7 @@ In this example, the value of **bar.attr** is changed to **foo** by referencing 
 
 You can replicate a node to define a node with similar content. The syntax is as follows:
 
-  
+
 ```
  node : source_node
 ```
@@ -230,7 +230,7 @@ You can replicate a node to define a node with similar content. The syntax is as
 This statement replicates the attributes of the **source_node** node to define **node**. 
 
 Example:
-  
+
 ```
 root {
 	module = "sample";
@@ -245,7 +245,7 @@ root {
 
 The configuration tree generated is as follows:
 
-  
+
 ```
 root {
     module = "sample";
@@ -269,7 +269,7 @@ You do not need to specify the path of the **foo** node if the **foo** node and 
 You can use the keyword **delete** to delete unnecessary nodes or attributes from the base configuration tree imported by using the **include** keyword. The following example includes the configuration in **sample2.hcs** to **sample1.hcs** and deletes the **attribute2** attribute and the **foo_2** node. 
 
 Example:
-  
+
 ```
 // sample2.hcs
 root {
@@ -291,7 +291,7 @@ root {
 
 The configuration tree generated is as follows:
 
-  
+
 ```
 root {
     attr_1 = 0x1;
@@ -306,7 +306,7 @@ root {
 
 You can associate an attribute and a node so that the node can be quickly located when the attribute is read during configuration parsing. The syntax is as follows:
 
-  
+
 ```
  attribute = &node;
 ```
@@ -314,7 +314,7 @@ You can associate an attribute and a node so that the node can be quickly locate
 In this statement, the value of **attribute** is a referenced to the node. During code parsing, you can quickly locate the node based on this **attribute**. 
 
 Example:
-  
+
 ```
 node1 {
     attributes;
@@ -324,9 +324,9 @@ node2 {
 }
 ```
 
-or
+Or
 
-  
+
 ```
 node2 {
     node1 {
@@ -344,7 +344,7 @@ The template is used to generate nodes with consistent syntax, thereby facilitat
 If a node is defined using the keyword **template**, its child nodes inherit from the node configuration through the double colon operator (::). The child nodes can modify or add but cannot delete attributes in **template**. The attributes not defined in the child nodes will use the attributes defined in **template** as the default values.
 
 Example:
-  
+
 ```
 root {
     module = "sample";
@@ -364,7 +364,7 @@ root {
 
 The configuration tree generated is as follows:
 
-  
+
 ```
 root {
     module = "sample";
@@ -382,7 +382,7 @@ root {
 In this example, the **bar** and **bar_1** nodes inherit from the **foo** node. The structure of the generated configuration tree is the same as that of the **foo** node, except that the attribute values are different.
 
 
-## **Configuration Generation**
+## Configuration Generation
 
 The HC-GEN tool checks the HCS configuration syntax and converts HCS source files into HCB files.
 
@@ -391,7 +391,7 @@ The HC-GEN tool checks the HCS configuration syntax and converts HCS source file
 
 HC-GEN options:
 
-  
+
 ```
 Usage: hc-gen [Options] [File]
 options:
@@ -410,28 +410,28 @@ options:
 
 Generate a .c or .h configuration file.
 
-  
+
 ```
 hc-gen -o [OutputCFileName] -t [SourceHcsFileName]
 ```
 
 Generate an HCB file.
 
-  
+
 ```
 hc-gen -o [OutputHcbFileName] -b [SourceHcsFileName]
 ```
 
 Generate a macro definition file.
 
-  
+
 ```
 hc-gen -o [OutputMacroFileName] -m [SourceHcsFileName]
 ```
 
 Decompile an HCB file to an HCS file.
 
-  
+
 ```
 hc-gen -o [OutputHcsFileName] -d [SourceHcbFileName]
 ```
