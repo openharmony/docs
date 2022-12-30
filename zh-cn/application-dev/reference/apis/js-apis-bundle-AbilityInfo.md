@@ -18,8 +18,8 @@ Ability信息，未做特殊说明的属性，均通过[bundle.getAbilityInfo](j
 | label                 | string                                                       | 是   | 否   | Ability对用户显示的名称。                                    |
 | description           | string                                                       | 是   | 否   | Ability的描述。                                              |
 | icon                  | string                                                       | 是   | 否   | Ability的图标资源文件索引。                                  |
-| descriptionId         | number                                                       | 是   | 否   | Ability的描述id。                                            |
-| iconId                | number                                                       | 是   | 否   | Ability的图标id。                                            |
+| descriptionId         | number                                                       | 是   | 否   | Ability的描述的资源id值。                                            |
+| iconId                | number                                                       | 是   | 否   | Ability的图标的资源id值。                                            |
 | moduleName            | string                                                       | 是   | 否   | Ability所属的HAP的名称。                                     |
 | process               | string                                                       | 是   | 否   | Ability的进程，如果不设置，默认为包的名称。                  |
 | targetAbility         | string                                                       | 是   | 否   | 当前Ability重用的目标Ability。<br />此属性仅可在FA模型下使用。 |
@@ -36,7 +36,7 @@ Ability信息，未做特殊说明的属性，均通过[bundle.getAbilityInfo](j
 | writePermission       | string                                                       | 是   | 否   | 向Ability写数据所需的权限。<br />此属性仅可在FA模型下使用。  |
 | applicationInfo       | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md)         | 是   | 否   | 应用程序的配置信息。<br />通过调用[bundle.getAbilityInfo](js-apis-Bundle.md#bundlegetabilityinfodeprecated)接口时，传入GET_ABILITY_INFO_WITH_APPLICATION获取。 |
 | uri                   | string                                                       | 是   | 否   | 获取Ability的统一资源标识符（URI）。<br />此属性仅可在FA模型下使用。 |
-| labelId               | number                                                       | 是   | 否   | Ability的标签id。                                            |
+| labelId               | number                                                       | 是   | 否   | Ability的标签的资源id值。                                            |
 | subType               | AbilitySubType                                               | 是   | 否   | Ability中枚举使用的模板的子类型。<br />此属性仅可在FA模型下使用。 |
 | metadata<sup>8+</sup> | Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)>     | 是   | 否   | ability的元信息。<br />通过调用[bundle.getAbilityInfo](js-apis-Bundle.md#bundlegetabilityinfodeprecated)接口时，传入GET_ABILITY_INFO_WITH_METADATA获取。 |
 | enabled<sup>8+</sup>  | boolean                                                      | 是   | 否   | ability是否可用。                                            |
