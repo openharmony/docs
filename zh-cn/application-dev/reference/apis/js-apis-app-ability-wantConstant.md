@@ -14,7 +14,7 @@ import wantConstant from '@ohos.app.ability.wantConstant';
 
 ## wantConstant.Action
 
-want操作的常数。
+want操作的常数。用于表示要执行的通用操作。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
@@ -56,7 +56,7 @@ want操作的常数。
 
 ## wantConstant.Entity
 
-want实体的常数。
+want实体的常数。用于表示目标Ability额外的类别信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
@@ -71,7 +71,7 @@ want实体的常数。
 
 ## wantConstant.Flags
 
-Flags说明。
+Flags说明。用于表示处理Want的方式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
