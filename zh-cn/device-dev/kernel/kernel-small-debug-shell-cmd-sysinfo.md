@@ -13,12 +13,12 @@ systeminfo
 
 ## 参数说明
 
-无。
+无
 
 
 ## 使用指南
 
-无。
+无
 
 
 ## 使用实例
@@ -28,8 +28,8 @@ systeminfo
 
 ## 输出说明
 
-  **示例：**查看系统资源使用情况
-  
+**示例** 查看系统资源使用情况
+
 ```
 OHOS:/$ systeminfo
    Module    Used      Total     Enabled
@@ -40,16 +40,15 @@ OHOS:/$ systeminfo
    SwTmr     20        1024      YES
 ```
 
-  **表1** 输出说明
+**表1** 输出说明
 
-| 输出 | 说明 | 
-| -------- | -------- |
-| Module | 模块名称。 | 
-| Used | 当前使用量。 | 
-| Total | 最大可用量。 | 
-| Enabled | 模块是否开启。 | 
-| Task | 任务。 | 
-| Sem | 信号量。 | 
-| Mutex | 互斥量。 | 
-| Queue | 队列。 | 
-| SwTmr | 定时器。 | 
+| 输出    | 说明           |
+| ------- | -------------- |
+| Module  | 模块名称。     |
+| Used    | 当前使用量。   |
+| Total   | 最大可用量。   |
+| Enabled | 模块是否开启。 |
+| Task    | 任务。         |
+| Sem     | 信号量。       |
+| Queue   | 队列。         |
+| SwTmr   | 定时器。       |
