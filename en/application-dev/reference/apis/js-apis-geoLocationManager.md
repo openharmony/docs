@@ -30,7 +30,7 @@ If your application needs to access the device location information, it must fir
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION | Success| Location accurate to 5 kilometers|
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION| Success| Location accurate to meters|
 
-If your application needs to access the device location information when running in the background, it must be configured to be able to run in the background and be granted the **ohos.permission.LOCATION_IN_BACKGROUND** permission. In this way, the system continues to report device location information after your application moves to the background.
+If your application needs to access the device location information when running in the background, it must be configured to be able to run in the background and be granted the **ohos.permission.LOCATION\_IN\_BACKGROUND** permission. In this way, the system continues to report device location information after your application moves to the background.
 
 You can declare the required permission in your application's configuration file. For details, see [Access Control (Permission) Development](../../security/accesstoken-guidelines.md).
 
@@ -1615,7 +1615,7 @@ Obtains the current country code.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | Promise&lt;[CountryCode](#countrycode)&gt; | [CountryCode](#countrycode) | NA | Promise used to return the country code.|
+  | Promise&lt;[CountryCode](#countrycode)&gt; | [CountryCode](#countrycode) | NA | Callback used to return the country code.|
 
 **Error codes**
 
@@ -1815,7 +1815,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
 setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): void;
 
-Sets information of the mock reverse geocoding function, including the mapping between a location and geographical name. If the location is contained in the configurations during reverse geocoding query, the corresponding geographical name will be returned.
+Sets information of the mock reverse geocoding function, including the mapping between a location and geographic name. If the location is contained in the configurations during reverse geocoding query, the corresponding geographic name will be returned.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -1825,7 +1825,7 @@ Sets information of the mock reverse geocoding function, including the mapping b
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | mockInfos | Array&lt;[ReverseGeocodingMockInfo](#reversegeocodingmockinfo)&gt; | Yes| Array of information of the mock reverse geocoding function, including a location and a geographical name.|
+  | mockInfos | Array&lt;[ReverseGeocodingMockInfo](#reversegeocodingmockinfo)&gt; | Yes| Array of information of the mock reverse geocoding function, including a location and a geographic name.|
 
 **Error codes**
 
@@ -1874,7 +1874,7 @@ Checks whether a user agrees with the privacy statement of the location service.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | boolean  | boolean | NA | Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
+  | boolean  | boolean | NA | Result indicating whether the user agrees with the privacy statement.|
 
 **Error codes**
 
@@ -1913,7 +1913,7 @@ Sets the user confirmation status for the privacy statement of the location serv
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [LocationPrivacyType](#locationprivacytype) | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when the location service is enabled.|
-  | isConfirmed | boolean | Yes| Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
+  | isConfirmed | boolean | Yes| Whether the user agrees with the privacy statement.|
 
 **Error codes**
 
@@ -1975,7 +1975,7 @@ Defines a reverse geocoding request.
 | -------- | -------- | -------- | -------- | -------- |
 | locale | string | Yes| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
 | latitude | number | Yes| Yes| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude.|
-| longitude | number | Yes| Yes| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude .|
+| longitude | number | Yes| Yes| Longitude information. A positive value indicates east longitude, and a negative value indicates west longitude.|
 | maxItems | number | Yes| Yes| Maximum number of location records to be returned.|
 
 
@@ -2005,7 +2005,7 @@ Defines a geographic location.
 | Name| Type| Readable|Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | latitude | number | Yes| No | Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude.|
-| longitude | number | Yes| No | Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude .|
+| longitude | number | Yes| No | Longitude information. A positive value indicates east longitude, and a negative value indicates west longitude.|
 | locale | string | Yes| No | Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
 | placeName | string | Yes| No | Landmark of the location.|
 | countryCode | string | Yes| No | Country code.|
@@ -2022,7 +2022,7 @@ Defines a geographic location.
 | addressUrl | string | Yes| No| Website URL.|
 | descriptions | Array&lt;string&gt; | Yes| No| Additional descriptions.|
 | descriptionsSize | number | Yes| No| Total number of additional descriptions.|
-| isFromMock | Boolean | Yes| No| Whether the geographical name is from the mock reverse geocoding function.|
+| isFromMock | Boolean | Yes| No| Whether the geographic name is from the mock reverse geocoding function.|
 
 
 ## LocationRequest
@@ -2142,7 +2142,7 @@ Defines a location.
 | Name| Type| Readable|Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | latitude | number| Yes| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude.|
-| longitude | number| Yes| No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude .|
+| longitude | number| Yes| No| Longitude information. A positive value indicates east longitude, and a negative value indicates west longitude.|
 | altitude | number | Yes| No| Location altitude, in meters.|
 | accuracy | number | Yes| No| Location accuracy, in meters.|
 | speed | number | Yes| No|Speed, in m/s.|
@@ -2165,7 +2165,7 @@ Represents information of the mock reverse geocoding function.
 | Name| Type| Readable|Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | location |  [ReverseGeoCodeRequest](#reversegeocoderequest) | Yes| Yes| Latitude and longitude information.|
-| geoAddress |  [GeoAddress](#geoaddress) | Yes| Yes|Geographical name.|
+| geoAddress |  [GeoAddress](#geoaddress) | Yes| Yes|Geographic name.|
 
 
 ## LocationMockConfig
