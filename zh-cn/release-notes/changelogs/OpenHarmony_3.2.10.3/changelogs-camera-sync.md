@@ -1,6 +1,6 @@
 # 媒体子系统 JS API 变更 Changelog
 
-OpenHarmony3.2 Beta4 版本相较于 OpenHarmony3.2 Beta3 版本，媒体子系统 camera 部件 API 变更如下
+OpenHarmony3.2.10.3 相对 OpenHarmony3.2 Beta4 版本，媒体子系统 camera 部件 API 变更如下
 
 ## camera 接口变更
 
