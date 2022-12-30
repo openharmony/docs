@@ -18,9 +18,9 @@ import http from '@ohos.net.http';
 ```js
 import http from '@ohos.net.http';
 
-// Each HttpRequest corresponds to an HttpRequestTask object and cannot be reused.
+// Each httpRequest corresponds to an HTTP request task and cannot be reused.
 let httpRequest = http.createHttp();
-// Subscribe to the HTTP response header, which is returned earlier than httpRequest. Whether to subscribe to the HTTP response header is up to your decision.
+// This API is used to listen for the HTTP Response Header event, which is returned earlier than the result of the HTTP request. It is up to you whether to listen for HTTP Response Header events.
 // on('headerReceive', AsyncCallback) is replaced by on('headersReceive', Callback) since API version 8.
 httpRequest.on('headersReceive', (header) => {
     console.info('header: ' + JSON.stringify(header));
@@ -38,14 +38,18 @@ httpRequest.request(
         extraData: {
             "data": "data to send",
         },
-        connectTimeout: 60000, // Optional. The default value is 60000, in ms.
+        expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
+        usingCache: true, // Optional. The default value is true.
+        priority: 1, // Optional. The default value is 1.
+        connectTimeout: 60000 // Optional. The default value is 60000, in ms.
         readTimeout: 60000, // Optional. The default value is 60000, in ms.
+        usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
     }, (err, data) => {
         if (!err) {
-            // data.result contains the HTTP response. Parse the response based on service requirements.
+            // data.result carries the HTTP response. Parse the response based on service requirements.
             console.info('Result:' + data.result);
             console.info('code:' + data.responseCode);
-            // data.header contains the HTTP response header. Parse the content based on service requirements.
+            // data.header carries the HTTP response header. Parse the content based on service requirements.
             console.info('header:' + JSON.stringify(data.header));
             console.info('cookies:' + data.cookies); // 8+
         } else {
@@ -78,10 +82,9 @@ import http from '@ohos.net.http';
 let httpRequest = http.createHttp();
 ```
 
-
 ## HttpRequest
 
-HTTP request task. Before invoking APIs provided by **HttpRequest**, you must call [createHttp\(\)](#httpcreatehttp) to create an **HttpRequestTask** object.
+Defines an HTTP request task. Before invoking APIs provided by **HttpRequest**, you must call [createHttp\(\)](#httpcreatehttp) to create an **HttpRequestTask** object.
 
 ### request
 
@@ -89,7 +92,7 @@ request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
 
 Initiates an HTTP request to a given URL. This API uses an asynchronous callback to return the result. 
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -121,7 +124,7 @@ request\(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpR
 
 Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -158,14 +161,13 @@ httpRequest.request("EXAMPLE_URL",
 });
 ```
 
-
 ### request
 
 request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 
 Initiates an HTTP request to a given URL. This API uses a promise to return the result. 
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -174,7 +176,7 @@ Initiates an HTTP request to a given URL. This API uses a promise to return the 
 | Name | Type              | Mandatory| Description                                           |
 | ------- | ------------------ | ---- | ----------------------------------------------- |
 | url     | string             | Yes  | URL for initiating an HTTP request.                        |
-| options | HttpRequestOptions | Yes  | Request options. For details, see [HttpRequestOptions](#httprequestoptions).|
+| options | HttpRequestOptions | No  | Request options. For details, see [HttpRequestOptions](#httprequestoptions).|
 
 **Return value**
 
@@ -226,7 +228,7 @@ on\(type: 'headerReceive', callback: AsyncCallback<Object\>\): void
 
 Registers an observer for HTTP Response Header events.
 
->![](public_sys-resources/icon-note.gif) **NOTE**
+>**NOTE**
 >This API has been deprecated. You are advised to use [on\('headersReceive'\)<sup>8+</sup>](#onheadersreceive8) instead.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -250,14 +252,13 @@ httpRequest.on('headerReceive', (err, data) => {
 });
 ```
 
-
 ### off\('headerReceive'\)
 
 off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\): void
 
 Unregisters the observer for HTTP Response Header events.
 
->![](public_sys-resources/icon-note.gif) **NOTE**
+>**NOTE**
 >
 >1. This API has been deprecated. You are advised to use [off\('headersReceive'\)<sup>8+</sup>](#offheadersreceive8) instead.
 >
@@ -301,14 +302,13 @@ httpRequest.on('headersReceive', (header) => {
 });
 ```
 
-
 ### off\('headersReceive'\)<sup>8+</sup>
 
 off\(type: 'headersReceive', callback?: Callback<Object\>\): void
 
 Unregisters the observer for HTTP Response Header events.
 
->![](public_sys-resources/icon-note.gif) **NOTE**
+>**NOTE**
 >You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -358,10 +358,14 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | Name        | Type                                         | Mandatory| Description                                                        |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | No  | Request method.                                                  |
-| extraData      | string \| Object  \| ArrayBuffer<sup>6+</sup> | No  | Additional data of the request.<br>- If the HTTP request uses a POST or PUT method, this parameter serves as the content of the HTTP request.<br>- If the HTTP request uses a GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter is a supplement to the HTTP request parameters and will be added to the URL when the request is sent.<sup>6+</sup><br>- To pass in a string object, you first need to encode the object on your own.<sup>8+</sup> |
+| extraData      | string \| Object  \| ArrayBuffer<sup>6+</sup> | No  | Additional data of the request.<br>- If the HTTP request uses a POST or PUT method, this parameter serves as the content of the HTTP request.<br>- If the HTTP request uses a GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter is a supplement to the HTTP request parameters and will be added to the URL when the request is sent.<sup>6+</sup><br>- To pass in a string object, you first need to encode the object on your own.<sup>6+</sup> |
+| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)   | No  | Type of the return data. If this parameter is set, the system returns the specified type of data preferentially.|
+| usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**.  |
+| priority<sup>9+</sup>        | number                          | No  | Priority. The value range is \[1,1000]. The default value is **1**.                          |
 | header         | Object                                        | No  | HTTP request header. The default value is **{'Content-Type': 'application/json'}**.  |
 | readTimeout    | number                                        | No  | Read timeout duration. The default value is **60000**, in ms.             |
 | connectTimeout | number                                        | No  | Connection timeout interval. The default value is **60000**, in ms.             |
+| usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)   | No  | Protocol. The default value is automatically specified by the system.             |
 
 ## RequestMethod
 
@@ -371,14 +375,14 @@ Defines an HTTP request method.
 
 | Name   | Value     | Description               |
 | :------ | ------- | :------------------ |
-| OPTIONS | OPTIONS | OPTIONS method.|
-| GET     | GET     | GET method.    |
-| HEAD    | HEAD    | HEAD method.   |
-| POST    | POST    | POST method.   |
-| PUT     | PUT     | PUT method.    |
-| DELETE  | DELETE  | DELETE method. |
-| TRACE   | TRACE   | TRACE method.  |
-| CONNECT | CONNECT | CONNECT method.|
+| OPTIONS | "OPTIONS" | OPTIONS method.|
+| GET     | "GET"     | GET method.    |
+| HEAD    | "HEAD"    | HEAD method.   |
+| POST    | "POST"    | POST method.   |
+| PUT     | "PUT"     | PUT method.    |
+| DELETE  | "DELETE"  | DELETE method. |
+| TRACE   | "TRACE"   | TRACE method.  |
+| CONNECT | "CONNECT" | CONNECT method.|
 
 ## ResponseCode
 
@@ -388,7 +392,7 @@ Enumerates the response codes for an HTTP request.
 
 | Name             | Value  | Description                                                        |
 | ----------------- | ---- | ------------------------------------------------------------ |
-| OK                | 200  | Request succeeded. The request has been processed successfully. This return code is generally used for GET and POST requests.                           |
+| OK                | 200  | The request is successful. The request has been processed successfully. This return code is generally used for GET and POST requests.                           |
 | CREATED           | 201  | "Created." The request has been successfully sent and a new resource is created.                          |
 | ACCEPTED          | 202  | "Accepted." The request has been accepted, but the processing has not been completed.                        |
 | NOT_AUTHORITATIVE | 203  | "Non-Authoritative Information." The request is successful.                                      |
@@ -433,17 +437,171 @@ Defines the response to an HTTP request.
 | Name              | Type                                        | Mandatory| Description                                                        |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | result               | string \| Object \| ArrayBuffer<sup>6+</sup> | Yes  | Response content returned based on **Content-type** in the response header:<br>- application/json: a string in JSON format. If you want to use specific content in the response, you need to implement parsing of that content.<br>- application/octet-stream: ArrayBuffer<br>- Others: string|
+| resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | Yes  | Type of the return value.                          |
 | responseCode         | [ResponseCode](#responsecode) \| number      | Yes  | Result code for an HTTP request. If the callback function is successfully executed, a result code defined in [ResponseCode](#responsecode) will be returned. Otherwise, an error code will be returned in the **err** field in **AsyncCallback**. For details, see [Error Codes](#error-codes).|
 | header               | Object                                       | Yes  | Response header. The return value is a string in JSON format. If you want to use specific content in the response, you need to implement parsing of that content. Common fields and parsing methods are as follows:<br>- Content-Type: header['Content-Type'];<br>- Status-Line: header['Status-Line'];<br>- Date: header.Date/header['Date'];<br>- Server: header.Server/header['Server'];|
 | cookies<sup>8+</sup> | Array\<string\>                              | Yes  | Cookies returned by the server.                                      |
+
+## http.createHttpResponseCache<sup>9+</sup>
+
+createHttpResponseCache(cacheSize?: number): HttpResponseCache
+
+Creates a default object to store responses to HTTP access requests.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                   | Mandatory| Description      |
+| -------- | --------------------------------------- | ---- | ---------- |
+| cacheSize | number | No| Cache size. The maximum value is 10\*1024\*1024 (10 MB). By default, the maximum value is used.|
+
+**Return value**
+
+| Type       | Description                                                        |
+| :---------- | :----------------------------------------------------------- |
+| [HttpResponseCache](#httpresponsecache9) | Object that stores the response to the HTTP request.|
+
+**Example**
+
+```js
+import http from '@ohos.net.http';
+let httpResponseCache = http.createHttpResponseCache();
+```
+
+## HttpResponseCache<sup>9+</sup>
+
+Defines an object that stores the response to an HTTP request.
+
+### flush<sup>9+</sup>
+
+flush(callback: AsyncCallback\<void>): void
+
+Flushes data in the cache to the file system so that the cached data can be accessed in the next HTTP request. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                   | Mandatory| Description      |
+| -------- | --------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+httpResponseCache.flush(err => {
+  if (err) {
+    console.log('flush fail');
+    return;
+  }
+  console.log('flush success');
+});
+```
+
+### flush<sup>9+</sup>
+
+flush(): Promise\<void>
+
+Flushes data in the cache to the file system so that the cached data can be accessed in the next HTTP request. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                             | Description                                 |
+| --------------------------------- | ------------------------------------- |
+| Promise\<void>> | Promise used to return the result.|
+
+**Example**
+
+```js
+httpResponseCache.flush().then(() => {
+  console.log('flush success');
+}).catch(err => {
+  console.log('flush fail');
+});
+```
+
+### delete<sup>9+</sup>
+
+delete(callback: AsyncCallback\<void>): void
+
+Disables the cache and deletes the data in it. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                   | Mandatory| Description      |
+| -------- | --------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+httpResponseCache.delete(err => {
+  if (err) {
+    console.log('delete fail');
+    return;
+  }
+  console.log('delete success');
+});
+```
+### delete<sup>9+</sup>
+
+delete(): Promise\<void>
+
+Disables the cache and deletes the data in it. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                             | Description                                 |
+| --------------------------------- | ------------------------------------- |
+| Promise\<void> |  Promise used to return the result.|
+
+**Example**
+
+```js
+httpResponseCache.delete().then(() => {
+  console.log('delete success');
+}).catch(err => {
+  console.log('delete fail');
+});
+```
 
 ## Error Codes
 
 | Error Code| Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| -1     | Incorrect parameters.                                                  |
-| 3      | Incorrect URL format.                                               |
-| 4      | Built-in request function, protocol, or option not found during build.                  |
-| 5      | Unable to resolve the proxy.                                              |
-| 6      | Unable to resolve the host.                                              |
-| 7      | Unable to connect to the proxy or host.                                        |
+| -1     | Incorrect parameter. Check whether the number and type of parameters are correct.                          |
+| 3      | Incorrect URL format. Check whether the format and syntax of the URL are correct.                        |
+| 4      | Built-in request function, protocol, or option not found during build. If a function or option is not enabled or explicitly disabled, you need to rebuild a libcurl in order to access its functions.             |
+| 5      | Unable to resolve the proxy because of a failure to resolve the specified proxy server. You are advised perform the following: 1. Check whether the URL is correct. 2. Check whether the network connection is normal and whether the network can communicate with external networks. 3. Check whether the network access permission is available. |
+| 6      | Unable to resolve the host because of a failure to resolve the specified remote host. You are advised perform the following: 1. Check whether the URL is correct. 2. Check whether the network connection is normal and whether the network can communicate with external networks. 3. Check whether the network access permission is available.      |
+| 7      | Unable to connect to the proxy or host. You are advised perform the following: 1. Check whether the port number is correct. 2. Check whether the HTTP proxy is enabled on the local host.                                   |
+
+## HttpDataType<sup>9+</sup>
+
+Enumerates HTTP data types.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name| Value| Description    |
+| ------------------ | -- | ----------- |
+| STRING              | 0 | String type.|
+| OBJECT              | 1 | Object type.   |
+| ARRAY_BUFFER        | 2 | Binary array type.|
+
+## HttpProtocol<sup>9+</sup>
+
+Enumerates HTTP protocol versions.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name | Description    |
+| :-------- | :----------- |
+| HTTP1_1   |  HTTP1.1 |
+| HTTP2     |  HTTP2   |
