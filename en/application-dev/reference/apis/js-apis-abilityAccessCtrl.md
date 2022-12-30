@@ -385,7 +385,6 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
-let permissionFlag = 1;
 try {
     atManager.getPermissionFlags(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS").then((data) => {
         console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
@@ -459,11 +458,12 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 **Example**
 
 ```js
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let tokenIDList: Array<number> = [];
-let permissionNameList = [];
+let appInfo = bundle.getApplicationInfoSync('com.example.myapplication', 0, 100);
+let tokenIDList: Array<number> = [appInfo.accessTokenId];
+let permissionNameList: Array<Permissions> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
 try {
     atManager.on('permissionStateChange', tokenIDList, permissionNameList, (data) => {
         console.debug("receive permission state change, data:" + JSON.stringify(data));
@@ -508,11 +508,12 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 **Example**
 
 ```js
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let tokenIDList: Array<number> = [];
-let permissionNameList = [];
+let appInfo = bundle.getApplicationInfoSync('com.example.myapplication', 0, 100);
+let tokenIDList: Array<number> = [appInfo.accessTokenId];
+let permissionNameList: Array<Permissions> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
 try {
     atManager.off('permissionStateChange', tokenIDList, permissionNameList);
 } catch(err) {
