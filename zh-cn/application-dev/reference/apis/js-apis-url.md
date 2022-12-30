@@ -78,8 +78,8 @@ delete(name: string): void
 
 ```js
 let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsobject = new Url.URLParams(urlObject.search.slice(1));
-paramsobject.delete('fod');
+let paramsObject = new Url.URLParams(urlObject.search.slice(1));
+paramsObject.delete('fod');
 ```
 
 
@@ -87,7 +87,7 @@ paramsobject.delete('fod');
 
 getAll(name: string): string[]
 
-获取指定名称的所有键值对。
+获取指定名称的所有键对应值的集合。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -101,7 +101,7 @@ getAll(name: string): string[]
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string[] | 返回指定名称的所有键值对。 |
+| string[] | 返回指定名称的所有键对应值的集合。 |
 
 **示例：**
 
