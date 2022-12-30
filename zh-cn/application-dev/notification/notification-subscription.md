@@ -35,7 +35,7 @@
 
 ## 开发步骤
 
-1. 申请`ohos.permission.NOTIFICATION_CONTROLLER`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
+1. 申请`ohos.permission.NOTIFICATION_CONTROLLER`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
 
 2. 导入通知订阅模块。
    

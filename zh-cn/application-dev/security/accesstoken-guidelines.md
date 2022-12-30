@@ -15,13 +15,15 @@
 
 应用需要在工程配置文件中，对需要的权限逐个声明，未在配置文件中声明的权限，应用将无法获得授权。OpenHarmony提供了两种应用模型，分别为FA模型和Stage模型，更多信息可以参考[应用模型解读](../application-models/application-model-description.md)。不同的应用模型的应用包结构不同，所使用的配置文件不同。
 
+> **说明**：应用默认的APL等级为`normal`，当应用需要申请`system_basic`和`system_core`等级时，除了在配置文件中进行权限声明之外，还需要通过[ACL方式](#acl方式声明)进行声明使用。
+
 配置文件标签说明如下表所示。
 
 | 标签      | 是否必填 | 说明                                                         |
 | --------- | -------- | ------------------------------------------------------------ |
 | name      | 是       | 权限名称。                                                   |
-| reason    | 否       | 描述申请权限的原因。<br />> 说明：当申请的权限为user_grant权限时，此字段必填。 |
-| usedScene | 否       | 描述权限使用的场景和时机。<br />> 说明：当申请的权限为user_grant权限时，此字段必填。 |
+| reason    | 否       | 描述申请权限的原因。<br />> **说明**：当申请的权限为user_grant权限时，此字段必填。 |
+| usedScene | 否       | 描述权限使用的场景和时机。<br />> **说明**：当申请的权限为user_grant权限时，此字段必填。 |
 | abilities | 否       | 标识需要使用到该权限的Ability，标签为数组形式。<br/>**适用模型**：Stage模型 |
 | ability   | 否       | 标识需要使用到该权限的Ability，标签为数组形式。<br/>**适用模型**：FA模型 |
 | when      | 否       | 标识权限使用的时机，值为`inuse/always`。<br />- inuse：表示为仅允许前台使用。<br />- always：表示前后台都可使用。 |
@@ -96,7 +98,7 @@
 
 ## ACL方式声明
 
-应用在申请`system_basic`等级权限时，高于应用默认的`normal`等级。当应用需要申请权限项的等级高于应用默认的等级时，需要通过ACL方式进行声明使用。
+应用在申请`system_basic`和`system_core`等级权限时，高于应用默认的`normal`等级。当应用需要申请权限项的等级高于应用默认的等级时，需要通过ACL方式进行声明使用。
 
 例如应用在申请访问用户公共目录下音乐类型的文件，需要申请` ohos.permission.WRITE_AUDIO`权限，该权限为`system_basic`等级；以及应用在申请截取屏幕图像功能，该权限为`system_core`等级，需要申请` ohos.permission.CAPTURE_SCREEN`权限。此时需要将相关权限项配置到[HarmonyAppProvision配置文件](app-provision-structure.md)的`acl`字段中。
 
@@ -123,7 +125,7 @@
 
 以允许应用读取日历信息为例进行说明。
 
-1. 申请`ohos.permission.READ_CALENDAR`权限，配置方式请参见[访问控制授权申请](#stage模型)。
+1. 申请`ohos.permission.READ_CALENDAR`权限，配置方式请参见[访问控制授权申请](#配置文件权限声明)。
 
 2. 可以在UIAbility的onWindowStageCreate()回调中调用[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口动态申请权限，也可以根据业务需要在UI界面中向用户申请授权。根据[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口返回值判断是否已获取目标权限，如果当前已经获取权限，则可以继续正常访问目标接口。
    
@@ -221,7 +223,7 @@ onWindowStageCreate() {
 - `app_signature`字段配置为应用的指纹信息。指纹信息的配置参见[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson中配置)。
 - `permissions`字段中`name`配置为需要预授权的`user_grant`类型的权限名；`permissions`字段中`userCancellable`表示为用户是否能够取消该预授权，配置为true，表示支持用户取消授权，为false则表示不支持用户取消授权。
 
-> 说明：当前仅支持预置应用配置该文件。
+> **说明**：当前仅支持预置应用配置该文件。
 
 ```json
 [

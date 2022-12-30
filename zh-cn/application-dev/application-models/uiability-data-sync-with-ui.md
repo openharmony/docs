@@ -1,21 +1,21 @@
 # UIAbility组件与UI的数据同步
 
 
-基于OpenHarmony的应用模型，可以通过以下两种方式来实现UIAbility组件与UI之间的数据同步。
+基于OpenHarmony的应用模型，可以通过以下三种方式来实现UIAbility组件与UI之间的数据同步。
 
+- EventHub：[基类Context](application-context-stage.md)提供了EventHub的能力，通过发布订阅方式来实现。事件需要先订阅后发布，订阅者收到消息后进行处理。
 
-1. EventHub：基于发布订阅模式来实现，事件需要先订阅后发布，订阅者收到消息后进行处理。
-
-2. globalThis：ArkTS引擎实例内部的一个全局对象，在ArkTS引擎实例内部都能访问。
+- globalThis：ArkTS引擎实例内部的一个全局对象，在ArkTS引擎实例内部都能访问。
+- LocalStorage/AppStorage：参见[页面级变量的状态管理](../quick-start/arkts-state-mgmt-application-level.md)。
 
 
 ## 使用EventHub进行数据通信
 
-EventHub提供了UIAbility组件/ExtensionAbility组件级别的事件机制，以UIAbility组件/ExtensionAbility组件为中心提供了订阅、取消订阅和触发事件的数据通信能力。接口说明请参见[EventHub](../reference/apis/js-apis-inner-application-eventHub.md)。
+[EventHub](../reference/apis/js-apis-inner-application-eventHub.md)提供了UIAbility组件/ExtensionAbility组件级别的事件机制，以UIAbility组件/ExtensionAbility组件为中心提供了订阅、取消订阅和触发事件的数据通信能力。
 
-在使用EventHub之前，首先需要获取EventHub对象。[基类Context](application-context-stage.md)提供了EventHub对象，本章节以使用EventHub实现UIAbility与UI之间的数据通信为例进行说明。
+[基类Context](application-context-stage.md)提供了EventHub对象，在使用EventHub之前，首先需要获取EventHub对象。本章节以使用EventHub实现UIAbility与UI之间的数据通信为例进行说明。
 
-1. 在UIAbility中调用eventHub.on()方法注册一个自定义事件“event1”，eventHub.on()有如下两种调用方式，使用其中一种即可。
+1. 在UIAbility中调用[eventHub.on()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon)方法注册一个自定义事件“event1”，[eventHub.on()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon)有如下两种调用方式，使用其中一种即可。
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
@@ -41,7 +41,7 @@ EventHub提供了UIAbility组件/ExtensionAbility组件级别的事件机制，�
    }
    ```
 
-2. 在UI界面中通过eventHub.emit()方法触发该事件，在触发事件的同时，根据需要传入参数信息。
+2. 在UI界面中通过[eventHub.emit()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubemit)方法触发该事件，在触发事件的同时，根据需要传入参数信息。
 
    ```ts
    import common from '@ohos.app.ability.common';
@@ -78,7 +78,7 @@ EventHub提供了UIAbility组件/ExtensionAbility组件级别的事件机制，�
    [2,'test']
    ```
 
-4. 在自定义事件“event1”使用完成后，可以根据需要调用eventHub.off()方法取消该事件的订阅。
+4. 在自定义事件“event1”使用完成后，可以根据需要调用[eventHub.off()](../reference/apis/js-apis-inner-application-eventHub.md#eventhuboff)方法取消该事件的订阅。
 
    ```ts
    // context为UIAbility实例的AbilityContext
