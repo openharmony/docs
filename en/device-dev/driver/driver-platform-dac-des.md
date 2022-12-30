@@ -2,17 +2,18 @@
 
 ## Overview
 
-### DAC
+### Function
 
-A digit-to-analog converter (DAC) is a device that converts a digital signal into an analog signal in electronics.
+A digit-to-analog converter (DAC) is a device that converts a digital signal into an analog signal in electronics. DAC devices are used to:
 
-The DAC APIs provide a set of methods for DAC data transfer, including:
+- Provide the output channel for the process control computer system and connect to the executor to implement automatic control of the production process.
+- Serve as an important module in the analog-to-digital converter using feedback technologies.
+
+The DAC module provides a set of methods for DAC data transfer, including:
 - Opening or closing a DAC device
 - Setting the target digital-to-analog (DA) value
 
 ### Basic Concepts
-
-The DAC module provides the output channel for the process control computer system. It connects to the executor to implement automatic control of the production process. It is also an important module in the analog-to-digital converter using feedback technologies.
 
 - Resolution
 
@@ -32,7 +33,7 @@ The DAC module provides the output channel for the process control computer syst
 
 ### Working Principles
 
-In the Hardware Driver Foundation (HDF), the DAC module uses the unified service mode for API adaptation. In this mode, a service is used as the DAC manager to handle external access requests in a unified manner. The unified service mode applies when the system has multiple device objects of the same type. If the independent service mode is used in this case, more device nodes need to be configured and more memory resources will be consumed. The figure below shows the unified service mode.
+In the Hardware Driver Foundation (HDF), the DAC module uses the unified service mode for API adaptation. In this mode, a service is used as the DAC manager to handle external access requests in a unified manner. The unified service mode applies when the system has multiple device objects of the same type. If the independent service mode is used, more device nodes need to be configured and memory resources will be consumed by services. The following figure illustrates the unified service mode of the DAC module.
 
 The DAC module is divided into the following layers:
 
@@ -40,9 +41,7 @@ The DAC module is divided into the following layers:
 - Core layer: provides the capabilities of binding, initializing, and releasing devices.
 - Adaptation layer: implements driver-specific functions.
 
->![](../public_sys-resources/icon-note.gif) **NOTE**
-> 
-> The core layer can call the functions of the interface layer and uses a hook to call functions of the adaptation layer. In this way, the adaptation layer can indirectly call the functions of the interface layer, but the interface layer cannot call the functions of the adaptation layer.
+![](../public_sys-resources/icon-note.gif)**NOTE**<br/>The core layer can call the functions of the interface layer and uses the hook to call functions of the adaptation layer. In this way, the adaptation layer can indirectly call the functions of the interface layer, but the interface layer cannot call the functions of the adaptation layer.
 
 **Figure 1** Unified service mode
 
@@ -50,7 +49,7 @@ The DAC module is divided into the following layers:
 
 ### Constraints
 
-Currently, the DAC module supports only the kernels (LiteOS) of mini and small systems.
+The DAC module supports only the kernel (LiteOS-A) for mini and small systems.
 
 ## Usage Guidelines
 
@@ -60,11 +59,11 @@ The DAC module converts digital signals into analog signals in the form of curre
 
 ### Available APIs
 
-The table below describes the APIs of the DAC module. For more details, see API Reference.
+The following table describes the APIs of the DAC module. For more information about the APIs, see **//drivers/hdf_core/framework/include/platform/dac_if.h**.
 
 **Table 1** DAC driver APIs
 
-| API                                                             | Description         |
+| API                                                            | Description    |
 | ------------------------------------------------------------------ | ------------ |
 | DevHandle DacOpen(uint32_t number)                                 | Opens a DAC device. |
 | void DacClose(DevHandle handle)                                    | Closes a DAC device. |
@@ -72,12 +71,11 @@ The table below describes the APIs of the DAC module. For more details, see API 
 
 ### How to Develop
 
-The figure below shows the general development process.
+The following figure illustrates how to use DAC APIs.
 
 **Figure 2** Process of using DAC APIs
 
-
-![](figures/using-DAC-process.png)
+![Process of using a DAC](figures/using-DAC-process.png "Process of using a DAC")
 
 #### Opening a DAC Device
 
@@ -93,13 +91,13 @@ DevHandle DacOpen(uint32_t number);
 | --------- | ---------------- |
 | number    | DAC device number.       |
 | **Return Value**| **Description**    |
-| NULL      | The operation failed. |
+| NULL      | The operation fails. |
 | Device handle  | The operation is successful. The handle of the DAC device opened is returned.|
 
-Example: Open device 1 of the two DAC devices (numbered 0 and 1) in the system.
+Open device 1 of the two DAC devices (numbered 0 and 1) in the system.
 
 ```c++
-DevHandle dacHandle = NULL; /* DAC device handle /
+DevHandle dacHandle = NULL; // DAC device handle.
 
 /* Open DAC device 1. */
 dacHandle = DacOpen(1);
@@ -109,7 +107,7 @@ if (dacHandle == NULL) {
 }
 ```
 
-#### Setting a Target DA Value
+#### Setting a DA Value
 
 ```c++
 int32_t DacWrite(DevHandle handle, uint32_t channel, uint32_t val);
@@ -124,16 +122,16 @@ int32_t DacWrite(DevHandle handle, uint32_t channel, uint32_t val);
 | val       | DA value to set.  |
 | **Return Value**| **Description**|
 | 0         | The operation is successful.    |
-| Negative value      | The operation failed.    |
+| Negative value      | The operation fails.    |
 
 ```c++
 /* Write the target DA value through the DAC_CHANNEL_NUM channel. */
-    ret = DacWrite(dacHandle, DAC_CHANNEL_NUM, val);
-    if (ret != HDF_SUCCESS) {
-        HDF_LOGE("%s: tp DAC write reg fail!:%d", __func__, ret);
-        DacClose(dacHandle);
-        return -1;
-    }
+ret = DacWrite(dacHandle, DAC_CHANNEL_NUM, val);
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("%s: tp DAC write reg fail!:%d", __func__, ret);
+    DacClose(dacHandle);
+    return -1;
+}
 ```
 
 #### Closing a DAC Device
@@ -168,8 +166,8 @@ The procedure is as follows:
 You can obtain the operation result by printing the log information based on the **val**.
 
 ```c++
-#include "dac_if.h"          /* Header file for DAC APIs */
-#include "hdf_log.h"         /* Header file for log APIs */
+#include "dac_if.h"          /* Header file for DAC APIs. */
+#include "hdf_log.h"         /* Header file for log APIs. */
 
 /* Define device 0, channel 1. */
 #define DAC_DEVICE_NUM 0

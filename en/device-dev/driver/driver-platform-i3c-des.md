@@ -8,7 +8,7 @@ Improved Inter-Integrated Circuit (I3C) is a simple and cost-efficient two-wire 
 
 I3C is a two-wire bidirectional serial bus, optimized for multiple sensor target devices and controlled by only one I3C controller at a time. It is backward compatible with Inter-Integrated circuit (I2C) target devices, but features higher speed and lower power consumption. Moreover, I3C supports in-band interrupts (IBIs), hot-joins of target devices, and controller switchover. The IBIs over the serial bus eliminates the need for an extra interrupt line to complete interrupts in I2C. I2C devices, I3C target devices, and the I3C secondary controller can co-exist on the same I3C bus.
 
-The I3C driver APIs provide a set of common functions for I3C transfer, including:
+The I3C module provides a set of common APIs for I3C transfer, including:
 - Opening and closing an I3C controller
 - Obtaining and setting I3C controller parameters
 - Performing custom I3C message transfer by using a message array
@@ -17,17 +17,14 @@ The I3C driver APIs provide a set of common functions for I3C transfer, includin
 ### Basic Concepts
 
 - IBI
-  
+
   When there is no start signal on the serial clock (SCL) line, the I3C target device can pull down the serial data (SDA) line to make the controller send an SCL start signal, which initiates an IBI request. If multiple target devices send interrupt requests at the same time, the I3C controller arbitrates the requests based on the target device addresses. The request with a lower address is responded first.
-  
+
 - Dynamic Address Assignment (DAA)
 
   The I3C controller can dynamically allocate addresses to target devices to avoid address conflicts. Before addresses are allocated, each I3C device connected to a I3C bus must be uniquely identified in either of the following ways:
-
-  - The device has an I2C compliant static address that can be used by the host.
-  - The device has a 48-bit temporary ID. 
-
-  The host must use a 48-bit temporary ID unless the device has a static IP address.
+    1) The device has an I2C compliant static address that can be used by the host.
+    2) The device has a 48-bit temporary ID. The host must use a 48-bit temporary ID unless the device has a static IP address. 
 
 - Common Command Code (CCC)
 
@@ -43,49 +40,54 @@ The I3C driver APIs provide a set of common functions for I3C transfer, includin
 
 ### Working Principles
 
-In the Hardware Driver Foundation (HDF), the I3C module uses the unified service mode for API adaptation. In this mode, a service is used as the I3C manager to handle external access requests in a unified manner. The unified service mode applies when the system has multiple device objects of the same type, for example, when there are more than 10 I3C controllers. If the independent service mode is used in this case, more device nodes need to be configured and more memory resources will be consumed.
+In the Hardware Driver Foundation (HDF), the I3C module uses the unified service mode for API adaptation. In this mode, a service is used as the I3C manager to handle external access requests in a unified manner. The unified service mode applies when the system has multiple device objects of the same type, for example, when there are more than 10  I3C controllers. If the independent service mode is used in this case, more device nodes need to be configured and more memory resources will be consumed.
 
-Multiple devices, such as I2C target device, I3C target device, and I3C secondary controller, can be connected to an I3C bus. However, the I3C bus must have only one controller.
+Compared with I2C, I3C features higher speed and lower power consumption, supports IBIs, hot-joins of target devices, and controller switchover. I3C is also backward compatible with I2C target devices. Multiple devices, such as I2C target device, I3C target device, and I3C secondary controller, can be connected to an I3C bus. However, the I3C bus must have only one controller.
 
-**Figure 1** I3C physical connection 
+**Figure 1** I3C physical connection
+
 ![](figures/I3C_physical_connection.png "I3C_physical_connection")
 
 ### Constraints
 
-Currently, the I3C module supports only the kernels (LiteOS) of mini and small systems.
+The I3C module supports only the kernel (LiteOS-A) for mini and small systems and cannot be used in user mode.
 
 ## Usage Guidelines
 
 ### When to Use
 
 I3C can connect to one or more I3C or I2C target devices. It is used to:
+
 - Communicate with sensors, such as gyroscopes, barometers, and image sensors that support the I3C protocol.
 - Communicate with devices with other ports (such as UART serial ports) through software or hardware protocols.
 
 ### Available APIs
 
+The following table describes the APIs provided by the I3C module. For more information about the APIs, see **//drivers/hdf_core/framework/include/platform/i3c_if.h**.
+
 **Table 1** I3C driver APIs
 
-
-| API       | Description             |
+| API       | Description         |
 | ------------- | ----------------- |
-| I3cOpen       | Opens an I3C controller.    |
-| I3cClose      | Closes an I3C controller.    |
-| I3cTransfer   | Performs custom transfer.       |
-| I3cSetConfig  | Sets the I3C controller.    |
-| I3cGetConfig  | Obtains the I3C controller configuration. |
-| I3cRequestIbi | Requests an IBI.     |
-| I3cFreeIbi    | Releases an IBI.     |
+| DevHandle I3cOpen(int16_t number)       | Opens an I3C controller.    |
+| void I3cClose(DevHandle handle)      | Closes an I3C controller.    |
+| int32_t I3cTransfer(DevHandle handle, struct I3cMsg \*msg, int16_t count, enum TransMode mode)   | Performs custom transfer.       |
+| int32_t I3cSetConfig(DevHandle handle, struct I3cConfig \*config)  | Sets the I3C controller.    |
+| int32_t I3cGetConfig(DevHandle handle, struct I3cConfig \*config)  | Obtains I3C controller configuration.|
+| int32_t I3cRequestIbi(DevHandle handle, uint16_t addr, I3cIbiFunc func, uint32_t payload) | Requests an IBI.     |
+| int32_t I3cFreeIbi(DevHandle handle, uint16_t addr)    | Releases an IBI.     |
 
->![](../public_sys-resources/icon-note.gif) **NOTE**<br> 
+>![](../public_sys-resources/icon-note.gif) **NOTE**
+>
 >All APIs described in this document can be called only in kernel mode.
 
 ### How to Develop
 
-The figure below illustrates the use of I3C driver APIs.
+The following figure illustrates how to use the I3C APIs.
 
-**Figure 2** Process of using I3C driver APIs 
-![](figures/I3C_usage_flowchart.png "I3C_usage_flowchart")
+**Figure 2** Process of using I3C driver APIs
+
+![](figures/using-I3C-process.png)
 
 #### Opening an I3C Controller
 
@@ -98,10 +100,10 @@ DevHandle I3cOpen(int16_t number);
 
 | Name      | Description           |
 | ---------- | ------------------- |
-| number     | I3C controller number. |
+| number     | I3C controller number.        |
 | **Return Value**| **Description**     |
-| NULL       | The operation failed.  |
-| Controller handle| The operation is successful. The handle of the I3C controller opened is returned. |
+| NULL       | The operation fails.  |
+| Controller handle| The operation is successful. The handle of the I3C controller opened is returned.|
 
 Example: Open I3C controller 1 of the eight I3C controllers numbered from 0 to 7 in the system.
 
@@ -116,64 +118,13 @@ if (i3cHandle == NULL) {
 }
 ```
 
-#### Performing I3C Communication
-
-Call **I3cTransfer()** to transfer messages.
-```c
-int32_t I3cTransfer(DevHandle handle, struct I3cMsg *msgs, int16_t count, enum TransMode mode);
-```
-
-**Table 3** Description of I3cTransfer
-
-
-| Name      | Description                                    |
-| ---------- | -------------------------------------------- |
-| handle     | I3C controller handle.                               |
-| msgs       | Pointer to the message array of the data to transfer.                  |
-| count      | Length of the message array.                                |
-| mode       | Transmission mode. The value **0** indicates I2C mode, **1** indicates I3C mode, and **2** indicates CCC transmission. |
-| **Return Value**| **Description**                              |
-| Positive integer    | The operation is successful. The number of message structures that are successfully transmitted is returned.                    |
-| Negative value      | The operation failed.                                    |
-
-The I3C messages are of the I3cMsg type. Each message structure indicates a read or write operation. A message array can be used to perform multiple read or write operations.
-
-```c
-int32_t ret;
-uint8_t wbuff[2] = { 0x12, 0x13 };
-uint8_t rbuff[2] = { 0 };
-struct I3cMsg msgs[2]; /* Custom message array for transfer. */
-msgs[0].buf = wbuff;    /* Data to write. */
-msgs[0].len = 2;        /* Length of the data to write. */
-msgs[0].addr = 0x3F; /* Address of the device to which the data is written. */
-msgs[0].flags = 0;      /* Transfer flag. A write operation is performed by default. */
-msgs[1].buf = rbuff;    /* Data to read. */
-msgs[1].len = 2;        /* Length of the data to read. */
-msgs[1].addr = 0x3F;    /* Address of the device from which the data is read. */
-msgs[1].flags = I3C_FLAG_READ /* I3C_FLAG_READ is set. */
-/* Transfer two messages in I2C mode. */
-ret = I3cTransfer(i3cHandle, msgs, 2, I2C_MODE);
-if (ret != 2) {
-    HDF_LOGE("I3cTransfer: failed, ret %d\n", ret);
-    return;
-}
-```
-
->![](./public_sys-resources/icon-caution.gif) **Caution**<br>
->-   The device address in the **I3cMsg** structure does not contain the read/write flag bit. The read/write information is passed by the read/write control bit in the member variable **flags**.
->-   The **I3cTransfer()** function does not limit the number of message structures or the length of data in each message structure. The I3C controller determines these two limits.
->-   Using **I3cTransfer()** may cause the system to sleep. Do not call it in the interrupt context.
-
 #### Obtaining the I3C Controller Configuration
-
-Call **I3cGetConfig()** to obtain the configuration of an I3C controller.
 
 ```c
 int32_t I3cGetConfig(DevHandle handle, struct I3cConfig *config);
 ```
 
-**Table 4** Description of I3cGetConfig
-
+**Table 3** Description of I3cGetConfig
 
 | Name      | Description      |
 | ---------- | -------------- |
@@ -181,7 +132,7 @@ int32_t I3cGetConfig(DevHandle handle, struct I3cConfig *config);
 | config     | Pointer to the I3C controller configuration. |
 | **Return Value**| **Description**|
 | 0          | The operation is successful.      |
-| Negative value      | The operation failed.      |
+| Negative value      | The operation fails.      |
 
 The following is an example of obtaining the I3C controller configuration:
 
@@ -197,14 +148,11 @@ if (ret != HDF_SUCCESS) {
 
 #### Setting an I3C Controller
 
-Call **I3cSetConfig()** to set an I3C controller.
-
 ```c
 int32_t I3cSetConfig(DevHandle handle, struct I3cConfig *config);
 ```
 
-**Table 5** Description of I3cSetConfig
-
+**Table 4** Description of I3cSetConfig
 
 | Name      | Description      |
 | ---------- | -------------- |
@@ -212,7 +160,7 @@ int32_t I3cSetConfig(DevHandle handle, struct I3cConfig *config);
 | config     | Pointer to the I3C controller configuration. |
 | **Return Value**| **Description**|
 | 0          | The operation is successful.      |
-| Negative value      | The operation failed.      |
+| Negative value      | The operation fails.      |
 
 The following is an example of setting an I3C controller:
 
@@ -228,16 +176,60 @@ if (ret != HDF_SUCCESS) {
 }
 ```
 
-#### Requesting an IBI
+#### Performing I3C Communication
 
-Call **I3cRequestIbi()** to request an IBI.
+Call **I3cTransfer()** to transfer messages.
+```c
+int32_t I3cTransfer(DevHandle handle, struct I3cMsg *msgs, int16_t count, enum TransMode mode);
+```
+
+**Table 5** Description of I3cTransfer
+
+| Name      | Description                                    |
+| ---------- | -------------------------------------------- |
+| handle     | I3C controller handle.                               |
+| msgs       | Pointer to the message array of the data to transfer.                  |
+| count      | Length of the message array.                                |
+| mode       | Transmission mode. The value **0** indicates I2C mode, **1** indicates I3C mode, and **2** indicates CCC transmission.|
+| **Return Value**| **Description**                              |
+| Positive integer    | The operation is successful. The number of message structures that are successfully transmitted is returned.                    |
+| Negative value      | The operation fails.                                    |
+
+The I3C messages are of the I3cMsg type. Each message structure indicates a read or write operation. A message array can be used to perform multiple read or write operations.
+
+```c
+int32_t ret;
+uint8_t wbuff[2] = { 0x12, 0x13 };
+uint8_t rbuff[2] = { 0 };
+struct I3cMsg msgs[2];  /* Custom message array for transfer. */
+msgs[0].buf = wbuff;    /* Data to write. */
+msgs[0].len = 2;        /* Length of the data to write. */
+msgs[0].addr = 0x3F;    /* Address of the device to which the data is written. */
+msgs[0].flags = 0;      /* Transfer flag. A write operation is performed by default. */
+msgs[1].buf = rbuff;    /* Data to read. */
+msgs[1].len = 2;        /* Length of the data to read. */
+msgs[1].addr = 0x3F;    /* Address of the device from which the data is read. */
+msgs[1].flags = I3C_FLAG_READ /* I3C_FLAG_READ is set. */
+/* Transfer two messages in I2C mode. */
+ret = I3cTransfer(i3cHandle, msgs, 2, I2C_MODE);
+if (ret != 2) {
+    HDF_LOGE("I3cTransfer: failed, ret %d\n", ret);
+    return;
+}
+```
+
+>![](./public_sys-resources/icon-caution.gif) **Caution**<br>
+>-   The device address in the **I3cMsg** structure does not contain the read/write flag bit. The read/write information is passed by the read/write control bit in **flags**.
+>-   The I3C controller determines the maximum number of messages to transfer at a time and the maximum length of each message.
+>-   Using **I3cTransfer()** may cause the system to sleep. Do not call it in the interrupt context.
+
+#### Requesting an IBI
 
 ```c
 int32_t I3cRequestIbi(DevHandle handle, uint16_t addr, I3cIbiFunc func, uint32_t payload);
 ```
 
 **Table 6** Description of I3cRequestIbi
-
 
 | Name      | Description      |
 | ---------- | -------------- |
@@ -247,7 +239,7 @@ int32_t I3cRequestIbi(DevHandle handle, uint16_t addr, I3cIbiFunc func, uint32_t
 | payload    | IBI payload.   |
 | **Return Value**| **Description**|
 | 0          | The operation is successful.      |
-| Negative value      | The operation failed.      |
+| Negative value      | The operation fails.      |
 
 The following is an example:
 
@@ -287,14 +279,11 @@ int32_t I3cTestRequestIbi(void)
 
 #### Releasing an IBI
 
-Call **I3cFreeIbi()** to release an IBI.
-
 ```c
 int32_t I3cFreeIbi(DevHandle handle, uint16_t addr);
 ```
 
 **Table 7** Description of I3cFreeIbi
-
 
 | Name      | Description      |
 | ---------- | -------------- |
@@ -302,7 +291,7 @@ int32_t I3cFreeIbi(DevHandle handle, uint16_t addr);
 | addr       | I3C device address.   |
 | **Return Value**| **Description**|
 | 0          | The operation is successful.      |
-| Negative value      | The operation failed.      |
+| Negative value      | The operation fails.      |
 
 The following is an example:
 
@@ -319,7 +308,6 @@ void I3cClose(DevHandle handle);
 
 **Table 8** Description of I3cClose
 
-
 | Name      | Description      |
 | ---------- | -------------- |
 | handle     | I3C controller handle. |
@@ -330,17 +318,15 @@ The following is an example:
 I3cClose(i3cHandle); /* Close the I3C controller. */
 ```
 
-## Development Example
+## Example
 
-This following example shows how to use I3C APIs to manage an I3C device on a Hi3516D V300 development board.
-
-Because the Hi3516D V300 SoC has no I3C controller, this example describes how to perform simple transfer operations on a virtual driver on a Hi3516D V300. The basic information is as follows:
+The following example presents how to use I3C APIs to manage an I3C device on a Hi3516D V300 development board. <br>The basic hardware information is as follows:
 
 -   SoC: Hi3516D V300
 
--   Virtual: The I3C address is 0x3f, and the register bit width is 1 byte.
+-   Virtual I3C device: The I3C address is 0x3f, and the register bit width is 1 byte.
 
--   The virtual I3C devices are connected to virtual I3C controllers 18 and 19.
+-   The virtual I3C device is connected to I3C controllers 18 and 19.
 
 Perform simple I3C transfer to test whether the I3C channels are normal.
 
@@ -349,7 +335,7 @@ The sample code is as follows:
 ```c
 #include "i3c_if.h"          /* Header file for I3C standard APIs */
 #include "hdf_log.h"         /* Header file for log APIs */
-##include "osal_io.h"         /* Header file for I/O read and write APIs */
+##include "osal_io.h"        /* Header file for I/O read and write APIs */
 #include "osal_time.h"       /* Header file for delay and sleep APIs */
 
 /* Define a device structure to hold information. */
