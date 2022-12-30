@@ -40,9 +40,9 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | displayMode                 | SwiperDisplayMode                        | Mode in which elements are displayed along the main axis. This attribute takes effect only when **displayCount** is not set.<br>Default value: **SwiperDisplayMode.Stretch**|
 | cachedCount<sup>8+</sup>    | number                                   | Number of child components to be cached.<br>Default value: **1**                             |
 | disableSwipe<sup>8+</sup>   | boolean                                  | Whether to disable the swipe feature.<br>Default value: **false**                             |
-| curve<sup>8+</sup>          | [Curve](ts-appendix-enums.md#curve)  \| string | Animation curve. The ease-in/ease-out curve is used by default. For details about common curves, see [Curve](ts-appendix-enums.md#curve). You can also create custom curves (interpolation curve objects) by using the API provided by the interpolation calculation module.<br>Default value: **Curve.Ease**|
-| indicatorStyle<sup>8+</sup> | {<br>left?: [Length](ts-types.md#length),<br>top?: [Length](ts-types.md#length),<br>right?: [Length](ts-types.md#length),<br>bottom?: [Length](ts-types.md#length),<br>size?: [Length](ts-types.md#length),<br>mask?: boolean,<br>color?: [ResourceColor](ts-types.md#resourcecolor),<br>selectedColor?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Style of the navigation dots indicator.<br>\- **left**: distance between the navigation dots indicator and the left edge of the **\<Swiper>** component.<br>\- **top**: distance between the navigation dots indicator and the top edge of the **\<Swiper>** component.<br>\- **right**: distance between the navigation dots indicator and the right edge of the **\<Swiper>** component.<br>\- **bottom**: distance between the navigation dots indicator and the bottom edge of the **\<Swiper>** component.<br>\- **size**: diameter of the navigation dots indicator.<br>\- **mask**: whether to enable the mask for the navigation dots indicator.<br>\- **color**: color of the navigation dots indicator.<br>\- **selectedColor**: color of the selected navigation dot.|
-| displayCount<sup>8+</sup>   | number\|string                                               | Number of elements to display.<br>Default value: **1**                                          |
+| curve<sup>8+</sup>          | [Curve](ts-appendix-enums.md#curve)  \| string | Animation curve. The ease-in/ease-out curve is used by default. For details about common curves, see [Curve](ts-appendix-enums.md#curve). You can also create custom curves (interpolation curve objects) by using the API provided by the [interpolation calculation](../apis/js-apis-curve.md) module.<br>Default value: **Curve.Ease**|
+| indicatorStyle<sup>8+</sup> | {<br>left?: [Length](ts-types.md#length),<br>top?: [Length](ts-types.md#length),<br>right?: [Length](ts-types.md#length),<br>bottom?: [Length](ts-types.md#length),<br>size?: [Length](ts-types.md#length),<br>mask?: boolean,<br>color?: [ResourceColor](ts-types.md),<br>selectedColor?: [ResourceColor](ts-types.md)<br>} | Style of the navigation dots indicator.<br>\- **left**: distance between the navigation dots indicator and the left edge of the **\<Swiper>** component.<br>\- **top**: distance between the navigation dots indicator and the top edge of the **\<Swiper>** component.<br>\- **right**: distance between the navigation dots indicator and the right edge of the **\<Swiper>** component.<br>\- **bottom**: distance between the navigation dots indicator and the bottom edge of the **\<Swiper>** component.<br>\- **size**: diameter of the navigation dots indicator.<br>\- **mask**: whether to enable the mask for the navigation dots indicator.<br>\- **color**: color of the navigation dots indicator.<br>\- **selectedColor**: color of the selected navigation dot.|
+| displayCount<sup>8+</sup>   | number\|string                                               | Number of elements to display per page.<br>Default value: **1**                                          |
 | effectMode<sup>8+</sup>     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)  | Swipe effect. For details, see **EdgeEffect**.<br>Default value: **EdgeEffect.Spring**|
 
 ## SwiperDisplayMode
@@ -52,17 +52,9 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Stretch     | The slide width of the **\<Swiper>** component is equal to the width of the component.|
 | AutoLinear  | The slide width of the **\<Swiper>** component is equal to that of the child component with the maximum width.|
 
-## EdgeEffect
-
-| Name  | Description                                                                     |
-| ------ | ------------------------------------------------------------------------- |
-| Spring | Spring effect. When sliding to one edge, the component can move beyond the bounds through touches, and produce a bounce effect when the user releases their finger.   |
-| Fade   | Fade effect. When sliding to one edge, the component can move beyond the bounds through touches, and produce a fade effect along the way; when the user releases their finger, the fade changes.           |
-| None   | No effect. When sliding to one edge, the component cannot move beyond the bounds.                                                     |
-
 ## SwiperController
 
-Controller of the **\<Swiper>** component. You can bind this object to the **\<Swiper>** component and use it to control page switching.
+Controller of the **\<Swiper>** component. You can bind this object to the **<Swiper>** component and use it to control page switching.
 
 ### showNext
 
@@ -86,7 +78,7 @@ Stops an animation.
 
 | Name   | Type  | Mandatory.| Description|
 | --------- | ---------- | ------ | -------- |
-| callback  | () => void | Yes    | Callback invoked when the animation stops.|
+| callback  | () => void | No    | Callback invoked when the animation stops.|
 
 ## Events
 
@@ -96,11 +88,11 @@ onChange(event: (index: number) => void)
 
 Triggered when the index of the currently displayed child component changes.
 
-**Parameters**
+**Return value**
 
-| Name   | Type  | Mandatory.| Description|
-| --------- | ---------- | ------ | -------- |
-| index     | number     | Yes    | Index of the currently displayed element.|
+| Name   |   Type   | Description|
+| --------- | ---------- | -------- |
+| index     | number    | Index of the currently displayed element.|
 
 
 ## Example
@@ -149,36 +141,36 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item).width('90%').height(160).backgroundColor(0xAFEEEE).textAlign(TextAlign.Center).fontSize(20)
+          Text(item).width('90%').height(160).backgroundColor(0xAFEEEE).textAlign(TextAlign.Center).fontSize(30)
         }, item => item)
       }
       .cachedCount(2)
       .index(1)
       .autoPlay(true)
       .interval(4000)
-      .indicator(true) // Navigation dots are enabled by default.
-      .loop(false) // Loop playback is enabled by default.
+      .indicator(true)
+      .loop(true)
       .duration(1000)
-      .vertical(false) // Horizontal swiping is enabled by default.
       .itemSpace(0)
-      .curve(Curve.Linear) // Animation curve.
+      .curve(Curve.Linear)
       .onChange((index: number) => {
         console.info(index.toString())
       })
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        Button('next')
+      Row({ space: 12 }) {
+        Button('showNext')
           .onClick(() => {
             this.swiperController.showNext()
           })
-        Button('preview')
+        Button('showPrevious')
           .onClick(() => {
             this.swiperController.showPrevious()
           })
-      }
-    }.margin({ top: 5 })
+      }.margin(5)
+    }.width('100%')
+    .margin({ top: 5 })
   }
 }
 ```
 
-![en-us_image_0000001211898474](figures/en-us_image_0000001211898474.gif)
+![swiper](figures/swiper.gif)
