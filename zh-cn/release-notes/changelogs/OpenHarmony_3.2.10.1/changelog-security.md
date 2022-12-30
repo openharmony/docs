@@ -346,6 +346,8 @@ getTbsInfo() : DataBlob;
 
 ## cl.security.21 HUKS支持No-Hash的签名模式
 
+变更之前，应用传递huks.HuksTag.HUKS_TAG_DIGEST = huks.HuksTag.HUKS_DIGEST_NONE，HUKS默认使用huks.HuksTag.HUKS_TAG_DIGEST.SHA256进行处理；变更之后，应用传递huks.HuksTag.HUKS_TAG_DIGEST = huks.HuksTag.HUKS_DIGEST_NONE时，HUKS默认不进行摘要处理，需要业务先对原始数据进行hash操作，再将hash后的摘要传入huks进行签名/验签处理。
+
 **变更影响**
 
 影响已发布的JS接口，接口行为发生变更。
@@ -355,7 +357,7 @@ getTbsInfo() : DataBlob;
 
 发布的JS接口不变， 传入接口的参数集合发生变更。
 
-业务使用No-Hash的签名模式，需要先对原始数据进行hash处理，再将hash后的摘要传入huks签名/验签接口。同时huks.HuksTag.HUKS_TAG_DIGEST参数设置为HUKS_DIGEST_NONE。
+业务使用No-Hash的签名模式，需要先对原始数据进行hash处理，再将hash后的摘要传入huks签名/验签接口。同时huks.HuksTag.HUKS_TAG_DIGEST参数设置为huks.HuksTag.HUKS_TAG_DIGEST。
 
 **适配指导**
 
@@ -400,6 +402,8 @@ huks.initSession(keyAlias, signOptions);
 更多接口的示例代码可参考[HUKS-guidelines](../../../application-dev/security/huks-guidelines.md)和[HUKS API](../../../application-dev/reference/apis/js-apis-huks.md)。
 
 ## cl.security.22 HUKS支持在密钥使用时指定密钥运算参数
+
+变更之前，业务在生成密钥的时候，必须指定密钥运算的全部参数；变更之后，在生成密钥时，只需要包含必选参数即可，在密钥使用阶段再传入其他参数。业务使用会更加灵活。
 
 **变更影响**
 
