@@ -84,7 +84,7 @@ typedef struct tagEvent {
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 进行事件读写操作时，事件的第25位为保留位，不可以进行位设置。
+> - 进行事件读写操作时，事件的第25bit(`0x02U << 24`)为保留bit位，不可以进行位设置。
 > 
 > - 对同一事件反复写入，算作一次写入。
 
