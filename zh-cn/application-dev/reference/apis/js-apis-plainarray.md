@@ -302,7 +302,7 @@ getValueAt(index: number): T
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getValueAt method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of index is out of range. |
 
 **示例：**
 
@@ -480,7 +480,7 @@ removeRangeFrom(index: number, size: number): number
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeRangeFrom method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of index is out of range. |
 
 **示例：**
 
@@ -514,7 +514,7 @@ setValueAt(index: number, value: T): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The setValueAt method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of index is out of range. |
 
 **示例：**
 
