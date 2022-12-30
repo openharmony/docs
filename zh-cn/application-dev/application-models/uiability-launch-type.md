@@ -17,7 +17,7 @@ singleton启动模式为单实例模式，也是默认情况下的启动模式�
 
 每次调用startAbility()方法时，如果应用进程中该类型的UIAbility实例已经存在，则复用系统中的UIAbility实例。系统中只存在唯一一个该UIAbility实例，即在最近任务列表中只存在一个该类型的UIAbility实例。
 
-  **图1** 单实例模式演示效果  
+**图1** 单实例模式演示效果  
 <img src="figures/uiability-launch-type1.png" alt="uiability-launch-type1" style="zoom:50%;" />
 
 > **说明：**
@@ -76,7 +76,9 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
 <img src="figures/uiability-launch-type2.png" alt="uiability-launch-type2" style="zoom:50%;" />
 
 > **说明：**
-> 应用的UIAbility实例已创建，该UIAbility配置为指定实例模式，再次调用startAbility()方法启动该UIAbility实例，且[AbilityStage](abilitystage.md)的[onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)回调匹配到一个已创建的UIAbility实例。此时，再次启动该UIAbility时，只会进入该UIAbility的[onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调，不会进入其onCreate()和onWindowStageCreate()生命周期回调。
+>
+> 1. 应用的UIAbility实例已创建，该UIAbility配置为指定实例模式，再次调用startAbility()方法启动该UIAbility实例，且[AbilityStage](abilitystage.md)的[onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)回调匹配到一个已创建的UIAbility实例。此时，再次启动该UIAbility时，只会进入该UIAbility的[onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调，不会进入其onCreate()和onWindowStageCreate()生命周期回调。
+> 2. DevEco Studio默认工程中未自动生成AbilityStage，AbilityStage文件的创建请参见[AbilityStage组件容器](abilitystage.md)。
 
 例如有两个UIAbility：EntryAbility和FuncAbility，FuncAbility配置为specified启动模式，需要从EntryAbility的页面中启动FuncAbility。
 
