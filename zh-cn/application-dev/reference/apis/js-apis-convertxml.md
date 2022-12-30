@@ -1,6 +1,6 @@
 # @ohos.convertxml (xml转换JavaScript)
 
-本模块提供转换xml文本为JavaScript对象的选项。
+本模块提供转换xml文本为JavaScript对象的功能。
 
 > **说明：**
 >
@@ -36,6 +36,14 @@ convertToJSObject(xml: string, options?: ConvertOptions) : Object
 | ------ | ---------------------------- |
 | Object | 处理后返回的JavaScript对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200002 | Invalid xml string. |
+
 **示例：**
 
 ```js
@@ -60,13 +68,13 @@ console.log(result);
 
 ### convert<sup>(deprecated)</sup>
 
-> **说明：**
->
-> 从API Version 8开始支持，从API Version 9开始废弃，建议使用[convertToJSObject9+](#converttojsobject9)替代。
-
 convert(xml: string, options?: ConvertOptions) : Object
 
 转换xml文本为JavaScript对象。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[convertToJSObject<sup>9+</sup>](#converttojsobject9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -109,7 +117,7 @@ console.log(result);
 
 转换选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称              | 类型 | 必填 | 说明                                                        |
 | ----------------- | -------- | ---- | ----------------------------------------------------------- |
