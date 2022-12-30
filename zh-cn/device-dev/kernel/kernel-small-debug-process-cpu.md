@@ -6,16 +6,16 @@
 CPU（中央处理器，Central Processing  Unit）占用率分为系统CPU占用率、进程CPU占用率、任务CPU占用率和中断CPU占用率。用户通过系统级的CPU占用率，判断当前系统负载是否超出设计规格。通过系统中各个进程/任务/中断的CPU占用情况，判断各个进程/任务/中断的CPU占用率是否符合设计的预期。
 
 - 系统CPU占用率（CPU  Percent）
-  指周期时间内系统的CPU占用率，用于表示系统一段时间内的闲忙程度，也表示CPU的负载情况。系统CPU占用率的有效表示范围为0～100，其精度（可通过配置调整）为百分比。100表示系统满负荷运转。
+  指周期时间内系统的CPU占用率，用于表示系统一段时间内的闲忙程度，也表示CPU的负载情况。系统CPU占用率的有效表示范围为0～100，其精度（可通过配置调整）为百分之一。100表示系统满负荷运转。
 
 - 进程CPU占用率
-  指单个进程的CPU占用率，用于表示单个进程在一段时间内的闲忙程度。进程CPU占用率的有效表示范围为0～100，其精度（可通过配置调整）为百分比。100表示在一段时间内系统一直在运行该进程。
+  指单个进程的CPU占用率，用于表示单个进程在一段时间内的闲忙程度。进程CPU占用率的有效表示范围为0～100，其精度（可通过配置调整）为百分之一。100表示在一段时间内系统一直在运行该进程。
 
 - 任务CPU占用率
-  指单个任务的CPU占用率，用于表示单个任务在一段时间内的闲忙程度。任务CPU占用率的有效表示范围为0～100，其精度（可通过配置调整）为百分比。100表示在一段时间内系统一直在运行该任务。
+  指单个任务的CPU占用率，用于表示单个任务在一段时间内的闲忙程度。任务CPU占用率的有效表示范围为0～100，其精度（可通过配置调整）为百分之一。100表示在一段时间内系统一直在运行该任务。
 
 - 中断CPU占用率
-  指单个中断的CPU占用率，用于表示单个中断在一段时间内的闲忙程度。中断CPU占用率的有效表示范围为0～100，其精度（可通过配置调整）为百分比。100表示在一段时间内系统一直在运行该中断。
+  指单个中断的CPU占用率，用于表示单个中断在一段时间内的闲忙程度。中断CPU占用率的有效表示范围为0～100，其精度（可通过配置调整）为百分之一。100表示在一段时间内系统一直在运行该中断。
 
 
 ## 运行机制
@@ -50,13 +50,14 @@ OpenHarmony 提供以下四种CPU占用率的信息查询：
 
   **表1** CPUP模块接口
 
-| 功能分类 | 接口**名称** | 描述 | 
+| 功能分类 | 接口**名称** | 描述 |
 | -------- | -------- | -------- |
-| 系统CPU占用率 | LOS_HistorySysCpuUsage | 获取系统历史CPU占用率 | 
-| 进程CPU占用率 | LOS_HistoryProcessCpuUsage | 获取指定进程历史CPU占用率 | 
-| 进程CPU占用率 | LOS_GetAllProcessCpuUsage | 获取系统所有进程的历史CPU占用率 | 
-| 任务CPU占用率 | LOS_HistoryTaskCpuUsage | 获取指定任务历史CPU占用率 | 
-| 中断CPU占用率 | LOS_GetAllIrqCpuUsage | 获取系统所有中断的历史CPU占用率 | 
+| 系统CPU占用率 | LOS_HistorySysCpuUsage | 获取系统历史CPU占用率 |
+| 进程CPU占用率 | LOS_HistoryProcessCpuUsage | 获取指定进程历史CPU占用率 |
+| 进程CPU占用率 | LOS_GetAllProcessCpuUsage | 获取系统所有进程的历史CPU占用率 |
+| 任务CPU占用率 | LOS_HistoryTaskCpuUsage | 获取指定任务历史CPU占用率 |
+| 中断CPU占用率 | LOS_GetAllIrqCpuUsage | 获取系统所有中断的历史CPU占用率 |
+| 重置 | LOS_CpupReset | 重置CPU 占用率相关数据 |
 
 
 ### 开发流程
@@ -102,48 +103,49 @@ CPU占用率的典型开发流程：
 
 **示例代码**
 
+该示例代码的测试函数可以加在 kernel /liteos_a/testsuites /kernel /src /osTest.c  中的 TestTaskEntry 中进行测试。
 代码实现如下：
 
-  
-```
+
+```c
 #include "los_task.h"
-#include "los_cpup.h" 
+#include "los_cpup.h"
 #define  MODE  4
-UINT32 g_cpuTestTaskID;  
-VOID ExampleCpup(VOID) 
-{      
+UINT32 g_cpuTestTaskID;
+VOID ExampleCpup(VOID)
+{
     printf("entry cpup test example\n");
-    while(1) {
-        usleep(100);
+    while (1) {
+        usleep(100); // 100: delay for 100ms
     }
 }
-UINT32 ItCpupTest(VOID) 
-{     
+UINT32 ItCpupTest(VOID)
+{
     UINT32 ret;
     UINT32 cpupUse;
-    TSK_INIT_PARAM_S cpupTestTask = { 0 };
+    TSK_INIT_PARAM_S cpupTestTask = {0};
     memset(&cpupTestTask, 0, sizeof(TSK_INIT_PARAM_S));
     cpupTestTask.pfnTaskEntry = (TSK_ENTRY_FUNC)ExampleCpup;
-    cpupTestTask.pcName       = "TestCpupTsk"; 
-    cpupTestTask.uwStackSize  = 0x800;
-    cpupTestTask.usTaskPrio   = 5;
+    cpupTestTask.pcName       = "TestCpupTsk";
+    cpupTestTask.uwStackSize  = 0x800; // 0x800: cpup test task stack size
+    cpupTestTask.usTaskPrio   = 5; // 5: cpup test task priority
     ret = LOS_TaskCreate(&g_cpuTestTaskID, &cpupTestTask);
-    if(ret != LOS_OK) {
+    if (ret != LOS_OK) {
         printf("cpupTestTask create failed .\n");
         return LOS_NOK;
     }
 
-    usleep(100);
+    usleep(100); // 100: delay for 100ms
 
     /* 获取当前系统历史CPU占用率 */
-    cpupUse = LOS_HistorySysCpuUsage(CPU_LESS_THAN_1S); 
+    cpupUse = LOS_HistorySysCpuUsage(CPU_LESS_THAN_1S);
     printf("the history system cpu usage in all time：%u.%u\n",
            cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT);
-    /* 获取指定任务的CPU占用率，该测试例程中指定的任务为以上创建的cpup测试任务 */    
-    cpupUse = LOS_HistoryTaskCpuUsage(g_cpuTestTaskID, CPU_LESS_THAN_1S);   
+    /* 获取指定任务的CPU占用率，该测试例程中指定的任务为以上创建的cpup测试任务 */
+    cpupUse = LOS_HistoryTaskCpuUsage(g_cpuTestTaskID, CPU_LESS_THAN_1S);
     printf("cpu usage of the cpupTestTask in all time:\n TaskID: %d\n usage: %u.%u\n",
-           g_cpuTestTaskID, cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT);   
-    return LOS_OK; 
+           g_cpuTestTaskID, cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT);
+    return LOS_OK;
 }
 ```
 
@@ -151,7 +153,7 @@ UINT32 ItCpupTest(VOID)
 
 编译运行得到的结果为：
 
-  
+
 ```
 entry cpup test example
 the history system cpu usage in all time: 3.0

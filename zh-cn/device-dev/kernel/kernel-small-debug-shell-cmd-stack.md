@@ -13,12 +13,12 @@ stack
 
 ## 参数说明
 
-无。
+无
 
 
 ## 使用指南
 
-无。
+无
 
 
 ## 使用实例
@@ -28,8 +28,8 @@ stack
 
 ## 输出说明
 
-  **示例：**系统堆栈使用情况
-  
+**示例** 系统堆栈使用情况
+
 ```
 OHOS # stack
  stack name    cpu id     stack addr     total size   used size
@@ -40,7 +40,7 @@ OHOS # stack
   exc_stack      0        0x405c9000     0x1000       0x0
 ```
 
-  **表1** 输出说明
+**表1** 输出说明
 
 | 输出 | 说明 | 
 | -------- | -------- |

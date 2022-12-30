@@ -17,7 +17,7 @@ LauncherAbilityInfo信息，通过接口[innerBundleManager.getLauncherAbilityIn
 | --------------- | ---------------------------------------------------- | ---- | ---- | -------------------------------------- |
 | applicationInfo | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md) | 是   | 否   | launcher ability的应用程序的配置信息。 |
 | elementName     | [ElementName](js-apis-bundle-ElementName.md)         | 是   | 否   | launcher ability的ElementName信息。    |
-| labelId         | number                                               | 是   | 否   | launcher ability的标签ID。             |
-| iconId          | number                                               | 是   | 否   | launcher ability的图标ID。             |
-| userId          | number                                               | 是   | 否   | launcher ability的用户ID。             |
+| labelId         | number                                               | 是   | 否   | launcher ability的标签的资源id值。             |
+| iconId          | number                                               | 是   | 否   | launcher ability的图标的资源id值。             |
+| userId          | number                                               | 是   | 否   | launcher ability的用户的资源id值。             |
 | installTime     | number                                               | 是   | 否   | launcher ability的安装时间。           |

@@ -87,7 +87,7 @@
 
 ### 编程实例
 
-**实例描述**
+#### 实例描述
 
 本实例实现如下流程：
 
@@ -99,10 +99,11 @@
 
 4. 100Tick休眠时间到达后，Example_MutexTask2被唤醒， 释放互斥锁，唤醒Example_MutexTask1。Example_MutexTask1成功获取到互斥锁后，释放，删除互斥锁。
 
-**示例代码**
+#### 编程示例
+
+本演示代码在./kernel/liteos_a/testsuites/kernel/src/osTest.c中编译验证，在TestTaskEntry中调用验证入口函数Example_MutexEntry。
 
 示例代码如下：
-
   
 ```
 #include <string.h>

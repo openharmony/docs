@@ -116,9 +116,10 @@ typedef struct {
 
 ### 编程示例
 
+本演示代码在./kernel/liteos_a/testsuites/kernel/src/osTest.c中编译验证，在TestTaskEntry中调用验证入口函数ExampleSem。
+
 示例代码如下：
 
-  
 ```
 #include "los_sem.h"
 #include "securec.h"

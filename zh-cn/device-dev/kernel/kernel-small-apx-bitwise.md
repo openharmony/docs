@@ -14,9 +14,9 @@
 
 | **功能分类** | **接口描述** | 
 | -------- | -------- |
-| 置1/清0标志位 | -&nbsp;LOS_BitmapSet:对状态字的某一标志位进行置1操作<br/>-&nbsp;LOS_BitmapClr:对状态字的某一标志位进行清0操作 | 
-| 获取标志位为1的bit位 | -&nbsp;LOS_HighBitGet:获取状态字中为1的最高位<br/>-&nbsp;LOS_LowBitGet:获取状态字中为1的最低位 | 
-| 连续bit位操作 | -&nbsp;LOS_BitmapSetNBits:对状态字的连续标志位进行置1操作<br/>-&nbsp;LOS_BitmapClrNBits:对状态字的连续标志位进行清0操作<br/>-&nbsp;LOS_BitmapFfz:获取从最低有效位开始的第一个0的bit位 | 
+| 置1/清0标志位 | -&nbsp;LOS_BitmapSet：对状态字的某一标志位进行置1操作<br/>-&nbsp;LOS_BitmapClr：对状态字的某一标志位进行清0操作 | 
+| 获取标志位为1的bit位 | -&nbsp;LOS_HighBitGet：获取状态字中为1的最高位<br/>-&nbsp;LOS_LowBitGet：获取状态字中为1的最低位 | 
+| 连续bit位操作 | -&nbsp;LOS_BitmapSetNBits：对状态字的连续标志位进行置1操作<br/>-&nbsp;LOS_BitmapClrNBits：对状态字的连续标志位进行清0操作<br/>-&nbsp;LOS_BitmapFfz：获取从最低有效位开始的第一个0的bit位 | 
 
 
 ## 编程实例
@@ -34,7 +34,10 @@
 
 4. 获取标志位为1的最低bit位。
 
-  
+### 编程示例
+
+本演示代码在./kernel/liteos_a/testsuites/kernel/src/osTest.c中编译验证，在TestTaskEntry中调用验证入口函数BitSample。
+ 
 ```
 #include "los_bitmap.h"
 #include "los_printf.h"

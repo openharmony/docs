@@ -348,7 +348,7 @@ let ret = usb.getFileDescriptor(devicepipe);
 
 ## usb.controlTransfer
 
-controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: number): Promise&lt;number&gt;
+controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout?: number): Promise&lt;number&gt;
 
 Performs control transfer.
 
@@ -361,7 +361,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
-| contrlparam | [USBControlParams](#usbcontrolparams) | Yes| Control transfer parameters.|
+| controlparam | [USBControlParams](#usbcontrolparams) | Yes| Control transfer parameters.|
 | timeout | number | No| Timeout duration in ms. This parameter is optional. The default value is **0**, indicating no timeout.|
 
 **Return value**

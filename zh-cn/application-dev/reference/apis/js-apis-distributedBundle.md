@@ -67,13 +67,13 @@ try {
             abilityName: 'MainAbility'
         }, (err, data) => {
           if (err) {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```
 
@@ -124,10 +124,10 @@ try {
         }).then(data => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch(err => {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```
 
@@ -179,13 +179,13 @@ try {
             }
         ], (err, data) => {
           if (err) {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```
 
@@ -243,10 +243,10 @@ try {
         ]).then(data => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch(err => {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```
 
@@ -292,13 +292,13 @@ try {
             abilityName: 'MainAbility'
         }, 'zh-Hans-CN', (err, data) => {
           if (err) {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```
 
@@ -350,10 +350,10 @@ try {
         }, 'zh-Hans-CN').then(data => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch(err => {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```
 
@@ -406,13 +406,13 @@ try {
             }
         ], 'zh-Hans-CN', (err, data) => {
           if (err) {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+           console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```
 
@@ -471,9 +471,9 @@ try {
         ], 'zh-Hans-CN').then(data => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch(err => {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```
