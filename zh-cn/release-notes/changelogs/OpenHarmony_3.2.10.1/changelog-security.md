@@ -357,7 +357,7 @@ getTbsInfo() : DataBlob;
 
 发布的JS接口不变， 传入接口的参数集合发生变更。
 
-业务使用No-Hash的签名模式，需要先对原始数据进行hash处理，再将hash后的摘要传入huks签名/验签接口。同时huks.HuksTag.HUKS_TAG_DIGEST参数设置为huks.HuksTag.HUKS_TAG_DIGEST。
+业务使用No-Hash的签名模式，需要先对原始数据进行hash处理，再将hash后的摘要传入huks签名/验签接口。同时huks.HuksTag.HUKS_TAG_DIGEST参数设置为huks.HuksTag.HUKS_DIGEST_NONE。
 
 **适配指导**
 
