@@ -2528,4 +2528,4 @@ Defines the certificate raw data.
 
 | Type                                                                  | Description                  |
 | --------------------------------------------------------------------- | --------------------- |
-|[cryptoFramework.EncodingBlob](js-apis-cryptoFramework.md#EncodingBlob) | Data and encoding format of the certificate.|
+|[cryptoFramework.EncodingBlob](js-apis-cryptoFramework.md#datablob) | Data and encoding format of the certificate.|
