@@ -11,7 +11,6 @@ import Url from '@ohos.url'
 ```
 ## URLParams<sup>9+</sup>
 
-
 ### constructor<sup>9+</sup>
 
 constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLSearchParams)
@@ -370,7 +369,7 @@ console.log(params.toString());
 
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -384,7 +383,7 @@ console.log(params.toString());
 | port | string | 是 | 是 | 获取和设置URL的端口部分。 |
 | protocol | string | 是 | 是 | 获取和设置URL的协议部分。 |
 | search | string | 是 | 是 | 获取和设置URL的序列化查询部分。 |
-| searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。<br/>- **说明：** 此属性从API version 7开始支持，从API version 9开始被废弃。建议使用params<sup>9+</sup>替代。|
+| searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。<br/>- **说明：** 此属性从API version 7开始支持，从API version 9开始被废弃。建议使用params<sup>9+</sup>替代。 |
 | params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。 |
 | username | string | 是 | 是 | 获取和设置URL的用户名部分。 |
 
@@ -467,7 +466,6 @@ const url = new Url.URL('https://username:password@host:8080/directory/file?quer
 url.toString();
 ```
 
-
 ### toJSON
 
 toJSON(): string
@@ -492,13 +490,13 @@ url.toJSON();
 
 ### constructor<sup>(deprecated)</sup>
 
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>](#constructor9+)替代。
-
 constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLSearchParams)
 
 URLSearchParams的构造函数。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>](#constructor9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -520,13 +518,13 @@ let params = new Url.URLSearchParams(urlObject.search);
 
 ### append<sup>(deprecated)</sup>
 
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.append<sup>9+</sup>](#append9)替代。
-
 append(name: string, value: string): void
 
 将新的键值对插入到查询字符串。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.append<sup>9+</sup>](#append9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -547,13 +545,13 @@ paramsObject.append('fod', '3');
 
 ### delete<sup>(deprecated)</sup>
 
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.delete<sup>9+</sup>](#delete9)替代。
-
 delete(name: string): void
 
 删除指定名称的键值对。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.delete<sup>9+</sup>](#delete9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -573,13 +571,13 @@ paramsobject.delete('fod');
 
 ### getAll<sup>(deprecated)</sup>
 
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.getAll<sup>9+</sup>](#getall9)替代。
-
 getAll(name: string): string[]
 
 获取指定名称的所有键值对。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.getAll<sup>9+</sup>](#getall9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -606,13 +604,13 @@ console.log(params.getAll('fod').toString()) // Output ["1","3"].
 
 ### entries<sup>(deprecated)</sup>
 
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.entries<sup>9+</sup>](#entries9)替代。
-
 entries(): IterableIterator<[string, string]>
 
 返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.entries<sup>9+</sup>](#entries9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -633,13 +631,14 @@ for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pair
 
 
 ### forEach<sup>(deprecated)</sup>
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.forEach<sup>9+</sup>](#foreach9)替代。
 
 forEach(callbackFn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
 
 通过回调函数来遍历URLSearchParams实例对象上的键值对。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.forEach<sup>9+</sup>](#foreach9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -669,13 +668,14 @@ myURLObject.searchParams.forEach((value, name, searchParams) => {
 
 
 ### get<sup>(deprecated)</sup>
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.get<sup>9+</sup>](#get9)替代。
 
 get(name: string): string | null
 
 获取指定名称对应的第一个值。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.get<sup>9+</sup>](#get9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -702,13 +702,14 @@ let age = parseInt(paramsObject.get("age"), 10); // is the number 18
 
 
 ### has<sup>(deprecated)</sup>
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.has<sup>9+</sup>](#has9)替代。
 
 has(name: string): boolean
 
 判断一个指定的键名对应的值是否存在。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.has<sup>9+</sup>](#has9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -734,13 +735,14 @@ paramsObject.has('bard') === true;
 
 
 ### set<sup>(deprecated)</sup>
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.set<sup>9+</sup>](#set9)替代。
 
 set(name: string, value: string): void
 
 将与name关联的URLSearchParams对象中的值设置为value。如果存在名称为name的键值对，请将第一个键值对的值设置为value并删除所有其他值。如果不是，则将键值对附加到查询字符串。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.set<sup>9+</sup>](#set9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -761,13 +763,14 @@ paramsObject.set('baz', '3'); // Add a third parameter.
 
 
 ### sort<sup>(deprecated)</sup>
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.sort<sup>9+</sup>](#sort9)替代。
 
 sort(): void
 
 对包含在此对象中的所有键值对进行排序，并返回undefined。排序顺序是根据键的Unicode代码点。该方法使用稳定的排序算法 （即，将保留具有相等键的键值对之间的相对顺序）。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.sort<sup>9+</sup>](#sort9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -781,13 +784,14 @@ console.log(searchParamsObject.toString()); // Display the sorted query string /
 
 
 ### keys<sup>(deprecated)</sup>
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.keys<sup>9+</sup>](#keys9)替代。
 
 keys(): IterableIterator&lt;string&gt;
 
 返回一个所有键值对的name的ES6迭代器。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.keys<sup>9+</sup>](#keys9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -808,13 +812,14 @@ for (var key of searchParamsObject .keys()) { // Output key-value pairs
 
 
 ### values<sup>(deprecated)</sup>
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.values<sup>9+</sup>](#values9)替代。
 
 values(): IterableIterator&lt;string&gt;
 
 返回一个所有键值对的value的ES6迭代器。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.values<sup>9+</sup>](#values9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -836,13 +841,13 @@ for (var value of searchParams.values()) {
 
 ### [Symbol.iterator]<sup>(deprecated)</sup>
 
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[[Symbol.iterator]<sup>9+</sup>](#symboliterator9)替代。
-
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
 返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[[Symbol.iterator]<sup>9+</sup>](#symboliterator9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -862,13 +867,14 @@ for (const [name, value] of paramsObject) {
 ```
 
 ### tostring<sup>(deprecated)</sup>
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[tostring<sup>9+</sup>](#tostring9)替代。
 
 toString(): string
 
 返回序列化为字符串的搜索参数，必要时对字符进行百分比编码。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[tostring<sup>9+</sup>](#tostring9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
