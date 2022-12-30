@@ -522,6 +522,108 @@ multiWindowAccess(multiWindow: boolean)
   }
   ```
 
+### horizontalScrollBarAccess<sup>9+</sup>
+
+horizontalScrollBarAccess(horizontalScrollBar: boolean)
+
+设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条。默认显示。
+
+**参数：**
+
+| 参数名         | 参数类型    | 必填   | 默认值   | 参数描述         |
+| ----------- | ------- | ---- | ----- | ------------ |
+| horizontalScrollBar | boolean | 是    | true | 设置是否显示横向滚动条。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .horizontalScrollBarAccess(true)
+      }
+    }
+  }
+  ```
+
+  ```html
+  <!--xxx.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Demo</title>
+      <style>
+        body {
+          width:3000px;
+          height:3000px;
+          padding-right:170px;
+          padding-left:170px;
+          border:5px solid blueviolet
+        }
+      </style>
+  </head>
+  <body>
+  Scroll Test
+  </body>
+  </html>
+  ```
+
+### verticalScrollBarAccess<sup>9+</sup>
+
+verticalScrollBarAccess(verticalScrollBar: boolean)
+
+设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条。默认显示。
+
+**参数：**
+
+| 参数名         | 参数类型    | 必填   | 默认值   | 参数描述         |
+| ----------- | ------- | ---- | ----- | ------------ |
+| verticalScrollBarAccess | boolean | 是    | true | 设置是否显示纵向滚动条。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .verticalScrollBarAccess(true)
+      }
+    }
+  }
+  ```
+
+  ```html
+  <!--xxx.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Demo</title>
+      <style>
+        body {
+          width:3000px;
+          height:3000px;
+          padding-right:170px;
+          padding-left:170px;
+          border:5px solid blueviolet
+        }
+      </style>
+  </head>
+  <body>
+  Scroll Test
+  </body>
+  </html>
+  ```
+
 ### cacheMode
 
 cacheMode(cacheMode: CacheMode)
