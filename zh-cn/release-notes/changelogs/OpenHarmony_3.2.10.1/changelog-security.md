@@ -344,3 +344,132 @@ getTbsInfo() : DataBlob;
 查看API参考中对应的接口适配指南：
 [证书-API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cert.md)
 
+## cl.security.21 HUKS支持No-Hash的签名模式
+
+变更之前，应用传递huks.HuksTag.HUKS_TAG_DIGEST = huks.HuksKeyDigest.HUKS_DIGEST_NONE，HUKS默认使用huks.HuksKeyDigest.HUKS_DIGEST_SHA256进行处理；变更之后，应用传递huks.HuksTag.HUKS_TAG_DIGEST = huks.HuksKeyDigest.HUKS_DIGEST_NONE时，HUKS默认不进行摘要处理，需要业务先对原始数据进行hash操作，再将hash后的摘要传入huks进行签名/验签处理。
+
+**变更影响**
+
+影响已发布的JS接口，接口行为发生变更。
+应用需要进行适配，才可以使得变更前后的签名/验签结果通过。
+
+**关键的接口/组件变更**
+
+发布的JS接口不变， 传入接口的参数集合发生变更。
+
+业务使用No-Hash的签名模式，需要先对原始数据进行hash处理，再将hash后的摘要传入huks签名/验签接口。同时huks.HuksTag.HUKS_TAG_DIGEST参数设置为huks.HuksKeyDigest.HUKS_DIGEST_NONE。
+
+**适配指导**
+
+以签名为例，示例代码如下：
+
+```js
+import huks from '@ohos.security.huks';
+
+let keyAlias = 'rsa_Key';
+/* sha256之后的摘要值 */
+let inDataAfterSha256 = new Uint8Array(
+    0x4B, 0x1E, 0x22, 0x64, 0xA9, 0x89, 0x60, 0x1D, 0xEC, 0x78, 0xC0, 0x5D, 0xBE, 0x46, 0xAD, 0xCF,
+    0x1C, 0x35, 0x16, 0x11, 0x34, 0x01, 0x4E, 0x9B, 0x7C, 0x00, 0x66, 0x0E, 0xCA, 0x09, 0xC0, 0xF3,
+);
+/* 签名参数 */
+let signProperties = new Array();
+signProperties[0] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_RSA,
+}
+signProperties[1] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value:
+    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN
+}
+signProperties[2] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048,
+}
+signProperties[3] = {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_NONE, // 设置 digest-none
+}
+let signOptions = {
+    properties: signProperties,
+    inData: inDataAfterSha256 // 设置HASH后的值
+}
+
+huks.initSession(keyAlias, signOptions);
+```
+
+更多接口的示例代码可参考[HUKS-guidelines](../../../application-dev/security/huks-guidelines.md)和[HUKS API](../../../application-dev/reference/apis/js-apis-huks.md)。
+
+## cl.security.22 HUKS支持在密钥使用时指定密钥运算参数
+
+变更之前，业务在生成密钥的时候，必须指定密钥运算的全部参数；变更之后，在生成密钥时，只需要包含必选参数即可，在密钥使用阶段再传入其他参数。业务使用会更加灵活。
+
+**变更影响**
+
+影响已发布的JS接口，接口行为发生变更。
+
+允许应用在生成密钥阶段传入的参数中包含必选参数即可，在密钥使用阶段再传入其他可选参数。
+
+**关键的接口/组件变更**
+
+发布的JS接口不变， 传入接口的参数集合发生变更，将参数分为必选参数和可选参数，具体可参考[HUKS-guidelines](../../../application-dev/security/huks-guidelines.md)，涉及的接口有：
+
+huks.generateKeyItem
+
+huks.importKeyItem
+
+huks.importWrappedKeyItem
+
+huks.initSession
+
+huks.updateSession
+
+huks.finishSession
+
+**适配指导**
+
+以生成密钥为例，示例代码如下：
+
+```js
+let keyAlias = 'keyAlias';
+let properties = new Array();
+//必选参数
+properties[0] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_RSA
+};
+//必选参数
+properties[1] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+};
+//必选参数
+properties[2] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value:
+    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
+    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+};
+//可选参数，如果在生成密钥阶段没有传入，则在使用密钥阶段必须传入。
+properties[3] = {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+};
+let options = {
+    properties: properties
+};
+try {
+    huks.generateKeyItem(keyAlias, options, function (error, data) {
+        if (error) {
+            console.error(`callback: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+        } else {
+            console.info(`callback: generateKeyItem key success`);
+        }
+    });
+} catch (error) {
+    console.error(`callback: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+}
+```
+
+更多接口的示例代码可参考[HUKS-guidelines](../../../application-dev/security/huks-guidelines.md)和[HUKS API](../../../application-dev/reference/apis/js-apis-huks.md)。
