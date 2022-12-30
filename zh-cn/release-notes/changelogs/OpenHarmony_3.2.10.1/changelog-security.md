@@ -346,7 +346,7 @@ getTbsInfo() : DataBlob;
 
 ## cl.security.21 HUKS支持No-Hash的签名模式
 
-变更之前，应用传递huks.HuksTag.HUKS_TAG_DIGEST = huks.HuksKeyDigest.HUKS_DIGEST_NONE，HUKS默认使用       huks.HuksKeyDigest.HUKS_DIGEST_SHA256进行处理；变更之后，应用传递huks.HuksTag.HUKS_TAG_DIGEST = huks.HuksKeyDigest.HUKS_DIGEST_NONE时，HUKS默认不进行摘要处理，需要业务先对原始数据进行hash操作，再将hash后的摘要传入huks进行签名/验签处理。
+变更之前，应用传递huks.HuksTag.HUKS_TAG_DIGEST = huks.HuksKeyDigest.HUKS_DIGEST_NONE，HUKS默认使用huks.HuksKeyDigest.HUKS_DIGEST_SHA256进行处理；变更之后，应用传递huks.HuksTag.HUKS_TAG_DIGEST = huks.HuksKeyDigest.HUKS_DIGEST_NONE时，HUKS默认不进行摘要处理，需要业务先对原始数据进行hash操作，再将hash后的摘要传入huks进行签名/验签处理。
 
 **变更影响**
 
