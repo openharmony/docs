@@ -26,6 +26,7 @@
             - [异常调测](kernel-mini-memory-exception.md)
             - [Trace调测](kernel-mini-memory-trace.md)
             - [LMS调测](kernel-mini-memory-lms.md)
+            - [SHELL](kernel-mini-debug-shell.md)
         - 附录
             - [内核编码规范](kernel-mini-appx-code.md)
             - [标准库支持](kernel-mini-appx-lib.md)
