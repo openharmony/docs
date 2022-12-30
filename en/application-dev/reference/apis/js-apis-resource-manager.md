@@ -16,7 +16,7 @@ import resourceManager from '@ohos.resourceManager';
 ## Instruction
 
 Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle. This approach, however, is not applicable to the FA model.
-For details about how to reference **context** in the stage model, see [Context in the Stage Model](../../ability/context-userguide.md).
+For details about how to reference **context** in the stage model, see [Context in the Stage Model].
 
 ```ts
 import Ability from '@ohos.application.Ability';
@@ -1375,15 +1375,16 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getRawFd("test.xml", (error, value) => {
         if (error != null) {
-            console.log("error is " + error);
+            console.log(`callback getRawFd failed error code: ${error.code}, message: ${error.message}.`);
         } else {
             let fd = value.fd;
             let offset = value.offset;
             let length = value.length;
         }
-  }).catch(error => {
-      console.log("getRawFd callback error is " + error);
-  });
+    });
+  } catch (error) {
+      console.error(`callback getRawFd failed, error code: ${error.code}, message: ${error.message}.`)
+  };
   ```
 
 ### getRawFd<sup>9+</sup>
@@ -1421,10 +1422,10 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         let offset = value.offset;
         let length = value.length;
     }).catch(error => {
-        console.log("getRawFd promise error is " + error);
+        console.log(`promise getRawFd error error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.log("getRawFd promise error is " + error);
+    console.error(`promise getRawFd failed, error code: ${error.code}, message: ${error.message}.`);
   };
   ```
 
