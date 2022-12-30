@@ -7,7 +7,7 @@
 
 - 内存水线：即内存池的最大使用量，每次申请和释放时，都会更新水线值，实际业务可根据该值，优化内存池大小；
 
-- 碎片率：衡量内存池的碎片化程度，碎片率高表现为内存池剩余内存很多，但是最大空闲内存块很小，可以用公式（fragment=100-100\*最大空闲内存块大小/剩余内存大小）来度量
+- 碎片率：衡量内存池的碎片化程度，碎片率高表现为内存池剩余内存很多，但是最大空闲内存块很小，可以用公式（fragment=100-100\*最大空闲内存块大小/剩余内存大小）来度量；
 
 - 其他统计信息：调用接口LOS_MemInfoGet时，会扫描内存池的节点信息，统计出相关信息。
 
@@ -24,8 +24,8 @@ LOSCFG_MEM_WATERLINE：开关宏，默认关闭；若需要打开这个功能，
 
 关键结构体介绍：
 
-  
-```
+
+```c
 typedef struct {
     UINT32 totalUsedSize;       // 内存池的内存使用量
     UINT32 totalFreeSize;       // 内存池的剩余内存大小
@@ -38,7 +38,7 @@ typedef struct {
 } LOS_MEM_POOL_STATUS;
 ```
 
-- 内存水线获取：调用LOS_MemInfoGet接口，第1个参数是内存池首地址，第2个参数是LOS_MEM_POOL_STATUS类型的句柄，其中字段usageWaterLine即水线值。
+- 内存水线获取：调用 LOS_MemInfoGet(VOID *pool,  LOS_MEM_POOL_STATUS *poolStatus)接口，第1个参数是内存池首地址，第2个参数是LOS_MEM_POOL_STATUS类型的句柄，其中字段usageWaterLine即水线值。
 
 - 内存碎片率计算：同样调用LOS_MemInfoGet接口，可以获取内存池的剩余内存大小和最大空闲内存块大小，然后根据公式（fragment=100-100\*最大空闲内存块大小/剩余内存大小）得出此时的动态内存池碎片率。
 
@@ -53,13 +53,12 @@ typedef struct {
 
 3. 利用公式算出使用率及碎片率。
 
-
 **示例代码**
 
-
+  该示例代码的测试函数可以加在 kernel /liteos_a/testsuites /kernel /src /osTest.c  中的 TestTaskEntry 中进行测试。
   代码实现如下：
-  
-```
+
+```c
 #include <stdio.h>
 #include <string.h>
 #include "los_task.h"
@@ -77,8 +76,7 @@ void MemInfoTaskFunc(void)
     unsigned char fragment = 100 - poolStatus.maxFreeNodeSize * 100 / poolStatus.totalFreeSize;
     /* 算出内存池当前的使用率百分比 */
     unsigned char usage = LOS_MemTotalUsedGet(pool) * 100 / LOS_MemPoolSizeGet(pool);
-    printf("usage = %d, fragment = %d, maxFreeSize = %d, totalFreeSize = %d, waterLine = %d\n", usage, fragment, poolStatus.maxFreeNodeSize, 
-           poolStatus.totalFreeSize, poolStatus.usageWaterLine);
+    printf("usage = %d, fragment = %d, maxFreeSize = %d, totalFreeSize = %d, waterLine = %d\n", usage, fragment,                            poolStatus.maxFreeNodeSize, poolStatus.totalFreeSize, poolStatus.usageWaterLine);
 }
 
 int MemTest(void)
@@ -93,9 +91,9 @@ int MemTest(void)
     ret = LOS_TaskCreate(&taskID, &taskStatus);
     if (ret != LOS_OK) {
         printf("task create failed\n");
-        return -1;
+        return LOS_NOK;
     }
-    return 0;
+    return LOS_OK;
 }
 ```
 
@@ -106,7 +104,7 @@ int MemTest(void)
 编译运行输出的结果如下：
 
 
-  
+
 ```
 usage = 22, fragment = 3, maxFreeSize = 49056, totalFreeSize = 50132, waterLine = 1414
 ```
