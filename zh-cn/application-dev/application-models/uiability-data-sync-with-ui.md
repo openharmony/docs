@@ -6,7 +6,7 @@
 - EventHub：[基类Context](application-context-stage.md)提供了EventHub的能力，使用发布订阅模式来实现。事件需要先订阅后发布，订阅者收到消息后进行处理。
 
 - globalThis：ArkTS引擎实例内部的一个全局对象，在ArkTS引擎实例内部都能访问。
-- 
+- [页面级变量的状态管理](../quick-start/arkts-state-mgmt-application-level.md)。
 
 
 ## 使用EventHub进行数据通信

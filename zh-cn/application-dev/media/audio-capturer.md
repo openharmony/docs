@@ -21,7 +21,7 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
 
 ## 约束与限制
 
-开发者在进行音频数据采集功能开发前，需要先对所开发的应用配置麦克风权限（ohos.permission.MICROPHONE），权限配置相关内容可参考：[访问控制授权申请指导](../security/accesstoken-guidelines.md)
+开发者在进行音频数据采集功能开发前，需要先对所开发的应用配置麦克风权限（ohos.permission.MICROPHONE），配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
 
 ## 开发指导
 
@@ -178,16 +178,16 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
    
    // 获取采集器信息
    let audioCapturerInfo : audio.AuduioCapturerInfo = await audioCapturer.getCapturerInfo();
-
+   
    // 获取音频流信息
    let audioStreamInfo : audio.AudioStreamInfo = await audioCapturer.getStreamInfo();
-
+   
    // 获取音频流ID
    let audioStreamId : number = await audioCapturer.getAudioStreamId();
-
+   
    // 获取纳秒形式的Unix时间戳
    let audioTime : number = await audioCapturer.getAudioTime();
-
+   
    // 获取合理的最小缓冲区大小
    let bufferSize : number = await audioCapturer.getBuffersize();
    ```
