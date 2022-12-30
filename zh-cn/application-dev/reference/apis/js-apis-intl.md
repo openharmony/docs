@@ -67,7 +67,7 @@ constructor(locale: string, options?: LocaleOptions)
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string                           | 是    | 包含区域信息的字符串，包括语言以、脚本、国家或地区。语言、脚本、国家或地区的国际标准及组合方式请见[Intl开发指导](../../internationalization/intl-guidelines.md#设置区域信息) |
-| options<sup>9+</sup> | [LocaleOptions](#localeoptions9) | 否    | 用于创建区域对象的选项。                 |
+| options<sup>9+</sup> | [LocaleOptions](#localeoptions6) | 否    | 用于创建区域对象的选项。                 |
 
 **示例：** 
   ```js
@@ -159,7 +159,7 @@ minimize(): Locale
   ```
 
 
-## LocaleOptions<sup>9+</sup>
+## LocaleOptions<sup>6+</sup>
 
 表示区域初始化选项。
 
@@ -206,7 +206,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [DateTimeOptions](#datetimeoptions9) | 否    | 用于创建时间日期格式化的选项。              |
+| options<sup>9+</sup> | [DateTimeOptions](#datetimeoptions6) | 否    | 用于创建时间日期格式化的选项。              |
 
 **示例：** 
   ```js
@@ -298,7 +298,7 @@ resolvedOptions(): DateTimeOptions
 
 | 类型                                   | 说明                            |
 | ------------------------------------ | ----------------------------- |
-| [DateTimeOptions](#datetimeoptions9) | DateTimeFormat&nbsp;对象的格式化选项。 |
+| [DateTimeOptions](#datetimeoptions6) | DateTimeFormat&nbsp;对象的格式化选项。 |
 
 **示例：** 
   ```js
@@ -310,7 +310,7 @@ resolvedOptions(): DateTimeOptions
   ```
 
 
-## DateTimeOptions<sup>9+</sup>
+## DateTimeOptions<sup>6+</sup>
 
 表示时间日期格式化选项。
 
@@ -370,7 +370,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;    | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [NumberOptions](#numberoptions9) | 否    | 用于创建数字格式化的选项。                |
+| options<sup>9+</sup> | [NumberOptions](#numberoptions6) | 否    | 用于创建数字格式化的选项。                |
 
 **示例：** 
   ```js
@@ -420,7 +420,7 @@ resolvedOptions(): NumberOptions
 
 | 类型                               | 说明                          |
 | -------------------------------- | --------------------------- |
-| [NumberOptions](#numberoptions9) | NumberFormat&nbsp;对象的格式化选项。 |
+| [NumberOptions](#numberoptions6) | NumberFormat&nbsp;对象的格式化选项。 |
 
 
 **示例：** 
@@ -433,7 +433,7 @@ resolvedOptions(): NumberOptions
   ```
 
 
-## NumberOptions<sup>9+</sup>
+## NumberOptions<sup>6+</sup>
 
 表示设备支持的能力。
 
@@ -493,7 +493,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [CollatorOptions](#collatoroptions9) | 否    | 用于创建排序对象的选项。                 |
+| options<sup>9+</sup> | [CollatorOptions](#collatoroptions8) | 否    | 用于创建排序对象的选项。                 |
 
 **示例：** 
   ```js
@@ -544,7 +544,7 @@ resolvedOptions(): CollatorOptions
 
 | 类型                                   | 说明                |
 | ------------------------------------ | ----------------- |
-| [CollatorOptions](#collatoroptions9) | 返回的Collator对象的属性。 |
+| [CollatorOptions](#collatoroptions8) | 返回的Collator对象的属性。 |
 
 **示例：** 
   ```js
@@ -556,7 +556,7 @@ resolvedOptions(): CollatorOptions
   ```
 
 
-## CollatorOptions<sup>9+</sup>
+## CollatorOptions<sup>8+</sup>
 
 表示Collator可设置的属性。
 
@@ -604,7 +604,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [PluralRulesOptions](#pluralrulesoptions9) | 否    | 用于创建单复数对象的选项。                |
+| options<sup>9+</sup> | [PluralRulesOptions](#pluralrulesoptions8) | 否    | 用于创建单复数对象的选项。                |
 
 **示例：** 
   ```js
@@ -647,7 +647,7 @@ select(n: number): string
   ```
 
 
-## PluralRulesOptions<sup>9+</sup>
+## PluralRulesOptions<sup>8+</sup>
 
 表示PluralRules对象可设置的属性。
 
@@ -695,7 +695,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions9) | 否    | 用于创建相对时间格式化对象的选项。            |
+| options<sup>9+</sup> | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions8) | 否    | 用于创建相对时间格式化对象的选项。            |
 
 **示例：** 
   ```js
@@ -787,7 +787,7 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
   ```
 
 
-## RelativeTimeFormatInputOptions<sup>9+</sup>
+## RelativeTimeFormatInputOptions<sup>8+</sup>
 
 表示RelativeTimeFormat对象可设置的属性。
 
