@@ -414,6 +414,17 @@ promise.then(()=>{
 | ON_CONFLICT_IGNORE   | 4    | 表示当冲突发生时，跳过包含违反约束的行并继续处理 SQL 语句的后续行。 |
 | ON_CONFLICT_REPLACE  | 5    | 表示当冲突发生时，在插入或更新当前行之前删除导致约束违例的预先存在的行，并且命令会继续正常执行。 |
 
+## OpenStatus<sup>10+</sup>
+
+获取的RdbStore的状态。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称       | 值   | 说明                                                 |
+| --------- | ---- | --------------------------------------------------- |
+| ON_CREATE | 0    | 表示RdbStore首次创建，处于ON_CREATE状态。               |
+| ON_OPEN   | 1    | 表示RdbStore非首次创建，处于ON_OPEN状态。                |
+
 ## RdbPredicates
 
 表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。
@@ -1256,6 +1267,14 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 提供管理关系数据库(RDB)方法的接口。
 
 在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据，具体可见[关系型数据库开发指导](../../database/database-relational-guidelines.md)。
+
+### 属性
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称         | 类型            | 必填 | 说明                             |
+| ------------ | ----------- | ---- | -------------------------------- |
+| openStatus  | number | 是   | 获取RdbStore的状态。       |
 
 ### insert
 
