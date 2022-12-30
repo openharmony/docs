@@ -1,12 +1,12 @@
 # UIAbility组件与UI的数据同步
 
 
-基于OpenHarmony的应用模型，可以通过以下两种方式来实现UIAbility组件与UI之间的数据同步。
+基于OpenHarmony的应用模型，可以通过以下三种方式来实现UIAbility组件与UI之间的数据同步。
 
+- EventHub：[基类Context](application-context-stage.md)提供了EventHub的能力，使用发布订阅模式来实现。事件需要先订阅后发布，订阅者收到消息后进行处理。
 
-1. EventHub：基于发布订阅模式来实现，事件需要先订阅后发布，订阅者收到消息后进行处理。
-
-2. globalThis：ArkTS引擎实例内部的一个全局对象，在ArkTS引擎实例内部都能访问。
+- globalThis：ArkTS引擎实例内部的一个全局对象，在ArkTS引擎实例内部都能访问。
+- 
 
 
 ## 使用EventHub进行数据通信

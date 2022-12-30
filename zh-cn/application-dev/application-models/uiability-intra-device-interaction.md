@@ -38,7 +38,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
            info: '来自EntryAbility Index页面',
        },
    }
-   // context为调用方UIAbility的AbilityContext
+   // context为调用方UIAbility的UIAbilityContext
    this.context.startAbility(wantInfo).then(() => {
        // ...
    }).catch((err) => {
@@ -88,7 +88,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
            info: '来自EntryAbility Index页面',
        },
    }
-   // context为调用方UIAbility的AbilityContext
+   // context为调用方UIAbility的UIAbilityContext
    this.context.startAbilityForResult(wantInfo).then((data) => {
        // ...
    }).catch((err) => {
@@ -124,7 +124,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    
    // ...
    
-   // context为调用方UIAbility的AbilityContext
+   // context为调用方UIAbility的UIAbilityContext
    this.context.startAbilityForResult(want).then((data) => {
        if (data?.resultCode === RESULT_CODE) {
            // 解析被调用方UIAbility返回的信息
@@ -187,7 +187,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
        entities: ['entity.system.default'],
    }
    
-   // context为调用方UIAbility的AbilityContext
+   // context为调用方UIAbility的UIAbilityContext
    this.context.startAbility(wantInfo).then(() => {
        // ...
    }).catch((err) => {
@@ -250,7 +250,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
        entities: ['entity.system.default'],
    }
    
-   // context为调用方UIAbility的AbilityContext
+   // context为调用方UIAbility的UIAbilityContext
    this.context.startAbilityForResult(wantInfo).then((data) => {
        // ...
    }).catch((err) => {
@@ -288,7 +288,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
      // Want参数信息
    };
    
-   // context为调用方UIAbility的AbilityContext
+   // context为调用方UIAbility的UIAbilityContext
    this.context.startAbilityForResult(want).then((data) => {
        if (data?.resultCode === RESULT_CODE) {
            // 解析被调用方UIAbility返回的信息
@@ -321,7 +321,7 @@ let wantInfo = {
         router: 'funcA',
     },
 }
-// context为调用方UIAbility的AbilityContext
+// context为调用方UIAbility的UIAbilityContext
 this.context.startAbility(wantInfo).then(() => {
     // ...
 }).catch((err) => {

@@ -114,7 +114,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
            instanceKey: getInstance(),
        },
    }
-   // context为调用方UIAbility的AbilityContext
+   // context为调用方UIAbility的UIAbilityContext
    this.context.startAbility(want).then(() => {
        // ...
    }).catch((err) => {

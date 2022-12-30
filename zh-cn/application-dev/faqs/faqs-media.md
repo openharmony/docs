@@ -42,7 +42,7 @@ cameraInput = await this.cameraManager.createCameraInput(cameraId)
 适用于：OpenHarmony 3.2.5.6版本，API9 Stage模型
 
 1. **通过传入的uri创建图片源实例ImageSource对象。**
-     
+   
    ```
    let path = this.context.getApplicationContext().fileDirs + "test.jpg";
    const imageSourceApi = image.createImageSource(path);
@@ -52,7 +52,7 @@ cameraInput = await this.cameraManager.createCameraInput(cameraId)
    - 设置desiredSize支持按尺寸缩放，如果设置为全0，则不进行缩放。
    - 设置desiredRegion支持按矩形区域裁剪，如果设置为全0，则不进行裁剪。
    - 设置rotateDegrees支持旋转角度，以图像中心点顺时针旋转。
-        
+     
       ```
       const decodingOptions = {
         desiredSize: {
@@ -85,7 +85,7 @@ cameraInput = await this.cameraManager.createCameraInput(cameraId)
 1. 在module.json5配置文件中配置媒体读写权限ohos.permission.READ_MEDIA和ohos.permission.WRITE_MEDIA。
    示例：
 
-     
+   
    ```
    {
      "module" : {
@@ -104,13 +104,13 @@ cameraInput = await this.cameraManager.createCameraInput(cameraId)
    ```
 
 2. 这两个权限的授权方式均为user_grant，因此需要调用requestPermissionsFromUser接口，以动态弹窗的方式向用户申请授权。
-     
+   
    ```
    import abilityAccessCtrl from '@ohos.abilityAccessCtrl.d.ts';
    
    let permissions: Array<string> = ['ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA']
    let atManager = abilityAccessCtrl.createAtManager();
-   // context为调用方UIAbility的AbilityContext
+   // context为调用方UIAbility的UIAbilityContext
    atManager.requestPermissionsFromUser(context, permissions).then((data) => {
        console.log("Succeed to request permission from user with data: " + JSON.stringify(data))
    }).catch((error) => {

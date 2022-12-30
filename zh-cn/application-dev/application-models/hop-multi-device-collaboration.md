@@ -187,7 +187,7 @@
    
    // ...
    
-   // context为调用方UIAbility的AbilityContext
+   // context为调用方UIAbility的UIAbilityContext
    this.context.startAbilityForResult(want).then((data) => {
        if (data?.resultCode === RESULT_CODE) {
            // 解析目标端UIAbility返回的信息
