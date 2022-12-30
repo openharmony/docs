@@ -1269,13 +1269,13 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 
 在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据，具体可见[关系型数据库开发指导](../../database/database-relational-guidelines.md)。
 
-### 属性
+### 属性<sup>10+</sup>
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | 名称         | 类型            | 必填 | 说明                             |
 | ------------ | ----------- | ---- | -------------------------------- |
-| openStatus  | number | 是   | 获取RdbStore的状态。       |
+| openStatus<sup>10+</sup>  | number | 是   | 获取RdbStore的状态。       |
 
 ### insert
 

@@ -377,7 +377,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.inDevices(['12345678abcde'])
 ```
 
-### inAllDevices
+### inAllDevices<sup>8+</sup>
 
 inAllDevices(): RdbPredicates
 
@@ -1161,7 +1161,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 
 提供管理关系数据库(RDB)方法的接口。
 
-在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据，具体可见[关系型数据库开发指导](../../database/database-relational-guidelines.md)。
+在使用以下相关接口前，请使用[executeSql](#executesql8)接口初始化数据库表结构和相关数据，具体可见[关系型数据库开发指导](../../database/database-relational-guidelines.md)。
 
 ### insert
 
@@ -1539,7 +1539,7 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
   })
   ```
 
-### querySql
+### querySql<sup>8+</sup>
 
 querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
@@ -1568,7 +1568,7 @@ rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", 
 })
 ```
 
-### querySql
+### querySql<sup>8+</sup>
 
 querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt;
 
@@ -1601,7 +1601,7 @@ promise.then((resultSet) => {
 })
 ```
 
-### executeSql
+### executeSql<sup>8+</sup>
 
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
@@ -1630,7 +1630,7 @@ rdbStore.executeSql(SQL_CREATE_TABLE, null, function(err) {
 })
 ```
 
-### executeSql
+### executeSql<sup>8+</sup>
 
 executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
@@ -1663,7 +1663,7 @@ promise.then(() => {
 })
 ```
 
-### beginTransaction
+### beginTransaction<sup>8+</sup>
 
 beginTransaction():void
 
@@ -1690,7 +1690,7 @@ data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
 })
 ```
 
-### commit
+### commit<sup>8+</sup>
 
 commit():void
 
@@ -1717,7 +1717,7 @@ data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
 })
 ```
 
-### rollBack
+### rollBack<sup>8+</sup>
 
 rollBack():void
 
@@ -1749,7 +1749,7 @@ data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
 })
 ```
 
-### setDistributedTables
+### setDistributedTables<sup>8+</sup>
 
 setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1778,7 +1778,7 @@ rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
 })
 ```
 
-### setDistributedTables
+### setDistributedTables<sup>8+</sup>
 
  setDistributedTables(tables: Array&lt;string&gt;): Promise&lt;void&gt;
 
@@ -1811,7 +1811,7 @@ promise.then(() => {
 })
 ```
 
-### obtainDistributedTableName
+### obtainDistributedTableName<sup>8+</sup>
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
@@ -1841,7 +1841,7 @@ rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, 
 })
 ```
 
-### obtainDistributedTableName
+### obtainDistributedTableName<sup>8+</sup>
 
  obtainDistributedTableName(device: string, table: string): Promise&lt;string&gt;
 
@@ -1910,7 +1910,7 @@ rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, resul
 })
 ```
 
-### sync
+### sync<sup>8+</sup>
 
  sync(mode: SyncMode, predicates: RdbPredicates): Promise&lt;Array&lt;[string, number]&gt;&gt;
 
@@ -1949,7 +1949,7 @@ promise.then((result) =>{
 })
 ```
 
-### on('dataChange')
+### on('dataChange')<sup>8+</sup>
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
@@ -1980,7 +1980,7 @@ try {
 }
 ```
 
-### off('dataChange')
+### off('dataChange')<sup>8+</sup>
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
