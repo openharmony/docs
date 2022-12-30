@@ -15,7 +15,7 @@
 使用链接脚本将如下init启动代码放置到系统镜像指定位置。
 
 
-```
+```c
 #define LITE_USER_SEC_ENTRY   __attribute__((section(".user.entry")))
 LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
 {
@@ -26,6 +26,8 @@ LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
     }
 }
 ```
+
+> 上述启动代码在 kernel/liteos_a/kernel/user/src/los_user_init.c 中，g_initPath 根据启动设置的不同，其值为 /dev/shm/init 或 /bin/init。
 
 系统启动阶段，OsUserInitProcess启动init进程。具体过程如下：
 
@@ -48,7 +50,7 @@ LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
 用户态程序启动有如下常见方式：
 
 - shell命令启动进程。
-  
+
   ```
   OHOS $ exec helloworld
   OHOS $ ./helloworld
