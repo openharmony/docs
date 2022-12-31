@@ -18,6 +18,10 @@ You can use `$r` or `$rawfile` to create a **Resource** object, but its attribut
 
   **filename**: name of the file in the **resources/rawfile** directory of the project.
 
+  > **NOTE**
+  >
+  > When referencing resources of the **Resource** type, make sure the data type is the same as that of the attribute method. For example, if an attribute method supports the **string | Resource** types, the data type of the **Resource** type must be string.
+
 ## Length
 
 The **Length** type is used to represent a size unit.
@@ -138,12 +142,12 @@ The **LengthConstrain** type is used to describe the maximum and minimum lengths
 
 The **Font** type is used to set the text style.
 
-| Name    | Type                                      | Mandatory  | Description                                      |
-| ------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| size   | [Length](#length)                        | No   | Font size. If the value is of the number type, the unit fp is used.         |
-| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No   | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.|
-| family | string \| [Resource](#resource)          | No   | Font family of the text. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, sans-serif'**.|
-| style  | [FontStyle](ts-appendix-enums.md#fontstyle) | No   | Font style.                              |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| size   | [Length](#length)                                            | No  | Font size. If the value is of the number type, the unit fp is used. The value cannot be a percentage.|
+| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No  | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.|
+| family | string \| [Resource](#resource)                              | No  | Font family of the text. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, sans-serif'**. Currently, only the **'sans-serif'** font is supported.|
+| style  | [FontStyle](ts-appendix-enums.md#fontstyle)                  | No  | Font style.                                        |
 
 ## Area<sup>8+</sup>
 
@@ -212,4 +216,4 @@ The **CustomBuilder** type is used to define custom UI descriptions in component
 
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | Must be decorated by **@Builder**. For details, see [@Builder](../../quick-start/arkts-dynamic-ui-elememt-building.md#builder).|
+| CustomBuilder | () =&gt; any | Must be decorated by **@Builder**. For details, see [@Builder](../../quick-start/arkts-dynamic-ui-elememt-building.md#builder).|
