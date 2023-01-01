@@ -1,17 +1,15 @@
-# @ohos.notification
+# @ohos.notificationManager
 
-The **Notification** module provides notification management capabilities, covering notifications, notification slots, notification subscription, notification enabled status, and notification badge status.
+The **notificationManager** module provides notification management capabilities, covering notifications, notification slots, notification enabled status, and notification badge status.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> Notification subscription and unsubscription APIs are available only to system applications.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```js
-import Notification from '@ohos.notification';
+import Notification from '@ohos.notificationManager';
 ```
 
 ## Notification.publish
@@ -29,12 +27,23 @@ Publishes a notification. This API uses an asynchronous callback to return the r
 | request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | callback | AsyncCallback\<void\>                       | Yes  | Callback used to return the result.                       |
 
+**Error codes**
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 1600001  | Internal error.                           |
+| 1600002  | Marshalling or unmarshalling error.       |
+| 1600003  | Failed to connect service.                |
+| 1600004  | Notification is not enabled.              |
+| 1600005  | Notification slot is not enabled.         |
+| 1600009  | Over max number notifications per second. |
+
 **Example**
 
 ```js
 // publish callback
 function publishCallback(err) {
-    if (err.code) {
+    if (err) {
         console.info("publish failed " + JSON.stringify(err));
     } else {
         console.info("publish success");
@@ -71,6 +80,17 @@ Publishes a notification. This API uses a promise to return the result.
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
 | request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 
+**Error codes**
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 1600001  | Internal error.                           |
+| 1600002  | Marshalling or unmarshalling error.       |
+| 1600003  | Failed to connect service.                |
+| 1600004  | Notification is not enabled.              |
+| 1600005  | Notification slot is not enabled.         |
+| 1600009  | Over max number notifications per second. |
+
 **Example**
 
 ```js
@@ -92,7 +112,7 @@ Notification.publish(notificationRequest).then(() => {
 
 ```
 
-## Notification.publish<sup>8+</sup>
+## Notification.publish
 
 publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<void\>): void
 
@@ -112,12 +132,24 @@ Publishes a notification to a specified user. This API uses an asynchronous call
 | userId   | number                                      | Yes  | User ID.                          |
 | callback | AsyncCallback\<void\>                       | Yes  | Callback used to return the result.                          |
 
+**Error codes**
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 1600001  | Internal error.                           |
+| 1600002  | Marshalling or unmarshalling error.       |
+| 1600003  | Failed to connect service.                |
+| 1600004  | Notification is not enabled.              |
+| 1600005  | Notification slot is not enabled.         |
+| 1600008  | The user is not exist.                    |
+| 1600009  | Over max number notifications per second. |
+
 **Example**
 
 ```js
 // publish callback
 function publishCallback(err) {
-    if (err.code) {
+    if (err) {
         console.info("publish failed " + JSON.stringify(err));
     } else {
         console.info("publish success");
@@ -140,7 +172,7 @@ var notificationRequest = {
 Notification.publish(notificationRequest, userId, publishCallback);
 ```
 
-## Notification.publish<sup>8+</sup>
+## Notification.publish
 
 publish(request: NotificationRequest, userId: number): Promise\<void\>
 
@@ -158,6 +190,18 @@ Publishes a notification to a specified user. This API uses a promise to return 
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
 | request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | userId   | number                                      | Yes  | User ID.                          |
+
+**Error codes**
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 1600001  | Internal error.                           |
+| 1600002  | Marshalling or unmarshalling error.       |
+| 1600003  | Failed to connect service.                |
+| 1600004  | Notification is not enabled.              |
+| 1600005  | Notification slot is not enabled.         |
+| 1600008  | The user is not exist.                    |
+| 1600009  | Over max number notifications per second. |
 
 **Example**
 
@@ -198,12 +242,21 @@ Cancels a notification with the specified ID and label. This API uses an asynchr
 | label    | string                | Yes  | Notification label.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600007  | The notification is not exist.      |
+
 **Example**
 
 ```js
 // cancel callback
 function cancelCallback(err) {
-    if (err.code) {
+    if (err) {
         console.info("cancel failed " + JSON.stringify(err));
     } else {
         console.info("cancel success");
@@ -228,6 +281,15 @@ Cancels a notification with the specified ID and optional label. This API uses a
 | ----- | ------ | ---- | -------- |
 | id    | number | Yes  | Notification ID.  |
 | label | string | No  | Notification label.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600007  | The notification is not exist.      |
 
 **Example**
 
@@ -254,12 +316,21 @@ Cancels a notification with the specified ID. This API uses an asynchronous call
 | id       | number                | Yes  | Notification ID.              |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600007  | The notification is not exist.      |
+
 **Example**
 
 ```js
 // cancel callback
 function cancelCallback(err) {
-    if (err.code) {
+    if (err) {
         console.info("cancel failed " + JSON.stringify(err));
     } else {
         console.info("cancel success");
@@ -278,6 +349,14 @@ Cancels all notifications. This API uses an asynchronous callback to return the 
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Parameters**
 
 | Name    | Type                 | Mandatory| Description                |
@@ -289,7 +368,7 @@ Cancels all notifications. This API uses an asynchronous callback to return the 
 ```js
 // cancel callback
 function cancelAllCallback(err) {
-    if (err.code) {
+    if (err) {
         console.info("cancelAll failed " + JSON.stringify(err));
     } else {
         console.info("cancelAll success");
@@ -307,6 +386,14 @@ cancelAll(): Promise\<void\>
 Cancels all notifications. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
 
 **Example**
 
@@ -337,12 +424,20 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 | slot     | [NotificationSlot](#notificationslot)       | Yes  | Notification slot to add.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
 // addSlot callback
 function addSlotCallBack(err) {
-    if (err.code) {
+    if (err) {
         console.info("addSlot failed " + JSON.stringify(err));
     } else {
         console.info("addSlot success");
@@ -375,6 +470,14 @@ Adds a notification slot. This API uses a promise to return the result.
 | ---- | ---------------- | ---- | -------------------- |
 | slot | [NotificationSlot](#notificationslot) | Yes  | Notification slot to add.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
@@ -404,12 +507,20 @@ Adds a notification slot of a specified type. This API uses an asynchronous call
 | type     | [SlotType](#slottype)              | Yes  | Type of the notification slot to add.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.  |
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
 // addSlot callback
 function addSlotCallBack(err) {
-    if (err.code) {
+    if (err) {
         console.info("addSlot failed " + JSON.stringify(err));
     } else {
         console.info("addSlot success");
@@ -433,6 +544,14 @@ Adds a notification slot of a specified type. This API uses a promise to return 
 | Name| Type    | Mandatory| Description                  |
 | ---- | -------- | ---- | ---------------------- |
 | type | [SlotType](#slottype) | Yes  | Type of the notification slot to add.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
 
 **Example**
 
@@ -463,12 +582,20 @@ Adds an array of notification slots. This API uses an asynchronous callback to r
 | slots    | Array\<[NotificationSlot](#notificationslot)\> | Yes  | Notification slots to add.|
 | callback | AsyncCallback\<void\>     | Yes  | Callback used to return the result.    |
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
 // addSlots callback
 function addSlotsCallBack(err) {
-    if (err.code) {
+    if (err) {
         console.info("addSlots failed " + JSON.stringify(err));
     } else {
         console.info("addSlots success");
@@ -505,6 +632,14 @@ Adds an array of notification slots. This API uses a promise to return the resul
 | ----- | ------------------------- | ---- | ------------------------ |
 | slots | Array\<[NotificationSlot](#notificationslot)\> | Yes  | Notification slots to add.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
@@ -527,7 +662,7 @@ Notification.addSlots(notificationSlotArray).then(() => {
 
 getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 
-Obtains a notification slot of a specified type. This API uses a promise to return the result.
+Obtains a notification slot of a specified type. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -538,12 +673,20 @@ Obtains a notification slot of a specified type. This API uses a promise to retu
 | slotType | [SlotType](#slottype)                          | Yes  | Type of the notification slot, which can be used for social communication, service information, content consultation, and other purposes.|
 | callback | AsyncCallback\<[NotificationSlot](#notificationslot)\> | Yes  | Callback used to return the result.                                       |
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
 // getSlot callback
-function getSlotCallback(err, data) {
-    if (err.code) {
+function getSlotCallback(err,data) {
+    if (err) {
         console.info("getSlot failed " + JSON.stringify(err));
     } else {
         console.info("getSlot success");
@@ -575,6 +718,14 @@ Obtains a notification slot of a specified type. This API uses a promise to retu
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<NotificationSlot\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
@@ -590,7 +741,7 @@ Notification.getSlot(slotType).then((data) => {
 
 getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
 
-Obtains all notification slots. This API uses an asynchronous callback to return the result.
+Obtains all notification slots of this application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -598,14 +749,22 @@ Obtains all notification slots. This API uses an asynchronous callback to return
 
 | Name    | Type                             | Mandatory| Description                |
 | -------- | --------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)\>\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)\>\> | Yes  | Callback used to return all notification slots of the current application.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
 
 **Example**
 
 ```js
 // getSlots callback
-function getSlotsCallback(err, data) {
-    if (err.code) {
+function getSlotsCallback(err,data) {
+    if (err) {
         console.info("getSlots failed " + JSON.stringify(err));
     } else {
         console.info("getSlots success");
@@ -628,7 +787,15 @@ Obtains all notification slots of this application. This API uses a promise to r
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationSlot](#notificationslot)\>\> | Promise used to return the result.|
+| Promise\<Array\<[NotificationSlot](#notificationslot)\>\> | Promise used to return all notification slots of the current application.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
 
 **Example**
 
@@ -655,12 +822,20 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 | slotType | [SlotType](#slottype)              | Yes  | Type of the notification slot, which can be used for social communication, service information, content consultation, and other purposes.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                                       |
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
 // removeSlot callback
 function removeSlotCallback(err) {
-    if (err.code) {
+    if (err) {
         console.info("removeSlot failed " + JSON.stringify(err));
     } else {
         console.info("removeSlot success");
@@ -685,6 +860,14 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 | Name    | Type    | Mandatory| Description                                                       |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
 | slotType | [SlotType](#slottype) | Yes  | Type of the notification slot, which can be used for social communication, service information, content consultation, and other purposes.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
 
 **Example**
 
@@ -711,11 +894,19 @@ Removes all notification slots. This API uses an asynchronous callback to return
 | -------- | --------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
 function removeAllCallBack(err) {
-    if (err.code) {
+    if (err) {
         console.info("removeAllSlots failed " + JSON.stringify(err));
     } else {
         console.info("removeAllSlots success");
@@ -734,6 +925,14 @@ Removes all notification slots. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
@@ -744,203 +943,9 @@ Notification.removeAllSlots().then(() => {
 
 
 
-## Notification.subscribe
+## Notification.setNotificationEnable
 
-subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback\<void\>): void
-
-Subscribes to a notification with the subscription information specified. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name      | Type                     | Mandatory| Description            |
-| ---------- | ------------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](#notificationsubscriber)    | Yes  | Notification subscriber.    |
-| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | Yes  | Notification subscription information.|
-| callback   | AsyncCallback\<void\>     | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-// subscribe callback
-function subscribeCallback(err) {
-    if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribe success");
-    }
-}
-function onConsumeCallback(data) {
-	console.info("Consume callback: " + JSON.stringify(data));
-}
-var subscriber = {
-    onConsume: onConsumeCallback
-}
-var info = {
-    bundleNames: ["bundleName1", "bundleName2"]
-}
-Notification.subscribe(subscriber, info, subscribeCallback);
-```
-
-
-
-## Notification.subscribe
-
-subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): void
-
-Subscribes to notifications of all applications under this user. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name      | Type                  | Mandatory| Description            |
-| ---------- | ---------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](#notificationsubscriber) | Yes  | Notification subscriber.    |
-| callback   | AsyncCallback\<void\>  | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-function subscribeCallback(err) {
-    if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribe success");
-    }
-}
-function onConsumeCallback(data) {
-	console.info("Consume callback: " + JSON.stringify(data));
-}
-var subscriber = {
-    onConsume: onConsumeCallback
-}
-Notification.subscribe(subscriber, subscribeCallback);
-```
-
-
-
-## Notification.subscribe
-
-subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo): Promise\<void\>
-
-Subscribes to a notification with the subscription information specified. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name      | Type                     | Mandatory| Description        |
-| ---------- | ------------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](#notificationsubscriber)    | Yes  | Notification subscriber.|
-| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | No  | Notification subscription information.  |
-
-**Example**
-
-```js
-function onConsumeCallback(data) {
-    console.info("Consume callback: " + JSON.stringify(data));
-}
-var subscriber = {
-    onConsume: onConsumeCallback
-};
-Notification.subscribe(subscriber).then(() => {
-	console.info("subscribe success");
-});
-```
-
-
-
-## Notification.unsubscribe
-
-unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): void
-
-Unsubscribes from a notification. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name      | Type                  | Mandatory| Description                |
-| ---------- | ---------------------- | ---- | -------------------- |
-| subscriber | [NotificationSubscriber](#notificationsubscriber) | Yes  | Notification subscriber.        |
-| callback   | AsyncCallback\<void\>  | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-function unsubscribeCallback(err) {
-    if (err.code) {
-        console.info("unsubscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("unsubscribe success");
-    }
-}
-function onDisconnectCallback(data) {
-	console.info("Cancel callback: " + JSON.stringify(data));
-}
-var subscriber = {
-    onDisconnect: onDisconnectCallback
-}
-Notification.unsubscribe(subscriber, unsubscribeCallback);
-```
-
-
-
-## Notification.unsubscribe
-
-unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
-
-Unsubscribes from a notification. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name      | Type                  | Mandatory| Description        |
-| ---------- | ---------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](#notificationsubscriber) | Yes  | Notification subscriber.|
-
-**Example**
-
-```js
-function onDisconnectCallback(data) {
-	console.info("Cancel callback: " + JSON.stringify(data));
-}
-var subscriber = {
-    onDisconnect: onDisconnectCallback
-};
-Notification.unsubscribe(subscriber).then(() => {
-	console.info("unsubscribe success");
-});
-```
-
-
-
-## Notification.enableNotification
-
-enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
+setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
 Sets whether to enable notification for a specified application. This API uses an asynchronous callback to return the result.
 
@@ -954,31 +959,40 @@ Sets whether to enable notification for a specified application. This API uses a
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.       |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle of the application.       |
 | enable   | boolean               | Yes  | Whether to enable notification.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```js
-function enableNotificationCallback(err) {
-    if (err.code) {
-        console.info("enableNotification failed " + JSON.stringify(err));
+function setNotificationEnablenCallback(err) {
+    if (err) {
+        console.info("setNotificationEnablenCallback failed " + JSON.stringify(err));
     } else {
-        console.info("enableNotification success");
+        console.info("setNotificationEnablenCallback success");
     }
 }
 var bundle = {
     bundle: "bundleName1",
 }
-Notification.enableNotification(bundle, false, enableNotificationCallback);
+Notification.setNotificationEnable(bundle, false, setNotificationEnablenCallback);
 ```
 
 
 
-## Notification.enableNotification
+## Notification.setNotificationEnable
 
-enableNotification(bundle: BundleOption, enable: boolean): Promise\<void\>
+setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 Sets whether to enable notification for a specified application. This API uses a promise to return the result.
 
@@ -992,8 +1006,17 @@ Sets whether to enable notification for a specified application. This API uses a
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -1001,8 +1024,8 @@ Sets whether to enable notification for a specified application. This API uses a
 var bundle = {
     bundle: "bundleName1",
 }
-Notification.enableNotification(bundle, false).then(() => {
-	console.info("enableNotification success");
+Notification.setNotificationEnable(bundle, false).then(() => {
+	console.info("setNotificationEnable success");
 });
 ```
 
@@ -1012,7 +1035,7 @@ Notification.enableNotification(bundle, false).then(() => {
 
 isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
-Checks whether notification is enabled for a specified application. This API uses a promise to return the result.
+Checks whether notification is enabled for a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1024,14 +1047,23 @@ Checks whether notification is enabled for a specified application. This API use
 
 | Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.           |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle of the application.           |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```js
 function isNotificationEnabledCallback(err, data) {
-    if (err.code) {
+    if (err) {
         console.info("isNotificationEnabled failed " + JSON.stringify(err));
     } else {
         console.info("isNotificationEnabled success");
@@ -1061,13 +1093,22 @@ Checks whether notification is enabled for a specified application. This API use
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
 
 **Return value**
 
 | Type              | Description                                               |
 | ------------------ | --------------------------------------------------- |
 | Promise\<boolean\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -1100,11 +1141,19 @@ Checks whether notification is enabled for this application. This API uses an as
 | -------- | --------------------- | ---- | ------------------------ |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
 function isNotificationEnabledCallback(err, data) {
-    if (err.code) {
+    if (err) {
         console.info("isNotificationEnabled failed " + JSON.stringify(err));
     } else {
         console.info("isNotificationEnabled success");
@@ -1120,7 +1169,7 @@ Notification.isNotificationEnabled(isNotificationEnabledCallback);
 
 isNotificationEnabled(): Promise\<boolean\>
 
-Checks whether notification is enabled for this application. This API uses a promise to return the result.
+Checks whether notification is enabled for the current application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1132,13 +1181,22 @@ Checks whether notification is enabled for this application. This API uses a pro
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<boolean\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -1166,15 +1224,24 @@ Sets whether to enable the notification badge for a specified application. This 
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.          |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle of the application.          |
 | enable   | boolean               | Yes  | Whether to enable notification.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```js
 function displayBadgeCallback(err) {
-    if (err.code) {
+    if (err) {
         console.info("displayBadge failed " + JSON.stringify(err));
     } else {
         console.info("displayBadge success");
@@ -1204,8 +1271,17 @@ Sets whether to enable the notification badge for a specified application. This 
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -1236,14 +1312,23 @@ Checks whether the notification badge is enabled for a specified application. Th
 
 | Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.              |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle of the application.              |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```js
 function isBadgeDisplayedCallback(err, data) {
-    if (err.code) {
+    if (err) {
         console.info("isBadgeDisplayed failed " + JSON.stringify(err));
     } else {
         console.info("isBadgeDisplayed success");
@@ -1273,13 +1358,22 @@ Checks whether the notification badge is enabled for a specified application. Th
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<boolean\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -1310,15 +1404,26 @@ Sets the notification slot for a specified application. This API uses an asynchr
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.          |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle of the application.          |
 | slot     | [NotificationSlot](#notificationslot)      | Yes  | Notification slot.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
+
+
 
 **Example**
 
 ```js
 function setSlotByBundleCallback(err) {
-    if (err.code) {
+    if (err) {
         console.info("setSlotByBundle failed " + JSON.stringify(err));
     } else {
         console.info("setSlotByBundle success");
@@ -1351,8 +1456,17 @@ Sets the notification slot for a specified application. This API uses a promise 
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
 | slot   | [NotificationSlot](#notificationslot) | Yes  | Notification slot.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -1386,14 +1500,23 @@ Obtains the notification slots of a specified application. This API uses an asyn
 
 | Name    | Type                                    | Mandatory| Description                |
 | -------- | ---------------------------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)                             | Yes  | Bundle information of the application.          |
+| bundle   | [BundleOption](#bundleoption)                             | Yes  | Bundle of the application.          |
 | callback | AsyncCallback<Array\<[NotificationSlot](#notificationslot)\>> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```js
 function getSlotsByBundleCallback(err, data) {
-    if (err.code) {
+    if (err) {
         console.info("getSlotsByBundle failed " + JSON.stringify(err));
     } else {
         console.info("getSlotsByBundle success");
@@ -1423,13 +1546,22 @@ Obtains the notification slots of a specified application. This API uses a promi
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise<Array\<[NotificationSlot](#notificationslot)\>> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -1460,14 +1592,23 @@ Obtains the number of notification slots of a specified application. This API us
 
 | Name    | Type                     | Mandatory| Description                  |
 | -------- | ------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoption)              | Yes  | Bundle information of the application.            |
+| bundle   | [BundleOption](#bundleoption)              | Yes  | Bundle of the application.            |
 | callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```js
 function getSlotNumByBundleCallback(err, data) {
-    if (err.code) {
+    if (err) {
         console.info("getSlotNumByBundle failed " + JSON.stringify(err));
     } else {
         console.info("getSlotNumByBundle success");
@@ -1497,13 +1638,22 @@ Obtains the number of notification slots of a specified application. This API us
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<number\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -1517,316 +1667,6 @@ Notification.getSlotNumByBundle(bundle).then((data) => {
 ```
 
 
-
-## Notification.remove
-
-remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason, callback: AsyncCallback\<void\>): void
-
-Removes a notification for a specified bundle. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name           | Type                               | Mandatory| Description                |
-| --------------- |   ----------------------------------| ---- | -------------------- |
-| bundle          | [BundleOption](#bundleoption)       | Yes  | Bundle information of the application.          |
-| notificationKey | [NotificationKey](#notificationkey) | Yes  | Notification key.            |
-| reason          | [RemoveReason](#removereason9)      | Yes  | Indicates the reason for deleting a notification.        |
-| callback        | AsyncCallback\<void\>               | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-function removeCallback(err) {
-    if (err.code) {
-        console.info("remove failed " + JSON.stringify(err));
-    } else {
-        console.info("remove success");
-    }
-}
-var bundle = {
-    bundle: "bundleName1",
-}
-var notificationKey = {
-    id: 0,
-    label: "label",
-}
-var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
-Notification.remove(bundle, notificationKey, reason, removeCallback);
-```
-
-
-
-## Notification.remove
-
-remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason): Promise\<void\>
-
-Removes a notification for a specified bundle. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name           | Type           | Mandatory| Description      |
-| --------------- | --------------- | ---- | ---------- |
-| bundle          | [BundleOption](#bundleoption)    | Yes  | Bundle information of the application.|
-| notificationKey | [NotificationKey](#notificationkey) | Yes  | Notification key.  |
-| reason          | [RemoveReason](#removereason9) | Yes  | Reason for deleting the notification.        |
-
-**Example**
-
-```js
-var bundle = {
-    bundle: "bundleName1",
-}
-var notificationKey = {
-    id: 0,
-    label: "label",
-}
-var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
-Notification.remove(bundle, notificationKey, reason).then(() => {
-	console.info("remove success");
-});
-```
-
-
-
-## Notification.remove
-
-remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>): void
-
-Removes a notification for a specified bundle. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name    | Type                 | Mandatory| Description                |
-| -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | Yes  | Unique notification ID. It is the **hashCode** in the [NotificationRequest](#notificationrequest) object of [SubscribeCallbackData](#subscribecallbackdata) of the [onConsume](#onconsume) callback.|
-| reason   | [RemoveReason](#removereason9) | Yes  | Indicates the reason for deleting a notification.        |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-var hashCode = 'hashCode'
-
-function removeCallback(err) {
-    if (err.code) {
-        console.info("remove failed " + JSON.stringify(err));
-    } else {
-        console.info("remove success");
-    }
-}
-var reason = Notification.RemoveReason.CANCEL_REASON_REMOVE;
-Notification.remove(hashCode, reason, removeCallback);
-```
-
-
-
-## Notification.remove
-
-remove(hashCode: string, reason: RemoveReason): Promise\<void\>
-
-Removes a notification for a specified bundle. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name    | Type      | Mandatory| Description      |
-| -------- | ---------- | ---- | ---------- |
-| hashCode | string | Yes  | Unique notification ID.|
-| reason   | [RemoveReason](#removereason9) | Yes  | Reason for deleting the notification.        |
-
-**Example**
-
-```js
-var hashCode = 'hashCode'
-var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
-Notification.remove(hashCode, reason).then(() => {
-	console.info("remove success");
-});
-```
-
-
-
-## Notification.removeAll
-
-removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
-
-Removes all notifications for a specified application. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**Parameters**
-
-| Name    | Type                 | Mandatory| Description                        |
-| -------- | --------------------- | ---- | ---------------------------- |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.                  |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-function removeAllCallback(err) {
-    if (err.code) {
-        console.info("removeAll failed " + JSON.stringify(err));
-    } else {
-        console.info("removeAll success");
-    }
-}
-var bundle = {
-    bundle: "bundleName1",
-}
-Notification.removeAll(bundle, removeAllCallback);
-```
-
-
-
-## Notification.removeAll
-
-removeAll(callback: AsyncCallback\<void\>): void
-
-Removes all notifications. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name    | Type                 | Mandatory| Description                |
-| -------- | --------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-function removeAllCallback(err) {
-    if (err.code) {
-        console.info("removeAll failed " + JSON.stringify(err));
-    } else {
-        console.info("removeAll success");
-    }
-}
-
-Notification.removeAll(removeAllCallback);
-```
-
-
-
-## Notification.removeAll
-
-removeAll(bundle?: BundleOption): Promise\<void\>
-
-Removes all notifications for a specified application. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name  | Type        | Mandatory| Description      |
-| ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | No  | Bundle information of the application.|
-
-**Example**
-
-```js
-// If no application is specified, notifications of all applications are deleted.
-Notification.removeAll().then(() => {
-	console.info("removeAll success");
-});
-```
-
-## Notification.removeAll<sup>8+</sup>
-
-removeAll(userId: number, callback: AsyncCallback\<void>): void
-
-Removes all notifications for a specified user. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name  | Type        | Mandatory| Description      |
-| ------ | ------------ | ---- | ---------- |
-| userId | number | Yes  | User ID.|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-function removeAllCallback(err) {
-    if (err.code) {
-        console.info("removeAll failed " + JSON.stringify(err));
-    } else {
-        console.info("removeAll success");
-    }
-}
-
-var userId = 1
-Notification.removeAll(userId, removeAllCallback);
-```
-
-## Notification.removeAll<sup>8+</sup>
-
-removeAll(userId: number): Promise\<void>
-
-Removes all notifications for a specified user. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name  | Type        | Mandatory| Description      |
-| ------ | ------------ | ---- | ---------- |
-| userId | number | Yes  | User ID.|
-
-**Example**
-
-```js
-var userId = 1
-Notification.removeAll(userId).then(() => {
-	console.info("removeAll success");
-});
-```
 
 
 ## Notification.getAllActiveNotifications
@@ -1847,11 +1687,19 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
 | callback | AsyncCallback<Array\<[NotificationRequest](#notificationrequest)\>> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
 function getAllActiveNotificationsCallback(err, data) {
-    if (err.code) {
+    if (err) {
         console.info("getAllActiveNotifications failed " + JSON.stringify(err));
     } else {
         console.info("getAllActiveNotifications success");
@@ -1881,6 +1729,14 @@ Obtains all active notifications. This API uses a promise to return the result.
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<Array\<[NotificationRequest](#notificationrequest)\>\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
@@ -1905,11 +1761,19 @@ Obtains the number of active notifications of this application. This API uses an
 | -------- | ---------------------- | ---- | ---------------------- |
 | callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
 function getActiveNotificationCountCallback(err, data) {
-    if (err.code) {
+    if (err) {
         console.info("getActiveNotificationCount failed " + JSON.stringify(err));
     } else {
         console.info("getActiveNotificationCount success");
@@ -1935,6 +1799,14 @@ Obtains the number of active notifications of this application. This API uses a 
 | ----------------- | ------------------------------------------- |
 | Promise\<number\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
@@ -1959,11 +1831,19 @@ Obtains active notifications of this application. This API uses an asynchronous 
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
 | callback | AsyncCallback<Array\<[NotificationRequest](#notificationrequest)\>> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
 function getActiveNotificationsCallback(err, data) {
-    if (err.code) {
+    if (err) {
         console.info("getActiveNotifications failed " + JSON.stringify(err));
     } else {
         console.info("getActiveNotifications success");
@@ -1989,6 +1869,14 @@ Obtains active notifications of this application. This API uses a promise to ret
 | ------------------------------------------------------------ | --------------------------------------- |
 | Promise\<Array\<[NotificationRequest](#notificationrequest)\>\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
@@ -1999,7 +1887,7 @@ Notification.getActiveNotifications().then((data) => {
 
 
 
-## Notification.cancelGroup<sup>8+</sup>
+## Notification.cancelGroup
 
 cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
@@ -2014,11 +1902,19 @@ Cancels notifications under a notification group of this application. This API u
 | groupName | string                | Yes  | Name of the notification group, which is specified through [NotificationRequest](#notificationrequest) when the notification is published.|
 | callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
 function cancelGroupCallback(err) {
-    if (err.code) {
+    if (err) {
         console.info("cancelGroup failed " + JSON.stringify(err));
     } else {
         console.info("cancelGroup success");
@@ -2032,7 +1928,7 @@ Notification.cancelGroup(groupName, cancelGroupCallback);
 
 
 
-## Notification.cancelGroup<sup>8+</sup>
+## Notification.cancelGroup
 
 cancelGroup(groupName: string): Promise\<void\>
 
@@ -2046,6 +1942,14 @@ Cancels notifications under a notification group of this application. This API u
 | --------- | ------ | ---- | -------------- |
 | groupName | string | Yes  | Name of the notification group.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
@@ -2057,7 +1961,7 @@ Notification.cancelGroup(groupName).then(() => {
 
 
 
-## Notification.removeGroupByBundle<sup>8+</sup>
+## Notification.removeGroupByBundle
 
 removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCallback\<void\>): void
 
@@ -2077,11 +1981,20 @@ Removes notifications under a notification group of a specified application. Thi
 | groupName | string                | Yes  | Name of the notification group.              |
 | callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
+
 **Example**
 
 ```js
 function removeGroupByBundleCallback(err) {
-    if (err.code) {
+    if (err) {
         console.info("removeGroupByBundle failed " + JSON.stringify(err));
     } else {
         console.info("removeGroupByBundle success");
@@ -2096,7 +2009,7 @@ Notification.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCal
 
 
 
-## Notification.removeGroupByBundle<sup>8+</sup>
+## Notification.removeGroupByBundle
 
 removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
@@ -2115,6 +2028,15 @@ Removes notifications under a notification group of a specified application. Thi
 | bundle    | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.    |
 | groupName | string       | Yes  | Name of the notification group.|
 
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
+
 **Example**
 
 ```js
@@ -2127,7 +2049,7 @@ Notification.removeGroupByBundle(bundleOption, groupName).then(() => {
 
 
 
-## Notification.setDoNotDisturbDate<sup>8+</sup>
+## Notification.setDoNotDisturbDate
 
 setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): void
 
@@ -2143,14 +2065,22 @@ Sets the DND time. This API uses an asynchronous callback to return the result.
 
 | Name    | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
-| date     | [DoNotDisturbDate](#donotdisturbdate8)      | Yes  | DND time to set.        |
+| date     | [DoNotDisturbDate](#donotdisturbdate)      | Yes  | DND time to set.        |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
 
 **Example**
 
 ```js
 function setDoNotDisturbDateCallback(err) {
-    if (err.code) {
+    if (err) {
         console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
     } else {
         console.info("setDoNotDisturbDate success");
@@ -2168,7 +2098,7 @@ Notification.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
 
 
 
-## Notification.setDoNotDisturbDate<sup>8+</sup>
+## Notification.setDoNotDisturbDate
 
 setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
@@ -2184,7 +2114,15 @@ Sets the DND time. This API uses a promise to return the result.
 
 | Name| Type            | Mandatory| Description          |
 | ---- | ---------------- | ---- | -------------- |
-| date | [DoNotDisturbDate](#donotdisturbdate8) | Yes  | DND time to set.|
+| date | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
 
 **Example**
 
@@ -2200,7 +2138,7 @@ Notification.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 ```
 
 
-## Notification.setDoNotDisturbDate<sup>8+</sup>
+## Notification.setDoNotDisturbDate
 
 setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallback\<void\>): void
 
@@ -2216,15 +2154,24 @@ Sets the DND time for a specified user. This API uses an asynchronous callback t
 
 | Name    | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
-| date     | [DoNotDisturbDate](#donotdisturbdate8)      | Yes  | DND time to set.        |
+| date     | [DoNotDisturbDate](#donotdisturbdate)      | Yes  | DND time to set.        |
 | userId   | number                | Yes  | ID of the user for whom you want to set the DND time.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600008  | The user is not exist.              |
 
 **Example**
 
 ```js
 function setDoNotDisturbDateCallback(err) {
-    if (err.code) {
+    if (err) {
         console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
     } else {
         console.info("setDoNotDisturbDate success");
@@ -2238,12 +2185,13 @@ var doNotDisturbDate = {
 }
 
 var userId = 1
+
 Notification.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
 ```
 
 
 
-## Notification.setDoNotDisturbDate<sup>8+</sup>
+## Notification.setDoNotDisturbDate
 
 setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
@@ -2259,8 +2207,17 @@ Sets the DND time for a specified user. This API uses a promise to return the re
 
 | Name  | Type            | Mandatory| Description          |
 | ------ | ---------------- | ---- | -------------- |
-| date   | [DoNotDisturbDate](#donotdisturbdate8) | Yes  | DND time to set.|
+| date   | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set.|
 | userId | number           | Yes  | ID of the user for whom you want to set the DND time.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600008  | The user is not exist.              |
 
 **Example**
 
@@ -2279,7 +2236,7 @@ Notification.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 ```
 
 
-## Notification.getDoNotDisturbDate<sup>8+</sup>
+## Notification.getDoNotDisturbDate
 
 getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
@@ -2295,13 +2252,21 @@ Obtains the DND time. This API uses an asynchronous callback to return the resul
 
 | Name    | Type                             | Mandatory| Description                  |
 | -------- | --------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate8)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate)\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
 
 **Example**
 
 ```js
-function getDoNotDisturbDateCallback(err, data) {
-    if (err.code) {
+function getDoNotDisturbDateCallback(err,data) {
+    if (err) {
         console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
     } else {
         console.info("getDoNotDisturbDate success");
@@ -2313,7 +2278,7 @@ Notification.getDoNotDisturbDate(getDoNotDisturbDateCallback);
 
 
 
-## Notification.getDoNotDisturbDate<sup>8+</sup>
+## Notification.getDoNotDisturbDate
 
 getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
@@ -2327,9 +2292,17 @@ Obtains the DND time. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                             | Description                                     |
-| ------------------------------------------------- | ----------------------------------------- |
-| Promise\<[DoNotDisturbDate](#donotdisturbdate8)\> | Promise used to return the result.|
+| Type                                            | Description                                     |
+| ------------------------------------------------ | ----------------------------------------- |
+| Promise\<[DoNotDisturbDate](#donotdisturbdate)\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
 
 **Example**
 
@@ -2340,7 +2313,7 @@ Notification.getDoNotDisturbDate().then((data) => {
 ```
 
 
-## Notification.getDoNotDisturbDate<sup>8+</sup>
+## Notification.getDoNotDisturbDate
 
 getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>): void
 
@@ -2356,14 +2329,23 @@ Obtains the DND time of a specified user. This API uses an asynchronous callback
 
 | Name    | Type                             | Mandatory| Description                  |
 | -------- | --------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate8)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate)\> | Yes  | Callback used to return the result.|
 | userId   | number                            | Yes  | User ID.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600008  | The user is not exist.              |
 
 **Example**
 
 ```js
 function getDoNotDisturbDateCallback(err,data) {
-    if (err.code) {
+    if (err) {
         console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
     } else {
         console.info("getDoNotDisturbDate success");
@@ -2377,7 +2359,7 @@ Notification.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
 
 
 
-## Notification.getDoNotDisturbDate<sup>8+</sup>
+## Notification.getDoNotDisturbDate
 
 getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
@@ -2397,9 +2379,18 @@ Obtains the DND time of a specified user. This API uses a promise to return the 
 
 **Return value**
 
-| Type                                             | Description                                     |
-| ------------------------------------------------- | ----------------------------------------- |
-| Promise\<[DoNotDisturbDate](#donotdisturbdate8)\> | Promise used to return the result.|
+| Type                                            | Description                                     |
+| ------------------------------------------------ | ----------------------------------------- |
+| Promise\<[DoNotDisturbDate](#donotdisturbdate)\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600008  | The user is not exist.              |
 
 **Example**
 
@@ -2412,7 +2403,7 @@ Notification.getDoNotDisturbDate(userId).then((data) => {
 ```
 
 
-## Notification.supportDoNotDisturbMode<sup>8+</sup>
+## Notification.supportDoNotDisturbMode
 
 supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 
@@ -2430,11 +2421,19 @@ Checks whether DND mode is supported. This API uses an asynchronous callback to 
 | -------- | ------------------------ | ---- | -------------------------------- |
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
 function supportDoNotDisturbModeCallback(err,data) {
-    if (err.code) {
+    if (err) {
         console.info("supportDoNotDisturbMode failed " + JSON.stringify(err));
     } else {
         console.info("supportDoNotDisturbMode success");
@@ -2446,7 +2445,7 @@ Notification.supportDoNotDisturbMode(supportDoNotDisturbModeCallback);
 
 
 
-## Notification.supportDoNotDisturbMode<sup>8+</sup>
+## Notification.supportDoNotDisturbMode
 
 supportDoNotDisturbMode(): Promise\<boolean\>
 
@@ -2464,6 +2463,14 @@ Checks whether DND mode is supported. This API uses a promise to return the resu
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<boolean\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```js
@@ -2474,11 +2481,11 @@ Notification.supportDoNotDisturbMode().then((data) => {
 
 
 
-## Notification.isSupportTemplate<sup>8+</sup>
+## Notification.isSupportTemplate
 
 isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
 
-Checks whether a specified template exists. This API uses an asynchronous callback to return the result.
+Checks whether a specified template is supported. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2489,12 +2496,21 @@ Checks whether a specified template exists. This API uses an asynchronous callba
 | templateName | string                   | Yes  | Template name.                  |
 | callback     | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600011  | Read template config failed.        |
+
 **Example**
 
 ```javascript
 var templateName = 'process';
 function isSupportTemplateCallback(err, data) {
-    if (err.code) {
+    if (err) {
         console.info("isSupportTemplate failed " + JSON.stringify(err));
     } else {
         console.info("isSupportTemplate success");
@@ -2506,11 +2522,11 @@ Notification.isSupportTemplate(templateName, isSupportTemplateCallback);
 
 
 
-## Notification.isSupportTemplate<sup>8+</sup>
+## Notification.isSupportTemplate
 
 isSupportTemplate(templateName: string): Promise\<boolean\>
 
-Checks whether a specified template exists. This API uses a promise to return the result.
+Checks whether a specified template is supported. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2526,6 +2542,15 @@ Checks whether a specified template exists. This API uses a promise to return th
 | ------------------ | --------------- |
 | Promise\<boolean\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600011  | Read template config failed.        |
+
 **Example**
 
 ```javascript
@@ -2538,7 +2563,7 @@ Notification.isSupportTemplate(templateName).then((data) => {
 
 
 
-## Notification.requestEnableNotification<sup>8+</sup>
+## Notification.requestEnableNotification
 
 requestEnableNotification(callback: AsyncCallback\<void\>): void
 
@@ -2552,11 +2577,19 @@ Requests notification to be enabled for this application. This API uses an async
 | -------- | ------------------------ | ---- | -------------------------- |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
 **Example**
 
 ```javascript
 function requestEnableNotificationCallback(err) {
-    if (err.code) {
+    if (err) {
         console.info("requestEnableNotification failed " + JSON.stringify(err));
     } else {
         console.info("requestEnableNotification success");
@@ -2568,13 +2601,21 @@ Notification.requestEnableNotification(requestEnableNotificationCallback);
 
 
 
-## Notification.requestEnableNotification<sup>8+</sup>
+## Notification.requestEnableNotification
 
 requestEnableNotification(): Promise\<void\>
 
 Requests notification to be enabled for this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
 
 **Example**
 
@@ -2585,9 +2626,10 @@ Notification.requestEnableNotification().then(() => {
 ```
 
 
-## Notification.enableDistributed<sup>8+</sup>
 
-enableDistributed(enable: boolean, callback: AsyncCallback\<void\>): void
+## Notification.setDistributedEnable
+
+setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
 Sets whether this device supports distributed notifications. This API uses an asynchronous callback to return the result.
 
@@ -2604,27 +2646,36 @@ Sets whether this device supports distributed notifications. This API uses an as
 | enable   | boolean                  | Yes  | Whether the device supports distributed notifications.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600010  | Distributed operation failed.       |
+
 **Example**
 
 ```javascript
-function enabledNotificationCallback(err) {
-    if (err.code) {
-        console.info("enableDistributed failed " + JSON.stringify(err));
+function setDistributedEnableCallback() {
+    if (err) {
+        console.info("setDistributedEnable failed " + JSON.stringify(err));
     } else {
-        console.info("enableDistributed success");
+        console.info("setDistributedEnable success");
     }
 };
 
 var enable = true
 
-Notification.enableDistributed(enable, enabledNotificationCallback);
+Notification.setDistributedEnable(enable, setDistributedEnableCallback);
 ```
 
 
 
-## Notification.enableDistributed<sup>8+</sup>
+## Notification.setDistributedEnable
 
-enableDistributed(enable: boolean): Promise\<void>
+setDistributedEnable(enable: boolean): Promise\<void>
 
 Sets whether this device supports distributed notifications. This API uses a promise to return the result.
 
@@ -2640,17 +2691,27 @@ Sets whether this device supports distributed notifications. This API uses a pro
 | -------- | ------------------------ | ---- | -------------------------- |
 | enable   | boolean                  | Yes  | Whether the device supports distributed notifications.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600010  | Distributed operation failed.       |
+
 **Example**
 
 ```javascript
 var enable = true
-Notification.enableDistributed(enable).then(() => {
-    console.info("enableDistributed success");
-});
+
+Notification.setDistributedEnable(enable).then(() => {
+        console.info("setDistributedEnable success");
+    });
 ```
 
 
-## Notification.isDistributedEnabled<sup>8+</sup>
+## Notification.isDistributedEnabled
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
@@ -2664,11 +2725,20 @@ Checks whether this device supports distributed notifications. This API uses an 
 | -------- | ------------------------ | ---- | -------------------------- |
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600010  | Distributed operation failed.       |
+
 **Example**
 
 ```javascript
 function isDistributedEnabledCallback(err, data) {
-    if (err.code) {
+    if (err) {
         console.info("isDistributedEnabled failed " + JSON.stringify(err));
     } else {
         console.info("isDistributedEnabled success " + JSON.stringify(data));
@@ -2680,7 +2750,7 @@ Notification.isDistributedEnabled(isDistributedEnabledCallback);
 
 
 
-## Notification.isDistributedEnabled<sup>8+</sup>
+## Notification.isDistributedEnabled
 
 isDistributedEnabled(): Promise\<boolean>
 
@@ -2694,18 +2764,28 @@ Checks whether this device supports distributed notifications. This API uses a p
 | ------------------ | --------------------------------------------- |
 | Promise\<boolean\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600010  | Distributed operation failed.       |
+
 **Example**
 
 ```javascript
-Notification.isDistributedEnabled().then((data) => {
-    console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
-});
+Notification.isDistributedEnabled()
+    .then((data) => {
+        console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
+    });
 ```
 
 
-## Notification.enableDistributedByBundle<sup>8+</sup>
+## Notification.setDistributedEnableByBundle
 
-enableDistributedByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void
+setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void
 
 Sets whether a specified application supports distributed notifications. This API uses an asynchronous callback to return the result.
 
@@ -2720,14 +2800,24 @@ Sets whether a specified application supports distributed notifications. This AP
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](#bundleoption)             | Yes  | Bundle information of the application.                  |
-| enable   | boolean                  | Yes  | Whether the device supports distributed notifications.                      |
+| enable   | boolean                  | Yes  | Whether the application supports distributed notifications.                      |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 1600010  | Distributed operation failed.            |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```javascript
-function enableDistributedByBundleCallback(err) {
-    if (err.code) {
+function setDistributedEnableByBundleCallback(err) {
+    if (err) {
         console.info("enableDistributedByBundle failed " + JSON.stringify(err));
     } else {
         console.info("enableDistributedByBundle success");
@@ -2740,14 +2830,14 @@ var bundle = {
 
 var enable = true
 
-Notification.enableDistributedByBundle(bundle, enable, enableDistributedByBundleCallback);
+Notification.setDistributedEnableByBundle(bundle, enable, setDistributedEnableByBundleCallback);
 ```
 
 
 
-## Notification.enableDistributedByBundle<sup>8+</sup>
+## Notification.setDistributedEnableByBundle
 
-enableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
+setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
 
 Sets whether a specified application supports distributed notifications. This API uses a promise to return the result.
 
@@ -2761,8 +2851,18 @@ Sets whether a specified application supports distributed notifications. This AP
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | Yes  | Application bundle.               |
-| enable   | boolean                  | Yes  | Whether the device supports distributed notifications.                 |
+| bundle   | [BundleOption](#bundleoption)             | Yes  | Bundle information of the application.               |
+| enable   | boolean                  | Yes  | Whether the application supports distributed notifications.                 |
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 1600010  | Distributed operation failed.            |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -2772,16 +2872,17 @@ var bundle = {
 }
 
 var enable = true
-Notification.enableDistributedByBundle(bundle, enable).then(() => {
-    console.info("enableDistributedByBundle success");
-});
+
+Notification.setDistributedEnableByBundle(bundle, enable).then(() => {
+        console.info("setDistributedEnableByBundle success");
+    });
 ```
 
-## Notification.isDistributedEnabledByBundle<sup>8+</sup>
+## Notification.isDistributedEnabledByBundle
 
 isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<boolean>): void
 
-Obtains whether an application supports distributed notifications based on the bundle. This API uses an asynchronous callback to return the result.
+Checks whether a specified application supports distributed notifications. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2793,14 +2894,24 @@ Obtains whether an application supports distributed notifications based on the b
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | Yes  | Application bundle.                    |
+| bundle   | [BundleOption](#bundleoption)             | Yes  | Bundle information of the application.                    |
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 1600010  | Distributed operation failed.            |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```javascript
-function isDistributedEnabledByBundleCallback(err, data) {
-    if (err.code) {
+function isDistributedEnabledByBundleCallback(data) {
+    if (err) {
         console.info("isDistributedEnabledByBundle failed " + JSON.stringify(err));
     } else {
         console.info("isDistributedEnabledByBundle success" + JSON.stringify(data));
@@ -2816,11 +2927,11 @@ Notification.isDistributedEnabledByBundle(bundle, isDistributedEnabledByBundleCa
 
 
 
-## Notification.isDistributedEnabledByBundle<sup>8+</sup>
+## Notification.isDistributedEnabledByBundle
 
 isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
-Checks whether a specified application supports distributed notifications. This API uses an asynchronous callback to return the result.
+Checks whether a specified application supports distributed notifications. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2832,13 +2943,23 @@ Checks whether a specified application supports distributed notifications. This 
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | Yes  | Application bundle.               |
+| bundle   | [BundleOption](#bundleoption)             | Yes  | Bundle information of the application.               |
 
 **Return value**
 
 | Type              | Description                                             |
 | ------------------ | ------------------------------------------------- |
 | Promise\<boolean\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 1600010  | Distributed operation failed.            |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -2853,7 +2974,7 @@ Notification.isDistributedEnabledByBundle(bundle).then((data) => {
 ```
 
 
-## Notification.getDeviceRemindType<sup>8+</sup>
+## Notification.getDeviceRemindType
 
 getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
@@ -2869,13 +2990,21 @@ Obtains the notification reminder type. This API uses an asynchronous callback t
 
 | Name  | Type                              | Mandatory| Description                      |
 | -------- | --------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype8)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype)\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
 
 **Example**
 
 ```javascript
-function getDeviceRemindTypeCallback(err,data) {
-    if (err.code) {
+function getDeviceRemindTypeCallback(err, data) {
+    if (err) {
         console.info("getDeviceRemindType failed " + JSON.stringify(err));
     } else {
         console.info("getDeviceRemindType success");
@@ -2887,7 +3016,7 @@ Notification.getDeviceRemindType(getDeviceRemindTypeCallback);
 
 
 
-## Notification.getDeviceRemindType<sup>8+</sup>
+## Notification.getDeviceRemindType
 
 getDeviceRemindType(): Promise\<DeviceRemindType\>
 
@@ -2903,7 +3032,15 @@ Obtains the notification reminder type. This API uses a promise to return the re
 
 | Type              | Description           |
 | ------------------ | --------------- |
-| Promise\<[DeviceRemindType](#deviceremindtype8)\> | Promise used to return the result.|
+| Promise\<[DeviceRemindType](#deviceremindtype)\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
 
 **Example**
 
@@ -2914,11 +3051,11 @@ Notification.getDeviceRemindType().then((data) => {
 ```
 
 
-## Notification.publishAsBundle<sup>9+</sup>
+## Notification.publishAsBundle
 
 publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
 
-Publishes an agent-powered notification. This API uses an asynchronous callback to return the result.
+Publishes a notification through the reminder agent. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2935,12 +3072,24 @@ Publishes an agent-powered notification. This API uses an asynchronous callback 
 | userId               | number                                      | Yes  | User ID.                                |
 | callback             | AsyncCallback                               | Yes  | Callback used to return the result.                |
 
+**Error codes**
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 1600001  | Internal error.                           |
+| 1600002  | Marshalling or unmarshalling error.       |
+| 1600003  | Failed to connect service.                |
+| 1600004  | Notification is not enabled.              |
+| 1600005  | Notification slot is not enabled.         |
+| 1600008  | The user is not exist.                    |
+| 1600009  | Over max number notifications per second. |
+
 **Example**
 
 ```js
 // publishAsBundle callback
 function callback(err) {
-    if (err.code) {
+    if (err) {
         console.info("publishAsBundle failed " + JSON.stringify(err));
     } else {
         console.info("publishAsBundle success");
@@ -2966,7 +3115,7 @@ let request = {
 Notification.publishAsBundle(request, representativeBundle, userId, callback);
 ```
 
-## Notification.publishAsBundle<sup>9+</sup>
+## Notification.publishAsBundle
 
 publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number): Promise\<void\>
 
@@ -2986,6 +3135,18 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 | request              | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                           |
 | userId               | number                                      | Yes  | User ID.                           |
+
+**Error codes**
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 1600001  | Internal error.                           |
+| 1600002  | Marshalling or unmarshalling error.       |
+| 1600003  | Failed to connect service.                |
+| 1600004  | Notification is not enabled.              |
+| 1600005  | Notification slot is not enabled.         |
+| 1600008  | The user is not exist.                    |
+| 1600009  | Over max number notifications per second. |
 
 **Example**
 
@@ -3012,7 +3173,7 @@ Notification.publishAsBundle(request, representativeBundle, userId).then(() => {
 });
 ```
 
-## Notification.cancelAsBundle<sup>9+</sup>
+## Notification.cancelAsBundle
 
 cancelAsBundle(id: number, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
 
@@ -3035,12 +3196,22 @@ Cancels a notification published by the reminder agent. This API uses an asynchr
 | userId               | number        | Yes  | User ID.      |
 | callback             | AsyncCallback | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600007  | The notification is not exist.      |
+| 1600008  | The user is not exist.              |
+
 **Example**
 
 ```js
 // cancelAsBundle
 function cancelAsBundleCallback(err) {
-    if (err.code) {
+    if (err) {
         console.info("cancelAsBundle failed " + JSON.stringify(err));
     } else {
         console.info("cancelAsBundle success");
@@ -3054,7 +3225,7 @@ let userId = 100
 Notification.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
 ```
 
-## Notification.cancelAsBundle<sup>9+</sup>
+## Notification.cancelAsBundle
 
 cancelAsBundle(id: number, representativeBundle: string, userId: number): Promise\<void\>
 
@@ -3076,6 +3247,16 @@ Cancels a notification published by the reminder agent. This API uses a promise 
 | representativeBundle | string | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.|
 | userId               | number | Yes  | User ID.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600007  | The notification is not exist.      |
+| 1600008  | The user is not exist.              |
+
 **Example**
 
 ```js
@@ -3089,11 +3270,11 @@ Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
 });
 ```
 
-## Notification.enableNotificationSlot <sup>9+</sup>
+## Notification.setNotificationEnableSlot 
 
-enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
+setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
 
-Sets the enabled status of a notification slot type for a specified application. This API uses an asynchronous callback to return the result.
+Sets whether to enable a specified notification slot type for a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3107,33 +3288,42 @@ Sets the enabled status of a notification slot type for a specified application.
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.          |
 | type     | [SlotType](#slottype)         | Yes  | Notification slot type.        |
-| enable   | boolean                       | Yes  | Whether to enable notification.            |
+| enable   | boolean                       | Yes  | Whether to enable the notification slot type.            |
 | callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```js
-// enableNotificationSlot
-function enableSlotCallback(err) {
-    if (err.code) {
-        console.info("enableNotificationSlot failed " + JSON.stringify(err));
+// setNotificationEnableSlot
+function setNotificationEnableSlotCallback(err) {
+    if (err) {
+        console.info("setNotificationEnableSlot failed " + JSON.stringify(err));
     } else {
-        console.info("enableNotificationSlot success");
+        console.info("setNotificationEnableSlot success");
     }
 };
 
-Notification.enableNotificationSlot(
+Notification.setNotificationEnableSlot(
     { bundle: "ohos.samples.notification", },
     Notification.SlotType.SOCIAL_COMMUNICATION,
     true,
-    enableSlotCallback);
+    setNotificationEnableSlotCallback);
 ```
 
-## Notification.enableNotificationSlot <sup>9+</sup>
+## Notification.setNotificationEnableSlot
 
-enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise\<void> 
+setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise\<void> 
 
-Sets the enabled status of a notification slot type for a specified application. This API uses a promise to return the result.
+Sets whether to enable a specified notification slot type for a specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3147,19 +3337,30 @@ Sets the enabled status of a notification slot type for a specified application.
 | ------ | ----------------------------- | ---- | -------------- |
 | bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.  |
 | type   | [SlotType](#slottype)         | Yes  | Notification slot type.|
-| enable | boolean                       | Yes  | Whether to enable notification.    |
+| enable | boolean                       | Yes  | Whether to enable the notification slot type.    |
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
 ```js
-// enableNotificationSlot
-Notification.enableNotificationSlot({ bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION,true).then(() => {
-    console.info("enableNotificationSlot success");
-});
+// setNotificationEnableSlot
+Notification.setNotificationEnableSlot(
+    { bundle: "ohos.samples.notification", },
+    Notification.SlotType.SOCIAL_COMMUNICATION,
+    true).then(() => {
+        console.info("setNotificationEnableSlot success");
+    });
 ```
 
-## Notification.isNotificationSlotEnabled <sup>9+</sup>
+## Notification.isNotificationSlotEnabled
 
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback\<boolean\>): void
 
@@ -3179,12 +3380,21 @@ Checks whether a specified notification slot type is enabled for a specified app
 | type     | [SlotType](#slottype)         | Yes  | Notification slot type.        |
 | callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
+
 **Example**
 
 ```js
 // isNotificationSlotEnabled
 function getEnableSlotCallback(err, data) {
-    if (err.code) {
+    if (err) {
         console.info("isNotificationSlotEnabled failed " + JSON.stringify(err));
     } else {
         console.info("isNotificationSlotEnabled success");
@@ -3197,7 +3407,7 @@ Notification.isNotificationSlotEnabled(
     getEnableSlotCallback);
 ```
 
-## Notification.isNotificationSlotEnabled <sup>9+</sup>
+## Notification.isNotificationSlotEnabled
 
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolean\>  
 
@@ -3218,9 +3428,18 @@ Checks whether a specified notification slot type is enabled for a specified app
 
 **Return value**
 
-| Type              | Description                           |
-| ------------------ | ------------------------------- |
+| Type                                                       | Description                                                        |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<boolean\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -3233,7 +3452,7 @@ Notification.isNotificationSlotEnabled({ bundle: "ohos.samples.notification", },
 ```
 
 
-## Notification.setSyncNotificationEnabledWithoutApp<sup>9+</sup>
+## Notification.setSyncNotificationEnabledWithoutApp
 
 setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: AsyncCallback\<void\>): void
 
@@ -3253,6 +3472,15 @@ Sets whether to enable the notification sync feature for devices where the appli
 | enable | boolean | Yes  | Whether the feature is enabled.  |
 | callback | AsyncCallback\<void\>    | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600008  | The user is not exist.              |
+
 **Example**
 
 ```js
@@ -3260,7 +3488,7 @@ let userId = 100;
 let enable = true;
 
 function callback(err) {
-    if (err.code) {
+    if (err) {
         console.info("setSyncNotificationEnabledWithoutApp failed " + JSON.stringify(err));
     } else {
         console.info("setSyncNotificationEnabledWithoutApp success");
@@ -3271,7 +3499,7 @@ Notification.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
 ```
 
 
-## Notification.setSyncNotificationEnabledWithoutApp<sup>9+</sup>
+## Notification.setSyncNotificationEnabledWithoutApp
 
 setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<void>
 
@@ -3296,6 +3524,15 @@ Sets whether to enable the notification sync feature for devices where the appli
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600008  | The user is not exist.              |
+
 **Example**
 
 ```js
@@ -3310,7 +3547,7 @@ Notification.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
 ```
 
 
-## Notification.getSyncNotificationEnabledWithoutApp<sup>9+</sup>
+## Notification.getSyncNotificationEnabledWithoutApp
 
 getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<boolean>): void
 
@@ -3329,6 +3566,15 @@ Obtains whether the notification sync feature is enabled for devices where the a
 | userId | number | Yes  | User ID.  |
 | callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600008  | The user is not exist.              |
+
 **Example**
 
 ```js
@@ -3346,7 +3592,7 @@ Notification.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEna
 ```
 
 
-## Notification.getSyncNotificationEnabledWithoutApp<sup>9+</sup>
+## Notification.getSyncNotificationEnabledWithoutApp
 
 getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
@@ -3370,6 +3616,15 @@ Obtains whether the notification sync feature is enabled for devices where the a
 | ------------------ | ------------------------------------------------------------ |
 | Promise\<boolean\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600008  | The user is not exist.              |
+
 **Example**
 
 ```js
@@ -3379,377 +3634,29 @@ Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
 }).catch((err) => {
     console.info('getSyncNotificationEnabledWithoutApp, err:' + err);
 });
+    .catch((err) => {
+        console.info('getSyncNotificationEnabledWithoutApp, err:', err);
+    });
 ```
 
 
 
-## NotificationSubscriber
 
-Provides callbacks for receiving or removing notifications and serves as the input parameter of [subscribe](#notificationsubscribe).
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-### onConsume
-
-onConsume?: (data: [SubscribeCallbackData](#subscribecallbackdata)) => void
-
-Callback for receiving notifications.
+## DoNotDisturbDate
 
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-**Parameters**
+| Name | Type                                 | Readable| Writable| Description                  |
+| ----- | ------------------------------------- | ---- | ---- | ---------------------- |
+| type  | [DoNotDisturbType](#donotdisturbtype) | Yes  | Yes  | DND time type.|
+| begin | Date                                  | Yes  | Yes  | DND start time.|
+| end   | Date                                  | Yes  | Yes  | DND end time.|
 
-| Name| Type| Mandatory| Description|
-| ------------ | ------------------------ | ---- | -------------------------- |
-| data | [SubscribeCallbackData](#subscribecallbackdata) | Yes| Information about the notification received.|
 
-**Example**
 
-```javascript
-function subscribeCallback(err) {
-    if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onConsumeCallback(data) {
-    let req = data.request;
-    console.info('===> onConsume callback req.id:' + req.id);
-};
-
-var subscriber = {
-    onConsume: onConsumeCallback
-};
-
-Notification.subscribe(subscriber, subscribeCallback);
-```
-
-### onCancel
-
-onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata)) => void
-
-Callback for canceling notifications.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ------------ | ------------------------ | ---- | -------------------------- |
-| data | [SubscribeCallbackData](#subscribecallbackdata) | Yes| Information about the notification to cancel.|
-
-**Example**
-
-```javascript
-function subscribeCallback(err) {
-    if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onCancelCallback(data) {
-    let req = data.request;
-    console.info('===> onCancel callback req.id:' + req.id);
-}
-
-var subscriber = {
-    onCancel: onCancelCallback
-};
-
-Notification.subscribe(subscriber, subscribeCallback);
-```
-
-### onUpdate
-
-onUpdate?:(data: [NotificationSortingMap](#notificationsortingmap)) => void
-
-Callback for notification sorting updates.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ------------ | ------------------------ | ---- | -------------------------- |
-| data | [NotificationSortingMap](#notificationsortingmap) | Yes| Latest notification sorting list.|
-
-**Example**
-
-```javascript
-function subscribeCallback(err) {
-    if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onUpdateCallback(map) {
-    console.info('===> onUpdateCallback map:' + JSON.stringify(map));
-}
-
-var subscriber = {
-    onUpdate: onUpdateCallback
-};
-
-Notification.subscribe(subscriber, subscribeCallback);
-```
-
-### onConnect
-
-onConnect?:() => void
-
-Callback for subscription.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Example**
-
-```javascript
-function subscribeCallback(err) {
-    if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onConnectCallback() {
-    console.info('===> onConnect in test');
-}
-
-var subscriber = {
-    onConnect: onConnectCallback
-};
-
-Notification.subscribe(subscriber, subscribeCallback);
-```
-
-### onDisconnect
-
-onDisconnect?:() => void
-
-Callback for unsubscription.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Example**
-
-```javascript
-function subscribeCallback(err) {
-    if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-function unsubscribeCallback(err) {
-    if (err.code) {
-        console.info("unsubscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("unsubscribeCallback");
-    }
-};
-
-function onConnectCallback() {
-    console.info('===> onConnect in test');
-}
-function onDisconnectCallback() {
-    console.info('===> onDisconnect in test');
-}
-
-var subscriber = {
-    onConnect: onConnectCallback,
-    onDisconnect: onDisconnectCallback
-};
-
-// The onConnect callback is invoked when subscription to the notification is complete.
-Notification.subscribe(subscriber, subscribeCallback);
-// The onDisconnect callback is invoked when unsubscription to the notification is complete.
-Notification.unsubscribe(subscriber, unsubscribeCallback);
-```
-
-### onDestroy
-
-onDestroy?:() => void
-
-Callback for service disconnection.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Example**
-
-```javascript
-function subscribeCallback(err) {
-    if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onDestroyCallback() {
-    console.info('===> onDestroy in test');
-}
-
-var subscriber = {
-    onDestroy: onDestroyCallback
-};
-
-Notification.subscribe(subscriber, subscribeCallback);
-```
-
-### onDoNotDisturbDateChange<sup>8+</sup>
-
-onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](#donotdisturbdate8)) => void
-
-Callback for DND time setting updates.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ------------ | ------------------------ | ---- | -------------------------- |
-| mode | notification.[DoNotDisturbDate](#donotdisturbdate8) | Yes| DND time setting updates.|
-
-**Example**
-```javascript
-function subscribeCallback(err) {
-    if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onDoNotDisturbDateChangeCallback(mode) {
-    console.info('===> onDoNotDisturbDateChange:' + mode);
-}
-
-var subscriber = {
-    onDoNotDisturbDateChange: onDoNotDisturbDateChangeCallback
-};
-Notification.subscribe(subscriber, subscribeCallback);
-
-var doNotDisturbDate = {
-    type: Notification.DoNotDisturbType.TYPE_ONCE,
-    begin: new Date(),
-    end: new Date(2021, 11, 15, 18, 0)
-}
-// Set the onDoNotDisturbDateChange callback for DND time setting updates.
-Notification.setDoNotDisturbDate(doNotDisturbDate).then(() => {
-	console.info("setDoNotDisturbDate sucess");
-});
-```
-
-
-### onEnabledNotificationChanged<sup>8+</sup>
-
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#enablednotificationcallbackdata8)) => void
-
-Listens for the notification enabled status changes. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ------------ | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[EnabledNotificationCallbackData](#enablednotificationcallbackdata8)\> | Yes| Callback used to return the result.|
-
-**Example**
-
-```javascript
-function subscribeCallback(err) {
-    if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onEnabledNotificationChangedCallback(callbackData) {
-    console.info("bundle: " + callbackData.bundle);
-    console.info("uid: " + callbackData.uid);
-    console.info("enable: " + callbackData.enable);
-};
-
-var subscriber = {
-    onEnabledNotificationChanged: onEnabledNotificationChangedCallback
-};
-Notification.subscribe(subscriber, subscribeCallback);
-
-var bundle = {
-    bundle: "bundleName1",
-}
-// Set the onEnabledNotificationChanged callback that is triggered when the notification enabled status changes.
-Notification.enableNotification(bundle, false).then(() => {
-	console.info("enableNotification sucess");
-});
-```
-
-## SubscribeCallbackData
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name           | Type                                             | Readable| Writable| Description    |
-| --------------- | ------------------------------------------------- | ---- | --- | -------- |
-| request         | [NotificationRequest](#notificationrequest)       | Yes | No | Notification content.|
-| sortingMap      | [NotificationSortingMap](#notificationsortingmap) | Yes | No | Notification sorting information.|
-| reason          | number                                            | Yes | No | Reason for deletion.|
-| sound           | string                                            | Yes | No | Sound used for notification.|
-| vibrationValues | Array\<number\>                                   | Yes | No | Vibration used for notification.|
-
-
-## EnabledNotificationCallbackData<sup>8+</sup>
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name  | Type   | Readable| Writable| Description            |
-| ------ | ------- | ---- | --- | ---------------- |
-| bundle | string  | Yes | No | Bundle name of the application.      |
-| uid    | number  | Yes | No | UID of the application.       |
-| enable | boolean | Yes | No | Notification enabled status of the application.|
-
-
-## DoNotDisturbDate<sup>8+</sup>
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name | Type                                  | Readable| Writable| Description                  |
-| ----- | -------------------------------------- | ---- | ---- | ---------------------- |
-| type  | [DoNotDisturbType](#donotdisturbtype8) | Yes  | Yes  | DND time type.|
-| begin | Date                                   | Yes  | Yes  | DND start time.|
-| end   | Date                                   | Yes  | Yes  | DND end time.|
-
-## DoNotDisturbType<sup>8+</sup>
+## DoNotDisturbType
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3781,11 +3688,11 @@ Notification.enableNotification(bundle, false).then(() => {
 
 | Name                             | Value         | Description              |
 | --------------------------------- | ----------- | ------------------ |
-| LEVEL_NONE                        | 0           | The notification function is disabled.    |
-| LEVEL_MIN                         | 1           | The notification function is enabled, but the notification icon is not displayed in the status bar, with no banner or alert tone.|
-| LEVEL_LOW                         | 2           | The notification function is enabled, and the notification icon is displayed in the status bar, with no banner or alert tone.|
-| LEVEL_DEFAULT                     | 3           | The notification feature is enabled, and the notification icon is displayed in the status bar, with an alert tone but no banner.|
-| LEVEL_HIGH                        | 4           | The notification feature is enabled, and the notification icon is displayed in the status bar, with an alert tone and banner.|
+| LEVEL_NONE                        | 0           | Notification is disabled.    |
+| LEVEL_MIN                         | 1           | Notification is enabled, but the notification icon is not displayed in the status bar, with no banner or alert tone.|
+| LEVEL_LOW                         | 2           | Notification is enabled, and the notification icon is displayed in the status bar, with no banner or alert tone.|
+| LEVEL_DEFAULT                     | 3           | Notification is enabled, and the notification icon is displayed in the status bar, with an alert tone but no banner.|
+| LEVEL_HIGH                        | 4           | Notification is enabled, and the notification icon is displayed in the status bar, with an alert tone and banner.|
 
 
 ## BundleOption
@@ -3796,17 +3703,6 @@ Notification.enableNotification(bundle, false).then(() => {
 | ------ | ------ |---- | --- |  ------ |
 | bundle | string | Yes | Yes | Bundle information of the application.|
 | uid    | number | Yes | Yes | User ID.|
-
-
-
-## NotificationKey
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name | Type  | Readable| Writable| Description    |
-| ----- | ------ | ---- | --- | -------- |
-| id    | number | Yes | Yes | Notification ID.  |
-| label | string | Yes | Yes | Notification label.|
 
 
 ## SlotType
@@ -3833,7 +3729,7 @@ Describes the button displayed in the notification.
 | title     | string                                          | Yes | Yes | Button title.                 |
 | wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md)   | Yes | Yes | **WantAgent** of the button.|
 | extras    | { [key: string]: any }                          | Yes | Yes | Extra information of the button.             |
-| userInput<sup>8+</sup> | [NotificationUserInput](#notificationuserinput8) | Yes | Yes | User input object.         |
+| userInput | [NotificationUserInput](#notificationuserinput) | Yes | Yes | User input object.         |
 
 
 ## NotificationBasicContent
@@ -3883,7 +3779,7 @@ Describes the multi-line text notification.
 
 ## NotificationPictureContent
 
-Describes the picture-attached notification.
+Describe the picture-attached notification.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3912,7 +3808,7 @@ Describes the notification content.
 | picture     | [NotificationPictureContent](#notificationpicturecontent)    | Yes | Yes | Picture-attached.  |
 
 
-## NotificationFlagStatus<sup>8+</sup>
+## NotificationFlagStatus
 
 Describes the notification flag status.
 
@@ -3927,7 +3823,7 @@ Describes the notification flag status.
 | TYPE_CLOSE     | 2   | The notification flag is disabled.                    |
 
 
-## NotificationFlags<sup>8+</sup>
+## NotificationFlags
 
 Enumerates notification flags.
 
@@ -3935,8 +3831,8 @@ Enumerates notification flags.
 
 | Name            | Type                   | Readable| Writable| Description                              |
 | ---------------- | ---------------------- | ---- | ---- | --------------------------------- |
-| soundEnabled     | [NotificationFlagStatus](#notificationflagstatus8) | Yes  | No  | Whether to enable the sound alert for the notification.                 |
-| vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus8) | Yes  | No  | Whether to enable vibration for the notification.              |
+| soundEnabled     | [NotificationFlagStatus](#notificationflagstatus) | Yes  | No  | Whether to enable the sound alert for the notification.                 |
+| vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus) | Yes  | No  |   Whether to enable vibration for the notification.              |
 
 
 ## NotificationRequest
@@ -3949,16 +3845,16 @@ Describes the notification request.
 | --------------------- | --------------------------------------------- | ---- | --- | -------------------------- |
 | content               | [NotificationContent](#notificationcontent)   | Yes | Yes | Notification content.                  |
 | id                    | number                                        | Yes | Yes | Notification ID.                    |
-| slotType              | [SlotType](#slottype)                         | Yes | Yes | Slot type.                  |
+| slotType              | [SlotType](#slottype)                         | Yes | Yes | Notification slot type.                  |
 | isOngoing             | boolean                                       | Yes | Yes | Whether the notification is an ongoing notification.            |
 | isUnremovable         | boolean                                       | Yes | Yes | Whether the notification can be removed.                |
 | deliveryTime          | number                                        | Yes | Yes | Time when the notification is sent.              |
 | tapDismissed          | boolean                                       | Yes | Yes | Whether the notification is automatically cleared.          |
 | autoDeletedTime       | number                                        | Yes | Yes | Time when the notification is automatically cleared.            |
-| wantAgent             | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes | Yes | **WantAgent** instance to which the notification will be redirected after being clicked. |
+| wantAgent             | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes | Yes | **WantAgent** instance to which the notification will be redirected after being clicked.|
 | extraInfo             | {[key: string]: any}                          | Yes | Yes | Extended parameters.                  |
 | color                 | number                                        | Yes | Yes | Background color of the notification. Not supported currently.|
-| colorEnabled          | boolean                                       | Yes | Yes | Whether the notification background color is enabled. Not supported currently.|
+| colorEnabled          | boolean                                       | Yes | Yes | Whether the notification background color can be enabled. Not supported currently.|
 | isAlertOnce           | boolean                                       | Yes | Yes | Whether the notification triggers an alert only once.|
 | isStopwatch           | boolean                                       | Yes | Yes | Whether to display the stopwatch.          |
 | isCountDown           | boolean                                       | Yes | Yes | Whether to display the countdown time.        |
@@ -3972,22 +3868,23 @@ Describes the notification request.
 | creatorBundleName     | string                                        | Yes | No | Name of the bundle that creates the notification.            |
 | creatorUid            | number                                        | Yes | No | UID used for creating the notification.             |
 | creatorPid            | number                                        | Yes | No | PID used for creating the notification.             |
-| creatorUserId<sup>8+</sup>| number                                    | Yes | No | ID of the user who creates the notification.          |
+| creatorUserId| number                                    | Yes | No | ID of the user who creates the notification.          |
 | hashCode              | string                                        | Yes | No | Unique ID of the notification.              |
 | classification        | string                                        | Yes | Yes | Notification category.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| groupName<sup>8+</sup>| string                                        | Yes | Yes | Notification group name.                |
-| template<sup>8+</sup> | [NotificationTemplate](#notificationtemplate8) | Yes | Yes | Notification template.                  |
-| isRemoveAllowed<sup>8+</sup> | boolean                                | Yes | No | Whether the notification can be removed.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| source<sup>8+</sup>   | number                                        | Yes | No | Notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| distributedOption<sup>8+</sup>   | [DistributedOptions](#distributedoptions8)                 | Yes | Yes | Distributed notification options.         |
-| deviceId<sup>8+</sup> | string                                        | Yes | No | Device ID of the notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.         |
-| notificationFlags<sup>8+</sup> | [NotificationFlags](#notificationflags8)                    | Yes | No | Notification flags.         |
-| removalWantAgent<sup>9+</sup> | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes | Yes | **WantAgent** instance to which the notification will be redirected when it is removed.         |
-| badgeNumber<sup>9+</sup> | number                    | Yes | Yes | Number of notifications displayed on the application icon.         |
+| groupName| string                                        | Yes | Yes | Notification group name.                |
+| template | [NotificationTemplate](#notificationtemplate) | Yes | Yes | Notification template.                  |
+| isRemoveAllowed | boolean                                | Yes | No | Whether the notification can be removed.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
+| source   | number                                        | Yes | No | Notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
+| distributedOption   | [DistributedOptions](#distributedoptions)                 | Yes | Yes | Distributed notification options.         |
+| deviceId | string                                        | Yes | No | Device ID of the notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.         |
+| notificationFlags | [NotificationFlags](#notificationflags)                    | Yes | No | Notification flags.         |
+| removalWantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes | Yes | **WantAgent** instance to which the notification will be redirected when it is removed.         |
+| badgeNumber | number                    | Yes | Yes | Number of notifications displayed on the application icon.         |
 
-## DistributedOptions<sup>8+</sup>
 
-Describes distributed notifications options.
+## DistributedOptions
+
+Describes distributed options.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -4007,7 +3904,7 @@ Describes the notification slot.
 
 | Name                | Type                 | Readable| Writable| Description                                      |
 | -------------------- | --------------------- | ---- | --- | ------------------------------------------ |
-| type                 | [SlotType](#slottype) | Yes | Yes | Slot type.                                  |
+| type                 | [SlotType](#slottype) | Yes | Yes | Notification slot type.                                  |
 | level                | number                | Yes | Yes | Notification level. If this parameter is not set, the default value is used based on the notification slot type.|
 | desc                 | string                | Yes | Yes | Notification slot description.                          |
 | badgeFlag            | boolean               | Yes | Yes | Whether to display the badge.                              |
@@ -4021,50 +3918,7 @@ Describes the notification slot.
 | enabled<sup>9+</sup> | boolean               | Yes | No | Whether the notification slot is enabled.                     |
 
 
-## NotificationSorting
-
-Provides sorting information of active notifications.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name    | Type                                 | Readable| Writable| Description        |
-| -------- | ------------------------------------- | ---- | --- | ------------ |
-| slot     | [NotificationSlot](#notificationslot) | Yes | No | Notification slot content.|
-| hashCode | string                                | Yes | No | Unique ID of the notification.|
-| ranking  | number                                | Yes | No | Notification sequence number.|
-
-
-## NotificationSortingMap
-
-Provides sorting information of active notifications in all subscribed notifications.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name          | Type                                                        | Readable| Writable| Description            |
-| -------------- | ------------------------------------------------------------ | ---- | --- | ---------------- |
-| sortings       | {[key: string]: [NotificationSorting](#notificationsorting)} | Yes | No | Array of notification sorting information.|
-| sortedHashCode | Array\<string\>                                              | Yes | No | Array of unique notification IDs.|
-
-
-## NotificationSubscribeInfo
-
-Provides the information about the publisher for notification subscription.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name       | Type           | Readable| Writable| Description                           |
-| ----------- | --------------- | --- | ---- | ------------------------------- |
-| bundleNames | Array\<string\> | Yes | Yes | Bundle names of the applications whose notifications are to be subscribed to.|
-| userId      | number          | Yes | Yes | User whose notifications are to be subscribed to.   |
-
-
-## NotificationTemplate<sup>8+</sup>
+## NotificationTemplate
 
 Describes the notification template.
 
@@ -4076,7 +3930,7 @@ Describes the notification template.
 | data | {[key:string]: Object} | Yes  | Yes  | Template data.|
 
 
-## NotificationUserInput<sup>8+</sup>
+## NotificationUserInput
 
 Provides the notification user input.
 
@@ -4087,7 +3941,7 @@ Provides the notification user input.
 | inputKey | string | Yes | Yes | Key to identify the user input.|
 
 
-## DeviceRemindType<sup>8+</sup>
+## DeviceRemindType
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -4101,7 +3955,7 @@ Provides the notification user input.
 | ACTIVE_REMIND        | 3   | The device is in use.                |
 
 
-## SourceType<sup>8+</sup>
+## SourceType
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -4112,14 +3966,3 @@ Provides the notification user input.
 | TYPE_NORMAL          | 0   | Normal notification.           |
 | TYPE_CONTINUOUS      | 1   | Continuous notification.           |
 | TYPE_TIMER           | 2   | Timed notification.           |
-
-## RemoveReason<sup>9+</sup>
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name                | Value | Description                 |
-| -------------------- | --- | -------------------- |
-| CLICK_REASON_REMOVE  | 1   | The notification is removed after a click on it.   |
-| CANCEL_REASON_REMOVE | 2   | The notification is removed by the user.        |
