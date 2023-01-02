@@ -68,8 +68,8 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
-  var locationChange = (location) => {
+  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let locationChange = (location) => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
   };
   geolocation.on('locationChange', requestInfo, locationChange);
@@ -101,8 +101,8 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
-  var locationChange = (location) => {
+  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let locationChange = (location) => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
   };
   geolocation.on('locationChange', requestInfo, locationChange);
@@ -135,7 +135,7 @@ on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;): void
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var locationServiceState = (state) => {
+  let locationServiceState = (state) => {
       console.log('locationServiceState: ' + JSON.stringify(state));
   }
   geolocation.on('locationServiceState', locationServiceState);
@@ -167,7 +167,7 @@ off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void;
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var locationServiceState = (state) => {
+  let locationServiceState = (state) => {
       console.log('locationServiceState: state: ' + JSON.stringify(state));
   }
   geolocation.on('locationServiceState', locationServiceState);
@@ -202,10 +202,10 @@ on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, ca
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var cachedLocationsCb = (locations) => {
+  let cachedLocationsCb = (locations) => {
       console.log('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
   }
-  var requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
+  let requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   geolocation.on('cachedGnssLocationsReporting', requestInfo, cachedLocationsCb);
   ```
 
@@ -236,10 +236,10 @@ off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Locati
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var cachedLocationsCb = (locations) => {
+  let cachedLocationsCb = (locations) => {
       console.log('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
   }
-  var requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
+  let requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   geolocation.on('cachedGnssLocationsReporting', requestInfo, cachedLocationsCb);
   geolocation.off('cachedGnssLocationsReporting');
   ```
@@ -271,7 +271,7 @@ on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): voi
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var gnssStatusCb = (satelliteStatusInfo) => {
+  let gnssStatusCb = (satelliteStatusInfo) => {
       console.log('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   geolocation.on('gnssStatusChange', gnssStatusCb);
@@ -303,7 +303,7 @@ off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): v
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var gnssStatusCb = (satelliteStatusInfo) => {
+  let gnssStatusCb = (satelliteStatusInfo) => {
       console.log('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   geolocation.on('gnssStatusChange', gnssStatusCb);
@@ -337,7 +337,7 @@ on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var nmeaCb = (str) => {
+  let nmeaCb = (str) => {
       console.log('nmeaMessageChange: ' + JSON.stringify(str));
   }
   geolocation.on('nmeaMessageChange', nmeaCb );
@@ -370,7 +370,7 @@ off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void;
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var nmeaCb = (str) => {
+  let nmeaCb = (str) => {
       console.log('nmeaMessageChange: ' + JSON.stringify(str));
   }
   geolocation.on('nmeaMessageChange', nmeaCb);
@@ -411,7 +411,7 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
       wants: [
           {
               bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility",
+              abilityName: "EntryAbility",
               action: "action1",
           }
       ],
@@ -421,7 +421,7 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    var requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
     geolocation.on('fenceStatusChange', requestInfo, wantAgentObj);
   });
   ```
@@ -459,7 +459,7 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
       wants: [
           {
               bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility",
+              abilityName: "EntryAbility",
               action: "action1",
           }
       ],
@@ -469,7 +469,7 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    var requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
     geolocation.on('fenceStatusChange', requestInfo, wantAgentObj);
     geolocation.off('fenceStatusChange', requestInfo, wantAgentObj);
   });
@@ -500,8 +500,8 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
-  var locationChange = (err, location) => {
+  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
+  let locationChange = (err, location) => {
       if (err) {
           console.log('locationChanger: err=' + JSON.stringify(err));
       }
@@ -537,7 +537,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var locationChange = (err, location) => {
+  let locationChange = (err, location) => {
       if (err) {
           console.log('locationChanger: err=' + JSON.stringify(err));
       }
@@ -579,7 +579,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
+  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
   geolocation.getCurrentLocation(requestInfo).then((result) => {
       console.log('current location: ' + JSON.stringify(result));
   });
@@ -721,7 +721,7 @@ requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;): void
 请求打开位置服务，使用callback回调异步返回结果。
 
 > **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.requestEnableLocation](js-apis-geoLocationManager.md#geolocationmanagerrequestenablelocation)替代。
+> 从API version 9开始废弃，建议由应用本身弹框请求用户跳转到settings开启位置开关，并且在弹框上写清楚会在什么场景下使用位置信息。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -755,7 +755,7 @@ requestEnableLocation(): Promise&lt;boolean&gt;
 请求打开位置服务，使用Promise方式异步返回结果。
 
 > **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.requestEnableLocation](js-apis-geoLocationManager.md#geolocationmanagerrequestenablelocation-1)替代。
+> 从API version 9开始废弃，建议由应用本身弹框请求用户跳转到settings开启位置开关，并且在弹框上写清楚会在什么场景下使用位置信息。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -864,7 +864,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
+  let reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
       if (err) {
           console.log('getAddressesFromLocation: err=' + JSON.stringify(err));
@@ -905,7 +905,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
+  let reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
       console.log('getAddressesFromLocation: ' + JSON.stringify(data));
   });
@@ -936,7 +936,7 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
+  let geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest, (err, data) => {
       if (err) {
           console.log('getAddressesFromLocationName: err=' + JSON.stringify(err));
@@ -977,7 +977,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
+  let geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest).then((result) => {
       console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
   });
@@ -1139,7 +1139,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): v
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var requestInfo = {'scenario': 0x301, 'command': "command_1"};
+  let requestInfo = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo, (err, result) => {
       if (err) {
           console.log('sendCommand: err=' + JSON.stringify(err));
@@ -1181,73 +1181,11 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  var requestInfo = {'scenario': 0x301, 'command': "command_1"};
+  let requestInfo = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo).then((result) => {
       console.log('promise, sendCommand: ' + JSON.stringify(result));
   });
   ```
-
-
-## LocationRequestPriority<sup>(deprecated) </sup>
-
-位置请求中位置信息优先级设置。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequestPriority](js-apis-geoLocationManager.md#locationrequestpriority)替代。
-
-**需要权限**：ohos.permission.LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| UNSET | 0x200 | 表示未设置优先级。 |
-| ACCURACY | 0x201 | 表示精度优先。 |
-| LOW_POWER | 0x202 | 表示低功耗优先。 |
-| FIRST_FIX | 0x203 | 表示快速获取位置优先，如果应用希望快速拿到1个位置，可以将优先级设置为该字段。 |
-
-
-## LocationRequestScenario<sup>(deprecated) </sup>
-
-  位置请求中定位场景设置。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequestScenario](js-apis-geoLocationManager.md#locationrequestscenario)替代。
-
-**需要权限**：ohos.permission.LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| UNSET | 0x300 | 表示未设置场景信息。 |
-| NAVIGATION | 0x301 | 表示导航场景。 |
-| TRAJECTORY_TRACKING | 0x302 | 表示运动轨迹记录场景。 |
-| CAR_HAILING | 0x303 | 表示打车场景。 |
-| DAILY_LIFE_SERVICE | 0x304 | 表示日常服务使用场景。 |
-| NO_POWER | 0x305 | 表示无功耗功场景，这种场景下不会主动触发定位，会在其他应用定位时，才给当前应用返回位置。 |
-
-
-## GeoLocationErrorCode<sup>(deprecated) </sup>
-
-位置服务中的错误码信息。
-
-> **说明：**<br/>
-> 从API version 9开始废弃。
-
-**需要权限**：ohos.permission.LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| INPUT_PARAMS_ERROR<sup>7+</sup> | 101 | 表示输入参数错误。 |
-| REVERSE_GEOCODE_ERROR<sup>7+</sup> | 102 | 表示逆地理编码接口调用失败。 |
-| GEOCODE_ERROR<sup>7+</sup> | 103 | 表示地理编码接口调用失败。 |
-| LOCATOR_ERROR<sup>7+</sup> | 104 | 表示定位失败。 |
-| LOCATION_SWITCH_ERROR<sup>7+</sup> | 105 | 表示定位开关。 |
-| LAST_KNOWN_LOCATION_ERROR<sup>7+</sup> | 106 | 表示获取上次位置失败。 |
-| LOCATION_REQUEST_TIMEOUT_ERROR<sup>7+</sup> | 107 | 表示单次定位，没有在指定时间内返回位置。 |
 
 
 ## ReverseGeoCodeRequest<sup>(deprecated) </sup>
@@ -1442,25 +1380,6 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | geofence | [Geofence](#geofence)| 是 | 是  | 表示围栏信息。 |
 
 
-## LocationPrivacyType<sup>(deprecated) </sup>
-
-定位服务隐私协议类型。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.LocationPrivacyType](js-apis-geoLocationManager.md#locationprivacytype)替代。
-
-**需要权限**：ohos.permission.LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| OTHERS | 0 | 其他场景。 |
-| STARTUP | 1 | 开机向导场景下的隐私协议。 |
-| CORE_LOCATION | 2 | 开启网络定位时弹出的隐私协议。 |
-
-
 ## LocationCommand<sup>(deprecated) </sup>
 
 扩展命令结构体。
@@ -1502,3 +1421,84 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | timeSinceBoot<sup>7+</sup> | number | 是 | 否 | 表示位置时间戳，开机时间格式。 |
 | additions<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 附加信息。 |
 | additionSize<sup>7+</sup> | number | 是 | 否 | 附加信息数量。 |
+
+
+## LocationPrivacyType<sup>(deprecated) </sup>
+
+定位服务隐私协议类型。
+
+> **说明：**<br/>
+> 从API version 8开始支持。
+> 从API version 9开始废弃，建议使用[geoLocationManager.LocationPrivacyType](js-apis-geoLocationManager.md#locationprivacytype)替代。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| OTHERS | 0 | 其他场景。 |
+| STARTUP | 1 | 开机向导场景下的隐私协议。 |
+| CORE_LOCATION | 2 | 开启网络定位时弹出的隐私协议。 |
+
+
+## LocationRequestPriority<sup>(deprecated) </sup>
+
+位置请求中位置信息优先级设置。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequestPriority](js-apis-geoLocationManager.md#locationrequestpriority)替代。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| UNSET | 0x200 | 表示未设置优先级。 |
+| ACCURACY | 0x201 | 表示精度优先。 |
+| LOW_POWER | 0x202 | 表示低功耗优先。 |
+| FIRST_FIX | 0x203 | 表示快速获取位置优先，如果应用希望快速拿到1个位置，可以将优先级设置为该字段。 |
+
+
+## LocationRequestScenario<sup>(deprecated) </sup>
+
+  位置请求中定位场景设置。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequestScenario](js-apis-geoLocationManager.md#locationrequestscenario)替代。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| UNSET | 0x300 | 表示未设置场景信息。 |
+| NAVIGATION | 0x301 | 表示导航场景。 |
+| TRAJECTORY_TRACKING | 0x302 | 表示运动轨迹记录场景。 |
+| CAR_HAILING | 0x303 | 表示打车场景。 |
+| DAILY_LIFE_SERVICE | 0x304 | 表示日常服务使用场景。 |
+| NO_POWER | 0x305 | 表示无功耗功场景，这种场景下不会主动触发定位，会在其他应用定位时，才给当前应用返回位置。 |
+
+
+## GeoLocationErrorCode<sup>(deprecated) </sup>
+
+位置服务中的错误码信息。
+
+> **说明：**<br/>
+> 从API version 9开始废弃。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| INPUT_PARAMS_ERROR<sup>7+</sup> | 101 | 表示输入参数错误。 |
+| REVERSE_GEOCODE_ERROR<sup>7+</sup> | 102 | 表示逆地理编码接口调用失败。 |
+| GEOCODE_ERROR<sup>7+</sup> | 103 | 表示地理编码接口调用失败。 |
+| LOCATOR_ERROR<sup>7+</sup> | 104 | 表示定位失败。 |
+| LOCATION_SWITCH_ERROR<sup>7+</sup> | 105 | 表示定位开关。 |
+| LAST_KNOWN_LOCATION_ERROR<sup>7+</sup> | 106 | 表示获取上次位置失败。 |
+| LOCATION_REQUEST_TIMEOUT_ERROR<sup>7+</sup> | 107 | 表示单次定位，没有在指定时间内返回位置。 |
