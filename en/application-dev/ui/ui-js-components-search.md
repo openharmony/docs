@@ -62,7 +62,7 @@ Set the **hint**, **icon**, and **searchbutton** to define the hint text, icon, 
 
 ## Adding Styles
 
-Set **color**, **placeholder**, and **caret-color** to set the text color, hint text color, and cursor color of the search box.
+Set **color**, **placeholder-color**, and **caret-color** to set the text color, hint text color, and cursor color of the search box.
 
 
 ```html
@@ -84,7 +84,9 @@ Set **color**, **placeholder**, and **caret-color** to set the text color, hint 
   background-color: #F1F3F5;
 }
 search{
-  color: black;  placeholder-color: black;  caret-color: red;
+  color: black;
+  placeholder-color: black;
+  caret-color: red;
 }
 ```
 
@@ -130,34 +132,34 @@ text{
 
 ```js
 // index.js
-import prompt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 export default {
   search(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
   },
   translate(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
   },
   share(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
   },
   change(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
   },
   submit(e){
-    prompt.showToast({
+    promptAction.showToast({
       message: 'submit',
       duration: 3000,
     });
@@ -216,7 +218,7 @@ In this example, you can select the **&lt;search&gt;**, **&lt;textarea&gt;**, or
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     showsearch: true,
@@ -241,13 +243,13 @@ export default {
     }
   },
   submit(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Search!',
       duration: 2000
     })
   },
   change(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Content:'+ e.text,
       duration: 2000
     })
