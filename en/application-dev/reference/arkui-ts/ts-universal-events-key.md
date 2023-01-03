@@ -1,6 +1,6 @@
 # Key Event
 
-A key event is triggered when a component interacts with a keyboard, remote control, or any other input device with keys.
+A key event is triggered when a focusable component, such as **\<Button>**, interacts with a keyboard, remote control, or any other input device with keys. To use a key event for components that are not focusable by default, such as **\<Text>** and **\<Image>**, first set their **focusable** attribute to **true**.
 
 >  **NOTE**
 >
@@ -35,20 +35,20 @@ A key event is triggered when a component interacts with a keyboard, remote cont
 @Entry
 @Component
 struct KeyEventExample {
-  @State text: string = ''
-  @State eventType: string = ''
+  @State text: string = '';
+  @State eventType: string = '';
 
   build() {
     Column() {
-      Button('KeyEvent').backgroundColor(0x2788D9)
+      Button('KeyEvent')
         .onKeyEvent((event: KeyEvent) => {
           if (event.type === KeyType.Down) {
-            this.eventType = 'Down'
+            this.eventType = 'Down';
           }
           if (event.type === KeyType.Up) {
-            this.eventType = 'Up'
+            this.eventType = 'Up';
           }
-          console.info(this.text = 'KeyType:' + this.eventType + '\nkeyCode:' + event.keyCode + '\nkeyText:' + event.keyText)
+          this.text = 'KeyType:' + this.eventType + '\nkeyCode:' + event.keyCode + '\nkeyText:' + event.keyText;
         })
       Text(this.text).padding(15)
     }.height(300).width('100%').padding(35)
@@ -56,4 +56,4 @@ struct KeyEventExample {
 }
 ```
 
-![en-us_image_0000001257058433](figures/en-us_image_0000001257058433.gif)
+![en-us_image_0000001174264364](figures/en-us_image_0000001174264364.png)

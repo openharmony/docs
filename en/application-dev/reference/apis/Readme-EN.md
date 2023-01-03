@@ -68,6 +68,9 @@
   - bundle/[HapModuleInfo](js-apis-bundle-HapModuleInfo.md)
   - bundle/[Metadata](js-apis-bundle-Metadata.md)
   - bundle/[ModuleInfo](js-apis-bundle-ModuleInfo.md)
+- Application Management
+
+  - [@system.package](js-apis-system-package.md)
 - UI Page
 
   - [@ohos.animator](js-apis-animator.md)
@@ -234,7 +237,6 @@
   - [@system.mediaquery](js-apis-system-mediaquery.md)
   - [@system.network](js-apis-system-network.md)
   - [@system.notification](js-apis-system-notification.md)
-  - [@system.package](js-apis-system-package.md)
   - [@system.prompt](js-apis-system-prompt.md)
   - [@system.request](js-apis-system-request.md)
   - [@system.router](js-apis-system-router.md)

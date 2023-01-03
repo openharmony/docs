@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```
+```js
 import inputMethodEngine from '@ohos.inputmethodengine';
 ```
 
@@ -14,44 +14,44 @@ import inputMethodEngine from '@ohos.inputmethodengine';
 
 Defines constant values.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 | Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| ENTER_KEY_TYPE_UNSPECIFIED | number | Yes| No| No function is specified for the Enter key.|
-| ENTER_KEY_TYPE_GO | number | Yes| No| The Enter key takes the user to the target.|
-| ENTER_KEY_TYPE_SEARCH | number | Yes| No| The Enter key takes the user to the results of their searching.|
-| ENTER_KEY_TYPE_SEND | number | Yes| No| The Enter key sends the text to its target.|
-| ENTER_KEY_TYPE_NEXT | number | Yes| No| The Enter key takes the user to the next field.|
-| ENTER_KEY_TYPE_DONE | number | Yes| No| The Enter key takes the user to the next line.|
-| ENTER_KEY_TYPE_PREVIOUS | number | Yes| No| The Enter key takes the user to the previous field.|
-| PATTERN_NULL | number | Yes| No| Any type of edit box.|
-| PATTERN_TEXT | number | Yes| No| Text edit box.|
-| PATTERN_NUMBER | number | Yes| No| Number edit box.|
-| PATTERN_PHONE | number | Yes| No| Phone number edit box.|
-| PATTERN_DATETIME | number | Yes| No| Date edit box.|
-| PATTERN_EMAIL | number | Yes| No| Email edit box.|
-| PATTERN_URI | number | Yes| No| URI edit box.|
-| PATTERN_PASSWORD | number | Yes| No| Password edit box.|
-| OPTION_ASCII | number | Yes| No| ASCII values are allowed.|
-| OPTION_NONE | number | Yes| No| No input attribute is specified.|
-| OPTION_AUTO_CAP_CHARACTERS | number | Yes| No| Characters are allowed.|
-| OPTION_AUTO_CAP_SENTENCES | number | Yes| No| Sentences are allowed.|
-| OPTION_AUTO_WORDS | number | Yes| No| Words are allowed.|
-| OPTION_MULTI_LINE | number | Yes| No| Multiple lines are allowed.|
-| OPTION_NO_FULLSCREEN | number | Yes| No| Half-screen style.|
-| FLAG_SELECTING | number | Yes| No| The edit box is being selected.|
-| FLAG_SINGLE_LINE | number | Yes| No| The edit box allows only single-line input.|
-| DISPLAY_MODE_PART | number | Yes| No| The edit box is displayed in half-screen mode.|
-| DISPLAY_MODE_FULL | number | Yes| No| The edit box is displayed in full screen.|
+| -------------------- | -------- | ---- | ---- | ------------------- |
+| ENTER_KEY_TYPE_UNSPECIFIED | number | Yes | No | No function is specified for the Enter key.|
+| ENTER_KEY_TYPE_GO          | number | Yes | No | The Enter key takes the user to the target.|
+| ENTER_KEY_TYPE_SEARCH      | number | Yes | No | The Enter key takes the user to the results of their searching.|
+| ENTER_KEY_TYPE_SEND        | number | Yes | No | The Enter key sends the text to its target.|
+| ENTER_KEY_TYPE_NEXT        | number | Yes | No | The Enter key takes the user to the next field.|
+| ENTER_KEY_TYPE_DONE        | number | Yes | No | The Enter key takes the user to the next line.|
+| ENTER_KEY_TYPE_PREVIOUS    | number | Yes | No | The Enter key takes the user to the previous field.|
+| PATTERN_NULL               | number | Yes | No | Any type of edit box.|
+| PATTERN_TEXT               | number | Yes | No | Text edit box.|
+| PATTERN_NUMBER             | number | Yes | No | Number edit box.|
+| PATTERN_PHONE              | number | Yes | No | Phone number edit box.|
+| PATTERN_DATETIME           | number | Yes | No | Date edit box.|
+| PATTERN_EMAIL              | number | Yes | No | Email edit box.|
+| PATTERN_URI                | number | Yes | No | URI edit box.|
+| PATTERN_PASSWORD           | number | Yes | No | Password edit box.|
+| OPTION_ASCII               | number | Yes | No | ASCII values are allowed.|
+| OPTION_NONE                | number | Yes | No | No input attribute is specified.|
+| OPTION_AUTO_CAP_CHARACTERS | number | Yes | No | Characters are allowed.|
+| OPTION_AUTO_CAP_SENTENCES  | number | Yes | No | Sentences are allowed.|
+| OPTION_AUTO_WORDS          | number | Yes | No | Words are allowed.|
+| OPTION_MULTI_LINE          | number | Yes | No | Multiple lines are allowed.|
+| OPTION_NO_FULLSCREEN       | number | Yes | No | Half-screen style.|
+| FLAG_SELECTING             | number | Yes | No | The edit box is being selected.|
+| FLAG_SINGLE_LINE           | number | Yes | No | The edit box allows only single-line input.|
+| DISPLAY_MODE_PART          | number | Yes | No | The edit box is displayed in half-screen mode.|
+| DISPLAY_MODE_FULL          | number | Yes | No | The edit box is displayed in full screen.|
 
-## inputMethodEngine.getInputMethodEngine<a name="getInputMethodEngine"></a>
+## inputMethodEngine.getInputMethodEngine
 
 getInputMethodEngine(): InputMethodEngine
 
 Obtains an **InputMethodEngine** instance.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Return value**
 
@@ -62,16 +62,16 @@ Obtains an **InputMethodEngine** instance.
 **Example**
 
 ```js
-var InputMethodEngine = inputMethodEngine.getInputMethodEngine();
+let InputMethodEngine = inputMethodEngine.getInputMethodEngine();
 ```
 
-## inputMethodEngine.createKeyboardDelegate<a name="createKeyboardDelegate"></a>
+## inputMethodEngine.createKeyboardDelegate
 
 createKeyboardDelegate(): KeyboardDelegate
 
 Obtains a **KeyboardDelegate** instance.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Return value**
 
@@ -82,20 +82,20 @@ Obtains a **KeyboardDelegate** instance.
 **Example**
 
 ```js
-var KeyboardDelegate = inputMethodEngine.createKeyboardDelegate();
+let KeyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 ```
 
-## InputMethodEngine<a name="InputMethodEngine"></a>
+## InputMethodEngine
 
 In the following API examples, you must first use [getInputMethodEngine](#getInputMethodEngine) to obtain an **InputMethodEngine** instance, and then call the APIs using the obtained instance.
 
-### on('inputStart')<a name="inputStart"></a>
+### on('inputStart')
 
 on(type: 'inputStart', callback: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void
 
 Listens for the input method binding event. This API uses a callback to return the result.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -119,7 +119,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
 Cancels listening for the input method binding event.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -140,7 +140,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 Listens for an input method event.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -163,7 +163,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 Cancels listening for an input method event.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -178,7 +178,7 @@ Cancels listening for an input method event.
 InputMethodEngine.off('keyboardShow');
 ```
 
-## KeyboardDelegate<a name="KeyboardDelegate"></a>
+## KeyboardDelegate
 
 In the following API examples, you must first use [createKeyboardDelegate](#createKeyboardDelegate) to obtain a **KeyboardDelegate** instance, and then call the APIs using the obtained instance.
 
@@ -188,7 +188,7 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 Listens for a hard keyboard even. This API uses a callback to return the key information.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -211,7 +211,7 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
 Cancels listening for a hard keyboard even.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -232,7 +232,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 Listens for cursor context changes. This API uses a callback to return the cursor information.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -255,7 +255,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
 
 Cancels listening for cursor context changes.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -276,7 +276,7 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
 Listens for text selection changes. This API uses a callback to return the text selection information.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -299,7 +299,7 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
 Cancels listening for text selection changes.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -321,7 +321,7 @@ on(type: 'textChange', callback: (text: string) => void): void
 
 Listens for text changes. This API uses a callback to return the current text content.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -359,7 +359,7 @@ Cancels listening for text changes.
 KeyboardDelegate.off('textChange');
 ```
 
-## KeyboardController<a name="KeyboardController"></a>
+## KeyboardController
 
 In the following API examples, you must first use [inputStart](#inputStart) to obtain a **KeyboardController** instance, and then call the APIs using the obtained instance.
 
@@ -369,7 +369,7 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 Hides the keyboard. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -379,10 +379,9 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-
 ```js
- KeyboardController.hideKeyboard(()=>{
- });
+KeyboardController.hideKeyboard(()=>{
+});
 ```
 
 ### hideKeyboard
@@ -395,18 +394,17 @@ Hides the keyboard. This API uses a promise to return the result.
 
 **Return value**
 
-| Type            | Description:    |
+| Type            | Description    |
 | ---------------- | -------- |
 | Promise&lt;void> | Promise used to return the result.|
 
 **Example**
 
-
 ```js
- KeyboardController.hideKeyboard();
+KeyboardController.hideKeyboard();
 ```
 
-## TextInputClient<a name="TextInputClient"></a>
+## TextInputClient
 
 In the following API examples, you must first use [inputStart](#inputStart) to obtain a **TextInputClient** instance, and then call the APIs using the obtained instance.
 
@@ -416,7 +414,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the specific-length text before the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -428,9 +426,9 @@ Obtains the specific-length text before the cursor. This API uses an asynchronou
 **Example**
 
 ```js
- TextInputClient.getForward(5,(text) =>{
-   console.info("text = " + text);
- });
+TextInputClient.getForward(5,(text) =>{
+    console.info("text = " + text);
+});
 ```
 
 ### getForward
@@ -439,7 +437,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 Obtains the specific-length text before the cursor. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -456,8 +454,8 @@ Obtains the specific-length text before the cursor. This API uses a promise to r
 **Example**
 
 ```js
- var text = TextInputClient.getForward(5);
- console.info("text = " + text);
+let text = TextInputClient.getForward(5);
+console.info("text = " + text);
 ```
 
 ### getBackward
@@ -466,7 +464,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the specific-length text after the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -478,8 +476,8 @@ Obtains the specific-length text after the cursor. This API uses an asynchronous
 **Example**
 
 ```js
- TextInputClient.getBackward(5,(text)=>{
-   console.info("text = " + text);
+TextInputClient.getBackward(5,(text)=>{
+    console.info("text = " + text);
 });
 ```
 
@@ -489,7 +487,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 Obtains the specific-length text after the cursor. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -506,8 +504,8 @@ Obtains the specific-length text after the cursor. This API uses a promise to re
 **Example**
 
 ```js
- var text = TextInputClient.getBackward(5);
- console.info("text = " + text);
+let text = TextInputClient.getBackward(5);
+console.info("text = " + text);
 ```
 
 ### deleteForward
@@ -516,7 +514,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 Deletes the fixed-length text before the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -529,7 +527,7 @@ Deletes the fixed-length text before the cursor. This API uses an asynchronous c
 
 ```js
 TextInputClient.deleteForward(5,(isSuccess)=>{
-  console.info("isSuccess = " + isSuccess);
+    console.info("isSuccess = " + isSuccess);
 });
 ```
 
@@ -539,7 +537,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 Deletes the fixed-length text before the cursor. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -556,8 +554,8 @@ Deletes the fixed-length text before the cursor. This API uses a promise to retu
 **Example**
 
 ```js
- var isSuccess = TextInputClient.deleteForward(5);
- console.info("isSuccess = " + isSuccess);
+let isSuccess = TextInputClient.deleteForward(5);
+console.info("isSuccess = " + isSuccess);
 ```
 
 ### deleteBackward
@@ -566,7 +564,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 Deletes the fixed-length text after the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -578,8 +576,8 @@ Deletes the fixed-length text after the cursor. This API uses an asynchronous ca
 **Example**
 
 ```js
- TextInputClient.deleteBackward(5, (isSuccess)=>{
- console.info("isSuccess = " + isSuccess);
+TextInputClient.deleteBackward(5, (isSuccess)=>{
+    console.info("isSuccess = " + isSuccess);
 });
 ```
 
@@ -606,7 +604,7 @@ Deletes the fixed-length text after the cursor. This API uses a promise to retur
 **Example**
 
 ```js
-var isSuccess = TextInputClient.deleteBackward(5);
+let isSuccess = TextInputClient.deleteBackward(5);
 console.info("isSuccess = " + isSuccess);
 ```
 
@@ -616,7 +614,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 Sets the Enter key to send the text to its target. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -628,8 +626,8 @@ Sets the Enter key to send the text to its target. This API uses an asynchronous
 **Example**
 
 ```js
- TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT,(isSuccess)=>{
-  console.info("isSuccess = " + isSuccess);
+TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT,(isSuccess)=>{
+    console.info("isSuccess = " + isSuccess);
 });
 ```
 
@@ -639,7 +637,7 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 Sets the Enter key to send the text to its target. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -656,7 +654,7 @@ Sets the Enter key to send the text to its target. This API uses a promise to re
 **Example**
 
 ```js
-var isSuccess = TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT);
+let isSuccess = TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT);
 console.info("isSuccess = " + isSuccess);
 ```
 
@@ -679,7 +677,7 @@ Inserts text. This API uses an asynchronous callback to return the result.
 
 ```js
 TextInputClient.insertText("test", (isSuccess)=>{
-  console.info("isSuccess = " + isSuccess);
+    console.info("isSuccess = " + isSuccess);
 });
 ```
 
@@ -689,7 +687,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 Inserts text. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -706,7 +704,7 @@ Inserts text. This API uses a promise to return the result.
 **Example**
 
 ```js
-var isSuccess = TextInputClient.insertText("test");
+let isSuccess = TextInputClient.insertText("test");
 console.info("isSuccess = " + isSuccess);
 ```
 
@@ -716,7 +714,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 Obtains the attribute of the edit box. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Parameters**
 
@@ -727,8 +725,8 @@ Obtains the attribute of the edit box. This API uses an asynchronous callback to
 **Example**
 
 ```js
-  TextInputClient.getEditorAttribute((EditorAttribute)=>{
-  });
+TextInputClient.getEditorAttribute((EditorAttribute)=>{
+});
 ```
 
 ### getEditorAttribute
@@ -737,7 +735,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 Obtains the attribute of the edit box. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 **Return value**
 
@@ -748,25 +746,25 @@ Obtains the attribute of the edit box. This API uses a promise to return the res
 **Example**
 
 ```js
-var EditorAttribute = TextInputClient.getEditorAttribute();
+let EditorAttribute = TextInputClient.getEditorAttribute();
 ```
 
-## EditorAttribute<a name="EditorAttribute"></a>
+## EditorAttribute
 
 Describes the attribute of the edit box.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 | Name        | Type| Readable| Writable| Description              |
 | ------------ | -------- | ---- | ---- | ------------------ |
 | enterKeyType | number   | Yes  | No  | Function attribute of the edit box.|
 | inputPattern | number   | Yes  | No  | Text attribute of the edit box.|
 
-## KeyEvent<a name="KeyEvent"></a>
+## KeyEvent
 
 Describes the attribute of a key.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
 | Name     | Type| Readable| Writable| Description        |
 | --------- | -------- | ---- | ---- | ------------ |

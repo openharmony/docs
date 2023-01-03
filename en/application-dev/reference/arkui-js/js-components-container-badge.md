@@ -1,60 +1,71 @@
 # badge
 
-The **&lt;badge&gt;** component is used to mark new events that require user attention in your application.
+>  **NOTE**
+>
+>  This component is supported since API version 5. Updates will be marked with a superscript to indicate their earliest API version.
+
+The **\<badge>** component is used to mark new events that require user attention in your application.
+
 
 ## Required Permissions
 
 None
 
+
 ## Child Components
 
 This component supports only one child component.
 
-> ![img](public_sys-resources/icon-note.gif) **NOTE:** If multiple child components are used, only the first one takes effect by default.
+>  **NOTE**
+>
+>  If multiple child components are used, only the first one takes effect by default.
+
 
 ## Attributes
 
-In addition to the attributes in [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
-
-
-| Name      | Type                                                         | Default Value | Mandatory | Description                                                  |
-| --------- | ------------------------------------------------------------ | ------------- | --------- | ------------------------------------------------------------ |
-| placement | string                                                       | rightTop      | No        | Position of a number or dot badge. Available values are as follows:<br>- **right**: on the right border of the component.<br>- **rightTop**: in the upper right corner of the component border.<br>- **left**: on the left border of the component. |
-| count     | number                                                       | 0             | No        | Number of notifications displayed via the badge. The default value is **0**. If the number of notifications is greater than 0, the badge changes from a dot to the number. If this attribute is not set or the value is less than or equal to 0, the badge is a dot.<br>**NOTE:** When the **count** value is greater than the **maxcount** value, maxcount+ is displayed.<br>The largest integer value supported for **count** is **2147483647**. |
-| visible   | boolean                                                      | false         | No        | Whether to display the badge. The value **true** means that the badge shows up when a new notification is received. To use a number badge, set the **count** attribute. |
-| maxcount  | number                                                       | 99            | No        | Maximum number of notifications. When the number of new notifications exceeds the value of this attribute, *maxcount***+** is displayed, for example, **99+**.<br>**NOTE:** The largest integer value supported for **maxcount** is **2147483647**. |
-| config    | BadgeConfig | -             | No        | Configuration of the badge.                                  |
-| label<sup>6+</sup>   | string                                                       | -             | No        | Text of the new notification displayed via the badge.<br>**NOTE:** When this attribute is set, attributes **count** and **maxcount** do not take effect. |
+| Name              | Type       | Default Value  | Mandatory| Description                                                        |
+| ------------------ | ----------- | -------- | ---- | ------------------------------------------------------------ |
+| placement          | string      | rightTop | No  | Position of a number or dot badge. Available values are as follows:<br>- **right**: on the right border of the component.<br>- **rightTop**: in the upper right corner of the component border.<br>- **left**: on the left border of the component.|
+| count              | number      | 0        | No  | Number of notifications displayed via the badge. If the value is 0 (default value), the badge is not displayed. If the value is greater than 0, the badge is a number badge.<br>When the **count** value is greater than the **maxcount** value, *maxcount***+** is displayed. The largest integer value supported for **count** is **2147483647**.|
+| visible            | boolean     | false    | No  | Whether to display the badge. The value **true** means that the badge shows up when a new notification is received. To use a number badge, also set the **count** attribute.|
+| maxcount           | number      | 99       | No  | Maximum number of notifications. When the number of new notifications exceeds the value of this attribute, *maxcount***+** is displayed, for example, **99+**.<br>The largest integer value supported for **maxcount** is **2147483647**.|
+| config             | BadgeConfig | -        | No  | Configuration of the badge.                                |
+| label<sup>6+</sup> | string      | -        | No  | Text of the new notification displayed via the badge.<br>When this attribute is set, attributes **count** and **maxcount** do not take effect.|
 
 **Table 1** BadgeConfig
 
+| Name        | Type            | Default Value     | Mandatory  | Description          |
+| ---------- | -------------- | -------- | ---- | ------------ |
+| badgeColor | &lt;color&gt;  | \#fa2a2d | No   | Background color of the badge.   |
+| textColor  | &lt;color&gt;  | \#ffffff | No   | Text color of the number badge.|
+| textSize   | &lt;length&gt; | 10px     | No   | Text size of the number badge.|
+| badgeSize  | &lt;length&gt; | 6px      | No   | Default size of the dot badge.   |
 
-
-| Name       | Type           | Default Value | Mandatory | Description                     |
-| ---------- | -------------- | ------------- | --------- | ------------------------------- |
-| badgeColor | &lt;color&gt;  | #fa2a2d       | No        | Background color of the badge.  |
-| textColor  | &lt;color&gt;  | #ffffff       | No        | Text color of the number badge. |
-| textSize   | &lt;length&gt; | 10px          | No        | Text size of the number badge.  |
-| badgeSize  | &lt;length&gt; | 6px           | No        | Default size of the dot badge.  |
 
 ## Styles
 
-Styles in [Universal Styles](js-components-common-styles.md) are supported.
+The [universal styles](../arkui-js/js-components-common-styles.md) are supported.
 
-> ![img](public_sys-resources/icon-note.gif) **NOTE:** The total size of child components must be smaller than or equal to that of the **&lt;badge&gt;** component. Otherwise, the child components cannot be displayed.
+>  **NOTE**
+>
+>  The total size of child components must be smaller than or equal to that of the **\<badge>** component. Otherwise, the child components cannot be displayed.
+
 
 ## Events
 
-Events in [Universal Events](js-components-common-events.md) are supported.
+The [universal events](../arkui-js/js-components-common-events.md) are supported.
+
 
 ## Methods
 
-Methods in [Universal Methods](js-components-common-methods.md) are supported.
+The [universal methods](../arkui-js/js-components-common-methods.md) are supported.
+
 
 ## Example
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <badge class="badge" config="{{badgeconfig}}" visible="true" count="100" maxcount="99">
@@ -64,6 +75,9 @@ Methods in [Universal Methods](js-components-common-methods.md) are supported.
     <text class="text2">example</text>
   </badge>
 </div>
+```
+
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -82,6 +96,9 @@ Methods in [Universal Methods](js-components-common-methods.md) are supported.
   background-color: #46b1e3;
   font-size: 50px;
 }
+```
+
+```js
 // xxx.js
 export default {
   data:{
@@ -93,4 +110,4 @@ export default {
 }
 ```
 
-![img](figures/figures1.png)
+![en-us_image_000000117726526811](figures/en-us_image_000000117726526811.png)

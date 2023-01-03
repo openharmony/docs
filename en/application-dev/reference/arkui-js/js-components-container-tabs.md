@@ -1,43 +1,47 @@
 # tabs
 
+>  **NOTE**
+>
+>  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
+
 The **\<tabs>** component provides a tab container.
 
 ## Required Permissions
 
 None
 
+
 ## Child Components
 
-A **\<tabs>** can wrap at most one **<[tab-bar](js-components-container-tab-bar.md)>** and at most one **<[tab-content](js-components-container-tab-content.md)>**.
+Only [\<tab-bar>](../arkui-js/js-components-container-tab-bar.md) and [\<tab-content>](../arkui-js/js-components-container-tab-content.md) are supported.
 
 ## Attributes
 
-In addition to the attributes in [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
 
+| Name      | Type     | Default Value  | Mandatory  | Description                                      |
+| -------- | ------- | ----- | ---- | ---------------------------------------- |
+| index    | number  | 0     | No   | Index of the active tab.                          |
+| vertical | boolean | false | No   | Whether the tab is vertical. Available values are as follows:<br>- **false**: The **\<tab-bar>** and **\<tab-content>** are arranged vertically.<br>- **true**: The **\<tab-bar>** and **\<tab-content>** are arranged horizontally. |
 
-
-| Name     | Type    | Default Value | Mandatory | Description                                                  |
-| -------- | ------- | ------------- | --------- | ------------------------------------------------------------ |
-| index    | number  | 0             | No        | Index of the active tab.                                     |
-| vertical | boolean | false         | No        | Whether the tab is vertical. Available values are as follows:<br>- **false**: The **\<tab-bar>** and **\<tab-content>** are arranged vertically.<br>- **true**: The **\<tab-bar>** and **\<tab-content>** are arranged horizontally. |
 
 ## Styles
 
-Styles in [Universal Styles](js-components-common-styles.md) are supported.
+The [universal styles](../arkui-js/js-components-common-styles.md) are supported.
+
 
 ## Events
 
-In addition to the events in [Universal Events](js-components-common-events.md), the following events are supported.
+In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
 
+| Name    | Parameter                                  | Description                           |
+| ------ | ------------------------------------ | ----------------------------- |
+| change | { index: indexValue } | Triggered upon tab switching. This event is not triggered when the **index** value is dynamically changed.|
 
-
-| Name   | Parameter             | Description                                                  |
-| ------ | --------------------- | ------------------------------------------------------------ |
-| change | { index: indexValue } | Triggered upon tab switching.NOTE:This event is not triggered when the **index** value is dynamically changed. |
 
 ## Example
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <tabs class = "tabs" index="0" vertical="false" onchange="change">
@@ -59,6 +63,9 @@ In addition to the events in [Universal Events](js-components-common-events.md),
     </tab-content>
   </tabs>
 </div>
+```
+
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -90,6 +97,9 @@ In addition to the events in [Universal Events](js-components-common-events.md),
   width: 300px;
   text-align: center;
 }
+```
+
+```js
 // xxx.js
 export default {
   change: function(e) {
@@ -98,4 +108,4 @@ export default {
 }
 ```
 
-![img](figures/tab.gif)
+![tab](figures/tab.gif)
