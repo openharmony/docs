@@ -4,7 +4,7 @@ Use the **\<List>** component and **ForEach** loop to build the food category li
 
 
 1. Create a page file named **FoodCategoryList.ets** in the **pages** directory and rename the **index.ets** file **FoodDetail.ets**.
-  
+   
 2. Create a **\<List>** component named **FoodList** as the page entry point. Then, add a **\<ListItem>** component named **FoodListItem** as its child component. The **\<List>** component is used to display data of the same type. Its child component **\<ListItem>** is used to display specific items in the list.
    ```ts
    @Component
@@ -28,7 +28,7 @@ Use the **\<List>** component and **ForEach** loop to build the food category li
 3. Import the **FoodData** class and **initializeOnStartup** method.
 
 There are two file access methods in application code:
-- Use a relative path to reference the code file: Use **"../"** for referencing the upper-level directory and **"./"** (which can also be omitted) for referencing the current directory.
+- Use a relative path to reference the code file: Use **"../"** for referencing the parent directory and **"./"** (which can also be omitted) for referencing the current directory.
 - Use the absolute path, which is the root path of the current module, to reference the code file, for example, **common/utils/utils**.
 In this example, a relative path is used for access.
 

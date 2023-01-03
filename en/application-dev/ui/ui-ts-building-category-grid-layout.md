@@ -1,17 +1,16 @@
 # Building a Food Category Grid Layout
 
-
 The diet application allows food on the home page to display in list or grid mode. You can implement switching between food categories through tabs in grid mode.
 
 
 1. Import the **Category** enumeration type to the **FoodCategoryList** page.
-   
+
    ```ts
    import { Category, FoodData } from '../model/FoodData'
    ```
 
 2. Create the **FoodCategoryList** and **FoodCategory** components. The **FoodCategoryList** component is used as the entry component of the new page, and the **initializeOnStartup** method is invoked in the entry component.
-   
+
    ```ts
    @Component
    struct FoodList {
@@ -39,8 +38,8 @@ The diet application allows food on the home page to display in list or grid mod
    }
    ```
 
-3. Create the **showList** member variable in the **FoodCategoryList** component to control the rendering switchover between the list layout and grid layout. The conditional rendering statement if...else... is required.
-   
+3. Create the **showList** member variable in the **FoodCategoryList** component to control the rendering switchover between the list layout and grid layout. The conditional rendering statement **if...else...** is required.
+
    ```ts
    @Entry
    @Component
@@ -60,8 +59,8 @@ The diet application allows food on the home page to display in list or grid mod
    }
    ```
 
-4. In the upper right corner of the page, create an icon for switching between the list and grid layouts. Set the stack alignment mode to **TopEnd**, top-bottom alignment. Create an image component, and set the click event, that is, negation of showList.
-   
+4. In the upper right corner of the page, create an icon for switching between the list and grid layouts. Set the stack alignment mode to **TopEnd**, top-bottom alignment. Create an image component, and set the click event, that is, negation of **showList**.
+
    ```ts
    @Entry
    @Component
@@ -88,8 +87,8 @@ The diet application allows food on the home page to display in list or grid mod
    }
    ```
 
-5. Add the @State decorator. After you click the switch tab in the upper right corner, the page does not change. This is because the showList does not have state data and its change does not trigger the page refresh. You need to add the @State decorator to make it state data. The change of the @State decorator will cause re-rendering of the component where the decorator is located.
-   
+5. Add the **@State** decorator. After you click the switch tab in the upper right corner, the page does not change. This is because the **showList** does not have state data and its change does not trigger the page refresh. You need to add the **@State** decorator to make it state data. The change of the **@State** decorator will cause re-rendering of the component where the decorator is located.
+
    ```ts
    @Entry
    @Component
@@ -117,12 +116,12 @@ The diet application allows food on the home page to display in list or grid mod
    
    ```
 
-   When you click the switch icon, the FoodList component is displayed. When you click the switch icon again, the FoodList component is hidden.
+   When you click the switch icon, the **FoodList** component is displayed. When you click the switch icon again, the **FoodList** component is hidden.
 
    ![en-us_image_0000001170411978](figures/en-us_image_0000001170411978.gif)
 
-6. Create a tab to display all food categories (**All**). Create the **\<Tabs>** component and its child component **TabContent** in the **FoodCategory** component, and set **tabBar** to **All**. Set the width of the **TabBars** to **280** and the layout mode to **Scrollable**. This means that the TabBars can be scrolled when the total length exceeds 280. The **\<Tabs>** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a TabContent.
-   
+6. Create a tab to display all food categories (**All**). Create the **\<Tabs>** component and its child component **TabContent** in the **FoodCategory** component, and set **tabBar** to **All**. Set the width of the **TabBars** to 280 and the layout mode to **Scrollable**. This means that the **TabBars** can be scrolled when the total length exceeds 280. The **\<Tabs>** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a **TabContent**.
+
    ```ts
    @Component
    struct FoodCategory {
@@ -139,10 +138,10 @@ The diet application allows food on the home page to display in list or grid mod
    }
    ```
 
-   ![en-us_image_0000001267647881](figures/en-us_image_0000001267647881.png)
+   ![en-us_image_0000001204538065](figures/en-us_image_0000001204538065.png)
 
-7. Create the FoodGrid component to function as a child component of the TabContent component.
-   
+7. Create the **FoodGrid** component to function as a child component of the **TabContent** component.
+
    ```ts
    @Component
    struct FoodGrid {
@@ -167,8 +166,8 @@ The diet application allows food on the home page to display in list or grid mod
    }
    ```
 
-8. Implement a 2 x 6 grid layout (12 food data resources in total). Create a Grid component, and set **columnsTemplate** to **('1fr 1fr')**, **rowsTemplate** to **('1fr 1fr 1fr 1fr 1fr 1fr')**, and both **rowsGap** and **columnsGap** to **8**. Create a Scroll component so that it can be slid.
-   
+8. Implement a 2 x 6 grid layout (12 food data resources in total). Create a **Grid** component, and set **columnsTemplate** to **('1fr 1fr')**, **rowsTemplate** to **('1fr 1fr 1fr 1fr 1fr 1fr')**, and both **rowsGap** and **columnsGap** to **8**. Create a **Scroll** component so that it can be slid.
+
    ```ts
    @Component
    struct FoodGrid {
@@ -191,8 +190,8 @@ The diet application allows food on the home page to display in list or grid mod
    }
    ```
 
-9. Create a **FoodGridItem** component to display the food image, name, and calories and implement the UI layout. The **FoodGridItem** component is a child component of the **GridItem** component. The height of each FoodGridItem is 184, and the line spacing is 8. The total height of the **\<Grid>** component is calculated as follows: (184 + 8) x 6 – 8 = 1144.
-   
+9. Create a **FoodGridItem** component to display the food image, name, and calories and implement the UI layout. The **FoodGridItem** component is a child component of the **GridItem** component. The height of each **FoodGridItem** is **184**, and the line spacing is **8**. The total height of the **Grid** component is calculated as follows: (184 + 8) x 6 – 8 = 1144.
+
    ```ts
    @Component
    struct FoodGridItem {
@@ -247,10 +246,10 @@ The diet application allows food on the home page to display in list or grid mod
    }
    ```
 
-   ![en-us_image_0000001223287708](figures/en-us_image_0000001223287708.gif)
+   ![en-us_image_0000001170167520](figures/en-us_image_0000001170167520.png)
 
-10. Create the Category.Vegetable, Category.Fruit, Category.Nut, Category.SeaFood, and Category.Dessert tabs.
-    
+10. Create the **Category.Vegetable**, **Category.Fruit**, **Category.Nut**, **Category.SeaFood**, and **Category.Dessert** tabs.
+
     ```ts
     @Component
     struct FoodCategory {
@@ -290,7 +289,7 @@ The diet application allows food on the home page to display in list or grid mod
     }
     ```
 
-11. Set the number of rows and height of grids for different food categories. Because the number of foods varies according to the category, the **'1fr 1fr 1fr 1fr 1fr 1fr'** constant cannot be used to set the number of rows to 6.
+11. Set the number of rows and height of grids for different food categories. Because the number of foods varies according to the category, the **''1fr 1fr 1fr 1fr 1fr 1fr '** constant cannot be used to set the number of rows to 6.
       Create member variables **gridRowTemplate** and **HeightValue**, and set the number of grid rows and height by using these member variables.
 
     ```ts
@@ -320,9 +319,9 @@ The diet application allows food on the home page to display in list or grid mod
       }
     }
     ```
-    
+
     Invoke the **aboutToAppear** API to calculate the number of rows (**gridRowTemplate**) and height (**heightValue**).
-    
+
        ```ts
     aboutToAppear() {
       var rows = Math.round(this.foodItems.length / 2);
@@ -330,11 +329,11 @@ The diet application allows food on the home page to display in list or grid mod
       this.heightValue = rows * 192 - 8;
     }
        ```
-    
-    The custom component provides two lifecycle callbacks: **aboutToAppear** and **aboutToDisappear**. **aboutToAppear** is executed after the custom component is created and before the build method of the custom component is executed. **aboutToDisappear** is executed when the custom component is deinitialized.
-    
-    ![en-us_image_0000001267647885](figures/en-us_image_0000001267647885.png)
-    
+
+    The custom component provides two lifecycle callbacks: **aboutToAppear** and **aboutToDisappear**. **aboutToAppear** is executed after the custom component is created and before the **build** method of the custom component is executed. **aboutToDisappear** is executed before the custom component is destroyed.
+
+    ![en-us_image_0000001215113569](figures/en-us_image_0000001215113569.png)
+
        ```ts
     @Component
     struct FoodGrid {
@@ -368,5 +367,5 @@ The diet application allows food on the home page to display in list or grid mod
       }
     }
        ```
-    
-    ![en-us_image_0000001267887869](figures/en-us_image_0000001267887869.gif)
+
+       ![en-us_image_0000001170008198](figures/en-us_image_0000001170008198.gif)
