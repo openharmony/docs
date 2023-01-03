@@ -3380,7 +3380,7 @@ getSourceType(): ContextMenuSourceType;
 
 | 类型                                       | 说明          |
 | ---------------------------------------- | ----------- |
-| [ContextMenuSourceType](#contextmenumsourcetype9枚举说明) | 菜单事件来源。 |
+| [ContextMenuSourceType](#contextmenusourcetype9枚举说明) | 菜单事件来源。 |
 
 ### getInputFieldType<sup>9+</sup>
 
@@ -3416,7 +3416,7 @@ getEditStateFlags(): number;
 
 | 类型      | 说明                        |
 | ------- | ------------------------- |
-| number | 网页元素可编辑标识 [ContextMenuEditStateFlags](contextmenueditstateflags9枚举说明)。 |
+| number | 网页元素可编辑标识，参考[ContextMenuEditStateFlags](contextmenueditstateflags9枚举说明)。 |
 
 ## WebContextMenuResult<sup>9+</sup>
 
