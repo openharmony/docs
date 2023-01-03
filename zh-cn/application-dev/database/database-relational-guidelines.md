@@ -64,7 +64,7 @@
   - 直接调用查询接口。使用该接口，会将包含查询条件的谓词自动拼接成完整的SQL语句进行查询操作，无需用户传入原生的SQL语句。
   - 执行原生的SQL语句进行查询操作。
 
-  **表5** 数据库查询API
+**表5** 数据库查询API
 
 
 | 类名       | 接口名                                                       | 描述                                                         |
@@ -247,19 +247,20 @@
    示例代码如下：
 
     ```js
-    var u8 = new Uint8Array([1, 2, 3])
+    let u8 = new Uint8Array([1, 2, 3])
     const valueBucket = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 }
     let insertPromise = rdbStore.insert("test", valueBucket)
     ```
     
     ```js
+    //使用事务插入数据
     beginTransaction()
     try {
-        var u8 = new Uint8Array([1, 2, 3])
+        let u8 = new Uint8Array([1, 2, 3])
         const valueBucket1 = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 }
         const valueBucket2 = { "name": "Jam", "age": 19, "salary": 200.5, "blobType": u8 }
-        let insertPromise1 = rdbStoreV9.insert("test", valueBucket1)
-        let insertPromise2 = rdbStoreV9.insert("test", valueBucket2)
+        let insertPromise1 = rdbStore.insert("test", valueBucket1)
+        let insertPromise2 = rdbStore.insert("test", valueBucket2)
         commit()
     } catch (e) {
         rollBack()
