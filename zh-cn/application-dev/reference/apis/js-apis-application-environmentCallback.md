@@ -1,6 +1,6 @@
 # @ohos.application.EnvironmentCallback (EnvironmentCallback)
 
-EnvironmentCallback模块提供应用上下文ApplicationContext对系统环境变化监听回调的能力，包括onConfigurationUpdated方法。
+EnvironmentCallback模块提供应用上下文ApplicationContext对系统环境变化监听回调的能力，包括onConfigurationUpdated、onMemoryLevel方法。
 
 > **说明：**
 > 
@@ -29,8 +29,21 @@ onConfigurationUpdated(config: Configuration): void;
   | -------- | -------- | -------- | -------- |
   | config | [Configuration](js-apis-application-configuration.md) | 是 | 变化后的Configuration对象。 |
 
+## EnvironmentCallback.onMemoryLevel
+
+onMemoryLevel(level: number): void;
+
+注册系统内存基线水平变化监听后，在系统内存基线水平变化时触发回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | level  | [MemoryLevel](js-apis-application-abilityConstant.md#abilityconstantmemorylevel) | 是 | 表示当前内存的基线水平。 |
+
 **示例：**
-    
 
   ```ts
 import Ability from "@ohos.application.Ability";
@@ -45,6 +58,9 @@ export default class MyAbility extends Ability {
             onConfigurationUpdated(config){
                 console.log("onConfigurationUpdated config:" + JSON.stringify(config));
             },
+            onMemoryLevel(level){
+                console.log("onMemoryLevel level:" + level);
+            }
         }
         // 1.获取applicationContext
         let applicationContext = globalThis.applicationContext;
