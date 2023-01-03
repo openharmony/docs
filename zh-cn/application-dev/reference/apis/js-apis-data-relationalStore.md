@@ -2646,7 +2646,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | 参数名   | 类型                                | 必填 | 说明                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
-| type     | [SubscribeType](#subscribetype)    | 是   | 指在{@code SubscribeType}中定义的订阅类型。 |
+| type     | [SubscribeType](#subscribetype)    | 是   | 订阅类型。 |
 | observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指分布式数据库中数据更改事件的观察者。      |
 
 **示例：**
@@ -2675,9 +2675,9 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 **参数：**
 
 | 参数名   | 类型                                | 必填 | 说明                                        |
-| -------- | ----------------------------------- | ---- | ------------------------------------------- |
+| -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
-| type     | [SubscribeType](#subscribetype)    | 是   | 指在{@code SubscribeType}中定义的订阅类型。 |
+| type     | [SubscribeType](#subscribetype)     | 是   | 订阅类型。                                 |
 | observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指已注册的数据更改观察者。                  |
 
 **示例：**
