@@ -1843,7 +1843,7 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
 
 onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebContextMenuResult }) => boolean)
 
-长按特定元素（例如图片，链接），跳出菜单。
+长按特定元素（例如图片，链接）或鼠标右键，跳出菜单。
 
 **参数：**
 
@@ -2717,9 +2717,44 @@ grant(resources: Array\<string\>): void
 | --------- | --------------- | ---- | ---- | ------------- |
 | resources | Array\<string\> | 是    | -    | 网页所请求的权限资源列表。 |
 
+## ContextMenuSourceType<sup>9+</sup>枚举说明
+| 名称                   | 描述         |
+| -------------------- | ---------- |
+| None        | 其他事件来源。  |
+| Mouse       | 鼠标事件。  |
+| LongPress   | 长按事件。  |
+
+## ContextMenuMediaType<sup>9+</sup>枚举说明
+
+| 名称           | 描述          |
+| ------------ | ----------- |
+| None      | 非特殊媒体或其他媒体类型。 |
+| Image     | 图片。     |
+
+## ContextMenuInputFieldType<sup>9+</sup>枚举说明
+
+| 名称           | 描述          |
+| ------------ | ----------- |
+| None      | 非输入框。       |
+| PlainText | 纯文本类型，包括text、search、email等。   |
+| Password  | 密码类型。     |
+| Number    | 数字类型。     |
+| Telephone | 电话号码类型。 |
+| Other     | 其他类型。     |
+
+## ContextMenuEditStateFlags<sup>9+</sup>枚举说明
+
+| 名称         | 描述         |
+| ------------ | ----------- |
+| NONE         | 不可编辑。   |
+| CAN_CUT      | 支持剪切。   |
+| CAN_COPY     | 支持拷贝。   |
+| CAN_PASTE    | 支持粘贴。   |
+| CAN_SELECT_ALL  | 支持全选。 |
+
 ## WebContextMenuParam<sup>9+</sup>
 
-实现长按页面元素跳出来的菜单信息。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
+实现长按页面元素或鼠标右键弹出来的菜单信息。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
 
 ### x<sup>9+</sup>
 
@@ -2793,9 +2828,81 @@ existsImageContents(): boolean
 | ------- | ------------------------- |
 | boolean | 长按位置中有图片返回true，否则返回false。 |
 
+### getMediaType<sup>9+</sup>
+
+getMediaType(): ContextMenuMediaType;
+
+获取网页元素媒体类型。
+
+**返回值：**
+
+| 类型                                       | 说明          |
+| ---------------------------------------- | ----------- |
+| [ContextMenuMediaType](#contextmenumediatype9枚举说明) | 网页元素媒体类型。 |
+
+### getSelectionText<sup>9+</sup>
+
+getSelectionText(): string;
+
+获取选中文本。
+
+**返回值：**
+
+| 类型      | 说明                        |
+| ------- | ------------------------- |
+| string | 菜单上下文选中文本内容，不存在则返回空。 |
+
+### getSourceType<sup>9+</sup>
+
+getSourceType(): ContextMenuSourceType;
+
+获取菜单事件来源。
+
+**返回值：**
+
+| 类型                                       | 说明          |
+| ---------------------------------------- | ----------- |
+| [ContextMenuSourceType](#contextmenusourcetype9枚举说明) | 菜单事件来源。 |
+
+### getInputFieldType<sup>9+</sup>
+
+getInputFieldType(): ContextMenuInputFieldType;
+
+获取网页元素输入框类型。
+
+**返回值：**
+
+| 类型                                       | 说明          |
+| ---------------------------------------- | ----------- |
+| [ContextMenuInputFieldType](#contextmenuinputfieldtype9枚举说明) | 输入框类型。 |
+
+### isEditable<sup>9+</sup>
+
+isEditable(): boolean;
+
+获取网页元素是否可编辑标识。
+
+**返回值：**
+
+| 类型      | 说明                        |
+| ------- | ------------------------- |
+| boolean | 网页元素可编辑返回true，否则返回false。 |
+
+### getEditStateFlags<sup>9+</sup>
+
+getEditStateFlags(): number;
+
+获取网页元素可编辑标识。
+
+**返回值：**
+
+| 类型      | 说明                        |
+| ------- | ------------------------- |
+| number | 网页元素可编辑标识，参照[ContextMenuEditStateFlags](#contextmenueditstateflags9枚举说明)。 |
+
 ## WebContextMenuResult<sup>9+</sup>
 
-实现长按页面元素跳出来的菜单所执行的响应事件。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
+实现长按页面元素或鼠标右键弹出来的菜单所执行的响应事件。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
 
 ### closeContextMenu<sup>9+</sup>
 
@@ -2808,6 +2915,30 @@ closeContextMenu(): void
 copyImage(): void
 
 WebContextMenuParam有图片内容则复制图片。
+
+### copy<sup>9+</sup>
+
+copy(): void;
+
+执行与此上下文菜单相关的拷贝操作。
+
+### paste<sup>9+</sup>
+
+paste(): void
+
+执行与此上下文菜单相关的粘贴操作。
+
+### cut<sup>9+</sup>
+
+cut(): void
+
+执行与此上下文菜单相关的剪切操作。
+
+### selectAll<sup>9+</sup>
+
+selectAll(): void
+
+执行与此上下文菜单相关的全选操作。
 
 ## JsGeolocation
 
