@@ -41,7 +41,7 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 | **错误码ID** | **错误信息**            |
 | ------------ | ----------------------- |
 | 14800010     | If failed delete database by invalid database name.  |
-| 14800011     | Database corrupted.     |
+| 14800011     | If failed open database by database corrupted.     |
 
 **示例：**
 
@@ -134,7 +134,7 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 | **错误码ID** | **错误信息**            |
 | ------------ | ----------------------- |
 | 14800010     | If failed delete database by invalid database name. |
-| 14800011     | Database corrupted.     |
+| 14800011     | If failed open database by database corrupted.     |
 
 **示例：**
 
@@ -1275,7 +1275,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 
 | 名称         | 类型            | 必填 | 说明                             |
 | ------------ | ----------- | ---- | -------------------------------- |
-| openStatus<sup>10+</sup>  | number | 是   | RdbStore的状态。值为0时，表示RdbStore首次创建，处于ON_CREATE状态。；值为1时，表示RdbStore非首次创建，处于ON_OPEN状态。       |
+| openStatus<sup>10+</sup>  | number | 是   | RdbStore的状态。值为0时，表示RdbStore首次创建，处于ON_CREATE状态。值为1时，表示RdbStore非首次创建，处于ON_OPEN状态。       |
 
 ### insert
 
@@ -2756,7 +2756,7 @@ getColumnIndex(columnName: string): number
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800013     | The column value is  null or the column type is incompatible. |
+| 14800013     | The column value is null or the column type is incompatible. |
 
 **示例：**
 
@@ -2794,7 +2794,7 @@ getColumnName(columnIndex: number): string
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800013     | The column value is  null or the column type is incompatible. |
+| 14800013     | The column value is null or the column type is incompatible. |
 
 **示例：**
 
@@ -3047,14 +3047,6 @@ getBlob(columnIndex: number): Uint8Array
 | ---------- | -------------------------------- |
 | Uint8Array | 以字节数组的形式返回指定列的值。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800013     | The column value is  null or the column type is incompatible. |
-
 **示例：**
 
   ```js
@@ -3080,14 +3072,6 @@ getString(columnIndex: number): string
 | 类型   | 说明                         |
 | ------ | ---------------------------- |
 | string | 以字符串形式返回指定列的值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800013     | The column value is  null or the column type is incompatible. |
 
 **示例：**
 
@@ -3115,14 +3099,6 @@ getLong(columnIndex: number): number
 | ------ | -------------------------- |
 | number | 以Long形式返回指定列的值。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800013     | The column value is  null or the column type is incompatible. |
-
 **示例：**
 
   ```js
@@ -3148,14 +3124,6 @@ getDouble(columnIndex: number): number
 | 类型   | 说明                         |
 | ------ | ---------------------------- |
 | number | 以double形式返回指定列的值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800013     | The column value is  null or the column type is incompatible. |
 
 **示例：**
 
@@ -3189,7 +3157,7 @@ isColumnNull(columnIndex: number): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800013     | The column value is  null or the column type is incompatible. |
+| 14800013     | The column value is null or the column type is incompatible. |
 
 **示例：**
 

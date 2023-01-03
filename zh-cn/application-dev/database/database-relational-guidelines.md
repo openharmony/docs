@@ -17,8 +17,8 @@
 
 | 接口名                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt; | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用Promise异步回调。<br/>-context：应用程序或功能的上下文。<br/>-config：与此RDB存储相关的数据库配置。 |
-| deleteRdbStore(context: Context, name: string): Promise&lt;void&gt; | 使用指定的数据库文件配置删除数据库，使用Promise异步回调。<br/>-context：应用程序或功能的上下文。<br/>-name：数据库名称。 |
+| getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt; | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用Promise异步回调。<br/>-context：应用上下文。<br/>-config：与此RDB存储相关的数据库配置。 |
+| deleteRdbStore(context: Context, name: string): Promise&lt;void&gt; | 使用指定的数据库文件配置删除数据库，使用Promise异步回调。<br/>-context：应用上下文。<br/>-name：数据库名称。 |
 
 ### 数据库的增删改查
 
@@ -64,14 +64,13 @@
   - 直接调用查询接口。使用该接口，会将包含查询条件的谓词自动拼接成完整的SQL语句进行查询操作，无需用户传入原生的SQL语句。
   - 执行原生的SQL语句进行查询操作。
 
-**表5** 数据库查询API
+  **表5** 数据库查询API
 
-
-| 类名       | 接口名                                                       | 描述                                                         |
-| ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStore | query(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;ResultSet&gt; | 根据指定条件查询数据库中的数据，使用Promise异步回调。<br/>-predicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-columns：表示要查询的列。如果值为空，则查询应用于所有列。 |
-| RdbStore | querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;): Promise&lt;ResultSet&gt; | 根据指定SQL语句查询数据库中的数据，使用Promise异步回调。<br/>-sql：指定要查询的SQL语句。<br/>-bindArgs：SQL语句中参数的值。 |
-| RdbStore | remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt;): Promise&lt;ResultSet&gt; | 根据指定条件查询指定远程设备数据库中的数据。使用Promise异步回调。<br/>-device：指定远程查询的设备networkId。<br/>-table：指定远程查询的表名。<br/>-predicates：表示RdbPredicates的实例对象，指定查询的条件。<br/>-columns：表示要查询的列。如果值为空，则查询应用于所有列。 |
+  | 类名       | 接口名                                                       | 描述                                                         |
+  | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+  | RdbStore | query(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;ResultSet&gt; | 根据指定条件查询数据库中的数据，使用Promise异步回调。<br/>-predicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-columns：表示要查询的列。如果值为空，则查询应用于所有列。 |
+  | RdbStore | querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;): Promise&lt;ResultSet&gt; | 根据指定SQL语句查询数据库中的数据，使用Promise异步回调。<br/>-sql：指定要查询的SQL语句。<br/>-bindArgs：SQL语句中参数的值。 |
+  | RdbStore | remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt;): Promise&lt;ResultSet&gt; | 根据指定条件查询指定远程设备数据库中的数据。使用Promise异步回调。<br/>-device：指定远程查询的设备networkId。<br/>-table：指定远程查询的表名。<br/>-predicates：表示RdbPredicates的实例对象，指定查询的条件。<br/>-columns：表示要查询的列。如果值为空，则查询应用于所有列。 |
 
 ### 数据库谓词的使用
 
