@@ -20,7 +20,7 @@ The input driver model mainly consists of the device manager, common drivers, an
 
 In addition, the input driver model implements functions for reporting input data and parsing input device configurations.
 
-For details about the input driver model, see  [Touchscreen Overview](../driver/driver-peripherals-touch-des.md#section175431838101617).
+For details about the input driver model, see  [Touchscreen Overview](../driver/driver-peripherals-touch-des.md).
 
 ## Setting Up the Environment<a name="section661075474418"></a>
 
