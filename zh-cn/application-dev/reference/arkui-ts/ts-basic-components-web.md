@@ -3272,7 +3272,7 @@ grant(resources: Array\<string\>): void
 
 ## WebContextMenuParam<sup>9+</sup>
 
-实现长按页面元素跳出来的菜单信息。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
+实现长按页面元素或鼠标右键弹出来的菜单信息。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
 
 ### x<sup>9+</sup>
 
@@ -3356,7 +3356,7 @@ getMediaType(): ContextMenuMediaType;
 
 | 类型                                       | 说明          |
 | ---------------------------------------- | ----------- |
-| [ContextMenuMediaType](#contextmenumediatype枚举说明) | 网页元素媒体类型。 |
+| [ContextMenuMediaType](#contextmenumediatype9枚举说明) | 网页元素媒体类型。 |
 
 ### getSelectionText<sup>9+</sup>
 
@@ -3380,7 +3380,7 @@ getSourceType(): ContextMenuSourceType;
 
 | 类型                                       | 说明          |
 | ---------------------------------------- | ----------- |
-| [ContextMenuSourceType](#contextmenumsourcetype枚举说明) | 菜单事件来源。 |
+| [ContextMenuSourceType](#contextmenumsourcetype9枚举说明) | 菜单事件来源。 |
 
 ### getInputFieldType<sup>9+</sup>
 
@@ -3392,7 +3392,7 @@ getInputFieldType(): ContextMenuInputFieldType;
 
 | 类型                                       | 说明          |
 | ---------------------------------------- | ----------- |
-| [ContextMenuInputFieldType](#contextmenuinputfieldtype枚举说明) | 输入框类型。 |
+| [ContextMenuInputFieldType](#contextmenuinputfieldtype9枚举说明) | 输入框类型。 |
 
 ### isEditable<sup>9+</sup>
 
@@ -3416,11 +3416,11 @@ getEditStateFlags(): number;
 
 | 类型      | 说明                        |
 | ------- | ------------------------- |
-| number | 网页元素可编辑标识 [ContextMenuEditStateFlags](contextmenueditstateflags枚举说明)。 |
+| number | 网页元素可编辑标识 [ContextMenuEditStateFlags](contextmenueditstateflags9枚举说明)。 |
 
 ## WebContextMenuResult<sup>9+</sup>
 
-实现长按页面元素跳出来的菜单所执行的响应事件。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
+实现长按页面元素或鼠标右键弹出来的菜单所执行的响应事件。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
 
 ### closeContextMenu<sup>9+</sup>
 
