@@ -687,7 +687,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**setShowName**<sup>8+</sup>
+## sim.setShowName<sup>8+</sup>
 
 setShowName\(slotId: number, name: string, callback: AsyncCallback<void\>\): void
 
@@ -716,7 +716,7 @@ sim.setShowName(0, name, (err, data) => {
 });
 ```
 
-## sim.**setShowName**<sup>8+</sup>
+## sim.setShowName<sup>8+</sup>
 
 setShowName\(slotId: number, name: string\): Promise\<void\>
 
@@ -753,7 +753,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**getShowName**<sup>8+</sup>
+## sim.getShowName<sup>8+</sup>
 
 getShowName(slotId: number, callback: AsyncCallback<string\>): void
 
@@ -781,7 +781,7 @@ sim.getShowName(0, (err, data) => {
 ```
 
 
-## sim.**getShowName**<sup>8+</sup>
+## sim.getShowName<sup>8+</sup>
 
 getShowName(slotId: number): Promise<string\>
 
@@ -816,7 +816,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**setShowNumber**<sup>8+</sup>
+## sim.setShowNumber<sup>8+</sup>
 
 setShowNumber\(slotId: number, number: string, callback: AsyncCallback<void\>\): void
 
@@ -846,7 +846,7 @@ sim.setShowNumber(0, number, (err, data) => {
 ```
 
 
-## sim.**setShowNumber**<sup>8+</sup>
+## sim.setShowNumber<sup>8+</sup>
 
 setShowNumber\(slotId: number, number: string\): Promise\<void\>
 
@@ -883,7 +883,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**getShowNumber**<sup>8+</sup>
+## sim.getShowNumber<sup>8+</sup>
 
 getShowNumber(slotId: number, callback: AsyncCallback<string\>): void
 
@@ -911,7 +911,7 @@ sim.getShowNumber(0, (err, data) => {
 ```
 
 
-## sim.**getShowNumber**<sup>8+</sup>
+## sim.getShowNumber<sup>8+</sup>
 
 getShowNumber(slotId: number): Promise<string\>
 
@@ -946,7 +946,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**activateSim**<sup>8+</sup>
+## sim.activateSim<sup>8+</sup>
 
 activateSim(slotId: number, callback: AsyncCallback<void\>): void
 
@@ -974,7 +974,7 @@ sim.activateSim(0, (err, data) => {
 ```
 
 
-## sim.**activateSim**<sup>8+</sup>
+## sim.activateSim<sup>8+</sup>
 
 activateSim(slotId: number): Promise\<void\>
 
@@ -1009,7 +1009,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**deactivateSim**<sup>8+</sup>
+## sim.deactivateSim<sup>8+</sup>
 
 deactivateSim(slotId: number, callback: AsyncCallback<void\>): void
 
@@ -1037,7 +1037,7 @@ sim.deactivateSim(0, (err, data) => {
 ```
 
 
-## sim.**deactivateSim**<sup>8+</sup>
+## sim.deactivateSim<sup>8+</sup>
 
 deactivateSim(slotId: number): Promise\<void\>
 
@@ -1346,7 +1346,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**unlockPin**<sup>7+</sup>
+## sim.unlockPin<sup>7+</sup>
 
 unlockPin(slotId: number, pin: string, callback: AsyncCallback<LockStatusResponse\>): void
 
@@ -1376,7 +1376,7 @@ sim.unlockPin(0, pin, (err, data) => {
 ```
 
 
-## sim.**unlockPin**<sup>7+</sup>
+## sim.unlockPin<sup>7+</sup>
 
 unlockPin(slotId: number, pin: string): Promise&lt;LockStatusResponse\>
 
@@ -1413,7 +1413,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**unlockPuk**<sup>7+</sup>
+## sim.unlockPuk<sup>7+</sup>
 
 unlockPuk(slotId: number, newPin: string, puk: string, callback: AsyncCallback<LockStatusResponse\>): void
 
@@ -1445,7 +1445,7 @@ sim.unlockPuk(0, newPin, puk, (err, data) => {
 ```
 
 
-## sim.**unlockPuk**<sup>7+</sup>
+## sim.unlockPuk<sup>7+</sup>
 
 unlockPuk(slotId: number, newPin: string, puk: string): Promise&lt;LockStatusResponse\>
 
@@ -1484,7 +1484,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**unlockPin**2<sup>8+</sup>
+## sim.unlockPin2<sup>8+</sup>
 
 unlockPin2(slotId: number, pin2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
@@ -1514,7 +1514,7 @@ sim.unlockPin2(0, pin2, (err, data) => {
 ```
 
 
-## sim.**unlockPin**2<sup>8+</sup>
+## sim.unlockPin2<sup>8+</sup>
 
 unlockPin2(slotId: number, pin2: string): Promise&lt;LockStatusResponse\>
 
@@ -1551,7 +1551,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**unlockPuk**2<sup>8+</sup>
+## sim.unlockPuk2<sup>8+</sup>
 
 unlockPuk2(slotId: number, newPin2: string, puk2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
@@ -1583,7 +1583,7 @@ sim.unlockPuk2(0, newPin2, puk2, (err, data) => {
 ```
 
 
-## sim.**unlockPuk2**<sup>8+</sup>
+## sim.unlockPuk2<sup>8+</sup>
 
 unlockPuk2(slotId: number, newPin2: string, puk2: string): Promise&lt;LockStatusResponse\>
 
