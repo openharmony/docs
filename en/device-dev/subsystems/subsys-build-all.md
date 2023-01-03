@@ -122,7 +122,7 @@ You must install the software packages required for build. The command is as fol
   # export PATH=~/.local/bin:$PATH
   ```
 
-  ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The hb tool will be installed during the installation of ohos-build. If the hb installation fails, see [Installing hb](../../device-dev/quick-start/quickstart-pkg-install-tool.md).
+  ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The hb tool will be installed during the installation of **ohos-build**. If hb tool fails to be installed, [install hb](../../device-dev/quick-start/quickstart-pkg-install-tool.md#hb-installation) again.
 
 
 ## Configuration Rules
@@ -143,28 +143,28 @@ To ensure that chipset and product solutions are decoupled from OpenHarmony, you
 
 ```shell
 
-/build                          # Directory for build
+/build                            # Directory for build
 
 ├── __pycache__                   
-├── build_scripts/              # Python scripts for build
+├── build_scripts/                # Python scripts for build
 ├── common/                       
-├── config/                     # Build-related configuration
+├── config/                       # Build-related configuration
 ├── core
-│   └── gn/                     # BUILD.gn configuration
+│   └── gn/                       # BUILD.gn configuration
     └── build_scripts/            
 ├── docs                          
 gn_helpers.py*                    
-lite/                           # hb and preloader entry                     
+lite/                             # hb and preloader entry                     
 misc/
-├── ohos                        # Configuration of OpenHarmony building and packaging
-│   ├── kits                    # Kits build and packaging templates and processing
-│   ├── ndk                     # NDK templates and processing
-│   ├── notice                  # Notice templates and processing
-│   ├── packages                # Distribution packaging templates and processing
-│   ├── sa_profile              # SA profiles and processing
-│   ├── sdk                     # SDK templates and processing, which contains the module configuration in the SDK
-│   └── testfwk                 # Testing-related processing
-├── ohos.gni*                   # Common .gni files (facilitating one-time import of each module)
+├── ohos                          # Configuration of OpenHarmony build and packaging
+│   ├── kits                      # Kits build and packaging templates and processing
+│   ├── ndk                       # NDK templates and processing
+│   ├── notice                    # Notice templates and processing
+│   ├── packages                  # Distribution packaging templates and processing
+│   ├── sa_profile                # SA profiles and processing
+│   ├── sdk                       # SDK templates and processing, which contains the module configuration in the SDK
+│   └── testfwk                   # Testing-related processing
+├── ohos.gni*                     # Common .gni files (facilitating one-time import of each module)
 ├── ohos_system.prop              
 ├── ohos_var.gni*                 
 ├── prebuilts_download.sh*        
@@ -195,179 +195,171 @@ Then, run the build commands in command line (CLI) mode or hb mode.
 
 1. Using the CLI
 
-   - Run the following command in the root directory of the source code to build a full distribution:
+- Run the following command in the root directory of the source code to build a full distribution:
 
-     Release version:
+  Release version:
+  ```shell
+  ./build.sh --product-name {product_name}
+  ```
+  Debug version:
+  ```shell
+  ./build.sh --product-name {product_name} --gn-args is_debug=true
+  ```
+  > ![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
+  > Due to the limitation of the image size, the full build for the debug version may fail to be burnt. You are advised to build the binary file for each module separately. Run the following command to build a module separately:
+  > 
+  > 
+  > ```
+  > ./build.sh --product-name {product_name} --gn-args is_debug=true --build-target {target_name}
+  > ```
+  > 
+  **{product_name}** specifies the product platform supported by the current distribution, for example, **hispark_taurus_standard**.
 
-     ```shell
-     ./build.sh --product-name {product_name}
-     ```
-
-     Debug version:
-
-     ```shell
-     ./build.sh --product-name {product_name} --gn-args is_debug=true
-     ```
-
-     >![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
-     >Due to the limitation of the image size, the full build for the debug version may fail to be burnt. You are advised to build the binary file for each module separately. Run the following command to build a module separately:
-     >
-     >```
-     >./build.sh --product-name {product_name} --gn-args is_debug=true --build-target {target_name}
-     >```
-     >
-     >
-     
-     **{product_name}** specifies the product platform supported by the current distribution, for example, **hispark_taurus_standard**.
-     
-     The image generated is stored in the **out/{device_name}/packages/phone/images/** directory.
-     
-   - The **./build.sh** command supports the following options:
-   
-     ```shell
-     -h, --help                                        # Display help information and exit.
-     --source-root-dir=SOURCE_ROOT_DIR                 # Specify the path.
-     --product-name=PRODUCT_NAME                       # Specify the product name.
-     --device-name=DEVICE_NAME                         # Specify the device name.
-     --target-cpu=TARGET_CPU                           # Specify the CPU.
-     --target-os=TARGET_OS                             # Specify the operating system.
-     -T BUILD_TARGET, --build-target=BUILD_TARGET      # Specify one or more targets to build.
-     --gn-args=GN_ARGS                                 # Specify GN parameters.
-     --ninja-args=NINJA_ARGS                           # Specify Ninja parameters.
-     -v, --verbose                                     # Display all commands used.
-     --keep-ninja-going                                # Keep Ninja going until 1,000,000 jobs fail.
-     --jobs=JOBS
-     --export-para=EXPORT_PARA
-     --build-only-gn                                   # Perform GN parsing and do not run Ninja.
-     --ccache                                          # (Optional) Use ccache for build. You need to install ccache locally.
-     --fast-rebuild                                    # Specify whether to allow fast rebuild. The default value is False.
-     --log-level=LOG_LEVEL                             # Specify the log level used in the build process. The options are debug, info, and error. The default value is info.
-     --device-type=DEVICE_TYPE                         # Specify the device type. The default value is default.
-     --build-variant=BUILD_VARIANT                     #Specify the device operation mode. The default value is user.
-     ```
-   
-     
+  The image generated is stored in the **out/{device_name}/packages/phone/images/** directory.
 
 
-   2. Using the hb tool
 
-      **hb** is an OpenHarmony command line tool for executing build commands. Common hb commands are described as follows:
+- The **./build.sh** command supports the following options:
 
-      **hb set**
+  ```shell
+  -h, --help                                         # Display help information and exit.
+  --source-root-dir=SOURCE_ROOT_DIR                  # Specify the path.
+  --product-name=PRODUCT_NAME                        # Specify the product name.
+  --device-name=DEVICE_NAME                          # Specify the device name.
+  --target-cpu=TARGET_CPU                            # Specify the CPU.
+  --target-os=TARGET_OS                              # Specify the operating system.
+  -T BUILD_TARGET, --build-target=BUILD_TARGET       # Specify one or more targets to build.
+  --gn-args=GN_ARGS                                  # Specify GN parameters.
+  --ninja-args=NINJA_ARGS                            # Specify Ninja parameters.
+  -v, --verbose                                      # Display all commands used.
+  --keep-ninja-going                                 # Keep Ninja going until 1,000,000 jobs fail.
+  --jobs=JOBS
+  --export-para=EXPORT_PARA
+  --build-only-gn                                    # Perform GN parsing and do not run Ninja.
+  --ccache                                           # (Optional) Use ccache for build. You need to install ccache locally.
+  --fast-rebuild                                     # Specify whether to allow fast rebuild. The default value is False.
+  --log-level=LOG_LEVEL                              # Specify the log level used in the build process. The options are debug, info, and error. The default value is info.
+  --device-type=DEVICE_TYPE                          # Specify the device type. The default value is default.
+  --build-variant=BUILD_VARIANT                      # Specify the device operation mode. The default value is user.
+  ```
 
-      Sets the product to build.
+2. Using the hb tool
 
-      ```shell
-      hb set -h
-      usage: hb set [-h] [-root [ROOT_PATH]] [-p]
-      
-      optional arguments:
-        -h, --help            show this help message and exit
-        -root [ROOT_PATH], --root_path [ROOT_PATH]
-                              Set OHOS root path
-        -p, --product         Set OHOS board and kernel
-      ```
+**hb** is an OpenHarmony command line tool for executing build commands. Common hb commands are described as follows:
 
-      - If you run **hb set** with no argument, the default setting process starts.
-      - You can run **hb set -root** *dir* to set the root directory of the source code.
+**hb set**
 
-      - You can run **hb set -p** to set the product to build.
+Sets the product to build.
 
-      
+```shell
+hb set -h
+usage: hb set [-h] [-root [ROOT_PATH]] [-p]
 
-      **hb env**
+optional arguments:
+  -h, --help            show this help message and exit
+  -root [ROOT_PATH], --root_path [ROOT_PATH]
+                        Set OHOS root path
+  -p, --product         Set OHOS board and kernel
+```
 
-      Displays current settings.
+- If you run **hb set** with no argument, the default setting process starts.
 
-      ```shell
-      hb env
-      [OHOS INFO] root path: xxx
-      [OHOS INFO] board: hispark_taurus
-      [OHOS INFO] kernel: liteos
-      [OHOS INFO] product: ipcamera
-      [OHOS INFO] product path: xxx/vendor/hisilicon/ipcamera
-      [OHOS INFO] device path: xxx/device/hisilicon/hispark_taurus/sdk_linux_4.19
-      ```
+- You can run **hb set -root** *dir* to set the root directory of the source code.
 
-      
+- You can run **hb set -p** to set the product to build.
 
-      **hb build**
+**hb env**
 
-      Builds a product, component, module, or chipset solution.
+Displays current settings.
 
-      ```shell
-      hb build -h
-      usage: hb build [-h] [-b BUILD_TYPE] [-c COMPILER] [-t [TEST [TEST ...]]] [-cpu TARGET_CPU] [--dmverity] [--tee]
-                      [-p PRODUCT] [-f] [-n] [-T [TARGET [TARGET ...]]] [-v] [-shs] [--patch] [--compact-mode]
-                      [--gn-args GN_ARGS] [--keep-ninja-going] [--build-only-gn] [--log-level LOG_LEVEL] [--fast-rebuild]
-                      [--device-type DEVICE_TYPE] [--build-variant BUILD_VARIANT]
-                      [component [component ...]]
-      
-      positional arguments:
-        component             name of the component, mini/small only
-      
-      optional arguments:
-        -h, --help            show this help message and exit
-        -b BUILD_TYPE, --build_type BUILD_TYPE
-                              release or debug version, mini/small only
-        -c COMPILER, --compiler COMPILER
-                              specify compiler, mini/small only
-        -t [TEST [TEST ...]], --test [TEST [TEST ...]]
-                              compile test suit
-        -cpu TARGET_CPU, --target-cpu TARGET_CPU
-                              select cpu
-        --dmverity            enable dmverity
-        --tee                 Enable tee
-        -p PRODUCT, --product PRODUCT
-                              build a specified product with {product_name}@{company}
-        -f, --full            full code compilation
-        -n, --ndk             compile ndk
-        -T [TARGET [TARGET ...]], --target [TARGET [TARGET ...]]
-                              compile single target
-        -v, --verbose         show all command lines while building
-        -shs, --sign_haps_by_server
-                              sign haps by server
-        --patch               apply product patch before compiling
-        --compact-mode        compatible with standard build system set to false if we use build.sh as build entrance
-        --gn-args GN_ARGS     specifies gn build arguments, eg: --gn-args="foo="bar" enable=true blah=7"
-        --keep-ninja-going    keeps ninja going until 1000000 jobs fail
-        --build-only-gn       only do gn parse, do not run ninja
-        --log-level LOG_LEVEL
-                              specifies the log level during compilationyou can select three levels: debug, info and error
-        --fast-rebuild        it will skip prepare, preloader, gn_gen steps so we can enable it only when there is no change
-                              for gn related script
-        --device-type DEVICE_TYPE
-                              specifies device type
-        --build-variant BUILD_VARIANT
-                              specifies device operating mode
-      ```
+```shell
+hb env
+[OHOS INFO] root path: xxx
+[OHOS INFO] board: hispark_taurus
+[OHOS INFO] kernel: liteos
+[OHOS INFO] product: ipcamera
+[OHOS INFO] product path: xxx/vendor/hisilicon/ipcamera
+[OHOS INFO] device path: xxx/device/hisilicon/hispark_taurus/sdk_linux_4.19
+```
 
-      - If you run **hb build** with no argument, the previously configured code directory, product, and options are used for the build. The **-f** option deletes all products to be built. It is equivalent to running **hb clean** and **hb build**.
-      - You can run **hb build** *{component_name}* to build product components separately based on the development board and kernel set for the product, for example, **hb build kv_store**.
-      - You can run **hb build -p ipcamera@hisilicon** to skip the setting step and build the product directly.
+**hb build**
 
-      - You can run **hb build** in **device/board/device_company** to select the kernel and build an image that contains the kernel and drivers only based on the current development board and the selected kernel.
+Builds a product, component, module, or chipset solution.
 
-      
+```shell
+hb build -h
+usage: hb build [-h] [-b BUILD_TYPE] [-c COMPILER] [-t [TEST [TEST ...]]] [-cpu TARGET_CPU] [--dmverity] [--tee]
+                [-p PRODUCT] [-f] [-n] [-T [TARGET [TARGET ...]]] [-v] [-shs] [--patch] [--compact-mode]
+                [--gn-args GN_ARGS] [--keep-ninja-going] [--build-only-gn] [--log-level LOG_LEVEL] [--fast-rebuild]
+                [--device-type DEVICE_TYPE] [--build-variant BUILD_VARIANT]
+                [component [component ...]]
 
-      **hb clean**
+positional arguments:
+  component             name of the component, mini/small only
 
-      Deletes all the files except **args.gn** and **build.log** in the **out** directory (default). To clear files in a specified directory, add the directory parameter to the command, for example, **hb clean out/board/product**.
+optional arguments:
+  -h, --help            show this help message and exit
+  -b BUILD_TYPE, --build_type BUILD_TYPE
+                        release or debug version, mini/small only
+  -c COMPILER, --compiler COMPILER
+                        specify compiler, mini/small only
+  -t [TEST [TEST ...]], --test [TEST [TEST ...]]
+                        compile test suit
+  -cpu TARGET_CPU, --target-cpu TARGET_CPU
+                        select cpu
+  --dmverity            enable dmverity
+  --tee                 Enable tee
+  -p PRODUCT, --product PRODUCT
+                        build a specified product with {product_name}@{company}
+  -f, --full            full code compilation
+  -n, --ndk             compile ndk
+  -T [TARGET [TARGET ...]], --target [TARGET [TARGET ...]]
+                        compile single target
+  -v, --verbose         show all command lines while building
+  -shs, --sign_haps_by_server
+                        sign haps by server
+  --patch               apply product patch before compiling
+  --compact-mode        compatible with standard build system set to false if we use build.sh as build entrance
+  --gn-args GN_ARGS     specifies gn build arguments, eg: --gn-args="foo="bar" enable=true blah=7"
+  --keep-ninja-going    keeps ninja going until 1000000 jobs fail
+  --build-only-gn       only do gn parse, do not run ninja
+  --log-level LOG_LEVEL
+                        specifies the log level during compilationyou can select three levels: debug, info and error
+  --fast-rebuild        it will skip prepare, preloader, gn_gen steps so we can enable it only when there is no change
+                        for gn related script
+  --device-type DEVICE_TYPE
+                        specifies device type
+  --build-variant BUILD_VARIANT
+                        specifies device operating mode
+```
 
-      ```shell
-      hb clean
-      usage: hb clean [-h] [out_path]
-      
-      positional arguments:
-        out_path    clean a specified path.
-      
-      optional arguments:
-        -h, --help  show this help message and exit
-      ```
+- If you run **hb build** with no argument, the previously configured code directory, product, and options are used for the build. The **-f** option deletes all products to be built. It is equivalent to running **hb clean** and **hb build**.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-> - For details about how to set up the build environment and perform the build, see the related topics in [Getting Started](../quick-start/Readme-EN.md).
-> - OpenHarmony also provides the Docker environment, which spares the installation of the build tool. For details, see [Docker Environment](../get-code/gettools-acquire.md).
+- You can run **hb build** *{component_name}* to build product components separately based on the development board and kernel set for the product, for example, **hb build kv_store**.
+
+- You can run **hb build -p ipcamera@hisilicon** to skip the setting step and build the product directly.
+
+- You can run **hb build** in **device/board/device_company** to select the kernel and build an image that contains the kernel and drivers only based on the current development board and the selected kernel.
+
+**hb clean**
+
+Deletes all the files except **args.gn** and **build.log** in the **out** directory (default). To clear files in a specified directory, add the directory parameter to the command, for example, **hb clean out/board/product**.
+
+```shell
+hb clean
+usage: hb clean [-h] [out_path]
+
+positional arguments:
+  out_path    clean a specified path.
+
+optional arguments:
+  -h, --help  show this help message and exit
+```
+
+> **NOTE**
+>
+> - For details about how to set up the build environment and perform the build, see the related topics in [Getting Started](../quick-start/quickstart-overview.md)
+> - OpenHarmony also provides the Docker environment, which spares the installation of the build tool. For details, see [Docker Environment](../get-code/gettools-acquire.md)
 
 ### Building Procedures 
 
@@ -389,3 +381,4 @@ You can add and build a product, component, chipset solution, and module. For de
 - [Information Collected by the Open Source Software Notice](subsys-build-reference.md#information-collected-by-the-open-source-software-notice)
 - [Parameters for Accelerating Local Build](subsys-build-reference.md#parameters-for-accelerating-local-build)
 - [Viewing Ninja Build Information](subsys-build-reference.md#viewing-ninja-build-information)
+
