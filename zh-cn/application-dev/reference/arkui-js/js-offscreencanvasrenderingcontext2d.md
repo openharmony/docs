@@ -204,13 +204,13 @@ resetTransform(): void
      var offscreenCanvasCtx = offscreen.getContext("2d");
   
      offscreenCanvasCtx.transform(1, 0, 1.7, 1, 0, 0);
-     offscreenCanvasCtx.fillStyle = 'gray';
+     offscreenCanvasCtx.fillStyle = '#a9a9a9';
      offscreenCanvasCtx.fillRect(40, 40, 50, 20);
      offscreenCanvasCtx.fillRect(40, 90, 50, 20);
   
      // Non-skewed rectangles
      offscreenCanvasCtx.resetTransform();
-     offscreenCanvasCtx.fillStyle = 'red';
+     offscreenCanvasCtx.fillStyle = '#ff0000';
      offscreenCanvasCtx.fillRect(40, 40, 50, 20);
      offscreenCanvasCtx.fillRect(40, 90, 50, 20);
   
