@@ -40,7 +40,7 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 
 | **错误码ID** | **错误信息**            |
 | ------------ | ----------------------- |
-| 14800010     | Invalid database name.  |
+| 14800010     | If failed delete database by invalid database name.  |
 | 14800011     | Database corrupted.     |
 
 **示例：**
@@ -133,7 +133,7 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
 | **错误码ID** | **错误信息**            |
 | ------------ | ----------------------- |
-| 14800010     | Invalid database  name. |
+| 14800010     | If failed delete database by invalid database name. |
 | 14800011     | Database corrupted.     |
 
 **示例：**
@@ -219,7 +219,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 | **错误码ID** | **错误信息**            |
 | ------------ | ----------------------- |
-| 14800010     | Invalid database  name. |
+| 14800010     | If failed delete database by invalid database name. |
 
 **示例：**
 
@@ -289,7 +289,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**            |
 | ------------ | ----------------------- |
-| 14800010     | Invalid database  name. |
+| 14800010     | If failed delete database by invalid database name. |
 
 **示例：**
 
@@ -339,7 +339,7 @@ promise.then(()=>{
 | 名称        | 类型          | 必填 | 说明                                                      |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | 是   | 数据库文件名。                                            |
-| securityLevel | SecurityLevel | 是   | 设置数据库安全级别                                        |
+| securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别                                        |
 | encrypt       | boolean       | 否   | 指定数据库是否加密。<br/> true:加密。<br/> false:非加密。 |
 
 ## SecurityLevel
@@ -417,7 +417,7 @@ promise.then(()=>{
 
 ## OpenStatus<sup>10+</sup>
 
-获取的RdbStore的状态。
+RdbStore的状态枚举。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1275,7 +1275,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 
 | 名称         | 类型            | 必填 | 说明                             |
 | ------------ | ----------- | ---- | -------------------------------- |
-| openStatus<sup>10+</sup>  | number | 是   | 获取RdbStore的状态。       |
+| openStatus<sup>10+</sup>  | number | 是   | RdbStore的状态。值为0时，表示RdbStore首次创建，处于ON_CREATE状态。；值为1时，表示RdbStore非首次创建，处于ON_OPEN状态。       |
 
 ### insert
 
@@ -1939,7 +1939,7 @@ query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCa
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | predicates | [RdbPredicates](#rdbpredicates)                         | 是   | RdbPredicates的实例对象指定的查询条件。                   |
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
-| callback   | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -1975,7 +1975,7 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 
 | 类型                                                    | 说明                                               |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -2008,7 +2008,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | table      | string                                                       | 是   | 指定的目标表名。                                            |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的查询条件。               |
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
-| callback   | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -2056,7 +2056,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 
 | 类型                                                    | 说明                                               |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -2097,7 +2097,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 | table      | string                                                       | 是   | 指定的目标表名。                                            |
 | predicates | [RdbPredicates](#rdbpredicates)                         | 是   | RdbPredicates的实例对象，指定查询的条件。                 |
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
-| callback   | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -2136,7 +2136,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 | 类型                                                         | 说明                                               |
 | ------------------------------------------------------------ | -------------------------------------------------- |
-| Promise&lt;[ResultSet](js-apis-data-resultset.md#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -2166,7 +2166,7 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | sql      | string                                                       | 是   | 指定要执行的SQL语句。                                       |
 | bindArgs | Array&lt;[ValueType](#valuetype)&gt;                         | 是   | SQL语句中参数的值。                                         |
-| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -2200,7 +2200,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 | 类型                                                    | 说明                                               |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
