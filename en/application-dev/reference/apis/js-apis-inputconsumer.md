@@ -108,7 +108,7 @@ Represents combination key options.
 
 | Name       | Type  | Readable  | Writable  | Description     |
 | --------- | ------ | ---- | ---- | ------- |
-| preKeys              | Array\<number>   | Yes   | No| Front key set. The number of front keys ranges from 0 to 4. There is no requirement on the sequence of the keys.|
+| preKeys              | Array<number>   | Yes   | No| Front key set. The number of front keys ranges from 0 to 4. There is no requirement on the sequence of the keys.|
 | finalKey             | number  | Yes   |  No| Final key. This parameter is mandatory. A callback function is triggered by the final key.|
 | isFinalKeyDown       | boolean | Yes   |  No| Whether the final key is pressed.|
 | finalKeyDownDuration | number  | Yes   |  No| Duration within which the final key is pressed. If the value is **0**, the callback function is triggered immediately. If the value is greater than **0** and the value of **isFinalKeyDown** is **true**, the callback function is triggered when the key press duration is longer than the value of this parameter. If the value of **isFinalKeyDown** is **false**, the callback function is triggered when the duration from key press to key release is less than the value of this parameter.  |

@@ -20,7 +20,7 @@ enable(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Specifies whether to enable screen hopping. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.MultimodalInput.Input.Cooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -54,7 +54,7 @@ enable(enable: boolean): Promise&lt;void&gt;
 Specifies whether to enable screen hopping. This API uses a promise to return the result.
 
 
-**System capability**: SystemCapability.MultimodalInput.Input.Cooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -92,7 +92,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 
 Starts screen hopping. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.MultimodalInput.Input.Cooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -135,7 +135,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 Starts screen hopping. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.MultimodalInput.Input.Cooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -183,7 +183,7 @@ stop(callback: AsyncCallback\<void>): void
 
 Stops screen hopping. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.MultimodalInput.Input.Cooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -215,7 +215,7 @@ stop(): Promise\<void>
 
 Stops screen hopping. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.MultimodalInput.Input.Cooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Return value**
 
@@ -243,7 +243,7 @@ getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>):
 
 Checks whether screen hopping is enabled. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.MultimodalInput.Input.Cooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -275,7 +275,7 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 
 Checks whether screen hopping is enabled. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.MultimodalInput.Input.Cooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -313,7 +313,7 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 
 Enables listening for screen hopping events.
 
-**System capability**: SystemCapability.MultimodalInput.Input.Cooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -342,7 +342,7 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 
 Disables listening for screen hopping events.
 
-**System capability**: SystemCapability.MultimodalInput.Input.Cooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -386,7 +386,7 @@ try {
 
 Enumerates screen hopping event.
 
-**System capability**: SystemCapability.MultimodalInput.Input.Cooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 | Name                       | Value       | Description                             |
 | --------                     | --------- |  -----------------               |
