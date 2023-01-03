@@ -3348,7 +3348,7 @@ existsImageContents(): boolean
 
 ### getMediaType<sup>9+</sup>
 
-getMediaType(): ContextMenuMediaType;
+getMediaType(): ContextMenuMediaType
 
 获取网页元素媒体类型。
 
@@ -3360,7 +3360,7 @@ getMediaType(): ContextMenuMediaType;
 
 ### getSelectionText<sup>9+</sup>
 
-getSelectionText(): string;
+getSelectionText(): string
 
 获取选中文本。
 
@@ -3372,7 +3372,7 @@ getSelectionText(): string;
 
 ### getSourceType<sup>9+</sup>
 
-getSourceType(): ContextMenuSourceType;
+getSourceType(): ContextMenuSourceType
 
 获取菜单事件来源。
 
@@ -3384,7 +3384,7 @@ getSourceType(): ContextMenuSourceType;
 
 ### getInputFieldType<sup>9+</sup>
 
-getInputFieldType(): ContextMenuInputFieldType;
+getInputFieldType(): ContextMenuInputFieldType
 
 获取网页元素输入框类型。
 
@@ -3396,7 +3396,7 @@ getInputFieldType(): ContextMenuInputFieldType;
 
 ### isEditable<sup>9+</sup>
 
-isEditable(): boolean;
+isEditable(): boolean
 
 获取网页元素是否可编辑标识。
 
@@ -3404,11 +3404,11 @@ isEditable(): boolean;
 
 | 类型      | 说明                        |
 | ------- | ------------------------- |
-| boolean | 网页元素可编辑返回true，否则返回false。 |
+| boolean | 网页元素可编辑返回true，不可编辑返回false。 |
 
 ### getEditStateFlags<sup>9+</sup>
 
-getEditStateFlags(): number;
+getEditStateFlags(): number
 
 获取网页元素可编辑标识。
 
@@ -3436,7 +3436,7 @@ WebContextMenuParam有图片内容则复制图片。
 
 ### copy<sup>9+</sup>
 
-copy(): void;
+copy(): void
 
 执行与此上下文菜单相关的拷贝操作。
 
