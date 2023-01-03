@@ -1696,14 +1696,6 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的更新条件。                |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 202     | Permission verification failed, application which is not a system application uses system API.  |
-
 **示例：**
 
 ```js
@@ -1748,14 +1740,6 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | 类型                  | 说明                                      |
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | 指定的Promise回调方法。返回受影响的行数。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 202     | Permission verification failed, application which is not a system application uses system API.  |
 
 **示例：**
 
@@ -1857,14 +1841,6 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的删除条件。 |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定callback回调函数。返回受影响的行数。      |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 202     | Permission verification failed, application which is not a system application uses system API.  |
-
 **示例：**
 
 ```js
@@ -1902,14 +1878,6 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 | 类型                  | 说明                            |
 | --------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回受影响的行数。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 202     | Permission verification failed, application which is not a system application uses system API.  |
 
 **示例：**
 
@@ -2010,14 +1978,6 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 202     | Permission verification failed, application which is not a system application uses system API.  |
-
 **示例：**
 
 ```js
@@ -2057,14 +2017,6 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | 类型                                                    | 说明                                               |
 | ------------------------------------------------------- | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 202     | Permission verification failed, application which is not a system application uses system API.  |
 
 **示例：**
 
