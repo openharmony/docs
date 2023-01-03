@@ -23,7 +23,7 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | value | number | No| Current progress.<br>Default value: **0**|
 | min | number | No| Minimum value.<br>Default value: **0**|
 | max | number | No| Maximum value.<br>Default value: **100**|
-| step | number | No| Step of the slider.<br>Default value: **1**|
+| step | number | No| Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max]|
 | style | SliderStyle | No| Style of the slider thumb and track.<br>Default value: **SliderStyle.OutSet**|
 | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | No| Whether the slider moves horizontally or vertically.<br>Default value: **Axis.Horizontal**|
 | reverse<sup>8+</sup> | boolean | No| Whether the slider values are reversed. By default, the values increase from left to right for a horizontal slider and from top to bottom for a vertical slider.<br>Default value: **false**|
@@ -46,7 +46,7 @@ Except touch target attributes, the universal attributes are supported.
 | trackColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the slider.|
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected part of the slider track.|
 | showSteps | boolean | Whether to display the current step.<br>Default value: **false**|
-| showTips | boolean | Whether to display a bubble to indicate the percentage when the user drags the slider.<br>Default value: **false** |
+| showTips | boolean | Whether to display a bubble to indicate the percentage when the user drags the slider.<br>Default value: **false**|
 | trackThickness      | [Length](ts-types.md#length) | Track thickness of the slider.|
 
 
@@ -223,4 +223,4 @@ struct SliderExample {
 }
 ```
 
-![en-us_image_0000001211898492](figures/en-us_image_0000001211898492.gif)
+![en-us_image_0000001179613854](figures/en-us_image_0000001179613854.gif)
