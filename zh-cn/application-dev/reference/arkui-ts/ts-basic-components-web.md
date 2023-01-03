@@ -3416,7 +3416,7 @@ getEditStateFlags(): number;
 
 | 类型      | 说明                        |
 | ------- | ------------------------- |
-| number | 网页元素可编辑标识，参考[ContextMenuEditStateFlags](contextmenueditstateflags9枚举说明)。 |
+| number | 网页元素可编辑标识，参照[ContextMenuEditStateFlags](#contextmenueditstateflags9枚举说明)。 |
 
 ## WebContextMenuResult<sup>9+</sup>
 
