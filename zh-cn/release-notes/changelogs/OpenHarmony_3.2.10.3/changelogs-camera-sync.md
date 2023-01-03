@@ -2,7 +2,7 @@
 
 OpenHarmony3.2.10.3 相对 OpenHarmony3.2 Beta4 版本，媒体子系统 camera 部件 API 变更如下
 
-## camera 接口变更
+## cl.subsystemname.1 camera 接口变更
 
 基于以下原因新增部分功能接口以及废弃部分接口：
 
