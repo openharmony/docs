@@ -1,6 +1,6 @@
 # DataAbilityOperation
 
-定义dataAbility数据操作方式，可以作为[executeBatch](js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch)的入参查询数据库的信息。
+定义DataAbility数据操作方式，可以作为[executeBatch](js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch)的入参，操作数据库的信息。
 
 > **说明：**
 > 
@@ -11,11 +11,11 @@
 
 | 名称       | 类型     |     必填|       说明      |
 | --------  | --------    | --------| --------        |
-| uri   | string |      是    | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。  |
-| type   | featureAbility.DataAbilityOperationType |      是    | 指示操作类型。  |
-| valuesBucket?   |  rdb.ValuesBucket |      否    | 指示要设置的数据值。  |
+| uri   | string |      是    | 指示待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。  |
+| type   | featureAbility.DataAbilityOperationType |      是    | 指示数据操作类型。  |
+| valuesBucket?   |  rdb.ValuesBucket |      否    | 指示要操作的数据值。  |
 | valueBackReferences?   | rdb.ValuesBucket |      否    | 指示包含一组键值对的valuesBucket对象。  |
-| predicates?   | dataAbility.DataAbilityPredicates |      否    | 指示要设置的筛选条件。如果此参数为空，则所有数据记录。  |
+| predicates?   | dataAbility.DataAbilityPredicates |      否    | 指示要设置的筛选条件。如果此参数为空，则操作所有数据记录。  |
 | predicatesBackReferences?   | Map\<number, number> |      否    | 指示用作谓词中筛选条件的反向引用。  |
-| interrupted?   | boolean |      否    | 指定是否可以中断批处理操作。  |
+| interrupted?   | boolean |      否    | 指示是否可以中断批处理操作。  |
 | expectedCount?   | number |      否    | 指示要更新或删除的预期行数。  |

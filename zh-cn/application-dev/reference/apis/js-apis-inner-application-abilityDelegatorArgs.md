@@ -1,6 +1,6 @@
 # AbilityDelegatorArgs
 
-AbilityDelegatorArgs模块提供在应用程序启动期间，用于存储已注册的AbilityDelegator和AbilityDelegatorArgs对象的全局寄存器的能力。
+AbilityDelegatorArgs模块提供在应用程序执行测试用例期间，获取测试用例参数AbilityDelegatorArgs对象的能力。
 
 > **说明：**
 > 
@@ -21,7 +21,7 @@ AbilityDelegatorArgs模块提供在应用程序启动期间，用于存储已注
 | bundleName          | string                 | 是   | 是   | 当前被测试应用的包名 |
 | parameters          | {[key:string]: string} | 是   | 是   | 当前启动单元测试的参数 |
 | testCaseNames       | string                 | 是   | 是   | 测试用例名称 |
-| testRunnerClassName | string                 | 是   | 是   | 执行测试用例的测试执行器的名称 |
+| testRunnerClassName | string                 | 是   | 是   | 执行测试用例的测试执行器名称 |
 
 **示例：**
 
