@@ -1,15 +1,15 @@
-# Input Method Framework
+# @ohos.inputmethod
 
 The **inputMethod** module provides an input method framework, which can be used to hide the keyboard, obtain the list of installed input methods, display the dialog box for input method selection, and more.
 
->**NOTE**
+> **NOTE**
 >
->The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```js
 import inputMethod from '@ohos.inputmethod';
 ```
 
@@ -31,14 +31,14 @@ Describes the input method application attributes.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| name<sup>9+</sup>  | string | Yes| No| Internal name of the input method.|
-| id<sup>9+</sup>    | string | Yes| No| Unique ID of the input method.|
-| label<sup>9+</sup>    | string | Yes| No| External display name of the input method.|
-| icon<sup>9+</sup>    | string | Yes| No| Icon of the input method.|
-| iconId<sup>9+</sup>    | number | Yes| No| Icon ID of the input method.|
-| extra<sup>9+</sup>    | object | Yes| No| Extra information about the input method.|
-| packageName<sup>(deprecated)</sup> | string | Yes| No| Name of the input method package.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **name**.|
-| methodId<sup>(deprecated)</sup> | string | Yes| No| Unique ID of the input method.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **id**.|
+| name<sup>9+</sup>  | string | Yes| No| Internal name of the input method. Mandatory.|
+| id<sup>9+</sup>    | string | Yes| No| Unique ID of the input method. Mandatory.|
+| label<sup>9+</sup>    | string | Yes| No| External display name of the input method. Optional.|
+| icon<sup>9+</sup>    | string | Yes| No| Icon of the input method. Optional.|
+| iconId<sup>9+</sup>    | number | Yes| No| Icon ID of the input method. Optional.|
+| extra<sup>9+</sup>    | object | Yes| Yes| Extra information about the input method. Mandatory.|
+| packageName<sup>(deprecated)</sup> | string | Yes| No| Name of the input method package. Mandatory.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **name**.|
+| methodId<sup>(deprecated)</sup> | string | Yes| No| Unique ID of the input method. Mandatory.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **id**.|
 
 ## inputMethod.getController<sup>9+</sup>
 
@@ -102,7 +102,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 
 Switches to another input method. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -120,25 +120,33 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
+let im = inputMethod.getCurrentInputMethod();
+let prop = {
+    packageName: im.packageName,
+    methodId: im.methodId,
+    name: im.packageName,
+    id: im.methodId,
+    extra: {}
+}
 try{
-    inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard', extra: {}}, (err, result) => {
-        if (err) {
-            console.error('switchInputMethod err: ' + JSON.stringify(err));
+    inputMethod.switchInputMethod(prop, (err, result) => {
+        if (err !== undefined) {
+            console.error('Failed to switchInputMethod: ' + JSON.stringify(err));
             return;
         }
         if (result) {
-            console.info('Success to switchInputMethod.(callback)');
+            console.info('Succeeded in switching inputmethod.');
         } else {
-            console.error('Failed to switchInputMethod.(callback)');
+            console.error('Failed to switchInputMethod.');
         }
     });
 } catch(err) {
-    console.error('switchInputMethod err: ' + JSON.stringify(err));
+    console.error('Failed to switchInputMethod: ' + JSON.stringify(err));
 }
 ```
 ## inputMethod.switchInputMethod<sup>9+</sup>
@@ -146,7 +154,7 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
 Switches to another input method. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -169,23 +177,31 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
+let im = inputMethod.getCurrentInputMethod();
+let prop = {
+    packageName: im.packageName,
+    methodId: im.methodId,
+    name: im.packageName,
+    id: im.methodId,
+    extra: {}
+}
 try {
-    inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard', extra: {}}).then((result) => {
+    inputMethod.switchInputMethod(prop).then((result) => {
         if (result) {
-            console.info('Success to switchInputMethod.');
+            console.info('Succeeded in switching inputmethod.');
         } else {
             console.error('Failed to switchInputMethod.');
         }
     }).catch((err) => {
-        console.error('switchInputMethod err: ' + JSON.stringify(err));
+        console.error('Failed to switchInputMethod: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('switchInputMethod err: ' + JSON.stringify(err));
+    console.error('Failed to switchInputMethod: ' + JSON.stringify(err));
 }
 ```
 
@@ -215,7 +231,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 Switches to another subtype of the current input method. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -233,36 +249,35 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
-let inputMethodSubtype = {
-    id: "com.example.kikakeyboard",
-    label: "ServiceExtAbility",
-    name: "",
-    mode: "upper",
-    locale: "",
-    language: "",
-    icon: "",
-    iconId: 0,
-    extra: {}
-}
 try {
-    inputMethod.switchCurrentInputMethodSubtype(inputMethodSubtype, (err, result) => {
-        if (err) {
-            console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+    inputMethod.switchCurrentInputMethodSubtype({
+      id: "com.example.kikakeyboard",
+      label: "ServiceExtAbility",
+      name: "",
+      mode: "upper",
+      locale: "",
+      language: "",
+      icon: "",
+      iconId: 0,
+      extra: {}
+    }, (err, result) => {
+        if (err !== undefined) {
+            console.error('Failed to switchCurrentInputMethodSubtype: ' + JSON.stringify(err));
             return;
         }
         if (result) {
-            console.info('Success to switchCurrentInputMethodSubtype.(callback)');
+            console.info('Succeeded in switching currentInputMethodSubtype.');
         } else {
-            console.error('Failed to switchCurrentInputMethodSubtype.(callback)');
+            console.error('Failed to switchCurrentInputMethodSubtype');
         }
     });
 } catch(err) {
-    console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+    console.error('Failed to switchCurrentInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -272,7 +287,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 Switches to another subtype of the current input method. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -295,34 +310,33 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
-let inputMethodSubtype = {
-    id: "com.example.kikakeyboard",
-    label: "ServiceExtAbility",
-    name: "",
-    mode: "upper",
-    locale: "",
-    language: "",
-    icon: "",
-    iconId: 0,
-    extra: {}
-}
 try {
-    inputMethod.switchCurrentInputMethodSubtype(inputMethodSubtype).then((result) => {
+    inputMethod.switchCurrentInputMethodSubtype({
+      id: "com.example.kikakeyboard",
+      label: "ServiceExtAbility",
+      name: "",
+      mode: "upper",
+      locale: "",
+      language: "",
+      icon: "",
+      iconId: 0,
+      extra: {}
+    }).then((result) => {
         if (result) {
-            console.info('Success to switchCurrentInputMethodSubtype.');
+            console.info('Succeeded in switching currentInputMethodSubtype.');
         } else {
             console.error('Failed to switchCurrentInputMethodSubtype.');
         }
     }).catch((err) => {
-        console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+        console.error('Failed to switchCurrentInputMethodSubtype: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+    console.error('Failed to switchCurrentInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -352,7 +366,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 Switches to a specified subtype of a specified input method. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -371,41 +385,43 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
+let im = inputMethod.getCurrentInputMethod();
 let inputMethodProperty = {
-    packageName: "com.example.kikakeyboard",
-    methodId: "ServiceExtAbility",
-    extra: {}
-}
-let inputMethodSubProperty = {
-    id: "com.example.kikakeyboard",
-    label: "ServiceExtAbility",
-    name: "",
-    mode: "upper",
-    locale: "",
-    language: "",
-    icon: "",
-    iconId: 0,
+    packageName: im.packageName,
+    methodId: im.methodId,
+    name: im.packageName,
+    id: im.methodId,
     extra: {}
 }
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, inputMethodSubProperty, (err,result) => {
-        if (err) {
-            console.error('switchCurrentInputMethodAndSubtype err: ' + JSON.stringify(err));
+    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
+      id: "com.example.kikakeyboard",
+      label: "ServiceExtAbility",
+      name: "",
+      mode: "upper",
+      locale: "",
+      language: "",
+      icon: "",
+      iconId: 0,
+      extra: {}
+    }, (err,result) => {
+        if (err !== undefined) {
+            console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
             return;
         }
         if (result) {
-            console.info('Success to switchCurrentInputMethodAndSubtype.(callback)');
+            console.info('Succeeded in switching currentInputMethodAndSubtype.');
         } else {
-            console.error('Failed to switchCurrentInputMethodAndSubtype.(callback)');
+            console.error('Failed to switchCurrentInputMethodAndSubtype.');
         }
     });
 } catch (err) {
-    console.error('switchCurrentInputMethodAndSubtype err: ' + JSON.stringify(err));
+    console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -415,7 +431,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 Switches to a specified subtype of a specified input method. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -439,39 +455,41 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
+let im = inputMethod.getCurrentInputMethod();
 let inputMethodProperty = {
-    packageName: "com.example.kikakeyboard",
-    methodId: "ServiceExtAbility",
-    extra: {}
-}
-let inputMethodSubProperty = {
-    id: "com.example.kikakeyboard",
-    label: "ServiceExtAbility",
-    name: "",
-    mode: "upper",
-    locale: "",
-    language: "",
-    icon: "",
-    iconId: 0,
+    packageName: im.packageName,
+    methodId: im.methodId,
+    name: im.packageName,
+    id: im.methodId,
     extra: {}
 }
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, inputMethodSubProperty).then((result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
+      id: im.packageName,
+      label: im.methodId,
+      name: "",
+      mode: "upper",
+      locale: "",
+      language: "",
+      icon: "",
+      iconId: 0,
+      extra: {}
+    }).then((result) => {
         if (result) {
-            console.info('Success to switchCurrentInputMethodAndSubtype.');
+            console.info('Succeeded in switching currentInputMethodAndSubtype.');
         } else {
             console.error('Failed to switchCurrentInputMethodAndSubtype.');
         }
     }).catch((err) => {
-        console.error('switchCurrentInputMethodAndSubtype err: ' + err);
+        console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('switchCurrentInputMethodAndSubtype err: ' + err);
+    console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -548,25 +566,25 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
 try {
     inputMethodController.stopInputSession((error, result) => {
-        if (error) {
-            console.error('stopInputSession err: ' + JSON.stringify(error));
+        if (error !== undefined) {
+            console.error('Failed to stopInputSession: ' + JSON.stringify(error));
             return;
         }
         if (result) {
-            console.info('Success to stopInputSession.(callback)');
+            console.info('Succeeded in stopping inputSession.');
         } else {
-            console.error('Failed to stopInputSession.(callback)');
+            console.error('Failed to stopInputSession.');
         }
     });
 } catch(error) {
-    console.error('stopInputSession err: ' + JSON.stringify(error));
+    console.error('Failed to stopInputSession: ' + JSON.stringify(error));
 }
 ```
 
@@ -591,7 +609,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
@@ -599,15 +617,15 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 try {
     inputMethodController.stopInputSession().then((result) => {
         if (result) {
-            console.info('Success to stopInputSession.');
+            console.info('Succeeded in stopping inputSession.');
         } else {
             console.error('Failed to stopInputSession.');
         }
     }).catch((err) => {
-        console.error('stopInputSession err: ' + JSON.stringify(err));
+        console.error('Failed to stopInputSession: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('stopInputSession err: ' + JSON.stringify(err));
+    console.error('Failed to stopInputSession: ' + JSON.stringify(err));
 }
 ```
 
@@ -617,7 +635,7 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 Shows this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -634,16 +652,16 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
 inputMethodController.showSoftKeyboard((err) => {
     if (err === undefined) {
-        console.info('showSoftKeyboard success');
+        console.info('Succeeded in showing softKeyboard.');
     } else {
-        console.error('showSoftKeyboard failed because : ' + JSON.stringify(err));
+        console.error('Failed to showSoftKeyboard: ' + JSON.stringify(err));
     }
 })
 ```
@@ -654,7 +672,7 @@ showSoftKeyboard(): Promise&lt;void&gt;
 
 Shows this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -671,15 +689,15 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
-inputMethodController.showSoftKeyboard().then(async (err) => {
-    console.log('showSoftKeyboard success');
+inputMethodController.showSoftKeyboard().then(() => {
+    console.log('Succeeded in showing softKeyboard.');
 }).catch((err) => {
-    console.error('showSoftKeyboard err: ' + JSON.stringify(err));
+    console.error('Failed to showSoftKeyboard: ' + JSON.stringify(err));
 });
 ```
 
@@ -689,7 +707,7 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 Hides this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -706,16 +724,16 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
 inputMethodController.hideSoftKeyboard((err) => {
     if (err === undefined) {
-        console.info('hideSoftKeyboard success');
+        console.info('Succeeded in hiding softKeyboard.');
     } else {
-        console.error('hideSoftKeyboard failed because : ' + JSON.stringify(err));
+        console.error('Failed to hideSoftKeyboard: ' + JSON.stringify(err));
     }
 })
 ```
@@ -726,7 +744,7 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 
 Hides this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -743,15 +761,15 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
-inputMethodController.hideSoftKeyboard().then(async (err) => {
-    console.log('hideSoftKeyboard success');
+inputMethodController.hideSoftKeyboard().then(() => {
+    console.log('Succeeded in hiding softKeyboard.');
 }).catch((err) => {
-    console.error('hideSoftKeyboard err: ' + JSON.stringify(err));
+    console.error('Failed to hideSoftKeyboard: ' + JSON.stringify(err));
 });
 ```
 
@@ -777,14 +795,14 @@ Ends this input session. The invoking of this API takes effect only after the in
 
 ```js
 inputMethodController.stopInput((error, result) => {
-    if (error) {
-        console.error('failed to stopInput because: ' + JSON.stringify(error));
+    if (error !== undefined) {
+        console.error('Failed to stopInput: ' + JSON.stringify(error));
         return;
     }
     if (result) {
-        console.info('Success to stopInput.(callback)');
+        console.info('Succeeded in stopping input.');
     } else {
-        console.error('Failed to stopInput.(callback)');
+        console.error('Failed to stopInput.');
     }
 });
 ```
@@ -812,12 +830,12 @@ Ends this input session. The invoking of this API takes effect only after the in
 ```js
 inputMethodController.stopInput().then((result) => {
     if (result) {
-        console.info('Success to stopInput.');
+        console.info('Succeeded in stopping input.');
     } else {
         console.error('Failed to stopInput.');
     }
 }).catch((err) => {
-    console.error('stopInput err: ' + err);
+    console.error('Failed to stopInput: ' + err);
 })
 ```
 
@@ -891,26 +909,28 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
 let inputMethodProperty = {
-    packageName:'com.example.kikakeyboard',
-    methodId:'com.example.kikakeyboard',
+    packageName: 'com.example.kikakeyboard',
+    methodId: 'com.example.kikakeyboard',
+    name: 'com.example.kikakeyboard',
+    id: 'com.example.kikakeyboard',
     extra:{}
 }
 try {
     inputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err,data) => {
-        if (err) {
-            console.error('listInputMethodSubtype failed: ' + JSON.stringify(err));
+        if (err !== undefined) {
+            console.error('Failed to listInputMethodSubtype: ' + JSON.stringify(err));
             return;
         }
-        console.log('listInputMethodSubtype success');
+        console.log('Succeeded in listing inputMethodSubtype.');
     });
 } catch (err) {
-    console.error('listInputMethodSubtype failed: ' + JSON.stringify(err));
+    console.error('Failed to listInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -941,24 +961,26 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
 let inputMethodProperty = {
-    packageName:'com.example.kikakeyboard',
-    methodId:'com.example.kikakeyboard',
+    packageName: 'com.example.kikakeyboard',
+    methodId: 'com.example.kikakeyboard',
+    name: 'com.example.kikakeyboard',
+    id: 'com.example.kikakeyboard',
     extra:{}
 }
 try {
     inputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data) => {
-        console.info('listInputMethodSubtype success');
+        console.info('Succeeded in listing inputMethodSubtype.');
     }).catch((err) => {
-        console.error('listInputMethodSubtype err: ' + JSON.stringify(err));
+        console.error('Failed to listInputMethodSubtype: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('listInputMethodSubtype err: ' + JSON.stringify(err));
+    console.error('Failed to listInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -983,21 +1005,21 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
 try {
     inputMethodSetting.listCurrentInputMethodSubtype((err, data) => {
-        if (err) {
-            console.error('listCurrentInputMethodSubtype failed: ' + JSON.stringify(err));
+        if (err !== undefined) {
+            console.error('Failed to listCurrentInputMethodSubtype: ' + JSON.stringify(err));
             return;
         }
-        console.log('listCurrentInputMethodSubtype success');
+        console.log('Succeeded in listing currentInputMethodSubtype.');
     });
 } catch(err) {
-    console.error('listCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+    console.error('Failed to listCurrentInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -1022,19 +1044,19 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
 try {
     inputMethodSetting.listCurrentInputMethodSubtype().then((data) => {
-        console.info('listCurrentInputMethodSubtype success');
+        console.info('Succeeded in listing currentInputMethodSubtype.');
     }).catch((err) => {
-        console.error('listCurrentInputMethodSubtype err: ' + err);
+        console.error('Failed to listCurrentInputMethodSubtype: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('listCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+    console.error('Failed to listCurrentInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -1060,21 +1082,21 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
 try {
     inputMethodSetting.getInputMethods(true, (err,data) => {
-        if (err) {
-            console.error('getInputMethods failed: ' + JSON.stringify(err));
+        if (err !== undefined) {
+            console.error('Failed to getInputMethods: ' + JSON.stringify(err));
             return;
         }
-        console.log('getInputMethods success');
+        console.log('Succeeded in getting inputMethods.');
     });
 } catch (err) {
-    console.error('getInputMethods failed: ' + JSON.stringify(err));
+    console.error('Failed to getInputMethods: ' + JSON.stringify(err));
 }
 ```
 
@@ -1099,7 +1121,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Return value**
 
@@ -1112,12 +1134,12 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 try {
     inputMethodSetting.getInputMethods(true).then((data) => {
-        console.info('getInputMethods success');
+        console.info('Succeeded in getting inputMethods.');
     }).catch((err) => {
-        console.error('getInputMethods err: ' + JSON.stringify(err));
+        console.error('Failed to getInputMethods: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('getInputMethods err: ' + JSON.stringify(err));
+    console.error('Failed to getInputMethods: ' + JSON.stringify(err));
 }
 ```
 
@@ -1127,7 +1149,7 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 Displays a dialog box for selecting an input method. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1143,21 +1165,21 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
 try {
     inputMethodSetting.showOptionalInputMethods((err, data) => {
-        if (err) {
-            console.error('showOptionalInputMethods failed: ' + JSON.stringify(err));
+        if (err !== undefined) {
+            console.error('Failed to showOptionalInputMethods: ' + JSON.stringify(err));
             return;
         }
-        console.info('showOptionalInputMethods success');
+        console.info('Succeeded in showing optionalInputMethods.');
     });
 } catch (err) {
-    console.error('showOptionalInputMethods failed: ' + JSON.stringify(err));
+    console.error('Failed to showOptionalInputMethods: ' + JSON.stringify(err));
 }
 ```
 
@@ -1167,7 +1189,7 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 Displays a dialog box for selecting an input method. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1183,15 +1205,15 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800008 | Input method settings extension error. |
+| 12800008 | Input method manager service error. |
 
 **Example**
 
 ```js
 inputMethodSetting.showOptionalInputMethods().then((data) => {
-    console.info('displayOptionalInputMethod success.');
+    console.info('Succeeded in showing optionalInputMethods.');
 }).catch((err) => {
-    console.error('displayOptionalInputMethod err: ' + err);
+    console.error('Failed to showOptionalInputMethods: ' + JSON.stringify(err));
 })
 ```
 
@@ -1217,11 +1239,11 @@ Obtains a list of installed input methods. This API uses an asynchronous callbac
 
 ```js
 inputMethodSetting.listInputMethod((err,data) => {
-    if (err) {
-        console.error('listInputMethod failed because: ' + JSON.stringify(err));
+    if (err !== undefined) {
+        console.error('Failed to listInputMethod: ' + JSON.stringify(err));
         return;
     }
-    console.log('listInputMethod success');
+    console.log('Succeeded in listing inputMethod.');
  });
 ```
 
@@ -1247,9 +1269,9 @@ Obtains a list of installed input methods. This API uses a promise to return the
 
 ```js
 inputMethodSetting.listInputMethod().then((data) => {
-    console.info('listInputMethod success');
+    console.info('Succeeded in listing inputMethod.');
 }).catch((err) => {
-    console.error('listInputMethod err: ' + JSON.stringify(err));
+    console.error('Failed to listInputMethod: ' + JSON.stringify(err));
 })
 ```
 
@@ -1275,11 +1297,11 @@ Displays a dialog box for selecting an input method. This API uses an asynchrono
 
 ```js
 inputMethodSetting.displayOptionalInputMethod((err) => {
-    if (err) {
-        console.error('displayOptionalInputMethod failed because: ' + JSON.stringify(err));
+    if (err !== undefined) {
+        console.error('Failed to displayOptionalInputMethod: ' + JSON.stringify(err));
         return;
     }
-    console.info('displayOptionalInputMethod success');
+    console.info('Succeeded in displaying optionalInputMethod.');
 });
 ```
 
@@ -1305,8 +1327,8 @@ Displays a dialog box for selecting an input method. This API uses a promise to 
 
 ```js
 inputMethodSetting.displayOptionalInputMethod().then(() => {
-    console.info('displayOptionalInputMethod success');
+    console.info('Succeeded in displaying optionalInputMethod.');
 }).catch((err) => {
-    console.error('displayOptionalInputMethod err: ' + err);
+    console.error('Failed to displayOptionalInputMethod: ' + JSON.stringify(err));
 })
 ```
