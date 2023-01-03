@@ -275,7 +275,7 @@ struct MyComponent {
 >
 >   ```ts
 >   LazyForEach(dataSource, 
->     item => Text(`${item.i}. item.data.label`)),
+>     item => Text(`${item.i}. item.data.label`),
 >     item => item.data.id.toString())
 >   ```
 
