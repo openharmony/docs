@@ -13,6 +13,7 @@
 | uid<sup>8+</sup>         | number   | 是   | 否   | 应用的uid。                  |
 | isContinuousTask<sup>9+</sup>         | boolean   | 是   | 否   | 是否为长时任务，true表示是，false表示不是                 |
 | isKeepAlive<sup>9+</sup>         | boolean   | 是   | 否   | 是否为常驻进程，true表示是，false表示不是                   |
+| state<sup>9+</sup>       | number   | 是   | 否   | 应用的状态，取值及对应的状态为：0(刚创建)，2(前台)，4(后台)，5(已终止)。     |
 
 **示例：**
 ```ts
