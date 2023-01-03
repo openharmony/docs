@@ -8,10 +8,10 @@
 - [RdbStore](#rdbstore)：提供管理关系数据库(RDB)方法的接口。
 
 > **说明：**
-> 
-> 从API Version 9开始，该接口不再维护，推荐使用新接口[@ohos.data.relationalStore](js-apis-data-relationalStore.md)。
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 
+> 从API Version 9开始，该接口不再维护，推荐使用新接口[@ohos.data.relationalStore](js-apis-data-relationalStore.md)。
 
 
 ## 导入模块
@@ -259,17 +259,6 @@ promise.then(()=>{
 })
 ```
 
-数据库的安全级别枚举。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-| 名称 | 值   | 说明                                                         |
-| ---- | ---- | ------------------------------------------------------------ |
-| S1   | 1    | 表示数据库的安全级别为低级别，当数据泄露时会产生较低影响。例如，包含壁纸等系统数据的数据库。 |
-| S2   | 2    | 表示数据库的安全级别为中级别，当数据泄露时会产生较大影响。例如，包含录音、视频等用户生成数据或通话记录等信息的数据库。 |
-| S3   | 3    | 表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。 |
-| S4   | 4    | 表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。例如，包含认证凭据、财务数据等信息的数据库。 |
-
 ## ValueType
 
 用于表示允许的数据字段类型。
@@ -297,7 +286,7 @@ promise.then(()=>{
 
 指数据库同步模式。
 
-**系统能力：**SystemCapability.DistributedDataManager.RelationalStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | 名称           | 值   | 说明                               |
 | -------------- | ---- | ---------------------------------- |
@@ -320,7 +309,7 @@ promise.then(()=>{
 
 管理关系数据库配置。
 
-**系统能力：**SystemCapability.DistributedDataManager.RelationalStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -1362,12 +1351,12 @@ const valueBucket = {
 }
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
-rdbStore.update(valueBucket, predicates, function (err, ret) {
+rdbStore.update(valueBucket, predicates, function (err, rows) {
     if (err) {
         console.info("Updated failed, err: " + err)
         return
     }
-    console.log("Updated row count: " + ret)
+    console.log("Updated row count: " + rows)
 })
 ```
 
@@ -1404,8 +1393,8 @@ const valueBucket = {
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
 let promise = rdbStore.update(valueBucket, predicates)
-promise.then(async (ret) => {
-    console.log("Updated row count: " + ret)
+promise.then(async (rows) => {
+    console.log("Updated row count: " + rows)
 }).catch((err) => {
     console.info("Updated failed, err: " + err)
 })

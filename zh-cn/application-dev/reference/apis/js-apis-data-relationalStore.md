@@ -381,7 +381,7 @@ promise.then(()=>{
 
 指数据库同步模式。
 
-**系统能力：**SystemCapability.DistributedDataManager.RelationalStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | 名称           | 值   | 说明                               |
 | -------------- | ---- | ---------------------------------- |
@@ -1550,12 +1550,12 @@ const valueBucket = {
 }
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
-rdbStore.update(valueBucket, predicates, function (err, ret) {
+rdbStore.update(valueBucket, predicates, function (err, rows) {
     if (err) {
         console.info("Updated failed, err: " + err)
         return
     }
-    console.log("Updated row count: " + ret)
+    console.log("Updated row count: " + rows)
 })
 ```
 
@@ -1587,12 +1587,12 @@ const valueBucket = {
 }
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
-rdbStore.update(valueBucket, predicates, data_rdb.ConflictResolution.ON_CONFLICT_REPLACE, function (err, ret) {
+rdbStore.update(valueBucket, predicates, data_rdb.ConflictResolution.ON_CONFLICT_REPLACE, function (err, rows) {
     if (err) {
         console.info("Updated failed, err: " + err)
         return
     }
-    console.log("Updated row count: " + ret)
+    console.log("Updated row count: " + rows)
 })
 ```
 
@@ -1629,8 +1629,8 @@ const valueBucket = {
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
 let promise = rdbStore.update(valueBucket, predicates)
-promise.then(async (ret) => {
-    console.log("Updated row count: " + ret)
+promise.then(async (rows) => {
+    console.log("Updated row count: " + rows)
 }).catch((err) => {
     console.info("Updated failed, err: " + err)
 })
@@ -1670,8 +1670,8 @@ const valueBucket = {
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
 let promise = rdbStore.update(valueBucket, predicates, data_rdb.ConflictResolution.ON_CONFLICT_REPLACE)
-promise.then(async (ret) => {
-    console.log("Updated row count: " + ret)
+promise.then(async (rows) => {
+    console.log("Updated row count: " + rows)
 }).catch((err) => {
     console.info("Updated failed, err: " + err)
 })
@@ -1716,12 +1716,12 @@ const valueBucket = {
 }
 let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Lisa")
-rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, ret) {
+rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, rows) {
     if (err) {
         console.info("Updated failed, err: " + err)
         return
     }
-    console.log("Updated row count: " + ret)
+    console.log("Updated row count: " + rows)
 })
 ```
 
@@ -1770,8 +1770,8 @@ const valueBucket = {
 let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Lisa")
 let promise = rdbStore.update("EMPLOYEE", valueBucket, predicates)
-promise.then(async (ret) => {
-    console.log("Updated row count: " + ret)
+promise.then(async (rows) => {
+    console.log("Updated row count: " + rows)
 }).catch((err) => {
     console.info("Updated failed, err: " + err)
 })

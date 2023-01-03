@@ -4,11 +4,11 @@
 
 > **说明：**
 > 
-> 从API Version 9开始，该接口不再维护，推荐使用新接口[@ohos.data.relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)。
->
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 从API Version 9开始，该接口不再维护，推荐使用新接口[@ohos.data.relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)。
 
-## ResultSet<sup>(deprecated)</sup>
+## ResultSet
 
 提供通过查询数据库生成的数据库结果集的访问方法。
 
@@ -27,7 +27,7 @@ promise.then((resultSet) => {
 });
 ```
 
-### 属性<sup>(deprecated)</sup>
+### 属性
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -43,7 +43,7 @@ promise.then((resultSet) => {
 | isStarted | boolean | 是 | 检查指针是否移动过。 |
 | isClosed | boolean | 是 | 检查当前结果集是否关闭。 |
 
-### getColumnIndex<sup>(deprecated)</sup>
+### getColumnIndex
 
 getColumnIndex(columnName: string): number
 
@@ -73,7 +73,7 @@ getColumnIndex(columnName: string): number
   const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
   ```
 
-### getColumnName<sup>(deprecated)</sup>
+### getColumnName
 
 getColumnName(columnIndex: number): string
 
@@ -101,7 +101,7 @@ getColumnName(columnIndex: number): string
   const age = resultSet.getColumnName(2);
   ```
 
-### goTo<sup>(deprecated)</sup>
+### goTo
 
 goTo(offset:number): boolean
 
@@ -134,7 +134,7 @@ goTo(offset:number): boolean
   });
   ```
 
-### goToRow<sup>(deprecated)</sup>
+### goToRow
 
 goToRow(position: number): boolean
 
@@ -167,7 +167,7 @@ goToRow(position: number): boolean
   });
   ```
 
-### goToFirstRow<sup>(deprecated)</sup>
+### goToFirstRow
 
 goToFirstRow(): boolean
 
@@ -194,7 +194,7 @@ goToFirstRow(): boolean
   });
   ```
 
-### goToLastRow<sup>(deprecated)</sup>
+### goToLastRow
 
 goToLastRow(): boolean
 
@@ -221,7 +221,7 @@ goToLastRow(): boolean
   });
   ```
 
-### goToNextRow<sup>(deprecated)</sup>
+### goToNextRow
 
 goToNextRow(): boolean
 
@@ -248,7 +248,7 @@ goToNextRow(): boolean
   });
   ```
 
-### goToPreviousRow<sup>(deprecated)</sup>
+### goToPreviousRow
 
 goToPreviousRow(): boolean
 
@@ -275,7 +275,7 @@ goToPreviousRow(): boolean
   });
   ```
 
-### getBlob<sup>(deprecated)</sup>
+### getBlob
 
 getBlob(columnIndex: number): Uint8Array
 
@@ -301,7 +301,7 @@ getBlob(columnIndex: number): Uint8Array
   const codes = resultSet.getBlob(resultSet.getColumnIndex("CODES"));
   ```
 
-### getString<sup>(deprecated)</sup>
+### getString
 
 getString(columnIndex: number): string
 
@@ -327,7 +327,7 @@ getString(columnIndex: number): string
   const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
   ```
 
-### getLong<sup>(deprecated)</sup>
+### getLong
 
 getLong(columnIndex: number): number
 
@@ -353,7 +353,7 @@ getLong(columnIndex: number): number
   const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
   ```
 
-### getDouble<sup>(deprecated)</sup>
+### getDouble
 
 getDouble(columnIndex: number): number
 
@@ -379,7 +379,7 @@ getDouble(columnIndex: number): number
   const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
   ```
 
-### isColumnNull<sup>(deprecated)</sup>
+### isColumnNull
 
 isColumnNull(columnIndex: number): boolean
 
@@ -405,7 +405,7 @@ isColumnNull(columnIndex: number): boolean
   const isColumnNull = resultSet.isColumnNull(resultSet.getColumnIndex("CODES"));
   ```
 
-### close<sup>(deprecated)</sup>
+### close
 
 close(): void
 
