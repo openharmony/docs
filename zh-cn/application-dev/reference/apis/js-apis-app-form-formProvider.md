@@ -1,6 +1,6 @@
-# @ohos.app.form.formProvider (FormProvider)
+# @ohos.app.form.formProvider (formProvider)
 
-FormProvider模块提供了卡片提供方相关接口的能力，开发者在开发卡片时，可通过该模块提供接口实现更新卡片，设置卡片更新时间，获取卡片信息，请求发布卡片等。
+FormProvider模块提供了卡片提供方相关接口的能力，开发者在开发卡片时，可通过该模块提供接口实现更新卡片、设置卡片更新时间、获取卡片信息、请求发布卡片等。
 
 > **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -31,23 +31,25 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
-var formId = "12400633174999288";
+import formProvider from '@ohos.app.form.formProvider';
+
+let formId = "12400633174999288";
 try {
   formProvider.setFormNextRefreshTime(formId, 5, (error, data) => {
     if (error) {
-      console.log('formProvider setFormNextRefreshTime, error:' + JSON.stringify(error));
+      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
       console.log(`formProvider setFormNextRefreshTime success`);
     }
   });
 } catch (error) {
-    console.log("error" + JSON.stringify(error))
+  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -76,21 +78,23 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
-var formId = "12400633174999288";
+import formProvider from '@ohos.app.form.formProvider';
+
+let formId = "12400633174999288";
 try {
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
-  console.log('formProvider setFormNextRefreshTime success');
+    console.log(`formProvider setFormNextRefreshTime success`);
   }).catch((error) => {
-    console.log('formProvider setFormNextRefreshTime, error:' + JSON.stringify(error));
+    console.log(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.log(`catch err->${JSON.stringify(error)}`);
+  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -114,25 +118,27 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 import formBindingData from '@ohos.application.formBindingData';
-var formId = "12400633174999288";
+import formProvider from '@ohos.app.form.formProvider';
+
+let formId = "12400633174999288";
 try {
   let obj = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
   formProvider.updateForm(formId, obj, (error, data) => {
     if (error) {
-      console.log('formProvider updateForm, error:' + JSON.stringify(error));
+      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
       console.log(`formProvider updateForm success`);
     }
   });
 } catch (error) {
-  console.log(`catch err->${JSON.stringify(error)}`);
+  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -161,23 +167,25 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 import formBindingData from '@ohos.application.formBindingData';
-var formId = "12400633174999288";
-let obj = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+import formProvider from '@ohos.app.form.formProvider';
+
+let formId = "12400633174999288";
+let obj = formBindingData.createFormBindingData({ temperature: "22c", time: "22:00" });
 try {
   formProvider.updateForm(formId, obj).then(() => {
-      console.log('formProvider updateForm success');
+    console.log(`formProvider updateForm success`);
   }).catch((error) => {
-      console.log('formProvider updateForm, error:' + JSON.stringify(error));
+    console.log(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.log(`catch err->${JSON.stringify(error)}`);
+  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -193,29 +201,31 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的卡片信息。 |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的卡片信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 
 **示例：**
 
 ```ts
+import formProvider from '@ohos.app.form.formProvider';
+
 try {
   formProvider.getFormsInfo((error, data) => {
     if (error) {
-      console.log('formProvider getFormsInfo, error:' + JSON.stringify(error));
+      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
-      console.log('formProvider getFormsInfo, data:' + JSON.stringify(data));
+      console.log('formProvider getFormsInfo, data: ' + JSON.stringify(data));
     }
   });
 } catch (error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 ## getFormsInfo
@@ -231,33 +241,35 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | 是 | 卡片信息过滤器。 |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到符合条件的卡片信息。 |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到符合条件的卡片信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
-import formInfo from '@ohos.application.formInfo';
-const filter : formInfo.FormInfoFilter = {
-    // get info of forms belong to module entry.
-    moduleName : "entry"
+import formInfo from '@ohos.app.form.formInfo';
+import formProvider from '@ohos.app.form.formProvider';
+
+const filter: formInfo.FormInfoFilter = {
+  // get info of forms belong to module entry.
+  moduleName: "entry"
 };
 try {
   formProvider.getFormsInfo(filter, (error, data) => {
     if (error) {
-      console.log('formProvider getFormsInfo, error:' + JSON.stringify(error));
+      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
-      console.log('formProvider getFormsInfo, data:' + JSON.stringify(data));
+      console.log('formProvider getFormsInfo, data: ' + JSON.stringify(data));
     }
   });
-} catch(error) {
-  console.log(`catch err->${JSON.stringify(error)}`);
+} catch (error) {
+  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -279,31 +291,33 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象。返回查询到符合条件的卡片信息。 |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象。返回查询到符合条件的卡片信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
-import formInfo from '@ohos.application.formInfo';
-const filter : formInfo.FormInfoFilter = {
-    // get info of forms belong to module entry.
-    moduleName : "entry"
+import formInfo from '@ohos.app.form.formInfo';
+import formProvider from '@ohos.app.form.formProvider';
+
+const filter: formInfo.FormInfoFilter = {
+  // get info of forms belong to module entry.
+  moduleName: "entry"
 };
 try {
   formProvider.getFormsInfo(filter).then((data) => {
     console.log('formProvider getFormsInfo, data:' + JSON.stringify(data));
   }).catch((error) => {
-    console.log('formProvider getFormsInfo, error:' + JSON.stringify(error));
+    console.log(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.log(`catch err->${JSON.stringify(error)}`);
+  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -322,21 +336,23 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
 | want | [Want](js-apis-application-want.md)                           | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
-| formBindingData.FormBindingData | [FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 是   | 创建卡片的数据。 |
+| formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 是   | 创建卡片的数据。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。返回卡片标识。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 import formBindingData from '@ohos.application.formBindingData';
-var want = {
+import formProvider from '@ohos.app.form.formProvider';
+
+let want = {
   abilityName: "FormAbility",
   parameters: {
     "ohos.extra.param.key.form_dimension": 2,
@@ -345,16 +361,16 @@ var want = {
   }
 };
 try {
-  let obj = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+  let obj = formBindingData.createFormBindingData({ temperature: "22c", time: "22:00" });
   formProvider.requestPublishForm(want, obj, (error, data) => {
     if (error) {
-      console.log('formProvider requestPublishForm, error: ' + JSON.stringify(error));
+      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
       console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
     }
   });
 } catch (error) {
-  console.log(`catch err->${JSON.stringify(error)}`);
+  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -379,13 +395,15 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
-var want = {
+import formProvider from '@ohos.app.form.formProvider';
+
+let want = {
   abilityName: "FormAbility",
   parameters: {
     "ohos.extra.param.key.form_dimension": 2,
@@ -396,15 +414,14 @@ var want = {
 try {
   formProvider.requestPublishForm(want, (error, data) => {
     if (error) {
-      console.log('formProvider requestPublishForm, error: ' + JSON.stringify(error));
+      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
       console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
     }
   });
 } catch (error) {
-  console.log(`catch err->${JSON.stringify(error)}`);
+  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
-
 ```
 
 ## requestPublishForm
@@ -422,7 +439,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 | 参数名          | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want            | [Want](js-apis-application-want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
-| formBindingData.FormBindingData | [FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 否   | 创建卡片的数据。                                           |
+| formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 否   | 创建卡片的数据。                                           |
 
 **返回值：**
 
@@ -434,13 +451,15 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
-var want = {
+import formProvider from '@ohos.app.form.formProvider';
+
+let want = {
   abilityName: "FormAbility",
   parameters: {
     "ohos.extra.param.key.form_dimension": 2,
@@ -452,10 +471,10 @@ try {
   formProvider.requestPublishForm(want).then((data) => {
     console.log('formProvider requestPublishForm success, form ID is :' + JSON.stringify(data));
   }).catch((error) => {
-    console.log('formProvider requestPublishForm, error: ' + JSON.stringify(error));
+    console.log(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.log(`catch err->${JSON.stringify(error)}`);
+  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -478,37 +497,38 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import formProvider from '@ohos.app.form.formProvider';
+
 try {
   formProvider.isRequestPublishFormSupported((error, isSupported) => {
-  if (error) {
-    console.log('formProvider isRequestPublishFormSupported, error:' + JSON.stringify(error));
-  } else {
-    if (isSupported) {
-      var want = {
-      abilityName: "FormAbility",
-      parameters: {
-        "ohos.extra.param.key.form_dimension": 2,
-        "ohos.extra.param.key.form_name": "widget",
-        "ohos.extra.param.key.module_name": "entry"
-      }
-      };
-      try {
-        formProvider.requestPublishForm(want, (error, data) => {
-          if (error) {
-            console.log('formProvider requestPublishForm, error: ' + JSON.stringify(error));
-          } else {
-            console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
+    if (error) {
+      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+    } else {
+      if (isSupported) {
+        var want = {
+          abilityName: "FormAbility",
+          parameters: {
+            "ohos.extra.param.key.form_dimension": 2,
+            "ohos.extra.param.key.form_name": "widget",
+            "ohos.extra.param.key.module_name": "entry"
           }
-      });
-      } catch (error) {
-        console.log(`catch err->${JSON.stringify(error)}`);
+        };
+        try {
+          formProvider.requestPublishForm(want, (error, data) => {
+            if (error) {
+              console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+            } else {
+              console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
+            }
+          });
+        } catch (error) {
+          console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+        }
       }
-
     }
-  }
-});
+  });
 } catch (error) {
-  console.log(`catch err->${JSON.stringify(error)}`);
+  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -531,32 +551,33 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import formProvider from '@ohos.app.form.formProvider';
+
 try {
   formProvider.isRequestPublishFormSupported().then((isSupported) => {
     if (isSupported) {
       var want = {
-      abilityName: "FormAbility",
-      parameters: {
-        "ohos.extra.param.key.form_dimension": 2,
-        "ohos.extra.param.key.form_name": "widget",
-        "ohos.extra.param.key.module_name": "entry"
-      }
+        abilityName: "FormAbility",
+        parameters: {
+          "ohos.extra.param.key.form_dimension": 2,
+          "ohos.extra.param.key.form_name": "widget",
+          "ohos.extra.param.key.module_name": "entry"
+        }
       };
       try {
         formProvider.requestPublishForm(want).then((data) => {
           console.log('formProvider requestPublishForm success, form ID is :' + JSON.stringify(data));
         }).catch((error) => {
-          console.log('formProvider requestPublishForm, error: ' + JSON.stringify(error));
+          console.log(`promise error, code: ${error.code}, message: ${error.message})`);
         });
       } catch (error) {
-        console.log(`catch err->${JSON.stringify(error)}`);
+        console.log(`catch error, code: ${error.code}, message: ${error.message})`);
       }
-
     }
   }).catch((error) => {
-    console.log('formProvider isRequestPublishFormSupported, error:' + JSON.stringify(error));
+    console.log(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.log(`catch err->${JSON.stringify(error)}`);
+  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
