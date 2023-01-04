@@ -825,7 +825,7 @@ Before invoking NetHandle APIs, call **getNetHandle** to obtain a **NetHandle** 
 
 | Name| Type  | Description                     |
 | ------ | ------ | ------------------------- |
-| netId  | number | Network ID. The value must be greater than or equal to 100.|
+| netId  | number | Network ID. The value **0** indicates no default network. Any other value must be greater than or equal to 100.|
 
 ### bindSocket
 

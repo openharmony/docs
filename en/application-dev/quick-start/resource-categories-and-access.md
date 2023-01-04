@@ -230,27 +230,27 @@ When referencing resources in the **rawfile** subdirectory, use the **"$rawfile(
 >
 > The return value of **$r** is a **Resource** object. You can obtain the corresponding string by using the [getStringValue](../reference/apis/js-apis-resource-manager.md) API.
 
-In the **.ets** file, you can use the resources defined in the **resources** directory.
+In the **.ets** file, you can use the resources defined in the **resources** directory. The following is a resource usage example based on the resource file examples in [Resource Group Sub-directories](#resource-group-subdirectories):
 
 ```ts
 Text($r('app.string.string_hello'))
-    .fontColor($r('app.color.color_hello'))
-    .fontSize($r('app.float.font_hello'))
-}
+  .fontColor($r('app.color.color_hello'))
+  .fontSize($r('app.float.font_hello'))
 
 Text($r('app.string.string_world'))
-    .fontColor($r('app.color.color_world'))
-    .fontSize($r('app.float.font_world'))
-}
+  .fontColor($r('app.color.color_world'))
+  .fontSize($r('app.float.font_world'))
 
-Text($r('app.string.message_arrive', "five of the clock")) // Reference string resources. The second parameter of $r is used to replace %s.
-    .fontColor($r('app.color.color_hello'))
-    .fontSize($r('app.float.font_hello'))
-}
+// Reference string resources. The second parameter of $r is used to replace %s, and value is "We will arrive at five'o clock".
+Text($r('app.string.message_arrive', "five'o clock"))
+  .fontColor($r('app.color.color_hello'))
+  .fontSize($r('app.float.font_hello'))
 
-Text($r('app.plural.eat_apple', 5, 5))       // Reference plural resources. The first parameter indicates the plural resource, the second parameter indicates the number of plural resources, and the third parameter indicates the substitute of %d.
-    .fontColor($r('app.color.color_world'))
-    .fontSize($r('app.float.font_world'))
+// Reference plural resources. The first parameter indicates the plural resource, the second parameter indicates the number of plural resources, and the third parameter indicates the substitute of %d.
+// The value is "5 apple" in singular form and "5 apples" in plural form.
+Text($r('app.plural.eat_apple', 5, 5))
+  .fontColor($r('app.color.color_world'))
+  .fontSize($r('app.float.font_world'))
 }
 
 Image($r('app.media.my_background_image'))  // Reference media resources.
@@ -274,14 +274,20 @@ To reference a system resource, use the **"$r('sys.type.resource_id')"** format.
 
 ```ts
 Text('Hello')
-    .fontColor($r('sys.color.ohos_id_color_emphasize'))
-    .fontSize($r('sys.float.ohos_id_text_size_headline1'))
-    .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
-    .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
-Image($r('sys.media.ohos_app_icon'))
-    .border({color: $r('sys.color.ohos_id_color_palette_aux1'), radius: $r('sys.float.ohos_id_corner_radius_button'), width: 2})
-    .margin({top: $r('sys.float.ohos_id_elements_margin_horizontal_m'), bottom: $r('sys.float.ohos_id_elements_margin_horizontal_l')})
-    .height(200)
-    .width(300)
-```
+  .fontColor($r('sys.color.ohos_id_color_emphasize'))
+  .fontSize($r('sys.float.ohos_id_text_size_headline1'))
+  .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+  .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
 
+Image($r('sys.media.ohos_app_icon'))
+  .border({
+    color: $r('sys.color.ohos_id_color_palette_aux1'),
+    radius: $r('sys.float.ohos_id_corner_radius_button'), width: 2
+  })
+  .margin({
+    top: $r('sys.float.ohos_id_elements_margin_horizontal_m'),
+    bottom: $r('sys.float.ohos_id_elements_margin_horizontal_l')
+  })
+  .height(200)
+  .width(300)
+```
