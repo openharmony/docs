@@ -18,6 +18,46 @@
 ```ts
 import web_webview from '@ohos.web.webview';
 ```
+
+### once
+
+once(type: string, callback: Callback\<void\>): void
+
+订阅一次指定类型Web事件的回调。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型              | 必填 | 说明                  |
+| ------- | ---------------- | ---- | -------------------- |
+| type     | string          | 是   | Web事件的类型，目前支持："webInited"（Web初始化完成）。      |
+| headers | Callback\<void\> | 是   | 所订阅的回调函数。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+web_webview.once("webInited", () => {
+  console.log("setCookie")
+  web_webview.WebCookieManager.setCookie("www.example.com", "a=b")
+})
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebMessagePort
 
 通过WebMessagePort可以进行消息的发送以及接收。
@@ -2338,6 +2378,55 @@ Scroll Test
 </html>
 ```
 
+### customizeSchemes
+
+static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
+
+配置Web自定义协议请求的权限。建议在任何Web组件初始化之前进行调用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| schemes | Array\<[WebCustomScheme](#webcustomscheme)\> | 是   | 自定义协议配置，最多支持同时配置10个自定义协议。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  responseweb: WebResourceResponse = new WebResourceResponse()
+  scheme1: web_webview.WebCustomScheme = {schemeName: "name1", isSupportCORS: true, isSupportFetch: true}
+  scheme2: web_webview.WebCustomScheme = {schemeName: "name2", isSupportCORS: true, isSupportFetch: true}
+  scheme3: web_webview.WebCustomScheme = {schemeName: "name3", isSupportCORS: true, isSupportFetch: true}
+
+  aboutToAppear():void {
+    try {
+      web_webview.WebviewController.customizeSchemes([this.scheme1, this.scheme2, this.scheme3])
+    } catch(error) {
+      console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .onInterceptRequest((event) => {
+          console.log('url:' + event.request.getRequestUrl())
+          return this.responseweb
+        })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
@@ -3966,3 +4055,15 @@ Web组件返回的请求/响应头对象。
 | origin | string | 是  | 否 | 指定源的字符串索引。 |
 | usage  | number | 是  | 否 | 指定源的存储量。     |
 | quota  | number | 是  | 否 | 指定源的存储配额。   |
+
+## WebCustomScheme
+
+自定义协议配置。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称           | 类型       | 可读 | 可写 | 说明                         |
+| -------------- | --------- | ---- | ---- | ---------------------------- |
+| schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'。        |
+| isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
+| isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
