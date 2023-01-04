@@ -24,22 +24,18 @@ import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbili
 **Scheme://authority/path** 
 - scheme: 协议名，对于data share统一为datashare
 - authority: [userinfo@]host[:port]
-    - userinfo: 登录信息，在AMS框架下不支持，不需要填写。
-    - host: 服务器地址，在AMS框架下，如果跨设备访问则为目标设备的ID，如果为本设备则为空。
-    - port: 服务器端口，在AMS框架下不支持，不需要填写。
-- path: data share的标识信息和资源的路径信息，在AMS框架下，需要包含data share的标识信息，资源的路径信息可以不填写。
+    - userinfo: 登录信息，不需要填写。
+    - host: 服务器地址，如果跨设备访问则为目标设备的ID，如果为本设备则为空。
+    - port: 服务器端口，不需要填写。
+- path: data share的标识信息和资源的路径信息，需要包含data share的标识信息，资源的路径信息可以不填写。
 
 uri示例:
 
-    不包含资源路径: datashare:///com.samples.datasharetest.DataShare
+- 不包含资源路径: `datashare:///com.samples.datasharetest.DataShare`
 
-    包含资源路径: datashare:///com.samples.datasharetest.DataShare/DB00/TBL00
+- 包含资源路径: `datashare:///com.samples.datasharetest.DataShare/DB00/TBL00`
 
-说明：
-    
-    datashare的标识信息为com.samples.datasharetest.DataShare
-
-    资源路径：DB00/TBL00
+其中，datashare的标识信息为`com.samples.datasharetest.DataShare`，资源路径为`DB00/TBL00`。
 
 ## 属性
 
