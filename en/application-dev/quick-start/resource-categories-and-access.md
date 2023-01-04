@@ -230,7 +230,7 @@ When referencing resources in the **rawfile** subdirectory, use the **"$rawfile(
 >
 > The return value of **$r** is a **Resource** object. You can obtain the corresponding string by using the [getStringValue](../reference/apis/js-apis-resource-manager.md) API.
 
-In the **.ets** file, you can use the resources defined in the **resources** directory. The following is a resource usage example based on the resource file examples in [Resource Group Sub-directories](#resource-group-sub-directories):
+In the **.ets** file, you can use the resources defined in the **resources** directory. The following is a resource usage example based on the resource file examples in [Resource Group Sub-directories](#resource-group-subdirectories):
 
 ```ts
 Text($r('app.string.string_hello'))
