@@ -1,6 +1,6 @@
 # Network Sharing Management
 
-The Network Sharing Management module allows you to share your device's Internet connection with other connected devices by means of Wi-Fi hotspot, Bluetooth, and USB sharing. It also allows you to query the network sharing state and shared mobile data volume.
+The Network Sharing Management module allows you to share your device's Internet connection with other connected devices by means of Wi-Fi hotspot, and Bluetooth sharing. It also allows you to query the network sharing state and shared mobile data volume.
 
 > **NOTE**
 >
@@ -405,7 +405,7 @@ Obtains the names of NICs in the specified network sharing state. This API uses 
 **Example**
 
 ```js
-import SharingIfaceState from '@ohos.net.sharing'
+import SharingIfaceType from '@ohos.net.sharing'
 sharing.getSharingIfaces(SharingIfaceState.SHARING_NIC_CAN_SERVER, (error, data) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
@@ -498,7 +498,7 @@ Obtains the network sharing state of the specified type. This API uses a promise
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.getSharingIfaces(SharingIfaceType.SHARING_WIFI).then(data => {
+sharing.getSharingState(SharingIfaceType.SHARING_WIFI).then(data => {
     console.log(JSON.stringify(data));
 }).catch(error => {
     console.log(JSON.stringify(error));
@@ -525,8 +525,8 @@ Obtains regular expressions of NICs of a specified type. This API uses an asynch
 **Example**
 
 ```js
-import SharingIfaceState from '@ohos.net.sharing'
-sharing.getSharingState(SharingIfaceType.SHARING_WIFI, (error, data) => {
+import SharingIfaceType from '@ohos.net.sharing'
+sharing.getSharableRegexes(SharingIfaceType.SHARING_WIFI, (error, data) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
 });
@@ -565,7 +565,7 @@ sharing.getSharableRegexes(SharingIfaceType.SHARING_WIFI).then(data => {
 });
 ```
 
-## on('sharingStateChange')
+## sharing.on('sharingStateChange')
 
 on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 
@@ -591,7 +591,7 @@ sharing.on('sharingStateChange', (error, data) => {
 });
 ```
 
-## off('sharingStateChange')
+## sharing.off('sharingStateChange')
 
 off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 
@@ -617,7 +617,7 @@ sharing.off('sharingStateChange', (error, data) => {
 });
 ```
 
-## on('interfaceSharingStateChange')
+## sharing.on('interfaceSharingStateChange')
 
 on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void
 
@@ -643,7 +643,7 @@ sharing.on('interfaceSharingStateChange', (error, data) => {
 });
 ```
 
-## off('interfaceSharingStateChange')
+## sharing.off('interfaceSharingStateChange')
 
 off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void
 
@@ -669,7 +669,7 @@ sharing.off('interfaceSharingStateChange', (error, data) => {
 });
 ```
 
-## on('sharingUpstreamChange')
+## sharing.on('sharingUpstreamChange')
 
 on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 
@@ -695,7 +695,7 @@ sharing.on('sharingUpstreamChange', (error, data) => {
 });
 ```
 
-## off('sharingUpstreamChange')
+## sharing.off('sharingUpstreamChange')
 
 off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 
@@ -735,12 +735,12 @@ Enumerates the network sharing states of an NIC.
 
 ## SharingIfaceType
 
-Enumerates the network sharing types of an NIC.
+Enumerates the network sharing types of an NIC. 
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 | Name                 | Value  | Description                  |
 | ------------------------ | ---- | ---------------------- |
 | SHARING_WIFI       | 0 | Wi-Fi hotspot sharing.|
-| SHARING_USB     | 1 | USB sharing.|
+| SHARING_USB     | 1 | USB sharing (not supported currently).|
 | SHARING_BLUETOOTH    | 2 | Bluetooth sharing.|

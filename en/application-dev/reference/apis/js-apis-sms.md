@@ -1116,19 +1116,19 @@ Defines an SMS message instance.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name                  | Type                                   | Description                                                        |
-| ------------------------ | --------------------------------------- | ------------------------------------------------------------ |
-| hasReplyPath             | boolean                                 | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>**TP-Reply-Path**: The device returns a response based on the SMSC that sends the SMS message.|
-| isReplaceMessage         | boolean                                 | Whether the received SMS message is a **replace short message**. The default value is **false**.<br>For details, see section 9.2.3.9 in **3GPP TS 23.040**.|
-| isSmsStatusReportMessage | boolean                                 | Whether the received SMS message is an SMS delivery status report. The default value is **false**.<br>**SMS-Status-Report**: a message sent from the SMSC to the mobile station to show the SMS message delivery status.|
-| messageClass             | [ShortMessageClass](#shortmessageclass) | Enumerates SMS message types.                                                  |
-| pdu                      | Array&lt;number&gt;                     | PDU in the SMS message.                           |
-| protocolId               | number                                  | Protocol identifier used for delivering the SMS message.                                  |
-| scAddress                | string                                  | SMSC address.                                |
-| scTimestamp              | number                                  | SMSC timestamp.                                                |
-| status                   | number                                  | SMS message status sent by the SMSC in the **SMS-STATUS-REPORT** message.|
-| visibleMessageBody       | string                                  | SMS message body.                                                  |
-| visibleRawAddress        | string                                  | Sender address.                                                |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| hasReplyPath             | boolean                                 | Yes |Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>**TP-Reply-Path**: The device returns a response based on the SMSC that sends the SMS message.|
+| isReplaceMessage         | boolean                                 | Yes |Whether the received SMS message is a **replace short message**. The default value is **false**.<br>For details, see section 9.2.3.9 in **3GPP TS 23.040**.|
+| isSmsStatusReportMessage | boolean                                 | Yes |Whether the received SMS message is an SMS delivery status report. The default value is **false**.<br>**SMS-Status-Report**: a message sent from the SMSC to the mobile station to show the SMS message delivery status.|
+| messageClass             | [ShortMessageClass](#shortmessageclass) | Yes | SMS message type.                                                  |
+| pdu                      | Array&lt;number&gt;                     | Yes | PDU in the SMS message.                           |
+| protocolId               | number                                  | Yes | Protocol identifier used for delivering the SMS message.            |
+| scAddress                | string                                  | Yes | SMSC address.                                |
+| scTimestamp              | number                                  | Yes | SMSC timestamp.                                                |
+| status                   | number                                  | Yes | SMS message status sent by the SMSC in the **SMS-STATUS-REPORT** message.|
+| visibleMessageBody       | string                                  | Yes | SMS message body.                                                  |
+| visibleRawAddress        | string                                  | Yes | Sender address.                                                |
 
 
 ## ShortMessageClass

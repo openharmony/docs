@@ -2,7 +2,8 @@
 
 The Keycode module provides keycodes for a key device.
 
-> **NOTE**<br>
+> **NOTE**
+> 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -337,7 +338,7 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode';
 | KEYCODE_WWAN_WIMAX | number | Yes| No| WWAN WiMAX key|
 | KEYCODE_RFKILL | number | Yes| No| RF Kill key|
 | KEYCODE_CHANNEL | number | Yes| No| Channel key|
-| KEYCODE_BTN_0 | number | Yes| No| Key 0|
+| KEYCODE_BTN_0 | number | Yes| No| Button 0|
 | KEYCODE_BTN_1 | number | Yes| No| Button 1|
 | KEYCODE_BTN_2 | number | Yes| No| Button 2|
 | KEYCODE_BTN_3 | number | Yes| No| Button 3|

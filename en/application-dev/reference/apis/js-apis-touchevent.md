@@ -70,7 +70,7 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 | toolHeight | number | Yes| No| Height of the tool area.|
 | rawX | number | Yes| No| X coordinate of the input device.|
 | rawY | number | Yes| No| Y coordinate of the input device.|
-| toolType | number | Yes| No| Tool type.|
+| toolType | ToolType | Yes| No| Tool type.|
 
 ## TouchEvent
 

@@ -720,14 +720,14 @@ Represents the USB endpoint from which data is sent or received. You can obtain 
 
 | Name           | Type                                       | Mandatory           |Description           |
 | ------------- | ------------------------------------------- | ------------- |------------- |
-| address       | number                                      | Yes|Endpoint address.        |
-| attributes    | number                                      | Yes|Endpoint attributes.        |
-| interval      | number                                      | Yes|Endpoint interval.        |
-| maxPacketSize | number                                      | Yes|Maximum size of data packets on the endpoint.   |
-| direction     | [USBRequestDirection](#usbrequestdirection) | Yes|Endpoint direction.       |
-| number        | number                                      | Yes|Endpoint number.         |
-| type          | number                                      | Yes|Endpoint type.        |
-| interfaceId   | number                                      | Yes|Unique ID of the interface to which the endpoint belongs.|
+| address       | number                                      | Yes | Endpoint address.        |
+| attributes    | number                                      | Yes | Endpoint attributes.        |
+| interval      | number                                      | Yes | Endpoint interval.        |
+| maxPacketSize | number                                      | Yes | Maximum size of data packets on the endpoint.   |
+| direction     | [USBRequestDirection](#usbrequestdirection) | Yes | Endpoint direction.       |
+| number        | number                                      | Yes | Endpoint number.         |
+| type          | number                                      | Yes | Endpoint type.        |
+| interfaceId   | number                                      | Yes | Unique ID of the interface to which the endpoint belongs.|
 
 ## USBInterface
 
@@ -737,13 +737,13 @@ Represents a USB interface. One [USBConfig](#usbconfig) can contain multiple **U
 
 | Name              | Type                                    | Mandatory           |Description                   |
 | ---------------- | ---------------------------------------- | ------------- |--------------------- |
-| id               | number                                   | Yes|Unique ID of the USB interface.             |
-| protocol         | number                                   | Yes|Interface protocol.               |
-| clazz            | number                                   | Yes|Device type.                |
-| subClass         | number                                   | Yes|Device subclass.                |
-| alternateSetting | number                                   | Yes|Settings for alternating between descriptors of the same USB interface.|
-| name             | string                                   | Yes|Interface name.                |
-| endpoints        | Array&lt;[USBEndpoint](#usbendpoint)&gt; | Yes|Endpoints that belong to the USB interface.          |
+| id               | number                                   | Yes | Unique ID of the USB interface.             |
+| protocol         | number                                   | Yes | Interface protocol.               |
+| clazz            | number                                   | Yes | Device type.                |
+| subClass         | number                                   | Yes | Device subclass.                |
+| alternateSetting | number                                   | Yes | Settings for alternating between descriptors of the same USB interface.|
+| name             | string                                   | Yes | Interface name.                |
+| endpoints        | Array&lt;[USBEndpoint](#usbendpoint)&gt; | Yes | Endpoints that belong to the USB interface.          |
 
 ## USBConfig
 
@@ -753,13 +753,13 @@ Represents the USB configuration. One [USBDevice](#usbdevice) can contain multip
 
 | Name            | Type                                            | Mandatory |Description             |
 | -------------- | ------------------------------------------------ | --------------- |--------------- |
-| id             | number                                           | Yes|Unique ID of the USB configuration.       |
-| attributes     | number                                           | Yes|Configuration attributes.         |
-| maxPower       | number                                           | Yes|Maximum power consumption, in mA.   |
-| name           | string                                           | Yes|Configuration name, which can be left empty.    |
-| isRemoteWakeup | boolean                                          | Yes|Support for remote wakeup.|
-| isSelfPowered  | boolean                                          | Yes| Support for independent power supplies.|
-| interfaces     | Array&nbsp;&lt;[USBInterface](#usbinterface)&gt; | Yes|Supported interface attributes.     |
+| id             | number                                           | Yes | Unique ID of the USB configuration.       |
+| attributes     | number                                           | Yes | Configuration attributes.         |
+| maxPower       | number                                           | Yes | Maximum power consumption, in mA.   |
+| name           | string                                           | Yes | Configuration name, which can be left empty.    |
+| isRemoteWakeup | boolean                                          | Yes | Support for remote wakeup.|
+| isSelfPowered  | boolean                                          | Yes | Support for independent power supplies.|
+| interfaces     | Array&nbsp;&lt;[USBInterface](#usbinterface)&gt; | Yes | Supported interface attributes.     |
 
 ## USBDevice
 
@@ -769,19 +769,19 @@ Represents the USB device information.
 
 | Name              | Type                                | Mandatory        |Description        |
 | ---------------- | ------------------------------------ | ---------- |---------- |
-| busNum           | number                               | Yes|Bus address.     |
-| devAddress       | number                               | Yes|Device address.     |
-| serial           | string                               | Yes|Sequence number.      |
-| name             | string                               | Yes|Device name.     |
-| manufacturerName | string                               | Yes| Device manufacturer.     |
-| productName      | string                               | Yes|Product name.     |
-| version          | string                               | Yes|Version number.       |
-| vendorId         | number                               | Yes|Vendor ID.     |
-| productId        | number                               | Yes|Product ID.     |
-| clazz            | number                               | Yes|Device class.      |
-| subClass         | number                               | Yes|Device subclass.     |
-| protocol         | number                               | Yes|Device protocol code.    |
-| configs          | Array&lt;[USBConfig](#usbconfig)&gt; | Yes|Device configuration descriptor information.|
+| busNum           | number                               | Yes | Bus address.     |
+| devAddress       | number                               | Yes | Device address.     |
+| serial           | string                               | Yes | Sequence number.      |
+| name             | string                               | Yes | Device name.     |
+| manufacturerName | string                               | Yes | Device manufacturer.     |
+| productName      | string                               | Yes | Product name.     |
+| version          | string                               | Yes | Version number.       |
+| vendorId         | number                               | Yes | Vendor ID.     |
+| productId        | number                               | Yes | Product ID.     |
+| clazz            | number                               | Yes | Device class.      |
+| subClass         | number                               | Yes | Device subclass.     |
+| protocol         | number                               | Yes | Device protocol code.    |
+| configs          | Array&lt;[USBConfig](#usbconfig)&gt; | Yes | Device configuration descriptor information.|
 
 ## USBDevicePipe
 
@@ -802,12 +802,12 @@ Represents control transfer parameters.
 
 | Name     | Type                                           | Mandatory              |Description              |
 | ------- | ----------------------------------------------- | ---------------- |---------------- |
-| request | number                                          | Yes  |Request type.           |
-| target  | [USBRequestTargetType](#usbrequesttargettype)   | Yes  |Request target type.         |
-| reqType | [USBControlRequestType](#usbcontrolrequesttype) | Yes  |Control request type.         |
-| value   | number                                          | Yes  |Request parameter value.           |
-| index   | number                                          | Yes  |Index of the request parameter value.|
-| data    | Uint8Array                                      | Yes  |Buffer for writing or reading data.    |
+| request | number                                          | Yes  | Request type.           |
+| target  | [USBRequestTargetType](#usbrequesttargettype)   | Yes  | Request target type.         |
+| reqType | [USBControlRequestType](#usbcontrolrequesttype) | Yes  | Control request type.         |
+| value   | number                                          | Yes  | Request parameter value.           |
+| index   | number                                          | Yes  | Index of the request parameter value.|
+| data    | Uint8Array                                      | Yes  | Buffer for writing or reading data.    |
 
 ## USBPort
 
@@ -819,9 +819,9 @@ Represents a USB port.
 
 | Name          | Type                        | Mandatory     |Description                               |
 | -------------- | ------------------------------- | ------------------- |------------------------ |
-| id             | number                          | Yes  |Unique identifier of a USB port.                  |
-| supportedModes | [PortModeType](#portmodetype)   | Yes  |Numeric mask combination for the supported mode list.|
-| status         | [USBPortStatus](#usbportstatus) | Yes  |USB port role.                      |
+| id             | number                          | Yes  | Unique identifier of a USB port.                  |
+| supportedModes | [PortModeType](#portmodetype)   | Yes  | Numeric mask combination for the supported mode list.|
+| status         | [USBPortStatus](#usbportstatus) | Yes  | USB port role.                      |
 
 ## USBPortStatus
 
@@ -833,9 +833,9 @@ Enumerates USB port roles.
 
 | Name            | Type| Mandatory     |Description                  |
 | ---------------- | -------- | ---------------- |---------------------- |
-| currentMode      | number   | Yes|Current USB mode.       |
-| currentPowerRole | number   | Yes  |Current power role.    |
-| currentDataRole  | number   | Yes  |Current data role.|
+| currentMode      | number   | Yes  | Current USB mode.       |
+| currentPowerRole | number   | Yes  | Current power role.    |
+| currentDataRole  | number   | Yes  | Current data role.|
 
 ## USBRequestTargetType
 
@@ -843,12 +843,12 @@ Enumerates request target types.
 
 **System capability**: SystemCapability.USB.USBManager
 
-| Name                        | Value  | Description  |
-| ---------------------------- | ---- | ------ |
-| USB_REQUEST_TARGET_DEVICE    | 0    | Device|
-| USB_REQUEST_TARGET_INTERFACE | 1    | Interface|
-| USB_REQUEST_TARGET_ENDPOINT  | 2    | Endpoint|
-| USB_REQUEST_TARGET_OTHER     | 3    | Other|
+| Name                         | Value | Description |
+| ---------------------------- | ----- | ----------- |
+| USB_REQUEST_TARGET_DEVICE    | 0     | Device      |
+| USB_REQUEST_TARGET_INTERFACE | 1     | Interface   |
+| USB_REQUEST_TARGET_ENDPOINT  | 2     | Endpoint    |
+| USB_REQUEST_TARGET_OTHER     | 3     | Other       |
 
 ## USBControlRequestType
 
