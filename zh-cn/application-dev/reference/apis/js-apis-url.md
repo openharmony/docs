@@ -450,7 +450,8 @@ URL静态成员函数。
 
 ```js
 let mm = 'https://username:password@host:8080';
-Url.URL.parseURL(mm); // Output 'https://username:password@host:8080/';
+let url = Url.URL.parseURL(mm); 
+url.toString(); // Output 'https://username:password@host:8080/';
 ```
 
 ### tostring
@@ -668,9 +669,9 @@ forEach(callbackFn: (value: string, key: string, searchParams: this) => void, th
 **示例：**
 
 ```js
-const myURLObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2'); 
-myURLObject.params.forEach((value, name, searchParams) => {  
-    console.log(name, value, myURLObject.params === searchParams);
+const myURLObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2'); 
+myURLObject.searchParams.forEach((value, name, searchParams) => {  
+    console.log(name, value, myURLObject.searchParams === searchParams);
 });
 ```
 
