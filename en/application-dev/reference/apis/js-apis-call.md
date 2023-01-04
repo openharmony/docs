@@ -55,7 +55,7 @@ Initiates a call based on the specified options. This API uses an asynchronous c
 | Name     | Type                        | Mandatory | Description                             |
 | ----------- | ---------------------------- | ---- | --------------------------------------- |
 | phoneNumber | string                       | Yes  | Phone number.                           |
-| options     | [DialOptions](#dialoptions)  | Yes  | Call option, which indicates whether the call is a voice call or video call. |
+| options     | [DialOptions](#dialoptions)  | No  | Call option, which indicates whether the call is a voice call or video call. |
 | callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure |
 
 **Example**
@@ -313,7 +313,7 @@ Checks whether the called number is an emergency number based on the specified p
 | Name     | Type                                              | Mandatory | Description                                                       |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | phoneNumber | string                                             | Yes  | Phone number.                                                 |
-| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | Yes  | Phone number options.        |
+| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | No  | Phone number options.        |
 | callback    | AsyncCallback&lt;boolean&gt;                       | Yes  | Callback used to return the result.<br> - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number. |
 
 **Example**
@@ -397,7 +397,7 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 | Name     | Type                                        | Mandatory | Description                                |
 | ----------- | -------------------------------------------- | ---- | ------------------------------------ |
 | phoneNumber | string                                       | Yes  | Phone number.                          |
-| options     | [NumberFormatOptions](#numberformatoptions7) | Yes  | Number formatting options, for example, country code.              |
+| options     | [NumberFormatOptions](#numberformatoptions7) | No  | Number formatting options, for example, country code.              |
 | callback    | AsyncCallback&lt;string&gt;                  | Yes  | Callback used to return the result. |
 
 **Example**
@@ -568,33 +568,6 @@ promise.then(data => {
 
 ## call.answer<sup>7+</sup>
 
-answer\(callback: AsyncCallback<void\>\): void
-
-Answers a call. This API uses an asynchronous callback to return the result.
-
-This is a system API.
-
-**Required permission**: ohos.permission.ANSWER_CALL
-
-**System capability**: SystemCapability.Telephony.CallManager
-
-**Parameters**
-
-| Name  | Type                     | Mandatory| Description      |
-| -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-call.answer((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
-
-## call.answer<sup>7+</sup>
-
 answer\(callId: number, callback: AsyncCallback<void\>\): void
 
 Answers a call based on the specified call ID. This API uses an asynchronous callback to return the result.
@@ -658,7 +631,7 @@ promise.then(data => {
 
 ## call.hangup<sup>7+</sup>
 
-hangup\(callback: AsyncCallback<void\>\): void
+hangup\(callId: number, callback: AsyncCallback<void\>\): void
 
 Ends a call. This API uses an asynchronous callback to return the result.
 
@@ -672,22 +645,23 @@ This is a system API.
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
+| callId   | number                    | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
-call.hangup((err, data) => {
+call.hangup(1, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## call.hangup<sup>7+</sup>
+## call.answer<sup>9+</sup>
 
-hangup\(callId: number, callback: AsyncCallback<void\>\): void
+answer\(callback: AsyncCallback<void\>\): void
 
-Ends a call based on the specified call ID. This API uses an asynchronous callback to return the result.
+Answers a call.This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -699,13 +673,12 @@ This is a system API.
 
 | Name  | Type                     | Mandatory| Description                                           |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
-| callId   | number                    | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                     |
 
 **Example**
 
 ```js
-call.hangup(1, (err, data) => {
+call.answer((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -746,11 +719,11 @@ promise.then(data => {
 });
 ```
 
-## call.reject<sup>7+</sup>
+## call.hangup<sup>9+</sup>
 
-reject\(callback: AsyncCallback<void\>\): void
+hangup\(callback: AsyncCallback<void\>\): void
 
-Rejects a call. This API uses an asynchronous callback to return the result.
+Ends a call. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -767,38 +740,7 @@ This is a system API.
 **Example**
 
 ```js
-call.reject((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
-
-## call.reject<sup>7+</sup>
-
-reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
-
-Rejects a call based on the specified options. This API uses an asynchronous callback to return the result.
-
-This is a system API.
-
-**Required permission**: ohos.permission.ANSWER_CALL
-
-**System capability**: SystemCapability.Telephony.CallManager
-
-**Parameters**
-
-| Name  | Type                                          | Mandatory| Description          |
-| -------- | ---------------------------------------------- | ---- | -------------- |
-| options  | [RejectMessageOptions](#rejectmessageoptions7) | Yes  | Options for the call rejection message.|
-| callback | AsyncCallback&lt;void&gt;                      | Yes  | Callback used to return the result.    |
-
-**Example**
-
-```js
-let rejectMessageOptions={
-    messageContent: "Unknown number blocked"
-}
-call.reject(rejectMessageOptions, (err, data) => {
+call.hangup((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -902,6 +844,65 @@ promise.then(data => {
     console.error(`reject fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
+
+
+## call.reject<sup>9+</sup>
+
+reject\(callback: AsyncCallback<void\>\): void
+
+Rejects a call. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Example:**
+
+```js
+call.reject((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.reject<sup>9+</sup>
+
+reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
+
+Rejects a call. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                                          | Mandatory| Description          |
+| -------- | ---------------------------------------------- | ---- | -------------- |
+| options  | [RejectMessageOptions](#rejectmessageoptions7) | Yes  | Options for the call rejection message.|
+| callback | AsyncCallback&lt;void&gt;                      | Yes  | Callback used to return the result.    |
+
+**Example:**
+
+```js
+let rejectMessageOptions={
+    messageContent: "Unknown number blocked"
+}
+call.reject(rejectMessageOptions, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
 
 ## call.holdCall<sup>7+</sup>
 
@@ -2399,7 +2400,7 @@ promise.then(data => {
 });
 ```
 
-## call.setAudioDevice<sup>8+</sup>
+## call.setAudioDevice<sup>9+</sup>
 
 setAudioDevice\(device: AudioDevice, callback: AsyncCallback<void\>\): void
 
@@ -2425,7 +2426,7 @@ call.setAudioDevice(1, (err, data) => {
 ```
 
 
-## call.setAudioDevice<sup>8+</sup>
+## call.setAudioDevice<sup>9+</sup>
 
 setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: AsyncCallback<void\>\): void
 

@@ -247,9 +247,9 @@ This is a system API.
 
 **Parameters**
 
-| Name     | Type    | Description   |
-| -------- | ------ | ----- |
-| language | string | Language ID.|
+| Name     | Type    | Mandatory | Description   |
+| -------- | ------ | ----- | ----- |
+| language | string | Yes | Language ID.|
 
 **Error codes**
 
@@ -313,9 +313,9 @@ This is a system API.
 
 **Parameters**
 
-| Name   | Type    | Description   |
-| ------ | ------ | ----- |
-| region | string | Region ID.|
+| Name     | Type    | Mandatory | Description   |
+| -------- | ------ | ----- | ----- |
+| region | string | Yes | Region ID.|
 
 **Error codes**
 
@@ -379,9 +379,9 @@ This is a system API.
 
 **Parameters**
 
-| Name   | Type    | Description             |
-| ------ | ------ | --------------- |
-| locale | string | System locale ID, for example, **zh-CN**.|
+| Name     | Type    | Mandatory | Description   |
+| -------- | ------ | ----- | ----- |
+| locale | string | Yes | System locale ID, for example, **zh-CN**.|
 
 **Error codes**
 
@@ -713,9 +713,9 @@ Checks whether the localized script for the specified language is displayed from
 
 **Parameters**
 
-| Name   | Type    | Description     |
-| ------ | ------ | ------- |
-| locale | string | Locale ID.|
+| Name     | Type    | Mandatory | Description   |
+| -------- | ------ | ----- | ----- |
+| locale | string | Yes | Locale ID.|
 
 **Return value**
 
@@ -905,7 +905,7 @@ Sets the start day of a week for this **Calendar** object.
 
 | Name  | Type    | Mandatory  | Description                   |
 | ----- | ------ | ---- | --------------------- |
-| value | number | No   | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
+| value | number | Yes   | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
 
 **Example**
   ```js
@@ -947,7 +947,7 @@ Sets the minimum number of days in the first week of a year.
 
 | Name  | Type    | Mandatory  | Description          |
 | ----- | ------ | ---- | ------------ |
-| value | number | No   | Minimum number of days in the first week of a year.|
+| value | number | Yes   | Minimum number of days in the first week of a year.|
 
 **Example**
   ```js

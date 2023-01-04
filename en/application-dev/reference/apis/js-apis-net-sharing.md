@@ -1,6 +1,6 @@
 # Network Sharing Management
 
-The Network Sharing Management module allows you to share your device's Internet connection with other connected devices by means of Wi-Fi hotspot, Bluetooth, and USB sharing. It also allows you to query the network sharing state and shared mobile data volume.
+The Network Sharing Management module allows you to share your device's Internet connection with other connected devices by means of Wi-Fi hotspot, and Bluetooth sharing. It also allows you to query the network sharing state and shared mobile data volume.
 
 > **NOTE**
 >
@@ -735,12 +735,12 @@ Enumerates the network sharing states of an NIC.
 
 ## SharingIfaceType
 
-Enumerates the network sharing types of an NIC.
+Enumerates the network sharing types of an NIC. 
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 | Name                 | Value  | Description                  |
 | ------------------------ | ---- | ---------------------- |
 | SHARING_WIFI       | 0 | Wi-Fi hotspot sharing.|
-| SHARING_USB     | 1 | USB sharing.|
+| SHARING_USB     | 1 | USB sharing (not supported currently).|
 | SHARING_BLUETOOTH    | 2 | Bluetooth sharing.|

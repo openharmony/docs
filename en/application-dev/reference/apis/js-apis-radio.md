@@ -1797,10 +1797,10 @@ Defines the signal strength.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type                       | Description              |
-| ----------- | --------------------------- | ------------------ |
-| signalType  | [NetworkType](#networktype) | Signal strength type.|
-| signalLevel | number                      | Signal strength level.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| signalType  | [NetworkType](#networktype) | Yes| Signal strength type.|
+| signalLevel | number                      | Yes| Signal strength level.|
 
 
 ## NetworkType
@@ -1825,17 +1825,17 @@ Defines the network status.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name           | Type                 | Description                                                        |
-| ----------------- | --------------------- | ------------------------------------------------------------ |
-| longOperatorName  | string                | Long carrier name of the registered network.|
-| shortOperatorName | string                | Short carrier name of the registered network.|
-| plmnNumeric       | string                | PLMN code of the registered network.|
-| isRoaming         | boolean               | Whether the user is roaming.|
-| regState          | [RegState](#regstate) | Network registration status of the device.|
-| cfgTech<sup>8+</sup> | [RadioTechnology](#radiotechnology) | RAT of the device.|
-| nsaState          | [NsaState](#nsastate) | NSA network registration status of the device.|
-| isCaActive        | boolean               | CA status.|
-| isEmergency       | boolean               | Whether only emergency calls are allowed.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| longOperatorName  | string                | Yes | Long carrier name of the registered network.|
+| shortOperatorName | string                | Yes | Short carrier name of the registered network.|
+| plmnNumeric       | string                | Yes | PLMN code of the registered network.|
+| isRoaming         | boolean               | Yes | Whether the user is roaming.|
+| regState          | [RegState](#regstate) | Yes | Network registration status of the device.|
+| cfgTech<sup>8+</sup> | [RadioTechnology](#radiotechnology) | Yes | RAT of the device.|
+| nsaState          | [NsaState](#nsastate) | Yes | NSA network registration status of the device.|
+| isCaActive        | boolean               | Yes | CA status.|
+| isEmergency       | boolean               | Yes | Whether only emergency calls are allowed.|
 
 
 ## RegState
@@ -1933,13 +1933,13 @@ Defines the cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name             | Type                                                        | Description                                                        |
-| ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| networkType       | [NetworkType](#networktype)                                  | Network type of the cell.                                    |
-| isCamped          | boolean                                                      | Status of the cell.                                        |
-| timeStamp         | number                                                       | Timestamp when cell information is obtained.                                |
-| signalInformation | [SignalInformation](#signalinformation)                      | Signal information.                                                  |
-| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) | CDMA cell information \|GSM cell information \|LTE cell information \|NR cell information \|TD-SCDMA cell information|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| networkType       | [NetworkType](#networktype) | Yes | Network type of the cell.                      |
+| isCamped          | boolean                     | Yes | Status of the cell.                            |
+| timeStamp         | number                     | Yes | Timestamp when cell information is obtained.    |
+| signalInformation | [SignalInformation](#signalinformation) | Yes | Signal information.                |
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) | Yes | CDMA cell information \|GSM cell information \|LTE cell information \|NR cell information \|TD-SCDMA cell information|
 
 ## CdmaCellInformation<sup>8+</sup>
 
@@ -1949,13 +1949,13 @@ Defines the CDMA cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type  | Description        |
-| --------- | ------ | ------------ |
-| baseId    | number | Base station ID.    |
-| latitude  | number | Longitude.      |
-| longitude | number | Latitude.      |
-| nid       | number | Network ID.|
-| sid       | number | System ID.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| baseId    | number | Yes | Base station ID.    |
+| latitude  | number | Yes | Longitude.      |
+| longitude | number | Yes | Latitude.      |
+| nid       | number | Yes | Network ID.|
+| sid       | number | Yes | System ID.|
 
 ## GsmCellInformation<sup>8+</sup>
 
@@ -1965,14 +1965,14 @@ Defines the GSM cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name  | Type  | Description                |
-| ------ | ------ | -------------------- |
-| lac    | number | Location area code.        |
-| cellId | number | Cell ID.            |
-| arfcn  | number | Absolute radio frequency channel number.|
-| bsic   | number | Base station ID.        |
-| mcc    | string | Mobile country code.        |
-| mnc    | string | Mobile network code.          |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| lac    | number | Yes | Location area code.        |
+| cellId | number | Yes | Cell ID.            |
+| arfcn  | number | Yes | Absolute radio frequency channel number.|
+| bsic   | number | Yes | Base station ID.        |
+| mcc    | string | Yes | Mobile country code.        |
+| mnc    | string | Yes | Mobile network code.          |
 
 ## LteCellInformation<sup>8+</sup>
 
@@ -1982,16 +1982,16 @@ Defines the LTE cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name         | Type   | Description                   |
-| ------------- | ------- | ----------------------- |
-| cgi           | number  | Cell global identification.         |
-| pci           | number  | Physical cell ID.         |
-| tac           | number  | Tracking area code.         |
-| earfcn        | number  | Absolute radio frequency channel number.   |
-| bandwidth     | number  | Bandwidth.                 |
-| mcc           | string  | Mobile country code.           |
-| mnc           | string  | Mobile network code.             |
-| isSupportEndc | boolean | Support New Radio_Dual Connectivity|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| cgi           | number  | Yes | Cell global identification.         |
+| pci           | number  | Yes | Physical cell ID.         |
+| tac           | number  | Yes | Tracking area code.         |
+| earfcn        | number  | Yes | Absolute radio frequency channel number.   |
+| bandwidth     | number  | Yes | Bandwidth.                 |
+| mcc           | string  | Yes | Mobile country code.           |
+| mnc           | string  | Yes | Mobile network code.             |
+| isSupportEndc | boolean | Yes | Support for New Radio_Dual Connectivity. |
 
 ## NrCellInformation<sup>8+</sup>
 
@@ -2001,14 +2001,14 @@ Defines the NR cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name   | Type  | Description            |
-| ------- | ------ | ---------------- |
-| nrArfcn | number | 5G frequency number.      |
-| pci     | number | Physical cell ID.  |
-| tac     | number | Tracking area code.  |
-| nci     | number | 5G network cell ID.|
-| mcc     | string | Mobile country code.    |
-| mnc     | string | Mobile network code.      |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| nrArfcn | number | Yes | 5G frequency number.      |
+| pci     | number | Yes | Physical cell ID.  |
+| tac     | number | Yes | Tracking area code.  |
+| nci     | number | Yes | 5G network cell ID.|
+| mcc     | string | Yes | Mobile country code.    |
+| mnc     | string | Yes | Mobile network code.      |
 
 ## TdscdmaCellInformation<sup>8+</sup>
 
@@ -2018,14 +2018,14 @@ Defines the TD-SCDMA cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name  | Type  | Description        |
-| ------ | ------ | ------------ |
-| lac    | number | Location area code.|
-| cellId | number | Cell ID.    |
-| cpid   | number | Cell parameter ID.|
-| uarfcn | number | Absolute radio frequency number.|
-| mcc    | string | Mobile country code.|
-| mnc    | string | Mobile network code.  |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| lac    | number | Yes | Location area code.|
+| cellId | number | Yes | Cell ID.    |
+| cpid   | number | Yes | Cell parameter ID.|
+| uarfcn | number | Yes | Absolute radio frequency number.|
+| mcc    | string | Yes | Mobile country code.|
+| mnc    | string | Yes | Mobile network code.  |
 
 ## WcdmaCellInformation<sup>8+</sup>
 
@@ -2035,14 +2035,14 @@ Defines the WCDMA cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name  | Type  | Description        |
-| ------ | ------ | ------------ |
-| lac    | number | Location area code.|
-| cellId | number | Cell ID.    |
-| psc    | number | Primary scrambling code.    |
-| uarfcn | number | Absolute radio frequency number.|
-| mcc    | string | Mobile country code.|
-| mnc    | string | Mobile network code.  |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| lac    | number | Yes | Location area code.|
+| cellId | number | Yes | Cell ID.    |
+| psc    | number | Yes | Primary scrambling code.    |
+| uarfcn | number | Yes | Absolute radio frequency number.|
+| mcc    | string | Yes | Mobile country code.|
+| mnc    | string | Yes | Mobile network code.  |
 
 ## NrOptionMode<sup>8+</sup>
 
@@ -2067,10 +2067,10 @@ Defines the network search result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name                  | Type                                             | Description          |
-| ---------------------- | ------------------------------------------------- | -------------- |
-| isNetworkSearchSuccess | boolean                                           | Successful network search.|
-| networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> | Network search result.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| isNetworkSearchSuccess | boolean                                           | Yes | Successful network search.|
+| networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> | Yes | Network search result.|
 
 ## NetworkInformation
 
@@ -2080,12 +2080,12 @@ Defines the network information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name           | Type                                     | Description          |
-| --------------- | ----------------------------------------- | -------------- |
-| operatorName    | string                                    | Carrier name.|
-| operatorNumeric | string                                    | Carrier number.  |
-| state           | [NetworkInformation](#networkinformationstate) | Network information status.|
-| radioTech       | string                                    | Radio technology.  |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| operatorName    | string                                    | Yes | Carrier name.|
+| operatorNumeric | string                                    | Yes | Carrier number.  |
+| state           | [NetworkInformation](#networkinformationstate) | Yes | Network information status.|
+| radioTech       | string                                    | Yes | Radio technology.  |
 
 ## NetworkInformationState
 
@@ -2110,12 +2110,12 @@ Defines the network selection mode.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name              | Type                                         | Description                                  |
-| ------------------ | --------------------------------------------- | -------------------------------------- |
-| slotId             | number                                        | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| selectMode         | [NetworkSelectionMode](#networkselectionmode) | Network selection mode.                       |
-| networkInformation | [NetworkInformation](#networkinformation)    | Network information.                           |
-| resumeSelection    | boolean                                       | Whether to resume selection.                            |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| slotId             | number                                        | Yes | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| selectMode         | [NetworkSelectionMode](#networkselectionmode) | Yes | Network selection mode.                       |
+| networkInformation | [NetworkInformation](#networkinformation)    | Yes | Network information.                           |
+| resumeSelection    | boolean                                       | Yes | Whether to resume selection.                  |
 
 ## ImsRegState<sup>9+</sup>
 
@@ -2153,10 +2153,10 @@ Defines the IMS registration information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name       | Type                        | Description         |
-| ----------- | ---------------------------- | ------------- |
-| imsRegState | [ImsRegState](#imsregstate9) | IMS registration state.|
-| imsRegTech  | [ImsRegTech](#imsregtech9)   | IMS registration technology.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| imsRegState | [ImsRegState](#imsregstate9) | Yes | IMS registration state.|
+| imsRegTech  | [ImsRegTech](#imsregtech9)   | Yes | IMS registration technology.|
 
 ## ImsServiceType<sup>9+</sup>
 

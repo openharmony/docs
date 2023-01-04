@@ -2847,10 +2847,10 @@ Defines the lock status response.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name           | Type  | Description              |
-| --------------- | ------ | ------------------ |
-| result          | number | Operation result.    |
-| remain?: number | number | Remaining attempts (can be null).|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| result          | number | Yes | Operation result.    |
+| remain?: number | number | Yes | Remaining attempts (can be null).|
 
 ## LockInfo<sup>8+</sup>
 
@@ -2860,11 +2860,11 @@ Defines the lock information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name    | Type                    | Description  |
-| -------- | ------------------------ | ------ |
-| lockType | [LockType](#locktype8)   | Lock type.|
-| password | string                   | Password.  |
-| state    | [LockState](#lockstate8) | Lock state.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| lockType | [LockType](#locktype8)   | Yes | Lock type.|
+| password | string                   | Yes | Password.  |
+| state    | [LockState](#lockstate8) | Yes | Lock state.|
 
 ## PersoLockInfo<sup>8+</sup>
 
@@ -2874,10 +2874,10 @@ Defines the personalized lock information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name    | Type                            | Description        |
-| -------- | -------------------------------- | ------------ |
-| lockType | [PersoLockType](#persolocktype8) | Personalized lock type.|
-| password | string                           | Password.        |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| lockType | [PersoLockType](#persolocktype8) | Yes | Personalized lock type.|
+| password | string                           | Yes | Password.        |
 
 ## IccAccountInfo<sup>7+</sup>
 
@@ -2887,15 +2887,15 @@ Defines the ICC account information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name      | Type   | Description            |
-| ---------- | ------- | ---------------- |
-| simId      | number  | SIM card ID.         |
-| slotIndex  | number  | Card slot ID.          |
-| isEsim     | boolean | Whether the SIM card is an eSim card.|
-| isActive   | boolean | Whether the card is activated.    |
-| iccId      | string  | ICCID number.       |
-| showName   | string  | SIM card display name.   |
-| showNumber | string  | SIM card display number.   |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| simId      | number  | Yes | SIM card ID.         |
+| slotIndex  | number  | Yes | Card slot ID.          |
+| isEsim     | boolean | Yes | Whether the SIM card is an eSim card.|
+| isActive   | boolean | Yes | Whether the card is activated.    |
+| iccId      | string  | Yes | ICCID number.       |
+| showName   | string  | Yes | SIM card display name.   |
+| showNumber | string  | Yes | SIM card display number.   |
 
 ## OperatorConfig<sup>8+</sup>
 
@@ -2905,10 +2905,10 @@ Defines the carrier configuration.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name | Type  | Description|
-| ----- | ------ | ---- |
-| field | string | Field|
-| value | string | Value  |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| field | string | Yes | Field. |
+| value | string | Yes | Value. |
 
 ## DiallingNumbersInfo<sup>8+</sup>
 
@@ -2918,12 +2918,12 @@ Defines the contact number information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name        | Type  | Description    |
-| ------------ | ------ | -------- |
-| alphaTag     | string | Alpha tag.    |
-| number       | string | Contact number.    |
-| recordNumber | number | Record number.|
-| pin2         | string | PIN 2.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| alphaTag     | string | Yes | Alpha tag.    |
+| number       | string | Yes | Contact number.    |
+| recordNumber | number | Yes | Record number.|
+| pin2         | string | Yes | PIN 2.|
 
 ## ContactType<sup>8+</sup>
 
