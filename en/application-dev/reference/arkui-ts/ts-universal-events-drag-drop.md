@@ -8,13 +8,13 @@ A drag event is triggered when a component is dragged.
 
 ## Events
 
-| Name                                      | Bubbling Supported| Description                                    |
-| ---------------------------------------- | ---- | ---------------------------------------- |
-| onDragStart(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt;  [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo) | No   | Triggered when the component bound to the event is dragged for the first time.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>Return value: object being dragged, which is used for prompts displayed when the object is dragged.<br>A drag event can be triggered by a 150 ms long press. If the duration of a long-press gesture is set to less than or equal to 150 ms, the callback for the long-press gesture takes precedence. Otherwise, the callback for the drag event takes precedence.|
-| onDragEnter(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No   | Triggered when the dragged item enters a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when the **onDrop** event is listened to.|
-| onDragMove(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No   | Triggered when the dragged item moves in a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when the **onDrop** event is listened to.|
-| onDragLeave(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No   | Triggered when the dragged item leaves a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when the **onDrop** event is listened to.|
-| onDrop(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No   | Triggered when the dragged item is dropped on a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.|
+| Name                                                        | Bubbling Supported| Description                                                    |
+| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| onDragStart(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt;  [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo)) | No      | Triggered when the component bound to the event is dragged for the first time.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>Return value: object being dragged, which is used for prompts displayed when the object is dragged.<br>A drag event can be triggered by a 150 ms long press. If the duration of a long-press gesture is set to less than or equal to 150 ms, the callback for the long-press gesture takes precedence. Otherwise, the callback for the drag event takes precedence.|
+| onDragEnter(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item enters a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when the **onDrop** event is listened to.|
+| onDragMove(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item moves in a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when the **onDrop** event is listened to.|
+| onDragLeave(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item leaves a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
+| onDrop(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item is dropped on a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.|
 
 ## DragItemInfo
 
@@ -27,9 +27,9 @@ A drag event is triggered when a component is dragged.
 
 ## extraParams
 
-Provides additional information required for dragging an item.
+  Provides additional information required for dragging an item.
 
-**extraParams** is a string converted from a JSON object. You can obtain the following attributes using the JSON object converted from **Json.parse**.
+  **extraParams** is a string converted from a JSON object. You can obtain the following attributes using the JSON object converted from **Json.parse**.
 
 | Name         | Type  | Description                                      |
 | ------------- | ------ | ---------------------------------------- |
@@ -47,15 +47,27 @@ Provides additional information required for dragging an item.
 
 ```ts
 // xxx.ets
+@Extend(Text) function textStyle () {
+  .width('25%')
+  .height(35)
+  .fontSize(16)
+  .textAlign(TextAlign.Center)
+  .backgroundColor(0xAFEEEE)
+}
+
 @Entry
 @Component
 struct DragExample {
   @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six']
   @State text: string = ''
-  @State bool: boolean = false
+  @State bool: boolean = true
+  @State eventType: string = ''
   @State appleVisible: Visibility = Visibility.Visible
   @State orangeVisible: Visibility = Visibility.Visible
   @State bananaVisible: Visibility = Visibility.Visible
+  private dragList: string[] = ['apple', 'orange', 'banana']
+  @State fruitVisible: Visibility[] = [Visibility.Visible, Visibility.Visible, Visibility.Visible]
+  @State index: number = 0
 
   // Customize the content displayed during dragging.
   @Builder pixelMapBuilder() {
@@ -79,46 +91,29 @@ struct DragExample {
         .textAlign(TextAlign.Start)
         .margin(5)
       Row({ space: 15 }) {
-        Text('apple')
-          .width('25%')
-          .height(35)
-          .fontSize(16)
-          .textAlign(TextAlign.Center)
-          .backgroundColor(0xAFEEEE)
-          .visibility(this.appleVisible)
-          .onDragStart(() => {
-            this.bool = true
-            this.text = 'apple'
-            this.appleVisible = Visibility.None
-            return this.pixelMapBuilder
-          })
-        Text('orange')
-          .width('25%')
-          .height(35)
-          .fontSize(16)
-          .textAlign(TextAlign.Center)
-          .backgroundColor(0xAFEEEE)
-          .visibility(this.orangeVisible)
-          .onDragStart(() => {
-            this.bool = true
-            this.text = 'orange'
-            this.orangeVisible = Visibility.None
-            return this.pixelMapBuilder
-          })
-        Text('banana')
-          .width('25%')
-          .height(35)
-          .fontSize(16)
-          .textAlign(TextAlign.Center)
-          .backgroundColor(0xAFEEEE)
-          .visibility(this.bananaVisible)
-          .onDragStart((event: DragEvent, extraParams: string) => {
-            console.log('Text onDragStart, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY())
-            this.bool = true
-            this.text = 'banana'
-            this.bananaVisible = Visibility.None
-            return this.pixelMapBuilder
-          })
+        ForEach(this.dragList, (item, index) => {
+          Text(item)
+            .textStyle()
+            .visibility(this.fruitVisible[index])
+            .onDragStart(() => {
+              this.bool = true
+              this.text = item
+              this.fruitVisible[index] = Visibility.None
+              return this.pixelMapBuilder
+            })
+            .onTouch((event: TouchEvent) => {
+              if (event.type === TouchType.Down) {
+                this.eventType = 'Down'
+                this.index = index
+              }
+              if (event.type === TouchType.Up) {
+                this.eventType = 'Up'
+                if (this.bool) {
+                  this.fruitVisible[index] = Visibility.Visible
+                }
+              }
+            })
+        })
       }.padding({ top: 10, bottom: 10 }).margin(10)
 
       Text('This is a List element')
@@ -156,12 +151,13 @@ struct DragExample {
         console.log('List onDragLeave, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY())
       })
       .onDrop((event: DragEvent, extraParams: string) => {
-        var jsonString = JSON.parse(extraParams);
+        let jsonString = JSON.parse(extraParams);
         if (this.bool) {
           // Insert an element using the splice method.
           this.numbers.splice(jsonString.insertIndex, 0, this.text)
           this.bool = false
         }
+        this.fruitVisible[this.index] = Visibility.None
       })
     }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })
   }
