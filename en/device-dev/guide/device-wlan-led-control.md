@@ -16,7 +16,7 @@ Based on the Hi3861 platform, the OpenHarmony WLAN module provides abundant peri
     #define LED_TEST_GPIO 9
     ```
 
-    >![](../public_sys-resources/icon-note.gif) **NOTE:**
+    >![](../public_sys-resources/icon-note.gif) **NOTE**
     >
     >For details about the schematic diagram of the development board, contact the Hi3861 customer service personnel.
 
