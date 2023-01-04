@@ -585,7 +585,7 @@ let ret = usb.usbFunctionsToString(funcs);
 
 ## usb.setCurrentFunctions
 
-setCurrentFunctions(funcs: FunctionType): Promise\<boolean\>
+setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 
 在设备模式下，设置当前的USB功能列表。
 
@@ -601,15 +601,19 @@ setCurrentFunctions(funcs: FunctionType): Promise\<boolean\>
 
 **返回值：**
 
-| 类型               | 说明                                                         |
-| ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise对象，返回设置成功与否的结果。true表示设置成功，false表示设置失败。 |
+| 类型            | 说明          |
+| --------------- | ------------- |
+| Promise\<void\> | Promise对象。 |
 
 **示例：**
 
 ```js
 let funcs = HDC;
-let ret = usb.setCurrentFunctions(funcs);
+usb.setCurrentFunctions(funcs).then(() => {
+    console.info('usb setCurrentFunctions successfully.');
+}).catch(err => {
+    console.error('usb setCurrentFunctions failed: ' + err.code + ' message: ' + err.message);
+});
 ```
 
 ## usb.getCurrentFunctions
@@ -686,7 +690,7 @@ let ret = usb.getSupportedModes(0);
 
 ## usb.setPortRoles
 
-setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<boolean\>
+setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<void\>
 
 设置指定的端口支持的角色模式，包含充电角色、数据传输角色。
 
@@ -704,14 +708,19 @@ setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): 
 
 **返回值：**
 
-| 类型               | 说明                                                         |
-| ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise对象，返回设置成功与否的结果。true表示设置成功，false表示设置失败。 |
+| 类型            | 说明          |
+| --------------- | ------------- |
+| Promise\<void\> | Promise对象。 |
 
 **示例：**
 
 ```js
-let ret = usb.getSupportedModes(0);
+let portId = 1;
+usb.usb.setPortRoles(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
+    console.info('usb setPortRoles successfully.');
+}).catch(err => {
+    console.error('usb setPortRoles failed: ' + err.code + ' message: ' + err.message);
+});
 ```
 
 ## USBEndpoint
