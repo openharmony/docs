@@ -1734,8 +1734,8 @@ Enables listening for **imsRegStateChange** events for the SIM card in the speci
 **Example**
 
 ```js
-radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1763,8 +1763,8 @@ Disables listening for **imsRegStateChange** events for the SIM card in the spec
 **Example**
 
 ```js
-radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 

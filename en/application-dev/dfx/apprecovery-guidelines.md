@@ -17,7 +17,7 @@ The application recovery APIs are provided by the **appRecovery** module, which 
 
 | API                                                    | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMode?: SaveModeFlag) : void; | Enables the application recovery function.                                          |
+| enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMode?: SaveModeFlag) : void; | Enables the application recovery function.                               |
 | saveAppState(): boolean;                                     | Saves the ability status of an application.                           |
 | restartApp(): void;                                          | Restarts the current process. If there is saved ability status, it will be passed to the **want** parameter's **wantParam** attribute of the **onCreate** lifecycle callback of the ability.|
 
