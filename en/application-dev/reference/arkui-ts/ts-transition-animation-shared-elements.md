@@ -12,12 +12,12 @@ Shared element transition can be used for transition between pages, for example,
 
 | Name            | Parameters                                                        | Description                                                    |
 | ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| sharedTransition | id: string,<br>{<br>duration?: number,<br>curve?: Curve \| string,<br>delay?: number,<br>motionPath?: <br>{<br>path: string,<br>form?: number,<br>to?: number,<br>rotatable?: boolean<br>},<br>zIndex?: number,<br>type?: [SharedTransitionEffectType](ts-appendix-enums.md#sharedtransitioneffecttype)<br>} | Transition of the shared element. If the same **id** value is configured for a component on the two pages, this component is considered as a shared element of the pages. If the **id** value is an empty string, no transition will be applied to the component.<br>- **id**: component ID.<br>- **duration**: Animation duration, in ms. The default duration is 1000 ms.<br>- **curve**: animation curve. The default curve is **Linear**. For details about the valid values, see [Curve](ts-animatorproperty.md).<br>- **delay**: Delay of animation playback, in ms. By default, the playback is not delayed.<br>- **motionPath**: motion path information.<br>- **path**: path.<br>- **from**: start value.<br>- **to**: end value.<br>- **rotatable**: whether to rotate.<br>- **zIndex**: z-axis.<br>- **type**: animation type.|
+| sharedTransition | id: string,<br>{<br> duration?: number,<br> curve?: Curve \| string,<br> delay?: number,<br> motionPath?: <br>{<br> path: string,<br> form?: number,<br> to?: number,<br> rotatable?: boolean<br>},<br>zIndex?: number,<br>type?: [SharedTransitionEffectType](ts-appendix-enums.md#sharedtransitioneffecttype)<br>} | Transition of the shared element. If the same **id** value is configured for a component on the two pages, this component is considered as a shared element of the pages. If the **id** value is an empty string, no transition will be applied to the component.<br>- **id**: component ID.<br>- **duration**: animation duration, in ms. The default duration is 1000 ms.<br>- **curve**: animation curve. The default curve is **Linear**. For details about the valid values, see [Curve](ts-animatorproperty.md).<br>- **delay**: Delay of animation playback, in ms. By default, the playback is not delayed.<br>- **motionPath**: motion path information. For details, see [Motion Path Animation](ts-motion-path-animation.md).<br>- **path**: path.<br>- **from**: start value.<br>- **to**: end value.<br>- **rotatable**: whether to rotate.<br>- **zIndex**: z-axis.<br>- **type**: animation type.|
 
 
 ## Example
 
-The example implements the custom transition of a shared image during redirection from one page to another, which is triggered by a click on the image.
+  The example implements the custom transition of a shared image during redirection from one page to another, which is triggered by a click on the image.
 
 ```ts
 // xxx.ets
@@ -27,20 +27,14 @@ struct SharedTransitionExample {
   @State active: boolean = false
 
   build() {
-    List() {
-      ListItem() {
-        Row() {
-          Navigator({ target: 'pages/common/Animation/transAnimation/PageB', type: NavigationType.Push }) {
-            Image($r('app.media.ic_health_heart')).width(50).height(50)
-              .sharedTransition('sharedImage1', { duration: 800, curve: Curve.Linear, delay: 100 })
-          }.padding({ left: 10 })
-          .onClick(() => {
-            this.active = true
-          })
-
-          Text('SharedTransition').width(80).height(80).textAlign(TextAlign.Center)
-        }
-      }
+    Column() {
+      Navigator({ target: 'pages/PageB', type: NavigationType.Push }) {
+        Image($r('app.media.ic_health_heart')).width(50).height(50)
+          .sharedTransition('sharedImage', { duration: 800, curve: Curve.Linear, delay: 100 })
+      }.padding({ left: 20, top: 20 })
+      .onClick(() => {
+        this.active = true
+      })
     }
   }
 }
@@ -50,14 +44,13 @@ struct SharedTransitionExample {
 // PageB.ets
 @Entry
 @Component
-struct BExample {
-
+struct pageBExample {
   build() {
     Stack() {
-      Image($r('app.media.ic_health_heart')).width(150).height(150).sharedTransition('sharedImage1')
-    }.width('100%').height(400)
+      Image($r('app.media.ic_health_heart')).width(150).height(150).sharedTransition('sharedImage')
+    }.width('100%').height('100%')
   }
 }
 ```
 
-![en-us_image_0000001211898494](figures/en-us_image_0000001211898494.gif)
+![shared](figures/shared.gif)

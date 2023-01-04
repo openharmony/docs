@@ -7,10 +7,12 @@ You can create explicit animation with your custom settings.
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-| API                                                    | Description                                                    |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| animateTo(value: [AnimateParam](#animateparam), event: ()=&gt; void) : void | Provides a transition animation when the status changes due to the closure code.<br>**event** specifies the closure function that displays the dynamic effect. The system automatically inserts the transition animation if the status changes in the closure function.|
+animateTo(value: AnimateParam, event: () => void): void
 
+| Name            | Type       |       Mandatory    |        Description       |
+| ---------------- | ------------ | -------------------- | -------------------- |
+| value | [AnimateParam](#animateparam)| Yes| Animation settings.|
+| event | () => void | Yes| Closure function that displays the dynamic effect. The system automatically inserts the transition animation if the status changes in the closure function.|
 
 ## AnimateParam
 
@@ -25,7 +27,6 @@ You can create explicit animation with your custom settings.
 | onFinish   | () =&gt; void   | Callback invoked when the animation playback is complete.|
 
 
-
 ## Example
 
 ```ts
@@ -33,26 +34,24 @@ You can create explicit animation with your custom settings.
 @Entry
 @Component
 struct AnimateToExample {
-  @State widthSize: number = 200
+  @State widthSize: number = 250
   @State heightSize: number = 100
+  @State rotateAngle: number = 0
   private flag: boolean = true
 
   build() {
     Column() {
-      Button('click me')
+      Button('change width and height')
         .width(this.widthSize)
         .height(this.heightSize)
-        .backgroundColor(0x317aff)
-        .onClick((event: ClickEvent) => {
-          // Animation configuration for the width and height attributes of the <Button> component
+        .margin(30)
+        .onClick(() => {
           if (this.flag) {
             animateTo({
-              duration: 1000, // Animation duration
-              tempo: 0.5, // Playback speed
-              curve: Curve.EaseInOut, // Animation curve
-              delay: 200, // Animation delay
-              iterations: 1, // Number of playback times
-              playMode: PlayMode.Normal // Animation playback mode
+              duration: 2000,
+              curve: Curve.EaseOut,
+              iterations: 3,
+              playMode: PlayMode.Normal,
               onFinish: () => {
                 console.info('play end')
               }
@@ -61,25 +60,39 @@ struct AnimateToExample {
               this.heightSize = 50
             })
           } else {
-            animateTo({
-              duration: 200, // Animation duration
-              curve: Curve.Ease, // Animated curve
-              delay: 200, // Animation delay
-              iterations: 1, // Number of playback times
-              playMode: PlayMode.Normal // Animation playback mode
-              onFinish: () => {
-                console.info('play end')
-              }
-            }, () => {
-              this.widthSize = 200
+            animateTo({}, () => {
+              this.widthSize = 250
               this.heightSize = 100
             })
           }
           this.flag = !this.flag
+        })
+      Button('change rotate angle')
+        .margin(50)
+        .rotate({ x: 0, y: 0, z: 1, angle: this.rotateAngle })
+        .onClick(() => {
+          animateTo({
+            duration: 1200,
+            curve: Curve.Friction,
+            delay: 500,
+            iterations: -1, // The value -1 indicates that the animation is played for an unlimited number of times.
+            playMode: PlayMode.AlternateReverse,
+            onFinish: () => {
+              console.info('play end')
+            }
+          }, () => {
+            this.rotateAngle = 90
+          })
         })
     }.width('100%').margin({ top: 5 })
   }
 }
 ```
 
-![en-us_image_0000001256978345](figures/en-us_image_0000001256978345.gif)
+The figure below shows two buttons in their initial state.
+
+![animation](figures/animation.PNG)
+
+Clicking the first button plays the animation of resizing the button, and clicking the second button plays the animation of rotating the button clockwise by 90 degrees. The figure below shows the two buttons when the animations have finished.
+
+![animation1](figures/animation1.PNG)

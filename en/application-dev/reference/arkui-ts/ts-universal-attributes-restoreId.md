@@ -10,16 +10,16 @@ The **restoreId** attribute identifies a component in distributed migration scen
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| restoreId | number | ID of the component used for matching during distributed migration. This ID must be unique within an application.|
+| restoreId | number | ID of the component used for device matching during distributed migration. This ID must be unique within an application.|
 
 ## Components with Distributed Migration Support
 
-| Name| Initial Version| Migration Status|
+| Name| Initial API Version| Migration Status|
 | -------- | -------- | -------- |
-| List | 8 | The sequence number of the item displayed on the top of the current device will be migrated to the remote device. After the migration, the item is completely displayed on the top of the remote device.|
-| Grid | 9 | The sequence number of the item displayed on the top of the current device will be migrated to the remote device. After the migration, the item is completely displayed on the top of the remote device. The position of the scrollbar cannot be migrated.|
-| Scroll | 9 | The absolute distance with the top edge for scrolling will be migrated. Due to layout inconsistency resulting from differences in the display specifications between devices, the migration effect may be affected.|
-| TextArea | 9 | The text content and the position of the caret will be migrated.|
+| List      | 8 | The index of the list item displayed at the top of the list on the current device will be migrated to the remote device. After the migration, the list item that matches the index is displayed at the top of the list on the remote device.|
+| Grid      | 9 | The index of the grid item displayed at the top of the grid on the current device will be migrated to the remote device. After the migration, the grid item that matches the index is displayed at the top of the grid on the remote device. The position of the scrollbar cannot be migrated.|
+| Scroll    | 9 | The absolute distance with the top edge for scrolling will be migrated. Due to layout inconsistency resulting from differences in the display specifications between devices, the migration effect may be affected.|
+| TextArea  | 9 | The text content and the position of the caret will be migrated.|
 | TextInput | 9 | The text content and the position of the caret will be migrated.|
 
 ## Example
@@ -39,7 +39,6 @@ struct RestoreIdExample {
               .width('100%')
               .height(100)
               .fontSize(16)
-              .fontColor(0xFFFFFF)
               .textAlign(TextAlign.Center)
               .borderRadius(10)
               .backgroundColor(Color.Pink)
