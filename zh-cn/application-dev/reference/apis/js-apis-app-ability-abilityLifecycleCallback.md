@@ -35,7 +35,7 @@ let abilityLifecycleCallback =  {
     onAbilityCreate(ability){
         console.log("AbilityLifecycleCallback onAbilityCreate.");  
     }
-}
+};
 ```
 
 ## AbilityLifecycleCallback.onWindowStageCreate
@@ -59,7 +59,7 @@ let abilityLifecycleCallback =  {
     onWindowStageCreate(ability, windowStage){
         console.log("AbilityLifecycleCallback onWindowStageCreate.");
     }
-}
+};
 ```
 
 ## AbilityLifecycleCallback.onWindowStageActive
@@ -83,7 +83,7 @@ let abilityLifecycleCallback =  {
     onWindowStageActive(ability, windowStage){
         console.log("AbilityLifecycleCallback onWindowStageActive.");
     }
-}
+};
 ```
 
 ## AbilityLifecycleCallback.onWindowStageInactive
@@ -107,7 +107,7 @@ let abilityLifecycleCallback =  {
     onWindowStageInactive(ability, windowStage){
         console.log("AbilityLifecycleCallback onWindowStageInactive.");
     }
-}
+};
 ```
 
 ## AbilityLifecycleCallback.onWindowStageDestroy
@@ -131,7 +131,7 @@ let abilityLifecycleCallback =  {
     onWindowStageDestroy(ability, windowStage){
         console.log("AbilityLifecycleCallback onWindowStageDestroy.");
     }
-}
+};
 ```
 
 ## AbilityLifecycleCallback.onAbilityDestroy
@@ -154,7 +154,7 @@ let abilityLifecycleCallback =  {
     onAbilityDestroy(ability){
         console.log("AbilityLifecycleCallback onAbilityDestroy.");
     }
-}
+};
 ```
 
 ## AbilityLifecycleCallback.onAbilityForeground
@@ -177,7 +177,7 @@ let abilityLifecycleCallback =  {
     onAbilityForeground(ability){
         console.log("AbilityLifecycleCallback onAbilityForeground.");
     }
-}
+};
 ```
 
 ## AbilityLifecycleCallback.onAbilityBackground
@@ -200,7 +200,7 @@ let abilityLifecycleCallback =  {
     onAbilityBackground(ability){
         console.log("AbilityLifecycleCallback onAbilityBackground.");
     }
-}
+};
 ```
 
 ## AbilityLifecycleCallback.onAbilityContinue
@@ -223,8 +223,9 @@ let abilityLifecycleCallback =  {
     onAbilityContinue(ability){
         console.log("AbilityLifecycleCallback onAbilityContinue.");
     }
-}
+};
 ```
+
 ## AbilityLifecycleCallback使用
 
 **示例：**
@@ -264,7 +265,7 @@ let abilityLifecycleCallback = {
     onAbilityContinue(ability){
         console.log("AbilityLifecycleCallback onAbilityContinue.");
     }
-}
+};
 
 export default class MyFirstAbility extends UIAbility {
     onCreate() {
@@ -284,7 +285,7 @@ export default class MyFirstAbility extends UIAbility {
 
 MySecondAbility.ts
 ```ts
-import UIAbility from "ohos.app.ability.UIAbility"
+import UIAbility from "ohos.app.ability.UIAbility";
 
 export default class MySecondAbility extends UIAbility {
     onDestroy() {

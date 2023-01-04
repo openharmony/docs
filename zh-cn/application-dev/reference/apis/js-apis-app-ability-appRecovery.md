@@ -8,7 +8,7 @@ appRecovery模块提供了应用在故障状态下的恢复能力。
 
 ## 导入模块
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery'
+import appRecovery from '@ohos.app.ability.appRecovery';
 ```
 
 
@@ -67,12 +67,17 @@ enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion
 **示例：**
     
 ```ts
+import appRecovery from '@ohos.app.ability.appRecovery';
 import AbilityStage from '@ohos.app.ability.AbilityStage';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class MyAbility extends UIAbility {
     onCreate() {
-        appRecovery.enableAppRecovery(RestartFlag::ALWAYS_RESTART, SaveOccasionFlag::SAVE_WHEN_ERROR, SaveModeFlag::SAVE_WITH_FILE);
+        appRecovery.enableAppRecovery(
+            appRecovery.RestartFlag::ALWAYS_RESTART,
+            appRecovery.SaveOccasionFlag::SAVE_WHEN_ERROR,
+            appRecovery.SaveModeFlag::SAVE_WITH_FILE
+        );
     }
 }
 ```
@@ -89,6 +94,7 @@ restartApp(): void;
 **示例：**
     
 ```ts
+import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
@@ -96,6 +102,12 @@ let observer = {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
         appRecovery.restartApp();
     }
+};
+
+try {
+    errorManager.on("error", observer);
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
 }
 ```
 
@@ -116,6 +128,7 @@ saveAppState(): boolean;
 **示例：**
     
 ```ts
+import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
@@ -123,5 +136,11 @@ let observer = {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
         appRecovery.saveAppState();
     }
+};
+
+try {
+    errorManager.on("error", observer);
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
 }
 ```

@@ -10,7 +10,7 @@ AbilityManager模块提供获取、新增、修改Ability相关信息和状态�
 ## 导入模块
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager'
+import abilityManager from '@ohos.app.ability.abilityManager';
 ```
 
 ## AbilityState
@@ -57,6 +57,8 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+
 const config = {
   language: 'Zh-Hans',                 // 简体中文
   colorMode: COLOR_MODE_LIGHT,         // 浅色模式
@@ -64,7 +66,7 @@ const config = {
   screenDensity: SCREEN_DENSITY_SDPI,  // 屏幕分辨率为"sdpi"
   displayId: 1,                        // 应用在Id为1的物理屏上显示
   hasPointerDevice: true,              // 指针类型设备已连接
-}
+};
 
 try {
     abilityManager.updateConfiguration(config, (err) => {
@@ -113,6 +115,8 @@ updateConfiguration(config: Configuration): Promise\<void>
 **示例**：
 
 ```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+
 const config = {
   language: 'Zh-Hans',                 // 简体中文
   colorMode: COLOR_MODE_LIGHT,         // 浅色模式
@@ -120,7 +124,7 @@ const config = {
   screenDensity: SCREEN_DENSITY_SDPI,  // 屏幕分辨率为"sdpi"
   displayId: 1,                        // 应用在Id为1的物理屏上显示
   hasPointerDevice: true,              // 指针类型设备已连接
-}
+};
 
 try {
     abilityManager.updateConfiguration(config).then(() => {
@@ -150,9 +154,19 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 | --------- | ---------------------------------------- | ---- | -------------- |
 | callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | 是    | 以回调方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。      |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+
 try {
     abilityManager.getAbilityRunningInfos((err, data) => {
         if (err.code !== 0) {
@@ -194,6 +208,8 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 **示例**：
 
 ```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+
 try {
     abilityManager.getAbilityRunningInfos().then((data) => {
         console.log("getAbilityRunningInfos success, data: " + JSON.stringify(data))
@@ -234,6 +250,8 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 **示例**：
 
 ```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+
 let upperLimit = 10;
 
 try {
@@ -283,6 +301,8 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 **示例**：
 
 ```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+
 let upperLimit = 10;
 
 try {
@@ -322,6 +342,8 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 **示例**：
 
 ```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+
 abilityManager.getTopAbility((err, data) => { 
     if (err.code !== 0) {
         console.log("getTopAbility fail, err: " + JSON.stringify(err));
@@ -356,6 +378,8 @@ getTopAbility(): Promise\<ElementName>;
 **示例**：
 
 ```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+
 abilityManager.getTopAbility().then((data) => {
     console.log("getTopAbility success, data: " + JSON.stringify(data));
 }).catch((err) => {

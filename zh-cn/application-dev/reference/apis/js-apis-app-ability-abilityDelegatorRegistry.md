@@ -46,13 +46,12 @@ getAbilityDelegator(): AbilityDelegator
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-var abilityDelegator;
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 let want = {
     bundleName: "com.ohos.example",
     abilityName: "MainAbility"
-}
+};
 abilityDelegator.startAbility(want, (err) => {
     if (err.code !== 0) {
         console.log("Success start ability.");

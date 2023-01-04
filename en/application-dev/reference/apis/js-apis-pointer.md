@@ -142,7 +142,7 @@ Sets the mouse movement speed. This API uses an asynchronous callback to return 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | speed    | number                    | Yes   | Mouse movement speed. The value ranges from **1** to **11**. The default value is **5**.  |
-| callback | AysncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -349,7 +349,7 @@ Sets the mouse pointer style. This API uses an asynchronous callback to return t
 | ------------ | ------------------------------ | ---- | ----------------------------------- |
 | windowId     | number                         | Yes   | Window ID.                         |
 | pointerStyle | [PointerStyle](#pointerstyle9) | Yes   | Mouse pointer style ID.                            |
-| callback     | AysncCallback&lt;void&gt;      | Yes   | Callback used to return the result.|
+| callback     | AsyncCallback&lt;void&gt;      | Yes   | Callback used to return the result.|
 
 **Example**
 

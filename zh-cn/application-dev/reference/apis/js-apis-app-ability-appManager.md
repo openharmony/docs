@@ -37,6 +37,8 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.isRunningInStabilityTest((err, flag) => {
     if (err.code !== 0) {
         console.log("isRunningInStabilityTest faile, err: " + JSON.stringify(err));
@@ -72,6 +74,8 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.isRunningInStabilityTest().then((flag) => {
     console.log("The result of isRunningInStabilityTest is:" + JSON.stringify(flag));
 }).catch((error) => {
@@ -105,6 +109,8 @@ isRamConstrainedDevice(): Promise\<boolean>;
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.isRamConstrainedDevice().then((data) => {
     console.log("The result of isRamConstrainedDevice is:" + JSON.stringify(data));
 }).catch((error) => {
@@ -137,6 +143,8 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.isRamConstrainedDevice((err, data) => {
     if (err.code !== 0) {
         console.log("isRamConstrainedDevice faile, err: " + JSON.stringify(err));
@@ -171,6 +179,8 @@ getAppMemorySize(): Promise\<number>;
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.getAppMemorySize().then((data) => {
     console.log("The size of app memory is:" + JSON.stringify(data));
 }).catch((error) => {
@@ -203,6 +213,8 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.getAppMemorySize((err, data) => {
     if (err.code !== 0) {
         console.log("getAppMemorySize faile, err: " + JSON.stringify(err));
@@ -241,6 +253,8 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.getProcessRunningInformation().then((data) => {
     console.log("The process running information is:" + JSON.stringify(data));
 }).catch((error) => {
@@ -277,6 +291,8 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.getProcessRunningInformation((err, data) => {
     if (err.code !== 0) {
         console.log("getProcessRunningInformation faile, err: " + JSON.stringify(err));
@@ -322,6 +338,8 @@ on(type: "applicationState", observer: ApplicationStateObserver): number;
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
@@ -384,6 +402,8 @@ on(type: "applicationState", observer: ApplicationStateObserver, bundleNameList:
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
@@ -441,7 +461,9 @@ off(type: "applicationState", observerId: number,  callback: AsyncCallback\<void
 **示例：**
 
 ```ts
-let observeId: int = 0;
+import appManager from '@ohos.app.ability.appManager';
+
+let observeId = 0;
 
 // 1.注册应用状态监听器
 let applicationStateObserver = {
@@ -520,7 +542,9 @@ off(type: "applicationState", observerId: number): Promise\<void>;
 **示例：**
 
 ```ts
-let observeId: int = 0;
+import appManager from '@ohos.app.ability.appManager';
+
+let observeId = 0;
 
 // 1.注册应用状态监听器
 let applicationStateObserver = {
@@ -589,6 +613,8 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 function getForegroundApplicationsCallback(err, data) {
     if (err.code !== 0) {
         console.log("getForegroundApplicationsCallback fail, err: " + JSON.stringify(err));
@@ -632,6 +658,8 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.getForegroundApplications().then((data) => {
     console.log("getForegroundApplications success, data: " + JSON.stringify(data));
 }).catch((err) => {
@@ -669,6 +697,8 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 let bundleName = 'bundleName';
 let accountId = 0;
 try {
@@ -714,6 +744,8 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 let bundleName = 'bundleName';
 let accountId = 0;
 function killProcessWithAccountCallback(err, data) {
@@ -756,6 +788,8 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 let bundleName = 'bundleName';
 function killProcessesByBundleNameCallback(err, data) {
     if (err.code !== 0) {
@@ -806,6 +840,8 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 let bundleName = 'bundleName';
 try {
     appManager.killProcessesByBundleName(bundleName).then((data) => {
@@ -848,6 +884,8 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 let bundleName = 'bundleName';
 function clearUpApplicationDataCallback(err, data) {
     if (err) {
@@ -898,6 +936,8 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 **示例：**
 
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 let bundleName = 'bundleName';
 try {
     appManager.clearUpApplicationData(bundleName).then((data) => {

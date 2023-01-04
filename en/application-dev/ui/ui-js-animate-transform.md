@@ -39,8 +39,8 @@ Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower p
   height: 428px;
   background-color: #860303;
   transform: rotate(45deg);
-  margin-top: 230px;
-  margin-left: 266px;
+  margin-top: 284px;
+  margin-left: 148px;
 }
 .content{
   margin-top: 500px;
@@ -53,7 +53,7 @@ Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower p
   width: 100px;
   height: 150px;
   background-color: #1033d9;
-  transform: translate(150px,-150px);
+  transform: translate(150px,-137px);
 }
 .window{
   z-index: 1;
@@ -86,7 +86,7 @@ Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower p
   height: 100px;
   border-radius: 15px;
   background-color: #9a7404;
-  transform: translate(200px,-830px) skewX(-5deg);
+  transform: translate(200px,-710px) skewX(-5deg);
 }
 ```
 
@@ -203,24 +203,26 @@ Set the rotation center around an element in different transform-origin position
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
-.rect{
+.rect {
   width: 100px;
   height: 100px;
   animation: rotate 3s infinite;
   margin-left: 100px;
 }
-.rect1{
+.rect1 {
   background-color: #f76160;
 }
-.rect2{
+.rect2 {
   background-color: #60f76f;
   /* Change the origin position.*/
   transform-origin: 10% 10px;
 }
-.rect3{
+.rect3 {
   background-color: #6081f7;
-  /* Change the origin position.*/
+  /*  Chhange the origin position.*/
   transform-origin: right bottom;
 }
 @keyframes rotate {
@@ -232,7 +234,7 @@ Set the rotation center around an element in different transform-origin position
   }
 }
 /* 3D sample style */
-.rotate3d{
+.rotate3d {
   margin-top: 150px;
   flex-direction: column;
   background-color:#F1F3F5;
@@ -243,36 +245,36 @@ Set the rotation center around an element in different transform-origin position
   border-radius: 300px;
   border: 1px solid #ec0808;
 }
-.content{
+.content {
   padding-top: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 /* Use react4 and react5 to shape eyes. */
-.rect4{
+.rect4 {
   width: 100px;
   height: 100px;
-  animation: rotate3d1 17ms infinite;
+  animation: rotate3d1 1000ms infinite;
   background: linear-gradient(#e6c4ec, #be15d9)
 }
-.rect5{
+.rect5 {
   width: 100px;
   height: 100px;
-  animation: rotate3d1 17ms infinite;
+  animation: rotate3d1 1000ms infinite;
   margin-left: 100px;
   background: linear-gradient(#e6c4ec, #be15d9)
 }
-.mouse{
+.mouse {
   margin-top: 150px;
   width: 200px;
   height: 100px;
   border-radius: 50px;
   border: 1px solid #e70303;
-  animation: rotate3d2 17ms infinite;
+  animation: rotate3d2 1000ms infinite;
 }
 /* Eye animation */
-@keyframes rotate3d1{
+@keyframes rotate3d1 {
   0% {
     transform:rotate3d(0,0,0,0deg)
   }
@@ -284,7 +286,7 @@ Set the rotation center around an element in different transform-origin position
   }
 }
 /* Mouth animation */
-@keyframes rotate3d2{
+@keyframes rotate3d2 {
   0% {
     transform:rotate3d(0,0,0,0deg)
   }
@@ -437,6 +439,8 @@ The matrix attribute defines a transformation matrix with six input parameters: 
   background-color:#F1F3F5;
   display: flex;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 .rect{
   width: 100px;
@@ -463,7 +467,7 @@ The matrix attribute defines a transformation matrix with six input parameters: 
 ![en-us_image_0000001267767853](figures/en-us_image_0000001267767853.gif)
 
 
-## Integrating transform Attributes
+## Integrating Transform Attributes
 
 You can set multiple transform attributes at the same time to apply different transformations to a component. The following example applies the scale, translate, and rotate attributes simultaneously.
 
@@ -481,6 +485,8 @@ You can set multiple transform attributes at the same time to apply different tr
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction:column;
   background-color:#F1F3F5;
   padding:50px;

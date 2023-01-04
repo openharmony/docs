@@ -1,6 +1,6 @@
 # Internationalization – Intl
 
-This module provides basic I18N capabilities, such as time and date formatting, number formatting, and string sorting, through the standard I18N APIs defined in ECMA 402.
+The Intl module provides basic I18N capabilities, such as time and date formatting, number formatting, and string sorting, through the standard I18N APIs defined in ECMA 402.
 
 The [I18N](js-apis-i18n.md) module provides enhanced I18N capabilities through supplementary APIs that are not defined in ECMA 402. It works with the Intl module to provide a complete suite of I18N capabilities.
 

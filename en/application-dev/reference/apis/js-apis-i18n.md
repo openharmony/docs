@@ -1,13 +1,10 @@
 # Internationalization – I18N
 
- This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402.
+The I18N module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402.
 The [Intl](js-apis-intl.md) module provides basic I18N capabilities through the standard I18N APIs defined in ECMA 402. It works with the I18N module to provide a complete suite of I18N capabilities.
 
 >  **NOTE**
->  - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
->  - This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402. For details about the basic I18N capabilities, see [Intl](js-apis-intl.md).
-
+>  The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -247,9 +244,9 @@ This is a system API.
 
 **Parameters**
 
-| Name     | Type    | Description   |
-| -------- | ------ | ----- |
-| language | string | Language ID.|
+| Name     | Type    | Mandatory | Description   |
+| -------- | ------ | ----- | ----- |
+| language | string | Yes | Language ID.|
 
 **Error codes**
 
@@ -313,9 +310,9 @@ This is a system API.
 
 **Parameters**
 
-| Name   | Type    | Description   |
-| ------ | ------ | ----- |
-| region | string | Region ID.|
+| Name     | Type    | Mandatory | Description   |
+| -------- | ------ | ----- | ----- |
+| region | string | Yes | Region ID.|
 
 **Error codes**
 
@@ -379,9 +376,9 @@ This is a system API.
 
 **Parameters**
 
-| Name   | Type    | Description             |
-| ------ | ------ | --------------- |
-| locale | string | System locale ID, for example, **zh-CN**.|
+| Name     | Type    | Mandatory | Description   |
+| -------- | ------ | ----- | ----- |
+| locale | string | Yes | System locale ID, for example, **zh-CN**.|
 
 **Error codes**
 
@@ -713,9 +710,9 @@ Checks whether the localized script for the specified language is displayed from
 
 **Parameters**
 
-| Name   | Type    | Description     |
-| ------ | ------ | ------- |
-| locale | string | Locale ID.|
+| Name     | Type    | Mandatory | Description   |
+| -------- | ------ | ----- | ----- |
+| locale | string | Yes | Locale ID.|
 
 **Return value**
 
@@ -905,7 +902,7 @@ Sets the start day of a week for this **Calendar** object.
 
 | Name  | Type    | Mandatory  | Description                   |
 | ----- | ------ | ---- | --------------------- |
-| value | number | No   | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
+| value | number | Yes   | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
 
 **Example**
   ```js
@@ -947,7 +944,7 @@ Sets the minimum number of days in the first week of a year.
 
 | Name  | Type    | Mandatory  | Description          |
 | ----- | ------ | ---- | ------------ |
-| value | number | No   | Minimum number of days in the first week of a year.|
+| value | number | Yes   | Minimum number of days in the first week of a year.|
 
 **Example**
   ```js
