@@ -92,11 +92,11 @@ save接口回调信息。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-| 名称 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| sessionId | string | 多设备协同的唯一标识。 |
-| version | number |已保存对象的版本。 |
-| deviceId | string | 存储数据的设备号，标识需要保存对象的设备。默认为"local"，标识本地设备；可自定义设置其他标识设备的字符串。 |
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| sessionId | string | 是 | 多设备协同的唯一标识。 |
+| version | number | 是 | 已保存对象的版本。 |
+| deviceId | string | 是 | 存储数据的设备号，标识需要保存对象的设备。默认为"local"，标识本地设备；可自定义设置其他标识设备的字符串。 |
 
 ## RevokeSaveSuccessResponse<sup>9+</sup>
 
@@ -104,9 +104,9 @@ revokeSave接口回调信息。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-| 名称 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| sessionId | string | 多设备协同的唯一标识。 |
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| sessionId | string | 是 | 多设备协同的唯一标识。 |
 
 ## DistributedObjectV9
 
