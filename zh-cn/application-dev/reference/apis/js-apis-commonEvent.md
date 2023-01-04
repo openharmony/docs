@@ -40,7 +40,7 @@ publish(event: string, callback: AsyncCallback<void>): void
 
 ```ts
 //发布公共事件回调
-function publishCallBack(err) {
+function publishCB(err) {
 	if (err.code) {
         console.error("publish failed " + JSON.stringify(err));
     } else {
@@ -49,7 +49,7 @@ function publishCallBack(err) {
 }
 
 //发布公共事件
-CommonEvent.publish("event", publishCallBack);
+CommonEvent.publish("event", publishCB);
 ```
 
 ## CommonEvent.publish
@@ -82,7 +82,7 @@ let options = {
 }
 
 //发布公共事件回调
-function publishCallBack(err) {
+function publishCB(err) {
 	if (err.code) {
         console.error("publish failed " + JSON.stringify(err));
     } else {
@@ -91,7 +91,7 @@ function publishCallBack(err) {
 }
 
 //发布公共事件
-CommonEvent.publish("event", options, publishCallBack);
+CommonEvent.publish("event", options, publishCB);
 ```
 
 ## CommonEvent.publishAsUser<sup>8+</sup>
@@ -118,7 +118,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback<void>): voi
 
 ```ts
 //发布公共事件回调
-function publishAsUserCallBack(err) {
+function publishCB(err) {
 	if (err.code) {
         console.error("publishAsUser failed " + JSON.stringify(err));
     } else {
@@ -130,7 +130,7 @@ function publishAsUserCallBack(err) {
 let userId = 100;
 
 //发布公共事件
-CommonEvent.publishAsUser("event", userId, publishAsUserCallBack);
+CommonEvent.publishAsUser("event", userId, publishCB);
 ```
 
 ## CommonEvent.publishAsUser<sup>8+</sup>
@@ -165,7 +165,7 @@ let options = {
 }
 
 //发布公共事件回调
-function publishAsUserCallBack(err) {
+function publishCB(err) {
 	if (err.code) {
         console.error("publishAsUser failed " + JSON.stringify(err));
     } else {
@@ -177,7 +177,7 @@ function publishAsUserCallBack(err) {
 let userId = 100;
 
 //发布公共事件
-CommonEvent.publishAsUser("event", userId, options, publishAsUserCallBack);
+CommonEvent.publishAsUser("event", userId, options, publishCB);
 ```
 
 ## CommonEvent.createSubscriber
@@ -209,7 +209,7 @@ let subscribeInfo = {
 };
 
 //创建订阅者回调
-function createSubscriberCallBack(err, commonEventSubscriber) {
+function createCB(err, commonEventSubscriber) {
     if (err.code) {
         console.error("createSubscriber failed " + JSON.stringify(err));
     } else {
@@ -219,7 +219,7 @@ function createSubscriberCallBack(err, commonEventSubscriber) {
 }
 
 //创建订阅者
-CommonEvent.createSubscriber(subscribeInfo, createSubscriberCallBack);
+CommonEvent.createSubscriber(subscribeInfo, createCB);
 ```
 
 ## CommonEvent.createSubscriber
@@ -290,7 +290,7 @@ let subscribeInfo = {
 };
 
 //订阅公共事件回调
-function subscribeCallBack(err, data) {
+function subscribeCB(err, data) {
     if (err.code) {
         console.error("subscribe failed " + JSON.stringify(err));
     } else {
@@ -299,19 +299,18 @@ function subscribeCallBack(err, data) {
 }
 
 //创建订阅者回调
-function createSubscriberCallBack(err, commonEventSubscriber) {
+function createCB(err, subscriber) {
     if (err.code) {
         console.error("createSubscriber failed " + JSON.stringify(err));
     } else {
         console.info("createSubscriber");
-        subscriber = commonEventSubscriber;
         //订阅公共事件
-        CommonEvent.subscribe(subscriber, subscribeCallBack);
+        CommonEvent.subscribe(subscriber, subscribeCB);
     }
 }
 
 //创建订阅者
-CommonEvent.createSubscriber(subscribeInfo, createSubscriberCallBack);
+CommonEvent.createSubscriber(subscribeInfo, createCB);
 ```
 
 ## CommonEvent.unsubscribe
@@ -342,7 +341,7 @@ let subscribeInfo = {
 };
 
 //订阅公共事件回调
-function subscribeCallBack(err, data) {
+function subscribeCB(err, data) {
     if (err.code) {
         console.info("subscribe failed " + JSON.stringify(err));
     } else {
@@ -351,19 +350,19 @@ function subscribeCallBack(err, data) {
 }
 
 //创建订阅者回调
-function createSubscriberCallBack(err, commonEventSubscriber) {
+function createCB(err, commonEventSubscriber) {
     if (err.code) {
         console.info("createSubscriber failed " + JSON.stringify(err));
     } else {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
         //订阅公共事件
-        CommonEvent.subscribe(subscriber, subscribeCallBack);
+        CommonEvent.subscribe(subscriber, subscribeCB);
     }
 }
 
 //取消订阅公共事件回调
-function unsubscribeCallBack(err) {
+function unsubscribeCB(err) {
 	if (err.code) {
         console.info("unsubscribe failed " + JSON.stringify(err));
     } else {
@@ -372,10 +371,10 @@ function unsubscribeCallBack(err) {
 }
 
 //创建订阅者
-CommonEvent.createSubscriber(subscribeInfo, createSubscriberCallBack);
+CommonEvent.createSubscriber(subscribeInfo, createCB);
 
 //取消订阅公共事件
-CommonEvent.unsubscribe(subscriber, unsubscribeCallBack);
+CommonEvent.unsubscribe(subscriber, unsubscribeCB);
 ```
 
 ## CommonEventSubscriber
@@ -402,14 +401,14 @@ getCode(callback: AsyncCallback<number>): void
 let subscriber;	//创建成功的订阅者对象
 
 //获取有序公共事件的结果代码回调
-function getCodeCallback(err, Code) {
+function getCodeCB(err, Code) {
     if (err.code) {
         console.error("getCode failed " + JSON.stringify(err));
     } else {
         console.info("getCode " + JSON.stringify(Code));
     }
 }
-subscriber.getCode(getCodeCallback);
+subscriber.getCode(getCodeCB);
 ```
 
 ### getCode
@@ -433,8 +432,8 @@ getCode(): Promise<number>
 ```ts
 let subscriber;	//创建成功的订阅者对象
 
-subscriber.getCode().then((Code) => {
-    console.info("getCode " + JSON.stringify(Code));
+subscriber.getCode().then((code) => {
+    console.info("getCode " + JSON.stringify(code));
 }).catch((err) => {
     console.error("getCode failed " + JSON.stringify(err));
 });
@@ -463,14 +462,14 @@ setCode(code: number, callback: AsyncCallback<void>): void
 let subscriber;	//创建成功的订阅者对象
 
 //设置有序公共事件的结果代码回调
-function setCodeCallback(err) {
+function setCodeCB(err) {
     if (err.code) {
         console.error("setCode failed " + JSON.stringify(err));
     } else {
         console.info("setCode");
     }
 }
-subscriber.setCode(1, setCodeCallback);
+subscriber.setCode(1, setCodeCB);
 ```
 
 ### setCode
@@ -529,15 +528,15 @@ getData(callback: AsyncCallback<string>): void
 let subscriber;	//创建成功的订阅者对象
 
 //获取有序公共事件的结果数据回调
-function getDataCallback(err, Data) {
+function getDataCB(err, data) {
     if (err.code) {
         console.error("getData failed " + JSON.stringify(err));
     } else {
-        console.info("getData " + JSON.stringify(Data));
+        console.info("getData " + JSON.stringify(data));
     }
 }
 
-subscriber.getData(getDataCallback);
+subscriber.getData(getDataCB);
 ```
 
 ### getData
@@ -561,8 +560,8 @@ getData(): Promise<string>
 ```ts
 let subscriber;	//创建成功的订阅者对象
 
-subscriber.getData().then((Data) => {
-    console.info("getData " + JSON.stringify(Data));
+subscriber.getData().then((data) => {
+    console.info("getData " + JSON.stringify(data));
 }).catch((err) => {
     console.error("getData failed " + JSON.stringify(err));
 });
@@ -591,14 +590,14 @@ setData(data: string, callback: AsyncCallback<void>): void
 let subscriber;	//创建成功的订阅者对象
 
 //设置有序公共事件的结果数据回调
-function setDataCallback(err) {
+function setDataCB(err) {
     if (err.code) {
         console.error("setData failed " + JSON.stringify(err));
     } else {
         console.info("setData");
     }
 }
-subscriber.setData("publish_data_changed", setDataCallback);
+subscriber.setData("publish_data_changed", setDataCB);
 ```
 
 ### setData
@@ -659,7 +658,7 @@ setCodeAndData(code: number, data: string, callback:AsyncCallback<void>): void
 let subscriber;	//创建成功的订阅者对象
 
 //设置有序公共事件的结果代码和结果数据回调
-function setCodeDataCallback(err) {
+function setCodeDataCB(err) {
     if (err.code) {
         console.error("setCodeAndData failed " + JSON.stringify(err));
     } else {
@@ -667,7 +666,7 @@ function setCodeDataCallback(err) {
     }
 }
 
-subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCallback);
+subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCB);
 ```
 
 ### setCodeAndData
@@ -729,14 +728,14 @@ isOrderedCommonEvent(callback: AsyncCallback<boolean>): void
 let subscriber;	//创建成功的订阅者对象
 
 //获取当前公共事件是否为有序事件的回调
-function isOrderedCallback(err, isOrdered) {
+function isOrderedCB(err, isOrdered) {
     if (err.code) {
         console.error("isOrderedCommonEvent failed " + JSON.stringify(err));
     } else {
         console.info("isOrdered " + JSON.stringify(isOrdered));
     }
 }
-subscriber.isOrderedCommonEvent(isOrderedCallback);
+subscriber.isOrderedCommonEvent(isOrderedCB);
 ```
 
 ### isOrderedCommonEvent
@@ -793,14 +792,14 @@ isStickyCommonEvent(callback: AsyncCallback<boolean>): void
 let subscriber;	//创建成功的订阅者对象
 
 //获取当前公共事件是否为粘性事件的回调
-function isStickyCallback(err, isSticky) {
+function isStickyCB(err, isSticky) {
     if (err.code) {
         console.error("isStickyCommonEvent failed " + JSON.stringify(err));
     } else {
         console.info("isSticky " + JSON.stringify(isSticky));
     }
 }
-subscriber.isStickyCommonEvent(isStickyCallback);
+subscriber.isStickyCommonEvent(isStickyCB);
 ```
 
 ### isStickyCommonEvent
@@ -855,7 +854,7 @@ abortCommonEvent(callback: AsyncCallback<void>): void
 let subscriber;	//创建成功的订阅者对象
 
 //取消当前有序公共事件的回调
-function abortCallback(err) {
+function abortCB(err) {
     if (err.code) {
         console.error("abortCommonEvent failed " + JSON.stringify(err));
     } else {
@@ -863,7 +862,7 @@ function abortCallback(err) {
     }
 }
 
-subscriber.abortCommonEvent(abortCallback);
+subscriber.abortCommonEvent(abortCB);
 ```
 
 ### abortCommonEvent
@@ -916,7 +915,7 @@ clearAbortCommonEvent(callback: AsyncCallback<void>): void
 let subscriber;	//创建成功的订阅者对象
 
 //清除当前公共事件取消状态的回调
-function clearAbortCallback(err) {
+function clearAbortCB(err) {
     if (err.code) {
         console.error("clearAbortCommonEvent failed " + JSON.stringify(err));
     } else {
@@ -924,7 +923,7 @@ function clearAbortCallback(err) {
     }
 }
 
-subscriber.clearAbortCommonEvent(clearAbortCallback);
+subscriber.clearAbortCommonEvent(clearAbortCB);
 ```
 
 ### clearAbortCommonEvent
@@ -977,15 +976,15 @@ getAbortCommonEvent(callback: AsyncCallback<boolean>): void
 let subscriber;	//创建成功的订阅者对象
 
 //获取当前有序公共事件是否取消的回调
-function getAbortCallback(err, AbortCommonEvent) {
+function getAbortCB(err, abortEvent) {
     if (err.code) {
         console.error("getAbortCommonEvent failed " + JSON.stringify(err));
     } else {
-        console.info("AbortCommonEvent " + AbortCommonEvent)
+        console.info("abortEvent " + abortEvent)
     }
 }
 
-subscriber.getAbortCommonEvent(getAbortCallback);
+subscriber.getAbortCommonEvent(getAbortCB);
 ```
 
 ### getAbortCommonEvent
@@ -1009,8 +1008,8 @@ getAbortCommonEvent(): Promise<boolean>
 ```ts
 let subscriber;	//创建成功的订阅者对象
 
-subscriber.getAbortCommonEvent().then((AbortCommonEvent) => {
-    console.info("AbortCommonEvent " + JSON.stringify(AbortCommonEvent));
+subscriber.getAbortCommonEvent().then((abortCommonEvent) => {
+    console.info("abortCommonEvent " + JSON.stringify(abortCommonEvent));
 }).catch((err) => {
     console.error("getAbortCommonEvent failed " + JSON.stringify(err));
 });
@@ -1038,15 +1037,15 @@ getSubscribeInfo(callback: AsyncCallback<CommonEventSubscribeInfo>): void
 let subscriber;	//创建成功的订阅者对象
 
 //获取订阅者信息回调
-function getSubscribeInfoCallback(err, SubscribeInfo) {
+function getCB(err, subscribeInfo) {
     if (err.code) {
         console.error("getSubscribeInfo failed " + JSON.stringify(err));
     } else {
-        console.info("SubscribeInfo " + JSON.stringify(SubscribeInfo));
+        console.info("SubscribeInfo " + JSON.stringify(subscribeInfo));
     }
 }
 
-subscriber.getSubscribeInfo(getSubscribeInfoCallback);
+subscriber.getSubscribeInfo(getCB);
 ```
 
 ### getSubscribeInfo
@@ -1070,8 +1069,8 @@ getSubscribeInfo(): Promise<CommonEventSubscribeInfo>
 ```ts
 let subscriber;	//创建成功的订阅者对象
 
-subscriber.getSubscribeInfo().then((SubscribeInfo) => {
-    console.info("SubscribeInfo " + JSON.stringify(SubscribeInfo));
+subscriber.getSubscribeInfo().then((subscribeInfo) => {
+    console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
 }).catch((err) => {
     console.error("getSubscribeInfo failed " + JSON.stringify(err));
 });
@@ -1099,7 +1098,7 @@ finishCommonEvent(callback: AsyncCallback<void>): void
 let subscriber; //创建成功的订阅者对象
 
 //结束当前有序公共事件的回调
-function finishCommonEventCallback(err) {
+function finishCB(err) {
     if (err.code) {
         console.error("finishCommonEvent failed " + JSON.stringify(err));
     } else {
@@ -1107,7 +1106,7 @@ function finishCommonEventCallback(err) {
     }
 }
 
-subscriber.finishCommonEvent(finishCommonEventCallback);
+subscriber.finishCommonEvent(finishCB);
 ```
 
 ### finishCommonEvent<sup>9+</sup>

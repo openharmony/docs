@@ -60,7 +60,7 @@ once(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdat
 | 参数名   | 类型                                | 必填 | 说明                                                                            |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------------------------ |
 | event    | [InnerEvent](#innerevent)           | 是   | 单次订阅的事件，其中[EventPriority](#eventpriority)，在订阅事件时无需指定，也不生效 |
-| callback | Callback\<[EventData](#innerevent)\> | 是   | 接收到该事件时需要执行的回调处理函数                                             |
+| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收到该事件时需要执行的回调处理函数                                             |
 
 **示例：**
 
