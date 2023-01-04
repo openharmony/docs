@@ -6,7 +6,7 @@ Applicable to: OpenHarmony SDK 3.2.5.5
 
 1. Locate the crash-related code based on the service log.
 
-2. View the error information in the crash file. The crash file is located at **/data/log/faultlog/faultlogger/**.
+2. View the error information in the crash file, which is located at **/data/log/faultlog/faultlogger/**.
 
 ## Why cannot access controls in the UiTest test framework?
 
