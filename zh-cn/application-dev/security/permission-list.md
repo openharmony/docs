@@ -1593,3 +1593,13 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.PUBLISH_SYSTEM_COMMON_EVENT
+
+允许应用发布系统公共事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
