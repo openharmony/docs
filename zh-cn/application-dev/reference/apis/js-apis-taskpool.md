@@ -58,6 +58,7 @@ Task构造函数
 import taskpool from '@ohos.taskpool';
 
 function func(args) {
+    "use concurrent"
     console.log("func: " + args);
     return args;
 }
@@ -98,12 +99,12 @@ execute(func: Function, ...args: unknown[]): Promise<unknown>
 import taskpool from '@ohos.taskpool';
 
 function func(args) {
+    "use concurrent"
     console.log("func: " + args);
     return args;
 }
-async function asyncCall() {
-    let value = await taskpool.execute(func, 100);
-}
+
+let value = taskpool.execute(func, 100);
 ```
 
 
@@ -138,13 +139,12 @@ execute(task: Task, priority?: Priority): Promise<unknown>;
 import taskpool from '@ohos.taskpool';
 
 function func(args) {
+    "use concurrent"
     console.log("func: " + args);
     return args;
 }
 var task = new taskpool.Task(func, "this is first Task");
-async function asyncCall() {
-    let value = await taskpool.execute(task);
-}
+let value = taskpool.execute(task);
 ```
 
 
@@ -180,6 +180,7 @@ cancel(task: Task): void
 import taskpool from '@ohos.taskpool';
 
 function func(args) {
+    "use concurrent"
     console.log("func: " + args);
     return args;
 }
