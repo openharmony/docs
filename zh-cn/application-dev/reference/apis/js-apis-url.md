@@ -442,7 +442,8 @@ URL静态成员函数。
 
 ```js
 let mm = 'https://username:password@host:8080';
-Url.URL.parseURL(mm); // Output 'https://username:password@host:8080/';
+let url = Url.URL.parseURL(mm); 
+url.toString(); // Output 'https://username:password@host:8080/';
 ```
 
 ### tostring
