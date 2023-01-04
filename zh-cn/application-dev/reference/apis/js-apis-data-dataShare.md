@@ -22,7 +22,7 @@ import dataShare from '@ohos.data.dataShare'
 标准uri定义结构如下:
 
 **Scheme://authority/path** 
-- scheme: 协议名，对于data share统一为datashare
+- Scheme: 协议名，对于data share统一为datashare
 - authority: [userinfo@]host[:port]
     - userinfo: 登录信息，不需要填写。
     - host: 服务器地址，如果跨设备访问则为目标设备的ID，如果为本设备则为空。
@@ -35,7 +35,7 @@ uri示例:
 
 - 包含资源路径: `datashare:///com.samples.datasharetest.DataShare/DB00/TBL00`
 
-其中，datashare的标识信息为`com.samples.datasharetest.DataShare`，资源路径为`DB00/TBL00`。
+其中，data share的标识信息为`com.samples.datasharetest.DataShare`，资源路径为`DB00/TBL00`。
 
 
 ## dataShare.createDataShareHelper
