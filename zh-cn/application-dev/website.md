@@ -928,7 +928,7 @@
       - [@ohos.bundle.bundleManager (bundleManager模块)](reference/apis/js-apis-bundleManager.md)
       - [@ohos.bundle.bundleMonitor (bundleMonitor模块)](reference/apis/js-apis-bundleMonitor.md)
       - [@ohos.bundle.defaultAppManager (默认应用管理)](reference/apis/js-apis-defaultAppManager.md)
-      - [@ohos.bundle.distributedBundle (distributedBundle模块)](reference/apis/js-apis-distributedBundle.md)
+      - [@ohos.bundle.distributedBundleManager (distributedBundleManager模块)](reference/apis/js-apis-distributedBundleManager.md)
       - [@ohos.bundle.freeInstall (freeInstall模块)](reference/apis/js-apis-freeInstall.md)
       - [@ohos.bundle.installer (installer模块)](reference/apis/js-apis-installer.md)
       - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](reference/apis/js-apis-launcherBundleManager.md)
