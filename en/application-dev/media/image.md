@@ -19,112 +19,121 @@ const color = new ArrayBuffer(96); // Create a buffer to store image pixel data.
 let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 2, width: 3 } } // Image pixel data.
 
 // Create a PixelMap object.
-const color = new ArrayBuffer(96);
-let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 2, width: 3 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
     console.log('Succeeded in creating pixelmap.');
-})
+    // Failed to create the PixelMap object.
+    if (err) {
+        console.info('create pixelmap failed, err' + err);
+        return
+    }
 
-// Read pixels.
-const area = {
-    pixels: new ArrayBuffer(8),
-    offset: 0,
-    stride: 8,
-    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-}
-pixelmap.readPixels(area,() => {
-    var bufferArr = new Uint8Array(area.pixels);
-    var res = true;
-    for (var i = 0; i < bufferArr.length; i++) {
-        console.info(' buffer ' + bufferArr[i]);
-        if(res) {
-            if(bufferArr[i] == 0) {
-                res = false;
-                console.log('readPixels end.');
-                break;
+    // Read pixels.
+    const area = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    }
+    pixelmap.readPixels(area,() => {
+        let bufferArr = new Uint8Array(area.pixels);
+        let res = true;
+        for (let i = 0; i < bufferArr.length; i++) {
+            console.info(' buffer ' + bufferArr[i]);
+            if(res) {
+                if(bufferArr[i] == 0) {
+                    res = false;
+                    console.log('readPixels end.');
+                    break;
+                }
             }
         }
-    }
-})
+    })
  
-// Store pixels.
-const readBuffer = new ArrayBuffer(96);
-pixelmap.readPixelsToBuffer(readBuffer,() => {
-    var bufferArr = new Uint8Array(readBuffer);
-    var res = true;
-    for (var i = 0; i < bufferArr.length; i++) {
-        if(res) {
-            if (bufferArr[i] !== 0) {
-                res = false;
-                console.log('readPixelsToBuffer end.');
-                break;
-            }
-        }
-    }
-})
-    
-// Write pixels.
-pixelmap.writePixels(area,() => {
-    const readArea = { pixels: new ArrayBuffer(20), offset: 0, stride: 8, region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
-    pixelmap.readPixels(readArea,() => {
-        var readArr = new Uint8Array(readArea.pixels);
-        var res = true;
-        for (var i = 0; i < readArr.length; i++) {
-            if(res) {
-                if (readArr[i] !== 0) {
-                    res = false;
-                    console.log('readPixels end.please check buffer');
-                    break;
-                }
-            }
-        }
-    })
-})
-  
-// Write pixels to the buffer.
-pixelmap.writeBufferToPixels(writeColor).then(() => {
+    // Store pixels.
     const readBuffer = new ArrayBuffer(96);
-    pixelmap.readPixelsToBuffer(readBuffer).then (() => {
-        var bufferArr = new Uint8Array(readBuffer);
-        var res = true;
-        for (var i = 0; i < bufferArr.length; i++) {
+    pixelmap.readPixelsToBuffer(readBuffer,() => {
+        let bufferArr = new Uint8Array(readBuffer);
+        let res = true;
+        for (let i = 0; i < bufferArr.length; i++) {
             if(res) {
-                if (bufferArr[i] !== i) {
+                if (bufferArr[i] !== 0) {
                     res = false;
-                    console.log('readPixels end.please check buffer');
+                    console.log('readPixelsToBuffer end.');
                     break;
                 }
             }
         }
     })
-})
+    
+    // Write pixels.
+    pixelmap.writePixels(area,() => {
+        const readArea = { pixels: new ArrayBuffer(20), offset: 0, stride: 8, region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
+        pixelmap.readPixels(readArea,() => {
+            let readArr = new Uint8Array(readArea.pixels);
+            let res = true;
+            for (let i = 0; i < readArr.length; i++) {
+                if(res) {
+                    if (readArr[i] !== 0) {
+                        res = false;
+                        console.log('readPixels end.please check buffer');
+                        break;
+                    }
+                }
+            }
+        })
+    })
 
-// Obtain image information.
-pixelmap.getImageInfo((error, imageInfo) => {
-    if (imageInfo !== null) {
-	    console.log('Succeeded in getting imageInfo');
-    } 
-})
+    const writeColor = new ArrayBuffer(96); // Pixel data of the image.
+    // Write pixels to the buffer.
+    pixelmap.writeBufferToPixels(writeColor).then(() => {
+        const readBuffer = new ArrayBuffer(96);
+        pixelmap.readPixelsToBuffer(readBuffer).then (() => {
+            let bufferArr = new Uint8Array(readBuffer);
+            let res = true;
+            for (let i = 0; i < bufferArr.length; i++) {
+                if(res) {
+                    if (bufferArr[i] !== i) {
+                        res = false;
+                        console.log('readPixels end.please check buffer');
+                        break;
+                    }
+                }
+            }
+        })
+    })
 
-// Release the PixelMap object.
-pixelmap.release(()=>{
-    console.log('Succeeded in releasing pixelmap');
+    // Obtain image information.
+    pixelmap.getImageInfo((err, imageInfo) => {
+        // Failed to obtain the image information.
+        if (err || imageInfo == null) {
+            console.info('getImageInfo failed, err' + err);
+            return
+        }
+        if (imageInfo !== null) {
+            console.log('Succeeded in getting imageInfo');
+        } 
+    })
+
+    // Release the PixelMap object.
+    pixelmap.release(()=>{
+        console.log('Succeeded in releasing pixelmap');
+    })
 })
 
 // Create an image source (uri).
 let path = '/data/local/tmp/test.jpg';
-const imageSourceApi = image.createImageSource(path);
+const imageSourceApi1 = image.createImageSource(path);
 
 // Create an image source (fd).
 let fd = 29;
-const imageSourceApi = image.createImageSource(fd);
+const imageSourceApi2 = image.createImageSource(fd);
 
 // Create an image source (data).
 const data = new ArrayBuffer(96);
-const imageSourceApi = image.createImageSource(data);
+const imageSourceApi3 = image.createImageSource(data);
 
 // Release the image source.
-imageSourceApi.release(() => {
+imageSourceApi3.release(() => {
     console.log('Succeeded in releasing imagesource');
 })
     
@@ -133,6 +142,10 @@ const imagePackerApi = image.createImagePacker();
 const imageSourceApi = image.createImageSource(0);
 let packOpts = { format:"image/jpeg", quality:98 };
 imagePackerApi.packing(imageSourceApi, packOpts, (err, data) => {
+    if (err) {
+        console.info('packing from imagePackerApi failed, err' + err);
+        return
+    }
     console.log('Succeeded in packing');
 })
  
@@ -161,36 +174,33 @@ let decodingOptions = {
     
 // Create a pixel map in callback mode.
 imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
+    // Failed to create the PixelMap object.
+    if (err) {
+        console.info('create pixelmap failed, err' + err);
+        return
+    }
     console.log('Succeeded in creating pixelmap.');
 })
 
 // Create a pixel map in promise mode.
 imageSourceApi.createPixelMap().then(pixelmap => {
     console.log('Succeeded in creating pixelmap.');
-})
 
-// Capture error information when an exception occurs during function invoking.
-catch(error => {
+    // Obtain the number of bytes in each line of pixels.
+    let num = pixelmap.getBytesNumberPerRow();
+
+    // Obtain the total number of pixel bytes.
+    let pixelSize = pixelmap.getPixelBytesNumber();
+
+    // Obtain the pixel map information.
+    pixelmap.getImageInfo().then( imageInfo => {});
+
+    // Release the PixelMap object.
+    pixelmap.release(()=>{
+        console.log('Succeeded in releasing pixelmap');
+    })
+}).catch(error => {
     console.log('Failed in creating pixelmap.' + error);
-})
-
-// Obtain the number of bytes in each line of pixels.
-var num = pixelmap.getBytesNumberPerRow();
-
-// Obtain the total number of pixel bytes.
-var pixelSize = pixelmap.getPixelBytesNumber();
-
-// Obtain the pixel map information.
-pixelmap.getImageInfo().then( imageInfo => {});
-
-// Release the PixelMap object.
-pixelmap.release(()=>{
-    console.log('Succeeded in releasing pixelmap');
-})    
-
-// Capture release failure information.
-catch(error => {
-    console.log('Failed in releasing pixelmap.' + error);
 })
 ```
 
@@ -216,7 +226,7 @@ if (imagePackerApi == null) {
 }
 
 // Set encoding parameters if the image packer is successfully created.
-let packOpts = { format:["image/jpeg"], // The supported encoding format is jpg.
+let packOpts = { format:"image/jpeg", // The supported encoding format is jpg.
                  quality:98 } // Image quality, which ranges from 0 to 100.
 
 // Encode the image.
@@ -233,8 +243,9 @@ imageSourceApi.getImageInfo((err, imageInfo) => {
     console.log('Succeeded in getting imageInfo');
 })
 
+const array = new ArrayBuffer(100); // Incremental data.
 // Update incremental data.
-imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error, data)=> {})
+imageSourceApi.updateData(array, false, 0, 10,(error, data)=> {})
 
 ```
 
@@ -246,10 +257,15 @@ Example scenario: The camera functions as the client to transmit image data to t
 public async init(surfaceId: any) {
 
     // (Server code) Create an ImageReceiver object.
-    var receiver = image.createImageReceiver(8 * 1024, 8, image.ImageFormat.JPEG, 1);
+    let receiver = image.createImageReceiver(8 * 1024, 8, image.ImageFormat.JPEG, 1);
 
     // Obtain the surface ID.
     receiver.getReceivingSurfaceId((err, surfaceId) => {
+    // Failed to obtain the surface ID.
+        if (err) {
+            console.info('getReceivingSurfaceId failed, err' + err);
+            return
+        }
         console.info("receiver getReceivingSurfaceId success");
     });
     // Register a surface listener, which is triggered after the buffer of the surface is ready.
