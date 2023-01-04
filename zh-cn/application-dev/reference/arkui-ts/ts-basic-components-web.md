@@ -774,6 +774,347 @@ webDebuggingAccess(webDebuggingAccess: boolean)
   }
   ```
 
+### blockNetwork<sup>9+</sup>
+
+blockNetwork(block: boolean)
+
+设置Web组件是否阻止从网络加载资源。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                            |
+| ------ | -------- | ---- | ------ | ----------------------------------- |
+| block  | boolean  | 是   | false  | 设置Web组件是否阻止从网络加载资源。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State block: boolean = true
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .blockNetwork(this.block)
+      }
+    }
+  }
+  ```
+### defaultFixedFontSize<sup>9+</sup>
+
+defaultFixedFontSize(size: number)
+
+设置网页的默认等宽字体大小。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                     |
+| ------ | -------- | ---- | ------ | ---------------------------- |
+| size   | number   | 是   | 13     | 设置网页的默认等宽字体大小，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State size: number = 16
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .defaultFixedFontSize(this.size)
+      }
+    }
+  }
+  ```
+
+### defaultFontSize<sup>9+</sup>
+
+defaultFontSize(size: number)
+
+设置网页的默认字体大小。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
+| ------ | -------- | ---- | ------ | ------------------------ |
+| size   | number   | 是   | 16     | 设置网页的默认字体大小，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State size: number = 13
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .defaultFontSize(this.size)
+      }
+    }
+  }
+  ```
+
+### minFontSize<sup>9+</sup>
+
+minFontSize(size: number)
+
+设置网页字体大小最小值。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
+| ------ | -------- | ---- | ------ | ------------------------ |
+| size   | number   | 是   | 8      | 设置网页字体大小最小值，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State size: number = 13
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .minFontSize(this.size)
+      }
+    }
+  }
+  ```
+
+### minLogicalFontSize<sup>9+</sup>
+
+minLogicalFontSize(size: number)
+
+设置网页逻辑字体大小最小值。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
+| ------ | -------- | ---- | ------ | ------------------------ |
+| size   | number   | 是   | 8      | 设置网页逻辑字体大小最小值，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State size: number = 13
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .minLogicalFontSize(this.size)
+      }
+    }
+  }
+  ```
+
+
+### webFixedFont<sup>9+</sup>
+
+webFixedFont(family: string)
+
+设置网页的fixed font字体库。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值    | 参数描述                     |
+| ------ | -------- | ---- | --------- | ---------------------------- |
+| family | string   | 是   | monospace | 设置网页的fixed font字体库。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "monospace"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webFixedFont(this.family)
+      }
+    }
+  }
+  ```
+
+### webSansSerifFont<sup>9+</sup>
+
+webSansSerifFont(family: string)
+
+设置网页的sans serif font字体库。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值     | 参数描述                          |
+| ------ | -------- | ---- | ---------- | --------------------------------- |
+| family | string   | 是   | sans-serif | 设置网页的sans serif font字体库。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "sans-serif"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webSansSerifFont(this.family)
+      }
+    }
+  }
+  ```
+
+### webSerifFont<sup>9+</sup>
+
+webSerifFont(family: string)
+
+设置网页的serif font字体库。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                     |
+| ------ | -------- | ---- | ------ | ---------------------------- |
+| family | string   | 是   | serif  | 设置网页的serif font字体库。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "serif"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webSerifFont(this.family)
+      }
+    }
+  }
+  ```
+
+### webStandardFont<sup>9+</sup>
+
+webStandardFont(family: string)
+
+设置网页的standard font字体库。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值     | 参数描述                        |
+| ------ | -------- | ---- | ---------- | ------------------------------- |
+| family | string   | 是   | sans serif | 设置网页的standard font字体库。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "sans-serif"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webStandardFont(this.family)
+      }
+    }
+  }
+  ```
+
+### webFantasyFont<sup>9+</sup>
+
+webFantasyFont(family: string)
+
+设置网页的fantasy font字体库。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | -------- | ---- | ------- | ------------------------------ |
+| family | string   | 是   | fantasy | 设置网页的fantasy font字体库。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "fantasy"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webFantasyFont(this.family)
+      }
+    }
+  }
+  ```
+
+### webCursiveFont<sup>9+</sup>
+
+webCursiveFont(family: string)
+
+设置网页的cursive font字体库。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | -------- | ---- | ------- | ------------------------------ |
+| family | string   | 是   | cursive | 设置网页的cursive font字体库。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "cursive"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webCursiveFont(this.family)
+      }
+    }
+  }
+  ```
+
 ## 事件
 
 不支持通用事件。
@@ -1843,7 +2184,7 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
 
 onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebContextMenuResult }) => boolean)
 
-长按特定元素（例如图片，链接），跳出菜单。
+长按特定元素（例如图片，链接）或鼠标右键，跳出菜单。
 
 **参数：**
 
@@ -2156,6 +2497,181 @@ onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMa
             console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
               "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
           })
+      }
+    }
+  }
+  ```
+
+### onDataResubmitted<sup>9+</sup>
+
+onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
+
+设置网页表单可以重新提交时触发的回调函数。
+
+**参数：**
+
+| 参数名  | 参数类型                                             | 参数描述               |
+| ------- | ---------------------------------------------------- | ---------------------- |
+| handler | [DataResubmissionHandler](#dataresubmissionhandler9) | 表单数据重新提交句柄。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onDataResubmitted((event) => {
+          console.log('onDataResubmitted')
+          event.handler.resend();
+        })
+      }
+    }
+  }
+  ```
+
+### onPageVisible<sup>9+</sup>
+
+onPageVisible(callback: (event: {url: string}) => void)
+
+设置旧页面不再呈现，新页面即将可见时触发的回调函数。
+
+**参数：**
+
+| 参数名 | 参数类型 | 参数描述                                          |
+| ------ | -------- | ------------------------------------------------- |
+| url    | string   | 旧页面不再呈现，新页面即将可见时新页面的url地址。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onPageVisible((event) => {
+          console.log('onPageVisible url:' + event.url)
+        })
+      }
+    }
+  }
+  ```
+
+### onInterceptKeyEvent<sup>9+</sup>
+
+onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
+
+设置键盘事件的回调函数，该回调在被Webview消费前触发。
+
+**参数：**
+
+| 参数名 | 参数类型                                                | 参数描述             |
+| ------ | ------------------------------------------------------- | -------------------- |
+| event  | [KeyEvent](ts-universal-events-key.md#keyevent对象说明) | 触发的KeyEvent事件。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 回调函数通过返回boolean类型值来决定是否继续将该KeyEvent传入Webview内核。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onInterceptKeyEvent((event) => {
+            if (event.keyCode == 2017 || event.keyCode == 2018) {
+            console.info(`onInterceptKeyEvent get event.keyCode ${event.keyCode}`)
+            return true;
+          }
+          return false;
+        })
+      }
+    }
+  }
+  ```
+
+### onTouchIconUrlReceived<sup>9+</sup>
+
+onTouchIconUrlReceived(callback: (event: {url: string, precomposed: boolean}) => void)
+
+设置接收到apple-touch-icon url地址时的回调函数。
+
+**参数：**
+
+| 参数名      | 参数类型 | 参数描述                           |
+| ----------- | -------- | ---------------------------------- |
+| url         | string   | 接收到的apple-touch-icon url地址。 |
+| precomposed | boolean  | 对应apple-touch-icon是否为预合成。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.baidu.com', controller: this.controller })
+         .onTouchIconUrlReceived((event) => {
+          console.log('onTouchIconUrlReceived:' + JSON.stringify(event))
+        })
+      }
+    }
+  }
+  ```
+
+### onFaviconReceived<sup>9+</sup>
+
+onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
+
+设置应用为当前页面接收到新的favicon时的回调函数。
+
+**参数：**
+
+| 参数名  | 参数类型                                       | 参数描述                            |
+| ------- | ---------------------------------------------- | ----------------------------------- |
+| favicon | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 接收到的favicon图标的PixelMap对象。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  import image from "@ohos.multimedia.image"
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State icon: image.PixelMap = undefined;
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onFaviconReceived((event) => {
+          console.log('onFaviconReceived:' + JSON.stringify(event))
+          this.icon = event.favicon;
+        })
       }
     }
   }
@@ -2717,9 +3233,44 @@ grant(resources: Array\<string\>): void
 | --------- | --------------- | ---- | ---- | ------------- |
 | resources | Array\<string\> | 是    | -    | 网页所请求的权限资源列表。 |
 
+## ContextMenuSourceType<sup>9+</sup>枚举说明
+| 名称                   | 描述         |
+| -------------------- | ---------- |
+| None        | 其他事件来源。  |
+| Mouse       | 鼠标事件。  |
+| LongPress   | 长按事件。  |
+
+## ContextMenuMediaType<sup>9+</sup>枚举说明
+
+| 名称           | 描述          |
+| ------------ | ----------- |
+| None      | 非特殊媒体或其他媒体类型。 |
+| Image     | 图片。     |
+
+## ContextMenuInputFieldType<sup>9+</sup>枚举说明
+
+| 名称           | 描述          |
+| ------------ | ----------- |
+| None      | 非输入框。       |
+| PlainText | 纯文本类型，包括text、search、email等。   |
+| Password  | 密码类型。     |
+| Number    | 数字类型。     |
+| Telephone | 电话号码类型。 |
+| Other     | 其他类型。     |
+
+## ContextMenuEditStateFlags<sup>9+</sup>枚举说明
+
+| 名称         | 描述         |
+| ------------ | ----------- |
+| NONE         | 不可编辑。   |
+| CAN_CUT      | 支持剪切。   |
+| CAN_COPY     | 支持拷贝。   |
+| CAN_PASTE    | 支持粘贴。   |
+| CAN_SELECT_ALL  | 支持全选。 |
+
 ## WebContextMenuParam<sup>9+</sup>
 
-实现长按页面元素跳出来的菜单信息。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
+实现长按页面元素或鼠标右键弹出来的菜单信息。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
 
 ### x<sup>9+</sup>
 
@@ -2793,9 +3344,81 @@ existsImageContents(): boolean
 | ------- | ------------------------- |
 | boolean | 长按位置中有图片返回true，否则返回false。 |
 
+### getMediaType<sup>9+</sup>
+
+getMediaType(): ContextMenuMediaType
+
+获取网页元素媒体类型。
+
+**返回值：**
+
+| 类型                                       | 说明          |
+| ---------------------------------------- | ----------- |
+| [ContextMenuMediaType](#contextmenumediatype9枚举说明) | 网页元素媒体类型。 |
+
+### getSelectionText<sup>9+</sup>
+
+getSelectionText(): string
+
+获取选中文本。
+
+**返回值：**
+
+| 类型      | 说明                        |
+| ------- | ------------------------- |
+| string | 菜单上下文选中文本内容，不存在则返回空。 |
+
+### getSourceType<sup>9+</sup>
+
+getSourceType(): ContextMenuSourceType
+
+获取菜单事件来源。
+
+**返回值：**
+
+| 类型                                       | 说明          |
+| ---------------------------------------- | ----------- |
+| [ContextMenuSourceType](#contextmenusourcetype9枚举说明) | 菜单事件来源。 |
+
+### getInputFieldType<sup>9+</sup>
+
+getInputFieldType(): ContextMenuInputFieldType
+
+获取网页元素输入框类型。
+
+**返回值：**
+
+| 类型                                       | 说明          |
+| ---------------------------------------- | ----------- |
+| [ContextMenuInputFieldType](#contextmenuinputfieldtype9枚举说明) | 输入框类型。 |
+
+### isEditable<sup>9+</sup>
+
+isEditable(): boolean
+
+获取网页元素是否可编辑标识。
+
+**返回值：**
+
+| 类型      | 说明                        |
+| ------- | ------------------------- |
+| boolean | 网页元素可编辑返回true，不可编辑返回false。 |
+
+### getEditStateFlags<sup>9+</sup>
+
+getEditStateFlags(): number
+
+获取网页元素可编辑标识。
+
+**返回值：**
+
+| 类型      | 说明                        |
+| ------- | ------------------------- |
+| number | 网页元素可编辑标识，参照[ContextMenuEditStateFlags](#contextmenueditstateflags9枚举说明)。 |
+
 ## WebContextMenuResult<sup>9+</sup>
 
-实现长按页面元素跳出来的菜单所执行的响应事件。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
+实现长按页面元素或鼠标右键弹出来的菜单所执行的响应事件。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
 
 ### closeContextMenu<sup>9+</sup>
 
@@ -2808,6 +3431,30 @@ closeContextMenu(): void
 copyImage(): void
 
 WebContextMenuParam有图片内容则复制图片。
+
+### copy<sup>9+</sup>
+
+copy(): void
+
+执行与此上下文菜单相关的拷贝操作。
+
+### paste<sup>9+</sup>
+
+paste(): void
+
+执行与此上下文菜单相关的粘贴操作。
+
+### cut<sup>9+</sup>
+
+cut(): void
+
+执行与此上下文菜单相关的剪切操作。
+
+### selectAll<sup>9+</sup>
+
+selectAll(): void
+
+执行与此上下文菜单相关的全选操作。
 
 ## JsGeolocation
 
@@ -5768,6 +6415,64 @@ setPorts(ports: Array\<WebMessagePort\>): void
             this.controller.postMessage({message: msgEvent, uri: "*"})
           })
         Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+## DataResubmissionHandler<sup>9+</sup>
+
+通过DataResubmissionHandler可以重新提交表单数据或取消提交表单数据。
+
+### resend<sup>9+</sup>
+
+resend(): void
+
+重新发送表单数据。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onDataResubmitted((event) => {
+          console.log('onDataResubmitted')
+          event.handler.resend();
+        })
+      }
+    }
+  }
+  ```
+
+###  cancel<sup>9+</sup>
+
+cancel(): void
+
+取消重新发送表单数据。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onDataResubmitted((event) => {
+          console.log('onDataResubmitted')
+          event.handler.cancel();
+        })
       }
     }
   }
