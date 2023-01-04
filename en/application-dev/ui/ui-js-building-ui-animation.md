@@ -8,11 +8,11 @@ Animations are classified into [Static Animation](#static-animation) and [Contin
 
 The transform attributes are the core of the static animation. A static animation can transform in the following three ways and only once in each way at a time:
 
-- translate: Moves a specified component horizontally or vertically.
+- translate: moves a specified component horizontally or vertically.
 
-- scale: Scales a specified component horizontally or vertically to the required scale.
+- scale: scales a specified component horizontally or vertically to the required scale.
 
-- rotate: Rotates a specified component by a specified angle along the horizontal axis, vertical axis, or center point.
+- rotate: rotates a specified component by a specified angle along the horizontal axis, vertical axis, or center point.
 
 For more information, see [Component Methods](../reference/arkui-js/js-components-common-methods.md). The following is an example:
 
@@ -28,12 +28,14 @@ For more information, see [Component Methods](../reference/arkui-js/js-component
 ```css
 /* xxx.css */
 .container {
+  width: 100%;
   flex-direction: column;
   align-items: center;
 }
 .translate {
   height: 150px;
   width: 300px;
+  margin: 50px;
   font-size: 50px;
   background-color: #008000;
   transform: translate(200px);
@@ -41,14 +43,16 @@ For more information, see [Component Methods](../reference/arkui-js/js-component
 .rotate {
   height: 150px;
   width: 300px;
+  margin: 50px;
   font-size: 50px;
   background-color: #008000;
   transform-origin: 200px 100px;
-  transform: rotateX(45deg);
+  transform: rotate(45deg);
 }
 .scale {
   height: 150px;
   width: 300px;
+  margin: 50px;
   font-size: 50px;
   background-color: #008000;
   transform: scaleX(1.5);
@@ -57,7 +61,7 @@ For more information, see [Component Methods](../reference/arkui-js/js-component
 
 **Figure 1** Static animation
 
-![en-us_image_0000001223127724](figures/en-us_image_0000001223127724.png)
+![en-us_image_0000001071134933](figures/en-us_image_0000001071134933.png)
 
 
 ## Continuous Animation
@@ -66,43 +70,39 @@ The static animation has only the start and end states. To set the transition st
 
 The core of a continuous animation is animation attributes, which define the start and end states of the animation and the curve of time and speed. Animation attributes can implement the following effects:
 
-- animation-name: Background color, opacity, width, height, and transformation type applied to the element after the animation is executed
+- **animation-name**: background color, opacity, width, height, and transformation type applied to the element after the animation is executed
 
-- animation-delay and animation-duration: Element delay and duration after the animation is executed
+- **animation-delay** and **animation-duration**: element delay and duration after the animation is executed
 
-- animation-timing-function: Speed curve of an animation, which makes the animation more fluent
+- **animation-timing-function**: speed curve of an animation, which makes the animation more fluent
 
-- animation-iteration-count: Number of animation playback times
+- **animation-iteration-count**: number of animation playback times
 
-- animation-fill-mode: Whether to restore the initial state after the animation is executed
+- **animation-fill-mode**: whether to restore the initial state after the animation is executed
 
-To use the animation attributes, you need to define a @keyframes rule in the .css file, set the animation transition effect in @keyframes, and invoke the effect through a style class in the .hml file. The following is an example for animation-name:
+To use the animation attributes, you need to define a @keyframes rule in the .css file, set the animation transition effect in **@keyframes**, and invoke the effect through a style class in the .hml file. The following is an example for **animation-name**:
 
 ```html
 <!-- xxx.hml -->
 <div class="item-container">
-  <text class="header">animation-name</text>
-  <div class="item {{colorParam}}">
-    <text class="txt">color</text>
-  </div>
-  <div class="item {{opacityParam}}">
-    <text class="txt">opacity</text>
-  </div>
-  <input class="button" type="button" name="" value="show" onclick="showAnimation"/>
+    <div class="item {{colorParam}}">
+        <text class="txt">color</text>
+    </div>
+    <div class="item {{opacityParam}}">
+        <text class="txt">opacity</text>
+    </div>
+    <input class="button" type="button" name="" value="show" onclick="showAnimation"/>
 </div>
 ```
 
 ```css
 /* xxx.css */
 .item-container {
-  margin-right: 60px;
-  margin-left: 60px;
+  margin: 60px;
   flex-direction: column;
 }
-.header {
-  margin-bottom: 20px;
-}
 .item {
+  width: 80%;
   background-color: #f76160;
 }
 .txt {
@@ -112,6 +112,7 @@ To use the animation attributes, you need to define a @keyframes rule in the .cs
 }
 .button {
   width: 200px;
+  margin: 10px;
   font-size: 30px;
   background-color: #09ba07;
 }
@@ -141,7 +142,7 @@ To use the animation attributes, you need to define a @keyframes rule in the .cs
 }
 ```
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -153,10 +154,10 @@ export default {
     this.opacityParam = '';
     this.colorParam = 'color';
     this.opacityParam = 'opacity';
-  },
+  }
 }
 ```
 
 **Figure 2** Continuous animation effect
 
-![en-us_image_0000001223287696](figures/en-us_image_0000001223287696.gif)
+![en-us_image_0000001063148757](figures/en-us_image_0000001063148757.gif)
