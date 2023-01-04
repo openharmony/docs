@@ -115,12 +115,10 @@ Add the long press event to the **&lt;canvas&gt;** component. When the event is 
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     dataURL:null,
-    antialia: false,
-    porc:'open',
   },
   onShow(){
     let el = this.$refs.canvas1;
@@ -131,7 +129,7 @@ export default {
     let el = this.$refs.canvas1
     let dataUrl = el.toDataURL()
     this.dataURL = dataUrl;
-    prompt.showToast({duration:2000,message:"long press,get dataURL"})
+    promptAction.showToast({duration:2000,message:"long press,get dataURL"})
   }
 }
 ```
