@@ -78,73 +78,74 @@ vendor/hihope
 
 2. 新建编译组织文件。
 
-   1. 新建sample/hello/BUILD.gn，创建方法可参考链接：https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-module.md#cc%E6%A8%A1%E6%9D%BF%E7%A4%BA%E4%BE%8B，
-      创建BUILD.gn内容如下所示：
+   新建sample/hello/BUILD.gn，创建方法可参考链接：docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-module.md。
+   创建BUILD.gn内容如下所示：
       
-       ```
-       import("//build/ohos.gni")  # 导入编译模板
-       ohos_executable("helloworld") { # 可执行模块
-         sources = [       # 模块源码
-           "src/helloworld.c"
-         ]
-         include_dirs = [  # 模块依赖头文件目录
-           "include" 
-         ]
-         cflags = []
-         cflags_c = []
-         cflags_cc = []
-         ldflags = []
-         configs = []
-         deps =[]    # 部件内部依赖
-         part_name = "hello"    # 所属部件名称，必选
-         install_enable = true  # 是否默认安装（缺省默认不安装），可选
-       }
-       ```
+   ```
+   import("//build/ohos.gni")  # 导入编译模板
+   ohos_executable("helloworld") { # 可执行模块
+     sources = [       # 模块源码
+       "src/helloworld.c"
+     ]
+     include_dirs = [  # 模块依赖头文件目录
+       "include" 
+     ]
+     cflags = []
+     cflags_c = []
+     cflags_cc = []
+     ldflags = []
+     configs = []
+     deps =[]    # 部件内部依赖
+     part_name = "hello"    # 所属部件名称，必选
+     install_enable = true  # 是否默认安装（缺省默认不安装），可选
+   }
+   ```
+
 3. 新建部件配置规则文件
 
-   1. 新建sample/hello/bundle.json文件，添加sample部件描述，创建方法可参考链接：https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-component.md#%E9%83%A8%E4%BB%B6%E9%85%8D%E7%BD%AE%E8%A7%84%E5%88%99
-      创建bundle.json内容如下所示。
+   新建sample/hello/bundle.json文件，添加sample部件描述，创建方法可参考链接：docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-component.md
+   创建bundle.json内容如下所示。
       
-       ```
-       {
-           "name": "@ohos/hello",
-           "description": "Hello world example.",
-           "version": "3.1",
-           "license": "Apache License 2.0",
-           "publishAs": "code-segment",
-           "segment": {
-               "destPath": "sample/hello"
+   ```
+   {
+       "name": "@ohos/hello",
+       "description": "Hello world example.",
+       "version": "3.1",
+       "license": "Apache License 2.0",
+       "publishAs": "code-segment",
+       "segment": {
+           "destPath": "sample/hello"
+       },
+       "dirs": {},
+       "scripts": {},
+       "component": {
+           "name": "hello",
+           "subsystem": "sample",
+           "syscap": [],
+           "features": [],
+           "adapted_system_type": [ "mini", "small", "standard" ],
+           "rom": "10KB",
+           "ram": "10KB",
+           "deps": {
+               "components": [],
+               "third_party": []
            },
-           "dirs": {},
-           "scripts": {},
-           "component": {
-               "name": "hello",
-               "subsystem": "sample",
-               "syscap": [],
-               "features": [],
-               "adapted_system_type": [ "mini", "small", "standard" ],
-               "rom": "10KB",
-               "ram": "10KB",
-               "deps": {
-                   "components": [],
-                   "third_party": []
-               },
-               "build": {
-                   "sub_component": [
-                       "//sample/hello:helloworld"
-                   ],
-                   "inner_kits": [],
-                   "test": []
-               }
+           "build": {
+               "sub_component": [
+                   "//sample/hello:helloworld"
+               ],
+               "inner_kits": [],
+               "test": []
            }
        }
-       ```
+   }
+   ```
 
-       bundle.json文件包含两个部分，第一部分描述该部件所属子系统的信息，第二部分component则定义该部件构建相关配置。添加的时候需要指明该部件包含的模块sub_component，假如有提供给其它部件的接口，需要在inner_kits中说明，假如有测试用例，需要在test中说明，inner_kits与test没有也可以不添加。
+   bundle.json文件包含两个部分，第一部分描述该部件所属子系统的信息，第二部分component则定义该部件构建相关配置。添加的时候需要指明该部件包含的模块sub_component，假如有提供给其它部件的接口，需要在inner_kits中说明，假如有测试用例，需要在test中说明，inner_kits与test没有也可以不添加。
 
 4. 修改子系统配置文件。
    
-   在build/subsystem_config.json中添加新建的子系统的配置。修改方法可参考链接：https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-subsystem.md
+   在build/subsystem_config.json中添加新建的子系统的配置。修改方法可参考链接：docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-subsystem.md
    新增子系统的配置如下所示。
    
    ```
@@ -159,28 +160,27 @@ vendor/hihope
       > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
       > OpenHarmony-v3.2-Beta2之前版本，RK3568的产品配置文件为productdefine/common/products/rk3568.json；从OpenHarmony-v3.2-Beta2版本开始，RK3568的产品配置文件为vendor/hihope/rk3568/config.json。
 
-   1. 3.2-Beta2之前版本
+   - 3.2-Beta2之前版本
       在productdefine/common/products/rk3568.json中添加对应的hello部件，直接添加到原有部件后即可。
    
-   
-   ```
-       "usb:usb_manager_native":{},
-       "applications:prebuilt_hap":{},
-       "sample:hello":{},
-       "wpa_supplicant-2.9:wpa_supplicant-2.9":{},
-   ```
+       ```
+           "usb:usb_manager_native":{},
+           "applications:prebuilt_hap":{},
+           "sample:hello":{},
+           "wpa_supplicant-2.9:wpa_supplicant-2.9":{},
+       ```
 
-   2. 3.2-Beta2及之后版本
+   - 3.2-Beta2及之后版本
       在vendor/hihope/rk3568/config.json中添加对应的hello部件，直接添加到原有部件后即可。
 
-   ```
-       {
-         "subsystem": "sample",
-         "components": [
+       ```
            {
-             "component": "hello",
-             "features": []
-           }
-         ]
-       },     
-   ```
+             "subsystem": "sample",
+             "components": [
+               {
+                 "component": "hello",
+                 "features": []
+               }
+             ]
+           },     
+       ```
