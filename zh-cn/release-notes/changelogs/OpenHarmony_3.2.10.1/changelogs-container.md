@@ -1,6 +1,6 @@
 # commonlibrary子系统JS API变更Changelog
 
-OpenHarmony 3.2.10.1(Mr)版本相较于OpenHarmony 3.2.beta4版本，container子系统的API变更如下
+OpenHarmony 3.2.10.1(Mr)版本相较于OpenHarmony 3.2.beta4版本，commonlibrary子系统的API变更如下
 
 ## cl.commonlibrary.1 错误码及信息变更
 commonlibrary子系统中ArrayList、List、LinkedList、Stack、Queue、Deque、PlainArray、LightWeightMap、LightWeightSet、HashMap、HashSet、TreeMap、TreeSet类的接口抛出的错误码及信息变更：
