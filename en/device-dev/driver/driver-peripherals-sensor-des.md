@@ -1,41 +1,41 @@
 # Sensor
- 
+
 
 ## Overview
 
-### Introduction
+### Function
 
-The sensor driver model masks the sensor hardware differences and provides interfaces for the upper-layer sensor service to implement basic sensor capabilities, including querying the sensor list, enabling or disabling a sensor, subscribing to or unsubscribing from sensor data changes, and setting sensor options. The model is developed on the Hardware Driver Foundation (HDF), Operating System Abstraction Layer (OSAL), and platform driver interfaces (such as the I2C, SPI, and UART buses). It provides functionalities such as cross-OS migration and differentiated device configurations. The figure below shows the architecture of the sensor driver model.
+The sensor driver model shields the hardware difference and provides interfaces for the upper-layer sensor service to implement basic sensor capabilities, including querying the sensor list, enabling or disabling a sensor, subscribing to or unsubscribing from sensor data changes, and setting sensor attributes. Developed based on the Hardware Driver Foundation (HDF), the sensor driver model leverages the capabilities of the OS adaptation layer (OSAL) and platform driver interfaces (such as I2C, SPI, and UART buses) to shield the difference between OSs and platform bus resources, achieving "one-time development and multi-system deployment" of the sensor driver. The figure below shows the architecture of the sensor driver model.
 
 **Figure 1** Sensor driver model
- 
+
 ![Sensor driver model](figures/sensor_driver_model.png)
 
 ### Basic Concepts
 
-Currently, sensors are classified into medical sensors and traditional sensors by sensor ID.
+Sensors are classified into the following types by sensor ID:
 
-- The IDs of medical sensors range from 128 to 160.
+- Medical sensors: The sensor IDs range from 128 to 160.
 
-- The IDs of traditional sensors are out of the range of 128 to 160.
+- Traditional sensors: The sensor IDs are out of the range of 128 to 160.
 
 ### Working Principles
 
-Based on the loading and running process (shown below) of the sensor driver model, the relationships between key modules in the model and associated modules are clearly defined.
+The following figure shows how a sensor driver works.
 
-**Figure 2** How sensor driver works
+**Figure 2** How a sensor driver works
 
 ![How sensor driver works](figures/sensor_working.png)
 
 The following uses the acceleration sensor driver on the Hi3516D V300 development board of the standard system as an example to describe the driver loading and running process.
 
-1. The sensor host reads the sensor management configuration from the Sensor Host node of the device_info HCS (sensor device information HCS).
-2. The sensor host parses the sensor management configuration from the HCB database and associates the corresponding sensor driver.
+1. The sensor host reads the sensor device management configuration from **Sensor Host** in the **device_info.hcs** file.
+2. The sensor host parses the sensor management configuration from the HCB database and associates the configuration with the sensor driver.
 3. The sensor host loads and initializes the sensor manager driver.
-4. The sensor manager driver publishes the sensor hardware device interfaces (HDIs).
-5. The sensor host reads the acceleration sensor driver configuration from the Sensor Host node of the device_info HCS.
+4. The sensor manager driver publishes the sensor APIs for the hardware driver interface (HDI).
+5. The sensor host reads the acceleration sensor driver configuration information from **Sensor Host** in the **device_info.hcs** configuration file.
 6. The sensor host loads the acceleration sensor abstract driver and calls the initialization interface to allocate the sensor driver resources and create the data processing queue.
-7. The sensor host reads the chipset driver configuration and private configuration of the acceleration sensor from the accel_xxx_config HCS (sensor private configuration HCS).
+7. The sensor host reads the chipset driver configuration and private configuration of the acceleration sensor from the **accel_xxx_config.hcs** file.
 8. The acceleration sensor chipset driver calls the common configuration parsing interface to parse the sensor attributes and registers.
 9. The chipset driver detects sensors, allocates configuration resources to the acceleration sensor, and registers the acceleration sensor chipset interfaces.
 10. Upon successful sensor detection, the chipset driver instructs the abstract driver to register the acceleration sensor to the sensor manager driver.
@@ -54,34 +54,38 @@ The following uses the acceleration sensor driver on the Hi3516D V300 developmen
 
 The sensor driver model offers the following APIs:
 
-- Sensor HDIs, for easier sensor service development
-- Sensor driver model capability interfaces
-  - Interfaces for registering, loading, and deregistering sensor drivers, and detecting sensors
-  - Driver normalization interface, register configuration parsing interface, bus access abstract interface, and platform abstract interface for the same type of sensors
-- Interfaces to be implemented by developers: Based on the HDF Configuration Source (HCS) and differentiated configuration for sensors of the same type, developers need to implement serialized configuration of sensor device parameters and some sensor device operation interfaces to simplify sensor driver development.
+- Sensor HDI APIs, for easier sensor service development
+
+- APIs for implementing sensor driver model capabilities
+  - APIs for loading, registering, and deregitering sensor drivers, and detecting sensors based on the HDF
+  - Unified driver API, register configuration parsing API, bus access abstract API, and platform abstract API for the same type of sensors
+
+- APIs to be implemented by developers
+
+  Based on the HDF Configuration Source (HCS) and differentiated configuration for sensors of the same type, you need to implement serialized configuration of sensor device parameters and some sensor device operation interfaces to simplify sensor driver development.
 
 The sensor driver model provides APIs for the hardware service to make sensor service development easier. See the table below.
 
 **Table 1** APIs of the sensor driver model
 
-| API| Description| 
+| API| Description|
 | ----- | -------- |
 | int32_t GetAllSensors(struct SensorInformation **sensorInfo, int32_t *count) | Obtains information about all registered sensors in the system. The sensor information includes the sensor name, sensor vendor, firmware version, hardware version, sensor type ID, sensor ID, maximum range, accuracy, and power consumption.|
-| int32_t Enable(int32_t sensorId) | Enables a sensor. The subscriber can obtain sensor data only after the sensor is enabled.| 
-| int32_t Disable(int32_t sensorId) | Disables a sensor.| 
-| int32_t SetBatch(int32_t sensorId, int64_t samplingInterval, int64_t reportInterval) | Sets the sampling interval and data reporting interval for a sensor.| 
-| int32_t SetMode(int32_t sensorId, int32_t mode) | Sets the data reporting mode for a sensor.| 
-| int32_t SetOption(int32_t sensorId, uint32_t option) | Sets options for a sensor, including its range and accuracy.| 
-| int32_t Register(int32_t groupId, RecordDataCallback cb) | Registers a sensor data callback based on the group ID.| 
-| int32_t Unregister(int32_t groupId, RecordDataCallback cb) | Deregisters a sensor data callback based on the group ID.| 
+| int32_t Enable(int32_t sensorId) | Enables a sensor. The subscriber can obtain sensor data only after the sensor is enabled.|
+| int32_t Disable(int32_t sensorId) | Disables a sensor.|
+| int32_t SetBatch(int32_t sensorId, int64_t samplingInterval, int64_t reportInterval) | Sets the sampling interval and data reporting interval for a sensor.|
+| int32_t SetMode(int32_t sensorId, int32_t mode) | Sets the data reporting mode for a sensor.|
+| int32_t SetOption(int32_t sensorId, uint32_t option) | Sets options for a sensor, including its range and accuracy.|
+| int32_t Register(int32_t groupId, RecordDataCallback cb) | Registers a sensor data callback based on the group ID.|
+| int32_t Unregister(int32_t groupId, RecordDataCallback cb) | Deregisters a sensor data callback based on the group ID.|
 
 
 
 The sensor driver model provides driver development APIs that do not require further implementation. See the table below.
 
- **Table 2** Sensor driver development APIs that do not need to be implemented by driver developers
+ **Table 2** Sensor driver development APIs
 
-| API| Description| 
+| API| Description|
 | ----- | -------- |
 | int32_t AddSensorDevice(const struct SensorDeviceInfo *deviceInfo) | Adds a sensor of the current type to the sensor management module.|
 | int32_t DeleteSensorDevice(const struct SensorBasicInfo *sensorBaseInfo) | Deletes a sensor from the sensor management module.|
@@ -97,12 +101,11 @@ The sensor driver model provides driver development APIs that do not require fur
 
 
 
-
 The sensor driver model also provides certain driver development APIs that need to be implemented by driver developers. See the table below.
 
-**Table 3** APIs that need to be implemented by driver developers
+**Table 3** APIs to be implemented by driver developers
 
-| API| Description| 
+| API| Description|
 | ----- | -------- |
 | int32_t init(void) | Initializes the sensor device configuration after a sensor is detected.|
 | int32_t Enable(void) | Enables the current sensor by delivering the register configuration in the enabling operation group based on the device information HCS configuration.|
@@ -121,14 +124,14 @@ The sensor driver model also provides certain driver development APIs that need 
      ```c
      /* Register the entry structure object of the acceleration sensor. */
      struct HdfDriverEntry g_sensorAccelDevEntry = {
-         .moduleVersion = 1, // Version of the acceleration sensor module.
-         .moduleName = "HDF_SENSOR_ACCEL", // Name of the acceleration sensor module. The value must be the same as that of moduleName in the device_info.hcs file.
-         .Bind = BindAccelDriver, // Function for binding an acceleration sensor.
-         .Init = InitAccelDriver, // Function for initializing an acceleration sensor.
-         .Release = ReleaseAccelDriver, // Function for releasing acceleration sensor resources.
+         .moduleVersion = 1,                // Version of the acceleration sensor module.
+         .moduleName = "HDF_SENSOR_ACCEL",  // Name of the acceleration sensor module. The value must be the same as that of moduleName in the device_info.hcs file.
+         .Bind = BindAccelDriver,           // Function for binding an acceleration sensor.
+         .Init = InitAccelDriver,           // Function for initializing an acceleration sensor.
+         .Release = ReleaseAccelDriver      // Function for releasing acceleration sensor resources.
      };
      
-     /* Call HDF_INIT to register the driver entry with the HDF. When loading the driver, the HDF calls the Bind function first and then the Init function. If the Init function fails to be called, the HDF will call Release to release the driver resource and exit the sensor driver model. */
+     /* Call HDF_INIT to register the driver entry with the HDF. When loading the driver, the HDF calls Bind() and then Init() to load the driver. If Init() fails to be called, the HDF calls Release() to release resources and exit. */
      HDF_INIT(g_sensorAccelDevEntry);
      ```
 
@@ -228,7 +231,7 @@ The sensor driver model also provides certain driver development APIs that need 
          return drvData->accelCfg;
          ...
      }
-     /* The entry function of the acceleration sensor driver is used to initialize the sensor private data structure object, allocate space for the sensor HCS data configuration object, call the entry function for initializing the sensor HCS data configuration, detect whether the sensor device is in position, create a sensor data reporting timer, register the sensor normalization APIs, and register the sensor device. */
+     /* The entry function of the acceleration sensor driver is used to initialize the sensor private data structure object, allocate space for the sensor HCS data configuration object, call the entry function for initializing the sensor HCS data configuration, detect whether the sensor device is in position, create a timer for sensor data reporting, register the sensor normalization APIs, and register the sensor device. */
      int32_t AccelInitDriver(struct HdfDeviceObject *device)
      {
          ...
@@ -271,16 +274,16 @@ The sensor driver model also provides certain driver development APIs that need 
 
    The acceleration sensor model uses the HCS as the configuration source code. For details about the HCS configuration fields, see [Driver Configuration Management](driver-hdf-manage.md).
 
-   ```
+   ```hcs
    /* Device information HCS configuration of the acceleration sensor. */
    device_sensor_accel :: device {
        device0 :: deviceNode {
-           policy = 1; // Policy for publishing the driver service.
-           priority = 110; // Driver startup priority (0–200). A larger value indicates a lower priority. The default value 100 is recommended. The sequence for loading devices with the same priority is random.
-           preload = 0; // Field for specifying whether to load the driver. The value 0 means to load the driver, and 2 means the opposite.
-           permission = 0664; // Permission for the driver to create a device node.
-           moduleName = "HDF_SENSOR_ACCEL"; // Driver name. The value must be the same as that of moduleName in the driver entry structure.
-           serviceName = "sensor_accel"; // Name of the service provided by the driver. The name must be unique.
+           policy = 1;                                  // Policy for the driver to publish services.
+           priority = 100;                              // Priority (0–200) for starting the driver. A larger value indicates a lower priority. The recommended value is 100. If the priorities are the same, the device loading sequence is not ensured.
+           preload = 0;                                 // The value 0 means to load the driver by default during the startup of the system. The value 2 means the opposite.
+           permission = 0664;                           // Permission for the device node created.
+           moduleName = "HDF_SENSOR_ACCEL";             // Driver name. It must be the same as moduleName in the driver entry structure.
+           serviceName = "sensor_accel";                // Name of the service published by the driver. The name must be unique.
            deviceMatchAttr = "hdf_sensor_accel_driver"; // Keyword matching the private data of the driver. The value must be the same as that of match_attr in the private data configuration table of the driver.
        }
    } 
@@ -466,7 +469,7 @@ The sensor driver model also provides certain driver development APIs that need 
    /* Release the resources allocated during driver initialization. */
    void Bmi160ReleaseDriver(struct HdfDeviceObject *device)
    {
-   	......
+   	...
        if (drvData->sensorCfg != NULL) {
            AccelReleaseCfgData(drvData->sensorCfg);
            drvData->sensorCfg = NULL;
@@ -511,18 +514,12 @@ The sensor driver model also provides certain driver development APIs that need 
    }
    ```
 
->![](../public_sys-resources/icon-note.gif) **NOTE**
->
->- The sensor driver model provides certain APIs to implement sensor driver capabilities, including the driver device management, abstract bus and platform operation, common configuration, and configuration parsing capabilities. For details about them, see Table 2.
->- You need to implement the following functions: certain sensor operation interfaces (listed in Table 3) and sensor chipset HCS configuration.
->- You also need to verify basic driver functions.
+### Verification
 
-### How to Verify
+After the driver is developed, develop test cases in the sensor unit test to verify the basic functions of the driver. Use your test platform to set up the test environment.
 
-After the driver is developed, you can develop self-test cases in the sensor unit test to verify the basic functions of the driver. Use the developer self-test platform as the test environment.
-
-```
-static int32_t g_sensorDataFlag = 0; // Indicates whether to report sensor data.
+```c++
+static int32_t g_sensorDataFlag = 0;                        // Whether to report sensor data.
 static const struct SensorInterface *g_sensorDev = nullptr; // Retain the obtained sensor interface instance address.
 
 /* Register the data reporting function. */
@@ -558,9 +555,9 @@ void HdfSensorTest::TearDownTestCase()
 /* Verify the sensor driver. */
 HWTEST_F(HdfSensorTest,TestAccelDriver_001, TestSize.Level0)
 {
-    int32_t sensorInterval = 1000000000; // Data sampling interval, in nanoseconds.
-    int32_t pollTime = 5; // Data sampling duration, in seconds.
-    int32_t accelSensorId = 1; // Acceleration sensor ID, which is 1.
+    int32_t sensorInterval = 1000000000;    // Data sampling interval, in nanoseconds.
+    int32_t pollTime = 5;                   // Data sampling time, in seconds.
+    int32_t accelSensorId = 1;              // Acceleration sensor ID, which specifies the sensor type.
     int32_t count = 0;
     int ret;
     struct SensorInformation *sensorInfo = nullptr;
