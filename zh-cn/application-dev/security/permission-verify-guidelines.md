@@ -18,6 +18,8 @@
 进行权限校验的开发步骤为：
 
 1. 获取调用者的身份标识：tokenId。
+   > **说明：**<br>
+   > 获取访问者身份标识tokenId的方法 getCallingTokenId 可参考[API参考](../reference/apis/js-apis-rpc.md)。
 2. 待校验的权限名：ohos.permission.PERMISSION。
 3. 使用verifyAccessToken接口对当前调用者进行权限校验。
 4. 根据权限校验结果采取对应的措施。
@@ -42,5 +44,3 @@
   }
 
 ```
-> **说明：**
-> 获取访问者身份标识tokenId的方法 getCallingTokenId 可参考[API参考](../reference/apis/js-apis-rpc.md)。

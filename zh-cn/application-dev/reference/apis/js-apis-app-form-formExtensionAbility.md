@@ -33,7 +33,7 @@ onAddForm(want: Want): formBindingData.FormBindingData
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](js-apis-application-want.md) | 是   | 当前ExtensionAbility相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
+| want   | [Want](js-apis-application-want.md) | 是   | 当前卡片相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
 
 **返回值：**
 
@@ -45,17 +45,19 @@ onAddForm(want: Want): formBindingData.FormBindingData
 
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import formBindingData from '@ohos.app.form.formBindingData';
+
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAddForm(want) {
     console.log('FormExtensionAbility onAddForm, want:' + want.abilityName);
     let dataObj1 = {
-      temperature:"11c",
-      "time":"11:00"
+      temperature: "11c",
+      "time": "11:00"
     };
     let obj1 = formBindingData.createFormBindingData(dataObj1);
     return obj1;
   }
-}
+};
 ```
 
 ## onCastToNormalForm
@@ -75,11 +77,13 @@ onCastToNormalForm(formId: string): void
 **示例：**
 
 ```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onCastToNormalForm(formId) {
     console.log('FormExtensionAbility onCastToNormalForm, formId:' + formId);
   }
-}
+};
 ```
 
 ## onUpdateForm
@@ -99,17 +103,24 @@ onUpdateForm(formId: string): void
 **示例：**
 
 ```ts
-import formBindingData from '@ohos.app.form.formBindingData'
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import formBindingData from '@ohos.app.form.formBindingData';
+import formProvider from '@ohos.app.form.formProvider';
+
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onUpdateForm(formId) {
     console.log('FormExtensionAbility onUpdateForm, formId:' + formId);
-    let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
-    this.context.updateForm(formId, obj2).then((data)=>{
+    let obj2 = formBindingData.createFormBindingData({
+      temperature: "22c",
+      time: "22:00"
+    });
+    formProvider.updateForm(formId, obj2).then((data) => {
       console.log('FormExtensionAbility context updateForm, data:' + data);
     }).catch((error) => {
-      console.error('Operation updateForm failed. Cause: ' + error);});
-    }
-}
+      console.error('Operation updateForm failed. Cause: ' + error);
+    });
+  }
+};
 ```
 
 ## onChangeFormVisibility
@@ -129,21 +140,28 @@ onChangeFormVisibility(newStatus: { [key: string]: number }): void
 **示例：**
 
 ```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import formBindingData from '@ohos.app.form.formBindingData'
+import formProvider from '@ohos.app.form.formProvider';
+
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onChangeFormVisibility(newStatus) {
-  console.log('FormExtensionAbility onChangeFormVisibility, newStatus:' + newStatus);
-  let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+    console.log('FormExtensionAbility onChangeFormVisibility, newStatus:' + newStatus);
+    let obj2 = formBindingData.createFormBindingData({
+      temperature: "22c",
+      time: "22:00"
+    });
 
-  for (let key in newStatus) {
-    console.log('FormExtensionAbility onChangeFormVisibility, key:' + key + ", value=" + newStatus[key]);
-    this.context.updateForm(key, obj2).then((data)=>{
+    for (let key in newStatus) {
+      console.log('FormExtensionAbility onChangeFormVisibility, key:' + key + ", value=" + newStatus[key]);
+      formProvider.updateForm(key, obj2).then((data) => {
         console.log('FormExtensionAbility context updateForm, data:' + data);
-    }).catch((error) => {
-        console.error('Operation updateForm failed. Cause: ' + error);});
+      }).catch((error) => {
+        console.error('Operation updateForm failed. Cause: ' + error);
+      });
     }
   }
-}
+};
 ```
 
 ## onFormEvent
@@ -164,11 +182,13 @@ onFormEvent(formId: string, message: string): void
 **示例：**
 
 ```ts
-export default class MyFormExtension extends FormExtensionAbility {
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId, message) {
     console.log('FormExtensionAbility onFormEvent, formId:' + formId + ", message:" + message);
   }
-}
+};
 ```
 
 ## onRemoveForm
@@ -188,11 +208,13 @@ onRemoveForm(formId: string): void
 **示例：**
 
 ```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onRemoveForm(formId) {
     console.log('FormExtensionAbility onRemoveForm, formId:' + formId);
   }
-}
+};
 ```
 
 ## onConfigurationUpdate
@@ -212,11 +234,13 @@ onConfigurationUpdate(newConfig: Configuration): void;
 **示例：**
 
 ```ts
-class MyFormExtensionAbility extends FormExtensionAbility {
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
   onConfigurationUpdate(config) {
     console.log('onConfigurationUpdate, config:' + JSON.stringify(config));
   }
-}
+};
 ```
 
 ## onAcquireFormState
@@ -236,13 +260,15 @@ onAcquireFormState?(want: Want): formInfo.FormState;
 **示例：**
 
 ```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import formInfo from '@ohos.app.form.formInfo';
-class MyFormExtensionAbility extends FormExtensionAbility {
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAcquireFormState(want) {
     console.log('FormExtensionAbility onAcquireFormState, want:' + want);
     return formInfo.FormState.UNKNOWN;
   }
-}
+};
 ```
 
 ## onShareForm
@@ -270,14 +296,16 @@ onShareForm?(formId: string): { [key: string]: any }
 **示例：**
 
 ```ts
-class MyFormExtensionAbility extends FormExtensionAbility {
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
   onShareForm(formId) {
     console.log('FormExtensionAbility onShareForm, formId:' + formId);
     let wantParams = {
-      "temperature":"20",
-      "time":"2022-8-8 09:59",
+      "temperature": "20",
+      "time": "2022-8-8 09:59",
     };
     return wantParams;
   }
-}
+};
 ```

@@ -1,6 +1,6 @@
-# @ohos.app.form.formHost (FormHost)
+# @ohos.app.form.formHost (formHost)
 
-FormHost模块提供了卡片使用方相关接口的能力，包括对使用方同一用户下安装的卡片进行删除、释放、请求更新、获取卡片信息、状态等操作。
+formHost模块提供了卡片使用方相关接口的能力，包括对使用方同一用户下安装的卡片进行删除、释放、请求更新、获取卡片信息、状态等操作。
 
 > **说明：**
 >
@@ -34,25 +34,24 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = "12400633174999288";
-  formHost.deleteForm(formId, (error, data) => {
+  let formId = "12400633174999288";
+  formHost.deleteForm(formId, (error) => {
   if (error) {
-    console.log('formHost deleteForm, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   } else {
     console.log('formHost deleteForm success');
   }
   });
 } catch (error) {
-  console.log(`catch err->${JSON.stringify(error)}`);
+  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
-
 ```
 
 ## deleteForm
@@ -82,21 +81,21 @@ deleteForm(formId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **参数：**
 
 ```ts
 try {
-  var formId = "12400633174999288";
+  let formId = "12400633174999288";
   formHost.deleteForm(formId).then(() => {
     console.log('formHost deleteForm success');
   }).catch((error) => {
-    console.log('formHost deleteForm, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-  console.log(`catch err->${JSON.stringify(error)}`);
+  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -121,21 +120,21 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = "12400633174999288";
-  formHost.releaseForm(formId, (error, data) => {
+  let formId = "12400633174999288";
+  formHost.releaseForm(formId, (error) => {
     if (error) {
-      console.log('formHost releaseForm, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -161,21 +160,21 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = "12400633174999288";
-  formHost.releaseForm(formId, true, (error, data) => {
+  let formId = "12400633174999288";
+  formHost.releaseForm(formId, true, (error) => {
     if (error) {
-      console.log('formHost releaseForm, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -206,21 +205,21 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = "12400633174999288";
+  let formId = "12400633174999288";
   formHost.releaseForm(formId, true).then(() => {
     console.log('formHost releaseForm success');
   }).catch((error) => {
-    console.log('formHost releaseForm, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -245,21 +244,21 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = "12400633174999288";
-  formHost.requestForm(formId, (error, data) => {
+  let formId = "12400633174999288";
+  formHost.requestForm(formId, (error) => {
     if (error) {
-      console.log('formHost requestForm, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -289,21 +288,21 @@ requestForm(formId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = "12400633174999288";
+  let formId = "12400633174999288";
   formHost.requestForm(formId).then(() => {
     console.log('formHost requestForm success');
   }).catch((error) => {
-    console.log('formHost requestForm, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 
 ```
@@ -323,27 +322,27 @@ castToNormalForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formId | string | 是   | 卡片标识。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当将指定的临时卡片转换为普通卡片成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当将指定的临时卡片转换为普通卡片成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = "12400633174999288";
-  formHost.castToNormalForm(formId, (error, data) => {
+  let formId = "12400633174999288";
+  formHost.castToNormalForm(formId, (error) => {
     if (error) {
-      console.log('formHost castTempForm, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -373,21 +372,21 @@ castToNormalForm(formId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = "12400633174999288";
+  let formId = "12400633174999288";
   formHost.castToNormalForm(formId).then(() => {
     console.log('formHost castTempForm success');
   }).catch((error) => {
-    console.log('formHost castTempForm, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -406,27 +405,27 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formIds  | Array&lt;string&gt;       | 是   | 卡片标识列表。         |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向卡片框架发送通知以使指定的卡片可见成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向卡片框架发送通知以使指定的卡片可见成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = ["12400633174999288"];
-  formHost.notifyVisibleForms(formId, (error, data) => {
+  let formId = ["12400633174999288"];
+  formHost.notifyVisibleForms(formId, (error) => {
     if (error) {
-      console.log('formHost notifyVisibleForms, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -456,21 +455,21 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = ["12400633174999288"];
+  let formId = ["12400633174999288"];
   formHost.notifyVisibleForms(formId).then(() => {
     console.log('formHost notifyVisibleForms success');
   }).catch((error) => {
-    console.log('formHost notifyVisibleForms, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -489,27 +488,27 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formIds  | Array&lt;string&gt;       | 是   | 卡片标识列表。|
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向卡片框架发送通知以使指定的卡片不可见成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向卡片框架发送通知以使指定的卡片不可见成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = ["12400633174999288"];
-  formHost.notifyInvisibleForms(formId, (error, data) => {
+  let formId = ["12400633174999288"];
+  formHost.notifyInvisibleForms(formId, (error) => {
     if (error) {
-      console.log('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -539,21 +538,21 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = ["12400633174999288"];
+  let formId = ["12400633174999288"];
   formHost.notifyInvisibleForms(formId).then(() => {
     console.log('formHost notifyInvisibleForms success');
   }).catch((error) => {
-    console.log('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -572,27 +571,27 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formIds  | Array&lt;string&gt;       | 是   | 卡片标识列表。         |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向卡片框架发送通知以使指定的卡片可以更新成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向卡片框架发送通知以使指定的卡片可以更新成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = ["12400633174999288"];
-  formHost.enableFormsUpdate(formId, (error, data) => {
+  let formId = ["12400633174999288"];
+  formHost.enableFormsUpdate(formId, (error) => {
     if (error) {
-      console.log('formHost enableFormsUpdate, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -622,21 +621,21 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = ["12400633174999288"];
+  let formId = ["12400633174999288"];
   formHost.enableFormsUpdate(formId).then(() => {
     console.log('formHost enableFormsUpdate success');
   }).catch((error) => {
-    console.log('formHost enableFormsUpdate, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -655,27 +654,27 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formIds  | Array&lt;string&gt;       | 是   | 卡片标识列表。         |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向卡片框架发送通知以使指定的卡片不可以更新成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向卡片框架发送通知以使指定的卡片不可以更新成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = ["12400633174999288"];
-  formHost.disableFormsUpdate(formId, (error, data) => {
+  let formId = ["12400633174999288"];
+  formHost.disableFormsUpdate(formId, (error) => {
     if (error) {
-      console.log('formHost disableFormsUpdate, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -705,21 +704,21 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
 try {
-  var formId = ["12400633174999288"];
+  let formId = ["12400633174999288"];
   formHost.disableFormsUpdate(formId).then(() => {
     console.log('formHost disableFormsUpdate success');
   }).catch((error) => {
-    console.log('formHost disableFormsUpdate, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -735,20 +734,19 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当检查系统是否准备好成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当检查系统是否准备好成功，error为undefined，否则为错误对象。 |
 
 **示例：**
 
 ```ts
 try {
-  var formId = "12400633174999288";
   formHost.isSystemReady((error, data) => {
     if (error) {
-      console.log('formHost isSystemReady, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -770,14 +768,13 @@ isSystemReady(): Promise&lt;void&gt;
 
 ```ts
 try {
-  var formId = "12400633174999288";
   formHost.isSystemReady().then(() => {
     console.log('formHost isSystemReady success');
   }).catch((error) => {
-    console.log('formHost isSystemReady, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -795,7 +792,7 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上所有应用提供的卡片信息成功，err为undefined，data为查询到的卡片信息；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上所有应用提供的卡片信息成功，error为undefined，data为查询到的卡片信息；否则为错误对象。 |
 
 **示例：**
 
@@ -803,13 +800,13 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 try {
   formHost.getAllFormsInfo((error, data) => {
     if (error) {
-      console.log('formHost getAllFormsInfo, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     } else {
       console.log('formHost getAllFormsInfo, data:' + JSON.stringify(data));
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -825,9 +822,9 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
 **返回值：**
 
-| 类型          | 说明                                |
-| :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
+| 类型                                                         | 说明                                |
+| :----------------------------------------------------------- | :---------------------------------- |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
 
 **示例：**
 
@@ -836,10 +833,10 @@ try {
   formHost.getAllFormsInfo().then((data) => {
       console.log('formHost getAllFormsInfo data:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('formHost getAllFormsInfo, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -858,14 +855,14 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | bundleName | string | 是 | 要查询的应用Bundle名称。 |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，err为undefined，data为查询到的卡片信息；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，error为undefined，data为查询到的卡片信息；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -873,13 +870,13 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 try {
   formHost.getFormsInfo("com.example.ohos.formjsdemo", (error, data) => {
     if (error) {
-      console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     } else {
       console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -899,14 +896,14 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 | ------ | ------ | ---- | ------- |
 | bundleName | string | 是 | 要查询的应用Bundle名称。 |
 | moduleName | string | 是 |  要查询的模块名称。 |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，err为undefined，data为查询到的卡片信息；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，error为undefined，data为查询到的卡片信息；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -914,13 +911,13 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 try {
   formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry", (error, data) => {
     if (error) {
-        console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
+        console.log(`error, code: ${error.code}, message: ${error.message})`);
     } else {
         console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -943,16 +940,16 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 
 **返回值：**
 
-| 类型          | 说明                                |
-| :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
+| 类型                                                         | 说明                                |
+| :----------------------------------------------------------- | :---------------------------------- |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -961,10 +958,10 @@ try {
   formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry").then((data) => {
     console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
   }).catch((error) => {
-    console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -983,22 +980,22 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | 是   | 有效卡片标识列表。 |
-| callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当根据列表删除应用程序的无效卡片成功，err为undefined，data为删除的卡片个数；否则为错误对象。 |
+| callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当根据列表删除应用程序的无效卡片成功，error为undefined，data为删除的卡片个数；否则为错误对象。 |
 
 **示例：**
 
 ```ts
 try {
-  var formIds = new Array("12400633174999288", "12400633174999289");
+  let formIds = new Array("12400633174999288", "12400633174999289");
   formHost.deleteInvalidForms(formIds, (error, data) => {
     if (error) {
-      console.log('formHost deleteInvalidForms, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     } else {
       console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -1028,14 +1025,14 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 
 ```ts
 try {
-  var formIds = new Array("12400633174999288", "12400633174999289");
+  let formIds = new Array("12400633174999288", "12400633174999289");
   formHost.deleteInvalidForms(formIds).then((data) => {
     console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
   }).catch((error) => {
-    console.log('formHost deleteInvalidForms, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -1053,15 +1050,15 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| want | [Want](js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。 |
-| callback | AsyncCallback&lt;[FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | 是 | 回调函数。当获取卡片状态成功，err为undefined，data为获取到的卡片状态；否则为错误对象。 |
+| want | [Want](js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。需要包含bundle名、ability名、module名、卡片名、卡片规格等。 |
+| callback | AsyncCallback&lt;[formInfo.FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | 是 | 回调函数。当获取卡片状态成功，error为undefined，data为获取到的卡片状态；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -1079,13 +1076,13 @@ var want = {
 try {
   formHost.acquireFormState(want, (error, data) => {
     if (error) {
-      console.log('formHost acquireFormState, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     } else {
       console.log('formHost acquireFormState, data:' + JSON.stringify(data));
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -1103,20 +1100,20 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| want   | [Want](js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。 |
+| want   | [Want](js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。需要包含bundle名、ability名、module名、卡片名、卡片规格等。 |
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;[FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | Promise对象，返回卡片状态。 |
+| Promise&lt;[formInfo.FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | Promise对象，返回卡片状态。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -1135,10 +1132,10 @@ try {
   formHost.acquireFormState(want).then((data) => {
     console.log('formHost acquireFormState, data:' + JSON.stringify(data));
   }).catch((error) => {
-    console.log('formHost acquireFormState, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -1206,27 +1203,27 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | 是   | 卡片标识列表。 |
 | isVisible | boolean | 是   | 是否可见。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当通知卡片是否可见成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当通知卡片是否可见成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
-var formIds = new Array("12400633174999288", "12400633174999289");
+let formIds = new Array("12400633174999288", "12400633174999289");
 try {
-  formHost.notifyFormsVisible(formIds, true, (error, data) => {
+  formHost.notifyFormsVisible(formIds, true, (error) => {
     if (error) {
-      console.log('formHost notifyFormsVisible, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -1257,21 +1254,21 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
-var formIds = new Array("12400633174999288", "12400633174999289");
+let formIds = new Array("12400633174999288", "12400633174999289");
 try {
   formHost.notifyFormsVisible(formIds, true).then(() => {
     console.log('formHost notifyFormsVisible success');
   }).catch((error) => {
-    console.log('formHost notifyFormsVisible, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -1291,27 +1288,27 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | 是   | 卡片标识列表。 |
 | isEnableUpdate | boolean | 是   | 是否使能更新。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当通知卡片是否启用更新状态成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当通知卡片是否启用更新状态成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
-var formIds = new Array("12400633174999288", "12400633174999289");
+let formIds = new Array("12400633174999288", "12400633174999289");
 try {
-  formHost.notifyFormsEnableUpdate(formIds, true, (error, data) => {
+  formHost.notifyFormsEnableUpdate(formIds, true, (error) => {
     if (error) {
-      console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -1342,21 +1339,21 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
-var formIds = new Array("12400633174999288", "12400633174999289");
+let formIds = new Array("12400633174999288", "12400633174999289");
 try {
   formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
     console.log('formHost notifyFormsEnableUpdate success');
   }).catch((error) => {
-    console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 ## shareForm
@@ -1375,29 +1372,28 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 | ------ | ------ | ---- | ------- |
 | formId | string | 是   | 卡片标识。 |
 | deviceId | string | 是   | 远程设备标识。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当指定formId和远程设备Id进行卡片分享成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当指定formId和远程设备Id进行卡片分享成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
-
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
 ```ts
-var formId = "12400633174999288";
+let formId = "12400633174999288";
 var deviceId = "EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2";
 try {
-  formHost.shareForm(formId, deviceId, (error, data) => {
+  formHost.shareForm(formId, deviceId, (error) => {
     if (error) {
-      console.log('formHost shareForm, error:' + JSON.stringify(error));
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
     }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -1428,28 +1424,30 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 401 | 调用接口入参错误。 |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
-**参数：**
+**示例：**
 
 ```ts
-var formId = "12400633174999288";
+let formId = "12400633174999288";
 var deviceId = "EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2";
 try {
   formHost.shareForm(formId, deviceId).then(() => {
     console.log('formHost shareForm success');
   }).catch((error) => {
-    console.log('formHost shareForm, error:' + JSON.stringify(error));
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
 ## notifyFormsPrivacyProtected
 
 notifyFormsPrivacyProtected(formIds: Array\<string>, isProtected: boolean, callback: AsyncCallback\<void>): void
+
+通知指定卡片隐私保护状态改变。使用callback异步回调。
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
@@ -1459,18 +1457,72 @@ notifyFormsPrivacyProtected(formIds: Array\<string>, isProtected: boolean, callb
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| formId | string | 是   | 卡片标识。 |
-| deviceId | string | 是   | 远程设备标识。 |
+| formIds | Array\<string\> | 是   | 需要修改隐私保护的卡片标识列表。 |
+| isProtected | boolean | 是   | 是否进行隐私保护。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当指定卡片设置隐私保护属性成功，error为undefined，否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID                                                     | 错误信息           |
+| ------------------------------------------------------------ | ------------------ |
+| 401                                                          | 调用接口入参错误。 |
+| 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。 |                    |
+
+**示例：**
 
 ```ts
-var formIds = new Array("12400633174999288", "12400633174999289");
+let formIds = new Array("12400633174999288", "12400633174999289");
 try {
-  formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {
-    console.log('formHost shareForm success');
-  }).catch((error) => {
-    console.log('formHost shareForm, error:' + JSON.stringify(error));
+  formHost.notifyFormsPrivacyProtected(formIds, true, (error) => {
+    if (error) {
+      console.log(`error, code: ${error.code}, message: ${error.message})`);
+    }
   });
 } catch(error) {
-    console.log(`catch err->${JSON.stringify(error)}`);
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
+
+## notifyFormsPrivacyProtected
+
+function notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Promise\<void\>;
+
+通知指定卡片隐私保护状态改变。使用Promise异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名      | 类型            | 必填 | 说明                             |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formIds     | Array\<string\> | 是   | 需要修改隐私保护的卡片标识列表。 |
+| isProtected | boolean         | 是   | 是否进行隐私保护。               |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID                                                     | 错误信息           |
+| ------------------------------------------------------------ | ------------------ |
+| 401                                                          | 调用接口入参错误。 |
+| 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。 |                    |
+
+```ts
+let formIds = new Array("12400633174999288", "12400633174999289");
+try {
+  formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {
+    console.log('formHost notifyFormsPrivacyProtected success');
+  }).catch((error) => {
+    console.log(`error, code: ${error.code}, message: ${error.message})`);
+  });
+} catch(error) {
+    console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+}
+```
+
