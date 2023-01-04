@@ -633,7 +633,7 @@ entries(): IterableIterator<[string, string]>
 
 ```js
 let searchParamsObject = new Url.URLSearchParams("keyName1=valueName1&keyName2=valueName2"); 
-for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pairs
+for (var pair of searchParamsObject.entries()) { // Show keyName/valueName pairs
     console.log(pair[0]+ ', '+ pair[1]);
 }
 ```
