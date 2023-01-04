@@ -481,6 +481,7 @@ zh-cn/application-dev/reference/apis/js-apis-WorkSchedulerExtensionAbility.md @w
 zh-cn/application-dev/reference/apis/js-apis-xml.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
 zh-cn/application-dev/reference/apis/js-apis-zlib.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-webview.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
+zh-cn/application-dev/reference/arkui-ts/ts-basic-components-web.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
 zh-cn/application-dev/reference/apis/js-apis-ability-ability.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-ability-abilityResult.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-ability-Want.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
