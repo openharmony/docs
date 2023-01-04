@@ -68,7 +68,9 @@ enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion
     
 ```ts
 import AbilityStage from '@ohos.app.ability.AbilityStage';
-export default class MyAbilityStage extends AbilityStage {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
     onCreate() {
         appRecovery.enableAppRecovery(RestartFlag::ALWAYS_RESTART, SaveOccasionFlag::SAVE_WHEN_ERROR, SaveModeFlag::SAVE_WITH_FILE);
     }
@@ -88,7 +90,8 @@ restartApp(): void;
     
 ```ts
 import errorManager from '@ohos.app.ability.errorManager';
-var observer = {
+
+let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
         appRecovery.restartApp();
@@ -114,7 +117,8 @@ saveAppState(): boolean;
     
 ```ts
 import errorManager from '@ohos.app.ability.errorManager';
-var observer = {
+
+let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
         appRecovery.saveAppState();

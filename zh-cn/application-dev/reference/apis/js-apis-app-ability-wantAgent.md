@@ -52,7 +52,8 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 
 **示例：**
@@ -150,7 +151,8 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -345,7 +347,8 @@ getBundleName(agent: WantAgent): Promise\<string\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -446,7 +449,8 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -557,7 +561,8 @@ getUid(agent: WantAgent): Promise\<number\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -660,7 +665,8 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -772,7 +778,8 @@ getWant(agent: WantAgent): Promise\<Want\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -873,7 +880,8 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -983,7 +991,8 @@ cancel(agent: WantAgent): Promise\<void\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1083,7 +1092,8 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1193,7 +1203,8 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1306,7 +1317,8 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1407,7 +1419,8 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1515,7 +1528,8 @@ getOperationType(agent: WantAgent): Promise\<number>;
 | 16000151   | Invalid wantagent object.|
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
