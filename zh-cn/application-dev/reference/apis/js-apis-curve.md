@@ -265,7 +265,7 @@ steps(count: number, end: boolean): string
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ----| ------------------------------------------------------------ |
 | count  | number  | 是   | 阶梯的数量，需要为正整数。                                   |
-| end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false:在起点发生阶跃变化。 |
+| end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false：在起点发生阶跃变化。 |
 
 
 ## Curves.cubicBezier<sup>(deprecated)</sup>
@@ -318,7 +318,7 @@ struct ImageComponent {
   build() {
     Column() {
       Text()
-        .margin({top:100})
+        .margin({ top: 100 })
         .width(this.widthSize)
         .height(this.heightSize)
         .backgroundColor(Color.Red)
@@ -327,7 +327,7 @@ struct ImageComponent {
           this.widthSize = curve.interpolate(0.5) * this.widthSize;
           this.heightSize = curve.interpolate(0.5) * this.heightSize;
         })
-        .animation({duration: 2000 , curve: Curves.stepsCurve(9, true)})
+        .animation({ duration: 2000, curve: Curves.stepsCurve(9, true) })
     }.width("100%").height("100%")
   }
 }
