@@ -2,7 +2,8 @@
 
 The Keycode module provides keycodes for a key device.
 
->  **NOTE**
+> **NOTE**
+> 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -18,7 +19,7 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode';
 | Name                              | Value  |  Description       |
 | -------------------------------- | ------ | --------------------------- |
 | KEYCODE_FN                       |  0 | Function (Fn) key                    |
-| KEYCODE_UNKNOWN                  |  -1 |  Unknown key                       |
+| KEYCODE_UNKNOWN                  |  -1 | Unknown key                       |
 | KEYCODE_HOME                     |  1 | Function (Home) key                 |
 | KEYCODE_BACK                     |  2 | Back key                        |
 | KEYCODE_MEDIA_PLAY_PAUSE         |  10 | Play/Pause key                 |
@@ -47,9 +48,9 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode';
 | KEYCODE_9                        |  2009 | Key 9                      |
 | KEYCODE_STAR                     |  2010 | Key *                      |
 | KEYCODE_POUND                    |  2011 | Key #                      |
-| KEYCODE_DPAD_UP                  |  2012 |  Up key on D-pad                     |
-| KEYCODE_DPAD_DOWN                |  2013 |  Down key on D-pad                     |
-| KEYCODE_DPAD_LEFT                |  2014 |  Left key on D-pad                     |
+| KEYCODE_DPAD_UP                  |  2012 | Up key on D-pad                     |
+| KEYCODE_DPAD_DOWN                |  2013 | Down key on D-pad                     |
+| KEYCODE_DPAD_LEFT                |  2014 | Left key on D-pad                     |
 | KEYCODE_DPAD_RIGHT               |  2015 | Right key on D-pad                     |
 | KEYCODE_DPAD_CENTER              |  2016 | Center key on D-pad                    |
 | KEYCODE_A                        |  2017 | Key A                      |
@@ -103,7 +104,7 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode';
 | KEYCODE_AT                       |  2065 | Key @                      |
 | KEYCODE_PLUS                     |  2066 | Key +                      |
 | KEYCODE_MENU                     |  2067 | Menu key                        |
-| KEYCODE_PAGE_UP                  |  2068 |  Page Up key                      |
+| KEYCODE_PAGE_UP                  |  2068 | Page Up key                      |
 | KEYCODE_PAGE_DOWN                |  2069 | Page Down key                      |
 | KEYCODE_ESCAPE                   |  2070 | ESC key                       |
 | KEYCODE_FORWARD_DEL              |  2071 | Delete key                        |
@@ -337,7 +338,7 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode';
 | KEYCODE_WWAN_WIMAX               |  2846 | WWAN WiMAX key               |
 | KEYCODE_RFKILL                   |  2847 | RF Kill key                  |
 | KEYCODE_CHANNEL                  |  3001 | Channel key                      |
-| KEYCODE_BTN_0                    |  3100 | Key 0                        |
+| KEYCODE_BTN_0                    |  3100 | Button 0                        |
 | KEYCODE_BTN_1                    |  3101 | Button 1                        |
 | KEYCODE_BTN_2                    |  3102 | Button 2                        |
 | KEYCODE_BTN_3                    |  3103 | Button 3                        |
