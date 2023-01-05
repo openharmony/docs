@@ -77,12 +77,9 @@ delete(name: string): void
 **示例：**
 
 ```js
-let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let urlObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new Url.URLParams(urlObject.search.slice(1));
 paramsObject.delete('fod');
-let urlObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsobject = new Url.URLParams(urlObject.search.slice(1));
-paramsobject.delete('fod');
 ```
 
 
