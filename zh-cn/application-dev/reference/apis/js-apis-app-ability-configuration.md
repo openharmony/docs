@@ -35,6 +35,12 @@ import Configuration from '@ohos.app.ability.Configuration'
       let envCallback = {
         onConfigurationUpdated(config) {
           console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`)
+          let language = config.language;
+          let colorMode = config.colorMode;
+          let direction = config.direction;
+          let screenDensity = config.screenDensity;
+          let displayId = config.displayId;
+          let hasPointerDevice = config.hasPointerDevice;
         }
       };
       try {
