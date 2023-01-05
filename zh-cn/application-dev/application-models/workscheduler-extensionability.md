@@ -28,20 +28,28 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
 
 ## 开发步骤
 
-在DevEco Studio工程中手动新建一个WorkScheduler工程，具体步骤如下。
+在DevEco Studio工程中新建一个WorkScheduler工程，主要涉及如下关键步骤：
 
-1. 在工程根目录新建Module，模板选择为Ohos Library，命名为library。在library对应的ets目录下，新建eTS文件并命名为workAbility.ets，用于实现延迟任务回调接口；新建ts文件并命名为DelayWork.ts，用于实现延迟任务API。
+- [开发延迟任务回调接口](#开发延迟任务回调接口)：开发延迟任务生命周期回调接口WorkSchedulerExtensionAbility。
+
+- [开发延迟任务API](#开发延迟任务API)：开发延迟任务API，实现延迟任务注册、停止等功能。
+
+- [配置文件](#配置文件)：配置应用配置文件module.json5。
+
+### 开发延迟任务回调接口
+
+1. 在工程根目录新建Module，模板选择为Ohos Library，命名为library。
 
 2. 在library对应的ets目录(./library/src/main/ets)下，新建eTS文件并命名为workAbility.ets，用于实现延迟任务回调接口。
 
-导入模块。
+> 导入模块。
 
 ```ts
 import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
 import { notification, Logger } from '@ohos/notification'
 ```
 
-实现WorkSchedulerExtension生命周期接口。
+> 实现WorkSchedulerExtension生命周期接口。
 
 ```ts
 export default class workAbility extends WorkSchedulerExtensionAbility {
@@ -72,9 +80,37 @@ export default class workAbility extends WorkSchedulerExtensionAbility {
 }
 ```
 
-3. 在library对应的ets目录(./library/src/main/ets)下，新建ts文件并命名为DelayWork.ts，用于实现延迟任务API。
+3. 在工程entry Module对应的ets目录(./entry/src/main/ets)下，新建一个目录并命名为workAbility。
+在workAbility目录下，新建一个eTS文件并命名为WorkTest.ets，实现延迟任务回调接口。
 
-导入模块。
+> 导入模块。
+
+```ts
+import { workAbility } from '@ohos/library'
+import { Logger } from '@ohos/notification'
+```
+
+> 继承workAbility，实现WorkSchedulerExtension生命周期接口。
+
+```ts
+export default class WorkTest extends workAbility {
+  onWorkStart(workInfo) {
+    Logger.info(TAG, `onWorkStartTest start ${JSON.stringify(workInfo)}`)
+    super.onWorkStart(workInfo)
+  }
+
+  onWorkStopTest(workInfo) {
+    super.onWorkStop(workInfo)
+    Logger.info(TAG, `onWorkStop value`)
+  }
+}
+```
+
+### 开发延迟任务API
+
+1. 在library对应的ets目录(./library/src/main/ets)下，新建ts文件并命名为DelayWork.ts，用于实现延迟任务API。
+
+> 导入模块。
 
 ```ts
 import workScheduler from '@ohos.resourceschedule.workScheduler'
@@ -82,7 +118,7 @@ import prompt from '@ohos.prompt'
 import { Logger } from '@ohos/notification'
 ```
 
-实现延迟任务注册、停止接口。
+> 封装延迟任务注册、停止接口。
 
 ```ts
 export default class DelayWork {
@@ -117,54 +153,38 @@ export default class DelayWork {
 }
 ```
 
-4. 在工程entry Module对应的ets目录(./entry/src/main/ets)下，右键选择“New &gt; Directory”，新建一个目录并命名为workAbility。
-在workAbility目录，右键选择“New &gt; eTS File”，新建一个eTS文件并命名为WorkTest.ets，实现WorkSchedulerExtension生命周期接口。
+3. 在工程entry Module对应的index页面(./entry/src/main/ets/pages/index.ets)下，增加“升级”按钮，调用library封装的延迟任务注册接口。
 
-导入模块。
-
-```ts
-import { workAbility } from '@ohos/library'
-import { Logger } from '@ohos/notification'
-```
-
-继承workAbility，实现WorkSchedulerExtension生命周期接口。
-
-```ts
-export default class WorkTest extends workAbility {
-  onWorkStart(workInfo) {
-    Logger.info(TAG, `onWorkStartTest start ${JSON.stringify(workInfo)}`)
-    super.onWorkStart(workInfo)
-  }
-
-  onWorkStopTest(workInfo) {
-    super.onWorkStop(workInfo)
-    Logger.info(TAG, `onWorkStop value`)
-  }
-}
-```
-
-5. 在工程entry Module对应的index页面(./entry/src/main/ets/pages/index.ets)下，增加“升级”按钮，调用library封装的延迟任务注册API。
-
-导入模块。
+> 导入模块。
 
 ```ts
 import { workAbility } from '@ohos/library'
 import { Logger } from '@ohos/notification'
 ```
 
-增加“升级”按钮，调用library封装的延迟任务注册API。
+> 增加“升级”按钮，调用library封装的延迟任务注册接口，传入bundleName和abilityName，其中bilityName为WorkTest。
 
 ```ts
-Button($r('app.string.upgrade'))
-          .width('60%')
-          .height(40)
-          .fontSize(30)
-          .onClick(() => {
-            this.work.startWork('ohos.samples.workscheduler', 'WorkTest')
-          })
+  Button($r('app.string.upgrade'))
+    .width('60%')
+    .height(40)
+    .fontSize(30)
+    .onClick(() => {
+      this.work.startWork('ohos.samples.workscheduler', 'WorkTest')
+    })
 ```
 
-6. 在工程entry Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册WorkSchedulerExtensionAbility，type标签需要设置为“workScheduler”，srcEntrance标签表示当前ExtensionAbility组件所对应的代码路径。
+> 在组件析构时，调用延迟任务停止接口。
+
+```ts
+  aboutToDisappear() {
+    this.work.stopWork('ohos.samples.workscheduler', 'WorkTest')
+  }
+```
+
+### 配置文件
+
+1. 在工程entry Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册WorkSchedulerExtensionAbility，type标签需要设置为“workScheduler”，srcEntrance标签表示当前ExtensionAbility组件所对应的代码路径。
    
    ```json
    {
