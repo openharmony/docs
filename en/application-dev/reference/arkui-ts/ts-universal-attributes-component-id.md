@@ -22,7 +22,8 @@
 getInspectorByKey(id: string): string
 
 Obtains all attributes of the component with the specified ID, excluding the information about child components.
-This is a system API. 
+
+This is a system API.
 
 **Parameters**
 
@@ -41,7 +42,8 @@ This is a system API.
 getInspectorTree(): string
 
 Obtains the component tree and component attributes.
-This is a system API. 
+
+This is a system API.
 
 **Return value**
 
@@ -54,6 +56,7 @@ This is a system API.
 sendEventByKey(id: string, action: number, params: string): boolean
 
 Sends an event to the component with the specified ID.
+
 This is a system API. 
 
 **Parameters**
@@ -75,7 +78,8 @@ This is a system API.
 sendTouchEvent(event: TouchObject): boolean
 
 Sends a touch event.
-This is a system API. 
+
+This is a system API.
 
 **Parameters**
 
@@ -95,6 +99,8 @@ sendKeyEvent(event: KeyEvent): boolean
 
 Sends a key event.
 
+This is a system API.
+
 **Parameters**
 
 | Name   | Type    | Mandatory     | Description                                                        |
@@ -112,6 +118,8 @@ Sends a key event.
 sendMouseEvent(event: MouseEvent): boolean
 
 Sends a mouse event.
+
+This is a system API.
 
 **Parameters**
 
