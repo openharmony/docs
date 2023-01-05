@@ -34,13 +34,13 @@
 1. 导入NotificationManager模块。
 
    ```ts
-   import NotificationManager from '@ohos.notificationManager';
+   import notificationManager from '@ohos.notificationManager';
    ```
 
 2. 请求发送通知的许可。
 
    ```ts
-   NotificationManager.requestEnableNotification().then(() => {
+   notificationManager.requestEnableNotification().then(() => {
        console.info(`[ANS] requestEnableNotification success`);
    }).catch((err) => {
        console.error(`[ANS] requestEnableNotification failed, errCode[${err}]`);
