@@ -67,10 +67,10 @@ stat(path: string): Promise&lt;Stat&gt;
 
   ```js
   let filePath = pathDir + "test.txt";
-  fileio.stat(filePath).then(function(stat){
+  fileio.stat(filePath).then(function (stat) {
       console.info("getFileInfo succeed, the size of file is " + stat.size);
-  }).catch(function(err){
-      console.info("getFileInfo failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("getFileInfo failed with error:" + err);
   });
   ```
 
@@ -152,10 +152,10 @@ opendir(path: string): Promise&lt;Dir&gt;
 
   ```js
   let dirPath = pathDir + "/testDir";
-  fileio.opendir(dirPath).then(function(dir){
+  fileio.opendir(dirPath).then(function (dir) {
       console.info("opendir succeed");
-  }).catch(function(err){
-      console.info("opendir failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("opendir failed with error:" + err);
   });
   ```
 
@@ -240,10 +240,10 @@ access(path: string, mode?: number): Promise&lt;void&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.access(filePath).then(function() {
+  fileio.access(filePath).then(function () {
       console.info("access succeed");
-  }).catch(function(err){
-      console.info("access failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("access failed with error:" + err);
   });
   ```
 
@@ -296,7 +296,7 @@ accessSync(path: string, mode?: number): void
   try {
       fileio.accessSync(filePath);
   } catch(err) {
-      console.info("accessSync failed with error:"+ err);
+      console.info("accessSync failed with error:" + err);
   }
   ```
 
@@ -326,10 +326,10 @@ close(fd: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.close(fd).then(function(){
+  fileio.close(fd).then(function () {
       console.info("close file succeed");
-  }).catch(function(err){
-      console.info("close file failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("close file failed with error:" + err);
   });
   ```
 
@@ -410,10 +410,10 @@ copyFile(src: string|number, dest: string|number, mode?: number): Promise&lt;voi
   ```js
   let srcPath = pathDir + "srcDir/test.txt";
   let dstPath = pathDir + "dstDir/test.txt";
-  fileio.copyFile(srcPath, dstPath).then(function(){
+  fileio.copyFile(srcPath, dstPath).then(function () {
       console.info("copyFile succeed");
-  }).catch(function(err){
-      console.info("copyFile failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("copyFile failed with error:" + err);
   });
   ```
 
@@ -496,10 +496,10 @@ mkdir(path: string, mode?: number): Promise&lt;void&gt;
 
   ```js
   let dirPath = pathDir + '/testDir';
-  fileio.mkdir(dirPath).then(function() {
+  fileio.mkdir(dirPath).then(function () {
       console.info("mkdir succeed");
-  }).catch(function (error){
-      console.info("mkdir failed with error:"+ error);
+  }).catch(function (error) {
+      console.info("mkdir failed with error:" + error);
   });
   ```
 
@@ -524,7 +524,7 @@ mkdir(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let dirPath = pathDir + '/testDir';
-  fileio.mkdir(dirPath, function(err) {
+  fileio.mkdir(dirPath, function (err) {
     console.info("mkdir succeed");
   });
   ```
@@ -579,10 +579,10 @@ open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.open(filePath, 0o1, 0o0200).then(function(number){
+  fileio.open(filePath, 0o1, 0o0200).then(function (number) {
       console.info("open file succeed");
-  }).catch(function(err){
-      console.info("open file failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("open file failed with error:" + err);
   });
   ```
 
@@ -608,7 +608,7 @@ open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;numbe
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.open(filePath, 0, function(err, fd) {
+  fileio.open(filePath, 0, function (err, fd) {
       // do something
   });
   ```
@@ -681,11 +681,11 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
   let buf = new ArrayBuffer(4096);
-  fileio.read(fd, buf).then(function(readOut){
+  fileio.read(fd, buf).then(function (readOut) {
       console.info("read file data succeed");
       console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-  }).catch(function(err){
-      console.info("read file data failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("read file data failed with error:" + err);
   });
   ```
 
@@ -778,10 +778,10 @@ rmdir(path: string): Promise&lt;void&gt;
 
   ```js
   let dirPath = pathDir + '/testDir';
-  fileio.rmdir(dirPath).then(function() {
+  fileio.rmdir(dirPath).then(function () {
       console.info("rmdir succeed");
-  }).catch(function(err){
-      console.info("rmdir failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("rmdir failed with error:" + err);
   });
   ```
 
@@ -805,7 +805,7 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let dirPath = pathDir + '/testDir';
-  fileio.rmdir(dirPath, function(err){
+  fileio.rmdir(dirPath, function (err) {
       // do something
       console.info("rmdir succeed");
   });
@@ -858,10 +858,10 @@ unlink(path: string): Promise&lt;void&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.unlink(filePath).then(function(){
+  fileio.unlink(filePath).then(function () {
       console.info("remove file succeed");
-  }).catch(function(error){
-      console.info("remove file failed with error:"+ error);
+  }).catch(function (error) {
+      console.info("remove file failed with error:" + error);
   });
   ```
 
@@ -885,7 +885,7 @@ unlink(path: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.unlink(filePath, function(err) {
+  fileio.unlink(filePath, function (err) {
       console.info("remove file succeed");
   });
   ```
@@ -940,10 +940,10 @@ write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; lengt
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
-  fileio.write(fd, "hello, world").then(function(number){
-       console.info("write data to file succeed and size is:"+ number);
-  }).catch(function(err){
-      console.info("write data to file failed with error:"+ err);
+  fileio.write(fd, "hello, world").then(function (number) {
+       console.info("write data to file succeed and size is:" + number);
+  }).catch(function (err) {
+      console.info("write data to file failed with error:" + err);
   });
   ```
 
@@ -972,7 +972,7 @@ write(fd: number, buffer: ArrayBuffer|string, options: { offset?: number; length
   let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world", function (err, bytesWritten) {
       if (bytesWritten) {
-         console.info("write data to file succeed and size is:"+ bytesWritten);
+         console.info("write data to file succeed and size is:" + bytesWritten);
       }
   });
   ```
@@ -1034,10 +1034,10 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.hash(filePath, "sha256").then(function(str){
-      console.info("calculate file hash succeed:"+ str);
-  }).catch(function(err){
-      console.info("calculate file hash failed with error:"+ err);
+  fileio.hash(filePath, "sha256").then(function (str) {
+      console.info("calculate file hash succeed:" + str);
+  }).catch(function (err) {
+      console.info("calculate file hash failed with error:" + err);
   });
   ```
 
@@ -1062,9 +1062,9 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.hash(filePath, "sha256", function(err, hashStr) {
+  fileio.hash(filePath, "sha256", function (err, hashStr) {
       if (hashStr) {
-          console.info("calculate file hash succeed:"+ hashStr);
+          console.info("calculate file hash succeed:" + hashStr);
       }
   });
   ```
@@ -1095,10 +1095,10 @@ chmod(path: string, mode: number): Promise&lt;void&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.chmod(filePath, 0o700).then(function() {
+  fileio.chmod(filePath, 0o700).then(function () {
       console.info("chmod succeed");
-  }).catch(function(err){
-      console.info("chmod failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("chmod failed with error:" + err);
   });
   ```
 
@@ -1177,10 +1177,10 @@ fstat(fd: number): Promise&lt;Stat&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fstat(fd).then(function(stat){
-      console.info("fstat succeed, the size of file is "+ stat.size);
-  }).catch(function(err){
-      console.info("fstat failed with error:"+ err);
+  fileio.fstat(fd).then(function (stat) {
+      console.info("fstat succeed, the size of file is " + stat.size);
+  }).catch(function (err) {
+      console.info("fstat failed with error:" + err);
   });
   ```
 
@@ -1266,10 +1266,10 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.ftruncate(fd, 5).then(function(err) {    
+  fileio.ftruncate(fd, 5).then(function (err) {    
       console.info("truncate file succeed");
-  }).catch(function(err){
-      console.info("truncate file failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("truncate file failed with error:" + err);
   });
   ```
 
@@ -1296,7 +1296,7 @@ ftruncate(fd: number, len?: number, callback: AsyncCallback&lt;void&gt;): void
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let len = 5;
-  fileio.ftruncate(fd, 5, function(err){
+  fileio.ftruncate(fd, 5, function (err) {
       // do something
   });
   ```
@@ -1353,10 +1353,10 @@ truncate(path: string, len?: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let len = 5;
-  fileio.truncate(filePath, len).then(function(){
+  fileio.truncate(filePath, len).then(function () {
       console.info("truncate file succeed");
-  }).catch(function(err){
-      console.info("truncate file failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("truncate file failed with error:" + err);
   });
   ```
 
@@ -1382,7 +1382,7 @@ truncate(path: string, len?: number, callback: AsyncCallback&lt;void&gt;): void
   ```js
   let filePath = pathDir + "/test.txt";
   let len = 5;
-  fileio.truncate(filePath, len, function(err){
+  fileio.truncate(filePath, len, function (err) {
       // do something
   });
   ```
@@ -1437,10 +1437,10 @@ readText(filePath: string, options?: { position?: number; length?: number; encod
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.readText(filePath).then(function(str) {
-      console.info("readText succeed:"+ str);
-  }).catch(function(err){
-      console.info("readText failed with error:"+ err);
+  fileio.readText(filePath).then(function (str) {
+      console.info("readText succeed:" + str);
+  }).catch(function (err) {
+      console.info("readText failed with error:" + err);
   });
   ```
 
@@ -1465,7 +1465,7 @@ readText(filePath: string, options: { position?: number; length?: number; encodi
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.readText(filePath, { position: 1, encoding: 'UTF-8' }, function(err, str){
+  fileio.readText(filePath, { position: 1, encoding: 'UTF-8' }, function (err, str) {
       // do something
   });
   ```
@@ -1524,10 +1524,10 @@ lstat(path: string): Promise&lt;Stat&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.lstat(filePath).then(function(stat){
+  fileio.lstat(filePath).then(function (stat) {
       console.info("get link status succeed, the size of file is" + stat.size);
-  }).catch(function(err){
-      console.info("get link status failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("get link status failed with error:" + err);
   });
   ```
 
@@ -1611,10 +1611,10 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
   ```js
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/new.txt';
-  fileio.rename(srcFile, dstFile).then(function() {
+  fileio.rename(srcFile, dstFile).then(function () {
       console.info("rename succeed");
-  }).catch(function(err){
-      console.info("rename failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("rename failed with error:" + err);
   });
   ```
 
@@ -1640,7 +1640,7 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
   ```js
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/new.txt';
-  fileio.rename(srcFile, dstFile, function(err){
+  fileio.rename(srcFile, dstFile, function (err) {
   });
   ```
 
@@ -1694,10 +1694,10 @@ fsync(fd: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fsync(fd).then(function(){
+  fileio.fsync(fd).then(function () {
       console.info("sync data succeed");
-  }).catch(function(err){
-      console.info("sync data failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("sync data failed with error:" + err);
   });
   ```
 
@@ -1722,7 +1722,7 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fsync(fd, function(err){
+  fileio.fsync(fd, function (err) {
       // do something
   });
   ```
@@ -1776,10 +1776,10 @@ fdatasync(fd: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdatasync(fd).then(function(err) {
+  fileio.fdatasync(fd).then(function (err) {
       console.info("sync data succeed");
-  }).catch(function(err){
-      console.info("sync data failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("sync data failed with error:" + err);
   });
   ```
 
@@ -1859,10 +1859,10 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
   ```js
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/test';
-  fileio.symlink(srcFile, dstFile).then(function() {
+  fileio.symlink(srcFile, dstFile).then(function () {
       console.info("symlink succeed");
-  }).catch(function(err){
-      console.info("symlink failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("symlink failed with error:" + err);
   });
   ```
 
@@ -1945,10 +1945,10 @@ chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
-  fileio.chown(filePath, stat.uid, stat.gid).then(function(){
+  fileio.chown(filePath, stat.uid, stat.gid).then(function () {
       console.info("chown succeed");
-  }).catch(function(err){
-      console.info("chown failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("chown failed with error:" + err);
   });
   ```
 
@@ -1975,7 +1975,7 @@ chown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&gt
   ```js
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath)
-  fileio.chown(filePath, stat.uid, stat.gid, function (err){
+  fileio.chown(filePath, stat.uid, stat.gid, function (err) {
       // do something
   });
   ```
@@ -2029,10 +2029,10 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  fileio.mkdtemp(pathDir + "/XXXXXX").then(function(pathDir){
-      console.info("mkdtemp succeed:"+ pathDir);
-  }).catch(function(err){
-      console.info("mkdtemp failed with error:"+ err);
+  fileio.mkdtemp(pathDir + "/XXXXXX").then(function (pathDir) {
+      console.info("mkdtemp succeed:" + pathDir);
+  }).catch(function (err) {
+      console.info("mkdtemp failed with error:" + err);
   });
   ```
 
@@ -2115,10 +2115,10 @@ fchmod(fd: number, mode: number): Promise&lt;void&gt;
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let mode = 0o700;
-  fileio.fchmod(fd, mode).then(function() {
+  fileio.fchmod(fd, mode).then(function () {
       console.info("chmod succeed");
-  }).catch(function(err){
-      console.info("chmod failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("chmod failed with error:" + err);
   });
   ```
 
@@ -2201,10 +2201,10 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.createStream(filePath, "r+").then(function(stream){
+  fileio.createStream(filePath, "r+").then(function (stream) {
       console.info("createStream succeed");
-  }).catch(function(err){
-      console.info("createStream failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("createStream failed with error:" + err);
   });
   ```
 
@@ -2229,7 +2229,7 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.createStream(filePath, "r+", function(err, stream){
+  fileio.createStream(filePath, "r+", function (err, stream) {
       // do something
   });
   ```
@@ -2290,10 +2290,10 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdopenStream(fd, "r+").then(function(stream){
+  fileio.fdopenStream(fd, "r+").then(function (stream) {
       console.info("openStream succeed");
-  }).catch(function(err){
-      console.info("openStream failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("openStream failed with error:" + err);
   });
   ```
 
@@ -2383,10 +2383,10 @@ fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.statSync(filePath);
-  fileio.fchown(fd, stat.uid, stat.gid).then(function() {
+  fileio.fchown(fd, stat.uid, stat.gid).then(function () {
       console.info("chown succeed");
-  }).catch(function(err){
-      console.info("chown failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("chown failed with error:" + err);
   });
   ```
 
@@ -2414,7 +2414,7 @@ fchown(fd: number, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.statSync(filePath);
-  fileio.fchown(fd, stat.uid, stat.gid, function (err){
+  fileio.fchown(fd, stat.uid, stat.gid, function (err) {
       // do something
   });
   ```
@@ -2473,10 +2473,10 @@ lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
-  fileio.lchown(filePath, stat.uid, stat.gid).then(function() {
+  fileio.lchown(filePath, stat.uid, stat.gid).then(function () {
       console.info("chown succeed");
-  }).catch(function(err){
-      console.info("chown failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("chown failed with error:" + err);
   });
   ```
 
@@ -2503,7 +2503,7 @@ lchown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&g
   ```js
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
-  fileio.lchown(filePath, stat.uid, stat.gid, function (err){
+  fileio.lchown(filePath, stat.uid, stat.gid, function (err) {
       // do something
   });
   ```
@@ -2560,8 +2560,8 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
   ```js
   let filePath = pathDir +"/test.txt";
-  fileio.createWatcher(filePath, 1, function(number){
-     console.info("Monitoring times: "+number);
+  fileio.createWatcher(filePath, 1, function (number) {
+     console.info("Monitoring times: " +number);
   });
   
   ```
@@ -2775,10 +2775,10 @@ stop(): Promise&lt;void&gt;
 
   ```js
   let filePath = path + "/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, function(number){
-      console.info("Monitoring times: "+number);
+  let watcher = fileio.createWatcher(filePath, 1, function (number) {
+      console.info("Monitoring times: " +number);
   });
-  watcher.stop().then(function(){
+  watcher.stop().then(function () {
        console.info("close watcher succeed");
   });
   ```
@@ -2802,10 +2802,10 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let filePath = path +"/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, function(number){
-      console.info("Monitoring times: "+number);
+  let watcher = fileio.createWatcher(filePath, 1, function (number) {
+      console.info("Monitoring times: " +number);
   });
-  watcher.stop(function(){
+  watcher.stop(function () {
       console.info("close watcher succeed");
   })
   ```
@@ -2835,10 +2835,10 @@ close(): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let ss= fileio.createStreamSync(filePath, "r+");
-  ss.close().then(function(){
+  ss.close().then(function () {
       console.info("close fileStream succeed");
-  }).catch(function(err){
-      console.info("close fileStream  failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("close fileStream  failed with error:" + err);
   });
   ```
 
@@ -2904,10 +2904,10 @@ flush(): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let ss= fileio.createStreamSync(filePath, "r+");
-  ss.flush().then(function (){
+  ss.flush().then(function () {
       console.info("flush succeed");
-  }).catch(function(err){
-      console.info("flush failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("flush failed with error:" + err);
   });
   ```
 
@@ -2980,10 +2980,10 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
   ```js
   let filePath = pathDir + "/test.txt";
   let ss= fileio.createStreamSync(filePath, "r+");
-  ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'}).then(function (number){
-      console.info("write succeed and size is:"+ number);
-  }).catch(function(err){
-      console.info("write failed with error:"+ err);
+  ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'}).then(function (number) {
+      console.info("write succeed and size is:" + number);
+  }).catch(function (err) {
+      console.info("write failed with error:" + err);
   });
   ```
 
@@ -3012,7 +3012,7 @@ write(buffer: ArrayBuffer|string, options: { offset?: number; length?: number; p
   ss.write("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'}, function (err, bytesWritten) {
       if (bytesWritten) {
          // do something
-         console.info("write succeed and size is:"+ bytesWritten);
+         console.info("write succeed and size is:" + bytesWritten);
       }
   });
   ```
@@ -3074,11 +3074,11 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
   ```js
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
-  ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readOut){
+  ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readOut) {
       console.info("read data succeed");
       console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-  }).catch(function(err){
-      console.info("read data failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("read data failed with error:" + err);
   });
   ```
 
@@ -3165,10 +3165,10 @@ read(): Promise&lt;Dirent&gt;
 **示例：**
 
   ```js
-  dir.read().then(function (dirent){
+  dir.read().then(function (dirent) {
       console.log("read succeed, the name of dirent is " + dirent.name);
-  }).catch(function(err){
-      console.info("read failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("read failed with error:" + err);
   });
   ```
 
@@ -3231,7 +3231,7 @@ close(): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  dir.close().then(function(err){
+  dir.close().then(function (err) {
       console.info("close dir successfully");
   });
   ```
@@ -3248,7 +3248,7 @@ close(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  dir.close(function(err){
+  dir.close(function (err) {
       console.info("close dir successfully");
   });
   ```
