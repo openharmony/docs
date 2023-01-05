@@ -405,6 +405,8 @@ promise.then((data) => {
 
 下列API示例中都需先使用[getAllDisplays()](#displaygetalldisplays9)、[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)中的任一方法获取到Display实例，再通过此实例调用对应方法。
 
+### 属性
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
