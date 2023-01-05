@@ -8,22 +8,24 @@
 
 ## 系统要求
 
-- Windows 10 64位系统。
+- Windows 10 64位系统，建议内存8GB及以上，建议硬盘100GB及以上。
 
-- Windows系统上安装的DevEco Device Tool为3.1 Beta1版本。
+- Windows和Ubuntu系统上安装的DevEco Device Tool为最新版本，且版本号需相同。
 
 
 ## 操作步骤
 
-1. 下载[DevEco Device Tool 3.1 Beta1](https://device.harmonyos.com/cn/ide#download) Windows版。
+1. 下载[DevEco Device Tool](https://device.harmonyos.com/cn/ide#download) 最新Windows版本软件包。
 
-2. 解压DevEco Device Tool压缩包，双击安装包程序，单击**Next**进行安装。
+2. 解压DevEco Device Tool压缩包，双击安装包程序，单击**下一步**进行安装。
 
-3. 设置DevEco Device Tool的安装路径，请注意安装路径不能包含中文字符，**不建议安装到C盘目录**，单击**Next**。
+3. 请详细阅读以下界面的用户协议和隐私声明，需勾选“我接受许可证协议中的条款”后，才能继续下一步的安装。
+
+4. 设置DevEco Device Tool的安装路径，请注意安装路径不能包含中文字符，**不建议安装到C盘目录**，单击**下一步**。
 
    ![zh-cn_image_0000001326386753](figures/zh-cn_image_0000001326386753.png)
 
-4. 根据安装向导提示，勾选要自动安装的软件。
+5. 根据安装向导提示，安装依赖的工具。
 
    1. 在弹出**VSCode installation confirm**页面，勾选“Install VS Code 1.62.2 automatically”，单击**Next**。
        > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
