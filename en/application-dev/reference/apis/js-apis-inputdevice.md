@@ -476,7 +476,7 @@ Defines the information about an input device.
 | id                   | number                                 | Yes| No| Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
 | name                 | string                                 | Yes| No| Name of the input device.                                            |
 | sources              | Array&lt;[SourceType](#sourcetype)&gt; | Yes| No| Source type of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad.|
-| axisRanges           | Array&lt;[axisRanges](#axisrange)&gt;  | Yes| No| Axis information of the input device.                                          |
+| axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | Yes| No| Axis information of the input device.                                          |
 | bus<sup>9+</sup>     | number                                 | Yes| No| Bus type of the input device.                                        |
 | product<sup>9+</sup> | number                                 | Yes| No| Product information of the input device.                                        |
 | vendor<sup>9+</sup>  | number                                 | Yes| No| Vendor information of the input device.                                        |
