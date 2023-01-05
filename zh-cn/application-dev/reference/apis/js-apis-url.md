@@ -446,6 +446,15 @@ URL静态成员函数。
 | url | string | 是 | 入参对象。 |
 | base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200002 | Invalid url string. |
+
+
 **示例：**
 
 ```js
