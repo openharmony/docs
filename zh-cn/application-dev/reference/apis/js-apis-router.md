@@ -571,9 +571,9 @@ getParams(): Object
 
 **返回值：**
 
-| 类型     | 说明                |
-| ------ | ----------------- |
-| Object | 发起跳转的页面往当前页传入的参数。 |
+| 类型   | 说明                               |
+| ------ | ---------------------------------- |
+| object | 发起跳转的页面往当前页传入的参数。 |
 
 **示例：**
 
@@ -653,7 +653,7 @@ struct Index {
       }
     }
     try {
-      await router.push(options)
+      await router.pushUrl(options)
     } catch (err) {
       console.info(` fail callback, code: ${err.code}, msg: ${err.msg}`)
     }
@@ -661,18 +661,18 @@ struct Index {
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Text('这是第一页')
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
+      Text('这是第一页')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
       Button() {
         Text('next page')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
-          .margin({ top: 20 })
-          .backgroundColor('#ccc')
-          .onClick(() => {
-            this.routePage()
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
       })
     }
     .width('100%')
@@ -704,7 +704,7 @@ struct Second {
           this.secondData = (this.data.array[1]).toString()
         })
       .margin({top:20})
-      Text('第一页传来的数值' + '  ' + this.secondData)
+      Text(`第一页传来的数值:${this.secondData}`)
         .fontSize(20)
         .margin({top:20})
         .backgroundColor('red')      
