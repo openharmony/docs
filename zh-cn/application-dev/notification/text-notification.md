@@ -22,7 +22,7 @@
 
 ## 接口说明
 
-通知发布接口如下表所示，不同发布类型通知由[NotificationRequest](../reference/apis/js-apis-notification.md#notificationrequest)的字段携带不同的信息。
+通知发布接口如下表所示，不同发布类型通知由[NotificationRequest](../reference/apis/js-apis-notificationManager.md#notificationrequest)的字段携带不同的信息。
 
 | **接口名** | **描述** |
 | -------- | -------- |
@@ -38,7 +38,7 @@
 2. 导入模块。
    
    ```ts
-   import NotificationManager from '@ohos.notificationManager';
+   import notificationManager from '@ohos.notificationManager';
    ```
 
 3. 构造NotificationRequest对象，并发布通知。
@@ -48,7 +48,7 @@
       let notificationRequest = {
         id: 1,
         content: {
-      	contentType: NotificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // 普通文本类型通知
+      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // 普通文本类型通知
       	normal: {
       	  title: 'test_title',
       	  text: 'test_text',
@@ -57,7 +57,7 @@
         }
       }
       
-      NotificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err) => {
           if (err) {
               console.error(`[ANS] failed to publish, error[${err}]`);
               return;
@@ -75,7 +75,7 @@
       let notificationRequest = {
         id: 1,
         content: {
-      	contentType: NotificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // 长文本类型通知
+      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // 长文本类型通知
       	longText: {
       	  title: 'test_title',
       	  text: 'test_text',
@@ -88,7 +88,7 @@
       }
       
       // 发布通知
-      NotificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err) => {
           if (err) {
               console.error(`[ANS] failed to publish, error[${err}]`);
               return;
@@ -105,7 +105,7 @@
       let notificationRequest = {
         id: 1,
         content: {
-      	contentType: NotificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // 多行文本类型通知
+      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // 多行文本类型通知
       	multiLine: {
       	  title: 'test_title',
       	  text: 'test_text',
@@ -117,7 +117,7 @@
       }
       
       // 发布通知
-      NotificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err) => {
         if (err) {
       	console.error(`[ANS] failed to publish, error[${err}]`);
       	return;
@@ -135,7 +135,7 @@
       let notificationRequest = {
           id: 1,
           content: {
-      	contentType: NotificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
+      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
       	picture: {
       	  title: 'test_title',
       	  text: 'test_text',
@@ -148,7 +148,7 @@
       }
       
       // 发布通知
-      NotificationManager.publish(notificationRequest, (err) => {
+      notificationManager.publish(notificationRequest, (err) => {
           if (err) {
       	console.error(`[ANS] failed to publish, error[${err}]`);
       	return;
