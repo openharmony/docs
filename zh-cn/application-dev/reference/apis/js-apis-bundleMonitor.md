@@ -81,7 +81,7 @@ off(type: BundleChangedEvent, callback?: callback\<BundleChangedInfo>): void;
 | 参数名                       | 类型     | 必填 | 说明                                                       |
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
 | type| BundleChangedEvent| 是   | 注销监听的事件类型。                                         |
-| callback | callback\<BundleChangedInfo>| 是   | 注销监听的回调函数，当为空时表示注销当前事件的所有callback。 |
+| callback | callback\<BundleChangedInfo>| 否   | 注销监听的回调函数，当为空时表示注销当前事件的所有callback。 |
 
 **示例：**
 
