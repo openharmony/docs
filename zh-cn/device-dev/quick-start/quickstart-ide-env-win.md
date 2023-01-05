@@ -42,8 +42,6 @@
 
 6. 依赖的工具安装完成后，单击**安装**，开始安装DevEco Device Tool。
 
-   ![zh-cn_image_0000001285806330](figures/zh-cn_image_0000001285806330.png)
-
 7. 继续等待DevEco Device Tool安装向导自动安装DevEco Device Tool插件，直至安装完成，单击**完成**，关闭DevEco Device Tool安装向导。
 
    ![zh-cn_image_0000001275267040](figures/zh-cn_image_0000001275267040.png)
