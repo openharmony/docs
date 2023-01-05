@@ -32,7 +32,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
 
 - [开发延迟任务回调接口](#开发延迟任务回调接口)：开发延迟任务生命周期回调接口WorkSchedulerExtensionAbility。
 
-- [开发延迟任务API](#开发延迟任务API)：开发延迟任务API，实现延迟任务注册、停止等功能。
+- [开发延迟任务调度接口](#开发延迟任务调度接口)：开发延迟任务API，实现延迟任务注册、停止等功能。
 
 - [配置文件](#配置文件)：配置应用配置文件module.json5。
 
@@ -106,7 +106,7 @@ export default class WorkTest extends workAbility {
 }
 ```
 
-### 开发延迟任务API
+### 开发延迟任务调度接口
 
 1. 在library对应的ets目录(./library/src/main/ets)下，新建ts文件并命名为DelayWork.ts，用于实现延迟任务API。
 
