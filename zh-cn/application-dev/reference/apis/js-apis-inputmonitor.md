@@ -204,9 +204,8 @@ try {
   inputMonitor.on("touch", touchEvent => {
     if (touchEvent.touches.length == 3) { // 当前有三个手指按下
       return true;
-    } else {
-      return false;
     }
+    return false;
   });
 } catch (error) {
     console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);

@@ -14,6 +14,8 @@ import InputEvent from '@ohos.multimodalInput.inputEvent';
 
 ## InputEvent 
 
+输入事件。
+
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
 | 名称         | 类型   | 可读   | 可写   | 说明             |
