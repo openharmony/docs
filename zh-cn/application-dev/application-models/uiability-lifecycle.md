@@ -21,7 +21,7 @@ Create状态为在应用加载过程中，UIAbility实例创建完成时触发�
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import Window from '@ohos.window';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
@@ -43,22 +43,37 @@ UIAbility实例创建完成之后，在进入Foreground之前，系统会创建�
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import Window from '@ohos.window';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
     // ...
 
-    onWindowStageCreate(windowStage: Window.WindowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         // 设置WindowStage的事件订阅（获焦/失焦、可见/不可见）
         try {
             windowStage.on('windowStageEvent', (data) => {
-                console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
-                    JSON.stringify(data));
+                let stageEventType: window.WindowStageEventType = data;
+                switch (stageEventType) {
+                    case window.WindowStageEventType.SHOWN: // 切到前台
+                        console.info('windowStage foreground.');
+                        break;
+                    case window.WindowStageEventType.ACTIVE: // 获焦状态
+                        console.info('windowStage active.');
+                        break;
+                    case window.WindowStageEventType.INACTIVE: // 失焦状态
+                        console.info('windowStage inactive.');
+                        break;
+                    case window.WindowStageEventType.HIDDEN: // 切到后台
+                        console.info('windowStage background.');
+                        break;
+                    default:
+                        break;
+                }
             });
         } catch (exception) {
             console.error('Failed to enable the listener for window stage event changes. Cause:' +
-                JSON.stringify(exception));
-        };
+            JSON.stringify(exception));
+        }
 
         // 设置UI界面加载
         windowStage.loadContent('pages/Index', (err, data) => {
@@ -76,19 +91,27 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import Window from '@ohos.window';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
+    windowStage: window.WindowStage;
+
     // ...
+
+    onWindowStageCreate(windowStage: window.WindowStage) {
+        this.windowStage = windowStage;
+
+        // ...
+    }
 
     onWindowStageDestroy() {
         // 释放UI界面资源
         // 例如在onWindowStageDestroy()中注销获焦/失焦等WindowStage事件
         try {
-            windowStage.off('windowStageEvent');
+            this.windowStage.off('windowStageEvent');
         } catch (exception) {
             console.error('Failed to disable the listener for window stage event changes. Cause:' +
-                JSON.stringify(exception));
+            JSON.stringify(exception));
         };
     }
 }
@@ -134,7 +157,7 @@ Destroy状态在UIAbility实例销毁时触发。可以在onDestroy()回调中�
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import Window from '@ohos.window';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
     // ...
