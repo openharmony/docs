@@ -27,54 +27,164 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
 
 ## 开发步骤
 
-在DevEco Studio工程中手动新建一个WorkSchedulerExtensionAbility工程，具体步骤如下。
+在DevEco Studio工程中手动新建一个WorkScheduler工程，具体步骤如下。
 
-1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为WorkSchedulerExtension。
+1. 在工程根目录新建Module，模板选择为Ohos Library，命名为library。在library对应的ets目录下，新建eTS文件并命名为workAbility.ets，用于实现延迟任务回调接口；新建ts文件并命名为DelayWork.ts，用于实现延迟任务API。
 
-2. 在WorkSchedulerExtension目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为WorkSchedulerExtension.ts。
+2. 在library对应的ets目录(./library/src/main/ets)下，新建eTS文件并命名为workAbility.ets，用于实现延迟任务回调接口。
 
-3. 打开WorkSchedulerExtension.ts文件，导入模块。
+导入模块。
 
 ```ts
 import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
+import { notification, Logger } from '@ohos/notification'
 ```
 
-4. 在WorkSchedulerExtension.ts中，实现WorkSchedulerExtension生命周期接口。
+实现WorkSchedulerExtension生命周期接口。
 
-  ```ts
-    export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
-        onWorkStart(workInfo) {
-            console.log('MyWorkSchedulerExtensionAbility onWorkStart' + JSON.stringify(workInfo));
-        }
-        onWorkStop(workInfo) {
-            console.log('MyWorkSchedulerExtensionAbility onWorkStop' + JSON.stringify(workInfo));
-        }
+```ts
+export default class workAbility extends WorkSchedulerExtensionAbility {
+  // 延迟任务开始回调
+  onWorkStart(workInfo) {
+    Logger.info(TAG, `onWorkStart CommonEvent publish start ${JSON.stringify(workInfo)}`)
+    // 发送升级通知
+    let notificationRequest = notification.getNotificationContentBasic('upgrade', upgradeMessage, '')
+    notification.publish(notificationRequest, (err) => {
+      if (err) {
+        Logger.info(TAG, `onWorkStart notification publish err ${JSON.stringify(err)}`)
+      }
+      Logger.info(TAG, `onWorkStart notification publish success`)
+    })
+  }
+
+  // 延迟任务结束回调
+  onWorkStop(workInfo) {
+    // 发送升级完成通知
+    let notificationRequest = notification.getNotificationContentBasic('upgrade', 'upgrade success', '')
+    notification.publish(notificationRequest, (err) => {
+      if (err) {
+        Logger.info(TAG, `onWorkStop notification publish err ${JSON.stringify(err)}`)
+      }
+      Logger.info(TAG, `onWorkStop notification publish success`)
+    })
+  }
+}
+```
+
+3. 在library对应的ets目录(./library/src/main/ets)下，新建ts文件并命名为DelayWork.ts，用于实现延迟任务API。
+
+导入模块。
+
+```ts
+import workScheduler from '@ohos.resourceschedule.workScheduler'
+import prompt from '@ohos.prompt'
+import { Logger } from '@ohos/notification'
+```
+
+实现延迟任务注册、停止接口。
+
+```ts
+export default class DelayWork {
+  private workInfo = {
+    workId: 1,
+    networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
+    bundleName: '',
+    abilityName: ''
+  }
+  // 注册延迟调度任务
+  startWork(bundleName: string, abilityName: string) {
+    this.workInfo.bundleName = bundleName
+    this.workInfo.abilityName = abilityName
+    try {
+      workScheduler.startWork(this.workInfo)
+      Logger.info(TAG, `startWork success`)
+    } catch (error) {
+      Logger.error(TAG, `startWork startwork failed. code is ${error.code} message is ${error.message}`)
+      prompt.showToast({
+        message: `${error.message}`
+      })
     }
-  ```
+  }
 
-5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册WorkSchedulerExtensionAbility，type标签需要设置为“workScheduler”，srcEntrance标签表示当前ExtensionAbility组件所对应的代码路径。
+  // 停止延迟调度任务
+  stopWork(bundleName: string, abilityName: string) {
+    this.workInfo.bundleName = bundleName
+    this.workInfo.abilityName = abilityName
+    workScheduler.stopWork(this.workInfo, false)
+    Logger.info(TAG, `stopWork`)
+  }
+}
+```
+
+4. 在工程entry Module对应的ets目录(./entry/src/main/ets)下，右键选择“New &gt; Directory”，新建一个目录并命名为workAbility。
+在workAbility目录，右键选择“New &gt; eTS File”，新建一个eTS文件并命名为WorkTest.ets，实现WorkSchedulerExtension生命周期接口。
+
+导入模块。
+
+```ts
+import { workAbility } from '@ohos/library'
+import { Logger } from '@ohos/notification'
+```
+
+继承workAbility，实现WorkSchedulerExtension生命周期接口。
+
+```ts
+export default class WorkTest extends workAbility {
+  onWorkStart(workInfo) {
+    Logger.info(TAG, `onWorkStartTest start ${JSON.stringify(workInfo)}`)
+    super.onWorkStart(workInfo)
+  }
+
+  onWorkStopTest(workInfo) {
+    super.onWorkStop(workInfo)
+    Logger.info(TAG, `onWorkStop value`)
+  }
+}
+```
+
+5. 在工程entry Module对应的index页面(./entry/src/main/ets/pages/index.ets)下，增加“升级”按钮，调用library封装的延迟任务注册API。
+
+导入模块。
+
+```ts
+import { workAbility } from '@ohos/library'
+import { Logger } from '@ohos/notification'
+```
+
+增加“升级”按钮，调用library封装的延迟任务注册API。
+
+```ts
+Button($r('app.string.upgrade'))
+          .width('60%')
+          .height(40)
+          .fontSize(30)
+          .onClick(() => {
+            this.work.startWork('ohos.samples.workscheduler', 'WorkTest')
+          })
+```
+
+6. 在工程entry Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册WorkSchedulerExtensionAbility，type标签需要设置为“workScheduler”，srcEntrance标签表示当前ExtensionAbility组件所对应的代码路径。
    
    ```json
    {
      "module": {
        // ...
-       "extensionAbilities": [
-         {
-           "name": "ServiceExtAbility",
-           "description": "workScheduler",
-           "type": "workScheduler",
-           "srcEntrance": "./ets/WorkSchedulerExtension/WorkSchedulerExtension.ts"
-         }
-       ]
+        "extensionAbilities": [
+          {
+            "name": "WorkTest",
+            "srcEntrance": "./ets/workAbility/WorkTest.ets",
+            "label": "$string:WorkSchedulerExtensionAbility_label",
+            "description": "$string:WorkSchedulerExtensionAbility_desc",
+            "type": "workScheduler"
+          }
+        ]
      }
    }
    ```
-
-6. 在工程中实现延迟任务注册、删除等功能，延迟任务接口说明见[延迟任务API](../reference/apis/js-apis-resourceschedule-workScheduler.md)。
 
 ## 相关实例
 
 针对WorkSchedulerExtensionAbility开发，有以下相关示例可供参考：
 
-[WorkSchedulerExtensionAbility的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/WorkSchedExtAbility)
+[WorkScheduler的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/WorkScheduler)
 
