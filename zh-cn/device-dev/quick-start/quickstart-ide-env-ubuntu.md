@@ -12,9 +12,11 @@
 
 ## 系统要求
 
-- Ubuntu系统要求：Ubuntu18.04~21.10版本。推荐使用20.04版本，内存16 GB及以上。
+- Ubuntu系统要求：Ubuntu18.04~21.10版本。推荐使用20.04版本，内存16 GB及以上，硬盘100GB及以上。
 
 - Ubuntu系统的用户名不能包含中文字符。
+
+- Ubuntu和Windows系统上安装的DevEco Device Tool为最新版本，且版本号需相同。
 
 
 ## 操作步骤
@@ -27,6 +29,7 @@
        ```
 
        ![zh-cn_image_0000001226764302](figures/zh-cn_image_0000001226764302.png)
+
    2. 打开终端工具，执行如下命令，输入密码，然后选择**No**，将Ubuntu shell由dash修改为bash。
       
        ```shell
@@ -35,24 +38,24 @@
 
        ![ubuntu-dash-to-bash](figures/ubuntu-dash-to-bash.png)
 
-2. 下载[DevEco Device Tool 3.1 Beta1](https://device.harmonyos.com/cn/ide#download) Linux版本。
+2. 下载[DevEco Device Tool](https://device.harmonyos.com/cn/ide#download)最新Linux版本软件包。
 
 3. 解压DevEco Device Tool软件包并对解压后的文件夹进行赋权。
-   1. 进入DevEco Device Tool软件包目录，执行如下命令解压软件包，其中devicetool-linux-tool-3.1.0.300.zip为软件包名称，请根据实际进行修改。
+   1. 进入DevEco Device Tool软件包目录，执行如下命令解压软件包，其中devicetool-linux-tool-{Version}.zip为软件包名称，请根据实际进行修改。
       
        ```shell
-       unzip devicetool-linux-tool-3.1.0.300.zip
+       unzip devicetool-linux-tool-{Version}.zip
        ```
-   2. 进入解压后的文件夹，执行如下命令，赋予安装文件可执行权限，其中devicetool-linux-tool-3.1.0.300.sh请根据实际进行修改。
+   2. 进入解压后的文件夹，执行如下命令，赋予安装文件可执行权限，其中devicetool-linux-tool-{Version}.sh请根据实际进行修改。
       
        ```shell
-       chmod u+x devicetool-linux-tool-3.1.0.300.sh
+       chmod u+x devicetool-linux-tool-{Version}.sh
        ```
 
-4. 执行如下命令，安装DevEco Device Tool，其中devicetool-linux-tool-3.1.0.300.sh请根据实际进行修改。
+4. 执行如下命令，安装DevEco Device Tool，其中devicetool-linux-tool-{Version}.sh请根据实际进行修改。
    
    ```shell
-   sudo ./devicetool-linux-tool-3.1.0.300.sh
+   sudo ./devicetool-linux-tool-{Version}.sh
    ```
 
 5. 在用户协议和隐私声明签署界面，请详细阅读用户协议和隐私声明，需签署同意用户协议和隐私声明才能进行下一步的安装，可通过键盘的上下按键进行选择。
