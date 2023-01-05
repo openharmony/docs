@@ -2,102 +2,108 @@
 
 taskpool作用是为应用程序提供一个多线程的运行环境，可以降低整体资源的消耗、提高系统的整体性能，且用户无需关心线程实例的生命周期。
 
+> **说明：**<br/>
+> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 ## 导入模块
 
 ```js
 import taskpool from '@ohos.taskpool';
 ```
 
-## 属性
+## Priority
 
-**系统能力：** SystemCapability.Utils.Lang
+表示所创建任务（Task）的优先级。（暂未支持）
 
-| 名称     | 可读 | 可写 | 说明                                                       |
-| -------- | ---- | ---- | ---------------------------------------------------------- |
-| taskpool | 是   | 是   | taskpool对象用于管理Task（任务），可以创建、执行和取消Task |
+**系统能力：**  SystemCapability.Utils.Lang
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| HIGH   | 0    | 任务为高优先级。 |
+| MEDIUM | 1 | 任务为中优先级。 |
+| LOW | 2 | 任务为低优先级。 |
 
 ## Task
 
-使用以下方法前，需要先构造Task。
-
-| 名称 | 类型 | 可读 | 可写 | 说明                                                     |
-| ---- | ---- | ---- | ---- | -------------------------------------------------------- |
-| Task | Task | 是   | 是   | 待执行的任务。需要创建Task再放入taskpool（任务池）中执行 |
+表示任务。使用以下方法前，需要先构造Task。
 
 ### constructor
 
 constructor(func: Function, ...args: unknown[])
 
-Task构造函数
+Task的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名 | 类型      | 必填 | 说明                                           |
-| ------ | --------- | ---- | ---------------------------------------------- |
-| func   | Function  | 是   | Task执行的逻辑需要传入Function                 |
-| args   | unknown[] | 否   | Task执行逻辑的Function如果需要入参，则需要传递 |
-
-**返回值：**
-
-| 类型 | 说明                                                |
-| ---- | --------------------------------------------------- |
-| Task | 执行Task构造函数生成的Task对象，失败则返回undefined |
+| 参数名 | 类型      | 必填 | 说明                     |
+| ------ | --------- | ---- | ------------------------ |
+| func   | Function  | 是   | 任务执行需要传入函数。   |
+| args   | unknown[] | 否   | 任务执行传入函数的参数。 |
 
 **错误码：**
 
-| 错误码   | 错误说明                                |
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401      | the input parameters are invalid.       |
-| 10200014 | the function is not mark as concurrent. |
+| 10200014 | The function is not mark as concurrent. |
 
 **示例：**
 
 ```js
-import taskpool from '@ohos.taskpool';
-
 function func(args) {
     "use concurrent"
     console.log("func: " + args);
     return args;
 }
-var task = new taskpool.Task(func, "this is first Task");
+let task = new taskpool.Task(func, "this is my first Task");
 ```
 
+### 属性
 
+**系统能力：** SystemCapability.Utils.Lang
 
-## execute
+| 名称      | 类型      | 可读 | 可写 | 说明                         |
+| --------- | --------- | ---- | ---- | ---------------------------- |
+| function  | Function  | 是   | 是   | 创建任务时需要传入的函数。   |
+| arguments | unknown[] | 是   | 是   | 创建任务传入函数所需的参数。 |
 
-execute(func: Function, ...args: unknown[]): Promise<unknown>
+## taskpool.execute
+
+execute(func: Function, ...args: unknown[]): Promise\<unknown>
+
+任务池执行任务，需要传入待执行的函数和函数所需的参数，此执行模式不可取消任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名 | 类型      | 必填 | 说明                                       |
-| ------ | --------- | ---- | ------------------------------------------ |
-| func   | Function  | 是   | 执行的逻辑需要传入Function                 |
-| args   | unknown[] | 否   | 执行逻辑的Function如果需要入参，则需要传递 |
+| 参数名 | 类型      | 必填 | 说明                         |
+| ------ | --------- | ---- | ---------------------------- |
+| func   | Function  | 是   | 执行的逻辑需要传入函数。     |
+| args   | unknown[] | 否   | 执行逻辑的函数所需要的参数。 |
 
 **返回值：**
 
-| 类型             | 说明                           |
-| ---------------- | ------------------------------ |
-| Promise<unknown> | execute是异步方法，返回Promise |
+| 类型              | 说明                                 |
+| ----------------- | ------------------------------------ |
+| Promise\<unknown> | execute是异步方法，返回Promise对象。 |
 
 **错误码：**
 
-| 错误码   | 错误说明                                |
-| -------- | --------------------------------------- |
-| 401      | the input parameters are invalid.       |
-| 10200014 | the function is not mark as concurrent. |
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 10200003 | Worker initialization failure.            |
+| 10200006 | Serializing an uncaught exception failed. |
+| 10200014 | The function is not mark as concurrent.   |
 
 **示例：**
 
 ```js
-import taskpool from '@ohos.taskpool';
-
 function func(args) {
     "use concurrent"
     console.log("func: " + args);
@@ -107,84 +113,81 @@ function func(args) {
 let value = taskpool.execute(func, 100);
 ```
 
+## taskpool.execute
 
+execute(task: Task, priority?: Priority): Promise\<unknown>
 
-execute(task: Task, priority?: Priority): Promise<unknown>;
+任务池执行任务，需要传入已创建的任务，此执行模式可取消任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                             |
-| -------- | -------- | ---- | -------------------------------- |
-| task     | Task     | 是   | 需要在taskpool中执行的任务       |
-| priority | Priority | 否   | 等待执行的Task的优先级，暂未实现 |
+| 参数名   | 类型                  | 必填 | 说明                                 |
+| -------- | --------------------- | ---- | ------------------------------------ |
+| task     | [Task](#task)         | 是   | 需要在任务池中执行的任务。           |
+| priority | [Priority](#priority) | 否   | 等待执行的任务的优先级（暂未支持）。 |
 
 **返回值：**
 
 | 类型             | 说明                           |
 | ---------------- | ------------------------------ |
-| Promise<unknown> | execute是异步方法，返回Promise |
+| Promise\<unknown> | execute是异步方法，返回Promise对象。 |
 
 **错误码：**
 
-| 错误码   | 错误说明                                |
-| -------- | --------------------------------------- |
-| 401      | the input parameters are invalid.       |
-| 10200014 | the function is not mark as concurrent. |
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 10200003 | Worker initialization failure.            |
+| 10200006 | Serializing an uncaught exception failed. |
+| 10200014 | The function is not mark as concurrent.   |
 
 **示例：**
 
 ```js
-import taskpool from '@ohos.taskpool';
-
 function func(args) {
     "use concurrent"
     console.log("func: " + args);
     return args;
 }
-var task = new taskpool.Task(func, "this is first Task");
+let task = new taskpool.Task(func, "this is my first Task");
 let value = taskpool.execute(task);
 ```
 
-
-
-## cancel
+## taskpool.cancel
 
 cancel(task: Task): void
+
+取消任务池中的任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明                           |
-| ------ | ---- | ---- | ------------------------------ |
-| task   | Task | 是   | 需要在taskpool中取消执行的任务 |
-
-**返回值：**
-
-| 类型 | 说明     |
-| ---- | -------- |
-| void | 无返回值 |
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| task   | [Task](#task) | 是   | 需要取消执行的任务。 |
 
 **错误码：**
 
-| 错误码   | 错误信息              |
-| -------- | --------------------- |
-| 10200015 | the task is not exist |
-| 10200016 | the task is running   |
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ------------------------- |
+| 10200015 | If the task is not exist. |
+| 10200016 | If the task is running.   |
 
 **示例：**
 
 ```js
-import taskpool from '@ohos.taskpool';
-
 function func(args) {
     "use concurrent"
     console.log("func: " + args);
     return args;
 }
-var task = new taskpool.Task(func, "this is first Task");
+let task = new taskpool.Task(func, "this is first Task");
 let value = taskpool.execute(task);
 taskpool.cancel(task);
 ```
