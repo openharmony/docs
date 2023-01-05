@@ -206,7 +206,34 @@ struct WebComponent {
 
 ## WebviewController
 
-通过WebviewController可以控制Web组件各种行为。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法。
+通过WebviewController可以控制Web组件各种行为。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
+
+### initializeWebEngine
+
+static initializeWebEngine(): void
+
+在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+本示例以 MainAbility 为例，描述了在 Ability 创建阶段完成 Web 组件动态库加载的功能。
+
+```ts
+// xxx.ts
+import Ability from '@ohos.application.Ability'
+import web_webview from '@ohos.web.webview'
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        console.log("MainAbility onCreate")
+        web_webview.WebviewController.initializeWebEngine()
+        globalThis.abilityWant = want
+        console.log("MainAbility onCreate done")
+    }
+}
+```
 
 ### 创建对象
 
