@@ -35,7 +35,7 @@ getId(uri: string): number
 **示例：**
 
 ```ts
-dataUriUtils.getId("com.example.dataUriUtils/1221")
+var id = dataUriUtils.getId("com.example.dataUriUtils/1221");
 ```
 
 
@@ -65,7 +65,7 @@ attachId(uri: string, id: number): string
 
 ```ts
 var id = 1122;
-dataUriUtils.attachId(
+var uri = dataUriUtils.attachId(
     "com.example.dataUriUtils",
 	id,
 )
@@ -96,7 +96,7 @@ deleteId(uri: string): string
 **示例：**
 
 ```ts
-dataUriUtils.deleteId("com.example.dataUriUtils/1221")
+var uri = dataUriUtils.deleteId("com.example.dataUriUtils/1221")
 ```
 
 
@@ -126,7 +126,7 @@ updateId(uri: string, id: number): string
 
 ```ts
 var id = 1122;
-dataUriUtils.updateId(
+var uri = dataUriUtils.updateId(
     "com.example.dataUriUtils/1221",
 	id
 )
