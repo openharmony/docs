@@ -11,7 +11,8 @@ WorkSchedulerExtensionAbility提供了延迟任务回调能力，在延迟任务
 延迟任务调度运作机制如图1所示。
 
   **图1** 延迟任务调度运作机制 
-![form-extension](figures/form-extension.png)
+  
+![WorkSchedulerExtensionAbility](figures/WorkSchedulerExtensionAbility.png)
 
 应用通过[延迟任务API](../reference/apis/js-apis-resourceschedule-workScheduler.md)注册、删除、查询任务。
 应用服务侧进行条件检测和判断，若满足条件，则回调WorkSchedulerExtensionAbility拉起应用，执行onWorkStart、onWorkStop回调接口。
