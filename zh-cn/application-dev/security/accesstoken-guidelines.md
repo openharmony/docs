@@ -133,14 +133,14 @@
    
    ```typescript
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import Window from '@ohos.window';
+   import window from '@ohos.window';
    import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
    import { Permissions } from '@ohos.abilityAccessCtrl';
    
    export default class EntryAbility extends UIAbility {
        // ...
    
-       onWindowStageCreate(windowStage: Window.WindowStage) {
+       onWindowStageCreate(windowStage: window.WindowStage) {
            // Main window is created, set main page for this ability
            let context = this.context;
            let AtManager = abilityAccessCtrl.createAtManager();
