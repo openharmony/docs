@@ -327,7 +327,7 @@ struct ImageComponent {
           this.widthSize = curve.interpolate(0.5) * this.widthSize;
           this.heightSize = curve.interpolate(0.5) * this.heightSize;
         })
-        .animation({duration: 2000 , curve: Curves.stepsCurve(9, true)})
+        .animation({ duration: 2000 , curve: Curves.stepsCurve(9, true) })
     }.width("100%").height("100%")
   }
 }
