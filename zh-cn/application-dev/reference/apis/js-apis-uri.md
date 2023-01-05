@@ -112,8 +112,8 @@ equals(other: URI): boolean
 **示例：**
 
 ```js
-const uriInstance = new uri.URI('https://gg:gaogao@[::]:88/path/path66?foooo#gaogao');
-const uriInstance1 = new uri.URI('https://gg:gaogao@[::]:88/path/path66?foooo#gaogao');
+const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 uriInstance.equals(uriInstance1);
 ```
 ### equalsTo<sup>9+</sup>
@@ -139,8 +139,8 @@ equalsTo(other: URI): boolean
 **示例：**
 
 ```js
-const uriInstance = new uri.URI('https://gg:gaogao@[::]:88/path/path66?foooo#gaogao');
-const uriInstance1 = new uri.URI('https://gg:gaogao@[::]:88/path/path66?foooo#gaogao');
+const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 uriInstance.equalsTo(uriInstance1);
 ```
 
