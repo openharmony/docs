@@ -1,10 +1,12 @@
 # ImageAnimator
 
-The **\<ImageAnimator>** component enables images to be played frame by frame. The list of images to be played can be configured, and the duration of each image can be configured.
+The **\<ImageAnimator>** component enables images to be played frame by frame. The list of images to be played as well as the duration of each image can be configured.
 
 >  **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+
 
 ## Child Components
 

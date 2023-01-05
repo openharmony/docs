@@ -3,7 +3,7 @@
 The state management module provides APIs for data storage, persistent data management, Ability data storage, and environment status required by applications. The APIs for Ability data storage are supported since API version 9.
 
 > **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## AppStorage
@@ -16,14 +16,14 @@ Establishes two-way data binding between an attribute and this **LocalStorage** 
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description              |
-| -------- | ------ | --- | --------------------- |
-| propName | string | Yes  | Name of the target attribute.|
+| Name     | Type    | Mandatory  | Description       |
+| -------- | ------ | ---- | ----------- |
+| propName | string | Yes   | Name of the target attribute.|
 
 **Return value**
 
-| Type | Description                                                        |
-| ----- | ------------------------------------------------------------ |
+| Type   | Description                                      |
+| ----- | ---------------------------------------- |
 | @Link | Returns two-way binding to this attribute if there is data with a given key. This means that attribute changes made by a variable or component will be synchronized to the **AppStorage**, and attribute changes made through the **AppStorage** will be synchronized to the variable or component.|
 
 ```ts
@@ -38,15 +38,15 @@ Works in a way similar to the **Link** API. If the current key is stored in the 
 
 **Parameters**
 
-| Name      | Type  | Mandatory| Description            |
-| ------------ | ------ | --- | -------------------- |
-| propName     | string | Yes  | Target key. |
-| defaultValue | T      | Yes  | Default value to set.|
+| Name         | Type    | Mandatory  | Description       |
+| ------------ | ------ | ---- | ----------- |
+| propName     | string | Yes   | Target key.|
+| defaultValue | T      | Yes   | Default value to set. |
 
 **Return value**
 
-| Type | Description                                                        |
-| ----- | ------------------------------------------------------------ |
+| Type   | Description                                      |
+| ----- | ---------------------------------------- |
 | @Link | Returns the value corresponding to the key if the current key is stored in the **AppStorage**; creates and returns a **Link** instance corresponding to the default value if the key has not been created.|
 
 ```ts
@@ -61,15 +61,15 @@ Establishes one-way data binding with an attribute to update its status.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description           |
-| -------- | ------ | --- | ------------------- |
-| propName | string |  Yes | Target key.|
+| Name     | Type    | Mandatory  | Description       |
+| -------- | ------ | ---- | ----------- |
+| propName | string | Yes   | Target key.|
 
 **Return value**
 
-| Type | Description                                                        |
-| ----- | ------------------------------------------------------------ |
-| @Prop | Returns one-way binding to an attribute with a given key if the attribute exists. This means that attribute changes made through the **AppStorage** will be synchronized to the variable or component, but attribute changes made by the variable or component will be synchronized to the **AppStorage**. The variable returned by this method is an immutable one, which is applicable both to the variable and immutable state attributes. If the attribute with the specified key does not exist, **undefined** is returned.|
+| Type   | Description                                      |
+| ----- | ---------------------------------------- |
+| @Prop | Returns one-way binding to an attribute with a given key if the attribute exists; returns **undefined** otherwise. One-way binding means that attribute changes made through the **AppStorage** will be synchronized to the variable or component, but attribute changes made by the variable or component will not be synchronized to the **AppStorage**. This API returns immutable variables and is applicable to mutable and immutable state variables alike.|
 
 ```ts
 let simple = AppStorage.Prop('simpleProp')
@@ -83,16 +83,16 @@ Works in a way similar to the **Prop** API. If the current key is stored in the 
 
 **Parameters**
 
-| Name      | Type  | Mandatory| Description                   |
-| ------------ | ------ | --- | --------------------------- |
-| propName     | string |  Yes | Key in the key-value pair to be saved.|
-| defaultValue | S      |  Yes | Default value to set.             |
+| Name         | Type    | Mandatory  | Description           |
+| ------------ | ------ | ---- | --------------- |
+| propName     | string | Yes   | Key of the target key-value pair.|
+| defaultValue | S      | Yes   | Default value to set.        |
 
 **Return value**
 
-| Type | Description                                                        |
-| ----- | ------------------------------------------------------------ |
-| @Prop | Returns the value corresponding to the key if the current key is stored in the **AppStorage**; creates and returns a **Prop** instance corresponding to the default value otherwise. |
+| Type   | Description                                      |
+| ----- | ---------------------------------------- |
+| @Prop | Returns the value corresponding to the key if the current key is stored in the **AppStorage**; creates and returns a **Prop** instance corresponding to the default value otherwise.|
 
 ```ts
 let simple = AppStorage.SetAndProp('simpleProp', 121)
@@ -106,14 +106,14 @@ Checks whether the attribute corresponding to the specified key exists.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description      |
-| -------- | ------ | --- | -------------- |
-| propName | string | Yes  | Key of the attribute.|
+| Name     | Type    | Mandatory  | Description   |
+| -------- | ------ | ---- | ------- |
+| propName | string | Yes   | Key of the attribute.|
 
 **Return value**
 
-| Type   | Description                      |
-| ------- | -------------------------- |
+| Type     | Description           |
+| ------- | ------------- |
 | boolean | Returns whether the attribute exists.|
 
 ```ts
@@ -128,15 +128,15 @@ Obtains the value of the specified key.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description           |
-| -------- | ------ | ---- | ------------------- |
-| propName | string | Yes  | Key of the value to obtain.|
+| Name     | Type    | Mandatory  | Description       |
+| -------- | ------ | ---- | ----------- |
+| propName | string | Yes   | Key of the value to obtain.|
 
 **Return value**
 
-| Type              | Description                      |
-| ------------------ | -------------------------- |
-| boolean or undefined| Returns whether the value of the attribute exists.|
+| Type               | Description           |
+| ----------------- | ------------- |
+| T or undefined| Returns the attribute value if the attribute exists; returns **undefined** otherwise.|
 
 ```ts
 let simple = AppStorage.Get('simpleProp')
@@ -150,15 +150,15 @@ Replaces the value of a saved key.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description         |
-| -------- | ------ | --- | ----------------- |
-| propName | string | Yes  | Key of the value to set. |
-| newValue | T      | Yes  | Value to set.|
+| Name     | Type    | Mandatory  | Description       |
+| -------- | ------ | ---- | ----------- |
+| propName | string | Yes   | Key to set.  |
+| newValue | T      | Yes   | Value to set.|
 
 **Return value**
 
-| Type   | Description                                                 |
-| ------- | ----------------------------------------------------- |
+| Type     | Description                                 |
+| ------- | ----------------------------------- |
 | boolean | Returns **true** and the value if the key exists; returns **false** otherwise.|
 
 ```ts
@@ -173,15 +173,15 @@ Creates or updates the value of the specified key.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                 |
-| -------- | ------ | --- | ------------------------- |
-| propName | string | Yes  | Key to set.  |
-| newValue | T      | Yes  | Value to be updated or created.|
+| Name     | Type    | Mandatory  | Description           |
+| -------- | ------ | ---- | --------------- |
+| propName | string | Yes   | Key to set.  |
+| newValue | T      | Yes   | Value to be updated or created.|
 
 **Return value**
 
-| Type   | Description                                                        |
-| ------- | ------------------------------------------------------------ |
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
 | boolean | Updates the value of the attribute and returns **true** if an attribute that has the same name as the specified key exists; creates an attribute with the specified value as its default value and returns **false** otherwise. **undefined** and **null** are not allowed to return **true**.|
 
 ```ts
@@ -196,14 +196,14 @@ Deletes the key-value pair that matches the specified key.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description             |
-| -------- | ------ | --- | --------------------- |
-| propName | string | Yes  | Key of the target key-value pair.|
+| Name     | Type    | Mandatory  | Description        |
+| -------- | ------ | ---- | ------------ |
+| propName | string | Yes   | Key of the target key-value pair.|
 
 **Return value**
 
-| Type   | Description                                                        |
-| ------- | ------------------------------------------------------------ |
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
 | boolean | Returns **true** if the key-value pair exists and is successfully deleted; returns **false** otherwise.|
 
 ```ts
@@ -218,8 +218,8 @@ Searches for all keys.
 
 **Return value**
 
-| Type          | Description                        |
-| -------------- | ---------------------------- |
+| Type            | Description            |
+| -------------- | -------------- |
 | array\<string> | Returns an array of strings containing all keys.|
 
 ```ts
@@ -232,14 +232,32 @@ staticClear(): boolean
 
 Deletes all attributes.
 
+This API is deprecated since API version 9. You are advised to use [Clear](#clear) instead.
+
 **Return value**
 
-| Type   | Description                                                        |
-| ------- | ------------------------------------------------------------ |
+| Type     | Description                               |
+| ------- | --------------------------------- |
 | boolean | Returns **true** if all attributes are deleted; returns **false** if any of the attributes is being referenced by a state variable.|
 
 ```ts
 let simple = AppStorage.staticClear()
+```
+
+### Clear<sup>9+</sup>
+
+Clear(): boolean
+
+Deletes all attributes.
+
+**Return value**
+
+| Type     | Description                               |
+| ------- | --------------------------------- |
+| boolean | Returns **true** if all attributes are deleted; returns **false** if any of the attributes is being referenced by a state variable.|
+
+```typescript
+let simple = AppStorage.Clear()
 ```
 
 ### IsMutable
@@ -250,14 +268,14 @@ Checks whether an attribute exists and can be changed.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description             |
-| -------- | ------ | :--- | --------------------- |
-| propName | string | Yes  | Key of the target attribute.|
+| Name     | Type    | Mandatory  | Description        |
+| -------- | ------ | :--- | ------------ |
+| propName | string | Yes   | Key of the target attribute.|
 
 **Return value**
 
-| Type   | Description                                |
-| ------- | ------------------------------------ |
+| Type     | Description                |
+| ------- | ------------------ |
 | boolean | Returns whether the attribute exists and can be changed.|
 
 ```ts
@@ -268,12 +286,12 @@ let simple = AppStorage.IsMutable('simpleProp')
 
 Size(): number
 
-Checks the number of existing key-value pairs.
+Obtains the number of existing key-value pairs.
 
 **Return value**
 
-| Type  | Description              |
-| ------ | ------------------ |
+| Type    | Description       |
+| ------ | --------- |
 | number | Returns the number of key-value pairs.|
 
 ```ts
@@ -290,9 +308,9 @@ Creates and initializes a **LocalStorage** object.
 
 **Parameters**
 
-| Name                | Type  | Mandatory| Description                                                    |
-| ---------------------- | ------ | ---- | ------------------------------------------------------------ |
-| initializingProperties | Object | No  | All object attributes and their values returned by **object.keys(obj)**.|
+| Name                   | Type    | Mandatory  | Description                                    |
+| ---------------------- | ------ | ---- | ---------------------------------------- |
+| initializingProperties | Object | No   | All object attributes and their values returned by **object.keys(obj)**.|
 
 ```ts
 this.storage = new LocalStorage()
@@ -308,8 +326,8 @@ This API can be used only in the stage model.
 
 **Return value**
 
-| Type                         | Description                  |
-| ----------------------------- | ---------------------- |
+| Type                           | Description               |
+| ----------------------------- | ----------------- |
 | [LocalStorage](#localstorage) | **LocalStorage** object.|
 
 ```ts
@@ -324,14 +342,14 @@ Checks whether the **LocalStorage** contains the specified attribute.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description      |
-| -------- | ------ | --- | -------------- |
-| propName | string | Yes  | Key of the attribute.|
+| Name     | Type    | Mandatory  | Description   |
+| -------- | ------ | ---- | ------- |
+| propName | string | Yes   | Key of the attribute.|
 
 **Return value**
 
-| Type   | Description                      |
-| ------- | -------------------------- |
+| Type     | Description           |
+| ------- | ------------- |
 | boolean | Returns whether the attribute exists.|
 
 ```ts
@@ -347,14 +365,14 @@ Obtains the value of the specified key.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description           |
-| -------- | ------ | --- | ------------------- |
-| propName | string | Yes  | Key of the value to obtain.|
+| Name     | Type    | Mandatory  | Description       |
+| -------- | ------ | ---- | ----------- |
+| propName | string | Yes   | Key of the value to obtain.|
 
 **Return value**
 
-| Type          | Description                                                   |
-| -------------- | ------------------------------------------------------- |
+| Type            | Description                                      |
+| -------------- | ---------------------------------------- |
 | T \| undefined | Returns the value of the specified key if it exists; returns **undefined** otherwise.|
 
 ```ts
@@ -370,16 +388,16 @@ Sets a new value for the specified key.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description         |
-| -------- | ------ | --- | ----------------- |
-| propName | string | Yes  | Key to set.  |
-| newValue | T      | Yes  | Value to set.|
+| Name     | Type    | Mandatory  | Description       |
+| -------- | ------ | ---- | ----------- |
+| propName | string | Yes   | Key to set.  |
+| newValue | T      | Yes   | Value to set.|
 
 **Return value**
 
-| Type   | Description                                                 |
-| ------- | ----------------------------------------------------- |
-| boolean | Returns **true** if the specified key exists and the value is set; returns **false** otherwise.|
+| Type     | Description                                 |
+| ------- | ----------------------------------- |
+| boolean | Returns **true** and the value if the key exists; returns **false** otherwise.|
 
 ```ts
 this.storage = new LocalStorage()
@@ -394,15 +412,15 @@ Creates or updates the value of the specified key.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description               |
-| -------- | ------ | :--- | ----------------------- |
-| propName | string | Yes  | Key of the value to create or update.  |
-| newValue | T      | Yes  | Value to be updated or created.|
+| Name     | Type    | Mandatory  | Description          |
+| -------- | ------ | :--- | -------------- |
+| propName | string | Yes   | Key of the value to create or update.  |
+| newValue | T      | Yes   | Value to be updated or created.|
 
 **Return value**
 
-| Type   | Description                                                        |
-| ------- | ------------------------------------------------------------ |
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
 | boolean | Updates the value of the attribute and returns **true** if an attribute that has the same name as the specified key exists; creates an attribute with the specified value as its default value and returns false otherwise. **undefined** and **null** are not allowed.|
 
 ```ts
@@ -418,14 +436,14 @@ Establishes two-way data binding between an attribute and this **LocalStorage** 
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description              |
-| -------- | ------ | --- | ---------------------- |
-| propName | string | Yes  | Name of the target attribute.|
+| Name     | Type    | Mandatory  | Description       |
+| -------- | ------ | ---- | ----------- |
+| propName | string | Yes   | Name of the target attribute.|
 
 **Return value**
 
-| Type| Description                                                        |
-| ---- | ------------------------------------------------------------ |
+| Type  | Description                                      |
+| ---- | ---------------------------------------- |
 | T    | Returns two-way binding to this attribute if there is data with a given key. This means that attribute changes made by a variable or component will be synchronized to the **LocalStorage**, and attribute changes made through the **LocalStorage** will be synchronized to the variable or component. returns **undefined** if the attribute with the given key does not exist.|
 
 ```ts
@@ -441,15 +459,15 @@ Works in a way similar to the **Link** API.
 
 **Parameters**
 
-| Name      | Type  | Mandatory| Description            |
-| ------------ | ------ | --- | -------------------- |
-| propName     | string | Yes  | Target key. |
-| defaultValue | T      | Yes  | Default value to set.|
+| Name         | Type    | Mandatory  | Description       |
+| ------------ | ------ | ---- | ----------- |
+| propName     | string | Yes   | Target key.|
+| defaultValue | T      | Yes   | Default value to set. |
 
 **Return value**
 
-| Type                                | Description                                                        |
-| ------------------------------------ | ------------------------------------------------------------ |
+| Type   | Description                                      |
+| ----- | ---------------------------------------- |
 | @Link | Returns the value corresponding to the key if the current key is stored in the **LocalStorage**; creates and returns a **Link** instance corresponding to the default value if the key has not been created.|
 
 ```ts
@@ -465,15 +483,15 @@ Establishes one-way data binding with an attribute to update its status.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description               |
-| -------- | ------ | --- | ----------------------- |
-| propName | string | Yes  | Key of the attribute.|
+| Name     | Type    | Mandatory  | Description         |
+| -------- | ------ | ---- | ------------- |
+| propName | string | Yes   | Key of the attribute.|
 
 **Return value**
 
-| Type                                | Description                                                        |
-| ------------------------------------ | ------------------------------------------------------------ |
-| @Prop | Returns one-way binding to an attribute with a given key if the attribute exists; returns **undefined** otherwise. This means that attribute changes made through the **LocalStorage** will be synchronized to the variable or component, but attribute changes made by the variable or component will be synchronized to the **LocalStorage**. This API returns immutable variables and is applicable to mutable and immutable state variables. |
+| Type   | Description                                      |
+| ----- | ---------------------------------------- |
+| @Prop | Returns one-way binding to an attribute with a given key if the attribute exists; returns **undefined** otherwise. One-way binding means that attribute changes made through the **LocalStorage** will be synchronized to the variable or component, but attribute changes made by the variable or component will not be synchronized to the **LocalStorage**. This API returns immutable variables and is applicable to mutable and immutable state variables alike. |
 
 ```ts
 this.storage = new LocalStorage()
@@ -488,15 +506,15 @@ Works in a way similar to the **Prop** API.
 
 **Parameters**
 
-| Name      | Type  | Mandatory| Description                 |
-| ------------ | ------ | --- | ------------------------- |
-| propName     | string | Yes  | Key of the target key-value pair.|
-| defaultValue | T      | Yes  | Default value to set.           |
+| Name         | Type    | Mandatory  | Description          |
+| ------------ | ------ | ---- | -------------- |
+| propName     | string | Yes   | Key of the target key-value pair.|
+| defaultValue | T      | Yes   | Default value to set.       |
 
 **Return value**
 
-| Type                                | Description                                                        |
-| ------------------------------------ | ------------------------------------------------------------ |
+| Type   | Description                                      |
+| ----- | ---------------------------------------- |
 | @Prop | Returns the value corresponding to the given key if the key is stored in the **LocalStorage**; creates and returns a **Prop** instance corresponding to the default value if the key has not been created.|
 
 ```ts
@@ -512,15 +530,15 @@ Deletes the key-value pair that matches the specified key.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description             |
-| -------- | ------ | :--- | --------------------- |
-| propName | string | Yes  | Key of the target key-value pair.|
+| Name     | Type    | Mandatory  | Description        |
+| -------- | ------ | :--- | ------------ |
+| propName | string | Yes   | Key of the target key-value pair.|
 
 **Return value**
 
-| Type   | Description                                                        |
-| ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the key-value pair exists and is successfully deleted; returns **false** if the key-value pair does not exist, fails to be deleted, or is being referenced by a state varaiable.|
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the key-value pair exists and is successfully deleted; returns **false** if the key-value pair does not exist, fails to be deleted, or is being referenced by a state variable.|
 
 ```ts
 this.storage = new LocalStorage()
@@ -535,8 +553,8 @@ Searches for all keys.
 
 **Return value**
 
-| Type          | Description                                  |
-| -------------- | -------------------------------------- |
+| Type            | Description                 |
+| -------------- | ------------------- |
 | array\<string> | Returns an array of strings containing all keys that are not serializable.|
 
 ```ts
@@ -552,8 +570,8 @@ Obtains the number of existing key-value pairs.
 
 **Return value**
 
-| Type  | Description              |
-| ------ | ------------------ |
+| Type    | Description       |
+| ------ | --------- |
 | number | Returns the number of key-value pairs.|
 
 ```ts
@@ -569,8 +587,8 @@ Deletes all attributes.
 
 **Return value**
 
-| Type   | Description                                                        |
-| ------- | ------------------------------------------------------------ |
+| Type     | Description                               |
+| ------- | --------------------------------- |
 | boolean | Returns **true** if all attributes are deleted; returns **false** if any of the attributes is being referenced by a state variable.|
 
 ```ts
@@ -588,10 +606,10 @@ Creates a **persistentstorage** object.
 
 **Parameters**
 
-| Name    | Type      | Mandatory| Description                        |
-| ---------- | ---------- | --- | -------------------------------- |
-| appStorage | AppStorage | Yes  | Singleton object that saves all attributes and attribute values.|
-| storage    | Storage    | Yes  | **Storage** object.               |
+| Name       | Type        | Mandatory  | Description            |
+| ---------- | ---------- | ---- | ---------------- |
+| appStorage | AppStorage | Yes   | Singleton object that saves all attributes and attribute values.|
+| storage    | Storage    | Yes   | **Storage** object.    |
 
 ```ts
 this.persistentstorage = new PersistentStorage(AppStorage,Storage)
@@ -605,10 +623,10 @@ Changes the attribute that matches the specified key to persistent data in the *
 
 **Parameters**
 
-| Name      | Type  | Mandatory| Description               |
-| ------------ | ------ | --- | ----------------------- |
-| key          | string | Yes  | Key of the target attribute.  |
-| defaultValue | T      | Yes  | Value of the target attribute.|
+| Name         | Type    | Mandatory  | Description          |
+| ------------ | ------ | ---- | -------------- |
+| key          | string | Yes   | Key of the target attribute.  |
+| defaultValue | T      | Yes   | Value of the target attribute.|
 
 ```ts
 PersistentStorage.PersistProp('highScore', '0')
@@ -622,9 +640,9 @@ Cancels two-way binding. The value of this attribute will be deleted from the pe
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description             |
-| ------ | ------ | --- | --------------------- |
-| key    | string | Yes  | Key of the target attribute.|
+| Name | Type    | Mandatory  | Description        |
+| ---- | ------ | ---- | ------------ |
+| key  | string | Yes   | Key of the target attribute.|
 
 ```ts
 PersistentStorage.DeleteProp('highScore')
@@ -638,9 +656,9 @@ Changes the attributes that match the specified keys to persistent data in the *
 
 **Parameters**
 
-| Name| Type                              | Mandatory| Description          |
-| ------ | ---------------------------------- | -- | ------------------ |
-| key    | {key: string, defaultValue: any}[] |  Yes | Keys of the target attributes.|
+| Name | Type                                | Mandatory  | Description     |
+| ---- | ---------------------------------- | ---- | --------- |
+| key  | {key: string, defaultValue: any}[] | Yes   | Keys of the target attributes.|
 
 ```ts
 PersistentStorage.PersistProps([{key: 'highScore', defaultValue: '0'},{key: 'wightScore',defaultValue: '1'}])
@@ -654,8 +672,8 @@ Returns the flags of all persistent attributes.
 
 **Return value**
 
-| Type         | Description                      |
-| ------------- | -------------------------- |
+| Type            | Description           |
+| -------------- | ------------- |
 | Array\<string> | Returns the flags of all persistent attributes.|
 
 ```ts
@@ -686,27 +704,27 @@ Binds this system attribute to the **AppStorage**. You are advised to use this A
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description       |
-| ------ | ------ | --- | --------------- |
-| key    | string | Yes  | Key of the target attribute. For details, see **Built-in environment variables**. |
-| value  | S      | Yes  | Value of the target attribute.|
+| Name  | Type    | Mandatory  | Description      | Description                     |
+| ----- | ------ | ---- | ---------- | ------------------------- |
+| key   | string | Yes   | Key of the target attribute.  | For details, see **Built-in environment variables**.|
+| value | S      | Yes   | Value of the target attribute.| Value of the target attribute.              |
 
 **Return value**
 
-| Type   | Description                              |
-| ------- | ---------------------------------- |
+| Type     | Description                    |
+| ------- | ---------------------- |
 | boolean | Returns whether the attribute exists in the **AppStorage**.|
 
 **Built-in environment variables**
 
-| key          |       Type   |      Description           |
-| ------------ | ------------- | ------------------- |
-| accessibilityEnabled | string | Whether to enable accessibility.           |
-| colorMode | ColorMode | Color mode. The options are as follows:<br>- **ColorMode.LIGHT**: light mode.<br>- **ColorMode.DARK**: dark mode.  |
-| fontScale | number | Font scale.           |
-| fontWeightScale | number | Font weight scale.           |
-| layoutDirection | LayoutDirection | Layout direction. The options are as follows:<br>- **LayoutDirection.LTR**: The direction is from left to right.<br>- **LayoutDirection.RTL**: The direction is from right to left.  |
-| languageCode | string |     Current system language. The value is in lowercase, for example, **zh**.           |
+| key                  | Type             | Description                                      |
+| -------------------- | --------------- | ---------------------------------------- |
+| accessibilityEnabled | string          | Whether to enable accessibility.                            |
+| colorMode            | ColorMode       | Color mode. The options are as follows:<br>- **ColorMode.LIGHT**: light mode.<br>- **ColorMode.DARK**: dark mode.|
+| fontScale            | number          | Font scale.                                 |
+| fontWeightScale      | number          | Font weight scale.                                   |
+| layoutDirection      | LayoutDirection | Layout direction. The options are as follows:<br>- **LayoutDirection.LTR**: The direction is from left to right.<br>- **LayoutDirection.RTL**: The direction is from right to left.|
+| languageCode         | string          | Current system language. The value is in lowercase, for example, **zh**.                       |
 
 ```ts
 Environment.EnvProp('accessibilityEnabled', 'default')
@@ -720,9 +738,9 @@ Associates this system item array with the **AppStorage**.
 
 **Parameters**
 
-| Name| Type                              | Mandatory| Description          |
-| ------ | ---------------------------------- | --- | ------------------ |
-| key    | {key: string, defaultValue: any}[] | Yes  | Keys of the target attributes.|
+| Name | Type                                | Mandatory  | Description     | Description     |
+| ---- | ---------------------------------- | ---- | --------- | --------- |
+| key  | {key: string, defaultValue: any}[] | Yes   | Keys of the target attributes.| Keys of the target attributes.|
 
 ```ts
 Environment.EnvProps([{key: 'accessibilityEnabled', defaultValue: 'default'},{key: 'accessibilityUnEnabled', defaultValue: 'undefault'}])
@@ -736,8 +754,8 @@ Returns an array of associated system attributes.
 
 **Return value**
 
-| Type         | Description                  |
-| ------------- | ---------------------- |
+| Type            | Description         |
+| -------------- | ----------- |
 | Array\<string> | Returns an array of associated system attributes.|
 
 ```ts
