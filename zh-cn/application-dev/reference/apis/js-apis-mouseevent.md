@@ -13,6 +13,8 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 ## Action
 
+鼠标事件类型。
+
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
 | 名称        | 值 | 说明                 |
@@ -27,6 +29,8 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 
 ## Button
+
+鼠标按键。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
@@ -43,6 +47,8 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 ## Axis
 
+鼠标轴类型。
+
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
 | 名称                | 值     | 说明    |
@@ -54,6 +60,8 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 ## AxisValue
 
+鼠标轴类型和轴的值。
+
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
 | 名称    | 类型   | 可读   | 可写   | 说明   |
@@ -63,6 +71,8 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 
 ## MouseEvent
+
+鼠标事件。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
