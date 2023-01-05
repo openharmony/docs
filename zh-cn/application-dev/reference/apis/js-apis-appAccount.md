@@ -4881,7 +4881,7 @@ createAccountImplicitly(options: CreateAccountImplicitlyOptions, callback: AuthC
 | options          | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)  | 是    | 隐式创建账号的选项。      |
 | callback         | [AuthCallback](#authcallback9) | 是    | 认证器回调对象，用于返回创建结果。 |
 
-### addAccountImplicitly<sup>deprecated</sup>
+### addAccountImplicitly<sup>(deprecated)</sup>
 
 addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
 
@@ -4920,7 +4920,7 @@ auth(name: string, authType: string, options: {[key:string]: Object}, callback: 
 | options          | {[key: string]: Object}  | 是    | 鉴权所需要的可选项。      |
 | callback         | [AuthCallback](#authcallback9) | 是    | 回调对象，用于返回鉴权结果。 |
 
-### authenticate<sup>deprecated</sup>
+### authenticate<sup>(deprecated)</sup>
 
 authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
 
