@@ -15,7 +15,7 @@ In ArkTS, you define a custom component by using decorators **@Component** and *
   }
   ```
 
-- **build** function: a function that complies with the **Builder** API definition and is used to define the declarative UI description of components. A **build** function must be defined for custom components, and custom constructors are prohibited for custom components.
+- **build** function: A custom component must implement the **build** function and must implement no constructor. The **build** function meets the definition of the **Builder** API and is used to define the declarative UI description of components.
 
   ```ts
   interface Builder {
@@ -49,9 +49,9 @@ Column() {
 }
 ```
 
-### Structs with Mandatory Parameters
+### Structs with Parameters
 
-A struct with mandatory parameters is a component whose API definition expects parameters enclosed in the parentheses. You can use constants to assign values to the parameters.
+A struct with parameters is a component whose API definition expects parameters enclosed in the parentheses. You can use constants to assign values to the parameters.
 
 Sample code:
 
@@ -61,7 +61,7 @@ Sample code:
   Image('https://xyz/test.jpg')
   ```
 
-- Set the mandatory parameter **content** of the **\<Text>** component as follows:
+- Set the optional parameter **content** of the **\<Text>** component as follows:
 
   ```ts
   Text('test')
@@ -83,35 +83,35 @@ Component attributes are configured using an attribute method, which follows the
 
   ```ts
   Text('test')
-      .fontSize(12)
+    .fontSize(12)
   ```
 
 - Example of configuring multiple attributes at the same time by using the "**.**" operator to implement chain call:
 
   ```ts
   Image('test.jpg')
-      .alt('error.jpg')    
-      .width(100)    
-      .height(100)
+    .alt('error.jpg')    
+    .width(100)    
+    .height(100)
   ```
 
 - Example of passing variables or expressions in addition to constants:
 
   ```ts
   Text('hello')
-      .fontSize(this.size)
+    .fontSize(this.size)
   Image('test.jpg')
-      .width(this.count % 2 === 0 ? 100 : 200)    
-      .height(this.offset + 100)
+    .width(this.count % 2 === 0 ? 100 : 200)    
+    .height(this.offset + 100)
   ```
 
 -  For attributes of built-in components, ArkUI also provides some predefined [enumeration types](../reference/arkui-ts/ts-appendix-enums.md), which you can pass as parameters to methods if they meet the parameter type requirements. For example, you can configure the font color and weight attributes of the **\<Text>** component as follows:
 
   ```ts
   Text('hello')
-      .fontSize(20)
-      .fontColor(Color.Red)
-      .fontWeight(FontWeight.Bold)
+    .fontSize(20)
+    .fontColor(Color.Red)
+    .fontWeight(FontWeight.Bold)
   ```
 
 ### Event Configuration
@@ -146,7 +146,7 @@ Events supported by components are configured using event methods, which each fo
   ...
 
   Button('add counter')
-    .onClick(this.myClickHandler)
+    .onClick(this.myClickHandler.bind(this))
   ```
 
 ### Child Component Configuration
@@ -158,11 +158,11 @@ For a component that supports child components, for example, a container compone
   ```ts
   Column() {
       Text('Hello')
-          .fontSize(100)
+        .fontSize(100)
       Divider()
       Text(this.myText)
-          .fontSize(100)
-          .fontColor(Color.Red)
+        .fontSize(100)
+        .fontColor(Color.Red)
   }
   ```
 
