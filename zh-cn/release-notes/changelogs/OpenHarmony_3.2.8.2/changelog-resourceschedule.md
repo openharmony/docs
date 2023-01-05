@@ -9,58 +9,58 @@
 
 **关键接口/组件变更**
 
-以下方法、属性、枚举和常量均从API9变更。废弃@ohos.backgroundTaskMgr.d.ts文件，新增@ohos.resourceschedule.backgroundTaskMgr.d.ts文件，将相关接口变更至对应的文件。
+以下方法、属性、枚举和常量均从API9变更。废弃@ohos.backgroundTaskManager.d.ts文件，新增@ohos.resourceschedule.backgroundTaskManager.d.ts文件，将相关接口变更至对应的文件。
 
 | 类名 | 接口类型 | 接口声明 | 说明 | 
 |  -- | -- | -- | -- |
-| backgroundTaskManager | namespace | declare namespace backgroundTaskManager | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager | method | function resetAllEfficiencyResources(): void; | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager | method | function applyEfficiencyResources(request: EfficiencyResourcesRequest): bool; | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts，修改为function applyEfficiencyResources(request: EfficiencyResourcesRequest): void; | 
-| backgroundTaskManager | method | function stopBackgroundRunning(context: Context): Promise<void>; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager | method | function stopBackgroundRunning(context: Context, callback: AsyncCallback<void>): void; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager | method | function startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise<void>; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager | method | function startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback<void>): void; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager | method | function requestSuspendDelay(reason: string, callback: Callback<void>): DelaySuspendInfo; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager | method | function getRemainingDelayTime(requestId: number): Promise<number>; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager | method | function getRemainingDelayTime(requestId: number, callback: AsyncCallback<number>): void; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager | method | function cancelSuspendDelay(requestId: number): void; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.BackgroundMode | enum | export enum BackgroundMode | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.BackgroundMode | enum | DATA_TRANSFER = 1 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.BackgroundMode | enum | AUDIO_PLAYBACK = 2 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.BackgroundMode | enum | AUDIO_RECORDING = 3 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.BackgroundMode | enum | LOCATION = 4 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.BackgroundMode | enum | BLUETOOTH_INTERACTION = 5 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.BackgroundMode | enum | MULTI_DEVICE_CONNECTION = 6 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.BackgroundMode | enum | WIFI_INTERACTION = 7 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.BackgroundMode | enum | VOIP = 8 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.BackgroundMode | enum | TASK_KEEPING = 9 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.DelaySuspendInfo | interface | interface DelaySuspendInfo | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.DelaySuspendInfo | field | requestId: number | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.DelaySuspendInfo | field | actualDelayTime: number | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.ResourceType | enum | export enum ResourceType | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.ResourceType | enum | CPU = 1 | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.ResourceType | enum | COMMON_EVENT = 1 << 1 | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.ResourceType | enum | TIMER = 1 << 2 | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.ResourceType | enum | WORK_SCHEDULER = 1 << 3 | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.ResourceType | enum | BLUETOOTH = 1 << 4 | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.ResourceType | enum | GPS = 1 << 5 | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.ResourceType | enum | AUDIO = 1 << 6 | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.EfficiencyResourcesRequest | interface | export interface EfficiencyResourcesRequest | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.EfficiencyResourcesRequest | field | reason: string | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.EfficiencyResourcesRequest | field | isProcess?: bool | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.EfficiencyResourcesRequest | field | isPersist?: bool | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.EfficiencyResourcesRequest | field | timeOut: number | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.EfficiencyResourcesRequest | field | isApply: bool | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
-| backgroundTaskManager.EfficiencyResourcesRequest | field | resourceTypes: number | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskMgr.d.ts | 
+| backgroundTaskManager | namespace | declare namespace backgroundTaskManager | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager | method | function resetAllEfficiencyResources(): void; | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager | method | function applyEfficiencyResources(request: EfficiencyResourcesRequest): bool; | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts，修改为function applyEfficiencyResources(request: EfficiencyResourcesRequest): void; | 
+| backgroundTaskManager | method | function stopBackgroundRunning(context: Context): Promise<void>; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager | method | function stopBackgroundRunning(context: Context, callback: AsyncCallback<void>): void; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager | method | function startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise<void>; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager | method | function startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback<void>): void; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager | method | function requestSuspendDelay(reason: string, callback: Callback<void>): DelaySuspendInfo; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager | method | function getRemainingDelayTime(requestId: number): Promise<number>; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager | method | function getRemainingDelayTime(requestId: number, callback: AsyncCallback<number>): void; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager | method | function cancelSuspendDelay(requestId: number): void; | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.BackgroundMode | enum | export enum BackgroundMode | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.BackgroundMode | enum | DATA_TRANSFER = 1 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.BackgroundMode | enum | AUDIO_PLAYBACK = 2 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.BackgroundMode | enum | AUDIO_RECORDING = 3 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.BackgroundMode | enum | LOCATION = 4 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.BackgroundMode | enum | BLUETOOTH_INTERACTION = 5 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.BackgroundMode | enum | MULTI_DEVICE_CONNECTION = 6 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.BackgroundMode | enum | WIFI_INTERACTION = 7 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.BackgroundMode | enum | VOIP = 8 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.BackgroundMode | enum | TASK_KEEPING = 9 | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.DelaySuspendInfo | interface | interface DelaySuspendInfo | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.DelaySuspendInfo | field | requestId: number | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.DelaySuspendInfo | field | actualDelayTime: number | 接口从API9开始废弃，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.ResourceType | enum | export enum ResourceType | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.ResourceType | enum | CPU = 1 | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.ResourceType | enum | COMMON_EVENT = 1 << 1 | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.ResourceType | enum | TIMER = 1 << 2 | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.ResourceType | enum | WORK_SCHEDULER = 1 << 3 | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.ResourceType | enum | BLUETOOTH = 1 << 4 | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.ResourceType | enum | GPS = 1 << 5 | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.ResourceType | enum | AUDIO = 1 << 6 | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.EfficiencyResourcesRequest | interface | export interface EfficiencyResourcesRequest | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.EfficiencyResourcesRequest | field | reason: string | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.EfficiencyResourcesRequest | field | isProcess?: bool | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.EfficiencyResourcesRequest | field | isPersist?: bool | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.EfficiencyResourcesRequest | field | timeOut: number | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.EfficiencyResourcesRequest | field | isApply: bool | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
+| backgroundTaskManager.EfficiencyResourcesRequest | field | resourceTypes: number | 接口API9变更，移植到ohos.resourceschedule.backgroundTaskManager.d.ts | 
 
 
 **适配指导**<br>
 
 导入backgroundTaskManager模块。
 ```
-import bundle form '@ohos.resourceschedule.backgroundTaskMgr'
+import bundle form '@ohos.resourceschedule.backgroundTaskManager'
 ```
-此外还需要适配异常处理，具体参考[backgroundTaskManager接口文档](../../../application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskMgr.md)。
+此外还需要适配异常处理，具体参考[backgroundTaskManager接口文档](../../../application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)。
 
 ## c2.resourceschedule.usageStatistics 
 对资源调度子系统deviceUsageStatistics仓原有接口进行整改，原有API8及之前的接口全部废弃，原有API9接口删除，需要使用新的API9接口。新的API9接口符合错误码规范。
@@ -167,7 +167,7 @@ import bundle form '@ohos.resourceschedule.backgroundTaskMgr'
 ```
 import bundle form '@ohos.resourceschedule.usageStatistics'
 ```
-此外还需要适配异常处理，具体参考[usageStatistics接口文档](../../../application-dev/reference/apis/js-apis-resourceschedule-usageStatistics.md)。
+此外还需要适配异常处理，具体参考[usageStatistics接口文档](../../../application-dev/reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md)。
 
 
 ## c3.resourceschedule.workScheduler 
