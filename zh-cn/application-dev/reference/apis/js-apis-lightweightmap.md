@@ -275,7 +275,7 @@ let result = lightWeightMap.get("sparrow");
 
 getIndexOfKey(key: K): number
 
-查找指定元素第一次出现的下标值，如果没有找到该元素返回-1。
+查找key元素第一次出现的下标值，如果没有找到该元素返回-1。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -289,7 +289,7 @@ getIndexOfKey(key: K): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回指定元素第一次出现时的下标值，查找失败返回-1。 |
+| number | 返回key元素第一次出现时的下标值，查找失败返回-1。 |
 
 **错误码：**
 
@@ -313,7 +313,7 @@ let result = lightWeightMap.getIndexOfKey("sparrow");
 
 getIndexOfValue(value: V): number
 
-查找指定元素第一次出现的下标值，如果没有找到该元素返回-1。
+查找value元素第一次出现的下标值，如果没有找到该元素返回-1。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -327,7 +327,7 @@ getIndexOfValue(value: V): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回指定元素第一次出现时的下标值，查找失败返回-1。 |
+| number | 返回value元素第一次出现时的下标值，查找失败返回-1。 |
 
 **错误码：**
 

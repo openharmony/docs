@@ -242,7 +242,7 @@ let result = plainArray.getIndexOfValue("squirrel");
 
 getKeyAt(index: number): number
 
-查找指定下标的元素键值对中key值。
+查找指定下标元素键值对中的key值。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -256,7 +256,7 @@ getKeyAt(index: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回该下标对应的元素键值对中key值，失败返回-1。 |
+| number | 返回该下标元素键值对中的key值，失败返回-1。 |
 
 **错误码：**
 
@@ -279,7 +279,7 @@ let result = plainArray.getKeyAt(1);
 
 getValueAt(index: number): T
 
-查找指定下标元素键值对中Value值，否则返回undefined。
+查找指定下标元素键值对中的Value值，失败返回undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -293,7 +293,7 @@ getValueAt(index: number): T
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | T | 返回该下标对应的元素键值对中key值，失败返回undefined。 |
+  | T | 返回该下标元素键值对中的value值，失败返回undefined。 |
 
   **错误码：**
 

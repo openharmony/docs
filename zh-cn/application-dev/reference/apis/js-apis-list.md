@@ -15,7 +15,7 @@ List和[LinkedList](js-apis-linkedlist.md)相比，LinkedList是双向链表，�
 ## 导入模块
 
 ```ts
-import List from '@ohos.util.List';  
+import List from '@ohos.util.List';
 ```
 
 
@@ -546,8 +546,8 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.sort((a: number, b: number) => a - b);
-list.sort((a: number, b: number) => b - a);
+list.sort((a: number, b: number) => a - b); // 结果为升序排列
+list.sort((a: number, b: number) => b - a); // 结果为降序排列
 ```
 
 ### getSubList
