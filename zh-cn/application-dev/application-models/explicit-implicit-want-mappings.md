@@ -32,8 +32,7 @@
   | flags | number | 否 | 否 | 不参与匹配，直接传递给系统处理，一般用来设置运行态信息，例如URI数据授权等。 |
   | parameters | {[key:&nbsp;string]:&nbsp;any} | 否 | 否 | 不参与匹配，应用自定义数据将直接传递给目标Ability。 |
 
-
-## 隐式Want匹配原理详解
+# 隐式Want匹配原理详解
 
 
 从隐式Want的定义，可得知：
@@ -47,7 +46,7 @@
 系统将调用方传入的want参数（包含action、entities、uri和type属性）与已安装待匹配的应用Ability的skills配置（包含actions、entities、uris和type属性）依次进行匹配。当四个属性匹配均通过，则此应用才会被应用选择器展示给用户进行选择。
 
 
-### want参数的action匹配规则
+## want参数的action匹配规则
 
 将调用方传入的want参数的[action](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction)与待匹配Ability的skills配置中的actions进行匹配。
 
@@ -62,7 +61,7 @@
   **图1** want参数的action匹配规则  <img src="figures/want-action.png" alt="want-action" style="zoom:80%;" />
 
 
-### want参数的entities匹配规则
+## want参数的entities匹配规则
 
 将调用方传入的want参数的[entities](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity)与待匹配Ability的skills配置中的entities进行匹配。
 
@@ -80,7 +79,7 @@
 <img src="figures/want-entities.png" alt="want-entities" style="zoom:80%;" />
 
 
-### want参数的uri和type匹配规则
+## want参数的uri和type匹配规则
 
 调用方传入的want参数中设置uri和type参数发起组件启动请求，系统会遍历当前系统已安装的组件列表，并逐个匹配待匹配Ability的skills配置中的uris数组，如果待匹配Ability的skills配置中的uris数组中只要有一个可以匹配调用方传入的want参数中设置的uri和type即为匹配成功。
 
@@ -114,7 +113,7 @@
 <img src="figures/want-uri-type2.png" alt="want-uri-type2" style="zoom:80%;" />
 
 
-### uri匹配规则
+## uri匹配规则
 
 这里为了简化描述，称want中传入的uri为w_uri，待匹配Ability的skills配置中uri为s_uri，具体的匹配规则如下：
 
@@ -140,7 +139,7 @@
 > - **正则表达式**：`scheme://host:port/pathRegex`
 
 
-### type匹配规则
+## type匹配规则
 
 > **说明：**
 > 此小节所述的type匹配规则的适用性需建立在want参数内type不为空的基础上。当want参数内type为空时请参见[want参数的uri和type匹配规则](#want参数的uri和type匹配规则)。
