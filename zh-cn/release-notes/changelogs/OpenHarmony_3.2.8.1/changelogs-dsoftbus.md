@@ -108,7 +108,7 @@
 | RemoteObject | queryLocalInterface(descriptor: string): IRemoteBroker | NA | getLocalInterface(descriptor: string): IRemoteBroker |
 | RemoteObject | attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void  | NA | modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void |
 | RemoteObject | getInterfaceDescriptor(): string | NA | getDescriptor(): string |
-| RemoteObject | NA | NA | onRemoteMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): boolean&nbsp;\|&nbsp;Promise<boolean> |
+| RemoteObject | onRemoteRequestEx(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean&nbsp;\|&nbsp;Promise<boolean> | NA | onRemoteMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): boolean&nbsp;\|&nbsp;Promise<boolean> |
 | RemoteObject | sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise<SendRequestResult> | NA | sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise<RequestResult> |
 | RemoteObject | sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback<SendRequestResult>): void | NA | sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback<RequestResult>): void |
 | RemoteProxy | queryLocalInterface(interface: string): IRemoteBroker | NA | getLocalInterface(descriptor: string): IRemoteBroker |
