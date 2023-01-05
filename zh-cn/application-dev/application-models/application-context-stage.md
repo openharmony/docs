@@ -12,7 +12,7 @@
   <img src="figures/context-holding.png" alt="context-holding" style="zoom:50%;" />
 
 - 各类Context的获取方式
-  - 获取[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)。每个UIAbility中都包含了一个Context属性，提供操作Ability、获取Ability的配置信息、应用向用户申请授权等能力。
+  - 获取[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)。每个UIAbility中都包含了一个Context属性，提供操作Ability、获取Ability的配置信息等能力。
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
