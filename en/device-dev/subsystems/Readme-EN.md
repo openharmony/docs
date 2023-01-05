@@ -8,6 +8,7 @@
       - [Building a Product](subsys-build-product.md)
       - [Building a Subsystem](subsys-build-subsystem.md)
       - [Building a Component](subsys-build-component.md)
+      - [Component Building Specifications](subsys-build-component-building-rules.md)
       - [Building a Module](subsys-build-module.md)
       - [Building a Chipset Solution](subsys-build-chip_solution.md)
       - [Configuring Features](subsys-build-feature.md)
