@@ -40,10 +40,10 @@ create(options: AnimatorOptions): AnimatorResult
     easing: 'friction',
     delay: 0,
     fill: 'forwards',
-    direction: "normal",
+    direction: 'normal',
     iterations: 3,
     begin: 200.0,
-    end: 400.0,
+    end: 400.0
   };
   animator.create(options);
   ```
@@ -83,10 +83,10 @@ let options = {
   easing: 'friction',
   delay: 0,
   fill: 'forwards',
-  direction: "normal",
+  direction: 'normal',
   iterations: 3,
   begin: 200.0,
-  end: 400.0,
+  end: 400.0
 };
 try {
   animator.reset(options);
@@ -283,7 +283,7 @@ export default {
       easing: 'friction',
       delay: 0,
       fill: 'forwards',
-      direction: "normal",
+      direction: 'normal',
       iterations: 2,
       begin: 200.0,
       end: 400.0
@@ -296,10 +296,10 @@ export default {
       easing: 'friction',
       delay: 0,
       fill: 'forwards',
-      direction: "normal",
+      direction: 'normal',
       iterations: 2,
       begin: 0,
-      end: 400.0,
+      end: 400.0
     };
     try {
       this.animator.reset(options1);
@@ -516,10 +516,10 @@ let options = {
   easing: 'friction',
   delay: 0,
   fill: 'forwards',
-  direction: "normal",
+  direction: 'normal',
   iterations: 3,
   begin: 200.0,
-  end: 400.0,
+  end: 400.0
 };
 this.animator = animator.createAnimator(options);
 ```
