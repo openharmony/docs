@@ -1,6 +1,6 @@
 # AlphabetIndexer
 
-The **\<Indexer>** component provides an alphabetic index bar.
+The **\<Indexer>** component can create a logically indexed array of items in a container for instant location.
 
 >  **NOTE**
 >
@@ -20,28 +20,29 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| arrayValue | Array&lt;string&gt; | Yes| Array of strings to be displayed in the alphabetic index bar.|
-| selected   | number              | Yes   | Index of the initially selected item.    |
+| arrayValue | Array&lt;string&gt; | Yes| Array of strings to be displayed in the alphabetic index bar. The value cannot be null.|
+| selected   | number              | Yes   | Index of the initially selected item. If the value exceeds the value range, the default value 0 is used.    |
 
 ## Attributes
 
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 | Name                 | Type    | Description                                                             |
 | ----------------------- | --------------- | ----------------------------------------------------------- |
-| color                   | [ResourceColor](ts-types.md#resourcecolor8)      | Font color.                          |
-| selectedColor           | [ResourceColor](ts-types.md#resourcecolor8)    | Font color of the selected text.                          |
-| popupColor              | [ResourceColor](ts-types.md#resourcecolor8)       | Font color of the pop-up text.                        |
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor8)      | Background color of the selected item.                          |
-| popupBackground         | [ResourceColor](ts-types.md#resourcecolor8)       | Background color of the pop-up text.                           |
-| usingPopup              | boolean                                  | Whether to use pop-up text.                        |
-| selectedFont            | [Font](ts-types.md#font) | Font style of the selected text.                          |
-| popupFont               | [Font](ts-types.md#font) | Font style of the pop-up text.                        |
-| font                    | [Font](ts-types.md#font) | Default font style of the alphabetic index bar.                     |
-| itemSize                | string \| number            | Size of an item in the alphabetic index bar. The item is a square, and the side length needs to be set.      |
+| color                   | [ResourceColor](ts-types.md#resourcecolor8)      | Font color.<br>Default value: **0x99000000**                          |
+| selectedColor           | [ResourceColor](ts-types.md#resourcecolor8)    | Font color of the selected text.<br>Default value: **0xFF254FF7**                          |
+| popupColor              | [ResourceColor](ts-types.md#resourcecolor8)       | Font color of the pop-up text.<br>Default value: **0xFF254FF7**                        |
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor8)      | Background color of the selected item.<br>Default value: **0x1F0A59F7**                          |
+| popupBackground         | [ResourceColor](ts-types.md#resourcecolor8)       | Background color of the pop-up text.<br>Default value: **0xFFF1F3F5**                           |
+| usingPopup              | boolean                                  | Whether to use pop-up text.<br>Default value: **false**                        |
+| selectedFont            | [Font](ts-types.md#font) | Font style of the selected text.<br>Default value:<br>{<br>fontSize:10,<br> fontStyle:FontStyle.Normal,<br> fontWeight:FontWeight.Normal,<br> fontFamily:HarmonyOS Sans<br>}                          |
+| popupFont               | [Font](ts-types.md#font) | Font style of the pop-up text.<br>Default value:<br>{<br>fontSize:10,<br> fontStyle:FontStyle.Normal,<br> fontWeight:FontWeight.Normal,<br> fontFamily:HarmonyOS Sans<br>}                         |
+| font                    | [Font](ts-types.md#font) | Default font style of the alphabetic index bar.<br>Default value:<br>{<br>fontSize:10,<br> fontStyle:FontStyle.Normal,<br> fontWeight:FontWeight.Normal,<br> fontFamily:HarmonyOS Sans<br>}                      |
+| itemSize                | string \| number            | Size of an item in the alphabetic index bar. The item is a square, and the side length needs to be set. This attribute cannot be set to a percentage.<br>Default value: **24.0**      |
 | alignStyle              | IndexerAlign                             | Alignment style of the alphabetic index bar. Left alignment and right alignment are supported.<br>Default value: **IndexerAlign.Right**|
-| selected | number | Index of the selected item.|
-| popupPosition | [Position](ts-types.md#position8) | Position of the pop-up window relative to the center of the indexer bar's top border.|
+| selected | number | Index of the selected item.<br>Default value: **0**|
+| popupPosition | [Position](ts-types.md#position8) | Position of the pop-up window relative to the center of the indexer bar's top border.<br>Default value: **{x:96.0, y:48.0}**|
 
-## IndexerAlign enums
+## IndexerAlign
 
 | Name| Description|
 | -------- | -------- |
@@ -50,6 +51,7 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 ## Events
 
+Only the following events are supported.
 | Name| Description|
 | -------- | -------- |
 | onSelected(callback: (index: number) =&gt; void)<sup>(deprecated)</sup> | Invoked when an item in the alphabetic indexer bar is selected. The return value is the index of the selected item.                                |

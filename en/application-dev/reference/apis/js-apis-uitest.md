@@ -19,6 +19,20 @@ This module provides the following functions:
 import {UiDriver,BY,MatchPattern} from '@ohos.uitest'
 ```
 
+## MatchPattern
+
+Enumerates the match patterns supported for component attributes.
+
+**System capability**: SystemCapability.Test.UiTest
+
+| Name       | Value  | Description          |
+| ----------- | ---- | -------------- |
+| EQUALS      | 0    | Equal to the given value.  |
+| CONTAINS    | 1    | Contains the given value.  |
+| STARTS_WITH | 2    | Starts with the given value.|
+| ENDS_WITH   | 3    | Ends with the given value.|
+
+
 ## By
 
 The UiTest framework provides a wide range of UI component feature description APIs in the **By** class to filter and match components.
@@ -978,16 +992,3 @@ async function demo() {
 }
 ```
 
-
-## MatchPattern
-
-Enumerates the match patterns supported for component attributes.
-
-**System capability**: SystemCapability.Test.UiTest
-
-| Name       | Value  | Description          |
-| ----------- | ---- | -------------- |
-| EQUALS      | 0    | Equal to the given value.  |
-| CONTAINS    | 1    | Containing the given value.  |
-| STARTS_WITH | 2    | Starting from the given value.|
-| ENDS_WITH   | 3    | Ending with the given value.|

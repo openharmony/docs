@@ -8,10 +8,9 @@ You can set overlay text for a component.
 
 ## Attributes
 
-| Name      | Type                         | Description                      |
-| ------- | ----------------------------- | ------------------------- |
-| overlay | value: string,<br/>options?: {<br/>align?: [Alignment](ts-appendix-enums.md#alignment), <br/>offset?: {x?: number, y?: number}<br/>} | Overlay added to the component. The overlay has the same layout as the component.<br>Default value:<br>{<br>align: Alignment.Center,<br>offset: {0, 0}<br>} |
-
+| Name| Type| Default Value| Description|
+| -------- | -------- | -------- | -------- |
+| overlay | value: string,<br>options?: {<br>align?: [Alignment](ts-appendix-enums.md#alignment), <br>offset?: {x?: number, y?: number}<br>} | {<br>align: Alignment.Center,<br>offset: {0, 0}<br>} | Overlay added to the component.<br> **value**: mask text.<br>**options**: text positioning. **align** indicates the location of the text relative to the component. **[offset](ts-universal-attributes-location.md)** indicates the offset of the text relative to the upper left corner of itself. By default, the text is in the upper left corner of the component.<br>If both **align** and **offset** are set, the text is first positioned relative to the component, and then offset relative to the upper left corner of itself.|
 
 ## Example
 
@@ -28,7 +27,10 @@ struct OverlayExample {
         Column() {
           Image($r('app.media.img'))
             .width(240).height(240)
-            .overlay("Winter is a beautiful season, especially when it snows.", { align: Alignment.Bottom, offset: { x: 0, y: -15 } })
+            .overlay("Winter is a beautiful season, especially when it snows.", {
+              align: Alignment.Bottom,
+              offset: { x: 0, y: -15 }
+            })
         }.border({ color: Color.Black, width: 2 })
       }.width('100%')
     }.padding({ top: 20 })
