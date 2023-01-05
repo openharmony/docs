@@ -590,7 +590,7 @@ router.getParams();
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | url    | string | 是   | 表示目标页面的url，可以用以下两种格式：<br/>-&nbsp;页面绝对路径，由配置文件中pages列表提供，例如：<br/>&nbsp;&nbsp;-&nbsp;pages/index/index<br/>&nbsp;&nbsp;-&nbsp;pages/detail/detail<br/>-&nbsp;特殊值，如果url的值是"/"，则跳转到首页。 |
-| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
+| params | object | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
 
 
   > **说明：**
@@ -642,7 +642,7 @@ import router from '@ohos.router'
 @Entry
 @Component
 struct Index {
-  async  routePage() {
+  async routePage() {
     let options = {
       url: 'pages/second',
       params: {
@@ -653,7 +653,7 @@ struct Index {
       }
     }
     try {
-      await router.push(options)
+      await router.pushUrl(options)
     } catch (err) {
       console.info(` fail callback, code: ${err.code}, msg: ${err.msg}`)
     }
@@ -661,18 +661,18 @@ struct Index {
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Text('这是第一页')
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
+      Text('这是第一页')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
       Button() {
         Text('next page')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
-          .margin({ top: 20 })
-          .backgroundColor('#ccc')
-          .onClick(() => {
-            this.routePage()
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
       })
     }
     .width('100%')
@@ -704,7 +704,7 @@ struct Second {
           this.secondData = (this.data.array[1]).toString()
         })
       .margin({top:20})
-      Text('第一页传来的数值' + '  ' + this.secondData)
+      Text(`第一页传来的数值:${this.secondData}`)
         .fontSize(20)
         .margin({top:20})
         .backgroundColor('red')      
