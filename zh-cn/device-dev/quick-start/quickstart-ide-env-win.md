@@ -8,7 +8,7 @@
 
 ## 系统要求
 
-- Windows 10 64位系统，建议内存8GB及以上，建议硬盘100GB及以上。
+- Windows 10 64位系统，推荐内存8GB及以上，硬盘100GB及以上。
 
 - Windows和Ubuntu系统上安装的DevEco Device Tool为最新版本，且版本号需相同。
 
