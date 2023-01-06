@@ -53,7 +53,7 @@ featureAbility.startAbility(
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
+            abilityName: "com.example.myapplication.secondAbility",
             uri: ""
         },
     },
@@ -106,7 +106,7 @@ featureAbility.startAbility(
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
+            abilityName: "com.example.myapplication.secondAbility",
             uri: ""
         },
     }
@@ -186,7 +186,7 @@ featureAbility.startAbilityForResult(
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
+            abilityName: "com.example.myapplication.secondAbility",
             uri:""
         },
     },
@@ -237,7 +237,7 @@ featureAbility.startAbilityForResult(
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
+            abilityName: "com.example.myapplication.secondAbility",
             uri:"",
             parameters:
             {
@@ -289,7 +289,7 @@ featureAbility.terminateSelfWithResult(
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
+            abilityName: "com.example.myapplication.secondAbility",
             uri:"",
             parameters: {
                 mykey0: 2222,
@@ -346,7 +346,7 @@ featureAbility.terminateSelfWithResult(
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
+            abilityName: "com.example.myapplication.secondAbility",
             uri:"",
             parameters: {
                 mykey0: 2222,
@@ -554,7 +554,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 | 类型     | 说明                   |
 | ------ | -------------------- |
-| number | 连接的ServiceAbility的ID。 |
+| number | 连接的ServiceAbility的ID(ID从0开始自增，每连接成功一次ID加1)。 |
 
 **示例：**
 
@@ -574,7 +574,7 @@ var connectId = featureAbility.connectAbility(
     {
         deviceId: "",
         bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
     },
     {
         onConnect: onConnectCallback,
@@ -616,7 +616,7 @@ function onFailedCallback(code){
 var connectId = featureAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
     },
     {
         onConnect: onConnectCallback,
@@ -668,7 +668,7 @@ function onFailedCallback(code){
 var connectId = featureAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
     },
     {
         onConnect: onConnectCallback,
