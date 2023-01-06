@@ -467,13 +467,13 @@ geolocationAccess(geolocationAccess: boolean)
 
 mediaPlayGestureAccess(access: boolean)
 
-设置视频播放是否需要用户手动点击。
+设置有声视频播放是否需要用户手动点击，静音视频播放不受该接口管控。
 
 **参数：**
 
 | 参数名    | 参数类型    | 必填   | 默认值  | 参数描述              |
 | ------ | ------- | ---- | ---- | ----------------- |
-| access | boolean | 是    | true | 设置视频播放是否需要用户手动点击。 |
+| access | boolean | 是    | true | 设置有声视频播放是否需要用户手动点击。 |
 
 **示例：**
 
@@ -2613,7 +2613,7 @@ grant(resources: Array\<string\>): void
 
 | 参数名       | 参数类型            | 必填   | 默认值  | 参数描述          |
 | --------- | --------------- | ---- | ---- | ------------- |
-| resources | Array\<string\> | 是    | -    | 网页所请求的权限资源列表。 |
+| resources | Array\<string\> | 是    | -    | 授予网页请求的权限的资源列表。 |
 
 ## WebContextMenuParam<sup>9+</sup>
 
@@ -4141,7 +4141,7 @@ getCookie(url: string): string
       Column() {
         Button('getCookie')
           .onClick(() => {
-            let value = webview.WebCookieManager.getCookie('www.example.com')
+            let value = web_webview.WebCookieManager.getCookie('www.example.com')
             console.log("value: " + value)
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4513,7 +4513,7 @@ deleteSessionCookie(): void
       Column() {
         Button('deleteSessionCookie')
           .onClick(() => {
-            webview.WebCookieManager.deleteSessionCookie()
+            web_webview.WebCookieManager.deleteSessionCookie()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }

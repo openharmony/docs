@@ -1756,7 +1756,7 @@ struct WebComponent {
 
 getTitle(): string
 
-获取文件选择器标题。
+获取当前网页的标题。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1764,7 +1764,7 @@ getTitle(): string
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| string | 返回文件选择器标题。 |
+| string | 当前网页的标题。 |
 
 **错误码：**
 
@@ -3237,7 +3237,7 @@ struct WebComponent {
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
-    webAsyncController: WebAsyncController = new web_webview.WebAsyncController(this.controller)
+    webAsyncController: web_webview.WebAsyncController = new web_webview.WebAsyncController(this.controller)
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
