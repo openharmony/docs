@@ -36,7 +36,7 @@
 │   │        ├── keil       --- keil编译工具链实现
 │   │        └── xxx        --- xxx编译工具链实现
 │   ├── include             --- 所有的arch需要实现的函数定义，内核依赖
-│   └── risc-v              --- risk-v架构
+│   └── risc-v              --- risc-v架构
 │        └── gcc            --- gcc编译工具链实现
 ├── components              --- 移植可选组件，依赖内核，单独对外提供头文件
 ├── kal                     --- 内核抽象层，提供内核对外接口，当前支持cmsis接口和部分posix接口
