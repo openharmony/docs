@@ -33,7 +33,7 @@ The directory structure of the kernel is described as follows:
 │   │        ├── keil       --- Implementation of the Keil toolchain
 │   │        └── xxx        --- Implementation of the particular toolchain
 │   ├── include             --- Header files that declare the APIs required, kernel-independent
-│   └── risc-v              --- RISK_V architecture
+│   └── risc-v              --- RISC_V architecture
 │        └── gcc            --- Implementation of the GCC toolchain
 ├── components              --- Components available for porting and header files exposed externally
 ├── kal                     --- APIs exposed externally, including CMSIS APIs and part of POSIX APIs
