@@ -46,7 +46,6 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
 
 ```ts
 import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
-import { notification, Logger } from '@ohos/notification'
 ```
 
 > 实现WorkSchedulerExtension生命周期接口。
@@ -87,7 +86,6 @@ export default class workAbility extends WorkSchedulerExtensionAbility {
 
 ```ts
 import { workAbility } from '@ohos/library'
-import { Logger } from '@ohos/notification'
 ```
 
 > 继承workAbility，实现WorkSchedulerExtension生命周期接口。
@@ -114,8 +112,6 @@ export default class WorkTest extends workAbility {
 
 ```ts
 import workScheduler from '@ohos.resourceschedule.workScheduler'
-import prompt from '@ohos.prompt'
-import { Logger } from '@ohos/notification'
 ```
 
 > 封装延迟任务注册、停止接口。
@@ -159,7 +155,6 @@ export default class DelayWork {
 
 ```ts
 import { workAbility } from '@ohos/library'
-import { Logger } from '@ohos/notification'
 ```
 
 > 增加“升级”按钮，调用library封装的延迟任务注册接口，传入bundleName和abilityName，其中bilityName为WorkTest。
@@ -189,7 +184,6 @@ import { Logger } from '@ohos/notification'
    ```json
    {
      "module": {
-       // ...
         "extensionAbilities": [
           {
             "name": "WorkTest",
