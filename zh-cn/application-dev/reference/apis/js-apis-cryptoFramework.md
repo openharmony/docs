@@ -1589,7 +1589,7 @@ try {
 一次完整的加/解密流程在对称加密和非对称加密中略有不同：
 
 - 对称加解密：init为必选，update为可选（且允许多次update加/解密大数据），doFinal为必选；doFinal结束后可以重新init开始新一轮加/解密流程。
-- RSA非对称加解密：init为必选，不支持update操作，doFinal为必选（允许连续多次doFinal加/解密大数据）；doFinal后不支持重新init。
+- RSA非对称加解密：init为必选，不支持update操作，doFinal为必选（允许连续多次doFinal加/解密大数据）；RSA不支持重复init，切换加解密模式或填充方式时，需要重新创建Cipher对象。
 
 ### 属性
 
@@ -1998,18 +1998,30 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let signer1 = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
 
-let singer2 = cryptoFramework.createSign("RSA1024|PKCS1_OAEP|SHA256|MGF1_SHA256")
+let singer2 = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256")
 ```
 
 ## Sign
 
-Sign类，使用Sign方法之前需要创建该类的实例进行操作，通过createSign(algName : string) : Sign方法构造此实例。
+Sign类，使用Sign方法之前需要创建该类的实例进行操作，通过createSign(algName : string) : Sign方法构造此实例。Sign类不支持重复初始化，当业务方需要使用新密钥签名时，需要重新创建新Sign对象并调用init初始化。
+业务方使用时，在createSign时确定签名的模式，调用init接口设置密钥。
+当待签名数据较短时，可在init初始化后直接调用sign接口传入原文数据进行签名。
+当待签名数据较长时，可通过update接口分段传入切分后的原文数据，最后调用sign接口对整体原文数据进行签名。
+当使用update分段传入原文时，sign接口支持传null，业务方可在循环中调用update接口，循环结束后调用sign进行签名。
+
+### 属性
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| ------- | ------ | ---- | ---- | ---------------------------- |
+| algName | string | 是   | 否   | 签名指定的算法名称。 |
 
 ### init
 
 init(priKey : PriKey, callback : AsyncCallback\<void>) : void
 
-使用私钥初始化Sign对象，Callback形式
+使用私钥初始化Sign对象，Callback形式，Sign类暂不支持重复init
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2024,7 +2036,7 @@ init(priKey : PriKey, callback : AsyncCallback\<void>) : void
 
 init(priKey : PriKey) : Promise\<void>
 
-使用私钥初始化Sign对象，Promise形式
+使用私钥初始化Sign对象，Promise形式，Sign类暂不支持重复init
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2126,8 +2138,8 @@ function stringToUint8Array(str) {
 
 let globalKeyPair;
 let SignMessageBlob;
-let plan1 = "This is Sign test plan1";
-let plan2 = "This is Sign test plan1";
+let plan1 = "This is Sign test plan1"; // The first segment of data.
+let plan2 = "This is Sign test plan2"; // The second segment of fata.
 let input1 = { data : stringToUint8Array(plan1) };
 let input2 = { data : stringToUint8Array(plan2) };
 
@@ -2138,8 +2150,8 @@ function signMessageCallback() {
     globalKeyPair = keyPair;
     let priKey = globalKeyPair.priKey;
     signer.init(priKey, function (err, data) {
-      signer.update(input1, function (err, data) {
-        signer.sign(input2, function (err, data) {
+      signer.update(input1, function (err, data) { // add first segment of data
+        signer.sign(input2, function (err, data) { // add second segment of data, sign input1 and input2
           SignMessageBlob = data;
           AlertDialog.show({message : "res" +  SignMessageBlob.data});
         });
@@ -2165,8 +2177,8 @@ function stringToUint8Array(str) {
 
 let globalKeyPair;
 let SignMessageBlob;
-let plan1 = "This is Sign test plan1";
-let plan2 = "This is Sign test plan1";
+let plan1 = "This is Sign test plan1"; // The first segment of data.
+let plan2 = "This is Sign test plan2"; // The second segment of fata.
 let input1 = { data : stringToUint8Array(plan1) };
 let input2 = { data : stringToUint8Array(plan2) };
 
@@ -2179,9 +2191,9 @@ function signMessagePromise() {
     let priKey = globalKeyPair.priKey;
     return signer.init(priKey);
   }).then(() => {
-    return signer.update(input1);
+    return signer.update(input1); // add first segment of data
   }).then(() => {
-    return signer.sign(input2);
+    return signer.sign(input2); // add second segment of data, sign input1 and input2
   }).then(dataBlob => {
     SignMessageBlob = dataBlob;
     console.info("sign output is " + SignMessageBlob.data);
@@ -2217,12 +2229,27 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let verifyer1 = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
 
-let verifyer2 = cryptoFramework.createVerify("RSA1024|PKCS1_OAEP|SHA256|MGF1_SHA256")
+let verifyer2 = cryptoFramework.createVerify("RSA1024|PSS|SHA256|MGF1_SHA256")
 ```
 
 ## Verify
 
 Verify类，使用Verify方法之前需要创建该类的实例进行操作，通过createVerify(algName : string) : Verify方法构造此实例。
+Verify类不支持重复初始化，当业务方需要使用新密钥验签时，需要重新创建新Verify对象并调用init初始化。
+业务方使用时，在createVerify时确定验签的模式，调用init接口设置密钥。
+当待签名数据较短时，可在init初始化后直接调用verify接口传入签名数据和原文进行验签。
+当待签名数据较长时，可通过update接口分段传入待签名数据，最后调用verify接口对整体数据进行验签。
+当使用update分段传入签名数据时，verify接口的签名数据支持传null，业务方可在循环中调用update接口，循环结束后调用verify传入原文进行验签。
+
+### 属性
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| ------- | ------ | ---- | ---- | ---------------------------- |
+| algName | string | 是   | 否   | 验签指定的算法名称。 |
+
+
 
 ### init
 
@@ -2402,6 +2429,14 @@ let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
 ## KeyAgreement
 
 KeyAgreement类，使用密钥协商方法之前需要创建该类的实例进行操作，通过createKeyAgreement(algName : string) : KeyAgreement方法构造此实例。
+
+### 属性
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| ------- | ------ | ---- | ---- | ---------------------------- |
+| algName | string | 是   | 否   | 密钥协商指定的算法名称。 |
 
 ### generateSecret
 
