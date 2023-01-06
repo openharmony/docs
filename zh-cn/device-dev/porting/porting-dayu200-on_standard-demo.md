@@ -3076,9 +3076,9 @@ void hw_config_start(void)
 
 3、 关注系统间接口差异
 
-不同系统的接口可能有一些细微差异，需要重点关注；对比安卓和OHOS的接口，vendorlib调用xmit_cb发送HCI命令的函数定义略有差异
+不同系统的接口可能有一些细微差异，需要重点关注；对比其他系统和OHOS的接口，vendorlib调用xmit_cb发送HCI命令的函数定义略有差异
 
-安卓：
+其他系统：
 
 ```c
 /* define callback of the cmd_xmit_cb
@@ -3115,7 +3115,7 @@ packet. */
 typedef uint8_t (*cmd_xmit_callback)(uint16_t opcode, void* p_buf);
 ```
 
-也就是说vendorlib中发送命令后，安卓会直接调用callback通知芯片返回的消息，OHOS则是通过BT_OP_EVENT_CALLBACK操作码（参见bt_opcode_t定义）通知芯片返回的消息；vendorlib需要解析报文中的消息码确认芯片是处理的哪个消息，然后调用对应的处理函数。
+也就是说vendorlib中发送命令后，其他系统会直接调用callback通知芯片返回的消息，OHOS则是通过BT_OP_EVENT_CALLBACK操作码（参见bt_opcode_t定义）通知芯片返回的消息；vendorlib需要解析报文中的消息码确认芯片是处理的哪个消息，然后调用对应的处理函数。
 
 ```c
 void hw_process_event(HC_BT_HDR *p_buf)
@@ -3139,11 +3139,11 @@ void hw_process_event(HC_BT_HDR *p_buf)
             break;
 ```
 
-另外，OHOS返回的是发送消息的字节数，<=0为发送失败，和安卓接口的返回值也不同
+另外，OHOS返回的是发送消息的字节数，<=0为发送失败，和其他系统接口的返回值也不同
 
 4、 snoop日志
 
-安卓系统中记录了HCI交互消息，OHOS同样有记录；OHOS系统生成文件为/data/log/bluetooth/snoop.log，通过wireshark或其它报文分析工具可以看到Host和Controller之间的交互流程，有助于问题分析
+其他系统中记录了HCI交互消息，OHOS同样有记录；OHOS系统生成文件为/data/log/bluetooth/snoop.log，通过wireshark或其它报文分析工具可以看到Host和Controller之间的交互流程，有助于问题分析
 
 ##    Sensor
 
