@@ -1,4 +1,4 @@
-# launcherAbilityInfo (LauncherAbilityInfo)
+# LauncherAbilityInfo
 
 
 

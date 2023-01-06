@@ -13,7 +13,7 @@
 
 | 名称           | 类型   | 可读 | 可写 | 说明           |
 | -------------- | ------ | ---- | ---- | -------------- |
-| permissionName | string | 是   | 否   | 用户权限名称   |
-| grantMode      | number | 是   | 否   | 权限的授予模式 |
-| labelId        | number | 是   | 否   | 权限的标签ID   |
-| descriptionId  | number | 是   | 否   | 描述权限的ID   |
+| permissionName | string | 是   | 否   | 用户权限名称。   |
+| grantMode      | number | 是   | 否   | 权限的授予模式。 |
+| labelId        | number | 是   | 否   | 权限的标签ID。   |
+| descriptionId  | number | 是   | 否   | 描述权限的ID。   |

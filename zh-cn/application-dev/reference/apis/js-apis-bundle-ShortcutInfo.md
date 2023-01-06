@@ -1,4 +1,4 @@
-# shortcutInfo (shortcutInfo)
+# ShortcutInfo
 
 
 
