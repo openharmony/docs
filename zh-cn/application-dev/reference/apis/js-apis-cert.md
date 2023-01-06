@@ -1,6 +1,6 @@
-# 证书模块
+# @ohos.security.cert (证书模块)
 
-crypto framework提供证书相关接口。其中，依赖加解密算法库框架的基础算法能力的部分，详细接口说明可参考[cryptoFramework API参考](./js-apis-cryptoFramework.md)。
+crypto framework提供证书相关接口。其中，依赖加解密算法库框架的基础算法能力的部分，详细接口说明可参考[cryptoFramework API参考](js-apis-cryptoFramework.md)。
 
 > **说明：**
 > 
