@@ -5,7 +5,9 @@
 
 LightWeightMap可用于存储具有关联关系的key-value键值对集合，存储元素中key值唯一，每个key对应一个value。
 
-LightWeightMap依据泛型定义，采用轻量级结构，集合中key值的查找依赖于hash算法，通过一个数组存储hash值，然后映射到其他数组中的key值及value值。
+LightWeightMap依据泛型定义，采用轻量级结构，初始默认容量大小为8，每次扩容大小为原始容量的两倍。
+
+集合中key值的查找依赖于hash算法，通过一个数组存储hash值，然后映射到其他数组中的key值及value值。
 
 LightWeightMap和[HashMap](js-apis-hashmap.md)都是用来存储键值对的集合，LightWeightMap占用内存更小。
 
@@ -158,10 +160,8 @@ hasKey(key: K): boolean;
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-let result = lightWeightMap.hasKey;
-lightWeightMap.hasKey("squirrel");
 lightWeightMap.set("squirrel", 123);
-let result1 = lightWeightMap.hasKey("squirrel");
+let result = lightWeightMap.hasKey("squirrel");
 ```
 
 
@@ -415,7 +415,7 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let map = new LightWeightMap();
-lightWeightMap.setAll(map);
+map.setAll(lightWeightMap); // 将lightWeightMap中所有的元素添加到map中
 ```
 
 
@@ -817,7 +817,7 @@ toString(): String
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
-let iter = lightWeightMap.toString();
+let result = lightWeightMap.toString();
 ```
 
 ### [Symbol.iterator]
