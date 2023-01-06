@@ -7,10 +7,10 @@
 
 媒体子系统包含了音视频相关媒体业务，提供以下常用功能：
 
-- 音视频播放（[AVPlayer](#avplayer9)<sup>9+</sup>），[AudioPlayer](#audioplayer)<sup>6+</sup>和[VideoPlayer](#videoplayer8)<sup>8+</sup>整合，升级了状态机和错误码，推荐使用
+- 音视频播放（[AVPlayer](#avplayer9)<sup>9+</sup>），[AudioPlayer](#audioplayer)<sup>6+</sup>和[VideoPlayer](#videoplayer)<sup>8+</sup>整合，升级了状态机和错误码，推荐使用
 - 音视频录制（[AVRecorder](#avrecorder9)<sup>9+</sup>），[AudioRecorder](#audiorecorder)<sup>6+</sup>和[VideoRecorder](#videorecorder9)<sup>9+</sup>整合，推荐使用
 - 音频播放（[AudioPlayer](#audioplayer)<sup>6+</sup>），[AVPlayer](#avplayer9)<sup>9+</sup>发布后停止维护，请使用[AVPlayer](#avplayer9)<sup>9+</sup>
-- 视频播放（[VideoPlayer](#videoplayer8)<sup>8+</sup>），[AVPlayer](#avplayer9)<sup>9+</sup>发布后停止维护，请使用[AVPlayer](#avplayer9)<sup>9+</sup>
+- 视频播放（[VideoPlayer](#videoplayer)<sup>8+</sup>），[AVPlayer](#avplayer9)<sup>9+</sup>发布后停止维护，请使用[AVPlayer](#avplayer9)<sup>9+</sup>
 - 音频录制（[AudioRecorder](#audiorecorder)<sup>6+</sup>），[AVRecorder](#avrecorder9)<sup>9+</sup>发布后停止维护，请使用[AVRecorder](#avrecorder9)<sup>9+</sup>
 - 视频录制（[VideoRecorder](#videorecorder9)<sup>9+</sup>），[AVRecorder](#avrecorder9)<sup>9+</sup>发布后停止维护，请使用[AVRecorder](#avrecorder9)<sup>9+</sup>
 
@@ -256,7 +256,7 @@ media.createVideoRecorder().then((video) => {
 });
 ```
 
-## media.createAudioPlayer<sup>(deprecated)</sup>
+## media.createAudioPlayer<sup>(deprecated)</sup><a name=createaudioplayer></a>
 
 createAudioPlayer(): AudioPlayer
 
@@ -276,7 +276,7 @@ createAudioPlayer(): AudioPlayer
 let audioPlayer = media.createAudioPlayer();
 ```
 
-## media.createVideoPlayer<sup>(deprecated)</sup>
+## media.createVideoPlayer<sup>(deprecated)</sup><a name=createvideoplayer></a>
 
 createVideoPlayer(callback: AsyncCallback\<VideoPlayer>): void
 
@@ -286,9 +286,9 @@ createVideoPlayer(callback: AsyncCallback\<VideoPlayer>): void
 
 **参数：**
 
-| 参数名   | 类型                                        | 必填 | 说明                                                         |
-| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | 是   | 回调函数。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
+| 参数名   | 类型                                       | 必填 | 说明                                                         |
+| -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback<[VideoPlayer](#videoplayer)> | 是   | 回调函数。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
 
 **示例：**
 
@@ -315,9 +315,9 @@ createVideoPlayer(): Promise\<VideoPlayer>
 
 **返回值：**
 
-| 类型                                  | 说明                                                         |
-| ------------------------------------- | ------------------------------------------------------------ |
-| Promise<[VideoPlayer](#videoplayer8)> | Promise对象。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
+| 类型                                 | 说明                                                         |
+| ------------------------------------ | ------------------------------------------------------------ |
+| Promise<[VideoPlayer](#videoplayer)> | Promise对象。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
 
 **示例：**
 
@@ -336,7 +336,7 @@ media.createVideoPlayer().then((video) => {
 });
 ```
 
-## media.createAudioRecorder<sup>(deprecated)</sup>
+## media.createAudioRecorder<sup>(deprecated)</sup><a name=createaudiorecorder></a>
 
 createAudioRecorder(): AudioRecorder
 
@@ -1077,7 +1077,7 @@ for (let i = 0; i < arrayDescription.length; i++) {
 }
 ```
 
-### seek<sup>9+</sup>
+### seek<sup>9+</sup><a name=avplayer_seek></a>
 
 seek(timeMs: number, mode?:SeekMode): void
 
@@ -3442,7 +3442,7 @@ videoRecorder.on('error', (error) => {                                  // 设�
 | videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
 | videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
 
-## MediaErrorCode<sup>(deprecated)</sup>
+## MediaErrorCode<sup>(deprecated)</sup><a name=mediaerrorcode></a>
 
 媒体服务错误类型枚举。
 
@@ -3862,12 +3862,12 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 | stopped | string | 音频播放停止，stop/播放结束后处于此状态。      |
 | error   | string | 错误状态。                                     |
 
-## VideoPlayer<sup>(deprecated)</sup>
+## VideoPlayer<sup>(deprecated)</sup><a name=videoplayer></a>
 
 > **说明：**
 > AVPlayer<sup>9+</sup>发布后停止维护，请使用[AVPlayer](#avplayer9)<sup>9+</sup>
 
-视频播放管理类，用于管理和播放视频媒体。在调用VideoPlayer的方法前，需要先通过[createVideoPlayer()](#mediacreatevideoplayer8)构建一个[VideoPlayer](#videoplayer8)实例。
+视频播放管理类，用于管理和播放视频媒体。在调用VideoPlayer的方法前，需要先通过[createVideoPlayer()](#createvideoplayer)构建一个VideoPlayer实例。
 
 视频播放demo可参考：[视频播放开发指导](../../media/video-playback.md)
 
@@ -3884,7 +3884,7 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | 是   | 是   | 音频焦点模型。                                               |
 | currentTime<sup>8+</sup>        | number                                                 | 是   | 否   | 视频的当前播放位置，单位为毫秒（ms）。                       |
 | duration<sup>8+</sup>           | number                                                 | 是   | 否   | 视频时长，单位为毫秒（ms），返回-1表示直播模式。             |
-| state<sup>8+</sup>              | [VideoPlayState](#videoplaystate8)                     | 是   | 否   | 视频播放的状态。                                             |
+| state<sup>8+</sup>              | [VideoPlayState](#videoplayerstate)                    | 是   | 否   | 视频播放的状态。                                             |
 | width<sup>8+</sup>              | number                                                 | 是   | 否   | 视频宽，单位为像素（px）。                                   |
 | height<sup>8+</sup>             | number                                                 | 是   | 否   | 视频高，单位为像素（px）。                                   |
 
@@ -4689,7 +4689,7 @@ videoPlayer.on('availableBitratesCollect', (bitrates) => {
 });
 ```
 
-## VideoPlayState<sup>(deprecated)</sup>
+## VideoPlayState<sup>(deprecated)</sup><a name=videoplayerstate></a>
 
 > **说明：**
 > AVPlayerState<sup>9+</sup>发布后停止维护，请使用[AVPlayerState](#avplayerstate)<sup>9+</sup>
