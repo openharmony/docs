@@ -265,6 +265,7 @@
     - [Development of Distributed Call Chain Tracing](dfx/hitracechain-guidelines.md)
     - Error Management
       - [Development of Error Manager](dfx/errormanager-guidelines.md)
+      - [Development of Application Recovery](apprecovery-guidelines.md)
   - Internationalization
     - [Internationalization Overview](internationalization/international-overview.md)
     - [Internationalization Development (intl)](internationalization/intl-guidelines.md)

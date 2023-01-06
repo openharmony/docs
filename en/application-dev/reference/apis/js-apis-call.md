@@ -1704,7 +1704,7 @@ This is a system API.
 | Name  | Type                                                  | Mandatory| Description                      |
 | -------- | ------------------------------------------------------ | ---- | -------------------------- |
 | type     | string                                                 | Yes  | Cause of the call disconnection.|
-| callback | Callback<[DisconnectedDetails](#disconnecteddetails8)> | Yes  | Callback used to return the result.                |
+| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | Yes  | Callback used to return the result.                |
 
 **Example**
 
@@ -1812,7 +1812,7 @@ This is a system API.
 | Name  | Type                                                      | Mandatory| Description                |
 | -------- | ---------------------------------------------------------- | ---- | -------------------- |
 | type     | 'callDisconnectedCause'                                    | Yes  | Unsubscription from the call disconnection cause when a call ends.|
-| callback | Callback**<**[DisconnectedDetails](#disconnecteddetails8)> | No  | Callback used to return the result.          |
+| callback | Callback**<**[DisconnectedDetails](#disconnecteddetails9)> | No  | Callback used to return the result.          |
 
 **Example**
 
@@ -2908,11 +2908,15 @@ This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name     | Type                                                | Mandatory| Description            |
-| ----------- | ---------------------------------------------------- | ---- | ---------------- |
-| transferNum | string                                               | Yes  | Call transfer number.        |
-| type        | [CallTransferType](#calltransfertype8)               | Yes  | Call transfer type.    |
-| settingType | [CallTransferSettingType](#calltransfersettingtype8) | Yes  | Call transfer setting type.|
+|          Name           | Type                                                | Mandatory| Description            |
+| ------------------------ | ---------------------------------------------------- | ---- | ---------------- |
+| transferNum              | string                                               | Yes  | Call transfer number.        |
+| type                     | [CallTransferType](#calltransfertype8)               | Yes  | Call transfer type.    |
+| settingType              | [CallTransferSettingType](#calltransfersettingtype8) | Yes  | Call transfer setting type.|
+| startHour<sup>9+</sup>   | number                                               | No  | Hour in the start time.|
+| startMinute<sup>9+</sup> | number                                               | No  | Minute in the start time.|
+| endHour<sup>9+</sup>     | number                                               | No  | Hour in the end time.|
+| endMinute<sup>9+</sup>   | number                                               | No  | Minute in the end time.|
 
 ## CallTransferType<sup>8+</sup>
 
@@ -3128,10 +3132,14 @@ This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name| Type                              | Mandatory| Description    |
-| ------ | ---------------------------------- | ---- | -------- |
-| status | [TransferStatus](#transferstatus8) | Yes  | Transfer status.|
-| number | string                             | Yes  | Number.    |
+|          Name           |                 Type              | Mandatory|       Description      |
+| ------------------------ | ---------------------------------- | ---- | ---------------- |
+| status                   | [TransferStatus](#transferstatus8) |  Yes | Call transfer status.        |
+| number                   | string                             |  Yes | Call transfer number.            |
+| startHour<sup>9+</sup>   | number                             |  Yes | Hour in the start time.|
+| startMinute<sup>9+</sup> | number                             |  Yes | Minute in the start time.|
+| endHour<sup>9+</sup>     | number                             |  Yes | Hour in the end time.|
+| endMinute<sup>9+</sup>   | number                             |  Yes | Minute in the end time.|
 
 ## CallWaitingStatus<sup>7+</sup>
 
@@ -3172,7 +3180,20 @@ This is a system API.
 | TRANSFER_DISABLE | 0    | Call transfer disabled.|
 | TRANSFER_ENABLE  | 1    | Call transfer enabled.|
 
-## DisconnectedDetails<sup>8+</sup>
+## DisconnectedDetails<sup>9+</sup>
+
+Defines the cause of a call disconnection.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name   |                    Type                   | Mandatory| Description           |
+| ------- | ------------------------------------------ | ---- | --------------- |
+| reason  | [DisconnectedReason](#disconnectedreason8) | Yes  | Cause of the call disconnection.   |
+| message | string                                     | Yes  | Message indicating the call disconnection.|
+
+## DisconnectedReason<sup>8+</sup>
 
 Enumerates causes of call disconnection.
 
@@ -3180,28 +3201,87 @@ This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name                       | Value  | Description                  |
-| --------------------------- | ---- | ---------------------- |
-| UNASSIGNED_NUMBER           | 1    | Unallocated number.    |
-| NO_ROUTE_TO_DESTINATION     | 3    | No route to the destination.      |
-| CHANNEL_UNACCEPTABLE        | 6    | Unacceptable channel.        |
-| OPERATOR_DETERMINED_BARRING | 8    | Operator determined barring (ODB).            |
-| NORMAL_CALL_CLEARING        | 16   | Normal call clearing.          |
-| USER_BUSY                   | 17   | User busy.                |
-| NO_USER_RESPONDING          | 18   | No user response.            |
-| USER_ALERTING_NO_ANSWER     | 19   | Alerting but no answer.|
-| CALL_REJECTED               | 21   | Call rejected.              |
-| NUMBER_CHANGED              | 22   | Number changed.              |
-| DESTINATION_OUT_OF_ORDER    | 27   | Destination fault.              |
-| INVALID_NUMBER_FORMAT       | 28   | Invalid number format.          |
-| NETWORK_OUT_OF_ORDER        | 38   | Network fault.              |
-| TEMPORARY_FAILURE           | 41   | Temporary fault.              |
-| INVALID_PARAMETER           | 1025 | Invalid parameter.              |
-| SIM_NOT_EXIT                | 1026 | SIM card not exit.           |
-| SIM_PIN_NEED                | 1027 | SIM card PIN required.        |
-| CALL_NOT_ALLOW              | 1029 | Call not allowed.            |
-| SIM_INVALID                 | 1045 | Invalid SIM card.             |
-| UNKNOWN                     | 1279 | Unknown reason.              |
+|                              Name                           | Value  |                  Description                  |
+| ------------------------------------------------------------ | ---- | --------------------------------------- |
+| UNASSIGNED_NUMBER                                            | 1    | Unallocated (unassigned) number.                     |
+| NO_ROUTE_TO_DESTINATION                                      | 3    | No route to destination.                       |
+| CHANNEL_UNACCEPTABLE                                         | 6    | Channel unacceptable.                         |
+| OPERATOR_DETERMINED_BARRING                                  | 8    | Operator determined barring (ODB).                             |
+| CALL_COMPLETED_ELSEWHERE<sup>9+</sup>                        | 13   | Call completed elsewhere.                     |
+| NORMAL_CALL_CLEARING                                         | 16   | Normal call clearing.                           |
+| USER_BUSY                                                    | 17   | User busy.                                 |
+| NO_USER_RESPONDING                                           | 18   | No user responding.                             |
+| USER_ALERTING_NO_ANSWER                                      | 19   | User alerting, no answer.                 |
+| CALL_REJECTED                                                | 21   | Call rejected.                               |
+| NUMBER_CHANGED                                               | 22   | Number changed.                               |
+| CALL_REJECTED_DUE_TO_FEATURE_AT_THE_DESTINATION<sup>9+</sup> | 24   | Call rejected due to feature at the destination.|
+| FAILED_PRE_EMPTION<sup>9+</sup>                              | 25   | Failed preemption.                               |
+| NON_SELECTED_USER_CLEARING<sup>9+</sup>                      | 26   | Non-selected user clearing.                         |
+| DESTINATION_OUT_OF_ORDER                                     | 27   | Destination out of order.                               |
+| INVALID_NUMBER_FORMAT                                        | 28   | Invalid number format (incomplete number).                           |
+| FACILITY_REJECTED<sup>9+</sup>                               | 29   | Facility rejected.                           |
+| RESPONSE_TO_STATUS_ENQUIRY<sup>9+</sup>                      | 30   | Response to status enquiry.                       |
+| NORMAL_UNSPECIFIED<sup>9+</sup>                              | 31   | Normal, unspecified.                           |
+| NO_CIRCUIT_CHANNEL_AVAILABLE<sup>9+</sup>                    | 34   | No circuit/channel available.                        |
+| NETWORK_OUT_OF_ORDER                                         | 38   | Network fault.                               |
+| TEMPORARY_FAILURE                                            | 41   | Temporary failure.                               |
+| SWITCHING_EQUIPMENT_CONGESTION<sup>9+</sup>                  | 42   | Switching equipment congestion.                           |
+| ACCESS_INFORMATION_DISCARDED<sup>9+</sup>                    | 43   | Access information discarded.                         |
+| REQUEST_CIRCUIT_CHANNEL_NOT_AVAILABLE<sup>9+</sup>           | 44   | Requested circuit/channel unavailable                  |
+| RESOURCES_UNAVAILABLE_UNSPECIFIED<sup>9+</sup>               | 47   | Resources unavailable, unspecified.                       |
+| QUALITY_OF_SERVICE_UNAVAILABLE<sup>9+</sup>                  | 49   | QoS unavailable.                         |
+| REQUESTED_FACILITY_NOT_SUBSCRIBED<sup>9+</sup>               | 50   | Requested facility not subscribed.                       |
+| INCOMING_CALLS_BARRED_WITHIN_THE_CUG<sup>9+</sup>            | 55   | Incoming calls barred within the CUG.                          |
+| BEARER_CAPABILITY_NOT_AUTHORIZED<sup>9+</sup>                | 57   | Bearer capability not authorized.                         |
+| BEARER_CAPABILITY_NOT_PRESENTLY_AVAILABLE<sup>9+</sup>       | 58   | Bearer capability presently available.                     |
+| SERVICE_OR_OPTION_NOT_AVAILABLE_UNSPECIFIED<sup>9+</sup>     | 63   | Service or option not available, unspecified.               |
+| BEARER_SERVICE_NOT_IMPLEMENTED<sup>9+</sup>                  | 65   | Bearer service not implemented.                         |
+| ACM_EQUALTO_OR_GREATER_THAN_THE_MAXIMUM_VALUE<sup>9+</sup>   | 68   | ACM greater than or equal to the maximum value.                    |
+| REQUESTED_FACILITY_NOT_IMPLEMENTED<sup>9+</sup>              | 69   | Requested facility not implemented.                       |
+| ONLY_RESTRICTED_DIGITAL_INFO_BEARER_CAPABILITY_IS_AVAILABLE<sup>9+</sup> | 70   | Only restricted digital information capability available.     |
+| SERVICE_OR_OPTION_NOT_IMPLEMENTED_UNSPECIFIED<sup>9+</sup>   | 79   | Service or option not implemented, unspecified.               |
+| INVALID_TRANSACTION_IDENTIFIER_VALUE<sup>9+</sup>            | 81   | Invalid transaction identifier value.                     |
+| USER_NOT_MEMBER_OF_CUG<sup>9+</sup>                          | 87   | User not member of CUG.                        |
+| INCOMPATIBLE_DESTINATION<sup>9+</sup>                        | 88   | Incompatible destination.                             |
+| INVALID_TRANSIT_NETWORK_SELECTION<sup>9+</sup>               | 91   | Invalid transit network selection.                     |
+| SEMANTICALLY_INCORRECT_MESSAGE<sup>9+</sup>                  | 95   | Semantically incorrect message.                         |
+| INVALID_MANDATORY_INFORMATION<sup>9+</sup>                   | 96   | Invalid mandatory information.                         |
+| MESSAGE_TYPE_NON_EXISTENT_OR_NOT_IMPLEMENTED<sup>9+</sup>    | 97   | Message type non-existent or not implemented.                 |
+| MESSAGE_TYPE_NOT_COMPATIBLE_WITH_PROTOCOL_STATE<sup>9+</sup> | 98   | Message type not compatible with protocol state.               |
+| INFORMATION_ELEMENT_NON_EXISTENT_OR_NOT_IMPLEMENTED<sup>9+</sup>    | 99   | IE non-existent or not implemented.                |
+| CONDITIONAL_IE_ERROR<sup>9+</sup>                            | 100  | Conditional IE error.                             |
+| MESSAGE_NOT_COMPATIBLE_WITH_PROTOCOL_STATE<sup>9+</sup>      | 101  | Message not compatible with protocol state.                   |
+| RECOVERY_ON_TIMER_EXPIRED<sup>9+</sup>                       | 102  | Recovery on timer expiry.             |
+| PROTOCOL_ERROR_UNSPECIFIED<sup>9+</sup>                      | 111  | Protocol error, unspecified.                       |
+| INTERWORKING_UNSPECIFIED<sup>9+</sup>                        | 127  | Interworking, unspecified.                           |
+| CALL_BARRED<sup>9+</sup>                                     | 240  | Call barred.                             |
+| FDN_BLOCKED<sup>9+</sup>                                     | 241  | FDN blocked.                                |
+| IMSI_UNKNOWN_IN_VLR<sup>9+</sup>                             | 242  | IMSI unknown in VLR.                        |
+| IMEI_NOT_ACCEPTED<sup>9+</sup>                               | 243  | IMEI not accepted.                           |
+| DIAL_MODIFIED_TO_USSD<sup>9+</sup>                           | 244  | Dial request modified to USSD request.                         |
+| DIAL_MODIFIED_TO_SS<sup>9+</sup>                             | 245  | Dial request modified to SS request.                       |
+| DIAL_MODIFIED_TO_DIAL<sup>9+</sup>                           | 246  | Dial request modified to dial with different number.                       |
+| RADIO_OFF<sup>9+</sup>                                       | 247  | Radio off.                       |
+| OUT_OF_SERVICE<sup>9+</sup>                                  | 248  | Out of service.                               |
+| NO_VALID_SIM<sup>9+</sup>                                    | 249  | No valid SIM.                              |
+| RADIO_INTERNAL_ERROR<sup>9+</sup>                            | 250  | Radio internal error.                     |
+| NETWORK_RESP_TIMEOUT<sup>9+</sup>                            | 251  | Network response timeout.                           |
+| NETWORK_REJECT<sup>9+</sup>                                  | 252  | Request rejected by network.                               |
+| RADIO_ACCESS_FAILURE<sup>9+</sup>                            | 253  | Radio access failure.                         |
+| RADIO_LINK_FAILURE<sup>9+</sup>                              | 254  | Radio link failure.                         |
+| RADIO_LINK_LOST<sup>9+</sup>                                 | 255  | Radio link lost.                         |
+| RADIO_UPLINK_FAILURE<sup>9+</sup>                            | 256  | Radio uplink failure.                     |
+| RADIO_SETUP_FAILURE<sup>9+</sup>                             | 257  | Radio setup failure.                     |
+| RADIO_RELEASE_NORMAL<sup>9+</sup>                            | 258  | Radio release normal.                         |
+| RADIO_RELEASE_ABNORMAL<sup>9+</sup>                          | 259  | Radio release abnormal.                         |
+| ACCESS_CLASS_BLOCKED<sup>9+</sup>                            | 260  | Access class blocked.                           |
+| NETWORK_DETACH<sup>9+</sup>                                  | 261  | Network detached.                               |
+| INVALID_PARAMETER                                            | 1025 | Invalid parameter.                               |
+| SIM_NOT_EXIT                                                 | 1026 | SIM not exit.                            |
+| SIM_PIN_NEED                                                 | 1027 | SIM PIN needed.                         |
+| CALL_NOT_ALLOW                                               | 1029 | Call not allowed.                             |
+| SIM_INVALID                                                  | 1045 | No valid SIM.                              |
+| UNKNOWN                                                      | 1279 | Unknown reason.                               |
 
 ## MmiCodeResults<sup>9+</sup>
 

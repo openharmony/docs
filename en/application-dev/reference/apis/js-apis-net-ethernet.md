@@ -14,7 +14,7 @@ import ethernet from '@ohos.net.ethernet'
 
 ## ethernet.setIfaceConfig
 
-setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallback\<void>): void;
+setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallback\<void>): void
 
 Sets the network interface configuration. This API uses an asynchronous callback to return the result.
 
@@ -46,7 +46,7 @@ ethernet.setIfaceConfig("eth0", {mode:ethernet.STATIC,ipAddr:"192.168.1.123", ro
 
 ## ethernet.setIfaceConfig
 
-setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>;
+setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 
 Sets the network interface configuration. This API uses a promise to return the result.
 
@@ -80,7 +80,7 @@ ethernet.setIfaceConfig("eth0", {mode:ethernet.STATIC,ipAddr:"192.168.1.123", ro
 
 ## ethernet.getIfaceConfig
 
-getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void;
+getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void
 
 Obtains the configuration of a network interface. This API uses an asynchronous callback to return the result. 
 
@@ -115,7 +115,7 @@ ethernet.getIfaceConfig("eth0", (error, value) => {
 
 ## ethernet.getIfaceConfig
 
-getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>;
+getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 
 Obtains the configuration of a network interface. This API uses a promise to return the result. 
 
@@ -153,7 +153,7 @@ ethernet.getIfaceConfig("eth0").then((data) => {
 
 ## ethernet.isIfaceActive
 
-isIfaceActive(iface?: string, callback: AsyncCallback\<number>): void;
+isIfaceActive(iface?: string, callback: AsyncCallback\<number>): void
 
 Checks whether a network interface is active. This API uses an asynchronous callback to return the result.
 
@@ -165,7 +165,7 @@ Checks whether a network interface is active. This API uses an asynchronous call
 
 | Name  | Type                       | Mandatory| Description                                              |
 | -------- | --------------------------- | ---- | -------------------------------------------------- |
-| iface    | string                      | No  | Name of the network interface. If this parameter is left empty, the API checks for any active network interface.            |
+| iface    | string                      | Yes  | Name of the network interface. If this parameter is left empty, the API checks for any active network interface.            |
 | callback | AsyncCallback\<number>       | Yes  | Callback used to return the result. The value **1** means that the network interface is active, **0** means that the network interface is inactive, and any other value means that an error has occurred.|
 
 **Example**
@@ -182,7 +182,7 @@ ethernet.isIfaceActive("eth0", (error, value) => {
 
 ## ethernet.isIfaceActive
 
-isIfaceActive(iface?: string): Promise\<number>;
+isIfaceActive(iface: string): Promise\<number>
 
 Checks whether a network interface is active. This API uses a promise to return the result.
 
@@ -194,7 +194,7 @@ Checks whether a network interface is active. This API uses a promise to return 
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| iface  | string | No  | Name of the network interface. If this parameter is left empty, the API checks for any active network interface.|
+| iface  | string | Yes  | Name of the network interface. If this parameter is left empty, the API checks for any active network interface.|
 
 **Return value**
 
@@ -214,7 +214,7 @@ ethernet.isIfaceActive("eth0").then((data) => {
 
 ## ethernet.getAllActiveIfaces
 
-getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void;
+getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 
 Obtains all active network interfaces. This API uses an asynchronous callback to return the result.
 
@@ -245,7 +245,7 @@ ethernet.getAllActiveIfaces((error, value) => {
 
 ## ethernet.getAllActiveIfaces
 
-getAllActiveIfaces(): Promise\<Array\<string>>;
+getAllActiveIfaces(): Promise\<Array\<string>>
 
 Obtains all active network interfaces. This API uses a promise to return the result.
 
@@ -280,14 +280,14 @@ Defines the network configuration for the Ethernet connection.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name                 | Type                               | Description                                                        |
-| ----------------------- | ----------------------------------- | ------------------------------------------------------------ |
-| mode         | [IPSetMode](#ipsetmode) | Configuration mode of the Ethernet connection.|
-| ipAddr       | string                  | Static IP address of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in Dynamic Host Configuration Protocol (DHCP) mode.|
-| route        | string                  | Route of the Ethernet connection. The value must be an IPv4 address. This parameter does not need to be configured in DHCP mode.|
-| gateway      | string                  | Gateway of the Ethernet connection. The value must be an IPv4 address. This parameter does not need to be configured in DHCP mode.|
-| netMask      | string                  | Subnet mask of the Ethernet connection. The value must be an IPv4 address. This parameter does not need to be configured in DHCP mode.|
-| dnsServers   | string                  | DNS server addresses of the Ethernet connection. The value must be an IPv4 address. This parameter does not need to be configured in DHCP mode. Multiple addresses are separated by commas (,).|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| mode         | [IPSetMode](#ipsetmode) | Yes | Configuration mode of the Ethernet connection.|
+| ipAddr       | string                  | Yes | Static IP address of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in Dynamic Host Configuration Protocol (DHCP) mode.|
+| route        | string                  | Yes | Route of the Ethernet connection. The value must be an IPv4 address. This parameter does not need to be configured in DHCP mode.|
+| gateway      | string                  | Yes | Gateway of the Ethernet connection. The value must be an IPv4 address. This parameter does not need to be configured in DHCP mode.|
+| netMask      | string                  | Yes | Subnet mask of the Ethernet connection. The value must be an IPv4 address. This parameter does not need to be configured in DHCP mode.|
+| dnsServers   | string                  | Yes | DNS server addresses of the Ethernet connection. The value must be an IPv4 address. This parameter does not need to be configured in DHCP mode. Multiple addresses are separated by commas (,).|
 
 ## IPSetMode
 
