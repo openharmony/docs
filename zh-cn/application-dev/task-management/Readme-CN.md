@@ -5,6 +5,7 @@
   - [短时任务开发指导](transient-task-dev-guide.md)
   - [长时任务开发指导](continuous-task-dev-guide.md)
   - [延迟任务开发指导](work-scheduler-dev-guide.md)
+  - [延迟任务回调开发指导](workscheduler-extensionability.md)
   - [申请能效资源开发指导](efficiency-resources-apply-dev-guide.md)
 
 - 后台代理提醒
