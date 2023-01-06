@@ -1,12 +1,13 @@
 # Defining Animations for SVG Components
 
-You can use child components in the &lt;svg&gt; component to animate attributes over time.
+You can use child components in the **\<svg>** component to animate attributes over time.
 
-#### Attribute Style Animation
+## Attribute Style Animation
 
-In the [animate](../reference/arkui-js/js-components-svg-animate.md) child component of the &lt;svg> component, set attributeName to the attribute you want to animate, set from to the animation start value, and set to to the animation end value.
+In the [animate](../reference/arkui-js/js-components-svg-animate.md) child component of the **\<svg>** component, set **attributeName** to the attribute you want to animate, set **from** to the animation start value, and set **to** to the animation end value.
 
-```
+
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>
@@ -32,16 +33,18 @@ In the [animate](../reference/arkui-js/js-components-svg-animate.md) child compo
 </div>
 ```
 
-![en-us_image_0000001183871404.gif](figures/en-us_image_0000001183871404.gif)
+![en-us_image_0000001183871404](figures/en-us_image_0000001183871404.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) NOTE:
-> When values is also set, the from and to settings do not take effect.
+> **NOTE**
+>
+> When values is also set, the **from** and **to** settings do not take effect.
 
-#### Motion Path Animation
+## Motion Path Animation
 
-In the [animateMotion](../reference/arkui-js/js-components-svg-animatemotion.md) child component of the &lt;svg&gt; component, set path to define a shape for the animation.
+In the [animateMotion](../reference/arkui-js/js-components-svg-animatemotion.md) child component of the **\<svg>** component, set path to define a shape for the animation.
 
-```
+
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="white" width="800" height="900">
@@ -55,13 +58,14 @@ In the [animateMotion](../reference/arkui-js/js-components-svg-animatemotion.md)
 </div>
 ```
 
-![en-us_image_0000001229510983.gif](figures/en-us_image_0000001229510983.gif)
+![en-us_image_0000001229510983](figures/en-us_image_0000001229510983.gif)
 
-#### animateTransform Animation
+## animateTransform Animation
 
 In the [animateTransform](../reference/arkui-js/js-components-svg-animatetransform.md) child component of the &lt;svg&gt; component, set attributeName to bind the corresponding attribute to the transform attribute, and set type to the animation type, from to the start value, and to to the end value.
 
-```
+
+```html
 <!-- xxx.hml -->
 <div class="container" style="">
   <svg>
@@ -86,7 +90,8 @@ In the [animateTransform](../reference/arkui-js/js-components-svg-animatetransfo
 </div>
 ```
 
-```
+
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -97,4 +102,4 @@ In the [animateTransform](../reference/arkui-js/js-components-svg-animatetransfo
 }
 ```
 
-![en-us_image_0000001182832088.gif](figures/en-us_image_0000001182832088.gif)
+![en-us_image_0000001182832088](figures/en-us_image_0000001182832088.gif)

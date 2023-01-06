@@ -1,10 +1,10 @@
 # &lt;form&gt; Development
 
 
-The &lt;form&gt; component allows the content in [&lt;input&gt;](../reference/arkui-js/js-components-basic-input.md) components to be submitted and reset. For details, see [form](../reference/arkui-js/js-components-container-form.md).
+The **&lt;form&gt;** component allows the content in [&lt;input&gt;](../reference/arkui-js/js-components-basic-input.md) components to be submitted and reset. For details, see [form](../reference/arkui-js/js-components-container-form.md).
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 >
 > This component is supported since API version 6.
 
@@ -13,7 +13,7 @@ The &lt;form&gt; component allows the content in [&lt;input&gt;](../reference/ar
 
 Create a **&lt;form&gt;** component in the .hml file under **pages/index**.
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <form style="width: 100%; height: 20%">  
@@ -22,8 +22,7 @@ Create a **&lt;form&gt;** component in the .hml file under **pages/index**.
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -42,7 +41,7 @@ Create a **&lt;form&gt;** component in the .hml file under **pages/index**.
 
 To implement the zoom effect after a form is clicked, add the **click-effect** attribute to the **&lt;form&gt;** component. For values of **click-effect**, see [Universal Attributes](../reference/arkui-js/js-components-common-attributes.md).
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <form  id="formId" class="formClass" click-effect="spring-large">
@@ -58,8 +57,7 @@ To implement the zoom effect after a form is clicked, add the **click-effect** a
 Add the **background-color** and **border** attributes.
 
 
-
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -85,7 +83,7 @@ Add the **background-color** and **border** attributes.
 
 To submit or reset a form, add the **submit** and **reset** events.
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <form onsubmit='onSubmit' onreset='onReset' class="form">
@@ -100,12 +98,11 @@ To submit or reset a form, add the **submit** and **reset** events.
       </input>
       <input type="reset" value="Reset" style="width:120px;"></input>
     </div>
-    
   </form>
 </div>
 ```
 
-```
+```css
 /* index.css */
 .container{
   width: 100%;
@@ -125,7 +122,7 @@ To submit or reset a form, add the **submit** and **reset** events.
 }
 ```
 
-```
+```js
 /* xxx.js */
 import prompt from '@system.prompt';
 export default{
@@ -152,8 +149,7 @@ Select an option and submit or reset the form data.
 
 Create [&lt;input&gt;](../reference/arkui-js/js-components-basic-input.md) components, set their **type** attribute to **checkbox** and **radio**, and use the **onsubmit** and **onreset** events of the **&lt;form&gt;** component to submit and reset the form data.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
    <form onsubmit="formSubmit" onreset="formReset">
@@ -188,10 +184,11 @@ Create [&lt;input&gt;](../reference/arkui-js/js-components-basic-input.md) compo
 </div>
 ```
 
-
-```
+```css
 /* index.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction:column;
   align-items:center;
   background-color:#F1F3F5;
@@ -206,8 +203,7 @@ label{
 }
 ```
 
-
-```
+```js
 /* xxx.js */
 import prompt from '@system.prompt';
 export default {

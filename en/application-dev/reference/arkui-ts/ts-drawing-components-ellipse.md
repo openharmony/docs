@@ -18,10 +18,10 @@ ellipse(options?: {width?: string | number, height?: string | number})
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| width | string \| number | No| Width.<br>Default value: **0**|
-| height | string \| number | No| Height.<br>Default value: **0**|
+| Name| Type| Mandatory| Default Value | Description|
+| -------- | -------- | -------- | -------- | -------- |
+| width | string \| number | No| 0 | Width. |
+| height | string \| number | No| 0 | Height. |
 
 ## Attributes
 

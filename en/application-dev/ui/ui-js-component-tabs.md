@@ -8,7 +8,7 @@ The **&lt;tabs&gt;** component is a common UI component for navigation. It allow
 
 Create a **&lt;tabs&gt;** component in the .hml file under **pages/index**.
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
     <tabs>
@@ -16,7 +16,7 @@ Create a **&lt;tabs&gt;** component in the .hml file under **pages/index**.
             <text>item1</text>
             <text>item2</text>
         </tab-bar>
-        <tab-content>
+        <tab-content class="tabContent">
             <div class="text">
                 <text>content1</text>
             </div>
@@ -28,13 +28,17 @@ Create a **&lt;tabs&gt;** component in the .hml file under **pages/index**.
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+}
+.tabContent{
+  width: 100%;
+  height: 100%;
 }
 .text{
   width: 100%;
@@ -51,7 +55,7 @@ Create a **&lt;tabs&gt;** component in the .hml file under **pages/index**.
 
 By default, the active tab of a **&lt;tabs&gt;** component is the one with the specified **index**. To show the **&lt;tabs&gt;** vertically, set the **vertical** attribute to **true**.
 
-```
+```html
 <!-- index.hml -->
 <div class="container" style="background-color:#F1F3F5;">
   <tabs index="1"  vertical="true">
@@ -75,7 +79,7 @@ By default, the active tab of a **&lt;tabs&gt;** component is the one with the s
 
 Set the **mode** attribute to enable the child components of the **&lt;tab-bar&gt;** to be evenly distributed. Set the **scrollable** attribute to disable scrolling of the **&lt;tab-content&gt;**.
 
-```
+```html
 <!-- index.hml -->
 <div class="container" style="background-color:#F1F3F5;">
   <tabs style="margin-top: 30px;">
@@ -101,8 +105,7 @@ Set the **mode** attribute to enable the child components of the **&lt;tab-bar&g
 ## Setting Styles
 
 Set the background color, border, and tab-content layout of the **&lt;tabs&gt;** component.
-
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <tabs class="tabs">
@@ -122,7 +125,7 @@ Set the background color, border, and tab-content layout of the **&lt;tabs&gt;**
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -157,7 +160,7 @@ Set the background color, border, and tab-content layout of the **&lt;tabs&gt;**
 
 Add the **change** event for the **&lt;tabs&gt;** component to display the index of the current tab after tab switching.
 
-```
+```html
 <!-- index.hml -->
 <div class="container" style="background-color:#F1F3F5;">
   <tabs class="tabs" onchange="tabChange">
@@ -177,7 +180,7 @@ Add the **change** event for the **&lt;tabs&gt;** component to display the index
 </div>
 ```
 
-```
+```js
 /* index.js */
 import prompt from '@system.prompt';
 export default {
@@ -203,7 +206,7 @@ In this example, you can switch between tabs and the active tab has the title te
 
 Use the **&lt;tabs&gt;**, **&lt;tab-bar&gt;**, and **&lt;tab-content&gt;** components to implement tab switching. Then define the arrays and attributes. Add the **change** event to change the attribute values in the arrays so that the active tab has a different font color and an underline.
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <tabs onchange="changeTabactive">
@@ -231,7 +234,7 @@ Use the **&lt;tabs&gt;**, **&lt;tab-bar&gt;**, and **&lt;tab-content&gt;** compo
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container{
 width: 100%;
@@ -267,7 +270,7 @@ background-color:#F1F3F5;
 }
 ```
 
-```
+```js
 /* index.js */
 import prompt from '@system.prompt';
 export default {

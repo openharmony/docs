@@ -259,7 +259,7 @@ export default {
    ```
 
    ```js
-   // xxx.js
+   <!-- xxx.js -->
    import router from '@ohos.router';
    export default {
        data: {
@@ -274,7 +274,7 @@ export default {
    ```
 
    ```css
-   /* xxx.css */
+   <!-- xxx.css -->
    .container {
        flex-direction: column;
        justify-content: center;
@@ -316,6 +316,7 @@ export default {
    }
    ```
 
+   
 
 2. Page2
 
@@ -328,7 +329,7 @@ export default {
    ```
 
    ```js
-   // xxx.js
+   <!-- xxx.js -->
    import router from '@ohos.router';
    export default {
        data: {
@@ -338,10 +339,11 @@ export default {
            router.back()
        }
    }
-   ```
-
-   ```css
-   /* xxx.css */
+   
+```
+   
+```css
+   <!-- xxx.css -->
    .container {
        flex-direction: column;
        justify-content: center;

@@ -68,6 +68,7 @@ Touch the **\<grid-container>** component to call the **getColumns**, **getColum
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -155,6 +156,7 @@ After adding a **\<grid-row>** child component to **\<grid-container>**, add a *
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -205,6 +207,7 @@ In this example, the content in the list is output cyclically to create a grid l
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
 }
 text{
   color: #0a0aef;

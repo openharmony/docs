@@ -9,7 +9,7 @@ Use **CanvasRenderingContext2D** to draw objects such as graphics, texts, line s
 Use **moveTo** and **lineTo** to draw a line segment. Use the **closePath** method to end current path, obtaining a closed path. Set **quadraticCurveTo** (quadratic bezier curve) or **bezierCurveTo** (cubic bezier curve) to draw a graphic.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1"></canvas>
@@ -24,9 +24,11 @@ Use **moveTo** and **lineTo** to draw a line segment. Use the **closePath** meth
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -47,7 +49,7 @@ select{
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -209,7 +211,7 @@ Globally define the canvas (**el**) and brush (**ctx**), and create a rectangle 
 
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1"></canvas>
@@ -222,11 +224,11 @@ Globally define the canvas (**el**) and brush (**ctx**), and create a rectangle 
 </div>
 ```
 
-
-
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -246,9 +248,7 @@ select{
 }
 ```
 
-
-
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -274,7 +274,7 @@ export default {
       this.ctx.setLineDash([0,0]);
       // Draw a stroked rectangle.
       this.ctx.strokeRect(200, 150, 200, 200);
-    }else if(e.newValue == 'value2'){
+    }else if (e.newValue == 'value2'){
       this.ctx.clearRect(0,0,600,500);
       this.ctx.lineWidth = 30;
       this.ctx.strokeStyle = '#0000ff';
@@ -283,12 +283,12 @@ export default {
       this.ctx.arc(300, 250, 150,0,6.28);
       // Draw borders.
       this.ctx.stroke();
-    }else if(e.newValue == 'value3'){
+    }else if (e.newValue == 'value3'){
       this.ctx.clearRect(0,0,600,500);
       this.ctx.lineWidth = 5;
       this.ctx.setLineDash([5,5]);
       this.ctx.strokeRect(200, 150, 200, 200);
-    }else if(e.newValue == 'value4'){
+    }else if (e.newValue == 'value4'){
       this.ctx.clearRect(0,0,600,500);
       // Draw and fill a rectangle.
       this.ctx.fillStyle = '#0000ff';
@@ -307,7 +307,7 @@ export default {
 Add the **createLinearGradient** and **createRadialGradient** attributes to create a gradient container, use the **addColorStop** method to add multiple color blocks to form a gradient color, and set **fillStyle** as **gradient** to apply the gradient color to a rectangle. Then set the shadow blur level by using **shadowBlur**, the shadow color by using **shadowColor**, and the shadow offset by using **shadowOffset**.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1"></canvas>
@@ -321,7 +321,7 @@ Add the **createLinearGradient** and **createRadialGradient** attributes to crea
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -344,7 +344,7 @@ select{
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -395,9 +395,9 @@ export default {
       this.ctx.fillRect(100, 100, 400, 300);
     }else if(e.newValue == 'value3'){
       this.ctx.clearRect(0,0,600,500);
-      let gradient = this.ctx.createLinearGradient(100,100, 400,400);
-      gradient.addColorStop(0.0, 'red');
-      gradient.addColorStop(0.5, 'white');
+      let gradient = this.ctx.createLinearGradient(100,100, 400,400);             
+      gradient.addColorStop(0.0, 'red');    
+      gradient.addColorStop(0.5, 'white');    
       gradient.addColorStop(1, '#17ea35');
       // Set the level of shadow blur.
       this.ctx.shadowBlur = 30;
@@ -408,12 +408,12 @@ export default {
     }else if(e.newValue == 'value4'){
       this.ctx.clearRect(0,0,600,500);
       this.ctx.clearRect(0,0,600,500);
-      let gradient = this.ctx.createRadialGradient(300,250,20,300,250,200);
-      gradient.addColorStop(0.0, 'red');
-      gradient.addColorStop(0.5, 'white');
+      let gradient = this.ctx.createRadialGradient(300,250,20,300,250,200);      
+      gradient.addColorStop(0.0, 'red');     
+      gradient.addColorStop(0.5, 'white');     
       gradient.addColorStop(1, '#17ea35');
       // Set the level of shadow blur.
-      this.ctx.shadowBlur = 30;
+      this.ctx.shadowBlur = 30;     
       this.ctx.shadowOffsetY = 30;
       // Set the shadow color.
       this.ctx.shadowColor = 'rgb(23, 1, 1)';
@@ -432,7 +432,7 @@ export default {
 Create a text and use the **fillText** method to write the text on the canvas. Use the **globalAlpha** attribute to change the baseline transparency to avoid the text being hidden by the baseline. Then set the **textAlign** and **textBaseline** attributes to determine the text position based on the baseline.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1"></canvas>
@@ -445,7 +445,7 @@ Create a text and use the **fillText** method to write the text on the canvas. U
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -468,7 +468,7 @@ select{
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -557,7 +557,8 @@ export default {
 
 ![en-us_image_0000001276162745](figures/en-us_image_0000001276162745.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> **NOTE**
+>
 > In the **ltr** layout mode, the value **start** equals **left**. In the **rtl** layout mode, the value **start** equals **right**.
 
 
@@ -566,7 +567,7 @@ export default {
 After creating an image object, use the **drawImage** attribute to draw the image and set animation styles such as scaling, translating, and rotating.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="content">
@@ -588,7 +589,7 @@ After creating an image object, use the **drawImage** attribute to draw the imag
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -623,7 +624,7 @@ text{
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -641,8 +642,7 @@ export default {
     // Set the image height.
     img.height=150;
     // Create an image tiling container.
-    var pat = ctx.createPattern(img, 'repeat');
-    ctx.fillStyle = pat;
+    var pat = ctx.createPattern(img, 'repeat');ctx.fillStyle = pat;
     ctx.fillRect(0, 0, 600, 300);
   },
   change(){
@@ -729,7 +729,7 @@ export default {
 
 ![en-us_image_0000001232003008](figures/en-us_image_0000001232003008.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> **NOTE**
 > - Unlike the **transform()** function, the **setTransform()** function resets the existing transformation matrix and creates a transformation matrix even if it uses the same parameters.
 > 
 > - The following formulas calculate coordinates of the transformed graph. **x** and **y** represent coordinates before transformation, and **x'** and **y'** represent coordinates after transformation.
@@ -743,7 +743,7 @@ export default {
 Use the **save** method to save the brush style, and use the **restore** method to restore the saved settings. In the following example, set the brush to red. After the brush setting is saved, clear the canvas and change the brush to blue. In this moment, directly using the brush will get a blue rectangle; using the brush after the restore operation will get a red rectangle.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="content">
@@ -758,9 +758,11 @@ Use the **save** method to save the brush style, and use the **restore** method 
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
@@ -792,7 +794,7 @@ text{
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -817,8 +819,7 @@ export default {
   restore(){
     this.ctx.beginPath();
     // Restore the brush setting.
-    this.ctx.restore();
-    this.ctx.fillRect(200, 150, 200, 200);
+    this.ctx.restore();    this.ctx.fillRect(200, 150, 200, 200);
   },
 }
 ```
