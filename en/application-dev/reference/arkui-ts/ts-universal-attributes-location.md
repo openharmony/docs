@@ -46,7 +46,7 @@ struct PositionExample1 {
           .fontSize(16)
           .backgroundColor(0xFFE4C4)
 
-        // To arrange the child components from left to right, set direction of the parent container to Direction.Auto or Direction.Ltr, or leave it to the default value.
+        // To arrange the child components from left to right, set direction of the parent container to Direction.Ltr.
         Text('direction').fontSize(9).fontColor(0xCCCCCC).width('90%')
         Row() {
           Text('1').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3)
@@ -55,19 +55,19 @@ struct PositionExample1 {
           Text('4').height(50).width('25%').fontSize(16).backgroundColor(0xD2B48C)
         }
         .width('90%')
-        .direction(Direction.Auto)
+        .direction(Direction.Ltr)
         // To arrange the child components from right to left, set direction of the parent container to Direction.Rtl.
         Row() {
-          Text('1').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3)
-          Text('2').height(50).width('25%').fontSize(16).backgroundColor(0xD2B48C)
-          Text('3').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3)
-          Text('4').height(50).width('25%').fontSize(16).backgroundColor(0xD2B48C)
+          Text('1').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3).textAlign(TextAlign.End)
+          Text('2').height(50).width('25%').fontSize(16).backgroundColor(0xD2B48C).textAlign(TextAlign.End)
+          Text('3').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3).textAlign(TextAlign.End)
+          Text('4').height(50).width('25%').fontSize(16).backgroundColor(0xD2B48C).textAlign(TextAlign.End)
         }
         .width('90%')
         .direction(Direction.Rtl)
       }
     }
-    .width('100%').margin({ top: 5 }).direction(Direction.Rtl)
+    .width('100%').margin({ top: 5 })
   }
 }
 ```
