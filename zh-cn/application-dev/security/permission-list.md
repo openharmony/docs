@@ -1584,6 +1584,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.APP_TRACKING_CONSENT
+
+允许应用读取广告标识符。
+
+**权限级别**：normal
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.RUN_ANY_CODE
 
 允许应用运行未签名的代码。
