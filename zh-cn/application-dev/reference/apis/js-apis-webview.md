@@ -1798,7 +1798,7 @@ struct WebComponent {
 
 getTitle(): string
 
-获取文件选择器标题。
+获取当前网页的标题。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1806,7 +1806,7 @@ getTitle(): string
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| string | 返回文件选择器标题。 |
+| string | 当前网页的标题。 |
 
 **错误码：**
 
@@ -2529,7 +2529,7 @@ struct WebComponent {
 
 ### hasImage
 
-hasImage(callback: AsyncCallback<boolean>): void
+hasImage(callback: AsyncCallback\<boolean>): void
 
 通过Callback方式异步查找当前页面是否存在图像。
 
@@ -2565,7 +2565,7 @@ struct WebComponent {
       Button('hasImageCb')
         .onClick(() => {
           try {
-            this.controller.hasImage((err, data) => {
+            this.controller.hasImage((error, data) => {
                 if (error) {
                   console.info(`hasImage error: ` + JSON.stringify(error))
                   return;
@@ -2584,7 +2584,7 @@ struct WebComponent {
 
 ### hasImage
 
-hasImage(): Promise<boolean>
+hasImage(): Promise\<boolean>
 
 通过Promise方式异步查找当前页面是否存在图像。
 
@@ -3900,7 +3900,7 @@ struct WebComponent {
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
-    webAsyncController: WebAsyncController = new web_webview.WebAsyncController(this.controller)
+    webAsyncController: web_webview.WebAsyncController = new web_webview.WebAsyncController(this.controller)
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4464,7 +4464,7 @@ struct WebComponent {
             let list = this.controller.getBackForwardEntries();
             let historyItem = list.getItemAtIndex(list.currentIndex);
             console.log("HistoryItem: " + JSON.stringify(historyItem));
-            this.icon = item.icon;
+            this.icon = historyItem.icon;
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
