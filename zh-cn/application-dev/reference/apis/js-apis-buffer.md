@@ -34,36 +34,6 @@ import buffer from '@ohos.buffer';
 | 'binary' | 表示二进制格式，不区分大小写。 |
 | 'hex' | 表示十六进制格式，不区分大小写。 |
 
-## 属性
-
-**系统能力：** SystemCapability.Utils.Lang
-
-| 名称 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| length | number | 是 | 否 | Buffer对象的字节长度。 |
-| buffer | ArrayBuffer | 是 | 否 | ArrayBuffer对象。 |
-| byteOffset | number | 是 | 否 | 当前Buffer所在内存池的偏移量。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200013 | Cannot set property ${propertyName} of Buffer which has only a getter. |
-
-**示例：**
-
-```ts
-import buffer from '@ohos.buffer';
-
-let buf = buffer.from("1236");
-console.log(JSON.stringify(buf.length));
-let arrayBuffer = buf.buffer;
-console.log(JSON.stringify(new Uint8Array(arrayBuffer)));
-console.log(JSON.stringify(buf.byteOffset));
-```
-
 ## buffer.alloc
 
 alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding): Buffer
@@ -101,7 +71,7 @@ let buf3 = buffer.alloc(11, 'aGVsbG8gd29ybGQ=', 'base64');
 allocUninitializedFromPool(size: number): Buffer
 
 创建指定大小未被初始化的Buffer对象。内存从缓冲池分配。
-创建的Buffer的内容未知，需要使用[buffer.fill](#bufferfill)函数来初始化Buffer对象。
+创建的Buffer的内容未知，需要使用[fill](#fill)函数来初始化Buffer对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -131,7 +101,7 @@ buf.fill(0);
 allocUninitialized(size: number): Buffer
 
 创建指定大小未被初始化的Buffer实例。内存不从缓冲池分配。
-创建的Buffer的内容未知，需要使用[buffer.fill](#bufferfill)函数来初始化Buffer对象。
+创建的Buffer的内容未知，需要使用[fill](#fill)函数来初始化Buffer对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -418,7 +388,7 @@ let buf1 = buffer.from('this is a test');
 let buf2 = buffer.from('7468697320697320612074c3a97374', 'hex');
 
 console.log(buf1.toString());	// 打印: this is a test
-console.log(buf2.toString());
+console.log(buf2.toString()); // 打印: this is a test
 ```
 
 
@@ -485,7 +455,71 @@ console.log(buffer.isEncoding('utf/8').toString());	// 打印: false
 console.log(buffer.isEncoding('').toString());	// 打印: false
 ```
 
-## buffer.compare
+## buffer.transcode
+
+transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
+
+将给定的Buffer或Uint8Array对象从一种字符编码重新编码为另一种。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| source | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 实例对象。 |
+| fromEnc | string | 是 | 当前编码。 |
+| toEnc | string | 是 | 目标编码。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Buffer | 根据当前编码转换成目标编码，并返回一个新的buffer实例。 |
+
+**示例：**
+
+```ts
+import buffer from '@ohos.buffer';
+
+let buf = buffer.alloc(50);
+let newBuf = buffer.transcode(buffer.from('€'), 'utf-8', 'ascii');
+console.log(newBuf.toString('ascii'));
+```
+
+## Buffer
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| length | number | 是 | 否 | Buffer对象的字节长度。 |
+| buffer | ArrayBuffer | 是 | 否 | ArrayBuffer对象。 |
+| byteOffset | number | 是 | 否 | 当前Buffer所在内存池的偏移量。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200013 | Cannot set property ${propertyName} of Buffer which has only a getter. |
+
+**示例：**
+
+```ts
+import buffer from '@ohos.buffer';
+
+let buf = buffer.from("1236");
+console.log(JSON.stringify(buf.length));
+let arrayBuffer = buf.buffer;
+console.log(JSON.stringify(new Uint8Array(arrayBuffer)));
+console.log(JSON.stringify(buf.byteOffset));
+```
+
+### compare
 
 compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, sourceStart?: number, sourceEnd?: number): -1 | 0 | 1
 
@@ -530,7 +564,7 @@ console.log(buf1.compare(buf2, 0, 6, 4).toString());	// 打印: -1
 console.log(buf1.compare(buf2, 5, 6, 5).toString());	// 打印: 1
 ```
 
-## buffer.copy
+### copy
 
 copy(target: Buffer| Uint8Array, targetStart?: number, sourceStart?: number, sourceEnd?: number): number
 
@@ -578,7 +612,7 @@ console.log(buf2.toString('ascii', 0, 25));
 // 打印: !!!!!!!!qrst!!!!!!!!!!!!!
 ```
 
-## buffer.entries
+### entries
 
 entries(): IterableIterator&lt;[number,&nbsp;number]&gt;
 
@@ -604,7 +638,7 @@ for (let pair of buf.entries()) {
 }
 ```
 
-## buffer.equals
+### equals
 
 equals(otherBuffer: Uint8Array | Buffer): boolean
 
@@ -637,7 +671,7 @@ console.log(buf1.equals(buf2).toString());	// 打印: true
 console.log(buf1.equals(buf3).toString());	// 打印: false
 ```
 
-## buffer.fill
+### fill
 
 fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number, encoding?: BufferEncoding): Buffer
 
@@ -678,7 +712,7 @@ console.log(b.toString());
 ```
 
 
-## buffer.includes
+### includes
 
 includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, encoding?: BufferEncoding): boolean
 
@@ -710,7 +744,7 @@ console.log(buf.includes('this').toString());	// 打印: true
 console.log(buf.includes('be').toString());	// 打印: false
 ```
 
-## buffer.indexOf
+### indexOf
 
 indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encoding?: BufferEncoding): number
 
@@ -742,7 +776,7 @@ console.log(buf.indexOf('this').toString());	// 打印: 0
 console.log(buf.indexOf('is').toString());		// 打印: 2
 ```
 
-## buffer.keys
+### keys
 
 keys(): IterableIterator&lt;number&gt;
 
@@ -767,7 +801,7 @@ for (const key of buf.keys()) {
 }
 ```
 
-## buffer.lastIndexOf
+### lastIndexOf
 
 lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encoding?: BufferEncoding): number
 
@@ -800,7 +834,7 @@ console.log(buf.lastIndexOf('buffer').toString());	// 打印: 17
 ```
 
 
-## buffer.readBigInt64BE
+### readBigInt64BE
 
 readBigInt64BE(offset?: number): bigint
 
@@ -841,7 +875,7 @@ let buf1 = buffer.allocUninitializedFromPool(8);
 buf1.writeBigInt64BE(0x0102030405060708n, 0);
 ```
 
-## buffer.readBigInt64LE
+### readBigInt64LE
 
 readBigInt64LE(offset?: number): bigint
 
@@ -882,7 +916,7 @@ let buf1 = buffer.allocUninitializedFromPool(8);
 buf1.writeBigInt64BE(0x0102030405060708n, 0);
 ```
 
-## buffer.readBigUInt64BE
+### readBigUInt64BE
 
 readBigUInt64BE(offset?: number): bigint
 
@@ -923,7 +957,7 @@ let buf1 = buffer.allocUninitializedFromPool(8);
 buf1.writeBigUInt64BE(0xdecafafecacefaden, 0);
 ```
 
-## buffer.readBigUInt64LE
+### readBigUInt64LE
 
 readBigUInt64LE(offset?: number): bigint
 
@@ -964,7 +998,7 @@ let buf1 = buffer.allocUninitializedFromPool(8);
 buf1.writeBigUInt64BE(0xdecafafecacefaden, 0);
 ```
 
-## buffer.readDoubleBE
+### readDoubleBE
 
 readDoubleBE(offset?: number): number
 
@@ -1004,7 +1038,7 @@ let buf1 = buffer.allocUninitializedFromPool(8);
 buf1.writeDoubleBE(123.456, 0);
 ```
 
-## buffer.readDoubleLE
+### readDoubleLE
 
 readDoubleLE(offset?: number): number
 
@@ -1044,7 +1078,7 @@ let buf1 = buffer.allocUninitializedFromPool(8);
 buf1.writeDoubleLE(123.456, 0);
 ```
 
-## buffer.readFloatBE
+### readFloatBE
 
 readFloatBE(offset?: number): number
 
@@ -1084,7 +1118,7 @@ let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeFloatBE(0xcabcbcbc, 0);
 ```
 
-## buffer.readFloatLE
+### readFloatLE
 
 readFloatLE(offset?: number): number
 
@@ -1124,7 +1158,7 @@ let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeFloatLE(0xcabcbcbc, 0);
 ```
 
-## buffer.readInt8
+### readInt8
 
 readInt8(offset?: number): number
 
@@ -1165,7 +1199,7 @@ let buf1 = buffer.allocUninitializedFromPool(2);
 buf1.writeInt8(0x12);
 ```
 
-## buffer.readInt16BE
+### readInt16BE
 
 readInt16BE(offset?: number): number
 
@@ -1205,7 +1239,7 @@ let buf1 = buffer.alloc(2);
 buf1.writeInt16BE(0x1234, 0);
 ```
 
-## buffer.readInt16LE
+### readInt16LE
 
 readInt16LE(offset?: number): number
 
@@ -1245,7 +1279,7 @@ let buf1 = buffer.alloc(2);
 buf1.writeInt16BE(0x1234, 0);
 ```
 
-## buffer.readInt32BE
+### readInt32BE
 
 readInt32BE(offset?: number): number
 
@@ -1285,7 +1319,7 @@ let buf1 = buffer.alloc(4);
 buf1.writeInt32BE(0x12345678, 0);
 ```
 
-## buffer.readInt32LE
+### readInt32LE
 
 readInt32LE(offset?: number): number
 
@@ -1325,7 +1359,7 @@ let buf1 = buffer.alloc(4);
 buf1.writeInt32BE(0x12345678, 0);
 ```
 
-## buffer.readIntBE
+### readIntBE
 
 readIntBE(offset: number, byteLength: number): number
 
@@ -1369,7 +1403,7 @@ buf1.writeIntBE(0x123456789011, 0, 6);
 ```
 
 
-## buffer.readIntLE
+### readIntLE
 
 readIntLE(offset: number, byteLength: number): number
 
@@ -1411,7 +1445,7 @@ let buf1 = buffer.allocUninitializedFromPool(6);
 buf1.writeIntLE(0x123456789011, 0, 6);
 ```
 
-## buffer.readUInt8
+### readUInt8
 
 readUInt8(offset?: number): number
 
@@ -1453,7 +1487,7 @@ let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeUInt8(0x42);
 ```
 
-## buffer.readUInt16BE
+### readUInt16BE
 
 readUInt16BE(offset?: number): number
 
@@ -1495,7 +1529,7 @@ let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeUInt16BE(0x1234, 0);
 ```
 
-## buffer.readUInt16LE
+### readUInt16LE
 
 readUInt16LE(offset?: number): number
 
@@ -1537,7 +1571,7 @@ let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeUInt16LE(0x1234, 0);
 ```
 
-## buffer.readUInt32BE
+### readUInt32BE
 
 readUInt32BE(offset?: number): number
 
@@ -1578,7 +1612,7 @@ let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeUInt32BE(0x12345678, 0);
 ```
 
-## buffer.readUInt32LE
+### readUInt32LE
 
 readUInt32LE(offset?: number): number
 
@@ -1619,7 +1653,7 @@ let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeUInt32LE(0x12345678, 0);
 ```
 
-## buffer.readUIntBE
+### readUIntBE
 
 readUIntBE(offset: number, byteLength: number): number
 
@@ -1661,7 +1695,7 @@ let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeUIntBE(0x13141516, 0, 4);
 ```
 
-## buffer.readUIntLE
+### readUIntLE
 
 readUIntLE(offset: number, byteLength: number): number
 
@@ -1703,7 +1737,7 @@ let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeUIntLE(0x13141516, 0, 4);
 ```
 
-## buffer.subarray
+### subarray
 
 subarray(start?: number, end?: number): Buffer
 
@@ -1739,7 +1773,7 @@ console.log(buf2.toString('ascii', 0, buf2.length));
 // 打印: abc
 ```
 
-## buffer.swap16
+### swap16
 
 swap16(): Buffer
 
@@ -1774,7 +1808,7 @@ buf1.swap16();
 console.log(buf1.toString('hex'));	// 打印: 0201040306050807
 ```
 
-## buffer.swap32
+### swap32
 
 swap32(): Buffer
 
@@ -1809,7 +1843,7 @@ buf1.swap32();
 console.log(buf1.toString('hex'));	// 打印: 0403020108070605
 ```
 
-## buffer.swap64
+### swap64
 
 swap64(): Buffer
 
@@ -1843,7 +1877,7 @@ buf1.swap64();
 console.log(buf1.toString('hex'));	// 打印: 0807060504030201
 ```
 
-## buffer.toJSON
+### toJSON
 
 toJSON(): Object
 
@@ -1869,7 +1903,7 @@ console.log(JSON.stringify(obj))
 // 打印: {"type":"Buffer","data":[1,2,3,4,5]}
 ```
 
-## buffer.toString
+### toString
 
 toString(encoding?: string, start?: number, end?: number): string
 
@@ -1904,7 +1938,7 @@ console.log(buf1.toString('utf-8'));
 // 打印: abcdefghijklmnopqrstuvwxyz
 ```
 
-## buffer.values
+### values
 
 values(): IterableIterator&lt;number&gt;
 
@@ -1929,7 +1963,7 @@ for (let value of buf1.values()) {
 }
 ```
 
-## buffer.write
+### write
 
 write(str: string, offset?: number, length?: number, encoding?: string): number
 
@@ -1975,7 +2009,7 @@ let buffer1 = buffer.alloc(10);
 let length = buffer1.write('abcd', 8);
 ```
 
-## buffer.writeBigInt64BE
+### writeBigInt64BE
 
 writeBigInt64BE(value: bigint, offset?: number): number
 
@@ -2014,7 +2048,7 @@ let buf = buffer.allocUninitializedFromPool(8);
 buf.writeBigInt64BE(0x0102030405060708n, 0);
 ```
 
-## buffer.writeBigInt64LE
+### writeBigInt64LE
 
 writeBigInt64LE(value: bigint, offset?: number): number
 
@@ -2053,7 +2087,7 @@ let buf = buffer.allocUninitializedFromPool(8);
 buf.writeBigInt64LE(0x0102030405060708n, 0);
 ```
 
-## buffer.writeBigUInt64BE
+### writeBigUInt64BE
 
 writeBigUInt64BE(value: bigint, offset?: number): number
 
@@ -2092,7 +2126,7 @@ let buf = buffer.allocUninitializedFromPool(8);
 buf.writeBigUInt64BE(0xdecafafecacefaden, 0);
 ```
 
-## buffer.writeBigUInt64LE
+### writeBigUInt64LE
 
 writeBigUInt64LE(value: bigint, offset?: number): number
 
@@ -2131,7 +2165,7 @@ let buf = buffer.allocUninitializedFromPool(8);
 buf.writeBigUInt64LE(0xdecafafecacefaden, 0);
 ```
 
-## buffer.writeDoubleBE
+### writeDoubleBE
 
 writeDoubleBE(value: number, offset?: number): number
 
@@ -2170,7 +2204,7 @@ let buf = buffer.allocUninitializedFromPool(8);
 buf.writeDoubleBE(123.456, 0);
 ```
 
-## buffer.writeDoubleLE
+### writeDoubleLE
 
 writeDoubleLE(value: number, offset?: number): number
 
@@ -2209,7 +2243,7 @@ let buf = buffer.allocUninitializedFromPool(8);
 buf.writeDoubleLE(123.456, 0);
 ```
 
-## buffer.writeFloatBE
+### writeFloatBE
 
 writeFloatBE(value: number, offset?: number): number
 
@@ -2249,7 +2283,7 @@ buf.writeFloatBE(0xcafebabe, 0);
 ```
 
 
-## buffer.writeFloatLE
+### writeFloatLE
 
 writeFloatLE(value: number, offset?: number): number
 
@@ -2288,7 +2322,7 @@ let buf = buffer.allocUninitializedFromPool(8);
 buf.writeFloatLE(0xcafebabe, 0);
 ```
 
-## buffer.writeInt8
+### writeInt8
 
 writeInt8(value: number, offset?: number): number
 
@@ -2329,7 +2363,7 @@ buf.writeInt8(-2, 1);
 ```
 
 
-## buffer.writeInt16BE
+### writeInt16BE
 
 writeInt16BE(value: number, offset?: number): number
 
@@ -2369,7 +2403,7 @@ buf.writeInt16BE(0x0102, 0);
 ```
 
 
-## buffer.writeInt16LE
+### writeInt16LE
 
 writeInt16LE(value: number, offset?: number): number
 
@@ -2408,7 +2442,7 @@ let buf = buffer.allocUninitializedFromPool(2);
 buf.writeInt16LE(0x0304, 0);
 ```
 
-## buffer.writeInt32BE
+### writeInt32BE
 
 writeInt32BE(value: number, offset?: number): number
 
@@ -2448,7 +2482,7 @@ buf.writeInt32BE(0x01020304, 0);
 ```
 
 
-## buffer.writeInt32LE
+### writeInt32LE
 
 writeInt32LE(value: number, offset?: number): number
 
@@ -2487,7 +2521,7 @@ let buf = buffer.allocUninitializedFromPool(4);
 buf.writeInt32LE(0x05060708, 0);
 ```
 
-## buffer.writeIntBE
+### writeIntBE
 
 writeIntBE(value: number, offset: number, byteLength: number): number
 
@@ -2528,7 +2562,7 @@ buf.writeIntBE(0x1234567890ab, 0, 6);
 ```
 
 
-## buffer.writeIntLE
+### writeIntLE
 
 writeIntLE(value: number, offset: number, byteLength: number): number
 
@@ -2568,7 +2602,7 @@ let buf = buffer.allocUninitializedFromPool(6);
 buf.writeIntLE(0x1234567890ab, 0, 6);
 ```
 
-## buffer.writeUInt8
+### writeUInt8
 
 writeUInt8(value: number, offset?: number): number
 
@@ -2610,7 +2644,7 @@ buf.writeUInt8(0x23, 2);
 buf.writeUInt8(0x42, 3);
 ```
 
-## buffer.writeUInt16BE
+### writeUInt16BE
 
 writeUInt16BE(value: number, offset?: number): number
 
@@ -2650,7 +2684,7 @@ buf.writeUInt16BE(0xdead, 0);
 buf.writeUInt16BE(0xbeef, 2);
 ```
 
-## buffer.writeUInt16LE
+### writeUInt16LE
 
 writeUInt16LE(value: number, offset?: number): number
 
@@ -2690,7 +2724,7 @@ buf.writeUInt16LE(0xdead, 0);
 buf.writeUInt16LE(0xbeef, 2);
 ```
 
-## buffer.writeUInt32BE
+### writeUInt32BE
 
 writeUInt32BE(value: number, offset?: number): number
 
@@ -2729,7 +2763,7 @@ let buf = buffer.allocUninitializedFromPool(4);
 buf.writeUInt32BE(0xfeedface, 0);
 ```
 
-## buffer.writeUInt32LE
+### writeUInt32LE
 
 writeUInt32LE(value: number, offset?: number): number
 
@@ -2768,7 +2802,7 @@ let buf = buffer.allocUninitializedFromPool(4);
 buf.writeUInt32LE(0xfeedface, 0);
 ```
 
-## buffer.writeUIntBE
+### writeUIntBE
 
 writeUIntBE(value: number, offset: number, byteLength: number): number
 
@@ -2808,7 +2842,7 @@ let buf = buffer.allocUninitializedFromPool(6);
 buf.writeUIntBE(0x1234567890ab, 0, 6);
 ```
 
-## buffer.writeUIntLE
+### writeUIntLE
 
 writeUIntLE(value: number, offset: number, byteLength: number): number
 
@@ -2846,38 +2880,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(6);
 buf.writeUIntLE(0x1234567890ab, 0, 6);
-```
-
-## buffer.transcode
-
-transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
-
-将给定的Buffer或Uint8Array对象从一种字符编码重新编码为另一种。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| source | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 实例对象。 |
-| fromEnc | string | 是 | 当前编码。 |
-| toEnc | string | 是 | 目标编码。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Buffer | 根据当前编码转换成目标编码，并返回一个新的buffer实例。 |
-
-**示例：**
-
-```ts
-import buffer from '@ohos.buffer';
-
-let buf = buffer.alloc(50);
-let newBuf = buffer.transcode(buffer.from('€'), 'utf-8', 'ascii');
-console.log(newBuf.toString('ascii'));
 ```
 
 ## Blob
