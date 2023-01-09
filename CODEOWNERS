@@ -517,6 +517,7 @@ zh-cn/application-dev/reference/apis/js-apis-commonEventManager.md @jayleehw @Ra
 zh-cn/application-dev/reference/apis/js-apis-configPolicy.md @Buda-Liu @ningningW @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-cooperate.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md @gaoyong @zengyawen @niejiteng @jumozhanjiang
+zh-cn/application-dev/reference/apis/js-apis-cert.md @gaoyong @zengyawen @niejiteng @jumozhanjiang
 zh-cn/application-dev/reference/apis/js-apis-curve.md @huaweimaxuchu @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-defaultAppManager.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-distributedBundle.md @shuaytao @RayShih @wangzhen107 @inter515
