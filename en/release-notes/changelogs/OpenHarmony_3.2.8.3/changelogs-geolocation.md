@@ -19,7 +19,7 @@ Other APIs are not affected.
 
 **Key API/Component Changes**
 
-| Class| API Type| API Declaration| Change Type| 
+| Class| Type| Declaration| Change Type| 
 |  -- | -- | -- | -- |
 |geolocation| namespace | declare namespacegeolocation| Migrated this API in API version 9 to **@ohos.geoLocationManager.d.ts**.| 
 |geolocation | interface | export interface ReverseGeocodingMockInfo  | Migrated this API in API version 9 to **@ohos.geoLocationManager.d.ts**.| 
@@ -52,8 +52,8 @@ Other APIs are not affected.
 |geolocation| method | function setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): Promise&lt;void&gt;; | Migrated this API in API version 9 to **@ohos.geoLocationManager.d.ts**. |
 |geolocation| method | function isLocationPrivacyConfirmed(type: LocationPrivacyType, callback: AsyncCallback&lt;boolean&gt;): void; | Migrated this API in API version 9 to **@ohos.geoLocationManager.d.ts**. |
 |geolocation| method | function isLocationPrivacyConfirmed(type: LocationPrivacyType): Promise&lt;boolean&gt;; | Migrated this API in API version 9 to **@ohos.geoLocationManager.d.ts**. |
-|geolocation| method | function setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean, callback: AsyncCallback&lt;boolean&gt;): void; | Migrated this API in API version 9 to **@ohos.geoLocationManager.d.ts** and changed the callback return value to **void**. |
-|geolocation| method | function setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean): Promise&lt;boolean&gt;; | Migrated this API in API version 9 to **@ohos.geoLocationManager.d.ts** and changed the promise return value to **void**. |
+|geolocation| method | function setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean, callback: AsyncCallback&lt;boolean&gt;): void; | Migrated this API in API version 9 to **@ohos.geoLocationManager.d.ts** and changed the return value in the callback to **void**. |
+|geolocation| method | function setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean): Promise&lt;boolean&gt;; | Migrated this API in API version 9 to **@ohos.geoLocationManager.d.ts** and changed the return value in the promise to **void**. |
 
 **(Optional) Adaptation Guide**
 

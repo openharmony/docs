@@ -33,7 +33,7 @@ Obtains the IDs of all input devices. This API uses an asynchronous callback to 
 
 ```js
 try {
-  inputDevice.getDeviceList((error, ids) => {
+  inputDevice.getDeviceIds((error, ids) => {
     if (error) {
       console.log(`Failed to get device list.
          error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
@@ -65,7 +65,7 @@ Obtains the IDs of all input devices. This API uses a promise to return the resu
 
 ```js
 try {
-  inputDevice.getDeviceList().then((ids) => {
+  inputDevice.getDeviceIds().then((ids) => {
     console.log("The device ID list is: " + ids);
   });
 } catch (error) {
@@ -245,9 +245,14 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 **Example**
 
 ```js
-inputDevice.getDeviceIds((ids)=>{
-    console.log("The device ID list is: " + ids);
+inputDevice.getDeviceIds((error, ids) => {
+  if (error) {
+    console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    return;
+  }
+  console.log(`Device id list: ${JSON.stringify(ids)}`);
 });
+```
 ```
 
 ## inputDevice.getDeviceIds<sup>(deprecated)</sup>
@@ -269,8 +274,8 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 **Example**
 
 ```js
-inputDevice.getDeviceIds().then((ids)=>{
-    console.log("The device ID list is: " + ids);
+inputDevice.getDeviceIds().then((ids) => {
+  console.log(`Device id list: ${JSON.stringify(ids)}`);
 });
 ```
 
@@ -295,8 +300,12 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 
 ```js
 // Obtain the name of the device whose ID is 1.
-inputDevice.getDevice(1, (inputDevice)=>{
-    console.log("The device name is: " + inputDevice.name);
+inputDevice.getDevice(1, (error, deviceData) => {
+  if (error) {
+    console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    return;
+  }
+  console.log(`Device info: ${JSON.stringify(deviceData)}`);
 });
 ```
 
@@ -326,8 +335,8 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 
 ```js
 // Obtain the name of the device whose ID is 1.
-inputDevice.getDevice(1).then((inputDevice)=>{
-    console.log("The device name is: " + inputDevice.name);
+inputDevice.getDevice(1).then((deviceData) => {
+  console.log(`Device info: ${JSON.stringify(deviceData)}`);
 });
 ```
 
