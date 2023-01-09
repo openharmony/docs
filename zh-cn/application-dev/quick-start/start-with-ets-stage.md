@@ -121,7 +121,7 @@
 
 1. 创建第二个页面。
 
-   - 新建第二个页面文件。在“**Project**”窗口，打开“**entry &gt; src &gt; main &gt; ets **”，右键点击“**pages**”文件夹，选择“**New &gt; ArkTS File**”，命名为“**Second**”，点击“**Finish**”。可以看到文件目录结构如下：
+   - 新建第二个页面文件。在“**Project**”窗口，打开“**entry &gt; src &gt; main &gt; ets**”，右键点击“**pages**”文件夹，选择“**New &gt; ArkTS File**”，命名为“**Second**”，点击“**Finish**”。可以看到文件目录结构如下：
 
       ![09](figures/09.png)
 
