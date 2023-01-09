@@ -82,14 +82,18 @@ struct MyComponent {
 
 ## @Prop
 
-**@Prop** and **@State** have the same semantics but different initialization modes. Variables decorated by **@Prop** must be initialized using the **@State** decorated variable provided by their parent components. The **@Prop** decorated variable can be modified in the component, but the modification is not updated to the parent component; that is, **@Prop** uses one-way data binding.
+**@Prop** and **@State** have the same semantics but different initialization modes. A **@Prop** decorated variable in a component must be initialized using the **@State** decorated variable in its parent component. The **@Prop** decorated variable can be modified in the component, but the modification is not updated to the parent component; the modification to the **@State** decorated variable is synchronized to the **@Prop** decorated variable. That is, **@Prop** establishes one-way data binding.
 
 The **@Prop** decorated state variable has the following features:
 
 - Support for simple types: The number, string, and boolean types are supported.
 - Private: Data is accessed only within the component.
 - Support for multiple instances: A component can have multiple attributes decorated by **@Prop**.
-- Support for initialization with a value passed to the @Prop decorated variable: When a new instance of the component is created, all **@Prop** decorated variables must be initialized. Initialization inside the component is not supported.
+- Support for initialization with a value passed to the @Prop decorated variable: When a new instance of the component is created, all **@Prop** variables must be initialized. Initialization inside the component is not supported.
+
+> **NOTE**
+>
+> A **@Prop** decorated variable cannot be initialized inside the component.
 
 **Example**
 
@@ -152,13 +156,13 @@ Two-way binding can be established between the **@Link** decorated variable and 
 
 - Support for multiple types: The **@Link** decorated variables support the data types the same as the **@State** decorated variables; that is, the value can be of the following types: class, number, string, boolean, or arrays of these types.
 - Private: Data is accessed only within the component.
-- Single data source: The variable of the parent component used for initializing the **@Link** decorated variable must be a **@State** decorated variable.
+- Single data source: The variable used to initialize the **@Link** decorated variable in a component must be a state variable defined in the parent component.
 - **Two-way binding**: When a child component changes the **@Link** decorated variable, the **@State** decorated variable of its parent component is also changed.
 - Support for initialization with the variable reference passed to the @Link decorated variable: When creating an instance of the component, you must use the naming parameter to initialize all **@Link** decorated variables. **@Link** decorated variables can be initialized by using the reference of the **@State** or **@Link** decorated variable. Wherein, the **@State** decorated variables can be referenced using the **'$'** operator.
 
 > **NOTE**
 >
-> **@Link** decorated variables cannot be initialized within the component.
+> A **@Link** decorated variable cannot be initialized inside the component.
 
 **Simple Type Example**
 
@@ -391,13 +395,13 @@ struct ViewB {
 ```
 
 
-## @Consume and @Provide
+## @Provide and @Consume
 
 As the data provider, **@Provide** can update the data of child nodes and trigger page rendering. After **@Consume** detects that the **@Provide** decorated variable is updated, it will initiate re-rendering of the current custom component.
 
 > **NOTE**
 >
-> To avoid infinite loops caused by circular reference, exercise caution when using **@Provide** and **@Consume**.
+> When using **@Provide** and **@Consume**, avoid circular reference that may lead to infinite loops.
 
 ### @Provide
 
