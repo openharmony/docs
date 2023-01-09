@@ -56,12 +56,12 @@ function subscribeCallback(err) {
 function onConsumeCallback(data) {
 	console.info("Consume callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
-}
-var info = {
+};
+let info = {
     bundleNames: ["bundleName1","bundleName2"]
-}
+};
 NotificationSubscribe.subscribe(subscriber, info, subscribeCallback);
 ```
 
@@ -107,9 +107,9 @@ function subscribeCallback(err) {
 function onConsumeCallback(data) {
 	console.info("Consume callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
-}
+};
 NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
@@ -148,7 +148,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 function onConsumeCallback(data) {
     console.info("Consume callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
 };
 NotificationSubscribe.subscribe(subscriber).then(() => {
@@ -198,9 +198,9 @@ function unsubscribeCallback(err) {
 function onDisconnectCallback(data) {
 	console.info("Cancel callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onDisconnect: onDisconnectCallback
-}
+};
 NotificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
 
@@ -238,7 +238,7 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 function onDisconnectCallback(data) {
 	console.info("Cancel callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onDisconnect: onDisconnectCallback
 };
 NotificationSubscribe.unsubscribe(subscriber).then(() => {
@@ -289,14 +289,14 @@ function removeCallback(err) {
         console.info("remove success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationKey = {
+};
+let notificationKey = {
     id: 0,
     label: "label",
-}
-var reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+};
+let reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 NotificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
 ```
 
@@ -335,14 +335,14 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 **示例：**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationKey = {
+};
+let notificationKey = {
     id: 0,
     label: "label",
-}
-var reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+};
+let reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 NotificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
 	console.info("remove success");
 });
@@ -382,7 +382,7 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 **示例：**
 
 ```js
-var hashCode = 'hashCode'
+let hashCode = 'hashCode';
 
 function removeCallback(err) {
     if (err) {
@@ -391,7 +391,7 @@ function removeCallback(err) {
         console.info("remove success");
     }
 }
-var reason = NotificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
+let reason = NotificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
 NotificationSubscribe.remove(hashCode, reason, removeCallback);
 ```
 
@@ -428,8 +428,8 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 **示例：**
 
 ```js
-var hashCode = 'hashCode'
-var reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+let hashCode = 'hashCode';
+let reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 NotificationSubscribe.remove(hashCode, reason).then(() => {
 	console.info("remove success");
 });
@@ -475,9 +475,9 @@ function removeAllCallback(err) {
         console.info("removeAll success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 NotificationSubscribe.removeAll(bundle, removeAllCallback);
 ```
 
@@ -600,7 +600,7 @@ function removeAllCallback(err) {
     }
 }
 
-var userId = 1
+let userId = 1;
 
 NotificationSubscribe.removeAll(userId, removeAllCallback);
 ```
@@ -643,7 +643,7 @@ function removeAllCallback(err) {
     }
 }
 
-var userId = 1
+let userId = 1;
 
 NotificationSubscribe.removeAll(userId, removeAllCallback);
 ```
@@ -689,7 +689,7 @@ function onConsumeCallback(data) {
     console.info('===> onConsume callback req.id:' + req.id);
 };
 
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
 };
 
@@ -729,7 +729,7 @@ function onCancelCallback(data) {
     console.info('===> onCancel callback req.id:' + req.id);
 }
 
-var subscriber = {
+let subscriber = {
     onCancel: onCancelCallback
 };
 
@@ -767,7 +767,7 @@ function onUpdateCallback(map) {
     console.info('===> onUpdateCallback map:' + JSON.stringify(map));
 }
 
-var subscriber = {
+let subscriber = {
     onUpdate: onUpdateCallback
 };
 
@@ -799,7 +799,7 @@ function onConnectCallback() {
     console.info('===> onConnect in test');
 }
 
-var subscriber = {
+let subscriber = {
     onConnect: onConnectCallback
 };
 
@@ -841,7 +841,7 @@ function onDisconnectCallback() {
     console.info('===> onDisconnect in test');
 }
 
-var subscriber = {
+let subscriber = {
     onConnect: onConnectCallback,
     onDisconnect: onDisconnectCallback
 };
@@ -877,7 +877,7 @@ function onDestroyCallback() {
     console.info('===> onDestroy in test');
 }
 
-var subscriber = {
+let subscriber = {
     onDestroy: onDestroyCallback
 };
 
@@ -915,7 +915,7 @@ function onDoNotDisturbDateChangeCallback(mode) {
     console.info('===> onDoNotDisturbDateChange:' + mode);
 }
 
-var subscriber = {
+let subscriber = {
     onDoNotDisturbDateChange: onDoNotDisturbDateChangeCallback
 };
 
@@ -956,7 +956,7 @@ function onEnabledNotificationChangedCallback(callbackData) {
     console.info("enable: ", callbackData.enable);
 };
 
-var subscriber = {
+let subscriber = {
     onEnabledNotificationChanged: onEnabledNotificationChangedCallback
 };
 

@@ -1,6 +1,6 @@
-# Data Share Extension Ability
+# @ohos.application.DataShareExtensionAbility
 
-The **DataShareExtensionAbility** module provides Extension abilities for data share services.
+The **DataShareExtensionAbility** module provides extension abilities for data share services.
 
 >**NOTE**
 >
@@ -23,7 +23,7 @@ import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbili
 
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| context | [ExtensionContext](js-apis-extension-context.md)  | Yes| No|Context of the DataShare Extension ability.| 
+| context | [ExtensionContext](js-apis-inner-application-extensionContext.md)  | Yes| No|Context of the DataShare Extension ability.| 
 
 ## onCreate
 
@@ -37,7 +37,7 @@ Called by the server to initialize service logic when the DataShare client conne
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
-| want | [Want](js-apis-application-Want.md#want) | Yes | **Want** information, including the ability name and bundle name.|
+| want | [Want](js-apis-application-want.md#want) | Yes | **Want** information, including the ability name and bundle name.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
@@ -83,7 +83,7 @@ Inserts data into the database. This API can be overridden as required.
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
 | uri |string | Yes | URI of the data to insert.|
-| valueBucket |[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | Yes| Data to insert.|
+| valueBucket |[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | Yes| Data to insert.|
 | callback |AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the index of the data inserted.|
 
 **Example**
@@ -127,8 +127,8 @@ Updates data in the database. This API can be overridden as required.
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
 | uri | string | Yes | URI of the data to update.|
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes | Filter criteria for updating data.|
-| valueBucket | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | Yes| New data.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes | Filter criteria for updating data.|
+| valueBucket | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | Yes| New data.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of updated data records.|
 
 **Example**
@@ -170,7 +170,7 @@ Deletes data from the database. This API can be overridden as required.
 | Name      | Type                                                    | Mandatory| Description                              |
 | ---------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | uri        | string                                                       | Yes  | URI of the data to delete.          |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria for deleting data.                    |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria for deleting data.                    |
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the number of data records deleted.|
 
 **Example**
@@ -212,7 +212,7 @@ Queries data from the database. This API can be overridden as required.
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
 | uri | string | Yes | URI of the data to query.|
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes | Filter criteria for querying data.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes | Filter criteria for querying data.|
 | columns | Array&lt;string&gt; | Yes| Columns to query. If this parameter is empty, all columns will be queried.|
 | callback | AsyncCallback&lt;Object&gt; | Yes| Callback invoked to return the result set.|
 
@@ -255,10 +255,10 @@ Batch inserts data into the database. This API is called by the server and can b
 
 **Parameters**
 
-| Name        | Type                                                    | Mandatory| Description                            |
+| Name       | Type                                                    | Mandatory| Description                            |
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------- |
 | uri          | string                                                       | Yes  | URI of the data to insert.    |
-| valueBuckets | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | Yes  | Data to insert.          |
+| valueBuckets | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to insert.          |
 | callback     | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the number of inserted data records.|
 
 **Example**

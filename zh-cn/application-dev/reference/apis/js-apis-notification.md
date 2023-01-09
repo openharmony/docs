@@ -41,7 +41,7 @@ function publishCallback(err) {
     }
 }
 // 通知Request对象
-var notificationRequest = {
+let notificationRequest = {
     id: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -51,8 +51,8 @@ var notificationRequest = {
             additionalText: "test_additionalText"
         }
     }
-}
-Notification.publish(notificationRequest, publishCallback)
+};
+Notification.publish(notificationRequest, publishCallback);
 ```
 
 
@@ -75,7 +75,7 @@ publish(request: NotificationRequest): Promise\<void\>
 
 ```js
 // 通知Request对象
-var notificationRequest = {
+let notificationRequest = {
     notificationId: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -85,7 +85,7 @@ var notificationRequest = {
             additionalText: "test_additionalText"
         }
     }
-}
+};
 Notification.publish(notificationRequest).then(() => {
 	console.info("publish success");
 });
@@ -124,9 +124,9 @@ function publishCallback(err) {
     }
 }
 // 用户ID
-var userId = 1
+let userId = 1;
 // 通知Request对象
-var notificationRequest = {
+let notificationRequest = {
     id: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -136,7 +136,7 @@ var notificationRequest = {
             additionalText: "test_additionalText"
         }
     }
-}
+};
 Notification.publish(notificationRequest, userId, publishCallback);
 ```
 
@@ -162,7 +162,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 **示例：**
 
 ```js
-var notificationRequest = {
+let notificationRequest = {
     notificationId: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -172,9 +172,9 @@ var notificationRequest = {
             additionalText: "test_additionalText"
         }
     }
-}
+};
 
-var userId = 1
+let userId = 1;
 
 Notification.publish(notificationRequest, userId).then(() => {
 	console.info("publish success");
@@ -209,7 +209,7 @@ function cancelCallback(err) {
         console.info("cancel success");
     }
 }
-Notification.cancel(0, "label", cancelCallback)
+Notification.cancel(0, "label", cancelCallback);
 ```
 
 
@@ -265,7 +265,7 @@ function cancelCallback(err) {
         console.info("cancel success");
     }
 }
-Notification.cancel(0, cancelCallback)
+Notification.cancel(0, cancelCallback);
 ```
 
 
@@ -295,7 +295,7 @@ function cancelAllCallback(err) {
         console.info("cancelAll success");
     }
 }
-Notification.cancelAll(cancelAllCallback)
+Notification.cancelAll(cancelAllCallback);
 ```
 
 
@@ -349,10 +349,10 @@ function addSlotCallBack(err) {
     }
 }
 // 通知slot对象
-var notificationSlot = {
+let notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
-Notification.addSlot(notificationSlot, addSlotCallBack)
+};
+Notification.addSlot(notificationSlot, addSlotCallBack);
 ```
 
 
@@ -379,9 +379,9 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 ```js
 // 通知slot对象
-var notificationSlot = {
+let notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
+};
 Notification.addSlot(notificationSlot).then(() => {
 	console.info("addSlot success");
 });
@@ -415,7 +415,7 @@ function addSlotCallBack(err) {
         console.info("addSlot success");
     }
 }
-Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack)
+Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack);
 ```
 
 
@@ -475,14 +475,14 @@ function addSlotsCallBack(err) {
     }
 }
 // 通知slot对象
-var notificationSlot = {
+let notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
+};
 // 通知slot array 对象
-var notificationSlotArray = new Array();
+let notificationSlotArray = new Array();
 notificationSlotArray[0] = notificationSlot;
 
-Notification.addSlots(notificationSlotArray, addSlotsCallBack)
+Notification.addSlots(notificationSlotArray, addSlotsCallBack);
 ```
 
 
@@ -509,11 +509,11 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 ```js
 // 通知slot对象
-var notificationSlot = {
+let notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
+};
 // 通知slot array 对象
-var notificationSlotArray = new Array();
+let notificationSlotArray = new Array();
 notificationSlotArray[0] = notificationSlot;
 
 Notification.addSlots(notificationSlotArray).then(() => {
@@ -549,8 +549,8 @@ function getSlotCallback(err, data) {
         console.info("getSlot success");
     }
 }
-var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
-Notification.getSlot(slotType, getSlotCallback)
+let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
+Notification.getSlot(slotType, getSlotCallback);
 ```
 
 
@@ -578,7 +578,7 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 **示例：**
 
 ```js
-var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
+let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.getSlot(slotType).then((data) => {
 	console.info("getSlot success, data: " + JSON.stringify(data));
 });
@@ -611,7 +611,7 @@ function getSlotsCallback(err, data) {
         console.info("getSlots success");
     }
 }
-Notification.getSlots(getSlotsCallback)
+Notification.getSlots(getSlotsCallback);
 ```
 
 
@@ -666,8 +666,8 @@ function removeSlotCallback(err) {
         console.info("removeSlot success");
     }
 }
-var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
-Notification.removeSlot(slotType,removeSlotCallback)
+let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
+Notification.removeSlot(slotType,removeSlotCallback);
 ```
 
 
@@ -689,7 +689,7 @@ removeSlot(slotType: SlotType): Promise\<void\>
 **示例：**
 
 ```js
-var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
+let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.removeSlot(slotType).then(() => {
 	console.info("removeSlot success");
 });
@@ -721,7 +721,7 @@ function removeAllCallBack(err) {
         console.info("removeAllSlots success");
     }
 }
-Notification.removeAllSlots(removeAllCallBack)
+Notification.removeAllSlots(removeAllCallBack);
 ```
 
 
@@ -778,12 +778,12 @@ function subscribeCallback(err) {
 function onConsumeCallback(data) {
 	console.info("Consume callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
-}
-var info = {
+};
+let info = {
     bundleNames: ["bundleName1", "bundleName2"]
-}
+};
 Notification.subscribe(subscriber, info, subscribeCallback);
 ```
 
@@ -821,9 +821,9 @@ function subscribeCallback(err) {
 function onConsumeCallback(data) {
 	console.info("Consume callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
-}
+};
 Notification.subscribe(subscriber, subscribeCallback);
 ```
 
@@ -854,7 +854,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 function onConsumeCallback(data) {
     console.info("Consume callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
 };
 Notification.subscribe(subscriber).then(() => {
@@ -896,9 +896,9 @@ function unsubscribeCallback(err) {
 function onDisconnectCallback(data) {
 	console.info("Cancel callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onDisconnect: onDisconnectCallback
-}
+};
 Notification.unsubscribe(subscriber, unsubscribeCallback);
 ```
 
@@ -928,7 +928,7 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 function onDisconnectCallback(data) {
 	console.info("Cancel callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onDisconnect: onDisconnectCallback
 };
 Notification.unsubscribe(subscriber).then(() => {
@@ -968,9 +968,9 @@ function enableNotificationCallback(err) {
         console.info("enableNotification success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.enableNotification(bundle, false, enableNotificationCallback);
 ```
 
@@ -998,9 +998,9 @@ enableNotification(bundle: BundleOption, enable: boolean): Promise\<void\>
 **示例：**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.enableNotification(bundle, false).then(() => {
 	console.info("enableNotification success");
 });
@@ -1037,9 +1037,9 @@ function isNotificationEnabledCallback(err, data) {
         console.info("isNotificationEnabled success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.isNotificationEnabled(bundle, isNotificationEnabledCallback);
 ```
 
@@ -1072,9 +1072,9 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 **示例：**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.isNotificationEnabled(bundle).then((data) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 });
@@ -1180,9 +1180,9 @@ function displayBadgeCallback(err) {
         console.info("displayBadge success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.displayBadge(bundle, false, displayBadgeCallback);
 ```
 
@@ -1210,9 +1210,9 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 **示例：**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.displayBadge(bundle, false).then(() => {
 	console.info("displayBadge success");
 });
@@ -1249,9 +1249,9 @@ function isBadgeDisplayedCallback(err, data) {
         console.info("isBadgeDisplayed success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.isBadgeDisplayed(bundle, isBadgeDisplayedCallback);
 ```
 
@@ -1284,9 +1284,9 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 **示例：**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.isBadgeDisplayed(bundle).then((data) => {
 	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
 });
@@ -1324,12 +1324,12 @@ function setSlotByBundleCallback(err) {
         console.info("setSlotByBundle success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationSlot = {
+};
+let notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
+};
 Notification.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
 ```
 
@@ -1357,12 +1357,12 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 **示例：**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationSlot = {
+};
+let notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
+};
 Notification.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
 });
@@ -1399,9 +1399,9 @@ function getSlotsByBundleCallback(err, data) {
         console.info("getSlotsByBundle success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 ```
 
@@ -1434,9 +1434,9 @@ getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
 **示例：**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.getSlotsByBundle(bundle).then((data) => {
 	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
 });
@@ -1473,9 +1473,9 @@ function getSlotNumByBundleCallback(err, data) {
         console.info("getSlotNumByBundle success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
 ```
 
@@ -1508,9 +1508,9 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 **示例：**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.getSlotNumByBundle(bundle).then((data) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
 });
@@ -1549,14 +1549,14 @@ function removeCallback(err) {
         console.info("remove success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationKey = {
+};
+let notificationKey = {
     id: 0,
     label: "label",
-}
-var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+};
+let reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
 Notification.remove(bundle, notificationKey, reason, removeCallback);
 ```
 
@@ -1585,14 +1585,14 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 **示例：**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationKey = {
+};
+let notificationKey = {
     id: 0,
     label: "label",
-}
-var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+};
+let reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
 Notification.remove(bundle, notificationKey, reason).then(() => {
 	console.info("remove success");
 });
@@ -1623,7 +1623,7 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 **示例：**
 
 ```js
-var hashCode = 'hashCode'
+let hashCode = 'hashCode';
 
 function removeCallback(err) {
     if (err.code) {
@@ -1632,7 +1632,7 @@ function removeCallback(err) {
         console.info("remove success");
     }
 }
-var reason = Notification.RemoveReason.CANCEL_REASON_REMOVE;
+let reason = Notification.RemoveReason.CANCEL_REASON_REMOVE;
 Notification.remove(hashCode, reason, removeCallback);
 ```
 
@@ -1660,8 +1660,8 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 **示例：**
 
 ```js
-var hashCode = 'hashCode'
-var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+let hashCode = 'hashCode';
+let reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
 Notification.remove(hashCode, reason).then(() => {
 	console.info("remove success");
 });
@@ -1698,9 +1698,9 @@ function removeAllCallback(err) {
         console.info("removeAll success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.removeAll(bundle, removeAllCallback);
 ```
 
@@ -1797,7 +1797,7 @@ function removeAllCallback(err) {
     }
 }
 
-var userId = 1
+let userId = 1;
 Notification.removeAll(userId, removeAllCallback);
 ```
 
@@ -1822,7 +1822,7 @@ removeAll(userId: number): Promise\<void>
 **示例：**
 
 ```js
-var userId = 1
+let userId = 1;
 Notification.removeAll(userId).then(() => {
 	console.info("removeAll success");
 });
@@ -2025,7 +2025,7 @@ function cancelGroupCallback(err) {
     }
 }
 
-var groupName = "GroupName";
+let groupName = "GroupName";
 
 Notification.cancelGroup(groupName, cancelGroupCallback);
 ```
@@ -2049,7 +2049,7 @@ cancelGroup(groupName: string): Promise\<void\>
 **示例：**
 
 ```js
-var groupName = "GroupName";
+let groupName = "GroupName";
 Notification.cancelGroup(groupName).then(() => {
 	console.info("cancelGroup success");
 });
@@ -2088,8 +2088,8 @@ function removeGroupByBundleCallback(err) {
     }
 }
 
-var bundleOption = {bundle: "Bundle"};
-var groupName = "GroupName";
+let bundleOption = {bundle: "Bundle"};
+let groupName = "GroupName";
 
 Notification.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCallback);
 ```
@@ -2118,8 +2118,8 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 **示例：**
 
 ```js
-var bundleOption = {bundle: "Bundle"};
-var groupName = "GroupName";
+let bundleOption = {bundle: "Bundle"};
+let groupName = "GroupName";
 Notification.removeGroupByBundle(bundleOption, groupName).then(() => {
 	console.info("removeGroupByBundle success");
 });
@@ -2157,11 +2157,11 @@ function setDoNotDisturbDateCallback(err) {
     }
 }
 
-var doNotDisturbDate = {
+let doNotDisturbDate = {
     type: Notification.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
-}
+};
 
 Notification.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
 ```
@@ -2189,11 +2189,11 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 **示例：**
 
 ```js
-var doNotDisturbDate = {
+let doNotDisturbDate = {
     type: Notification.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
-}
+};
 Notification.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 	console.info("setDoNotDisturbDate success");
 });
@@ -2231,13 +2231,13 @@ function setDoNotDisturbDateCallback(err) {
     }
 }
 
-var doNotDisturbDate = {
+let doNotDisturbDate = {
     type: Notification.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
-}
+};
 
-var userId = 1
+let userId = 1
 Notification.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
 ```
 
@@ -2265,13 +2265,13 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 **示例：**
 
 ```js
-var doNotDisturbDate = {
+let doNotDisturbDate = {
     type: Notification.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
-}
+};
 
-var userId = 1
+let userId = 1;
 
 Notification.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 	console.info("setDoNotDisturbDate success");
@@ -2370,7 +2370,7 @@ function getDoNotDisturbDateCallback(err,data) {
     }
 }
 
-var userId = 1
+let userId = 1;
 
 Notification.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
 ```
@@ -2404,7 +2404,7 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 **示例：**
 
 ```js
-var userId = 1
+let userId = 1;
 
 Notification.getDoNotDisturbDate(userId).then((data) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
@@ -2492,7 +2492,7 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 **示例：**
 
 ```javascript
-var templateName = 'process';
+let templateName = 'process';
 function isSupportTemplateCallback(err, data) {
     if (err.code) {
         console.info("isSupportTemplate failed " + JSON.stringify(err));
@@ -2529,7 +2529,7 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 **示例：**
 
 ```javascript
-var templateName = 'process';
+let templateName = 'process';
 
 Notification.isSupportTemplate(templateName).then((data) => {
     console.info("isSupportTemplate success, data: " + JSON.stringify(data));
@@ -2615,7 +2615,7 @@ function enabledNotificationCallback(err) {
     }
 };
 
-var enable = true
+let enable = true;
 
 Notification.enableDistributed(enable, enabledNotificationCallback);
 ```
@@ -2643,7 +2643,7 @@ enableDistributed(enable: boolean): Promise\<void>
 **示例：**
 
 ```javascript
-var enable = true
+let enable = true;
 Notification.enableDistributed(enable).then(() => {
     console.info("enableDistributed success");
 });
@@ -2734,11 +2734,11 @@ function enableDistributedByBundleCallback(err) {
     }
 };
 
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 
-var enable = true
+let enable = true;
 
 Notification.enableDistributedByBundle(bundle, enable, enableDistributedByBundleCallback);
 ```
@@ -2767,11 +2767,11 @@ enableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
 **示例：**
 
 ```javascript
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 
-var enable = true
+let enable = true;
 Notification.enableDistributedByBundle(bundle, enable).then(() => {
     console.info("enableDistributedByBundle success");
 });
@@ -2807,9 +2807,9 @@ function isDistributedEnabledByBundleCallback(err, data) {
     }
 };
 
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 
 Notification.isDistributedEnabledByBundle(bundle, isDistributedEnabledByBundleCallback);
 ```
@@ -2843,9 +2843,9 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 **示例：**
 
 ```javascript
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 
 Notification.isDistributedEnabledByBundle(bundle).then((data) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
@@ -2947,9 +2947,9 @@ function callback(err) {
     }
 }
 // 被代理应用的包名
-let representativeBundle = "com.example.demo"
+let representativeBundle = "com.example.demo";
 // 用户ID
-let userId = 100
+let userId = 100;
 // NotificationRequest对象
 let request = {
     id: 1,
@@ -2961,7 +2961,7 @@ let request = {
             additionalText: "test_additionalText"
         }
     }
-}
+};
 
 Notification.publishAsBundle(request, representativeBundle, userId, callback);
 ```
@@ -2991,11 +2991,11 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 ```js
 // 被代理应用的包名
-let representativeBundle = "com.example.demo"
+let representativeBundle = "com.example.demo";
 // 用户ID
-let userId = 100
+let userId = 100;
 // NotificationRequest对象
-var request = {
+let request = {
     id: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -3005,7 +3005,7 @@ var request = {
             additionalText: "test_additionalText"
         }
     }
-}
+};
 
 Notification.publishAsBundle(request, representativeBundle, userId).then(() => {
 	console.info("publishAsBundle success");
@@ -3047,9 +3047,9 @@ function cancelAsBundleCallback(err) {
     }
 }
 // 被代理应用的包名
-let representativeBundle = "com.example.demo"
+let representativeBundle = "com.example.demo";
 // 用户ID
-let userId = 100
+let userId = 100;
 
 Notification.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
 ```
@@ -3080,9 +3080,9 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 ```js
 // 被代理应用的包名
-let representativeBundle = "com.example.demo"
+let representativeBundle = "com.example.demo";
 // 用户ID
-let userId = 100
+let userId = 100;
 
 Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
@@ -3421,7 +3421,7 @@ function onConsumeCallback(data) {
     console.info('===> onConsume callback req.id:' + req.id);
 };
 
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
 };
 
@@ -3460,7 +3460,7 @@ function onCancelCallback(data) {
     console.info('===> onCancel callback req.id:' + req.id);
 }
 
-var subscriber = {
+let subscriber = {
     onCancel: onCancelCallback
 };
 
@@ -3498,7 +3498,7 @@ function onUpdateCallback(map) {
     console.info('===> onUpdateCallback map:' + JSON.stringify(map));
 }
 
-var subscriber = {
+let subscriber = {
     onUpdate: onUpdateCallback
 };
 
@@ -3530,7 +3530,7 @@ function onConnectCallback() {
     console.info('===> onConnect in test');
 }
 
-var subscriber = {
+let subscriber = {
     onConnect: onConnectCallback
 };
 
@@ -3572,7 +3572,7 @@ function onDisconnectCallback() {
     console.info('===> onDisconnect in test');
 }
 
-var subscriber = {
+let subscriber = {
     onConnect: onConnectCallback,
     onDisconnect: onDisconnectCallback
 };
@@ -3608,7 +3608,7 @@ function onDestroyCallback() {
     console.info('===> onDestroy in test');
 }
 
-var subscriber = {
+let subscriber = {
     onDestroy: onDestroyCallback
 };
 
@@ -3645,12 +3645,12 @@ function onDoNotDisturbDateChangeCallback(mode) {
     console.info('===> onDoNotDisturbDateChange:' + mode);
 }
 
-var subscriber = {
+let subscriber = {
     onDoNotDisturbDateChange: onDoNotDisturbDateChangeCallback
 };
 Notification.subscribe(subscriber, subscribeCallback);
 
-var doNotDisturbDate = {
+let doNotDisturbDate = {
     type: Notification.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
@@ -3695,12 +3695,12 @@ function onEnabledNotificationChangedCallback(callbackData) {
     console.info("enable: " + callbackData.enable);
 };
 
-var subscriber = {
+let subscriber = {
     onEnabledNotificationChanged: onEnabledNotificationChangedCallback
 };
 Notification.subscribe(subscriber, subscribeCallback);
 
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
 }
 // 设置指定应用通知使能状态触发onEnabledNotificationChanged回调

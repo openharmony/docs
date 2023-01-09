@@ -96,10 +96,9 @@
 
 -   Custom Components
     - [Basic Usage](js-components-custom-basic-usage.md)
-    - [Style Inheritance](js-components-custom-style.md)
-    - [Custom Events](js-components-custom-events.md)
     - [props](js-components-custom-props.md)
-    - [Event Parameter](js-components-custom-event-parameter.md)
+    - [Style Inheritance](js-components-custom-style.md)
     - [slot](js-components-custom-slot.md)
     - [Lifecycle Definition](js-components-custom-lifecycle.md)
--   [Data Type Attributes](js-appendix-types.md)
+- [Dynamic Component Creation](js-components-create-elements.md)
+- [Data Type Attributes](js-appendix-types.md)

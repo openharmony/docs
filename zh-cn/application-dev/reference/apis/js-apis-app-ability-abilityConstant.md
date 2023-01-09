@@ -43,11 +43,11 @@ Ability初次启动原因，该类型为枚举，可配合[Ability](js-apis-app-
 **示例：**
 
 ```ts
-import UIAbility form '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {
-        if (launcherParam.launchReason == AbilityConstant.LaunchReason.START_ABILITY) {
+        if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
             console.log("The ability has been started by the way of startAbility.");
         }
     }
@@ -69,11 +69,11 @@ Ability上次退出原因，该类型为枚举，可配合[Ability](js-apis-app-
 **示例：**
 
 ```ts
-import UIAbility form '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {
-        if (launcherParam.lastExitReason == AbilityConstant.LastExitReason.ABILITY_NOT_RESPONDING) {
+        if (launchParam.lastExitReason === AbilityConstant.LastExitReason.ABILITY_NOT_RESPONDING) {
             console.log("The ability has exit last because the ability was not responding.");
         }
     }
@@ -95,7 +95,7 @@ Ability迁移结果，该类型为枚举，可配合[Ability](js-apis-app-abilit
 **示例：**
 
 ```ts
-import UIAbility form '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyAbility extends UIAbility {
     onContinue(wantParam) {
@@ -152,11 +152,11 @@ this.context.startAbility(want, option).then(()={
 **示例：**
 
 ```ts
-import UIAbility form '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyAbility extends UIAbility {
     onMemoryLevel(level) {
-        if (level == AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
+        if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
             console.log("The memory of device is critical, please release some memory.");
         }
     }
@@ -181,7 +181,7 @@ class MyAbility extends UIAbility {
 **示例：**
 
 ```ts
-import UIAbility form '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyAbility extends UIAbility {
     onSaveState(reason, wantParam) {
@@ -204,11 +204,11 @@ class MyAbility extends UIAbility {
 **示例：**
 
 ```ts
-import UIAbility form '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyAbility extends UIAbility {
     onSaveState(reason, wantParam) {
-        if (reason == AbilityConstant.StateType.CONTINUATION) {
+        if (reason === AbilityConstant.StateType.CONTINUATION) {
             console.log("Save the ability data when the ability continuation.");
         } 
         return AbilityConstant.OnSaveResult.ALL_AGREE;

@@ -18,9 +18,11 @@ isSharingSupported(callback: AsyncCallback\<boolean>): void
 
 Checks whether network sharing is supported. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -43,9 +45,11 @@ isSharingSupported(): Promise\<boolean>
 
 Checks whether network sharing is supported. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Return value**
 
@@ -69,9 +73,11 @@ isSharing(callback: AsyncCallback\<boolean>): void
 
 Checks whether network sharing is in progress. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -96,7 +102,9 @@ Checks whether network sharing is in progress. This API uses a promise to return
 
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Return value**
 
@@ -122,7 +130,9 @@ Starts network sharing of a specified type. This API uses an asynchronous callba
 
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -146,9 +156,11 @@ startSharing(type: SharingIfaceType): Promise\<void>
 
 Starts network sharing of a specified type. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -179,9 +191,11 @@ stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
 Stops network sharing of a specified type. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -205,9 +219,11 @@ stopSharing(type: SharingIfaceType): Promise\<void>
 
 Stops network sharing of a specified type. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -238,9 +254,11 @@ getStatsRxBytes(callback: AsyncCallback\<number>): void
 
 Obtains the volume of mobile data traffic received via network sharing. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -263,9 +281,11 @@ getStatsRxBytes(): Promise\<number>
 
 Obtains the volume of mobile data traffic received via network sharing. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Return value**
 
@@ -289,9 +309,11 @@ getStatsTxBytes(callback: AsyncCallback\<number>): void
 
 Obtains the volume of mobile data traffic sent via network sharing. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -314,9 +336,11 @@ getStatsTxBytes(): Promise\<number>
 
 Obtains the volume of mobile data traffic sent via network sharing. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Return value**
 
@@ -340,9 +364,11 @@ getStatsTotalBytes(callback: AsyncCallback\<number>): void
 
 Obtains the volume of mobile data traffic sent and received via network sharing. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -365,9 +391,11 @@ getStatsTotalBytes(): Promise\<number>
 
 Obtains the volume of mobile data traffic sent and received via network sharing. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Return value**
 
@@ -391,15 +419,17 @@ getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<strin
 
 Obtains the names of NICs in the specified network sharing state. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
-| state | state: [SharingIfaceState](#sharingifacestate) | Yes  | Network sharing state.|
+| state | [SharingIfaceState](#sharingifacestate) | Yes  | Network sharing state.|
 | callback | AsyncCallback\<Array\<string>> | Yes  | Callback used to return an array of NIC names.|
 
 **Example**
@@ -418,15 +448,17 @@ getSharingIfaces(state: SharingIfaceState): Promise\<Array\<string>>
 
 Obtains the names of NICs in the specified network sharing state. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
-| state | state: [SharingIfaceState](#sharingifacestate) | Yes  | Network sharing state.|
+| state | [SharingIfaceState](#sharingifacestate) | Yes  | Network sharing state.|
 
 **Return value**
 
@@ -451,9 +483,11 @@ getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceSta
 
 Obtains the network sharing state of the specified type. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -478,9 +512,11 @@ getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState>
 
 Obtains the network sharing state of the specified type. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -511,9 +547,11 @@ getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<strin
 
 Obtains regular expressions of NICs of a specified type. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -538,9 +576,11 @@ getSharableRegexes(type: SharingIfaceType): Promise\<Array\<string>>
 
 Obtains regular expressions of NICs of a specified type. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -571,9 +611,11 @@ on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 
 Subscribes to network sharing state changes. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -597,9 +639,11 @@ off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 
 Unsubscribes from network sharing state changes. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -623,9 +667,11 @@ on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIface
 
 Subscribes to network sharing state changes of a specified NIC. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -649,15 +695,17 @@ off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfa
 
 Unsubscribes from network sharing status changes of a specified NIC. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
-| type | string | No  | Event name.|
+| type | string | Yes  | Event name.|
 | callback | AsyncCallback\<{ type: [SharingIfaceType](#sharingifacetype), iface: string, state: SharingIfaceState(#sharingifacestate) }> | No  | Callback used for unsubscription.|
 
 **Example**
@@ -675,9 +723,11 @@ on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 
 Subscribes to upstream network changes. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -701,9 +751,11 @@ off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 
 Unsubscribes from upstream network changes. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -725,7 +777,9 @@ sharing.off('sharingUpstreamChange', (error, data) => {
 
 Enumerates the network sharing states of an NIC.
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 | Name                 | Value  | Description                  |
 | ------------------------ | ---- | ---------------------- |
@@ -737,7 +791,9 @@ Enumerates the network sharing states of an NIC.
 
 Enumerates the network sharing types of an NIC. 
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 | Name                 | Value  | Description                  |
 | ------------------------ | ---- | ---------------------- |

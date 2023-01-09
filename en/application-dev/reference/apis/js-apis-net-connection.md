@@ -61,7 +61,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getDefaultNetSync
+## connection.getDefaultNetSync<sup>9+</sup>
 
 getDefaultNetSync(): NetHandle;
 
@@ -303,6 +303,55 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
+## connection.isDefaultNetMetered<sup>9+</sup>
+
+isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
+
+Checks whether the data traffic usage on the current network is metered. This API uses an asynchronous callback to return the result.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                                  |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The value **true** indicates the data traffic usage is metered.|
+
+**Example**:
+
+```js
+connection.isDefaultNetMetered(function (error, has) {
+    console.log(JSON.stringify(error))
+    console.log('has: ' + has)
+})
+```
+
+## connection.isDefaultNetMetered<sup>9+</sup>
+
+isDefaultNetMetered(): Promise\<boolean>
+
+Checks whether the data traffic usage on the current network is metered. This API uses a promise to return the result.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type             | Description                                           |
+| ----------------- | ----------------------------------------------- |
+| Promise\<boolean> | Promise used to return the result. The value **true** indicates the data traffic usage is metered.|
+
+**Example**:
+
+```js
+connection.isDefaultNetMetered().then(function (has) {
+    console.log('has: ' + has)
+})
+```
+
 ## connection.reportNetConnected
 
 reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
@@ -495,7 +544,7 @@ enableAirplaneMode(callback: AsyncCallback\<void>): void
 
 Enables the airplane mode. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**:  SystemCapability.Communication.NetManager.Core
 
@@ -519,7 +568,7 @@ enableAirplaneMode(): Promise\<void>
 
 Enables the airplane mode. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**:  SystemCapability.Communication.NetManager.Core
 
@@ -543,7 +592,7 @@ disableAirplaneMode(callback: AsyncCallback\<void>): void
 
 Disables the airplane mode. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**:  SystemCapability.Communication.NetManager.Core
 
@@ -567,7 +616,7 @@ disableAirplaneMode(): Promise\<void>
 
 Disables the airplane mode. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**:  SystemCapability.Communication.NetManager.Core
 
@@ -823,7 +872,7 @@ Before invoking NetHandle APIs, call **getNetHandle** to obtain a **NetHandle** 
 | ------ | ------ | ------------------------- |
 | netId  | number | Network ID. The value **0** indicates no default network. Any other value must be greater than or equal to 100.|
 
-### bindSocket
+### bindSocket<sup>9+</sup>
 
 bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void;
 
@@ -1091,10 +1140,10 @@ Provides an instance that bears data network capabilities.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name                 | Type                               | Description                                                        |
-| ----------------------- | ----------------------------------- | ------------------------------------------------------------ |
-| netCapabilities         | [NetCapabilities](#netcapabilities) | Network transmission capabilities and bearer types of the data network.                          |
-| bearerPrivateIdentifier | string                              | Network identifier. The identifier of a Wi-Fi network is **wifi**, and that of a cellular network is **slot0** (corresponding to SIM card 1).|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| netCapabilities         | [NetCapabilities](#netcapabilities) | Yes | Network transmission capabilities and bearer types of the data network.                          |
+| bearerPrivateIdentifier | string                              | No  | Network identifier. The identifier of a Wi-Fi network is **wifi**, and that of a cellular network is **slot0** (corresponding to SIM card 1).|
 
 ## NetCapabilities
 
@@ -1102,12 +1151,12 @@ Defines the network capability set.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name               | Type                              | Description                    |
-| --------------------- | ---------------------------------- | ------------------------ |
-| linkUpBandwidthKbps   | number                             | Uplink (from the device to the network) bandwidth.|
-| linkDownBandwidthKbps | number                             | Downlink (from the network to the device) bandwidth.|
-| networkCap            | Array<[NetCap](#netcap)>           | Network capability.          |
-| bearerTypes           | Array<[NetBearType](#netbeartype)> | Network type.              |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| linkUpBandwidthKbps   | number                             | No  | Uplink (from the device to the network) bandwidth.|
+| linkDownBandwidthKbps | number                             | No  | Downlink (from the network to the device) bandwidth.|
+| networkCap            | Array<[NetCap](#netcap)>           | No  | Network capability.          |
+| bearerTypes           | Array<[NetBearType](#netbeartype)> | Yes | Network type.              |
 
 ## NetCap
 
@@ -1141,14 +1190,14 @@ Defines the network connection properties.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name      | Type                              | Description            |
-| ------------- | ---------------------------------- | ---------------- |
-| interfaceName | string                             | NIC card name.      |
-| domains       | string                             | Domain. The default value is **""**.|
-| linkAddresses | Array<[LinkAddress](#linkaddress)> | Link information.      |
-| routes        | Array<[RouteInfo](#routeinfo)>     | Route information.      |
-| dnses | Array&lt;[NetAddress](#netaddress)&gt; | Network address. For details, see [NetAddress](#netaddress).|
-| mtu           | number                             | Maximum transmission unit (MTU).  |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| interfaceName | string                             | Yes | NIC card name.      |
+| domains       | string                             | Yes | Domain. The default value is **""**.|
+| linkAddresses | Array\<[LinkAddress](#linkaddress)> | Yes | Link information.      |
+| routes        | Array\<[RouteInfo](#routeinfo)>     | Yes | Route information.      |
+| dnses | Array\<[NetAddress](#netaddress)>;  | Yes | Network address. For details, see [NetAddress](#netaddress).|
+| mtu           | number                             | Yes | Maximum transmission unit (MTU).  |
 
 ## LinkAddress
 
@@ -1156,10 +1205,10 @@ Network link information.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name      | Type                     | Description                |
-| ------------ | ------------------------- | -------------------- |
-| address      | [NetAddress](#netaddress) | Link address.          |
-| prefixLength | number                    | Length of the link address prefix.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| address      | [NetAddress](#netaddress) | Yes | Link address.          |
+| prefixLength | number                    | Yes | Length of the link address prefix.|
 
 ## RouteInfo
 
@@ -1167,13 +1216,13 @@ Network route information.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name        | Type                       | Description            |
-| -------------- | --------------------------- | ---------------- |
-| interface      | string                      | NIC card name.      |
-| destination    | [LinkAddress](#linkaddress) | Destination IP address.      |
-| gateway        | [NetAddress](#netaddress)   | Gateway address.      |
-| hasGateway     | boolean                     | Whether a gateway is present.    |
-| isDefaultRoute | boolean                     | Whether the route is the default route.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| interface      | string                      | Yes | NIC card name.      |
+| destination    | [LinkAddress](#linkaddress) | Yes | Destination IP address.      |
+| gateway        | [NetAddress](#netaddress)   | Yes | Gateway address.      |
+| hasGateway     | boolean                     | Yes | Whether a gateway is present.    |
+| isDefaultRoute | boolean                     | Yes | Whether the route is the default route.|
 
 ## NetAddress
 
@@ -1181,8 +1230,8 @@ Defines the network address.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name | Type  | Description                          |
-| ------- | ------ | ------------------------------ |
-| address | string | Network address.                        |
-| family  | number | Address family identifier. The value is **1** for IPv4 and **2** for IPv6. The default value is **1**.|
-| port    | number | Port number. The value ranges from **0** to **65535**.   |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| address | string | Yes | Network address.                        |
+| family  | number | Yes | Address family identifier. The value is **1** for IPv4 and **2** for IPv6. The default value is **1**.|
+| port    | number | No  | Port number. The value ranges from **0** to **65535**.   |
