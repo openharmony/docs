@@ -33,7 +33,7 @@ Obtains the IDs of all input devices. This API uses an asynchronous callback to 
 
 ```js
 try {
-  inputDevice.getDeviceList((error, ids) => {
+  inputDevice.getDeviceIds((error, ids) => {
     if (error) {
       console.log(`Failed to get device list.
          error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
@@ -65,7 +65,7 @@ Obtains the IDs of all input devices. This API uses a promise to return the resu
 
 ```js
 try {
-  inputDevice.getDeviceList().then((ids) => {
+  inputDevice.getDeviceIds().then((ids) => {
     console.log("The device ID list is: " + ids);
   });
 } catch (error) {
@@ -295,7 +295,7 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 
 ```js
 // Obtain the name of the device whose ID is 1.
-inputDevice.getDevice(1, (inputDevice)=>{
+inputDevice.getDevice(1, (error, deviceData) => {
     console.log("The device name is: " + inputDevice.name);
 });
 ```
@@ -326,7 +326,7 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 
 ```js
 // Obtain the name of the device whose ID is 1.
-inputDevice.getDevice(1).then((inputDevice)=>{
+inputDevice.getDevice(1).then((deviceData) => {
     console.log("The device name is: " + inputDevice.name);
 });
 ```
