@@ -265,6 +265,8 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 
 以异步方法根据给定的bundleName、bundleFlags和userId获取BundleInfo，使用callback形式返回结果。
 
+获取调用方自己的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -340,6 +342,8 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 以异步方法根据给定的bundleName和bundleFlags获取BundleInfo，使用callback形式返回结果。
 
+获取调用方自己的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -391,6 +395,8 @@ try {
 getBundleInfo(bundleName: string, bundleFlags: [number](#bundleflag), userId?: number): Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>;
 
 以异步方法根据给定的bundleName、bundleFlags和userId获取BundleInfo，使用Promise形式返回结果。
+
+获取调用方自己的信息时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -467,6 +473,8 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 
 以异步方法根据给定的bundleName、appFlags和userId获取ApplicationInfo，使用callback形式返回结果。
 
+获取调用方自己的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -520,6 +528,8 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), cal
 
 以异步方法根据给定的bundleName和appFlags获取ApplicationInfo，使用callback形式返回结果。
 
+获取调用方自己的信息时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -570,6 +580,8 @@ try {
 getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), userId?: number): Promise\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>;
 
 以异步方法根据给定的bundleName、appFlags和userId获取ApplicationInfo，使用Promise形式返回结果。
+
+获取调用方自己的信息时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
