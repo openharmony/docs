@@ -281,7 +281,7 @@ setAll(map: TreeMap<K, V>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| map | TreeMap<K, V> | 是 | 被添加元素的treeMap。 |
+| map | TreeMap<K, V> | 是 | 该map会添加到其调用setAll接口的map对象中。 |
 
 **错误码：**
 
@@ -298,7 +298,11 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let map = new TreeMap();
-treeMap.setAll(map);
+map.set("demo", 12);
+map.setAll(treeMap); // 将treeMap中的所有元素添加到map中
+map.forEach((value, key) => {
+    console.log("test" + value, key); // 打印结果 12 demo、356 sparrow、123 squirrel
+})
 ```
 
 
