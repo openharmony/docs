@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import NotificationSubscribe from '@ohos.notificationSubscribe';
+import notificationSubscribe from '@ohos.notificationSubscribe';
 ```
 
 
@@ -62,10 +62,8 @@ let subscriber = {
 let info = {
     bundleNames: ["bundleName1","bundleName2"]
 };
-NotificationSubscribe.subscribe(subscriber, info, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, info, subscribeCallback);
 ```
-
-
 
 ## NotificationSubscribe.subscribe
 
@@ -110,7 +108,7 @@ function onConsumeCallback(data) {
 let subscriber = {
     onConsume: onConsumeCallback
 };
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 
@@ -151,7 +149,7 @@ function onConsumeCallback(data) {
 let subscriber = {
     onConsume: onConsumeCallback
 };
-NotificationSubscribe.subscribe(subscriber).then(() => {
+notificationSubscribe.subscribe(subscriber).then(() => {
 	console.info("subscribe success");
 });
 ```
@@ -201,10 +199,8 @@ function onDisconnectCallback(data) {
 let subscriber = {
     onDisconnect: onDisconnectCallback
 };
-NotificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
+notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
-
-
 
 ## NotificationSubscribe.unsubscribe
 
@@ -241,12 +237,10 @@ function onDisconnectCallback(data) {
 let subscriber = {
     onDisconnect: onDisconnectCallback
 };
-NotificationSubscribe.unsubscribe(subscriber).then(() => {
+notificationSubscribe.unsubscribe(subscriber).then(() => {
 	console.info("unsubscribe success");
 });
 ```
-
-
 
 ## NotificationSubscribe.remove
 
@@ -296,8 +290,8 @@ let notificationKey = {
     id: 0,
     label: "label",
 };
-let reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
-NotificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
+let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+notificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
 ```
 
 
@@ -343,12 +337,10 @@ let notificationKey = {
     label: "label",
 };
 let reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
-NotificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
+notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
 	console.info("remove success");
 });
 ```
-
-
 
 ## NotificationSubscribe.remove
 
@@ -392,10 +384,8 @@ function removeCallback(err) {
     }
 }
 let reason = NotificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
-NotificationSubscribe.remove(hashCode, reason, removeCallback);
+notificationSubscribe.remove(hashCode, reason, removeCallback);
 ```
-
-
 
 ## NotificationSubscribe.remove
 
@@ -429,13 +419,11 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 ```js
 let hashCode = 'hashCode';
-let reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
-NotificationSubscribe.remove(hashCode, reason).then(() => {
+let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+notificationSubscribe.remove(hashCode, reason).then(() => {
 	console.info("remove success");
 });
 ```
-
-
 
 ## NotificationSubscribe.removeAll
 
@@ -481,8 +469,6 @@ let bundle = {
 NotificationSubscribe.removeAll(bundle, removeAllCallback);
 ```
 
-
-
 ## NotificationSubscribe.removeAll
 
 removeAll(callback: AsyncCallback\<void\>): void
@@ -520,10 +506,8 @@ function removeAllCallback(err) {
     }
 }
 
-NotificationSubscribe.removeAll(removeAllCallback);
+notificationSubscribe.removeAll(removeAllCallback);
 ```
-
-
 
 ## NotificationSubscribe.removeAll
 
@@ -556,7 +540,7 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 ```js
 // 不指定应用时，删除所有通知
-NotificationSubscribe.removeAll().then(() => {
+notificationSubscribe.removeAll().then(() => {
 	console.info("removeAll success");
 });
 ```
@@ -602,7 +586,7 @@ function removeAllCallback(err) {
 
 let userId = 1;
 
-NotificationSubscribe.removeAll(userId, removeAllCallback);
+notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
 
 ## Notification.removeAll
@@ -645,10 +629,8 @@ function removeAllCallback(err) {
 
 let userId = 1;
 
-NotificationSubscribe.removeAll(userId, removeAllCallback);
+notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
-
-
 
 ## NotificationSubscriber
 
@@ -693,7 +675,7 @@ let subscriber = {
     onConsume: onConsumeCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onCancel
@@ -733,7 +715,7 @@ let subscriber = {
     onCancel: onCancelCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onUpdate
@@ -771,7 +753,7 @@ let subscriber = {
     onUpdate: onUpdateCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onConnect
@@ -803,7 +785,7 @@ let subscriber = {
     onConnect: onConnectCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onDisconnect
@@ -847,9 +829,9 @@ let subscriber = {
 };
 
 // 订阅通知后会收到onConnect回调
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 // 取消订阅后会收到onDisconnect回调
-NotificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
+notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
 
 ### onDestroy
@@ -881,7 +863,7 @@ let subscriber = {
     onDestroy: onDestroyCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onDoNotDisturbDateChange
@@ -919,7 +901,7 @@ let subscriber = {
     onDoNotDisturbDateChange: onDoNotDisturbDateChangeCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 
@@ -960,7 +942,7 @@ let subscriber = {
     onEnabledNotificationChanged: onEnabledNotificationChangedCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ## BundleOption
