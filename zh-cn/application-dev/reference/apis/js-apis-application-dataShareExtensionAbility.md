@@ -63,7 +63,7 @@ DataShare客户端连接DataShareExtensionAbility服务端时，服务端回调�
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -76,7 +76,7 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
     onCreate(want, callback) {
         rdb.getRdbStore(this.context, {
             name: DB_NAME
-        }, 1, function (err, data) {
+        }, function (err, data) {
             console.log('getRdbStore done, data : ' + data);
             rdbStore = data;
             rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
