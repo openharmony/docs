@@ -34,7 +34,7 @@ Column() {
 
 You can use **ForEach** to obtain data from arrays and create components for each data item.
 
-```
+```ts
 ForEach(
   arr: any[], 
   itemGenerator: (item: any, index?: number) => void,
@@ -275,7 +275,7 @@ struct MyComponent {
 >
 >   ```ts
 >   LazyForEach(dataSource, 
->     item => Text(`${item.i}. item.data.label`)),
+>     item => Text(`${item.i}. item.data.label`),
 >     item => item.data.id.toString())
 >   ```
 
