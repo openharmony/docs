@@ -22,12 +22,12 @@ Video(value: {src?: string | Resource, currentProgressRate?: number | string | P
 
 **Parameters**
 
-| Name             | Type                                                    | Mandatory| Description                                                    |
-| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src                 | string \| [Resource](ts-types.md)                   | No  | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which is used to access the video path provided by a Data ability. For details about the path, see [Data Ability Development](../../ability/fa-dataability.md).<br>**NOTE**<br>The supported video formats are MP4, MKV, WebM, and TS. |
-| currentProgressRate | number \| string \| PlaybackSpeed<sup>8+</sup> | No  | Video playback speed.<br>**NOTE**<br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br>Default value: **1.0** \| PlaybackSpeed.Speed_Forward_1_00_X |
-| previewUri          | string \| PixelMap<sup>8+</sup> \| [Resource](ts-types.md) | No  | Path of the preview image.                                            |
-| controller          | [VideoController](#videocontroller)                          | No  | Controller.                                                    |
+| Name                | Type                                    | Mandatory  | Description                                    |
+| ------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| src                 | string \| [Resource](ts-types.md)        | No   | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which indicates that the path is provided by a Data ability. For details about the path, see [Data Ability Development](../../application-models/dataability-overview.md).<br>**NOTE**<br>The supported video formats are MP4, MKV, WebM, and TS. |
+| currentProgressRate | number \| string \| PlaybackSpeed<sup>8+</sup> | No   | Video playback speed.<br>**NOTE**<br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br>Default value: **1.0** \| **PlaybackSpeed.Speed_Forward_1_00_X** |
+| previewUri          | string \| PixelMap<sup>8+</sup> \| [Resource](ts-types.md) | No   | Path of the preview image.                          |
+| controller          | [VideoController](#videocontroller)      | No   | Video controller.                                |
 
 ## PlaybackSpeed<sup>8+</sup>
 
@@ -43,29 +43,29 @@ Video(value: {src?: string | Resource, currentProgressRate?: number | string | P
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name     | Type                                | Description                                           |
-| --------- | ---------------------------------------- | ----------------------------------------------- |
-| muted     | boolean                                  | Whether to mute the video.<br>Default value: **false**                   |
-| autoPlay  | boolean                                  | Whether to enable auto play.<br>Default value: **false**               |
+| Name       | Type                                    | Description                          |
+| --------- | ---------------------------------------- | ---------------------------- |
+| muted     | boolean                                  | Whether to mute the video.<br>Default value: **false**         |
+| autoPlay  | boolean                                  | Whether to enable auto play.<br>Default value: **false**       |
 | controls  | boolean                                  | Whether to display the video playback control bar.<br>Default value: **true**|
-| objectFit | [ImageFit](ts-basic-components-image.md) | Video scale type.<br>Default value: **Cover**           |
-| loop      | boolean                                  | Whether to repeat the video.<br>Default value: **false**       |
+| objectFit | [ImageFit](ts-basic-components-image.md) | Video scale type.<br>Default value: **Cover**     |
+| loop      | boolean                                  | Whether to repeat the video.<br>Default value: **false**   |
 
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                                                        | Description                                                    |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onStart(event:() =&gt; void)                       | Triggered when the video is played.                                          |
-| onPause(event:() =&gt; void)                       | Triggered when the video playback is paused.                                          |
-| onFinish(event:() =&gt; void)                      | Triggered when the video playback is finished.                                      |
-| onError(event:() =&gt; void)                       | Triggered when the video playback fails.                                      |
+| Name                                      | Description                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| onStart(event:() =&gt; void)   | Triggered when the video is played.                               |
+| onPause(event:() =&gt; void)   | Triggered when the video playback is paused.                               |
+| onFinish(event:() =&gt; void)  | Triggered when the video playback is finished.                             |
+| onError(event:() =&gt; void)   | Triggered when the video playback fails.                             |
 | onPrepared(callback:(event?: { duration: number }) =&gt; void) | Triggered when video preparation is complete. The video duration (in seconds) is obtained from **duration**.|
-| onSeeking(callback:(event?: { time: number }) =&gt; void) | Triggered to report the time (in seconds) when the progress bar is being dragged.                     |
-| onSeeked(callback:(event?: { time: number }) =&gt; void) | Triggered to report the playback time (in seconds) when the user finishes dragging the progress bar.               |
-| onUpdate(callback:(event?: { time: number }) =&gt; void) | Triggered once per 250 ms when the playback progress changes. The unit of the current playback time is second.    |
-| onFullscreenChange(callback:(event?: { fullscreen: boolean }) =&gt; void) | Triggered when the playback mode is switched between full-screen mode and non-full-screen mode. The value **true** means that the playback is in full-screen mode, and **false** means that the playback is non-full-screen mode.    |
+| onSeeking(callback:(event?: { time: number }) =&gt; void) | Triggered to report the time (in seconds) when the progress bar is being dragged.                    |
+| onSeeked(callback:(event?: { time: number }) =&gt; void) | Triggered to report the playback time (in seconds) when the user finishes dragging the progress bar.                 |
+| onUpdate(callback:(event?: { time: number }) =&gt; void) | Triggered once per 250 ms when the playback progress changes. The unit of the current playback time is second.         |
+| onFullscreenChange(callback:(event?: { fullscreen: boolean }) =&gt; void) | Triggered when the playback mode is switched between full-screen mode and non-full-screen mode. The value **true** means that the playback is in full-screen mode, and **false** means that the playback is non-full-screen mode.|
 
 
 ## VideoController
@@ -76,7 +76,7 @@ Defines a **VideoController** object to control one or more videos.
 ### Objects to Import
 
 ```ts
-controller: VideoController = new VideoController();
+controller: VideoController = new VideoController()
 ```
 
 
@@ -90,13 +90,13 @@ Starts playback.
 
 pause(): void
 
-Pauses playback.
+Pauses playback. The current frame is then displayed, and playback will be resumed from this paused position.
 
 ### stop
 
 stop(): void
 
-Stops playback.
+Stops playback. The current frame is then displayed, and playback will restart from the very beginning.
 
 ### setCurrentTime
 
@@ -106,9 +106,9 @@ Sets the video playback position.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                   |
-| ------ | -------- | ---- | --------------------------- |
-| value  | number   | Yes  | Video playback position, in seconds.|
+| Name  | Type  | Mandatory  | Description          |
+| ----- | ------ | ---- | -------------- |
+| value | number | Yes   | Video playback position, in seconds.|
 
 ### requestFullscreen
 
@@ -118,8 +118,8 @@ Requests full-screen mode.
 
 **Parameters**
 
-| Name  | Type  | Mandatory  | Description   |
-| ----- | ------ | ---- | ------- |
+| Name  | Type   | Mandatory  | Description                 |
+| ----- | ------- | ---- | --------------------- |
 | value | boolean | Yes   | Whether the playback is in full-screen mode.<br>Default value: **false**|
 
 ### exitFullscreen
@@ -136,10 +136,10 @@ Sets the video playback position with the specified seek mode.
 
 **Parameters**
 
-| Name  | Type| Mandatory| Description          |
-| -------- | -------- | ---- | ------------------ |
-| value    | number   | Yes  | Video playback position.|
-| seekMode | SeekMode | Yes  | Seek mode.        |
+| Name     | Type    | Mandatory  | Description          |
+| -------- | -------- | ---- | -------------- |
+| value    | number   | Yes   | Video playback position, in seconds.|
+| seekMode | SeekMode | Yes   | Seek mode.         |
 
 ## SeekMode<sup>8+</sup>
 
@@ -159,77 +159,89 @@ Sets the video playback position with the specified seek mode.
 @Entry
 @Component
 struct VideoCreateComponent {
-  @State srcs: Resource = $rawfile('video1.mp4');
-  @State previewUris: Resource = $r('app.media.img');
-  @State currentProgressRates: number = 1;
-  @State autoPlays: boolean = false;
-  @State controlsss: boolean = true;
-  controller: VideoController = new VideoController();
-  
+  @State videoSrc: Resource = $rawfile('video1.mp4')
+  @State previewUri: Resource = $r('app.media.poster1')
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
+  @State isAutoPlay: boolean = false
+  @State showControls: boolean = true
+  controller: VideoController = new VideoController()
+
   build() {
     Column() {
       Video({
-        src: this.srcs,
-        previewUri: this.previewUris, 
-        currentProgressRate: this.currentProgressRates,
+        src: this.videoSrc,
+        previewUri: this.previewUri,
+        currentProgressRate: this.curRate,
         controller: this.controller
-      }).width(700).height(500)
-        .autoPlay(this.autoPlays)
-        .controls(this.controlsss)
+      }).width(800).height(600)
+        .autoPlay(this.isAutoPlay)
+        .controls(this.showControls)
         .onStart(() => {
-                  console.error('onStart');
-                })
+          console.info('onStart')
+        })
         .onPause(() => {
-                  console.error('onPause');
-                })
+          console.info('onPause')
+        })
         .onFinish(() => {
-                  console.error('onFinish');
-                })
+          console.info('onFinish')
+        })
         .onError(() => {
-                  console.error('onFinish');
-                })
+          console.info('onFinish')
+        })
         .onPrepared((e) => {
-                    console.error('onPrepared is ' + e.duration);
-                })
+          console.info('onPrepared is ' + e.duration)
+        })
         .onSeeking((e) => {
-                    console.error('onSeeking is ' + e.time);
-                })
+          console.info('onSeeking is ' + e.time)
+        })
         .onSeeked((e) => {
-                    console.error('onSeekedis ' + e.time);
-                })
+          console.info('onSeeked is ' + e.time)
+        })
         .onUpdate((e) => {
-                    console.error('onUpdateis ' + e.time);
-                })
+          console.info('onUpdate is ' + e.time)
+        })
+      
       Row() {
-        Button("src").onClick(() => {
-            this.srcs = $rawfile('video2.mp4');
-        });
-        Button("previewUri").onClick(() => {
-            this.previewUris = $r('app.media.img1');
-        });
-        Button("controlsss").onClick(() => {
-          this.controlsss = !this.controlsss;
-        });
+        Button('src').onClick(() => {
+          this.videoSrc = $rawfile('video2.mp4') // Switch the video source.
+        }).margin(5)
+        Button('previewUri').onClick(() => {
+          this.previewUri = $r('app.media.poster2') // Switch the preview image.
+        }).margin(5)
+        Button('controls').onClick(() => {
+          this.showControls = !this.showControls // Specify whether to show the control bar.
+        }).margin(5)
       }
 
       Row() {
-        Button("start").onClick(() => {
-          this.controller.start();
-        });
-        Button("pause").onClick(() => {
-          this.controller.pause();
-        });
-        Button("stop").onClick(() => {
-          this.controller.stop();
-        });
+        Button('start').onClick(() => {
+          this.controller.start() // Start playback.
+        }).margin(5)
+        Button('pause').onClick(() => {
+          this.controller.pause() // Pause playback.
+        }).margin(5)
+        Button('stop').onClick(() => {
+          this.controller.stop() // Stop playback.
+        }).margin(5)
+        Button('setTime').onClick(() => {
+          this.controller.setCurrentTime(10, SeekMode.Accurate) // Seek to the 10s position of the video.
+        }).margin(5)
       }
 
       Row() {
-        Button("setCurrentTime").onClick(() => {
-          this.controller.setCurrentTime(9, SeekMode.Accurate);
-        });
+        Button('rate 0.75').onClick(() => {
+          this.curRate = PlaybackSpeed.Speed_Forward_0_75_X // Play the video at the 0.75x speed.
+        }).margin(5)
+        Button('rate 1').onClick(() => {
+          this.curRate = PlaybackSpeed.Speed_Forward_1_00_X // Play the video at the 1x speed.
+        }).margin(5)
+        Button('rate 2').onClick(() => {
+          this.curRate = PlaybackSpeed.Speed_Forward_2_00_X // Play the video at the 2x speed.
+        }).margin(5)
       }
     }
   }
 }
 ```
+
+<!--no_check-->
