@@ -1,8 +1,6 @@
-# WorkSchedulerExtensionAbility（延迟任务调度回调）
+# 延迟任务调度回调开发指导（WorkSchedulerExtensionAbility）
 
-## 延迟任务概述
-
-对于实时性要求不高的任务或持久性任务，可以使用延迟调度任务，该机制在满足应用设定条件的时候，会根据系统当前状态，如内存、功耗、温度等统一决策调度时间。
+对于实时性要求不高的任务或持久性任务，可以使用延迟调度任务，该机制会在应用满足应用设定条件（包括网络类型、充电类型、存储状态、电池状态、定时状态）时，根据系统当前状态，由系统统一决策调度时间。
 
 WorkSchedulerExtensionAbility提供了延迟任务回调能力，在延迟任务开始和结束时，系统会通过接口回调应用，开发者可在回调接口里面处理自己的任务逻辑。
 
@@ -42,148 +40,148 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
 
 2. 在library对应的ets目录(./library/src/main/ets)下，新建eTS文件并命名为workAbility.ets，用于实现延迟任务回调接口。
 
-> 导入模块。
+    导入模块。
 
-```ts
-import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
-```
+    ```ts
+    import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
+    ```
 
-> 实现WorkSchedulerExtension生命周期接口。
+    实现WorkSchedulerExtension生命周期接口。
 
-```ts
-export default class workAbility extends WorkSchedulerExtensionAbility {
-  // 延迟任务开始回调
-  onWorkStart(workInfo) {
-    Logger.info(TAG, `onWorkStart CommonEvent publish start ${JSON.stringify(workInfo)}`)
-    // 发送升级通知
-    let notificationRequest = notification.getNotificationContentBasic('upgrade', upgradeMessage, '')
-    notification.publish(notificationRequest, (err) => {
-      if (err) {
-        Logger.info(TAG, `onWorkStart notification publish err ${JSON.stringify(err)}`)
+    ```ts
+    export default class workAbility extends WorkSchedulerExtensionAbility {
+      // 延迟任务开始回调
+      onWorkStart(workInfo) {
+        Logger.info(TAG, `onWorkStart CommonEvent publish start ${JSON.stringify(workInfo)}`)
+        // 发送升级通知
+        let notificationRequest = notification.getNotificationContentBasic('upgrade', upgradeMessage, '')
+        notification.publish(notificationRequest, (err) => {
+          if (err) {
+            Logger.info(TAG, `onWorkStart notification publish err ${JSON.stringify(err)}`)
+          }
+          Logger.info(TAG, `onWorkStart notification publish success`)
+        })
       }
-      Logger.info(TAG, `onWorkStart notification publish success`)
-    })
-  }
 
-  // 延迟任务结束回调
-  onWorkStop(workInfo) {
-    // 发送升级完成通知
-    let notificationRequest = notification.getNotificationContentBasic('upgrade', 'upgrade success', '')
-    notification.publish(notificationRequest, (err) => {
-      if (err) {
-        Logger.info(TAG, `onWorkStop notification publish err ${JSON.stringify(err)}`)
+      // 延迟任务结束回调
+      onWorkStop(workInfo) {
+        // 发送升级完成通知
+        let notificationRequest = notification.getNotificationContentBasic('upgrade', 'upgrade success', '')
+        notification.publish(notificationRequest, (err) => {
+          if (err) {
+            Logger.info(TAG, `onWorkStop notification publish err ${JSON.stringify(err)}`)
+          }
+          Logger.info(TAG, `onWorkStop notification publish success`)
+        })
       }
-      Logger.info(TAG, `onWorkStop notification publish success`)
-    })
-  }
-}
-```
+    }
+    ```
 
 3. 在工程entry Module对应的ets目录(./entry/src/main/ets)下，新建一个目录并命名为workAbility。
 在workAbility目录下，新建一个eTS文件并命名为WorkTest.ets，实现延迟任务回调接口。
 
-> 导入模块。
+    导入模块。
 
-```ts
-import { workAbility } from '@ohos/library'
-```
+    ```ts
+    import { workAbility } from '@ohos/library'
+    ```
 
-> 继承workAbility，实现WorkSchedulerExtension生命周期接口。
+    继承workAbility，实现WorkSchedulerExtension生命周期接口。
 
-```ts
-export default class WorkTest extends workAbility {
-  onWorkStart(workInfo) {
-    Logger.info(TAG, `onWorkStartTest start ${JSON.stringify(workInfo)}`)
-    super.onWorkStart(workInfo)
-  }
+    ```ts
+    export default class WorkTest extends workAbility {
+      onWorkStart(workInfo) {
+        Logger.info(TAG, `onWorkStartTest start ${JSON.stringify(workInfo)}`)
+        super.onWorkStart(workInfo)
+      }
 
-  onWorkStopTest(workInfo) {
-    super.onWorkStop(workInfo)
-    Logger.info(TAG, `onWorkStop value`)
-  }
-}
-```
+      onWorkStopTest(workInfo) {
+        super.onWorkStop(workInfo)
+        Logger.info(TAG, `onWorkStop value`)
+      }
+    }
+    ```
 
 ### 开发延迟任务调度接口
 
 1. 在library对应的ets目录(./library/src/main/ets)下，新建ts文件并命名为DelayWork.ts，用于实现延迟任务API。
 
-> 导入模块。
+    导入模块。
 
-```ts
-import workScheduler from '@ohos.resourceschedule.workScheduler'
-```
+    ```ts
+    import workScheduler from '@ohos.resourceschedule.workScheduler'
+    ```
 
-> 封装延迟任务注册、停止接口。
+    封装延迟任务注册、停止接口。
 
-```ts
-export default class DelayWork {
-  private workInfo = {
-    workId: 1,
-    networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
-    bundleName: '',
-    abilityName: ''
-  }
-  // 注册延迟调度任务
-  startWork(bundleName: string, abilityName: string) {
-    this.workInfo.bundleName = bundleName
-    this.workInfo.abilityName = abilityName
-    try {
-      workScheduler.startWork(this.workInfo)
-      Logger.info(TAG, `startWork success`)
-    } catch (error) {
-      Logger.error(TAG, `startWork startwork failed. code is ${error.code} message is ${error.message}`)
-      prompt.showToast({
-        message: `${error.message}`
-      })
+    ```ts
+    export default class DelayWork {
+      private workInfo = {
+        workId: 1,
+        networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
+        bundleName: '',
+        abilityName: ''
+      }
+      // 注册延迟调度任务
+      startWork(bundleName: string, abilityName: string) {
+        this.workInfo.bundleName = bundleName
+        this.workInfo.abilityName = abilityName
+        try {
+          workScheduler.startWork(this.workInfo)
+          Logger.info(TAG, `startWork success`)
+        } catch (error) {
+          Logger.error(TAG, `startWork startwork failed. code is ${error.code} message is ${error.message}`)
+          prompt.showToast({
+            message: `${error.message}`
+          })
+        }
+      }
+
+      // 停止延迟调度任务
+      stopWork(bundleName: string, abilityName: string) {
+        this.workInfo.bundleName = bundleName
+        this.workInfo.abilityName = abilityName
+        workScheduler.stopWork(this.workInfo, false)
+        Logger.info(TAG, `stopWork`)
+      }
     }
-  }
+    ```
 
-  // 停止延迟调度任务
-  stopWork(bundleName: string, abilityName: string) {
-    this.workInfo.bundleName = bundleName
-    this.workInfo.abilityName = abilityName
-    workScheduler.stopWork(this.workInfo, false)
-    Logger.info(TAG, `stopWork`)
-  }
-}
-```
+2. 在工程entry Module对应的index页面(./entry/src/main/ets/pages/index.ets)下，增加“升级”按钮，调用library封装的延迟任务注册接口。
 
-3. 在工程entry Module对应的index页面(./entry/src/main/ets/pages/index.ets)下，增加“升级”按钮，调用library封装的延迟任务注册接口。
+    导入模块。
 
-> 导入模块。
+    ```ts
+    import { workAbility } from '@ohos/library'
+    ```
 
-```ts
-import { workAbility } from '@ohos/library'
-```
+    增加“升级”按钮，调用library封装的延迟任务注册接口，传入bundleName和abilityName，其中bilityName为WorkTest。
 
-> 增加“升级”按钮，调用library封装的延迟任务注册接口，传入bundleName和abilityName，其中bilityName为WorkTest。
+    ```ts
+    Button($r('app.string.upgrade'))
+      .width('60%')
+      .height(40)
+      .fontSize(30)
+      .onClick(() => {
+        this.work.startWork('ohos.samples.workscheduler', 'WorkTest')
+      })
+    ```
 
-```ts
-  Button($r('app.string.upgrade'))
-    .width('60%')
-    .height(40)
-    .fontSize(30)
-    .onClick(() => {
-      this.work.startWork('ohos.samples.workscheduler', 'WorkTest')
-    })
-```
+    在组件析构时，调用延迟任务停止接口。
 
-> 在组件析构时，调用延迟任务停止接口。
-
-```ts
-  aboutToDisappear() {
-    this.work.stopWork('ohos.samples.workscheduler', 'WorkTest')
-  }
-```
+    ```ts
+    aboutToDisappear() {
+      this.work.stopWork('ohos.samples.workscheduler', 'WorkTest')
+    }
+    ```
 
 ### 配置文件
 
 1. 在工程entry Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册WorkSchedulerExtensionAbility，type标签需要设置为“workScheduler”，srcEntrance标签表示当前ExtensionAbility组件所对应的代码路径。
    
-   ```json
-   {
-     "module": {
+  ```json
+  {
+    "module": {
         "extensionAbilities": [
           {
             "name": "WorkTest",
@@ -193,9 +191,9 @@ import { workAbility } from '@ohos/library'
             "type": "workScheduler"
           }
         ]
-     }
-   }
-   ```
+    }
+  }
+  ```
 
 ## 相关实例
 
