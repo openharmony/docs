@@ -51,9 +51,9 @@ build() {
 
 Applicable to: OpenHarmony SDK 3.2.2.5, stage model of API version 9
 
-1. Obtain data in Uint8Array format by calling the **RawFile** API of **resourceManager**.
+1. Obtain Uint8Array data by calling the **RawFile** API of **resourceManager**.
 
-2. Convert data in Uint8Array format to the string type by calling the **String.fromCharCode** API.
+2. Convert the Uint8Array data to strings by calling the **String.fromCharCode** API.
 
 Reference: [Resource Manager](../reference/apis/js-apis-resource-manager.md)
 

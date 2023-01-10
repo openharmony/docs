@@ -1,6 +1,6 @@
-# @ohos.app.form.formInfo (FormInfo)
+# @ohos.app.form.formInfo (formInfo)
 
-FormInfo模块提供对卡片的相关卡片信息和状态进行设置和查询的能力。
+formInfo模块提供了卡片信息和状态等相关类型和枚举。
 
 > **说明：**
 >
@@ -30,11 +30,11 @@ import formInfo from '@ohos.app.form.formInfo';
 | colorMode  | [ColorMode](#colormode) | 是    | 否     | 卡片颜色模式。                                       |
 | isDefault    | boolean      | 是    | 否     | 卡片是否是默认卡片。                              |
 | updateEnabled  | boolean               | 是    | 否     | 卡片是否使能更新。                    |
-| formVisibleNotify  | string               | 是    | 否     | 卡片是否使能可见通知。            |
+| formVisibleNotify  | boolean        | 是    | 否     | 卡片是否使能可见通知。            |
 | relatedBundleName | string               | 是    | 否     | 卡片所属的相关联Bundle名称。           |
 | scheduledUpdateTime        | string               | 是    | 否     | 卡片更新时间。     |
 | formConfigAbility | string               | 是    | 否     | 卡片配置ability。指定长按卡片弹出的选择框内，编辑选项所对应的ability。   |
-| updateDuration        | string             | 是    | 否     | 卡片更新周期。 |
+| updateDuration        | number       | 是    | 否     | 卡片更新周期。 |
 | defaultDimension  | number | 是    | 否     | 表示卡片规格                                       |
 | supportDimensions    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的规格。具体可选规格参考[FormDimension](#formdimension)   |
 | customizeData    | {[key: string]: [value: string]}      | 是    | 否     | 卡片用户数据。         |
@@ -100,8 +100,8 @@ import formInfo from '@ohos.app.form.formInfo';
 | WIDTH_KEY        | "ohos.extra.param.key.form_width"   | 卡片宽度。   |
 | HEIGHT_KEY         | "ohos.extra.param.key.form_height"   | 卡片高度。   |
 | TEMPORARY_KEY          | "ohos.extra.param.key.form_temporary"   | 临时卡片。   |
-| ABILITY_NAME_KEY   | "ohos.extra.param.key.ability_name"   | ability名称   |
-| DEVICE_ID_KEY    | "ohos.extra.param.key.device_id"   | 设备标识。<br/>**系统接口**: 此接口为系统接口。   |
+| ABILITY_NAME_KEY   | "ohos.extra.param.key.ability_name"   | ability名称。  |
+| DEVICE_ID_KEY    | "ohos.extra.param.key.device_id"   | 设备标识。   |
 | BUNDLE_NAME_KEY    | "ohos.extra.param.key.bundle_name"   | 指示指定要获取的捆绑Bundle名称的键。 |
 
 ##  FormDimension
@@ -127,7 +127,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 | 名称        | 说明         |
 | ----------- | ------------ |
-| moduleName   | 仅保留moduleName与提供值相符的卡片信息。 |
+| moduleName   | 选填。仅保留moduleName与提供值相符的卡片信息。未填写时则不通过moduleName进行过滤。 |
 
 ## VisibilityType
 

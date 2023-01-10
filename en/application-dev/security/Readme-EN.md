@@ -8,7 +8,7 @@
 - User Authentication
   - [User Authentication Overview](userauth-overview.md)
   - [User Authentication Development](userauth-guidelines.md)
-- Key Management
+- HUKS
   - [HUKS Overview](huks-overview.md)
   - [HUKS Development](huks-guidelines.md)
 - Crypto Framework
@@ -20,3 +20,4 @@
 - hapsigner  
   - [hapsigner Overview](hapsigntool-overview.md)
   - [hapsigner Guide](hapsigntool-guidelines.md)
+  - [HarmonyAppProvision Configuration File](app-provision-structure.md)

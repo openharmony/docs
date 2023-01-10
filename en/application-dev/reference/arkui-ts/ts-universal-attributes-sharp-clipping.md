@@ -10,10 +10,10 @@ Shape clipping changes the visible portion of a component through clipping or ma
 ## Attributes
 
 
-| Name | Type                                    | Description                                 |
+| Name   | Type                                    | Description                                 |
 | -----| ------------------------------------------ | ------------------------------------ |
-| clip | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md) \| boolean | Specifies a clip mode. The value **Shape** indicates that the current component is cropped based on the specified shape. The value **boolean** specifies whether to clip the component based on the edge outline.<br>Default value: **false**|
-| mask | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md) | Adds a mask of the specified shape to the current component.|
+| clip | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md) \| boolean | Clip mode. If the value is a shape, the component is clipped based on the specified shape. If the value is of the Boolean type, it specifies whether to clip the component based on the edge outline of the parent container.<br>Default value: **false**|
+| mask | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md) | Mask of the specified shape to add to the component.|
 
 
 ## Example
@@ -24,34 +24,33 @@ Shape clipping changes the visible portion of a component through clipping or ma
 @Component
 struct ClipAndMaskExample {
   build() {
-    Column({ space: 5 }) {
-      Text('clip').fontSize(9).width('90%').fontColor(0xCCCCCC)
-      // Clip the image by using a circle with a diameter of 280px.
-      Image($r('app.media.example'))
-        .clip(new Circle({ width: 80, height: 80 }))
+    Column({ space: 15 }) {
+      Text('clip').fontSize(12).width('75%').fontColor('#DCDCDC')
+      Row() {
+        Image($r('app.media.testImg')).width('500px').height('280px')
+      }
+      .clip(true) // If clip is not set to true, the image is not confined by the rounded corners of the <Row> component and may extend beyond the <Row> component.
+      .borderRadius(20)
+      // Clip the image based on a circle with a diameter of 280 px.
+      Image($r('app.media.testImg'))
+        .clip(new Circle({ width: '280px', height: '280px' }))
         .width('500px').height('280px')
 
-      Row() {
-        Image($r('app.media.example')).width('500px').height('280px')
-      }
-      .clip(true)
-      .borderRadius(20)
-
-      Text('mask').fontSize(9).width('90%').fontColor(0xCCCCCC)
-      // Add a 500 px x 280 px mask to the image.
-      Image($r('app.media.example'))
+      Text('mask').fontSize(12).width('75%').fontColor('#DCDCDC')
+      // Add a 500 px x 280 px square mask to the image.
+      Image($r('app.media.testImg'))
         .mask(new Rect({ width: '500px', height: '280px' }).fill(Color.Gray))
         .width('500px').height('280px')
 
-      // Add a 280 px x 280 px circle mask to the image.
-      Image($r('app.media.example'))
+      // Add a 280 px x 280 px circular mask to the image.
+      Image($r('app.media.testImg'))
         .mask(new Circle({ width: '280px', height: '280px' }).fill(Color.Gray))
-        .width('500px').height('281px')
+        .width('500px').height('280px')
     }
     .width('100%')
-    .margin({ top: 5 })
+    .margin({ top: 15 })
   }
 }
 ```
 
-![en-us_image_0000001212218452](figures/en-us_image_0000001212218452.png)
+![clipAndMask](figures/clipAndMask.PNG)

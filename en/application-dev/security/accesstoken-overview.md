@@ -2,14 +2,14 @@
 
 OpenHarmony AccessTokenManager (ATM) implements unified app permission management based on access tokens.
 
-By default, apps can access limited system resources. However, in some cases, an app needs to access excess data (including personal data) and functions of the system or another app to implement extended functions. The system or apps must also explicitly share their data or functions through APIs. OpenHarmony uses app permissions to perform access control and prevent improper or malicious use of these data or functions.
+By default, apps can access limited system resources. However, to provide extended features, an app may need to access excess data (including personal data) and functions of the system or another app. The system or apps must also explicitly share their data or functions through APIs. OpenHarmony uses app permissions to perform access control and prevent improper or malicious use of these data or functions.
 
 App permissions are used to protect the following objects:
 
 - Data: personal data (such as photos, contacts, calendar, and location), device data (such as device ID, camera, and microphone), and app data.
 - Functions: device functions (such as making calls, sending SMS messages, and connecting to the Internet) and app functions (such as displaying windows and creating shortcuts).
 
-Without the required permissions, an app cannot access or perform operations on the target object. Permissions must be clearly defined for apps. With well-defined app permissions, the system can standardize the behavior of apps and protect user privacy. Before an app accesses the target object, the target object verifies the app's permissions and denies the access if the app does not have required permissions.
+Without the required permissions, an app cannot access or perform operations on the target object. Permissions must be clearly defined for apps. With well-defined app permissions, the system can standardize app behavior and protect user privacy. Before an app accesses the target object, the target object verifies the app's permissions and denies the access if the app does not have required permissions.
 
 Currently, ATM verifies app permissions based on the token identity (token ID). A token ID identifies an app. ATM manages app permissions based on the app's token ID.
 
@@ -17,13 +17,13 @@ Currently, ATM verifies app permissions based on the token identity (token ID). 
 
 Observe the following principles for permission management:
 
-- Provide clear description about the app functions and scenarios for each permission required by the app so that users can clearly know why and when these permissions are required. Do not induce or mislead users' authorization. The permissions on an app must comply with the description provided in the app.
+- Provide clear description about the functions and scenarios for each permission required by the app so that users can clearly know why and when these permissions are needed. Do not induce or mislead users' authorization. The permissions on an app must comply with the description provided in the app.
 - Use the principle of least authority for user permissions. Allow only necessary permissions for service functions.
 - When an app is started for the first time, avoid frequently displaying dialog boxes to request multiple permissions. Allow the app to apply for the permission only when it needs to use the corresponding service function.
 - If a user rejects to grant a permission, the user can still use functions irrelevant to this permission and can register and access the app.
 - Provide no more message if a user rejects the authorization required by a function. Provide onscreen instructions to direct the user to grant the permission in **Settings** if the user triggers this function again or needs to use this function.
 
-- All the permissions granted to apps must come from the [App Permission List](permission-list.md). Custom permissions are not allowed for apps currently.
+- All the permissions granted to apps must come from the [App Permission List](permission-list.md). Custom permissions are not allowed currently.
 
 ## Permission Workflows
 
@@ -50,7 +50,9 @@ The figure below illustrates the process.
 3. A low-APL app can have a high-level permission by using the Access Control List (ACL). For details, see [ACL](#acl).
 
 ### Permission Verification
-To protect sensitive data and eliminate security threads on core abilities, you can use the permissions in the [App Permission List](permission-list.md) to protect the related API from unauthorized calling. Each time before the API is called, a permission verification is performed to check whether the caller has the required permission. The API can be called only after the permission verification is successful.
+To protect sensitive data and eliminate security threads on core abilities, you can use the permissions in the [App Permission List](permission-list.md) to protect an API from unauthorized calling. Each time before the API is called, a permission verification is performed to check whether the caller has the required permission.
+
+The API can be called only after the permission verification is successful.
 
 The figure below shows the permission verification process.
 
@@ -58,7 +60,7 @@ The figure below shows the permission verification process.
 
 1: An app permission can be used to control the access to an API that has sensitive data involved or security threats on the core abilities.
 
-2: Select the permission from the [App Permission List](permission-list.md). For example, if contact information is involved in an API provided by an app, you can use the contact-related permissions to protect the API.
+2: The API can be protected by a permission in the [ACL](#acl). For example, if contact information is involved in an API provided by an app, you can use the contact-related permissions to protect the API.
 
 3: Use **verifyAccessToken()** to check whether the caller has the required permission. For details, see [Permission Verification Guide](permission-verify-guidelines.md).
 
@@ -88,7 +90,7 @@ Then, use the [hapsigner](hapsigntool-overview.md) tool to generate a certificat
 
 The following is an example.
 
-This example shows only the modification of the **apl** field. Set other fields based on your requirements. For details about the fields in the profile, see [HarmonyAppProvision Configuration File](../quick-start/app-provision-structure.md).
+This example shows only the modification of the **apl** field. Set other fields based on your requirements. For details about the fields in the profile, see [HarmonyAppProvision Configuration File](app-provision-structure.md).
 
 ```json
 {
@@ -123,7 +125,7 @@ The permissions open to apps vary with the permission level. The permission leve
 
     The system_core permission allows access to core resources of the OS. These resources are underlying core services of the system. If these resources are corrupted, the OS cannot run properly.
     
-    The system_core permissions are not open to third-party apps currently.
+    The system_core permissions are not open to third-party apps.
 
 ## Permission Types
 
@@ -131,19 +133,19 @@ Permissions can be classified into the following types based on the authorizatio
 
 - **system_grant**
 
-   The app permissions are authorized by the system. This type of apps cannot access user or device sensitive information. The allowed operations have minor impact on the system or other apps.
+   The app permissions are authorized by the system. Apps granted with this type of permission cannot access user or device sensitive information, and the operations allowed for them have minor impact on the system or other apps.
 
-    For a system_grant app, the system automatically grants the required permissions to the app when the app is installed. The system_grant permission list must be presented to users on the details page of the app in the app store.
+    For a system_grant app, the system automatically grants the required permissions to the app when the app is installed. The system_grant permission list must be presented to users on the details page of the app in the app market.
 
 - **user_grant**
 
-    The app permissions must be authorized by users. This type of apps may access user or device sensitive information. The allowed operations may have a critical impact on the system or other apps.
+    The app permissions must be authorized by users. Apps granted with this type of permissions may access user or device sensitive information, and the operations allowed for them may have a critical impact on the system or other apps.
 
     This type of permissions must be declared in the app installation package and authorized by users dynamically during the running of the app. The app has the permission only after user authorization.
 
-    For example, in the [App Permission List](permission-list.md), the permissions for microphones and cameras are user_grant. The list provides reasons for using the permissions.
+    For example, as described in the [App Permission List](permission-list.md), the permissions for microphones and cameras are user_grant. The list provides reasons for using the permissions.
 
-    The user_grant permission list must also be presented on the details page of the app in the app store.
+    The user_grant permission list must also be presented on the details page of the app in the app market.
 
 ### Authorization Processes
 
@@ -173,7 +175,7 @@ The procedure is as follows:
 **Precautions**
 
 - Check the app's permission each time before the operation requiring the permission is performed.
-- To check whether a user has granted specific permissions to an app, use the [verifyAccessToken](../reference/apis/js-apis-abilityAccessCtrl.md) method. This method returns [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md) or [PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md). For details about the sample code, see [Access Control Development](accesstoken-guidelines.md).
+- To check whether a user has granted specific permissions to an app, use the [verifyAccessToken](../reference/apis/js-apis-abilityAccessCtrl.md) API. This API returns [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md) or [PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md). For details about the sample code, see [Access Control Development](accesstoken-guidelines.md).
 - Users must be able to understand and control the authorization of user_grant permissions. During the running process, the app requiring user authorization must proactively call an API to dynamically request the authorization. Then, the system displays a dialog box asking the user to grant the permission. The user will determine whether to grant the permission based on the running context of the app.
 - The permission authorized is not permanent, because the user may revoke the authorization at any time. Therefore, even if the user has granted the requested permission to the app, the app must check for the permission before calling the API controlled by this permission.
 
@@ -190,15 +192,15 @@ The APL of app A is **normal**. App A needs to have permission B (system_basic l
 In this case, you can use the ACL to grant permission B to app A.
 
 For details, see [Using the ACL](#using-the-acl).
-For details about whether a permission can be enabled through the ACL, see the [App Permission List](permission-list.md).
+For details about whether a permission can be enabled through the ACL, see [App Permission List](permission-list.md).
 
 ### Using the ACL
 
-If the permission required by an app has higher level than the app's APL, you can use the ACL to grant the permission required.
+If the permission required by an app has a higher level than the app's APL, you can use the ACL to grant the permission required.
 
 In addition to the preceding [authorization processes](#authorization-processes), you must declare the ACL.
 
-That is, you need to declare the required permissions in the app's configuration file, and [declare the ACL](accesstoken-guidelines.md#declaring-the-acl) in the app's profile. The subsequent steps of authorization are the same.
+That is, you need to declare the required permissions in the app's configuration file, and [declare the ACL](accesstoken-guidelines.md#declaring-permissions-in-the-acl) in the app's profile. The subsequent steps of authorization are the same.
 
 **NOTICE**
 
@@ -216,4 +218,4 @@ When developing an app installation package, you must declare the ACL in the **a
 }
 ```
 
-For details about the fields in the profile, see [HarmonyAppProvision Configuration File](../quick-start/app-provision-structure.md).
+For details about the fields in the profile, see [HarmonyAppProvision Configuration File](app-provision-structure.md).

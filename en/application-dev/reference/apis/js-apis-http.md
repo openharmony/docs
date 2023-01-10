@@ -70,7 +70,7 @@ Creates an HTTP request. You can use this API to initiate or destroy an HTTP req
 **Return value**
 
 | Type       | Description                                                        |
-| :---------- | :----------------------------------------------------------- |
+| ---------- | ----------------------------------------------------------- |
 | HttpRequest | An **HttpRequest** object, which contains the **request**, **destroy**, **on**, or **off** method.|
 
 **Example**
@@ -179,7 +179,7 @@ Initiates an HTTP request to a given URL. This API uses a promise to return the 
 **Return value**
 
 | Type                                  | Description                             |
-| :------------------------------------- | :-------------------------------- |
+| ------------------------------------- | -------------------------------- |
 | Promise<[HttpResponse](#httpresponse)> | Promise used to return the result.|
 
 
@@ -372,7 +372,7 @@ Defines an HTTP request method.
 **System capability**: SystemCapability.Communication.NetStack
 
 | Name   | Value     | Description               |
-| :------ | ------- | :------------------ |
+| ------ | ------- | ------------------ |
 | OPTIONS | "OPTIONS" | OPTIONS method.|
 | GET     | "GET"     | GET method.    |
 | HEAD    | "HEAD"    | HEAD method.   |
@@ -457,7 +457,7 @@ Creates a default object to store responses to HTTP access requests.
 **Return value**
 
 | Type       | Description                                                        |
-| :---------- | :----------------------------------------------------------- |
+| ---------- | ----------------------------------------------------------- |
 | [HttpResponseCache](#httpresponsecache9) | Object that stores the response to the HTTP request.|
 
 **Example**
@@ -600,6 +600,6 @@ Enumerates HTTP protocol versions.
 **System capability**: SystemCapability.Communication.NetStack
 
 | Name | Description    |
-| :-------- | :----------- |
+| -------- | ----------- |
 | HTTP1_1   |  HTTP1.1 |
 | HTTP2     |  HTTP2   |

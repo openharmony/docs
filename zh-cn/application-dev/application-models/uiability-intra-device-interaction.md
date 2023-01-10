@@ -50,7 +50,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import Window from '@ohos.window';
+   import window from '@ohos.window';
    
    export default class FuncAbility extends UIAbility {
        onCreate(want, launchParam) {

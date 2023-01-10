@@ -1,0 +1,122 @@
+# Starting a PageAbility from the Stage Model
+
+
+This topic describes how the two application components of the stage model start the PageAbility component of the FA model.
+
+
+## UIAbility Starting a PageAbility
+
+A UIAbility starts a PageAbility in the same way as it starts another UIAbility.
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility'
+
+export default class MainAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        console.info("MainAbility onCreate")
+    }
+    onDestroy() {
+        console.info("MainAbility onDestroy")
+    }
+    onWindowStageCreate(windowStage) {
+        console.info("MainAbility onWindowStageCreate")
+        windowStage.loadContent('pages/Index', (err, data) => {
+            // ...
+        });
+        let want = {
+            bundleName: "com.ohos.fa",
+            abilityName: "MainAbility",
+        };
+        this.context.startAbility(want).then(() => {
+            console.info('Start Ability successfully.');
+        }).catch((error) => {
+            console.error("Ability failed: " + JSON.stringify(error));
+        });
+    }
+    onWindowStageDestroy() {
+        console.info("MainAbility onWindowStageDestroy")
+    }
+    onForeground() {
+        console.info("MainAbility onForeground")
+    }
+    onBackground() {
+        console.info("MainAbility onBackground")
+    }
+}
+```
+
+
+## UIAbility Accessing a PageAbility (startAbilityForResult)
+
+Different from **startAbility()**, **startAbilityForResult()** obtains the execution result when the PageAbility is destroyed.
+
+A UIAbility starts a PageAbility through **startAbilityForResult()** in the same way as it starts another UIAbility through **startAbilityForResult()**.
+
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility'
+
+export default class MainAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        console.info("MainAbility onCreate")
+    }
+    onDestroy() {
+        console.info("MainAbility onDestroy")
+    }
+    onWindowStageCreate(windowStage) {
+        console.info("MainAbility onWindowStageCreate")
+        windowStage.loadContent('pages/Index', (err, data) => {
+            // ...
+        });
+        let want = {
+            bundleName: "com.ohos.fa",
+            abilityName: "MainAbility",
+        };
+        this.context.startAbilityForResult(want).then((result) => {
+            console.info('Ability verify result: ' + JSON.stringify(result));
+        }).catch((error) => {
+            console.error("Ability failed: " + JSON.stringify(error));
+        });
+    }
+    onWindowStageDestroy() {
+        console.info("MainAbility onWindowStageDestroy")
+    }
+    onForeground() {
+        console.info("MainAbility onForeground")
+    }
+    onBackground() {
+        console.info("MainAbility onBackground")
+    }
+}
+```
+
+
+## ExtensionAbility Starting a PageAbility
+
+The following uses the ServiceExtensionAbility component as an example to describe how an ExtensionAbility starts a PageAbility. A ServiceExtensionAbility starts a PageAbility in the same way as it starts a UIAbility.
+
+
+```ts
+import Extension from '@ohos.app.ability.ServiceExtensionAbility'
+
+export default class ServiceExtension extends Extension {
+    onCreate(want) {
+        console.info("ServiceExtension onCreate")
+    }
+    onDestroy() {
+        console.info("ServiceExtension onDestroy")
+    }
+    onRequest(want, startId) {
+        console.info("ServiceExtension onRequest")
+        let wantFA = {
+            bundleName: "com.ohos.fa",
+            abilityName: "MainAbility",
+        };
+        this.context.startAbility(wantFA).then(() => {
+            console.info('Start Ability successfully.');
+        }).catch((error) => {
+            console.error("Ability failed: " + JSON.stringify(error));
+        });
+    }
+}
+```

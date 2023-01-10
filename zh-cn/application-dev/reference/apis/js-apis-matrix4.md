@@ -145,11 +145,12 @@ Matrix的拷贝函数，可以拷贝一份当前的矩阵对象。
 ```ts
 // xxx.ets
 import matrix4 from '@ohos.matrix4'
+
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({x:100})
-  private matrix2 = this.matrix1.copy().scale({x:2})
+  private matrix1 = matrix4.identity().translate({ x: 100 })
+  private matrix2 = this.matrix1.copy().scale({ x: 2 })
 
   build() {
     Column() {
@@ -160,7 +161,7 @@ struct Test {
       Image($r("app.media.bg2"))
         .width("40%")
         .height(100)
-        .margin({top:50})
+        .margin({ top: 50 })
         .transform(this.matrix2)
     }
   }
@@ -199,11 +200,12 @@ Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个�
 ```ts
 // xxx.ets
 import matrix4 from '@ohos.matrix4'
+
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({x:200}).copy()
-  private matrix2 = matrix4.identity().scale({x:2}).copy()
+  private matrix1 = matrix4.identity().translate({ x: 200 }).copy()
+  private matrix2 = matrix4.identity().scale({ x: 2 }).copy()
 
   build() {
     Column() {
@@ -211,13 +213,13 @@ struct Test {
       Image($r("app.media.icon"))
         .width("40%")
         .height(100)
-        .margin({top:50})
+        .margin({ top: 50 })
       // 先平移x轴200px，再缩放两倍x轴，得到矩阵变换后的效果图
       Image($r("app.media.icon"))
         .transform(this.matrix1.combine(this.matrix2))
         .width("40%")
-      .height(100)
-        .margin({top:50})
+        .height(100)
+        .margin({ top: 50 })
     }
   }
 }
@@ -245,8 +247,9 @@ Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效�
 ```ts
 import matrix4 from '@ohos.matrix4'
 // matrix1(宽放大2倍) 和 matrix2(宽缩小2倍) 效果相反
-let matrix1 = matrix4.identity().scale({x:2})
+let matrix1 = matrix4.identity().scale({ x: 2 })
 let matrix2 = matrix1.invert()
+
 @Entry
 @Component
 struct Tests {
@@ -295,10 +298,11 @@ Matrix的平移函数，可以为当前矩阵增加x轴/Y轴/Z轴平移效果。
 ```ts
 // xxx.ets
 import matrix4 from '@ohos.matrix4'
+
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({x:100, y:200, z:30})
+  private matrix1 = matrix4.identity().translate({ x: 100, y: 200, z: 30 })
 
   build() {
     Column() {
@@ -346,7 +350,7 @@ import matrix4 from '@ohos.matrix4'
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().scale({x:2, y:3, z:4, centerX:50, centerY:50})
+  private matrix1 = matrix4.identity().scale({ x:2, y:3, z:4, centerX:50, centerY:50 })
 
   build() {
     Column() { 
@@ -392,17 +396,18 @@ Matrix的旋转函数，可以为当前矩阵增加x轴/Y轴/Z轴旋转效果。
 ```ts
 // xxx.ets
 import matrix4 from '@ohos.matrix4'
+
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().rotate({x:1, y:1, z:2, angle:30})
+  private matrix1 = matrix4.identity().rotate({ x: 1, y: 1, z: 2, angle: 30 })
 
   build() {
     Column() {
       Image($r("app.media.bg1")).transform(this.matrix1)
         .width("40%")
         .height(100)
-    }.width("100%").margin({top:50})
+    }.width("100%").margin({ top: 50 })
   }
 }
 ```

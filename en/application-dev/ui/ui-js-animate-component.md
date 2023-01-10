@@ -338,7 +338,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001223127752](figures/en-us_image_0000001223127752.gif)
+![en-us_image_0000001220635011](figures/en-us_image_0000001220635011.gif)
 
 Change the animation status by changing the **playState** attribute.
 

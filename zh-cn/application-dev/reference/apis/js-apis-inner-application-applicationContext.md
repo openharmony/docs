@@ -155,6 +155,9 @@ export default class MyAbility extends Ability {
             onConfigurationUpdated(config){
                 console.log("onConfigurationUpdated config:" + JSON.stringify(config));
             },
+            onMemoryLevel(level){
+                console.log("onMemoryLevel level:" + level);
+            }
         }
         // 1.获取applicationContext
         let applicationContext = globalThis.applicationContext;

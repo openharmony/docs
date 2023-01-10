@@ -467,13 +467,13 @@ geolocationAccess(geolocationAccess: boolean)
 
 mediaPlayGestureAccess(access: boolean)
 
-设置视频播放是否需要用户手动点击。
+设置有声视频播放是否需要用户手动点击，静音视频播放不受该接口管控。
 
 **参数：**
 
 | 参数名    | 参数类型    | 必填   | 默认值  | 参数描述              |
 | ------ | ------- | ---- | ---- | ----------------- |
-| access | boolean | 是    | true | 设置视频播放是否需要用户手动点击。 |
+| access | boolean | 是    | true | 设置有声视频播放是否需要用户手动点击。 |
 
 **示例：**
 
@@ -827,11 +827,11 @@ defaultFixedFontSize(size: number)
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State size: number = 16
+    @State fontSize: number = 16
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .defaultFixedFontSize(this.size)
+          .defaultFixedFontSize(this.fontSize)
       }
     }
   }
@@ -858,11 +858,11 @@ defaultFontSize(size: number)
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State size: number = 13
+    @State fontSize: number = 13
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .defaultFontSize(this.size)
+          .defaultFontSize(this.fontSize)
       }
     }
   }
@@ -889,11 +889,11 @@ minFontSize(size: number)
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State size: number = 13
+    @State fontSize: number = 13
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .minFontSize(this.size)
+          .minFontSize(this.fontSize)
       }
     }
   }
@@ -920,11 +920,11 @@ minLogicalFontSize(size: number)
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State size: number = 13
+    @State fontSize: number = 13
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .minLogicalFontSize(this.size)
+          .minLogicalFontSize(this.fontSize)
       }
     }
   }
@@ -1112,6 +1112,70 @@ webCursiveFont(family: string)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .webCursiveFont(this.family)
+      }
+    }
+  }
+  ```
+
+### darkMode<sup>9+</sup>
+
+darkMode(mode: WebDarkMode)
+
+设置Web深色模式，默认关闭。当深色模式开启时，Web将启用媒体查询prefer-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | ----------- | ---- | --------------- | ------------------ |
+|  mode  | [WebDarkMode](#webdarkmode9枚举说明) | 是   | WebDarkMode.Off | 设置Web的深色模式为关闭、开启或跟随系统。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State mode: WebDarkMode = WebDarkMode.On
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .darkMode(this.mode)
+      }
+    }
+  }
+  ```
+
+### forceDarkAccess<sup>9+</sup>
+
+forceDarkAccess(access: boolean)
+
+设置网页是否开启强制深色模式。默认关闭。该属性仅在[darkMode](#darkmode9)开启深色模式时生效。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | ------- | ---- | ----- | ------------------ |
+| access | boolean | 是   | false | 设置网页是否开启强制深色模式。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State mode: WebDarkMode = WebDarkMode.On
+    @State access: boolean = true
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .darkMode(this.mode)
+          .forceDarkAccess(this.access)
       }
     }
   }
@@ -2186,7 +2250,7 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
 
 onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebContextMenuResult }) => boolean)
 
-长按特定元素（例如图片，链接），跳出菜单。
+长按特定元素（例如图片，链接）或鼠标右键，跳出菜单。
 
 **参数：**
 
@@ -2420,6 +2484,7 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3233,11 +3298,46 @@ grant(resources: Array\<string\>): void
 
 | 参数名       | 参数类型            | 必填   | 默认值  | 参数描述          |
 | --------- | --------------- | ---- | ---- | ------------- |
-| resources | Array\<string\> | 是    | -    | 网页所请求的权限资源列表。 |
+| resources | Array\<string\> | 是    | -    | 授予网页请求的权限的资源列表。 |
+
+## ContextMenuSourceType<sup>9+</sup>枚举说明
+| 名称                   | 描述         |
+| -------------------- | ---------- |
+| None        | 其他事件来源。  |
+| Mouse       | 鼠标事件。  |
+| LongPress   | 长按事件。  |
+
+## ContextMenuMediaType<sup>9+</sup>枚举说明
+
+| 名称           | 描述          |
+| ------------ | ----------- |
+| None      | 非特殊媒体或其他媒体类型。 |
+| Image     | 图片。     |
+
+## ContextMenuInputFieldType<sup>9+</sup>枚举说明
+
+| 名称           | 描述          |
+| ------------ | ----------- |
+| None      | 非输入框。       |
+| PlainText | 纯文本类型，包括text、search、email等。   |
+| Password  | 密码类型。     |
+| Number    | 数字类型。     |
+| Telephone | 电话号码类型。 |
+| Other     | 其他类型。     |
+
+## ContextMenuEditStateFlags<sup>9+</sup>枚举说明
+
+| 名称         | 描述         |
+| ------------ | ----------- |
+| NONE         | 不可编辑。   |
+| CAN_CUT      | 支持剪切。   |
+| CAN_COPY     | 支持拷贝。   |
+| CAN_PASTE    | 支持粘贴。   |
+| CAN_SELECT_ALL  | 支持全选。 |
 
 ## WebContextMenuParam<sup>9+</sup>
 
-实现长按页面元素跳出来的菜单信息。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
+实现长按页面元素或鼠标右键弹出来的菜单信息。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
 
 ### x<sup>9+</sup>
 
@@ -3311,9 +3411,81 @@ existsImageContents(): boolean
 | ------- | ------------------------- |
 | boolean | 长按位置中有图片返回true，否则返回false。 |
 
+### getMediaType<sup>9+</sup>
+
+getMediaType(): ContextMenuMediaType
+
+获取网页元素媒体类型。
+
+**返回值：**
+
+| 类型                                       | 说明          |
+| ---------------------------------------- | ----------- |
+| [ContextMenuMediaType](#contextmenumediatype9枚举说明) | 网页元素媒体类型。 |
+
+### getSelectionText<sup>9+</sup>
+
+getSelectionText(): string
+
+获取选中文本。
+
+**返回值：**
+
+| 类型      | 说明                        |
+| ------- | ------------------------- |
+| string | 菜单上下文选中文本内容，不存在则返回空。 |
+
+### getSourceType<sup>9+</sup>
+
+getSourceType(): ContextMenuSourceType
+
+获取菜单事件来源。
+
+**返回值：**
+
+| 类型                                       | 说明          |
+| ---------------------------------------- | ----------- |
+| [ContextMenuSourceType](#contextmenusourcetype9枚举说明) | 菜单事件来源。 |
+
+### getInputFieldType<sup>9+</sup>
+
+getInputFieldType(): ContextMenuInputFieldType
+
+获取网页元素输入框类型。
+
+**返回值：**
+
+| 类型                                       | 说明          |
+| ---------------------------------------- | ----------- |
+| [ContextMenuInputFieldType](#contextmenuinputfieldtype9枚举说明) | 输入框类型。 |
+
+### isEditable<sup>9+</sup>
+
+isEditable(): boolean
+
+获取网页元素是否可编辑标识。
+
+**返回值：**
+
+| 类型      | 说明                        |
+| ------- | ------------------------- |
+| boolean | 网页元素可编辑返回true，不可编辑返回false。 |
+
+### getEditStateFlags<sup>9+</sup>
+
+getEditStateFlags(): number
+
+获取网页元素可编辑标识。
+
+**返回值：**
+
+| 类型      | 说明                        |
+| ------- | ------------------------- |
+| number | 网页元素可编辑标识，参照[ContextMenuEditStateFlags](#contextmenueditstateflags9枚举说明)。 |
+
 ## WebContextMenuResult<sup>9+</sup>
 
-实现长按页面元素跳出来的菜单所执行的响应事件。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
+实现长按页面元素或鼠标右键弹出来的菜单所执行的响应事件。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
 
 ### closeContextMenu<sup>9+</sup>
 
@@ -3326,6 +3498,30 @@ closeContextMenu(): void
 copyImage(): void
 
 WebContextMenuParam有图片内容则复制图片。
+
+### copy<sup>9+</sup>
+
+copy(): void
+
+执行与此上下文菜单相关的拷贝操作。
+
+### paste<sup>9+</sup>
+
+paste(): void
+
+执行与此上下文菜单相关的粘贴操作。
+
+### cut<sup>9+</sup>
+
+cut(): void
+
+执行与此上下文菜单相关的剪切操作。
+
+### selectAll<sup>9+</sup>
+
+selectAll(): void
+
+执行与此上下文菜单相关的全选操作。
 
 ## JsGeolocation
 
@@ -4761,7 +4957,7 @@ getCookie(url: string): string
       Column() {
         Button('getCookie')
           .onClick(() => {
-            let value = webview.WebCookieManager.getCookie('www.example.com')
+            let value = web_webview.WebCookieManager.getCookie('www.example.com')
             console.log("value: " + value)
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -5133,7 +5329,7 @@ deleteSessionCookie(): void
       Column() {
         Button('deleteSessionCookie')
           .onClick(() => {
-            webview.WebCookieManager.deleteSessionCookie()
+            web_webview.WebCookieManager.deleteSessionCookie()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -5973,6 +6169,13 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | --------- | ------------- | -------------------------- |
 | MidiSysex | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
 
+## WebDarkMode<sup>9+</sup>枚举说明
+| 名称      | 描述                                   |
+| ------- | ------------------------------------ |
+| Off     | Web深色模式关闭。                     |
+| On      | Web深色模式开启。                     |
+| Auto    | Web深色模式跟随系统。                 |
+
 ## WebAsyncController
 
 通过WebAsyncController可以控制Web组件具有异步回调通知的行为，一个WebAsyncController对象控制一个Web组件。
@@ -6293,7 +6496,7 @@ setPorts(ports: Array\<WebMessagePort\>): void
 
 ## DataResubmissionHandler<sup>9+</sup>
 
-通过DataResubmissionHandler可以重新提交表单数据或取消。
+通过DataResubmissionHandler可以重新提交表单数据或取消提交表单数据。
 
 ### resend<sup>9+</sup>
 

@@ -26,7 +26,7 @@ For details about the input driver model, see  [Touchscreen Overview](../driver/
 
 Follow the instructions in [Quick Start Overview](../quick-start/quickstart-overview.md).
 
->![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
+>![](../public_sys-resources/icon-notice.gif) **NOTICE** 
 >This development example applies to standard, small, and mini OpenHarmony systems. The following sections use the standard system as an example. You can refer to the specific guide for your system to set up the environment.
 
 ## Developing a Touchscreen Driver<a name="section15233162984520"></a>
@@ -37,9 +37,9 @@ Complete the following tasks to adapt a touchscreen IC based on the input driver
 
 Configure the touchscreen driver description required for registering the driver with the HDF, for example, whether the driver is loaded and what is the loading priority.
 
-You can configure the device driver description in the configuration file at  **./drivers/adapter/khdf/linux/hcs/device\_info/device\_info.hcs**.
+You can configure the device driver description in the configuration file at **./drivers/adapter/khdf/linux/hcs/device\_info/device\_info.hcs**.
 
-The  **device\_info.hcs**  file contains all necessary information for registering drivers in the input driver model with the HDF. You do not need to make any modification for the information unless otherwise required in special scenarios. The private configuration data of each driver uses the  **deviceMatchAttr**  field to match the  **match\_attr**  field in the  **input\_config.hcs**  file.
+The **device\_info.hcs**  file contains all necessary information for registering drivers in the input driver model with the HDF. You do not need to make any modification for the information unless otherwise required in special scenarios. The private configuration data of each driver uses the **deviceMatchAttr**  field to match the **match\_attr**  field in the **input\_config.hcs**  file.
 
 The input-related fields in the configuration file are as follows. For details about these fields, see  [Driver Development](../driver/driver-hdf-development.md).
 
@@ -91,21 +91,21 @@ Pay attention to the following fields in the configuration file:
 
 **preload**: specifies whether to load the driver.
 
-**moduleName**: This value must be the same as the  **moduleName**  value in the driver entry structure.
+**moduleName**: This value must be the same as the **moduleName**  value in the driver entry structure.
 
 **serviceName**: This value is used by the HDF to create a device node name.
 
-**deviceMatchAttr**: This value must be the same as the  **match\_attr**  value in the private configuration data.
+**deviceMatchAttr**: This value must be the same as the **match\_attr**  value in the private configuration data.
 
-After the device descriptions are configured, the HDF matches the configuration with the code registered with the driver entry structure based on the  **moduleName**  field, ensuring that drivers can be loaded properly. If multiple drivers are configured, the  **priority**  field determines the loading sequence of each driver.
+After the device descriptions are configured, the HDF matches the configuration with the code registered with the driver entry structure based on the **moduleName**  field, ensuring that drivers can be loaded properly. If multiple drivers are configured, the **priority**  field determines the loading sequence of each driver.
 
 ### Configuring the Touchscreen<a name="section156331030144617"></a>
 
 The private data includes the power-on and power-off sequence, and the platform hardware information includes the GPIO port that connects the touchscreen to the main board.
 
-You can configure the touchscreen in the configuration file at  **./drivers/adapter/khdf/linux/hcs/input/input\_config.hcs**.
+You can configure the touchscreen in the configuration file at **./drivers/adapter/khdf/linux/hcs/input/input\_config.hcs**.
 
-The  **input\_config.hcs**  file consists of the private configuration data of both the common driver and chip driver. Information of this file is read and parsed by the driver code. The configuration in the file includes the board-level hardware information and private configuration of the touchscreen. You can tailor the configuration during your development.
+The **input\_config.hcs**  file consists of the private configuration data of both the common driver and chip driver. Information of this file is read and parsed by the driver code. The configuration in the file includes the board-level hardware information and private configuration of the touchscreen. You can tailor the configuration during your development.
 
 ```
 root {                                                              
@@ -197,7 +197,7 @@ root {
 }
 ```
 
-In the example,  **touchConfig**  contains the  **touch0**  configuration, which describes the  **boardConfig**  and  **chipConfig**  configuration information. The  **boardConfig**  field provides the board-level hardware information of Hi3516D V300, and the  **chipConfig**  field provides the private configuration data of the touchscreen. To use another touchscreen, you can change the value of the  **chipConfig**  field. You can also configure multiple touchscreens for your product. In this example,  **touch0**  represents the hardware interface and chip configuration of the default touchscreen. If you need to configure a secondary touchscreen, add a  **touch1**  block parallel to  **touch0**.
+In the example, **touchConfig**  contains the **touch0**  configuration, which describes the **boardConfig**  and **chipConfig**  configuration information. The **boardConfig**  field provides the board-level hardware information of Hi3516D V300, and the **chipConfig**  field provides the private configuration data of the touchscreen. To use another touchscreen, you can change the value of the **chipConfig**  field. You can also configure multiple touchscreens for your product. In this example, **touch0**  represents the hardware interface and chip configuration of the default touchscreen. If you need to configure a secondary touchscreen, add a **touch1**  block parallel to **touch0**.
 
 ### Adapting to the Private Drivers of the Touchscreen<a name="section17127331595"></a>
 
@@ -207,7 +207,7 @@ The input driver model consists of three parts of drivers. To develop a brand-ne
 
 1.  Implement differentiated APIs for the touchscreen to adapt to the input chip driver.
 
-    You can obtain the sample code at  **./drivers/framework/model/input/driver/touchscreen/touch\_gt911.c**.
+    You can obtain the sample code at **./drivers/framework/model/input/driver/touchscreen/touch\_gt911.c**.
 
     ```
     static struct TouchChipOps g_gt911ChipOps = {                                  // IC options of the touchscreen
@@ -267,7 +267,7 @@ The input driver model consists of three parts of drivers. To develop a brand-ne
 
 2.  Initialize the input chip driver and register the driver with the HDF.
 
-    You can obtain the sample code at  **./drivers/framework/model/input/driver/touchscreen/touch\_gt911.c**.
+    You can obtain the sample code at **./drivers/framework/model/input/driver/touchscreen/touch\_gt911.c**.
 
     ```
     static int32_t HdfGoodixChipInit(struct HdfDeviceObject *device)
@@ -304,7 +304,7 @@ The input driver model consists of three parts of drivers. To develop a brand-ne
 
 1.  Compile the Makefile.
 
-    Open the file at  **./drivers/adapter/khdf/linux/model/input/Makefile**.
+    Open the file at **./drivers/adapter/khdf/linux/model/input/Makefile**.
 
     Add the following content:
 
@@ -313,7 +313,7 @@ The input driver model consists of three parts of drivers. To develop a brand-ne
                   $(INPUT_ROOT_DIR)/touchscreen/touch_gt911.o
     ```
 
-    **touch\_gt911.o**  is the content added in this example.
+    **touch\_gt911.o** is the content added in this example.
 
 2.  Build source code and burn images. For details, see the related sections in [Quick Start Overview](../quick-start/quickstart-overview.md).
 

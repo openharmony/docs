@@ -48,20 +48,17 @@ createFormBindingData(obj?: Object | string): FormBindingData
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import fileio from '@ohos.fileio';
-let context=featureAbility.getContext();
-context.getOrCreateLocalDir((err,data)=>{
-  let path=data+"/xxx.jpg";
-  let fd = fileio.openSync(path);
+import fs from '@ohos.file.fs';
+import formBindingData from '@ohos.app.form.formBindingData';
+
+try {
+  let fd = fs.openSync('/path/to/form.png')
   let obj = {
     "temperature": "21°",
-    "formImages": {"image": fd}
+    "formImages": { "image": fd }
   };
-  try {
-    formBindingData.createFormBindingData(obj);
-  } catch (error) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-  }
-})
+  formBindingData.createFormBindingData(obj);
+} catch (error) {
+  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+}
 ```

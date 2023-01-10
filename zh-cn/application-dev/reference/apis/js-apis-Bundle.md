@@ -806,7 +806,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型                                                   | 说明                                                   |
 | ------------------------------------------------------ | ------------------------------------------------------ |
-| Promise<[PermissionDef](js-apis-bundle-PermissionDef)> | Promise对象，获取成功时返回权限详细信息。 |
+| Promise<[PermissionDef](js-apis-bundle-PermissionDef.md)> | Promise对象，获取成功时返回权限详细信息。 |
 
 **示例：**
 

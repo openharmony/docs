@@ -113,7 +113,7 @@ equals(other: URI): boolean
 
 ```js
 const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da#fragment');
+const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 uriInstance.equals(uriInstance1);
 ```
 ### equalsTo<sup>9+</sup>
@@ -140,7 +140,7 @@ equalsTo(other: URI): boolean
 
 ```js
 const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da#fragment');
+const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 uriInstance.equalsTo(uriInstance1);
 ```
 
@@ -156,7 +156,7 @@ checkIsAbsolute(): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 返回true表示该URI是否为绝对URI。 |
+| boolean | 如果是绝对URI返回true，否则返回false。|
 
 **示例：**
 

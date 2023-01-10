@@ -249,7 +249,7 @@ button{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     index:0,
@@ -262,20 +262,20 @@ export default {
     this.$element('stepperId').setNextButtonStatus({status: 'skip', label: 'SKIP'});
   },
   stepperFinish(){
-    prompt.showToast({
+    promptAction.showToast({
       message: 'All Finished'
     })
   },
   stepperChange(e){
     console.log("stepperChange"+e.index)
-    prompt.showToast({
+    promptAction.showToast({
       // index indicates the sequence number of the current step.
       message: 'Previous step: '+e.prevIndex+"-------Current step:"+e.index
     })
   },
   stepperNext(e){
     console.log("stepperNext"+e.index)
-    prompt.showToast({
+    promptAction.showToast({
       // pendingIndex indicates the sequence number of the step to be redirected to.
       message: 'Current step:'+e.index+"-------Next step:"+e.pendingIndex
     })
@@ -364,8 +364,8 @@ Use a **\<stepper>** component to navigate through the steps. Create a **\<Toggl
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
-import router from '@system.router';
+import promptAction from '@ohos.promptAction';
+import router from '@ohos.router';
 let myset = new Set();
 export default {
   data: {

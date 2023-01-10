@@ -638,16 +638,16 @@ Represents the USB endpoint from which data is sent or received. You can obtain 
 
 **System capability**: SystemCapability.USB.USBManager
 
-| Name           | Type                                       | Description           |
-| ------------- | ------------------------------------------- | ------------- |
-| address       | number                                      | Endpoint address.        |
-| attributes    | number                                      | Endpoint attributes.        |
-| interval      | number                                      | Endpoint interval.        |
-| maxPacketSize | number                                      | Maximum size of data packets on the endpoint.   |
-| direction     | [USBRequestDirection](#usbrequestdirection) | Endpoint direction.       |
-| number        | number                                      | Endpoint number.         |
-| type          | number                                      | Endpoint type.        |
-| interfaceId   | number                                      | Unique ID of the interface to which the endpoint belongs.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| address       | number                                      | Yes | Endpoint address.        |
+| attributes    | number                                      | Yes | Endpoint attributes.        |
+| interval      | number                                      | Yes | Endpoint interval.        |
+| maxPacketSize | number                                      | Yes | Maximum size of data packets on the endpoint.   |
+| direction     | [USBRequestDirection](#usbrequestdirection) | Yes | Endpoint direction.       |
+| number        | number                                      | Yes | Endpoint number.         |
+| type          | number                                      | Yes | Endpoint type.        |
+| interfaceId   | number                                      | Yes | Unique ID of the interface to which the endpoint belongs.|
 
 ## USBInterface
 
@@ -655,15 +655,15 @@ Represents a USB interface. One [USBConfig](#usbconfig) can contain multiple **U
 
 **System capability**: SystemCapability.USB.USBManager
 
-| Name              | Type                                    | Description                   |
-| ---------------- | ---------------------------------------- | --------------------- |
-| id               | number                                   | Unique ID of the USB interface.             |
-| protocol         | number                                   | Interface protocol.               |
-| clazz            | number                                   | Device type.                |
-| subClass         | number                                   | Device subclass.                |
-| alternateSetting | number                                   | Settings for alternating between descriptors of the same USB interface.|
-| name             | string                                   | Interface name.                |
-| endpoints        | Array&lt;[USBEndpoint](#usbendpoint)&gt; | Endpoints that belong to the USB interface.          |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| id               | number                                   | Yes | Unique ID of the USB interface.             |
+| protocol         | number                                   | Yes | Interface protocol.               |
+| clazz            | number                                   | Yes | Device type.                |
+| subClass         | number                                   | Yes | Device subclass.                |
+| alternateSetting | number                                   | Yes | Settings for alternating between descriptors of the same USB interface.|
+| name             | string                                   | Yes | Interface name.                |
+| endpoints        | Array&lt;[USBEndpoint](#usbendpoint)&gt; | Yes | Endpoints that belong to the USB interface.          |
 
 ## USBConfig
 
@@ -671,15 +671,15 @@ Represents the USB configuration. One [USBDevice](#usbdevice) can contain multip
 
 **System capability**: SystemCapability.USB.USBManager
 
-| Name            | Type                                            | Description             |
-| -------------- | ------------------------------------------------ | --------------- |
-| id             | number                                           | Unique ID of the USB configuration.       |
-| attributes     | number                                           | Configuration attributes.         |
-| maxPower       | number                                           | Maximum power consumption, in mA.   |
-| name           | string                                           | Configuration name, which can be left empty.    |
-| isRemoteWakeup | boolean                                          | Support for remote wakeup.|
-| isSelfPowered  | boolean                                          | Support for independent power supplies.|
-| interfaces     | Array&nbsp;&lt;[USBInterface](#usbinterface)&gt; | Supported interface attributes.     |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| id             | number                                           | Yes | Unique ID of the USB configuration.       |
+| attributes     | number                                           | Yes | Configuration attributes.         |
+| maxPower       | number                                           | Yes | Maximum power consumption, in mA.   |
+| name           | string                                           | Yes | Configuration name, which can be left empty.    |
+| isRemoteWakeup | boolean                                          | Yes | Support for remote wakeup.|
+| isSelfPowered  | boolean                                          | Yes | Support for independent power supplies.|
+| interfaces     | Array&nbsp;&lt;[USBInterface](#usbinterface)&gt; | Yes | Supported interface attributes.     |
 
 ## USBDevice
 
@@ -687,21 +687,21 @@ Represents the USB device information.
 
 **System capability**: SystemCapability.USB.USBManager
 
-| Name              | Type                                | Description        |
-| ---------------- | ------------------------------------ | ---------- |
-| busNum           | number                               | Bus address.     |
-| devAddress       | number                               | Device address.     |
-| serial           | string                               | Sequence number.      |
-| name             | string                               | Device name.     |
-| manufacturerName | string                               | Device manufacturer.     |
-| productName      | string                               | Product name.     |
-| version          | string                               | Version number.       |
-| vendorId         | number                               | Vendor ID.     |
-| productId        | number                               | Product ID.     |
-| clazz            | number                               | Device class.      |
-| subClass         | number                               | Device subclass.     |
-| protocol         | number                               | Device protocol code.    |
-| configs          | Array&lt;[USBConfig](#usbconfig)&gt; | Device configuration descriptor information.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| busNum           | number                               | Yes | Bus address.     |
+| devAddress       | number                               | Yes | Device address.     |
+| serial           | string                               | Yes | Sequence number.      |
+| name             | string                               | Yes | Device name.     |
+| manufacturerName | string                               | Yes | Device manufacturer.     |
+| productName      | string                               | Yes | Product name.     |
+| version          | string                               | Yes | Version number.       |
+| vendorId         | number                               | Yes | Vendor ID.     |
+| productId        | number                               | Yes | Product ID.     |
+| clazz            | number                               | Yes | Device class.      |
+| subClass         | number                               | Yes | Device subclass.     |
+| protocol         | number                               | Yes | Device protocol code.    |
+| configs          | Array&lt;[USBConfig](#usbconfig)&gt; | Yes | Device configuration descriptor information.|
 
 ## USBDevicePipe
 
@@ -709,10 +709,10 @@ Represents a USB device pipe, which is used to determine a USB device.
 
 **System capability**: SystemCapability.USB.USBManager
 
-| Name        | Type  | Description   |
-| ---------- | ------ | ----- |
-| busNum     | number | Bus address.|
-| devAddress | number | Device address.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| busNum     | number | Yes | Bus address.|
+| devAddress | number | Yes | Device address.|
 
 ## USBControlParams
 
@@ -720,14 +720,14 @@ Represents control transfer parameters.
 
 **System capability**: SystemCapability.USB.USBManager
 
-| Name     | Type                                           | Description              |
-| ------- | ----------------------------------------------- | ---------------- |
-| request | number                                          | Request type.           |
-| target  | [USBRequestTargetType](#usbrequesttargettype)   | Request target type.         |
-| reqType | [USBControlRequestType](#usbcontrolrequesttype) | Control request type.         |
-| value   | number                                          | Request parameter value.           |
-| index   | number                                          | Index of the request parameter value.|
-| data    | Uint8Array                                      | Buffer for writing or reading data.    |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| request | number                                          | Yes | Request type.           |
+| target  | [USBRequestTargetType](#usbrequesttargettype)   | Yes | Request target type.         |
+| reqType | [USBControlRequestType](#usbcontrolrequesttype) | Yes | Control request type.         |
+| value   | number                                          | Yes | Request parameter value.           |
+| index   | number                                          | Yes | Index of the request parameter value.|
+| data    | Uint8Array                                      | Yes | Buffer for writing or reading data.    |
 
 ## USBPort<sup>9+</sup>
 
@@ -737,11 +737,11 @@ Represents a USB port.
 
 **System capability**: SystemCapability.USB.USBManager
 
-| Name          | Type                        | Description                               |
-| -------------- | -------------------------------- | ----------------------------------- |
-| id             | number                           | Unique identifier of a USB port.                  |
-| supportedModes | [PortModeType](#portmodetype9)   | Numeric mask combination for the supported mode list.|
-| status         | [USBPortStatus](#usbportstatus9) | USB port role.                      |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| id             | number                           | Yes | Unique identifier of a USB port.                  |
+| supportedModes | [PortModeType](#portmodetype9)   | Yes | Numeric mask combination for the supported mode list.|
+| status         | [USBPortStatus](#usbportstatus9) | Yes | USB port role.                      |
 
 ## USBPortStatus<sup>9+</sup>
 
@@ -751,11 +751,11 @@ Enumerates USB port roles.
 
 **System capability**: SystemCapability.USB.USBManager
 
-| Name            | Type| Description                  |
-| ---------------- | -------- | ---------------------- |
-| currentMode      | number   | Current USB mode.       |
-| currentPowerRole | number   | Current power role.    |
-| currentDataRole  | number   | Current data role.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| currentMode      | number   | Yes | Current USB mode.      |
+| currentPowerRole | number   | Yes | Current power role.    |
+| currentDataRole  | number   | Yes | Current data role.     |
 
 ## USBRequestTargetType
 
