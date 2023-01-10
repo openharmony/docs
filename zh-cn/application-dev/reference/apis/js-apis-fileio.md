@@ -20,8 +20,9 @@ import fileio from '@ohos.fileio';
 **Stage模型**
 
  ```js
-import Ability from '@ohos.application.Ability';
-class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         let context = this.context;
         let pathDir = context.filesDir;
@@ -35,6 +36,7 @@ class MainAbility extends Ability {
 
  ```js
  import featureAbility from '@ohos.ability.featureAbility';
+ 
  let context = featureAbility.getContext();
  context.getFilesDir().then((data) => {
       let pathDir = data;

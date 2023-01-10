@@ -20,7 +20,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 
 let Want = {
     bundleName: "com.example.abilityStartSettingApp2",
-    abilityName: "com.example.abilityStartSettingApp.MainAbility",
+    abilityName: "com.example.abilityStartSettingApp.EntryAbility",
 }
 
 let abilityStartSetting ={

@@ -228,19 +228,19 @@ static initializeWebEngine(): void
 
 **示例：**
 
-本示例以 MainAbility 为例，描述了在 Ability 创建阶段完成 Web 组件动态库加载的功能。
+本示例以EntryAbility为例，描述了在 Ability 创建阶段完成 Web 组件动态库加载的功能。
 
 ```ts
 // xxx.ts
-import Ability from '@ohos.application.Ability'
-import web_webview from '@ohos.web.webview'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("MainAbility onCreate")
+        console.log("EntryAbility onCreate")
         web_webview.WebviewController.initializeWebEngine()
         globalThis.abilityWant = want
-        console.log("MainAbility onCreate done")
+        console.log("EntryAbility onCreate done")
     }
 }
 ```
@@ -249,7 +249,7 @@ export default class MainAbility extends Ability {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
 
 @Entry
 @Component

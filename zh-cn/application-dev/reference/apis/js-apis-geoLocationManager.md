@@ -71,7 +71,7 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
 |3301200 | Failed to obtain the geographical location.                                       |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
@@ -115,7 +115,7 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 |3301200 | Failed to obtain the geographical location.                                       |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
@@ -155,7 +155,7 @@ on(type: 'locationEnabledChange', callback: Callback&lt;boolean&gt;): void
 |3301000 | Location service is unavailable.                                            |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var locationEnabledChange = (state) => {
@@ -193,7 +193,7 @@ off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
 |3301000 | Location service is unavailable.                                            |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var locationEnabledChange = (state) => {
@@ -237,7 +237,7 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
 |3301200 | Failed to obtain the geographical location.                                       |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var cachedLocationsCb = (locations) => {
@@ -280,7 +280,7 @@ off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&
 |3301200 | Failed to obtain the geographical location.                                       |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var cachedLocationsCb = (locations) => {
@@ -323,7 +323,7 @@ on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;)
 |3301100 | The location switch is off.                                                 |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var gnssStatusCb = (satelliteStatusInfo) => {
@@ -366,7 +366,7 @@ off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt
 
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var gnssStatusCb = (satelliteStatusInfo) => {
@@ -409,7 +409,7 @@ on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void;
 
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var nmeaCb = (str) => {
@@ -452,7 +452,7 @@ off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
 
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var nmeaCb = (str) => {
@@ -497,7 +497,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
 |3301600 | Failed to operate the geofence.                                     |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   import wantAgent from '@ohos.wantAgent';
@@ -506,7 +506,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
       wants: [
           {
               bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility",
+              abilityName: "EntryAbility",
               action: "action1",
           }
       ],
@@ -555,7 +555,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
 |3301600 | Failed to operate the geofence.                                     |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   import wantAgent from '@ohos.wantAgent';
@@ -564,7 +564,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
       wants: [
           {
               bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility",
+              abilityName: "EntryAbility",
               action: "action1",
           }
       ],
@@ -612,7 +612,7 @@ on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void;
 
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var callback = (code) => {
@@ -653,7 +653,7 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
 |3301500 | Failed to query the area information.                                       |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var callback = (code) => {
@@ -698,7 +698,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 |3301200 | Failed to obtain the geographical location.  |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
@@ -745,7 +745,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 |3301200 | Failed to obtain the geographical location.  |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var locationChange = (err, location) => {
@@ -797,7 +797,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 |3301200 | Failed to obtain the geographical location.  |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
@@ -841,7 +841,7 @@ getLastLocation(): Location
 |3301200 |Failed to obtain the geographical location.  |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -875,7 +875,7 @@ isLocationEnabled(): boolean
 |3301000 | Location service is unavailable.  |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -912,7 +912,7 @@ requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;): void
 |3301700 | No response to the request.  |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -956,7 +956,7 @@ requestEnableLocation(): Promise&lt;boolean&gt;
 |3301700 | No response to the request.  |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -999,7 +999,7 @@ enableLocation(callback: AsyncCallback&lt;void&gt;): void;
 |3301000 | Location service is unavailable.                                            |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -1041,7 +1041,7 @@ enableLocation(): Promise&lt;void&gt;
 |3301000 | Location service is unavailable.                                            |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -1077,7 +1077,7 @@ disableLocation(): void;
 |3301000 | Location service is unavailable.                                            |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -1114,7 +1114,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
 |3301300 | Reverse geocoding query failed.   |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
@@ -1163,7 +1163,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 |3301300 | Reverse geocoding query failed.   |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
@@ -1205,7 +1205,7 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
 |3301400 | Geocoding query failed.   |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
@@ -1254,7 +1254,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 |3301400 | Geocoding query failed.   |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
@@ -1293,7 +1293,7 @@ isGeocoderAvailable(): boolean;
 |3301000 | Location service is unavailable.   |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -1330,7 +1330,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 |3301100 | The location switch is off.   |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -1374,7 +1374,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 |3301100 | The location switch is off.   |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -1417,7 +1417,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 |3301200 | Failed to obtain the geographical location.   |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -1459,7 +1459,7 @@ flushCachedGnssLocations(): Promise&lt;void&gt;;
 |3301200 | Failed to obtain the geographical location.   |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -1499,7 +1499,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void
 |3301000 | Location service is unavailable.   |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var requestInfo = {'scenario': 0x301, 'command': "command_1"};
@@ -1544,7 +1544,7 @@ sendCommand(command: LocationCommand): Promise&lt;void&gt;;
 |3301000 | Location service is unavailable.                                            |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var requestInfo = {'scenario': 0x301, 'command': "command_1"};
@@ -1585,7 +1585,7 @@ getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;): void;
 |3301500 | Failed to query the area information.|
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -1627,7 +1627,7 @@ getCountryCode(): Promise&lt;CountryCode&gt;;
 |3301500 | Failed to query the area information.|
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -1664,7 +1664,7 @@ enableLocationMock(): void;
 |3301100 | The location switch is off.|
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -1695,7 +1695,7 @@ disableLocationMock(): void;
 |3301100 | The location switch is off.|
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -1732,7 +1732,7 @@ setMockedLocations(config: LocationMockConfig): void;
 |3301100 | The location switch is off.|
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var locations = [
@@ -1770,7 +1770,7 @@ enableReverseGeocodingMock(): void;
 |3301000 | Location service is unavailable.                                            |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -1800,7 +1800,7 @@ disableReverseGeocodingMock(): void;
 |3301000 | Location service is unavailable.                                            |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -1836,7 +1836,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
 |3301000 | Location service is unavailable.                                            |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   var mockInfos = [
@@ -1885,7 +1885,7 @@ isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
 |3301000 | Location service is unavailable.                                            |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
@@ -1924,7 +1924,7 @@ setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean)
 |3301000 | Location service is unavailable.                                            |
 
 **示例**
-  
+
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {

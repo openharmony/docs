@@ -721,7 +721,7 @@ let flag = bundle.BundleFlag.GET_ABILITY_INFO_WITH_PERMISSION;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 
 bundle.getAbilityInfo(want, flag, userId).then((abilityInfo) => {
@@ -1042,7 +1042,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1081,7 +1081,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1126,7 +1126,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityLabel(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1165,7 +1165,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1203,7 +1203,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
     bundle.isAbilityEnabled(abilityInfo).then((data) => {
         console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1236,7 +1236,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
     bundle.isAbilityEnabled(abilityInfo, (err, data) => {
     if (err) {
@@ -1355,7 +1355,7 @@ let bundleFlags = 0;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 bundle.queryAbilityByWant(want, bundleFlags, userId)
 .then((data) => {
@@ -1401,7 +1401,7 @@ let bundleFlags = 0;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
     if (err) {
@@ -1444,7 +1444,7 @@ SystemCapability.BundleManager.BundleFramework
 let bundleFlags = 0;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
     if (err) {
@@ -1635,7 +1635,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityIcon(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1675,7 +1675,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));

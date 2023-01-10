@@ -14,7 +14,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let parameter = {
     "want": {
         bundleName: "com.ohos.stage",
-        abilityName: "com.ohos.stage.MainAbility"
+        abilityName: "com.ohos.stage.EntryAbility"
     }
 };
 featureAbility.startAbility(parameter).then((code) => {
@@ -38,7 +38,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let parameter = {
     "want": {
         bundleName: "com.ohos.stage",
-        abilityName: "com.ohos.stage.MainAbility"
+        abilityName: "com.ohos.stage.EntryAbility"
     }
 };
 featureAbility.startAbilityForResult(parameter).then((result) => {
@@ -60,7 +60,7 @@ import particleAbility from '@ohos.ability.particleAbility';
 let parameter = {
     "want": {
         bundleName: "com.ohos.stage",
-        abilityName: "com.ohos.stage.MainAbility"
+        abilityName: "com.ohos.stage.EntryAbility"
     }
 };
 particleAbility.startAbility(parameter).then(() => {

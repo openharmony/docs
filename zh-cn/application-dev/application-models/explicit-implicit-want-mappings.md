@@ -1,40 +1,41 @@
 # 显式Want与隐式Want匹配规则
 
+在启动目标Ability时，会通过显式Want或者隐式Want进行目标Ability的匹配，这里说的匹配规则就是调用方Want中设置的参数如何与目标Ability声明的配置文件进行匹配。
 
-在启动目标Ability时，会通过显式Want和隐式Want进行目标Ability的匹配，这里说的匹配规则就是调用方Want中设置的参数如何与目标Ability声明的配置文件进行匹配。
-
-
-- **显式Want匹配原理**
-    | 名称 | 类型 | 匹配项 | 必选 | 规则 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | deviceId | string | 是 | 否 | 留空将仅匹配本设备内Ability。 |
-  | bundleName | string | 是 | 是 | 如果指定abilityName，而不指定bundleName，则匹配失败。 |
-  | moduleName | string | 是 | 否 | 留空时当同一个应用内存在多个模块且模块间存在重名Ability，将默认匹配第一个。 |
-  | abilityName | string | 是 | 是 | 该字段必须设置表示显式匹配。 |
-  | uri | string | 否 | 否 | 系统匹配时将忽略该参数，但仍可作为参数传递给目标Ability。 |
-  | type | string | 否 | 否 | 系统匹配时将忽略该参数，但仍可作为参数传递给目标Ability。 |
-  | action | string | 否 | 否 | 系统匹配时将忽略该参数，但仍可作为参数传递给目标Ability。 |
-  | entities | Array&lt;string&gt; | 否 | 否 | 系统匹配时将忽略该参数，但仍可作为参数传递给目标Ability。 |
-  | flags | number | 否 | 否 | 不参与匹配，直接传递给系统处理，一般用来设置运行态信息，例如URI数据授权等。 |
-  | parameters | {[key:&nbsp;string]:&nbsp;any} | 否 | 否 | 不参与匹配，应用自定义数据将直接传递给目标Ability。 |
-
-- **隐式Want匹配原理**
-    | 名称 | 类型 | 匹配项 | 必选 | 规则 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | deviceId | string | 是 | 否 | 跨设备目前不支持隐式调用。 |
-  | abilityName | string | 否 | 否 | 该字段必须留空表示隐式匹配。 |
-  | bundleName | string | 是 | 否 | -&nbsp;声明bundleName时，隐式搜索将仅限于对应应用包内。<br/>-&nbsp;声明bundleName与moduleName时，隐式搜索将仅限于对应应用的对应Module内。<br/>-&nbsp;单独声明moduleName时，该字段无效。<br/>-&nbsp;同时声明bundleName与moduleName时，隐式搜索将仅限于对应应用包内的对应模块内。<br/>这些字段将用来隐式匹配，具体规则可参考[隐式Want匹配原理详解](#隐式want匹配原理详解)。 |
-  | moduleName | string | 是 | 否 |
-  | uri | string | 是 | 否 |
-  | type | string | 是 | 否 |
-  | action | string | 是 | 否 |
-  | entities | Array&lt;string&gt; | 是 | 否 |
-  | flags | number | 否 | 否 | 不参与匹配，直接传递给系统处理，一般用来设置运行态信息，例如URI数据授权等。 |
-  | parameters | {[key:&nbsp;string]:&nbsp;any} | 否 | 否 | 不参与匹配，应用自定义数据将直接传递给目标Ability。 |
+## 显式Want匹配原理
 
 
-## 隐式Want匹配原理详解
+显式Want匹配原理如下表所示。
 
+| 名称 | 类型 | 匹配项 | 必选 | 规则 |
+| -------- | -------- | -------- | -------- | -------- |
+| deviceId | string | 是 | 否 | 留空将仅匹配本设备内Ability。 |
+| bundleName | string | 是 | 是 | 如果指定abilityName，而不指定bundleName，则匹配失败。 |
+| moduleName | string | 是 | 否 | 留空时当同一个应用内存在多个模块且模块间存在重名Ability，将默认匹配第一个。 |
+| abilityName | string | 是 | 是 | 该字段必须设置表示显式匹配。 |
+| uri | string | 否 | 否 | 系统匹配时将忽略该参数，但仍可作为参数传递给目标Ability。 |
+| type | string | 否 | 否 | 系统匹配时将忽略该参数，但仍可作为参数传递给目标Ability。 |
+| action | string | 否 | 否 | 系统匹配时将忽略该参数，但仍可作为参数传递给目标Ability。 |
+| entities | Array&lt;string&gt; | 否 | 否 | 系统匹配时将忽略该参数，但仍可作为参数传递给目标Ability。 |
+| flags | number | 否 | 否 | 不参与匹配，直接传递给系统处理，一般用来设置运行态信息，例如URI数据授权等。 |
+| parameters | {[key:&nbsp;string]:&nbsp;any} | 否 | 否 | 不参与匹配，应用自定义数据将直接传递给目标Ability。 |
+
+## 隐式Want匹配原理
+
+隐式Want匹配原理如下表所示。
+
+| 名称        | 类型                           | 匹配项 | 必选 | 规则                                                         |
+| ----------- | ------------------------------ | ------ | ---- | ------------------------------------------------------------ |
+| deviceId    | string                         | 是     | 否   | 跨设备目前不支持隐式调用。                                   |
+| abilityName | string                         | 否     | 否   | 该字段必须留空表示隐式匹配。                                 |
+| bundleName  | string                         | 是     | 否   | -&nbsp;声明bundleName时，隐式搜索将仅限于对应应用包内。<br/>-&nbsp;声明bundleName与moduleName时，隐式搜索将仅限于对应应用的对应Module内。<br/>-&nbsp;单独声明moduleName时，该字段无效。<br/>-&nbsp;同时声明bundleName与moduleName时，隐式搜索将仅限于对应应用包内的对应模块内。<br/>这些字段将用来隐式匹配。 |
+| moduleName  | string                         | 是     | 否   |                                                              |
+| uri         | string                         | 是     | 否   |                                                              |
+| type        | string                         | 是     | 否   |                                                              |
+| action      | string                         | 是     | 否   |                                                              |
+| entities    | Array&lt;string&gt;            | 是     | 否   |                                                              |
+| flags       | number                         | 否     | 否   | 不参与匹配，直接传递给系统处理，一般用来设置运行态信息，例如URI数据授权等。 |
+| parameters  | {[key:&nbsp;string]:&nbsp;any} | 否     | 否   | 不参与匹配，应用自定义数据将直接传递给目标Ability。          |
 
 从隐式Want的定义，可得知：
 
@@ -59,7 +60,8 @@
 
 - 调用方传入的want参数的action不为空，待匹配Ability的skills配置中的actions不为空且不包含调用方传入的want参数的action，则action匹配失败。
 
-  **图1** want参数的action匹配规则  <img src="figures/want-action.png" alt="want-action" style="zoom:80%;" />
+  **图1** want参数的action匹配规则  
+  <img src="figures/want-action.png" alt="want-action" style="zoom:80%;" />
 
 
 ### want参数的entities匹配规则
