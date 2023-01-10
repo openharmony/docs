@@ -109,7 +109,7 @@ insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;numbe
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -154,7 +154,7 @@ update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueB
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -196,7 +196,7 @@ delete?(uri: string, predicates: dataSharePredicates.DataSharePredicates, callba
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -239,7 +239,7 @@ query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -284,7 +284,7 @@ batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: Asy
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
