@@ -264,6 +264,45 @@ struct WebComponent {
 }
 ```
 
+### setWebDebuggingAccess
+
+static setWebDebuggingAccess(webDebuggingAccess: boolean): void
+
+设置是否启用网页调试功能。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名              | 类型    | 必填   |  说明 |
+| ------------------ | ------- | ---- | ------------- |
+| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。|
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  aboutToAppear():void {
+    try {
+      web_webview.WebviewController.setWebDebuggingAccess(true);
+    } catch(error) {
+      console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### loadUrl
 
 loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
