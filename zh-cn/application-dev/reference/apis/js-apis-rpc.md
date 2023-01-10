@@ -2,17 +2,17 @@
 
 本模块提供进程间通信能力，包括设备内的进程间通信（IPC）和设备间的进程间通信（RPC），前者基于Binder驱动，后者基于软总线驱动。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块从API version 9开始支持异常返回功能。
-
+> **说明：**
+>
+> - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块从API version 9开始支持异常返回功能。
 
 ## 导入模块
 
 ```
 import rpc from '@ohos.rpc';
 ```
-
 
 ## ErrorCode<sup>9+</sup>
 
@@ -40,11 +40,11 @@ import rpc from '@ohos.rpc';
 
 ## MessageSequence<sup>9+</sup>
 
-  在RPC过程中，发送方可以使用MessageSequence提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageSequence提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
+  在RPC或IPC过程中，发送方可以使用MessageSequence提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageSequence提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
 
 ### create
 
-  create(): MessageSequence
+  static create(): MessageSequence
 
   静态方法，创建MessageSequence对象。
 
@@ -58,7 +58,7 @@ import rpc from '@ohos.rpc';
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   console.log("RpcClient: data is " + data);
   ```
@@ -73,7 +73,7 @@ reclaim(): void
 
 **示例：**
 
-  ```
+  ```ts
   let reply = rpc.MessageSequence.create();
   reply.reclaim();
   ```
@@ -103,7 +103,7 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -144,7 +144,7 @@ readRemoteObject(): IRemoteObject
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -185,7 +185,7 @@ writeInterfaceToken(token: string): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeInterfaceToken("aaa");
@@ -199,7 +199,7 @@ writeInterfaceToken(token: string): void
 
 readInterfaceToken(): string
 
-从MessageSequence中读取接口描述符，接口描述符按写入MessageSequence的顺序读取，本地对象可使用该信息检验本次通信。
+从MessageSequence对象中读取接口描述符，接口描述符按写入MessageSequence的顺序读取，本地对象可使用该信息检验本次通信。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -217,29 +217,28 @@ readInterfaceToken(): string
   | ------- | ----- |
   | 1900010 | read data from message sequence failed |
 
-
 **示例：**
 
-  ```
-  class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
-          try {
-              let interfaceToken = data.readInterfaceToken();
-              console.log("RpcServer: interfaceToken is " + interfaceToken);
-          } catch(error) {
-              console.info("RpcServer: read interfaceToken failed, errorCode " + error.code);
-              console.info("RpcServer: read interfaceToken failed, errorMessage " + error.message);
-          }
-          return true;
-      }
-  }
+```ts
+class Stub extends rpc.RemoteObject {
+    onRemoteRequest(code, data, reply, option) {
+        try {
+            let interfaceToken = data.readInterfaceToken();
+            console.log("RpcServer: interfaceToken is " + interfaceToken);
+        } catch(error) {
+            console.info("RpcServer: read interfaceToken failed, errorCode " + error.code);
+            console.info("RpcServer: read interfaceToken failed, errorMessage " + error.message);
+        }
+        return true;
+    }
+}
   ```
 
 ### getSize
 
 getSize(): number
 
-获取当前MessageSequence的数据大小。
+获取当前创建的MessageSequence对象的数据大小。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -247,11 +246,11 @@ getSize(): number
 
   | 类型   | 说明                                            |
   | ------ | ----------------------------------------------- |
-  | number | 获取的MessageSequence的数据大小。以字节为单位。 |
+  | number | 获取的MessageSequence实例的数据大小。以字节为单位。 |
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let size = data.getSize();
   console.log("RpcClient: size is " + size);
@@ -261,7 +260,7 @@ getSize(): number
 
 getCapacity(): number
 
-获取当前MessageSequence的容量。
+获取当前MessageSequence对象的容量大小。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -269,11 +268,11 @@ getCapacity(): number
 
   | 类型   | 说明 |
   | ------ | ----- |
-  | number | 获取的MessageSequence的容量大小。以字节为单位。 |
+  | number | 获取的MessageSequence实例的容量大小。以字节为单位。 |
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let result = data.getCapacity();
   console.log("RpcClient: capacity is " + result);
@@ -283,7 +282,7 @@ getCapacity(): number
 
 setSize(size: number): void
 
-设置MessageSequence实例中包含的数据大小。
+设置MessageSequence对象中包含的数据大小。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -295,7 +294,7 @@ setSize(size: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.setSize(16);
@@ -310,7 +309,7 @@ setSize(size: number): void
 
 setCapacity(size: number): void
 
-设置MessageSequence实例的存储容量。
+设置MessageSequence对象的存储容量。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -330,7 +329,7 @@ setCapacity(size: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.setCapacity(100);
@@ -345,7 +344,7 @@ setCapacity(size: number): void
 
 getWritableBytes(): number
 
-获取MessageSequence的可写字节空间。
+获取MessageSequence的可写字节空间大小。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -353,18 +352,18 @@ getWritableBytes(): number
 
   | 类型 | 说明 |
   | ------ | ------ |
-  | number | 获取到的MessageSequence的可写字节空间。以字节为单位。 |
+  | number | 获取到的MessageSequence实例的可写字节空间。以字节为单位。 |
 
 **示例：**
 
-  ```
-  class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
-          let getWritableBytes = data.getWritableBytes();
-          console.log("RpcServer: getWritableBytes is " + getWritableBytes);
-          return true;
-      }
-  }
+```ts
+class Stub extends rpc.RemoteObject {
+    onRemoteRequest(code, data, reply, option) {
+        let getWritableBytes = data.getWritableBytes();
+        console.log("RpcServer: getWritableBytes is " + getWritableBytes);
+        return true;
+    }
+}
   ```
 
 ### getReadableBytes
@@ -379,18 +378,18 @@ getReadableBytes(): number
 
   | 类型 | 说明 |
   | ------ | ------- |
-  | number | 获取到的MessageSequence的可读字节空间。以字节为单位。 |
+  | number | 获取到的MessageSequence实例的可读字节空间。以字节为单位。 |
 
 **示例：**
 
-  ```
-  class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
-          let result = data.getReadableBytes();
-          console.log("RpcServer: getReadableBytes is " + result);
-          return true;
-      }
-  }
+  ```ts
+class Stub extends rpc.RemoteObject {
+    onRemoteRequest(code, data, reply, option) {
+        let result = data.getReadableBytes();
+        console.log("RpcServer: getReadableBytes is " + result);
+        return true;
+    }
+}
   ```
 
 ### getReadPosition
@@ -409,7 +408,7 @@ getReadPosition(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let readPos = data.getReadPosition();
   console.log("RpcClient: readPos is " + readPos);
@@ -431,7 +430,7 @@ getWritePosition(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   data.writeInt(10);
   let bwPos = data.getWritePosition();
@@ -454,7 +453,7 @@ rewindRead(pos: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   data.writeInt(12);
   data.writeString("sequence");
@@ -486,7 +485,7 @@ rewindWrite(pos: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   data.writeInt(4);
   try {
@@ -524,7 +523,7 @@ writeByte(val: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeByte(2);
@@ -558,7 +557,7 @@ readByte(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeByte(2);
@@ -599,7 +598,7 @@ writeShort(val: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeShort(8);
@@ -633,7 +632,7 @@ readShort(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeShort(8);
@@ -674,7 +673,7 @@ writeInt(val: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeInt(10);
@@ -708,7 +707,7 @@ readInt(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeInt(10);
@@ -749,7 +748,7 @@ writeLong(val: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeLong(10000);
@@ -783,7 +782,7 @@ readLong(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeLong(10000);
@@ -824,7 +823,7 @@ writeFloat(val: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloat(1.2);
@@ -858,7 +857,7 @@ readFloat(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloat(1.2);
@@ -899,7 +898,7 @@ writeDouble(val: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeDouble(10.2);
@@ -933,7 +932,7 @@ readDouble(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeDouble(10.2);
@@ -974,7 +973,7 @@ writeBoolean(val: boolean): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeBoolean(false);
@@ -1008,7 +1007,7 @@ readBoolean(): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeBoolean(false);
@@ -1049,7 +1048,7 @@ writeChar(val: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeChar(97);
@@ -1083,7 +1082,7 @@ readChar(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeChar(97);
@@ -1124,7 +1123,7 @@ writeString(val: string): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeString('abc');
@@ -1158,7 +1157,7 @@ readString(): string
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeString('abc');
@@ -1199,7 +1198,7 @@ writeParcelable(val: Parcelable): void
 
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -1253,7 +1252,7 @@ readParcelable(dataIn: Parcelable): void
 
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -1308,7 +1307,7 @@ writeByteArray(byteArray: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
@@ -1343,7 +1342,7 @@ readByteArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
@@ -1385,7 +1384,7 @@ readByteArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let byteArrayVar = [1, 2, 3, 4, 5];
   try {
@@ -1427,7 +1426,7 @@ writeShortArray(shortArray: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeShortArray([11, 12, 13]);
@@ -1461,7 +1460,7 @@ readShortArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeShortArray([11, 12, 13]);
@@ -1502,7 +1501,7 @@ readShortArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeShortArray([11, 12, 13]);
@@ -1543,7 +1542,7 @@ writeIntArray(intArray: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeIntArray([100, 111, 112]);
@@ -1577,7 +1576,7 @@ readIntArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeIntArray([100, 111, 112]);
@@ -1618,7 +1617,7 @@ readIntArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeIntArray([100, 111, 112]);
@@ -1659,7 +1658,7 @@ writeLongArray(longArray: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeLongArray([1111, 1112, 1113]);
@@ -1673,7 +1672,7 @@ writeLongArray(longArray: number[]): void
 
 readLongArray(dataIn: number[]): void
 
-从MessageSequence实例读取长整数数组。
+从MessageSequence实例读取的长整数数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -1693,7 +1692,7 @@ readLongArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeLongArray([1111, 1112, 1113]);
@@ -1714,7 +1713,7 @@ readLongArray(dataIn: number[]): void
 
 readLongArray(): number[]
 
-从MessageSequence实例中读取长整数数组。
+从MessageSequence实例中读取所有的长整数数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -1734,7 +1733,7 @@ readLongArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeLongArray([1111, 1112, 1113]);
@@ -1775,7 +1774,7 @@ writeFloatArray(floatArray: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -1809,7 +1808,7 @@ readFloatArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -1850,7 +1849,7 @@ readFloatArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -1891,7 +1890,7 @@ writeDoubleArray(doubleArray: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -1925,7 +1924,7 @@ readDoubleArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -1946,7 +1945,7 @@ readDoubleArray(dataIn: number[]): void
 
 readDoubleArray(): number[]
 
-从MessageSequence实例读取双精度浮点数组。
+从MessageSequence实例读取所有双精度浮点数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -1966,7 +1965,7 @@ readDoubleArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -2007,7 +2006,7 @@ writeBooleanArray(booleanArray: boolean[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeBooleanArray([false, true, false]);
@@ -2041,7 +2040,7 @@ readBooleanArray(dataIn: boolean[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeBooleanArray([false, true, false]);
@@ -2062,7 +2061,7 @@ readBooleanArray(dataIn: boolean[]): void
 
 readBooleanArray(): boolean[]
 
-从MessageSequence实例中读取布尔数组。
+从MessageSequence实例中读取所有布尔数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -2082,7 +2081,7 @@ readBooleanArray(): boolean[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeBooleanArray([false, true, false]);
@@ -2123,7 +2122,7 @@ writeCharArray(charArray: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeCharArray([97, 98, 88]);
@@ -2157,7 +2156,7 @@ readCharArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeCharArray([97, 98, 88]);
@@ -2198,7 +2197,7 @@ readCharArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeCharArray([97, 98, 88]);
@@ -2240,7 +2239,7 @@ writeStringArray(stringArray: string[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeStringArray(["abc", "def"]);
@@ -2274,7 +2273,7 @@ readStringArray(dataIn: string[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeStringArray(["abc", "def"]);
@@ -2315,7 +2314,7 @@ readStringArray(): string[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeStringArray(["abc", "def"]);
@@ -2350,7 +2349,7 @@ writeNoException(): void
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -2392,7 +2391,7 @@ readException(): void
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -2465,7 +2464,7 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 
 **示例：**
 
-  ```
+  ```ts
   class MyParcelable {
       num: number;
       str: string;
@@ -2522,7 +2521,7 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 
 **示例：**
 
-  ```
+  ```ts
   class MyParcelable {
       num: number;
       str: string;
@@ -2582,7 +2581,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -2629,7 +2628,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -2682,7 +2681,7 @@ readRemoteObjectArray(): IRemoteObject[]
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -2710,7 +2709,7 @@ readRemoteObjectArray(): IRemoteObject[]
 
 static closeFileDescriptor(fd: number): void
 
-关闭给定的文件描述符。
+静态方法，关闭给定的文件描述符。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -2722,7 +2721,7 @@ static closeFileDescriptor(fd: number): void
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let filePath = "path/to/file";
   let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
@@ -2738,7 +2737,7 @@ static closeFileDescriptor(fd: number): void
 
 static dupFileDescriptor(fd: number) :number
 
-复制给定的文件描述符。
+静态方法，复制给定的文件描述符。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -2764,7 +2763,7 @@ static dupFileDescriptor(fd: number) :number
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let filePath = "path/to/file";
   let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
@@ -2788,12 +2787,12 @@ containFileDescriptors(): boolean
 
   | 类型    | 说明                                                                 |
   | ------- | -------------------------------------------------------------------- |
-  | boolean | 如果此MessageSequence对象包含文件描述符，则返回true；否则返回false。 |
+  | boolean | true：包含文件描述符，false：不包含文件描述符。|
 
 **示例：**
 
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
@@ -2838,7 +2837,7 @@ writeFileDescriptor(fd: number): void
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
@@ -2850,7 +2849,6 @@ writeFileDescriptor(fd: number): void
       console.info("rpc write file descriptor fail, errorMessage" + error.message);
   }
   ```
-
 
 ### readFileDescriptor
 
@@ -2876,7 +2874,7 @@ readFileDescriptor(): number
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
@@ -2894,7 +2892,6 @@ readFileDescriptor(): number
       console.info("rpc read file descriptor fail, errorMessage" + error.message);
   }
   ```
-
 
 ### writeAshmem
 
@@ -2920,7 +2917,7 @@ writeAshmem(ashmem: Ashmem): void
 
 **示例：**
 
-  ```
+  ```ts
   let sequence = new rpc.MessageSequence();
   let ashmem;
   try {
@@ -2962,7 +2959,7 @@ readAshmem(): Ashmem
 
 **示例：**
 
-  ```
+  ```ts
   let sequence = new rpc.MessageSequence();
   let ashmem;
   try {
@@ -2986,7 +2983,6 @@ readAshmem(): Ashmem
   }
   ```
 
-
 ### getRawDataCapacity
 
 getRawDataCapacity(): number
@@ -3003,12 +2999,11 @@ getRawDataCapacity(): number
 
 **示例：**
 
-  ```
+  ```ts
   let sequence = new rpc.MessageSequence();
   let result = sequence.getRawDataCapacity();
   console.log("RpcTest: sequence get RawDataCapacity result is : " + result);
   ```
-
 
 ### writeRawData
 
@@ -3035,7 +3030,7 @@ writeRawData(rawData: number[], size: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
   try {
@@ -3045,7 +3040,6 @@ writeRawData(rawData: number[], size: number): void
       console.info("rpc write rawdata fail, errorMessage" + error.message);
   }
   ```
-
 
 ### readRawData
 
@@ -3077,7 +3071,7 @@ readRawData(size: number): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
   try {
@@ -3103,7 +3097,7 @@ readRawData(size: number): number[]
 
 ### create
 
-create(): MessageParcel
+static create(): MessageParcel
 
 静态方法，创建MessageParcel对象。
 
@@ -3117,7 +3111,7 @@ create(): MessageParcel
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   console.log("RpcClient: data is " + data);
   ```
@@ -3132,7 +3126,7 @@ reclaim(): void
 
 **示例：**
 
-  ```
+  ```ts
   let reply = rpc.MessageParcel.create();
   reply.reclaim();
   ```
@@ -3155,11 +3149,11 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
 
   | 类型    | 说明                                      |
   | ------- | ----------------------------------------- |
-  | boolean | 如果操作成功，则返回true；否则返回false。 |
+  | boolean | true：操作成功，false：操作失败。|
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -3200,7 +3194,7 @@ readRemoteObject(): IRemoteObject
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -3244,11 +3238,11 @@ writeInterfaceToken(token: string): boolean
 
   | 类型    | 说明                                      |
   | ------- | ----------------------------------------- |
-  | boolean | 如果操作成功，则返回true；否则返回false。 |
+  | boolean | true：操作成功，false：操作失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeInterfaceToken("aaa");
   console.log("RpcServer: writeInterfaceToken is " + result);
@@ -3271,7 +3265,7 @@ readInterfaceToken(): string
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let interfaceToken = data.readInterfaceToken();
@@ -3280,7 +3274,6 @@ readInterfaceToken(): string
       }
   }
   ```
-
 
 ### getSize
 
@@ -3298,12 +3291,11 @@ getSize(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let size = data.getSize();
   console.log("RpcClient: size is " + size);
   ```
-
 
 ### getCapacity
 
@@ -3321,12 +3313,11 @@ getCapacity(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.getCapacity();
   console.log("RpcClient: capacity is " + result);
   ```
-
 
 ### setSize
 
@@ -3346,16 +3337,15 @@ setSize(size: number): boolean
 
   | 类型    | 说明                              |
   | ------- | --------------------------------- |
-  | boolean | 设置成功返回true，否则返回false。 |
+  | boolean | true：设置成功，false：设置失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let setSize = data.setSize(16);
   console.log("RpcClient: setSize is " + setSize);
   ```
-
 
 ### setCapacity
 
@@ -3375,16 +3365,15 @@ setCapacity(size: number): boolean
 
   | 类型    | 说明                              |
   | ------- | --------------------------------- |
-  | boolean | 设置成功返回true，否则返回false。 |
+  | boolean | true：设置成功，false：设置失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.setCapacity(100);
   console.log("RpcClient: setCapacity is " + result);
   ```
-
 
 ### getWritableBytes
 
@@ -3402,7 +3391,7 @@ getWritableBytes(): number
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let getWritableBytes = data.getWritableBytes();
@@ -3411,7 +3400,6 @@ getWritableBytes(): number
       }
   }
   ```
-
 
 ### getReadableBytes
 
@@ -3429,7 +3417,7 @@ getReadableBytes(): number
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteRequest(code, data, reply, option) {
           let result = data.getReadableBytes();
@@ -3438,7 +3426,6 @@ getReadableBytes(): number
       }
   }
   ```
-
 
 ### getReadPosition
 
@@ -3456,12 +3443,11 @@ getReadPosition(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let readPos = data.getReadPosition();
   console.log("RpcClient: readPos is " + readPos);
   ```
-
 
 ### getWritePosition
 
@@ -3479,13 +3465,12 @@ getWritePosition(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   data.writeInt(10);
   let bwPos = data.getWritePosition();
   console.log("RpcClient: bwPos is " + bwPos);
   ```
-
 
 ### rewindRead
 
@@ -3505,11 +3490,11 @@ rewindRead(pos: number): boolean
 
   | 类型    | 说明                                              |
   | ------- | ------------------------------------------------- |
-  | boolean | 如果读取位置发生更改，则返回true；否则返回false。 |
+  | boolean | true：读取位置发生更改，false：读取位置未发生更改。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   data.writeInt(12);
   data.writeString("parcel");
@@ -3519,7 +3504,6 @@ rewindRead(pos: number): boolean
   let number2 = data.readInt();
   console.log("RpcClient: rewindRead is " + number2);
   ```
-
 
 ### rewindWrite
 
@@ -3539,11 +3523,11 @@ rewindWrite(pos: number): boolean
 
   | 类型    | 说明                                          |
   | ------- | --------------------------------------------- |
-  | boolean | 如果写入位置更改，则返回true；否则返回false。 |
+  | boolean | true：写入位置发生更改，false：写入位置未发生更改。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   data.writeInt(4);
   data.rewindWrite(0);
@@ -3551,7 +3535,6 @@ rewindWrite(pos: number): boolean
   let number = data.readInt();
   console.log("RpcClient: rewindWrite is: " + number);
   ```
-
 
 ### writeByte
 
@@ -3575,12 +3558,11 @@ writeByte(val: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
   console.log("RpcClient: writeByte is: " + result);
   ```
-
 
 ### readByte
 
@@ -3598,14 +3580,13 @@ readByte(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
   console.log("RpcClient: writeByte is: " + result);
   let ret = data.readByte();
   console.log("RpcClient: readByte is: " + ret);
   ```
-
 
 ### writeShort
 
@@ -3625,16 +3606,15 @@ writeShort(val: number): boolean
 
   | 类型    | 说明                          |
   | ------- | ----------------------------- |
-  | boolean | 写入返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
   console.log("RpcClient: writeShort is: " + result);
   ```
-
 
 ### readShort
 
@@ -3652,14 +3632,13 @@ readShort(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
   console.log("RpcClient: writeShort is: " + result);
   let ret = data.readShort();
   console.log("RpcClient: readShort is: " + ret);
   ```
-
 
 ### writeInt
 
@@ -3683,12 +3662,11 @@ writeInt(val: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
   console.log("RpcClient: writeInt is " + result);
   ```
-
 
 ### readInt
 
@@ -3706,14 +3684,13 @@ readInt(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
   console.log("RpcClient: writeInt is " + result);
   let ret = data.readInt();
   console.log("RpcClient: readInt is " + ret);
   ```
-
 
 ### writeLong
 
@@ -3733,16 +3710,15 @@ writeLong(val: number): boolean
 
   | 类型    | 说明                              |
   | ------- | --------------------------------- |
-  | boolean | 写入成功返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
   console.log("RpcClient: writeLong is " + result);
   ```
-
 
 ### readLong
 
@@ -3760,14 +3736,13 @@ readLong(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
   console.log("RpcClient: writeLong is " + result);
   let ret = data.readLong();
   console.log("RpcClient: readLong is " + ret);
   ```
-
 
 ### writeFloat
 
@@ -3787,16 +3762,15 @@ writeFloat(val: number): boolean
 
   | 类型    | 说明                              |
   | ------- | --------------------------------- |
-  | boolean | 写入成功返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
   console.log("RpcClient: writeFloat is " + result);
   ```
-
 
 ### readFloat
 
@@ -3814,14 +3788,13 @@ readFloat(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
   console.log("RpcClient: writeFloat is " + result);
   let ret = data.readFloat();
   console.log("RpcClient: readFloat is " + ret);
   ```
-
 
 ### writeDouble
 
@@ -3841,16 +3814,15 @@ writeDouble(val: number): boolean
 
   | 类型    | 说明                              |
   | ------- | --------------------------------- |
-  | boolean | 写入成功返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
   console.log("RpcClient: writeDouble is " + result);
   ```
-
 
 ### readDouble
 
@@ -3868,7 +3840,7 @@ readDouble(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
   console.log("RpcClient: writeDouble is " + result);
@@ -3894,16 +3866,15 @@ writeBoolean(val: boolean): boolean
 
   | 类型    | 说明                              |
   | ------- | --------------------------------- |
-  | boolean | 写入成功返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
   console.log("RpcClient: writeBoolean is " + result);
   ```
-
 
 ### readBoolean
 
@@ -3921,14 +3892,13 @@ readBoolean(): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
   console.log("RpcClient: writeBoolean is " + result);
   let ret = data.readBoolean();
   console.log("RpcClient: readBoolean is " + ret);
   ```
-
 
 ### writeChar
 
@@ -3948,16 +3918,15 @@ writeChar(val: number): boolean
 
   | 类型    | 说明                          |
   | ------- | ----------------------------- |
-  | boolean | 写入返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
   console.log("RpcClient: writeChar is " + result);
   ```
-
 
 ### readChar
 
@@ -3975,14 +3944,13 @@ readChar(): number
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
   console.log("RpcClient: writeChar is " + result);
   let ret = data.readChar();
   console.log("RpcClient: readChar is " + ret);
   ```
-
 
 ### writeString
 
@@ -4002,16 +3970,15 @@ writeString(val: string): boolean
 
   | 类型    | 说明                              |
   | ------- | --------------------------------- |
-  | boolean | 写入成功返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
   console.log("RpcClient: writeString  is " + result);
   ```
-
 
 ### readString
 
@@ -4029,14 +3996,13 @@ readString(): string
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
   console.log("RpcClient: writeString  is " + result);
   let ret = data.readString();
   console.log("RpcClient: readString is " + ret);
   ```
-
 
 ### writeSequenceable
 
@@ -4056,11 +4022,11 @@ writeSequenceable(val: Sequenceable): boolean
 
   | 类型    | 说明                              |
   | ------- | --------------------------------- |
-  | boolean | 写入成功返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -4085,7 +4051,6 @@ writeSequenceable(val: Sequenceable): boolean
   console.log("RpcClient: writeSequenceable is " + result);
   ```
 
-
 ### readSequenceable
 
 readSequenceable(dataIn: Sequenceable): boolean
@@ -4104,11 +4069,11 @@ readSequenceable(dataIn: Sequenceable): boolean
 
   | 类型    | 说明                                        |
   | ------- | ------------------------------------------- |
-  | boolean | 如果反序列成功，则返回true；否则返回false。 |
+  | boolean | true：反序列化成功，false：反序列化失败。|
 
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -4136,7 +4101,6 @@ readSequenceable(dataIn: Sequenceable): boolean
   console.log("RpcClient: writeSequenceable is " + result2);
   ```
 
-
 ### writeByteArray
 
 writeByteArray(byteArray: number[]): boolean
@@ -4155,17 +4119,16 @@ writeByteArray(byteArray: number[]): boolean
 
   | 类型    | 说明                              |
   | ------- | --------------------------------- |
-  | boolean | 写入成功返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
   console.log("RpcClient: writeByteArray is " + result);
   ```
-
 
 ### readByteArray
 
@@ -4183,7 +4146,7 @@ readByteArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
@@ -4191,7 +4154,6 @@ readByteArray(dataIn: number[]): void
   let array = new Array(5);
   data.readByteArray(array);
   ```
-
 
 ### readByteArray
 
@@ -4209,7 +4171,7 @@ readByteArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
@@ -4217,7 +4179,6 @@ readByteArray(): number[]
   let array = data.readByteArray();
   console.log("RpcClient: readByteArray is " + array);
   ```
-
 
 ### writeShortArray
 
@@ -4237,16 +4198,15 @@ writeShortArray(shortArray: number[]): boolean
 
   | 类型    | 说明                          |
   | ------- | ----------------------------- |
-  | boolean | 写入返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
   console.log("RpcClient: writeShortArray is " + result);
   ```
-
 
 ### readShortArray
 
@@ -4264,14 +4224,13 @@ readShortArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
   console.log("RpcClient: writeShortArray is " + result);
   let array = new Array(3);
   data.readShortArray(array);
   ```
-
 
 ### readShortArray
 
@@ -4289,14 +4248,13 @@ readShortArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
   console.log("RpcClient: writeShortArray is " + result);
   let array = data.readShortArray();
  console.log("RpcClient: readShortArray is " + array);
   ```
-
 
 ### writeIntArray
 
@@ -4316,16 +4274,15 @@ writeIntArray(intArray: number[]): boolean
 
   | 类型    | 说明                          |
   | ------- | ----------------------------- |
-  | boolean | 写入返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
   console.log("RpcClient: writeIntArray is " + result);
   ```
-
 
 ### readIntArray
 
@@ -4343,14 +4300,13 @@ readIntArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
   console.log("RpcClient: writeIntArray is " + result);
   let array = new Array(3);
   data.readIntArray(array);
   ```
-
 
 ### readIntArray
 
@@ -4368,14 +4324,13 @@ readIntArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
   console.log("RpcClient: writeIntArray is " + result);
   let array = data.readIntArray();
   console.log("RpcClient: readIntArray is " + array);
   ```
-
 
 ### writeLongArray
 
@@ -4395,16 +4350,15 @@ writeLongArray(longArray: number[]): boolean
 
   | 类型    | 说明                          |
   | ------- | ----------------------------- |
-  | boolean | 写入返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
   console.log("RpcClient: writeLongArray is " + result);
   ```
-
 
 ### readLongArray
 
@@ -4422,14 +4376,13 @@ readLongArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
   console.log("RpcClient: writeLongArray is " + result);
   let array = new Array(3);
   data.readLongArray(array);
   ```
-
 
 ### readLongArray
 
@@ -4447,14 +4400,13 @@ readLongArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
   console.log("RpcClient: writeLongArray is " + result);
   let array = data.readLongArray();
   console.log("RpcClient: readLongArray is " + array);
   ```
-
 
 ### writeFloatArray
 
@@ -4474,16 +4426,15 @@ writeFloatArray(floatArray: number[]): boolean
 
   | 类型    | 说明                          |
   | ------- | ----------------------------- |
-  | boolean | 写入返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
   console.log("RpcClient: writeFloatArray is " + result);
   ```
-
 
 ### readFloatArray
 
@@ -4501,14 +4452,13 @@ readFloatArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
   console.log("RpcClient: writeFloatArray is " + result);
   let array = new Array(3);
   data.readFloatArray(array);
   ```
-
 
 ### readFloatArray
 
@@ -4526,14 +4476,13 @@ readFloatArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
   console.log("RpcClient: writeFloatArray is " + result);
   let array = data.readFloatArray();
   console.log("RpcClient: readFloatArray is " + array);
   ```
-
 
 ### writeDoubleArray
 
@@ -4553,16 +4502,15 @@ writeDoubleArray(doubleArray: number[]): boolean
 
   | 类型    | 说明                          |
   | ------- | ----------------------------- |
-  | boolean | 写入返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
   console.log("RpcClient: writeDoubleArray is " + result);
   ```
-
 
 ### readDoubleArray
 
@@ -4580,14 +4528,13 @@ readDoubleArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
   console.log("RpcClient: writeDoubleArray is " + result);
   let array = new Array(3);
   data.readDoubleArray(array);
   ```
-
 
 ### readDoubleArray
 
@@ -4605,14 +4552,13 @@ readDoubleArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
   console.log("RpcClient: writeDoubleArray is " + result);
   let array = data.readDoubleArray();
   console.log("RpcClient: readDoubleArray is " + array);
   ```
-
 
 ### writeBooleanArray
 
@@ -4632,16 +4578,15 @@ writeBooleanArray(booleanArray: boolean[]): boolean
 
   | 类型    | 说明                              |
   | ------- | --------------------------------- |
-  | boolean | 写入成功返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
   console.log("RpcClient: writeBooleanArray is " + result);
   ```
-
 
 ### readBooleanArray
 
@@ -4659,14 +4604,13 @@ readBooleanArray(dataIn: boolean[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
   console.log("RpcClient: writeBooleanArray is " + result);
   let array = new Array(3);
   data.readBooleanArray(array);
   ```
-
 
 ### readBooleanArray
 
@@ -4684,14 +4628,13 @@ readBooleanArray(): boolean[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
   console.log("RpcClient: writeBooleanArray is " + result);
   let array = data.readBooleanArray();
   console.log("RpcClient: readBooleanArray is " + array);
   ```
-
 
 ### writeCharArray
 
@@ -4711,16 +4654,15 @@ writeCharArray(charArray: number[]): boolean
 
   | 类型    | 说明                              |
   | ------- | --------------------------------- |
-  | boolean | 写入成功返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 88]);
   console.log("RpcClient: writeCharArray is " + result);
   ```
-
 
 ### readCharArray
 
@@ -4738,14 +4680,13 @@ readCharArray(dataIn: number[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
   console.log("RpcClient: writeCharArray is " + result);
   let array = new Array(3);
   data.readCharArray(array);
   ```
-
 
 ### readCharArray
 
@@ -4763,14 +4704,13 @@ readCharArray(): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
   console.log("RpcClient: writeCharArray is " + result);
   let array = data.readCharArray();
   console.log("RpcClient: readCharArray is " + array);
   ```
-
 
 ### writeStringArray
 
@@ -4790,16 +4730,15 @@ writeStringArray(stringArray: string[]): boolean
 
   | 类型    | 说明 |
   | ------- | --------------------------------- |
-  | boolean | 写入成功返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
   console.log("RpcClient: writeStringArray is " + result);
   ```
-
 
 ### readStringArray
 
@@ -4817,14 +4756,13 @@ readStringArray(dataIn: string[]): void
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
   console.log("RpcClient: writeStringArray is " + result);
   let array = new Array(2);
   data.readStringArray(array);
   ```
-
 
 ### readStringArray
 
@@ -4842,14 +4780,13 @@ readStringArray(): string[]
 
 **示例：**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
   console.log("RpcClient: writeStringArray is " + result);
   let array = data.readStringArray();
   console.log("RpcClient: readStringArray is " + array);
   ```
-
 
 ### writeNoException<sup>8+</sup>
 
@@ -4861,7 +4798,7 @@ writeNoException(): void
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -4903,7 +4840,7 @@ readException(): void
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -4965,11 +4902,11 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
 
   | 类型    | 说明                              |
   | ------- | --------------------------------- |
-  | boolean | 写入成功返回true，否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -4997,7 +4934,6 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
   console.log("RpcClient: writeSequenceableArray is " + result);
   ```
 
-
 ### readSequenceableArray<sup>8+</sup>
 
 readSequenceableArray(sequenceableArray: Sequenceable[]): void
@@ -5014,7 +4950,7 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
 
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -5044,7 +4980,6 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
   data.readSequenceableArray(b);
   ```
 
-
 ### writeRemoteObjectArray<sup>8+</sup>
 
 writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
@@ -5063,11 +4998,11 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
 
   | 类型    | 说明                                                                                                                 |
   | ------- | -------------------------------------------------------------------------------------------------------------------- |
-  | boolean | 如果IRemoteObject对象数组成功写入MessageParcel，则返回true；如果对象为null或数组写入MessageParcel失败，则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -5097,7 +5032,6 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
   console.log("RpcClient: writeRemoteObjectArray is " + result);
   ```
 
-
 ### readRemoteObjectArray<sup>8+</sup>
 
 readRemoteObjectArray(objects: IRemoteObject[]): void
@@ -5114,7 +5048,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -5145,7 +5079,6 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
   data.readRemoteObjectArray(b);
   ```
 
-
 ### readRemoteObjectArray<sup>8+</sup>
 
 readRemoteObjectArray(): IRemoteObject[]
@@ -5162,7 +5095,7 @@ readRemoteObjectArray(): IRemoteObject[]
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -5194,12 +5127,11 @@ readRemoteObjectArray(): IRemoteObject[]
   console.log("RpcClient: readRemoteObjectArray is " + b);
   ```
 
-
 ### closeFileDescriptor<sup>8+</sup>
 
 static closeFileDescriptor(fd: number): void
 
-关闭给定的文件描述符。
+静态方法，关闭给定的文件描述符。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5211,19 +5143,18 @@ static closeFileDescriptor(fd: number): void
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let filePath = "path/to/file";
   let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
   rpc.MessageParcel.closeFileDescriptor(fd);
   ```
 
-
 ### dupFileDescriptor<sup>8+</sup>
 
 static dupFileDescriptor(fd: number) :number
 
-复制给定的文件描述符。
+静态方法，复制给定的文件描述符。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5241,13 +5172,12 @@ static dupFileDescriptor(fd: number) :number
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let filePath = "path/to/file";
   let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
   let newFd = rpc.MessageParcel.dupFileDescriptor(fd);
   ```
-
 
 ### containFileDescriptors<sup>8+</sup>
 
@@ -5261,11 +5191,11 @@ containFileDescriptors(): boolean
 
   | 类型    | 说明                                                               |
   | ------- | ------------------------------------------------------------------ |
-  | boolean | 如果此MessageParcel对象包含文件描述符，则返回true；否则返回false。 |
+  | boolean |true：包含文件描述符，false：未包含文件描述符。|
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
@@ -5276,7 +5206,6 @@ containFileDescriptors(): boolean
   let containFD = parcel.containFileDescriptors();
   console.log("RpcTest: parcel after write fd containFd result is : " + containFD);
   ```
-
 
 ### writeFileDescriptor<sup>8+</sup>
 
@@ -5296,11 +5225,11 @@ writeFileDescriptor(fd: number): boolean
 
   | 类型    | 说明                                      |
   | ------- | ----------------------------------------- |
-  | boolean | 如果操作成功，则返回true；否则返回false。 |
+  | boolean | true：操作成功，false：操作失败。|
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
@@ -5308,7 +5237,6 @@ writeFileDescriptor(fd: number): boolean
   let writeResult = parcel.writeFileDescriptor(fd);
   console.log("RpcTest: parcel writeFd result is : " + writeResult);
   ```
-
 
 ### readFileDescriptor<sup>8+</sup>
 
@@ -5326,7 +5254,7 @@ readFileDescriptor(): number
 
 **示例：**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
@@ -5335,7 +5263,6 @@ readFileDescriptor(): number
   let readFD = parcel.readFileDescriptor();
   console.log("RpcTest: parcel read fd is : " + readFD);
   ```
-
 
 ### writeAshmem<sup>8+</sup>
 
@@ -5355,17 +5282,16 @@ writeAshmem(ashmem: Ashmem): boolean
 
   | 类型    | 说明                                                                 |
   | ------- | -------------------------------------------------------------------- |
-  | boolean | 如果匿名共享对象成功写入此MessageParcel，则返回true；否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
   let isWriteSuccess = parcel.writeAshmem(ashmem);
   console.log("RpcTest: write ashmem to result is : " + isWriteSuccess);
   ```
-
 
 ### readAshmem<sup>8+</sup>
 
@@ -5383,7 +5309,7 @@ readAshmem(): Ashmem
 
 **示例：**
 
-  ```
+  ```ts
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
   let isWriteSuccess = parcel.writeAshmem(ashmem);
@@ -5391,7 +5317,6 @@ readAshmem(): Ashmem
   let readAshmem = parcel.readAshmem();
   console.log("RpcTest: read ashmem to result is : " + readAshmem);
   ```
-
 
 ### getRawDataCapacity<sup>8+</sup>
 
@@ -5409,12 +5334,11 @@ getRawDataCapacity(): number
 
 **示例：**
 
-  ```
+  ```ts
   let parcel = new rpc.MessageParcel();
   let result = parcel.getRawDataCapacity();
   console.log("RpcTest: parcel get RawDataCapacity result is : " + result);
   ```
-
 
 ### writeRawData<sup>8+</sup>
 
@@ -5435,17 +5359,16 @@ writeRawData(rawData: number[], size: number): boolean
 
   | 类型    | 说明                                      |
   | ------- | ----------------------------------------- |
-  | boolean | 如果操作成功，则返回true；否则返回false。 |
+  | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
   let isWriteSuccess = parcel.writeRawData(arr, arr.length);
   console.log("RpcTest: parcel write raw data result is : " + isWriteSuccess);
   ```
-
 
 ### readRawData<sup>8+</sup>
 
@@ -5469,7 +5392,7 @@ readRawData(size: number): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
   let isWriteSuccess = parcel.writeRawData(arr, arr.length);
@@ -5477,7 +5400,6 @@ readRawData(size: number): number[]
   let result = parcel.readRawData(5);
   console.log("RpcTest: parcel read raw data result is : " + result);
   ```
-
 
 ## Parcelable<sup>9+</sup>
 
@@ -5501,11 +5423,10 @@ marshalling(dataOut: MessageSequence): boolean
 
   | 类型    | 说明                                      |
   | ------- | ----------------------------------------- |
-  | boolean | 如果封送成功，则返回true；否则返回false。 |
-
+  | boolean | true：封送成功，false：封送失败。
 **示例：**
 
-  ```
+  ```ts
   class MyParcelable {
       num: number;
       str: string;
@@ -5532,7 +5453,6 @@ marshalling(dataOut: MessageSequence): boolean
   let result2 = data.readParcelable(ret);
   console.log("RpcClient: readParcelable is " + result2);
   ```
-
 
 ### unmarshalling
 
@@ -5552,11 +5472,11 @@ unmarshalling(dataIn: MessageSequence): boolean
 
   | 类型    | 说明                                          |
   | ------- | --------------------------------------------- |
-  | boolean | 如果可序列化成功，则返回true；否则返回false。 |
+  | boolean | true：反序列化成功，false：反序列化失败。|
 
 **示例：**
 
-  ```
+  ```ts
   class MyParcelable {
       num: number;
       str: string;
@@ -5583,7 +5503,6 @@ unmarshalling(dataIn: MessageSequence): boolean
   let result2 = data.readParcelable(ret);
   console.log("RpcClient: readParcelable is " + result2);
   ```
-
 
 ## Sequenceable<sup>(deprecated)</sup>
 
@@ -5609,11 +5528,10 @@ marshalling(dataOut: MessageParcel): boolean
 
   | 类型    | 说明                                      |
   | ------- | ----------------------------------------- |
-  | boolean | 如果封送成功，则返回true；否则返回false。 |
-
+  | boolean | true：封送成功，false：封送失败。
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -5640,7 +5558,6 @@ marshalling(dataOut: MessageParcel): boolean
   let result2 = data.readSequenceable(ret);
   console.log("RpcClient: readSequenceable is " + result2);
   ```
-
 
 ### unmarshalling
 
@@ -5660,11 +5577,11 @@ unmarshalling(dataIn: MessageParcel): boolean
 
   | 类型    | 说明                                          |
   | ------- | --------------------------------------------- |
-  | boolean | 如果可序列化成功，则返回true；否则返回false。 |
+  | boolean | true：反序列化成功，false：反序列化失败。|
 
 **示例：**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -5691,7 +5608,6 @@ unmarshalling(dataIn: MessageParcel): boolean
   let result2 = data.readSequenceable(ret);
   console.log("RpcClient: readSequenceable is " + result2);
   ```
-
 
 ## IRemoteBroker
 
@@ -5713,17 +5629,38 @@ asObject(): IRemoteObject
 
 **示例：**
 
-  ```
+  ```ts
   class TestAbility extends rpc.RemoteObject {
       asObject() {
           return this;
       }
   }
+  let remoteObject = new TestAbility().asObject();
   ```
 
 **示例：**
 
-  ```
+  ```ts
+  import FA from "@ohos.ability.featureAbility";
+  let proxy;
+  let connect = {
+      onConnect: function (elementName, remoteProxy) {
+          console.log("RpcClient: js onConnect called.");
+          proxy = remoteProxy;
+      },
+      onDisconnect: function (elementName) {
+          console.log("RpcClient: onDisconnect");
+      },
+      onFailed: function () {
+          console.log("RpcClient: onFailed");
+      }
+  };
+  let want = {
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
+  };
+  FA.connectAbility(want, connect);
+
   class TestProxy {
       remote: rpc.RemoteObject;
       constructor(remote) {
@@ -5733,6 +5670,8 @@ asObject(): IRemoteObject
           return this.remote;
       }
   }
+  let iRemoteObject = new TestProxy(proxy).asObject();
+
   ```
 
 ## DeathRecipient
@@ -5749,7 +5688,7 @@ onRemoteDied(): void
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -5793,7 +5732,7 @@ onRemoteDied(): void
 
 getLocalInterface(descriptor: string): IRemoteBroker
 
-查询接口。
+查询接口描述符的字符串。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5815,7 +5754,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
-查询接口。
+查询接口描述符的字符串。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5830,7 +5769,6 @@ queryLocalInterface(descriptor: string): IRemoteBroker
   | 类型          | 说明                                          |
   | ------------- | --------------------------------------------- |
   | IRemoteBroker | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
-
 
 ### sendRequest<sup>(deprecated)</sup>
 
@@ -5855,7 +5793,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
   | 类型    | 说明                                          |
   | ------- | --------------------------------------------- |
-  | boolean | 返回一个布尔值，true表示成功，false表示失败。 |
+  | boolean | true：发送成功，false：发送失败。|
 
 
 ### sendRequest<sup>8+(deprecated)</sup>
@@ -5926,7 +5864,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | options  | [MessageOption](#messageoption)    | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | callback | AsyncCallback&lt;RequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
-
 ### sendRequest<sup>8+(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
@@ -5946,7 +5883,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | reply    | [MessageParcel](#messageparceldeprecated)        | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options  | [MessageOption](#messageoption)        | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | callback | AsyncCallback&lt;SendRequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
-
 
 ### registerDeathRecipient<sup>9+</sup>
 
@@ -5971,7 +5907,6 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   | ------- | -------- |
   | 1900008 | proxy or remote object is invalid |
 
-
 ### addDeathrecipient<sup>(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9)类替代。
@@ -5993,7 +5928,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
   | 类型    | 说明                                          |
   | ------- | --------------------------------------------- |
-  | boolean | 如果回调注册成功，则返回true；否则返回false。 |
+  | boolean | true：回调注册成功，false：回调注册失败。|
 
 
 ### unregisterDeathRecipient<sup>9+</sup>
@@ -6019,7 +5954,6 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   | ------- | -------- |
   | 1900008 | proxy or remote object is invalid |
 
-
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)类替代。
@@ -6041,14 +5975,13 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
   | 类型    | 说明                                          |
   | ------- | --------------------------------------------- |
-  | boolean | 如果回调成功注销，则返回true；否则返回false。 |
-
+  | boolean | true：回调注销成功，false：回调注销失败。|
 
 ### getDescriptor<sup>9+</sup>
 
 getDescriptor(): string
 
-获取对象的接口描述符。接口描述符为字符串。
+获取对象的接口描述符，接口描述符为字符串。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6073,7 +6006,7 @@ getDescriptor(): string
 
 getInterfaceDescriptor(): string
 
-获取对象的接口描述符。接口描述符为字符串。
+获取对象的接口描述符，接口描述符为字符串。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6096,7 +6029,7 @@ isObjectDead(): boolean
 
   | 类型    | 说明                                        |
   | ------- | ------------------------------------------- |
-  | boolean | 如果对象已死亡，则返回true；否则返回false。 |
+  | boolean | true：对象死亡，false：对象未死亡。|
 
 
 ## RemoteProxy
@@ -6105,14 +6038,13 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-| 名称                  | 值                      | 说明                              |
+| 名称                  | 默认值                      | 说明                              |
 | --------------------- | ----------------------- | --------------------------------- |
 | PING_TRANSACTION      | 1599098439 (0x5f504e47) | 内部指令码，用于测试IPC服务正常。 |
 | DUMP_TRANSACTION      | 1598311760 (0x5f444d50) | 内部指令码，获取Binder内部状态。  |
 | INTERFACE_TRANSACTION | 1598968902 (0x5f4e5446) | 内部指令码，获取对端接口描述符。  |
 | MIN_TRANSACTION_ID    | 1 (0x00000001)          | 最小有效指令码。                  |
 | MAX_TRANSACTION_ID    | 16777215 (0x00FFFFFF)   | 最大有效指令码。                  |
-
 
 ### sendRequest<sup>(deprecated)</sup>
 
@@ -6137,11 +6069,11 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
   | 类型    | 说明                                          |
   | ------- | --------------------------------------------- |
-  | boolean | 返回一个布尔值，true表示成功，false表示失败。 |
+  | boolean | true：发送成功，false：发送失败。|
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6179,7 +6111,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   reply.reclaim();
   ```
 
-
 ### sendMessageRequest<sup>9+</sup>
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
@@ -6205,7 +6136,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6249,7 +6180,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
       });
   ```
 
-
 ### sendRequest<sup>8+(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
@@ -6277,7 +6207,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6339,10 +6269,9 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | options  | [MessageOption](#messageoption)    | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | callback | AsyncCallback&lt;RequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
-
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6388,7 +6317,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   }
   ```
 
-
 ### sendRequest<sup>8+(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
@@ -6411,7 +6339,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6452,7 +6380,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   proxy.sendRequest(1, data, reply, option, sendRequestCallback);
   ```
 
-
 ### getLocalInterface<sup>9+</sup>
 
 getLocalInterface(interface: string): IRemoteBroker
@@ -6483,7 +6410,7 @@ getLocalInterface(interface: string): IRemoteBroker
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6512,7 +6439,6 @@ getLocalInterface(interface: string): IRemoteBroker
   }
   ```
 
-
 ### queryLocalInterface<sup>(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9)类替代。
@@ -6537,7 +6463,7 @@ queryLocalInterface(interface: string): IRemoteBroker
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6560,7 +6486,6 @@ queryLocalInterface(interface: string): IRemoteBroker
   let broker = proxy.queryLocalInterface("testObject");
   console.log("RpcClient: queryLocalInterface is " + broker);
   ```
-
 
 ### registerDeathRecipient<sup>9+</sup>
 
@@ -6587,7 +6512,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6621,7 +6546,6 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   }
   ```
 
-
 ### addDeathRecippient<sup>(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9)类替代。
@@ -6643,11 +6567,11 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
   | 类型    | 说明                                          |
   | ------- | --------------------------------------------- |
-  | boolean | 如果回调注册成功，则返回true；否则返回false。 |
+  | boolean | true：回调注册成功，false：回调注册失败。|
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6701,7 +6625,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6736,7 +6660,6 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   }
   ```
 
-
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)类替代。
@@ -6758,11 +6681,11 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
   | 类型    | 说明                                          |
   | ------- | --------------------------------------------- |
-  | boolean | 如果回调成功注销，则返回true；否则返回false。 |
+  | boolean | true：回调注销成功，false：回调注销失败。|
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6792,12 +6715,11 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   proxy.removeDeathRecipient(deathRecipient, 0);
   ```
 
-
 ### getDescriptor<sup>9+</sup>
 
 getDescriptor(): string
 
-获取对象的接口描述符。接口描述符为字符串。
+获取对象的接口描述符，接口描述符为字符串。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6818,7 +6740,7 @@ getDescriptor(): string
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6847,7 +6769,6 @@ getDescriptor(): string
   }
   ```
 
-
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9)类替代。
@@ -6866,7 +6787,7 @@ getInterfaceDescriptor(): string
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6890,7 +6811,6 @@ getInterfaceDescriptor(): string
   console.log("RpcClient: descriptor is " + descriptor);
   ```
 
-
 ### isObjectDead
 
 isObjectDead(): boolean
@@ -6903,11 +6823,11 @@ isObjectDead(): boolean
 
   | 类型    | 说明                                                      |
   | ------- | --------------------------------------------------------- |
-  | boolean | 如果对应的RemoteObject已经死亡，返回true，否则返回false。 |
+  | boolean | true：对应的对象已经死亡，false：对应的对象未死亡|
 
 **示例：**
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6931,14 +6851,13 @@ isObjectDead(): boolean
   console.log("RpcClient: isObjectDead is " + isDead);
   ```
 
-
 ## MessageOption
 
 公共消息选项（int标志，int等待时间），使用标志中指定的标志构造指定的MessageOption对象。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 名称          | 值   | 说明                                                        |
+  | 名称          | 默认值   | 说明                                                        |
   | ------------- | ---- | ----------------------------------------------------------- |
   | TF_SYNC       | 0    | 同步调用标识。                                                  |
   | TF_ASYNC      | 1    | 异步调用标识。                                                  |
@@ -6961,6 +6880,16 @@ MessageOption构造函数。
   | syncFlags | number | 否   | 同步调用或异步调用标志。默认同步调用。 |
 
 
+**示例：**
+
+  ```ts
+  class TestRemoteObject extends rpc.MessageOption {
+    constructor(async) {
+        super(async);
+    }
+  }
+  ```
+
 ### constructor
 
 constructor(syncFlags?: number, waitTime?: number)
@@ -6976,7 +6905,15 @@ MessageOption构造函数。
   | syncFlags | number | 否   | 同步调用或异步调用标志。默认同步调用。        |
   | waitTime  | number | 否   | 调用rpc最长等待时间。默认&nbsp;TF_WAIT_TIME。 |
 
+**示例：**
 
+  ```ts
+  class TestRemoteObject extends rpc.MessageOption {
+    constructor(syncFlags,waitTime) {
+        super(syncFlags,waitTime);
+    }
+  }
+  ```
 ### isAsync<sup>9+</sup>
 
 isAsync(): boolean;
@@ -6989,8 +6926,14 @@ isAsync(): boolean;
 
   | 类型    | 说明                                 |
   | ------- | ------------------------------------ |
-  | boolean | 调用成功返回同步调用或异步调用标志。 |
+  | boolean | true：同步调用成功，false：异步调用成功。 |
 
+**示例：**
+
+  ```ts
+  let option = new rpc.MessageOption();
+  let isAsync = option.isAsync();
+  ```
 
 ### setAsync<sup>9+</sup>
 
@@ -7000,6 +6943,13 @@ setAsync(async: boolean): void;
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
+**示例：**
+
+  ```ts
+  let option = new rpc.MessageOption();
+  let setAsync = option.setAsync(true);
+  console.log("Set synchronization flag");
+  ```
 
 ### getFlags
 
@@ -7015,7 +6965,23 @@ getFlags(): number
   | ------ | ------------------------------------ |
   | number | 调用成功返回同步调用或异步调用标志。 |
 
+**示例：**
 
+  ```ts
+  try {
+      let option = new rpc.MessageOption();
+      console.info("create object successfully.");
+      let flog = option.getFlags();
+      console.info("run getFlags success, flog is " + flog);
+      option.setFlags(1)
+      console.info("run setFlags success");
+      let flog2 = option.getFlags();
+      console.info("run getFlags success, flog2 is " + flog2);
+  } catch (error) {
+      console.info("error " + error);
+  }
+  ```
+  
 ### setFlags
 
 setFlags(flags: number): void
@@ -7030,6 +6996,19 @@ setFlags(flags: number): void
   | ------ | ------ | ---- | ------------------------ |
   | flags  | number | 是   | 同步调用或异步调用标志。 |
 
+**示例：**
+
+  ```ts
+  try {
+      let option = new rpc.MessageOption();
+      option.setFlags(1)
+      console.info("run setFlags success");
+      let flog = option.getFlags();
+      console.info("run getFlags success, flog is " + flog);
+  } catch (error) {
+      console.info("error " + error);
+  }
+  ```
 
 ### getWaitTime
 
@@ -7045,6 +7024,20 @@ getWaitTime(): number
   | ------ | ----------------- |
   | number | rpc最长等待时间。 |
 
+**示例：**
+
+  ```ts
+  try {
+      let option = new rpc.MessageOption();
+      let time = option.getWaitTime();
+      console.info("run getWaitTime success");
+      option.setWaitTime(16);
+      let time2 = option.getWaitTime();
+      console.info("run getWaitTime success, time is " + time);
+  } catch (error) {
+      console.info("error " + error);
+  }
+  ```
 
 ### setWaitTime
 
@@ -7060,6 +7053,18 @@ setWaitTime(waitTime: number): void
   | -------- | ------ | ---- | --------------------- |
   | waitTime | number | 是   | rpc调用最长等待时间。 |
 
+**示例：**
+
+  ```ts
+  try {
+      let option = new rpc.MessageOption();
+      option.setWaitTime(16);
+      let time = option.getWaitTime();
+      console.info("run getWaitTime success, time is " + time);
+  } catch (error) {
+      console.info("error " + error);
+  }
+  ```
 
 ## IPCSkeleton
 
@@ -7069,7 +7074,7 @@ setWaitTime(waitTime: number): void
 
 static getContextObject(): IRemoteObject
 
-获取系统能力的管理者。
+静态方法，获取系统能力的管理者。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7081,17 +7086,16 @@ static getContextObject(): IRemoteObject
 
 **示例：**
 
-  ```
+  ```ts
   let samgr = rpc.IPCSkeleton.getContextObject();
   console.log("RpcServer: getContextObject result: " + samgr);
   ```
-
 
 ### getCallingPid
 
 static getCallingPid(): number
 
-获取调用者的PID。此方法由RemoteObject对象在onRemoteRequest方法中调用，不在IPC上下文环境（onRemoteRequest）中调用则返回本进程的PID。
+静态方法，获取调用者的PID。此方法由RemoteObject对象在onRemoteRequest方法中调用，不在IPC上下文环境（onRemoteRequest）中调用则返回本进程的PID。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7103,7 +7107,7 @@ static getCallingPid(): number
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callerPid = rpc.IPCSkeleton.getCallingPid();
@@ -7113,12 +7117,11 @@ static getCallingPid(): number
  }
   ```
 
-
 ### getCallingUid
 
 static getCallingUid(): number
 
-获取调用者的UID。此方法由RemoteObject对象在onRemoteRequest方法中调用，不在IPC上下文环境（onRemoteRequest）中调用则返回本进程的UID。
+静态方法，获取调用者的UID。此方法由RemoteObject对象在onRemoteRequest方法中调用，不在IPC上下文环境（onRemoteRequest）中调用则返回本进程的UID。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7130,7 +7133,7 @@ static getCallingUid(): number
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callerUid = rpc.IPCSkeleton.getCallingUid();
@@ -7140,15 +7143,13 @@ static getCallingUid(): number
   }
   ```
 
-
 ### getCallingTokenId<sup>8+</sup>
 
 static getCallingTokenId(): number;
 
-获取调用者的TokenId，用于被调用方对调用方的身份校验。
+静态方法，获取调用者的TokenId，用于被调用方对调用方的身份校验。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
-
 
 **返回值：**
  
@@ -7158,7 +7159,7 @@ static getCallingTokenId(): number;
   
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
@@ -7173,7 +7174,7 @@ static getCallingTokenId(): number;
 
 static getCallingDeviceID(): string
 
-获取调用者进程所在的设备ID。
+静态方法，获取调用者进程所在的设备ID。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7185,7 +7186,7 @@ static getCallingDeviceID(): string
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callerDeviceID = rpc.IPCSkeleton.getCallingDeviceID();
@@ -7195,12 +7196,11 @@ static getCallingDeviceID(): string
   }
   ```
 
-
 ### getLocalDeviceID
 
 static getLocalDeviceID(): string
 
-获取本端设备ID。
+静态方法，获取本端设备ID。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7212,7 +7212,7 @@ static getLocalDeviceID(): string
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let localDeviceID = rpc.IPCSkeleton.getLocalDeviceID();
@@ -7222,12 +7222,11 @@ static getLocalDeviceID(): string
   }
   ```
 
-
 ### isLocalCalling
 
 static isLocalCalling(): boolean
 
-检查当前通信对端是否是本设备的进程。
+静态方法，检查当前通信对端是否是本设备的进程。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7235,11 +7234,11 @@ static isLocalCalling(): boolean
 
   | 类型    | 说明                                                      |
   | ------- | --------------------------------------------------------- |
-  | boolean | 如果调用是在同一设备上进行的，则返回true，否则返回false。 |
+  | boolean | true：调用在同一台设备，false：调用未在同一台设备。|
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let isLocalCalling = rpc.IPCSkeleton.isLocalCalling();
@@ -7249,12 +7248,11 @@ static isLocalCalling(): boolean
   }
   ```
 
-
 ### flushCmdBuffer<sup>9+</sup>
 
 static flushCmdBuffer(object: IRemoteObject): void
 
-将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在执行任何时间敏感操作之前调用此方法。
+静态方法，将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在执行任何时间敏感操作之前调用此方法。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7267,7 +7265,7 @@ static flushCmdBuffer(object: IRemoteObject): void
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7282,14 +7280,13 @@ static flushCmdBuffer(object: IRemoteObject): void
   }
   ```
 
-
 ### flushCommands<sup>(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[flushCmdBuffer](#flushcmdbuffer9)类替代。
 
 static flushCommands(object: IRemoteObject): number
 
-将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在执行任何时间敏感操作之前调用此方法。
+静态方法，将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在执行任何时间敏感操作之前调用此方法。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7307,7 +7304,7 @@ static flushCommands(object: IRemoteObject): number
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -7336,7 +7333,7 @@ static flushCommands(object: IRemoteObject): number
 
 static resetCallingIdentity(): string
 
-将远程用户的UID和PID替换为本地用户的UID和PID。它可以用于身份验证等场景。
+静态方法，将远程用户的UID和PID替换为本地用户的UID和PID。它可以用于身份验证等场景。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7348,7 +7345,7 @@ static resetCallingIdentity(): string
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
@@ -7363,7 +7360,7 @@ static resetCallingIdentity(): string
 
 static restoreCallingIdentity(identity: string): void
 
-将远程用户的UID和PID替换为本地用户的UID和PID。它可以用于身份验证等场景。
+静态方法，将远程用户的UID和PID替换为本地用户的UID和PID。它可以用于身份验证等场景。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7375,7 +7372,7 @@ static restoreCallingIdentity(identity: string): void
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callingIdentity = null;
@@ -7390,14 +7387,13 @@ static restoreCallingIdentity(identity: string): void
   }
   ```
 
-
 ### setCallingIdentity<sup>(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[restoreCallingIdentity](#restorecallingidentity9)类替代。
 
 static setCallingIdentity(identity: string): boolean
 
-将UID和PID恢复为远程用户的UID和PID。它通常在使用resetCallingIdentity后调用，需要resetCallingIdentity返回的远程用户的UID和PID。
+静态方法，将UID和PID恢复为远程用户的UID和PID。它通常在使用resetCallingIdentity后调用，需要resetCallingIdentity返回的远程用户的UID和PID。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7411,11 +7407,11 @@ static setCallingIdentity(identity: string): boolean
 
   | 类型    | 说明                                      |
   | ------- | ----------------------------------------- |
-  | boolean | 如果操作成功，则返回true；否则返回false。 |
+  | boolean | true：设置成功，false：设置失败。|
 
 **示例：**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callingIdentity = null;
@@ -7430,7 +7426,6 @@ static setCallingIdentity(identity: string): boolean
       }
   }
   ```
-
 
 ## RemoteObject
 
@@ -7474,11 +7469,11 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
   | 类型    | 说明                                          |
   | ------- | --------------------------------------------- |
-  | boolean | 返回一个布尔值，true表示成功，false表示失败。 |
+  | boolean | true：发送成功，false：发送失败。|
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -7517,7 +7512,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   reply.reclaim();
   ```
 
-
 ### sendRequest<sup>8+(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
@@ -7545,7 +7539,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -7615,7 +7609,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7646,7 +7640,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
       });
   ```
 
-
 ### sendMessageRequest<sup>9+</sup>
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
@@ -7667,7 +7660,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7695,7 +7688,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   testRemoteObject.sendMessageRequest(1, data, reply, option, sendRequestCallback);
   ```
 
-
 ### sendRequest<sup>8+(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
@@ -7718,7 +7710,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -7760,7 +7752,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   testRemoteObject.sendRequest(1, data, reply, option, sendRequestCallback);
   ```
 
-
 ### onRemoteRequest<sup>8+(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[onRemoteMessageRequest](#onremotemessagerequest9)类替代。
@@ -7784,11 +7775,11 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里处理�
 
   | 类型    | 说明                                      |
   | ------- | ----------------------------------------- |
-  | boolean | 如果操作成功，则返回true；否则返回false。 |
+  | boolean | true：操作成功，false：操作失败。|
 
 **示例：**
 
-  ```ets
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -7845,12 +7836,12 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
   | 类型              | 说明                                                                                           |
   | ----------------- | ---------------------------------------------------------------------------------------------- |
-  | boolean           | 若在onRemoteMessageRequest中同步地处理请求，则返回一个布尔值：操作成功，则返回true；否则返回false。 |
+  | boolean           | 若在onRemoteMessageRequest中同步地处理请求，则返回一个布尔值：true：操作成功，false：操作失败。 |
   | Promise\<boolean> | 若在onRemoteMessageRequest中异步地处理请求，则返回一个Promise对象。                                 |
 
 **重载onRemoteMessageRequest方法同步处理请求示例：**
 
-  ```ets
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7870,7 +7861,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
   **重载onRemoteMessageRequest方法异步处理请求示例：**
 
-  ```ets
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7893,7 +7884,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
 **同时重载onRemoteMessageRequest和onRemoteRequest方法同步处理请求示例：**
 
-  ```ets
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7924,7 +7915,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
   **同时重载onRemoteMessageRequest和onRemoteRequest方法异步处理请求示例：**
 
-  ```ets
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7955,7 +7946,6 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   }
   ```
 
-
 ### getCallingUid
 
 getCallingUid(): number
@@ -7971,7 +7961,7 @@ getCallingUid(): number
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7997,7 +7987,7 @@ getCallingPid(): number
 
 **示例：**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -8011,7 +8001,7 @@ getCallingPid(): number
 
 getLocalInterface(descriptor: string): IRemoteBroker
 
-查询接口。
+查询接口描述符的字符串。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8030,7 +8020,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8054,7 +8044,6 @@ getLocalInterface(descriptor: string): IRemoteBroker
       console.info(rpc get local interface fail, errorMessage " + error.message);
   }
   ```
-
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
@@ -8080,7 +8069,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8103,7 +8092,6 @@ queryLocalInterface(descriptor: string): IRemoteBroker
   let testRemoteObject = new TestRemoteObject("testObject");
   let broker = testRemoteObject.queryLocalInterface("testObject");
   ```
-
 
 ### getDescriptor<sup>9+</sup>
 
@@ -8129,7 +8117,7 @@ getDescriptor(): string
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8155,7 +8143,6 @@ getDescriptor(): string
   console.log("RpcServer: descriptor is: " + descriptor);
   ```
 
-
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9)类替代。
@@ -8174,7 +8161,7 @@ getInterfaceDescriptor(): string
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8199,7 +8186,6 @@ getInterfaceDescriptor(): string
   console.log("RpcServer: descriptor is: " + descriptor);
   ```
 
-
 ### modifyLocalInterface<sup>9+</sup>
 
 modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
@@ -8215,10 +8201,9 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
   | localInterface | IRemoteBroker | 是   | 将与描述符绑定的IRemoteBroker对象。   |
   | descriptor     | string        | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
 
-
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8265,7 +8250,7 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 **示例：**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8292,28 +8277,26 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
   let testRemoteObject = new TestRemoteObject("testObject");
   ```
 
-
 ## Ashmem<sup>8+</sup>
 
 提供与匿名共享内存对象相关的方法，包括创建、关闭、映射和取消映射Ashmem、从Ashmem读取数据和写入数据、获取Ashmem大小、设置Ashmem保护。
 
-映射内存保护类型：
-
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 名称       | 值  | 说明               |
+映射内存保护类型：
+
+  | 名称       | 默认值  | 说明               |
   | ---------- | --- | ------------------ |
   | PROT_EXEC  | 4   | 映射的内存可执行   |
   | PROT_NONE  | 0   | 映射的内存不可访问 |
   | PROT_READ  | 1   | 映射的内存可读     |
   | PROT_WRITE | 2   | 映射的内存可写     |
 
-
 ### create<sup>9+</sup>
 
 static create(name: string, size: number): Ashmem
 
-根据指定的名称和大小创建Ashmem对象。
+静态方法，根据指定的名称和大小创建Ashmem对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8330,10 +8313,9 @@ static create(name: string, size: number): Ashmem
   | ------ | ---------------------------------------------- |
   | Ashmem | 返回创建的Ashmem对象；如果创建失败，返回null。 |
 
-
 **示例：**
 
-  ```
+  ```ts
   let ashmem;
   try {
       ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -8345,14 +8327,13 @@ static create(name: string, size: number): Ashmem
   console.log("RpcTest: get ashemm by create : " + ashmem + " size is : " + size);
   ```
 
-
 ### createAshmem<sup>8+(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[create](#create9)类替代。
 
 static createAshmem(name: string, size: number): Ashmem
 
-根据指定的名称和大小创建Ashmem对象。
+静态方法，根据指定的名称和大小创建Ashmem对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8371,18 +8352,17 @@ static createAshmem(name: string, size: number): Ashmem
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
   console.log("RpcTest: get ashemm by createAshmem : " + ashmem + " size is : " + size);
   ```
 
-
 ### create<sup>9+</sup>
 
 static create(ashmem: Ashmem): Ashmem
 
-通过复制现有Ashmem对象的文件描述符(fd)来创建Ashmem对象。两个Ashmem对象指向同一个共享内存区域。
+静态方法，通过复制现有Ashmem对象的文件描述符(fd)来创建Ashmem对象。两个Ashmem对象指向同一个共享内存区域。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8401,7 +8381,7 @@ static create(ashmem: Ashmem): Ashmem
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem2;
   try {
       let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -8414,14 +8394,13 @@ static create(ashmem: Ashmem): Ashmem
   console.log("RpcTest: get ashemm by create : " + ashmem2 + " size is : " + size);
   ```
 
-
 ### createAshmemFromExisting<sup>8+(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[create](#create9)类替代。
 
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
-通过复制现有Ashmem对象的文件描述符(fd)来创建Ashmem对象。两个Ashmem对象指向同一个共享内存区域。
+静态方法，通过复制现有Ashmem对象的文件描述符(fd)来创建Ashmem对象。两个Ashmem对象指向同一个共享内存区域。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8439,13 +8418,12 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let ashmem2 = rpc.Ashmem.createAshmemFromExisting(ashmem);
   let size = ashmem2.getAshmemSize();
   console.log("RpcTest: get ashemm by createAshmemFromExisting : " + ashmem2 + " size is : " + size);
   ```
-
 
 ### closeAshmem<sup>8+</sup>
 
@@ -8457,11 +8435,10 @@ closeAshmem(): void
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.closeAshmem();
   ```
-
 
 ### unmapAshmem<sup>8+</sup>
 
@@ -8473,11 +8450,10 @@ unmapAshmem(): void
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.unmapAshmem();
   ```
-
 
 ### getAshmemSize<sup>8+</sup>
 
@@ -8495,12 +8471,11 @@ getAshmemSize(): number
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
   console.log("RpcTest: get ashmem is " + ashmem + " size is : " + size);
   ```
-
 
 ### mapTypedAshmem<sup>9+</sup>
 
@@ -8526,7 +8501,7 @@ mapTypedAshmem(mapType: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.mapTypedAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
@@ -8535,7 +8510,6 @@ mapTypedAshmem(mapType: number): void
       console.info("Rpc map ashmem fail, errorMessage " + error.message);
   }
   ```
-
 
 ### mapAshmem<sup>8+(deprecated)</sup>
 
@@ -8557,16 +8531,15 @@ mapAshmem(mapType: number): boolean
 
   | 类型    | 说明                                      |
   | ------- | ----------------------------------------- |
-  | boolean | 如果映射成功，则返回true；否则返回false。 |
+  | boolean | true：映射成功，false：映射失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapReadAndWrite = ashmem.mapAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
   console.log("RpcTest: map ashmem result is  : " + mapReadAndWrite);
   ```
-
 
 ### mapReadWriteAshmem<sup>9+</sup>
 
@@ -8586,7 +8559,7 @@ mapReadWriteAshmem(): void
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.mapReadWriteAshmem();
@@ -8595,7 +8568,6 @@ mapReadWriteAshmem(): void
       console.info("Rpc map read and write ashmem fail, errorMessage " + error.message);
   }
   ```
-
 
 ### mapReadAndWriteAshmem<sup>8+(deprecated)</sup>
 
@@ -8611,16 +8583,15 @@ mapReadAndWriteAshmem(): boolean
 
   | 类型    | 说明                                      |
   | ------- | ----------------------------------------- |
-  | boolean | 如果映射成功，则返回true；否则返回false。 |
+  | boolean | true：映射成功，false：映射失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
   console.log("RpcTest: map ashmem result is  : " + mapResult);
   ```
-
 
 ### mapReadonlyAshmem<sup>9+</sup>
 
@@ -8640,7 +8611,7 @@ mapReadonlyAshmem(): void
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.mapReadonlyAshmem();
@@ -8649,7 +8620,6 @@ mapReadonlyAshmem(): void
       console.info("Rpc map read and write ashmem fail, errorMessage " + error.message);
   }
   ```
-
 
 ### mapReadOnlyAshmem<sup>8+(deprecated)</sup>
 
@@ -8665,16 +8635,15 @@ mapReadOnlyAshmem(): boolean
 
   | 类型    | 说明                                      |
   | ------- | ----------------------------------------- |
-  | boolean | 如果映射成功，则返回true；否则返回false。 |
+  | boolean | true：映射成功，false：映射失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadOnlyAshmem();
   console.log("RpcTest: Ashmem mapReadOnlyAshmem result is : " + mapResult);
   ```
-
 
 ### setProtectionType<sup>9+</sup>
 
@@ -8700,7 +8669,7 @@ setProtectionType(protectionType: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.setProtection(ashmem.PROT_READ);
@@ -8709,7 +8678,6 @@ setProtectionType(protectionType: number): void
       console.info("Rpc set protection type fail, errorMessage " + error.message);
   }
   ```
-
 
 ### setProtection<sup>8+(deprecated)</sup>
 
@@ -8731,16 +8699,15 @@ setProtection(protectionType: number): boolean
 
   | 类型    | 说明                                      |
   | ------- | ----------------------------------------- |
-  | boolean | 如果设置成功，则返回true；否则返回false。 |
+  | boolean | true：设置成功，false：设置失败。|
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let result = ashmem.setProtection(ashmem.PROT_READ);
   console.log("RpcTest: Ashmem setProtection result is : " + result);
   ```
-
 
 ### writeAshmem<sup>9+</sup>
 
@@ -8768,7 +8735,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.mapReadWriteAshmem();
   var ByteArrayVar = [1, 2, 3, 4, 5];
@@ -8779,7 +8746,6 @@ writeAshmem(buf: number[], size: number, offset: number): void
       console.info("Rpc write to ashmem fail, errorMessage " + error.message);
   }
   ```
-
 
 ### writeToAshmem<sup>8+(deprecated)</sup>
 
@@ -8803,11 +8769,11 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
 
   | 类型    | 说明                                                                                      |
   | ------- | ----------------------------------------------------------------------------------------- |
-  | boolean | 如果数据写入成功，则返回true；在其他情况下，如数据写入越界或未获得写入权限，则返回false。 |
+  | boolean | true：如果数据写入成功，false：在其他情况下，如数据写入越界或未获得写入权限。。 |
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
   console.info("RpcTest map ashmem result is " + mapResult);
@@ -8815,7 +8781,6 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
   let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
   console.log("RpcTest: write to Ashmem result is  : " + writeResult);
   ```
-
 
 ### readAshmem<sup>9+</sup>
 
@@ -8848,7 +8813,7 @@ readAshmem(size: number, offset: number): number[]
 
 **示例：**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.mapReadWriteAshmem();
   var ByteArrayVar = [1, 2, 3, 4, 5];
@@ -8861,7 +8826,6 @@ readAshmem(size: number, offset: number): number[]
       console.info("Rpc read from ashmem fail, errorMessage " + error.message);
   }
   ```
-
 
 ### readFromAshmem<sup>8+(deprecated)</sup>
 
@@ -8888,7 +8852,7 @@ readFromAshmem(size: number, offset: number): number[]
 
 **示例：**
 
- ```
+ ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
   console.info("RpcTest map ashmem result is " + mapResult);
