@@ -28,7 +28,7 @@
 | ----------- | ------------------------------ | ------ | ---- | ------------------------------------------------------------ |
 | deviceId    | string                         | 是     | 否   | 跨设备目前不支持隐式调用。                                   |
 | abilityName | string                         | 否     | 否   | 该字段必须留空表示隐式匹配。                                 |
-| bundleName  | string                         | 是     | 否   | -&nbsp;声明bundleName时，隐式搜索将仅限于对应应用包内。<br/>-&nbsp;声明bundleName与moduleName时，隐式搜索将仅限于对应应用的对应Module内。<br/>-&nbsp;单独声明moduleName时，该字段无效。<br/>-&nbsp;同时声明bundleName与moduleName时，隐式搜索将仅限于对应应用包内的对应模块内。<br/>这些字段将用来隐式匹配，具体规则可参考[隐式Want匹配原理详解](#隐式want匹配原理详解)。 |
+| bundleName  | string                         | 是     | 否   | -&nbsp;声明bundleName时，隐式搜索将仅限于对应应用包内。<br/>-&nbsp;声明bundleName与moduleName时，隐式搜索将仅限于对应应用的对应Module内。<br/>-&nbsp;单独声明moduleName时，该字段无效。<br/>-&nbsp;同时声明bundleName与moduleName时，隐式搜索将仅限于对应应用包内的对应模块内。<br/>这些字段将用来隐式匹配。 |
 | moduleName  | string                         | 是     | 否   |                                                              |
 | uri         | string                         | 是     | 否   |                                                              |
 | type        | string                         | 是     | 否   |                                                              |
