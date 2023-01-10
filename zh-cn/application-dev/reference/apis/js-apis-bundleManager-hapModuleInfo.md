@@ -25,5 +25,3 @@ HAP信息，系统应用可以通过[bundleManager.getBundleInfo](js-apis-bundle
 | deviceTypes                       | Array\<string>                                               | 是   | 否   | 可以运行模块的设备类型。   |
 | installationFree                  | boolean                                                      | 是   | 否   | 模块是否支持免安装。       |
 | hashValue                         | string                                                       | 是   | 否   | 模块的Hash值。              |
-| moduleSourceDir                   | string                                                       | 是   | 否   | 模块的路径。|
-
