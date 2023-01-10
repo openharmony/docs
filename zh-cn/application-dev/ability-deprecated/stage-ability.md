@@ -69,13 +69,13 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
    ```
 3. 导入Ability模块。
    ```js
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility';
    ```
 4. 实现Ability生命周期接口，接口默认生成的相对路径：entry\src\main\ets\MainAbility\MainAbility.ts。
 
    在`onWindowStageCreate(windowStage)`中通过loadContent接口设置应用要加载的页面，window接口的使用详见[窗口开发指导](../windowmanager/application-window-stage.md)。
    ```ts
-   export default class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("MainAbility onCreate")
     }
@@ -132,8 +132,9 @@ export default class MyAbilityStage extends AbilityStage {
 
 如下示例展示了Ability通过context属性获取包代码路径、HAP名称、Ability名称以及系统语言的方法。具体示例代码如下：
 ```ts
-import Ability from '@ohos.application.Ability'
-export default class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("MainAbility onCreate")
         let context = this.context
@@ -169,10 +170,10 @@ export default class MyAbilityStage extends AbilityStage {
 
 如下示例展示了Ability的`onConfigurationUpdated`回调实现，系统语言、颜色模式以及Display相关的参数，比如方向、Density，发生变化时触发该回调。具体示例代码如下：
 ```ts
-import Ability from '@ohos.application.Ability'
-import ConfigurationConstant from '@ohos.application.ConfigurationConstant'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import ConfigurationConstant from '@ohos.application.ConfigurationConstant';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     direction : number;
 
     onCreate(want, launchParam) {
@@ -272,9 +273,9 @@ async function reStartAbility() {
 
 在Ability的onNewWant回调中获取包含页面信息的want参数：
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
   onNewWant(want, launchParams) {
     globalThis.newWant = want
   }

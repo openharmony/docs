@@ -29,10 +29,10 @@ import Configuration from '@ohos.application.Configuration'
     
   ```ts
 import hilog from '@ohos.hilog';
-import Ability from '@ohos.application.Ability'
-import Window from '@ohos.window'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Window from '@ohos.window';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
     }
 

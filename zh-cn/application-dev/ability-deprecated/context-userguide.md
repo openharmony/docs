@@ -189,9 +189,9 @@ export default class MyAbilityStage extends AbilityStage {
 **示例**
 
 ```javascript
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("[Demo] MainAbility onCreate")
         globalThis.abilityWant = want;
@@ -257,9 +257,9 @@ Stage模型下，在Ability的`onWindowStageCreate`生命周期中，可以通�
 
 ```ts
 // MainAbility.ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("[Demo] MainAbility onCreate")
     }

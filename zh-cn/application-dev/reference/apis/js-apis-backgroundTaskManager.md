@@ -205,7 +205,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 Stage模型示例：
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import wantAgent from '@ohos.wantAgent';
 
@@ -217,7 +217,7 @@ function callback(err, data) {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let wantAgentInfo = {
             wants: [
@@ -297,11 +297,11 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 Stage模型示例：
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import wantAgent from '@ohos.wantAgent';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let wantAgentInfo = {
             wants: [
@@ -365,7 +365,7 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callbac
 Stage模型示例：
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 function callback(err, data) {
@@ -376,7 +376,7 @@ function callback(err, data) {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         backgroundTaskManager.stopBackgroundRunning(this.context, callback);
     }
@@ -422,10 +422,10 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 Stage模型示例：
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
             console.info("Operation stopBackgroundRunning succeeded");

@@ -69,9 +69,11 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let context = null;
-class MainAbility extends Ability{
+
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context;
     }
@@ -139,9 +141,11 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let context = null;
-class MainAbility extends Ability{
+
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context;
     }
@@ -215,9 +219,11 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let context = null;
-class MainAbility extends Ability{
+
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context;
     }
@@ -294,9 +300,11 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let context = null;
-class MainAbility extends Ability{
+
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context;
     }
@@ -358,9 +366,11 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let context = null;
-class MainAbility extends Ability{
+
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context;
     }
@@ -428,9 +438,9 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 let context = null;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context;
     }
@@ -497,7 +507,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
  **参数：**
- 
+
 | 参数名   | 类型                    | 必填 | 说明                                                         |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | 是   | 要获取的存储Key名称，不能为空。                              |

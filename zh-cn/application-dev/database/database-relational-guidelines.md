@@ -219,9 +219,9 @@
      ```ts
    import data_rdb from '@ohos.data.relationalStore'
     // 获取context
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility';
    let context = null
-   class MainAbility extends Ability {
+   class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
          context = this.context
        }
@@ -250,7 +250,7 @@
     const valueBucket = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 }
     let insertPromise = rdbStore.insert("test", valueBucket)
     ```
-    
+   
     ```js
     //使用事务插入数据
     beginTransaction()
@@ -361,7 +361,7 @@
             console.log('device=' + device[i] + 'data changed')
         }
     }
-  
+    
     try {
         rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
     } catch (err) {

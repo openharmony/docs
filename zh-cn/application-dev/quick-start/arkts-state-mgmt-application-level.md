@@ -102,10 +102,9 @@ Ability：一个应用程序可以拥有多个Ability，一个Ability中的所�
 LocalStorage通过loadContent接口加载，接口说明详见[loadContent](../reference/apis/js-apis-window.md#loadcontent9-1)。
 
 ```ts
-// MainAbility.ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     storage: LocalStorage
 
     onCreate() {

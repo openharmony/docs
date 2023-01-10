@@ -36,8 +36,8 @@
 
 ## 开发示例
 ```ts
-import Ability from '@ohos.application.Ability'
-import errorManager from '@ohos.application.errorManager'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import errorManager from '@ohos.application.errorManager';
 
 var registerId = -1;
 var callback = {
@@ -46,7 +46,7 @@ var callback = {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("[Demo] MainAbility onCreate")
         registerId = errorManager.registerErrorObserver(callback);

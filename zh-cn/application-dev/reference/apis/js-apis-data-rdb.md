@@ -60,9 +60,10 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability'
-let context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -124,9 +125,10 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability'
-let context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -181,9 +183,10 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability'
-let context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -242,9 +245,10 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability'
-let context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
