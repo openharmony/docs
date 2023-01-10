@@ -216,11 +216,11 @@ let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 try {
     bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(error => {
-        hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed. Cause: %{public}s', error.message);
+    }).catch(err => {
+        hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed. Cause: %{public}s', err.message);
     });
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', error.message);
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', err.message);
 }
 ```
 
@@ -249,13 +249,13 @@ let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 try {
     bundleManager.getBundleInfoForSelf(bundleFlags, (err, data) => {
         if (err) {
-            hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', error.message);
+            hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', err.message);
         } else {
             hilog.info(0x0000, 'testTag', 'getBundleInfoForSelf successfully: %{public}s', JSON.stringify(data));
         }
     });
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', error.message);
+    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', err.message);
 }
 ```
 
@@ -441,10 +441,10 @@ let userId = 100;
 try {
     bundleManager.getBundleInfo(bundleName, bundleFlags, userId).then((data) => {
         hilog.info(0x0000, 'testTag', 'getBundleInfo successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'getBundleInfo failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'getBundleInfo failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -458,10 +458,10 @@ let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 try {
     bundleManager.getBundleInfo(bundleName, bundleFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'getBundleInfo successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'getBundleInfo failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'getBundleInfo failed. Cause: %{public}s' + err.message);
 }
 
@@ -625,10 +625,10 @@ let userId = 100;
 try {
     bundleManager.getApplicationInfo(bundleName, appFlags, userId).then((data) => {
         hilog.info(0x0000, 'testTag', 'getApplicationInfo successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'getApplicationInfo failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'getApplicationInfo failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -772,10 +772,10 @@ let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 try {
     bundleManager.getAllBundleInfo(bundleFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'getAllBundleInfo successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'getAllBundleInfo failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'getAllBundleInfo failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -919,10 +919,10 @@ let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
 try {
     bundleManager.getAllApplicationInfo(appFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'getAllApplicationInfo successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'getAllApplicationInfo failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'getAllApplicationInfo failed. Cause: %{public}s' + err.message);
 }
 
@@ -1095,10 +1095,10 @@ let want = {
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((data) => {
         hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -1115,10 +1115,10 @@ let want = {
 try {
     bundleManager.queryAbilityInfo(want, abilityFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s' + err.message);
     })
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -1294,10 +1294,10 @@ let want = {
 try {
     bundleManager.queryExtensionAbilityInfo(want, extensionAbilityType, extensionFlags, userId).then((data) => {
         hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfo successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfo failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfo failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -1315,10 +1315,10 @@ let want = {
 try {
     bundleManager.queryExtensionAbilityInfo(want, extensionAbilityType, extensionFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfo successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfo failed. Cause: %{public}s' + err.message);
     })
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfo failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -1410,10 +1410,10 @@ let uid = 20010005;
 try {
     bundleManager.getBundleNameByUid(uid).then((data) => {
         hilog.info(0x0000, 'testTag', 'getBundleNameByUid successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'getBundleNameByUid failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'getBundleNameByUid failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -1511,10 +1511,10 @@ let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 try {
     bundleManager.getBundleArchiveInfo(hapFilePath, bundleFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'getBundleArchiveInfo successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'getBundleArchiveInfo failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'getBundleArchiveInfo failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -1771,10 +1771,10 @@ try {
                 hilog.info(0x0001, "testTag", "setAbilityEnabled successfully.");
             }
         });
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -1836,10 +1836,10 @@ try {
         }).catch(err => {
             hilog.error(0x0000, 'testTag', 'setAbilityEnabled failed: %{public}s' + err.message);
         });
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -1929,10 +1929,10 @@ let bundleName = 'com.example.myapplication';
 try {
     bundleManager.isApplicationEnabled(bundleName).then((data) => {
         hilog.info(0x0000, 'testTag', 'isApplicationEnabled successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'isApplicationEnabled failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'isApplicationEnabled failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -1988,10 +1988,10 @@ try {
                 hilog.info(0x0000, 'testTag', 'isAbilityEnabled successfully: %{public}s', + JSON.stringify(data));
             }
         });
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -2050,10 +2050,10 @@ try {
         }).catch(err => {
             hilog.error(0x0000, 'testTag', 'isAbilityEnabled failed. Cause: %{public}s' + err.message);
         });
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -2204,10 +2204,10 @@ let userId = 100;
 try {
     bundleManager.getLaunchWantForBundle(bundleName, userId).then((data) => {
         hilog.info(0x0000, 'testTag', 'getLaunchWantForBundle successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'getLaunchWantForBundle failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'getLaunchWantForBundle failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -2308,10 +2308,10 @@ let abilityName = 'MainAbility';
 try {
     bundleManager.getProfileByAbility(moduleName, abilityName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -2325,10 +2325,10 @@ let metadataName = 'com.example.myapplication.metadata';
 try {
     bundleManager.getProfileByAbility(moduleName, abilityName, metadataName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -2428,20 +2428,20 @@ let metadataName = 'com.example.myapplication.metadata';
 try {
     bundleManager.getProfileByExtensionAbility(moduleName, extensionAbilityName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbility successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s' + err.message);
 }
 
 try {
     bundleManager.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbility successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -2533,10 +2533,10 @@ let permissionName = "ohos.permission.GET_BUNDLE_INFO";
 try {
     bundleManager.getPermissionDef(permissionName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getPermissionDef successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'getPermissionDef failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'getPermissionDef failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -2646,10 +2646,10 @@ let abilityName = 'MainAbility';
 try {
     bundleManager.getAbilityLabel(bundleName, moduleName, abilityName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getAbilityLabel successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'getAbilityLabel failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'getAbilityLabel failed. Cause: %{public}s' + err.message);
 }
 ```
@@ -2759,10 +2759,10 @@ let abilityName = 'MainAbility';
 try {
     bundleManager.getAbilityIcon(bundleName, moduleName, abilityName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getAbilityIcon successfully. Data: %{public}s', + JSON.stringify(data));
-    }).catch(error => {
+    }).catch(err => {
         hilog.error(0x0000, 'testTag', 'getAbilityIcon failed. Cause: %{public}s' + err.message);
     });
-} catch (error) {
+} catch (err) {
     hilog.error(0x0000, 'testTag', 'getAbilityIcon failed. Cause: %{public}s' + err.message);
 }
 ```
