@@ -504,8 +504,8 @@ abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityForeground(ability, (err : any, data : any) => {
-        console.info('doAbilityForeground callback');
+    abilityDelegator.doAbilityForeground(ability, (err : any) => {
+        console.info("doAbilityForeground callback");
     });
 });
 ```
@@ -542,8 +542,8 @@ abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityForeground(ability).then((data : any) => {
-        console.info('doAbilityForeground promise');
+    abilityDelegator.doAbilityForeground(ability).then(() => {
+        console.info("doAbilityForeground promise");
     });
 });
 ```
@@ -575,8 +575,8 @@ abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityBackground(ability, (err : any, data : any) => {
-        console.info('doAbilityBackground callback');
+    abilityDelegator.doAbilityBackground(ability, (err : any) => {
+        console.info("doAbilityBackground callback");
     });
 });
 ```
@@ -613,8 +613,8 @@ abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityBackground(ability).then((data : any) => {
-        console.info('doAbilityBackground promise');
+    abilityDelegator.doAbilityBackground(ability).then(() => {
+        console.info("doAbilityBackground promise");
     });
 });
 ```
