@@ -1,9 +1,8 @@
-# Mouse Pointer
+# @ohos.multimodalInput.pointer
 
-The mouse pointer module provides APIs related to pointer attribute management.
+The **pointer** module provides APIs related to pointer attribute management.
 
-> **NOTE**
->
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import

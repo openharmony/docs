@@ -1,8 +1,8 @@
-# Thermal Manager
+# @ohos.thermal
 
-This module provides thermal level-related callback and query APIs to obtain the information required for thermal control.
+The **thermal** module provides thermal level-related callback and query APIs to obtain the information required for thermal control.
 
-> **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import

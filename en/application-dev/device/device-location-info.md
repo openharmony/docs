@@ -10,11 +10,11 @@ Real-time location of the device is recommended for location-sensitive services.
 
 ## Available APIs
 
-For details about the APIs used to obtain the device location information, see [Geolocation Manager](../reference/apis/js-apis-geolocation.md).
+For details about the APIs used to obtain the device location information, see [Geolocation Manager](../reference/apis/| js-apis-geoLocationManager.md).
 
 ## How to Develop
 
-To learn more about the APIs for obtaining device location information, see [Geolocation](../reference/apis/js-apis-geolocation.md).
+To learn more about the APIs for obtaining device location information, see [Geolocation](../reference/apis/| js-apis-geoLocationManager.md).
 
 1. Before using basic location capabilities, check whether your application has been granted the permission to access the device location information. If not, your application needs to obtain the permission from the user as described below.
      The system provides the following location permissions:
@@ -41,10 +41,10 @@ To learn more about the APIs for obtaining device location information, see [Geo
 
    You can declare the required permission in your application's configuration file. For details, see [Access Control (Permission) Development](../security/accesstoken-guidelines.md).
 
-2. Import the **geolocation** module by which you can implement all APIs related to the basic location capabilities.
+2. Import the **geoLocationManager** module by which you can implement all APIs related to the basic location capabilities.
    
-   ```
-   import geolocation from '@ohos.geolocation';
+   ```ts
+   import geoLocationManager from '@ohos.geolocation';
    ```
 
 3. Instantiate the **LocationRequest** object. This object provides APIs to notify the system of the location service type and the interval of reporting location information.<br>
@@ -78,7 +78,7 @@ To learn more about the APIs for obtaining device location information, see [Geo
      Sample code for initializing **requestInfo** for navigation:
    
    ```ts
-   var requestInfo = {'scenario': geolocation.LocationRequestScenario.NAVIGATION, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+   var requestInfo = {'scenario': geoLocationManager.LocationRequestScenario.NAVIGATION, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
    ```
 
    **Method 2:**
@@ -107,7 +107,7 @@ To learn more about the APIs for obtaining device location information, see [Geo
      Sample code for initializing **requestInfo** for the location accuracy priority policy:
    
    ```ts
-   var requestInfo = {'priority': geolocation.LocationRequestPriority.ACCURACY, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+   var requestInfo = {'priority': geoLocationManager.LocationRequestPriority.ACCURACY, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
    ```
 
 4. Instantiate the **Callback** object for the system to report location results.
@@ -122,25 +122,24 @@ To learn more about the APIs for obtaining device location information, see [Geo
 5. Start device location.
    
    ```ts
-   geolocation.on('locationChange', requestInfo, locationChange);
+   geoLocationManager.on('locationChange', requestInfo, locationChange);
    ```
 
 6. (Optional) Stop device location.
    
    ```ts
-   geolocation.off('locationChange', locationChange);
+   geoLocationManager.off('locationChange', locationChange);
    ```
 
 If your application does not need the real-time device location, it can use the last known device location cached in the system instead.
      
    ```ts
-   geolocation.getLastLocation((err, data) => {
-       if (err) {
-           console.log('getLastLocation: err: ' + JSON.stringify(err));
-       } else {
-           console.log('getLastLocation: data: ' + JSON.stringify(data));
-       }
-   });
+   import geoLocationManager from '@ohos.geoLocationManager';
+   try {
+       var location = geoLocationManager.getLastLocation();
+   } catch (err) {
+       console.error("errCode:" + err.code + ",errMessage:" + err.message);
+   }
    ```
 
    To call this method, your application needs to request the **ohos.permission.LOCATION** permission from the user.

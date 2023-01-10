@@ -1,6 +1,6 @@
-# HiSysEvent
+# @ohos.hiSysEvent
 
-This module provides the system event logging functions, such as configuring trace points, subscribing to system events, and querying system events written to the event file.
+The **hiSysEvent** module provides the system event logging functions, such as configuring trace points, subscribing to system events, and querying system events written to the event file.
 
 > **NOTE**
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.

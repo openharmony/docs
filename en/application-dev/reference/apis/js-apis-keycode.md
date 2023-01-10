@@ -1,6 +1,6 @@
-# Keycode
+# @ohos.multimodalInput.keyCode
 
-The Keycode module provides keycodes for a key device.
+The **keyCode** module provides keycodes for a key device.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.

@@ -1,6 +1,6 @@
-# Input Event
+# @ohos.multimodalInput.inputEvent
 
-The Input Event module describes basic events reported by an input device.
+The **inputEvent** module describes basic events reported by an input device.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
