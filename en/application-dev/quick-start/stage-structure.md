@@ -513,7 +513,7 @@ Table 11 Internal structure of the requestPermissions attribute
 | Attribute | Description                                                        | Type                                | Value Range                                                | Default Value          | Restrictions                                                |
 | --------- | ------------------------------------------------------------ | ---------------------------------------- | ------------------------------------------------------------ | -------------------- | ------------------------------------------------------------ |
 | name      | Permission name. This attribute is mandatory.                              | String                                  | Custom                                                      | N/A                  | Parsing will fail if this attribute is not set.                                        |
-| reason    | Reason for requesting the permission. This attribute is mandatory when the permission to request is **user_grant**. | String                                  | Resource reference of the string type in `$string: ***` format                | Empty                  | If the permission to request is **user_grant**, this attribute is required for the application to be released to AppGallery. Multi-language adaptation is required.|
+| reason    | Reason for requesting the permission. This attribute is mandatory when the permission to request is **user_grant**. | String                                  | Resource reference of the string type in `$string: ***` format                | Empty                  | If the permission to request is **user_grant**, this attribute is required for the application to be released to the application market. Multi-language adaptation is required. |
 | usedScene | Application scenario and timing for using the permission. This attribute is mandatory when the permission to request is **user_grant**. It consists of the **abilities** and **when** sub-attributes. Multiple abilities can be configured.| **abilities**: string array; **when**: string| **abilities**: array of ability names; **when**: **inuse** and **always**| **abilities**: left empty; **when**: left empty| If the permission to request is **user_grant**, the **abilities** sub-attribute is mandatory and **when** is optional.                   |
 
 Example of the **requestPermissions** attribute structure:
@@ -740,7 +740,7 @@ Define the **metadata** information under **extension** in the **module.json5** 
 
 Distribution rules of the application.
 
-This attribute defines the rules for distributing HAP files based on different device specifications, so that precise matching can be performed when AppGallery distributes applications. Distribution rules cover three factors: API version, screen shape, and screen resolution. During distribution, a unique HAP is determined based on the mapping between **deviceType** and these three factors.
+This attribute defines the rules for distributing HAP files based on different device specifications, so that precise matching can be performed when the application market distributes applications. Distribution rules cover three factors: API version, screen shape, and screen resolution. During distribution, a unique HAP is determined based on the mapping between **deviceType** and these three factors.
 
 Table 16 Internal structure of the distroFilter attribute
 

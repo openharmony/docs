@@ -5,11 +5,30 @@
   - [Getting Started with ArkTS in FA Model](start-with-ets-fa.md)
   - [Getting Started with JavaScript in FA Model](start-with-js-fa.md)  
 - Development Fundamentals
-  - [Application Package Structure Configuration File (FA Model)](package-structure.md)
-  - [Application Package Structure Configuration File (Stage Model)](stage-structure.md)
-  - [SysCap](syscap.md)
+  - Application Package Fundamentals
+    - [Application Package Overview](application-package-overview.md)
+    - Application Package Structure
+      - [Application Package Structure in Stage Model](application-package-structure-stage.md)
+      - [Application Package Structure in FA Model](application-package-structure-fa.md)
+      - [HAR File Structure](har-structure.md)
+    - Multi-HAP Mechanism
+      - [Multi-HAP Design Objectives](multi-hap-objective.md)
+      - [Multi-HAP Build View](multi-hap-build-view.md)
+      - [Multi-HAP Development, Debugging, Release, and Deployment Process](multi-hap-release-deployment.md)
+      - [Multi-HAP Usage Rules](multi-hap-rules.md)
+      - [Multi-HAP Operation Mechanism and Data Communication Modes](multi-hap-principles.md)
+    - [Application Installation and Uninstallation Process](application-package-install-uninstall.md)
+  - Application Configuration Files in Stage Model
+    - [Application Configuration File Overview (Stage Model)](application-configuration-file-overview-stage.md)
+    - [app.json5 Configuration File](app-configuration-file.md)
+    - [module.json5 Configuration File](module-configuration-file.md)
+  - Application Configuration Files in FA Model
+    - [Application Configuration File Overview (FA Model)](application-configuration-file-overview-fa.md)
+    - [Internal Structure of the app Tag](app-structure.md)
+    - [Internal structure of deviceConfig Tag](deviceconfig-structure.md)
+    - [Internal Structure of the module Tag](module-structure.md)
   - [Resource Categories and Access](resource-categories-and-access.md)
-  - Learning ArkTS
+- Learning ArkTS
     - [Getting Started with ArkTS](arkts-get-started.md)
     - ArkTS Syntax (Declarative UI)
       - [Basic UI Description](arkts-basic-ui-description.md)
