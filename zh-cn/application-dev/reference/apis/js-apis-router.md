@@ -32,7 +32,7 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 | 类型                | 说明        |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | 异常返回结果 |
+| Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
@@ -81,7 +81,7 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 | 参数名     | 类型                              | 必填   | 说明        |
 | ------- | ------------------------------- | ---- | --------- |
 | options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调    |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
 
@@ -185,7 +185,7 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。  |
 | mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调    |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。    |
 
 **错误码：**
 
@@ -239,7 +239,7 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
 | 类型                | 说明        |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | 异常返回结果 |
+| Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
@@ -284,7 +284,7 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 | 参数名  | 类型                            | 必填 | 说明               |
 | ------- | ------------------------------- | ---- | ------------------ |
 | options | [RouterOptions](#routeroptions) | 是   | 替换页面描述信息。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调    |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。    |
 
 **错误码：**
 
@@ -336,7 +336,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 | 类型                | 说明        |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | 异常返回结果 |
+| Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
@@ -382,7 +382,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。  |
 | mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调    |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。  |
 
 **错误码：**
 
@@ -636,7 +636,7 @@ export default {
 ### 基于TS扩展的声明式开发范式
 
 ```ts
-//通过router.push跳转至目标页携带params参数
+// 通过router.push跳转至目标页携带params参数
 import router from '@ohos.router'
 
 @Entry
@@ -682,7 +682,7 @@ struct Index {
 ```
 
 ```ts
-//在second页面中接收传递过来的参数
+// 在second页面中接收传递过来的参数
 import router from '@ohos.router'
 
 @Entry
@@ -804,7 +804,7 @@ router.replace({
 });
 ```
 
-  ## router.replace<sup>(deprecated)</sup>
+## router.replace<sup>(deprecated)</sup>
 
 replace(options: RouterOptions, mode: RouterMode): void
 
