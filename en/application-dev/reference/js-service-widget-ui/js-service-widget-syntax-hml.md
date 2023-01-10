@@ -99,11 +99,11 @@ You can also implement redirection to the target application using a **want**, w
 | Selector   | Type    | Default Value     | Description                                    |
 | ------ | ------ | -------- | ---------------------------------------- |
 | action | string | "router" | Event type.<br>- **"router"**: redirection event.<br>- **"message"**: message event.|
-| want   | [Want](../apis/js-apis-application-Want.md) | -        | Information about the target application. For details, see the **want** format.                    |
+| want   | [Want](../apis/js-apis-app-ability-want.md) | -        | Information about the target application. For details, see the **want** format.                    |
 
 
-    ```json
-    {
+```json
+  {
       "data": {
         "mainAbility": "xxx.xxx.xxx"
       },
@@ -124,9 +124,9 @@ You can also implement redirection to the target application using a **want**, w
         }  
       }
     }
-    ```
+```
 
-  In API version 8, the [featureAbility.getWant](../apis/js-apis-featureAbility.md) API in the **onCreate** method of the **app.js** or **app.ets** file must be called for the **want** parameter to receive related parameters.
+  In API version 8, the [featureAbility.getWant](../apis/js-apis-ability-featureAbility.md) API in the **onCreate** method of the **app.js** or **app.ets** file must be called for the **want** parameter to receive related parameters.
 
 - Message event properties
 
