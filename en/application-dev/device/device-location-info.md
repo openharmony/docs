@@ -10,11 +10,11 @@ Real-time location of the device is recommended for location-sensitive services.
 
 ## Available APIs
 
-For details about the APIs used to obtain the device location information, see [Geolocation Manager](../reference/apis/| js-apis-geoLocationManager.md).
+For details about the APIs used to obtain the device location information, see [Geolocation Manager](../reference/apis/js-apis-geoLocationManager.md).
 
 ## How to Develop
 
-To learn more about the APIs for obtaining device location information, see [Geolocation](../reference/apis/| js-apis-geoLocationManager.md).
+To learn more about the APIs for obtaining device location information, see [Geolocation](../reference/apis/js-apis-geoLocationManager.md).
 
 1. Before using basic location capabilities, check whether your application has been granted the permission to access the device location information. If not, your application needs to obtain the permission from the user as described below.
      The system provides the following location permissions:
