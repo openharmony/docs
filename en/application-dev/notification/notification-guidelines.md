@@ -118,7 +118,7 @@ var subscriber = {
     },
   };
 
-  Notification.subscribe(subscriber, (err, data) => { // This API uses an asynchronous callback to return the result.
+  Notification.subscribe(subscriber, (err) => { // This API uses an asynchronous callback to return the result.
     if (err.code) {
       console.error('===>failed to subscribe because ' + JSON.stringify(err));
       return;
@@ -133,19 +133,7 @@ var subscriber = {
 
 ##### Enabling Notification
 
-Before publishing a notification, check whether the notification feature is enabled for your application. By default, the feature is disabled. The application calls **Notification.requestEnableNotification** to prompt the user to enable the feature.
-
-```js
-Notification.requestEnableNotification() .then((data) => {
-	console.info('===>requestEnableNotification success');
-}).catch((err) => {
-	console.error('===>requestEnableNotification failed because ' + JSON.stringify(err));
-});
-```
-
-
-
-##### Publishing Notifications
+Before publishing a notification, check whether the notification feature is enabled for your application. By default, the feature is disabled. You can enabled it in notification settings.
 
 To publish a notification, create a **NotificationRequest** object and set attributes such as the notification type, title, and content. In the following examples, a normal text notification and a notification containing a **WantAgent** are being published.
 
@@ -166,7 +154,7 @@ var notificationRequest = {
 }
 
 // Publish the notification.
-Notification.publish(notificationRequest) .then((data) => {
+Notification.publish(notificationRequest) .then(() => {
 	console.info('===>publish promise success req.id : ' + notificationRequest.id);
 }).catch((err) => {
 	console.error('===>publish promise failed because ' + JSON.stringify(err));
@@ -235,7 +223,7 @@ var notificationRequest = {
 }
 
 // Publish the notification.
-Notification.publish(notificationRequest) .then((data) => {
+Notification.publish(notificationRequest) .then(() => {
 	console.info('===>publish promise success req.id : ' + notificationRequest.id);
 }).catch((err) => {
 	console.error('===>publish promise failed because ' + JSON.stringify(err));

@@ -10,7 +10,6 @@ Create a **&lt;switch&gt;** component in the .hml file under **pages/index**.
 
 
 ```html
-<!-- xxx.hml -->
 <div class="container">
     <switch></switch>
 </div>
@@ -21,8 +20,6 @@ Create a **&lt;switch&gt;** component in the .hml file under **pages/index**.
 /* xxx.css */
 .container {
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: #F1F3F5;
 }
 ```
@@ -42,7 +39,7 @@ Use the **textoff** and **showtext** attributes to set the status when text is s
 ```
 
 
-```css
+```
 /* xxx.css */
 .container {
   width: 100%;
@@ -52,7 +49,7 @@ Use the **textoff** and **showtext** attributes to set the status when text is s
   align-items: center;
   background-color: #F1F3F5;
 }
-switch {
+switch{
   texton-color: #002aff;
   textoff-color: silver;
   text-padding: 20px; 
@@ -61,7 +58,7 @@ switch {
 ```
 
 
-```js
+```css
 // xxx.js
 import prompt from '@system.prompt';
 export default {

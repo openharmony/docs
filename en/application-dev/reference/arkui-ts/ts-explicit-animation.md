@@ -77,6 +77,23 @@ struct AnimateToExample {
           }
           this.flag = !this.flag
         })
+      Button('change rotate angle')
+        .margin(50)
+        .rotate({ x: 0, y: 0, z: 1, angle: this.rotateAngle })
+        .onClick(() => {
+          animateTo({
+            duration: 1200,
+            curve: Curve.Friction,
+            delay: 500,
+            iterations: -1, // The value -1 indicates that the animation is played for an unlimited number of times.
+            playMode: PlayMode.AlternateReverse,
+            onFinish: () => {
+              console.info('play end')
+            }
+          }, () => {
+            this.rotateAngle = 90
+          })
+        })
     }.width('100%').margin({ top: 5 })
   }
 }

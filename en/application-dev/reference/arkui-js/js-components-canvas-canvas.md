@@ -90,7 +90,7 @@ Generates a URL containing image display information.
 </div>
 ```
 
-```js
+```css
 // xxx.js
 export default {
   handleClick() {

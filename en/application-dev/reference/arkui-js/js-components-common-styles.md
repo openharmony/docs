@@ -1,9 +1,10 @@
 # Universal Styles
 
 > **NOTE**
-> Universal attributes are supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  Universal styles are supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-You can set component appearance in the **style** attribute or **.css** files.
+You can set universal styles for components in the **style** attribute or **.css** files.
 
 
 
@@ -40,6 +41,7 @@ You can set component appearance in the **style** attribute or **.css** files.
 | box-shadow<sup>5+</sup>                   | string                                                       | 0             | Shadow style of the current component. The value consists of the horizontal position (mandatory), vertical position (mandatory), fuzzy radius (optional, default value: **0**), extension distance (optional, default value: **0**), and color (optional, default value: **black**) of the shadow. Example:<br>- box-shadow :10px 20px 5px 10px #888888<br>- box-shadow :100px 100px 30px red<br>- box-shadow :-100px -100px 0px 40px |
 | filter<sup>5+</sup>                       | string                                                       | -             | Radius of the blur area within the component layout. If the radius is not set, the default value **0** (no blur area) is used. Percentage values are not supported.Syntax: **filter: blur(px)**<br>Example:<br>- filter: blur(10px) |
 | backdrop-filter<sup>5+</sup>              | string                                                       | -             | Radius of the background blur area within the component layout. If the radius is not set, the default value **0** (no background blur) is used. Percentage values are not supported.Syntax: **backdrop-filter: blur(px)**<br>Example:<br>- backdrop-filter: blur(10px) |
+| window-filter<sup>5+</sup>               | string                                   | -            | Syntax: window-filter: blur(percent), style<sup>5+</sup><br>Blur degree and style for windows within the component layout. If this style is not set, the default value **0%** (no blur area) is used. Different blur degrees and styles for multiple blur areas are not supported. Available values of **style** are as follows: small_light (default value), medium_light, large_light, xlarge_light, small_dark, medium_dark, large_dark, xlarge_dark<br>Example:<br>- window-filter: blur(50%)<br>- window-filter: blur(10%), large_light |
 | opacity                                   | number                                                       | 1             | Opacity of an element. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent. |
 | display                                   | string                                                       | flex          | How and whether to display the box containing an element. Available values are as follows:<br>- **flex**: flexible layout.<br>- **none**: The element is hidden. |
 | visibility                                | string                                                       | visible       | Whether to display an element. Invisible borders occupy layout space. (To remove the borders, set the **display** attribute to **none**.) Available values are as follows:<br>- **visible**: The element is visible.<br>- **hidden**: The element is hidden but still takes up space.NOTE:If both **visibility** and **display** are set, only **display** takes effect. |
@@ -64,5 +66,7 @@ You can set component appearance in the **style** attribute or **.css** files.
 | border-image-repeat<sup>7+</sup>          | string                                                       | stretch       | How the border image fills the border box.<br/>- **stretch**: stretches the image to fill the border box.<br/>- **repeat**: tiles the image to fill the border box.<br/>- **round**: tiles the image to fill the border box. When the image cannot be tiled for an integer number of times, it can be scaled based on the site requirements. |
 | border-image<sup>7+</sup>                 | string                                                       | -             | Shorthand attribute. The options are as follows:<br>- Attributes of the image border. The parameters include **border-image-source**, **border-image-slice**, **border-image-width**, **border-image-outset**, and **border-image-repeat**, respectively meaning the padding, width of the border image, how far the border image can extend beyond the border box, and how the border image fills the border box. The default values are used if the parameters are not set.<br>Syntax reference:<'border-image-source'> \|\| <'border-image-slice'> [ <'border-image-width'> <br>- Gradient color border.<br>Example:<br>border-image: linear-gradient(red, yellow) 10px |
 
-> ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/public_sys-resources/icon-note.gif) **NOTE:** The above-mentioned common styles are not mandatory.
+> **NOTE**
+>
+>  The aforementioned universal styles are not mandatory.
 

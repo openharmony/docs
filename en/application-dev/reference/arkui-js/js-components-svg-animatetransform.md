@@ -4,8 +4,9 @@ The  **<animateTransform\>**  component is used to apply a transform animation a
 
 <circle\>, <ellipse\>, <line\>, <path\>, <polygon\>, <polyline\>, <rect\>, <text\>
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+> 
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Required Permissions
 
@@ -182,6 +183,7 @@ Involved component example
           dur="3s" repeatCount="indefinite"></animateTransform>
       </rect>
       <text x="20" y="700" fill="#D2691E" font-size="40">
+        animate-transform
         <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0" to="300"
           dur="3s" repeatCount="indefinite"></animateTransform>
       </text>

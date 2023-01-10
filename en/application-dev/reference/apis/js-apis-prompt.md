@@ -35,6 +35,8 @@ prompt.showToast({
 });
 ```
 
+![en-us_image_0001](figures/en-us_image_0001.gif)
+
 ## ShowToastOptions
 
 Describes the options for showing the toast.
@@ -43,9 +45,9 @@ Describes the options for showing the toast.
 
 | Name      | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| message  | string| Yes   | Text to display.                                |
+| message  | string | Yes   | Text to display.                                |
 | duration | number                                   | No   | Duration that the toast will remain on the screen. The default value is 1500 ms. The value range is 1500 ms to 10000 ms. If a value less than 1500 ms is set, the default value is used. If the value greater than 10000 ms is set, the upper limit 10000 ms is used.|
-| bottom   | string\| number                          | No   | Distance between the toast border and the bottom of the screen.                        |
+| bottom   | string\| number                          | No   | Distance between the toast border and the bottom of the screen.               |
 
 ## prompt.showDialog
 
@@ -92,6 +94,8 @@ prompt.showDialog({
   })
 ```
 
+![en-us_image_0002](figures/en-us_image_0002.gif)
+
 ## prompt.showDialog
 
 showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&gt;):void 
@@ -132,6 +136,8 @@ prompt.showDialog({
 });
 ```
 
+![en-us_image_0004](figures/en-us_image_0004.gif)
+
 ## ShowDialogOptions
 
 Describes the options for showing the dialog box.
@@ -140,8 +146,8 @@ Describes the options for showing the dialog box.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title   | string| No   | Title of the dialog box.                                   |
-| message | string| No   | Text body.                                   |
+| title   | string | No   | Title of the dialog box.                                   |
+| message | string | No   | Text body.                                   |
 | buttons | Array                                    | No   | Array of buttons in the dialog box. The array structure is **{text:'button', color: '\#666666'}**. Up to three buttons are supported. The first button is of the **positiveButton** type, the second is of the **negativeButton** type, and the third is of the **neutralButton** type.|
 
 ## ShowDialogSuccessResponse 
@@ -170,7 +176,6 @@ Shows an action menu. This API uses a callback to return the result asynchronous
 | options  | [ActionMenuOptions](#actionmenuoptions)  | Yes   | Action menu options.  |
 | callback | AsyncCallback&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)> | Yes   | Callback used to return the action menu response result.|
 
-
 **Example**
 
 ```js
@@ -194,6 +199,8 @@ prompt.showActionMenu({
   console.info('showActionMenu success callback, click button: ' + data.index);
 })
 ```
+
+![en-us_image_0005](figures/en-us_image_0005.gif) 
 
 ## prompt.showActionMenu
 
@@ -238,6 +245,8 @@ prompt.showActionMenu({
     console.info('showActionMenu error: ' + err);
   })
 ```
+![en-us_image_0006](figures/en-us_image_0006.gif)
+
 ## ActionMenuOptions
 
 Describes the options for showing the action menu.
@@ -246,8 +255,8 @@ Describes the options for showing the action menu.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title   | string| No   | Title of the text to display.                                   |
-| buttons | Array&lt;[Button](#button)&gt;           | Yes   | Array of menu item buttons. The array structure is **{text:'button', color: '\#666666'}**. Up to six buttons are supported. If there are more than six buttons, extra buttons will not be displayed.|
+| title   | string | No   | Title of the text to display.                                   |
+| buttons | Array&lt;[Button](#button)&gt;  | Yes       | Array of menu item buttons. The array structure is **{text:'button', color: '\#666666'}**. Up to six buttons are supported. If there are more than six buttons, extra buttons will not be displayed.|
 
 ## ActionMenuSuccessResponse
 
@@ -267,5 +276,5 @@ Describes the menu item button in the action menu.
 
 | Name   | Type                                      | Mandatory  | Description     |
 | ----- | ---------------------------------------- | ---- | ------- |
-| text  | string| Yes   | Button text.|
-| color | string| Yes   | Text color of the button.|
+| text  | string | Yes   | Button text.|
+| color | string | Yes   | Text color of the button.|

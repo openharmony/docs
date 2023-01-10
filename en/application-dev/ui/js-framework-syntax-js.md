@@ -29,14 +29,13 @@ The ES6 syntax is supported.
 ## Objects
 
 - Application objects
-    | Name | Type | Description |
+  | Name | Type | Description |
   | -------- | -------- | -------- |
   | $def | Object | Object that is exposed in the app.js file and obtained by `this.$app.$def`.<br/>> **NOTE**<br/>> Application objects do not support data binding. Data update should be triggered on the UI. |
 
   Example
 
-  
-  ```
+  ```js
   // app.js
   export default {
     onCreate() {
@@ -56,8 +55,7 @@ The ES6 syntax is supported.
   };
   ```
 
-  
-  ```
+  ```js
   // index.js
   export default {
     data: {
@@ -97,8 +95,7 @@ The ES6 syntax is supported.
 
   Example
 
-  
-  ```
+  ```js
   // index.js
   export default {
     data: {
@@ -149,7 +146,7 @@ The ES6 syntax is supported.
   Example
 
   
-  ```
+  ```js
   this.$rootElement().scrollTo({position: 0})
   this.$rootElement().scrollTo({id: 'id', duration: 200, timingFunction: 'ease-in', complete: ()=>void})
   ```
@@ -158,24 +155,22 @@ The ES6 syntax is supported.
 ## Obtaining a DOM Element
 
 1. Use `$refs` to obtain a DOM element.
-  
-   ```
+   ```html
    <!-- index.hml -->
    <div class="container">
      <image-animator class="image-player" ref="animator" images="{{images}}" duration="1s" onclick="handleClick"></image-animator>
    </div>
    ```
 
-   
-   ```
+   ```js
    // index.js
    export default {
      data: {
        images: [
          { src: '/common/frame1.png' },
          { src: '/common/frame2.png' },
-         { src: '/common/frame3.png' },
-       ],
+         { src: '/common/frame3.png' }
+       ]
      },
      handleClick() {
        const animator = this.$refs.animator; // Obtain the DOM element whose $refs attribute is animator.
@@ -193,23 +188,22 @@ The ES6 syntax is supported.
 
 2. Call `$element` to obtain a DOM element.
   
-   ```
+   ```html
    <!-- index.hml -->
    <div class="container" style="width:500px;height: 700px; margin: 100px;">
      <image-animator class="image-player" id="animator" images="{{images}}" duration="1s" onclick="handleClick"></image-animator>
    </div>
    ```
 
-   
-   ```
+   ```js
    // index.js
    export default {
      data: {
        images: [
          { src: '/common/frame1.png' },
          { src: '/common/frame2.png' },
-         { src: '/common/frame3.png' },
-       ],
+         { src: '/common/frame3.png' }
+       ]
      },
      handleClick() {
        const animator = this.$element('animator'); // Obtain the DOM element whose ID is animator.
@@ -231,7 +225,7 @@ The ES6 syntax is supported.
 
 The following shows files of the root page:
 
-```
+```html
 <!-- root.hml -->
 <element name='parentComp' src='../../common/component/parent/parent.hml'></element>
 <div class="container">
@@ -242,8 +236,7 @@ The following shows files of the root page:
 </div>
 ```
 
-
-```
+```js
 // root.js
 export default {
   data: {
@@ -256,26 +249,25 @@ export default {
 
 Customize the parent component.
 
-```
+```html
 <!-- parent.hml -->
 <element name='childComp' src='../child/child.hml'></element>
 <div class="item" onclick="textClicked">
   <text class="text-style" onclick="parentClicked">Click this parent component</text>
-  <text class="text-style" if="{{show}}">Hello parent component!</text>
+  <text class="text-style" if="{{showValue}}">hello parent component!</text>
   <childComp id = "selfDefineChild"></childComp>
 </div>
 ```
 
-
-```
+```js
 // parent.js
 export default {
   data: {
-    show: false,
+    showValue: false,
     text: 'I am the parent component!',
   },
   parentClicked () {
-    this.show = !this.show;
+    this.showValue = !this.showValue
     console.info('parent component get parent text');
     console.info(`${this.$parent().text}`);
     console.info("The parent component gets the child function.");
@@ -286,8 +278,7 @@ export default {
 
 Customize the child component.
 
-
-```
+```html
 <!-- child.hml -->
 <div class="item" onclick="textClicked">
   <text class="text-style" onclick="childClicked">Child component clicked</text>
@@ -295,8 +286,7 @@ Customize the child component.
 </div>
 ```
 
-
-```
+```js
 // child.js
 export default {
   data: {

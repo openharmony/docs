@@ -17,11 +17,11 @@ Path(value?: { width?: number | string; height?: number | string; commands?: str
 
 **Parameters**
 
-| Name  | Type        | Mandatory| Description                           |
-| -------- | ---------------- | ---- | ----------------------------------- |
-| width    | number \| string | No  | Width of the rectangle where the path is located.<br>Default value: **0**   |
-| height   | number \| string | No  | Height of the rectangle where the path is located.<br>Default value: **0**   |
-| commands | string           | No  | Command for drawing the path.<br>Default value: **''**|
+| Name  | Type        | Mandatory| Default Value              | Description                           |
+| -------- | ---------------- | ---- | ----------------------------------- | ----------------------------------- |
+| width    | number \| string | No  | 0  | Width of the rectangle where the path is located.   |
+| height   | number \| string | No  | 0  | Height of the rectangle where the path is located.   |
+| commands | string           | No  | '' | Command for drawing the path. |
 
 ## Attributes
 

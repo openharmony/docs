@@ -35,15 +35,13 @@ export default {
     console.log("Component created.")
   },
   onAttached() {
-    this.value = "Load the component."
-  },
-  onDetached() {
     this.value = ""
+    console.log("Component loaded.")
   },
-  onPageShow() {
+  onShow() {
     console.log ("Page displayed.")
   },
-  onPageHide() {
+  onHide() {
     console.log ("Page hidden.")
   }
 }
