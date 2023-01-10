@@ -357,7 +357,7 @@ createAudioRecorder(): AudioRecorder
 let audioRecorder = media.createAudioRecorder();
 ```
 
-## AVErrorCode<sup>9+</sup>
+## AVErrorCode<sup>9+</sup><a name=averrorcode></a>
 
 [媒体错误码](../errorcodes/errorcode-media.md)类型枚举
 
@@ -4662,31 +4662,6 @@ videoPlayer.on('error', (error) => {      // 设置'error'事件回调
     console.info(`video error called, error: ${error}`);
 });
 videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'事件
-```
-
-### on('availableBitratesCollect')<sup>9+</sup>
-
-on(type: 'availableBitratesCollect', callback: (bitrates: Array\<number>) => void): void
-
-开始监听视频播放码率上报事件。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
-
-**参数：**
-
-| 参数名   | 类型     | 必填 | 说明                                                         |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 是   | 视频播放码率上报事件回调类型，支持的事件：'availableBitratesCollect'，只在开始播放时候上报一次 |
-| callback | function | 是   | 视频播放码率事件回调方法，使用数组存放支持的码率。           |
-
-**示例：**
-
-```js
-videoPlayer.on('availableBitratesCollect', (bitrates) => {
-    for (let i = 0; i < bitrates.length; i++) {
-        console.info('case availableBitratesCollect bitrates: '  + bitrates[i]);  //打印支持的码率
-    }
-});
 ```
 
 ## VideoPlayState<sup>(deprecated)</sup><a name=videoplayerstate></a>
