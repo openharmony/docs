@@ -129,7 +129,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
   var want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
   var options = {
     windowMode: 0
@@ -270,7 +270,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
   var want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -336,7 +336,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
   var want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
   var options = {
     windowMode: 0,
@@ -409,30 +409,30 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 **示例：**
 
   ```ts
-  var want = {
+var want = {
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
-  };
-  var options = {
+    abilityName: "EntryAbility"
+};
+var options = {
     windowMode: 0,
-  };
+};
 
-  try {
+try {
     this.context.startAbilityForResult(want, options)
-      .then((result) => {
+        .then((result) => {
         // 执行正常业务
         console.log("startAbilityForResult succeed, result.resultCode = " + result.resultCode);
-      })
-      .catch((error) => {
+    })
+        .catch((error) => {
         // 处理业务逻辑错误
         console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
+                    ' error.message: ' + JSON.stringify(error.message));
+    });
+} catch (paramError) {
     // 处理入参错误异常
     console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+                ' error.message: ' + JSON.stringify(paramError.message));
+}
   ```
 
 ## UIAbilityContext.startAbilityForResultWithAccount
@@ -484,7 +484,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
   var want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -558,7 +558,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
   var want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {
@@ -639,7 +639,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
   var want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {
@@ -1252,7 +1252,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
   ```ts
   var want = {
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   }
   var resultCode = 100;
   // 返回给接口调用方AbilityResult信息
@@ -1316,7 +1316,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
   ```ts
   var want = {
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   }
   var resultCode = 100;
   // 返回给接口调用方AbilityResult信息
@@ -1629,7 +1629,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   var wantBackground = {
     bundleName: "com.example.myservice",
     moduleName: "entry",
-    abilityName: "MainAbility",
+    abilityName: "EntryAbility",
     deviceId: ""
   };
 
@@ -1660,7 +1660,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   var wantForeground = {
     bundleName: "com.example.myservice",
     moduleName: "entry",
-    abilityName: "MainAbility",
+    abilityName: "EntryAbility",
     deviceId: "",
     parameters: {
       "ohos.aafwk.param.callAbilityToForeground": true
@@ -1734,7 +1734,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
   var want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -1807,7 +1807,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
   var want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {
@@ -1882,7 +1882,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
   var want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {

@@ -237,10 +237,10 @@ import web_webview from '@ohos.web.webview';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("MainAbility onCreate")
+        console.log("EntryAbility onCreate")
         web_webview.WebviewController.initializeWebEngine()
         globalThis.abilityWant = want
-        console.log("MainAbility onCreate done")
+        console.log("EntryAbility onCreate done")
     }
 }
 ```
@@ -249,7 +249,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
 
 @Entry
 @Component

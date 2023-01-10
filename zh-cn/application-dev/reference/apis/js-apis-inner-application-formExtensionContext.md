@@ -60,7 +60,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     let want = {
       deviceId: "",
       bundleName: "com.example.formstartability",
-      abilityName: "MainAbility",
+      abilityName: "EntryAbility",
       parameters: {
         "message": message
       }
@@ -110,7 +110,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     let want = {
       deviceId: "",
       bundleName: "com.example.formstartability",
-      abilityName: "MainAbility",
+      abilityName: "EntryAbility",
       parameters: {
         "message": message
       }

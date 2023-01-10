@@ -53,7 +53,7 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.Data",
-            abilityName: "com.example.Data.MainAbility",
+            abilityName: "EntryAbility",
             uri: ""
         },
     },
@@ -104,7 +104,7 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.Data",
-            abilityName: "com.example. Data.MainAbility",
+            abilityName: "EntryAbility",
             uri: ""
         },
     },
@@ -238,7 +238,7 @@ let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -299,7 +299,7 @@ let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,

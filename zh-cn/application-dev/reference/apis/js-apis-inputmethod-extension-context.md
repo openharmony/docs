@@ -20,7 +20,7 @@ import InputMethodExtensionContext from '@ohos.inputmethodextensioncontext';
 
 ```js
 import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
-class MainAbility extends InputMethodExtensionAbility {
+class EntryAbility extends InputMethodExtensionAbility {
     onCreate() {
         let context = this.context;
     }

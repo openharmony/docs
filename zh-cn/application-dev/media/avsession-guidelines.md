@@ -87,7 +87,7 @@ let wantAgentInfo = {
   wants: [
     {
       bundleName: "com.neu.setResultOnAbilityResultTest1",
-      abilityName: "com.example.test.MainAbility",
+      abilityName: "com.example.test.EntryAbility",
     }
   ],
   operationType: wantAgent.OperationType.START_ABILITIES,

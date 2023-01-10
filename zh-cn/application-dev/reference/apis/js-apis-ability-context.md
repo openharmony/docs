@@ -14,10 +14,10 @@ AbilityContext模块提供允许访问特定Ability的资源的能力，包括�
 在使用AbilityContext的功能前，需要通过Ability子类实例获取。
 
 ```ts
-import Ability from '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
- let context = undefined;
-class MainAbility extends Ability {
+let context = undefined;
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         context = this.context;
     }
@@ -66,7 +66,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
   ```ts
   var want = {
-    bundleName: "com.example.myapp",
+    bundleName: "com.example.myapplication",
     abilityName: "MyAbility"
   };
 
@@ -123,8 +123,8 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var options = {
     windowMode: 0
@@ -186,7 +186,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
   ```ts
   var want = {
-    bundleName: "com.example.myapp",
+    bundleName: "com.example.myapplication",
     abilityName: "MyAbility"
   };
   var options = {
@@ -245,8 +245,8 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -302,8 +302,8 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var options = {
     windowMode: 0,
@@ -368,7 +368,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
   ```ts
   var want = {
-    bundleName: "com.example.myapp",
+    bundleName: "com.example.myapplication",
     abilityName: "MyAbility"
   };
   var options = {
@@ -431,8 +431,8 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -495,8 +495,8 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {
@@ -567,8 +567,8 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {
@@ -623,8 +623,8 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -674,8 +674,8 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -729,8 +729,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -784,8 +784,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -836,8 +836,8 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -893,8 +893,8 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -954,8 +954,8 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -1015,8 +1015,8 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -1272,8 +1272,8 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
@@ -1331,8 +1331,8 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {
@@ -1488,7 +1488,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   var wantBackground = {
       bundleName: "com.example.myservice",
       moduleName: "entry",
-      abilityName: "MainAbility",
+      abilityName: "EntryAbility",
       deviceId: ""
   };
 
@@ -1519,7 +1519,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   var wantForeground = {
       bundleName: "com.example.myservice",
       moduleName: "entry",
-      abilityName: "MainAbility",
+      abilityName: "EntryAbility",
       deviceId: "",
       parameters: {
         "ohos.aafwk.param.callAbilityToForeground": true
@@ -1582,8 +1582,8 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -1645,8 +1645,8 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {
@@ -1710,8 +1710,8 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {

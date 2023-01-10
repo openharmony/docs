@@ -112,7 +112,7 @@ HML（OpenHarmony Markup Language）是一套类HTML的标记语言，通过组�
           "action": "router",
           "want": {
             "bundleName": "com.example.myapplication",
-            "abilityName": "com.example.entry.MainAbility"
+            "abilityName": "EntryAbility"
           }
         },
         "routerEventName2": { 

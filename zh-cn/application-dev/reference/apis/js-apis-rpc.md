@@ -232,7 +232,7 @@ class Stub extends rpc.RemoteObject {
         return true;
     }
 }
-  ```
+```
 
 ### getSize
 
@@ -364,7 +364,7 @@ class Stub extends rpc.RemoteObject {
         return true;
     }
 }
-  ```
+```
 
 ### getReadableBytes
 
@@ -2408,7 +2408,7 @@ readException(): void
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
   let option = new rpc.MessageOption();
@@ -4857,7 +4857,7 @@ readException(): void
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
   let option = new rpc.MessageOption();
@@ -5657,7 +5657,7 @@ asObject(): IRemoteObject
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
 
@@ -6090,7 +6090,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
   let option = new rpc.MessageOption();
@@ -6153,7 +6153,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
   let option = new rpc.MessageOption();
@@ -6224,7 +6224,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
   let option = new rpc.MessageOption();
@@ -6288,7 +6288,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   function sendRequestCallback(result) {
       if (result.errCode === 0) {
@@ -6356,7 +6356,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   function sendRequestCallback(result) {
       if (result.errCode === 0) {
@@ -6427,7 +6427,7 @@ getLocalInterface(interface: string): IRemoteBroker
   };
   let want = {
       "bundleName":"com.ohos.server",
-      "abilityName":"com.ohos.server.MainAbility",
+      "abilityName":"com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
   try {
@@ -6480,7 +6480,7 @@ queryLocalInterface(interface: string): IRemoteBroker
   };
   let want = {
       "bundleName":"com.ohos.server",
-      "abilityName":"com.ohos.server.MainAbility",
+      "abilityName":"com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
   let broker = proxy.queryLocalInterface("testObject");
@@ -6529,7 +6529,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
   class MyDeathRecipient {
@@ -6588,7 +6588,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
   class MyDeathRecipient {
@@ -6642,7 +6642,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
   class MyDeathRecipient {
@@ -6702,7 +6702,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
   class MyDeathRecipient {
@@ -6757,7 +6757,7 @@ getDescriptor(): string
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
   try {
@@ -6804,7 +6804,7 @@ getInterfaceDescriptor(): string
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
   let descriptor = proxy.getInterfaceDescriptor();
@@ -6844,7 +6844,7 @@ isObjectDead(): boolean
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
   let isDead = proxy.isObjectDead();
@@ -6981,7 +6981,7 @@ getFlags(): number
       console.info("error " + error);
   }
   ```
-  
+
 ### setFlags
 
 setFlags(flags: number): void
@@ -7152,11 +7152,11 @@ static getCallingTokenId(): number;
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
- 
+
    | 类型   | 说明                  |
    | ------ | --------------------- |
    | number | 返回调用者的TokenId。 |
-  
+
 **示例：**
 
   ```ts
@@ -8861,4 +8861,4 @@ readFromAshmem(size: number, offset: number): number[]
   console.log("RpcTest: write to Ashmem result is  : " + writeResult);
   let readResult = ashmem.readFromAshmem(5, 0);
   console.log("RpcTest: read to Ashmem result is  : " + readResult);
-  ```
+ ```

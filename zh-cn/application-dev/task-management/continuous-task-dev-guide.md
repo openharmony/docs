@@ -77,7 +77,7 @@ struct Index {
       wants: [
         {
           bundleName: "com.example.myapplication",
-          abilityName: "com.example.myapplication.MainAbility",
+          abilityName: "EntryAbility",
         }
       ],
       // 点击通知后，动作类型
@@ -164,7 +164,7 @@ function startContinuousTask() {
         wants: [
             {
                 bundleName: "com.example.myapplication",
-                abilityName: "com.example.myapplication.MainAbility",
+                abilityName: "EntryAbility",
             }
         ],
         // 点击通知后，动作类型
@@ -323,7 +323,7 @@ function startContinuousTask() {
         wants: [
             {
                 bundleName: "com.example.myapplication",
-                abilityName: "com.example.myapplication.MainAbility"
+                abilityName: "EntryAbility"
             }
         ],
         // 点击通知后，动作类型

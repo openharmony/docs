@@ -122,8 +122,8 @@ class MyAbility extends UIAbility {
 
 ```ts
 let want = {
-    bundleName: "com.test.example",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
 };
 let option = {
     windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN

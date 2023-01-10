@@ -17,7 +17,7 @@ AccessibilityExtensionContext是AccessibilityExtensionAbility上下文环境，�
 ```ts
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
 let axContext;
-class MainAbility extends AccessibilityExtensionAbility {
+class EntryAbility extends AccessibilityExtensionAbility {
     onConnect(): void {
         console.log('AxExtensionAbility onConnect');
         axContext = this.context;

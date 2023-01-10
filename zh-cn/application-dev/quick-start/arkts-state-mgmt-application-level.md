@@ -110,11 +110,11 @@ export default class EntryAbility extends UIAbility {
     onCreate() {
         this.storage = new LocalStorage()
         this.storage.setOrCreate('storageSimpleProp', 121)
-        console.info('[Demo MainAbility onCreate]')
+        console.info('[Demo EntryAbility onCreate]')
     }
 
     onDestroy() {
-        console.info('[Demo MainAbility onDestroy]')
+        console.info('[Demo EntryAbility onDestroy]')
     }
 
     onWindowStageCreate(windowStage) {
@@ -123,15 +123,15 @@ export default class EntryAbility extends UIAbility {
     }
 
     onWindowStageDestroy() {
-        console.info('[Demo] MainAbility onWindowStageDestroy')
+        console.info('[Demo] EntryAbility onWindowStageDestroy')
     }
 
     onForeground() {
-        console.info('[Demo] MainAbility onForeground')
+        console.info('[Demo] EntryAbility onForeground')
     }
 
     onBackground() {
-        console.info('[Demo] MainAbility onBackground')
+        console.info('[Demo] EntryAbility onBackground')
     }
 }
 ```

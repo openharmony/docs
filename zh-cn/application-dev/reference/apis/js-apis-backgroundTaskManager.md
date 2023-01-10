@@ -187,7 +187,7 @@ let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -223,7 +223,7 @@ export default class EntryAbility extends UIAbility {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
-                    abilityName: "com.example.myapplication.MainAbility"
+                    abilityName: "EntryAbility"
                 }
             ],
             operationType: wantAgent.OperationType.START_ABILITY,
@@ -276,7 +276,7 @@ let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -307,7 +307,7 @@ export default class EntryAbility extends UIAbility {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
-                    abilityName: "com.example.myapplication.MainAbility"
+                    abilityName: "EntryAbility"
                 }
             ],
             operationType: wantAgent.OperationType.START_ABILITY,

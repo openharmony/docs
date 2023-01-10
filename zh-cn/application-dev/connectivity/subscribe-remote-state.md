@@ -111,7 +111,7 @@ let connect = {
 };
 let want = {
     "bundleName": "com.ohos.server",
-    "abilityName": "com.ohos.server.MainAbility",
+    "abilityName": "com.ohos.server.EntryAbility",
 };
 FA.connectAbility(want, connect);
 class MyDeathRecipient {

@@ -46,7 +46,7 @@ let wantAgentInfo = {
         {
             deviceId: 'deviceId',
             bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.MainAbility',
+            abilityName: 'com.example.test.EntryAbility',
             action: 'action1',
             entities: ['entity1'],
             type: 'MIMETYPE',
@@ -70,8 +70,6 @@ let wantAgentInfo = {
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 ```
-
-
 
 ## WantAgent.getWantAgent
 
@@ -105,7 +103,7 @@ let wantAgentInfo = {
         {
             deviceId: 'deviceId',
             bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.MainAbility',
+            abilityName: 'com.example.test.EntryAbility',
             action: 'action1',
             entities: ['entity1'],
             type: 'MIMETYPE',
@@ -131,8 +129,6 @@ WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
 });
 ```
-
-
 
 ## WantAgent.getBundleName
 
@@ -173,7 +169,7 @@ let wantAgentInfo = {
         {
             deviceId: 'deviceId',
             bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.MainAbility',
+            abilityName: 'com.example.test.EntryAbility',
             action: 'action1',
             entities: ['entity1'],
             type: 'MIMETYPE',
@@ -240,7 +236,7 @@ let wantAgentInfo = {
         {
             deviceId: 'deviceId',
             bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.MainAbility',
+            abilityName: 'com.example.test.EntryAbility',
             action: 'action1',
             entities: ['entity1'],
             type: 'MIMETYPE',
@@ -313,7 +309,7 @@ let wantAgentInfo = {
         {
             deviceId: 'deviceId',
             bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.MainAbility',
+            abilityName: 'com.example.test.EntryAbility',
             action: 'action1',
             entities: ['entity1'],
             type: 'MIMETYPE',
@@ -381,7 +377,7 @@ let wantAgentInfo = {
         {
             deviceId: 'deviceId',
             bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.MainAbility',
+            abilityName: 'com.example.test.EntryAbility',
             action: 'action1',
             entities: ['entity1'],
             type: 'MIMETYPE',
@@ -453,7 +449,7 @@ let wantAgentInfo = {
         {
             deviceId: 'deviceId',
             bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.MainAbility',
+            abilityName: 'com.example.test.EntryAbility',
             action: 'action1',
             entities: ['entity1'],
             type: 'MIMETYPE',
@@ -521,7 +517,7 @@ let wantAgentInfo = {
         {
             deviceId: 'deviceId',
             bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.MainAbility',
+            abilityName: 'com.example.test.EntryAbility',
             action: 'action1',
             entities: ['entity1'],
             type: 'MIMETYPE',
@@ -595,7 +591,7 @@ let wantAgentInfo = {
         {
             deviceId: 'deviceId',
             bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.MainAbility',
+            abilityName: 'com.example.test.EntryAbility',
             action: 'action1',
             entities: ['entity1'],
             type: 'MIMETYPE',
@@ -674,7 +670,7 @@ let wantAgentInfo = {
         {
             deviceId: 'deviceId',
             bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.MainAbility',
+            abilityName: 'com.example.test.EntryAbility',
             action: 'action1',
             entities: ['entity1'],
             type: 'MIMETYPE',
@@ -744,7 +740,7 @@ let wantAgentInfo = {
         {
             deviceId: 'deviceId',
             bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.MainAbility',
+            abilityName: 'com.example.test.EntryAbility',
             action: 'action1',
             entities: ['entity1'],
             type: 'MIMETYPE',
@@ -806,7 +802,7 @@ let wantAgentInfo = {
         {
             deviceId: 'deviceId',
             bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.MainAbility',
+            abilityName: 'com.example.test.EntryAbility',
             action: 'action1',
             entities: ['entity1'],
             type: 'MIMETYPE',
@@ -872,7 +868,7 @@ let wantAgentInfo = {
         {
             deviceId: 'deviceId',
             bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.MainAbility',
+            abilityName: 'com.example.test.EntryAbility',
             action: 'action1',
             entities: ['entity1'],
             type: 'MIMETYPE',

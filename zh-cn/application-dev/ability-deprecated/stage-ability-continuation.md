@@ -192,7 +192,7 @@
         storage : LocalStorag;
 
         onCreate(want, launchParam) {
-            Logger.info(`MainAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
+            Logger.info(`EntryAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
             if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
                 // get user data from want params
                 let workInput = want.parameters.work
@@ -263,7 +263,7 @@
       storage : LocalStorag;
   
       onCreate(want, launchParam) {
-          Logger.info(`MainAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
+          Logger.info(`EntryAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
           if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
               // get distributed data object session id from want params
               this.sessionId = want.parameters.session

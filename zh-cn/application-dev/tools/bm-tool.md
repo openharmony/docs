@@ -84,7 +84,7 @@ bm uninstall [-h help] [-n bundleName] [-m moduleName] [-u userId] [-k]
 示例：
 
 ```bash
-bm uninstall -n com.ohos.app -m com.ohos.app.MainAbility -u 100 -k
+bm uninstall -n com.ohos.app -m com.ohos.app.EntryAbility -u 100 -k
 // 执行结果
 uninstall bundle successfully.
 ```
@@ -184,7 +184,7 @@ bm enable [-h] [-n bundleName] [-a abilityName] [-u userId]
 
 ```bash
 # 使能该应用
-bm enable -n com.ohos.app -a com.ohos.app.MainAbility -u 100
+bm enable -n com.ohos.app -a com.ohos.app.EntryAbility -u 100
 // 执行结果
 enable bundle successfully.
 ```
@@ -213,7 +213,7 @@ bm disable [-h] [-n bundleName] [-a abilityName] [-u userId]
 
 ```bash
 # 禁用该应用
-bm disable -n com.ohos.app -a com.ohos.app.MainAbility -u 100
+bm disable -n com.ohos.app -a com.ohos.app.EntryAbility -u 100
 // 执行结果
 disable bundle successfully.
 ```

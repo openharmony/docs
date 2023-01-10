@@ -418,7 +418,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
         caller = obj;
@@ -503,7 +503,7 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
         caller = obj;
@@ -556,7 +556,7 @@ release(): void;
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
         caller = obj;
@@ -599,7 +599,7 @@ release(): void;
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
           caller = obj;

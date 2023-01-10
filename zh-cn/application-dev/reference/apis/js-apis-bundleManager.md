@@ -970,7 +970,7 @@ let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 
 try {
@@ -1026,7 +1026,7 @@ import hilog from '@ohos.hilog';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 
 try {
@@ -1089,7 +1089,7 @@ let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 
 try {
@@ -1109,7 +1109,7 @@ import hilog from '@ohos.hilog';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 
 try {
@@ -1166,7 +1166,7 @@ let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_IN
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 
 try {
@@ -1223,7 +1223,7 @@ let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 
 try {
@@ -1288,7 +1288,7 @@ let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_IN
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 
 try {
@@ -1309,7 +1309,7 @@ let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 
 try {
@@ -1755,7 +1755,7 @@ let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 let info;
 
@@ -1822,7 +1822,7 @@ let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 let info;
 
@@ -1972,7 +1972,7 @@ let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 let info;
 
@@ -2036,7 +2036,7 @@ let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 let info;
 
@@ -2247,7 +2247,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
-let abilityName = 'MainAbility';
+let abilityName = 'EntryAbility';
 let metadataName = 'com.example.myapplication.metadata';
 
 try {
@@ -2303,7 +2303,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
-let abilityName = 'MainAbility';
+let abilityName = 'EntryAbility';
 
 try {
     bundleManager.getProfileByAbility(moduleName, abilityName).then((data) => {
@@ -2320,7 +2320,7 @@ try {
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
-let abilityName = 'MainAbility';
+let abilityName = 'EntryAbility';
 let metadataName = 'com.example.myapplication.metadata';
 try {
     bundleManager.getProfileByAbility(moduleName, abilityName, metadataName).then((data) => {
@@ -2581,7 +2581,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
-let abilityName = 'MainAbility';
+let abilityName = 'EntryAbility';
 
 try {
     bundleManager.getAbilityLabel(bundleName, moduleName, abilityName, (err, data) => {
@@ -2641,7 +2641,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
-let abilityName = 'MainAbility';
+let abilityName = 'EntryAbility';
 
 try {
     bundleManager.getAbilityLabel(bundleName, moduleName, abilityName).then((data) => {
@@ -2694,7 +2694,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
-let abilityName = 'MainAbility';
+let abilityName = 'EntryAbility';
 
 try {
     bundleManager.getAbilityIcon(bundleName, moduleName, abilityName, (err, data) => {
@@ -2754,7 +2754,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
-let abilityName = 'MainAbility';
+let abilityName = 'EntryAbility';
 
 try {
     bundleManager.getAbilityIcon(bundleName, moduleName, abilityName).then((data) => {

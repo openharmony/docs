@@ -72,7 +72,7 @@ var media = mediaLibrary.getMediaLibrary(context);
                    "reason": "$string:reason",
                    "usedScene": {
                        "abilities": [
-                         "MainAbility"
+                         "EntryAbility"
                        ],
                        "when": "always"
                }
@@ -82,7 +82,7 @@ var media = mediaLibrary.getMediaLibrary(context);
                    "reason": "$string:reason",
                    "usedScene": {
                        "abilities": [
-                           "MainAbility"
+                           "EntryAbility"
                        ],
                        "when": "always"
                    }
@@ -92,7 +92,7 @@ var media = mediaLibrary.getMediaLibrary(context);
                    "reason": "$string:reason",
                    "usedScene": {
                        "abilities": [
-                           "MainAbility"
+                           "EntryAbility"
                        ],
                        "when": "always"
                    }

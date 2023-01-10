@@ -295,7 +295,7 @@ export default class EntryAbility extends UIAbility {
            "name" : "ohos.permission.SYSTEM_FLOAT_WINDOW",
            "usedScene": {
              "abilities": [
-               "MainAbility"
+               "EntryAbility"
              ],
              "when":"inuse"
            }
