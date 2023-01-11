@@ -62,8 +62,8 @@ data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
         console.info("Get RdbStore failed, err: " + err)
         return
     }    
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATA) {
-        console.log("RdbStore status is ON_CREATA")
+    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
+        console.log("RdbStore status is ON_CREATE")
     } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
         console.log("RdbStore status is ON_OPEN")
     } else {
@@ -97,8 +97,8 @@ data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
         console.info("Get RdbStore failed, err: " + err)
         return
     }
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATA) {
-        console.log("RdbStore status is ON_CREATA")
+    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
+        console.log("RdbStore status is ON_CREATE")
     } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
         console.log("RdbStore status is ON_OPEN")
     } else {
@@ -154,8 +154,8 @@ const STORE_CONFIG = {
 }
 let promise = data_rdb.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATA) {
-        console.log("RdbStore status is ON_CREATA")
+    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
+        console.log("RdbStore status is ON_CREATE")
     } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
         console.log("RdbStore status is ON_OPEN")
     } else {
@@ -188,8 +188,8 @@ const STORE_CONFIG = {
 }
 let promise = data_rdb.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATA) {
-        console.log("RdbStore status is ON_CREATA")
+    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
+        console.log("RdbStore status is ON_CREATE")
     } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
         console.log("RdbStore status is ON_OPEN")
     } else {
