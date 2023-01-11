@@ -49,7 +49,7 @@ export default {
           //捕获权限否定异常
           console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
         }
-        console.info(`Succeeded in creating timer. timerId:` + timerId);
+        console.info(`Succeeded in creating timer. timerId: ${timerId}`);
       });
     } catch(e) {
       //捕获参数校验失败异常
@@ -72,7 +72,7 @@ export default {
     };
     try {
       systemTimer.createTimer(options).then((timerId) => {
-        console.info(`Succeeded in creating timer. timerId:` + timerId);
+        console.info(`Succeeded in creating timer. timerId: ${timerId}`);
       }).catch((error) => {
         //捕获权限否定异常
         console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);

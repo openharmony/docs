@@ -74,7 +74,7 @@ export default {
           console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
           return;
         }
-        console.info(`Succeeded in creating timer. timerId:` + timerId);
+        console.info(`Succeeded in creating timer. timerId: ${timerId}`);
       });
     } catch(e) {
       console.info(`Failed to create timer. message: ${e.message}, code: ${e.code}`);
@@ -116,7 +116,7 @@ export default {
     };   
     try {
       systemTimer.createTimer(options).then((timerId) => {
-        console.info(`Succeeded in creating timer. timerId:` + timerId);
+        console.info(`Succeeded in creating timer. timerId: ${timerId}`);
       }).catch((error) => {
         console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
       });
