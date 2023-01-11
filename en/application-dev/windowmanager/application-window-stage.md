@@ -55,12 +55,15 @@ In the stage model, the main window of an application is created and maintained 
 ### How to Develop
 
 1. Obtain the main window.
+   
    Call **getMainWindow** to obtain the main window of the application.
 
 2. Set the properties of the main window.
+
    You can set multiple properties of the main window, such as the background color, brightness, and whether the main window is touchable. The code snippet below uses the **touchable** property as an example.
 
 3. Load content for the main window.
+
    Call **loadContent** to load the page content to the main window.
 
 ```ts
@@ -108,17 +111,21 @@ You can create an application subwindow, such as a dialog box, and set its prope
 ### How to Develop
 
 1. Create a subwindow.
+   
    Call **createSubWindow** to create a subwindow.
 
 2. Set the properties of the subwindow.
+
    After the subwindow is created, you can set its properties, such as the size, position, background color, and brightness.
 
 3. Load content for the subwindow and show it.
+
    Call **setUIContent** and **showWindow** to load and display the content in the subwindow.
 
 4. Destroy the subwindow.
+
    When the subwindow is no longer needed, you can call **destroyWindow** to destroy it.
-   
+
    ```ts
    import Ability from '@ohos.application.Ability'
    
@@ -201,6 +208,7 @@ To create a better video watching and gaming experience, you can use the immersi
 ### How to Develop
 
 1. Obtain the main window.
+   
    Call **getMainWindow** to obtain the main window of the application.
 
 2. Implement the immersive effect. You can use any of the following methods:
@@ -208,8 +216,9 @@ To create a better video watching and gaming experience, you can use the immersi
    - Method 2: Call **setWindowLayoutFullScreen** to enable the full-screen mode for the main window layout. Call **setWindowSystemBarProperties** to set the opacity, background color, text color, and highlighted icon of the navigation bar and status bar to ensure that their display effect is consistent with that of the main window.
 
 3. Load content for the immersive window and show it.
+
    Call **loadContent** to load the content to the immersive window.
-   
+
    ```ts
    import Ability from '@ohos.application.Ability'
    
@@ -279,12 +288,13 @@ A floating window is created based on an existing task. It is always displayed i
 ### How to Develop
 
 1. Apply for permissions.
+   
    To create a floating window (of the **WindowType.TYPE_FLOAT** type), you must configure the **ohos.permission.SYSTEM_FLOAT_WINDOW** permission in the **requestPermissions** field of the **module.json5** file. For more configuration information, see [module.json5 Configuration File](../quick-start/module-configuration-file.md).
 
    > **NOTE**
    >
    > If the task for creating the floating window is reclaimed by the system, the floating window will no longer be displayed. If you want the floating window to be displayed in such a case, apply for a [continuous task](../task-management/background-task-overview.md).
-   
+
    ```json
    {
      "module": {
@@ -304,12 +314,15 @@ A floating window is created based on an existing task. It is always displayed i
    ```
 
 2. Create a floating window.
+
    Call **window.createWindow** to create a floating window.
 
 3. Set properties for the floating window.
+
    After the floating window is created, you can set its properties, such as the size, position, background color, and brightness.
 
 4. Load content for the floating window and show it.
+
    Call **setUIContent** and **showWindow** to load and display the content in the floating window.
 
 5. Destroy the floating window.
