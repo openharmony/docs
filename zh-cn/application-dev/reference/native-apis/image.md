@@ -34,7 +34,7 @@
 
 | 枚举名称 | 描述 |
 | -------- | -------- |
-| { OH_NATIVEXCOMPONENT_RESULT_SUCCESS = 0, <br/>OH_NATIVEXCOMPONENT_RESULT_FAILED = -1, <br/>OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER = -2, <br/>OHOS_IMAGE_RESULT_SUCCESS = 0,   <br/>OHOS_IMAGE_RESULT_BAD_PARAMETER = -1 } | 函数方法返回值的错误码的[枚举](#anonymous-enum)。 |
+| { OHOS_IMAGE_RESULT_SUCCESS = 0,   <br/>OHOS_IMAGE_RESULT_BAD_PARAMETER = -1 } | 函数方法返回值的错误码的[枚举](#anonymous-enum)。 |
 | { OHOS_PIXEL_MAP_FORMAT_NONE = 0, <br/>OHOS_PIXEL_MAP_FORMAT_RGBA_8888 = 3, <br/>OHOS_PIXEL_MAP_FORMAT_RGB_565 = 2 } | pixel 格式的[枚举](#anonymous-enum-1)。 |
 
 

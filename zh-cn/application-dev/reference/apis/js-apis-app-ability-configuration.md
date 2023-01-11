@@ -28,21 +28,29 @@ import Configuration from '@ohos.app.ability.Configuration'
 **示例：**
     
   ```ts
-  let envCallback = {
-     onConfigurationUpdated(config) {
-       console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`)
-       let language = config.language;
-       let colorMode = config.colorMode;
-       let direction = config.direction;
-       let screenDensity = config.screenDensity;
-       let displayId = config.displayId;
-       let hasPointerDevice = config.hasPointerDevice;
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+      let envCallback = {
+        onConfigurationUpdated(config) {
+          console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`)
+          let language = config.language;
+          let colorMode = config.colorMode;
+          let direction = config.direction;
+          let screenDensity = config.screenDensity;
+          let displayId = config.displayId;
+          let hasPointerDevice = config.hasPointerDevice;
+        }
+      };
+      try {
+        let applicationContext = this.context.getApplicationContext();
+        let callbackId = applicationContext.on("environment", envCallback);
+        console.log("callbackId: " + callbackId);
+      } catch (paramError) {
+        console.log("error: " + paramError.code + ", " + paramError.message);
+      }
     }
-  };
-  try {
-    let callbackId = applicationContext.on("environment", envCallback);
-  } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
   }
   ```
 

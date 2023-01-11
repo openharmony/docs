@@ -101,7 +101,7 @@ struct WebComponent {
 
 ### postMessageEvent
 
-postMessageEvent(message: string): void
+postMessageEvent(message: WebMessage): void
 
 发送消息。完整示例代码参考[postMessage](#postmessage)
 
@@ -111,7 +111,7 @@ postMessageEvent(message: string): void
 
 | 参数名  | 类型   | 必填 | 说明           |
 | ------- | ------ | ---- | :------------- |
-| message | string | 是   | 要发送的消息。 |
+| message | [WebMessage](#webmessage) | 是   | 要发送的消息。 |
 
 **错误码：**
 
@@ -153,7 +153,7 @@ struct WebComponent {
 
 ### onMessageEvent
 
-onMessageEvent(callback: (result: string) => void): void
+onMessageEvent(callback: (result: WebMessage) => void): void
 
 注册回调函数，接收HTML5侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)
 
@@ -163,7 +163,7 @@ onMessageEvent(callback: (result: string) => void): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | :------------------- |
-| result | string | 是   | 接收到的消息。 |
+| result | [WebMessage](#webmessage) | 是   | 接收到的消息。 |
 
 **错误码：**
 
@@ -192,7 +192,17 @@ struct WebComponent {
           try {
             this.ports = this.controller.createWebMessagePorts();
             this.ports[1].onMessageEvent((msg) => {
-              console.log("received message from html5, on message:" + msg);
+              if (typeof(msg) == "string") {
+                console.log("received string message from html5, string is:" + msg);
+              } else if (typeof(msg) == "object") {
+                if (msg instanceof ArrayBuffer) {
+                  console.log("received arraybuffer from html5, length is:" + msg.byteLength);
+                } else {
+                  console.log("not support");
+                }
+              } else {
+                console.log("not support");
+              }
             })
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -218,19 +228,19 @@ static initializeWebEngine(): void
 
 **示例：**
 
-本示例以 MainAbility 为例，描述了在 Ability 创建阶段完成 Web 组件动态库加载的功能。
+本示例以EntryAbility为例，描述了在 Ability 创建阶段完成 Web 组件动态库加载的功能。
 
 ```ts
 // xxx.ts
-import Ability from '@ohos.application.Ability'
-import web_webview from '@ohos.web.webview'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("MainAbility onCreate")
+        console.log("EntryAbility onCreate")
         web_webview.WebviewController.initializeWebEngine()
         globalThis.abilityWant = want
-        console.log("MainAbility onCreate done")
+        console.log("EntryAbility onCreate done")
     }
 }
 ```
@@ -239,7 +249,7 @@ export default class MainAbility extends Ability {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
 
 @Entry
 @Component
@@ -1464,8 +1474,21 @@ struct WebComponent {
             // 2、将其中一个消息端口发送到HTML侧，由HTML侧保存并使用。
             this.controller.postMessage('__init_port__', [this.ports[0]], '*');
             // 3、另一个消息端口在应用侧注册回调事件。
-            this.ports[1].onMessageEvent((result: string) => {
-                var msg = 'Got msg from HTML: ' + result;
+            this.ports[1].onMessageEvent((result: WebMessage) => {
+                var msg = 'Got msg from HTML:';    
+                if (typeof(result) == "string") {
+                  console.log("received string message from html5, string is:" + result);
+                  msg = msg + result;
+                } else if (typeof(result) == "object") {
+                  if (result instanceof ArrayBuffer) {
+                    console.log("received arraybuffer from html5, length is:" + result.byteLength);
+                    msg = msg + "lenght is " + result.byteLength;
+                  } else {
+                    console.log("not support");
+                  }
+                } else {
+                  console.log("not support");
+                }
                 this.receivedFromHtml = msg;
               })
           } catch (error) {
@@ -1523,7 +1546,21 @@ window.addEventListener('message', function (event) {
             h5Port = event.ports[0]; // 1. 保存从ets侧发送过来的端口
             h5Port.onmessage = function (event) {
               // 2. 接收ets侧发送过来的消息.
-              var msg = 'Got message from ets:' + event.data;
+              var msg = 'Got message from ets:';
+              var result = event.data;
+              if (typeof(result) == "string") {
+                console.log("received string message from html5, string is:" + result);
+                msg = msg + result;
+              } else if (typeof(result) == "object") {
+                if (result instanceof ArrayBuffer) {
+                  console.log("received arraybuffer from html5, length is:" + result.byteLength);
+                  msg = msg + "lenght is " + result.byteLength;
+                } else {
+                  console.log("not support");
+                }
+              } else {
+                console.log("not support");
+              }
               output.innerHTML = msg;
             }
         }
@@ -1826,7 +1863,7 @@ struct WebComponent {
 
 getTitle(): string
 
-获取文件选择器标题。
+获取当前网页的标题。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1834,7 +1871,7 @@ getTitle(): string
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| string | 返回文件选择器标题。 |
+| string | 当前网页的标题。 |
 
 **错误码：**
 
@@ -2527,7 +2564,6 @@ setNetworkAvailable(enable: boolean): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 401      | Invalid input parameter.                                     |
 
 **示例：**
 
@@ -2558,7 +2594,7 @@ struct WebComponent {
 
 ### hasImage
 
-hasImage(callback: AsyncCallback<boolean>): void
+hasImage(callback: AsyncCallback\<boolean>): void
 
 通过Callback方式异步查找当前页面是否存在图像。
 
@@ -2577,7 +2613,6 @@ hasImage(callback: AsyncCallback<boolean>): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
-| 401      | Invalid input parameter.                                     |
 
 **示例：**
 
@@ -2595,7 +2630,7 @@ struct WebComponent {
       Button('hasImageCb')
         .onClick(() => {
           try {
-            this.controller.hasImage((err, data) => {
+            this.controller.hasImage((error, data) => {
                 if (error) {
                   console.info(`hasImage error: ` + JSON.stringify(error))
                   return;
@@ -2614,7 +2649,7 @@ struct WebComponent {
 
 ### hasImage
 
-hasImage(): Promise<boolean>
+hasImage(): Promise\<boolean>
 
 通过Promise方式异步查找当前页面是否存在图像。
 
@@ -2633,7 +2668,6 @@ hasImage(): Promise<boolean>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
-| 401      | Invalid input parameter.                                     |
 
 **示例：**
 
@@ -2679,7 +2713,7 @@ removeCache(clearRom: boolean): void
 
 | 参数名   | 类型    | 必填 | 说明                                                     |
 | -------- | ------- | ---- | -------------------------------------------------------- |
-| clearRom | boolean | 是   | 是否同时清除rom和ram中的缓存，false时只清除ram中的缓存。 |
+| clearRom | boolean | 是   | 设置为true时同时清除rom和ram中的缓存，设置为false时只清除ram中的缓存。 |
 
 **错误码：**
 
@@ -2688,7 +2722,6 @@ removeCache(clearRom: boolean): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 401      | Invalid input parameter.                                     |
 
 **示例：**
 
@@ -3932,7 +3965,7 @@ struct WebComponent {
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
-    webAsyncController: WebAsyncController = new web_webview.WebAsyncController(this.controller)
+    webAsyncController: web_webview.WebAsyncController = new web_webview.WebAsyncController(this.controller)
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4432,6 +4465,15 @@ Web组件返回的请求/响应头对象。
 | type | [HitTestTypeV9](#hittesttypev9) | 是 | 否 | 当前被点击区域的元素类型。|
 | extra | string        | 是 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
+## WebMessage
+
+用于描述[WebMessagePort](#webmessageport)所支持的数据类型。
+
+| 类型       | 说明                                     |
+| -------- | -------------------------------------- |
+| string   | 字符串类型数据。 |
+| ArrayBuffer   | 二进制类型数据。 |
+
 ## WebStorageOrigin
 
 提供Web SQL数据库的使用信息。
@@ -4452,7 +4494,7 @@ Web组件返回的请求/响应头对象。
 
 | 名称         | 类型   | 可读 | 可写 | 说明                         |
 | ------------ | ------ | ---- | ---- | ---------------------------- |
-| currentIndex | number | 是   | 否   | 当前在页面历史列表中的索引。 |
+| currentIndex | number | 是   | 否   | 当前页面在页面历史列表中的索引。 |
 | size         | number | 是   | 否   | 历史列表中索引的数量。       |
 
 ### getItemAtIndex
@@ -4475,14 +4517,6 @@ getItemAtIndex(index: number): HistoryItem
 | --------------------------- | ------------ |
 | [HistoryItem](#historyitem) | 历史记录项。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
-
-| 错误码ID | 错误信息                |
-| -------- | ----------------------- |
-| 401      | Invalid input parameter |
-
 **示例：**
 
 ```ts
@@ -4504,7 +4538,7 @@ struct WebComponent {
             let list = this.controller.getBackForwardEntries();
             let historyItem = list.getItemAtIndex(list.currentIndex);
 			console.log("HistoryItem: " + JSON.stringify(historyItem));
-  			this.icon = item.icon;
+  			this.icon = historyItem.icon;
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -4539,5 +4573,3 @@ struct WebComponent {
 | schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'。        |
 | isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
 | isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
-
-### 

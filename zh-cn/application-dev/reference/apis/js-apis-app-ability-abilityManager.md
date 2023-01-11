@@ -10,7 +10,7 @@ AbilityManager模块提供获取、新增、修改Ability相关信息和状态�
 ## 导入模块
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager'
+import abilityManager from '@ohos.app.ability.abilityManager';
 ```
 
 ## AbilityState
@@ -46,29 +46,39 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 | config    | [Configuration](js-apis-app-ability-configuration.md)   | 是    | 新的配置项，仅需配置需要更新的项。 |
 | callback  | AsyncCallback\<void>                   | 是    | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。      |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
-var config = {
-  language: 'Zh-Hans',
-  colorMode: COLOR_MODE_LIGHT,
-  direction: DIRECTION_VERTICAL,
-  screenDensity: SCREEN_DENSITY_SDPI,
-  displayId: 1,
-  hasPointerDevice: true,
-}
+import abilityManager from '@ohos.app.ability.abilityManager';
+
+const config = {
+  language: 'Zh-Hans',                 // 简体中文
+  colorMode: COLOR_MODE_LIGHT,         // 浅色模式
+  direction: DIRECTION_VERTICAL,       // 垂直方向
+  screenDensity: SCREEN_DENSITY_SDPI,  // 屏幕分辨率为"sdpi"
+  displayId: 1,                        // 应用在Id为1的物理屏上显示
+  hasPointerDevice: true,              // 指针类型设备已连接
+};
 
 try {
     abilityManager.updateConfiguration(config, (err) => {
-        if (err.code != 0) {
+        if (err.code !== 0) {
             console.log("updateConfiguration fail, err: " + JSON.stringify(err));
         } else {
             console.log("updateConfiguration success.");
         }
     })
 } catch (paramError) {
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-        ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ' + JSON.stringify(paramError.code)
+        + ' error.message: ' + JSON.stringify(paramError.message));
 }
 ```
 
@@ -94,17 +104,27 @@ updateConfiguration(config: Configuration): Promise\<void>
 | ---------------------------------------- | ------- |
 | Promise\<void> | 以Promise方式返回接口运行结果息，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
-var config = {
-  language: 'Zh-Hans',
-  colorMode: COLOR_MODE_LIGHT,
-  direction: DIRECTION_VERTICAL,
-  screenDensity: SCREEN_DENSITY_SDPI,
-  displayId: 1,
-  hasPointerDevice: true,
-}
+import abilityManager from '@ohos.app.ability.abilityManager';
+
+const config = {
+  language: 'Zh-Hans',                 // 简体中文
+  colorMode: COLOR_MODE_LIGHT,         // 浅色模式
+  direction: DIRECTION_VERTICAL,       // 垂直方向
+  screenDensity: SCREEN_DENSITY_SDPI,  // 屏幕分辨率为"sdpi"
+  displayId: 1,                        // 应用在Id为1的物理屏上显示
+  hasPointerDevice: true,              // 指针类型设备已连接
+};
 
 try {
     abilityManager.updateConfiguration(config).then(() => {
@@ -113,8 +133,8 @@ try {
         console.log('updateConfiguration fail, err: ' + JSON.stringify(err));
     })
 } catch (paramError) {
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-        ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ' + JSON.stringify(paramError.code)
+        + ' error.message: ' + JSON.stringify(paramError.message));
 }
 ```
 
@@ -134,20 +154,30 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 | --------- | ---------------------------------------- | ---- | -------------- |
 | callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | 是    | 以回调方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。      |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+
 try {
-    abilityManager.getAbilityRunningInfos((err,data) => {
-        if (err.code != 0) {
+    abilityManager.getAbilityRunningInfos((err, data) => {
+        if (err.code !== 0) {
             console.log("getAbilityRunningInfos fail, error: " + JSON.stringify(err));
         } else {
             console.log("getAbilityRunningInfos success, data: " + JSON.stringify(data));
         }
     });
 } catch (paramError) {
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-        ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ' + JSON.stringify(paramError.code)
+        + ' error.message: ' + JSON.stringify(paramError.message));
 }
 ```
 
@@ -167,9 +197,19 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 | ---------------------------------------- | ------- |
 | Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | 以Promise方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+
 try {
     abilityManager.getAbilityRunningInfos().then((data) => {
         console.log("getAbilityRunningInfos success, data: " + JSON.stringify(data))
@@ -177,8 +217,8 @@ try {
         console.log("getAbilityRunningInfos fail, err: "  + JSON.stringify(err));
     });
 } catch (paramError) {
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-        ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ' + JSON.stringify(paramError.code)
+        + ' error.message: ' + JSON.stringify(paramError.message));
 }
 ```
 
@@ -196,25 +236,35 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| upperLimit | number                                   | 是 | 获取消息数量的最大限制。 |
+| upperLimit | number                                   | 是 | 获取消息数量的最大限制，最大为2<sup>31</sup>-1。 |
 | callback  | AsyncCallback\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>>  | 是    | 以回调方式返回接口运行结果及运行中的extension信息，可进行错误处理或其他自定义处理。      |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
 ```ts
-var upperLimit = 0;
+import abilityManager from '@ohos.app.ability.abilityManager';
+
+let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit, (err,data) => { 
-        if (err.code != 0) {
+    abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => { 
+        if (err.code !== 0) {
             console.log("getExtensionRunningInfos fail, err: " + JSON.stringify(err));
         } else {
             console.log("getExtensionRunningInfos success, data: " + JSON.stringify(data));
         }
     });
 } catch (paramError) {
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-        ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ' + JSON.stringify(paramError.code)
+        + ' error.message: ' + JSON.stringify(paramError.message));
 }
 ```
 
@@ -232,7 +282,7 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| upperLimit | number                                   | 是 | 获取消息数量的最大限制。 |
+| upperLimit | number                                   | 是 | 获取消息数量的最大限制，最大为2<sup>31</sup>-1。 |
 
 **返回值：**
 
@@ -240,10 +290,20 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 | ---------------------------------------- | ------- |
 | Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>> | 以Promise方式返回接口运行结果及运行中的extension信息，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
-var upperLimit = 0;
+import abilityManager from '@ohos.app.ability.abilityManager';
+
+let upperLimit = 10;
 
 try {
     abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
@@ -252,8 +312,8 @@ try {
         console.log("getExtensionRunningInfos fail, err: "  + JSON.stringify(err));
     })
 } catch (paramError) {
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-        ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ' + JSON.stringify(paramError.code)
+        + ' error.message: ' + JSON.stringify(paramError.message));
 }
 ```
 
@@ -271,11 +331,21 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 | --------- | ---------------------------------------- | ---- | -------------- |
 | callback  | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)>  | 是    | 以回调方式返回接口运行结果及应用名，可进行错误处理或其他自定义处理。      |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
-abilityManager.getTopAbility((err,data) => { 
-    if (err.code != 0) {
+import abilityManager from '@ohos.app.ability.abilityManager';
+
+abilityManager.getTopAbility((err, data) => { 
+    if (err.code !== 0) {
         console.log("getTopAbility fail, err: " + JSON.stringify(err));
     } else {
         console.log("getTopAbility success, data: " + JSON.stringify(data));
@@ -297,9 +367,19 @@ getTopAbility(): Promise\<ElementName>;
 | ---------------------------------------- | ------- |
 | Promise\<[ElementName](js-apis-bundleManager-elementName.md)>| 以Promise方式返回接口运行结果及应用名，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+
 abilityManager.getTopAbility().then((data) => {
     console.log("getTopAbility success, data: " + JSON.stringify(data));
 }).catch((err) => {

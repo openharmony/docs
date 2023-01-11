@@ -4,7 +4,7 @@ Web是提供网页显示能力的组件，具体用法请参考 [Web API](../ref
 
 ## 创建组件
 
-在main/ets/MainAbility/pages目录下的ets文件中创建一个Web组件。在web组件中通过src指定引用的网页路径，controller为组件的控制器，通过controller绑定Web组件，用于调用Web组件的方法。
+在main/ets/entryability/pages目录下的ets文件中创建一个Web组件。在web组件中通过src指定引用的网页路径，controller为组件的控制器，通过controller绑定Web组件，用于调用Web组件的方法。
 
   ```ts
   // xxx.ets

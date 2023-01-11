@@ -255,7 +255,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **示例**：
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import wantAgent from '@ohos.wantAgent';
 
@@ -267,13 +267,13 @@ function callback(error, data) {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let wantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
-                    abilityName: "MainAbility"
+                    abilityName: "EntryAbility"
                 }
             ],
             operationType: wantAgent.OperationType.START_ABILITY,
@@ -334,17 +334,17 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **示例**：
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'; 
 import wantAgent from '@ohos.wantAgent';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let wantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
-                    abilityName: "MainAbility"
+                    abilityName: "EntryAbility"
                 }
             ],
             operationType: wantAgent.OperationType.START_ABILITY,
@@ -400,7 +400,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 **示例**：
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
 function callback(error, data) {
@@ -411,7 +411,7 @@ function callback(error, data) {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         try {
             backgroundTaskManager.stopBackgroundRunning(this.context, callback);
@@ -461,10 +461,10 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 **示例**：
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         try {
             backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {

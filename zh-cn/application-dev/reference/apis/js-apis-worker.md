@@ -106,7 +106,7 @@ FA模型:
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/MainAbility/workers/worker.ts"
+        "./src/main/ets/entryability/workers/worker.ts"
       ]
     }
   }
@@ -1191,7 +1191,7 @@ FA模型:
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/MainAbility/workers/worker.ts"
+        "./src/main/ets/entryability/workers/worker.ts"
       ]
     }
   }
@@ -2113,7 +2113,7 @@ build-profile.json5 配置 :
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/MainAbility/workers/worker.ts"
+        "./src/main/ets/entryability/workers/worker.ts"
       ]
     }
   }

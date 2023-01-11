@@ -37,6 +37,8 @@
   - [RDB Error Codes](errorcode-data-rdb.md)
   - [Distributed KV Store Error Codes](errorcode-distributedKVStore.md)
   - [Preferences Error Codes](errorcode-preferences.md)
+- File Management
+  - [File Management Error Codes](errorcode-filemanagement.md)
 - Network Management
   - [Upload and Download Error Codes](errorcode-request.md)
 - Connectivity

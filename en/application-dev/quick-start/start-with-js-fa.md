@@ -39,7 +39,7 @@
   - **src > main > js > MainAbility > app.js**: ability lifecycle file.
 
   - **src > main > resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files. For details about resource files, see [Resource Limitations and Access](../ui/js-framework-resource-restriction.md).
-  - **src > main > config.json**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file. For details about the configuration file, see [Application Package Structure Configuration File (FA Model)](package-structure.md).
+  - **src > main > config.json**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file. For details, see [Application Configuration File Overview (FA Model)](application-configuration-file-overview-fa.md).
   - **build-profile.json5**: current module information and build configuration options, including **buildOption** and **targets**.
   - **hvigorfile.ts**: module-level build script. You can customize related tasks and code implementation.
 

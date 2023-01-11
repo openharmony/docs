@@ -28,7 +28,7 @@ Functions of the folders are as follows:
 
 >**NOTE** 
 >
->-   Reserved folders \(**i18n** and **resources**\) cannot be renamed.
+>-   The **i18n** and **resources** folders cannot be renamed.
 >-   If the same resource name and directory are used under the  share  directory and the instance \(**default**\) directory, the resource in the instance directory will be used when you reference the directory.
 >-   The **share** directory does not support **i18n**.
 >-   You should create the optional folders \(shown in the directory structure\) as needed after you create the project in DevEco Studio.

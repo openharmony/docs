@@ -411,7 +411,7 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
       wants: [
           {
               bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility",
+              abilityName: "EntryAbility",
               action: "action1",
           }
       ],
@@ -459,7 +459,7 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
       wants: [
           {
               bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility",
+              abilityName: "EntryAbility",
               action: "action1",
           }
       ],

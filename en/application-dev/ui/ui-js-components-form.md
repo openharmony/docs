@@ -121,15 +121,15 @@ To submit or reset a form, add the **submit** and **reset** events.
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default{
   onSubmit(result) {
-    prompt.showToast({
+    promptAction.showToast({
       message: result.value.radioGroup
     })
   },
   onReset() {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Reset All'
     })
   }
@@ -184,6 +184,8 @@ Create two [\<Input>](../reference/arkui-js/js-components-basic-input.md) compon
 ```css
 /* index.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction:column;
   align-items:center;
   background-color:#F1F3F5;
@@ -200,15 +202,15 @@ label{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   formSubmit() {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Submitted.'
     })
   },
   formReset() {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Reset.'
     })
   }

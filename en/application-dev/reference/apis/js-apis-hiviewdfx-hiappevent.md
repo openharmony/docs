@@ -1,8 +1,8 @@
-# Application Event Logging
+# @ohos.hiviewdfx.hiAppEvent
 
-This module provides application event-related functions, including flushing application events to a disk, querying and clearing application events, and customizing application event logging configuration.
+The **hiAppEvent** module provides application event-related functions, including flushing application events to a disk, querying and clearing application events, and customizing application event logging configuration.
 
-> **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 

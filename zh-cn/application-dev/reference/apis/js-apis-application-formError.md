@@ -1,6 +1,6 @@
-# @ohos.application.formError (FormError)
+# @ohos.application.formError (formError)
 
-FormError模块提供获取卡片错误码的能力。
+formError模块提供获取卡片错误码的能力。
 
 > **说明：**
 >

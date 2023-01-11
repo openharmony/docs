@@ -2934,6 +2934,37 @@ Enumerates contact types.
 **System capability**: SystemCapability.Telephony.CoreService
 
 | Name           | Value  | Description      |
-| :-------------- | ---- | ---------- |
+| -------------- | ---- | ---------- |
 | GENERAL_CONTACT | 1    | Common contact number.|
 | FIXED_DIALING   | 2    | Fixed dialing number.  |
+
+## OperatorConfigKey<sup>9+</sup>
+
+Enumerates carrier configuration keys.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+|                             Name                       |                             Value                      |         Description        |
+| ------------------------------------------------------- | ---------------------------------------------------- | -------------------- |
+| KEY_VOICE_MAIL_NUMBER_STRING                            | "voice_mail_number_string"                             | Voice mailbox number.      |
+| KEY_IMS_SWITCH_ON_BY_DEFAULT_BOOL                       | "ims_switch_on_by_default_bool"                        | Fixed dialing number.          |
+| KEY_HIDE_IMS_SWITCH_BOOL                                | "hide_ims_switch_bool"                                 | Whether to hide the IMS switch.   |
+| KEY_VOLTE_SUPPORTED_BOOL                                | "volte_supported_bool"                                 | Whether to support VoLTE. |
+| KEY_NR_MODE_SUPPORTED_LIST_INT_ARRAY                    | "nr_mode_supported_list_int_array"                     | List of supported NR modes.  |
+| KEY_VOLTE_PROVISIONING_SUPPORTED_BOOL                   | "volte_provisioning_supported_bool"                    | Whether to support VoLTE provisioning. |
+| KEY_SS_OVER_UT_SUPPORTED_BOOL                           | "ss_over_ut_supported_bool"                            | Whether SS over UT is supported.  |
+| KEY_IMS_GBA_REQUIRED_BOOL                               | "ims_gba_required_bool"                                | Whether GBA is required for IMS.    |
+| KEY_UT_PROVISIONING_SUPPORTED_BOOL                      | "ut_provisioning_supported_bool"                       | Whether to support UT provisioning.    |
+| KEY_IMS_PREFER_FOR_EMERGENCY_BOOL                       | "ims_prefer_for_emergency_bool"                        | IMS preferences for emergency.     |
+| KEY_CALL_WAITING_SERVICE_CLASS_INT                      | "call_waiting_service_class_int"                       | Call waiting service.      |
+| KEY_CALL_TRANSFER_VISIBILITY_BOOL                       | "call_transfer_visibility_bool"                        | Call transfer visibility.    |
+| KEY_IMS_CALL_DISCONNECT_REASONINFO_MAPPING_STRING_ARRAY | "ims_call_disconnect_reasoninfo_mapping_string_array"  | List of IMS call disconnection reasons.|
+| KEY_FORCE_VOLTE_SWITCH_ON_BOOL                          | "force_volte_switch_on_bool"                           | Whether to forcibly turn on VoLTE.     |
+| KEY_ENABLE_OPERATOR_NAME_CUST_BOOL                      | "enable_operator_name_cust_bool"                       | Whether to display the carrier name.|
+| KEY_OPERATOR_NAME_CUST_STRING                           | "operator_name_cust_string"                            | Carrier name.        |
+| KEY_SPN_DISPLAY_CONDITION_CUST_INT                      | "spn_display_condition_cust_int"                       | SPN display rule.       |
+| KEY_PNN_CUST_STRING_ARRAY                               | "pnn_cust_string_array"                                | PLMN name          |
+| KEY_OPL_CUST_STRING_ARRAY                               | "opl_cust_string_array"                                | PLMN information of the carrier.    |
+| KEY_EMERGENCY_CALL_STRING_ARRAY                         | "emergency_call_string_array"                          | Emergency call list.      |

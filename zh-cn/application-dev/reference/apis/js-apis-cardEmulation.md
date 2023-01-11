@@ -16,30 +16,36 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 
 定义不同的NFC卡模拟类型。
 
+> **说明：**
+> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[hasHceCapability](#hashcecapability9)替代。
+
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | HCE | 0 | HCE 卡模拟。 |
 | UICC | 1 | SIM 卡模拟。 |
-| ESE | 2      | ESE卡模拟。 |
+| ESE | 2 | ESE卡模拟。 |
 
-## CardType
+## CardType<sup>9+</sup>
 
-定义卡模拟应用是支付类型，还是非支付类型。
+定义卡模拟应用所使用的业务类型，是支付类型，还是其他类型。
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| PAYMENT | "payment" | 卡模拟应用是支付类型。 |
-| OTHER | "other" | 卡模拟应用是非支付类型。 |
+| PAYMENT | "payment" | 卡模拟应用所使用的业务是支付类型。 |
+| OTHER | "other" | 卡模拟应用所使用的业务是其他类型。 |
 
-## cardEmulation.isSupported
+## isSupported
 
 isSupported(feature: number): boolean
 
 是否支持某种类型的卡模拟。
+
+> **说明：**
+> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[hasHceCapability](#hashcecapability9)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
@@ -55,20 +61,38 @@ isSupported(feature: number): boolean
 | -------- | -------- |
 | boolean | true: 支持该类型卡模拟，&nbsp;false: 不支持该类型卡模拟。|
 
-## cardEmulation.isDefaultService
+## hasHceCapability<sup>9+</sup>
+
+hasHceCapability(): boolean
+
+判断是否支持HCE功能。
+
+**系统能力：** SystemCapability.Communication.NFC.CardEmulation
+
+**需要权限：** ohos.permission.NFC_CARD_EMULATION
+
+**返回值：**
+
+| **类型** | **说明** |
+| -------- | -------- |
+| boolean | true: 支持HCE，&nbsp;false: 不支持HCE。|
+
+## isDefaultService<sup>9+</sup>
 
 isDefaultService(elementName: ElementName, type: CardType): boolean
 
-判断指定的应用是否为默认支付应用。
+判断指定的应用是否为指定业务类型的默认应用。
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
+
+**需要权限：** ohos.permission.NFC_CARD_EMULATION
 
 **参数：**
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是 | 应用的描述，由Bundle名称和组件名称组成。 |
-| type | [CardType](#cardtype) | 是 | 支付类型。 |
+| type | [CardType](#cardtype9) | 是 | 卡模拟业务类型。 |
 
 **返回值：**
 
@@ -87,9 +111,15 @@ if (!isHceSupported) {
     return;
 }
 
+var hasHceCap = cardEmulation.hasHceCapability();
+if (!hasHceCap) {
+    console.log('this device hasHceCapability false, ignore it.');
+    return;
+}
+
 var elementName = {
-    "bundleName": "com.test.cardemulation",
-    "abilityName": "com.test.cardemulation.MainAbility",
+    "bundleName": "com.example.myapplication",
+    "abilityName": "EntryAbility",
 };
 var isDefaultService = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
 console.log('is the app is default service for this card type: ' + isDefaultService);

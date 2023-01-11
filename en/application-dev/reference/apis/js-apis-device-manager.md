@@ -1,6 +1,6 @@
 # @ohos.distributedHardware.deviceManager (Device Management)
 
-The **DeviceManager** module provides APIs for distributed device management.
+The **deviceManager** module provides APIs for distributed device management.
 
 System applications can call the APIs to do the following:
 

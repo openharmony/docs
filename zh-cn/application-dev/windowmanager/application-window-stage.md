@@ -66,9 +66,9 @@
    通过`loadContent`接口加载主窗口的目标页面。
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         // 1.获取应用主窗口。
         let windowClass = null;
@@ -122,11 +122,11 @@ class MainAbility extends Ability {
    当不再需要某些子窗口时，可根据具体实现逻辑，使用`destroyWindow`接口销毁子窗口。
    
    ```ts
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility';
    
    let windowStage_ = null;
    let sub_windowClass = null;
-   class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        showSubWindow() {
            // 1.创建应用子窗口。
            windowStage_.createSubWindow("mySubWindow", (err, data) => {
@@ -213,9 +213,9 @@ class MainAbility extends Ability {
    通过`loadContent`接口加载沉浸式窗口的具体内容。
    
    ```ts
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility';
    
-   class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
            // 1.获取应用主窗口。
            let windowClass = null;
@@ -295,7 +295,7 @@ class MainAbility extends Ability {
            "name" : "ohos.permission.SYSTEM_FLOAT_WINDOW",
            "usedScene": {
              "abilities": [
-               "MainAbility"
+               "EntryAbility"
              ],
              "when":"inuse"
            }
@@ -319,11 +319,11 @@ class MainAbility extends Ability {
    当不再需要悬浮窗时，可根据具体实现逻辑，使用`destroyWindow`接口销毁悬浮窗。
 
    ```ts
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility';
    import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
    import window from '@ohos.window';
    
-   class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
            // 2. 创建悬浮窗。
            let windowClass = null;

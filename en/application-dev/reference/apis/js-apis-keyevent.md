@@ -1,9 +1,8 @@
-# Key Event
+# @ohos.multimodalInput.keyEvent
 
-The Key Event module provides key events reported by an input device.
+The **keyEvent** module provides key events reported by an input device.
 
->  **NOTE**
->
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
