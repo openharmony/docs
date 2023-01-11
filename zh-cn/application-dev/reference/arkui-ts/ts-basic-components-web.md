@@ -2,7 +2,7 @@
 
 提供具有网页显示能力的Web组件。
 
-> **说明：** 
+> **说明：**
 >
 > - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
@@ -1211,6 +1211,54 @@ struct WebComponent {
 }
   ```
 
+### allowWindowOpenMethod<sup>9+</sup>
+
+allowWindowOpenMethod(flag: boolean)
+
+设置网页是否可以通过JavaScript自动打开新窗口。
+
+该属性为true时，可通过JavaScript自动打开新窗口。该属性为false时，用户行为仍可通过JavaScript自动打开新窗口，但非用户行为不能通过JavaScript自动打开新窗口。此处的用户行为是指用户在5秒内请求打开新窗口（window.open）。
+
+该属性仅在[javaScriptAccess](#javascriptaccess)开启时生效。
+
+该属性在[multiWindowAccess](#multiwindowaccess9)开启时打开新窗口，关闭时打开本地窗口。
+
+该属性的默认值与系统属性persist.web.allowWindowOpenMethod.enabled 保持一致，如果未设置系统属性则默认值为false。
+
+检查系统配置项persist.web.allowWindowOpenMethod.enabled 是否开启。
+
+通过`hdc shell param get persist.web.allowWindowOpenMethod.enabled` 查看，若配置项为0或不存在，
+可通过命令`hdc shell param set persist.web.allowWindowOpenMethod.enabled 1` 开启配置。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | ------- | ---- | ----- | ------------------ |
+| flag | boolean | 是   | 默认值与系统参数关联，当系统参数persist.web.allowWindowOpenMethod.enabled为true时，默认值为true, 否则为false  | 网页是否可以通过JavaScript自动打开窗口。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State access: boolean = true
+    @State multiWindow: boolean = true
+    @State flag: boolean = true
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(this.access)
+          .multiWindowAccess(this.multiWindow)
+          .allowWindowOpenMethod(this.flag)
+      }
+    }
+  }
+  ```
+
 ## 事件
 
 不支持通用事件。
@@ -1301,7 +1349,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1362,7 +1410,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1422,7 +1470,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1482,7 +1530,7 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1519,7 +1567,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1556,7 +1604,7 @@ onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResou
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1600,7 +1648,7 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1651,7 +1699,7 @@ onPageBegin(callback: (event?: { url: string }) => void)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1684,7 +1732,7 @@ onPageEnd(callback: (event?: { url: string }) => void)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1716,7 +1764,7 @@ onProgressChange(callback: (event?: { newProgress: number }) => void)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1748,7 +1796,7 @@ onTitleReceive(callback: (event?: { title: string }) => void)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1781,7 +1829,7 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1813,7 +1861,7 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'chrome://crash/', controller: this.controller })
@@ -1901,7 +1949,7 @@ onResourceLoad(callback: (event: {url: string}) => void)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1934,7 +1982,7 @@ onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1972,7 +2020,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2080,7 +2128,7 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
   struct WebComponent {
     controller: WebController = new WebController()
     httpAuth: boolean = false
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2141,7 +2189,7 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2784,7 +2832,7 @@ getLineNumber(): number
 
 获取ConsoleMessage的行数。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                   |
 | ------ | -------------------- |
@@ -2796,7 +2844,7 @@ getMessage(): string
 
 获取ConsoleMessage的日志信息。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                     |
 | ------ | ---------------------- |
@@ -2808,7 +2856,7 @@ getMessageLevel(): MessageLevel
 
 获取ConsoleMessage的信息级别。
 
-**返回值：** 
+**返回值：**
 
 | 类型                                | 说明                     |
 | --------------------------------- | ---------------------- |
@@ -2820,7 +2868,7 @@ getSourceId(): string
 
 获取网页源文件路径和名字。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
@@ -2890,7 +2938,7 @@ getErrorCode(): number
 
 获取加载资源的错误码。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明          |
 | ------ | ----------- |
@@ -2902,7 +2950,7 @@ getErrorInfo(): string
 
 获取加载资源的错误信息。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明           |
 | ------ | ------------ |
@@ -2918,7 +2966,7 @@ getResponseHeader() : Array\<Header\>
 
 获取资源请求头信息。
 
-**返回值：** 
+**返回值：**
 
 | 类型                         | 说明         |
 | -------------------------- | ---------- |
@@ -2930,7 +2978,7 @@ getRequestUrl(): string
 
 获取资源请求的URL信息。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
@@ -2942,7 +2990,7 @@ isMainFrame(): boolean
 
 判断资源请求是否为主frame。
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明               |
 | ------- | ---------------- |
@@ -2954,7 +3002,7 @@ isRedirect(): boolean
 
 判断资源请求是否被服务端重定向。
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明               |
 | ------- | ---------------- |
@@ -2966,7 +3014,7 @@ isRequestGesture(): boolean
 
 获取资源请求是否与手势（如点击）相关联。
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                   |
 | ------- | -------------------- |
@@ -2992,7 +3040,7 @@ getReasonMessage(): string
 
 获取资源响应的状态码描述。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
@@ -3004,7 +3052,7 @@ getResponseCode(): number
 
 获取资源响应的状态码。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明          |
 | ------ | ----------- |
@@ -3016,7 +3064,7 @@ getResponseData(): string
 
 获取资源响应数据。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明        |
 | ------ | --------- |
@@ -3028,7 +3076,7 @@ getResponseEncoding(): string
 
 获取资源响应的编码。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明         |
 | ------ | ---------- |
@@ -3040,7 +3088,7 @@ getResponseHeader() : Array\<Header\>
 
 获取资源响应头。
 
-**返回值：** 
+**返回值：**
 
 | 类型                         | 说明       |
 | -------------------------- | -------- |
@@ -3052,7 +3100,7 @@ getResponseMimeType(): string
 
 获取资源响应的媒体（MIME）类型。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
@@ -3168,7 +3216,7 @@ getTitle(): string
 
 获取文件选择器标题。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明         |
 | ------ | ---------- |
@@ -3180,7 +3228,7 @@ getMode(): FileSelectorMode
 
 获取文件选择器的模式。
 
-**返回值：** 
+**返回值：**
 
 | 类型                                       | 说明          |
 | ---------------------------------------- | ----------- |
@@ -3192,7 +3240,7 @@ getAcceptType(): Array\<string\>
 
 获取文件过滤类型。
 
-**返回值：** 
+**返回值：**
 
 | 类型              | 说明        |
 | --------------- | --------- |
@@ -3204,7 +3252,7 @@ isCapture(): boolean
 
 获取是否调用多媒体能力。
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明           |
 | ------- | ------------ |
@@ -3611,7 +3659,7 @@ requestFocus()
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('requestFocus')
@@ -3646,7 +3694,7 @@ accessBackward(): boolean
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('accessBackward')
@@ -3682,7 +3730,7 @@ accessForward(): boolean
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('accessForward')
@@ -3725,7 +3773,7 @@ accessStep(step: number): boolean
   struct WebComponent {
     controller: WebController = new WebController()
     @State steps: number = 2
-  
+
     build() {
       Column() {
         Button('accessStep')
@@ -3755,7 +3803,7 @@ backward(): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('backward')
@@ -3784,7 +3832,7 @@ forward(): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('forward')
@@ -3818,7 +3866,7 @@ backOrForward(step: number): void
   struct WebComponent {
     controller: WebController = new WebController()
     @State step: number = -2
-  
+
     build() {
       Column() {
         Button('backOrForward')
@@ -3854,7 +3902,7 @@ deleteJavaScriptRegister(name: string)
   struct WebComponent {
     controller: WebController = new WebController()
     @State name: string = 'Object'
-  
+
     build() {
       Column() {
         Button('deleteJavaScriptRegister')
@@ -3871,7 +3919,7 @@ deleteJavaScriptRegister(name: string)
 
 getHitTest(): HitTestType
 
-获取当前被点击区域的元素类型。	
+获取当前被点击区域的元素类型。
 
 从API version 9开始不再维护，建议使用[getHitTest<sup>9+</sup>](../apis/js-apis-webview.md#gethittest)代替。
 
@@ -3889,7 +3937,7 @@ getHitTest(): HitTestType
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getHitTest')
@@ -3922,7 +3970,7 @@ getHitTestValue(): HitTestValue
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getHitTestValue')
@@ -3956,7 +4004,7 @@ getWebId(): number
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getWebId')
@@ -3989,7 +4037,7 @@ getTitle(): string
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getTitle')
@@ -4022,7 +4070,7 @@ getPageHeight(): number
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getPageHeight')
@@ -4055,7 +4103,7 @@ getDefaultUserAgent(): string
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getDefaultUserAgent')
@@ -4099,7 +4147,7 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('loadData')
@@ -4143,7 +4191,7 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('loadUrl')
@@ -4172,7 +4220,7 @@ onActive(): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('onActive')
@@ -4201,7 +4249,7 @@ onInactive(): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('onInactive')
@@ -4236,7 +4284,7 @@ zoom(factor: number): void
   struct WebComponent {
     controller: WebController = new WebController()
     @State factor: number = 1
-  
+
     build() {
       Column() {
         Button('zoom')
@@ -4268,7 +4316,7 @@ zoomIn(): boolean
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('zoomIn')
@@ -4301,7 +4349,7 @@ zoomOut(): boolean
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('zoomOut')
@@ -4331,7 +4379,7 @@ refresh()
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('refresh')
@@ -4409,7 +4457,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
       }
   </script>
   </html>
-  
+
   ```
 
 ### runJavaScript<sup>(deprecated)</sup>
@@ -4489,7 +4537,7 @@ stop()
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('stop')
@@ -4518,7 +4566,7 @@ clearHistory(): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('clearHistory')
@@ -4605,7 +4653,7 @@ getCookieManager(): WebCookie
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getCookieManager')
@@ -4945,7 +4993,7 @@ setCookie(url: string, value: string): boolean
 | url   | string | 是    | -    | 要设置的cookie所属的url。 |
 | value | string | 是    | -    | cookie的值。         |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明            |
 | ------- | ------------- |
@@ -4959,7 +5007,7 @@ setCookie(url: string, value: string): boolean
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('setCookie')
@@ -4992,7 +5040,7 @@ saveCookieSync(): boolean
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('saveCookieSync')
@@ -5032,7 +5080,7 @@ getCookie(url: string): string
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getCookie')
@@ -5073,7 +5121,7 @@ setCookie(url: string, value: string): boolean
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('setCookie')
@@ -5107,7 +5155,7 @@ saveCookieAsync(): Promise\<boolean>
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('saveCookieAsync')
@@ -5146,7 +5194,7 @@ saveCookieAsync(callback: AsyncCallback\<boolean>): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('saveCookieAsync')
@@ -5181,7 +5229,7 @@ isCookieAllowed(): boolean
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('isCookieAllowed')
@@ -5215,7 +5263,7 @@ putAcceptCookieEnabled(accept: boolean): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('putAcceptCookieEnabled')
@@ -5248,7 +5296,7 @@ isThirdCookieAllowed(): boolean
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('isThirdPartyCookieAllowed')
@@ -5282,7 +5330,7 @@ putAcceptThirdPartyCookieEnabled(accept: boolean): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('putAcceptThirdPartyCookieEnabled')
@@ -5315,7 +5363,7 @@ existCookie(): boolean
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('existCookie')
@@ -5343,7 +5391,7 @@ deleteEntireCookie(): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('deleteEntireCookie')
@@ -5370,7 +5418,7 @@ deleteSessionCookie(): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('deleteSessionCookie')
@@ -5670,7 +5718,7 @@ setPorts(ports: Array\<WebMessagePort\>): void
   struct WebComponent {
     controller: WebController = new WebController()
     ports: WebMessagePort[] = null
-  
+
     build() {
       Column() {
         Button('setPorts')
