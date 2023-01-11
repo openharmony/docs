@@ -1179,6 +1179,36 @@ forceDarkAccess(access: boolean)
   }
   ```
 
+### pinchSmooth<sup>9+</sup>
+
+pinchSmooth(isEnabled: boolean)
+
+设置网页是否开启捏合流畅模式。
+
+**参数：**
+
+| 参数名    | 参数类型 | 必填 | 默认值 | 参数描述                   |
+| --------- | -------- | ---- | ------ | -------------------------- |
+| isEnabled | boolean  | 是   | false  | 网页是否开启捏合流畅模式。 |
+
+**示例：**
+
+  ```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .pinchSmooth(true)
+    }
+  }
+}
+  ```
+
 ## 事件
 
 不支持通用事件。
@@ -3028,15 +3058,15 @@ getResponseMimeType(): string
 
 ### setResponseData<sup>9+</sup>
 
-setResponseData(data: string)
+setResponseData(data: string | number)
 
 设置资源响应数据。
 
 **参数：**
 
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述        |
-| ---- | ------ | ---- | ---- | ----------- |
-| data | string | 是    | -    | 要设置的资源响应数据。 |
+| 参数名 | 参数类型         | 必填 | 默认值 | 参数描述                                                     |
+| ------ | ---------------- | ---- | ------ | ------------------------------------------------------------ |
+| data   | string \| number | 是   | -      | 要设置的资源响应数据。string表示输入类型是字符串，number表示输入类型是文件句柄。 |
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -3097,6 +3127,18 @@ setResponseCode(code: number)
 | 参数名  | 参数类型   | 必填   | 默认值  | 参数描述          |
 | ---- | ------ | ---- | ---- | ------------- |
 | code | number | 是    | -    | 要设置的资源响应的状态码。 |
+
+### setResponseIsReady<sup>9+</sup>
+
+setResponseIsReady(IsReady: boolean)
+
+设置资源响应数据是否已经就绪。
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填 | 默认值 | 参数描述                   |
+| ------- | -------- | ---- | ------ | -------------------------- |
+| IsReady | boolean  | 是   | true   | 资源响应数据是否已经就绪。 |
 
 ## FileSelectorResult<sup>9+</sup>
 
