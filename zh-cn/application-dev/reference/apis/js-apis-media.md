@@ -7,11 +7,11 @@
 
 媒体子系统包含了音视频相关媒体业务，提供以下常用功能：
 
-- 音视频播放（[AVPlayer](#avplayer9)<sup>9+</sup>），[AudioPlayer](#audioplayer)<sup>6+</sup>和[VideoPlayer](#videoplayer)<sup>8+</sup>整合，升级了状态机和错误码，推荐使用
-- 音视频录制（[AVRecorder](#avrecorder9)<sup>9+</sup>），[AudioRecorder](#audiorecorder)<sup>6+</sup>和[VideoRecorder](#videorecorder9)<sup>9+</sup>整合，推荐使用
-- 音频播放（[AudioPlayer](#audioplayer)<sup>6+</sup>），[AVPlayer](#avplayer9)<sup>9+</sup>发布后停止维护，请使用[AVPlayer](#avplayer9)<sup>9+</sup>
-- 视频播放（[VideoPlayer](#videoplayer)<sup>8+</sup>），[AVPlayer](#avplayer9)<sup>9+</sup>发布后停止维护，请使用[AVPlayer](#avplayer9)<sup>9+</sup>
-- 音频录制（[AudioRecorder](#audiorecorder)<sup>6+</sup>），[AVRecorder](#avrecorder9)<sup>9+</sup>发布后停止维护，请使用[AVRecorder](#avrecorder9)<sup>9+</sup>
+- 音视频播放（[AVPlayer](#avplayer9)<sup>9+</sup>），[AudioPlayer](#audioplayerdeprecated)<sup>6+</sup>和[VideoPlayer](#videoplayer)<sup>8+</sup>整合，升级了状态机和错误码，推荐使用
+- 音视频录制（[AVRecorder](#avrecorder9)<sup>9+</sup>），[AudioRecorder](#audiorecorderdeprecated)<sup>6+</sup>和[VideoRecorder](#videorecorder9)<sup>9+</sup>整合，推荐使用
+- 音频播放（[AudioPlayer](#audioplayerdeprecated)<sup>6+</sup>），[AVPlayer](#avplayer9)<sup>9+</sup>发布后停止维护，请使用[AVPlayer](#avplayer9)<sup>9+</sup>
+- 视频播放（[VideoPlayer](#videoplayerdeprecated)<sup>8+</sup>），[AVPlayer](#avplayer9)<sup>9+</sup>发布后停止维护，请使用[AVPlayer](#avplayer9)<sup>9+</sup>
+- 音频录制（[AudioRecorder](#audiorecorderdeprecated)<sup>6+</sup>），[AVRecorder](#avrecorder9)<sup>9+</sup>发布后停止维护，请使用[AVRecorder](#avrecorder9)<sup>9+</sup>
 - 视频录制（[VideoRecorder](#videorecorder9)<sup>9+</sup>），[AVRecorder](#avrecorder9)<sup>9+</sup>发布后停止维护，请使用[AVRecorder](#avrecorder9)<sup>9+</sup>
 
 ## 导入模块
@@ -32,7 +32,7 @@ createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[AVPlayer](#avplayer9)> | 是   | 回调函数。异步返回AVPlayer实例，失败时返回null。可用于音视频播放。 |
+| callback | AsyncCallback\<[AVPlayer](#avplayer9)> | 是   | 回调函数。异步返回AVPlayer实例，失败时返回null。可用于音视频播放。 |
 
 **错误码：**
 
@@ -69,7 +69,7 @@ createAVPlayer(): Promise\<AVPlayer>
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise<[AVPlayer](#avplayer9)> | Promise对象。异步返回AVPlayer实例，失败时返回null。可用于录制视频媒体。 |
+| Promise\<[AVPlayer](#avplayer9)> | Promise对象。异步返回AVPlayer实例，失败时返回null。可用于录制视频媒体。 |
 
 **错误码：**
 
@@ -256,107 +256,6 @@ media.createVideoRecorder().then((video) => {
 });
 ```
 
-## media.createAudioPlayer<sup>(deprecated)</sup><a name=createaudioplayer></a>
-
-createAudioPlayer(): AudioPlayer
-
-同步方式创建音频播放实例。
-
-**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
-
-**返回值：**
-
-| 类型                        | 说明                                                         |
-| --------------------------- | ------------------------------------------------------------ |
-| [AudioPlayer](#audioplayer) | 返回AudioPlayer类实例，失败时返回null。可用于音频播放、暂停、停止等操作。 |
-
-**示例：**
-
-```js
-let audioPlayer = media.createAudioPlayer();
-```
-
-## media.createVideoPlayer<sup>(deprecated)</sup><a name=createvideoplayer></a>
-
-createVideoPlayer(callback: AsyncCallback\<VideoPlayer>): void
-
-异步方式创建视频播放实例，通过注册回调函数获取返回值。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
-
-**参数：**
-
-| 参数名   | 类型                                       | 必填 | 说明                                                         |
-| -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayer)> | 是   | 回调函数。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
-
-**示例：**
-
-```js
-let videoPlayer
-
-media.createVideoPlayer((error, video) => {
-   if (video != null) {
-       videoPlayer = video;
-       console.info('video createVideoPlayer success');
-   } else {
-       console.info(`video createVideoPlayer fail, error:${error}`);
-   }
-});
-```
-
-## media.createVideoPlayer<sup>(deprecated)</sup>
-
-createVideoPlayer(): Promise\<VideoPlayer>
-
-异步方式创建视频播放实例，通过Promise获取返回值。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
-
-**返回值：**
-
-| 类型                                 | 说明                                                         |
-| ------------------------------------ | ------------------------------------------------------------ |
-| Promise<[VideoPlayer](#videoplayer)> | Promise对象。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
-
-**示例：**
-
-```js
-let videoPlayer
-
-media.createVideoPlayer().then((video) => {
-   if (video != null) {
-       videoPlayer = video;
-       console.info('video createVideoPlayer success');
-   } else {
-       console.info('video createVideoPlayer fail');
-   }
-}).catch((error) => {
-   console.info(`video catchCallback, error:${error}`);
-});
-```
-
-## media.createAudioRecorder<sup>(deprecated)</sup><a name=createaudiorecorder></a>
-
-createAudioRecorder(): AudioRecorder
-
-创建音频录制的实例来控制音频的录制。
-一台设备只允许创建一个录制实例。
-
-**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
-
-**返回值:**
-
-| 类型                            | 说明                                                         |
-| ------------------------------- | ------------------------------------------------------------ |
-| [AudioRecorder](#audiorecorder) | 返回AudioRecorder类实例，失败时返回null。可用于录制音频媒体。 |
-
-**示例：**
-
-```js
-let audioRecorder = media.createAudioRecorder();
-```
-
 ## AVErrorCode<sup>9+</sup><a name=averrorcode></a>
 
 [媒体错误码](../errorcodes/errorcode-media.md)类型枚举
@@ -484,7 +383,7 @@ on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReas
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态机切换事件回调类型，支持的事件：'stateChange'，用户操作和系统都会触发此事件。 |
-| callback | function | 是   | 状态机切换事件回调方法：<br/>state: [AVPlayerState](#avplayerstate)，表示当前播放状态；<br/>reason: [StateChangeReason](#statechangereason)，表示当前播放状态的切换原因。 |
+| callback | function | 是   | 状态机切换事件回调方法：<br/>state: [AVPlayerState](#avplayerstate9)，表示当前播放状态；<br/>reason: [StateChangeReason](#statechangereason9)，表示当前播放状态的切换原因。 |
 
 **示例：**
 
@@ -529,7 +428,7 @@ avPlayer.on('stateChange', async (state, reason) => {
 
 off(type: 'stateChange'): void
 
-取消监听播放状态机[AVPlayerState](#avplayerstate)切换的事件。
+取消监听播放状态机[AVPlayerState](#avplayerstate9)切换的事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -549,7 +448,7 @@ avPlayer.off('stateChange')
 
 on(type: 'error', callback: ErrorCallback): void
 
-监听[AVPlayer](#avplayer9)的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVPlayerState](#avplayerstate)也切至error状态，用户需要通过reset()或者release()退出播放操作。
+监听[AVPlayer](#avplayer9)的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVPlayerState](#avplayerstate9)也切至error状态，用户需要通过reset()或者release()退出播放操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -564,15 +463,15 @@ AVPlayer回调的**错误分类**<a name = error_info></a>可以分为以下几�
 
 | 错误码ID | 错误信息              | 说明                                                         |
 | -------- | --------------------- | ------------------------------------------------------------ |
-| 201      | No Permission:        | 无权限执行此操作，[AVPlayerState](#avplayerstate)会进入error状态。 |
+| 201      | No Permission:        | 无权限执行此操作，[AVPlayerState](#avplayerstate9)会进入error状态。 |
 | 401      | Invalid Parameter:    | 入参错误，表示调用无效。                                     |
 | 801      | Unsupport Capability: | 不支持该API能力，表示调用无效。                              |
-| 5400101  | No Memory:            | 播放内存不足，[AVPlayerState](#avplayerstate)会进入error状态。 |
+| 5400101  | No Memory:            | 播放内存不足，[AVPlayerState](#avplayerstate9)会进入error状态。 |
 | 5400102  | Operate Not Permit:   | 当前状态机不支持此操作，表示调用无效。                       |
 | 5400103  | IO Error:             | 播放中发现码流异常。                                         |
-| 5400104  | Network Timeout:      | 网络原因超时响应，[AVPlayerState](#avplayerstate)会进入error状态。 |
-| 5400105  | Service Died:         | 播放进程死亡，[AVPlayerState](#avplayerstate)会进入error状态。 |
-| 5400106  | Unsupport Format:     | 不支持的文件格式，[AVPlayerState](#avplayerstate)会进入error状态。 |
+| 5400104  | Network Timeout:      | 网络原因超时响应，[AVPlayerState](#avplayerstate9)会进入error状态。 |
+| 5400105  | Service Died:         | 播放进程死亡，[AVPlayerState](#avplayerstate9)会进入error状态。 |
+| 5400106  | Unsupport Format:     | 不支持的文件格式，[AVPlayerState](#avplayerstate9)会进入error状态。 |
 
 **示例：**
 
@@ -1112,7 +1011,7 @@ on(type: 'seekDone', callback: Callback\<number>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | seek生效的事件回调类型，支持的事件：'seekDone'，每次调用seek后都会回调此事件。 |
-| callback | function | 是   | seek生效的事件回调方法，只会上报用户请求的time位置。<br/>**视频播放：**[SeekMode](#seekmode8)会造成实际跳转位置与用户设置产生偏差，精准位置需要通过currentTime获取，事件回调的time仅代表完成用户某一次请求。 |
+| callback | Callback\<number> | 是   | seek生效的事件回调方法，只会上报用户请求的time位置。<br/>**视频播放：**[SeekMode](#seekmode8)会造成实际跳转位置与用户设置产生偏差，精准位置需要通过currentTime获取，事件回调的time仅代表完成用户某一次请求。 |
 
 **示例：**
 
@@ -1175,7 +1074,7 @@ on(type: 'speedDone', callback: Callback\<number>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | setSpeed生效的事件回调类型，支持的事件：'speedDone'，每次调用setSpeed后都会回调此事件。 |
-| callback | function | 是   | setSpeed生效的事件回调方法，上报生效的倍速模式，具体见[PlaybackSpeed](#playbackspeed8)。 |
+| callback | Callback\<number> | 是   | setSpeed生效的事件回调方法，上报生效的倍速模式，具体见[PlaybackSpeed](#playbackspeed8)。 |
 
 **示例：**
 
@@ -1378,7 +1277,7 @@ avPlayer.off('volumeChange')
 
 ### on('endOfStream')<sup>9+</sup><a name = endOfStream_on></a>
 
-on(type: 'endOfStream', callback: Callback<void>): void
+on(type: 'endOfStream', callback: Callback\<void>): void
 
 监听资源播放至结尾的事件；如果用户设置**loop=1**，播放会跳转至开头重播；如果用户没有设置loop，会通过[stateChange](#stateChange_on)上报completed状态。
 
@@ -1389,7 +1288,7 @@ on(type: 'endOfStream', callback: Callback<void>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 资源播放至结尾的事件回调类型，支持的事件：'endOfStream'，当播放至结尾时会上报此事件。 |
-| callback | function | 是   | 资源播放至结尾的事件回调方法。                               |
+| callback | Callback\<void> | 是   | 资源播放至结尾的事件回调方法。                               |
 
 **示例：**
 
@@ -1561,7 +1460,7 @@ on(type: 'startRenderFrame', callback: Callback\<void>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 视频播放开始首帧渲染事件回调类型，支持的事件：'startRenderFrame'。 |
-| callback | function | 是   | 视频播放开始首帧渲染事件回调方法。                           |
+| callback | Callback\<void> | 是   | 视频播放开始首帧渲染事件回调方法。                           |
 
 **示例：**
 
@@ -2651,7 +2550,7 @@ AVRecorder.off('error');
 ## VideoRecorder<sup>9+</sup>
 
 > **说明：**
-> AVRecorder<sup>9+</sup>发布后停止维护，请使用[AVRecorder](#avrecorder9)<sup>9+</sup>
+> AVRecorder<sup>9+</sup>发布后停止维护，建议使用[AVRecorder](#avrecorder9)替代。
 
 视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#mediacreatevideorecorder9)构建一个[VideoRecorder](#videorecorder9)实例。
 
@@ -3419,7 +3318,7 @@ videoRecorder.on('error', (error) => {                                  // 设�
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | 是   | 视频录制的profile。                                          |
 | rotation        | number                                         | 否   | 录制视频的旋转角度。                                         |
 | location        | [Location](#location)                          | 否   | 录制视频的地理位置。                                         |
-| url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |
+| url             | string                   | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |
 
 ## VideoRecorderProfile<sup>9+</sup>
 
@@ -3442,12 +3341,125 @@ videoRecorder.on('error', (error) => {                                  // 设�
 | videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
 | videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
 
+## media.createAudioPlayer<sup>(deprecated)</sup><a name=createaudioplayer></a>
+
+createAudioPlayer(): AudioPlayer
+
+同步方式创建音频播放实例。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[createAVPlayer](#mediacreateavplayer9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
+
+**返回值：**
+
+| 类型                        | 说明                                                         |
+| --------------------------- | ------------------------------------------------------------ |
+| [AudioPlayer](#audioplayerdeprecated) | 返回AudioPlayer类实例，失败时返回null。可用于音频播放、暂停、停止等操作。 |
+
+**示例：**
+
+```js
+let audioPlayer = media.createAudioPlayer();
+```
+
+## media.createVideoPlayer<sup>(deprecated)</sup><a name=createvideoplayer></a>
+
+createVideoPlayer(callback: AsyncCallback\<VideoPlayer>): void
+
+异步方式创建视频播放实例，通过注册回调函数获取返回值。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[createAVPlayer](#mediacreateavplayer9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                         |
+| -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback<[VideoPlayer](#videoplayerdeprecated)> | 是   | 回调函数。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
+
+**示例：**
+
+```js
+let videoPlayer
+
+media.createVideoPlayer((error, video) => {
+   if (video != null) {
+       videoPlayer = video;
+       console.info('video createVideoPlayer success');
+   } else {
+       console.info(`video createVideoPlayer fail, error:${error}`);
+   }
+});
+```
+
+## media.createVideoPlayer<sup>(deprecated)</sup>
+
+createVideoPlayer(): Promise\<VideoPlayer>
+
+异步方式创建视频播放实例，通过Promise获取返回值。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[createAVPlayer](#mediacreateavplayer9-1)替代。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
+
+**返回值：**
+
+| 类型                                 | 说明                                                         |
+| ------------------------------------ | ------------------------------------------------------------ |
+| Promise<[VideoPlayer](#videoplayerdeprecated)> | Promise对象。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
+
+**示例：**
+
+```js
+let videoPlayer
+
+media.createVideoPlayer().then((video) => {
+   if (video != null) {
+       videoPlayer = video;
+       console.info('video createVideoPlayer success');
+   } else {
+       console.info('video createVideoPlayer fail');
+   }
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error}`);
+});
+```
+
+## media.createAudioRecorder<sup>(deprecated)</sup><a name=createaudiorecorder></a>
+
+createAudioRecorder(): AudioRecorder
+
+创建音频录制的实例来控制音频的录制。
+一台设备只允许创建一个录制实例。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[createAVRecorder](#mediacreateavrecorder9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
+
+**返回值:**
+
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| [AudioRecorder](#audiorecorderdeprecated) | 返回AudioRecorder类实例，失败时返回null。可用于录制音频媒体。 |
+
+**示例：**
+
+```js
+let audioRecorder = media.createAudioRecorder();
+```
+
 ## MediaErrorCode<sup>(deprecated)</sup><a name=mediaerrorcode></a>
 
 媒体服务错误类型枚举。
 
 > **说明：**
-> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[媒体错误码](../errorcodes/errorcode-media.md)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[媒体错误码](../errorcodes/errorcode-media.md)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -3467,11 +3479,9 @@ videoRecorder.on('error', (error) => {                                  // 设�
 ## AudioPlayer<sup>(deprecated)</sup>
 
 > **说明：**
-> AVPlayer9+发布后停止维护，请使用[AVPlayer](#avplayer9)<sup>9+</sup>
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer](#avplayer9)替代。
 
-音频播放管理类，用于管理和播放音频媒体。在调用AudioPlayer的方法前，需要先通过[createAudioPlayer()](#mediacreateaudioplayer)构建一个[AudioPlayer](#audioplayer)实例。
-
-音频播放demo可参考：[音频播放开发指导](../../media/audio-playback.md)
+音频播放管理类，用于管理和播放音频媒体。在调用AudioPlayer的方法前，需要先通过[createAudioPlayer()](#mediacreateaudioplayerdeprecated)构建一个AudioPlayer实例。
 
 ### 属性<a name=audioplayer_属性></a>
 
@@ -3632,7 +3642,7 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | 是   | 音频轨道信息MediaDescription数组回调方法。 |
+| callback | AsyncCallback\<Array\<[MediaDescription](#mediadescription8)>> | 是   | 音频轨道信息MediaDescription数组回调方法。 |
 
 **示例：**
 
@@ -3698,7 +3708,7 @@ for (let i = 0; i < arrayDescription.length; i++) {
 
 ### on('bufferingUpdate')<sup>8+</sup>
 
-on(type: 'bufferingUpdate', callback: (infoType: [BufferingInfoType](#bufferinginfotype8), value: number) => void): void
+on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
 
 开始订阅音频缓存更新事件。仅网络播放支持该订阅事件。
 
@@ -3847,10 +3857,10 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 ## AudioState<sup>(deprecated)</sup>
 
-> **说明：**
-> AVPlayerState<sup>9+</sup>发布后停止维护，请使用[AVPlayerState](#avplayerstate)<sup>9+</sup>
-
 音频播放的状态机。可通过state属性获取当前状态。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayerState](#avplayerstate9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3865,7 +3875,7 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 ## VideoPlayer<sup>(deprecated)</sup><a name=videoplayer></a>
 
 > **说明：**
-> AVPlayer<sup>9+</sup>发布后停止维护，请使用[AVPlayer](#avplayer9)<sup>9+</sup>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer](#avplayer9)替代。
 
 视频播放管理类，用于管理和播放视频媒体。在调用VideoPlayer的方法前，需要先通过[createVideoPlayer()](#createvideoplayer)构建一个VideoPlayer实例。
 
@@ -4419,7 +4429,7 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | 是   | 视频轨道信息MediaDescription数组回调方法。 |
+| callback | AsyncCallback\<Array\<[MediaDescription](#mediadescription8)>> | 是   | 视频轨道信息MediaDescription数组回调方法。 |
 
 **示例：**
 
@@ -4666,10 +4676,10 @@ videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'�
 
 ## VideoPlayState<sup>(deprecated)</sup><a name=videoplayerstate></a>
 
-> **说明：**
-> AVPlayerState<sup>9+</sup>发布后停止维护，请使用[AVPlayerState](#avplayerstate)<sup>9+</sup>
-
 视频播放的状态机，可通过state属性获取当前状态。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayerState](#avplayerstate9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4685,9 +4695,9 @@ videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'�
 ## AudioRecorder<sup>(deprecated)</sup>
 
 > **说明：**
->  AVRecorder<sup>9+</sup>发布后停止维护，请使用[AVRecorder](#avrecorder9)<sup>9+</sup>
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder](#avrecorder9)替代。
 
-音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#mediacreateaudiorecorder) 构建一个[AudioRecorder](#audiorecorder)实例。
+音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#mediacreateaudiorecorder) 构建一个AudioRecorder实例。
 
 音频录制demo可参考：[音频录制开发指导](../../media/audio-recorder.md)
 
@@ -4705,7 +4715,7 @@ prepare(config: AudioRecorderConfig): void
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| config | [AudioRecorderConfig](#audiorecorderconfig) | 是   | 配置录音的相关参数，包括音频输出URI、编码格式、采样率、声道数、输出格式等。 |
+| config | [AudioRecorderConfig](#audiorecorderconfigdeprecated) | 是   | 配置录音的相关参数，包括音频输出URI、编码格式、采样率、声道数、输出格式等。 |
 
 **示例：**
 
@@ -4923,7 +4933,7 @@ audioRecorder.prepare(audioRecorderConfig);                            // prepar
 ## AudioRecorderConfig<sup>(deprecated)</sup>
 
 > **说明：**
-> AVRecorderConfig<sup>9+</sup>发布后停止维护，建议使用[AVRecorderConfig](#avrecorderconfig9)<sup>9+</sup>替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorderConfig](#avrecorderconfig9)替代。
 
 表示音频的录音配置。
 
@@ -4931,11 +4941,11 @@ audioRecorder.prepare(audioRecorderConfig);                            // prepar
 
 | 名称                                | 类型                                         | 必填 | 说明                                                         |
 | ----------------------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioEncoder<sup>(deprecated)</sup> | [AudioEncoder](#audioencoder)                | 否   | 音频编码格式，默认设置为AAC_LC。<br/>**说明：** 从API Version 8 开始废弃，建议使用audioEncoderMime替代。 |
+| audioEncoder                        | [AudioEncoder](#audioencoderdeprecated)                | 否   | 音频编码格式，默认设置为AAC_LC。<br/>**说明：** 从API version 8开始废弃，建议使用audioEncoderMime替代。 |
 | audioEncodeBitRate                  | number                                       | 否   | 音频编码比特率，默认值为48000。                              |
 | audioSampleRate                     | number                                       | 否   | 音频采集采样率，默认值为48000。                              |
 | numberOfChannels                    | number                                       | 否   | 音频采集声道数，默认值为2。                                  |
-| format<sup>(deprecated)</sup>       | [AudioOutputFormat](#audiooutputformat)      | 否   | 音频输出封装格式，默认设置为MPEG_4。<br/>**说明：** 从API Version 8 开始废弃，建议使用fileFormat替代。 |
+| format                              | [AudioOutputFormat](#audiooutputformatdeprecated)      | 否   | 音频输出封装格式，默认设置为MPEG_4。<br/>**说明：** 从API version 8开始废弃，建议使用fileFormat替代。 |
 | location                            | [Location](#location)                        | 否   | 音频采集的地理位置。                                         |
 | uri                                 | string                                       | 是   | 音频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
 | audioEncoderMime<sup>8+</sup>       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式。                                               |
@@ -4944,7 +4954,7 @@ audioRecorder.prepare(audioRecorderConfig);                            // prepar
 ## AudioEncoder<sup>(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 8 开始废弃，建议使用[CodecMimeType](#codecmimetype8)替代。
+> 从API version 6开始支持，从API version 8开始废弃，建议使用[CodecMimeType](#codecmimetype8)替代。
 
 表示音频编码格式的枚举。
 
@@ -4958,11 +4968,10 @@ audioRecorder.prepare(audioRecorderConfig);                            // prepar
 | AAC_LC  | 3    | AAC-LC（Advanced&nbsp;Audio&nbsp;Coding&nbsp;Low&nbsp;Complexity）编码格式。 |
 | HE_AAC  | 4    | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>仅做接口定义，暂不支持使用。 |
 
-
 ## AudioOutputFormat<sup>(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 8 开始废弃，建议使用[ContainerFormatType](#containerformattype8)替代。
+> 从API version 6开始支持，从API version 8 开始废弃，建议使用[ContainerFormatType](#containerformattype8)替代。
 
 表示音频封装格式的枚举。
 
