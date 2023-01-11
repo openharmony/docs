@@ -152,7 +152,7 @@ pixelmap.readPixelsToBuffer(readBuffer, (err, res) => {
 
 readPixels(area: PositionArea): Promise\<void>
 
-读取区域内的图片数据，使用Promise形式返回读取结果。
+读取区域内的图片数据，使用Promise形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
