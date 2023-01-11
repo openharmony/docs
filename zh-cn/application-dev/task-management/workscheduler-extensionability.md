@@ -52,14 +52,14 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
     export default class workAbility extends WorkSchedulerExtensionAbility {
       // 延迟任务开始回调
       onWorkStart(workInfo) {
-        Logger.info(TAG, `onWorkStart CommonEvent publish start ${JSON.stringify(workInfo)}`)
+        console.log(`onWorkStart CommonEvent publish start ${JSON.stringify(workInfo)}`)
         // 发送升级通知
         let notificationRequest = notification.getNotificationContentBasic('upgrade', upgradeMessage, '')
         notification.publish(notificationRequest, (err) => {
           if (err) {
-            Logger.info(TAG, `onWorkStart notification publish err ${JSON.stringify(err)}`)
+            console.log(`onWorkStart notification publish err ${JSON.stringify(err)}`)
           }
-          Logger.info(TAG, `onWorkStart notification publish success`)
+          console.log(`onWorkStart notification publish success`)
         })
       }
 
@@ -69,9 +69,9 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
         let notificationRequest = notification.getNotificationContentBasic('upgrade', 'upgrade success', '')
         notification.publish(notificationRequest, (err) => {
           if (err) {
-            Logger.info(TAG, `onWorkStop notification publish err ${JSON.stringify(err)}`)
+            console.log(`onWorkStop notification publish err ${JSON.stringify(err)}`)
           }
-          Logger.info(TAG, `onWorkStop notification publish success`)
+          console.log(`onWorkStop notification publish success`)
         })
       }
     }
@@ -91,13 +91,13 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
     ```ts
     export default class WorkTest extends workAbility {
       onWorkStart(workInfo) {
-        Logger.info(TAG, `onWorkStartTest start ${JSON.stringify(workInfo)}`)
+        console.log(`onWorkStartTest start ${JSON.stringify(workInfo)}`)
         super.onWorkStart(workInfo)
       }
 
       onWorkStopTest(workInfo) {
         super.onWorkStop(workInfo)
-        Logger.info(TAG, `onWorkStop value`)
+        console.log(`onWorkStop value`)
       }
     }
     ```
@@ -128,7 +128,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
         this.workInfo.abilityName = abilityName
         try {
           workScheduler.startWork(this.workInfo)
-          Logger.info(TAG, `startWork success`)
+          console.log(`startWork success`)
         } catch (error) {
           Logger.error(TAG, `startWork startwork failed. code is ${error.code} message is ${error.message}`)
           prompt.showToast({
@@ -142,7 +142,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
         this.workInfo.bundleName = bundleName
         this.workInfo.abilityName = abilityName
         workScheduler.stopWork(this.workInfo, false)
-        Logger.info(TAG, `stopWork`)
+        console.log(`stopWork`)
       }
     }
     ```
@@ -199,5 +199,5 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
 
 针对WorkSchedulerExtensionAbility开发，有以下相关示例可供参考：
 
-[WorkScheduler的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/WorkScheduler)
+[WorkScheduler的创建与使用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/WorkScheduler)
 
