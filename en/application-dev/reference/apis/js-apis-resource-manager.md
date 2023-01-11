@@ -15,10 +15,8 @@ import resourceManager from '@ohos.resourceManager';
 
 ## Instruction
 
-Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle. This approach, however, is not applicable to the FA model. For the FA model, you need to import the required bundle and then call the [getResourceManager](#resourcemanagergetresourcemanager) API to obtain a **ResourceManager** object.
-
-For details about how to reference **context** in the stage model, see Context in the Stage Model.
-
+Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle. This approach, however, is not applicable to the FA model.
+For details about how to reference **context** in the stage model, see [Context in the Stage Model](../../application-models/application-context-stage.md).
 
 ```ts
 import Ability from '@ohos.application.Ability';
