@@ -364,7 +364,7 @@ Audio/Video播放demo可参考：[AVPlayer开发指导](../../media/avplayer-pla
 | loop<sup>9+</sup>                                   | boolean                                                | 是   | 是   | 视频循环播放属性，默认'false'，设置为'true'表示循环播放，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                     | 是   | 是   | 视频缩放模式，默认VIDEO_SCALE_TYPE_FIT_CROP，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | 是   | 是   | 音频焦点模型，默认INDEPENDENT_MODE，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
-| state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate)                       | 是   | 否   | 音视频播放的状态，全状态有效，可查询参数。                   |
+| state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                       | 是   | 否   | 音视频播放的状态，全状态有效，可查询参数。                   |
 | currentTime<sup>9+</sup>                            | number                                                 | 是   | 否   | 视频的当前播放位置，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。 |
 | duration<sup>9+</sup><a name=avplayer_duration></a> | number                                                 | 是   | 否   | 视频时长，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。<br/>直播场景默认返回(-1)。 |
 | width<sup>9+</sup>                                  | number                                                 | 是   | 否   | 视频宽，单位为像素（px），可查询参数。<br/>返回为(0)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。 |
@@ -383,7 +383,7 @@ on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReas
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态机切换事件回调类型，支持的事件：'stateChange'，用户操作和系统都会触发此事件。 |
-| callback | function | 是   | 状态机切换事件回调方法：<br/>state: [AVPlayerState](#avplayerstate)，表示当前播放状态；<br/>reason: [StateChangeReason](#statechangereason9)，表示当前播放状态的切换原因。 |
+| callback | function | 是   | 状态机切换事件回调方法：<br/>state: [AVPlayerState](#avplayerstate9)，表示当前播放状态；<br/>reason: [StateChangeReason](#statechangereason9)，表示当前播放状态的切换原因。 |
 
 **示例：**
 
@@ -428,7 +428,7 @@ avPlayer.on('stateChange', async (state, reason) => {
 
 off(type: 'stateChange'): void
 
-取消监听播放状态机[AVPlayerState](#avplayerstate)切换的事件。
+取消监听播放状态机[AVPlayerState](#avplayerstate9)切换的事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -448,7 +448,7 @@ avPlayer.off('stateChange')
 
 on(type: 'error', callback: ErrorCallback): void
 
-监听[AVPlayer](#avplayer9)的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVPlayerState](#avplayerstate)也切至error状态，用户需要通过reset()或者release()退出播放操作。
+监听[AVPlayer](#avplayer9)的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVPlayerState](#avplayerstate9)也切至error状态，用户需要通过reset()或者release()退出播放操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -463,15 +463,15 @@ AVPlayer回调的**错误分类**<a name = error_info></a>可以分为以下几�
 
 | 错误码ID | 错误信息              | 说明                                                         |
 | -------- | --------------------- | ------------------------------------------------------------ |
-| 201      | No Permission:        | 无权限执行此操作，[AVPlayerState](#avplayerstate)会进入error状态。 |
+| 201      | No Permission:        | 无权限执行此操作，[AVPlayerState](#avplayerstate9)会进入error状态。 |
 | 401      | Invalid Parameter:    | 入参错误，表示调用无效。                                     |
 | 801      | Unsupport Capability: | 不支持该API能力，表示调用无效。                              |
-| 5400101  | No Memory:            | 播放内存不足，[AVPlayerState](#avplayerstate)会进入error状态。 |
+| 5400101  | No Memory:            | 播放内存不足，[AVPlayerState](#avplayerstate9)会进入error状态。 |
 | 5400102  | Operate Not Permit:   | 当前状态机不支持此操作，表示调用无效。                       |
 | 5400103  | IO Error:             | 播放中发现码流异常。                                         |
-| 5400104  | Network Timeout:      | 网络原因超时响应，[AVPlayerState](#avplayerstate)会进入error状态。 |
-| 5400105  | Service Died:         | 播放进程死亡，[AVPlayerState](#avplayerstate)会进入error状态。 |
-| 5400106  | Unsupport Format:     | 不支持的文件格式，[AVPlayerState](#avplayerstate)会进入error状态。 |
+| 5400104  | Network Timeout:      | 网络原因超时响应，[AVPlayerState](#avplayerstate9)会进入error状态。 |
+| 5400105  | Service Died:         | 播放进程死亡，[AVPlayerState](#avplayerstate9)会进入error状态。 |
+| 5400106  | Unsupport Format:     | 不支持的文件格式，[AVPlayerState](#avplayerstate9)会进入error状态。 |
 
 **示例：**
 
@@ -3860,7 +3860,7 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 音频播放的状态机。可通过state属性获取当前状态。
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayerState](#avplayerstate)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayerState](#avplayerstate9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -4679,7 +4679,7 @@ videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'�
 视频播放的状态机，可通过state属性获取当前状态。
 
 > **说明：**
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayerState](#avplayerstate)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayerState](#avplayerstate9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4940,7 +4940,7 @@ audioRecorder.prepare(audioRecorderConfig);                            // prepar
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
 | 名称                                | 类型                                         | 必填 | 说明                                                         |
-| ----------------------------------- | -------------------------------------------- | ---- | ------------------------------ |
+| ----------------------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | audioEncoder                        | [AudioEncoder](#audioencoderdeprecated)                | 否   | 音频编码格式，默认设置为AAC_LC。<br/>**说明：** 从API version 8开始废弃，建议使用audioEncoderMime替代。 |
 | audioEncodeBitRate                  | number                                       | 否   | 音频编码比特率，默认值为48000。                              |
 | audioSampleRate                     | number                                       | 否   | 音频采集采样率，默认值为48000。                              |
