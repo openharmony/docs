@@ -16,16 +16,16 @@
 变更后：
   - 接口异常抛出message和code，包括202非系统应用异常和401参数无效异常。
 
-  | 模块名      | 类名    | 方法/属性/枚举/常量                      | 变更类型 |
-  | ----------------- | ----------- | ------------------------------------------------------------ | -------- |
-  | @ohos.systemTimer | systemTimer | function createTimer(options: TimerOptions, callback: AsyncCallback<number>): void | 变更   |
-  | @ohos.systemTimer | systemTimer | function createTimer(options: TimerOptions): Promise<number> | 变更   |
-  | @ohos.systemTimer | systemTimer | function startTimer(timer: number, triggerTime: number, callback: AsyncCallback<void>): void | 变更   |
-  | @ohos.systemTimer | systemTimer | function startTimer(timer: number, triggerTime: number): Promise<void> | 变更   |
-  | @ohos.systemTimer | systemTimer | function stopTimer(timer: number, callback: AsyncCallback<void>): void | 变更   |
-  | @ohos.systemTimer | systemTimer | function stopTimer(timer: number): Promise<void>       | 变更   |
-  | @ohos.systemTimer | systemTimer | function destroyTimer(timer: number, callback: AsyncCallback<void>): void | 变更   |
-  | @ohos.systemTimer | systemTimer | function destroyTimer(timer: number): Promise<void>      | 变更   |
+    | 模块名            | 类名        | 方法/属性/枚举/常量                                          | 变更类型 |
+    | ----------------- | ----------- | ------------------------------------------------------------ | -------- |
+    | @ohos.systemTimer | systemTimer | function createTimer(options: TimerOptions, callback: AsyncCallback<number>): void | 变更     |
+    | @ohos.systemTimer | systemTimer | function createTimer(options: TimerOptions): Promise<number> | 变更     |
+    | @ohos.systemTimer | systemTimer | function startTimer(timer: number, triggerTime: number, callback: AsyncCallback<void>): void | 变更     |
+    | @ohos.systemTimer | systemTimer | function startTimer(timer: number, triggerTime: number): Promise<void> | 变更     |
+    | @ohos.systemTimer | systemTimer | function stopTimer(timer: number, callback: AsyncCallback<void>): void | 变更     |
+    | @ohos.systemTimer | systemTimer | function stopTimer(timer: number): Promise<void>             | 变更     |
+    | @ohos.systemTimer | systemTimer | function destroyTimer(timer: number, callback: AsyncCallback<void>): void | 变更     |
+    | @ohos.systemTimer | systemTimer | function destroyTimer(timer: number): Promise<void>          | 变更     |
 
 
 **适配指导**
@@ -170,7 +170,7 @@ export default {
       console.info(`Failed to stop timer. message: ${e.message}, code: ${e.code}`);
     }
   }
-}
+}git 
 ```
 
 stopTimer promise形式调用：
@@ -283,7 +283,7 @@ export default {
 
 原接口中标记为废弃的接口，可以使用新接口中的同名接口替换
 
-| 原接口       | 新接口         |
+| 原接口           | 新接口               |
 | ---------------- | -------------------- |
 | @ohos.systemTime | @ohos.systemDateTime |
 
