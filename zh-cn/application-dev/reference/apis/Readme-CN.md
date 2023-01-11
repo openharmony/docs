@@ -139,7 +139,7 @@
   - [@ohos.bundle.bundleManager (bundleManager模块)](js-apis-bundleManager.md)
   - [@ohos.bundle.bundleMonitor (bundleMonitor模块)](js-apis-bundleMonitor.md)
   - [@ohos.bundle.defaultAppManager (默认应用管理)](js-apis-defaultAppManager.md)
-  - [@ohos.bundle.distributedBundle (distributedBundle模块)](js-apis-distributedBundle.md)
+  - [@ohos.bundle.distributedBundleManager (distributedBundleManager模块)](js-apis-distributedBundleManager.md)
   - [@ohos.bundle.freeInstall (freeInstall模块)](js-apis-freeInstall.md)
   - [@ohos.bundle.installer (installer模块)](js-apis-installer.md)
   - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](js-apis-launcherBundleManager.md)
