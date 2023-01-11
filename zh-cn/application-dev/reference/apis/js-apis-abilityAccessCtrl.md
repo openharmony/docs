@@ -208,7 +208,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 | 12100001 | The parameter is invalid. The tokenID is 0 |
 | 12100002 | TokenId does not exist. |
 | 12100003 | Permission does not exist. |
-| 12100006 | The specified application does not support the permissions granted or ungranted as specified. |
+| 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
+| 12100007 | Service is abnormal. |
 
 **示例：**
 
@@ -318,7 +319,8 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 | 12100001 | The parameter is invalid. The tokenID is 0 |
 | 12100002 | TokenId does not exist. |
 | 12100003 | Permission does not exist. |
-| 12100006 | The specified application does not support the permissions granted or ungranted as specified. |
+| 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
+| 12100007 | Service is abnormal. |
 
 **示例：**
 
