@@ -1,6 +1,6 @@
-# Application Context
+# @system.app
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
 > - The APIs of this module are no longer maintained since API version 7. You are advised to use the new APIs.
 > 
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -9,8 +9,8 @@
 ## Modules to Import
 
 
-```
-import app from '@system.app';
+```ts
+import app from '@system.app'
 ```
 
 
@@ -20,7 +20,9 @@ getInfo(): AppResponse
 
 Obtains the declared information in the **config.json** file of an application.
 
-> **Note: ** [`@ohos.bundle`](js-apis-Bundle.md) is recommended from API version 7.
+> **NOTE** 
+>
+> You are advised to use [@ohos.bundle](js-apis-Bundle.md) since API version 7.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
@@ -32,13 +34,13 @@ Obtains the declared information in the **config.json** file of an application.
 
 **Example**
 
-  ```
-  export default {    
-    getInfo(){        
-      var info = app.getInfo();        
-        console.log(JSON.stringify(info));    
-    } 
+  ```ts
+export default {
+  getInfo() {
+    let info = app.getInfo()
+    console.log(JSON.stringify(info))
   }
+}
   ```
 
 ## app.terminate
@@ -47,17 +49,20 @@ terminate(): void
 
 Terminates the current ability.
 
-> **Note: ** [`@ohos.ability.featureAbility`](js-apis-featureAbility.md) is recommended from API version 7.
+> **NOTE** 
+>
+> You are advised to use [@ohos.ability.featureAbility](js-apis-ability-featureAbility.md) since API version 7.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
 **Example**
 
-  ```
-  export default {    
-    terminate(){        
-      app.terminate();    
-    }}
+  ```ts
+export default {
+  terminate() {
+    app.terminate()
+  }
+}
   ```
 ## app.requestFullWindow
 
@@ -67,7 +72,9 @@ Requests the application to run in full window. You can call this API when the F
 
 This is a system API and cannot be called by third-party applications.
 
-> **Note: ** [`@ohos.window`](js-apis-window.md) is recommended from API version 7.
+> **NOTE** 
+>
+> You are advised to use [@ohos.window](js-apis-window.md) since API version 7.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -78,13 +85,14 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-  ```
-  export default {    
-    requestFullWindow(){        
-      app.requestFullWindow({            
-        duration: 200});    
-    }
+  ```ts
+export default {
+  requestFullWindow() {
+    app.requestFullWindow({
+      duration: 200
+    })
   }
+}
   ```
 
 ## app.setImageCacheCount<sup>7+</sup>
@@ -102,19 +110,19 @@ Sets the maximum number of decoded images that can be cached in the memory to sp
 
 **Example**
 
-  ```
-  // app.ets
-  import app from '@system.app';
-  
-  export default {
-      onCreate() { 
-          app.setImageCacheCount(100)    // Set the maximum number of decoded images that can be cached in the memory to 100.
-          console.info('Application onCreate')
-      },
-      onDestroy() {
-          console.info('Application onDestroy')
-      },
-  }
+  ```ts
+// app.ets
+import app from '@system.app'
+
+export default {
+  onCreate() {
+    app.setImageCacheCount(100) // Set the maximum number of decoded images that can be cached in the memory to 100.
+    console.info('Application onCreate')
+  },
+  onDestroy() {
+    console.info('Application onDestroy')
+  },
+}
   ```
 
 ## app.setImageRawDataCacheSize<sup>7+</sup>
@@ -132,20 +140,20 @@ Sets the maximum size (in bytes) of the image data cached in the memory before d
 
 **Example**
 
-  ```
-  // app.ets
-  import app from '@system.app';
-  
-  export default {
-      onCreate() {
-          app.setImageRawDataCacheSize(104857600) 
-          // Set the upper limit of the memory for caching image data before decoding to 100 MB. (100 x 1024 x 1024 B =104857600 B = 100 MB).
-          console.info('Application onCreate')
-      },
-      onDestroy() {
-          console.info('Application onDestroy')
-      },
-  }
+  ```ts
+// app.ets
+import app from '@system.app'
+
+export default {
+  onCreate() {
+    app.setImageRawDataCacheSize(104857600)
+    // Set the upper limit of the memory for caching image data before decoding to 100 MB. (100 x 1024 x 1024 B =104857600 B = 100 MB).
+    console.info('Application onCreate')
+  },
+  onDestroy() {
+    console.info('Application onDestroy')
+  },
+}
   ```
 
 ## app.setImageFileCacheSize<sup>7+</sup>
@@ -163,20 +171,20 @@ Sets the maximum size of the image file cache (in bytes) to speed up the loading
 
 **Example**
 
-  ```
-  // app.ets
-  import app from '@system.app';
-  
-  export default {  
-      onCreate() {    
-          app.setImageFileCacheSize(209715200) 
-          // Set the upper limit of the image file cache to 200 MB. (200 x 1024 x 1024 B= 209715200 B = 200 MB).
-          console.info('Application onCreate')
-      },  
-      onDestroy() {
-          console.info('Application onDestroy')
-      },
-  }
+  ```ts
+// app.ets
+import app from '@system.app'
+
+export default {
+  onCreate() {
+    app.setImageFileCacheSize(209715200)
+    // Set the upper limit of the image file cache to 200 MB. (200 x 1024 x 1024 B= 209715200 B = 200 MB).
+    console.info('Application onCreate')
+  },
+  onDestroy() {
+    console.info('Application onDestroy')
+  },
+}
   ```
 
 ## AppResponse
@@ -213,4 +221,4 @@ Defines the options of the **RequestFullWindow** API.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| duration | number | Yes| Number of animation options.|
+| duration | number | Yes| Duration of an animation, in milliseconds.|

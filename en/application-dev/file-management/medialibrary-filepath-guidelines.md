@@ -69,7 +69,7 @@ You can call [fileio.open](../reference/apis/js-apis-fileio.md#fileioopen7) to o
 
 **How to Develop**
 
-1. Call [Context.getFilesDir](../reference/apis/js-apis-Context.md#contextgetfilesdir) to obtain the directory of the application sandbox.
+1. Call [Context.getFilesDir](../reference/apis/js-apis-inner-app-context.md#contextgetfilesdir) to obtain the directory of the application sandbox.
 2. Call **MediaLibrary.getFileAssets** and **FetchFileResult.getFirstObject** to obtain the first file in the result set of the public directory.
 3. Call **fileio.open** to open the file in the sandbox.
 4. Call **fileAsset.open** to open the file in the public directory.
