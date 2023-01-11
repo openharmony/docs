@@ -1,24 +1,24 @@
-# @ohos.systemTime
+# @ohos.systemDateTime
 
-The **systemTime** module provides system time and time zone features. You can use the APIs of this module to set and obtain the system time and time zone.
+The **systemDateTime** module provides system time and time zone features. You can use the APIs of this module to set and obtain the system time and time zone.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```js
-import systemTime from '@ohos.systemTime';
+import systemDateTime from '@ohos.systemDateTime';
 ```
 
-## systemTime.setTime<sup>(deprecated)</sup>
+## systemDateTime.setTime
 
 setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 Sets the system time. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.SET_TIME
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -35,9 +35,9 @@ Sets the system time. This API uses an asynchronous callback to return the resul
 // Set the system time to 2021-01-20 02:36:25.
 let time = 1611081385000;
 try {
-    systemTime.setTime(time, (error) => {
+    systemDateTime.setTime(time, (error) => {
         if (error) {
-            console.info(`Failed to setting time. message:${error.message}, code:${error.code}`);
+            console.info(`Failed to set time. message:${error.message}, code:${error.code}`);
             return;
         }
     	console.info(`Succeeded in setting time`);
@@ -47,13 +47,13 @@ try {
 }
 ```
 
-## systemTime.setTime<sup>(deprecated)</sup>
+## systemDateTime.setTime
 
 setTime(time : number) : Promise&lt;void&gt;
 
 Sets the system time. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.SET_TIME
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -75,25 +75,21 @@ Sets the system time. This API uses a promise to return the result.
 // Set the system time to 2021-01-20 02:36:25.
 let time = 1611081385000;
 try {
-    systemTime.setTime(time).then(() => {
+    systemDateTime.setTime(time).then(() => {
     	console.info(`Succeeded in setting time.`);
 	}).catch((error) => {
-    	console.info(`Failed to setting time. message:${error.message}, code:${error.code}`);
+    	console.info(`Failed to set time. message:${error.message}, code:${error.code}`);
 	});
 } catch(e) {
     console.info(`Failed to set time. message:${e.message}, code:${e.code}`);
 }
 ```
 
-## systemTime.getCurrentTime<sup>(deprecated)</sup>
+## systemDateTime.getCurrentTime
 
 getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since the Unix epoch. This API uses an asynchronous callback to return the result.
-
->  **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [systemDateTime.getCurrentTime](./js-apis-system-date-time.md#systemdatetimegetcurrenttime).
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -101,16 +97,16 @@ Obtains the time elapsed since the Unix epoch. This API uses an asynchronous cal
 
 | Name  | Type      | Mandatory| Description                            |
 | -------- | -------------- | ---- | ------------------ |
-| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds (ns).<br>- **false**: in milliseconds (ms).|
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.|
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time elapsed since the Unix epoch.        |
 
 **Example**
 
 ```js
 try {
-    systemTime.getCurrentTime(true, (error, time) => {
+    systemDateTime.getCurrentTime(true, (error, time) => {
         if (error) {
-            console.info(`Failed to getting currentTime. message:${error.message}, code:${error.code}`);
+            console.info(`Failed to get currentTime. message:${error.message}, code:${error.code}`);
             return;
         }
     	console.info(`Succeeded in getting currentTime : ${time}`);
@@ -120,15 +116,11 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime<sup>(deprecated)</sup>
+## systemDateTime.getCurrentTime
 
 getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since the Unix epoch. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [systemDateTime.getCurrentTime](./js-apis-system-date-time.md#systemdatetimegetcurrenttime-1).
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -142,9 +134,9 @@ Obtains the time elapsed since the Unix epoch. This API uses an asynchronous cal
 
 ```js
 try {
-    systemTime.getCurrentTime((error, time) => {
+    systemDateTime.getCurrentTime((error, time) => {
         if (error) {
-            console.info(`Failed to getting currentTime. message:${error.message}, code:${error.code}`);
+            console.info(`Failed to get currentTime. message:${error.message}, code:${error.code}`);
             return;
         }
     	console.info(`Succeeded in getting currentTime : ${time}`);
@@ -154,15 +146,11 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime<sup>(deprecated)</sup>
+## systemDateTime.getCurrentTime
 
 getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 Obtains the time elapsed since the Unix epoch. This API uses a promise to return the result.
-
->  **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [systemDateTime.getCurrentTime](./js-apis-system-date-time.md#systemdatetimegetcurrenttime-2).
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -170,7 +158,7 @@ Obtains the time elapsed since the Unix epoch. This API uses a promise to return
 
 | Name| Type   | Mandatory| Description                    |
 | ------ | ------- | ---- | ------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds (ns).<br>- **false**: in milliseconds (ms).|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.|
 
 **Return value**
 
@@ -182,25 +170,21 @@ Obtains the time elapsed since the Unix epoch. This API uses a promise to return
 
 ```js
 try {
-    systemTime.getCurrentTime().then((time) => {
+    systemDateTime.getCurrentTime().then((time) => {
     	console.info(`Succeeded in getting currentTime : ${time}`);
 	}).catch((error) => {
-    	console.info(`Failed to getting currentTime. message:${error.message}, code:${error.code}`);
+    	console.info(`Failed to get currentTime. message:${error.message}, code:${error.code}`);
 	});
 } catch(e) {
     console.info(`Failed to get currentTime. message:${e.message}, code:${e.code}`);
 }
 ```
 
-## systemTime.getRealActiveTime<sup>(deprecated)</sup>
+## systemDateTime.getRealActiveTime
 
 getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since system startup, excluding the deep sleep time. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [systemDateTime.getRealActiveTime](./js-apis-system-date-time.md#systemdatetimegetrealactivetime).
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -208,16 +192,16 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 | Name  | Type                       | Mandatory| Description  |
 | -------- | ---------- | ---- | -------------------------- |
-| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds (ns).<br>- **false**: in milliseconds (ms).|
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.|
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.|
 
 **Example**
 
 ```js
 try {
-    systemTime.getRealActiveTime(true, (error, time) => {
+    systemDateTime.getRealActiveTime(true, (error, time) => {
         if (error) {
-            console.info(`Failed to getting real active time. message:${error.message}, code:${error.code}`);
+            console.info(`Failed to get real active time. message:${error.message}, code:${error.code}`);
             return;
         }
     	console.info(`Succeeded in getting real active time : ${time}`);
@@ -227,15 +211,11 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>(deprecated)</sup>
+## systemDateTime.getRealActiveTime
 
 getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since system startup, excluding the deep sleep time. This API uses an asynchronous callback to return the result.
-
->  **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [systemDateTime.getRealActiveTime](./js-apis-system-date-time.md#systemdatetimegetrealactivetime-1).
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -249,9 +229,9 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 ```js
 try {
-    systemTime.getRealActiveTime((error, time) => {
+    systemDateTime.getRealActiveTime((error, time) => {
         if (error) {
-            console.info(`Failed to getting real active time. message:${error.message}, code:${error.code}`);
+            console.info(`Failed to get real active time. message:${error.message}, code:${error.code}`);
             return;
         }
     	console.info(`Succeeded in getting real active time : ${time}`);
@@ -261,15 +241,11 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>(deprecated)</sup>
+## systemDateTime.getRealActiveTime
 
 getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 Obtains the time elapsed since system startup, excluding the deep sleep time. This API uses a promise to return the result.
-
->  **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [systemDateTime.getRealActiveTime](./js-apis-system-date-time.md#systemdatetimegetrealactivetime-2).
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -277,7 +253,7 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 | Name| Type   | Mandatory| Description                             |
 | ------ | ------- | ---- | ----------------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds (ns).<br>- **false**: in milliseconds (ms).|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.|
 
 **Return value**
 
@@ -289,25 +265,21 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 ```js
 try {
-    systemTime.getRealActiveTime().then((time) => {
+    systemDateTime.getRealActiveTime().then((time) => {
     	console.info(`Succeeded in getting real active time : ${time}`);
 	}).catch((error) => {
-    	console.info(`Failed to getting real active time. message:${error.message}, code:${error.code}`);
+    	console.info(`Failed to get real active time. message:${error.message}, code:${error.code}`);
 	});
 } catch(e) {
     console.info(`Failed to get real active time. message:${e.message}, code:${e.code}`);
 }
 ```
 
-## systemTime.getRealTime<sup>(deprecated)</sup>
+## systemDateTime.getRealTime
 
 getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since system startup, including the deep sleep time. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [systemDateTime.getRealTime](./js-apis-system-date-time.md#systemdatetimegetrealtime).
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -315,16 +287,16 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 | Name  | Type                       | Mandatory| Description  |
 | -------- | --------------- | ---- | ------------------------------- |
-| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds (ns).<br>- **false**: in milliseconds (ms).|
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.|
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.  |
 
 **Example**
 
 ```js
 try {
-    systemTime.getRealTime(true, (error, time) => {
+    systemDateTime.getRealTime(true, (error, time) => {
         if (error) {
-            console.info(`Failed to getting real time. message:${error.message}, code:${error.code}`);
+            console.info(`Failed to get real time. message:${error.message}, code:${error.code}`);
             return;
         }
     	console.info(`Succeeded in getting real time : ${time}`);
@@ -334,15 +306,11 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>(deprecated)</sup>
+## systemDateTime.getRealTime
 
 getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since system startup, including the deep sleep time. This API uses an asynchronous callback to return the result.
-
->  **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [systemDateTime.getRealTime](./js-apis-system-date-time.md#systemdatetimegetrealtime-1).
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -356,9 +324,9 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 ```js
 try {
-    systemTime.getRealTime((error, time) => {
+    systemDateTime.getRealTime((error, time) => {
         if (error) {
-            console.info(`Failed to getting real time. message:${error.message}, code:${error.code}`);
+            console.info(`Failed to get real time. message:${error.message}, code:${error.code}`);
             return;
         }
     	console.info(`Succeeded in getting real time : ${time}`);
@@ -368,15 +336,11 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>(deprecated)</sup>
+## systemDateTime.getRealTime
 
 getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 Obtains the time elapsed since system startup, including the deep sleep time. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [systemDateTime.getRealTime](./js-apis-system-date-time.md#systemdatetimegetrealtime-2).
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -384,7 +348,7 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 | Name| Type   | Mandatory| Description                              |
 | ------ | ------- | ---- | ------------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds (ns).<br>- **false**: in milliseconds (ms).|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.|
 
 **Return value**
 
@@ -396,23 +360,23 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 ```js
 try {
-    systemTime.getRealTime().then((time) => {
+    systemDateTime.getRealTime().then((time) => {
     	console.info(`Succeeded in getting real time : ${time}`);
 	}).catch((error) => {
-    	console.info(`Failed to getting real time. message:${error.message}, code:${error.code}`);
+    	console.info(`Failed to get real time. message:${error.message}, code:${error.code}`);
 	});
 } catch(e) {
     console.info(`Failed to get real time. message:${e.message}, code:${e.code}`);
 }
 ```
 
-## systemTime.setDate<sup>(deprecated)</sup>
+## systemDateTime.setDate
 
 setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the system date. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.SET_TIME
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -428,9 +392,9 @@ Sets the system date. This API uses an asynchronous callback to return the resul
 ```js
 let date = new Date();
 try {
-    systemTime.setDate(date, (error) => {
+    systemDateTime.setDate(date, (error) => {
         if (error) {
-            console.info(`Failed to setting date. message:${error.message}, code:${error.code}`);
+            console.info(`Failed to set date. message:${error.message}, code:${error.code}`);
             return;
         }
     	console.info(`Succeeded in setting date.`);
@@ -440,13 +404,13 @@ try {
 }
 ```
 
-## systemTime.setDate<sup>(deprecated)</sup>
+## systemDateTime.setDate
 
 setDate(date: Date): Promise&lt;void&gt;
 
 Sets the system date. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.SET_TIME
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -467,25 +431,21 @@ Sets the system date. This API uses a promise to return the result.
 ```js
 let date = new Date(); 
 try {
-    systemTime.setDate(date).then(() => {
+    systemDateTime.setDate(date).then(() => {
     	console.info(`Succeeded in setting date.`);
 	}).catch((error) => {
-    	console.info(`Failed to setting date. message:${error.message}, code:${error.code}`);
+    	console.info(`Failed to set date. message:${error.message}, code:${error.code}`);
 	});
 } catch(e) {
     console.info(`Failed to set date. message:${e.message}, code:${e.code}`);
 }
 ```
 
-## systemTime.getDate<sup>(deprecated)</sup>
+## systemDateTime.getDate
 
 getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 Obtains the current system date. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [systemDateTime.getDate](./js-apis-system-date-time.md#systemdatetimegetdate).
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -499,27 +459,23 @@ Obtains the current system date. This API uses an asynchronous callback to retur
 
 ```js
 try {
-    systemTime.getDate((error, date) => {
+    systemDateTime.getDate((error, date) => {
         if (error) {
             console.info(`Failed to get date. message:${error.message}, code:${error.code}`);
             return;
         }
-    	console.info(`Succeeded in get date : ${date}`);;
+    	console.info(`Succeeded in getting date : ${date}`);;
 	});
 } catch(e) {
     console.info(`Failed to get date. message:${e.message}, code:${e.code}`);
 }
 ```
 
-## systemTime.getDate<sup>(deprecated)</sup>
+## systemDateTime.getDate
 
 getDate(): Promise&lt;Date&gt;
 
-Obtains the current system date. This API uses a promise to return the result.  
-
->  **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [systemDateTime.getDate](./js-apis-system-date-time.md#systemdatetimegetdate-1).
+Obtains the current system date. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -533,23 +489,23 @@ Obtains the current system date. This API uses a promise to return the result.
 
 ```js
 try {
-    systemTime.getDate().then((date) => {
+    systemDateTime.getDate().then((date) => {
     	console.info(`Succeeded in getting date : ${date}`);
 	}).catch((error) => {
-    	console.info(`Failed to getting date. message:${error.message}, code:${error.code}`);
+    	console.info(`Failed to get date. message:${error.message}, code:${error.code}`);
 	});
 } catch(e) {
     console.info(`Failed to get date. message:${e.message}, code:${e.code}`);
 }
 ```
 
-## systemTime.setTimezone<sup>(deprecated)</sup>
+## systemDateTime.setTimezone
 
 setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the system time zone. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.SET_TIME_ZONE
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -564,9 +520,9 @@ Sets the system time zone. This API uses an asynchronous callback to return the 
 
 ```js
 try {
-    systemTime.setTimezone('Asia/Shanghai', (error) => {
+    systemDateTime.setTimezone('Asia/Shanghai', (error) => {
         if (error) {
-            console.info(`Failed to setting timezone. message:${error.message}, code:${error.code}`);
+            console.info(`Failed to set timezone. message:${error.message}, code:${error.code}`);
             return;
         }
     	console.info(`Succeeded in setting timezone.`);
@@ -576,13 +532,13 @@ try {
 }
 ```
 
-## systemTime.setTimezone<sup>(deprecated)</sup>
+## systemDateTime.setTimezone
 
 setTimezone(timezone: string): Promise&lt;void&gt;
 
 Sets the system time zone. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.SET_TIME_ZONE
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -602,25 +558,21 @@ Sets the system time zone. This API uses a promise to return the result.
 
 ```js
 try {
-    systemTime.setTimezone('Asia/Shanghai').then(() => {
+    systemDateTime.setTimezone('Asia/Shanghai').then(() => {
     	console.info(`Succeeded in setting timezone.`);
 	}).catch((error) => {
-    	console.info(`Failed to setting timezone. message:${error.message}, code:${error.code}`);
+    	console.info(`Failed to set timezone. message:${error.message}, code:${error.code}`);
 	});
 } catch(e) {
     console.info(`Failed to set timezone. message:${e.message}, code:${e.code}`);
 }
 ```
 
-## systemTime.getTimezone<sup>(deprecated)</sup>
+## systemDateTime.getTimezone
 
 getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the system time zone. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [systemDateTime.getTimezone](./js-apis-system-date-time.md#systemdatetimegettimezone).
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -634,7 +586,7 @@ Obtains the system time zone. This API uses an asynchronous callback to return t
 
 ```js
 try {
-    systemTime.getTimezone((error, data) => {
+    systemDateTime.getTimezone((error, data) => {
         if (error) {
             console.info(`Failed to get timezone. message:${error.message}, code:${error.code}`);
             return;
@@ -646,15 +598,11 @@ try {
 }
 ```
 
-## systemTime.getTimezone<sup>(deprecated)</sup>
+## systemDateTime.getTimezone
 
 getTimezone(): Promise&lt;string&gt;
 
 Obtains the system time zone. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [systemDateTime.getTimezone](./js-apis-system-date-time.md#systemdatetimegettimezone-1).
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -668,10 +616,10 @@ Obtains the system time zone. This API uses a promise to return the result.
 
 ```js
 try {
-    systemTime.getTimezone().then((data) => {
+    systemDateTime.getTimezone().then((data) => {
     	console.info(`Succeeded in getting timezone: ${data}`);
 	}).catch((error) => {
-    	console.info(`Failed to getting timezone. message:${error.message}, code:${error.code}`);
+    	console.info(`Failed to get timezone. message:${error.message}, code:${error.code}`);
 	});
 } catch(e) {
     console.info(`Failed to get timezone. message:${e.message}, code:${e.code}`);
