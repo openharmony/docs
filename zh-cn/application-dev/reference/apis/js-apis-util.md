@@ -338,7 +338,7 @@ TextDecoder的构造函数。
 
 ### create<sup>9+</sup>
 
-create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean },): TextDecoder;
+create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder;
 
 替代有参构造功能。
 
@@ -410,13 +410,13 @@ decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
 
 ### constructor<sup>(deprecated)</sup>
 
-constructor(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean },)
+constructor(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean })
 
 TextDecoder的构造函数。
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[constructor<sup>9+</sup>](#constructor9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[create<sup>9+</sup>](#create9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -440,7 +440,7 @@ TextDecoder的构造函数。
   let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
   ```
 
-### decode
+### decode<sup>(deprecated)</sup>
 
 decode(input: Uint8Array, options?: { stream?: false }): string
 
@@ -448,7 +448,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[decodeWithStream<sup>9+</sup>](#decodeWithStream9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[decodeWithStream<sup>9+</sup>](#decodewithstream9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1590,28 +1590,32 @@ let result = pro[Symbol.iterator]();
 
 ScopeComparable类型的值需要实现compareTo方法，确保传入的数据具有可比性。
 
-  ```js
-  interface ScopeComparable{
-    compareTo(other: ScopeComparable): boolean;
-}
-  ```
+**系统能力：** SystemCapability.Utils.Lang
+
+### compareTo<sup>8+</sup>
+
+compareTo(other: ScopeComparable): boolean;
+
+比较两个值的大小，返回一个布尔值。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-## ScopeType<sup>8+</sup>
+**参数：**
 
-用于表示范围中的值的类型。
+| 参数名 | 类型 | 必填 | 说明           |
+| ------ | ---- | ---- | -------------- |
+| other  | [ScopeComparable](#scopecomparable8) | 是  | 表示要比较的值。 |
 
-**系统能力：** SystemCapability.Utils.Lang
+**返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-| number | 表示值的类型为数字。 |
-| [ScopeComparable](#ScopeComparable8) | 表示值的类型为ScopeComparable。|
+| 类型 | 说明               |
+| ---- | ------------------ |
+| boolean | 调用compareTo的值大于等于传入的值返回true，否则返回false。|
 
-构造新类，实现compareTo方法。后续示例代码中，均通过Temperature，获取[ScopeType](#scopetype8)的实例化对象。
+**示例：**
 
-示例：
+构造新类，实现compareTo方法。后续示例代码中，均以此Temperature类为例。
+
 ```js
 class Temperature{
     constructor(value){
@@ -1630,6 +1634,17 @@ class Temperature{
     }
 }
 ```
+
+## ScopeType<sup>8+</sup>
+
+用于表示范围中的值的类型。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 表示值的类型为数字。 |
+| [ScopeComparable](#scopecomparable8) | 表示值的类型为ScopeComparable。|
 
 ## ScopeHelper<sup>9+</sup>
 
@@ -1710,7 +1725,7 @@ let range = new util.ScopeHelper(tempLower, tempUpper);
 let tempMiDF = new Temperature(35);
 let tempMidS = new Temperature(39);
 let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-range.intersect(rangeFir );
+range.intersect(rangeFir);
   ```
 
 
