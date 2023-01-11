@@ -57,18 +57,15 @@ const STORE_CONFIG = {
     name: "RdbTest.db",
     securityLevel: data_rdb.SecurityLevel.S1
 }
-data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
+data_rdb.getRdbStore(context, STORE_CONFIG, function (err, store) {
     if (err) {
         console.info("Get RdbStore failed, err: " + err)
         return
-    }    
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATA) {
-        console.log("RdbStore status is ON_CREATA")
-    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
-        console.log("RdbStore status is ON_OPEN")
-    } else {
-        return
     }
+    // 设置数据库版本应为大于0的正整数
+    store.version = 3
+    let version = store.version
+    console.log("Get RdbStore version is " + version)
     console.log("Get RdbStore successfully.")
 })
 ```
@@ -90,18 +87,15 @@ const STORE_CONFIG = {
     name: "RdbTest.db",
     securityLevel: data_rdb.SecurityLevel.S1
 }
-data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
+data_rdb.getRdbStore(context, STORE_CONFIG, function (err, store) {
     if (err) {
         console.info("Get RdbStore failed, err: " + err)
         return
     }
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATA) {
-        console.log("RdbStore status is ON_CREATA")
-    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
-        console.log("RdbStore status is ON_OPEN")
-    } else {
-        return
-    }
+    // 设置数据库版本应为大于0的正整数
+    store.version = 3
+    let version = store.version
+    console.log("Get RdbStore version is " + version)
     console.log("Get RdbStore successfully.")
 })
 ```
@@ -151,14 +145,11 @@ const STORE_CONFIG = {
     securityLevel: data_rdb.SecurityLevel.S1
 }
 let promise = data_rdb.getRdbStore(context, STORE_CONFIG);
-promise.then(async (rdbStore) => {
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATA) {
-        console.log("RdbStore status is ON_CREATA")
-    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
-        console.log("RdbStore status is ON_OPEN")
-    } else {
-        return
-    }
+promise.then(async (store) => {
+    // 设置数据库版本应为大于0的正整数
+    store.version = 3
+    let version = store.version
+    console.log("Get RdbStore version is " + version)
     console.log("Get RdbStore successfully.")
 }).catch((err) => {
     console.log("Get RdbStore failed, err: " + err)
@@ -183,14 +174,11 @@ const STORE_CONFIG = {
     securityLevel: data_rdb.SecurityLevel.S1
 }
 let promise = data_rdb.getRdbStore(context, STORE_CONFIG);
-promise.then(async (rdbStore) => {
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATA) {
-        console.log("RdbStore status is ON_CREATA")
-    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
-        console.log("RdbStore status is ON_OPEN")
-    } else {
-        return
-    }
+promise.then(async (store) => {
+    // 设置数据库版本应为大于0的正整数
+    store.version = 3
+    let version = store.version
+    console.log("Get RdbStore version is " + version)
     console.log("Get RdbStore successfully.")
 }).catch((err) => {
     console.log("Get RdbStore failed, err: " + err)
