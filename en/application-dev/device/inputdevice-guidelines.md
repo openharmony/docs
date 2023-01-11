@@ -40,8 +40,8 @@ try {
   // 1. Obtain the list of input devices and check whether a physical keyboard is connected.
   inputDevice.getDeviceList().then(data => {
     for (let i = 0; i < data.length; ++i) {
-      inputDevice.getKeyboardType(data[i]).then(res => {
-        if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD) {
+      inputDevice.getKeyboardType(data[i]).then(type => {
+        if (type === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD) {
           // The physical keyboard is connected.
           isPhysicalKeyboardExist = true;
         }
@@ -53,7 +53,7 @@ try {
     console.log(`Device event info: ${JSON.stringify(data)}`);
     inputDevice.getKeyboardType(data.deviceId, (error, type) => {
       console.log("The keyboard type is: " + type);
-      if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
+      if (type === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
         // The physical keyboard is inserted.
         isPhysicalKeyboardExist = true;
       } else if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'remove') {

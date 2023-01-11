@@ -7,7 +7,7 @@ Mouse pointer management provides the functions such as displaying or hiding the
 ## Modules to Import
 
 ```js
-import inputDevice from '@ohos.multimodalInput.pointer';
+import pointer from '@ohos.multimodalInput.pointer';
 ```
 
 ## Available APIs
