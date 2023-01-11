@@ -28,6 +28,7 @@ Create a **\<grid-container>** component in the .hml file under **pages/index** 
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -68,6 +69,7 @@ Touch the **\<grid-container>** component to call the **getColumns**, **getColum
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -76,7 +78,7 @@ Touch the **\<grid-container>** component to call the **getColumns**, **getColum
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     gutterWidth:'',
@@ -94,13 +96,13 @@ export default {
       this.columns= result;
     }) 
     setTimeout(()=>{              
-      prompt.showToast({duration:5000,message:'columnWidth:'+this.columnWidth+',gutterWidth:'+
+      promptAction.showToast({duration:5000,message:'columnWidth:'+this.columnWidth+',gutterWidth:'+
       this.gutterWidth+',getColumns:'+this.columns})
     })
   },
   getSizeType(){
       this.$element('mygrid').getSizeType((result)=>{
-      prompt.showToast({duration:2000,message:'get size type:'+result})
+      promptAction.showToast({duration:2000,message:'get size type:'+result})
     })
   },
 }
@@ -155,6 +157,7 @@ After adding a **\<grid-row>** child component to **\<grid-container>**, add a *
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -205,6 +208,7 @@ In this example, the content in the list is output cyclically to create a grid l
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
 }
 text{
   color: #0a0aef;

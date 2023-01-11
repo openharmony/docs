@@ -12,7 +12,7 @@ Perf为性能分析工具，依赖PMU（Performance Monitoring Unit）对采样�
 
 Perf提供2种工作模式，计数模式和采样模式。
 
-计数模式仅统计事件发生的次数和耗时，采样模式会收集上下文数据到环形buffer中，需要IDE进行数据解析生成热点函数与热点路径
+计数模式仅统计事件发生的次数和耗时，采样模式会收集上下文数据到环形buffer中，需要IDE进行数据解析生成热点函数与热点路径。
 
 
 ## 接口说明
@@ -24,21 +24,21 @@ OpenHarmony LiteOS-A内核的Perf模块提供下面几种功能，接口详细�
 
   **表1** Perf模块接口说明
 
-| 功能分类 | 接口描述 | 
+| 功能分类 | 接口描述 |
 | -------- | -------- |
-| 开启/停止Perf采样 | LOS_PerfStart：开启采样<br/>LOS_PerfStop：停止采样 | 
-| 配置Perf采样事件 | LOS_PerfConfig：配置采样事件的类型、周期等 | 
-| 读取采样数据 | LOS_PerfDataRead：读取采样数据到指定地址 | 
-| 注册采样数据缓冲区的钩子函数 | LOS_PerfNotifyHookReg：注册缓冲区水线到达的处理钩子<br/>LOS_PerfFlushHookReg：注册缓冲区刷cache的钩子 | 
+| 开启/停止Perf采样 | LOS_PerfInit : 初始化Perf<br/>LOS_PerfStart：开启采样<br/>LOS_PerfStop：停止采样 |
+| 配置Perf采样事件 | LOS_PerfConfig：配置采样事件的类型、周期等 |
+| 读取采样数据 | LOS_PerfDataRead：读取采样数据到指定地址 |
+| 注册采样数据缓冲区的钩子函数 | LOS_PerfNotifyHookReg：注册缓冲区水线到达的处理钩子<br/>LOS_PerfFlushHookReg：注册缓冲区刷cache的钩子 |
 
 
-1. Perf采样事件的结构体为PerfConfigAttr，详细字段含义及取值详见kernel\include\los_perf.h。
+1. Perf采样事件的结构体为PerfConfigAttr，详细字段含义及取值详见 [kernel\include\los_perf.h](https://gitee.com/openharmony/kernel_liteos_a/blob/master/kernel/include/los_perf.h) 。
 
 2. 采样数据缓冲区为环形buffer，buffer中读过的区域可以覆盖写，未被读过的区域不能被覆盖写。
 
 3. 缓冲区有限，用户可通过注册水线到达的钩子进行buffer溢出提醒或buffer读操作。默认水线值为buffer总大小的1/2。 示例如下：
-     
-   ```
+
+   ```c
    VOID Example_PerfNotifyHook(VOID)
    {
        CHAR buf[LOSCFG_PERF_BUFFER_SIZE] = {0};
@@ -51,8 +51,8 @@ OpenHarmony LiteOS-A内核的Perf模块提供下面几种功能，接口详细�
    ```
 
 4. 若perf采样的buffer涉及到CPU跨cache，则用户可通过注册刷cache的钩子，进行cache同步。 示例如下：
-     
-   ```
+
+   ```c
    VOID Example_PerfFlushHook(VOID *addr, UINT32 size)
    {
        OsCacheFlush(addr, size); /* platform interface */
@@ -74,8 +74,8 @@ OpenHarmony LiteOS-A内核的Perf模块提供下面几种功能，接口详细�
 - write: 用户态采样事件配置
 
 - ioctl: 用户态Perf控制操作，包括
-    
-  ```
+
+  ```c
   #define PERF_IOC_MAGIC     'T'
   #define PERF_START         _IO(PERF_IOC_MAGIC, 1)
   #define PERF_STOP          _IO(PERF_IOC_MAGIC, 2)
@@ -97,15 +97,15 @@ OpenHarmony LiteOS-A内核的Perf模块提供下面几种功能，接口详细�
 1. 配置Perf模块相关宏。
    配置Perf控制宏LOSCFG_KERNEL_PERF，默认关，在kernel/liteos_a目录下执行 make update_config命令配置"Kernel-&gt;Enable Perf Feature"中打开：
 
-     | 配置项 | menuconfig选项 | 含义 | 设置值 | 
+     | 配置项 | menuconfig选项 | 含义 | 设置值 |
    | -------- | -------- | -------- | -------- |
-   | LOSCFG_KERNEL_PERF | Enable&nbsp;Perf&nbsp;Feature | Perf模块的裁剪开关 | YES/NO | 
-   | LOSCFG_PERF_CALC_TIME_BY_TICK | Time-consuming&nbsp;Calc&nbsp;Methods-&gt;By&nbsp;Tick | Perf计时单位为tick | YES/NO | 
-   | LOSCFG_PERF_CALC_TIME_BY_CYCLE | Time-consuming&nbsp;Calc&nbsp;Methods-&gt;By&nbsp;Cpu&nbsp;Cycle | Perf计时单位为cycle | YES/NO | 
-   | LOSCFG_PERF_BUFFER_SIZE | Perf&nbsp;Sampling&nbsp;Buffer&nbsp;Size | Perf采样buffer的大小 | INT | 
-   | LOSCFG_PERF_HW_PMU | Enable&nbsp;Hardware&nbsp;Pmu&nbsp;Events&nbsp;for&nbsp;Sampling | 使能硬件PMU事件，需要目标平台支持硬件PMU | YES/NO | 
-   | LOSCFG_PERF_TIMED_PMU | Enable&nbsp;Hrtimer&nbsp;Period&nbsp;Events&nbsp;for&nbsp;Sampling | 使能高精度周期事件，需要目标平台支持高精度定时器 | YES/NO | 
-   | LOSCFG_PERF_SW_PMU | Enable&nbsp;Software&nbsp;Events&nbsp;for&nbsp;Sampling | 使能软件事件，需要开启LOSCFG_KERNEL_HOOK | YES/NO | 
+   | LOSCFG_KERNEL_PERF | Enable&nbsp;Perf&nbsp;Feature | Perf模块的裁剪开关 | YES/NO |
+   | LOSCFG_PERF_CALC_TIME_BY_TICK | Time-consuming&nbsp;Calc&nbsp;Methods-&gt;By&nbsp;Tick | Perf计时单位为tick | YES/NO |
+   | LOSCFG_PERF_CALC_TIME_BY_CYCLE | Time-consuming&nbsp;Calc&nbsp;Methods-&gt;By&nbsp;Cpu&nbsp;Cycle | Perf计时单位为cycle | YES/NO |
+   | LOSCFG_PERF_BUFFER_SIZE | Perf&nbsp;Sampling&nbsp;Buffer&nbsp;Size | Perf采样buffer的大小 | INT |
+   | LOSCFG_PERF_HW_PMU | Enable&nbsp;Hardware&nbsp;Pmu&nbsp;Events&nbsp;for&nbsp;Sampling | 使能硬件PMU事件，需要目标平台支持硬件PMU | YES/NO |
+   | LOSCFG_PERF_TIMED_PMU | Enable&nbsp;Hrtimer&nbsp;Period&nbsp;Events&nbsp;for&nbsp;Sampling | 使能高精度周期事件，需要目标平台支持高精度定时器 | YES/NO |
+   | LOSCFG_PERF_SW_PMU | Enable&nbsp;Software&nbsp;Events&nbsp;for&nbsp;Sampling | 使能软件事件，需要开启LOSCFG_KERNEL_HOOK | YES/NO |
 
 2. 调用LOS_PerfConfig配置需要采样的事件。
    Perf提供2种模式的配置，及3大类型的事件配置：
@@ -142,9 +142,11 @@ OpenHarmony LiteOS-A内核的Perf模块提供下面几种功能，接口详细�
 
 前提条件：在menuconfig菜单中完成perf模块的配置。
 
+该示例代码的测试函数可以加在 kernel /liteos_a/testsuites /kernel /src /osTest.c  中的 TestTaskEntry 中进行测试。
+
   实例代码如下：
-  
-```
+
+```c
 #include "los_perf.h"
 STATIC VOID OsPrintBuff(const CHAR *buf, UINT32 num)
 {
@@ -176,7 +178,7 @@ STATIC VOID perfTestHwEvent(VOID)
             .predivided  = 1,             /* cycle counter increase every 64 cycles */
         },
         .taskIds         = {0},
-        .taskIdsNr       = 0,            
+        .taskIdsNr       = 0,
         .needSample      = 0,
         .sampleType      = PERF_RECORD_IP | PERF_RECORD_CALLCHAIN,
     };
@@ -192,7 +194,7 @@ STATIC VOID perfTestHwEvent(VOID)
     PRINTK("--------sample mode------ \n");
     attr.needSample = 1;
     LOS_PerfConfig(&attr);
-    LOS_PerfStart(2);
+    LOS_PerfStart(2); // 2: set the section id to 2.
     test(); /* this is any test function*/
     LOS_PerfStop();
     buf = LOS_MemAlloc(m_aucSysMem1, LOSCFG_PERF_BUFFER_SIZE);
@@ -201,24 +203,25 @@ STATIC VOID perfTestHwEvent(VOID)
         return;
     }
     /* get sample data */
-    len = LOS_PerfDataRead(buf, LOSCFG_PERF_BUFFER_SIZE); 
+    len = LOS_PerfDataRead(buf, LOSCFG_PERF_BUFFER_SIZE);
     OsPrintBuff(buf, len); /* print data */
     (VOID)LOS_MemFree(m_aucSysMem1, buf);
 }
-UINT32 Example_Perf_test(VOID){
-    UINT32 ret;    
-    TSK_INIT_PARAM_S perfTestTask;    
-    /* 创建用于perf测试的任务 */    
-    memset(&perfTestTask, 0, sizeof(TSK_INIT_PARAM_S));    
-    perfTestTask.pfnTaskEntry = (TSK_ENTRY_FUNC)perfTestHwEvent;    
-    perfTestTask.pcName       = "TestPerfTsk";    /* 测试任务名称 */    				     
-    perfTestTask.uwStackSize  = 0x800;    
-    perfTestTask.usTaskPrio   = 5;    
-    perfTestTask.uwResved   = LOS_TASK_STATUS_DETACHED;    
-    ret = LOS_TaskCreate(&g_perfTestTaskId, &perfTestTask);    
-    if(ret != LOS_OK){        
-        PRINT_ERR("PerfTestTask create failed.\n");        
-        return LOS_NOK;    
+UINT32 Example_Perf_test(VOID)
+{
+    UINT32 ret;
+    TSK_INIT_PARAM_S perfTestTask;
+    /* 创建用于perf测试的任务 */
+    memset(&perfTestTask, 0, sizeof(TSK_INIT_PARAM_S));
+    perfTestTask.pfnTaskEntry = (TSK_ENTRY_FUNC)perfTestHwEvent;
+    perfTestTask.pcName       = "TestPerfTsk";    /* 测试任务名称 */
+    perfTestTask.uwStackSize  = 0x800; // 0x8000: perf test task stack size
+    perfTestTask.usTaskPrio   = 5; // 5: perf test task priority
+    perfTestTask.uwResved   = LOS_TASK_STATUS_DETACHED;
+    ret = LOS_TaskCreate(&g_perfTestTaskId, &perfTestTask);
+    if (ret != LOS_OK) {
+        PRINT_ERR("PerfTestTask create failed.\n");
+        return LOS_NOK;
     }
     return LOS_OK;
 }
@@ -229,7 +232,7 @@ LOS_MODULE_INIT(perfTestHwEvent, LOS_INIT_LEVEL_KMOD_EXTENDED);
 #### 内核态结果验证
 
   输出结果如下：
-  
+
 ```
 --------count mode----------
 [EMG] [cycles] eventType: 0xff: 5466989440
@@ -268,18 +271,18 @@ hex:  00 ef ef ef 00 00 00 00 14 00 00 00 60 00 00 00 00 00 00 00 70 88 36 40 08
       - option可选如下：
          - -e，配置采样事件。可使用./perf list 中罗列的同类型事件。
          - -p，配置事件采样周期。
-         - -o, 指定perf采样数据结果保存的文件路径。
+         - -o，指定perf采样数据结果保存的文件路径。
          - -t，任务Id过滤（白名单），只采取指定任务中的上下文。如果不指定改参数，则默认采集所有的任务。
-         - -s, 配置采样的具体上下文类型，可查阅los_perf.h中定义的PerfSampleType。
-         - -P, 进程Id过滤（白名单），只采取指定进程中的上下文。如果不指定改参数，则默认采集所有进程。
-         - -d, 是否进行分频（事件每发生64次累计+1），该选项仅在硬件cycle事件上生效。
+         - -s，配置采样的具体上下文类型，可查阅los_perf.h中定义的PerfSampleType。
+         - -P，进程Id过滤（白名单），只采取指定进程中的上下文。如果不指定改参数，则默认采集所有进程。
+         - -d，是否进行分频（事件每发生64次累计+1），该选项仅在硬件cycle事件上生效。
       - command 为待统计的子程序。
 
 用户态命令行的典型使用方法如下:
 
 ./perf list 查看可使用的事件列表， 输出如下：
 
-  
+
 ```
 cycles                                 [Hardware event]
 instruction                            [Hardware event]
@@ -298,7 +301,7 @@ mux-pend                               [Software event]
 
 ./perf stat -e cycles os_dump， 输出如下：
 
-  
+
 ```
 type: 0
 events[0]: 255, 0xffff
@@ -316,7 +319,7 @@ time used: 0.058000(s)
 
 ./perf record -e cycles os_dump, 输出如下：
 
-  
+
 ```
 type: 0
 events[0]: 255, 0xffff
@@ -354,8 +357,8 @@ save perf data success at /storage/data/perf.data
 #### 用户态示例代码
 
   实例代码如下：
-  
-```
+
+```c
 #include "fcntl.h"
 #include "user_copy.h"
 #include "sys/ioctl.h"
@@ -367,6 +370,7 @@ save perf data success at /storage/data/perf.data
 #define PERF_IOC_MAGIC     'T'
 #define PERF_START         _IO(PERF_IOC_MAGIC, 1)
 #define PERF_STOP          _IO(PERF_IOC_MAGIC, 2)
+
 int main(int argc, char **argv)
 {
     char *buf = NULL;
@@ -425,7 +429,7 @@ int main(int argc, char **argv)
 #### 用户态结果验证
 
   输出结果如下
-  
+
 ```
 [EMG] dump section data, addr: 0x8000000 length: 0x800000
 num:  00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 ...

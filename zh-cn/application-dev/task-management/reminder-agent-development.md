@@ -19,7 +19,7 @@
 
 ## 开发步骤
 
-1. 申请`ohos.permission.PUBLISH_AGENT_REMINDER`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
+1. 申请`ohos.permission.PUBLISH_AGENT_REMINDER`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
 
 2. [使能通知开关](../notification/notification-enable.md)，获得用户授权后，才能使用代理提醒功能。
 
@@ -27,7 +27,7 @@
 
    ```js
    import reminderAgentManager from '@ohos.reminderAgentManager';
-   import NotificationManager from '@ohos.notificationManager';
+   import notificationManager from '@ohos.notificationManager';
    ```
 
 4. 定义目标提醒代理。开发者根据实际需要，选择定义如下类型的提醒。
@@ -55,7 +55,7 @@
         content: 'this is content', // 指明提醒内容
         expiredContent: 'this reminder has expired', // 指明提醒过期后需要显示的内容
         notificationId: 100, // 指明提醒使用的通知的ID号，相同ID号的提醒会覆盖
-        slotType: NotificationManager.SlotType.SOCIAL_COMMUNICATION // 指明提醒的Slot类型
+        slotType: notificationManager.SlotType.SOCIAL_COMMUNICATION // 指明提醒的Slot类型
       }
       ```
    - 定义日历实例。
@@ -99,7 +99,7 @@
         expiredContent: 'this reminder has expired', // 指明提醒过期后需要显示的内容
         snoozeContent: 'remind later', // 指明延迟提醒时需要显示的内容
         notificationId: 100, // 指明提醒使用的通知的ID号，相同ID号的提醒会覆盖
-        slotType: NotificationManager.SlotType.SOCIAL_COMMUNICATION // 指明提醒的Slot类型
+        slotType: notificationManager.SlotType.SOCIAL_COMMUNICATION // 指明提醒的Slot类型
       }
       ```
    - 定义闹钟实例。
@@ -136,7 +136,7 @@
         expiredContent: 'this reminder has expired', // 指明提醒过期后需要显示的内容
         snoozeContent: 'remind later', // 指明延迟提醒时需要显示的内容
         notificationId: 99, // 指明提醒使用的通知的ID号，相同ID号的提醒会覆盖
-        slotType: NotificationManager.SlotType.SOCIAL_COMMUNICATION // 指明提醒的Slot类型
+        slotType: notificationManager.SlotType.SOCIAL_COMMUNICATION // 指明提醒的Slot类型
       }
       ```
 
@@ -164,7 +164,7 @@
 
    ```js
    let reminderId = 0; // reminderId的值从发布提醒代理成功之后的回调中获得
-
+   
    try {
        reminderAgentManager.cancelReminder(reminderId).then(() => {
            console.log("cancelReminder promise");

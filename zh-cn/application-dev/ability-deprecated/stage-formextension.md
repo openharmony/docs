@@ -199,7 +199,7 @@ FormProvider类具体的API介绍详见[接口文档](../reference/apis/js-apis-
           "defaultDimension": "2*2",
           "updateEnabled": true,
           "scheduledUpdateTime": "10:30",
-          "formConfigAbility": "ability://ohos.samples.FormApplication.MainAbility"
+          "formConfigAbility": "ability://ohos.samples.FormApplication.EntryAbility"
       }]
   }
      ```
@@ -344,7 +344,7 @@ onUpdate(formId) {
      "actions": {
        "routerEvent": {
          "action": "router",
-         "abilityName": "MainAbility",
+         "abilityName": "EntryAbility",
          "params": {
            "message": "add detail"
          }
@@ -364,8 +364,8 @@ onUpdate(formId) {
 1. 在hml中为组件设置onclick属性，其值对应到json文件的actions字段中。
 2. 若设置router事件，则
    - action属性值为"router"；
-   - abilityName为跳转目标的Ability名，如目前DevEco创建的Stage模型的MainAbility默认名为MainAbility；
-   - params为跳转目标Ability的自定义参数，可以按需填写。其值可以在目标Ability启动时的want中的parameters里获取。如Stage模型MainAbility的onCreate生命周期里的入参want的parameters字段下获取到配置的参数；
+   - abilityName为跳转目标的Ability名，如目前DevEco创建的Stage模型的UIAbility默认名为EntryAbility；
+   - params为跳转目标Ability的自定义参数，可以按需填写。其值可以在目标Ability启动时的want中的parameters里获取。如Stage模型EntryAbility的onCreate生命周期里的入参want的parameters字段下获取到配置的参数；
 3. 若设置message事件，则
    - action属性值为"message"；
    - params为message事件的用户自定义参数，可以按需填写。其值可以在卡片生命周期函数onEvent中的message里获取；
@@ -397,7 +397,7 @@ onUpdate(formId) {
      "actions": {
        "routerEvent": {
          "action": "router",
-         "abilityName": "MainAbility",
+         "abilityName": "EntryAbility",
          "params": {
            "message": "add detail"
          }

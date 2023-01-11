@@ -19,9 +19,9 @@ The system provides the following location permissions:
 
 If your application needs to access the device location information, it must first apply for required permissions. Specifically speaking:
 
-API versions earlier than 9: Apply for **ohos.permission.LOCATION**.
+- API versions earlier than 9: Apply for **ohos.permission.LOCATION**.
 
-API version 9 and later: Apply for **ohos.permission.APPROXIMATELY\_LOCATION**, or apply for **ohos.permission.APPROXIMATELY\_LOCATION** and **ohos.permission.LOCATION**. Note that **ohos.permission.LOCATION** cannot be applied for separately.
+- API version 9 and later: Apply for **ohos.permission.APPROXIMATELY\_LOCATION**, or apply for **ohos.permission.APPROXIMATELY\_LOCATION** and **ohos.permission.LOCATION**. Note that **ohos.permission.LOCATION** cannot be applied for separately.
 
 | API Version| Location Permission| Permission Application Result| Location Accuracy|
 | -------- | -------- | -------- | -------- |
@@ -30,7 +30,7 @@ API version 9 and later: Apply for **ohos.permission.APPROXIMATELY\_LOCATION**, 
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION | Success| Location accurate to 5 kilometers|
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION| Success| Location accurate to meters|
 
-If your application needs to access the device location information when running in the background, it must be configured to be able to run in the background and be granted the **ohos.permission.LOCATION_IN_BACKGROUND** permission. In this way, the system continues to report device location information after your application moves to the background.
+If your application needs to access the device location information when running in the background, it must be configured to be able to run in the background and be granted the **ohos.permission.LOCATION\_IN\_BACKGROUND** permission. In this way, the system continues to report device location information after your application moves to the background.
 
 You can declare the required permission in your application's configuration file. For details, see [Access Control (Permission) Development](../../security/accesstoken-guidelines.md).
 
@@ -971,7 +971,7 @@ Converts geographic description into coordinates through geocoding. This API use
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Array&lt;[GeoAddress](#geoaddress)&gt;|NA|Callback used to return the geocoding result.|
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Array&lt;[GeoAddress](#geoaddress)&gt;|NA|Promise used to return the geocoding result.|
 
 **Example**
 
@@ -1265,7 +1265,7 @@ Defines a reverse geocoding request.
 | -------- | -------- | -------- | -------- | -------- |
 | locale | string | Yes| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
 | latitude | number | Yes| Yes| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude.|
-| longitude | number | Yes| Yes| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude .|
+| longitude | number | Yes| Yes| Longitude information. A positive value indicates east longitude, and a negative value indicates west longitude.|
 | maxItems | number | Yes| Yes| Maximum number of location records to be returned.|
 
 
@@ -1305,7 +1305,7 @@ Defines a geographic location.
 | Name| Type| Readable|Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | latitude<sup>7+</sup> | number | Yes| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude.|
-| longitude<sup>7+</sup> | number | Yes| No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude .|
+| longitude<sup>7+</sup> | number | Yes| No| Longitude information. A positive value indicates east longitude, and a negative value indicates west longitude.|
 | locale<sup>7+</sup> | string | Yes| No| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
 | placeName<sup>7+</sup> | string | Yes| No| Landmark of the location.|
 | countryCode<sup>7+</sup> | string | Yes| No| Country code.|
@@ -1493,7 +1493,7 @@ Defines a location.
 | Name| Type| Readable|Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | latitude<sup>7+</sup> | number | Yes| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude.|
-| longitude<sup>7+</sup> | number | Yes| No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude .|
+| longitude<sup>7+</sup> | number | Yes| No| Longitude information. A positive value indicates east longitude, and a negative value indicates west longitude.|
 | altitude<sup>7+</sup> | number | Yes| No| Location altitude, in meters.|
 | accuracy<sup>7+</sup> | number | Yes| No| Location accuracy, in meters.|
 | speed<sup>7+</sup> | number | Yes| No| Speed, in m/s.|

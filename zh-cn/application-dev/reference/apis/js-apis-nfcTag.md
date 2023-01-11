@@ -126,9 +126,16 @@ getNfcATag(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 获取NFC A类型Tag对象，通过该对象可访问NfcA技术类型的Tag。
 
-**需要权限：** ohos.permission.NFC_TAG
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[tag.getNfcA](#taggetnfca9)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**参数：**
+
+| 参数名       | 类型                        | 必填   | 说明                                       |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
 
 **返回值：**
 
@@ -136,15 +143,50 @@ getNfcATag(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 | -------- | -------- |
 | [NfcATag](js-apis-nfctech.md#nfcatag) | NFC A类型Tag对象。 |
 
+## tag.getNfcA<sup>9+</sup>
+
+getNfcA(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
+
+获取NFC A类型Tag对象，通过该对象可访问NfcA技术类型的Tag。
+
+**系统能力：** SystemCapability.Communication.NFC.Tag
+
+**参数：**
+
+| 参数名       | 类型                        | 必填   | 说明                                       |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
+
+**返回值：**
+
+| **类型** | **说明** |
+| -------- | -------- |
+| [NfcATag](js-apis-nfctech.md#nfcatag) | NFC A类型Tag对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
+
 ## tag.getNfcBTag
 
 getNfcBTag(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
 获取NFC B类型Tag对象，通过该对象可访问NfcB技术类型的Tag。
 
-**需要权限：** ohos.permission.NFC_TAG
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[tag.getNfcB](#taggetnfcb9)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**参数：**
+
+| 参数名       | 类型                        | 必填   | 说明                                       |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
 
 **返回值：**
 
@@ -152,15 +194,50 @@ getNfcBTag(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 | -------- | ---------------- |
 | [NfcBTag](js-apis-nfctech.md#nfcbtag)  | NFC B类型Tag对象。 |
 
+## tag.getNfcB<sup>9+</sup>
+
+getNfcB(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
+
+获取NFC B类型Tag对象，通过该对象可访问NfcB技术类型的Tag。
+
+**系统能力：** SystemCapability.Communication.NFC.Tag
+
+**参数：**
+
+| 参数名       | 类型                        | 必填   | 说明                                       |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
+
+**返回值：**
+
+| **类型** | **说明**         |
+| -------- | ---------------- |
+| [NfcBTag](js-apis-nfctech.md#nfcbtag)  | NFC B类型Tag对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
+
 ## tag.getNfcFTag
 
 getNfcFTag(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 获取NFC F类型Tag对象，通过该对象可访问NfcF技术类型的Tag。
 
-**需要权限：** ohos.permission.NFC_TAG
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[tag.getNfcF](#taggetnfcf9)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**参数：**
+
+| 参数名       | 类型                        | 必填   | 说明                                       |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
 
 **返回值：**
 
@@ -168,21 +245,84 @@ getNfcFTag(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 | -------- | ---------------- |
 | [NfcFTag](js-apis-nfctech.md#nfcftag)  | NFC F类型Tag对象。 |
 
+## tag.getNfcF<sup>9+</sup>
+
+getNfcF(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
+
+获取NFC F类型Tag对象，通过该对象可访问NfcF技术类型的Tag。
+
+**系统能力：** SystemCapability.Communication.NFC.Tag
+
+**参数：**
+
+| 参数名       | 类型                        | 必填   | 说明                                       |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
+
+**返回值：**
+
+| **类型** | **说明**         |
+| -------- | ---------------- |
+| [NfcFTag](js-apis-nfctech.md#nfcftag)  | NFC F类型Tag对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
+
 ## tag.getNfcVTag
 
 getNfcVTag(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 获取NFC V类型Tag对象，通过该对象可访问NfcV技术类型的Tag。
 
-**需要权限：** ohos.permission.NFC_TAG
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[tag.getNfcV](#taggetnfcv9)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**参数：**
+
+| 参数名       | 类型                        | 必填   | 说明                                       |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
 
 **返回值：**
 
 | **类型** | **说明**         |
 | -------- | ---------------- |
 | [NfcVTag](js-apis-nfctech.md#nfcvtag)  | NFC V类型Tag对象。 |
+
+## tag.getNfcV<sup>9+</sup>
+
+getNfcV(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
+
+获取NFC V类型Tag对象，通过该对象可访问NfcV技术类型的Tag。
+
+**系统能力：** SystemCapability.Communication.NFC.Tag
+
+**参数：**
+
+| 参数名       | 类型                        | 必填   | 说明                                       |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
+
+**返回值：**
+
+| **类型** | **说明**         |
+| -------- | ---------------- |
+| [NfcVTag](js-apis-nfctech.md#nfcvtag)  | NFC V类型Tag对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getIsoDep<sup>9+</sup>
 

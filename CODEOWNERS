@@ -192,7 +192,7 @@ zh-cn/application-dev/napi/rawfile_guidelines.md @ningningW
 zh-cn/application-dev/background-agent-scheduled-reminder/ @RayShih
 zh-cn/application-dev/background-task-management/ @ningningW @wangwenli_wolf @tangtiantian2021 @nan-xiansen
 zh-cn/application-dev/work-scheduler/ @ningningW
-zh-cn/application-dev/internationalization/ @ningningW @Buda-Liu @budda-wang @yangqing3
+zh-cn/application-dev/internationalization/ @ningningW @Buda-Liu @mengjingzhimo @yangqing3
 zh-cn/application-dev/device/usb-overview.md @ge-yafang @jasonyujia @andeszhang @liuhonggang123
 zh-cn/application-dev/device/usb-guidelines.md @ge-yafang @jasonyujia @andeszhang @liuhonggang123
 zh-cn/application-dev/device/device-location-overview.md @RayShih
@@ -363,7 +363,7 @@ zh-cn/application-dev/reference/apis/js-apis-hitracechain.md @stone2050 @zengyaw
 zh-cn/application-dev/reference/apis/js-apis-hitracemeter.md @stone2050 @zengyawen @stesen @elsen-liu
 zh-cn/application-dev/reference/apis/js-apis-http.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-huks.md @gaoyong @zengyawen @niejiteng @jumozhanjiang
-zh-cn/application-dev/reference/apis/js-apis-i18n.md @Buda-Liu @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis/js-apis-i18n.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-image.md @zhangqiang183  @zengyawen @chenyuheng @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-inputconsumer.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-inputdevice.md @mayunteng_1 @ningningW @cococoler @alien0208
@@ -374,7 +374,7 @@ zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-context.md @f
 zh-cn/application-dev/reference/apis/js-apis-inputmethod.md @feng-aiwen @ningningW @SuperShrimp @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md @feng-aiwen @ningningW @SuperShrimp @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-inputmonitor.md @mayunteng_1 @ningningW @cococoler @alien0208
-zh-cn/application-dev/reference/apis/js-apis-intl.md @Buda-Liu @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis/js-apis-intl.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-keycode.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-keyevent.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-lightweightmap.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
@@ -408,7 +408,7 @@ zh-cn/application-dev/reference/apis/js-apis-queue.md @gongjunsong @ge-yafang @f
 zh-cn/application-dev/reference/apis/js-apis-radio.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-reminderAgent.md @jayleehw @RayShih @li-weifeng2 @currydavids
 zh-cn/application-dev/reference/apis/js-apis-request.md @feng-aiwen @ningningW @nagexiucai @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @Buda-Liu @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-router.md @huaweimaxuchu @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-rpc.md @xuepianpian @RayShih @zhaopeng_gitee @vagrant_world
 zh-cn/application-dev/reference/apis/js-apis-runninglock.md @aqxyjay @zengyawen @aqxyjay @alien0208
@@ -481,6 +481,7 @@ zh-cn/application-dev/reference/apis/js-apis-WorkSchedulerExtensionAbility.md @w
 zh-cn/application-dev/reference/apis/js-apis-xml.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
 zh-cn/application-dev/reference/apis/js-apis-zlib.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-webview.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
+zh-cn/application-dev/reference/arkui-ts/ts-basic-components-web.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
 zh-cn/application-dev/reference/apis/js-apis-ability-ability.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-ability-abilityResult.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-ability-Want.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
@@ -516,6 +517,7 @@ zh-cn/application-dev/reference/apis/js-apis-commonEventManager.md @jayleehw @Ra
 zh-cn/application-dev/reference/apis/js-apis-configPolicy.md @Buda-Liu @ningningW @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-cooperate.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md @gaoyong @zengyawen @niejiteng @jumozhanjiang
+zh-cn/application-dev/reference/apis/js-apis-cert.md @gaoyong @zengyawen @niejiteng @jumozhanjiang
 zh-cn/application-dev/reference/apis/js-apis-curve.md @huaweimaxuchu @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-defaultAppManager.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-distributedBundle.md @shuaytao @RayShih @wangzhen107 @inter515
@@ -534,7 +536,7 @@ zh-cn/application-dev/reference/apis/js-apis-matrix4.md @huaweimaxuchu @HelloCre
 zh-cn/application-dev/reference/apis/js-apis-net-ethernet.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-net-sharing.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-nfctech.md @cheng_guohong @RayShih @cheng_guohong @quanli125
-zh-cn/application-dev/reference/apis/js-apis-promptAction.md @cheng_guohong @RayShih @cheng_guohong @quanli125
+zh-cn/application-dev/reference/apis/js-apis-promptAction.md @huaweimaxuchu @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-reminderAgentManager.md @wangwenli_wolf @ningningW @tangtiantian2021 @nan-xiansen
 zh-cn/application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md @wangwenli_wolf @ningningW @tangtiantian2021 @nan-xiansen
 zh-cn/application-dev/reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md @wangwenli_wolf @ningningW @tangtiantian2021 @nan-xiansen

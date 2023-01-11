@@ -1,4 +1,4 @@
-# Media Query
+# @ohos.mediaquery
 
 The **mediaquery** module provides different styles for different media types.
 
@@ -14,64 +14,64 @@ import mediaquery from '@ohos.mediaquery'
 ```
 
 
-## Required Permissions
-
-None.
-
-
 ## mediaquery.matchMediaSync
 
 matchMediaSync(condition: string): MediaQueryListener
 
-Sets the media query criteria and returns the corresponding listening handle.
+Sets the media query condition. This API returns the corresponding media query listener.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
 | Name      | Type    | Mandatory  | Description                                      |
 | --------- | ------ | ---- | ---------------------------------------- |
-| condition | string | Yes   | Matching condition of a media event. For details, see [Syntax of Media Query Conditions](../../ui/ui-ts-layout-mediaquery.md#syntax-of-media-query-conditions).|
+| condition | string | Yes   | Media query condition. For details, see [Syntax of Media Query Conditions](../../ui/ui-ts-layout-mediaquery.md#syntax-of-media-query-conditions).|
 
 **Return value**
+
 | Type                | Description                    |
 | ------------------ | ---------------------- |
-| MediaQueryListener | Listening handle to a media event, which is used to register or deregister the listening callback.|
+| MediaQueryListener | Media query listener, which is used to register or deregister the listening callback.|
 
 **Example**
-  ```js
+
+```js
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
-  ```
+```
 
 
 ## MediaQueryListener
 
-Media query handle, including the first query result when the handle is applied for.
+Implements the media query listener, including the first query result when the listener is applied for.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### Attributes
 
-| Name     | Type   | Readable  | Writable  | Description        |
-| ------- | ------- | ---- | ---- | ---------- |
-| matches | boolean | Yes   | No   | Whether the match condition is met. |
-| media   | string  | Yes   | No   | Matching condition of a media event.|
+| Name   | Type   | Readable| Writable| Description                |
+| ------- | ------- | ---- | ---- | -------------------- |
+| matches | boolean | Yes  | No  | Whether the media query condition is met.  |
+| media   | string  | Yes  | No  | Media query condition.|
 
 
 ### on
 
 on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 
-Registers a callback with the corresponding query condition by using the handle. This callback is triggered when the media attributes change.
+Registers the media query listener. The callback is triggered when the media attributes change.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
 | Name     | Type                              | Mandatory  | Description              |
 | -------- | -------------------------------- | ---- | ---------------- |
-| type     | string                           | Yes   | Must enter the string **change**.|
+| type     | string                           | Yes   | Listener type. The value is fixed at **'change'**.|
 | callback | Callback&lt;MediaQueryResult&gt; | Yes   | Callback registered with media query.      |
 
 **Example**
+
   For details, see [off Example](#off).
 
 
@@ -79,17 +79,19 @@ Registers a callback with the corresponding query condition by using the handle.
 
 off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
-Deregisters a callback with the corresponding query condition by using the handle, so that no callback is triggered when the media attributes change.
+Deregisters the media query listener, so that no callback is triggered when the media attributes change.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-| Name     | Type                              | Mandatory  | Description                           |
-| -------- | -------------------------------- | ---- | ----------------------------- |
-| type     | boolean                          | Yes   | Must enter the string **change**.             |
-| callback | Callback&lt;MediaQueryResult&gt; | No   | Callback to be deregistered. If the default value is used, all callbacks of the handle are deregistered.|
+
+| Name  | Type                            | Mandatory| Description                                                      |
+| -------- | -------------------------------- | ---- | ---------------------------------------------------------- |
+| type     | string                           | Yes  | Listener type. The value is fixed at **'change'**.                                  |
+| callback | Callback&lt;MediaQueryResult&gt; | No  | Callback to be deregistered. If the default value is used, all callbacks of the handle are deregistered.|
 
 **Example**
+
   ```js
     import mediaquery from '@ohos.mediaquery'
     
@@ -101,20 +103,23 @@ Deregisters a callback with the corresponding query condition by using the handl
             // do something here
         }
     }
-    listener.on('change', onPortrait) // Register a callback.
-    listener.off('change', onPortrait) // Deregister a callback.
+    listener.on('change', onPortrait) // Register the media query listener.
+    listener.off('change', onPortrait) // Deregister the media query listener.
   ```
 
-
 ## MediaQueryResult
+
+Provides the media query result.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
 ### Attributes
 
-| Name     | Type   | Readable  | Writable  | Description        |
-| ------- | ------- | ---- | ---- | ---------- |
-| matches | boolean | Yes   | No   | Whether the match condition is met. |
-| media   | string  | Yes   | No   | Matching condition of a media event.|
+| Name   | Type   | Readable| Writable| Description                |
+| ------- | ------- | ---- | ---- | -------------------- |
+| matches | boolean | Yes  | No  | Whether the media query condition is met.  |
+| media   | string  | Yes  | No  | Media query condition.|
 
 
 ### Example

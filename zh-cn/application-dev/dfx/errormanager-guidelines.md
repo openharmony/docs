@@ -36,8 +36,8 @@
 
 ## 开发示例
 ```ts
-import Ability from '@ohos.application.Ability'
-import errorManager from '@ohos.application.errorManager'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import errorManager from '@ohos.application.errorManager';
 
 var registerId = -1;
 var callback = {
@@ -46,15 +46,15 @@ var callback = {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate")
+        console.log("[Demo] EntryAbility onCreate")
         registerId = errorManager.registerErrorObserver(callback);
         globalThis.abilityWant = want;
     }
 
     onDestroy() {
-        console.log("[Demo] MainAbility onDestroy")
+        console.log("[Demo] EntryAbility onDestroy")
         errorManager.unregisterErrorObserver(registerId, (result) => {
             console.log("[Demo] result " + result.code + ";" + result.message)
         });
@@ -62,7 +62,7 @@ export default class MainAbility extends Ability {
 
     onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility onWindowStageCreate")
+        console.log("[Demo] EntryAbility onWindowStageCreate")
 
         windowStage.loadContent("pages/index", (err, data) => {
             if (err.code) {
@@ -75,17 +75,17 @@ export default class MainAbility extends Ability {
 
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
-        console.log("[Demo] MainAbility onWindowStageDestroy")
+        console.log("[Demo] EntryAbility onWindowStageDestroy")
     }
 
     onForeground() {
         // Ability has brought to foreground
-        console.log("[Demo] MainAbility onForeground")
+        console.log("[Demo] EntryAbility onForeground")
     }
 
     onBackground() {
         // Ability has back to background
-        console.log("[Demo] MainAbility onBackground")
+        console.log("[Demo] EntryAbility onBackground")
     }
 };
 ```

@@ -72,7 +72,7 @@ var media = mediaLibrary.getMediaLibrary(context);
                    "reason": "$string:reason",
                    "usedScene": {
                        "abilities": [
-                         "MainAbility"
+                         "EntryAbility"
                        ],
                        "when": "always"
                }
@@ -82,7 +82,7 @@ var media = mediaLibrary.getMediaLibrary(context);
                    "reason": "$string:reason",
                    "usedScene": {
                        "abilities": [
-                           "MainAbility"
+                           "EntryAbility"
                        ],
                        "when": "always"
                    }
@@ -92,7 +92,7 @@ var media = mediaLibrary.getMediaLibrary(context);
                    "reason": "$string:reason",
                    "usedScene": {
                        "abilities": [
-                           "MainAbility"
+                           "EntryAbility"
                        ],
                        "when": "always"
                    }
@@ -105,10 +105,10 @@ var media = mediaLibrary.getMediaLibrary(context);
 2. 调用requestPermissionsFromUser进行权限校验，可以选择需要动态申请获取的权限。
 
    ```ts
-   import Ability from '@ohos.application.Ability';
+   import UIAbility from '@ohos.app.ability.UIAbility';
    import abilityAccessCtrl from '@ohos.abilityAccessCtrl.d.ts';
    
-   export default class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
            var permissions=['ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA']
            var permissionRequestResult;

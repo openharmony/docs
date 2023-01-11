@@ -2,7 +2,7 @@
 
 ServiceExtensionContext模块是ServiceExtensionAbility的上下文环境，继承自ExtensionContext。
 
-ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力和接口，包括启动、停止、绑定、解绑Ability。
+ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力，包括启动、停止、绑定、解绑Ability。
 
 > **说明：**
 > 
@@ -17,7 +17,7 @@ ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力和接�
   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 
   let context = undefined;
-  class MainAbility extends ServiceExtensionAbility {
+  class EntryAbility extends ServiceExtensionAbility {
     onCreate() {
       context = this.context; // 获取ServiceExtensionContext
     }
@@ -95,7 +95,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
-启动Ability。通过Promise返回结果。
+启动Ability，结果以Promise的形式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -112,7 +112,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | 返回一个Promise，包含启动的结果。 |
 
 **错误码：**
 
@@ -171,7 +171,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability。
+启动Ability，结果以Callback的形式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -214,8 +214,8 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var options = {
     windowMode: 0
@@ -292,8 +292,8 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -369,8 +369,8 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {
@@ -455,8 +455,8 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {
@@ -520,8 +520,8 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -586,8 +586,8 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -652,8 +652,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -723,8 +723,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -782,8 +782,8 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -845,8 +845,8 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -907,8 +907,8 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -975,8 +975,8 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -1180,8 +1180,8 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {
@@ -1361,7 +1361,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   var wantBackground = {
       bundleName: "com.example.myservice",
       moduleName: "entry",
-      abilityName: "MainAbility",
+      abilityName: "EntryAbility",
       deviceId: ""
   };
 
@@ -1392,7 +1392,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   var wantForeground = {
       bundleName: "com.example.myservice",
       moduleName: "entry",
-      abilityName: "MainAbility",
+      abilityName: "EntryAbility",
       deviceId: "",
       parameters: {
         "ohos.aafwk.param.callAbilityToForeground": true

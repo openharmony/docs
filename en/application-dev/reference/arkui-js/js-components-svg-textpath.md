@@ -6,9 +6,9 @@ The **\<textPath>** component is used to draw text along the path.
 >  **NOTE**
 >  - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  - The **\<tspan>** component can be nested in the **\<textPath>** component for segmenting.
+>  - This component can have **\<tspan>** components nested for segmenting.
 >
->  - The **\<textPath>** component can only be nested in the **\<text>** component.
+>  - This component can only be nested in the **\<text>** component.
 
 ## Required Permissions
 
@@ -26,19 +26,19 @@ The **[\<tspan>](js-components-svg-tspan.md)** child component is supported.
 The attributes in the following table are supported.
 
 
-| Name          | Type                              | Mandatory | Description                                                        |
+| Name          | Type                              | Default Value| Description                                                        |
 | -------------- | ---------------------------------- | ------ | ------------------------------------------------------------ |
 | id             | string                             | -      | Unique ID of the component.                                            |
-| path           | string                             | No     | Shape of the path.<br>The meanings of the letters are as follows:<br>-&nbsp;M&nbsp;=&nbsp;moveto<br>-&nbsp;L&nbsp;=&nbsp;lineto<br>-&nbsp;H&nbsp;=&nbsp;horizontal&nbsp;lineto<br>-&nbsp;V&nbsp;=&nbsp;vertical&nbsp;lineto<br>-&nbsp;C&nbsp;=&nbsp;curveto<br>-&nbsp;S&nbsp;=&nbsp;smooth&nbsp;curveto<br>-&nbsp;Q&nbsp;=&nbsp;quadratic&nbsp;Belzier&nbsp;curve<br>-&nbsp;T&nbsp;=&nbsp;smooth&nbsp;quadratic&nbsp;Belzier&nbsp;curveto<br>-&nbsp;A&nbsp;=&nbsp;elliptical&nbsp;Arc<br>-&nbsp;Z&nbsp;=&nbsp;closepath<br>Default value: **0**|
-| startOffset    | &lt;length&gt;\|&lt;percentage&gt; | Yes    | Offset of the text start point relative to the path start point.<br>Default value: **0**                |
-| font-size      | &lt;length&gt;                     | No | Font size.<br>Default value: **30px**                           |
-| fill           | &lt;color&gt;                      | No | Font fill color.<br>Default value: **black**                            |
-| by             | number                             | No    | Attribute offset relative to the specified animation. By default, **from** is the original attribute value.            |
-| opacity        | number                             | No    | Opacity of an element. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent. Attribute animations are supported.<br>Default value: **0**|
-| fill-opacity   | number                             | No  | Font fill opacity.<br>Default value: **1.0**                            |
-| stroke         | &lt;color&gt;                      | No | Stroke color.<br>Default value: **black**                  |
-| stroke-width   | number                             | No  | Stroke width.<br>Default value: **1px**                              |
-| stroke-opacity | number                             | No  | Stroke opacity.<br>Default value: **1.0**                            |
+| path           | string                             | 0      | Shape of the path.<br>The meanings of the letters are as follows:<br>- M = moveto<br>- L = lineto<br>- H = horizontal lineto<br>- V = vertical lineto<br>- C = curveto<br>- S = smooth curveto<br>- Q = quadratic Belzier curve<br>- T = smooth quadratic Belzier curveto<br>- A = elliptical Arc<br>- Z = closepath<br>Default value: **0**|
+| startOffset    | &lt;length&gt;\|&lt;percentage&gt; | 0      | Offset of the text start point relative to the path start point.<br>Default value: **0**                |
+| font-size      | &lt;length&gt;                     | 30px   | Font size.<br>Default value: **30px**                           |
+| fill           | &lt;color&gt;                      | black  | Font fill color.<br>Default value: **black**                            |
+| by             | number                             | -      | Attribute offset relative to the specified animation. By default, **from** is the original attribute value.            |
+| opacity        | number                             | 1      | Opacity of an element. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent. Attribute animations are supported.<br>Default value: **0**|
+| fill-opacity   | number                             | 1.0    | Font fill opacity.<br>Default value: **1.0**                            |
+| stroke         | &lt;color&gt;                      | black  | Stroke color.<br>Default value: **black**                  |
+| stroke-width   | number                             | 1px    | Stroke width.<br>Default value: **1px**                              |
+| stroke-opacity | number                             | 1.0    | Stroke opacity.<br>Default value: **1.0**                            |
 
 
 ## Example
@@ -97,9 +97,9 @@ Combination of **\<textpath>** and **\<tspan>**
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="50">
-    <path d="M40,760 Q360,760 360,580 Q360,440 200,440 Q40,440 40,560 Q40,680 180,680 Q280,680 300,600" stroke="red" fill="none"></path>
+    <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" fill="none"></path>
     <text>
-      <textpath fill="#D2691E" path="M40,760 Q360,760 360,580 Q360,440 200,440 Q40,440 40,560 Q40,680 180,680 Q280,680 300,600"font-size="30px" stroke="black" stroke-width="1" >
+      <textpath fill="#D2691E" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px" stroke="black" stroke-width="1" >
         This is TextPath.
         <tspan font-size="20px" fill="red">This is tspan onTextPath.</tspan>
         <tspan font-size="30px">Let's play.</tspan>
@@ -117,11 +117,11 @@ Combination of **\<textpath>** and **\<tspan>**
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="50">
-    <path d="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" stroke="red" fill="none">
+    <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" fill="none">
     </path>
     <!--      Value percentage    -->
     <text>
-      <textpath fill="#D2691E" path="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" font-size="30px">
+      <textpath fill="#D2691E" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px">
         This is TextPath.
         <tspan x="50" fill="blue">This is first tspan.</tspan>
         <tspan x="50%">This is second tspan.</tspan>
@@ -172,10 +172,10 @@ Attribute animation of the **\<textPath>** and **\<tspan>** in combination
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
-    <path d="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" stroke="red" fill="none">
+    <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" fill="none">
     </path>
     <text>
-      <textpath fill="#D2691E" path="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" font-size="30px">
+      <textpath fill="#D2691E" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px">
         This is TextPath.
         <tspan x="50" fill="blue">
           tspan attribute x|rotate
@@ -209,11 +209,11 @@ Attribute animation of the **\<textPath>** and **\<tspan>** in combination
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
-    <path d="M40,1560 Q360,1560 360,1380 Q360,1240 200,1240 Q40,1240 40,1360 Q40,1480 180,1480 Q280,1480 300,1400" stroke="red" 
+    <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" 
       fill="none">
     </path>
     <text>
-      <textpath fill="#D2691E" path="M40,1560 Q360,1560 360,1380 Q360,1240 200,1240 Q40,1240 40,1360 Q40,1480 180,1480 Q280,1480 300,1400" font-size="30px">
+      <textpath fill="#D2691E" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px">
         This is TextPath.
         <tspan dx="20" fill="blue">
           tspan attribute fill|fill-opacity
@@ -247,11 +247,11 @@ Attribute animation of the **\<textPath>** and **\<tspan>** in combination
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
-    <path d="M40,1960 Q360,1960 360,1780 Q360,1640 200,1640 Q40,1640 40,1760 Q40,1880 180,1880 Q280,1880 300,1800" stroke="red" 
+    <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" 
       fill="none">
     </path>
     <text>
-      <textpath fill="#D2691E" path="M40,1960 Q360,1960 360,1780 Q360,1640 200,1640 Q40,1640 40,1760 Q40,1880 180,1880 Q280,1880 300,1800" font-size="30px">
+      <textpath fill="#D2691E" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px">
           This is TextPath.
           <tspan dx="20" fill="blue">
             tspan attribute stroke

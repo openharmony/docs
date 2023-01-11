@@ -32,7 +32,7 @@ ArkTS语言示例代码如下：
 globalThis.context.startAbilityForResult(
     {
         bundleName: "com.ohos.filepicker",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         parameters: {
             'startMode': 'choose', //choose or save
         }
@@ -44,7 +44,7 @@ globalThis.context.startAbilityForResult(
 globalThis.context.startAbilityForResult(
     {
         bundleName: "com.ohos.filepicker",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         parameters: {
             'startMode': 'save', //choose or save
             'saveFile': 'test.jpg',

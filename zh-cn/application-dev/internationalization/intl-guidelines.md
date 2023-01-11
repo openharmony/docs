@@ -48,9 +48,9 @@
 
    
    ```js
-   var locale = "zh-CN";
-   var options = {caseFirst: "false", calendar: "chinese", collation: "pinyin"};
-   var localeObj = new Intl.Locale(locale, options);
+   let locale = "zh-CN";
+   let options = {caseFirst: "false", calendar: "chinese", collation: "pinyin"};
+   let localeObj = new Intl.Locale(locale, options);
    ```
 
 3. 获取Locale的字符串表示。
@@ -58,7 +58,7 @@
      调用toString方法来获取Locale对象的字符串表示，其中包括了语言、区域及其他选项信息。
      
    ```js
-   var localeStr = localeObj.toString(); // localeStr = "zh-CN-u-ca-chinese-co-pinyin-kf-false
+   let localeStr = localeObj.toString(); // localeStr = "zh-CN-u-ca-chinese-co-pinyin-kf-false
    ```
 
 4. 最大化区域信息。
@@ -66,8 +66,8 @@
      调用maximize方法来最大化区域信息，即当缺少脚本与地区信息时，对其进行补全。
      
    ```js
-   var maximizedLocale = localeObj.maximize();
-   var maximizedLocaleStr = maximizedLocale.toString(); // localeStr = "zh-Hans-CN-u-ca-chinese-co-pinyin-kf-false
+   let maximizedLocale = localeObj.maximize();
+   let maximizedLocaleStr = maximizedLocale.toString(); // localeStr = "zh-Hans-CN-u-ca-chinese-co-pinyin-kf-false
    ```
 
 5. 最小化区域信息。
@@ -75,8 +75,8 @@
      调用minimize方法来最小化区域信息，即当存在脚本与地区信息时，对其进行删除。
      
    ```js
-   var minimizedLocale = localeObj.minimize();
-   var minimizedLocaleStr = minimizedLocale.toString(); // zh-u-ca-chinese-co-pinyin-kf-false
+   let minimizedLocale = localeObj.minimize();
+   let minimizedLocaleStr = minimizedLocale.toString(); // zh-u-ca-chinese-co-pinyin-kf-false
    ```
 
 ## 格式化日期时间
@@ -108,14 +108,14 @@
    一种方法是使用DateTimeFormat提供的默认构造函数，通过访问系统语言和地区设置，获取系统默认Locale，并将其作为DateTimeFormat对象内部的Locale。
 
    ```js
-   var dateTimeFormat = new Intl.DateTimeFormat();
+   let dateTimeFormat = new Intl.DateTimeFormat();
    ```
 
      另一种方法是使用开发者提供的Locale和格式化参数来创建日期时间格式化对象。其中，格式化参数是可选的，完整的格式化参数列表见[DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions)。
    
    ```js
-   var options = {dateStyle: "full", timeStyle: "full"};
-   var dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
+   let options = {dateStyle: "full", timeStyle: "full"};
+   let dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
    ```
 
 3. 格式化日期时间。
@@ -123,10 +123,10 @@
      使用DateTimeFormat的format方法对一个Date对象进行格式化，该方法会返回一个字符串作为格式化的结果。
      
    ```js
-   var options = {dateStyle: "full", timeStyle: "full"};
-   var dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
-   var date = new Date(2022, 12, 12, 12, 12, 12);
-   var formatResult = dateTimeFormat.format(date); // formatResult = "2023年1月12日星期四 中国标准时间 下午12:12:12"
+   let options = {dateStyle: "full", timeStyle: "full"};
+   let dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
+   let date = new Date(2022, 12, 12, 12, 12, 12);
+   let formatResult = dateTimeFormat.format(date); // formatResult = "2023年1月12日星期四 中国标准时间 下午12:12:12"
    ```
 
 4. 格式化时间段。
@@ -134,10 +134,10 @@
      使用DateTimeFormat的formatRange方法对一个时间段进行格式化。该方法需要传入两个Date对象，分别表示时间段的起止日期，返回一个字符串作为格式化的结果。
      
    ```js
-   var startDate = new Date(2021, 11, 17, 3, 24, 0);
-   var endDate = new Date(2021, 11, 18, 3, 24, 0);
-   var datefmt = new Intl.DateTimeFormat("en-GB");
-   var formatRangeResult = datefmt.formatRange(startDate, endDate); // formatRangeResult = "17/12/2021-18/12/2021"
+   let startDate = new Date(2021, 11, 17, 3, 24, 0);
+   let endDate = new Date(2021, 11, 18, 3, 24, 0);
+   let datefmt = new Intl.DateTimeFormat("en-GB");
+   let formatRangeResult = datefmt.formatRange(startDate, endDate); // formatRangeResult = "17/12/2021-18/12/2021"
    ```
 
 5. 访问日期时间格式化对象的相关属性。
@@ -145,9 +145,9 @@
      DateTimeFormat的resolvedOptions方法会返回一个对象，该对象包含了DateTimeFormat对象的所有相关属性及其值。
      
    ```js
-   var options = {dateStyle: "full", timeStyle: "full"};
-   var dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
-   var resolvedOptions = dateTimeFormat.resolvedOptions(); // resolvedOptions = {"locale": "zh-CN", "calendar": "gregorian", "dateStyle":"full", "timeStyle":"full", "timeZone": "CST"}
+   let options = {dateStyle: "full", timeStyle: "full"};
+   let dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
+   let resolvedOptions = dateTimeFormat.resolvedOptions(); // resolvedOptions = {"locale": "zh-CN", "calendar": "gregorian", "dateStyle":"full", "timeStyle":"full", "timeZone": "CST"}
    ```
 
 ## 数字格式化
@@ -178,14 +178,14 @@
    一种方法是使用NumberFormat提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（intl为导入的模块名）。
 
    ```js
-   var numberFormat = new Intl.NumberFormat();
+   let numberFormat = new Intl.NumberFormat();
    ```
 
      另一种方法是使用开发者提供的Locale和格式化参数来创建数字格式化对象。其中，格式化参数是可选的，完整的格式化参数列表参见[NumberOptions](../reference/apis/js-apis-intl.md#numberoptions)。
    
    ```js
-   var options = {compactDisplay: "short", notation: "compact"};
-   var numberFormat = new Intl.NumberFormat("zh-CN", options);
+   let options = {compactDisplay: "short", notation: "compact"};
+   let numberFormat = new Intl.NumberFormat("zh-CN", options);
    ```
 
 3. 数字格式化。
@@ -193,10 +193,10 @@
      使用NumberFormat的format方法对传入的数字进行格式化。该方法返回一个字符串作为格式化的结果。
      
    ```js
-   var options = {compactDisplay: "short", notation: "compact"};
-   var numberFormat = new Intl.NumberFormat("zh-CN", options);
-   var number = 1234.5678
-   var formatResult = numberFormat.format(number); // formatResult = "1235"
+   let options = {compactDisplay: "short", notation: "compact"};
+   let numberFormat = new Intl.NumberFormat("zh-CN", options);
+   let number = 1234.5678
+   let formatResult = numberFormat.format(number); // formatResult = "1235"
    ```
 
 4. 访问数字格式化对象的相关属性。
@@ -204,9 +204,9 @@
      NumberFormat的resolvedOptions方法会返回一个对象，该对象包含了NumberFormat对象的所有相关属性及其值。
      
    ```js
-   var options = {compactDisplay: "short", notation: "compact"};
-   var numberFormat = new Intl.NumberFormat("zh-CN", options);
-   var resolvedOptions = numberFormat.resolvedOptions();  // resolvedOptions = {"locale": "zh-CN", "compactDisplay": "short", "notation": "compact", "numberingSystem": "Latn"}
+   let options = {compactDisplay: "short", notation: "compact"};
+   let numberFormat = new Intl.NumberFormat("zh-CN", options);
+   let resolvedOptions = numberFormat.resolvedOptions();  // resolvedOptions = {"locale": "zh-CN", "compactDisplay": "short", "notation": "compact", "numberingSystem": "Latn"}
    ```
 
 ## 字符串排序
@@ -237,14 +237,14 @@
    一种方法是使用Collator提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（intl为导入的模块名）。
 
    ```js
-   var collator = new Intl.Collator();
+   let collator = new Intl.Collator();
    ```
 
      另一种方法是使用开发者提供的Locale和其他相关参数来创建Collator对象，完整的参数列表参见[CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions9)。
      其中，sensitivity参数用于控制哪些级别的差异会被用于比较两个字符串。取值"base"表示，仅比较字符本身，不考虑重音符号、大小写差异。例如，'a' != 'b'，'a' == 'á'，'a' == 'A'。取值"accent"表示考虑重音符号，不考虑大小写的差异。例如，'a' != 'b'，'a' != 'á'，'a' == 'A'。取值"case"表示考虑大小写的差异，不考虑重音符号的差异。例如，'a' != 'b'，'a' == 'á'，'a' != 'A'。取值"variant"表示考虑重音符号、大小写等方面差异。例如'a' != 'b'，'a' != 'á'，'a' != 'A'。
    
    ```js
-   var collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort", sensitivity: "case"});
+   let collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort", sensitivity: "case"});
    ```
 
 3. 比较字符串。
@@ -252,10 +252,10 @@
      使用Collator的compare方法对传入的两个字符串进行比较。该方法返回一个数值作为比较的结果，返回-1表示第一个字符串小于第二个字符串，返回1表示第一个字符大于第二个字符串，返回0表示两个字符串相同。基于两个字符串的比较结果，开发者可以字符串集合进行排序。
      
    ```js
-   var collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort", sensitivity: "case"});
-   var str1 = "first string";
-   var str2 = "second string";
-   var compareResult = collator.compare(str1, str2); // compareResult = -1
+   let collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort", sensitivity: "case"});
+   let str1 = "first string";
+   let str2 = "second string";
+   let compareResult = collator.compare(str1, str2); // compareResult = -1
    str1 = "first";
    str2 = "First";
    compareResult = collator.compare(str1, str2); // compareResult = -1
@@ -266,8 +266,8 @@
      Collator的resolvedOptions方法会返回一个对象，该对象包含了Collator对象的所有相关属性及其值。
      
    ```js
-   var collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"});
-   var options = collator.resolvedOptions(); // options = {"localeMatcher": "best fit", "locale": "zh-CN", "usage": "sort", "sensitivity": "variant", "ignorePunctuation": "false", "numeric": false, "caseFirst": "false", "collation": "default"}
+   let collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"});
+   let options = collator.resolvedOptions(); // options = {"localeMatcher": "best fit", "locale": "zh-CN", "usage": "sort", "sensitivity": "variant", "ignorePunctuation": "false", "numeric": false, "caseFirst": "false", "collation": "default"}
    ```
 
 ## 判定单复数类别
@@ -298,13 +298,13 @@
    一种方法是使用PluralRules提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（intl为导入的模块名）。
 
    ```js
-   var pluralRules = new Intl.PluralRules();
+   let pluralRules = new Intl.PluralRules();
    ```
 
      另一种方法是使用开发者提供的Locale和其他相关参数来创建单复数对象。完整的参数列表参见[PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions9)。
    
    ```js
-   var pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
+   let pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
    ```
 
 3. 计算数字单复数类别。
@@ -312,9 +312,9 @@
      使用PluralRules的select方法计算传入数字的单复数类别。该方法返回一个字符串作为传入数字的类别，包括："zero", "one", "two", "few", "many", "other"六个类别。
      
    ```js
-   var pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
-   var number = 1234.5678
-   var categoryResult = pluralRules.select(number); // categoryResult = "other"
+   let pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
+   let number = 1234.5678
+   let categoryResult = pluralRules.select(number); // categoryResult = "other"
    ```
 
 ## 相对时间格式化
@@ -346,13 +346,13 @@
    一种方法是使用RelativeTimeFormat提供的默认构造函数，通过访问系统的语言和地区以获取系统默认Locale并进行设置（intl为导入的模块名）。
    
    ```js
-   var relativeTimeFormat = new Intl.RelativeTimeFormat();
+   let relativeTimeFormat = new Intl.RelativeTimeFormat();
    ```
 
      另一种方法是使用开发者提供的Locale和格式化参数来创建相对时间格式化对象。其中，格式化参数是可选的，完整的参数列表参见[ RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions9)。
    
    ```js
-   var relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
+   let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    ```
 
 3. 相对时间格式化。
@@ -360,10 +360,10 @@
      使用RelativeTimeFormat的format方法对相对时间进行格式化。方法接收一个表示相对时间长度的数值和表示单位的字符串，其中单位包括："year", "quarter", "month", "week", "day", "hour", "minute", "second"。方法返回一个字符串作为格式化的结果。
      
    ```js
-   var relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
-   var number = 2;
-   var unit = "year"
-   var formatResult = relativeTimeFormat.format(number, unit); // 2年后
+   let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
+   let number = 2;
+   let unit = "year"
+   let formatResult = relativeTimeFormat.format(number, unit); // 2年后
    ```
 
 4. 获取相对时间格式化结果的各个部分。
@@ -371,10 +371,10 @@
      获取相对时间格式化结果的各个部分，从而自定义格式化结果。
      
    ```js
-   var relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
-   var number = 2;
-   var unit = "year"
-   var formatPartsResult = relativeTimeFormat.formatToParts(number, unit); // formatPartsResult = [{"type": "integer", "value": "2", "unit": "year"}, {"type":"literal", "value": "年后"}]
+   let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
+   let number = 2;
+   let unit = "year"
+   let formatPartsResult = relativeTimeFormat.formatToParts(number, unit); // formatPartsResult = [{"type": "integer", "value": "2", "unit": "year"}, {"type":"literal", "value": "年后"}]
    ```
 
 5. 访问相对时间格式化对象的相关属性。
@@ -382,8 +382,8 @@
      RelativeTimeFormat的resolvedOptions方法会返回一个对象，该对象包含了RelativeTimeFormat对象的所有相关属性及其值，完整的属性列表参见[ RelativeTimeFormatResolvedOptions](../reference/apis/js-apis-intl.md#relativetimeformatresolvedoptions8)。
      
    ```js
-   var relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
-   var options = relativeTimeFormat.resolvedOptions(); // options = {"locale": "zh-CN", "style": "long", "numeric": "always", "numberingSystem": "latn"}
+   let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
+   let options = relativeTimeFormat.resolvedOptions(); // options = {"locale": "zh-CN", "style": "long", "numeric": "always", "numberingSystem": "latn"}
    ```
 
 ## 相关实例

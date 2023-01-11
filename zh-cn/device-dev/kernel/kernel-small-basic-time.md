@@ -3,9 +3,11 @@
 
 ## 基本概念
 
-时间管理以系统时钟为基础。时间管理提供给应用程序所有和时间有关的服务。系统时钟是由定时/计数器产生的输出脉冲触发中断而产生的，一般定义为整数或长整数。输出脉冲的周期叫做一个“时钟滴答”。系统时钟也称为时标或者Tick。一个Tick的时长可以静态配置。用户是以秒、毫秒为单位计时，而操作系统时钟计时是以Tick为单位的，当用户需要对系统操作时，例如任务挂起、延时等，输入秒为单位的数值，此时需要时间管理模块对二者进行转换。
+时间管理以系统时钟为基础。时间管理提供给应用程序所有和时间有关的服务。系统时钟是由定时/计数器产生的输出脉冲触发中断而产生的，一般定义为整数或长整数。输出脉冲的周期叫做一个“时钟滴答”。
 
-Tick与秒之间的对应关系可以配置。
+系统时钟也称为时标或者Tick。一个Tick的时长可以静态配置。用户是以秒、毫秒为单位计时，而操作系统时钟计时是以Tick为单位的，当用户需要对系统操作时，例如任务挂起、延时等，输入秒为单位的数值，此时需要时间管理模块对二者进行转换。
+
+**Tick与秒之间的对应关系可以配置。**
 
 - **Cycle**
   系统最小的计时单位。Cycle的时长由系统主频决定，系统主频就是每秒钟的Cycle数。
@@ -13,24 +15,24 @@ Tick与秒之间的对应关系可以配置。
 - **Tick**
   Tick是操作系统的基本时间单位，对应的时长由系统主频及每秒Tick数决定，由用户配置。
 
-OpenHarmony系统的时间管理模块提供时间转换、统计、延迟功能以满足用户对时间相关需求的实现。
+**OpenHarmony系统的时间管理模块提供时间转换、统计、延迟功能以满足用户对时间相关需求的实现。**
 
 
 ## 开发指导
 
-用户需要了解当前系统运行的时间以及Tick与秒、毫秒之间的转换关系时，需要使用到时间管理模块的接口。
+用户需要了解当前系统运行的时间以及Tick与秒、毫秒之间的转换关系，以及需要使用到时间管理模块的接口。
 
 
 ### 接口说明
 
-OpenHarmony LiteOS-A内核的时间管理提供下面几种功能，接口详细信息可以查看API参考。
+OpenHarmony LiteOS-A内核的时间管理提供以下几种功能，接口详细信息可查看API参考。
 
-  **表1** 时间管理相关接口说明
+  **表1** 时间管理相关接口说明：
 
-| 功能分类 | 接口描述 | 
-| -------- | -------- |
-| 时间转换 | LOS_MS2Tick：毫秒转换成Tick<br/>LOS_Tick2MS：Tick转换成毫秒 | 
-| 时间统计 | LOS_TickCountGet：获取当前Tick数<br/>LOS_CyclePerTickGet：每个Tick的cycle数 | 
+| 功能分类 | 接口描述                                                     |
+| -------- | ------------------------------------------------------------ |
+| 时间转换 | LOS_MS2Tick：毫秒转换成Tick<br/>LOS_Tick2MS：Tick转换成毫秒  |
+| 时间统计 | LOS_TickCountGet：获取当前Tick数<br/>LOS_CyclePerTickGet：每个Tick的cycle数 |
 
 
 ### 开发流程
@@ -40,25 +42,26 @@ OpenHarmony LiteOS-A内核的时间管理提供下面几种功能，接口详细
 2. 获取系统Tick数完成时间统计等。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 获取系统Tick数需要在系统时钟使能之后。
-> 
-> - 时间管理不是单独的功能模块，依赖于los_config.h中的OS_SYS_CLOCK和LOSCFG_BASE_CORE_TICK_PER_SECOND两个配置选项。
-> 
-> - 系统的Tick数在关中断的情况下不进行计数，故系统Tick数不能作为准确时间计算。
+>
+>  - 获取系统Tick数需要在系统时钟使能之后。
+>
+>  - 时间管理不是单独的功能模块，依赖于los_config.h中的OS_SYS_CLOCK和LOSCFG_BASE_CORE_TICK_PER_SECOND两个配置选项。
+>
+>  - 系统的Tick数在关中断的情况下不进行计数，故系统Tick数不能作为准确时间计算。
 
 
 ### 编程实例
 
 前置条件：
 
-- 配置好LOSCFG_BASE_CORE_TICK_PER_SECOND，即系统每秒的Tick数，范围(0, 1000]。
+- 配置好LOSCFG_BASE_CORE_TICK_PER_SECOND，即系统每秒的Tick数，范围(0, 1000）。
 
 - 配置好OS_SYS_CLOCK 系统时钟频率，单位：Hz。
 
 **示例代码**
 
   时间转换：
-  
+
 ```
 VOID Example_TransformTime(VOID)
 {
@@ -73,7 +76,7 @@ VOID Example_TransformTime(VOID)
 
 时间统计和时间延迟：
 
-  
+
 ```
 VOID Example_GetTime(VOID)
 {
@@ -106,7 +109,7 @@ VOID Example_GetTime(VOID)
 
 时间转换：
 
-  
+
 ```
 uwTick = 10000 
 uwMs = 100
@@ -114,9 +117,9 @@ uwMs = 100
 
 时间统计和时间延迟：
 
-  
+
 ```
 LOS_CyclePerTickGet = 49500 
-LOS_TickCountGet = 5042
-LOS_TickCountGet after delay = 5242
+LOS_TickCountGet = 347931
+LOS_TickCountGet after delay = 348134
 ```

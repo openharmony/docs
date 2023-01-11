@@ -63,7 +63,6 @@ import window from '@ohos.window';
 
 export default class ServiceExtensionAbility1 extends ExtensionContext {
     onCreate(want) {
-        console.log("[Demo] MainAbility onCreate")
         globalThis.abilityWant = want;
         // 1.创建音量条窗口。
         let windowClass = null;
@@ -151,7 +150,6 @@ import window from '@ohos.window';
 
 export default class ServiceExtensionAbility1 extends ExtensionContext {
     onCreate(want) {
-        console.log("[Demo] MainAbility onCreate")
         globalThis.abilityWant = want;
         // 创建音量条窗口。
         let windowClass = null;

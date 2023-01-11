@@ -62,7 +62,7 @@ In the [animateMotion](../reference/arkui-js/js-components-svg-animatemotion.md)
 
 ## animateTransform Animation
 
-In the [animateMotion](../reference/arkui-js/js-components-svg-animatetransform.md) child component of the **\<svg>** component, set attributeName to bind the corresponding attribute to the **transform** attribute, and set **type** to the animation type, **from** to the start value, and **to** to the end value.
+In the [animateTransform](../reference/arkui-js/js-components-svg-animatetransform.md) child component of the **\<svg>** component, set attributeName to bind the corresponding attribute to the **transform** attribute, and set **type** to the animation type, **from** to the start value, and **to** to the end value.
 
 
 ```html

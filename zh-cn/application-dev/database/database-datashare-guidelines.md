@@ -132,7 +132,7 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
 1. 导入基础依赖包。
 
    ```ts
-   import Ability from '@ohos.application.Ability';
+   import UIAbility from '@ohos.app.ability.UIAbility';
    import dataShare from '@ohos.data.dataShare';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
    ```
@@ -150,7 +150,7 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
    let dsHelper;
    let abilityContext;
    
-   export default class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
    	onWindowStageCreate(windowStage) {
    		abilityContext = this.context;
    		dataShare.createDataShareHelper(abilityContext, dseUri, (err, data)=>{
@@ -185,4 +185,3 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
      console.log("dsHelper delete result: " + data);   
    });
    ```
-   

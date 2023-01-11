@@ -21,19 +21,20 @@ oom -h | --help
 
 ## 参数说明
 
-  **表1** 参数说明
+**表1** 参数说明
 
-| 参数 | 参数说明 | 取值范围 | 
-| -------- | -------- | -------- |
-| -i&nbsp;[interval] | 设置oom线程任务检查的时间间隔。 | 100ms&nbsp;~&nbsp;10000ms | 
-| -m&nbsp;[mem&nbsp;byte] | 设置低内存阈值。 | 0MB&nbsp;~&nbsp;1MB，0MB表示不做低内存阈值检查。 | 
-| -r&nbsp;[mem&nbsp;byte] | 设置pagecache内存回收阈值。 | 低内存阈值&nbsp;~&nbsp;系统可用最大内存。 | 
-| -h&nbsp;\|&nbsp;--help | 使用帮助。 | N/A | 
+| 参数                    | 参数说明                        | 取值范围                                                     |
+| ----------------------- | ------------------------------- | ------------------------------------------------------------ |
+| -i&nbsp;[interval]      | 设置oom线程任务检查的时间间隔。 | [100, 10000] 单位: ms                                    |
+| -m&nbsp;[mem&nbsp;byte] | 设置低内存阈值。                | 0MB&nbsp;~&nbsp;1MB，0MB表示不做低内存阈值检查。             |
+| -r&nbsp;[mem&nbsp;byte] | 设置pagecache内存回收阈值。     | 低内存阈值 ~ 系统可用最大内存，一个pagecache页一般为4KB，也有16 ~ 64KB的情况。 |
+| -h&nbsp;\|&nbsp;--help  | 使用帮助。                      | N/A                                                          |
 
 
 ## 使用指南
 
   参数缺省时，显示oom功能当前配置信息。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 当系统内存不足时，会打印出内存不足的提示信息。
 
@@ -49,9 +50,9 @@ oom -h | --help
 
 ## 输出说明
 
-**示例1：**oom缺省打印配置信息
+**示例1** oom缺省打印配置信息
 
-  
+
 ```
 OHOS:/$ oom
 [oom] oom loop task status: enabled
@@ -62,7 +63,7 @@ OHOS:/$ oom
 
 系统内存不足时打印提示信息
 
-  
+
 ```
 T:20 Enter:IT MEM 00M 001
 [oom] OS is in low memory state
@@ -109,22 +110,22 @@ traceback 5 -- 1r = 0x20c4df50 fp = 0хb0b0b0b 1r in /1ib/libc.so - -> 0x62f50
 ```
 
 
-**示例2**：设置 oom 线程任务检查的时间间隔
+**示例2** 设置 oom 线程任务检查的时间间隔
 
 
-  
+
 ```
 OHOS:/$ oom -i 100
 [oom] set oom check interval (100)ms successful
 ```
 
 
-  **表2** 输出说明
+**表2** 输出说明
 
-| 输出 | 说明 | 
-| -------- | -------- |
-| [oom]&nbsp;OS&nbsp;is&nbsp;in&nbsp;low&nbsp;memory&nbsp;state<br/>total&nbsp;physical&nbsp;memory:&nbsp;0x1bcf000(byte),&nbsp;used:&nbsp;0x1b50000(byte),&nbsp;free:&nbsp;0x7f000(byte),&nbsp;low&nbsp;memory&nbsp;threshold:&nbsp;0x80000(byte) | 操作系统处于低内存状态。<br/>整个系统可用物理内存为0x1bcf000&nbsp;byte，已经使用了&nbsp;0x1b50000&nbsp;byte，&nbsp;还剩0x7f000&nbsp;byte，当前设置的低内存阈值为0x80000&nbsp;byte。 | 
-| [oom]&nbsp;candidate&nbsp;victim&nbsp;process&nbsp;init&nbsp;pid:&nbsp;1,&nbsp;actual&nbsp;phy&nbsp;mem&nbsp;byte:&nbsp;82602 | 打印当前各个进程的内存使用情况，init进程实际占用物理内存82602byte。 | 
-| [oom]&nbsp;candidate&nbsp;victim&nbsp;process&nbsp;UserProcess12&nbsp;pid:&nbsp;12,&nbsp;actual&nbsp;phy&nbsp;mem&nbsp;byte:&nbsp;25951558 | UserProcess12进程实际使用25951558byte内存。 | 
-| [oom]&nbsp;max&nbsp;phy&nbsp;mem&nbsp;used&nbsp;process&nbsp;UserProcess12&nbsp;pid:&nbsp;12,&nbsp;actual&nbsp;phy&nbsp;mem:&nbsp;25951558 | 当前使用内存最多的进程是UserProcess12。 | 
-| excFrom:&nbsp;User! | 当系统处于低内存的情况下，UserProcess12进程再去申请内存时失败退出。 | 
+| 输出                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [oom]&nbsp;OS&nbsp;is&nbsp;in&nbsp;low&nbsp;memory&nbsp;state<br/>total&nbsp;physical&nbsp;memory:&nbsp;0x1bcf000(byte),&nbsp;used:&nbsp;0x1b50000(byte),&nbsp;free:&nbsp;0x7f000(byte),&nbsp;low&nbsp;memory&nbsp;threshold:&nbsp;0x80000(byte) | 操作系统处于低内存状态。<br/>整个系统可用物理内存为0x1bcf000&nbsp;byte，已经使用了&nbsp;0x1b50000&nbsp;byte，&nbsp;还剩0x7f000&nbsp;byte，当前设置的低内存阈值为0x80000&nbsp;byte。 |
+| [oom]&nbsp;candidate&nbsp;victim&nbsp;process&nbsp;init&nbsp;pid:&nbsp;1,&nbsp;actual&nbsp;phy&nbsp;mem&nbsp;byte:&nbsp;82602 | 打印当前各个进程的内存使用情况，init进程实际占用物理内存82602byte。 |
+| [oom]&nbsp;candidate&nbsp;victim&nbsp;process&nbsp;UserProcess12&nbsp;pid:&nbsp;12,&nbsp;actual&nbsp;phy&nbsp;mem&nbsp;byte:&nbsp;25951558 | UserProcess12进程实际使用25951558byte内存。                  |
+| [oom]&nbsp;max&nbsp;phy&nbsp;mem&nbsp;used&nbsp;process&nbsp;UserProcess12&nbsp;pid:&nbsp;12,&nbsp;actual&nbsp;phy&nbsp;mem:&nbsp;25951558 | 当前使用内存最多的进程是UserProcess12。                      |
+| excFrom:&nbsp;User!                                          | 当系统处于低内存的情况下，UserProcess12进程再去申请内存时失败退出。 |

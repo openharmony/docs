@@ -1,23 +1,30 @@
 # 文件系统
 
+## VFS
 
-M核的文件系统子系统当前支持的文件系统有FATFS与LittleFS。同A核一样，通过VFS层提供了POSIX标准的操作，保持了接口的一致性，但是因为M核的资源非常紧张，VFS层非常轻薄，没有提供类似A核的高级功能（如pagecache等），主要是接口的标准化和适配工作，具体的事务由各个文件系统实际承载。M核文件系统支持的功能如下表所示：
 
+### 基本概念
 
-  **表1** 文件操作
+**VFS（Virtual File System）** 是文件系统的虚拟层，它不是一个实际的文件系统，而是一个异构文件系统之上的软件粘合层，为用户提供统一的类Unix文件操作接口。由于不同类型的文件系统接口不统一，若系统中有多个文件系统类型，访问不同的文件系统就需要使用不同的非标准接口。而通过在系统中添加VFS层，提供统一的抽象接口，屏蔽了底层异构类型的文件系统的差异，使得访问文件系统的系统调用不用关心底层的存储介质和文件系统类型，提高开发效率。
 
-| 接口名 | 描述 | FATFS | LITTLEFS | 
+M核的文件系统子系统当前支持的文件系统有FATFS与LittleFS。通过VFS层提供了POSIX标准的操作，保持了接口的一致性，但是因为M核的资源非常紧张，VFS层非常轻薄，没有提供类似A核的高级功能（如pagecache等），主要是接口的标准化和适配工作，具体的事务由各个文件系统实际承载。M核文件系统支持的功能如下表所示：
+
+### 接口说明
+
+**表1** 文件操作
+
+| 接口名 | 描述 | FATFS | LITTLEFS |
 | -------- | -------- | -------- | -------- |
-| open | 打开文件 | 支持 | 支持 | 
-| close | 关闭文件 | 支持 | 支持 | 
-| read | 读取文件内容 | 支持 | 支持 | 
-| write | 往文件写入内容 | 支持 | 支持 | 
-| lseek | 设置文件偏移位置 | 支持 | 支持 | 
-| unlink | 删除文件 | 支持 | 支持 | 
-| rename | 重命名文件 | 支持 | 支持 | 
-| fstat | 通过文件句柄获取文件信息 | 支持 | 支持 | 
-| stat | 通过文件路径名获取文件信息 | 支持 | 支持 | 
-| fsync | 文件内容刷入存储设备 | 支持 | 支持 | 
+| open | 打开文件 | 支持 | 支持 |
+| close | 关闭文件 | 支持 | 支持 |
+| read   | 读取文件内容               | 支持  | 支持     |
+| write  | 往文件写入内容             | 支持  | 支持     |
+| lseek  | 设置文件偏移位置           | 支持  | 支持     |
+| stat   | 通过文件路径名获取文件信息 | 支持  | 支持     |
+| unlink | 删除文件 | 支持 | 支持 |
+| rename | 重命名文件 | 支持 | 支持 |
+| fstat  | 通过文件句柄获取文件信息   | 支持  | 支持     |
+| fsync  | 文件内容刷入存储设备       | 支持  | 支持     |
 
 
   **表2** 目录操作
@@ -40,6 +47,8 @@ M核的文件系统子系统当前支持的文件系统有FATFS与LittleFS。同
 | umount2 | 分区卸载，可通过MNT_FORCE参数进行强制卸载 | 支持 | 不支持 | 
 | statfs | 获取分区信息 | 支持 | 不支持 | 
 
+ioctl，fcntl等接口由不同的lib库支持，与底层文件系统无关。
+
 ## FAT
 
 
@@ -61,14 +70,93 @@ FAT文件系统的使用需要底层MMC相关驱动的支持。在一个带MMC�
 
 2、新增fs_config.h文件，配置FS_MAX_SS（存储设备最大sector大小）、FF_VOLUME_STRS（分区名）等信息，例如：
 
-  
+
 ```
 #define FF_VOLUME_STRS     "system", "inner", "update", "user"
 #define FS_MAX_SS          512
 #define FAT_MAX_OPEN_FILES 50
 ```
 
+#### 分区挂载
 
+移植FATFS到新硬件设备上，需要在初始化flash驱动后，完成设备分区。
+
+设备分区接口：int LOS_DiskPartition(const char *dev, const char *fsType, int *lengthArray, int *addrArray, int partNum)；
+
+- dev：设备名称， 如“spinorblk0”
+- fsType：文件系统类型，”vfat“
+- lengthArray：该设备上各分区的长度列表，fatfs填入百分比即可
+- addrArray：该设备上各分区的起始地址列表
+- partNum：分区的个数
+
+格式化接口：int LOS_PartitionFormat(const char *partName, char *fsType, void *data)；
+
+- partName：分区名称，设备名称+ ‘p’ + 分区号，如“spinorblk0p0”
+- fsType：文件系统类型，”vfat“
+- data：私有数据  传入（VOID *）formatType，（如FMT_FAT， FMT_FAT32）
+
+mount接口：int mount(const char *source, const char *target, const char *filesystemtype, unsigned long mountflags, const void *data)；
+
+- source：分区名称，设备名称+ ‘p’ + 分区号，如“spinorblk0p0”   
+- target：挂载路径
+- filesystemtype：文件系统类型，”vfat“
+- mountflags：mount配置参数
+- data：私有数据，传入（VOID *）formatType，（如FMT_FAT， FMT_FAT32）
+
+本参考代码已在 ./device/qemu/arm_mps2_an386/liteos_m/board/fs/fs_init.c 中实现，M核qemu上可直接使用，请参考并根据实际硬件修改。
+
+    #include "fatfs_conf.h"
+    #include "fs_config.h"
+    #include "los_config.h"
+    #include "ram_virt_flash.h"
+    #include "los_fs.h"
+    
+    struct fs_cfg {
+        CHAR *mount_point;
+        struct PartitionCfg partCfg;
+    };
+    
+    INT32 FatfsLowLevelInit()
+    {
+        INT32 ret;
+        INT32 i;
+        UINT32 addr;
+        int data = FMT_FAT32;
+    
+        const char * const pathName[FF_VOLUMES] = {FF_VOLUME_STRS};
+        HalLogicPartition *halPartitionsInfo = getPartitionInfo(); /* 获取长度和起始地址的函数，请根据实际单板适配 */
+        INT32 lengthArray[FF_VOLUMES] = {25, 25, 25, 25};
+        INT32 addrArray[FF_VOLUMES];
+    
+        /* 配置各分区的地址和长度，请根据实际单板适配 */
+        for (i = 0; i < FF_VOLUMES; i++) {
+            addr = halPartitionsInfo[FLASH_PARTITION_DATA1].partitionStartAddr + i * 0x10000;
+            addrArray[i] = addr;
+            FlashInfoInit(i, addr);
+        }
+    
+        /* 配置分区信息，请根据实际单板适配 */
+        SetupDefaultVolToPartTable();
+    
+        ret = LOS_DiskPartition("spinorblk0", "vfat", lengthArray, addrArray, FF_VOLUMES);
+        printf("%s: DiskPartition %s\n", __func__, (ret == 0) ? "succeed" : "failed");
+        if (ret != 0) {
+            return -1;
+        }
+    
+        ret = LOS_PartitionFormat("spinorblk0p0", "vfat", &data);
+        printf("%s: PartitionFormat %s\n", __func__, (ret == 0) ? "succeed" : "failed");
+        if (ret != 0) {
+            return -1;
+        }
+    
+        ret = mount("spinorblk0p0", "/system", "vfat", 0, &data);
+        printf("%s: mount fs on '%s' %s\n", __func__, pathName[0], (ret == 0) ? "succeed" : "failed");
+        if (ret != 0) {
+            return -1;
+        }
+        return 0;
+    }
 #### 开发流程
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -100,9 +188,9 @@ FAT文件系统的使用需要底层MMC相关驱动的支持。在一个带MMC�
 
 本实例实现以下功能：
 
-1. 创建目录“user/test”
+1. 创建目录“system/test”
 
-2. 在“user/test”目录下创建文件“file.txt”
+2. 在“system/test”目录下创建文件“file.txt”
 
 3. 在文件起始位置写入“Hello OpenHarmony!”
 
@@ -123,97 +211,98 @@ FAT文件系统的使用需要底层MMC相关驱动的支持。在一个带MMC�
 
  **前提条件：** 
 
- 系统已将MMC设备分区挂载到user目录
+ 系统已将设备分区挂载到目录，qemu默认已挂载system。
 
  **代码实现如下：** 
-  
+
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数ExampleFatfs。
+
   ```
-  #include <stdio.h>
-  #include <string.h>
-  #include "sys/stat.h"
-  #include "fcntl.h"
-  #include "unistd.h"
+#include <stdio.h>
+#include <string.h>
+#include "sys/stat.h"
+#include "fcntl.h"
+#include "unistd.h"
 
-  #define LOS_OK 0
-  #define LOS_NOK -1
-
-  int FatfsTest(void) 
-  {     
+#define BUF_SIZE 20
+#define TEST_ROOT "system"  /* 测试的根目录请根据实际情况调整 */
+VOID ExampleFatfs(VOID)
+{
     int ret;
-    int fd = -1;
+    int fd;
     ssize_t len;
     off_t off;
-    char dirName[20] = "user/test";
-    char fileName[20] = "user/test/file.txt";
-    char writeBuf[20] = "Hello OpenHarmony!";
-    char readBuf[20] = {0};
+    char dirName[BUF_SIZE] = TEST_ROOT"/test";
+    char fileName[BUF_SIZE] = TEST_ROOT"/test/file.txt";
+    char writeBuf[BUF_SIZE] = "Hello OpenHarmony!";
+    char readBuf[BUF_SIZE] = {0};
 
-    /* 创建目录“user/test” */
+    /* 创建测试目录 */
     ret = mkdir(dirName, 0777);
     if (ret != LOS_OK) {
         printf("mkdir failed.\n");
-        return LOS_NOK;
+        return;
     }
 
-    /* 创建可读写文件"user/test/file.txt" */
+    /* 创建可读写测试文件 */
     fd = open(fileName, O_RDWR | O_CREAT, 0777);
     if (fd < 0) {
         printf("open file failed.\n");
-        return LOS_NOK;
+        return;
     }
 
     /* 将writeBuf中的内容写入文件 */
     len = write(fd, writeBuf, strlen(writeBuf));
     if (len != strlen(writeBuf)) {
         printf("write file failed.\n");
-        return LOS_NOK;
+        return;
     }
 
     /* 将文件内容刷入存储设备中 */
     ret = fsync(fd);
     if (ret != LOS_OK) {
         printf("fsync failed.\n");
-        return LOS_NOK;
+        return;
     }
 
     /* 将读写指针偏移至文件头 */
     off = lseek(fd, 0, SEEK_SET);
     if (off != 0) {
         printf("lseek failed.\n");
-        return LOS_NOK;
+        return;
     }
 
     /* 将文件内容读出至readBuf中，读取长度为readBuf大小 */
     len = read(fd, readBuf, sizeof(readBuf));
     if (len != strlen(writeBuf)) {
         printf("read file failed.\n");
-        return LOS_NOK;
+        return;
     }
     printf("%s\n", readBuf);
 
-    /* 关闭文件 */
+    /* 关闭测试文件 */
     ret = close(fd);
     if (ret != LOS_OK) {
         printf("close failed.\n");
-        return LOS_NOK;
+        return;
     }
 
-    /* 删除文件"user/test/file.txt" */
+    /* 删除测试文件 */
     ret = unlink(fileName);
     if (ret != LOS_OK) {
         printf("unlink failed.\n");
-        return LOS_NOK;
+        return;
     }
 
-    /* 删除目录“user/test” */
+    /* 删除测试目录 */
     ret = rmdir(dirName);
     if (ret != LOS_OK) {
         printf("rmdir failed.\n");
-        return LOS_NOK;
+        return;
     }
 
-    return LOS_OK;
-    }
+    return;
+}
   ```
 
 
@@ -221,7 +310,7 @@ FAT文件系统的使用需要底层MMC相关驱动的支持。在一个带MMC�
 
 编译运行得到的结果为：
 
-  
+
 ```
 Hello OpenHarmony!
 ```
@@ -237,86 +326,194 @@ LittleFS是一个小型的Flash文件系统，它结合日志结构（log-struct
 
 ### 开发指导
 
-移植LittleFS到新硬件设备上，需要申明lfs_config：
+移植LittleFS到新硬件设备上，需要在初始化flash驱动后，完成设备分区。
 
-  
+设备分区接口：int LOS_DiskPartition(const char *dev, const char *fsType, int *lengthArray, int *addrArray, int partNum)；
+
+- dev：设备名称
+- fsType：文件系统类型， "littlefs"
+- lengthArray：该设备上各分区的长度列表
+- addrArray：该设备上各分区的起始地址列表
+- partNum：分区的个数
+
+格式化接口：int LOS_PartitionFormat(const char *partName, char *fsType, void *data)；
+
+- partName：分区名称
+- fsType：文件系统类型， "littlefs"
+- data：私有数据  传入（VOID *）struct fs_cfg
+
+mount接口：int mount(const char *source, const char *target, const char *filesystemtype, unsigned long mountflags, const void *data)；
+
+- source：分区名称
+- target：挂载路径
+- filesystemtype：文件系统类型，"littlefs"
+- mountflags：mount配置参数
+- data：私有数据，传入（VOID *）struct fs_cfg
+
+本参考代码已在 ./device/qemu/arm_mps2_an386/liteos_m/board/fs/fs_init.c 中实现，M核qemu上可直接使用，请参考并根据实际硬件修改。
+
+
 ```
-const struct lfs_config cfg = {
-    // block device operations
-    .read  = user_provided_block_device_read,
-    .prog  = user_provided_block_device_prog,
-    .erase = user_provided_block_device_erase,
-    .sync  = user_provided_block_device_sync,
+#include "los_config.h"
+#include "ram_virt_flash.h"
+#include "los_fs.h"
 
-    // block device configuration
-    .read_size = 16,
-    .prog_size = 16,
-    .block_size = 4096,
-    .block_count = 128,
-    .cache_size = 16,
-    .lookahead_size = 16,
-    .block_cycles = 500,
+struct fs_cfg {
+    CHAR *mount_point;
+    struct PartitionCfg partCfg;
 };
+
+INT32 LfsLowLevelInit()
+{
+    INT32 ret;
+    struct fs_cfg fs[LOSCFG_LFS_MAX_MOUNT_SIZE] = {0};
+    HalLogicPartition *halPartitionsInfo = getPartitionInfo();  /* 获取长度和起始地址的函数，请根据实际单板适配 */
+
+    INT32 lengthArray[2];
+    lengthArray[0]= halPartitionsInfo[FLASH_PARTITION_DATA0].partitionLength;
+
+    INT32 addrArray[2];
+    addrArray[0] = halPartitionsInfo[FLASH_PARTITION_DATA0].partitionStartAddr;
+
+    ret = LOS_DiskPartition("flash0", "littlefs", lengthArray, addrArray, 2);
+    printf("%s: DiskPartition %s\n", __func__, (ret == 0) ? "succeed" : "failed");
+    if (ret != 0) {
+        return -1;
+    }
+    fs[0].mount_point = "/littlefs";
+    fs[0].partCfg.partNo = 0;
+    fs[0].partCfg.blockSize = 4096; /* 4096, lfs block size */
+    fs[0].partCfg.blockCount = 1024; /* 2048, lfs block count */
+    fs[0].partCfg.readFunc = virt_flash_read;		/* flash读函数，请根据实际单板适配 */
+    fs[0].partCfg.writeFunc = virt_flash_write;		/* flash写函数，请根据实际单板适配 */
+    fs[0].partCfg.eraseFunc = virt_flash_erase;		/* flash擦函数，请根据实际单板适配 */
+
+    fs[0].partCfg.readSize = 256; /* 256, lfs read size */
+    fs[0].partCfg.writeSize = 256; /* 256, lfs prog size */
+    fs[0].partCfg.cacheSize = 256; /* 256, lfs cache size */
+    fs[0].partCfg.lookaheadSize = 16; /* 16, lfs lookahead size */
+    fs[0].partCfg.blockCycles = 1000; /* 1000, lfs block cycles */
+
+    ret = LOS_PartitionFormat("flash0", "littlefs", &fs[0].partCfg);
+    printf("%s: PartitionFormat %s\n", __func__, (ret == 0) ? "succeed" : "failed");
+    if (ret != 0) {
+        return -1;
+    }
+    ret = mount(NULL, fs[0].mount_point, "littlefs", 0, &fs[0].partCfg);
+    printf("%s: mount fs on '%s' %s\n", __func__, fs[0].mount_point, (ret == 0) ? "succeed" : "failed");
+    if (ret != 0) {
+        return -1;
+    }
+    return 0;
+}
 ```
 
-其中.read，.prog，.erase，.sync分别对应该硬件平台上的底层的读写\擦除\同步等接口。
+其中.readFunc，.writeFunc，.eraseFunc分别对应该硬件平台上的底层的读写\擦除等接口。
 
-read_size 每次读取的字节数，可以比物理读单元大以改善性能，这个数值决定了读缓存的大小，但值太大会带来更多的内存消耗。
+readSize 每次读取的字节数，可以比物理读单元大以改善性能，这个数值决定了读缓存的大小，但值太大会带来更多的内存消耗。
 
-prog_size 每次写入的字节数，可以比物理写单元大以改善性能，这个数值决定了写缓存的大小，必须是read_size的整数倍，但值太大会带来更多的内存消耗。
+writeSize 每次写入的字节数，可以比物理写单元大以改善性能，这个数值决定了写缓存的大小，必须是readSize的整数倍，但值太大会带来更多的内存消耗。
 
-block_size 每个擦除块的字节数，可以比物理擦除单元大，但此数值应尽可能小因为每个文件至少会占用一个块。必须是prog_size的整数倍。
+blockSize 每个擦除块的字节数，可以比物理擦除单元大，但此数值应尽可能小因为每个文件至少会占用一个块。必须是writeSize的整数倍。
 
-block_count 可以被擦除的块数量，这取决于块设备的容量及擦除块的大小。
+blockCount 可以被擦除的块数量，这取决于块设备的容量及擦除块的大小。
 
 
 ### 示例代码
 
-  代码实现如下：
-  
+ **前提条件：** 
+
+系统已将设备分区挂载到目录，qemu默认已挂载/littlefs。
+
+代码实现如下：
+
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数ExampleLittlefs。
+
 ```
-#include "lfs.h"
-#include "stdio.h"
-lfs_t lfs;
-lfs_file_t file;
-const struct lfs_config cfg = {
-    // block device operations
-    .read  = user_provided_block_device_read,
-    .prog  = user_provided_block_device_prog,
-    .erase = user_provided_block_device_erase,
-    .sync  = user_provided_block_device_sync,
-    // block device configuration
-    .read_size = 16,
-    .prog_size = 16,
-    .block_size = 4096,
-    .block_count = 128,
-    .cache_size = 16,
-    .lookahead_size = 16,
-    .block_cycles = 500,
-};
-int main(void) {
-    // mount the filesystem
-    int err = lfs_mount(&lfs, &cfg);
-    // reformat if we can't mount the filesystem
-    // this should only happen on the first boot
-    if (err) {
-        lfs_format(&lfs, &cfg);
-        lfs_mount(&lfs, &cfg);
+#include <stdio.h>
+#include <string.h>
+#include "sys/stat.h"
+#include "fcntl.h"
+#include "unistd.h"
+
+#define BUF_SIZE 20
+#define TEST_ROOT "/littlefs"  /* 测试的根目录请根据实际情况调整 */
+VOID ExampleLittlefs(VOID)
+{
+    int ret;
+    int fd;
+    ssize_t len;
+    off_t off;
+    char dirName[BUF_SIZE] = TEST_ROOT"/test";
+    char fileName[BUF_SIZE] = TEST_ROOT"/test/file.txt";
+    char writeBuf[BUF_SIZE] = "Hello OpenHarmony!";
+    char readBuf[BUF_SIZE] = {0};
+
+    /* 创建测试目录 */
+    ret = mkdir(dirName, 0777);
+    if (ret != LOS_OK) {
+        printf("mkdir failed.\n");
+        return;
     }
-    // read current count
-    uint32_t boot_count = 0;
-    lfs_file_open(&lfs, &file, "boot_count", LFS_O_RDWR | LFS_O_CREAT);
-    lfs_file_read(&lfs, &file, &boot_count, sizeof(boot_count));
-    // update boot count
-    boot_count += 1;
-    lfs_file_rewind(&lfs, &file);
-    lfs_file_write(&lfs, &file, &boot_count, sizeof(boot_count));
-    // remember the storage is not updated until the file is closed successfully
-    lfs_file_close(&lfs, &file);
-    // release any resources we were using
-    lfs_unmount(&lfs);
-    // print the boot count
-    printf("boot_count: %d\n", boot_count);
+
+    /* 创建可读写测试文件 */
+    fd = open(fileName, O_RDWR | O_CREAT, 0777);
+    if (fd < 0) {
+        printf("open file failed.\n");
+        return;
+    }
+
+    /* 将writeBuf中的内容写入文件 */
+    len = write(fd, writeBuf, strlen(writeBuf));
+    if (len != strlen(writeBuf)) {
+        printf("write file failed.\n");
+        return;
+    }
+
+    /* 将文件内容刷入存储设备中 */
+    ret = fsync(fd);
+    if (ret != LOS_OK) {
+        printf("fsync failed.\n");
+        return;
+    }
+
+    /* 将读写指针偏移至文件头 */
+    off = lseek(fd, 0, SEEK_SET);
+    if (off != 0) {
+        printf("lseek failed.\n");
+        return;
+    }
+
+    /* 将文件内容读出至readBuf中，读取长度为readBuf大小 */
+    len = read(fd, readBuf, sizeof(readBuf));
+    if (len != strlen(writeBuf)) {
+        printf("read file failed.\n");
+        return;
+    }
+    printf("%s\n", readBuf);
+
+    /* 关闭测试文件 */
+    ret = close(fd);
+    if (ret != LOS_OK) {
+        printf("close failed.\n");
+        return;
+    }
+
+    /* 删除测试文件 */
+    ret = unlink(fileName);
+    if (ret != LOS_OK) {
+        printf("unlink failed.\n");
+        return;
+    }
+
+    /* 删除测试目录 */
+    ret = rmdir(dirName);
+    if (ret != LOS_OK) {
+        printf("rmdir failed.\n");
+        return;
+    }
+
+    return LOS_OK;
 }
 ```
 
@@ -325,7 +522,7 @@ int main(void) {
 
 首次编译运行得到的结果为：
 
-  
+
 ```
-Say hello 1 times.
+Hello OpenHarmony!
 ```

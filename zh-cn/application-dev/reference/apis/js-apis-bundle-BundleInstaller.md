@@ -188,8 +188,8 @@ bundle.getBundleInstaller().then(installer => {
 **示例：**
 ``` ts
 // Stage模型
-import Ability from '@ohos.application.Ability';
-class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         let context = this.context;
         let pathDir = context.filesDir;

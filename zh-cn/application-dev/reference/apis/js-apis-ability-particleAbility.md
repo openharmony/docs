@@ -53,7 +53,7 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.Data",
-            abilityName: "com.example.Data.MainAbility",
+            abilityName: "EntryAbility",
             uri: ""
         },
     },
@@ -104,7 +104,7 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.Data",
-            abilityName: "com.example. Data.MainAbility",
+            abilityName: "EntryAbility",
             uri: ""
         },
     },
@@ -238,7 +238,7 @@ let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -299,7 +299,7 @@ let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -413,6 +413,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 **示例**：
 
 ```ts
+import particleAbility from '@ohos.ability.particleAbility'
 import rpc from '@ohos.rpc'
 
 function onConnectCallback(element, remote) {
@@ -464,7 +465,8 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
 **示例**：
 
 ```ts
-import rpc from '@ohos.rpc'
+import particleAbility from '@ohos.ability.particleAbility';
+import rpc from '@ohos.rpc';
 
 function onConnectCallback(element, remote) {
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
@@ -514,7 +516,8 @@ disconnectAbility(connection: number): Promise\<void>;
 **示例**：
 
 ```ts
-import rpc from '@ohos.rpc'
+import particleAbility from '@ohos.ability.particleAbility';
+import rpc from '@ohos.rpc';
 
 function onConnectCallback(element, remote) {
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));

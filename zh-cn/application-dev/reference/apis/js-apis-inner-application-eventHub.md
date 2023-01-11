@@ -12,9 +12,9 @@ EventHub模块提供了事件中心，提供订阅、取消订阅、触发事件
 在使用eventHub的功能前，需要通过UIAbility实例的成员变量context获取。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     eventFunc(){
         console.log("eventFunc is called");
     }
@@ -43,9 +43,9 @@ on(event: string, callback: Function): void;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onForeground() {
         this.context.eventHub.on("myEvent", this.eventFunc);
         // 支持使用匿名函数订阅事件
@@ -84,9 +84,9 @@ off(event: string, callback?: Function): void;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onForeground() {
         this.context.eventHub.on("myEvent", this.eventFunc1);
         this.context.eventHub.off("myEvent", this.eventFunc1); // 取消eventFunc1对myEvent事件的订阅
@@ -123,9 +123,9 @@ emit(event: string, ...args: Object[]): void;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onForeground() {
         this.context.eventHub.on("myEvent", this.eventFunc);
         // 结果：

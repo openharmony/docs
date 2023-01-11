@@ -5,13 +5,17 @@
 
 CPU（中央处理器，Central Processing Unit）占用率分为系统CPU占用率和任务CPU占用率。
 
-系统CPU占用率（CPU  Percent）是指周期时间内系统的CPU占用率，用于表示系统一段时间内的闲忙程度，也表示CPU的负载情况。系统CPU占用率的有效表示范围为0～100，其精度（可通过配置调整）为百分比。100表示系统满负荷运转。
+**系统CPU占用率**：是指周期时间内系统的CPU占用率，用于表示系统一段时间内的闲忙程度，也表示CPU的负载情况。系统CPU占用率的有效表示范围为0～100，其单位为百分比。100表示系统满负荷运转。
 
-任务CPU占用率指单个任务的CPU占用率，用于表示单个任务在一段时间内的闲忙程度。任务CPU占用率的有效表示范围为0～100，其精度（可通过配置调整）为百分比。100表示在一段时间内系统一直在运行该任务。
+**任务CPU占用率**：指单个任务的CPU占用率，用于表示单个任务在一段时间内的闲忙程度。任务CPU占用率的有效表示范围为0～100，其单位为百分比。100表示在一段时间内系统一直在运行该任务。
 
 用户通过系统级的CPU占用率，判断当前系统负载是否超出设计规格。
 
 通过系统中各个任务的CPU占用情况，判断各个任务的CPU占用率是否符合设计的预期。
+
+此外开启CPUP的情况下，可选择开启中断占用率统计。
+
+**中断占用率**：是指单个中断在全部中断消耗时间的占用率。占用率的有效表示范围为0～100。100表示在一段时间内仅触发该中断。
 
 
 ## 运行机制
@@ -23,44 +27,48 @@ OpenHarmony LiteOS-M的CPUP（CPU  Percent，系统CPU占用率）采用任务�
 OpenHarmony  LiteOS-M提供以下两种CPU占用率的信息查询：
 
 - 系统CPU占用率。
-
 - 任务CPU占用率。
 
-**CPU占用率的计算方法：**
+此外，系统还提供了中断占用率的信息查询能力（需同时开启CPUP和定时器）。
+
+**占用率的计算方法：**
 
 系统CPU占用率=系统中除idle任务外其他任务运行总时间/系统运行总时间
 
 任务CPU占用率=任务运行总时间/系统运行总时间
+
+中断占用率=单个中断运行时间/中断运行总时间
 
 
 ## 接口说明
 
   **表1** 功能列表
 
-| 功能分类 | 接口描述 | 
+| 功能分类 | 接口描述 |
 | -------- | -------- |
-| 获取系统CPU占用率 | -&nbsp;LOS_SysCpuUsage：获取当前系统CPU占用率<br/>-&nbsp;LOS_HistorySysCpuUsage：获取系统历史CPU占用率 | 
-| 获取任务CPU占用率 | -&nbsp;LOS_TaskCpuUsage：获取指定任务CPU占用率<br/>-&nbsp;LOS_HistoryTaskCpuUsage：获取指定任务历史CPU占用率<br/>-&nbsp;LOS_HistoryTaskCpuUsage：获取指定任务历史CPU占用率 | 
-| 输出任务CPU占用率 | LOS_CpupUsageMonitor:输出任务历史CPU占用率 | 
+| 获取系统CPU占用率 | &nbsp;LOS_SysCpuUsage：获取当前系统CPU占用率<br/>&nbsp;LOS_HistorySysCpuUsage：获取系统历史CPU占用率 |
+| 获取任务CPU占用率 | &nbsp;LOS_TaskCpuUsage：获取指定任务CPU占用率<br/>&nbsp;LOS_HistoryTaskCpuUsage：获取指定任务历史CPU占用率<br/>&nbsp;LOS_AllTaskCpuUsage：获取所有任务CPU占用率 |
+| 输出任务CPU占用率 | LOS_CpupUsageMonitor：输出任务历史CPU占用率 |
+| 获取中断CPU占用率 | LOS_GetAllIrqCpuUsage：获取所有中断CPU占用率 |
 
 
 ## 开发流程
 
 CPU占用率的典型开发流程：
 
-1. 调用获取系统CPU使用率函数LOS_SysCpuUsage。
+1. 调用获取系统CPU占用率函数LOS_SysCpuUsage。
 
-2. 调用获取系统历史CPU使用率函数LOS_HistorySysCpuUsage。
+2. 调用获取系统历史CPU占用率函数LOS_HistorySysCpuUsage。
 
-3. 调用获取指定任务CPU使用率函数LOS_TaskCpuUsage。
+3. 调用获取指定任务CPU使占用率函数LOS_TaskCpuUsage。
    - 若任务已创建，则关中断，正常获取，恢复中断；
    - 若任务未创建，则返回错误码；
 
-4. 调用获取指定任务历史CPU使用率函数LOS_HistoryTaskCpuUsage。
+4. 调用获取指定任务历史CPU占用率函数LOS_HistoryTaskCpuUsage。
    - 若任务已创建，则关中断，根据不同模式正常获取，恢复中断；
    - 若任务未创建，则返回错误码；
 
-5. 调用获取所有任务CPU使用率函数LOS_AllCpuUsage。
+5. 调用获取所有任务CPU占用率函数LOS_AllCpuUsage。
    - 若CPUP已初始化，则关中断，根据不同模式正常获取，恢复中断；
    - 若CPUP未初始化或有非法入参，则返回错误码；
 
@@ -91,54 +99,63 @@ CPU占用率的典型开发流程：
 
 代码实现如下：
 
-  
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数ExampleCpup。
+
+
 ```
 #include "los_task.h"
-#include "los_cpup.h" 
-#define  MODE  4
-UINT32 g_cpuTestTaskID;  
-VOID ExampleCpup(VOID) 
-{      
+#include "los_cpup.h"
+
+#define TEST_TASK_PRIO  5
+#define TASK_DELAY_TIME 100
+VOID CpupTask(VOID)
+{
     printf("entry cpup test example\n");
-    while(1) {
-        usleep(100);
-    }
+    usleep(TASK_DELAY_TIME);
+    usleep(TASK_DELAY_TIME);
+    printf("exit cpup test example\n");
 }
-UINT32 ItCpupTest(VOID) 
-{     
+
+UINT32 ExampleCpup(VOID)
+{
     UINT32 ret;
     UINT32 cpupUse;
-    TSK_INIT_PARAM_S cpupTestTask = { 0 };
-    memset(&cpupTestTask, 0, sizeof(TSK_INIT_PARAM_S));
-    cpupTestTask.pfnTaskEntry = (TSK_ENTRY_FUNC)ExampleCpup;
-    cpupTestTask.pcName       = "TestCpupTsk"; 
-    cpupTestTask.uwStackSize  = 0x800;
-    cpupTestTask.usTaskPrio   = 5;
-    ret = LOS_TaskCreate(&g_cpuTestTaskID, &cpupTestTask);
+    UINT32 taskID;
+    TSK_INIT_PARAM_S cpupTestTask = { 0 };
+
+    cpupTestTask.pfnTaskEntry = (TSK_ENTRY_FUNC)CpupTask;
+    cpupTestTask.pcName       = "TestCpupTsk";
+    cpupTestTask.uwStackSize  = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
+    cpupTestTask.usTaskPrio   = TEST_TASK_PRIO;
+    ret = LOS_TaskCreate(&taskID, &cpupTestTask);
     if(ret != LOS_OK) {
         printf("cpupTestTask create failed .\n");
         return LOS_NOK;
     }
 
-    usleep(100);
+    usleep(TASK_DELAY_TIME);
 
     /* 获取当前系统CPU占用率 */
     cpupUse = LOS_SysCpuUsage();
     printf("the current system cpu usage is: %u.%u\n",
-            cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT); 
+            cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT);
 
-    cpupUse = LOS_HistorySysCpuUsage(CPU_LESS_THAN_1S);
-    /* 获取指定任务的CPU占用率，该测试例程中指定的任务为以上创建的cpup测试任务 */    
+    /* 获取当前系统历史CPU占用率 */
+    cpupUse = LOS_HistorySysCpuUsage(CPUP_LESS_THAN_1S);
     printf("the history system cpu usage in all time：%u.%u\n",
            cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT);
-    cpupUse = LOS_TaskCpuUsage(g_cpuTestTaskID);    
-    /* 获取指定历史任务在系统启动到现在的CPU占用率，该测试例程中指定的任务为以上创建的cpup测试任务 */    
+
+    /* 获取指定任务的CPU占用率 */
+    cpupUse = LOS_TaskCpuUsage(taskID);
     printf("cpu usage of the cpupTestTask:\n TaskID: %d\n usage: %u.%u\n",
-           g_cpuTestTaskID, cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT); 
-    cpupUse = LOS_HistoryTaskCpuUsage(g_cpuTestTaskID, CPU_LESS_THAN_1S);   
+           taskID, cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT);
+
+    /* 获取指定任务在系统启动到现在的CPU占用率 */
+    cpupUse = LOS_HistoryTaskCpuUsage(taskID, CPUP_LESS_THAN_1S);
     printf("cpu usage of the cpupTestTask in all time:\n TaskID: %d\n usage: %u.%u\n",
-           g_cpuTestTaskID, cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT);   
-    return LOS_OK; 
+           taskID, cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT);
+
+    return LOS_OK;
 }
 ```
 
@@ -146,11 +163,19 @@ UINT32 ItCpupTest(VOID)
 ### 结果验证
 
   编译运行得到的结果为：
-  
+
 ```
-entry cpup test example 
-the current system cpu usage is : 1.5
- the history system cpu usage in all time: 3.0
- cpu usage of the cpupTestTask: TaskID:10 usage: 0.0
- cpu usage of the cpupTestTask&nbsp;in all time: TaskID:10 usage: 0.0
+entry cpup test example
+the current system cpu usage is: 8.2
+the history system cpu usage in all time：8.9
+cpu usage of the cpupTestTask:
+ TaskID: 5
+ usage: 0.5
+cpu usage of the cpupTestTask in all time:
+ TaskID: 5
+ usage: 0.5
+
+exit cpup test example
+
+根据实际运行环境，上文中的数据会有差异，非固定结果
 ```

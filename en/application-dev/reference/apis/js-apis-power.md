@@ -1,8 +1,8 @@
-# Power Manager
+# @ohos.power
 
-The Power Manager module provides APIs for rebooting and shutting down the system, as well as querying the screen status.
+The **power** module provides APIs for rebooting and shutting down the system, as well as querying the screen status.
 
-> **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -87,7 +87,7 @@ try {
 
 isActive(): boolean
 
-Checks whether the current device is active.
+Checks whether the current device is active. In the active state, the screen is on if the device has a screen and the device is not in sleep state if the device does not have a screen.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 

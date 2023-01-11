@@ -3,7 +3,7 @@
 
 应用需要开启通知开关才能发送通知。开发者可以在通知发布前调用[requestEnableNotification()](../reference/apis/js-apis-notificationManager.md#notificationrequestenablenotification)方法，弹窗让用户选择是否开启使能开关，仅弹窗一次，后续调用该接口不再弹窗。
 
-  **图1** 使能通知开关示意图
+  **图1** 使能通知开关示意图  
 ![zh-cn_image_0000001416585590](figures/zh-cn_image_0000001416585590.png)
 
 
@@ -34,13 +34,13 @@
 1. 导入NotificationManager模块。
 
    ```ts
-   import NotificationManager from '@ohos.notificationManager';
+   import notificationManager from '@ohos.notificationManager';
    ```
 
 2. 请求发送通知的许可。
 
    ```ts
-   NotificationManager.requestEnableNotification().then(() => {
+   notificationManager.requestEnableNotification().then(() => {
        console.info(`[ANS] requestEnableNotification success`);
    }).catch((err) => {
        console.error(`[ANS] requestEnableNotification failed, errCode[${err}]`);

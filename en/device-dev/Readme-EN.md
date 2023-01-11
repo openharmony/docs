@@ -47,10 +47,10 @@
     - [Mini- and Small-System Devices](guide/device-wlan-led-control.md)	
     - [Standard-System Devices](guide/device-clock-guide.md)
 - Debugging
-  - [Test Case Development](subsystems/subsys-testguide-test.md)	
+  - [Test Case Development](device-test/developer_test.md)	
   - [R&D Tools](subsystems/subsys-toolchain-hdc-guide.md)
 - XTS Certification	
-  - [XTS Test Case Development](subsystems/subsys-xts-guide.md)	
+  - [XTS Test Case Development](device-test/xts.md)	
 - Tools
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)

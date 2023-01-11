@@ -1,8 +1,8 @@
 # Geographic Location
 
 > **NOTE**
+> - The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.geolocation`](js-apis-geolocation.md).
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs provided by this module are no longer maintained since API version 9. You are advised to use [geoLocationManager](js-apis-geoLocationManager.md) instead.
 
 
 ## Modules to Import
@@ -18,14 +18,11 @@ import geolocation from '@system.geolocation';
 ohos.permission.LOCATION
 
 
-## geolocation.getLocation<sup>(deprecated) </sup>
+## geolocation.getLocation
 
 getLocation(Object): void
 
 Obtains the geographic location.
-
-> **NOTE**
-> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation).
 
 **System capability**: SystemCapability.Location.Location.Lite
 
@@ -77,14 +74,11 @@ export default {
 ```
 
 
-## geolocation.getLocationType<sup>(deprecated) </sup>
+## geolocation.getLocationType
 
 getLocationType(Object): void
 
 Obtains the supported location types.
-
-> **NOTE**
-> This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Location.Location.Lite
 
@@ -120,14 +114,11 @@ export default {
 ```
 
 
-## geolocation.subscribe<sup>(deprecated) </sup>
+## geolocation.subscribe
 
 subscribe(Object): void
 
 Listens to the geographical location. If this method is called multiple times, the last call takes effect.
-
-> **NOTE**
-> This API is deprecated since API version 9. You are advised to use [geoLocationManager.on('locationChange')](js-apis-geoLocationManager.md#geolocationmanageronlocationchange).
 
 **System capability**: SystemCapability.Location.Location.Lite
 
@@ -175,14 +166,11 @@ export default {
 ```
 
 
-## geolocation.unsubscribe<sup>(deprecated) </sup>
+## geolocation.unsubscribe
 
 unsubscribe(): void
 
 Cancels listening to the geographical location.
-
-> **NOTE**
-> This API is deprecated since API version 9. You are advised to use [geoLocationManager.off('locationChange')](js-apis-geoLocationManager.md#geolocationmanagerofflocationchange).
 
 **System capability**: SystemCapability.Location.Location.Lite
 
@@ -197,14 +185,11 @@ export default {
 ```
 
 
-## geolocation.getSupportedCoordTypes<sup>(deprecated) </sup>
+## geolocation.getSupportedCoordTypes
 
 getSupportedCoordTypes(): Array&lt;string&gt;
 
 Obtains coordinate system types supported by the device.
-
-> **NOTE**
-> This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Location.Location.Lite
 

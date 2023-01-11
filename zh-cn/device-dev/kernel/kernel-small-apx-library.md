@@ -15,11 +15,19 @@ musl libc库支持POSIX标准，涉及的系统调用相关接口由OpenHarmony�
 标准库支持接口的详细情况请参考C库的API文档，其中也涵盖了与POSIX标准之间的差异说明。
 
 
-## 操作实例
+### 编程实例
+
+
+####  实例描述
 
 在本示例中，主线程创建了THREAD_NUM个子线程，每个子线程启动后等待被主线程唤醒，主线程成功唤醒所有子线程后，子线程继续执行直至生命周期结束，同时主线程通过pthread_join方法等待所有线程执行结束。
 
-  
+####  编程示例
+
+本演示代码在./kernel/liteos_a/testsuites/kernel/src/osTest.c中编译验证，在TestTaskEntry中调用验证入口函数testcase 或新建文件由主函数调用
+
+示例代码如下：  
+
 ```
 #include <stdio.h>
 #include <unistd.h>

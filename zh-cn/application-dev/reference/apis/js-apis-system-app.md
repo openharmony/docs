@@ -9,8 +9,8 @@
 ## 导入模块
 
 
-```
-import app from '@system.app';
+```ts
+import app from '@system.app'
 ```
 
 
@@ -32,13 +32,13 @@ getInfo(): AppResponse
 
 **示例：**
 
-  ```
-  export default {    
-    getInfo(){        
-      var info = app.getInfo();        
-        console.log(JSON.stringify(info));    
-    } 
+  ```ts
+export default {
+  getInfo() {
+    let info = app.getInfo()
+    console.log(JSON.stringify(info))
   }
+}
   ```
 
 ## app.terminate
@@ -53,11 +53,12 @@ terminate(): void
 
 **示例：**
 
-  ```
-  export default {    
-    terminate(){        
-      app.terminate();    
-    }}
+  ```ts
+export default {
+  terminate() {
+    app.terminate()
+  }
+}
   ```
 ## app.requestFullWindow
 
@@ -78,13 +79,14 @@ requestFullWindow(options?: RequestFullWindowOptions): void
 
 **示例：**
 
-  ```
-  export default {    
-    requestFullWindow(){        
-      app.requestFullWindow({            
-        duration: 200});    
-    }
+  ```ts
+export default {
+  requestFullWindow() {
+    app.requestFullWindow({
+      duration: 200
+    })
   }
+}
   ```
 
 ## app.setImageCacheCount<sup>7+</sup>
@@ -102,19 +104,19 @@ setImageCacheCount(value: number): void
 
 **示例：**
 
-  ```
-  // app.ets
-  import app from '@system.app';
-  
-  export default {
-      onCreate() { 
-          app.setImageCacheCount(100)    // 设置解码后图片内存缓存上限为100张
-          console.info('Application onCreate')
-      },
-      onDestroy() {
-          console.info('Application onDestroy')
-      },
-  }
+  ```ts
+// app.ets
+import app from '@system.app'
+
+export default {
+  onCreate() {
+    app.setImageCacheCount(100) // 设置解码后图片内存缓存上限为100张
+    console.info('Application onCreate')
+  },
+  onDestroy() {
+    console.info('Application onDestroy')
+  },
+}
   ```
 
 ## app.setImageRawDataCacheSize<sup>7+</sup>
@@ -132,20 +134,20 @@ setImageRawDataCacheSize(value: number): void
 
 **示例：**
 
-  ```
-  // app.ets
-  import app from '@system.app';
-  
-  export default {
-      onCreate() {
-          app.setImageRawDataCacheSize(104857600) 
-          // 设置解码前图片数据内存缓存上限为100MB (100MB=100*1024*1024B=104857600B)
-          console.info('Application onCreate')
-      },
-      onDestroy() {
-          console.info('Application onDestroy')
-      },
-  }
+  ```ts
+// app.ets
+import app from '@system.app'
+
+export default {
+  onCreate() {
+    app.setImageRawDataCacheSize(104857600)
+    // 设置解码前图片数据内存缓存上限为100MB (100MB=100*1024*1024B=104857600B)
+    console.info('Application onCreate')
+  },
+  onDestroy() {
+    console.info('Application onDestroy')
+  },
+}
   ```
 
 ## app.setImageFileCacheSize<sup>7+</sup>
@@ -163,20 +165,20 @@ setImageFileCacheSize(value: number): void
 
 **示例：**
 
-  ```
-  // app.ets
-  import app from '@system.app';
-  
-  export default {  
-      onCreate() {    
-          app.setImageFileCacheSize(209715200) 
-          // 设置图片文件数据缓存上限为200MB (200MB=200*1024*1024B=209715200B) 
-          console.info('Application onCreate')
-      },  
-      onDestroy() {
-          console.info('Application onDestroy')
-      },
-  }
+  ```ts
+// app.ets
+import app from '@system.app'
+
+export default {
+  onCreate() {
+    app.setImageFileCacheSize(209715200)
+    // 设置图片文件数据缓存上限为200MB (200MB=200*1024*1024B=209715200B) 
+    console.info('Application onCreate')
+  },
+  onDestroy() {
+    console.info('Application onDestroy')
+  },
+}
   ```
 
 ## AppResponse
@@ -213,5 +215,5 @@ setImageFileCacheSize(value: number): void
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| duration | number | 是 | 定义动画选项的数量。 |
+| duration | number | 是 | 定义动画选项的持续时间，单位为毫秒。 |
 

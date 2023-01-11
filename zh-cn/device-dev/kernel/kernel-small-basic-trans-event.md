@@ -15,7 +15,7 @@ OpenHarmony LiteOS-A的事件模块提供的事件，具有如下特点：
 
 - 任务通过创建事件控制块来触发事件或等待事件。
 
-- 事件间相互独立，内部实现为一个32位无符号整型，每一位标识一种事件类型。第25位不可用，因此最多可支持31种事件类型。
+- 事件间相互独立，内部实现为一个32位无符号整型，每一位标识一种事件类型。（0表示该时间类型未发生，1表示该事件类型已经发生，一共31种事件类型，第25bit位(`0x02U << 24`)系统保留）
 
 - 事件仅用于任务间的同步，不提供数据传输功能。
 
@@ -80,10 +80,10 @@ OpenHarmony LiteOS-A内核的事件模块提供下面几种功能。
 | 功能分类 | 接口描述 | 
 | -------- | -------- |
 | 初始化事件 | LOS_EventInit:初始化一个事件控制块 | 
-| 读/写事件 | -&nbsp;LOS_EventRead：读取指定事件类型，超时时间为相对时间：单位为Tick<br/>-&nbsp;LOS_EventWrite:写指定的事件类型 | 
+| 读/写事件 | -&nbsp;LOS_EventRead：读取指定事件类型，超时时间为相对时间：单位为Tick<br/>-&nbsp;LOS_EventWrite：写指定的事件类型 | 
 | 清除事件 | LOS_EventClear:清除指定的事件类型 | 
-| 校验事件掩码 | -&nbsp;LOS_EventPoll:根据用户传入的事件ID、事件掩码及读取模式，返回用户传入的事件是否符合预期<br/>-&nbsp;LOS_EventDestroy:销毁指定的事件控制块 | 
-| 销毁事件 | LOS_EventDestroy:销毁指定的事件控制块 | 
+| 校验事件掩码 | -&nbsp;LOS_EventPoll：根据用户传入的事件ID、事件掩码及读取模式，返回用户传入的事件是否符合预期<br/>-&nbsp;LOS_EventDestroy:销毁指定的事件控制块 | 
+| 销毁事件 | LOS_EventDestroy：销毁指定的事件控制块 | 
 
 
 ### 开发流程
@@ -103,7 +103,7 @@ OpenHarmony LiteOS-A内核的事件模块提供下面几种功能。
 6. 事件控制块销毁
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 进行事件读写操作时，事件的第25位为保留位，不可以进行位设置。
+> - 进行事件读写操作时，事件的第25bit(`0x02U << 24`)为保留bit位，不可以进行位设置。
 > 
 > - 对同一事件反复写入，算作一次写入。
 
@@ -128,9 +128,10 @@ OpenHarmony LiteOS-A内核的事件模块提供下面几种功能。
 
 ### 编程示例
 
+本演示代码在./kernel/liteos_a/testsuites/kernel/src/osTest.c中编译验证，在TestTaskEntry中调用验证入口函数Example_EventEntry。
+
 示例代码如下：
 
-  
 ```
 #include "los_event.h"
 #include "los_task.h"

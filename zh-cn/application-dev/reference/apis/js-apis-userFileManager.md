@@ -2343,7 +2343,7 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称  |  类型 |  可读  |  可写    说明 |
+| 名称  |  类型 |  可读  |  可写  |  说明 |
 | ----- |  ---- |  ---- |  ---- |  ---- |
 | deviceChange |  string | 是 | 是 |  设备 |
 | albumChange |  string | 是 | 是 |  相册 |

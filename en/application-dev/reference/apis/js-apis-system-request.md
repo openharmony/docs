@@ -1,9 +1,11 @@
-# Uploading and Downloading
+# @system.request
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
-> - The APIs of this module are no longer maintained since API version 6. It is recommended that you use [`@ohos.request`](js-apis-request.md) instead.
+The **system.request** module provides applications with basic upload and download capabilities.
+
+> **NOTE**
+> - The APIs of this module are deprecated since API version 9. You are advised to use [`@ohos.request`](js-apis-request.md) instead.
 > 
-> - The initial APIs of this module are supported since API version 4. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -13,179 +15,245 @@
 import request from '@system.request';
 ```
 
-## Required Permissions
-
-ohos.permission.INTERNET.
-
-
 ## request.upload
 
-upload(Object): void
+upload(options: UploadRequestOptions): void
 
-Uploads files.
+Uploads a file. This API returns no value.
+
+**System capability**: SystemCapability.MiscServices.Upload
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| url | string | Yes | URL&nbsp;of&nbsp;the&nbsp;upload&nbsp;server. |
-| header | Object | No | Request&nbsp;header. |
-| method | string | No | Request&nbsp;methods&nbsp;available:&nbsp;**POST**&nbsp;and&nbsp;**PUT**.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**POST**. |
-| files | Array&lt;File&gt; | Yes | List&nbsp;of&nbsp;files&nbsp;to&nbsp;upload,&nbsp;which&nbsp;is&nbsp;submitted&nbsp;through&nbsp;**multipart/form-data**. |
-| data | Array&lt;RequestData&gt; | No | Form&nbsp;data&nbsp;in&nbsp;the&nbsp;request&nbsp;body. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;download&nbsp;task&nbsp;is&nbsp;complete. |
-| fail | Function | No | Called&nbsp;when&nbsp;downloading&nbsp;fails&nbsp;or&nbsp;the&nbsp;task&nbsp;does&nbsp;not&nbsp;exist. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
-
-**Table 1** File
-
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| filename | string | No | File&nbsp;name&nbsp;in&nbsp;the&nbsp;header&nbsp;when&nbsp;**multipart**&nbsp;is&nbsp;used. |
-| name | string | No | Name&nbsp;of&nbsp;a&nbsp;form&nbsp;item&nbsp;when&nbsp;**multipart**&nbsp;is&nbsp;used.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**file**. |
-| uri | string | Yes | Local&nbsp;storage&nbsp;path&nbsp;of&nbsp;a&nbsp;file. |
-| type | string | No | Type&nbsp;of&nbsp;the&nbsp;file&nbsp;content.&nbsp;By&nbsp;default,&nbsp;the&nbsp;type&nbsp;is&nbsp;obtained&nbsp;based&nbsp;on&nbsp;the&nbsp;suffix&nbsp;of&nbsp;the&nbsp;file&nbsp;name&nbsp;or&nbsp;URI. |
-
-**Table 2** RequestData
-
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| name | string | Yes | Name&nbsp;of&nbsp;the&nbsp;form&nbsp;element |
-| value | string | Yes | Value&nbsp;of&nbsp;the&nbsp;form&nbsp;element |
-
-When the files are successfully uploaded, the following values will be returned.
-
-| Name | Type | Description |
-| -------- | -------- | -------- |
-| code | number | HTTP&nbsp;status&nbsp;code&nbsp;returned&nbsp;by&nbsp;the&nbsp;server. |
-| data | string | Content&nbsp;returned&nbsp;by&nbsp;the&nbsp;server.&nbsp;The&nbsp;value&nbsp;type&nbsp;is&nbsp;determined&nbsp;by&nbsp;the&nbsp;type&nbsp;in&nbsp;the&nbsp;returned&nbsp;headers. |
-| headers | Object | Headers&nbsp;returned&nbsp;by&nbsp;the&nbsp;server. |
-
-When the files fail to be uploaded, an HTTP status code is returned in **code** of **data**.
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | options | [UploadRequestOptions](#uploadrequestoptions) | Yes| Upload configurations.|
 
 **Example**
 
-```
-export default {    
-  upLoad() {
-    request.upload({
-      url: 'http://www.path.com',
-      files: [
-        {
-           uri: 'internal://cache/path/to/file.txt',
-           name: 'file',
-           filename: 'file.txt',
-        },
-      ],
-      data:[
-        {
-          name: 'name1',
-          value: 'value',
-         },
-       ],
-       success: function(data) {
-         console.log('upload success, code:' + data.code);
-       },
-       fail: function() {
-         console.log('upload fail');
-       },
-     });
+  ```js
+  let uploadRequestOptions = {
+    url: 'http://www.path.com',
+    method: 'POST',
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    data: [{ name: "name123", value: "123" }],
+    success: function(data) {
+      console.info(' upload success, code:' + JSON.stringify(data));
+    },
+    fail: function(data, code) {
+      console.info(' upload fail data: ' + data + 'code: ' + code);
+    },
+    complete: function (){
+      console.info(' upload complete');
+    }
   }
-}
-```
+  try {
+    request.upload(uploadRequestOptions);
+    console.info('upload start ');
+  } catch(err) {
+    console.info(' upload err:' + err);
+  }
+  ```
+
+
+## UploadRequestOptions
+
+**System capability**: SystemCapability.MiscServices.Upload
+
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | url | string | Yes| URL of the upload server.|
+  | data | Array&lt;[RequestData](#requestdata)&gt; | No| Form data in the request body.|
+  | files | Array&lt;[RequestFile](#requestfile)&gt; | Yes| List of files to upload, which is submitted through **multipart/form-data**.|
+  | header | Object | No| Request header.|
+  | method | string | No| Request method, which can be **'POST'** or **'PUT'**. The default value is **POST**.|
+  | success | Function | No| Called when API call is successful.|
+  | fail | Function | No| Called when API call has failed.|
+  | complete | Function | No| Called when API call is complete.|
+
+**success parameter**
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | data | [UploadResponse](#uploadresponse) | Yes| Information returned when the upload task is successful.|
+
+**fail parameters**
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | data | any | Yes| Header information returned when the upload task fails.|
+  | code | number | Yes| HTTP status code returned when the upload task fails.|
+
+
+
+## UploadResponse
+
+**System capability**: SystemCapability.MiscServices.Upload
+
+  | Name| Type| Description|
+  | -------- | -------- | -------- |
+  | code | number | HTTP status code returned by the server.|
+  | data | string | Content returned by the server. The value type is determined by the type in the returned headers.|
+  | headers | Object | Headers returned by the server.|
+
+
+## RequestFile
+
+**System capability**: SystemCapability.MiscServices.Upload
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | filename | string | No| File name in the header when **multipart** is used.|
+  | name | string | No| Name of a form item when **multipart** is used. The default value is **file**.|
+  | uri | string | Yes| Local path for storing files.|
+  | type | string | No| Type of the file content. By default, the type is obtained based on the extension of the file name or URI.|
+
+
+## RequestData
+
+**System capability**: SystemCapability.MiscServices.Upload
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | name | string | Yes| Name of the form element.|
+  | value | string | Yes| Value of the form element.|
+
 
 
 ## request.download
 
-download(Object): void
+download(options: DownloadRequestOptions): void
 
-Downloads files.
+Downloads a file. This API returns no value.
+
+**System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| url | string | Yes | Resource&nbsp;URL. |
-| header | Object | No | Request&nbsp;header. |
-| description | string | No | Download&nbsp;description.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;the&nbsp;file&nbsp;name. |
-| filename | string | No | Name&nbsp;of&nbsp;the&nbsp;file&nbsp;to&nbsp;download.&nbsp;The&nbsp;value&nbsp;is&nbsp;obtained&nbsp;from&nbsp;the&nbsp;current&nbsp;request&nbsp;or&nbsp;resource&nbsp;URL&nbsp;by&nbsp;default. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;download&nbsp;task&nbsp;is&nbsp;complete. |
-| fail | Function | No | Called&nbsp;when&nbsp;downloading&nbsp;fails&nbsp;or&nbsp;the&nbsp;task&nbsp;does&nbsp;not&nbsp;exist. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
-
-Return values of the **success** callback
-
-| Name | Type | Description |
-| -------- | -------- | -------- |
-| token | string | Download&nbsp;token,&nbsp;which&nbsp;is&nbsp;used&nbsp;to&nbsp;obtain&nbsp;the&nbsp;download&nbsp;status. |
-
-One of the following error codes will be returned if the operation fails.
-
-| Error&nbsp;Code | Description |
-| -------- | -------- |
-| 400 | Download&nbsp;task&nbsp;failed |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | options | [DownloadRequestOptions](#downloadrequestoptions) | Yes| Download configurations.|
 
 **Example**
 
-```
-export default {    
-  downLoad() {        
-    request.download({            
-      url: 'http://www.path.com',            
-      success: function(data) {                
-        console.log('call success callback success: ' + data.token);            
-      },            
-      fail: function(data, code) {                
-        console.log('handling fail');            
-      },        
-    });    
+  ```js
+  let downloadRequestOptions = {
+    url: 'http://www.path.com',
+    filename: 'requestSystenTest',
+    header: '',
+    description: 'this is requeSystem download response',
+    success: function(data) {
+      console.info(' download success, code:' + JSON.stringify(data));
+    },
+    fail: function(data, code) {
+      console.info(' download fail data: ' + data + 'code: ' + code);
+    },
+    complete: function (){
+      console.info(' download complete');
+    }
   }
-}
-```
+  try {
+    request.download(downloadRequestOptions);
+    console.info('download start ');
+  } catch(err) {
+    console.info(' download err:' + err);
+  }
+  ```
+
+
+## DownloadRequestOptions
+
+**System capability**: SystemCapability.MiscServices.Download
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | url | string | Yes| Resource URL.|
+  | filename | string | No| Name of the file to download. The value is obtained from the current request or resource URL by default.|
+  | header | Object | No| Request header.|
+  | description | string | No| Download description. The default value is the file name.|
+  | success | Function | No| Called when API call is successful.|
+  | fail | Function | No| Called when API call has failed.|
+  | complete | Function | No| Called when API call is complete.|
+
+**success parameter**
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | data | [DownloadResponse](#downloadresponse) | Yes| Information returned when the download task is successful.|
+
+**fail parameters**
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | data | any | Yes| Header information returned when the download task fails.|
+  | code | number | Yes| HTTP status code returned when the download task fails.|
+
+## DownloadResponse
+
+**System capability**: SystemCapability.MiscServices.Download
+
+  | Name| Type| Description|
+  | -------- | -------- | -------- |
+  | token | string | Download token, which is used to obtain the download status|
 
 
 ## request.onDownloadComplete
 
-onDownloadComplete(Object): void
+onDownloadComplete(options: OnDownloadCompleteOptions): void
 
-Listens to download task status.
+Listens for download task status. This API returns no value.
+
+**System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| token | string | Yes | Token&nbsp;of&nbsp;the&nbsp;result&nbsp;returned&nbsp;by&nbsp;the&nbsp;download&nbsp;method |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;download&nbsp;task&nbsp;is&nbsp;complete. |
-| fail | Function | No | Called&nbsp;when&nbsp;downloading&nbsp;fails&nbsp;or&nbsp;the&nbsp;task&nbsp;does&nbsp;not&nbsp;exist. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
-
-Return values of the **success** callback
-
-| Name | Type | Description |
-| -------- | -------- | -------- |
-| uri | string | URI&nbsp;of&nbsp;the&nbsp;download&nbsp;file |
-
-One of the following error codes will be returned if the listening fails.
-
-| Error&nbsp;Code | Description |
-| -------- | -------- |
-| 400 | Download&nbsp;task&nbsp;failed |
-| 401 | Download&nbsp;task&nbsp;not&nbsp;exist |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | options | [OnDownloadCompleteOptions](#ondownloadcompleteoptions) | Yes| Configurations of the download task.|
 
 **Example**
 
-```
-export default {    
-  onDownloadComplete() {        
-    request.onDownloadComplete({            
-      token: 'token-index',            
-      success: function(data) {                
-        console.log('download success, uri:' + data.uri);            
-      },            
-      fail: function(data, code) {                
-        console.log('download fail');            
-      },
-    });    
+  ```js
+  let onDownloadCompleteOptions = {
+    token: 'token-index',
+    success: function(data) {
+      console.info(' download success, code:' + JSON.stringify(data));
+    },
+    fail: function(data, code) {
+      console.info(' download fail data: ' + data + 'code: ' + code);
+    },
+    complete: function (){
+      console.info(' download complete');
+    }
   }
-}
-```
+  request.onDownloadComplete(onDownloadCompleteOptions);
+  ```
+
+
+## OnDownloadCompleteOptions
+
+**System capability**: SystemCapability.MiscServices.Download
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | token | string | Yes| Result token returned by the download API.|
+  | success | Function | No| Called when API call is successful.|
+  | fail | Function | No| Called when API call has failed.|
+  | complete | Function | No| Called when API call is complete.|
+
+**success parameter**
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | data | [OnDownloadCompleteResponse](#ondownloadcompleteresponse) | Yes| Information returned when the download task is successful.|
+
+**fail parameters**
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | data | any | Yes| Header information returned when the download task fails.|
+  | code | number | Yes| HTTP status code returned when the download task fails.|
+
+
+## OnDownloadCompleteResponse
+
+**System capability**: SystemCapability.MiscServices.Download
+
+  | Name| Type| Description|
+  | -------- | -------- | -------- |
+  | uri | string | URI of the download file.|

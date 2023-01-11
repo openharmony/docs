@@ -44,7 +44,7 @@ To learn more about the APIs for obtaining device location information, see [Geo
 2. Import the **geoLocationManager** module by which you can implement all APIs related to the basic location capabilities.
    
    ```ts
-   import geoLocationManager from '@ohos.geoLocationManager';
+   import geoLocationManager from '@ohos.geolocation';
    ```
 
 3. Instantiate the **LocationRequest** object. This object provides APIs to notify the system of the location service type and the interval of reporting location information.<br>
@@ -53,7 +53,7 @@ To learn more about the APIs for obtaining device location information, see [Geo
    To better serve your needs for using APIs, the system has categorized APIs into different packages to match your common use cases of the location function. In this way, you can directly use the APIs specific to a certain use case, making application development much easier. The following table lists the use cases currently supported.
 
    
-   ```ts
+   ```
        export enum LocationRequestScenario {
             UNSET = 0x300,
             NAVIGATION,

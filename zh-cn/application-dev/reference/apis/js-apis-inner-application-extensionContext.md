@@ -61,10 +61,11 @@ export default class TheServiceExtension extends ServiceExtension {
 
 在entry的MainAbility的onCreate回调内启动ServiceExtension
 ```ts
-import Ability from '@ohos.app.ability.Ability'
-export default class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate");
+        console.log("[Demo] EntryAbility onCreate");
         let wantExt = {
             deviceId: "",
             bundleName: "com.example.TheServiceExtension",

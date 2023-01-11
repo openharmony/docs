@@ -134,7 +134,7 @@ struct AlphabetIndexerSample {
           .selectedFont({size: 16, weight: FontWeight.Bolder}) // Font style of the selected text.
           .popupFont({ size: 30, weight: FontWeight.Bolder}) // Font style of the pop-up text.
           .itemSize(28) // Size of an item in the alphabetic index bar.
-          .alignStyle(IndexerAlign.Left) // Position of the pop-up window relative to the center of the indexer bar's top border, which is left in this example.
+          .alignStyle(IndexerAlign.Left) // The pop-up window is displayed on the right of the alphabetic index bar.
           .onSelect((index: number) => {
             console.info(this.value[index] + ' Selected!')
           })
@@ -162,4 +162,4 @@ struct AlphabetIndexerSample {
 }
 ```
 
-![en-us_image_0000001212378392](figures/en-us_image_0000001212378392.gif)
+![alphabet](figures/alphabet.gif)

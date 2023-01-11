@@ -69,41 +69,41 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
    ```
 3. 导入Ability模块。
    ```js
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility';
    ```
-4. 实现Ability生命周期接口，接口默认生成的相对路径：entry\src\main\ets\MainAbility\MainAbility.ts。
+4. 实现UIAbility生命周期接口，接口默认生成的相对路径：entry\src\main\ets\entryability\EntryAbility.ts。
 
    在`onWindowStageCreate(windowStage)`中通过loadContent接口设置应用要加载的页面，window接口的使用详见[窗口开发指导](../windowmanager/application-window-stage.md)。
    ```ts
-   export default class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("MainAbility onCreate")
+        console.log("EntryAbility onCreate")
     }
    
     onDestroy() {
-        console.log("MainAbility onDestroy")
+        console.log("EntryAbility onDestroy")
     }
    
     onWindowStageCreate(windowStage) {
-        console.log("MainAbility onWindowStageCreate")
+        console.log("EntryAbility onWindowStageCreate")
    
         windowStage.loadContent("pages/index").then(() => {
-            console.log("MainAbility load content succeed")
+            console.log("EntryAbility load content succeed")
         }).catch((error) => {
-            console.error("MainAbility load content failed with error: " + JSON.stringify(error))
+            console.error("EntryAbility load content failed with error: " + JSON.stringify(error))
         })
     }
    
     onWindowStageDestroy() {
-        console.log("MainAbility onWindowStageDestroy")
+        console.log("EntryAbility onWindowStageDestroy")
     }
    
     onForeground() {
-        console.log("MainAbility onForeground")
+        console.log("EntryAbility onForeground")
     }
    
     onBackground() {
-        console.log("MainAbility onBackground")
+        console.log("EntryAbility onBackground")
     }
    }
    ```
@@ -132,19 +132,20 @@ export default class MyAbilityStage extends AbilityStage {
 
 如下示例展示了Ability通过context属性获取包代码路径、HAP名称、Ability名称以及系统语言的方法。具体示例代码如下：
 ```ts
-import Ability from '@ohos.application.Ability'
-export default class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("MainAbility onCreate")
+        console.log("EntryAbility onCreate")
         let context = this.context
-        console.log("MainAbility bundleCodeDir" + context.bundleCodeDir)
+        console.log("EntryAbility bundleCodeDir" + context.bundleCodeDir)
 
         let abilityInfo = this.context.abilityInfo;
-        console.log("MainAbility ability bundleName" + abilityInfo.bundleName)
-        console.log("MainAbility ability name" + abilityInfo.name)
+        console.log("EntryAbility ability bundleName" + abilityInfo.bundleName)
+        console.log("EntryAbility ability name" + abilityInfo.name)
 
         let config = this.context.config
-        console.log("MainAbility config language" + config.language)
+        console.log("EntryAbility config language" + config.language)
     }
 }
 ```
@@ -169,10 +170,10 @@ export default class MyAbilityStage extends AbilityStage {
 
 如下示例展示了Ability的`onConfigurationUpdated`回调实现，系统语言、颜色模式以及Display相关的参数，比如方向、Density，发生变化时触发该回调。具体示例代码如下：
 ```ts
-import Ability from '@ohos.application.Ability'
-import ConfigurationConstant from '@ohos.application.ConfigurationConstant'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import ConfigurationConstant from '@ohos.application.ConfigurationConstant';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     direction : number;
 
     onCreate(want, launchParam) {
@@ -208,7 +209,7 @@ let context = this.context
 var want = {
     "deviceId": "",
     "bundleName": "com.example.MyApplication",
-    "abilityName": "MainAbility"
+    "abilityName": "EntryAbility"
 };
 context.startAbility(want).then(() => {
     console.log("Succeed to start ability")
@@ -225,7 +226,7 @@ let context = this.context
 var want = {
     "deviceId": getRemoteDeviceId(),
     "bundleName": "com.example.MyApplication",
-    "abilityName": "MainAbility"
+    "abilityName": "EntryAbility"
 };
 context.startAbility(want).then(() => {
     console.log("Succeed to start remote ability")
@@ -240,13 +241,13 @@ function getRemoteDeviceId() {
     if (typeof dmClass === 'object' && dmClass != null) {
         var list = dmClass.getTrustedDeviceListSync();
         if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
-            console.log("MainAbility onButtonClick getRemoteDeviceId err: list is null");
+            console.log("EntryAbility onButtonClick getRemoteDeviceId err: list is null");
             return;
         }
-        console.log("MainAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
+        console.log("EntryAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
         return list[0].deviceId;
     } else {
-        console.log("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null");
+        console.log("EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null");
     }
 }
 ```
@@ -260,7 +261,7 @@ async function reStartAbility() {
   try {
     await this.context.startAbility({
       bundleName: "com.sample.MyApplication",
-      abilityName: "MainAbility",
+      abilityName: "EntryAbility",
       uri: "pages/second"
     })
     console.log('start ability succeed')
@@ -272,9 +273,9 @@ async function reStartAbility() {
 
 在Ability的onNewWant回调中获取包含页面信息的want参数：
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
   onNewWant(want, launchParams) {
     globalThis.newWant = want
   }

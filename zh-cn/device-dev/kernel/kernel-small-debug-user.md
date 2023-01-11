@@ -5,7 +5,7 @@
 Debug版本的musl-libc库为用户提供内存泄漏检测、堆内存统计、踩内存分析以及backtrace功能等维测手段，可以提高用户态内存相关问题的定位效率。
 
 
-采用了对malloc/free接口进行插桩，保存关键节点信息，然后程序在申请和释放内存时进行内存节点完整性校验，最后在程序结束时通过统计节点信息得到内存统计信息并根据统计信息判断内存是否泄漏的设计思想
+采用了对malloc/free接口进行插桩，保存关键节点信息，然后程序在申请和释放内存时进行内存节点完整性校验，最后在程序结束时通过统计节点信息得到内存统计信息并根据统计信息判断内存是否泄漏的设计思想。
 
 ## 运行机制
 
@@ -28,7 +28,7 @@ Debug版本的musl-libc库为用户提供内存泄漏检测、堆内存统计、
 
   ![zh-cn_image_0000001165890518](figures/zh-cn_image_0000001165890518.png)
 
-其中，TID表示线程ID；PID表示进程ID；ptr表示申请的内存地址；size表示申请的内存大小；lr[n]表示函数调用栈地址，变量n可以根据具体场景的需要进行配置。
+其中，TID表示线程ID；PID表示进程ID；ptr表示申请的内存地址；size表示申请的内存大小；lr[n]表示函数调用栈地址，变量n的大小可以根据具体场景的需要进行配置。
 
 释放内存时，将free等接口的入参指针与node的ptr字段进行匹配，如果相同则删除该内存节点控制块信息。
 
@@ -46,7 +46,7 @@ Debug版本的musl-libc库为用户提供内存泄漏检测、堆内存统计、
 
 ### 内存完整性检查
 
-- 使用malloc申请内存（小于等于0x1c000bytes时通过堆分配算法分配）
+- 使用malloc申请内存（小于等于0x1c000 bytes时通过堆分配算法分配）
   用户程序申请堆内存时，在堆内存节点处添加校验值等信息，如果校验值异常，则很有可能是前一块堆内存使用越界导致的（目前无法识别校验值被野指针破坏的场景）。在内存申请、释放时校验内存节点校验值的正确性，若内存节点被破坏，校验失败时则输出tid、pid及当前被踩节点前一块堆内存申请时保存的调用栈信息，通过addr2line工具可获得具体的代码行信息，辅助用户解决问题。
 
     **图4** node节点头信息添加校验值
@@ -59,7 +59,7 @@ Debug版本的musl-libc库为用户提供内存泄漏检测、堆内存统计、
 
     ![zh-cn_image_0000001165890904](figures/zh-cn_image_0000001165890904.png)
 
-- 使用malloc申请内存（大于0x1c000bytes时通过mmap申请）
+- 使用malloc申请内存（大于0x1c000 bytes时通过mmap申请）
   当malloc通过mmap申请大块内存时，在返回给用户使用的内存区间头和尾分别多申请一个页，一个页PAGE_SIZE当前为0x1000，这两个页分别通过mprotect接口设置权限为PROT_NONE（无可读可写权限），可以有效防止内存越界读写问题：越界读写数据时由于无读写权限而导致用户程序异常，根据异常调用栈信息可找到相应的代码逻辑。
 
     **图6** malloc通过mmap机制申请内存的内存布局
@@ -119,7 +119,7 @@ Debug版本的musl-libc库为用户提供内存泄漏检测、堆内存统计、
 代码功能：显式调用调测模块的相关接口对用户代码进行内存校验。
 
 
-```
+```c
 #include <pthread.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -127,7 +127,8 @@ Debug版本的musl-libc库为用户提供内存泄漏检测、堆内存统计、
 
 #define MALLOC_LEAK_SIZE  0x300
 
-void func(void) {
+void func(void)
+{
     char *ptr = malloc(MALLOC_LEAK_SIZE);
     memset(ptr, '3', MALLOC_LEAK_SIZE);
 }
@@ -158,15 +159,15 @@ $ clang -o mem_check mem_check.c -funwind-tables -rdynamic -g -mfloat-abi=softfp
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 本编译示例基于将编译器的路径写入环境变量中，即.bashrc文件中。
-> 
+>
 > - 编译用户程序及所需的lib库时，需要添加编译选项-funwind-tables，-rdynamic，-g，用于栈回溯。
-> 
+>
 > - -mfloat-abi=softfp，-mcpu=cortex-a7，-mfpu=neon-vfpv4编译选项用于指定具体的芯片架构、浮点数计算优化、fpu，与具体的libc库使用的编译选项保持一致，否则链接时可能出现找不到libc库文件。
-> 
+>
 > - -target arm-liteos用于指定编译器相关库文件路径。
-> 
+>
 > - --sysroot=/home/&lt;user-name&gt;/directory/out/hispark_taurus/ipcamera_hispark_taurus/sysroot用于指定编译器库文件搜索根目录，假设OpenHarmony工程代码存放路径为/home/&lt;user-name&gt;/directory。其中out/hispark_taurus/ipcamera_hispark_taurus路径为在编译时，hb set命令指定的具体产品，本示例选择的是ipcamera_hispark_taurus产品。
-> 
+>
 > - $(clang -mfloat-abi=softfp -mcpu=cortex-a7 -mfpu=neon-vfpv4 -target arm-liteos -print-file-name=libunwind.a)用于指定相应的unwind库的路径。
 
 
@@ -175,7 +176,7 @@ $ clang -o mem_check mem_check.c -funwind-tables -rdynamic -g -mfloat-abi=softfp
 
 ```
 OHOS # ./mem_check
-OHOS # 
+OHOS #
 ==PID:4== Heap memory statistics(bytes): // 堆内存统计信息
     [Check point]: // check点调用栈
         #00: <main+0x38>[0x86c] -> mem_check
@@ -293,14 +294,15 @@ kill -37 <pid> # 检查堆内存头节点是否完整
 代码功能：构造内存问题利用命令行方式进行内存调测。
 
 
-```
+```c
 #include <pthread.h>
 #include <stdlib.h>
 #include <stdio.h>
 
 #define MALLOC_LEAK_SIZE  0x300
 
-void func(void) {
+void func(void)
+{
     char *ptr = malloc(MALLOC_LEAK_SIZE);
     memset(ptr, '3', MALLOC_LEAK_SIZE);
 }
@@ -325,9 +327,9 @@ int main()
 
 ```
 OHOS # ./mem_check --mwatch // 利用task命令可以查到mem_check进程的pid为4
-OHOS # 
+OHOS #
 OHOS # kill -35 4 // 查看堆内存统计信息
-OHOS # 
+OHOS #
 ==PID:4== Heap memory statistics(bytes):
     [Check point]:
         #00: <arm_signal_process+0x5c>[0x58dfc] -> /lib/libc.so
@@ -337,7 +339,7 @@ OHOS #
 ==PID:4== Total heap: 0x640 byte(s), Peak: 0x640 byte(s)
 
 OHOS # kill -36 4 // 检查是否存在堆内存泄漏
-OHOS # 
+OHOS #
 ==PID:4== Detected memory leak(s):
     [Check point]:
         #00: <check_leak+0x1c4>[0x2da4c] -> /lib/libc.so
@@ -355,7 +357,7 @@ OHOS #
 ==PID:4== SUMMARY: 0x640 byte(s) leaked in 2 allocation(s).
 
 OHOS # kill -37 4 // 检查堆内存头节点的完整性
-OHOS # 
+OHOS #
 Check heap integrity ok!
 ```
 
@@ -391,109 +393,109 @@ Now using addr2line ...
 ##### 使用mrecord参数命令
 
 1. 执行用户程序并指定记录内存调测信息的文件路径
-  
+
    ```
    OHOS # ./mem_check --mrecord /storage/check.txt
    ```
 
 2. 利用kill -35 &lt;pid&gt;统计内存信息，该信息将会输出到文件中，使用cat命令查看
-  
+
    ```
    OHOS # kill -35 4
    OHOS # Memory statistics information saved in /storage/pid(4)_check.txt
-   
+
    OHOS # cat /storage/pid(4)_check.txt
-   
+
    ==PID:4== Heap memory statistics(bytes):
        [Check point]:
            #00: <arm_signal_process+0x5c>[0x5973c] -> /lib/libc.so
-   
+
        [TID: 18, Used: 0x640]
-   
+
    ==PID:4== Total heap: 0x640 byte(s), Peak: 0x640 byte(s)
    ```
 
 3. 利用kill -36 &lt;pid&gt;校验内存完整性，该信息将会输出到文件中，使用cat命令查看
-  
+
    ```
    OHOS # kill -36 4
    OHOS # Leak check information saved in /storage/pid(4)_check.txt
-   
+
    OHOS # cat /storage/pid(4)_check.txt
-   
+
    ==PID:4== Heap memory statistics(bytes):
        [Check point]:
            #00: <arm_signal_process+0x5c>[0x5973c] -> /lib/libc.so
-   
+
        [TID: 18, Used: 0x640]
-   
+
    ==PID:4== Total heap: 0x640 byte(s), Peak: 0x640 byte(s)
-   
+
    ==PID:4== Detected memory leak(s):
        [Check point]:
            #00: <check_leak+0x1c4>[0x2e38c] -> /lib/libc.so
            #01: <arm_signal_process+0x5c>[0x5973c] -> /lib/libc.so
-   
+
        [TID:18 Leak:0x320 byte(s)] Allocated from:
            #00: <main+0x14>[0x724] -> mem_check
            #01: <(null)+0x1fdd231c>[0x2231c] -> /lib/libc.so
-   
+
        [TID:18 Leak:0x320 byte(s)] Allocated from:
            #00: <func+0x14>[0x6ec] -> mem_check
            #01: <main+0x30>[0x740] -> mem_check
            #02: <(null)+0x1fdd231c>[0x2231c] -> /lib/libc.so
-   
+
    ==PID:4== SUMMARY: 0x640 byte(s) leaked in 2 allocation(s).
    ```
 
 4. 利用kill -9 &lt;pid&gt;杀掉当前进程，进程退出后会默认校验内存完整性，该信息将会输出到文件中，使用cat命令查看
-  
+
    ```
    OHOS # kill -9 4
    OHOS # Leak check information saved in /storage/pid(4)_check.txt
-   
+
    Check heap integrity ok!
-   
+
    OHOS # cat /storage/pid(4)_check.txt
-   OHOS # 
+   OHOS #
    ==PID:4== Heap memory statistics(bytes):
        [Check point]:
            #00: <arm_signal_process+0x5c>[0x5973c] -> /lib/libc.so
-   
+
        [TID: 18, Used: 0x640]
-   
+
    ==PID:4== Total heap: 0x640 byte(s), Peak: 0x640 byte(s)
-   
+
    ==PID:4== Detected memory leak(s):
        [Check point]:
            #00: <check_leak+0x1c4>[0x2e38c] -> /lib/libc.so
            #01: <arm_signal_process+0x5c>[0x5973c] -> /lib/libc.so
-   
+
        [TID:18 Leak:0x320 byte(s)] Allocated from:
            #00: <main+0x14>[0x724] -> mem_check
            #01: <(null)+0x1fdd231c>[0x2231c] -> /lib/libc.so
-   
+
        [TID:18 Leak:0x320 byte(s)] Allocated from:
            #00: <func+0x14>[0x6ec] -> mem_check
            #01: <main+0x30>[0x740] -> mem_check
            #02: <(null)+0x1fdd231c>[0x2231c] -> /lib/libc.so
-   
+
    ==PID:4== SUMMARY: 0x640 byte(s) leaked in 2 allocation(s).
-   
+
    ==PID:4== Detected memory leak(s):
        [Check point]:
            #00: <check_leak+0x1c4>[0x2e38c] -> /lib/libc.so
            #01: <exit+0x28>[0x11b2c] -> /lib/libc.so
-   
+
        [TID:18 Leak:0x320 byte(s)] Allocated from:
            #00: <main+0x14>[0x724] -> mem_check
            #01: <(null)+0x1fdd231c>[0x2231c] -> /lib/libc.so
-   
+
        [TID:18 Leak:0x320 byte(s)] Allocated from:
            #00: <func+0x14>[0x6ec] -> mem_check
            #01: <main+0x30>[0x740] -> mem_check
            #02: <(null)+0x1fdd231c>[0x2231c] -> /lib/libc.so
-   
+
    ==PID:4== SUMMARY: 0x640 byte(s) leaked in 2 allocation(s).
    ```
 
@@ -504,7 +506,7 @@ Now using addr2line ...
 
 ### UAF(Use after free)
 
-- 申请小块内存（不大于0x1c000字节）
+- 申请小块内存（不大于0x1c000 bytes）
   free之后：
 
   读操作：读取free之后的内存大概率是魔术数字(0xFEFEFEFE)
@@ -515,7 +517,7 @@ Now using addr2line ...
   写操作：无法校验。
 
 
-- 申请大块内存（大于0x1c000）
+- 申请大块内存（大于0x1c000 bytes）
   堆内存由malloc通过调用mmap接口申请，free之后若仍访问该内存，则用户程序异常（该内存区间已被unmap）。
 
 
@@ -526,22 +528,23 @@ Double free时，用户程序将会异常退出。
 
 ### 堆内存节点被踩
 
-- 申请小块内存（不大于0x1c000）
+- 申请小块内存（不大于0x1c000 bytes）
+
   堆内存节点被踩时，用户程序将会异常退出，并输出破坏被踩节点的可能的堆内存申请调用栈，对于野指针踩内存情况无法校验出来。例如用户程序mem_check中存在堆内存越界踩的情况，利用命令行方式可以获得踩内存的可能的具体位置。
 
-  
+
   ```
-  OHOS # ./mem_check --mwatch  
-  OHOS # 
+  OHOS # ./mem_check --mwatch
+  OHOS #
   ==PID:6== Memory integrity information:
       [TID:28 allocated addr: 0x272e1ea0, size: 0x120] The possible attacker was allocated from:
           #00: <malloc+0x808>[0x640e8] -> /lib/libc.so
-          #01: <threadFunc1+0x7c>[0x21d0] -> mem_check 
+          #01: <threadFunc1+0x7c>[0x21d0] -> mem_check
   ```
 
   可以通过调用栈解析脚本对调用栈信息进行解析。
 
-- 申请大块内存（大于0x1c000）
+- 申请大块内存（大于0x1c000 bytes）
 
   堆内存由malloc通过mmap接口申请，申请得到的堆内存块前后各置一个size为PAGE_SIZE大小的区间，设置无读写权限，读写操作会触发用户程序异常。
 

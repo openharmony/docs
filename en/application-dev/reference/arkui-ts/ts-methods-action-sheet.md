@@ -7,10 +7,6 @@ An action sheet is a dialog box that displays actions a user can take.
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-## Required Permissions
-
-None
-
 
 ## ActionSheet.show
 
@@ -22,21 +18,21 @@ Defines and shows the action sheet.
 
 | Name       | Type                   | Mandatory | Description                         |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| title      | string \| [Resource](ts-types.md#resource) | Yes    |  Title of the dialog box.|
-| message    | string \| [Resource](ts-types.md#resource) | Yes    | Content of the dialog box. |
+| title      | [Resource](ts-types.md#resource) \| string | Yes    |  Title of the dialog box.|
+| message    | [Resource](ts-types.md#resource) \| string | Yes    | Content of the dialog box. |
 | autoCancel | boolean                           | No    | Whether to close the dialog box when the overlay is clicked.<br>Default value: **true**|
-| confirm    | {<br>value: string \| [Resource](ts-types.md#resource),<br>action: () =&gt; void<br>} | No | Text content of the confirm button and callback upon button clicking.<br>Default value:<br>**value**: button text.<br>**action**: callback upon button clicking.|
+| confirm    | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>action: () =&gt; void<br>} | No | Text content of the confirm button and callback upon button clicking.<br>Default value:<br>**value**: button text.<br>**action**: callback upon button clicking.|
 | cancel     | () =&gt; void           | No    | Callback invoked when the dialog box is closed after the overlay is clicked.  |
-| alignment  | [DialogAlignment](ts-methods-custom-dialog-box.md#dialogalignment) | No    |  Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
-| offset     | {<br>dx: Length,<br>dy: Length<br>} | No     | Offset of the dialog box relative to the alignment position.<br/>Default value: **{<br>dx: 0,<br>dy: 0<br>}** |
+| alignment  | [DialogAlignment](ts-methods-custom-dialog-box.md#dialogalignment) | No    |  Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Bottom**|
+| offset     | {<br>dx: Length,<br>dy: Length<br>} | No     | Offset of the dialog box relative to the alignment position.<br>Default value: {<br>dx: 0,<br>dy: 0<br>} |
 | sheets     | Array&lt;SheetInfo&gt; | Yes      | Options in the dialog box. Each option supports the image, text, and callback.|
 
 ## SheetInfo
 
 | Name| Type                                                    | Mandatory| Description         |
 | ------ | ------------------------------------------------------------ | ---- | ----------------- |
-| title  | string \| [Resource](ts-types.md#resource) | Yes  | Sheet text.      |
-| icon   | string \| [Resource](ts-types.md#resource) | No  | Sheet icon. By default, no icon is displayed.    |
+| title  | [ResourceStr](ts-types.md#resourcestr) | Yes  | Sheet text.      |
+| icon   | [ResourceStr](ts-types.md#resourcestr) | No  | Sheet icon. By default, no icon is displayed.    |
 | action | ()=&gt;void                                          | Yes  | Callback when the sheet is selected.|
 
 
@@ -44,11 +40,9 @@ Defines and shows the action sheet.
 
 
 ```ts
-// xxx.ets
 @Entry
 @Component
 struct ActionSheetExample {
-
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('Click to Show ActionSheet')
@@ -56,29 +50,35 @@ struct ActionSheetExample {
           ActionSheet.show({
             title: 'ActionSheet title',
             message: 'message',
+            autoCancel: true,
             confirm: {
               value: 'Confirm button',
               action: () => {
                 console.log('Get Alert Dialog handled')
               }
             },
+            cancel: () => {
+              console.log('actionSheet canceled')
+            },
+            alignment: DialogAlignment.Bottom,
+            offset: { dx: 0, dy: -10 },
             sheets: [
               {
                 title: 'apples',
                 action: () => {
-                  console.error('apples')
+                  console.log('apples')
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.error('bananas')
+                  console.log('bananas')
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.error('pears')
+                  console.log('pears')
                 }
               }
             ]
@@ -90,4 +90,4 @@ struct ActionSheetExample {
 }
 ```
 
-![en-us_image_0000001212058508](figures/en-us_image_0000001212058508.gif)
+![en-us_image_0000001241668363](figures/en-us_image_0000001241668363.gif)

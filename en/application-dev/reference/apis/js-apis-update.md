@@ -1,6 +1,6 @@
-# Update
+# @ohos.update
 
-The Update module applies to updates throughout the entire system, including built-in resources and preset applications, but not third-party applications.
+The **update** module applies to updates throughout the entire system, including built-in resources and preset applications, but not third-party applications.
 
 There are two types of updates: SD card update and over the air (OTA) update.
 
@@ -8,10 +8,8 @@ There are two types of updates: SD card update and over the air (OTA) update.
 - The OTA update depends on the server deployed by the device manufacturer for managing update packages. The OTA server IP address is passed by the caller. The request interface is fixed and developed by the device manufacturer.
 
 > **NOTE**
->
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> The APIs provided by this module are system APIs.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 

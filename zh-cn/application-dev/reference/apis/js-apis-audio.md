@@ -2321,10 +2321,6 @@ audioVolumeManager.on('volumeChange', (volumeEvent) => {
 
 管理音频组音量。在调用AudioVolumeGroupManager的接口前，需要先通过 [getVolumeGroupManager](#getvolumegroupmanager9) 创建实例。
 
-**系统接口：** 该接口为系统接口
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
 ### setVolume<sup>9+</sup>
 
 setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void

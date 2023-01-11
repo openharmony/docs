@@ -1,5 +1,9 @@
 # AVSession开发指导
 
+> **说明：**
+>
+> AVSession的所有接口均为系统接口，其功能仅提供给系统应用使用。
+
 ## 会话接入端开发指导
 
 ### 基本概念
@@ -83,7 +87,7 @@ let wantAgentInfo = {
   wants: [
     {
       bundleName: "com.neu.setResultOnAbilityResultTest1",
-      abilityName: "com.example.test.MainAbility",
+      abilityName: "com.example.test.EntryAbility",
     }
   ],
   operationType: wantAgent.OperationType.START_ABILITIES,
@@ -187,7 +191,7 @@ currentSession.on('playNext', () => {
    });
    console.log("调用AudioPlayer.play方法");
    // 设置播放状态
-   let time = (new Data()).getTime();
+   let time = (new Date()).getTime();
    currentSession.setAVPlaybackState({state: avSession.PlaybackState.PLAYBACK_STATE_PLAY, position: {elapsedTime: 0, updateTime: time}, bufferedTime:2000}).then(() => {
        console.info('setAVPlaybackState successfully');
    }).catch((err) => {
@@ -282,7 +286,7 @@ currentSession.off('outputDeviceChange');
 
 // 去激活session并销毁对象
 currentSession.deactivate().then(() => {
-   currentSession.destory();
+   currentSession.destroy();
 });
 ```
 

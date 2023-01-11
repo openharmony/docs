@@ -64,16 +64,16 @@ try {
         {
             deviceId: '1',
             bundleName: 'com.example.application',
-            abilityName: 'MainAbility'
+            abilityName: 'EntryAbility'
         }, (err, data) => {
           if (err) {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```
 
@@ -120,14 +120,14 @@ try {
         {
             deviceId: '1',
             bundleName: 'com.example.application',
-            abilityName: 'MainAbility'
+            abilityName: 'EntryAbility'
         }).then(data => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch(err => {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```
 
@@ -170,22 +170,22 @@ try {
             {
                 deviceId: '1',
                 bundleName: 'com.example.application1',
-                abilityName: 'MainAbility1'
+                abilityName: 'EntryAbility1'
             },
             {
                 deviceId: '1',
                 bundleName: 'com.example.application2',
-                abilityName: 'MainAbility'
+                abilityName: 'EntryAbility'
             }
         ], (err, data) => {
           if (err) {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```
 
@@ -233,20 +233,20 @@ try {
             {
                 deviceId: '1',
                 bundleName: 'com.example.application',
-                abilityName: 'MainAbility'
+                abilityName: 'EntryAbility'
             },
             {
                 deviceId: '1',
                 bundleName: 'com.example.application2',
-                abilityName: 'MainAbility'
+                abilityName: 'EntryAbility'
             }
         ]).then(data => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch(err => {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```
 
@@ -289,16 +289,16 @@ try {
         {
             deviceId: '1',
             bundleName: 'com.example.application',
-            abilityName: 'MainAbility'
+            abilityName: 'EntryAbility'
         }, 'zh-Hans-CN', (err, data) => {
           if (err) {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```
 
@@ -346,14 +346,14 @@ try {
         {
             deviceId: '1',
             bundleName: 'com.example.application',
-            abilityName: 'MainAbility'
+            abilityName: 'EntryAbility'
         }, 'zh-Hans-CN').then(data => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch(err => {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```
 
@@ -397,22 +397,22 @@ try {
             {
                 deviceId: '1',
                 bundleName: 'com.example.application1',
-                abilityName: 'MainAbility1'
+                abilityName: 'EntryAbility1'
             },
             {
                 deviceId: '1',
                 bundleName: 'com.example.application2',
-                abilityName: 'MainAbility'
+                abilityName: 'EntryAbility'
             }
         ], 'zh-Hans-CN', (err, data) => {
           if (err) {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+           console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```
 
@@ -461,19 +461,19 @@ try {
             {
                 deviceId: '1',
                 bundleName: 'com.example.application',
-                abilityName: 'MainAbility'
+                abilityName: 'EntryAbility'
             },
             {
                 deviceId: '1',
                 bundleName: 'com.example.application2',
-                abilityName: 'MainAbility'
+                abilityName: 'EntryAbility'
             }
         ], 'zh-Hans-CN').then(data => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch(err => {
-            console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.error('Operation failed: error code is ' + err.code + 'and error message is ' + err.message);
+    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
 }
 ```

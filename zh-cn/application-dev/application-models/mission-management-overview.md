@@ -11,7 +11,7 @@
 - MissionList：一个从桌面开始启动的任务列表，记录了任务之间的启动关系，上一个任务由下一个任务启动，最底部的任务由桌面启动，这里称之为任务链。
 
 - MissionListManager：系统任务管理模块，内部维护了当前所有的任务链，与最近任务列表保持一致。
-    
+  
   **图1** 任务管理示意图  
   ![mission-list-manager](figures/mission-list-manager.png)
 
@@ -31,7 +31,7 @@
 一个UIAbility实例对应一个单独的任务，因此应用调用startAbility()方法启动一个UIAbility时，就是创建了一个任务。
 
 
-桌面应用调用[missionManager](../reference/apis/js-apis-application-missionManager.md)的接口管理任务，需要申请`ohos.permission.MANAGE_MISSIONS`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
+桌面应用调用[missionManager](../reference/apis/js-apis-application-missionManager.md)的接口管理任务，需要申请`ohos.permission.MANAGE_MISSIONS`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
 
 
 利用missionManager进行任务管理（监听任务变化、获取任务信息、获取任务快照、清理任务、任务加锁/解锁等），示例代码如下：

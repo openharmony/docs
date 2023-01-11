@@ -29,13 +29,13 @@
 2. 导入模块。
 
    ```typescript
-   import NotificationManager from '@ohos.notificationManager';
+   import notificationManager from '@ohos.notificationManager';
    import wantAgent from '@ohos.app.ability.wantAgent';
    ```
 
 3. 创建WantAgentInfo信息。
 
-   场景一：创建拉起UIAbility的WantAgent的WantAgentInfo信息。
+   场景一：创建拉起UIAbility的WantAgent的[WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
 
    ```typescript
    let wantAgentObj = null; // 用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
@@ -59,7 +59,7 @@
    };
    ```
 
-   场景二：创建发布[公共事件](../application-models/common-event-overview.md)的WantAgent的WantAgentInfo信息。
+   场景二：创建发布[公共事件](../application-models/common-event-overview.md)的WantAgent的[WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
 
    ```typescript
    let wantAgentObj = null; // 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
@@ -98,7 +98,7 @@
    // 构造NotificationRequest对象
    let notificationRequest = {
        content: {
-           contentType: NotificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+           contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
            normal: {
                title: 'Test_Title',
                text: 'Test_Text',
@@ -110,7 +110,7 @@
        wantAgent: wantAgentObj,
    }
    
-   NotificationManager.publish(notificationRequest, (err) => {
+   notificationManager.publish(notificationRequest, (err) => {
        if (err) {
            console.error(`[ANS] failed to publish, error[${err}]`);
            return;

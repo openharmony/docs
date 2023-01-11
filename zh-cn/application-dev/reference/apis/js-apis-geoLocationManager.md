@@ -51,9 +51,9 @@ import geoLocationManager from '@ohos.geoLocationManager';
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | locale | string | 是 | 是 | 指定位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
-| latitude | number | 是 | 是 | 表示纬度信息，正值表示北纬，负值表示南纬。 |
-| longitude | number | 是 | 是 | 表示经度信息，正值表示东经，负值表示西经。 |
-| maxItems | number | 是 | 是 | 指定返回位置信息的最大个数。 |
+| latitude | number | 是 | 是 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。 |
+| longitude | number | 是 | 是 | 表示经度信息，正值表示东经，负值表示西经。取值范围为-180到180。 |
+| maxItems | number | 是 | 是 | 指定返回位置信息的最大个数。取值范围为大于等于0，推荐该值小于10。 |
 
 
 ## GeoCodeRequest
@@ -66,11 +66,11 @@ import geoLocationManager from '@ohos.geoLocationManager';
 | -------- | -------- | -------- | -------- | -------- |
 | locale | string | 是 | 是 | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
 | description | string | 是 | 是 | 表示位置信息描述，如“上海市浦东新区xx路xx号”。 |
-| maxItems | number | 是 | 是 | 表示返回位置信息的最大个数。 |
-| minLatitude | number | 是 | 是 | 表示最小纬度信息，与下面三个参数一起，表示一个经纬度范围。 |
-| minLongitude | number | 是 | 是 | 表示最小经度信息。 |
-| maxLatitude | number | 是 | 是 | 表示最大纬度信息。 |
-| maxLongitude | number | 是 | 是 | 表示最大经度信息。 |
+| maxItems | number | 是 | 是 | 表示返回位置信息的最大个数。取值范围为大于等于0，推荐该值小于10。 |
+| minLatitude | number | 是 | 是 | 表示最小纬度信息，与下面三个参数一起，表示一个经纬度范围。取值范围为-90到90。 |
+| minLongitude | number | 是 | 是 | 表示最小经度信息。取值范围为-180到180。 |
+| maxLatitude | number | 是 | 是 | 表示最大纬度信息。取值范围为-90到90。 |
+| maxLongitude | number | 是 | 是 | 表示最大经度信息。取值范围为-180到180。 |
 
 
 ## GeoAddress
@@ -81,8 +81,8 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| latitude | number | 是 | 否  | 表示纬度信息，正值表示北纬，负值表示南纬。 |
-| longitude | number | 是 | 否  | 表示经度信息，正值表示东经，负值表是西经。 |
+| latitude | number | 是 | 否  | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。 |
+| longitude | number | 是 | 否  | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。 |
 | locale | string | 是 | 否  | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
 | placeName | string | 是 | 否  | 表示地区信息。 |
 | countryCode | string | 是 | 否  | 表示国家码信息。 |
@@ -98,8 +98,8 @@ import geoLocationManager from '@ohos.geoLocationManager';
 | phoneNumber | string | 是 | 否 | 表示联系方式信息。 |
 | addressUrl | string | 是 | 否 | 表示位置信息附件的网址信息。 |
 | descriptions | Array&lt;string&gt; | 是 | 否 | 表示附加的描述信息。 |
-| descriptionsSize | number | 是 | 否 | 表示附加的描述信息数量。 |
-| isFromMock | Boolean | 是 | 否 | 表示地名信息是否来自于逆地理编码模拟功能。 |
+| descriptionsSize | number | 是 | 否 | 表示附加的描述信息数量。取值范围为大于等于0，推荐该值小于10。 |
+| isFromMock | Boolean | 是 | 否 | 表示地名信息是否来自于逆地理编码模拟功能。<br>**系统API**：此接口为系统接口。 |
 
 
 ## LocationRequest
@@ -110,11 +110,11 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。 |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。 |
-| timeInterval | number | 是 | 是 | 表示上报位置信息的时间间隔。 |
-| distanceInterval | number | 是 | 是 | 表示上报位置信息的距离间隔。 |
-| maxAccuracy | number | 是 | 是 | 表示精度信息。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。 |
+| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。 |
+| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
+| timeInterval | number | 是 | 是 | 表示上报位置信息的时间间隔，单位是秒。取值范围为大于0。 |
+| distanceInterval | number | 是 | 是 | 表示上报位置信息的距离间隔。单位是米，取值范围为大于0。 |
+| maxAccuracy | number | 是 | 是 | 表示精度信息。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。取值范围为大于0。 |
 
 
 ## CurrentLocationRequest
@@ -125,10 +125,10 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。 |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。 |
-| maxAccuracy | number | 是 | 是| 表示精度信息，单位是米。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。 |
-| timeoutMs | number | 是 | 是 | 表示超时时间，单位是毫秒，最小为1000毫秒。 |
+| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。 |
+| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
+| maxAccuracy | number | 是 | 是| 表示精度信息，单位是米。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。取值范围为大于0。 |
+| timeoutMs | number | 是 | 是 | 表示超时时间，单位是毫秒，最小为1000毫秒。取值范围为大于等于1000。 |
 
 
 ## SatelliteStatusInfo
@@ -139,12 +139,12 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| satellitesNumber | number | 是 | 否 | 表示卫星个数。 |
-| satelliteIds | Array&lt;number&gt; | 是 | 否 | 表示每个卫星的ID，数组类型。 |
-| carrierToNoiseDensitys | Array&lt;number&gt; | 是 | 否 | 表示载波噪声功率谱密度比，即cn0。 |
-| altitudes | Array&lt;number&gt; | 是 | 否 | 表示高程信息。 |
-| azimuths | Array&lt;number&gt; | 是 | 否 | 表示方位角。 |
-| carrierFrequencies | Array&lt;number&gt; | 是 | 否 | 表示载波频率。 |
+| satellitesNumber | number | 是 | 否 | 表示卫星个数。取值范围为大于等于0。 |
+| satelliteIds | Array&lt;number&gt; | 是 | 否 | 表示每个卫星的ID，数组类型。取值范围为大于等于0。 |
+| carrierToNoiseDensitys | Array&lt;number&gt; | 是 | 否 | 表示载波噪声功率谱密度比，即cn0。取值范围为大于0。 |
+| altitudes | Array&lt;number&gt; | 是 | 否 | 表示卫星高度角信息。单位是“度”，取值范围为-90到90。 |
+| azimuths | Array&lt;number&gt; | 是 | 否 | 表示方位角。单位是“度”，取值范围为0到360。 |
+| carrierFrequencies | Array&lt;number&gt; | 是 | 否 | 表示载波频率。单位是Hz，取值范围为大于等于0。 |
 
 
 ## CachedGnssLocationsRequest
@@ -155,7 +155,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| reportingPeriodSec | number | 是 | 是 | 表示GNSS缓存位置上报的周期，单位是毫秒。 |
+| reportingPeriodSec | number | 是 | 是 | 表示GNSS缓存位置上报的周期，单位是毫秒。取值范围为大于0。 |
 | wakeUpCacheQueueFull | boolean | 是 | 是  | true表示GNSS芯片底层缓存队列满之后会主动唤醒AP芯片，并把缓存位置上报给应用。<br/>false表示GNSS芯片底层缓存队列满之后不会主动唤醒AP芯片，会把缓存位置直接丢弃。 |
 
 
@@ -167,10 +167,10 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| latitude | number | 是 | 是 |表示纬度。 |
-| longitude | number | 是 |是 | 表示经度。 |
-| radius | number | 是 |是 | 表示圆形围栏的半径。 |
-| expiration | number | 是 |是 | 围栏存活的时间，单位是毫秒。 |
+| latitude | number | 是 | 是 |表示纬度。取值范围为-90到90。 |
+| longitude | number | 是 |是 | 表示经度。取值范围为-180到180。 |
+| radius | number | 是 |是 | 表示圆形围栏的半径。单位是米，取值范围为大于0。 |
+| expiration | number | 是 |是 | 围栏存活的时间，单位是毫秒。取值范围为大于0。 |
 
 
 ## GeofenceRequest
@@ -205,17 +205,17 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| latitude | number| 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。 |
-| longitude | number| 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。 |
+| latitude | number| 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。 |
+| longitude | number| 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。 |
 | altitude | number | 是 | 否 | 表示高度信息，单位米。 |
 | accuracy | number | 是 | 否 | 表示精度信息，单位米。 |
 | speed | number | 是 | 否 |表示速度信息，单位米每秒。 |
 | timeStamp | number | 是 | 否 | 表示位置时间戳，UTC格式。 |
-| direction | number | 是 | 否 | 表示航向信息。 |
+| direction | number | 是 | 否 | 表示航向信息。单位是“度”，取值范围为0到360。 |
 | timeSinceBoot | number | 是 | 否 | 表示位置时间戳，开机时间格式。 |
 | additions | Array&lt;string&gt; | 是 | 否 | 附加信息。 |
-| additionSize | number | 是 | 否 | 附加信息数量。 |
-| isFromMock | Boolean | 是 | 否 | 表示位置信息是否来自于位置模拟功能。 |
+| additionSize | number | 是 | 否 | 附加信息数量。取值范围为大于等于0。  |
+| isFromMock | Boolean | 是 | 否 | 表示位置信息是否来自于位置模拟功能。<br>**系统API**：此接口为系统接口。 |
 
 
 ## ReverseGeocodingMockInfo
@@ -243,7 +243,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | timeInterval | number | 是 | 是 | 表示模拟位置上报的时间间隔，单位是秒。 |
-| locations | Array&lt;Location&gt; | 是 | 是 | 表示模拟位置数组。 |
+| locations | Array&lt;[Location](#location)&gt; | 是 | 是 | 表示模拟位置数组。 |
 
 
 ## CountryCode
@@ -266,10 +266,10 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| UNSET | 0x200 | 表示未设置优先级。 |
-| ACCURACY | 0x201 | 表示精度优先。 |
-| LOW_POWER | 0x202 | 表示低功耗优先。 |
-| FIRST_FIX | 0x203 | 表示快速获取位置优先，如果应用希望快速拿到1个位置，可以将优先级设置为该字段。 |
+| UNSET | 0x200 | 表示未设置优先级，表示[LocationRequestPriority](#locationrequestpriority)无效。 |
+| ACCURACY | 0x201 | 表示精度优先。<br/>定位精度优先策略主要以GNSS定位技术为主，在开阔场景下可以提供米级的定位精度，具体性能指标依赖用户设备的定位硬件能力，但在室内等强遮蔽定位场景下，无法提供准确的位置服务。 |
+| LOW_POWER | 0x202 | 表示低功耗优先。<br/>低功耗定位优先策略主要使用基站定位和WLAN、蓝牙定位技术，也可以同时提供室内和户外场景下的位置服务，因为其依赖周边基站、可见WLAN、蓝牙设备的分布情况，定位结果的精度波动范围较大，如果对定位结果精度要求不高，或者使用场景多在有基站、可见WLAN、蓝牙设备高密度分布的情况下，推荐使用，可以有效节省设备功耗。 |
+| FIRST_FIX | 0x203 | 表示快速获取位置优先，如果应用希望快速拿到一个位置，可以将优先级设置为该字段。<br/>快速定位优先策略会同时使用GNSS定位、基站定位和WLAN、蓝牙定位技术，以便室内和户外场景下，通过此策略都可以获得位置结果，当各种定位技术都有提供位置结果时，系统会选择其中精度较好的结果返回给应用。因为对各种定位技术同时使用，对设备的硬件资源消耗较大，功耗也较大。 |
 
 
 ## LocationRequestScenario
@@ -280,11 +280,11 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| UNSET | 0x300 | 表示未设置场景信息。 |
-| NAVIGATION | 0x301 | 表示导航场景。 |
-| TRAJECTORY_TRACKING | 0x302 | 表示运动轨迹记录场景。 |
-| CAR_HAILING | 0x303 | 表示打车场景。 |
-| DAILY_LIFE_SERVICE | 0x304 | 表示日常服务使用场景。 |
+| UNSET | 0x300 | 表示未设置场景信息。<br/>表示[LocationRequestScenario](#locationrequestscenario)字段无效。 |
+| NAVIGATION | 0x301 | 表示导航场景。<br/>适用于在户外定位设备实时位置的场景，如车载、步行导航。<br/>在此场景下，为保证系统提供位置结果精度最优，主要使用GNSS定位技术提供定位服务<br/>此场景默认以最小1秒间隔上报定位结果。 |
+| TRAJECTORY_TRACKING | 0x302 | 表示运动轨迹记录场景。<br/>适用于记录用户位置轨迹的场景，如运动类应用记录轨迹功能。主要使用GNSS定位技术提供定位服务。<br/>此场景默认以最小1秒间隔上报定位结果。 |
+| CAR_HAILING | 0x303 | 表示打车场景。<br/>适用于用户出行打车时定位当前位置的场景，如网约车类应用。<br/>此场景默认以最小1秒间隔上报定位结果。 |
+| DAILY_LIFE_SERVICE | 0x304 | 表示日常服务使用场景。<br/>适用于不需要定位用户精确位置的使用场景，如新闻资讯、网购、点餐类应用，做推荐、推送时定位用户大致位置即可。<br/>此场景默认以最小1秒间隔上报定位结果。 |
 | NO_POWER | 0x305 | 表示无功耗功场景，这种场景下不会主动触发定位，会在其他应用定位时，才给当前应用返回位置。 |
 
 
@@ -294,10 +294,12 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| OTHERS | 0 | 其他场景。 |
-| STARTUP | 1 | 开机向导场景下的隐私协议。 |
+| OTHERS | 0 | 其他场景。预留字段。 |
+| STARTUP | 1 | 开机向导场景下的隐私协议。在开机时弹出协议，提醒用户阅读并选择是否授权。 |
 | CORE_LOCATION | 2 | 开启网络定位时弹出的隐私协议。 |
 
 
@@ -319,7 +321,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void
 
-开启位置变化订阅，并发起定位请求。定位结果按照[LocationRequest](#locationrequest)的属性进行上报，
+开启位置变化订阅，并发起定位请求。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -757,7 +759,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“gnssFenceStatusChange”，表示订阅围栏事件上报。 |
   | request |  [GeofenceRequest](#geofencerequest) | 是 | 围栏的配置参数。 |
-  | want | WantAgent | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
+  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
 
 **错误码**：
 
@@ -815,7 +817,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“gnssFenceStatusChange”，表示订阅围栏事件上报。 |
   | request | [GeofenceRequest](#geofencerequest) | 是 | 围栏的配置参数。 |
-  | want | WantAgent | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
+  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
 
 **错误码**：
 
@@ -1899,7 +1901,7 @@ setMockedLocations(config: LocationMockConfig): void;
 
 设置模拟的位置信息，后面会以该接口中携带的时间间隔上报模拟位置。
 
-该接口需要在调用[enableLocationMock](#enablelocationmock)之后才能调用。
+该接口需要在调用[geoLocationManager.enableLocationMock](#geolocationmanagerenablelocationmock)之后才能调用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -2007,7 +2009,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
 
 设置逆地理编码模拟功能的配置信息，包含了位置和地名的对应关系，后续进行逆地理编码查询时如果位置信息位于配置信息中，就返回对应的地名。
 
-该接口需要在调用[enableReverseGeocodingMock](#enablereversegeocodingmock)之后才能调用。
+该接口需要在调用[geoLocationManager.enableReverseGeocodingMock](#geolocationmanagerenablereversegeocodingmock)之后才能调用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 

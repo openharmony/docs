@@ -82,7 +82,7 @@ export default class MyAbilityStage extends AbilityStage {
 ### 数据保存和恢复
 
 在使能appRecovery功能后，开发者可以在Ability中采用主动保存状态，主动恢复或者选择被动恢复的方式使用appRecovery功能。
-下面为示例的MainAbility。
+下面为示例的EntryAbility。
 
 #### 导包
 
@@ -108,7 +108,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant'
 
   onWindowStageCreate(windowStage) {
       // Main window is created, set main page for this ability
-      console.log("[Demo] MainAbility onWindowStageCreate")
+      console.log("[Demo] EntryAbility onWindowStageCreate")
 
       globalThis.registerObserver = (() => {
           registerId = errorManager.registerErrorObserver(callback);
@@ -120,12 +120,12 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant'
 
 - 数据保存
 
-callback触发appRecovery.saveAppState()调用后，会触发MainAbility的onSaveState(state, wantParams)函数回调。
+callback触发appRecovery.saveAppState()调用后，会触发EntryAbility的onSaveState(state, wantParams)函数回调。
 
 ```ts
   onSaveState(state, wantParams) {
       // Ability has called to save app data
-      console.log("[Demo] MainAbility onSaveState")
+      console.log("[Demo] EntryAbility onSaveState")
       wantParams["myData"] = "my1234567";
       return AbilityConstant.onSaveResult.ALL_AGREE;
   }
@@ -133,12 +133,12 @@ callback触发appRecovery.saveAppState()调用后，会触发MainAbility的onSav
 
 - 数据恢复
 
-callback触发后appRecovery.restartApp()调用后，应用会重启，重启后会走到MainAbility的onSaveState(state, wantParams)函数，保存的数据会在want参数的parameters里。
+callback触发后appRecovery.restartApp()调用后，应用会重启，重启后会走到EntryAbility的onSaveState(state, wantParams)函数，保存的数据会在want参数的parameters里。
 
 ```ts
 storage: LocalStorage
 onCreate(want, launchParam) {
-    console.log("[Demo] MainAbility onCreate")
+    console.log("[Demo] EntryAbility onCreate")
     globalThis.abilityWant = want;
     if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
         this.storage = new LocalStorage();
@@ -154,7 +154,7 @@ onCreate(want, launchParam) {
 ```ts
 onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    console.log("[Demo] MainAbility onWindowStageDestroy")
+    console.log("[Demo] EntryAbility onWindowStageDestroy")
 
     globalThis.unRegisterObserver = (() => {
         errorManager.unregisterErrorObserver(registerId, (result) => {
@@ -169,10 +169,10 @@ onWindowStageDestroy() {
 被动保存和恢复依赖恢复框架底层触发，无需注册监听ErrorObserver callback，只需实现Ability的onSaveState接口数据保存和onCreate接口数据恢复流程即可。
 
 ```ts
-export default class MainAbility extends Ability {
+export default class EntryAbility extends Ability {
     storage: LocalStorage
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate")
+        console.log("[Demo] EntryAbility onCreate")
         globalThis.abilityWant = want;
         if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
             this.storage = new LocalStorage();
@@ -184,7 +184,7 @@ export default class MainAbility extends Ability {
 
     onSaveState(state, wantParams) {
         // Ability has called to save app data
-        console.log("[Demo] MainAbility onSaveState")
+        console.log("[Demo] EntryAbility onSaveState")
         wantParams["myData"] = "my1234567";
         return AbilityConstant.onSaveResult.ALL_AGREE;
     }

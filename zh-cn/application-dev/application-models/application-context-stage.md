@@ -12,7 +12,7 @@
   <img src="figures/context-holding.png" alt="context-holding" style="zoom:50%;" />
 
 - 各类Context的获取方式
-  - 获取[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)。每个UIAbility中都包含了一个Context属性，提供操作Ability、获取Ability的配置信息、应用向用户申请授权等能力。
+  - 获取[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)。每个UIAbility中都包含了一个Context属性，提供操作Ability、获取Ability的配置信息等能力。
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
@@ -65,14 +65,9 @@
 
 
 - [获取应用开发路径](#获取应用开发路径)
-
 - [获取和修改加密分区](#获取和修改加密分区)
-
 - [创建其他应用或其他Module的Context](#创建其他应用或其他module的context)
-
 - [订阅进程内Ability生命周期变化](#订阅进程内ability生命周期变化)
-
-- [通过AbilityContext向用户申请授权](#通过uiabilitycontext向用户申请授权)
 
 
 ### 获取应用开发路径
@@ -176,7 +171,7 @@ export default class EntryAbility extends UIAbility {
   > **说明：**
   > 当获取的是其他应用的Context时：
   > 
-  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
+  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
   > 
   > - 接口为系统接口，三方应用不支持调用。
 
@@ -199,7 +194,7 @@ export default class EntryAbility extends UIAbility {
   > **说明：**
   > 当获取的是其他应用的指定Module的Context时：
   > 
-  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
+  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
   > 
   > - 接口为系统接口，三方应用不支持调用。
 
@@ -240,7 +235,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import Window from '@ohos.window';
+import window from '@ohos.window';
 
 const TAG: string = "[Example].[Entry].[EntryAbility]";
 
@@ -296,14 +291,3 @@ export default class EntryAbility extends UIAbility {
     }
 }
 ```
-
-
-### 通过UIAbilityContext向用户申请授权
-
-每个Ability中都包含了一个Context属性。Ability功能主要是处理生命周期，其余操作Ability的方法（例如startAbility()、connectServiceExtensionAbility()、terminateSelf()等）都是在对应的Context中实现的，同时Context也提供了获取Ability的配置信息、向用户申请授权等能力，如何获取Context请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
-
-
-应用需要获取用户的隐私信息或使用系统能力时，例如获取位置信息、访问日历、使用相机拍摄照片或录制视频等，需要向用户申请授权，示意效果如下图所示。具体使用请参见[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
-
-**图2** 向用户申请日历访问授权
-<img src="figures/application-context-stage.png" alt="application-context-stage" style="zoom:50%;" />

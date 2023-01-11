@@ -14,6 +14,8 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 
 ## Action
 
+触屏事件类型。
+
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
 | 名称     | 值   | 说明   |
@@ -24,6 +26,8 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 | UP     | 3 | 触摸抬起 |
 
 ## ToolType
+
+操作触屏的工具类型。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
@@ -40,6 +44,8 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 
 ## SourceType 
 
+触摸来源的设备类型。
+
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
 | 名称           | 值  | 说明   |
@@ -49,6 +55,8 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 | TOUCH_PAD    | 2 | 触摸板  |
 
 ## Touch
+
+触摸点信息。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
@@ -74,6 +82,8 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 | toolType    | ToolType | 是    | 否    | 工具类型                                |
 
 ## TouchEvent
+
+触屏事件。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 

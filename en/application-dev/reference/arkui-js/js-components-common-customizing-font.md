@@ -11,8 +11,8 @@ The custom font can be loaded from the font file in a project. The font file mus
 
 ```
 @font-face {   
-  font-family: HWfont; 
-  src: url('/common/HWfont.ttf'); 
+  font-family: font; 
+  src: url('/common/font.ttf'); 
 }
 ```
 
@@ -48,10 +48,10 @@ Page style:
 ```css
 /*xxx.css*/
 @font-face {
-  font-family: HWfont;
-  src: url("/common/HWfont.ttf");
+  font-family: font;
+  src: url("/common/font.ttf");
 }
 .demo-text {
-  font-family: HWfont;
+  font-family: font;
 }
 ```

@@ -29,7 +29,7 @@ WantAgent封装了一个行为意图信息，可以通过WantAgent.trigger接口
            {
                deviceId: "",
                bundleName: "com.example.test",
-               abilityName: "com.example.test.MainAbility",
+               abilityName: "com.example.test.EntryAbility",
                action: "",
                entities: [],
                uri: "",

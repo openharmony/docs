@@ -1,6 +1,6 @@
-# HiLog
+# @ohos.hilog
 
-The HiLog subsystem allows your applications or services to output logs based on the specified type, level, and format string. Such logs help you learn the running status of applications and better debug programs.
+The **hilog** module allows your applications or services to output logs based on the specified type, level, and format string. Such logs help you learn the running status of applications and better debug programs.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -45,7 +45,7 @@ Enumerates the log levels.
 
 **System capability**: SystemCapability.HiviewDFX.HiLog
 
-| Name | Default Value| Description                                                        |
+| Name | Value| Description                                                        |
 | ----- | ------ | ------------------------------------------------------------ |
 | DEBUG | 3      | Log level used to record more detailed process information than INFO logs to help developers analyze service processes and locate faults.|
 | INFO  | 4      | Log level used to record key service process nodes and exceptions that occur during service running,<br>for example, no network signal or login failure.<br>These logs should be recorded by the dominant module in the service to avoid repeated logging conducted by multiple invoked modules or low-level functions.|

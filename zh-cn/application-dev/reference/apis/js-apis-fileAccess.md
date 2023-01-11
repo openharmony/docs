@@ -70,7 +70,7 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
 
   ```js
   createFileAccessHelper() {
-    let fileAccesssHelper = null;
+    let fileAccessHelper = null;
     // wantInfos 从getFileAccessAbilityInfo()获取
     // 创建只连接媒体库服务的helper对象
     let wantInfos = [
@@ -81,8 +81,8 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
     ]
     try {
       // this.context 是MainAbility 传过来的context
-      fileAccesssHelper = fileAccess.createFileAccessHelper(this.context, wantInfos);
-      if (!fileAccesssHelper)
+      fileAccessHelper = fileAccess.createFileAccessHelper(this.context, wantInfos);
+      if (!fileAccessHelper)
         console.error("createFileAccessHelper interface returns an undefined object");
     } catch (error) {
       console.error("createFileAccessHelper failed, error " + error);
@@ -154,6 +154,7 @@ getRoots( ) : Promise&lt;RootIterator&gt;
     let rootinfos = [];
     let isDone = false;
     try {
+      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
       rootIterator = await fileAccessHelper.getRoots();
       if (!rootIterator) {
         console.error("getRoots interface returns an undefined object");
@@ -248,26 +249,26 @@ scanFile(filter?: Filter) : FileIterator
 **示例：**
 
   ```js
-  // rootinfos 从 getRoots()获取
+  // rootInfos 从 getRoots()获取
   // let filter = {suffix : [".txt"， ".jpg", ".xlsx"]};
-  let rootInfo = rootinfos[0];
+  let rootInfo = rootInfos[0];
   let fileInfos = [];
   let isDone = false;
   try {
-      let fileIterator = rootInfo.scanFile();
-      // 含过滤器实现的scanFile
-      // let fileIterator = rootInfo.scanFile(filter);
-      if (!fileIterator) {
-        console.error("scanFile interface returns undefined object");
-        return;
-      }
-      while (!isDone) {
-        let result = fileIterator.next();
-        console.log("next result = " + JSON.stringify(result));
-        isDone = result.done;
-        if (!isDone)
-          fileInfos.push(result.value);
-      }
+    let fileIterator = rootInfo.scanFile();
+    // 含过滤器实现的scanFile
+    // let fileIterator = rootInfo.scanFile(filter);
+    if (!fileIterator) {
+      console.error("scanFile interface returns undefined object");
+      return;
+    }
+    while (!isDone) {
+      let result = fileIterator.next();
+      console.log("next result = " + JSON.stringify(result));
+      isDone = result.done;
+      if (!isDone)
+        fileInfos.push(result.value);
+    }
   } catch (error) {
     console.error("scanFile failed, error " + error);
   }
@@ -364,7 +365,7 @@ scanFile(filter?: Filter) : FileIterator;
     }
     while (!isDone) {
       let result = fileIterator.next();
-      console.error("next result = " + JSON.stringify(result));
+      console.log("next result = " + JSON.stringify(result));
       isDone = result.done;
       if (!isDone)
         subfileInfos.push(result.value);
@@ -407,6 +408,7 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
   let displayName = "file1"
   let fileUri = null;
   try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileUri = await fileAccessHelper.createFile(sourceUri, displayName)
     if (!fileUri) {
       console.error("createFile return undefined object");
@@ -451,6 +453,7 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
   let dirName = "dirTest"
   let dirUri = null;
   try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     dirUri = await fileAccessHelper.mkDir(sourceUri, dirName)
     if (!dirUri) {
       console.error("mkDir return undefined object");
@@ -483,7 +486,7 @@ openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 
 | 类型 | 说明 |
 | --- | -- |
-| Promise&lt;number&gt | 文件句柄 |
+| Promise&lt;number&gt; | 文件句柄 |
 
 **示例：**
 
@@ -493,7 +496,8 @@ openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
   // 开发者应根据自己实际获取的uri进行开发
   let targetUri  = "datashare:///media/file/100";
   try {
-    let fd = await fileAccessHelper.openFile(targetUri, OPENFLAGS.READ);
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fd = await fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ);
   } catch (error) {
     console.error("openFile failed, error " + error);
   };
@@ -529,6 +533,7 @@ delete(uri: string) : Promise&lt;number&gt;
   // 开发者应根据自己实际获取的uri进行开发
   let targetUri = "datashare:///media/file/100";
   try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let code = await fileAccessHelper.delete(targetUri);
     if (code != 0)
       console.error("delete failed, code " + code);
@@ -569,6 +574,7 @@ move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
   let sourceFile = "datashare:///media/file/102";
   let destFile = "datashare:///media/file/101";
   try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let fileUri = await fileAccessHelper.move(sourceFile, destFile);
     console.log("move sucess， fileUri: " + JSON.stringify(fileUri));
   } catch (error) {
@@ -607,6 +613,7 @@ rename(uri: string, displayName: string) : Promise&lt;string&gt;
   // 开发者应根据自己实际获取的uri进行开发
   let sourceDir = "datashare:///media/file/100";
   try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
     console.log("rename sucess， DestDir: " + JSON.stringify(DestDir));
   } catch (error) {
@@ -644,6 +651,7 @@ access(sourceFileUri: string) : Promise&lt;boolean&gt;
   // 开发者应根据自己实际获取的uri进行开发
   let sourceDir = "datashare:///media/file/100";
   try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let existJudgment = await fileAccessHelper.access(sourceDir);
     if (existJudgment)
       console.log("sourceDir exists");

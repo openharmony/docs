@@ -10,8 +10,8 @@
 ## 导入模块
 
 
-```
-import configuration from '@system.configuration';
+```ts
+import Configuration from '@system.configuration';
 ```
 
 

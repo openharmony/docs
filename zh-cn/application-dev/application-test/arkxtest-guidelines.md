@@ -72,7 +72,7 @@ export default function abilityTest() {
     it('testUiExample',0, async function (done) {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a MainAbility').then(result =>{
+      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then(result =>{
         console.info('Uitest, start ability finished:' + result)
       }).catch(err => {
         console.info('Uitest, start ability failed: ' + err)
@@ -81,7 +81,7 @@ export default function abilityTest() {
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability)=>{
         console.info("get top ability");
-        expect(Ability.context.abilityInfo.name).assertEqual('MainAbility');
+        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
       done();
     })
@@ -119,7 +119,7 @@ export default function abilityTest() {
     it('testUiExample',0, async function (done) {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a MainAbility').then(result =>{
+      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then(result =>{
         console.info('Uitest, start ability finished:' + result)
       }).catch(err => {
         console.info('Uitest, start ability failed: ' + err)
@@ -128,7 +128,7 @@ export default function abilityTest() {
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability)=>{
         console.info("get top ability");
-        expect(Ability.context.abilityInfo.name).assertEqual('MainAbility');
+        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
       //ui test code
       //init uidriver

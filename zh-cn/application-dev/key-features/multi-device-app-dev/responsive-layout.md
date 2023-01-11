@@ -47,24 +47,25 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
 
 1. 在Ability的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，获取并记录[窗口](../../reference/apis/js-apis-window.md)对象。
    
-   ```
-   // MainAbility.ts
-   import window from '@ohos.window'
+   ```ts
+   // EntryAbility.ts
+   import Window from '@ohos.window';
+   import UIAbility from '@ohos.app.ability.UIAbility';
    
-   export default class MainAbility extends Ability {
-     ...
+   export default class EntryAbility extends UIAbility {
+     // ...
      onWindowStageCreate(windowStage) {
        window.getTopWindow(this.context).then((windowObj) => {
          AppStorage.SetOrCreate('windowObj', windowObj)
        })
      }
-     ...
+     // ...
    }
    ```
-
+   
 2. 在页面中，通过窗口对象获取启动时的应用窗口宽度，同时注册回调函数监听窗口尺寸变化。
    
-   ```
+   ```ts
    @Entry
    @Component
    struct Index {
@@ -145,7 +146,7 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
 
 
 
-```
+```ts
 // common/breakpointsystem.ets
 // 对通过媒体查询监听断点的功能做简单的封装，方便后续使用
 import mediaquery from '@ohos.mediaquery';
@@ -303,7 +304,7 @@ struct MediaQuerySample {
 ![window3](figures/window3.gif)
 
 
-```
+```ts
 @Entry
 @Component
 struct GridRowSample1 {
@@ -337,7 +338,7 @@ struct GridRowSample1 {
 ![component](figures/component.gif)
 
 
-```
+```ts
 @Entry
 @Component
 struct GridRowSample2 {
@@ -403,7 +404,7 @@ struct GridRowSample2 {
 
 
 
-```
+```ts
 @Entry
 @Component
 struct GridRowSample3 {
@@ -440,7 +441,7 @@ struct GridRowSample3 {
 
 
 
-```
+```ts
 @Entry
 @Component
 struct GridRowSample4 {
@@ -515,7 +516,7 @@ struct GridRowSample4 {
 
 
 
-```
+```ts
 @Entry
 @Component
 struct GridRowSample5 {
@@ -557,7 +558,7 @@ struct GridRowSample5 {
 
 
 
-```
+```ts
 @Entry
 @Component
 struct GridRowSample6 {
@@ -599,7 +600,7 @@ struct GridRowSample6 {
 
 
 
-```
+```ts
 @Entry
 @Component
 struct GridRowSample7 {
@@ -641,7 +642,7 @@ struct GridRowSample7 {
 
 
 
-```
+```ts
 @Entry
 @Component
 struct GridRowSample8 {
@@ -684,7 +685,7 @@ struct GridRowSample8 {
 | ![zh-cn_image_0000001336338670](figures/zh-cn_image_0000001336338670.jpg) | ![zh-cn_image_0000001336019094](figures/zh-cn_image_0000001336019094.jpg) | ![zh-cn_image_0000001336498646](figures/zh-cn_image_0000001336498646.jpg) | 
 
 
-```
+```ts
 @Entry
 @Component
 struct GridRowSample9 {
