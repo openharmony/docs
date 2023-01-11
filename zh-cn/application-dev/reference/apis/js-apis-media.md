@@ -4215,7 +4215,7 @@ videoPlayer.reset().then(() => {
 
 seek(timeMs: number, callback: AsyncCallback\<number>): void
 
-通过回调方式跳转到指定播放位置，默认跳转到指定时间点的下一个关键帧。
+通过回调方式跳转到指定播放位置，默认跳转到指定时间点的上一个关键帧。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4273,7 +4273,7 @@ videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err, result) => {
 
 seek(timeMs: number, mode?:SeekMode): Promise\<number>
 
-通过Promise方式跳转到指定播放位置，如果没有设置mode则跳转到指定时间点的下一个关键帧。
+通过Promise方式跳转到指定播放位置，如果没有设置mode则跳转到指定时间点的上一个关键帧。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
