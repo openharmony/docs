@@ -588,7 +588,7 @@ let that = new util.TextEncoder()
 let buffer = new ArrayBuffer(4)
 let dest = new Uint8Array(buffer)
 let result = new Object()
-result = that.encodeInto('abcd', dest)
+result = that.encodeIntoUint8Array('abcd', dest)
   ```
 
 ### encodeInto<sup>(deprecated)</sup>
