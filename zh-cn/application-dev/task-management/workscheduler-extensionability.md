@@ -1,4 +1,4 @@
-# 延迟任务调度回调开发指导（WorkSchedulerExtensionAbility）
+# 延迟任务回调能力开发指导（WorkSchedulerExtensionAbility）
 
 对于实时性要求不高的任务或持久性任务，可以使用延迟调度任务，该机制会在应用满足应用设定条件（包括网络类型、充电类型、存储状态、电池状态、定时状态）时，根据系统当前状态，由系统统一决策调度时间。
 
@@ -28,13 +28,13 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
 
 在DevEco Studio工程中新建一个WorkScheduler工程，主要涉及如下关键步骤：
 
-- [开发延迟任务回调接口](#开发延迟任务回调接口)：开发延迟任务生命周期回调接口WorkSchedulerExtensionAbility。
+- [实现延迟任务回调拓展能力](#实现延迟任务回调拓展能力)：开发延迟任务生命周期回调接口WorkSchedulerExtensionAbility。
 
-- [开发延迟任务调度接口](#开发延迟任务调度接口)：开发延迟任务API，实现延迟任务注册、停止等功能。
+- [实现延迟任务调度能力](#实现延迟任务调度能力)：开发延迟任务API，实现延迟任务注册、停止等功能。
 
 - [配置文件](#配置文件)：配置应用配置文件module.json5。
 
-### 开发延迟任务回调接口
+### 实现延迟任务回调拓展能力
 
 1. 在工程根目录新建Module，模板选择为Ohos Library，命名为library。
 
@@ -102,7 +102,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
     }
     ```
 
-### 开发延迟任务调度接口
+### 实现延迟任务调度能力
 
 1. 在library对应的ets目录(./library/src/main/ets)下，新建ts文件并命名为DelayWork.ts，用于实现延迟任务API。
 
