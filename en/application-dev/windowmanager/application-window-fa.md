@@ -180,7 +180,8 @@ To create a better video watching and gaming experience, you can use the immersi
      }
      console.info('Succeeded in setting the system bar to be visible.');
    });
-   // Use method 2 to implement the immersive effect. 
+   // Use method 2 to implement the immersive effect.
+    
    let isLayoutFullScreen = true;
    mainWindowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err) => {
      if (err.code) {
@@ -204,7 +205,7 @@ To create a better video watching and gaming experience, you can use the immersi
      console.info('Succeeded in setting the system bar properties.');
    });
    ```
-   
+
 3. Load content for the immersive window and show it.
 
    Call **SetUIContent** and **showWindow** to load and display the content in the immersive window.
