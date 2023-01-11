@@ -219,8 +219,8 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 | 参数名      | 类型                                       | 必填   | 说明                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| begin    | number                                   | 是    | 起始时间。                                   |
-| end      | number                                   | 是    | 结束时间。                                   |
+| begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                   |
+| end      | number                                   | 是    | 结束时间，以毫秒为单位。                                   |
 | callback | AsyncCallback&lt;[BundleStatsMap](#bundlestatsmap)&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
 
 **错误码**：
@@ -274,8 +274,8 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| begin | number | 是    | 起始时间。 |
-| end   | number | 是    | 结束时间。 |
+| begin | number | 是    | 起始时间，以毫秒为单位。 |
+| end   | number | 是    | 结束时间，以毫秒为单位。 |
 
 **返回值**：
 
@@ -333,8 +333,8 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 | 参数名        | 类型                                       | 必填   | 说明                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | byInterval | [IntervalType](#intervaltype)            | 是    | 查询类型。                                    |
-| begin      | number                                   | 是    | 起始时间。                                    |
-| end        | number                                   | 是    | 结束时间。                                    |
+| begin      | number                                   | 是    | 起始时间，以毫秒为单位。                                    |
+| end        | number                                   | 是    | 结束时间，以毫秒为单位。                                    |
 | callback   | AsyncCallback&lt;Array&lt;[BundleStatsInfo](#bundlestatsinfo)&gt;&gt; | 是    | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
 
 **错误码**：
@@ -387,8 +387,8 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 | 参数名        | 类型                            | 必填   | 说明    |
 | ---------- | ----------------------------- | ---- | ----- |
 | byInterval | [IntervalType](#intervaltype) | 是    | 查询类型。 |
-| begin      | number                        | 是    | 起始时间。 |
-| end        | number                        | 是    | 结束时间。 |
+| begin      | number                        | 是    | 起始时间，以毫秒为单位。 |
+| end        | number                        | 是    | 结束时间，以毫秒为单位。 |
 
 **返回值**：
 
@@ -443,8 +443,8 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 
 | 参数名      | 类型                                       | 必填   | 说明                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| begin    | number                                   | 是    | 起始时间。                                   |
-| end      | number                                   | 是    | 结束时间。                                   |
+| begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                   |
+| end      | number                                   | 是    | 结束时间，以毫秒为单位。                                   |
 | callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
 
 **错误码**：
@@ -496,8 +496,8 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| begin | number | 是    | 起始时间。 |
-| end   | number | 是    | 结束时间。 |
+| begin | number | 是    | 起始时间，以毫秒为单位。 |
+| end   | number | 是    | 结束时间，以毫秒为单位。 |
 
 **返回值**：
 
@@ -548,8 +548,8 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 
 | 参数名      | 类型                                       | 必填   | 说明                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| begin    | number                                   | 是    | 起始时间。                                   |
-| end      | number                                   | 是    | 结束时间。                                   |
+| begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                   |
+| end      | number                                   | 是    | 结束时间，以毫秒为单位。                                   |
 | callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询当前应用的事件集合。 |
 
 **错误码**：
@@ -597,8 +597,8 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| begin | number | 是    | 起始时间。 |
-| end   | number | 是    | 结束时间。 |
+| begin | number | 是    | 起始时间，以毫秒为单位。 |
+| end   | number | 是    | 结束时间，以毫秒为单位。 |
 
 **返回值**：
 
@@ -1276,8 +1276,8 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| begin | number | 是    | 起始时间。 |
-| end   | number | 是    | 结束时间。 |
+| begin | number | 是    | 起始时间，以毫秒为单位。 |
+| end   | number | 是    | 结束时间，以毫秒为单位。 |
 
 **返回值**：
 
@@ -1329,8 +1329,8 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| begin    | number                                   | 是    | 起始时间。                                    |
-| end      | number                                   | 是    | 结束时间。                                    |
+| begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                    |
+| end      | number                                   | 是    | 结束时间，以毫秒为单位。                                    |
 | callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
 
 **错误码**：
@@ -1379,8 +1379,8 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| begin | number | 是    | 起始时间。 |
-| end   | number | 是    | 结束时间。 |
+| begin | number | 是    | 起始时间，以毫秒为单位。 |
+| end   | number | 是    | 结束时间，以毫秒为单位。 |
 
 **返回值**：
 
@@ -1432,8 +1432,8 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| begin    | number                                   | 是    | 起始时间。                                    |
-| end      | number                                   | 是    | 结束时间。                                    |
+| begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                    |
+| end      | number                                   | 是    | 结束时间，以毫秒为单位。                                    |
 | callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 是    | 指定的callback回调方法。返回通过指定起始和结束时间查询所有应用的通知次数信息。 |
 
 **错误码**：
