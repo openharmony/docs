@@ -196,3 +196,106 @@ export default class MyAbility extends Ability {
     }
 }
 ```
+
+## ApplicationContext.getProcessRunningInformation
+
+getProcessRunningInformation(): Promise<Array<ProcessRunningInformation>>;
+
+获取当前自身应用的运行信息
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility'
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        let context = this.context.getApplicationContext();
+        context.getProcessRunningInformation().then((data) => {
+            hilog.info(0x0000, 'testTag', '%{public}s', 'Process Running Information is' + JSON.stringify(data));
+        })
+    }
+  }
+```
+
+## ApplicationContext.getProcessRunningInformation
+
+getProcessRunningInformation(callback: AsyncCallback<Array<ProcessRunningInformation>>): void;
+
+获取当前自身应用的运行信息
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名         | 类型     | 必填 | 说明                       |
+| ------------- | -------- | ---- | -------------------------- |
+| callback | AsyncCallback\<Array\<ProcessRunningInformation>> | 是   | 回调方法。                  |
+
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility'
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        let context = this.context.getApplicationContext();
+        context.getProcessRunningInformation((err, data) => {
+            hilog.info(0x0000, 'testTag', '%{public}s', 'Process Running Information is:' + JSON.stringify(data));
+        })
+    }
+  }
+```
+
+## ApplicationContext.killProcessesBySelf
+
+killProcessesBySelf(): Promise<void>;
+
+杀死当前自身应用的所有进程
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility'
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        let context = this.context.getApplicationContext();
+        context.killProcessesBySelf();
+    }
+  }
+```
+
+## ApplicationContext.killProcessesBySelf
+
+killProcessesBySelf(callback: AsyncCallback<void>);
+
+杀死当前自身应用的所有进程
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名         | 类型     | 必填 | 说明                       |
+| ------------- | -------- | ---- | -------------------------- |
+| callback | AsyncCallback\<void> | 是   | 回调方法。                  |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility'
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        let context = this.context.getApplicationContext();
+        context.killProcessesBySelf((err, data) => {
+            hilog.info(0x0000, 'testTag', '%{public}s', 'Error code is:' + JSON.stringify(err));
+        })
+    }
+  }
+```
