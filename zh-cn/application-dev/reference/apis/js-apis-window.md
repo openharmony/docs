@@ -54,7 +54,7 @@ import window from '@ohos.window';
 | ---------- | -------------------------- | -- | ----------------------------------- |
 | name       | string                     | 是 | 窗口名字。                         |
 | windowType | [WindowType](#windowtype7) | 是 | 窗口类型。                         |
-| ctx        | BaseContext                | 否 | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的Context定义见[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)。不设置，则默认为空。<br>当Context为[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)时，创建系统窗口。 |
+| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | 否 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口。<br>Stage模型下需要使用该参数，用于创建系统窗口。 |
 | displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1。 |
 | parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1。      |
 
@@ -430,7 +430,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
-| ctx      | BaseContext                            | 是 | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
+| ctx      | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 当前应用上下文信息。 |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是 | 回调函数。返回当前应用内最后显示的窗口对象。 |
 
 **错误码：**
@@ -472,7 +472,7 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | 是   | 当前应用上下文信息。<br/>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br/>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
+| ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。 |
 
 **返回值：**
 
@@ -897,9 +897,7 @@ promise.then((data)=> {
 
 create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-创建子窗口，使用callback异步回调，其中Context详见[Context](js-apis-inner-app-context.md)。
-
-从API version 9开始，当Context为[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)时，创建系统窗口，使用callback异步回调。
+创建系统窗口，使用callback异步回调。
 
 > **说明：**
 > 
@@ -909,12 +907,12 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 
 **参数：**
 
-| 参数名   | 类型                                   | 必填 | 说明                                                         |
-| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | 是   | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的Context定义见[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)。 |
-| id       | string                                 | 是   | 窗口id。                                                     |
-| type     | [WindowType](#windowtype7)              | 是   | 窗口类型。                                                   |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前创建的子窗口对象。                         |
+| 参数名   | 类型                                                    | 必填 | 说明                                 |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------ |
+| ctx      | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。                 |
+| id       | string                                                  | 是   | 窗口id。                             |
+| type     | [WindowType](#windowtype7)                              | 是   | 窗口类型。                           |
+| callback | AsyncCallback&lt;[Window](#window)&gt;                  | 是   | 回调函数。返回当前创建的子窗口对象。 |
 
 **示例：**
 
@@ -935,9 +933,7 @@ window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, 
 
 create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
-创建子窗口，使用Promise异步回调，其中Context详见[Context](js-apis-inner-app-context.md)。
-
-从API version 9开始，当Context为[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)时，创建系统窗口，使用Promise异步回调。
+创建系统窗口，使用Promise异步回调。
 
 > **说明：**
 > 
@@ -949,7 +945,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
 | 参数名 | 类型                      | 必填 | 说明                                                         |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext               | 是   | 当前应用上下文信息。<br/>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br/>Stage模型的Context定义见[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)。 |
+| ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。 |
 | id     | string                    | 是   | 窗口id。                                                     |
 | type   | [WindowType](#windowtype7) | 是   | 窗口类型。                                                   |
 
@@ -1125,7 +1121,7 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | 是   | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
+| ctx      | [BaseContext](js-apis-inner-application-baseContext.md)                            | 是   | 当前应用上下文信息。 |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前应用内最后显示的窗口对象。                 |
 
 **示例：**
@@ -1158,7 +1154,7 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | 是   | 当前应用上下文信息。<br/>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br/>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
+| ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。 |
 
 **返回值：**
 
