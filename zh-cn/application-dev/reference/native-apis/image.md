@@ -66,9 +66,6 @@ anonymous enum
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| OH_NATIVEXCOMPONENT_RESULT_SUCCESS | 成功结果。 |
-| OH_NATIVEXCOMPONENT_RESULT_FAILED | 失败结果。 |
-| OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER | 无效参数。 |
 | OHOS_IMAGE_RESULT_SUCCESS | 成功的结果。 |
 | OHOS_IMAGE_RESULT_BAD_PARAMETER | 无效值。 |
 
