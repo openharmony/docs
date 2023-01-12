@@ -202,7 +202,7 @@
   - [@ohos.data.distributedDataObject](js-apis-data-distributedobject.md)
   - [@ohos.data.distributedKVStore](js-apis-distributedKVStore.md)
   - [@ohos.data.preferences](js-apis-data-preferences.md)
-  - [@ohos.data.rdb](js-apis-data-rdb.md)
+  - [@ohos.data.relationalStore](js-apis-data-relationalStore.md)
   - [@ohos.data.ValuesBucket](js-apis-data-valuesBucket.md)
   - data/rdb
     - [resultSet](js-apis-data-resultset.md)
@@ -339,6 +339,7 @@
   - [@ohos.bundleState](js-apis-deviceUsageStatistics.md)
   - [@ohos.bytrace](js-apis-bytrace.md)
   - [@ohos.data.storage](js-apis-data-storage.md)
+  - [@ohos.data.rdb](js-apis-data-rdb.md)
   - [@ohos.data.distributedData](js-apis-distributed-data.md)
   - [@ohos.distributedBundle](js-apis-Bundle-distributedBundle.md)
   - [@ohos.document](js-apis-document.md)
