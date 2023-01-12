@@ -38,7 +38,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
 
 1. 在工程根目录新建Module，模板选择为Ohos Library，命名为library。
 
-2. 在library对应的ets目录(./library/src/main/ets)下，新建eTS文件并命名为workAbility.ets，用于实现延迟任务回调接口。
+2. 在library对应的ets目录(./library/src/main/ets)下，新建ArkTS文件并命名为workAbility.ets，用于实现延迟任务回调接口。
 
     导入模块。
 
@@ -78,7 +78,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
     ```
 
 3. 在工程entry Module对应的ets目录(./entry/src/main/ets)下，新建一个目录并命名为workAbility。
-在workAbility目录下，新建一个eTS文件并命名为WorkTest.ets，实现延迟任务回调接口。
+在workAbility目录下，新建一个ArkTS文件并命名为WorkTest.ets，实现延迟任务回调接口。
 
     导入模块。
 
@@ -104,7 +104,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
 
 ### 实现延迟任务调度能力
 
-1. 在library对应的ets目录(./library/src/main/ets)下，新建ts文件并命名为DelayWork.ts，用于实现延迟任务API。
+1. 在library对应的ets目录(./library/src/main/ets)下，新建TypeScript文件并命名为DelayWork.ts，用于实现延迟任务API。
 
     导入模块。
 
