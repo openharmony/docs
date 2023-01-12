@@ -1,4 +1,4 @@
-# @ohos.bundle.distributedBundle (distributedBundle模块)
+# @ohos.bundle.distributedBundleManager (distributedBundleManager模块)
 
 本模块提供分布式应用的管理能力
 
@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```
-import distributedBundle from '@ohos.bundle.distributedBundle';
+import distributedBundle from '@ohos.bundle.distributedBundleManager';
 ```
 
 ## 系统能力

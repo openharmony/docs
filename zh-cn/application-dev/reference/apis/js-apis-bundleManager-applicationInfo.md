@@ -32,3 +32,4 @@
 | descriptionResource       | [Resource](js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的描述资源信息。                         |
 | appDistributionType       | string                                                       | 是   | 否   | 应用程序签名证书的分发类型，分为：app_gallery、enterprise、os_integration和crowdtesting。    |
 | appProvisionType          | string                                                       | 是   | 否   | 应用程序签名证书文件的类型，分为debug和release两种类型。           |
+| systemApp          | boolean                                                       | 是   | 否   | 标识应用是否为系统应用。           |
