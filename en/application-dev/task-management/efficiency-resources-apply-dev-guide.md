@@ -1,22 +1,22 @@
-## Efficiency Resource Request Development
+# Efficiency Resource Request Development
 
-### When to Use
+## When to Use
 
 To further balance power consumption overhead of the system, privileged system applications can be suspended in the background as other applications. To ensure normal provisioning of important functions, efficiency resource APIs are provided for these applications so that they can execute special tasks and use specific system resources in the background. For example, if they want to receive common events when suspended, they can use the APIs to request the common event resources.
 
 To upgrade your application as a privileged application, you must evaluate your service requirements and submit a request to the application center. The application center will determine whether to accept the request based on the conditions.
 
-### Available APIs
+## Available APIs
 
 **Table 1** Main APIs for efficiency resources
 
-| API                                     | Description                                      |
-| ---------------------------------------- | ---------------------------------------- |
-| applyEfficiencyResources(request: [EfficiencyResourcesRequest](../reference/apis/js-apis-backgroundTaskManager.md#efficiencyresourcesrequest9)): boolean | Requests efficiency resources.|
-| resetAllEfficiencyResources():void | Releases efficiency resources.  |
+| API                                     | Description        |
+| ---------------------------------------- | ---------- |
+| applyEfficiencyResources(request: [EfficiencyResourcesRequest](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md#efficiencyresourcesrequest)): boolean | Requests efficiency resources.   |
+| resetAllEfficiencyResources():void       | Releases efficiency resources.|
 
 
-### How to Develop
+## How to Develop
 
 1. When a privileged application in the background needs to use special resources, request the target resources from the system.
 
@@ -51,5 +51,3 @@ console.info("the result of request is: " + res);
 // Release all efficiency resources.
 backgroundTaskManager.resetAllEfficiencyResources();
 ```
-
-<!--no_check-->
