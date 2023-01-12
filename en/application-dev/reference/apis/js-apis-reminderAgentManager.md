@@ -1,8 +1,8 @@
-# reminderAgentManager
+# @ohos.reminderAgentManager
 
 The **reminderAgentManager** module provides APIs for publishing scheduled reminders through the reminder agent.
 
-You can set your application to use the reminder agent APIs to create scheduled reminders for countdown timers, calendar events, and alarm clocks. When the created reminders are published, the timing and pop-up notification functions of your application will be taken over by the reminder agent in the background when your application is frozen or exits.
+You can use the APIs to create scheduled reminders for countdown timers, calendar events, and alarm clocks. When the created reminders are published, the timing and pop-up notification functions of your application will be taken over by the reminder agent in the background when your application is frozen or exits.
 
 > **NOTE**
 >
@@ -31,7 +31,7 @@ Publishes a reminder through the reminder agent. This API uses an asynchronous c
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Asynchronous callback used to return the published reminder's ID.|
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the published reminder's ID.|
 
 **Error codes**
 
@@ -39,7 +39,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 | ID  | Error Message|
 | --------- | ------- |
-| 1700001    | Notification does not enable. |
+| 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
 
 **Example**
@@ -88,7 +88,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 | ID  | Error Message|
 | --------- | ------- |
-| 1700001    | Notification does not enable. |
+| 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
 
 **Example**
@@ -131,7 +131,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 | ID  | Error Message|
 | --------- | ------- |
 | 1700003    | The reminder does not exist. |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **Example**
 
@@ -168,7 +168,7 @@ Cancels the reminder with the specified ID. This API uses a promise to return th
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt;	 | Promise used to return the result.|
 
 **Error codes**
 
@@ -177,7 +177,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 | ID  | Error Message|
 | --------- | ------- |
 | 1700003    | The reminder does not exist. |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **Example**
 
@@ -198,8 +198,8 @@ try {
 
 getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): void
 
-Obtains all valid (not yet expired) reminders set by the current application. This API uses an asynchronous callback to return the reminders.
 
+Obtains all valid (not yet expired) reminders set by the current application. This API uses an asynchronous callback to return the reminders.
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 **Parameters**
@@ -214,7 +214,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 | ID  | Error Message|
 | --------- | ------- |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **Example**
 
@@ -274,7 +274,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 | ID  | Error Message|
 | --------- | ------- |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **Example**
 
@@ -332,7 +332,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 | ID  | Error Message|
 | --------- | ------- |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **Example**
 
@@ -371,7 +371,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 | ID  | Error Message|
 | --------- | ------- |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **Example**
 
@@ -541,7 +541,7 @@ Enumerates button types.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name| Default Value| Description|
+| Name| Value| Description|
 | -------- | -------- | -------- |
 | ACTION_BUTTON_TYPE_CLOSE | 0 | Button for closing the reminder.|
 | ACTION_BUTTON_TYPE_SNOOZE | 1 | Button for snoozing the reminder.|
@@ -553,7 +553,7 @@ Enumerates reminder types.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name| Default Value| Description|
+| Name| Value| Description|
 | -------- | -------- | -------- |
 | REMINDER_TYPE_TIMER | 0 | Countdown reminder.|
 | REMINDER_TYPE_CALENDAR | 1 | Calendar reminder.|
@@ -580,7 +580,7 @@ Sets the package and ability that are redirected to when the reminder notificati
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pkgName | string | Yes| Name of the package that is redirected to when the reminder notification is clicked.|
+| pkgName | string | Yes| Name of the HAP that is redirected to when the reminder notification is clicked.|
 | abilityName | string | Yes| Name of the ability that is redirected to when the reminder notification is clicked.|
 
 
@@ -592,7 +592,7 @@ Provides the information about the target package and ability to start automatic
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pkgName | string | Yes| Name of the package that is automatically started when the reminder arrives and the device is not in use.|
+| pkgName | string | Yes| Name of the HAP that is automatically started when the reminder arrives and the device is not in use.|
 | abilityName | string | Yes| Name of the ability that is automatically started when the reminder arrives and the device is not in use.|
 
 
@@ -608,9 +608,9 @@ Defines the reminder to publish.
 | actionButton | [ActionButton](#actionbutton) | No| Button displayed in the reminder notification. (The parameter is optional. Up to two buttons are supported.)|
 | wantAgent | [WantAgent](#wantagent) | No| Information about the ability that is redirected to when the notification is clicked.|
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | No| Information about the ability that is automatically started when the reminder arrives. If the device is in use, a notification will be displayed.|
-| ringDuration | number | No| Ringing duration, in seconds.|
-| snoozeTimes | number | No| Number of reminder snooze times.|
-| timeInterval | number | No| Reminder snooze interval, in seconds.|
+| ringDuration | number | No| Ringing duration, in seconds. The default value is **1**.|
+| snoozeTimes | number | No| Number of reminder snooze times. The default value is **0**.|
+| timeInterval | number | No| Reminder snooze interval, in seconds. The default value is **0**.|
 | title | string | No| Reminder title.|
 | content | string | No| Reminder content.|
 | expiredContent | string | No| Content to be displayed after the reminder expires.|
@@ -646,7 +646,7 @@ Defines a reminder for an alarm.
 | -------- | -------- | -------- | -------- |
 | hour | number | Yes| Hour portion of the reminder time.|
 | minute | number | Yes| Minute portion of the reminder time.|
-| daysOfWeek | Array&lt;number&gt; | No| Days of a week when the reminder repeats.|
+| daysOfWeek | Array&lt;number&gt; | No| Days of a week when the reminder repeats. The value ranges from 1 to 7, corresponding to the data from Monday to Sunday.|
 
 
 ## ReminderRequestTimer
