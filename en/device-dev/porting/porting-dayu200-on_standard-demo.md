@@ -1,6 +1,6 @@
 # Standard System Solution – Rockchip RK3568 Porting Case
 
-​This document describes how to port standard system functions based on the DAYU200 development board of the RK3568 chip from Rockchip. The porting processing mainly includes product configuration adding, kernel startup and upgrade, ADM-based conversion of audio, case summary of the camera, TP, LCD, Wi-Fi, BT, vibrator, sensor, and graphics display modules, as well as related function adaptation.
+This document describes how to port standard system functions based on the DAYU200 development board of the RK3568 chip from Rockchip. The porting processing mainly includes product configuration adding, kernel startup and upgrade, ADM-based conversion of audio, case summary of the camera, TP, LCD, Wi-Fi, Bluetooth, vibrator, sensor, and graphics display modules, as well as related function adaptation.
 
 ## Product Configuration and Directory Planning
 
@@ -81,10 +81,10 @@ RK3568 adaptation is to pack **ramdisk** compiled in the mainline version into *
 
 1. Enable secondary boot.
 
-  Set **enable_ramdisk** in **productdefine/common/device/rk3568.json**.
+   Set **enable_ramdisk** in **productdefine/common/device/rk3568.json**.
 
-  ```
-  {
+    ```
+    {
       "device_name": "rk3568",
       "device_company": "hihope",
       "target_os": "ohos",
@@ -93,32 +93,32 @@ RK3568 adaptation is to pack **ramdisk** compiled in the mainline version into *
       "device_build_path": "device/hihope/build",
       "enable_ramdisk": true,
       "build_selinux": true
-  }
-  ```
+    }
+    ```
 
 2. Pack the **ramdsik.img** file compiled in the mainline version to **boot_linux.img**.
 
-View the configuration as follows:
+   View the configuration as follows:
 
-RK supports **uboot** from **ramdisk**. You only need to add **ramdisk.img** to the configuration file of the packed **boot_linux.img**. Therefore, the **its** format of the mainline version is not used. Specifically, add the following content to the kernel compilation script **make-ohos.sh**:
-
-```
-function make_extlinux_conf()
-{
-	dtb_path=$1
-	uart=$2
-	image=$3
-	
-	echo "label rockchip-kernel-5.10" > ${EXTLINUX_CONF}
-	echo "	kernel /extlinux/${image}" >> ${EXTLINUX_CONF}
-	echo "	fdt /extlinux/${TOYBRICK_DTB}" >> ${EXTLINUX_CONF}
-	if [ "enable_ramdisk" == "${ramdisk_flag}" ]; then
-		echo "	initrd /extlinux/ramdisk.img" >> ${EXTLINUX_CONF}
-	fi
-	cmdline="append earlycon=uart8250,mmio32,${uart} root=PARTUUID=614e0000-0000-4b53-8000-1d28000054a9 rw rootwait rootfstype=ext4"
-	echo "  ${cmdline}" >> ${EXTLINUX_CONF}
-}
-```
+   RK supports **uboot** from **ramdisk**. You only need to add **ramdisk.img** to the configuration file of the packed **boot_linux.img**. Therefore, the **its** format of the mainline version is not used. Specifically, add the following content to the kernel compilation script **make-ohos.sh**:
+   
+     ```
+     function make_extlinux_conf()
+     {
+   	dtb_path=$1
+   	uart=$2
+   	image=$3
+   	
+   	echo "label rockchip-kernel-5.10" > ${EXTLINUX_CONF}
+   	echo "	kernel /extlinux/${image}" >> ${EXTLINUX_CONF}
+   	echo "	fdt /extlinux/${TOYBRICK_DTB}" >> ${EXTLINUX_CONF}
+   	if [ "enable_ramdisk" == "${ramdisk_flag}" ]; then
+   		echo "	initrd /extlinux/ramdisk.img" >> ${EXTLINUX_CONF}
+   	fi
+   	cmdline="append earlycon=uart8250,mmio32,${uart} root=PARTUUID=614e0000-0000-4b53-8000-1d28000054a9 rw rootwait rootfstype=ext4"
+   	echo "  ${cmdline}" >> ${EXTLINUX_CONF}
+     }
+     ```
 
 ### Packing
 
@@ -613,99 +613,106 @@ For details about the configuration, see the HCS configuration section and **aud
 ##### DAI (i2s) Module
 
 1. Read and write registers.
-   The idea is the same as that of the Codec module. Read the Linux DTS file and use the **regmap** function of Linux to read and write registers.
-
-   ```c
-   int32_t Rk3568DeviceReadReg(unsigned long regBase, uint32_t reg, uint32_t *val)
-    {
-        AUDIO_DEVICE_LOG_ERR("entry");
-        (void)regBase;
-        struct device_node *dmaOfNode = of_find_node_by_path("/i2s@fe410000");
-        if(dmaOfNode == NULL) {
-            AUDIO_DEVICE_LOG_ERR("of_node is NULL.");
-        }
-        struct platform_device *platformdev = of_find_device_by_node(dmaOfNode);
-        struct rk3568_i2s_tdm_dev *i2s_tdm = dev_get_drvdata(&platformdev->dev);
-        
-        (void)regBase;
-        if (regmap_read(i2s_tdm->regmap, reg, val)) {
-            AUDIO_DEVICE_LOG_ERR("read register fail: [%04x]", reg);
-            return HDF_FAILURE;
-        }
-        return HDF_SUCCESS;
-    }
    
-    int32_t Rk3568DeviceWriteReg(unsigned long regBase, uint32_t reg, uint32_t value)
-    {    
-        AUDIO_DEVICE_LOG_ERR("entry");
-        (void)regBase;
-        struct device_node *dmaOfNode = of_find_node_by_path("/i2s@fe410000");
-        if(dmaOfNode == NULL) {
-            AUDIO_DEVICE_LOG_ERR("of_node is NULL.");
-        }
-        struct platform_device *platformdev = of_find_device_by_node(dmaOfNode);
-        struct rk3568_i2s_tdm_dev *i2s_tdm = dev_get_drvdata(&platformdev->dev);
-        if (regmap_write(i2s_tdm->regmap, reg, value)) {
-            AUDIO_DEVICE_LOG_ERR("write register fail: [%04x] = %04x", reg, value);
-            return HDF_FAILURE;
-        }
-        return HDF_SUCCESS;
-    }
-   ```
-
+   The idea is the same as that of the Codec module. Read the Linux DTS file and use the **regmap** function of Linux to read and write registers.
+   
+      ```c
+      int32_t Rk3568DeviceReadReg(unsigned long regBase, uint32_t reg, uint32_t *val)
+       {
+           AUDIO_DEVICE_LOG_ERR("entry");
+           (void)regBase;
+           struct device_node *dmaOfNode = of_find_node_by_path("/i2s@fe410000");
+           if(dmaOfNode == NULL) {
+               AUDIO_DEVICE_LOG_ERR("of_node is NULL.");
+           }
+           struct platform_device *platformdev = of_find_device_by_node(dmaOfNode);
+           struct rk3568_i2s_tdm_dev *i2s_tdm = dev_get_drvdata(&platformdev->dev);
+           
+           (void)regBase;
+           if (regmap_read(i2s_tdm->regmap, reg, val)) {
+               AUDIO_DEVICE_LOG_ERR("read register fail: [%04x]", reg);
+               return HDF_FAILURE;
+           }
+           return HDF_SUCCESS;
+       }
+      
+       int32_t Rk3568DeviceWriteReg(unsigned long regBase, uint32_t reg, uint32_t value)
+       {    
+           AUDIO_DEVICE_LOG_ERR("entry");
+           (void)regBase;
+           struct device_node *dmaOfNode = of_find_node_by_path("/i2s@fe410000");
+           if(dmaOfNode == NULL) {
+               AUDIO_DEVICE_LOG_ERR("of_node is NULL.");
+           }
+           struct platform_device *platformdev = of_find_device_by_node(dmaOfNode);
+           struct rk3568_i2s_tdm_dev *i2s_tdm = dev_get_drvdata(&platformdev->dev);
+           if (regmap_write(i2s_tdm->regmap, reg, value)) {
+               AUDIO_DEVICE_LOG_ERR("write register fail: [%04x] = %04x", reg, value);
+               return HDF_FAILURE;
+           }
+           return HDF_SUCCESS;
+       }
+      ```
+   
 2. For other OPS functions:
 
   - Rk3568DaiDeviceInit
+    
     Original framework, which reads the **DAI_config.hcs** parameter list and works with HwParams to set parameters.
-
+        
+    
   - Rk3568DaiHwParams
+
     Configure the I2S MCLK/BCLK/LRCLK clocks.
+        
 
     1. Calculate the MCLK based on different sampling rates.
 
-    ```c
-        int32_t RK3568I2sTdmSetSysClk(struct rk3568_i2s_tdm_dev *i2s_tdm, const struct AudioPcmHwParams *param)
-        {
-            /* Put set mclk rate into rockchip_i2s_tdm_set_mclk() */
-            uint32_t sampleRate = param->rate;
-            uint32_t mclk_parent_freq = 0;
-            switch (sampleRate) {
-                case AUDIO_DEVICE_SAMPLE_RATE_8000:
-                case AUDIO_DEVICE_SAMPLE_RATE_16000:
-                case AUDIO_DEVICE_SAMPLE_RATE_24000:
-                case AUDIO_DEVICE_SAMPLE_RATE_32000:
-                case AUDIO_DEVICE_SAMPLE_RATE_48000:
-                case AUDIO_DEVICE_SAMPLE_RATE_64000:
-                case AUDIO_DEVICE_SAMPLE_RATE_96000:
-                mclk_parent_freq = i2s_tdm->bclk_fs * AUDIO_DEVICE_SAMPLE_RATE_192000;
-                break;
-                case AUDIO_DEVICE_SAMPLE_RATE_11025:
-                case AUDIO_DEVICE_SAMPLE_RATE_22050:
-                case AUDIO_DEVICE_SAMPLE_RATE_44100:
-    
-                mclk_parent_freq = i2s_tdm->bclk_fs * AUDIO_DEVICE_SAMPLE_RATE_176400;
-                break;
-                default:
-                AUDIO_DEVICE_LOG_ERR("Invalid LRCK freq: %u Hz\n", sampleRate);
-                    return HDF_FAILURE;
-            }
-            i2s_tdm->mclk_tx_freq = mclk_parent_freq;
-            i2s_tdm->mclk_rx_freq = mclk_parent_freq;
-    
-            return HDF_SUCCESS;
-        }
-    ```
+       ```c
+           int32_t RK3568I2sTdmSetSysClk(struct rk3568_i2s_tdm_dev *i2s_tdm, const struct AudioPcmHwParams *param)
+           {
+               /* Put set mclk rate into rockchip_i2s_tdm_set_mclk() */
+               uint32_t sampleRate = param->rate;
+               uint32_t mclk_parent_freq = 0;
+               switch (sampleRate) {
+                   case AUDIO_DEVICE_SAMPLE_RATE_8000:
+                   case AUDIO_DEVICE_SAMPLE_RATE_16000:
+                   case AUDIO_DEVICE_SAMPLE_RATE_24000:
+                   case AUDIO_DEVICE_SAMPLE_RATE_32000:
+                   case AUDIO_DEVICE_SAMPLE_RATE_48000:
+                   case AUDIO_DEVICE_SAMPLE_RATE_64000:
+                   case AUDIO_DEVICE_SAMPLE_RATE_96000:
+                   mclk_parent_freq = i2s_tdm->bclk_fs * AUDIO_DEVICE_SAMPLE_RATE_192000;
+                   break;
+                   case AUDIO_DEVICE_SAMPLE_RATE_11025:
+                   case AUDIO_DEVICE_SAMPLE_RATE_22050:
+                   case AUDIO_DEVICE_SAMPLE_RATE_44100:
+       
+                   mclk_parent_freq = i2s_tdm->bclk_fs * AUDIO_DEVICE_SAMPLE_RATE_176400;
+                   break;
+                   default:
+                   AUDIO_DEVICE_LOG_ERR("Invalid LRCK freq: %u Hz\n", sampleRate);
+                       return HDF_FAILURE;
+               }
+               i2s_tdm->mclk_tx_freq = mclk_parent_freq;
+               i2s_tdm->mclk_rx_freq = mclk_parent_freq;
+       
+               return HDF_SUCCESS;
+           }
+       ```
 
     2. Calculate the BCLK/LRclk frequency division coefficient based on the obtained MCLK.
 
   - Rk3568NormalTrigger
+
     Complete a series of configurations based on the input and output types and commands (start/stop/pause/resume).
+    
 
     1. Start and stop the MCLK.
     2. Start and stop DMA transfer.
     3. Start and stop transmission.
-       See the code for detailed implementation, and refer to the API functions of the native Linux I2S driver.
-
+      See the code for detailed implementation, and refer to the API functions of the native Linux I2S driver.
+    
     ```c
         // Start or restore the process.
         if (streamType == AUDIO_RENDER_STREAM) {
@@ -738,8 +745,7 @@ For details about the configuration, see the HCS configuration section and **aud
             AUDIO_DEVICE_LOG_ERR("i2s reg: 0x%x = 0x%x ", I2S_XFER, val);
         }
     ```
-
-   ##### Platform (DMA) Module
+##### Platform (DMA) Module
 
 For other OPS functions:
 
@@ -784,24 +790,24 @@ For other OPS functions:
 
 5. Rk3568PcmPointer
 
-After step 4 is complete, the ADM framework calls Rk3568PcmPointer to cyclically write CirBuf and calculate the pointer.
+      After step 4 is complete, the ADM framework calls Rk3568PcmPointer to cyclically write CirBuf and calculate the pointer.
 
-   ```
-     
-      dma_chn = dmaRtd->dmaChn[DMA_TX_CHANNEL];
-      buf_size = data->renderBufInfo.cirBufSize;
-      dmaengine_tx_status(dma_chn, dmaRtd->cookie[DMA_TX_CHANNEL], &dma_state);
-      if (dma_state.residue) {
-          currentPointer = buf_size - dma_state.residue;
-          *pointer = BytesToFrames(data->pcmInfo.frameSize, currentPointer);
-      } else {
-          *pointer = 0;
-      }
-   ```
+         ```
+           
+            dma_chn = dmaRtd->dmaChn[DMA_TX_CHANNEL];
+            buf_size = data->renderBufInfo.cirBufSize;
+            dmaengine_tx_status(dma_chn, dmaRtd->cookie[DMA_TX_CHANNEL], &dma_state);
+            if (dma_state.residue) {
+                currentPointer = buf_size - dma_state.residue;
+                *pointer = BytesToFrames(data->pcmInfo.frameSize, currentPointer);
+            } else {
+                *pointer = 0;
+            }
+         ```
 
 6. Rk3568DmaPause
 
-      Use the native Linux DMA API function **dmaengine_terminate_async** to stop DMA transfer.
+   Use the native Linux DMA API function **dmaengine_terminate_async** to stop DMA transfer.
 
    ```
     dmaengine_terminate_async(dmaChan);
@@ -919,9 +925,9 @@ The code repository related to the camera chipset of RK3568 is **device_hihope**
 ```
   ####  Camera Driver Framework Configuration
 
-  Path of the RK3568 configuration file:
+Path of the RK3568 configuration file: "vendor/hihope/rk3568/hdf_config/uhdf/device_info.hcs".
 
-  "vendor/hihope/rk3568/hdf_config/uhdf/device_info.hcs". For other platforms, refer to the RK3568 adaptation.
+For other platforms, refer to the RK3568 adaptation.
 
 ```
         hdi_server :: host {
@@ -941,19 +947,26 @@ The code repository related to the camera chipset of RK3568 is **device_hihope**
 ```
 
 Parameter description:
-       **Host**: A host node is an independent process. If an independent process is required, add a host node.
-       **Policy**: service publish policy. Set this parameter to **2** for the HDI service.
-       **moduleName**: name of the driver implementation library.
-       **serviceName**: service name, which must be globally unique.  
+
+**Host**: A host node is an independent process. If an independent process is required, add a host node.
+
+**Policy**: service publish policy. Set this parameter to **2** for the HDI service.
+
+**moduleName**: name of the driver implementation library.
+
+**serviceName**: service name, which must be globally unique.  
 
 Entry for implementing the Camera_host driver
 
 File path: drivers/peripheral/camera/interfaces/hdi_ipc/server/src/camera_host_driver.cpp
 
 Dispatch device service messages.
-      **cmd Id:** command ID of the request.
-      **Data:** pointer to other services or I/O requests
-      **Reply:** pointer to the content of the returned message
+
+**cmd Id:** command ID of the request.
+
+**Data:** pointer to other services or I/O requests.
+
+**Reply:** pointer to the content of the returned message.
 
 ```
 static int32_t CameraServiceDispatch(struct HdfDeviceIoClient *client, int cmdId,
@@ -964,7 +977,7 @@ static int32_t CameraServiceDispatch(struct HdfDeviceIoClient *client, int cmdId
  }
 ```
 
- Bind a device service: initializes the device service object and resource object.
+Bind a device service: initializes the device service object and resource object.
 
 ```
 int HdfCameraHostDriverBind(HdfDeviceObject *deviceObject)
@@ -1091,7 +1104,7 @@ Three code compilation paths **chipset_build_deps**, **camera_device_manager_dep
 Take V4l2 as an example. The pipeline connection mode is to configure the connection in the HCS configuration file. The data source is called SourceNode, including hardware device control and data stream transfer.
  You can determine whether to add the ISPNode as required because the ISPNode and SensorNode can be unified as the SourceNode in many operations. SinkNode is the key point of data transmission in the pipeline. Data is transmitted back to the buffer queue.
 
-​    A node in the pipeline is the abstraction of the hardware/software module. Therefore, the hardware module node needs to control the hardware module. Before controlling the hardware module, you need to obtain the **deviceManager** of the corresponding hardware module and transmit the control command/data buffer through the **deviceManager**, therefore, the **deviceManager** has a v4l2 device manager abstract module, which is used to create the manager and controller of each hardware device, such as sensorManager, IspManager, and sensorController. Therefore, the v4l2 device manager is the general manager of each hardware device.
+A node in the pipeline is the abstraction of the hardware/software module. Therefore, the hardware module node needs to control the hardware module. Before controlling the hardware module, you need to obtain the **deviceManager** of the corresponding hardware module and transmit the control command/data buffer through the **deviceManager**, therefore, the **deviceManager** has a v4l2 device manager abstract module, which is used to create the manager and controller of each hardware device, such as sensorManager, IspManager, and sensorController. Therefore, the v4l2 device manager is the general manager of each hardware device.
 
 The controller in deviceManager directly interacts with the driver adaptation layer.
 
@@ -1099,11 +1112,11 @@ Based on the preceding description, to adapt a chip platform based on the Linux 
 
 The following directories are added:
 
-​     **vendor/hihope/rk3568/hdf_config/uhdf/camera/**: HCS configuration file directory of the current chip product.
+- **vendor/hihope/rk3568/hdf_config/uhdf/camera/**: HCS configuration file directory of the current chip product.
 
-​     **device/hihope/rk3568/camera/**: code adaptation directory of the current chip product.
+- **device/hihope/rk3568/camera/**: code adaptation directory of the current chip product.
 
-​     **drivers/peripheral/camera/hal/adapter/platform/v4l2**: common platform code.
+- **drivers/peripheral/camera/hal/adapter/platform/v4l2**: common platform code.
 
 ####  HCS Configuration File Adaptation  
 
@@ -1139,7 +1152,7 @@ Take the RK3568 development board as an example. The HCS file must be stored in 
           
   ```
 
- The **camera_host_config.hcs** file under **hdi_impl** contains the physical/logical camera configuration and capability configuration. The physical/logical camera configuration needs to be used in the HAL, and the logical camera and capability configuration need to be reported to the upper layer. Add the capability configuration based on the adapted chip product. The used capability values are key-value pairs, which are defined in **//drivers/peripheral/camera/hal/hdi_impl/include/camera_host/metadata_enum_map.h**.
+The **camera_host_config.hcs** file under **hdi_impl** contains the physical/logical camera configuration and capability configuration. The physical/logical camera configuration needs to be used in the HAL, and the logical camera and capability configuration need to be reported to the upper layer. Add the capability configuration based on the adapted chip product. The used capability values are key-value pairs, which are defined in **//drivers/peripheral/camera/hal/hdi_impl/include/camera_host/metadata_enum_map.h**.
 
 ```
       normal_preview :: pipeline_spec {
@@ -2554,70 +2567,69 @@ Directory structure:
 
 The HDF WLAN driver framework consists of seven parts: Module, NetDevice, NetBuf, BUS, HAL, Client, and Message. You can implement the following functions during HDF adaptation of the Wi-Fi driver:
 
-1) Initialize the driver module that adapts the HDF WLAN framework.
+1. Initialize the driver module that adapts the HDF WLAN framework.
 
-The following figure shows the code process.
+   The following figure shows the code process.
 
-![dayu200-wifi-03.png](figures/dayu200/dayu200-wifi-03.png)
+   ![dayu200-wifi-03.png](figures/dayu200/dayu200-wifi-03.png)
 
-The code is stored in **device/hihope/rk3568/wifi/bcmdhd_wifi6/hdf_driver_bdh_register.c**.
+   The code is stored in **device/hihope/rk3568/wifi/bcmdhd_wifi6/hdf_driver_bdh_register.c**.
 
-```
-struct HdfDriverEntry g_hdfBdh6ChipEntry = {
-  .moduleVersion = 1,
-  .Bind = HdfWlanBDH6DriverBind,
-  .Init = HdfWlanBDH6ChipDriverInit,
-  .Release = HdfWlanBDH6ChipRelease,
-  .moduleName = "HDF_WLAN_CHIPS"
-};
-HDF_INIT(g_hdfBdh6ChipEntry);
-```
+   ```
+   struct HdfDriverEntry g_hdfBdh6ChipEntry = {
+     .moduleVersion = 1,
+     .Bind = HdfWlanBDH6DriverBind,
+     .Init = HdfWlanBDH6ChipDriverInit,
+     .Release = HdfWlanBDH6ChipRelease,
+     .moduleName = "HDF_WLAN_CHIPS"
+   };
+   HDF_INIT(g_hdfBdh6ChipEntry);
+   ```
 
-During driver initialization, the SDIO main control board scans and detects the card, initializes the Wi-Fi chip, and creates and initializes the main API.
+   During driver initialization, the SDIO main control board scans and detects the card, initializes the Wi-Fi chip, and creates and initializes the main API.
 
-2) Implement the HDF WLAN Base control-side APIs.
+2. Implement the HDF WLAN Base control-side APIs.
 
-The code is stored in **hdf_bdh_mac80211.c**.
+   The code is stored in **hdf_bdh_mac80211.c**.
 
-```
-static struct HdfMac80211BaseOps g_bdh6_baseOps = {
-  .SetMode = BDH6WalSetMode,
-  .AddKey = BDH6WalAddKey,
-  .DelKey = BDH6WalDelKey,
-  .SetDefaultKey = BDH6WalSetDefaultKey,
-  .GetDeviceMacAddr = BDH6WalGetDeviceMacAddr,
-  .SetMacAddr = BDH6WalSetMacAddr,
-  .SetTxPower = BDH6WalSetTxPower,
-  .GetValidFreqsWithBand = BDH6WalGetValidFreqsWithBand,
-  .GetHwCapability = BDH6WalGetHwCapability,
-  .SendAction = BDH6WalSendAction,
-  .GetIftype = BDH6WalGetIftype,
-};
-```
+   ```
+      static struct HdfMac80211BaseOps g_bdh6_baseOps = {
+     .SetMode = BDH6WalSetMode,
+     .AddKey = BDH6WalAddKey,
+     .DelKey = BDH6WalDelKey,
+     .SetDefaultKey = BDH6WalSetDefaultKey,
+     .GetDeviceMacAddr = BDH6WalGetDeviceMacAddr,
+     .SetMacAddr = BDH6WalSetMacAddr,
+     .SetTxPower = BDH6WalSetTxPower,
+     .GetValidFreqsWithBand = BDH6WalGetValidFreqsWithBand,
+     .GetHwCapability = BDH6WalGetHwCapability,
+     .SendAction = BDH6WalSendAction,
+     .GetIftype = BDH6WalGetIftype,
+   };
+   ```
 
-The preceding APIs are called in STA, AP, and P2P modes.
+   The preceding APIs are called in STA, AP, and P2P modes.
 
-3) Implement APIs in HDF WLAN STA mode.
+3. Implement APIs in HDF WLAN STA mode.
 
-The following figure shows the call process in STA mode.
+   The following figure shows the call process in STA mode.
+   ![image-20220320161412663](figures/dayu200/dayu200-wifi-04.png)         
 
-​                ![image-20220320161412663](figures/dayu200/dayu200-wifi-04.png)         
+   The code is stored in **hdf_mac80211_sta.c**.
 
-The code is stored in **hdf_mac80211_sta.c**.
+   ```
+   struct HdfMac80211STAOps g_bdh6_staOps = {
+     .Connect = HdfConnect,
+     .Disconnect = HdfDisconnect,
+     .StartScan = HdfStartScan,
+     .AbortScan = HdfAbortScan,
+     .SetScanningMacAddress = HdfSetScanningMacAddress,
+   };
+   ```
 
-```
-struct HdfMac80211STAOps g_bdh6_staOps = {
-  .Connect = HdfConnect,
-  .Disconnect = HdfDisconnect,
-  .StartScan = HdfStartScan,
-  .AbortScan = HdfAbortScan,
-  .SetScanningMacAddress = HdfSetScanningMacAddress,
-};
-```
+4. Implement APIs in HDF WLAN AP mode.
 
-4) Implement APIs in HDF WLAN AP mode.
-
-The following figure shows the call process in AP mode.
+   The following figure shows the call process in AP mode.
 
  ![image-20220320161432068](figures/dayu200/dayu200-wifi-05.png)
 
@@ -2636,29 +2648,29 @@ struct HdfMac80211APOps g_bdh6_apOps = {
 };
 ```
 
-5) Implement APIs in HDF WLAN P2P mode.
+5. Implement APIs in HDF WLAN P2P mode.
 
-The following figure shows the call process in P2P mode.
+   The following figure shows the call process in P2P mode.
 
- ![image-20220320161442845](figures/dayu200/dayu200-wifi-06.png)
+   ![image-20220320161442845](figures/dayu200/dayu200-wifi-06.png)
 
-```
-struct HdfMac80211P2POps g_bdh6_p2pOps = {
-  .RemainOnChannel = WalRemainOnChannel,
-  .CancelRemainOnChannel = WalCancelRemainOnChannel,
-  .ProbeReqReport = WalProbeReqReport,
-  .AddIf = WalAddIf,
-  .RemoveIf = WalRemoveIf,
-  .SetApWpsP2pIe = WalSetApWpsP2pIe,
-  .GetDriverFlag = WalGetDriverFlag,
-}; 
-```
+   ```
+   struct HdfMac80211P2POps g_bdh6_p2pOps = {
+     .RemainOnChannel = WalRemainOnChannel,
+     .CancelRemainOnChannel = WalCancelRemainOnChannel,
+     .ProbeReqReport = WalProbeReqReport,
+     .AddIf = WalAddIf,
+     .RemoveIf = WalRemoveIf,
+     .SetApWpsP2pIe = WalSetApWpsP2pIe,
+     .GetDriverFlag = WalGetDriverFlag,
+   }; 
+   ```
 
-6) Implement the event reporting APIs of the HDF WLAN framework.
+6. Implement the event reporting APIs of the HDF WLAN framework.
 
-The Wi-Fi driver needs to report events to the **wpa_supplicant** and **hostapd** applications, such as hotspot scanning results and association completion events of new STAs. For details about all APIs for reporting HDF WLAN events, see **drivers/framework/include/wifi/hdf_wifi_event.h**.
+   The Wi-Fi driver needs to report events to the **wpa_supplicant** and **hostapd** applications, such as hotspot scanning results and association completion events of new STAs. For details about all APIs for reporting HDF WLAN events, see **drivers/framework/include/wifi/hdf_wifi_event.h**.
 
-The HDF WLAN APIs for reporting events are as follows.
+   The HDF WLAN APIs for reporting events are as follows.
 
 | API in Header File hdf_wifi_event.h   | Description                |
 | ----------------------------------- | ------------------------ |
@@ -2806,7 +2818,7 @@ HCI defines how to exchange commands, events, and asynchronous and synchronous p
 
 ### Hardware Connection
 
-According to the description of the RK3568 chip, the RK3568 chip does not integrate the Wi-Fi/Bluetooth function. The RK3568 chip needs to connect to an external Bluetooth chip to support the Bluetooth function, which complies with the preceding logical architecture. How is the physical connection between the host and the controller? You can view the development board specifications more clearly.
+According to the description of the RK3568 chip, the RK3568 chip does not integrate the Wi-Fi/Bluetooth function. The RK3568 chip needs to connect to an external Bluetooth chip to support the Bluetooth function, which complies with the preceding logical architecture. Regarding the physical connection between the host and the controller, you can consult the development board specifications.
 
 ![](figures/dayu200/dayu200-bt-02.png)
 
@@ -2816,7 +2828,7 @@ Pins 28-36 are UART (serial port). In addition, several pins are used for power 
 
 #### What Is vendorlib?
 
-The vendorlib is deployed on the host, and may be considered as a Bluetooth chip driver layer on the host, to shield technical details of different Bluetooth chips. From the perspective of code, the main functions are as follows:
+vendorlib is deployed on the host, and may be considered as a Bluetooth chip driver layer on the host, to shield technical details of different Bluetooth chips. From the perspective of code, the main functions are as follows:
 
 1. Provide a channel (file descriptor of the serial port) between Bluetooth chips for the protocol stack.
 
@@ -2913,9 +2925,9 @@ static int init(const bt_vendor_callbacks_t *p_cb, unsigned char *local_bdaddr)
 }
 ```
 
-First function called by **vendorlib**. **vendorlib** only needs to save the callback and MAC addresses of the protocol stack.
+The **init** function is the first function called by **vendorlib**. **vendorlib** only needs to save the callback and MAC addresses of the protocol stack.
 
-2. **BT_OP_POWER_ON** processing
+2. **BT_OP_POWER_ON**
 
 This operation needs to pull up the level of the power pin. In this function, the rfill device is used for processing, and the driver is not directly called to pull up the level.
 
@@ -3006,15 +3018,15 @@ static int HciInitHal()
 
 1. Name of the .so file of vendorlib
 
-The .so file name of vendorlib must be **libbt_vendor.z.so** because it is used when the protocol stack opens the dynamic link library (DLL).
+   The .so file name of vendorlib must be **libbt_vendor.z.so** because it is used when the protocol stack opens the dynamic link library (DLL).
 
 2. Firmware problem
 
-Pay attention to the chip firmware during development. The firmware of some Bluetooth chips may not need to be upgraded, but it's a must for some chips. During the adaptation of the AP6257S, the firmware is not delivered at the beginning. As a result, the received Bluetooth signals are poor. Pay attention to the following points when delivering firmware:
+   Pay attention to the chip firmware during development. The firmware of some Bluetooth chips may not need to be upgraded, but it's a must for some chips. During the adaptation of the AP6257S, the firmware is not delivered at the beginning. As a result, the received Bluetooth signals are poor. Pay attention to the following points when delivering firmware:
 
-2.1. For the AP6257S chip, the Bluetooth chip does not have a flash memory. Therefore, the firmware must be delivered again after the chip is powered on and off.
+   2.1. For the AP6257S chip, the Bluetooth chip does not have a flash memory. Therefore, the firmware must be delivered again after the chip is powered on and off.
 
-2.2. The firmware is processed based on the chip requirements. It is recommended that the reference code of the vendor be found. Take the Broadcom series chips as an example. The firmware delivery process is complex and is driven by a state machine. There are nine states in total:
+   2.2. The firmware is processed based on the chip requirements. It is recommended that the reference code of the vendor be found. Take the Broadcom series chips as an example. The firmware delivery process is complex and is driven by a state machine. There are nine states in total:
 
 ```c
 / Hardware Configuration State */
@@ -3074,9 +3086,9 @@ For details, see the **hw_config_cback** function.
 
 3. Pay attention to inter-system API differences.
 
-The APIs of various systems may be slightly different, which requires special attention. Compared with the APIs of Android and OHOS, the definitions of the functions for **vendorlib** to call **xmit_cb** to send HCI commands are slightly different.
+   The APIs may vary slightly by system, which requires special attention. For example, the definitions of the functions for **vendorlib** to call **xmit_cb** to send HCI commands are slightly different on different systems.
 
-Android:
+Certain system:
 
 ```c
 /* define callback of the cmd_xmit_cb
@@ -3092,7 +3104,7 @@ typedef void (*tINT_CMD_CBACK)(void* p_mem);
 typedef uint8_t (*cmd_xmit_cb)(uint16_t opcode, void* p_buf, tINT_CMD_CBACK p_cback);
 ```
 
-OHOS:
+OpenHarmony:
 
 ```c
 /**
@@ -3113,7 +3125,7 @@ packet. */
 typedef uint8_t (*cmd_xmit_callback)(uint16_t opcode, void* p_buf);
 ```
 
-That is, after a command is sent in vendorlib, Android directly calls callback to notify the chip of the returned message, and OHOS notifies the chip of the returned message through the **BT_OP_EVENT_CALLBACK** operation code (see the definition of **bt_opcode_t**). The vendorlib needs to parse the message code in the packet to determine which message is processed by the chip, and then calls the corresponding processing function.
+As shown above, after a command is sent in vendorlib, the certain system notifies the chip of the returned message through a callback, while OpenHarmony notifies the chip of the returned message through the **BT_OP_EVENT_CALLBACK** operation code (see the definition of **bt_opcode_t**). vendorlib needs to parse the message code in the packet to determine which message is to be processed by the chip, and then calls the corresponding processing function.
 
 ```c
 void hw_process_event(HC_BT_HDR *p_buf)
@@ -3137,11 +3149,11 @@ void hw_process_event(HC_BT_HDR *p_buf)
             break;
 ```
 
-In addition, the OHOS returns the number of bytes in the sent message. If the value is less than or equal to **0**, the message fails to be sent, which is different from the return value of the Android API.
+The returned messages are also different. OpenHarmony returns the number of bytes in the message. If the value is less than or equal to **0**, the message fails to be sent.
 
 4. snoop log
 
-Both Android and OHOS record HCI interaction messages. The OHOS system generates the **/data/log/bluetooth/snoop.log** file. You can use Wireshark or other packet analysis tools to view the interaction process between the host and controller, facilitating fault analysis.
+   Like other systems, OpenHarmony logs HCI records, which are saved in the **/data/log/bluetooth/snoop.log** file. This allows you to use Wireshark or other packet analysis tools to examine the interaction process between the host and controller, facilitating fault analysis.
 
 ##    Sensor
 
@@ -3149,7 +3161,7 @@ Both Android and OHOS record HCI interaction messages. The OHOS system generates
 
 ![dayu200-sensor-01.png](figures/dayu200/dayu200-sensor-01.png)
 
-The RK3568 supports the accel sensor. TheOpenHarmony mainline version has the overall driver framework. You only need to implement the specific component driver.
+RK3568 supports the accel sensor. The OpenHarmony mainline version has the overall driver framework. You only need to implement the specific component driver.
 
 ### Implementation of the mcx5566xa HDF Driver
 
@@ -3197,7 +3209,7 @@ int32_t (*ReadData)(struct SensorCfgData *data);
 };
 ```
 
-API for obtaining data on the X, Y, and Z axises
+API for obtaining data on the X, Y, and Z axises:
 
 ```c
 int32_t ReadMxc6655xaData(struct SensorCfgData *cfg, struct SensorReportEvent *event)
@@ -3240,7 +3252,7 @@ int32_t ReadMxc6655xaData(struct SensorCfgData *cfg, struct SensorReportEvent *e
 }
 ```
 
-Initialization
+Initialization:
 
 ```c
 static int32_t InitMxc6655xa(struct SensorCfgData *data)
@@ -3259,7 +3271,7 @@ static int32_t InitMxc6655xa(struct SensorCfgData *data)
 
 ### HCS Configuration
 
-HCS configuration of the MXC6655XA accel sensor driver
+HCS configuration of the MXC6655XA accel sensor driver:
 
 ```c
 device_sensor_mxc6655xa :: device {
@@ -3275,7 +3287,7 @@ device_sensor_mxc6655xa :: device {
 }
 ```
 
-Register group configuration information of the MXC6655XA accel sensor
+Register group configuration information of the MXC6655XA accel sensor:
 
 ```c
 #include "../sensor_common.hcs"
@@ -3351,13 +3363,13 @@ root {
 
 The three-axis data of the sensor can be obtained during the UT test.
 
-Test code path
+Test code path:
 
 ```c
 drivers/peripheral/sensor/test/unittest/common/hdf_sensor_test.cpp
 ```
 
-Run the following command to compile the UT code:
+Build UT code:
 
 ```c
 ./build.sh --product-name rk3568 --build-target hdf_test_sensor
@@ -3394,7 +3406,7 @@ Code path:
 drivers/framework/model/misc/vibrator/driver/chipset/vibrator_linear_driver.c
 ```
 
-Implementation of the linear vibrator accelerometer driver entry function
+Implementation of the linear vibrator accelerometer driver entry function:
 
 ```c
 struct HdfDriverEntry g_linearVibratorDriverEntry = {
@@ -3410,7 +3422,7 @@ HDF_INIT(g_linearVibratorDriverEntry);
 
 ### HCS Configuration
 
-HCS configuration of the driver
+HCS configuration of the driver:
 
 ```c
         vibrator :: host {
@@ -3440,7 +3452,7 @@ HCS configuration of the driver
         }
 ```
 
-HCS configuration of the linear vibrator
+HCS configuration of the linear vibrator:
 
 ```c
 root {
@@ -3461,13 +3473,13 @@ root {
 
 ### UT Test
 
-Test Code Path
+Test code path:
 
 ```c
 drivers/peripheral/misc/vibrator/test/unittest/common/hdf_vibrator_test.cpp
 ```
 
-UT Code Compilation
+Build UT code:
 
 ```c
 ./build.sh --product-name rk3568 --build-target hdf_test_vibrator
