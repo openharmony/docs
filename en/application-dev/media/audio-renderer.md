@@ -3,27 +3,30 @@
 ## Introduction
 
 **AudioRenderer** provides APIs for rendering audio files and controlling playback. It also supports audio interruption. You can use the APIs provided by **AudioRenderer** to play audio files in output devices and manage playback tasks.
-
 Before calling the APIs, be familiar with the following terms:
 
 - **Audio interruption**: When an audio stream with a higher priority needs to be played, the audio renderer interrupts the stream with a lower priority. For example, if a call comes in when the user is listening to music, the music playback, which is the lower priority stream, is paused.
 - **Status check**: During application development, you are advised to use **on('stateChange')** to subscribe to state changes of the **AudioRenderer** instance. This is because some operations can be performed only when the audio renderer is in a given state. If the application performs an operation when the audio renderer is not in the given state, the system may throw an exception or generate other undefined behavior.
 - **Asynchronous operation**: To prevent the UI thread from being blocked, most **AudioRenderer** calls are asynchronous. Each API provides the callback and promise functions. The following examples use the promise functions. For more information, see [AudioRenderer in Audio Management](../reference/apis/js-apis-audio.md#audiorenderer8).
-- **Audio interruption mode**: OpenHarmony provides two audio interruption modes: **shared mode** and **independent mode**. In shared mode, all **AudioRenderer** instances created by the same application share one focus object, and there is no focus transfer inside the application. Therefore, no callback will be triggered. In independent mode, each **AudioRenderer** instance has an independent focus object, and focus preemption occurs. Focus preemption triggers focus transfer, and the **AudioRenderer** instance that originally has the focus receives a notification through the callback. By default, the shared mode is used. You can call **setInterruptMode()** to set the independent mode.
+- **Audio interruption mode**: OpenHarmony provides two audio interruption modes: **shared mode** and **independent mode**. In shared mode, all **AudioRenderer** instances created by the same application share one focus object, and there is no focus transfer inside the application. Therefore, no callback will be triggered. In independent mode, each **AudioRenderer** instance has an independent focus object, and focus transfer is triggered by focus preemption. When focus transfer occurs, the **AudioRenderer** instance that is having the focus receives a notification through the callback. By default, the shared mode is used. You can call **setInterruptMode()** to switch to the independent mode.
 
 ## Working Principles
 
 The following figure shows the audio renderer state transitions.
 
-Figure 1 Audio renderer state transitions
+**Figure 1** Audio renderer state transitions
 
 ![audio-renderer-state](figures/audio-renderer-state.png)
 
 - **PREPARED**: The audio renderer enters this state by calling **create()**.
+
 - **RUNNING**: The audio renderer enters this state by calling **start()** when it is in the **PREPARED** state or by calling **start()** when it is in the **STOPPED** state.
-- **PAUSED**: The audio renderer in the **RUNNING** state can call **pause()** to pause the audio playback. After the audio playback is paused, it can call **start()** to resume the playback.
-- **STOPPED**: The audio renderer in the **PAUSED** or **RUNNING** state can call **stop()** to stop the playback.
-- **RELEASED**: The audio renderer in the **PREPARED**, **PAUSED**, or **STOPPED** state can use **release()** to release all occupied hardware and software resources. It will not transit to any other state after it enters the **RELEASED** state.
+
+- **PAUSED**: The audio renderer enters this state by calling **pause()** when it is in the **RUNNING** state. When the audio playback is paused, it can call **start()** to resume the playback.
+
+- **STOPPED**: The audio renderer enters this state by calling **stop()** when it is in the **PAUSED** or **RUNNING** state.
+
+- **RELEASED**: The audio renderer enters this state by calling **release()** when it is in the **PREPARED**, **PAUSED**, or **STOPPED** state. In this state, the audio renderer releases all occupied hardware and software resources and will not transit to any other state.
 
 ## How to Develop
 
@@ -62,7 +65,7 @@ Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. Th
    ```js
    async function startRenderer() {
      let state = audioRenderer.state;
-     // The audio renderer should be in the STATE_PREPARED, STATE_PAUSED, or STATE_STOPPED state after being started.
+     // The audio renderer should be in the STATE_PREPARED, STATE_PAUSED, or STATE_STOPPED state when start() is called.
      if (state != audio.AudioState.STATE_PREPARED && state != audio.AudioState.STATE_PAUSED &&
        state != audio.AudioState.STATE_STOPPED) {
        console.info('Renderer is not in a correct state to start');
@@ -258,8 +261,8 @@ Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. Th
    let interruptMode : audio.InterruptMode = audio.InterruptMode.SHARE_MODE;
    await audioRenderer.setInterruptMode(interruptMode);
 
-   // Set the volume of the stream to 10.
-   let volume : number = 10;
+   // Set the volume of the stream to 0.5.
+   let volume : number = 0.5;
    await audioRenderer.setVolume(volume);
    ```
 
@@ -303,7 +306,7 @@ Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. Th
          case audio.InterruptHint.INTERRUPT_HINT_RESUME:
            startRenderer();
            break;
-         // Notify the application that the audio stream is interrupted. The application determines whether to continue. (In this example, the application pauses the rendering.)
+         // Notify the application that the audio stream is interrupted. The application then determines whether to continue. (In this example, the application pauses the rendering.)
          case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
            isPlay = false;
            pauseRenderer();
@@ -312,7 +315,7 @@ Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. Th
      }
    });
 
-   audioRenderer.off('audioInterrupt'); // Unsubscribe from the audio interruption event. This event will no longer be received.
+   audioRenderer.off('audioInterrupt'); // Unsubscribe from the audio interruption event. This event will no longer be listened for.
    ```
 
 10. (Optional) Use **on('markReach')** to subscribe to the mark reached event, and use **off('markReach')** to unsubscribe from the event.
@@ -358,7 +361,7 @@ Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. Th
    
     ```js
     try {
-      audioRenderer.on('invalidInput', () => { // The string does not match.
+      audioRenderer.on('invalidInput', () => { // The string is invalid.
       })
     } catch (err) {
       console.info(`Call on function error, ${err}`); // The application throws exception 401.
@@ -373,7 +376,7 @@ Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. Th
 
 14. (Optional) Refer to the complete example of **on('audioInterrupt')**.
     
-    Create **AudioRender1** and **AudioRender2** in an application, configure the independent interruption mode, and call **on('audioInterrupt')** to subscribe to audio interruption events. At the beginning, **AudioRender1** has the focus. When **AudioRender2** attempts to obtain the focus, **AudioRenderer1** receives a focus transfer notification and the related log information is printed. If the shared mode is used, the log information will not be printed during application running.
+    Create **AudioRender1** and **AudioRender2** in an application, configure the independent interruption mode, and call **on('audioInterrupt')** to subscribe to audio interruption events. At the beginning, **AudioRender1** has the focus. When **AudioRender2** attempts to obtain the focus, **AudioRender1** receives a focus transfer notification and the related log information is printed. If the shared mode is used, the log information will not be printed during application running.
     
     ```js
      async runningAudioRender1(){
@@ -429,7 +432,7 @@ Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. Th
       let rlen = 0;
        rlen += bufferSize;
     
-       // 1.7 Render the original audio data in the buffer by using audioRenderer.
+       // 1.7 Render the original audio data in the buffer by using audioRender.
        let id = setInterval(async () => {
          if (audioRenderer1.state == audio.AudioState.STATE_RELEASED) { // The rendering stops if the audio renderer is in the STATE_RELEASED state.
            ss1.closeSync();
@@ -505,7 +508,7 @@ Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. Th
       let rlen = 0;
        rlen += bufferSize;
     
-       // 2.7 Render the original audio data in the buffer by using audioRenderer.
+       // 2.7 Render the original audio data in the buffer by using audioRender.
        let id = setInterval(async () => {
          if (audioRenderer2.state == audio.AudioState.STATE_RELEASED) { // The rendering stops if the audio renderer is in the STATE_RELEASED state.
            ss2.closeSync();
