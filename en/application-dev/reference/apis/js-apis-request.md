@@ -1,4 +1,4 @@
-# @ohos.request
+# @ohos.request (Upload and Download)
 
 The **request** module provides applications with basic upload, download, and background transmission agent capabilities.
 

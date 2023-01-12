@@ -1,7 +1,7 @@
-# Log
+# console (Log)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The APIs of this module are no longer maintained since API version 7. You are advised to use ['@ohos.hilog](js-apis-hilog.md)' instead.
+> **NOTE**<br>
+> The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.hilog`](js-apis-hilog.md) instead.
 
 ## console.debug
 

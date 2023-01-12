@@ -1,4 +1,4 @@
-# Socket Connection
+# @ohos.net.socket (Socket Connection)
 
 > **NOTE**
 >

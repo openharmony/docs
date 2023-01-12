@@ -1,4 +1,4 @@
-# Ethernet Connection Management
+# @ohos.net.ethernet (Ethernet Connection Management)
 
 The Ethernet Connection Management module provides wired network capabilities, which allow users to set the IP address, subnet mask, gateway, and Domain Name System (DNS) server of a wired network.
 

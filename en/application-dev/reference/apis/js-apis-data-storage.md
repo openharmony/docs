@@ -1,6 +1,6 @@
-# Lightweight Storage
+# @ohos.data.storage (Lightweight Storage)
 
-Lightweight storage provides applications with data processing capability and allows applications to perform lightweight data storage and query. Data is stored in key-value (KV) pairs. Keys are of the string type, and values can be of the number, string, or Boolean type.
+The **storage** module provides applications with data processing capability and allows applications to perform lightweight data storage and query. Data is stored in key-value (KV) pairs. Keys are of the string type, and values can be of the number, string, or Boolean type.
 
 
 > **NOTE**

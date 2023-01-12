@@ -1,6 +1,6 @@
-# Input Consumer
+# @ohos.multimodalInput.inputConsumer
 
-The Input Consumer module implements listening for key events.
+The **inputConsumer** module implements listening for key events.
 
 > **NOTE**
 >
