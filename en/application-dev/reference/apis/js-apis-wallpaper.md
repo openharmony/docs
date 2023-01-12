@@ -435,9 +435,9 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
 | callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the operation is successful, the setting result is returned. Otherwise, error information is returned. |
 
 **Example**
-
-```js
-// The source type is string.
+  
+  ```js
+  // The source type is string.
   let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
   wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {    
       if (error) {        
@@ -447,7 +447,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
       console.log(`success to setWallpaper.`);
   });
   
-// The source type is image.PixelMap.
+  // The source type is image.PixelMap.
   import image from '@ohos.multimedia.image';
   let imageSource = image.createImageSource("file://" + wallpaperPath);
   let opts = {
@@ -467,7 +467,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
   }).catch((error) => {       
       console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
   });
-```
+  ```
 
 
 ## wallpaper.setWallpaper
@@ -495,8 +495,8 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
 
 **Example**
 
-```js
-// The source type is string.
+  ```js
+  // The source type is string.
   let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
   wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
       console.log(`success to setWallpaper.`);
@@ -504,7 +504,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
       console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
   });
   
-// The source type is image.PixelMap.
+  // The source type is image.PixelMap.
   import image from '@ohos.multimedia.image';
   let imageSource = image.createImageSource("file://" + wallpaperPath);
   let opts = {
@@ -522,7 +522,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
   }).catch((error) => {       
       console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
   });
-```
+  ```
 
 ## wallpaper.getFile<sup>8+</sup>
 
@@ -695,10 +695,10 @@ Unsubscribes from the wallpaper color change event.
       console.log(`wallpaper color changed.`);
   };
   wallpaper.on('colorChange', listener);
-// Unsubscribe from the listener.
-wallpaper.off('colorChange', listener);
-// Unsubscribe from all subscriptions of the colorChange type.
-wallpaper.off('colorChange');
+  // Unsubscribe from the listener.
+  wallpaper.off('colorChange', listener);
+  // Unsubscribe from all subscriptions of the colorChange type.
+  wallpaper.off('colorChange');
   ```
 
 

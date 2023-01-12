@@ -14,7 +14,7 @@ This component can contain child components.
 
 ## APIs
 
-Swiper(value?:{controller?: SwiperController})
+Swiper(controller?: SwiperController)
 
 **Parameters**
 
@@ -29,19 +29,19 @@ Swiper(value?:{controller?: SwiperController})
 
 | Name                         | Type                              | Description                                      |
 | --------------------------- | ---------------------------------------- | ---------------------------------------- |
-| index                       | number                                   | Index of the child component currently displayed in the container.<br>Default value: **0**                    |
-| autoPlay                    | boolean                                  | Whether to enable automatic playback for child component switching. If this attribute is **true**, the navigation dots indicator does not take effect.<br>Default value: **false**   |
-| interval                    | number                                   | Interval for automatic playback, in ms.<br>Default value: **3000**                   |
-| indicator                   | boolean                                  | Whether to enable the navigation dots indicator.<br>Default value: **true**                             |
-| loop                        | boolean                                  | Whether to enable loop playback.<br>The value **true** means to enable loop playback. When LazyForEach is used, it is recommended that the number of the components to load exceed 5.<br>Default value: **true**|
-| duration                    | number                                   | Duration of the animation for switching child components, in ms.<br>Default value: **400**                       |
-| vertical                    | boolean                                  | Whether vertical swiping is used.<br>Default value: **false**                                |
-| itemSpace                   | number \| string          | Space between child components.<br>Default value: **0**                          |
-| displayMode                 | SwiperDisplayMode                        | Mode in which child components are displayed.<br>Default value: **SwiperDisplayMode.Stretch** |
-| cachedCount<sup>8+</sup>    | number                                   | Number of child components to be cached.<br>Default value: **1**                             |
-| disableSwipe<sup>8+</sup>   | boolean                                  | Whether to disable the swipe feature.<br>Default value: **false**                             |
-| displayCount<sup>8+</sup> | number\|string | Number of child components to display per page. The value **auto** is equivalent to **SwiperDisplayMode.AutoLinear**.<br>Default value: **1** |
-| effectMode<sup>8+</sup> | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | Swipe effect.<br>Default value: **EdgeEffect.Spring** |
+| index                       | number                                         | Index of the child component currently displayed in the container.<br>Default value: **0**                    |
+| autoPlay                    | boolean                                        | Whether to enable automatic playback for child component switching. If this attribute is **true**, the navigation dots indicator does not take effect.<br>Default value: **false**   |
+| interval                    | number                                         | Interval for automatic playback, in ms.<br>Default value: **3000**                   |
+| indicator                   | boolean                                        | Whether to enable the navigation dots indicator.<br>Default value: **true**                             |
+| loop                        | boolean                                        | Whether to enable loop playback.<br>The value **true** means to enable loop playback. When LazyForEach is used, it is recommended that the number of the components to load exceed 5.<br>Default value: **true**|
+| duration                    | number                                         | Duration of the animation for switching child components, in ms.<br>Default value: **400**                       |
+| vertical                    | boolean                                        | Whether vertical swiping is used.<br>Default value: **false**                                |
+| itemSpace                   | number \| string                               | Space between child components.<br>Default value: **0**                          |
+| displayMode                 | SwiperDisplayMode                              | Mode in which child components are displayed.<br>Default value: **SwiperDisplayMode.Stretch** |
+| cachedCount<sup>8+</sup>    | number                                         | Number of child components to be cached.<br>Default value: **1**                             |
+| disableSwipe<sup>8+</sup>   | boolean                                        | Whether to disable the swipe feature.<br>Default value: **false**                             |
+| displayCount<sup>8+</sup>   | number\|string                                 | Number of child components to display per page. The value **auto** is equivalent to **SwiperDisplayMode.AutoLinear**.<br>Default value: **1** |
+| effectMode<sup>8+</sup>     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)  | Swipe effect.<br>Default value: **EdgeEffect.Spring** |
 | curve<sup>8+</sup>          | [Curve](ts-appendix-enums.md#curve)  \| string | Animation curve. The ease-in/ease-out curve is used by default. For details about common curves, see [Curve](ts-appendix-enums.md#curve). You can also create custom curves ([interpolation curve objects](ts-interpolation-calculation.md)) by using the API provided by the interpolation calculation module.<br>Default value: **Curve.Ease**|
 | indicatorStyle<sup>8+</sup> | {<br>left?: [Length](ts-types.md#length),<br>top?: [Length](ts-types.md#length),<br>right?: [Length](ts-types.md#length),<br>bottom?: [Length](ts-types.md#length),<br>size?: [Length](ts-types.md#length),<br>mask?: boolean,<br>color?: [ResourceColor](ts-types.md#resourcecolor8),<br>selectedColor?: [ResourceColor](ts-types.md#resourcecolor8)<br>} | Style of the navigation dots indicator.<br>\- **left**: distance between the navigation dots indicator and the left edge of the **\<Swiper>** component.<br>\- **top**: distance between the navigation dots indicator and the top edge of the **\<Swiper>** component.<br>\- **right**: distance between the navigation dots indicator and the right edge of the **\<Swiper>** component.<br>\- **bottom**: distance between the navigation dots indicator and the bottom edge of the **\<Swiper>** component.<br>\- **size**: diameter of the navigation dots indicator.<br>\- **mask**: whether to enable the mask for the navigation dots indicator.<br>\- **color**: color of the navigation dots indicator.<br>\- **selectedColor**: color of the selected navigation dot.|
 
@@ -95,6 +95,10 @@ Stops an animation.
 onChange(event: (index: number) => void)
 
 Triggered when the index of the currently displayed child component changes.
+
+> **NOTE**
+> 
+> When the **\<Swiper>** component is used together with **LazyForEach**, the subpage UI cannot be refreshed in the **onChange** event.
 
 **Parameters**
 
