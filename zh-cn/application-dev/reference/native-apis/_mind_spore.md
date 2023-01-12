@@ -7,7 +7,7 @@
 @Syscap SystemCapability.Ai.MindSpore
 
 
-**自从：**
+**起始版本：**
 
 
 9
