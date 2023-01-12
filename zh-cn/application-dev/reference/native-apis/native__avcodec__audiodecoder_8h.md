@@ -5,7 +5,7 @@
 
 声明用于音频解码的Native API。
 
-**Since:**
+**起始版本：**
 9
 **Version:**
 1.0
