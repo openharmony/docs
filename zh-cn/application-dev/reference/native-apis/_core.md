@@ -7,10 +7,8 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 
 @syscap SystemCapability.Multimedia.Media.Core
 
-**Since:**
+**起始版本：**
 9
-**Version:**
-1.0
 
 ## 汇总
 

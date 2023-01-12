@@ -5,7 +5,7 @@
 
 声明用于访问Native XComponent的API。
 
-**自从：**
+**起始版本：**
 
 8
 
