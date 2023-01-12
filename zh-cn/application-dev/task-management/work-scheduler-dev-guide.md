@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-应用要执行对实时性要求不高的任务或持久性任务的时候，比如设备空闲时候做一次数据学习等场景，可以使用延迟调度任务，该机制在满足应用设定条件的时候，会根据系统当前状态，如内存、功耗、温度等统一决策调度时间。延迟任务调度约束见[延迟任务调度约束](./background-task-overview.md#延迟任务调度约束)。
+应用要执行对实时性要求不高的任务或持久性任务的时候，比如设备空闲时候做一次数据学习等场景，可以使用延迟调度任务，该机制在满足应用设定条件的时候，会根据系统当前状态，如内存、功耗、温度等统一决策调度时间，[WorkSchedulerExtensionAbility](./workscheduler-extensionability.md)提供了延迟任务回调拓展能力。延迟任务调度约束见[延迟任务调度约束](./background-task-overview.md#延迟任务调度约束)。
 
 ## 接口说明
 
@@ -61,7 +61,7 @@ import workScheduler from '@ohos.resourceschedule.workScheduler';
 import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
 ```
 
-2、开发对应的ExtensionAbility，用于回调执行具体的延迟任务。关于ExtensionAbility的介绍，参考[ExtensionAbility机制](../application-models/extensionability-overview.md)。
+2、开发对应的ExtensionAbility，用于回调执行具体的延迟任务。关于ExtensionAbility的介绍，参考[ExtensionAbility机制](../application-models/extensionability-overview.md)和[WorkSchedulerExtensionAbility开发指导](./workscheduler-extensionability.md)。
 
 ```ts
 import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
