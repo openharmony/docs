@@ -1,10 +1,10 @@
-# AVSession Management
+# @ohos.multimedia.avsession (AVSession Management)
 
 The **avSession** module provides APIs for media playback control so that applications can access the system's Media Controller.
 
 This module provides the following common features related to media sessions:
-- [AVSession](#section652893): used to set session metadata, playback state information, and more.
-- [AVSessionController](#section974602): used to obtain session IDs, send commands and events to sessions, and obtain the session metadata and playback state information.
+- [AVSession](#avsession): used to set session metadata, playback state information, and more.
+- [AVSessionController](#avsessioncontroller): used to obtain session IDs, send commands and events to sessions, and obtain the session metadata and playback state information.
 
 > **NOTE**
 >
@@ -28,7 +28,7 @@ Creates a media session. This API uses a promise to return the result. An abilit
 
 | Name| Type                           | Mandatory| Description                          |
 | ------ | ------------------------------- | ---- | ------------------------------ |
-| context| [Context](../../ability/context-userguide.md) | Yes| Application context, which provides application environment information.|
+| context| [Context](js-apis-inner-app-context.md) | Yes| Application context, which provides application environment information.|
 | tag    | string                          | Yes  | Custom session name.            |
 | type   | [AVSessionType](#avsessiontype) | Yes  | Session type, which can be audio or video.|
 
@@ -45,7 +45,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -76,7 +76,7 @@ Creates a media session. This API uses an asynchronous callback to return the re
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context| [Context](../../ability/context-userguide.md) | Yes| Application context, which provides application environment information.    |
+| context| [Context](js-apis-inner-app-context.md) | Yes| Application context, which provides application environment information.    |
 | tag      | string                                  | Yes  | Custom session name.                                          |
 | type     | [AVSessionType](#avsessiontype)         | Yes  | Session type, which can be audio or video.                              |
 | callback | AsyncCallback<[AVSession](#avsession)\> | Yes  | Callback used to return the media session obtained, which can be used to obtain the session ID, set the metadata and playback state information, and send key events.|
@@ -87,7 +87,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -132,7 +132,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -173,7 +173,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  |Session service exception |
+| 6600101  |Session service exception. |
 
 **Example**
 
@@ -222,8 +222,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -275,8 +275,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -338,9 +338,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600104  | The remote session  connection failed |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600104  | The remote session  connection failed. |
 
 **Example**
 
@@ -391,9 +391,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600104  | The remote session  connection failed |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600104  | The remote session  connection failed. |
 
 **Example**
 
@@ -443,7 +443,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -492,7 +492,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -523,7 +523,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -554,7 +554,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -592,8 +592,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600105  | Invalid session command |
+| 6600101  | Session service exception. |
+| 6600105  | Invalid session command. |
 
 **Example**
 
@@ -635,8 +635,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600105  | Invalid session command |
+| 6600101  | Session service exception. |
+| 6600105  | Invalid session command. |
 
 **Example**
 
@@ -683,9 +683,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600105  | Invalid session command |
-| 6600107  | Command or event overload |
+| 6600101  | Session service exception. |
+| 6600105  | Invalid session command. |
+| 6600107  | Too many commands or events. |
 
 **Example**
 
@@ -738,9 +738,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600105  | Invalid session command |
-| 6600107  | Command or event overload |
+| 6600101  | Session service exception. |
+| 6600105  | Invalid session command. |
+| 6600107  | Too many commands or events. |
 
 **Example**
 
@@ -770,7 +770,7 @@ avSession.sendSystemControlCommand(avcommand, function (err) {
 });
 ```
 
-## AVSession<a name="section652893"></a>
+## AVSession
 
 An **AVSession** object is created by calling [avSession.createAVSession](#avsessioncreateavsession). The object enables you to obtain the session ID and set the metadata and playback state. 
 
@@ -815,8 +815,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -865,8 +865,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -922,8 +922,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -964,8 +964,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -997,8 +997,8 @@ Sets a launcher ability. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                             | Mandatory| Description                                                       |
-| ------- | --------------------------------- | ---- | ----------------------------------------------------------- |
+| Name | Type                                         | Mandatory| Description                                                       |
+| ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | ability | [WantAgent](js-apis-wantAgent.md) | Yes  | Application attributes, such as the bundle name, ability name, and deviceID.|
 
 **Return value**
@@ -1013,8 +1013,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1068,10 +1068,10 @@ Sets a launcher ability. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name  | Type                             | Mandatory| Description                                                       |
-| -------- | --------------------------------- | ---- | ----------------------------------------------------------- |
-| ability  | [WantAgent](js-apis-wantAgent.md) | Yes  | Application attributes, such as the bundle name, ability name, and deviceID.|
-| callback | AsyncCallback<void\>              | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+| Name  | Type                                         | Mandatory| Description                                                        |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| ability  | [WantAgent](js-apis-wantAgent.md) | Yes  | Application attributes, such as the bundle name, ability name, and deviceID. |
+| callback | AsyncCallback<void\>                          | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1079,8 +1079,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1146,8 +1146,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1181,8 +1181,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1218,8 +1218,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1251,8 +1251,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1286,8 +1286,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1319,8 +1319,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1354,8 +1354,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1389,8 +1389,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1424,8 +1424,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1458,8 +1458,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1494,8 +1494,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1544,8 +1544,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 The session does not exist
@@ -1576,8 +1576,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1608,8 +1608,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1640,8 +1640,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1672,8 +1672,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1704,8 +1704,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1736,8 +1736,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1772,8 +1772,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1802,8 +1802,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1832,8 +1832,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1862,8 +1862,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1892,8 +1892,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1922,8 +1922,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1933,7 +1933,7 @@ session.off('outputDeviceChange');
 
 
 
-## AVSessionController<a name="section974602"></a>
+## AVSessionController
 
 An AV session controller is created by calling [avSession.createController](#avsessioncreatecontroller). Through the AV session controller, you can query the session ID, send commands and events to a session, and obtain session metadata and playback state information.
 
@@ -1977,9 +1977,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 ```js
@@ -2010,9 +2010,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 ```js
@@ -2045,9 +2045,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 ```js
@@ -2078,9 +2078,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 ```js
@@ -2113,8 +2113,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 ```js
@@ -2145,8 +2145,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2180,11 +2180,11 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
-| 6600105  | Invalid session command |
-| 6600106  | The session not active |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600106  | The session is not activated. |
 
 **Return value**
 
@@ -2218,7 +2218,7 @@ Sends a key event to the session corresponding to this controller. This API uses
 | Name  | Type                                                        | Mandatory| Description      |
 | -------- | ------------------------------------------------------------ | ---- | ---------- |
 | event    | [KeyEvent](js-apis-keyevent.md) | Yes  | Key event.|
-| callback | AsyncCallback<void\>                                         | Yes  | Callback used to return the result. If the event is sent, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback<void\>                                         | Yes  | Callback used to return the result. If the event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2226,11 +2226,11 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
-| 6600105  | Invalid session command |
-| 6600106  | The session not active |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600106  | The session is not activated. |
 
 **Example**
 
@@ -2257,9 +2257,9 @@ Obtains the **WantAgent** object saved by the application in the session. This A
 
 **Return value**
 
-| Type                                       | Description                                                        |
+| Type                                        | Description                                                  |
 | ------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[WantAgent](js-apis-wantAgent.md)\> | Promise used to return the object saved by calling [setLaunchAbility](#setlaunchability). The object includes the application attribute, such as the bundle name, ability name, and device ID.|
+| Promise<[WantAgent](js-apis-wantAgent.md)\> | Promise used to return the object saved by calling [setLaunchAbility](#setlaunchability). The object includes the application attribute, such as the bundle name, ability name, and device ID. |
 
 **Error codes**
 
@@ -2267,9 +2267,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2293,8 +2293,8 @@ Obtains the **WantAgent** object saved by the application in the session. This A
 
 **Parameters**
 
-| Name  | Type                                             | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback<[WantAgent](js-apis-wantAgent.md)\> | Yes  | Callback used to return the object saved by calling [setLaunchAbility](#setlaunchability). The object includes the application attribute, such as the bundle name, ability name, and device ID.|
 
 **Error codes**
@@ -2303,9 +2303,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2341,8 +2341,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2370,9 +2370,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2404,9 +2404,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2440,8 +2440,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2473,8 +2473,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2508,9 +2508,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2542,9 +2542,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2584,12 +2584,12 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
-| 6600105  | Invalid session command |
-| 6600106  | The session not active |
-| 6600107  | Command or event overload |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600106  | The session is not activated. |
+| 6600107  | Too many commands or events. |
 
 **Example**
 
@@ -2633,12 +2633,12 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ------------------------------- |
-| 6600101  | Session service exception                |
-| 6600102  | The session does not exist      |
-| 6600103  | The session controller does not exist   |
-| 6600105  | Invalid session command           |
-| 6600106  | The session not active                |
-| 6600107  | Command or event overload       |
+| 6600101  | Session service exception.                |
+| 6600102  | The session does not exist.     |
+| 6600103  | The session controller does not exist.   |
+| 6600105  | Invalid session command.           |
+| 6600106  | The session is not activated.                |
+| 6600107  | Too many commands or events.      |
 
 **Example**
 
@@ -2685,8 +2685,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ------------------------------ |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2723,8 +2723,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ------------------------------ |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2760,8 +2760,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ------------------------------ |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2792,8 +2792,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ----------------------------- |
-| 6600101  | Session service exception |
-| 6600103  |The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  |The session controller does not exist. |
 
 **Example**
 
@@ -2824,8 +2824,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ------------------------------ |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2857,8 +2857,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ----------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2889,7 +2889,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -2918,7 +2918,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -2947,7 +2947,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -2976,7 +2976,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -3005,7 +3005,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message          |
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -3034,7 +3034,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID | Error Message         |
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -3132,7 +3132,7 @@ Describes the media metadata.
 | album           | string                  | No  | Album name.                                                              |
 | writer          | string                  | No  | Writer.                                                               |
 | composer        | string                  | No  | composer.                                                               |
-| duration        | string                  | No  | Media duration, in ms.                                                 |
+| duration        | number                  | No  | Media duration, in ms.                                                 |
 | mediaImage      | image.PixelMap &#124; string | No  | Pixel map or image path (local path or network path) of the image.                            |
 | publishDate     | Date                    | No  | Release date.                                                              |
 | subtitle        | string                  | No  | Subtitle.                                                               |
@@ -3217,10 +3217,10 @@ Enumerates the error codes used in the media session.
 
 | Name                          | Value     | Description                            |
 | ------------------------------ | ------- | ------------------------------- |
-| ERR_CODE_SERVICE_EXCEPTION     | 6600101 | Session service exception                |
-| ERR_CODE_SESSION_NOT_EXIST     | 6600102 | The session does not exist      |
-| ERR_CODE_CONTROLLER_NOT_EXIST  | 6600103 | The session controller does not exist   |
-| ERR_CODE_REMOTE_CONNECTION_ERR | 6600104 | The remote session  connection failed         |
-| ERR_CODE_COMMAND_INVALID       | 6600105 | Invalid session command           |
-| ERR_CODE_SESSION_INACTIVE      | 6600106 | The session not active                |
-| ERR_CODE_MESSAGE_OVERLOAD      | 6600107 | Command or event overload       |
+| ERR_CODE_SERVICE_EXCEPTION     | 6600101 | Session service exception.               |
+| ERR_CODE_SESSION_NOT_EXIST     | 6600102 | The session does not exist.      |
+| ERR_CODE_CONTROLLER_NOT_EXIST  | 6600103 | The session controller does not exist.   |
+| ERR_CODE_REMOTE_CONNECTION_ERR | 6600104 | The remote session  connection failed.         |
+| ERR_CODE_COMMAND_INVALID       | 6600105 | Invalid session command.           |
+| ERR_CODE_SESSION_INACTIVE      | 6600106 | The session is not activated.                |
+| ERR_CODE_MESSAGE_OVERLOAD      | 6600107 | Too many commands or events.       |
