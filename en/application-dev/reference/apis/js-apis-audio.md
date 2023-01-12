@@ -2356,10 +2356,6 @@ audioVolumeManager.on('volumeChange', (volumeEvent) => {
 
 Manages the volume of an audio group. Before calling any API in **AudioVolumeGroupManager**, you must use [getVolumeGroupManager](#getvolumegroupmanager9) to obtain an **AudioVolumeGroupManager** instance.
 
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Audio.Volume
-
 ### setVolume<sup>9+</sup>
 
 setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
