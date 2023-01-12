@@ -19,7 +19,7 @@ The agent-powered reminder feature provides APIs for publishing background remin
 
 ## How to Develop
 
-1. Request the **ohos.permission.PUBLISH_AGENT_REMINDER** permission. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+1. Request the **ohos.permission.PUBLISH_AGENT_REMINDER** permission. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#stage-model).
 
 2. [Enable the notification feature](../notification/notification-enable.md).
 
