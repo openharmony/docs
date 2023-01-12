@@ -214,7 +214,7 @@ export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let context = this.context.getApplicationContext();
         context.getProcessRunningInformation().then((data) => {
-            hilog.info(0x0000, 'testTag', '%{public}s', 'Process Running Information is' + JSON.stringify(data));
+            console.log('Process Running Information is' + JSON.stringify(data));
         })
     }
   }
@@ -244,7 +244,7 @@ export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let context = this.context.getApplicationContext();
         context.getProcessRunningInformation((err, data) => {
-            hilog.info(0x0000, 'testTag', '%{public}s', 'Process Running Information is:' + JSON.stringify(data));
+            console.log('Process Running Information is:' + JSON.stringify(data));
         })
     }
   }
@@ -294,7 +294,7 @@ export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let context = this.context.getApplicationContext();
         context.killProcessesBySelf((err, data) => {
-            hilog.info(0x0000, 'testTag', '%{public}s', 'Error code is:' + JSON.stringify(err));
+            console.log('Error code is:' + JSON.stringify(err));
         })
     }
   }
