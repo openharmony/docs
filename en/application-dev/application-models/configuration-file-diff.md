@@ -9,4 +9,3 @@ The stage model uses the [app.json5](../quick-start/app-configuration-file.md) a
 **Figure 1** Configuration file differences 
 ![comparison-of-configuration-file](figures/comparison-of-configuration-file.png)
 
- <!--no_check--> 

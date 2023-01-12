@@ -24,7 +24,7 @@ In view of this, OpenHarmony formulates a set of component startup rules, as fol
 
 - **Before starting a component of another application, verify the visible field of the target component.**
   - If the **visible** field of the target component is **false**, verify the **ohos.permission.START_INVISIBLE_ABILITY** permission.
-  - For details, see [Component Visible Configuration](../quick-start/module-configuration-file.md#abilities-tag)
+  - For details, see [Component Visible Configuration](../quick-start/module-configuration-file.md#abilities).
 
 - **Before starting a component of a background application, verify the BACKGROUND permission.**
   - An application is considered as a foreground application only when the application process gains focus or its UIAbility component is running in the foreground.
@@ -62,4 +62,3 @@ In view of this, OpenHarmony formulates a set of component startup rules, as fol
 
 ![component-startup-rules](figures/component-startup-inter-stage.png)
 
- <!--no_check--> 
