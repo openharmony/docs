@@ -35,21 +35,21 @@ Describes the attributes of a display.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name          | Type                          | Readable | Writable | Description                                                  |
-| ------------- | ----------------------------- | -------- | -------- | ------------------------------------------------------------ |
-| id            | number                        | Yes      | No       | ID of the display.                                           |
-| name          | string                        | Yes      | No       | Name of the display.                                         |
-| alive         | boolean                       | Yes      | No       | Whether the display is alive.                                |
-| state         | [DisplayState](#displaystate) | Yes      | No       | State of the display.                                        |
-| refreshRate   | number                        | Yes      | No       | Refresh rate of the display.                                 |
-| rotation      | number                        | Yes      | No       | Screen rotation angle of the display.                        |
-| width         | number                        | Yes      | No       | Width of the display, in pixels.                             |
-| height        | number                        | Yes      | No       | Height of the display, in pixels.                            |
-| densityDPI    | number                        | Yes      | No       | Screen density of the display, in DPI.                       |
-| densityPixels | number                        | Yes      | No       | Screen density of the display, in pixels.                    |
-| scaledDensity | number                        | Yes      | No       | Scaling factor for fonts displayed on the display.           |
-| xDPI          | number                        | Yes      | No       | Exact physical dots per inch of the screen in the horizontal direction. |
-| yDPI          | number                        | Yes      | No       | Exact physical dots per inch of the screen in the vertical direction. |
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| id | number | Yes| No| ID of the display.|
+| name | string | Yes| No| Name of the display.|
+| alive | boolean | Yes| No| Whether the display is alive.|
+| state | [DisplayState](#displaystate) | Yes| No| State of the display.|
+| refreshRate | number | Yes| No| Refresh rate of the display.|
+| rotation | number | Yes| No| Screen rotation angle of the display.|
+| width | number | Yes| No| Width of the display, in pixels.|
+| height | number | Yes| No| Height of the display, in pixels.|
+| densityDPI | number | Yes| No| Screen density of the display, that is, the number of dots per inch. Generally, the value is **160** or **480**.|
+| densityPixels | number | Yes| No| Logical density of the display, which is a scaling coefficient independent of the pixel unit. Generally, the value is **1** or **3**.|
+| scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display. Generally, the value is the same as that of **densityPixels**.|
+| xDPI | number | Yes| No| Exact physical dots per inch of the screen in the horizontal direction.|
+| yDPI | number | Yes| No| Exact physical dots per inch of the screen in the vertical direction.|
 
 
 ## display.getDefaultDisplay
@@ -62,9 +62,9 @@ Obtains the default display object. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[Display](#display)&gt; | Yes| Callback used to return the default display object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[Display](#display)&gt; | Yes| Callback used to return the default display object.|
 
 **Example**
 
@@ -90,9 +90,9 @@ Obtains the default display object. This API uses a promise to return the result
 
 **Return value**
 
-| Type                              | Description                                          |
-| ---------------------------------- | ---------------------------------------------- |
-| Promise&lt;[Display](#display)&gt; | Promise used to return the default display object.|
+  | Type                              | Description                                          |
+  | ---------------------------------- | ---------------------------------------------- |
+  | Promise&lt;[Display](#display)&gt; | Promise used to return the default display object.|
 
 **Example**
 
@@ -117,9 +117,9 @@ Obtains all display objects. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory| Description                           |
-| -------- | ---------------------------------------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | Yes  | Callback used to return all the display objects.|
+  | Name  | Type                                                | Mandatory| Description                           |
+  | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
+  | callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | Yes  | Callback used to return all the display objects.|
 
 **Example**
 
@@ -143,9 +143,9 @@ Obtains all display objects. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                           | Description                                                   |
-| ----------------------------------------------- | ------------------------------------------------------- |
-| Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return all the display objects.|
+  | Type                                           | Description                                                   |
+  | ----------------------------------------------- | ------------------------------------------------------- |
+  | Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return all the display objects.|
 
 **Example**
 
@@ -168,10 +168,10 @@ Subscribes to display changes.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type.<br>- **add**, indicating the display addition event.<br>- **remove**, indicating the display removal event.<br>- **change**, indicating the display change event.|
-| callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type.<br>- **add**, indicating the display addition event.<br>- **remove**, indicating the display removal event.<br>- **change**, indicating the display change event.|
+  | callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display.|
 
 **Example**
 
@@ -192,10 +192,10 @@ Unsubscribes from display changes.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type.<br>- **add**, indicating the display addition event.<br>- **remove**, indicating the display removal event.<br>- **change**, indicating the display change event.|
-| callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type.<br>- **add**, indicating the display addition event.<br>- **remove**, indicating the display removal event.<br>- **change**, indicating the display change event.|
+  | callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
 
 **Example**
 ```js
