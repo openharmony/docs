@@ -4,12 +4,12 @@ The **HarmonyAppProvision** configuration file (also called profile) is the file
 ## Configuration File Internal Structure
 The **HarmonyAppProvision** file consists of several parts, which are described in the table below.
 
-| Name    | Description                                                                                    | Data Type| Yes | Initial Value Allowed|
+| Name    | Description                                                                                    | Data Type| Mandatory | Initial Value Allowed|
 | ----------- | ---------------------------------------------------------------------------------------- | -------- | -------- | -------- |
-| version-code | Version number of the **HarmonyAppProvision** file format. The value is a positive integer containing 32 or less digits.| Number  | Yes| No                |
-| version-name     | Description of the version number. It is recommended that the value consist of three segments, for example, **A.B.C**.       | String  | Yes| No|
+| version-code | Version number of the **HarmonyAppProvision** file format. The value is a positive integer containing 32 or less digits.| Number  | Yes | No                |
+| version-name     | Description of the version number. It is recommended that the value consist of three segments, for example, **A.B.C**.       | String  | Yes | No|
 | uuid    | Unique ID of the **HarmonyAppProvision** file.                      | String    | Yes | No|
-| type | Type of the **HarmonyAppProvision** file. The value can be **debug** (for application debugging) or **release** (for application release). The recommended value is **debug**.| String    | Yes| No|
+| type | Type of the **HarmonyAppProvision** file. The value can be **debug** (for application debugging) or **release** (for application release). The recommended value is **debug**.| String    | Yes | No|
 | issuer | Issuer of the **HarmonyAppProvision** file.       | String    | Yes | No|
 | validity    | Validity period of the **HarmonyAppProvision** file. For details, see [Internal Structure of the validity Object](#internal-structure-of-the-validity-object). | Object    | Yes | No |
 | bundle-info | Information about the application bundle and developer. For details, see [Internal Structure of the bundle-info Object](#internal-structure-of-the-bundle-info-object).        | Object    | Yes | No |
@@ -58,8 +58,8 @@ An example of the **HarmonyAppProvision** file is as follows:
 
 | Name   | Description                           | Data Type| Mandatory | Initial Value Allowed|
 | ---------- | ------------------------------- | ------- | ------- | --------- |
-| not-before | Start time of the file validity period. The value is a Unix timestamp, which is a non-negative integer.| Number   | Yes| No  |
-| not-after  | End time of the file validity period. The value is a Unix timestamp, which is a non-negative integer.| Number   | Yes| No  |
+| not-before | Start time of the file validity period. The value is a Unix timestamp, which is a non-negative integer.| Number   | Yes | No  |
+| not-after  | End time of the file validity period. The value is a Unix timestamp, which is a non-negative integer.| Number   | Yes | No  |
 
 ### Internal Structure of the bundle-info Object
 
@@ -74,14 +74,14 @@ An example of the **HarmonyAppProvision** file is as follows:
 
 
 ### Internal Structure of the acls Object
-The **acls** object contains the [ACL](accesstoken-overview.md) configured for your application. It should be noted that you still need to add the ACL information to the **requestPermissions** attribute in the application configuration file.
+The **acls** object contains the [ACL](accesstoken-overview.md) configured for your application. It should be noted that you still need to add the ACL information to the [**requestPermissions**](../quick-start/module-configuration-file.md#requestpermissions) attribute in the application configuration file.
 
 | Name                 | Description                           | Data Type| Mandatory | Initial Value Allowed|
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
-| allowed-acls | [ACLs](../security/accesstoken-overview.md) configured for your application.| String array   | No| No  |
+| allowed-acls | [ACLs](../security/accesstoken-overview.md) configured for your application.| String array   | No | No  |
 
 ### Internal Structure of the permissions Object
-The **permissions** object contains restricted permissions required for your application. Different from the ACLs set in the **acls** object, these permissions need user authorization during the running of your application. It should be noted that you still need to add the ACL information to the **requestPermissions** attribute in the application configuration file.
+The **permissions** object contains restricted permissions required for your application. Different from the ACLs set in the **acls** object, these permissions need user authorization during the running of your application. It should be noted that you still need to add the ACL information to the [**requestPermissions**](../quick-start/module-configuration-file.md#requestpermissions) attribute in the application configuration file.
 
 | Name                 | Description                           | Data Type| Mandatory | Initial Value Allowed|
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
@@ -93,7 +93,7 @@ The **debug-info** object contains debugging information of your application, ma
 | Name                 | Description                           | Data Type| Mandatory | Initial Value Allowed|
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
 | device-id-type | Type of the device ID. Currently, only the udid type is supported.| String   | No | No  |
-| device-ids | IDs of devices on which your application can be debugged.| String array   | Optional| No  |
+| device-ids | IDs of devices on which your application can be debugged.| String array   | No | No  |
 
 ## Modifying the HarmonyAppProvision Configuration File
 
