@@ -2490,18 +2490,18 @@ AVRecorder.off('error');
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-| 名称             | 类型                                         | 必填 | 说明                                   |
-| ---------------- | -------------------------------------------- | ---- | -------------------------------------- |
-| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填。   |
-| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。   |
-| audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。     |
-| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。       |
-| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数               |
-| videoBitrate     | number                                       | 否   | 音视频编码比特率，选择视频录制时必填。 |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音视频编码格式，选择视频录制时必填。   |
-| videoFrameWidth  | number                                       | 否   | 录制视频帧的宽，选择视频录制时必填。   |
-| videoFrameHeight | number                                       | 否   | 录制视频帧的高，选择视频录制时必填。   |
-| videoFrameRate   | number                                       | 否   | 录制视频帧率，选择视频录制时必填。     |
+| 名称             | 类型                                         | 必填 | 说明                                                         |
+| ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填。                         |
+| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。                         |
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前仅支持AUDIO_AAC。      |
+| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。                             |
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。                                   |
+| videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填。                         |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前仅支持VIDEO_AVC和VIDEO_MPEG4。 |
+| videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填。                             |
+| videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填。                             |
+| videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填。                               |
 
 ## AudioSourceType<sup>9+</sup>
 
