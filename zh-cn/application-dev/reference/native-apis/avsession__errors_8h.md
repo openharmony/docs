@@ -5,7 +5,7 @@
 
 定义了avsession错误码。
 
-**Since:**
+**起始版本：**
 9
 **Version:**
 1.0

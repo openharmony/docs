@@ -9,7 +9,7 @@
 
 @syscap SystemCapability.Multimedia.AVSession.Core
 
-**Since:**
+**起始版本：**
 
 9
 

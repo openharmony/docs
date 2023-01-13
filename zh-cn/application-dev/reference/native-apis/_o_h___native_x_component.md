@@ -3,7 +3,7 @@
 
 描述ArkUI XComponent持有的surface和触摸事件，该事件可用于EGL/OpenGLES和媒体数据输入，并显示在ArkUI XComponent上。
 
-**自从：**
+**起始版本：**
 
 
 8
@@ -122,7 +122,7 @@ typedef struct OH_NativeXComponent OH_NativeXComponent
 
 提供封装的OH_NativeXComponent实例。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -138,7 +138,7 @@ typedef struct OH_NativeXComponent_Callback OH_NativeXComponent_Callback
 
 注册surface生命周期和触摸事件回调。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -154,7 +154,7 @@ typedef struct OH_NativeXComponent_MouseEvent_Callback OH_NativeXComponent_Mouse
 
 注册鼠标事件的回调。
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -178,10 +178,8 @@ anonymous enum
 | OH_NATIVEXCOMPONENT_RESULT_SUCCESS       | 成功结果。 |
 | OH_NATIVEXCOMPONENT_RESULT_FAILED        | 失败结果。 |
 | OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER | 无效参数。 |
-| OHOS_IMAGE_RESULT_SUCCESS                | 成功的结果 |
-| OHOS_IMAGE_RESULT_BAD_PARAMETER          | 无效值     |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -204,7 +202,7 @@ enum OH_NativeXComponent_MouseEventAction
 | OH_NATIVEXCOMPONENT_MOUSE_RELEASE | 鼠标按键松开时触发鼠标事件。     |
 | OH_NATIVEXCOMPONENT_MOUSE_MOVE    | 鼠标在屏幕上移动时触发鼠标事件。 |
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -229,7 +227,7 @@ enum OH_NativeXComponent_MouseEventButton
 | OH_NATIVEXCOMPONENT_BACK_BUTTON    | 按下鼠标左侧后退键时触发鼠标事件。 |
 | OH_NATIVEXCOMPONENT_FORWARD_BUTTON | 按下鼠标左侧前进键时触发鼠标事件。 |
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -253,7 +251,7 @@ enum OH_NativeXComponent_TouchEventType
 | OH_NATIVEXCOMPONENT_CANCEL  | 触摸事件取消时触发事件。                   |
 | OH_NATIVEXCOMPONENT_UNKNOWN | 无效的触摸类型。                           |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -284,7 +282,7 @@ int32_t OH_NativeXComponent_GetMouseEvent (OH_NativeXComponent * component, cons
 
 返回执行的状态代码。
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -312,7 +310,7 @@ int32_t OH_NativeXComponent_GetTouchEvent (OH_NativeXComponent * component, cons
 
 返回执行的状态代码。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -340,7 +338,7 @@ int32_t OH_NativeXComponent_GetXComponentId (OH_NativeXComponent * component, ch
 
 返回执行的状态代码。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -369,7 +367,7 @@ int32_t OH_NativeXComponent_GetXComponentOffset (OH_NativeXComponent * component
 
 返回执行的状态代码。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -398,7 +396,7 @@ int32_t OH_NativeXComponent_GetXComponentSize (OH_NativeXComponent * component, 
 
 返回执行的状态代码。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -425,7 +423,7 @@ int32_t OH_NativeXComponent_RegisterCallback (OH_NativeXComponent * component, O
 
 返回执行的状态代码。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -452,7 +450,7 @@ int32_t OH_NativeXComponent_RegisterMouseEventCallback (OH_NativeXComponent * co
 
 返回执行的状态代码。
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -471,7 +469,7 @@ const uint32_t OH_XCOMPONENT_ID_LEN_MAX = 128
 
 ArkUI XComponent的id最大长度。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -487,7 +485,7 @@ const uint32_t OH_MAX_TOUCH_POINTS_NUMBER = 10
 
 触摸事件中的可识别的触摸点个数最大值。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -503,7 +501,7 @@ OH_NativeXComponent_MouseEventAction OH_NativeXComponent_MouseEvent::action
 
 当前鼠标事件动作。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -519,7 +517,7 @@ OH_NativeXComponent_MouseEventButton OH_NativeXComponent_MouseEvent::button
 
 鼠标事件按键
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -535,7 +533,7 @@ int64_t OH_NativeXComponent_TouchEvent::deviceId = 0
 
 产生当前触摸事件的设备的ID。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -551,7 +549,7 @@ void(* OH_NativeXComponent_MouseEvent_Callback::DispatchHoverEvent) (OH_NativeXC
 
 当悬停事件被触发时调用。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -567,7 +565,7 @@ void(* OH_NativeXComponent_MouseEvent_Callback::DispatchMouseEvent) (OH_NativeXC
 
 当鼠标事件被触发时调用。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -583,7 +581,7 @@ void(* OH_NativeXComponent_Callback::DispatchTouchEvent) (OH_NativeXComponent *c
 
 当触摸事件被触发时调用。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -599,7 +597,7 @@ float OH_NativeXComponent_TouchPoint::force = 0.0
 
 当前触摸事件的压力。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -615,7 +613,7 @@ float OH_NativeXComponent_TouchEvent::force = 0.0
 
 当前触摸事件的压力。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -631,7 +629,7 @@ int32_t OH_NativeXComponent_TouchPoint::id = 0
 
 手指的唯一标识符。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -647,7 +645,7 @@ int32_t OH_NativeXComponent_TouchEvent::id = 0
 
 手指的唯一标识符。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -663,7 +661,7 @@ bool OH_NativeXComponent_TouchPoint::isPressed = false
 
 当前点是否被按下。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -679,7 +677,7 @@ uint32_t OH_NativeXComponent_TouchEvent::numPoints = 0
 
 当前接触点的数量。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -695,7 +693,7 @@ void(* OH_NativeXComponent_Callback::OnSurfaceChanged) (OH_NativeXComponent *com
 
 当surface改变时调用。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -711,7 +709,7 @@ void(* OH_NativeXComponent_Callback::OnSurfaceCreated) (OH_NativeXComponent *com
 
 创建surface时调用。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -727,7 +725,7 @@ void(* OH_NativeXComponent_Callback::OnSurfaceDestroyed) (OH_NativeXComponent *c
 
 当surface被销毁时调用。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -743,7 +741,7 @@ float OH_NativeXComponent_TouchPoint::screenX = 0.0
 
 触摸点相对于屏幕左边缘的x坐标。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -759,7 +757,7 @@ float OH_NativeXComponent_TouchEvent::screenX = 0.0
 
 触摸点相对于屏幕左边缘的x坐标。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -775,7 +773,7 @@ float OH_NativeXComponent_MouseEvent::screenX
 
 点击触点相对于屏幕左上角的x轴坐标。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -791,7 +789,7 @@ float OH_NativeXComponent_TouchPoint::screenY = 0.0
 
 触摸点相对于屏幕上边缘的y坐标。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -807,7 +805,7 @@ float OH_NativeXComponent_TouchEvent::screenY = 0.0
 
 触摸点相对于屏幕上边缘的y坐标。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -823,7 +821,7 @@ float OH_NativeXComponent_MouseEvent::screenY
 
 点击触点相对于屏幕左上角的y轴坐标。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -839,7 +837,7 @@ double OH_NativeXComponent_TouchPoint::size = 0.0
 
 指垫和屏幕之间的接触面积。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -855,7 +853,7 @@ double OH_NativeXComponent_TouchEvent::size = 0.0
 
 指垫和屏幕之间的接触面积。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -871,7 +869,7 @@ long long OH_NativeXComponent_TouchPoint::timeStamp = 0
 
 当前触摸事件的时间戳。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -887,7 +885,7 @@ long long OH_NativeXComponent_TouchEvent::timeStamp = 0
 
 当前触摸事件的时间戳。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -903,7 +901,7 @@ int64_t OH_NativeXComponent_MouseEvent::timestamp
 
 当前鼠标事件的时间戳
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -919,7 +917,7 @@ OH_NativeXComponent_TouchPoint OH_NativeXComponent_TouchEvent::touchPoints[OH_MA
 
 当前触摸点的数组。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -935,7 +933,7 @@ OH_NativeXComponent_TouchEventType OH_NativeXComponent_TouchPoint::type = OH_Nat
 
 触摸事件的触摸类型。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -951,7 +949,7 @@ OH_NativeXComponent_TouchEventType OH_NativeXComponent_TouchEvent::type = OH_Nat
 
 触摸事件的触摸类型。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -967,7 +965,7 @@ float OH_NativeXComponent_TouchPoint::x = 0.0
 
 触摸点相对于XComponent组件左边缘的x坐标。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -983,7 +981,7 @@ float OH_NativeXComponent_TouchEvent::x = 0.0
 
 触摸点相对于XComponent组件左边缘的x坐标。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -999,7 +997,7 @@ float OH_NativeXComponent_MouseEvent::x
 
 点击触点相对于当前组件左上角的x轴坐标。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1015,7 +1013,7 @@ float OH_NativeXComponent_TouchPoint::y = 0.0
 
 触摸点相对于XComponent组件上边缘的y坐标。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1031,7 +1029,7 @@ float OH_NativeXComponent_TouchEvent::y = 0.0
 
 触摸点相对于XComponent组件上边缘的y坐标。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1047,6 +1045,6 @@ float OH_NativeXComponent_MouseEvent::y
 
 点击触点相对于当前组件左上角的y轴坐标。
 
-**自从：**
+**起始版本：**
 
 8

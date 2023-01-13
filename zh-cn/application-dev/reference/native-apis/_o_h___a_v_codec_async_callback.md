@@ -7,10 +7,9 @@ AVCodec所有的异步回调函数指针集合。注册一个该结构体实例�
 
 @syscap SystemCapability.Multimedia.Media.CodecBase
 参数
-**Since:**
+**起始版本：**
 9
-**Version:**
-1.0
+
 **相关模块:**
 
 [CodecBase](_codec_base.md)

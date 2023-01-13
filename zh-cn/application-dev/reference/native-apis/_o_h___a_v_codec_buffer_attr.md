@@ -7,10 +7,9 @@
 
 @syscap SystemCapability.Multimedia.Media.CodecBase
 
-**Since:**
+**起始版本：**
 9
-**Version:**
-1.0
+
 **相关模块:**
 
 [CodecBase](_codec_base.md)
