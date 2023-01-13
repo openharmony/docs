@@ -4,7 +4,7 @@
 
 **Error Message**
 
-Session service exception
+Session service exception.
 
 **Description**
 
@@ -24,7 +24,7 @@ The session service is killed during session restart.
 
 **Error Message**
 
-The session does not exist
+The session does not exist.
 
 **Description**
 
@@ -44,7 +44,7 @@ The session has been destroyed, and no session record exists on the server.
 
 **Error Message**
 
-The session controller does not exist
+The session controller does not exist.
 
 **Description**
 
@@ -62,7 +62,7 @@ Query the session record and create the corresponding controller.
 
 **Error Message**
 
-The remote session connection failed
+The remote session connection failed.
 
 **Description**
 
@@ -80,7 +80,7 @@ Stop sending control commands to the session. Subscribe to output device changes
 
 **Error Message**
 
-Invalid session command
+Invalid session command.
 
 **Description**
 
@@ -98,7 +98,7 @@ Stop sending the command or event. Query the commands supported by the session, 
 
 **Error Message**
 
-The session not active
+The session is not activated.
 
 **Description**
 
@@ -116,7 +116,7 @@ Stop sending the command or event. Subscribe to the session activation status, a
 
 **Error Message**
 
-Command or event overload
+Too many commands or events.
 
 **Description**
 
