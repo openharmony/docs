@@ -4,4 +4,3 @@ The application configuration file contains information about the application co
 
 The application project code developed based on the FA model contains a **config.json** file. For details about common configuration items, see [Application- or Component-Level Configuration](application-component-configuration-fa.md). For details about the file, see [Application Configuration File Overview (FA Model)](../quick-start/application-configuration-file-overview-fa.md).
 
- <!--no_check--> 

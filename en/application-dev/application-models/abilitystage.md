@@ -55,4 +55,3 @@ When an application is switched to the background, it is cached in the backgroun
   }
   ```
 
- <!--no_check--> 

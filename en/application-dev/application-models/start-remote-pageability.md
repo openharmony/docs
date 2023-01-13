@@ -97,13 +97,13 @@ function getRemoteDeviceId() {
     if (typeof dmClass === 'object' && dmClass != null) {          
         let list = dmClass.getTrustedDeviceListSync();          
         if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {            
-            console.info("MainAbility onButtonClick getRemoteDeviceId err: list is null");            
+            console.info("EntryAbility onButtonClick getRemoteDeviceId err: list is null");            
             return;          
         }          
-        console.info("MainAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);          
+        console.info("EntryAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);          
         return list[0].deviceId;      
     } else {          
-        console.info("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null");      
+        console.info("EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null");      
     }  
 }
 ```

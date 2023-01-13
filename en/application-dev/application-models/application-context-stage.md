@@ -12,7 +12,7 @@
   <img src="figures/context-holding.png" alt="context-holding" style="zoom:50%;" />
 
 - The following describes the information provided by different contexts.
-  - [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md): Each UIAbility has the **Context** attribute, which provides APIs to operate the ability, obtain the ability configuration, request permissions from users, and more.
+  - [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md): Each UIAbility has the **Context** attribute, which provides APIs to operate the ability, obtain the ability configuration, and more.
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
@@ -65,14 +65,9 @@ This topic describes how to use the context in the following scenarios:
 
 
 - [Obtaining the Application Development Path](#obtaining-the-application-development-path)
-
 - [Obtaining and Modifying Encrypted Areas](#obtaining-and-modifying-encrypted-areas)
-
 - [Creating Context of Another Application or Module](#creating-context-of-another-application-or-module)
-
 - [Subscribing to Ability Lifecycle Changes in a Process](#subscribing-to-ability-lifecycle-changes-in-a-process)
-
-- [Requesting Permissions from Users Through AbilityContext](#requesting-permissions-from-users-through-uiabilitycontext)
 
 
 ### Obtaining the Application Development Path
@@ -180,9 +175,9 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
   > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
   >
 > - This is a system API and cannot be called by third-party applications.
-
+  
   For example, application information displayed on the home screen includes the application name and icon. The home screen application calls the foregoing method to obtain the context information, so as to obtain the resource information including the application name and icon.
-
+  
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   
@@ -194,8 +189,8 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
           // ...
       }
   }
-  ```
-
+```
+  
 - Call **createModuleContext(bundleName:string, moduleName:string)** to obtain the context of a specified module of another application. After obtaining the context, you can obtain the resource information of that module.
   > **NOTE**
   >
@@ -204,7 +199,7 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
   > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
   >
 > - This is a system API and cannot be called by third-party applications.
-
+  
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   
@@ -217,7 +212,7 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
       }
   }
   ```
-
+  
 - Call **createModuleContext(moduleName:string)** to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
   
   ```ts
@@ -242,7 +237,7 @@ When the ability lifecycle changes in a process, for example, being created or d
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import Window from '@ohos.window';
+import window from '@ohos.window';
 
 const TAG: string = "[Example].[Entry].[EntryAbility]";
 
@@ -298,14 +293,3 @@ export default class EntryAbility extends UIAbility {
     }
 }
 ```
-
-
-### Requesting Permissions from Users Through UIAbilityContext
-
-Each ability has the **Context** attribute. The ability is used to process the lifecycle. Methods use to operate the ability (such as **startAbility()**, **connectServiceExtensionAbility()**, and **terminateSelf()**) are implemented in the corresponding context. The context also provides methods for obtaining the ability configuration and requesting permissions from users. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
-
-
-When an application needs to obtain users' privacy information or use system capabilities, for example, to obtain location information, to access the calendar, or to use the camera to take photos or record videos, the application must request permissions from users, as shown below. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md).
-
-**Figure 2** Requesting the permission to access the calendar from users
-<img src="figures/application-context-stage.png" alt="application-context-stage" style="zoom:50%;" />

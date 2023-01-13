@@ -11,10 +11,10 @@ If no startup page is specified, a white screen occurs after the application is 
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import Window from '@ohos.window';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage: Window.WindowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         // Main window is created. Set a main page for this ability.
         windowStage.loadContent('pages/Index', (err, data) => {
             // ...

@@ -59,4 +59,3 @@ The following is an example **config.json** file:
 
 For details about the configuration items, see [Internal Structure of module](../quick-start/module-structure.md).
 
- <!--no_check--> 

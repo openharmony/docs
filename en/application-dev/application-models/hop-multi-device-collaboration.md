@@ -345,21 +345,19 @@ The following describes how to implement multi-device collaboration through cros
 
 3. Create the callee ability.
    
-
-For the callee ability, implement the callback to receive data and the methods to marshal and unmarshal data. When data needs to be received, use **on()** to register a listener. When data does not need to be received, use **off()** to deregister the listener.
+   For the callee ability, implement the callback to receive data and the methods to marshal and unmarshal data. When data needs to be received, use **on()** to register a listener. When data does not need to be received, use **off()** to deregister the listener.
 
    1. Configure the launch type of the UIAbility.
 
-    Set **launchType** of the callee ability to **singleton** in the **module.json5** file.
-       
-       | JSON Field| Description|
-       | -------- | -------- |
-    | "launchType"| Ability launch type. Set this parameter to **singleton**.|
-       
-    An example of the UIAbility configuration is as follows:
+      Set **launchType** of the callee ability to **singleton** in the **module.json5** file.
 
+      | JSON Field| Description|
+      | -------- | -------- |
+   | "launchType"| Ability launch type. Set this parameter to **singleton**.|
 
-​       
+      An example of the UIAbility configuration is as follows:
+
+      
        ```json
        "abilities":[{
            "name": ".CalleeAbility",
@@ -377,77 +375,75 @@ For the callee ability, implement the callback to receive data and the methods t
        ```ts
        import Ability from '@ohos.app.ability.UIAbility';
        ```
-    
+   
    3. Define the agreed sequenceable data.
       
-
-   The data formats sent and received by the caller and callee abilities must be consistent. In the following example, the data formats are number and string.
-       
-       
+      The data formats sent and received by the caller and callee abilities must be consistent. In the following example, the data formats are number and string.
+      
        ```ts
        export default class MySequenceable {
-           num: number = 0;
-           str: string = "";
+           num: number = 0
+           str: string = ""
        
            constructor(num, string) {
-               this.num = num;
-               this.str = string;
+               this.num = num
+               this.str = string
            }
        
            marshalling(messageParcel) {
-               messageParcel.writeInt(this.num);
-               messageParcel.writeString(this.str);
-               return true;
+               messageParcel.writeInt(this.num)
+               messageParcel.writeString(this.str)
+               return true
            }
        
            unmarshalling(messageParcel) {
-               this.num = messageParcel.readInt();
-               this.str = messageParcel.readString();
-               return true;
+               this.num = messageParcel.readInt()
+               this.str = messageParcel.readString()
+               return true
            }
        }
        ```
 
    4. Implement **Callee.on** and **Callee.off**.
    
-         In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate()** of the ability and deregistered in **onDestroy()**. After receiving sequenceable data, the application processes the data and returns the data result. You need to implement processing based on service requirements.
-   
-         ```ts
-         const TAG: string = '[CalleeAbility]';
-         const MSG_SEND_METHOD: string = 'CallSendMsg';
-         
-         function sendMsgCallback(data) {
-             console.info('CalleeSortFunc called');
-         
-             // Obtain the sequenceable data sent by the caller ability.
-             let receivedData = new MySequenceable(0, '');
-             data.readSequenceable(receivedData);
-             console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
-         
-             // Process the data.
-             // Return the sequenceable data result to the caller ability.
-             return new MySequenceable(receivedData.num + 1, `send ${receivedData.str} succeed`);
-         }
-         
-         export default class CalleeAbility extends Ability {
-             onCreate(want, launchParam) {
-                 try {
-                     this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
-                 } catch (error) {
-                     console.info(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`);
-                 }
-             }
-         
-             onDestroy() {
-                 try {
-                     this.callee.off(MSG_SEND_METHOD);
-              } catch (error) {
-                     console.error(TAG, `${MSG_SEND_METHOD} unregister failed with error ${JSON.stringify(error)}`);
-                 }
-             }
-         }
-         ```
-   
+      In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate()** of the ability and deregistered in **onDestroy()**. After receiving sequenceable data, the application processes the data and returns the data result. You need to implement processing based on service requirements.
+      
+       ```ts
+       const TAG: string = '[CalleeAbility]'
+       const MSG_SEND_METHOD: string = 'CallSendMsg'
+       
+       function sendMsgCallback(data) {
+           console.info('CalleeSortFunc called')
+       
+           // Obtain the sequenceable data sent by the caller ability.
+           let receivedData = new MySequenceable(0, '')
+           data.readSequenceable(receivedData)
+           console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`)
+       
+           // Process the data.
+           // Return the sequenceable data result to the caller ability.
+           return new MySequenceable(receivedData.num + 1, `send ${receivedData.str} succeed`)
+       }
+       
+       export default class CalleeAbility extends Ability {
+           onCreate(want, launchParam) {
+               try {
+                   this.callee.on(MSG_SEND_METHOD, sendMsgCallback)
+               } catch (error) {
+                   console.info(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`)
+               }
+           }
+       
+           onDestroy() {
+               try {
+                   this.callee.off(MSG_SEND_METHOD)
+               } catch (error) {
+                   console.error(TAG, `${MSG_SEND_METHOD} unregister failed with error ${JSON.stringify(error)}`)
+               }
+           }
+       }
+       ```
+
 4. Obtain the caller object and access the callee ability.
    1. Import the **UIAbility** module.
       
@@ -457,14 +453,13 @@ For the callee ability, implement the callback to receive data and the methods t
        
    2. Obtain the caller object.
       
-   
-   The **context** attribute of the ability implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **context** attribute of the ability, uses **startAbilityByCall** to start the callee ability, obtain the caller object, and register the **onRelease** listener of the caller ability. You need to implement processing based on service requirements.
+       The **context** attribute of the ability implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **context** attribute of the ability, uses **startAbilityByCall** to start the callee ability, obtain the caller object, and register the **onRelease** listener of the caller ability. You need to implement processing based on service requirements.
        
        
        ```ts
        async onButtonGetRemoteCaller() {
-           var caller = undefined;
-           var context = this.context;
+           var caller = undefined
+           var context = this.context
        
            context.startAbilityByCall({
                deviceId: getRemoteDeviceId(),
@@ -472,23 +467,22 @@ For the callee ability, implement the callback to receive data and the methods t
                abilityName: 'CalleeAbility'
            }).then((data) => {
                if (data != null) {
-                   caller = data;
-                   console.info('get remote caller success');
+                   caller = data
+                   console.info('get remote caller success')
                    // Register the onRelease() listener of the caller ability.
                    caller.onRelease((msg) => {
-                       console.info(`remote caller onRelease is called ${msg}`);
+                       console.info(`remote caller onRelease is called ${msg}`)
                    })
-                   console.info('remote caller register OnRelease succeed');
+                   console.info('remote caller register OnRelease succeed')
                }
            }).catch((error) => {
-               console.error(`get remote caller failed with ${error}`);
+               console.error(`get remote caller failed with ${error}`)
            })
        }
-   ```
-       
-    For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility and ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-and-serviceextensionability-across-devices-no-data-returned).
-   ```
-   
+       ```
+
+       For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility and ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-and-serviceextensionability-across-devices-no-data-returned).
+
 5. Sends agreed sequenceable data to the callee ability.
    1. The sequenceable data can be sent to the callee ability with or without a return value. The method and sequenceable data must be consistent with those of the callee ability. The following example describes how to send data to the callee ability.
       

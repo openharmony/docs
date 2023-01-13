@@ -23,7 +23,7 @@
   ```
 
 - **Implicit Want**: A type of Want with **abilityName** unspecified when starting the ability.
-  Implicit Want can be used when the object used to process the request is unclear and the current application wants to use a capability (defined by the [skills tag](../quick-start/module-configuration-file.md#skills-tag)) provided by another application. For example, you can use implicit Want to describe a request for opening a link, since you do not care which application is used to open the link. The system matches all applications that support the request.
+  Implicit Want can be used when the object used to process the request is unclear and the current application wants to use a capability (defined by the [skills tag](../quick-start/module-configuration-file.md#skills)) provided by another application. For example, you can use implicit Want to describe a request for opening a link, since you do not care which application is used to open the link. The system matches all applications that support the request.
 
   
   ```ts
@@ -47,5 +47,3 @@
   > - If the **want** parameter passed does not contain **abilityName** or **bundleName**, the ServiceExtensionAbility components of all applications cannot be started through implicit Want.
   > 
   > - If the **want** parameter passed contains **bundleName**, the **startServiceExtensionAbility()** method can be used to implicitly start ServiceExtensionAbility. By default, ServiceExtensionAbility with the highest priority is returned. If all the matching ServiceExtensionAbility components have the same priority, the first ServiceExtensionAbility is returned.
-
- <!--no_check--> 

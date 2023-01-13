@@ -81,7 +81,7 @@ bm uninstall [-h help] [-n bundleName] [-m moduleName] [-u userId] [-k]
 Example
 
 ```bash
-bm uninstall -n com.ohos.app -m com.ohos.app.MainAbility -u 100 -k
+bm uninstall -n com.ohos.app -m com.ohos.app.EntryAbility -u 100 -k
 // The execution result is as follows:
 uninstall bundle successfully.
 ```
@@ -178,7 +178,7 @@ Example
 
 ```bash
 # Enable a bundle.
-bm enable -n com.ohos.app -a com.ohos.app.MainAbility -u 100
+bm enable -n com.ohos.app -a com.ohos.app.EntryAbility -u 100
 // The execution result is as follows:
 enable bundle successfully.
 ```
@@ -206,7 +206,7 @@ Example
 
 ```bash
 # Disable a bundle.
-bm disable -n com.ohos.app -a com.ohos.app.MainAbility -u 100
+bm disable -n com.ohos.app -a com.ohos.app.EntryAbility -u 100
 // The execution result is as follows:
 disable bundle successfully.
 ```

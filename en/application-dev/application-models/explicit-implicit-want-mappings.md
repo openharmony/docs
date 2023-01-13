@@ -1,48 +1,48 @@
 # Matching Rules of Explicit Want and Implicit Want
 
-
 Both explicit Want and implicit Want can be used to match an ability to start based on certain rules. These rules determine how the parameters set in Want match the configuration file declared by the target ability.
 
+## Matching Rules of Explicit Want
 
-- **Matching rules of explicit Want**
-  
-  | Name| Type| Matching Item| Mandatory| Rule Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | deviceId | string | Yes| No| If this field is unspecified, only abilities on the local device are matched.|
-  | bundleName | string | Yes| Yes| If **abilityName** is specified but **bundleName** is unspecified, the matching fails.|
-  | moduleName | string | Yes| No| If this field is unspecified and multiple modules with the same ability name exist in the application, the first ability is matched by default.|
-  | abilityName | string | Yes| Yes| To use explicit Want, this field must be specified.|
-  | uri | string | No| No| This field is not used for matching. It is passed to the target ability as a parameter.|
-  | type | string | No| No| This field is not used for matching. It is passed to the target ability as a parameter.|
-  | action | string | No| No| This field is not used for matching. It is passed to the target ability as a parameter.|
-  | entities | Array&lt;string&gt; | No| No| This field is not used for matching. It is passed to the target ability as a parameter.|
-  | flags | number | No| No| This field is not used for matching and is directly transferred to the system for processing. It is generally used to set runtime information, such as URI data authorization.|
+
+The table below describes the matching rules of explicit Want.
+
+| Name| Type| Matching Item| Mandatory| Rule Description|
+| -------- | -------- | -------- | -------- | -------- |
+| deviceId | string | Yes| No| If this field is unspecified, only abilities on the local device are matched.|
+| bundleName | string | Yes| Yes| If **abilityName** is specified but **bundleName** is unspecified, the matching fails.|
+| moduleName | string | Yes| No| If this field is unspecified and multiple modules with the same ability name exist in the application, the first ability is matched by default.|
+| abilityName | string | Yes| Yes| To use explicit Want, this field must be specified.|
+| uri | string | No| No| This field is not used for matching. It is passed to the target ability as a parameter.|
+| type | string | No| No| This field is not used for matching. It is passed to the target ability as a parameter.|
+| action | string | No| No| This field is not used for matching. It is passed to the target ability as a parameter.|
+| entities | Array&lt;string&gt; | No| No| This field is not used for matching. It is passed to the target ability as a parameter.|
+| flags | number | No| No| This field is not used for matching and is directly transferred to the system for processing. It is generally used to set runtime information, such as URI data authorization.|
 | parameters | {[key:&nbsp;string]:&nbsp;any} | No| No| This field is not used for matching. It is passed to the target ability as a parameter.|
-  
-- **Matching rules for implicit Want**
-    | Name| Type| Matching Item| Mandatory| Rule Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | deviceId | string | Yes| No| Implicit invoking is not supported across devices.|
-  | abilityName | string | No| No| To use implicit Want, this field must be left unspecified.|
-  | bundleName | string | Yes| No| - When only **bundleName** is specified, matching is limited to that application.<br>- When both **bundleName** and **moduleName** are specified, matching is limited to that module in that application.<br>- When only **moduleName** is specified, the setting is invalid.<br>For details, see [Interpretation of Implicit Want Matching Rules](#interpretation-of-implicit-want-matching-rules). |
-  | moduleName | string | Yes| No||
-  | uri | string | Yes| No||
-  | type | string | Yes| No||
-  | action | string | Yes| No||
-  | entities | Array&lt;string&gt; | Yes| No||
-  | flags | number | No| No| This field is not used for matching and is directly transferred to the system for processing. It is generally used to set runtime information, such as URI data authorization.|
-  | parameters | {[key:&nbsp;string]:&nbsp;any} | No| No| This field is not used for matching. It is passed to the target ability as a parameter.|
 
+## Matching Rules for Implicit Want
 
-## Interpretation of Implicit Want Matching Rules
+The table below describes the matching rules of implicit Want.
 
+| Name       | Type                          | Matching Item| Mandatory| Rule Description                                                        |
+| ----------- | ------------------------------ | ------ | ---- | ------------------------------------------------------------ |
+| deviceId    | string                         | Yes    | No  | Implicit invoking is not supported across devices.                                  |
+| abilityName | string                         | No    | No  | To use implicit Want, this field must be left unspecified.                                |
+| bundleName  | string                         | Yes    | No  | - When only **bundleName** is specified, matching is limited to that application.<br>- When both **bundleName** and **moduleName** are specified, matching is limited to that module in that application.<br>- When only **moduleName** is specified, the setting is invalid.<br> <br>These fields will be used for implicit matching.|
+| moduleName  | string                         | Yes    | No  |                                                              |
+| uri         | string                         | Yes    | No  |                                                              |
+| type        | string                         | Yes    | No  |                                                              |
+| action      | string                         | Yes    | No  |                                                              |
+| entities    | Array&lt;string&gt;            | Yes    | No  |                                                              |
+| flags       | number                         | No    | No  | This field is not used for matching and is directly transferred to the system for processing. It is generally used to set runtime information, such as URI data authorization.|
+| parameters  | {[key:&nbsp;string]:&nbsp;any} | No    | No  | This field is not used for matching. It is passed to the target ability as a parameter.         |
 
 Get familiar with the following about implicit Want:
 
 
 - The **want** parameter passed by the caller indicates the operation to be performed by the caller. It also provides data and application type restrictions.
 
-- The **skills** field declares the capabilities of the target ability. For details, see [the skills tag](../quick-start/module-configuration-file.md#skills-tag) in the [module.json5 file](../quick-start/module-configuration-file.md).
+- The **skills** field declares the capabilities of the target ability. For details, see [the skills tag](../quick-start/module-configuration-file.md#skills) in the [module.json5 file](../quick-start/module-configuration-file.md).
 
 
 The system matches the **want** parameter (including the **action**, **entities**, **uri**, and **type** attributes) passed by the caller against the **skills** configuration (including the **actions**, **entities**, **uris**, and **type** attributes) of the abilities one by one. When all the four attributes are matched, a dialog box is displayed for users to select a matched application.
@@ -60,8 +60,7 @@ The system matches the [action](../reference/apis/js-apis-ability-wantConstant.m
 
 - If **action** in the passed **want** parameter is specified, and **actions** under **skills** of an ability is specified but does not contain **action** in the passed **want** parameter, the matching fails.
 
-  Figure 1 Matching rules of action in the want parameter
-  
+  **Figure 1** Matching rules of action in the want parameter 
   <img src="figures/want-action.png" alt="want-action" style="zoom:80%;" />
 
 
@@ -112,6 +111,7 @@ There are four combinations of **uri** and **type** settings. The matching rules
 
 To simplify the description, **uri** and **type** passed in the **want** parameter are called **w_uri** and **w_type**, respectively; the **uris** array under **skills** of an ability to match is called **s_uris**; each element in the array is called **s_uri**. Matching is performed from top to bottom.
 
+
 Figure 4 Matching rules of uri and type in the want parameter
 <img src="figures/want-uri-type2.png" alt="want-uri-type2" style="zoom:80%;" />
 
@@ -158,5 +158,3 @@ To simplify the description, **uri** in the passed **want** parameter is called 
 - If the last character of **s_type** is the wildcard `*`, for example, `prefixType/*`, the matching is successful only when **w_type** contains `prefixType/`.
 
 - If the last character of **w_type** is the wildcard `*`, for example, `prefixType/*`, the matching is successful only when **s_type** contains `prefixType/`.
-
- <!--no_check--> 

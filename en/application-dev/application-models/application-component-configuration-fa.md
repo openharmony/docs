@@ -38,4 +38,3 @@ When developing an application, you may need to configure certain tags to identi
 
   To request component permissions, set the **reqPermission** field under **module** in the **config.json** file. This field declares the name of the permission to request, the reason for requesting the permission, and the scenario where the permission is used. For details about the configuration, see [reqPermission](../quick-start/module-structure.md).
 
- <!--no_check--> 
