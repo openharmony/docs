@@ -18,7 +18,7 @@ To facilitate your application development, we provide development guidelines fo
 
 First thing first, familiarize yourself with the two cornerstone frameworks in OpenHarmony applications:
 
-- Application framework: [Ability Development](ability/fa-brief.md)
+- Application framework: [Application Models](application-models/application-model-composition.md)
 - UI framework: [UI Development](ui/arkui-overview.md)
 
 All applications should be developed on top of these frameworks.
@@ -35,8 +35,9 @@ Then, equip yourself for developing the key features, with the following guideli
 - [Task Management](task-management/background-task-overview.md)
 - [Device](device/usb-overview.md)
 - [Device Usage Statistics](device-usage-statistics/device-usage-statistics-overview.md)
-- [DFX](dfx/hiappevent-overview.md)
+- [DFX](dfx/hiappevent-guidelines.md)
 - [Internationalization](internationalization/international-overview.md)
+- [Application Test](application-test/arkxtest-guidelines.md)
 - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
 - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
 
@@ -59,7 +60,9 @@ They are organized as follows:
 
 - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
 
-- [JS and TS APIs](reference/apis/js-apis-DataUriUtils.md)
+- [JS Service Widget UI Components](reference/js-service-widget-ui/Readme-EN.md)
+
+- [JS and TS APIs](reference/apis/js-apis-ability-dataUriUtils.md)
 
 - Native APIs
   - [Standard Library](reference/native-lib/third_party_libc/musl.md)
