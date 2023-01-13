@@ -1674,7 +1674,7 @@ struct Fill {
           region.lineTo(270, 90)
           region.closePath()
           // Fill path
-          this.offContext.fillStyle = 'green'
+          this.offContext.fillStyle = '#00ff00'
           this.offContext.fill(region, "evenodd")
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
@@ -2534,7 +2534,7 @@ struct CanvasExample {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           this.offContext.save() // save the default state
-          this.offContext.fillStyle = "green"
+          this.offContext.fillStyle = "#00ff00"
           this.offContext.fillRect(20, 20, 100, 100)
           this.offContext.restore() // restore to the default state
           this.offContext.fillRect(150, 75, 100, 100)
@@ -2575,7 +2575,7 @@ struct CanvasExample {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           this.offContext.save() // save the default state
-          this.offContext.fillStyle = "green"
+          this.offContext.fillStyle = "#00ff00"
           this.offContext.fillRect(20, 20, 100, 100)
           this.offContext.restore() // restore to the default state
           this.offContext.fillRect(150, 75, 100, 100)
@@ -2625,9 +2625,9 @@ Creates a linear gradient.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.offContext.createLinearGradient(50,0, 300,100)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.offContext.fillStyle = grad
             this.offContext.fillRect(0, 0, 500, 500)
             var image = this.offContext.transferToImageBitmap()
@@ -2679,9 +2679,9 @@ Creates a linear gradient.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.offContext.createRadialGradient(200,200,50, 200,200,200)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.offContext.fillStyle = grad
             this.offContext.fillRect(0, 0, 500, 500)
             var image = this.offContext.transferToImageBitmap()
