@@ -1,4 +1,4 @@
-#  @ohos.hiTraceChain
+#  @ohos.hiTraceChain (Distributed Call Chain Tracing)
 
 The **hiTraceChain** module implements call chain tracing throughout a service process. It provides functions such as starting and stopping call chain tracing and configuring trace points.
 
