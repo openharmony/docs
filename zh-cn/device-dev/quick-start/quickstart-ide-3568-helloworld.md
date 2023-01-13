@@ -82,8 +82,6 @@ vendor/hihope
 
 2. 新建编译组织文件。
 
-   1. 新建applications/sample/hello/BUILD.gn文件，内容如下所示：
-
    新建sample/hello/BUILD.gn，创建方法可参考：[模块配置规则](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-module.md)。                                                                                                                                           
                                                                                                                                                 创建 
    BUILD.gn内容如下所示：
