@@ -7,7 +7,7 @@
 功能包括遍历、打开、搜索、读取和关闭rawfile。
 
 
-**自从：**
+**起始版本：**
 
 
 8
@@ -80,7 +80,7 @@ typedef struct NativeResourceManager NativeResourceManager
 
 此类封装了JavaScript resource manager的native实现 **ResourceManager**指针可以通过调用[OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager)方法获取
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -96,7 +96,7 @@ typedef struct RawDir RawDir
 
 提供对rawfile目录的访问。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -112,7 +112,7 @@ typedef struct RawFile RawFile
 
 提供对rawfile的访问功能。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -141,7 +141,7 @@ void OH_ResourceManager_CloseRawDir (RawDir * rawDir)
 
 [OH_ResourceManager_OpenRawDir](#oh_resourcemanager_openrawdir)
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -167,7 +167,7 @@ void OH_ResourceManager_CloseRawFile (RawFile * rawFile)
 
 [OH_ResourceManager_OpenRawFile](#oh_resourcemanager_openrawfile)
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -195,7 +195,7 @@ int OH_ResourceManager_GetRawFileCount (RawDir * rawDir)
 
 [OH_ResourceManager_GetRawFileName](#oh_resourcemanager_getrawfilename)
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -215,16 +215,16 @@ bool OH_ResourceManager_GetRawFileDescriptor (const RawFile * rawFile, RawFileDe
 
 **参数：**
 
-| Name       | 描述                               |
-| ---------- | -------------------------------- |
-| rawFile    | 表示指向[RawFile](#rawfile)的指针。      |
-| descriptor | 显示rawfile文件描述符，以及在HAP包中的起始位置和长度。 |
+| Name       | 描述                                                 |
+| ---------- | ---------------------------------------------------- |
+| rawFile    | 表示指向[RawFile](#rawfile)的指针。                  |
+| descriptor | 显示rawfile文件描述符，以及在HAP中的起始位置和长度。 |
 
 **返回：**
 
 返回true表示打开rawfile文件描述符成功，返回false表示rawfile不允许被访问。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -257,7 +257,7 @@ const char* OH_ResourceManager_GetRawFileName (RawDir * rawDir, int index )
 
 [OH_ResourceManager_OpenRawFile](#oh_resourcemanager_openrawfile)
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -285,7 +285,7 @@ rawfile当前的offset。
 
 返回rawfile当前的offset。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -311,7 +311,7 @@ long OH_ResourceManager_GetRawFileSize (RawFile * rawFile)
 
 Returns rawfile整体长度。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -340,7 +340,7 @@ NativeResourceManager* OH_ResourceManager_InitNativeResourceManager (napi_env en
 
 返回[NativeResourceManager](#nativeresourcemanager)指针。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -375,7 +375,7 @@ RawDir* OH_ResourceManager_OpenRawDir (const NativeResourceManager * mgr, const 
 
 [OH_ResourceManager_CloseRawDir](#oh_resourcemanager_closerawdir)
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -410,7 +410,7 @@ RawFile* OH_ResourceManager_OpenRawFile (const NativeResourceManager * mgr, cons
 
 [OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile)
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -440,7 +440,7 @@ int OH_ResourceManager_ReadRawFile (const RawFile * rawFile, void * buf, size_t 
 
 返回读取的字节数，如果读取长度超过文件末尾长度，则返回**0**。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -462,7 +462,7 @@ void OH_ResourceManager_ReleaseNativeResourceManager (NativeResourceManager * re
 | ------ | ---------------------------------------- |
 | resMgr | 表示[NativeResourceManager](#nativeresourcemanager)指针。 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -482,15 +482,15 @@ bool OH_ResourceManager_ReleaseRawFileDescriptor (const RawFileDescriptor & desc
 
 **参数：**
 
-| Name       | 描述                               |
-| ---------- | -------------------------------- |
-| descriptor | 包含rawfile文件描述符，以及在HAP包中的起始位置和长度。 |
+| Name       | 描述                                                 |
+| ---------- | ---------------------------------------------------- |
+| descriptor | 包含rawfile文件描述符，以及在HAP中的起始位置和长度。 |
 
 **返回：**
 
 返回true表示关闭文件描述符成功，返回false表示关闭文件描述符失败。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -518,6 +518,6 @@ int OH_ResourceManager_SeekRawFile (const RawFile * rawFile, long offset, int wh
 
 如果搜索成功返回新的读写位置，如果发生错误返回 **(long) -1**。
 
-**自从：**
+**起始版本：**
 
 8
