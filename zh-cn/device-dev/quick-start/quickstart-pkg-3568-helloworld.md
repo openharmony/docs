@@ -78,8 +78,9 @@ vendor/hihope
 
 2. 新建编译组织文件。
 
-   新建sample/hello/BUILD.gn，创建方法可参考：[模块配置规则](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-module.md)。
-   创建BUILD.gn内容如下所示：
+   新建sample/hello/BUILD.gn，创建方法可参考：[模块配置规则](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-module.md)。                                                                                                                                           
+                                                                                                                                                创建 
+   BUILD.gn内容如下所示：
       
    ```
    import("//build/ohos.gni")  # 导入编译模板
@@ -103,8 +104,9 @@ vendor/hihope
 
 3. 新建部件配置规则文件
 
-   新建sample/hello/bundle.json文件，添加sample部件描述，创建方法可参考链接：docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-component.md
-   创建bundle.json内容如下所示。
+   新建sample/hello/bundle.json文件，添加sample部件描述，创建方法可参考：[部件配置规则](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-component.md)。                                                                                                                                                            
+                                                                                                                                                       
+   bundle.json内容如下所示。
       
    ```
    {
@@ -145,7 +147,8 @@ vendor/hihope
 
 4. 修改子系统配置文件。
    
-   在build/subsystem_config.json中添加新建的子系统的配置。修改方法可参考链接：docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-subsystem.md
+   在build/subsystem_config.json中添加新建的子系统的配置。修改方法可参考：[子系统配置规则](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-subsystem.md)。
+                                                                                                                                                       
    新增子系统的配置如下所示。
    
    ```
