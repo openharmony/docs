@@ -1,10 +1,11 @@
-# Geolocation
+# @ohos.geolocation (Geolocation)
 
-The Geolocation module provides location services such as GNSS positioning, network positioning, geocoding, reverse geocoding, country code and geofencing.
+The **geolocation** module provides location services such as GNSS positioning, network positioning, geocoding, reverse geocoding, country code and geofencing.
 
 > **NOTE**
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs provided by this module are no longer maintained since API version 9. You are advised to use [geoLocationManager](js-apis-geoLocationManager.md) instead.
+> 
+> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are no longer maintained since API version 9. You are advised to use [geoLocationManager](js-apis-geoLocationManager.md) instead.
 
 ## Applying for Permissions
 

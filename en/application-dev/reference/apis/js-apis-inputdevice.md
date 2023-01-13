@@ -1,15 +1,11 @@
-# @ohos.multimodalInput.inputDevice
-
+# @ohos.multimodalInput.inputDevice (Input Device)
 
 The **inputDevice** module implements listening for connection, disconnection, and update events of input devices and displays information about input devices. For example, it can be used to listen for mouse insertion and removal and obtain information such as the ID, name, and pointer speed of the mouse.
-
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-
 ## Modules to Import
-
 
 ```js
 import inputDevice from '@ohos.multimodalInput.inputDevice';

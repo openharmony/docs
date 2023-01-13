@@ -1,4 +1,4 @@
-# @ohos.screenLock
+# @ohos.screenLock (Screenlock)
 
 The **screenlock** module is a system module in OpenHarmony. It provides APIs for screen lock applications to subscribe to screen lock status changes as well as callbacks for them to receive the results. It also provides APIs for third-party applications to unlock the screen, obtain the screen locked status, and check whether a lock screen password has been set.
 

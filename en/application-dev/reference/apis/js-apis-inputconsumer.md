@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.inputConsumer
+# @ohos.multimodalInput.inputConsumer (Input Consumer)
 
 The **inputConsumer** module implements listening for combination key events.
 

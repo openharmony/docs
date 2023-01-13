@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.touchEvent
+# @ohos.multimodalInput.touchEvent (Touch Event)
 
 The **touchEvent** module provides touch events reported by an input device.
 
