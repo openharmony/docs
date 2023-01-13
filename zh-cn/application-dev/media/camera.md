@@ -60,20 +60,27 @@ import media from '@ohos.multimedia.media'
 
 // 创建CameraManager对象
 context: any = getContext(this)
-let cameraManager
-try {
-    cameraManager = camera.getCameraManager(this.context);
-} catch (error) {
-    console.error('Failed to get the CameraManager instance');
-}
+let cameraManager = camera.getCameraManager(this.context)
+if (!cameraManager) {
+    console.error("camera.getCameraManager error")
+    return;
+} 
+// 监听相机状态变化
+cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
+    if (err) {
+        console.error(`Failed to get cameraStatus callback. ${err.message}`);
+        return;
+    }
+    console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
+    console.log(`status: ${cameraStatusInfo.status}`);
+})
 
 // 获取相机列表
-let cameraArray
-try {
-    cameraArray = cameraManager.getSupportedCameras();
-} catch (error) {
-    console.error('Failed to get the cameras errorCode = ' + error.code);
-}
+let cameraArray = cameraManager.getSupportedCameras();
+if (cameraArray.length <= 0) {
+    console.error("cameraManager.getSupportedCameras error")
+    return;
+} 
 
 for (let index = 0; index < cameraArray.length; index++) {
     console.log('cameraId : ' + cameraArray[index].cameraId);                        // 获取相机ID
@@ -90,17 +97,22 @@ try {
    console.error('Failed to createCameraInput errorCode = ' + error.code);
 }
 
+// 监听cameraInput错误信息
+let cameraDevice = cameraArray[0];
+cameraInput.on('error', cameraDevice, (error) => {
+    console.log(`Camera input error code: ${error.code}`);
+})
+
 // 打开相机
 await cameraInput.open();
 
 // 获取相机设备支持的输出流能力
-let cameraOutputCap
-try {
-    cameraOutputCap = cameraManager.getSupportedOutputCapability(cameraArray[0]);
-    console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
-} catch (error) {
-    console.error("outputCapability outputCapability == null || undefined")
+let cameraOutputCap = cameraManager.getSupportedOutputCapability(cameraArray[0]);
+if (!cameraOutputCap) {
+    console.error("cameraManager.getSupportedOutputCapability error")
+    return;
 }
+console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
 
 let previewProfilesArray = cameraOutputCap.GetPreviewProfiles();
 if (!previewProfilesArray) {
@@ -129,6 +141,11 @@ try {
 } catch (error) {
     console.error("Failed to create the PreviewOutput instance.")
 }
+
+// 监听预览输出错误信息
+previewOutput.on('error', (error) => {
+    console.log(`Preview output error code: ${error.code}`);
+})
 
 // 创建ImageReceiver对象，并设置照片参数：分辨率大小是根据前面 photoProfilesArray 获取的当前设备所支持的拍照分辨率大小去设置
 let imageReceiver = await image.createImageReceiver(1920, 1080, 4, 8)
@@ -188,6 +205,11 @@ try {
 } catch (error) {
     console.error('Failed to create the videoOutput instance. errorCode = ' + error.code);
 }
+
+// 监听视频输出错误信息
+videoOutput.on('error', (error) => {
+    console.log(`Preview output error code: ${error.code}`);
+})
 ```
 预览流、拍照流和录像流的输入均需要提前创建surface，其中预览流为XComponent组件提供的surface，拍照流为ImageReceiver提供的surface，录像流为VideoRecorder的surface。
 
@@ -267,6 +289,11 @@ try {
 } catch (error) {
     console.error('Failed to create the CaptureSession instance. errorCode = ' + error.code);
 }
+
+// 监听session错误信息
+captureSession.on('error', (error) => {
+    console.log(`Capture session error code: ${error.code}`);
+})
 
 // 开始配置会话
 try {

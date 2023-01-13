@@ -96,7 +96,7 @@ let cameraManager = camera.getCameraManager(context);
 
 ## CameraErrorCode
 
-相机错误码。
+相机错误码。接口使用不正确以及on接口监听error状态返回。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -133,12 +133,8 @@ getSupportedCameras(): Array<CameraDevice\>
 **示例：**
 
 ```js
-let cameras;
-try{
-    cameras = cameraManager.getSupportedCameras();
-} catch (error) {
-    console.log(error.code);
-}
+let cameras = cameraManager.getSupportedCameras();
+
 ```
 
 ### getSupportedOutputCapability
@@ -165,12 +161,8 @@ getSupportedOutputCapability(cameraDevice:CameraDevice): CameraOutputCapability
 
 ```js
 let cameraDevice = cameras[0];
-let cameraOutputCapability;
-try{
-    cameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice);
-} catch (error) {
-    console.log(error.code);
-}
+let cameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice);
+
 ```
 
 ### isCameraMuted
@@ -254,13 +246,13 @@ createCameraInput(camera: CameraDevice): CameraInput
 
 | 参数名     | 类型                                         | 必填 | 说明                                |
 | -------- | ------------------------------------------- | ---- | --------------------------------- |
-| cameraDevice   | [CameraDevice](#cameradevice)               | 是   | CameraDevice对象，通过 getSupportedCameras 接口获取   |
+| cameraDevice   | [CameraDevice](#cameradevice)         | 是   | CameraDevice对象，通过 getSupportedCameras 接口获取   |
 
 **返回值：**
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraInput](#camerainput)    | CameraInput实例。 |
+| [CameraInput](#camerainput)    | CameraInput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -270,6 +262,7 @@ let cameraInput;
 try {
 	cameraInput = cameraManager.createCameraInput(cameraDevice);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -295,7 +288,7 @@ createCameraInput(position: CameraPosition, type: CameraType): CameraInput
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraInput](#camerainput)    | CameraInput实例。 |
+| [CameraInput](#camerainput)    | CameraInput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -307,6 +300,7 @@ let cameraInput;
 try {
     cameraInput = cameraManager.createCameraInput(position, type);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -330,7 +324,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [PreviewOutput](#previewoutput)    | PreviewOutput实例。 |
+| [PreviewOutput](#previewoutput)    | PreviewOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -340,6 +334,7 @@ let previewOutput;
 try {
     previewOutput = cameraManager.createPreviewOutput(profile, surfaceId);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -363,13 +358,19 @@ createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [PhotoOutput](#photooutput)   | PhotoOutput实例。 |
+| [PhotoOutput](#photooutput)   | PhotoOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
 ```js
 let profile = cameraoutputcapability.photoProfiles[0];
-let photoOutput = cameraManager.createPhotoOutput(profile, surfaceId);
+let photoOutput;
+try {
+    photoOutput = cameraManager.createPhotoOutput(profile, surfaceId);
+} catch (error) {
+    // 失败返回错误码error.code并处理
+    console.log(error.code);
+}
 ```
 
 ### createVideoOutput
@@ -391,7 +392,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [VideoOutput](#videooutput)   | VideoOutput实例。 |
+| [VideoOutput](#videooutput)   | VideoOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -401,6 +402,7 @@ let videoOutput;
 try {
     videoOutput = cameraManager.createVideoOutput(profile, surfaceId);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -423,7 +425,7 @@ createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>): MetadataOu
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [MetadataOutput](#metadataoutput)   | MetadataOutput实例。 |
+| [MetadataOutput](#metadataoutput)   | MetadataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -433,6 +435,7 @@ let metadataOutput;
 try {
     metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -449,7 +452,7 @@ createCaptureSession(): CaptureSession
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CaptureSession](#capturesession)   | CaptureSession实例。 |
+| [CaptureSession](#capturesession)   | CaptureSession实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -458,6 +461,7 @@ let captureSession;
 try {
     captureSession = cameraManager.createCaptureSession();
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -515,6 +519,7 @@ cameraManager.on('cameraMute', (err, curMuetd) => {
         console.error(`Failed to get cameraMute callback. ${err.message}`);
         return;
     }
+    let isMuted = curMuetd;
 })
 ```
 
@@ -630,7 +635,7 @@ open\(callback: AsyncCallback<void\>\): void
 
 | 参数名     | 类型                  | 必填 | 说明                  |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -638,6 +643,7 @@ open\(callback: AsyncCallback<void\>\): void
 cameraInput.open((err) => {
     if (err) {
         console.error(`Failed to open the camera. ${err.message}`);
+        console.error(`Failed to open the camera. ${err.code}`);
         return;
     }
     console.log('Callback returned with camera opened.');
@@ -656,14 +662,17 @@ open(): Promise<void\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
 ```js
 cameraInput.open().then(() => {
     console.log('Promise returned with camera opened.');
-})
+}).catch((err) => {
+    console.log('Failed to open the camera '+ err.message);
+    console.error(`Failed to open the camera. ${err.code}`);
+});
 ```
 
 ### close
@@ -678,7 +687,7 @@ close\(callback: AsyncCallback<void\>\): void
 
 | 参数名     | 类型                   | 必填 | 说明                  |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -686,6 +695,7 @@ close\(callback: AsyncCallback<void\>\): void
 cameraInput.close((err) => {
     if (err) {
         console.error(`Failed to close the cameras. ${err.message}`);
+        console.error(`Failed to close the cameras. ${err.code}`);
         return;
     }
     console.log('Callback returned with camera closed.');
@@ -711,7 +721,10 @@ close(): Promise<void\>
 ```js
 cameraInput.close().then(() => {
     console.log('Promise returned with camera closed.');
-})
+}).catch((err) => {
+    console.log('Failed to close the camera '+ err.message);
+    console.error(`Failed to close the cameras. ${err.code}`);
+});
 ```
 
 ### on('error')
@@ -728,7 +741,7 @@ on(type: 'error', cameraDevice:CameraDevice, callback: ErrorCallback<BusinessErr
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | 是   | 监听事件，固定为'error'，即CameraInput错误事件。 |
 | cameraDevice   | [CameraDevice](#cameradevice)    | 是   | CameraDevice对象。 |
-| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取结果。   |
+| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取结果。返回错误码，错误码类型[CameraErrorCode](#cameraerrorode)   |
 
 **示例：**
 
@@ -815,12 +828,19 @@ beginConfig(): void
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+
 **示例：**
 
 ```js
 try {
     captureSession.beginConfig();
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -837,7 +857,7 @@ commitConfig(callback: AsyncCallback<void\>): void
 
 | 参数名     | 类型                   | 必填 | 说明                  |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -845,6 +865,7 @@ commitConfig(callback: AsyncCallback<void\>): void
 captureSession.commitConfig((err) => {
     if (err) {
         console.error(`Failed to commit the configuration. ${err.message}`);
+        console.log('Failed to commitConfig '+ err.code);
         return;
     }
     console.log('Callback invoked to indicate the commit config success.');
@@ -863,14 +884,18 @@ commitConfig(): Promise<void\>
 
 | 类型            | 说明                      |
 | -------------- | ------------------------ |
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
 ```js
 captureSession.commitConfig().then(() => {
     console.log('Promise returned to indicate the commit config success.');
-})
+}).catch((err) => {
+    // 失败返回错误码error.code并处理
+    console.log('Failed to commitConfig '+ err.message);
+    console.log('Failed to commitConfig '+ err.code);
+});
 ```
 
 ### addInput
@@ -887,12 +912,19 @@ addInput(cameraInput: CameraInput): void
 | ----------- | --------------------------- | ---- | ------------------------ |
 | cameraInput | [CameraInput](#camerainput) | 是   | 需要添加的CameraInput实例。 |
 
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+
 **示例：**
 
 ```js
 try {
     captureSession.addInput(cameraInput);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -911,12 +943,19 @@ removeInput(cameraInput: CameraInput): void
 | ----------- | --------------------------- | ---- | ------------------------ |
 | cameraInput | [CameraInput](#camerainput) | 是   | 需要移除的CameraInput实例。 |
 
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+
 **示例：**
 
 ```js
 try {
     captureSession.removeInput(cameraInput);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -935,12 +974,19 @@ addOutput(previewOutput: CameraOutput): void
 | ------------- | ------------------------------- | ---- | ------------------------ |
 | previewOutput  | [PreviewOutput](#previewoutput)   | 是   | 需要添加的previewoutput实例。 |
 
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+
 **示例：**
 
 ```js
 try {
     captureSession.addOutput(previewOutput);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -959,12 +1005,19 @@ removeOutput(previewOutput: CameraOutput): void
 | ------------- | ------------------------------- | ---- | ------------------------ |
 | previewOutput  | [PreviewOutput](#previewoutput)   | 是   | 需要移除的previewoutput实例。 |
 
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+
 **示例：**
 
 ```js
 try {
     captureSession.removeOutput(previewOutput);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -981,7 +1034,7 @@ start\(callback: AsyncCallback<void\>\): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -989,6 +1042,7 @@ start\(callback: AsyncCallback<void\>\): void
 captureSession.start((err) => {
     if (err) {
         console.error(`Failed to start the session ${err.message}`);
+        console.error(`Failed to start the session ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate the session start success.');
@@ -1014,7 +1068,10 @@ start\(\): Promise<void\>
 ```js
 captureSession.start().then(() => {
     console.log('Promise returned to indicate the session start success.');
-})
+}).catch((err) => {
+    console.log('Failed to captureSession start '+ err.message);
+    console.error(`Failed to start the session ${err.code}`);
+});
 ```
 
 ### stop
@@ -1029,7 +1086,7 @@ stop\(callback: AsyncCallback<void\>\): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1037,6 +1094,7 @@ stop\(callback: AsyncCallback<void\>\): void
 captureSession.stop((err) => {
     if (err) {
         console.error(`Failed to stop the session ${err.message}`);
+        console.error(`Failed to stop the session ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate the session stop success.');
@@ -1055,14 +1113,17 @@ stop(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
 ```js
 captureSession.stop().then(() => {
     console.log('Promise returned to indicate the session stop success.');
-})
+}).catch((err) => {
+    console.log('Failed to captureSession stop '+ err.message);
+    console.error(`Failed to stop the session ${err.code}`);
+});
 ```
 
 ### release
@@ -1077,7 +1138,7 @@ release\(callback: AsyncCallback<void\>\): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1085,6 +1146,7 @@ release\(callback: AsyncCallback<void\>\): void
 captureSession.release((err) => {
     if (err) {
         console.error(`Failed to release the CaptureSession instance ${err.message}`);
+        console.error(`Failed to release the CaptureSession instance ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate that the CaptureSession instance is released successfully.');
@@ -1103,14 +1165,17 @@ release(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
 ```js
 captureSession.release().then(() => {
     console.log('Promise returned to indicate that the CaptureSession instance is released successfully.');
-})
+}).catch((err) => {
+    console.log('Failed to captureSession release '+ err.message);
+    console.error(`Failed to release the CaptureSession instance ${err.code}`);
+});
 ```
 
 ### hasFlash
@@ -1125,7 +1190,7 @@ hasFlash(): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示设备支持闪光灯。 |
+| boolean    | 返回true表示设备支持闪光灯。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1133,6 +1198,7 @@ hasFlash(): boolean
 try {
     let status = captureSession.hasFlash();
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1155,7 +1221,7 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示支持该闪光灯模式。 |
+| boolean    | 返回true表示支持该闪光灯模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1163,6 +1229,7 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 try {
     let status = captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1184,7 +1251,13 @@ setFlashMode(flashMode: FlashMode): void
 
 | 参数名       | 类型                     | 必填 | 说明                  |
 | --------- | ----------------------- | ---- | --------------------- |
-| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。         |
+| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。       |
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1192,6 +1265,7 @@ setFlashMode(flashMode: FlashMode): void
 try {
     captureSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1208,7 +1282,7 @@ getFlashMode(): FlashMode
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [FlashMode](#flashmode)    | 获取当前设备的闪光灯模式。 |
+| [FlashMode](#flashmode)    | 获取当前设备的闪光灯模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1216,6 +1290,7 @@ getFlashMode(): FlashMode
 try {
     let flashMode = captureSession.getFlashMode();
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1238,7 +1313,7 @@ isExposureModeSupported(aeMode: ExposureMode): boolean;
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 获取是否支持曝光模式。 |
+| boolean    | 获取是否支持曝光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1246,6 +1321,7 @@ isExposureModeSupported(aeMode: ExposureMode): boolean;
 try {
     let isSupported = captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1262,7 +1338,7 @@ getExposureMode(): ExposureMode
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [ExposureMode](#exposuremode)    | 获取当前曝光模式。 |
+| [ExposureMode](#exposuremode)    | 获取当前曝光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1270,6 +1346,7 @@ getExposureMode(): ExposureMode
 try {
     let exposureMode = captureSession.getExposureMode();
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1288,12 +1365,19 @@ setExposureMode(aeMode: ExposureMode): void
 | -------- | -------------------------------| ---- | ----------------------- |
 | aeMode   | [ExposureMode](#exposuremode)  | 是   | 曝光模式。                |
 
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+
 **示例：**
 
 ```js
 try {
     captureSession.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKED);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1310,7 +1394,7 @@ getMeteringPoint(): Point
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [Point](#point)    | 获取当前曝光点。 |
+| [Point](#point)    | 获取当前曝光点。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1318,6 +1402,7 @@ getMeteringPoint(): Point
 try {
     let exposurePoint = captureSession.getMeteringPoint();
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1336,6 +1421,12 @@ setMeteringPoint(point: Point): void
 | ------------- | -------------------------------| ---- | ------------------- |
 | exposurePoint | [Point](#point)                | 是   | 曝光点。              |
 
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+
 **示例：**
 
 ```js
@@ -1343,6 +1434,7 @@ const exposurePoint = {x: 1, y: 1};
 try {
     captureSession.setMeteringPoint(exposurePoint);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1359,7 +1451,7 @@ getExposureBiasRange(): Array<number\>
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| Array<number\>   | 获取补偿范围的数组。 |
+| Array<number\>   | 获取补偿范围的数组。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1367,6 +1459,7 @@ getExposureBiasRange(): Array<number\>
 try {
     let biasRangeArray = captureSession.getExposureBiasRange();
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1385,7 +1478,7 @@ setExposureBias(exposureBias: number): void
 
 | 参数名     | 类型                            | 必填 | 说明                 |
 | -------- | -------------------------------| ---- | ------------------- |
-| exposureBias   | number                   | 是   | 曝光补偿,getExposureBiasRange查询支持的范围 |
+| exposureBias   | number                   | 是   | 曝光补偿,getExposureBiasRange查询支持的范围,接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1394,6 +1487,7 @@ let exposureBias = biasRangeArray[0];
 try {
     captureSession.setExposureBias(exposureBias);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1410,7 +1504,7 @@ getExposureValue(): number
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| number    | 获取曝光值。 |
+| number    | 获取曝光值。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1418,6 +1512,7 @@ getExposureValue(): number
 try {
     let exposureValue = captureSession.getExposureValue();
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1440,7 +1535,7 @@ isFocusModeSupported(afMode: FocusMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示支持该焦距模式。 |
+| boolean    | 返回true表示支持该焦距模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1448,6 +1543,7 @@ isFocusModeSupported(afMode: FocusMode): boolean
 try {
     let status = captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1468,12 +1564,19 @@ setFocusMode(afMode: FocusMode): void
 | -------- | ----------------------- | ---- | ------------------- |
 | afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。       |
 
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+
 **示例：**
 
 ```js
 try {
     captureSession.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1490,7 +1593,7 @@ getFocusMode(): FocusMode
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [FocusMode](#focusmode)   | 获取当前设备的焦距模式。 |
+| [FocusMode](#focusmode)   | 获取当前设备的焦距模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1498,6 +1601,7 @@ getFocusMode(): FocusMode
 try {
     let afMode = captureSession.getFocusMode();
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1516,6 +1620,12 @@ setFocusPoint(point: Point): void
 | -------- | ----------------------- | ---- | ------------------- |
 | Point1    | [Point](#point)         | 是   | 焦点。                |
 
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+
 **示例：**
 
 ```js
@@ -1523,6 +1633,7 @@ const Point1 = {x: 1, y: 1};
 try {
     captureSession.setFocusPoint(Point1);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1539,7 +1650,7 @@ getFocusPoint(): Point
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [Point](#point)    | 用于获取当前焦点。 |
+| [Point](#point)    | 用于获取当前焦点。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1547,6 +1658,7 @@ getFocusPoint(): Point
 try {
     let point = captureSession.getFocusPoint();
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1563,7 +1675,7 @@ getFocalLength(): number
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| number    | 用于获取当前焦距。 |
+| number    | 用于获取当前焦距。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1571,6 +1683,7 @@ getFocalLength(): number
 try {
     let focalLength = captureSession.getFocalLength();
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1587,7 +1700,7 @@ getZoomRatioRange(): Array<number\>
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| Array<number\>   | 用于获取可变焦距比范围，返回的数组包括其最小值和最大值。 |
+| Array<number\>   | 用于获取可变焦距比范围，返回的数组包括其最小值和最大值。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1595,6 +1708,7 @@ getZoomRatioRange(): Array<number\>
 try {
     let zoomRatioRange = captureSession.getZoomRatioRange();
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1613,6 +1727,12 @@ setZoomRatio(zoomRatio: number): void
 | --------- | -------------------- | ---- | ------------------- |
 | zoomRatio | number               | 是   | 可变焦距比,通过getZoomRatioRange获取支持的变焦范围 |
 
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+
 **示例：**
 
 ```js
@@ -1620,6 +1740,7 @@ let zoomRatio = zoomRatioRange[0];
 try {
     captureSession.setZoomRatio(zoomRatio);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1636,7 +1757,7 @@ getZoomRatio(): number
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| number    | 获取当前的变焦比结果。 |
+| number    | 获取当前的变焦比结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1644,6 +1765,7 @@ getZoomRatio(): number
 try {
     let zoomRatio = captureSession.getZoomRatio();
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1666,7 +1788,7 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回视频防抖模式是否支持。 |
+| boolean    | 返回视频防抖模式是否支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1674,6 +1796,7 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 try {
     let isSupported = captureSession.isVideoStabilizationModeSupported(camera.VideoStabilizationMode.OFF);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1690,7 +1813,7 @@ getActiveVideoStabilizationMode(): VideoStabilizationMode
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| VideoStabilizationMode    | 视频防抖是否正在使用。 |
+| VideoStabilizationMode    | 视频防抖是否正在使用。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1698,6 +1821,7 @@ getActiveVideoStabilizationMode(): VideoStabilizationMode
 try {
     let vsMode = captureSession.getActiveVideoStabilizationMode();
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1716,12 +1840,19 @@ setVideoStabilizationMode(mode: VideoStabilizationMode): void
 | -------- | ------------------------------------------------- | ---- | --------------------- |
 | mode     | [VideoStabilizationMode](#videostabilizationmode) | 是   | 需要设置的视频防抖模式。   |
 
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+
 **示例：**
 
 ```js
 try {
     captureSession.setVideoStabilizationMode(camera.VideoStabilizationMode.OFF);
 } catch (error) {
+    // 失败返回错误码error.code并处理
     console.log(error.code);
 }
 ```
@@ -1762,13 +1893,13 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'error'，即拍照会话错误事件。 |
-| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。        |
+| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorode)        |
 
 **示例：**
 
 ```js
-captureSession.on('error', (captureSessionError) => {
-    console.log(`Capture session error code: ${captureSessionError.code}`);
+captureSession.on('error', (error) => {
+    console.log(`Capture session error code: ${error.code}`);
 })
 ```
 
@@ -1792,7 +1923,7 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1800,6 +1931,7 @@ start(callback: AsyncCallback<void\>): void
 previewOutput.start((err) => {
     if (err) {
         console.error(`Failed to start the previewOutput. ${err.message}`);
+        console.error(`Failed to start the previewOutput. ${err.code}`);
         return;
     }
     console.log('Callback returned with previewOutput started.');
@@ -1818,14 +1950,17 @@ start(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode)|
 
 **示例：**
 
 ```js
 previewOutput.start().then(() => {
     console.log('Promise returned with previewOutput started.');
-})
+}).catch((err) => {
+    console.log('Failed to previewOutput start '+ err.message);
+    console.log('Failed to previewOutput start '+ err.code);
+});
 ```
 
 ### stop
@@ -1873,7 +2008,9 @@ stop(): Promise<void\>
 ```js
 previewOutput.stop().then(() => {
     console.log('Callback returned with previewOutput stopped.');
-})
+}).catch((err) => {
+    console.log('Failed to previewOutput stop '+ err.message);
+});
 ```
 
 ### release
@@ -1888,7 +2025,7 @@ release(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -1896,6 +2033,7 @@ release(callback: AsyncCallback<void\>): void
 previewOutput.release((err) => {
     if (err) {
         console.error(`Failed to release the PreviewOutput instance ${err.message}`);
+        console.error(`Failed to release the PreviewOutput instance ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
@@ -1914,14 +2052,17 @@ release(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
 ```js
 previewOutput.release().then(() => {
     console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
-})
+}).catch((err) => {
+    console.log('Failed to previewOutput release '+ err.message);
+    console.log('Failed to previewOutput release '+ err.code);
+});
 ```
 
 ### on('frameStart')
@@ -1983,7 +2124,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 | 参数名     | 类型                                                               | 必填 | 说明                       |
 | -------- | ----------------------------------------------------------------- | ---- | ------------------------ |
 | type     | string                                               | 是   | 监听事件，固定为'error'，即预览输出错误事件。|
-| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。  |
+| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorode)  |
 
 **示例：**
 
@@ -2060,7 +2201,7 @@ capture(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -2068,6 +2209,7 @@ capture(callback: AsyncCallback<void\>): void
 photoOutput.capture((err) => {
     if (err) {
         console.error(`Failed to capture the photo ${err.message}`);
+        console.error(`Failed to capture the photo ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate the photo capture request success.');
@@ -2086,14 +2228,17 @@ capture(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
 ```js
 photoOutput.capture().then(() => {
     console.log('Promise returned to indicate that photo capture request success.');
-})
+}).catch((err) => {
+    console.log('Failed to photoOutput capture '+ err.message);
+    console.log('Failed to photoOutput capture '+ err.code);
+});
 ```
 
 ### capture
@@ -2109,7 +2254,7 @@ capture(setting: PhotoCaptureSetting, callback: AsyncCallback<void\>): void
 | 参数名      | 类型                                         | 必填 | 说明                  |
 | -------- | ------------------------------------------- | ---- | -------------------- |
 | setting  | [PhotoCaptureSetting](#photocapturesetting) | 是   | 拍照设置。             |
-| callback | AsyncCallback<void\>                        | 是   | 回调函数，用于获取结果。  |
+| callback | AsyncCallback<void\>                        | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode)  |
 
 **示例：**
 
@@ -2128,6 +2273,7 @@ let settings = {
 photoOutput.capture(settings, (err) => {
     if (err) {
         console.error(`Failed to capture the photo ${err.message}`);
+        console.error(`Failed to capture the photo ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate the photo capture request success.');
@@ -2152,7 +2298,7 @@ capture(setting?: PhotoCaptureSetting): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 
 **示例：**
@@ -2160,7 +2306,10 @@ capture(setting?: PhotoCaptureSetting): Promise<void\>
 ```js
 photoOutput.capture(settings).then(() => {
     console.log('Promise returned to indicate that photo capture request success.');
-})
+}).catch((err) => {
+    console.log('Failed to photoOutput capture '+ err.message);
+    console.log('Failed to photoOutput capture '+ err.code);
+});
 ```
 
 ### isMirrorSupported
@@ -2195,7 +2344,7 @@ release(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -2203,6 +2352,7 @@ release(callback: AsyncCallback<void\>): void
 photoOutput.release((err) => {
     if (err) {
         console.error(`Failed to release the PreviewOutput instance ${err.message}`);
+        console.error(`Failed to release the PreviewOutput instance ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
@@ -2221,14 +2371,17 @@ release(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
 ```js
 photoOutput.release().then(() => {
     console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
-})
+}).catch((err) => {
+    console.log('Failed to photoOutput release '+ err.message);
+    console.log('Failed to photoOutput release '+ err.code);
+});
 ```
 
 ### on('captureStart')
@@ -2315,13 +2468,13 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 | 参数名     | 类型                                                    | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                                | 是   | 监听事件，固定为'error'，即拍照错误事件。 |
-| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。             |
+| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorode)             |
 
 **示例：**
 
 ```js
-photoOutput.on('error', (err, photoOutputError) => {
-    console.log(`Photo output error code: ${photoOutputError.code}`);
+photoOutput.on('error', (err, error) => {
+    console.log(`Photo output error code: ${error.code}`);
 })
 ```
 
@@ -2363,7 +2516,7 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -2371,6 +2524,7 @@ start(callback: AsyncCallback<void\>): void
 videoOutput.start((err) => {
     if (err) {
         console.error(`Failed to start the video output ${err.message}`);
+        console.error(`Failed to start the video output ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate the video output start success.');
@@ -2389,7 +2543,7 @@ start(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 
 **示例：**
@@ -2397,7 +2551,10 @@ start(): Promise<void\>
 ```js
 videoOutput.start().then(() => {
     console.log('Promise returned to indicate that start method execution success.');
-})
+}).catch((err) => {
+    console.log('Failed to videoOutput start '+ err.message);
+    console.log('Failed to videoOutput start '+ err.code);
+});
 ```
 
 ### stop
@@ -2445,7 +2602,9 @@ stop(): Promise<void\>
 ```js
 videoOutput.stop().then(() => {
     console.log('Promise returned to indicate that stop method execution success.');
-})
+}).catch((err) => {
+    console.log('Failed to videoOutput stop '+ err.message);
+});
 ```
 
 ### release
@@ -2460,7 +2619,7 @@ release(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -2468,6 +2627,7 @@ release(callback: AsyncCallback<void\>): void
 videoOutput.release((err) => {
     if (err) {
         console.error(`Failed to release the PreviewOutput instance ${err.message}`);
+        console.error(`Failed to release the PreviewOutput instance ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
@@ -2486,14 +2646,17 @@ release(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
 ```js
 videoOutput.release().then(() => {
     console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
-})
+}).catch((err) => {
+    console.log('Failed to videoOutput release '+ err.message);
+    console.log('Failed to videoOutput release '+ err.code);
+});
 ```
 
 ### on('frameStart')
@@ -2555,13 +2718,13 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 | 参数名     | 类型                                               | 必填 | 说明                                    |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------- |
 | type     | string                                           | 是   | 监听事件，固定为'error'，即视频输出错误事件。 |
-| callback | Callback<BusinessError\> | 是   | 回调函数，用于获取错误信息。                 |
+| callback | Callback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorode)                 |
 
 **示例：**
 
 ```js
-videoOutput.on('error', (VideoOutputError) => {
-    console.log(`Video output error code: ${VideoOutputError.code}`);
+videoOutput.on('error', (error) => {
+    console.log(`Video output error code: ${error.code}`);
 })
 ```
 
@@ -2580,8 +2743,8 @@ start(callback: AsyncCallback<void\>): void
 **参数：**
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
-| -------- | ----------------------------------------------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\>                                       | 是   | 回调函数，用于获取结果。 |
+| -------- | -------------------------- | ---- | ------------------- |
+| callback | AsyncCallback<void\>       | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
@@ -2589,6 +2752,7 @@ start(callback: AsyncCallback<void\>): void
 metadataOutput.start((err) => {
     if (err) {
         console.error(`Failed to start metadataOutput. ${err.message}`);
+        console.error(`Failed to start metadataOutput. ${err.code}`);
         return;
     }
     console.log('Callback returned with metadataOutput started.');
@@ -2607,14 +2771,17 @@ start(): Promise<void\>
 
 | 类型                     | 说明                     |
 | ----------------------  | ------------------------ |
-| Promise<void\>          | 使用Promise的方式获取结果。 |
+| Promise<void\>          | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
 
 **示例：**
 
 ```js
 metadataOutput.start().then(() => {
     console.log('Callback returned with metadataOutput started.');
-})
+}).catch((err) => {
+    console.log('Failed to metadataOutput start '+ err.message);
+    console.log('Failed to metadataOutput start '+ err.code);
+});
 ```
 
 ### stop
@@ -2662,7 +2829,9 @@ stop(): Promise<void\>
 ```js
 metadataOutput.stop().then(() => {
     console.log('Callback returned with metadataOutput stopped.');
-})
+}).catch((err) => {
+    console.log('Failed to metadataOutput stop '+ err.message);
+});
 ```
 
 ### on('metadataObjectsAvailable')
@@ -2701,7 +2870,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 | 参数名     | 类型                                               | 必填 | 说明                                     |
 | -------- | ------------------------------------------------ | ---- | --------------------------------------- |
 | type     | string                                           | 是   | 监听事件，固定为'error'，即metadata流的错误。 |
-| callback | Callback<BusinessError\> | 是   | 回调函数，用于获取错误信息。            |
+| callback | Callback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorode)            |
 
 **示例：**
 
