@@ -1,6 +1,6 @@
 # MissionListener
 
-The **MissionListener** module defines the listeners used to observe the mission status.
+The **MissionListener** module defines the listeners used to observe the mission status. The listeners can be registered by using [registerMissionListener](js-apis-application-missionManager.md#missionmanagerregistermissionlistener).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
