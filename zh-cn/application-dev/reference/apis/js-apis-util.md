@@ -64,7 +64,7 @@ errnoToString(errno: number): string
 **示例：**
 
 ```js
-let errnum = 10; // 10 : a system error number
+let errnum = -1; // -1 : a system error number
 let result = util.errnoToString(errnum);
 console.log("result = " + result);
 ```
@@ -286,7 +286,7 @@ getErrorString(errno: number): string
 **示例：**
 
   ```js
-  let errnum = 10; // 10 : a system error number
+  let errnum = -1; // -1 : a system error number
   let result = util.getErrorString(errnum);
   console.log("result = " + result);
   ```
@@ -338,7 +338,7 @@ TextDecoder的构造函数。
 
 ### create<sup>9+</sup>
 
-create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean },): TextDecoder;
+create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder;
 
 替代有参构造功能。
 
@@ -364,50 +364,6 @@ create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean },): T
 let textDecoder = new util.TextDecoder()
 textDecoder.create('utf-8', { ignoreBOM : true });
 ```
-
-### decode
-
-decode(input: Uint8Array, options?: { stream?: false }): string
-
-通过输入参数解码后输出对应文本。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| input | Uint8Array | 是 | 符合格式需要解码的数组。 |
-| options | Object | 否 | 解码相关选项参数。 |
-
-**表2** options
-
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| stream | boolean | 否 | 在随后的decode()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| string | 解码后的数据。 |
-
-**示例：**
-
-  ```js
-  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  let result = new Uint8Array(6);
-  result[0] = 0xEF;
-  result[1] = 0xBB;
-  result[2] = 0xBF;
-  result[3] = 0x61;
-  result[4] = 0x62;
-  result[5] = 0x63;
-  console.log("input num:");
-  let retStr = textDecoder.decode( result , {stream: false});
-  console.log("retStr = " + retStr);
-  ```
-
 
 ### decodeWithStream<sup>9+</sup>
 
@@ -454,13 +410,13 @@ decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
 
 ### constructor<sup>(deprecated)</sup>
 
-constructor(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean },)
+constructor(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean })
 
 TextDecoder的构造函数。
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[constructor<sup>9+</sup>](#constructor9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[create<sup>9+</sup>](#create9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -484,6 +440,53 @@ TextDecoder的构造函数。
   let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
   ```
 
+### decode<sup>(deprecated)</sup>
+
+decode(input: Uint8Array, options?: { stream?: false }): string
+
+通过输入参数解码后输出对应文本。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[decodeWithStream<sup>9+</sup>](#decodewithstream9)替代。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| input | Uint8Array | 是 | 符合格式需要解码的数组。 |
+| options | Object | 否 | 解码相关选项参数。 |
+
+**表2** options
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| stream | boolean | 否 | 在随后的decode()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 解码后的数据。 |
+
+**示例：**
+
+  ```js
+  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+  let result = new Uint8Array(6);
+  result[0] = 0xEF;
+  result[1] = 0xBB;
+  result[2] = 0xBF;
+  result[3] = 0x61;
+  result[4] = 0x62;
+  result[5] = 0x63;
+  console.log("input num:");
+  let retStr = textDecoder.decode( result , {stream: false});
+  console.log("retStr = " + retStr);
+  ```
+
 ## TextEncoder
 
 ### 属性
@@ -493,7 +496,6 @@ TextDecoder的构造函数。
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | encoding | string | 是 | 否 | 编码格式，默认值是utf-8。 |
-
 
 ### constructor
 
@@ -507,6 +509,26 @@ TextEncoder的构造函数。
 
   ```js
   let textEncoder = new util.TextEncoder();
+  ```
+
+### constructor<sup>9+</sup>
+
+constructor(encoding?: string)
+
+TextEncoder的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ----- | ---- | ---- | ---- |
+| encoding | string | 否 | 编码格式 |
+
+**示例：**
+
+  ```js
+  let textEncoder = new util.TextEncoder("utf-8");
   ```
 
 ### encodeInto<sup>9+</sup>
@@ -566,7 +588,7 @@ let that = new util.TextEncoder()
 let buffer = new ArrayBuffer(4)
 let dest = new Uint8Array(buffer)
 let result = new Object()
-result = that.encodeInto('abcd', dest)
+result = that.encodeIntoUint8Array('abcd', dest)
   ```
 
 ### encodeInto<sup>(deprecated)</sup>
@@ -1464,7 +1486,7 @@ lru.afterRemoval(false,10,30,null);
 
 ### contains<sup>9+</sup>
 
-contains(key: object): boolean
+contains(key: K): boolean
 
 检查当前缓冲区是否包含指定的键。
 
@@ -1474,7 +1496,7 @@ contains(key: object): boolean
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| key    | object | 是   | 表示要检查的键。 |
+| key    | K | 是   | 表示要检查的键。 |
 
 **返回值：**
 
@@ -1564,6 +1586,65 @@ pro.put(2,10);
 let result = pro[Symbol.iterator]();
   ```
 
+## ScopeComparable<sup>8+</sup>
+
+ScopeComparable类型的值需要实现compareTo方法，确保传入的数据具有可比性。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+### compareTo<sup>8+</sup>
+
+compareTo(other: ScopeComparable): boolean;
+
+比较两个值的大小，返回一个布尔值。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明           |
+| ------ | ---- | ---- | -------------- |
+| other  | [ScopeComparable](#scopecomparable8) | 是  | 表示要比较的值。 |
+
+**返回值：**
+
+| 类型 | 说明               |
+| ---- | ------------------ |
+| boolean | 调用compareTo的值大于等于传入的值返回true，否则返回false。|
+
+**示例：**
+
+构造新类，实现compareTo方法。后续示例代码中，均以此Temperature类为例。
+
+```js
+class Temperature{
+    constructor(value){
+       // 当使用ts语言开发时，需要补充以下代码：
+       // private readonly _temp: Temperature;
+       this._temp = value;
+    }
+    compareTo(value){
+       return this._temp >= value.getTemp();
+    }
+    getTemp(){
+       return this._temp;
+    }
+    toString(){
+       return this._temp.toString();
+    }
+}
+```
+
+## ScopeType<sup>8+</sup>
+
+用于表示范围中的值的类型。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 表示值的类型为数字。 |
+| [ScopeComparable](#scopecomparable8) | 表示值的类型为ScopeComparable。|
 
 ## ScopeHelper<sup>9+</sup>
 
@@ -1644,7 +1725,7 @@ let range = new util.ScopeHelper(tempLower, tempUpper);
 let tempMiDF = new Temperature(35);
 let tempMidS = new Temperature(39);
 let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-range.intersect(rangeFir );
+range.intersect(rangeFir);
   ```
 
 
@@ -2121,45 +2202,7 @@ that.decode(array).then(val=>{
 })
   ```
 
-## ScopeType<sup>8+</sup>
-
-用于表示范围中的值的类型。该类型的值，类型可以为ScopeComparable或number。
-
-ScopeComparable类型的值需要实现compareTo方法，确保传入的数据具有可比性。
-
-```js
-interface ScopeComparable{
-    compareTo(other: ScopeComparable): boolean;
-}
-type ScopeType = ScopeComparable | number;
-```
-
-
-构造新类，实现compareTo方法。后续示例代码中，均通过Temperature，获取[ScopeType](#scopetype8)的实例化对象。
-
-
-示例：
-```js
-class Temperature{
-    constructor(value){
-       // 当使用ts语言开发时，需要补充以下代码：
-       // private readonly _temp: Temperature;
-       this._temp = value;
-    }
-    compareTo(value){
-       return this._temp >= value.getTemp();
-    }
-    getTemp(){
-       return this._temp;
-    }
-    toString(){
-       return this._temp.toString();
-    }
-}
-```
-
 ## types<sup>8+</sup>
-
 
 ### constructor<sup>8+</sup>
 
