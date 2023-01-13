@@ -1,6 +1,6 @@
 # 延迟任务回调能力开发指导（WorkSchedulerExtensionAbility）
 
-对于实时性要求不高的任务或持久性任务，可以使用延迟调度任务，该机制会在应用满足应用设定条件（包括网络类型、充电类型、存储状态、电池状态、定时状态）时，根据系统当前状态，由系统统一决策调度时间。
+对于实时性要求不高的任务或持久性任务，可以使用延迟任务，该机制会在应用满足应用设定条件（包括网络类型、充电类型、存储状态、电池状态、定时状态）时，根据系统当前状态，由系统统一决策调度时间。
 
 WorkSchedulerExtensionAbility提供了延迟任务回调能力，在延迟任务开始和结束时，系统会调用回调接口来处理任务逻辑，开发者可在回调接口里面编写自己的任务逻辑。
 
@@ -17,7 +17,7 @@ WorkSchedulerExtensionAbility提供了延迟任务回调能力，在延迟任务
 
 ## 接口说明
 
-WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formExtensionAbility.md)。
+WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md )。
 
 | 接口名 | 描述 |
 | -------- | -------- |
@@ -122,7 +122,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
         bundleName: '',
         abilityName: ''
       }
-      // 注册延迟调度任务
+      // 注册延迟任务
       startWork(bundleName: string, abilityName: string) {
         this.workInfo.bundleName = bundleName
         this.workInfo.abilityName = abilityName
@@ -137,7 +137,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
         }
       }
 
-      // 停止延迟调度任务
+      // 停止延迟任务
       stopWork(bundleName: string, abilityName: string) {
         this.workInfo.bundleName = bundleName
         this.workInfo.abilityName = abilityName
