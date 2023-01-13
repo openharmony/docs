@@ -4,12 +4,17 @@
 
 The custom font can be loaded from the font file in a project. The font file must be in .ttf or .otf format.
 
+>  **NOTE**
+>
+>  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
+
+
 ## Defining @font-face
 
 ```
 @font-face {   
-  font-family: HWfont; 
-  src: url('/common/HWfont.ttf'); 
+  font-family: font; 
+  src: url('/common/font.ttf'); 
 }
 ```
 
@@ -19,9 +24,9 @@ Customize a font.
 
 **src**
 
-Supported sources of customized fonts:
+Supported sources of custom fonts:
 
-- Font file in the project: Specify the path of the font file in the project through **url**. (You can use absolute paths only. For details, see [Resources and File Access Rules](https://gitee.com/openharmony/docs/blob/master/en/application-dev/ui/js-framework-file.md#section6620355202117).)
+- Font file in the project: Specify the absolute path of the font file in the project through **url**. For details, see [File Access Rules](../../ui/js-framework-file.md).
 - You can set only one **src** attribute.
 
 ## Using font-face
@@ -42,10 +47,10 @@ Page style:
 
 ```
 @font-face {
-  font-family: HWfont;
-  src: url("/common/HWfont.ttf");
+  font-family: font;
+  src: url("/common/font.ttf");
 }
 .demo-text {
-  font-family: HWfont;
+  font-family: font;
 }
 ```
