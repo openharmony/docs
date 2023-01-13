@@ -29,6 +29,14 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 | time     | number                    | 是   | 目标时间戳（ms）。                         |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **示例：**
 
 ```js
@@ -69,6 +77,14 @@ setTime(time : number) : Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **示例：**
 
 ```js
@@ -104,6 +120,14 @@ getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 | isNano   | boolean                     | 是   | 返回结果是否为纳秒数。<br>- true：表示返回结果为纳秒数（ns）。 <br>- false：表示返回结果为毫秒数（ms）。 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自Unix纪元以来经过的时间。         |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
@@ -137,6 +161,14 @@ getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 | 参数名   | 类型               | 必填 | 说明                            |
 | -------- | ----------- | ---- | ---------------------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自Unix纪元以来经过的时间。         |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
@@ -178,6 +210,14 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 | --------------------- | --------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回自Unix纪元以来经过的时间。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
@@ -210,6 +250,14 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 | -------- | ---------- | ---- | -------------------------- |
 | isNano   | boolean                     | 是   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括度睡眠时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
@@ -244,6 +292,14 @@ getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 | 参数名   | 类型                        | 必填 | 说明    |
 | -------- | -------------- | ---- | --------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括度睡眠时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
@@ -285,6 +341,14 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 | -------------- | -------------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回自系统启动以来经过的时间，但不包括深度睡眠时间。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
@@ -317,6 +381,14 @@ getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------- | ---- | ------------------------------- |
 | isNano   | boolean                     | 是   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，包括深度睡眠时间。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
@@ -351,6 +423,14 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 | 参数名   | 类型                        | 必填 | 说明      |
 | -------- | --------- | ---- | --------------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，包括深度睡眠时间。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
@@ -392,6 +472,14 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 | --------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回自系统启动以来经过的时间，包括深度睡眠时间。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
@@ -422,6 +510,14 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------- | ---- | --------------------- |
 | date     | Date                      | 是   | 目标日期。                                 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
 
 **示例：**
 
@@ -462,6 +558,14 @@ setDate(date: Date): Promise&lt;void&gt;
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **示例：**
 
 ```js
@@ -494,6 +598,14 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
 | 参数名   | 类型           | 必填 | 说明                   |
 | -------- | -------------- | ---- | --------------------- |
 | callback | AsyncCallback&lt;Date&gt; | 是   | 回调函数，返回当前系统日期。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
@@ -529,6 +641,14 @@ getDate(): Promise&lt;Date&gt;
 | ------------------- | ----------------------------------------- |
 | Promise&lt;Date&gt; | Promise对象，返回当前系统日期。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
@@ -559,6 +679,14 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------- | ---- | -------------------------- |
 | timezone | string                    | 是   | 系统时区。 具体可见[支持的系统时区](#支持的系统时区) 。        |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
 
 **示例：**
 
@@ -598,6 +726,14 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **示例：**
 
 ```js
@@ -629,6 +765,14 @@ getTimezone(callback: AsyncCallback&lt;string&gt;): void
 | 参数名   | 类型              | 必填 | 说明                 |
 | -------- | --------- | ---- | ------------------------ |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
@@ -663,6 +807,14 @@ getTimezone(): Promise&lt;string&gt;
 | 类型                  | 说明                                  |
 | --------------------- | ------------------------------------- |
 | Promise&lt;string&gt; | Promise对象，返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
