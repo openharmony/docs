@@ -19,5 +19,6 @@ The difference between the application package structures in the FA model and st
 
 - The **pack.info** file describes the HAP attributes in the bundle, for example, **bundleName** and **versionCode** in **app** and **name**, **type**, and **abilities** in **module**. The file is automatically generated when DevEco Studio generates the bundle.
 
-**Figure 1** Application package structure in FA model 
+**Figure 1** Application package structure in FA model
+
 ![app-pack-fa](figures/app-pack-fa.png)

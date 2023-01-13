@@ -25,7 +25,7 @@
   - Application Configuration Files in FA Model
     - [Application Configuration File Overview (FA Model)](application-configuration-file-overview-fa.md)
     - [Internal Structure of the app Tag](app-structure.md)
-    - [Internal structure of deviceConfig Tag](deviceconfig-structure.md)
+    - [Internal Structure of deviceConfig Tag](deviceconfig-structure.md)
     - [Internal Structure of the module Tag](module-structure.md)
   - [Resource Categories and Access](resource-categories-and-access.md)
 - Learning ArkTS
