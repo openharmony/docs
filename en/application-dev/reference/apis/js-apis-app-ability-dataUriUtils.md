@@ -1,6 +1,6 @@
-# ohos.app.ability.dataUriUtils
+# @ohos.app.ability.dataUriUtils
 
-The **DataUriUtils** module provides APIs to handle utility classes for objects using the **DataAbilityHelper** schema. You can use the APIs to attach an ID to the end of a given URI and obtain, delete, or update the ID attached to the end of a given URI.
+The **DataUriUtils** module provides APIs to process URI objects. You can use the APIs to attach an ID to the end of a given URI and obtain, delete, or update the ID attached to the end of a given URI.
 
 > **NOTE**
 > 
@@ -24,13 +24,13 @@ Obtains the ID attached to the end of a given URI.
 
 | Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | Yes  | URI object from which the ID is to be obtained.|
+| uri  | string | Yes  | Target URI object.|
 
 **Return value**
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| number | ID obtained from the URI object.|
+| number | ID obtained.|
 
 **Example**
 
@@ -49,7 +49,7 @@ try {
 
 attachId(uri: string, id: number): string
 
-Attaches an ID to the end of a given URI. It can be used to generate a new URI.
+Attaches an ID to the end of a given URI.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -57,7 +57,7 @@ Attaches an ID to the end of a given URI. It can be used to generate a new URI.
 
 | Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | Yes  | URI object to which an ID is to be attached.|
+| uri  | string | Yes  | Target URI object.|
 | id   | number | Yes  | ID to be attached.           |
 
 **Return value**
@@ -69,11 +69,11 @@ Attaches an ID to the end of a given URI. It can be used to generate a new URI.
 **Example**
 
 ```ts
-var idint = 1122;
+var id = 1122;
 try {
     var uri = dataUriUtils.attachId(
         "com.example.dataUriUtils",
-        idint,
+        id,
     )
     console.info('attachId the uri is: ' + uri)
 } catch (err) {
@@ -130,7 +130,7 @@ Updates the ID in a given URI.
 
 | Name| Type  | Mandatory| Description               |
 | ---- | ------ | ---- | ------------------- |
-| uri  | string | Yes  | URI object to be updated.|
+| uri  | string | Yes  | Target URI object.|
 | id   | number | Yes  | New ID.           |
 
 **Return value**
@@ -144,10 +144,10 @@ Updates the ID in a given URI.
 ```ts
 
 try {
-    var idint = 1122;
+    var id = 1122;
     var uri = dataUriUtils.updateId(
-        "com.example.dataUriUtils",
-        idint
+        "com.example.dataUriUtils/1221",
+        id
     )
 } catch (err) {
     console.error('delete uri err, check the input uri' + err)
