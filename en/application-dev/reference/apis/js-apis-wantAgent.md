@@ -218,8 +218,8 @@ Obtains the bundle name of a **WantAgent** object. This API uses a promise to re
 
 **Return value**
 
-| Type                                                       | Description                                                        |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Type             | Description                                            |
+| ----------------- | ------------------------------------------------ |
 | Promise\<string\> | Promise used to return the bundle name.|
 
 **Example**
@@ -228,7 +228,7 @@ Obtains the bundle name of a **WantAgent** object. This API uses a promise to re
 import WantAgent from '@ohos.wantAgent';
 
 
-// WantAgent object
+// wantAgent object
 var wantAgent;
 
 // WantAgentInfo object
@@ -292,7 +292,7 @@ Obtains the user ID of a **WantAgent** object. This API uses an asynchronous cal
 import WantAgent from '@ohos.wantAgent';
 
 
-// WantAgent object
+// wantAgent object
 var wantAgent;
 
 // getWantAgent callback
@@ -369,7 +369,7 @@ Obtains the user ID of a **WantAgent** object. This API uses a promise to return
 import WantAgent from '@ohos.wantAgent';
 
 
-// WantAgent object
+// wantAgent object
 var wantAgent;
 
 // WantAgentInfo object
@@ -424,10 +424,10 @@ Obtains the want in a **WantAgent** object. This API uses an asynchronous callba
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                           |
-| -------- | --------------------- | ---- | ------------------------------- |
-| agent    | WantAgent             | Yes  | Target **WantAgent** object.                  |
-| callback | AsyncCallback\<Want\> | Yes  | Callback used to return the want.|
+| Name     | Type                  | Mandatory | Description                       |
+| -------- | --------------------- | --------- | --------------------------------- |
+| agent    | WantAgent             | Yes       | Target **WantAgent** object.      |
+| callback | AsyncCallback\<Want\> | Yes       | Callback used to return the want. |
 
 **Example**
 
@@ -435,7 +435,7 @@ Obtains the want in a **WantAgent** object. This API uses an asynchronous callba
 import WantAgent from '@ohos.wantAgent';
 
 
-// WantAgent object
+// wantAgent object
 var wantAgent;
 
 // getWantAgent callback
@@ -498,15 +498,15 @@ Obtains the want in a **WantAgent** object. This API uses a promise to return th
 
 **Parameters**
 
-| Name | Type     | Mandatory| Description         |
-| ----- | --------- | ---- | ------------- |
-| agent | WantAgent | Yes  | Target **WantAgent** object.|
+| Name  | Type      | Mandatory | Description                  |
+| ----- | --------- | --------- | ---------------------------- |
+| agent | WantAgent | Yes       | Target **WantAgent** object. |
 
 **Return value**
 
-| Type                                                       | Description                                                        |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Want\> | Promise used to return the want.|
+| Type            | Description                      |
+| --------------- | -------------------------------- |
+| Promise\<Want\> | Promise used to return the want. |
 
 **Example**
 
@@ -514,7 +514,7 @@ Obtains the want in a **WantAgent** object. This API uses a promise to return th
 import WantAgent from '@ohos.wantAgent';
 
 
-// WantAgent object
+// wantAgent object
 var wantAgent;
 
 // WantAgentInfo object
@@ -578,7 +578,7 @@ Cancels a **WantAgent** object. This API uses an asynchronous callback to return
 import WantAgent from '@ohos.wantAgent';
 
 
-// WantAgent object
+// wantAgent object
 var wantAgent;
 
 // getWantAgent callback
@@ -655,7 +655,7 @@ Cancels a **WantAgent** object. This API uses a promise to return the result.
 import WantAgent from '@ohos.wantAgent';
 
 
-// WantAgent object
+// wantAgent object
 var wantAgent;
 
 // WantAgentInfo object
@@ -711,7 +711,7 @@ Triggers a **WantAgent** object. This API uses an asynchronous callback to retur
 | Name       | Type                         | Mandatory| Description                           |
 | ----------- | ----------------------------- | ---- | ------------------------------- |
 | agent       | WantAgent                     | Yes  | Target **WantAgent** object.                  |
-| triggerInfo | TriggerInfo                   | Yes  | **TriggerInfo** object.                |
+| triggerInfo | TriggerInfo                     | Yes  | **TriggerInfo** object.                |
 | callback    | AsyncCallback\<CompleteData\> | No  | Callback used to return the result.|
 
 **Example**
@@ -720,7 +720,7 @@ Triggers a **WantAgent** object. This API uses an asynchronous callback to retur
 import WantAgent from '@ohos.wantAgent';
 
 
-// WantAgent object
+// wantAgent object
 var wantAgent;
 
 // getWantAgent callback
@@ -779,7 +779,7 @@ WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
 
 equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
 
-Checks whether two **WantAgent** objects are equal. This API uses an asynchronous callback to return the result.
+Checks whether two **WantAgent** objects are equal to determine whether the same operation is from the same application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -797,7 +797,7 @@ Checks whether two **WantAgent** objects are equal. This API uses an asynchronou
 import WantAgent from '@ohos.wantAgent';
 
 
-// WantAgent object
+// wantAgent object
 var wantAgent1;
 var wantAgent2;
 
@@ -854,7 +854,7 @@ WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
 
 equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
-Checks whether two **WantAgent** objects are equal. This API uses a promise to return the result.
+Checks whether two **WantAgent** objects are equal to determine whether the same operation is from the same application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -877,7 +877,7 @@ Checks whether two **WantAgent** objects are equal. This API uses a promise to r
 import WantAgent from '@ohos.wantAgent';
 
 
-// WantAgent object
+// wantAgent object
 var wantAgent1;
 var wantAgent2;
 
@@ -940,7 +940,7 @@ Obtains the operation type of a **WantAgent** object. This API uses an asynchron
 ```js
 import WantAgent from '@ohos.wantAgent';
 
-// WantAgent object
+// wantAgent object
 var wantAgent;
 
 // WantAgentInfo object
@@ -1006,7 +1006,7 @@ Obtains the operation type of a **WantAgent** object. This API uses a promise to
 ```js
 import WantAgent from '@ohos.wantAgent';
 
-// WantAgent object
+// wantAgent object
 var wantAgent;
 
 // WantAgentInfo object

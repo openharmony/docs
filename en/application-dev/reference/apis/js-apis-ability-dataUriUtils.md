@@ -24,13 +24,13 @@ Obtains the ID attached to the end of a given URI.
 
 | Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | Yes  | URI object from which the ID is to be obtained.|
+| uri  | string | Yes  | Target URI object.|
 
 **Return value**
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| number | ID obtained from the URI object.|
+| number | ID obtained.|
 
 **Example**
 
@@ -52,7 +52,7 @@ Attaches an ID to the end of a given URI.
 
 | Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | Yes  | URI object to which an ID is to be attached.|
+| uri  | string | Yes  | Target URI object.|
 | id   | number | Yes  | ID to be attached.           |
 
 **Return value**
@@ -99,6 +99,8 @@ Deletes the ID from the end of a given URI.
 dataUriUtils.deleteId("com.example.dataUriUtils/1221")
 ```
 
+
+
 ## dataUriUtils.updateId
 
 updateId(uri: string, id: number): string
@@ -111,7 +113,7 @@ Updates the ID in a given URI.
 
 | Name| Type  | Mandatory| Description               |
 | ---- | ------ | ---- | ------------------- |
-| uri  | string | Yes  | URI object to be updated.|
+| uri  | string | Yes  | Target URI object.|
 | id   | number | Yes  | New ID.           |
 
 **Return value**
