@@ -1,4 +1,4 @@
-# @ohos.hiviewdfx.hiAppEvent
+# @ohos.hiviewdfx.hiAppEvent (Application Event Logging)
 
 The **hiAppEvent** module provides application event-related functions, including flushing application events to a disk, querying and clearing application events, and customizing application event logging configuration.
 

@@ -1,4 +1,4 @@
-# @ohos.hichecker
+# @ohos.hichecker (HiChecker)
 
 The **hichecker** module is provided for you to check issues that may be easily ignored during development of OpenHarmony applications (including system-built and third-party applications). Such issues include calling of time-consuming functions by key application threads, event distribution and execution timeout in application processes, and ability resource leakage in application processes. The issues are recorded in logs or lead to process crashes explicitly so that you can find and rectify them.
 

@@ -1,6 +1,6 @@
-# @ohos.app.ability.errorManager
+# @ohos.app.ability.errorManager (Error Manager)
 
-The **ErrorManager** module provides APIs for registering and deregistering error observers.
+The **errorManager** module provides APIs for registering and deregistering error observers.
 
 > **NOTE**
 > 

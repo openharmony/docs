@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.pointer
+# @ohos.multimodalInput.pointer (Mouse Pointer)
 
 The **pointer** module provides APIs related to pointer attribute management.
 

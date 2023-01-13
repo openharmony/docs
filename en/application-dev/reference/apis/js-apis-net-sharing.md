@@ -1,4 +1,4 @@
-# @ohos.net.sharing
+# @ohos.net.sharing (Network Sharing)
 
 The **sharing** module allows you to share your device's Internet connection with other connected devices by means of Wi-Fi hotspot, Bluetooth, and USB sharing. It also allows you to query the network sharing state and shared mobile data volume.
 

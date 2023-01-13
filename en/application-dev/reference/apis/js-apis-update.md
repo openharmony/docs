@@ -1,4 +1,4 @@
-# @ohos.update
+# @ohos.update (Update)
 
 The **update** module applies to updates throughout the entire system, including built-in resources and preset applications, but not third-party applications.
 
