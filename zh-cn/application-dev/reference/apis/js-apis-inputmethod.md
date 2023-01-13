@@ -12,7 +12,7 @@
 import inputMethod from '@ohos.inputmethod';
 ```
 
-## 常量
+## 常量<sup>8+</sup>
 
 常量值。
 
@@ -22,7 +22,7 @@ import inputMethod from '@ohos.inputmethod';
 | -------- | -------- | ---------- | -------- |
 | MAX_TYPE_NUM | number | 128 | 可支持的最大输入法个数。 |
 
-## InputMethodProperty
+## InputMethodProperty<sup>8+</sup>
 
 输入法应用属性。
 
@@ -53,7 +53,7 @@ getInputMethodController(): InputMethodController
 let inputMethodController = inputMethod.getInputMethodController();
 ```
 
-## inputMethod.getInputMethodSetting
+## inputMethod.getInputMethodSetting<sup>8+</sup>
 
 getInputMethodSetting(): InputMethodSetting
 
@@ -133,11 +133,11 @@ inputMethodController.stopInput().then((result) => {
 })
 ```
 
-## InputMethodSetting
+## InputMethodSetting<sup>8+</sup>
 
 下列API示例中都需使用[getInputMethodSetting](#inputmethodgetinputmethodsetting)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
 
-### listInputMethod
+### listInputMethod<sup>8+</sup>
 
 listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;): void
 
@@ -163,7 +163,7 @@ inputMethodSetting.listInputMethod((err, data) => {
  });
 ```
 
-### listInputMethod
+### listInputMethod<sup>8+</sup>
 
 listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
@@ -187,7 +187,7 @@ inputMethodSetting.listInputMethod().then((data) => {
 })
 ```
 
-### displayOptionalInputMethod
+### displayOptionalInputMethod<sup>8+</sup>
 
 displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
@@ -213,7 +213,7 @@ inputMethodSetting.displayOptionalInputMethod((err) => {
 });
 ```
 
-### displayOptionalInputMethod
+### displayOptionalInputMethod<sup>8+</sup>
 
 displayOptionalInputMethod(): Promise&lt;void&gt;
 
