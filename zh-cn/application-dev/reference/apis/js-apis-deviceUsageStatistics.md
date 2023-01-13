@@ -454,6 +454,20 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 | infosBeginTime           | number | 否    | BundleActiveInfo对象中第一条应用使用统计的记录时间。|
 | infosEndTime             | number | 否    | BundleActiveInfo对象中最后一条应用使用统计的记录时间。|
 
+### merge<sup>(deprecated)</sup>
+
+merge(toMerge: BundleStateInfo): void
+
+Merges the application usage information that has the same bundle name.
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**Parameters**
+
+| Name    | Type                                 | Mandatory  | Description            |
+| ------- | ----------------------------------- | ---- | -------------- |
+| toMerge | [BundleStateInfo](#bundlestateinfo) | Yes   | Application usage information to merge.|
+
 ## BundleActiveState
 
 提供应用事件的具体信息。
