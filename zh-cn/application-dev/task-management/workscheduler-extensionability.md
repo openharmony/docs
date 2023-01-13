@@ -17,7 +17,7 @@ WorkSchedulerExtensionAbility提供了延迟任务回调能力，在延迟任务
 
 ## 接口说明
 
-WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md )。
+WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)。
 
 | 接口名 | 描述 |
 | -------- | -------- |

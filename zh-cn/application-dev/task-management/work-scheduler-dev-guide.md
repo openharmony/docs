@@ -2,7 +2,8 @@
 
 ## 场景介绍
 
-应用要执行对实时性要求不高的任务或持久性任务的时候，比如设备空闲时候做一次数据学习等场景，可以使用延迟调度任务，该机制在满足应用设定条件的时候，会根据系统当前状态，如内存、功耗、温度等统一决策调度时间，[WorkSchedulerExtensionAbility](./workscheduler-extensionability.md)提供了延迟任务回调拓展能力，注册延迟任务后需要实现延迟任务回调拓展能力。延迟任务调度约束见[延迟任务调度约束](./background-task-overview.md#延迟任务调度约束)。应用要执行对实时性要求不高的任务或持久性任务的时候，比如设备空闲时候做一次数据学习等场景，可以使用延迟调度任务，该机制在满足应用设定条件的时候，会根据系统当前状态，如内存、功耗、温度等统一决策调度时间，[WorkSchedulerExtensionAbility](./workscheduler-extensionability.md)提供了延迟任务回调拓展能力。延迟任务调度约束见[延迟任务调度约束](./background-task-overview.md#延迟任务调度约束)。
+应用要执行对实时性要求不高的任务或持久性任务的时候，比如设备空闲时候做一次数据学习等场景，可以使用延迟调度任务，该机制在满足应用设定条件的时候，会根据系统当前状态，如内存、功耗、温度等统一决策调度时间，[WorkSchedulerExtensionAbility](./workscheduler-extensionability.md)提供了延迟任务回调拓展能力，注册延迟任务后需要实现延迟任务回调拓展能力。
+延迟任务调度约束见[延迟任务调度约束](./background-task-overview.md#延迟任务调度约束)。
 
 ## 接口说明
 
