@@ -60,26 +60,15 @@ struct ComponentA {
             this.label = (this.languageCode === 'en') ? 'Number' : 'Count'
           })
       }
-      .margin({ bottom: 50 })
+      .margin({ top: 50, bottom: 50 })
 
       Row() {
         Button (`Change @StorageLink decorated variable: ${this.varA}`).height(40).fontSize(14)
           .onClick(() => {
             this.varA++
           })
-      }.margin({ bottom: 50 })
-
-      Row() {
-        Button (`Change @StorageProp decorated variable: ${this.languageCode}`).height(40).fontSize(14)
-          .onClick(() => {
-            if (this.languageCode === 'zh') {
-              this.languageCode = 'en'
-            } else {
-              this.languageCode = 'zh'
-            }
-          })
       }
-    }
+    }.width('100%')
   }
 }
 ```
@@ -110,7 +99,7 @@ One-way data binding can be established between a component and the **LocalStora
 
 > **NOTE**
 >
-> If a **LocalStorage** instance has initial values assigned when being created, these values will be used for the **@LocalStorageLink** and **@LocalStorageProp** decorated state variables in the component. Otherwise, the initial values assigned for **@LocalStorageLink** and **@LocalStorageProp** will be used instead.
+> If a **LocalStorage** instance does not have an initial value assigned when being created, it can use the initial value defined by **@LocalStorageLink** or **@LocalStorageProp** in the component.
 
 ### Example 1: Creating a LocalStorage Instance in an Ability
 

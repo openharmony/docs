@@ -132,7 +132,7 @@ Events supported by components are configured using event methods, which each fo
   ```ts
   Button('add counter')
       .onClick(function () {
-          this.counter += 2
+          this.counter += 2;
       }.bind(this))
   ```
 
@@ -144,7 +144,7 @@ Events supported by components are configured using event methods, which each fo
   }
   
   ...
-
+  
   Button('add counter')
     .onClick(this.myClickHandler.bind(this))
   ```
