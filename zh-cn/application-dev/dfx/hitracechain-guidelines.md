@@ -48,7 +48,7 @@ hiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
               .onClick(() => {
                 try {
                   // 业务开始前，开启分布式跟踪。
-                  let traceId = hiTraceChain.begin("Write a new systeme event", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
+                  let traceId = hiTraceChain.begin("Write a new system event", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
                   // 业务开始：完成一次系统事件打点。
                   hiSysEvent.write({
                     domain: "RELIABILITY",
@@ -84,7 +84,7 @@ hiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
 
 3. 在Log窗口查看分布式跟踪的相关信息，使用“.*: \[([0-9a-zA-Z]{15}),.*].*”过滤日志，查看该业务的分布式跟踪信息。hap进程号为“8801”，点击按钮触发的系统事件打点业务涉及到“8801”与“8819”两个线程，通过值为“edcfa53017a88e3”的chainId可以有效跟踪涉及该业务的所有线程的日志信息。
     ```text
-    07-05 19:50:47.690 8801-8801/com.demo.hitracechain I C02d03/HiTraceC: [edcfa53017a88e3, 0, 0] HiTraceBegin name:Write a new systeme event flags:0x01.
+    07-05 19:50:47.690 8801-8801/com.demo.hitracechain I C02d03/HiTraceC: [edcfa53017a88e3, 0, 0] HiTraceBegin name:Write a new system event flags:0x01.
     07-05 19:50:47.690 8801-8801/com.demo.hitracechain D C02d03/HITRACE_UTIL_NAPI: [edcfa53017a88e3, 0, 0] Native2Js: chainId is edcfa53017a88e3.
     07-05 19:50:47.690 8801-8801/com.demo.hitracechain D C02d03/HITRACE_UTIL_NAPI: [edcfa53017a88e3, 0, 0] Native2Js: spanId is 0.
     07-05 19:50:47.690 8801-8801/com.demo.hitracechain D C02d03/HITRACE_UTIL_NAPI: [edcfa53017a88e3, 0, 0] Native2Js: parentSpanId is 0.
