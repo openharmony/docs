@@ -7,11 +7,12 @@ To develop an application based on the [stage model](application-configuration-f
 - In development, an application contains one or more modules. You can [create modules](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/ohos-adding-deleting-module-0000001218760594-V3) in the application project in [DevEco Studio](https://developer.harmonyos.com/en/develop/deveco-studio/). As a basic functional unit of an OpenHarmony application/service, a module contains source code, resource files, third-party libraries, and application/service configuration files, and can be built and run independently. Modules can be classified as Ability or Library. A module of the Ability type is built into a Harmony Ability Package (HAP) file in .hap format, and a module of the Library type is built into a [Harmony Ability Resources (HAR) file](har-structure.md) in .tgz format.
   A module can contain one or more [UIAbility](../application-models/uiability-overview.md) components, as shown in the figure below.
 
-    **Figure 1** Relationship between modules and UIAbility components 
+    **Figure 1** Relationship between modules and UIAbility components
+  
   ![ability-and-module](figures/ability-and-module.png)
-
+  
   Unless otherwise specified, the modules described in this document refer to the modules of the Ability type.
-
+  
 - As aforementioned, you can build an application into one or more HAP files. The HAP file is the basic unit for installing an application. It provides code, resources, third-party libraries, and a configuration file. HAP files can be classified as Entry or Feature.
   - HAP of the entry type: main module of the application, whose **type** field is set to **"entry"** in the [module.json5](module-configuration-file.md) file. In an application, each type of device supports only one HAP of the entry type, which is typically used to implement the application's entry screen, entry icon, or headline feature.
   - HAP of the feature type: dynamic feature module of the application, whose **type** field is set to **"feature"** in the [module.json5](module-configuration-file.md) file. Each application can contain zero, one, or more HAP files of the feature type, which are used to implement the application features. You can configure this type of HAP file to be downloaded and installed independently as required or to be downloaded and installed together with the HAP file of the entry type. For details, see **deliveryWithInstall** in [module.json5 Configuration File](module-configuration-file.md).
@@ -26,5 +27,6 @@ To develop an application based on the [stage model](application-configuration-f
   - The **module.json** file is the configuration file indispensable in a HAP file. It consists of **module.json5** and **app.json5** in the project configuration. While DevEco Studio provides default configuration, you must modify the configuration as needed. For details about the configuration fields, see [Application Configuration Files in Stage Model](application-configuration-file-overview-stage.md).
   - The **pack.info** file describes the HAP attributes in the bundle, for example, **bundleName** and **versionCode** in **app** and **name**, **type**, and **abilities** in **module**. The file is automatically generated when DevEco Studio generates the bundle.
 
-   **Figure 2** Application package structure in stage model 
+   **Figure 2** Application package structure in stage model
+
      ![app-pack-stage](figures/app-pack-stage.png)
