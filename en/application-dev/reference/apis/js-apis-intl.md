@@ -265,7 +265,7 @@ Obtains the formatting options for **DateTimeFormat** object.
 
 | Type                                 | Description                           |
 | ----------------------------------- | ----------------------------- |
-| [DateTimeOptions](#datetimeoptions9) | Formatting options for **DateTimeFormat** objects.|
+| [DateTimeOptions](#datetimeoptions6) | Formatting options for **DateTimeFormat** objects.|
 
 **Example**
   ```
@@ -497,7 +497,7 @@ Returns properties reflecting the locale and collation options of a **Collator**
 
 | Type                                 | Description               |
 | ----------------------------------- | ----------------- |
-| [CollatorOptions](#collatoroptions9) | Properties of the **Collator** object.|
+| [CollatorOptions](#collatoroptions8) | Properties of the **Collator** object.|
 
 **Example**
 
