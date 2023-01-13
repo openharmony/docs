@@ -288,7 +288,7 @@ createCameraInput(position: CameraPosition, type: CameraType): CameraInput
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraInput](#camerainput)    | CameraInput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [CameraInput](#camerainput)    | CameraInput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -324,7 +324,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [PreviewOutput](#previewoutput)    | PreviewOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [PreviewOutput](#previewoutput)    | PreviewOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -358,7 +358,7 @@ createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [PhotoOutput](#photooutput)   | PhotoOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [PhotoOutput](#photooutput)   | PhotoOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -392,7 +392,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [VideoOutput](#videooutput)   | VideoOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [VideoOutput](#videooutput)   | VideoOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -425,7 +425,7 @@ createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>): MetadataOu
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [MetadataOutput](#metadataoutput)   | MetadataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [MetadataOutput](#metadataoutput)   | MetadataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -452,7 +452,7 @@ createCaptureSession(): CaptureSession
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CaptureSession](#capturesession)   | CaptureSession实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [CaptureSession](#capturesession)   | CaptureSession实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -635,7 +635,7 @@ open\(callback: AsyncCallback<void\>\): void
 
 | 参数名     | 类型                  | 必填 | 说明                  |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -662,7 +662,7 @@ open(): Promise<void\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -687,7 +687,7 @@ close\(callback: AsyncCallback<void\>\): void
 
 | 参数名     | 类型                   | 必填 | 说明                  |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -741,7 +741,7 @@ on(type: 'error', cameraDevice:CameraDevice, callback: ErrorCallback<BusinessErr
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | 是   | 监听事件，固定为'error'，即CameraInput错误事件。 |
 | cameraDevice   | [CameraDevice](#cameradevice)    | 是   | CameraDevice对象。 |
-| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取结果。返回错误码，错误码类型[CameraErrorCode](#cameraerrorode)   |
+| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取结果。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)   |
 
 **示例：**
 
@@ -832,7 +832,7 @@ beginConfig(): void
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -857,7 +857,7 @@ commitConfig(callback: AsyncCallback<void\>): void
 
 | 参数名     | 类型                   | 必填 | 说明                  |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -884,7 +884,7 @@ commitConfig(): Promise<void\>
 
 | 类型            | 说明                      |
 | -------------- | ------------------------ |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -916,7 +916,7 @@ addInput(cameraInput: CameraInput): void
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -947,7 +947,7 @@ removeInput(cameraInput: CameraInput): void
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -978,7 +978,7 @@ addOutput(previewOutput: CameraOutput): void
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1009,7 +1009,7 @@ removeOutput(previewOutput: CameraOutput): void
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1034,7 +1034,7 @@ start\(callback: AsyncCallback<void\>\): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1086,7 +1086,7 @@ stop\(callback: AsyncCallback<void\>\): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1113,7 +1113,7 @@ stop(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1138,7 +1138,7 @@ release\(callback: AsyncCallback<void\>\): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1165,7 +1165,7 @@ release(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1190,7 +1190,7 @@ hasFlash(): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示设备支持闪光灯。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| boolean    | 返回true表示设备支持闪光灯。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1221,7 +1221,7 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示支持该闪光灯模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| boolean    | 返回true表示支持该闪光灯模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1257,7 +1257,7 @@ setFlashMode(flashMode: FlashMode): void
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1282,7 +1282,7 @@ getFlashMode(): FlashMode
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [FlashMode](#flashmode)    | 获取当前设备的闪光灯模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [FlashMode](#flashmode)    | 获取当前设备的闪光灯模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1313,7 +1313,7 @@ isExposureModeSupported(aeMode: ExposureMode): boolean;
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 获取是否支持曝光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| boolean    | 获取是否支持曝光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1338,7 +1338,7 @@ getExposureMode(): ExposureMode
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [ExposureMode](#exposuremode)    | 获取当前曝光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [ExposureMode](#exposuremode)    | 获取当前曝光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1369,7 +1369,7 @@ setExposureMode(aeMode: ExposureMode): void
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1394,7 +1394,7 @@ getMeteringPoint(): Point
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [Point](#point)    | 获取当前曝光点。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [Point](#point)    | 获取当前曝光点。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1425,7 +1425,7 @@ setMeteringPoint(point: Point): void
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1451,7 +1451,7 @@ getExposureBiasRange(): Array<number\>
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| Array<number\>   | 获取补偿范围的数组。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| Array<number\>   | 获取补偿范围的数组。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1478,7 +1478,7 @@ setExposureBias(exposureBias: number): void
 
 | 参数名     | 类型                            | 必填 | 说明                 |
 | -------- | -------------------------------| ---- | ------------------- |
-| exposureBias   | number                   | 是   | 曝光补偿,getExposureBiasRange查询支持的范围,接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| exposureBias   | number                   | 是   | 曝光补偿,getExposureBiasRange查询支持的范围,接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1504,7 +1504,7 @@ getExposureValue(): number
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| number    | 获取曝光值。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| number    | 获取曝光值。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1535,7 +1535,7 @@ isFocusModeSupported(afMode: FocusMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示支持该焦距模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| boolean    | 返回true表示支持该焦距模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1568,7 +1568,7 @@ setFocusMode(afMode: FocusMode): void
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1593,7 +1593,7 @@ getFocusMode(): FocusMode
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [FocusMode](#focusmode)   | 获取当前设备的焦距模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [FocusMode](#focusmode)   | 获取当前设备的焦距模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1624,7 +1624,7 @@ setFocusPoint(point: Point): void
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1650,7 +1650,7 @@ getFocusPoint(): Point
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [Point](#point)    | 用于获取当前焦点。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [Point](#point)    | 用于获取当前焦点。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1675,7 +1675,7 @@ getFocalLength(): number
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| number    | 用于获取当前焦距。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| number    | 用于获取当前焦距。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1700,7 +1700,7 @@ getZoomRatioRange(): Array<number\>
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| Array<number\>   | 用于获取可变焦距比范围，返回的数组包括其最小值和最大值。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| Array<number\>   | 用于获取可变焦距比范围，返回的数组包括其最小值和最大值。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1731,7 +1731,7 @@ setZoomRatio(zoomRatio: number): void
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1757,7 +1757,7 @@ getZoomRatio(): number
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| number    | 获取当前的变焦比结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| number    | 获取当前的变焦比结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1788,7 +1788,7 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回视频防抖模式是否支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| boolean    | 返回视频防抖模式是否支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1813,7 +1813,7 @@ getActiveVideoStabilizationMode(): VideoStabilizationMode
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| VideoStabilizationMode    | 视频防抖是否正在使用。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| VideoStabilizationMode    | 视频防抖是否正在使用。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1844,7 +1844,7 @@ setVideoStabilizationMode(mode: VideoStabilizationMode): void
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1893,7 +1893,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'error'，即拍照会话错误事件。 |
-| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorode)        |
+| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)        |
 
 **示例：**
 
@@ -1923,7 +1923,7 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -1950,7 +1950,7 @@ start(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode)|
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)|
 
 **示例：**
 
@@ -2025,7 +2025,7 @@ release(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -2052,7 +2052,7 @@ release(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -2124,7 +2124,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 | 参数名     | 类型                                                               | 必填 | 说明                       |
 | -------- | ----------------------------------------------------------------- | ---- | ------------------------ |
 | type     | string                                               | 是   | 监听事件，固定为'error'，即预览输出错误事件。|
-| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorode)  |
+| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)  |
 
 **示例：**
 
@@ -2201,7 +2201,7 @@ capture(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -2228,7 +2228,7 @@ capture(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -2254,7 +2254,7 @@ capture(setting: PhotoCaptureSetting, callback: AsyncCallback<void\>): void
 | 参数名      | 类型                                         | 必填 | 说明                  |
 | -------- | ------------------------------------------- | ---- | -------------------- |
 | setting  | [PhotoCaptureSetting](#photocapturesetting) | 是   | 拍照设置。             |
-| callback | AsyncCallback<void\>                        | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode)  |
+| callback | AsyncCallback<void\>                        | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)  |
 
 **示例：**
 
@@ -2298,7 +2298,7 @@ capture(setting?: PhotoCaptureSetting): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 
 **示例：**
@@ -2344,7 +2344,7 @@ release(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -2371,7 +2371,7 @@ release(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -2468,7 +2468,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 | 参数名     | 类型                                                    | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                                | 是   | 监听事件，固定为'error'，即拍照错误事件。 |
-| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorode)             |
+| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)             |
 
 **示例：**
 
@@ -2516,7 +2516,7 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -2543,7 +2543,7 @@ start(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 
 **示例：**
@@ -2619,7 +2619,7 @@ release(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -2646,7 +2646,7 @@ release(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -2718,7 +2718,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 | 参数名     | 类型                                               | 必填 | 说明                                    |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------- |
 | type     | string                                           | 是   | 监听事件，固定为'error'，即视频输出错误事件。 |
-| callback | Callback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorode)                 |
+| callback | Callback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)                 |
 
 **示例：**
 
@@ -2744,7 +2744,7 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | -------- | -------------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\>       | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| callback | AsyncCallback<void\>       | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -2771,7 +2771,7 @@ start(): Promise<void\>
 
 | 类型                     | 说明                     |
 | ----------------------  | ------------------------ |
-| Promise<void\>          | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorode) |
+| Promise<void\>          | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **示例：**
 
@@ -2870,7 +2870,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 | 参数名     | 类型                                               | 必填 | 说明                                     |
 | -------- | ------------------------------------------------ | ---- | --------------------------------------- |
 | type     | string                                           | 是   | 监听事件，固定为'error'，即metadata流的错误。 |
-| callback | Callback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorode)            |
+| callback | Callback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)            |
 
 **示例：**
 
