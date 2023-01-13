@@ -5,10 +5,9 @@
 
 描述分布式设备的相关信息。
 
-**Since:**
+**起始版本：**
 9
-**Version:**
-1.0
+
 **相关模块:**
 
 [Avsession](avsession.md)
