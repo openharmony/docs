@@ -37,6 +37,7 @@ getUserFileMgr(context: Context): UserFileManager
 **示例：**
 
 ```ts
+//此处获取的userFileManager实例mgr为全局对象，后续使用到mgr的地方默认为使用此处获取的对象，如未添加此段代码报mgr未定义的错误请自行添加
 const context = getContext(this);
 let mgr = userFileManager.getUserFileMgr(context);
 ```
@@ -126,7 +127,7 @@ async function example() {
     predicates: predicates
   };
   try {
-    var fetchResult = await mgr.getPhotoAssets(fetchOptions);
+    let fetchResult = await mgr.getPhotoAssets(fetchOptions);
     if (fetchResult != undefined) {
       console.info('fetchResult success');
       let fileAsset = await fetchResult.getFirstObject();
@@ -306,7 +307,7 @@ async function example() {
 
 getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
 
-获取相册，使用callback方式返回结果。
+获取相册，使用Promise方式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -409,7 +410,7 @@ getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&
 async function example() {
   console.info('getPrivateAlbumDemo');
   try {
-    var fetchResult = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
+    let fetchResult = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
     let trashAlbum = await fetchResult.getFirstObject();
     console.info('first album.albumName = ' + trashAlbum.albumName);
   } catch (err) {
@@ -434,7 +435,7 @@ getAudioAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
 | options  | [FetchOptions](#fetchoptions)        | 是   | 检索选项              |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | 是   | callback 返回相册检索结果 |
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | 是   | callback 返回音频检索结果 |
 
 **示例：**
 
@@ -484,7 +485,7 @@ getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Promise 返回相册检索结果 |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Promise 返回音频检索结果 |
 
 **示例：**
 

@@ -42,8 +42,8 @@ async function example() {
     let mediaType = mediaLibrary.MediaType.IMAGE;
     let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
-    const path = await media.getPublicDirectory(DIR_IMAGE)
+    let media = mediaLibrary.getMediaLibrary(context);
+    const path = await media.getPublicDirectory(DIR_IMAGE);
     //myAlbum为新建文件保存路径，也是新建相册的名称
     media.createAsset(mediaType, 'test.jpg', path + 'myAlbum/', (err, fileAsset) => {
         if (fileAsset != undefined) {
@@ -80,7 +80,7 @@ async function example() {
         selectionArgs: [],
     };
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     let albumList = await media.getAlbums(AlbumNoArgsfetchOp);
     let album = albumList[0];
     album.albumName = 'newAlbum';
@@ -88,7 +88,7 @@ async function example() {
     album.commitModify().then(function() {
         console.info("albumRename successfully");
     }).catch(function(err){
-        console.info("albumRename failed with error:"+ err);
+        console.info("albumRename failed with error: " + err);
     });
 }
 ```

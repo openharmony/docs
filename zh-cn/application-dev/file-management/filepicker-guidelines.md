@@ -54,7 +54,7 @@ globalThis.context.startAbilityForResult(
 )
 
 // FilePicker返回给startAbilityForResult的数据
-var abilityResult = {
+let abilityResult = {
     resultCode: resultCode,
     want: {
         parameters: {
@@ -65,4 +65,3 @@ var abilityResult = {
 }
 globalThis.context.terminateSelfWithResult(abilityResult)
 ```
-
