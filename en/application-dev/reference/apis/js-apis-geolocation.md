@@ -1,8 +1,8 @@
-# Geolocation
+# @ohos.geolocation
 
-Location services provide basic functions such as GNSS positioning, network positioning, geocoding, reverse geocoding, country code and geofencing.
+The **geolocation** module provides location services such as GNSS positioning, network positioning, geocoding, reverse geocoding, country code and geofencing.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 

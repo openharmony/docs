@@ -14,10 +14,10 @@ The following table lists the USB APIs currently available. For details, see the
 
 | API                                                          | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| hasRight(deviceName: string): boolean                        | Checks whether the user, for example, the application or system, has the device access permissions. The value **true** is returned if the user has the device access permissions; the value **false** is returned otherwise. |
-| requestRight(deviceName: string): Promise\<boolean>          | Requests the temporary permission for a given application to access the USB device. |
-| connectDevice(device: USBDevice): Readonly\<USBDevicePipe>   | Connects to the USB device based on the device information returned by `getDevices()`. |
-| getDevices(): Array<Readonly\<USBDevice>>                    | Obtains the USB device list.                                 |
+| hasRight(deviceName: string): boolean                        | Checks whether the user has the device access permissions. |
+| requestRight(deviceName: string): Promise\<boolean>          | Requests the temporary permission for a given application to access the USB device. This API uses a promise to return the result. |
+| connectDevice(device: USBDevice): Readonly\<USBDevicePipe>   | Connects to the USB device based on the device list returned by `getDevices()`. |
+| getDevices(): Array<Readonly\<USBDevice>>                    | Obtains the list of USB devices connected to the USB host. If no USB device is connected, an empty list is returned. |
 | setConfiguration(pipe: USBDevicePipe, config: USBConfig): number | Sets the USB device configuration.                           |
 | setInterface(pipe: USBDevicePipe, iface: USBInterface): number | Sets a USB interface.                                        |
 | claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number | Claims a USB interface.                                       |
@@ -36,7 +36,7 @@ You can set a USB device as the USB host to connect to other USB devices for dat
 
     ```js
     // Import the USB API package.
-    import usb from '@ohos.usb';
+    import usb from '@ohos.usbV9';
     // Obtain the USB device list.
     let deviceList = usb.getDevices();
     /*

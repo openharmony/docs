@@ -1,6 +1,6 @@
-# Key Injection
+# @ohos.multimodalInput.inputEventClient (Key Injection)
 
-The Key Injection module implements injection of key events.
+The **inputEventClient** module implements injection of key events.
 
 > **NOTE**<br>
 >

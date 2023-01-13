@@ -1,6 +1,6 @@
-# Notification
+# @ohos.notification
 
-The **Notification** module provides notification management capabilities, covering notifications, notification slots, notification subscription, notification enabled status, and notification badge status.
+The **notification** module provides notification management capabilities, covering notifications, notification slots, notification subscription, notification enabled status, and notification badge status.
 
 Generally, only system applications have the permission to subscribe to and unsubscribe from notifications.
 

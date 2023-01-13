@@ -1,6 +1,6 @@
-# Touch Event
+# @ohos.multimodalInput.touchEvent
 
-Represents touch events reported by an input device.
+The **touchEvent** module provides touch events reported by an input device.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -13,41 +13,49 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 
 ## Action
 
+Enumerates touch event types.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| CANCEL | number | Yes| No| Cancellation of the touch action.|
-| DOWN | number | Yes| No| Pressing of touch.|
-| MOVE | number | Yes| No| Moving of touch.|
-| UP | number | Yes| No| Lifting of touch.|
+| Name   | Value | Description |
+| ------ | ----- | ----------- |
+| CANCEL | 0 | Cancellation of the touch action.|
+| DOWN   | 1 | Pressing of touch.               |
+| MOVE   | 2 | Moving of touch.                 |
+| UP     | 3 | Lifting of touch.                |
 
 ## ToolType
 
+Enumerates tool types.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| FINGER | number | Yes| No| Finger|
-| PEN | number | Yes| No| Pen|
-| RUBBER | number | Yes| No| Eraser|
-| BRUSH | number | Yes| No| Brush|
-| PENCIL | number | Yes| No| Pencil|
-| AIRBRUSH | number | Yes| No| Air brush|
-| MOUSE | number | Yes| No| Mouse|
-| LENS | number | Yes| No| Lens|
+| Name | Value | Description |
+| ---- | ----- | ----------- |
+| FINGER | 0 | Finger|
+| PEN | 1 | Pen|
+| RUBBER | 2 | Eraser|
+| BRUSH | 3 | Brush|
+| PENCIL | 4 | Pencil|
+| AIRBRUSH | 5 | Air brush|
+| MOUSE | 6 | Mouse|
+| LENS | 7 | Lens|
 
 ## SourceType 
 
+Enumerates source types.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| TOUCH_SCREEN | number | Yes| No| Touchscreen|
-| PEN | number | Yes| No| Stylus|
-| TOUCH_PAD | number | Yes| No| Touchpad|
+| Name | Value | Description |
+| ---- | ----- | ----------- |
+| TOUCH_SCREEN | 0 | Touchscreen|
+| PEN          | 1 | Stylus     |
+| TOUCH_PAD    | 2 | Touchpad   |
 
 ## Touch
+
+Defines a touch point.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -70,9 +78,11 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 | toolHeight | number | Yes| No| Height of the tool area.|
 | rawX | number | Yes| No| X coordinate of the input device.|
 | rawY | number | Yes| No| Y coordinate of the input device.|
-| toolType | number | Yes| No| Tool type.|
+| toolType | ToolType | Yes| No| Tool type.|
 
 ## TouchEvent
+
+Defines a touch event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
