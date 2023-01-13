@@ -34,8 +34,7 @@ For details about the APIs, see [AudioRenderer in Audio Management](../reference
 
 1. Use **createAudioRenderer()** to create an **AudioRenderer** instance.
    
-
-Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. This instance is used to render audio, control and obtain the rendering status, and register a callback for notification.
+   Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. This instance is used to render audio, control and obtain the rendering status, and register a callback for notification.
 
    ```js
  import audio from '@ohos.multimedia.audio';
