@@ -9,7 +9,7 @@ Ability模块提供对Ability生命周期、上下文环境等调用管理的能
 
 > **说明：**
 >
-> 从API Version 9开始，该接口不再维护，推荐使用新接口[`@ohos.app.ability.UIAbility (UIAbility)`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。
+> 从API Version 9开始，该接口不再维护，推荐使用新接口[`@ohos.app.ability.UIAbility (UIAbility)`](js-apis-app-ability-uiAbility.md)。
 >
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
