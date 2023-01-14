@@ -1131,7 +1131,7 @@ avPlayer.off('availableBitrates')
 
 ### setAudioRendererInfo<sup>9+</sup>
 
-`setAudioRendererInfo(contentType: audio.ContentType, streamUsage: audio.StreamUsage, rendererFlags: number): void;`
+`setAudioRendererInfo(contentType: audio.ContentType, streamUsage: audio.StreamUsage): void;`
 
 设置音频渲染信息，只能在prepare之前调用。
 
@@ -1141,8 +1141,8 @@ avPlayer.off('availableBitrates')
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| contentType| audio.ContentType | 是   | 指定音频内容，取值范围为[0, 5]，分别代表不同音频内容，0代表未知，1代表语音，2代表音乐，3代表电影，4代表加密类型，5代表铃声。 |
-| streamUsage | audio.StreamUsage | 是   | 指定音频用处，取值范围为[0, 1, 2, 3, 4, 6]这几个整数。 0代表未知，1代表音频，2代表语音通信，3代表语音播报，4代表闹钟，6代表通知铃声|
+| contentType| audio.ContentType | 是   | 指定音频内容，取值范围为[0, 5]，分别代表不同音频内容。0代表未知，1代表语音，2代表音乐，3代表电影，4代表加密类型，5代表铃声。 |
+| streamUsage | audio.StreamUsage | 是   | 指定音频用处，取值范围为[0, 1, 2, 3, 4, 6]这几个整数。0代表未知，1代表音频，2代表语音通信，3代表语音播报，4代表闹钟，6代表通知铃声|
 **示例：**
 
 ```js
