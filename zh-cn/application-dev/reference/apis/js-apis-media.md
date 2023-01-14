@@ -1129,6 +1129,29 @@ off(type: 'availableBitrates'): void
 avPlayer.off('availableBitrates')
 ```
 
+### setAudioRendererInfo<sup>9+</sup>
+
+`setAudioRendererInfo(contentType: audio.ContentType, streamUsage: audio.StreamUsage, rendererFlags: number): void;`
+
+设置音频渲染信息，只能在prepare之前调用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| contentType| audio.ContentType | 是   | 指定音频内容，取值范围为[0, 5]，分别代表不同音频内容，0代表未知，1代表语音，2代表音乐，3代表视频，4代表通知，5代表铃声。 |
+| streamUsage | audio.StreamUsage | 是   | 指定音频用处，取值范围为[0, 1, 2, 3, 4, 6]这几个整数。 0代表未知，1代表媒体音，2代表交流音，3代表助手音，6代表通知铃声音| |------ | ------ | ---- | ------------------------------------------------------------ |
+| rendererFlags | number | 否   | 目前用不到，默认为0，后续扩展低功耗低时延可能会用到 |
+
+**示例：**
+
+```js
+let contentType = 1, streamUsage = 2, rendererFlags = 0
+avPlayer.setAudioRendererInfo(contentType, streamUsage, rendererFlags)
+```
+
 ### setVolume<sup>9+</sup>
 
 setVolume(volume: number): void
