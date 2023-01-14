@@ -174,6 +174,88 @@ media.createAVRecorder().then((recorder) => {
 });
 ```
 
+## media.createVideoRecorder<sup>9+</sup>
+
+createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
+
+异步方式创建视频录制实例。通过注册回调函数获取返回值。
+一台设备只允许创建一个录制实例。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                            | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | 是   | 回调函数。异步返回VideoRecorder实例，失败时返回null。可用于录制视频媒体。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 5400101  | No memory. Return by callback. |
+
+**示例：**
+
+```js
+let videoRecorder
+
+media.createVideoRecorder((error, video) => {
+   if (video != null) {
+       videoRecorder = video;
+       console.info('video createVideoRecorder success');
+   } else {
+       console.info(`video createVideoRecorder fail, error:${error}`);
+   }
+});
+```
+
+## media.createVideoRecorder<sup>9+</sup>
+
+createVideoRecorder(): Promise\<VideoRecorder>
+
+异步方式创建视频录制实例。通过Promise获取返回值。
+一台设备只允许创建一个录制实例。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**返回值：**
+
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[VideoRecorder](#videorecorder9)> | Promise对象。异步返回VideoRecorder实例，失败时返回null。可用于录制视频媒体。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Return by promise. |
+
+**示例：**
+
+```js
+let videoRecorder
+
+media.createVideoRecorder().then((video) => {
+    if (video != null) {
+       videoRecorder = video;
+       console.info('video createVideoRecorder success');
+   } else {
+       console.info('video createVideoRecorder fail');
+   }
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error}`);
+});
+```
+
 ## AVErrorCode<sup>9+</sup><a name=averrorcode></a>
 
 [媒体错误码](../errorcodes/errorcode-media.md)类型枚举
@@ -2465,6 +2547,800 @@ AVRecorder.off('error');
 | latitude  | number | 是   | 地理位置的纬度。 |
 | longitude | number | 是   | 地理位置的经度。 |
 
+## VideoRecorder<sup>9+</sup>
+
+> **说明：**
+> AVRecorder<sup>9+</sup>发布后停止维护，建议使用[AVRecorder](#avrecorder9)替代。
+
+视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#mediacreatevideorecorder9)构建一个[VideoRecorder](#videorecorder9)实例。
+
+视频录制demo可参考：[视频录制开发指导](../../media/video-recorder.md)
+
+### 属性
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+| 名称               | 类型                                   | 可读 | 可写 | 说明             |
+| ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
+| state<sup>9+</sup> | [VideoRecordState](#videorecordstate9) | 是   | 否   | 视频录制的状态。 |
+
+### prepare<sup>9+</sup><a name=videorecorder_prepare1></a>
+
+prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
+
+异步方式进行视频录制的参数设置。通过注册回调函数获取返回值。
+
+**需要权限：** ohos.permission.MICROPHONE
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                                |
+| -------- | -------------------------------------------- | ---- | ----------------------------------- |
+| config   | [VideoRecorderConfig](#videorecorderconfig9) | 是   | 配置视频录制的相关参数。            |
+| callback | AsyncCallback\<void>                         | 是   | 异步视频录制prepare方法的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 201      | Permission denied. Return by callback.     |
+| 401      | Parameter error. Return by callback.       |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400105  | Service died. Return by callback.          |
+
+**示例：**
+
+```js
+let videoProfile = {
+    audioBitrate : 48000,
+    audioChannels : 2,
+    audioCodec : 'audio/mp4a-latm',
+    audioSampleRate : 48000,
+    fileFormat : 'mp4',
+    videoBitrate : 48000,
+    videoCodec : 'video/mp4v-es',
+    videoFrameWidth : 640,
+    videoFrameHeight : 480,
+    videoFrameRate : 30
+}
+
+let videoConfig = {
+    audioSourceType : 1,
+    videoSourceType : 0,
+    profile : videoProfile,
+    url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
+    orientationHint : 0,
+    location : { latitude : 30, longitude : 130 },
+}
+
+// asyncallback
+videoRecorder.prepare(videoConfig, (err) => {
+    if (err == null) {
+        console.info('prepare success');
+    } else {
+        console.info('prepare failed and error is ' + err.message);
+    }
+})
+```
+
+### prepare<sup>9+</sup><a name=videorecorder_prepare2></a>
+
+prepare(config: VideoRecorderConfig): Promise\<void>;
+
+异步方式进行视频录制的参数设置。通过Promise获取返回值。
+
+**需要权限：** ohos.permission.MICROPHONE
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名 | 类型                                         | 必填 | 说明                     |
+| ------ | -------------------------------------------- | ---- | ------------------------ |
+| config | [VideoRecorderConfig](#videorecorderconfig9) | 是   | 配置视频录制的相关参数。 |
+
+**返回值：**
+
+| 类型           | 说明                                     |
+| -------------- | ---------------------------------------- |
+| Promise\<void> | 异步视频录制prepare方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 201      | Permission denied. Return by promise.     |
+| 401      | Parameter error. Return by promise.       |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.          |
+
+**示例：**
+
+```js
+let videoProfile = {
+    audioBitrate : 48000,
+    audioChannels : 2,
+    audioCodec : 'audio/mp4a-latm',
+    audioSampleRate : 48000,
+    fileFormat : 'mp4',
+    videoBitrate : 48000,
+    videoCodec : 'video/mp4v-es',
+    videoFrameWidth : 640,
+    videoFrameHeight : 480,
+    videoFrameRate : 30
+}
+
+let videoConfig = {
+    audioSourceType : 1,
+    videoSourceType : 0,
+    profile : videoProfile,
+    url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
+    orientationHint : 0,
+    location : { latitude : 30, longitude : 130 },
+}
+
+// promise
+videoRecorder.prepare(videoConfig).then(() => {
+    console.info('prepare success');
+}).catch((err) => {
+    console.info('prepare failed and catch error is ' + err.message);
+});
+```
+
+### getInputSurface<sup>9+</sup>
+
+getInputSurface(callback: AsyncCallback\<string>): void;
+
+异步方式获得录制需要的surface。此surface提供给调用者，调用者从此surface中获取surfaceBuffer，填入相应的数据。
+
+应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
+
+只能在[prepare()](#videorecorder_prepare1)接口调用后调用。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                        |
+| -------- | ---------------------- | ---- | --------------------------- |
+| callback | AsyncCallback\<string> | 是   | 异步获得surface的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
+
+**示例：**
+
+```js
+// asyncallback
+let surfaceID = null;                                               // 传递给外界的surfaceID
+videoRecorder.getInputSurface((err, surfaceId) => {
+    if (err == null) {
+        console.info('getInputSurface success');
+        surfaceID = surfaceId;
+    } else {
+        console.info('getInputSurface failed and error is ' + err.message);
+    }
+});
+```
+
+### getInputSurface<sup>9+</sup>
+
+getInputSurface(): Promise\<string>;
+
+ 异步方式获得录制需要的surface。此surface提供给调用者，调用者从此surface中获取surfaceBuffer，填入相应的数据。
+
+应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
+
+只能在[prepare()](#videorecorder_prepare1)接口调用后调用。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**返回值：**
+
+| 类型             | 说明                             |
+| ---------------- | -------------------------------- |
+| Promise\<string> | 异步获得surface的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
+
+**示例：**
+
+```js
+// promise
+let surfaceID = null;                                               // 传递给外界的surfaceID
+videoRecorder.getInputSurface().then((surfaceId) => {
+    console.info('getInputSurface success');
+    surfaceID = surfaceId;
+}).catch((err) => {
+    console.info('getInputSurface failed and catch error is ' + err.message);
+});
+```
+
+### start<sup>9+</sup><a name=videorecorder_start1></a>
+
+start(callback: AsyncCallback\<void>): void;
+
+异步方式开始视频录制。通过注册回调函数获取返回值。
+
+在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)后调用，需要依赖数据源先给surface传递数据。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步开始视频录制的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
+
+**示例：**
+
+```js
+// asyncallback
+videoRecorder.start((err) => {
+    if (err == null) {
+        console.info('start videorecorder success');
+    } else {
+        console.info('start videorecorder failed and error is ' + err.message);
+    }
+});
+```
+
+### start<sup>9+</sup><a name=videorecorder_start2></a>
+
+start(): Promise\<void>;
+
+异步方式开始视频录制。通过Promise获取返回值。
+
+在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)后调用，需要依赖数据源先给surface传递数据。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步开始视频录制方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
+
+**示例：**
+
+```js
+// promise
+videoRecorder.start().then(() => {
+    console.info('start videorecorder success');
+}).catch((err) => {
+    console.info('start videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### pause<sup>9+</sup><a name=videorecorder_pause1></a>
+
+pause(callback: AsyncCallback\<void>): void;
+
+异步方式暂停视频录制。通过注册回调函数获取返回值。
+
+在[start()](#videorecorder_start1)后调用。可以通过调用[resume()](#videorecorder_resume1)接口来恢复录制。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步暂停视频录制的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
+
+**示例：**
+
+```js
+// asyncallback
+videoRecorder.pause((err) => {
+    if (err == null) {
+        console.info('pause videorecorder success');
+    } else {
+        console.info('pause videorecorder failed and error is ' + err.message);
+    }
+});
+```
+
+### pause<sup>9+</sup><a name=videorecorder_pause2></a>
+
+pause(): Promise\<void>;
+
+异步方式暂停视频录制。通过Promise获取返回值。
+
+在[start()](#videorecorder_start1)后调用。可以通过调用[resume()](#videorecorder_resume1)接口来恢复录制。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步暂停视频录制方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
+
+**示例：**
+
+```js
+// promise
+videoRecorder.pause().then(() => {
+    console.info('pause videorecorder success');
+}).catch((err) => {
+    console.info('pause videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### resume<sup>9+</sup><a name=videorecorder_resume1></a>
+
+resume(callback: AsyncCallback\<void>): void;
+
+异步方式恢复视频录制。通过注册回调函数获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步恢复视频录制的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
+
+**示例：**
+
+```js
+// asyncallback
+videoRecorder.resume((err) => {
+    if (err == null) {
+        console.info('resume videorecorder success');
+    } else {
+        console.info('resume videorecorder failed and error is ' + err.message);
+    }
+});
+```
+
+### resume<sup>9+</sup><a name=videorecorder_resume2></a>
+
+resume(): Promise\<void>;
+
+异步方式恢复视频录制。通过Promise获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步恢复视频录制方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
+
+**示例：**
+
+```js
+// promise
+videoRecorder.resume().then(() => {
+    console.info('resume videorecorder success');
+}).catch((err) => {
+    console.info('resume videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### stop<sup>9+</sup><a name=videorecorder_stop1></a>
+
+stop(callback: AsyncCallback\<void>): void;
+
+异步方式停止视频录制。通过注册回调函数获取返回值。
+
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步停止视频录制的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
+
+**示例：**
+
+```js
+// asyncallback
+videoRecorder.stop((err) => {
+    if (err == null) {
+        console.info('stop videorecorder success');
+    } else {
+        console.info('stop videorecorder failed and error is ' + err.message);
+    }
+});
+```
+
+### stop<sup>9+</sup><a name=videorecorder_stop2></a>
+
+stop(): Promise\<void>;
+
+异步方式停止视频录制。通过Promise获取返回值。
+
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步停止视频录制方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
+
+**示例：**
+
+```js
+// promise
+videoRecorder.stop().then(() => {
+    console.info('stop videorecorder success');
+}).catch((err) => {
+    console.info('stop videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### release<sup>9+</sup><a name=videorecorder_release1></a>
+
+release(callback: AsyncCallback\<void>): void;
+
+异步方式释放视频录制资源。通过注册回调函数获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                             |
+| -------- | -------------------- | ---- | -------------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步释放视频录制资源的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 5400105  | Service died. Return by callback. |
+
+**示例：**
+
+```js
+// asyncallback
+videoRecorder.release((err) => {
+    if (err == null) {
+        console.info('release videorecorder success');
+    } else {
+        console.info('release videorecorder failed and error is ' + err.message);
+    }
+});
+```
+
+### release<sup>9+</sup><a name=videorecorder_release2></a>
+
+release(): Promise\<void>;
+
+异步方式释放视频录制资源。通过Promise获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**返回值：**
+
+| 类型           | 说明                                      |
+| -------------- | ----------------------------------------- |
+| Promise\<void> | 异步释放视频录制资源方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 5400105  | Service died. Return by callback. |
+
+**示例：**
+
+```js
+// promise
+videoRecorder.release().then(() => {
+    console.info('release videorecorder success');
+}).catch((err) => {
+    console.info('release videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### reset<sup>9+</sup><a name=videorecorder_reset1></a>
+
+reset(callback: AsyncCallback\<void>): void;
+
+异步方式重置视频录制。通过注册回调函数获取返回值。
+
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步重置视频录制的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 5400103  | I/O error. Return by callback.    |
+| 5400105  | Service died. Return by callback. |
+
+**示例：**
+
+```js
+// asyncallback
+videoRecorder.reset((err) => {
+    if (err == null) {
+        console.info('reset videorecorder success');
+    } else {
+        console.info('reset videorecorder failed and error is ' + err.message);
+    }
+});
+```
+
+### reset<sup>9+</sup><a name=videorecorder_reset2></a>
+
+reset(): Promise\<void>;
+
+异步方式重置视频录制。通过Promise获取返回值。
+
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步重置视频录制方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400103  | I/O error. Return by promise.    |
+| 5400105  | Service died. Return by promise. |
+
+**示例：**
+
+```js
+// promise
+videoRecorder.reset().then(() => {
+    console.info('reset videorecorder success');
+}).catch((err) => {
+    console.info('reset videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### on('error')<sup>9+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+开始订阅视频录制错误事件，当上报error错误事件后，用户需处理error事件，退出录制操作。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：视频录制过程中发生错误，触发该事件。 |
+| callback | ErrorCallback | 是   | 录制错误事件回调方法。                                       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 5400103  | I/O error. Return by callback.    |
+| 5400105  | Service died. Return by callback. |
+
+**示例：**
+
+```js
+// 当获取videoRecordState接口出错时通过此订阅事件上报
+videoRecorder.on('error', (error) => {                                  // 设置'error'事件回调
+    console.info(`audio error called, error: ${error}`); 
+})
+```
+
+## VideoRecordState<sup>9+</sup>
+
+视频录制的状态机。可通过state属性获取当前状态。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+| 名称     | 类型   | 说明                   |
+| -------- | ------ | ---------------------- |
+| idle     | string | 视频录制空闲。         |
+| prepared | string | 视频录制参数设置完成。 |
+| playing  | string | 视频正在录制。         |
+| paused   | string | 视频暂停录制。         |
+| stopped  | string | 视频录制停止。         |
+| error    | string | 错误状态。             |
+
+## VideoRecorderConfig<sup>9+</sup>
+
+表示视频录制的参数设置。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+| 名称            | 类型                                           | 必填 | 说明                                                         |
+| --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
+| audioSourceType | [AudioSourceType](#audiosourcetype9)           | 是   | 视频录制的音频源类型。                                       |
+| videoSourceType | [VideoSourceType](#videosourcetype9)           | 是   | 视频录制的视频源类型。                                       |
+| profile         | [VideoRecorderProfile](#videorecorderprofile9) | 是   | 视频录制的profile。                                          |
+| rotation        | number                                         | 否   | 录制视频的旋转角度。                                         |
+| location        | [Location](#location)                          | 否   | 录制视频的地理位置。                                         |
+| url             | string                   | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |
+
+## VideoRecorderProfile<sup>9+</sup>
+
+视频录制的配置文件。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
+
+| 名称             | 类型                                         | 必填 | 说明             |
+| ---------------- | -------------------------------------------- | ---- | ---------------- |
+| audioBitrate     | number                                       | 是   | 音频编码比特率。 |
+| audioChannels    | number                                       | 是   | 音频采集声道数。 |
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | 是   | 音频编码格式。   |
+| audioSampleRate  | number                                       | 是   | 音频采样率。     |
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式。 |
+| videoBitrate     | number                                       | 是   | 视频编码比特率。 |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | 是   | 视频编码格式。   |
+| videoFrameWidth  | number                                       | 是   | 录制视频帧的宽。 |
+| videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
+| videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
+
 ## media.createAudioPlayer<sup>(deprecated)</sup><a name=createaudioplayer></a>
 
 createAudioPlayer(): AudioPlayer
@@ -2576,94 +3452,6 @@ createAudioRecorder(): AudioRecorder
 
 ```js
 let audioRecorder = media.createAudioRecorder();
-```
-
-## media.createVideoRecorder<sup>(deprecated)</sup><a name=mediacreatevideorecorder9></a>
-
-createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
-
-> **说明：**
-> 从API version 9开始支持，从API version 9开始废弃，建议使用[createAVRecorder](#mediacreateavrecorder9)替代。
-
-异步方式创建视频录制实例。通过注册回调函数获取返回值。
-一台设备只允许创建一个录制实例。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**参数：**
-
-| 参数名   | 类型                                            | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | 是   | 回调函数。异步返回VideoRecorder实例，失败时返回null。可用于录制视频媒体。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                       |
-| -------- | ------------------------------ |
-| 5400101  | No memory. Return by callback. |
-
-**示例：**
-
-```js
-let videoRecorder
-
-media.createVideoRecorder((error, video) => {
-   if (video != null) {
-       videoRecorder = video;
-       console.info('video createVideoRecorder success');
-   } else {
-       console.info(`video createVideoRecorder fail, error:${error}`);
-   }
-});
-```
-
-## media.createVideoRecorder<sup>(deprecated)</sup>
-
-createVideoRecorder(): Promise\<VideoRecorder>
-
-> **说明：**
-> 从API version 9开始支持，从API version 9开始废弃，建议使用[createAVRecorder](#mediacreateavrecorder9)替代。
-
-异步方式创建视频录制实例。通过Promise获取返回值。
-一台设备只允许创建一个录制实例。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**返回值：**
-
-| 类型                                      | 说明                                                         |
-| ----------------------------------------- | ------------------------------------------------------------ |
-| Promise<[VideoRecorder](#videorecorder9)> | Promise对象。异步返回VideoRecorder实例，失败时返回null。可用于录制视频媒体。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                      |
-| -------- | ----------------------------- |
-| 5400101  | No memory. Return by promise. |
-
-**示例：**
-
-```js
-let videoRecorder
-
-media.createVideoRecorder().then((video) => {
-    if (video != null) {
-       videoRecorder = video;
-       console.info('video createVideoRecorder success');
-   } else {
-       console.info('video createVideoRecorder fail');
-   }
-}).catch((error) => {
-   console.info(`video catchCallback, error:${error}`);
-});
 ```
 
 ## MediaErrorCode<sup>(deprecated)</sup><a name=mediaerrorcode></a>
@@ -4196,806 +4984,3 @@ audioRecorder.prepare(audioRecorderConfig);                            // prepar
 | AMR_NB   | 3    | 封装为AMR_NB格式。<br/>仅做接口定义，暂不支持使用。          |
 | AMR_WB   | 4    | 封装为AMR_WB格式。<br/>仅做接口定义，暂不支持使用。          |
 | AAC_ADTS | 6    | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。 |
-
-## VideoRecorder<sup>(deprecated)</sup><a name=videorecorder9>
-
-> **说明：**
-> 从API version 9开始支持，从API version 9开始废弃，建议使用[AVRecorder](#avrecorder9)替代。
-
-视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#mediacreatevideorecorder9)构建一个[VideoRecorder](#videorecorder9)实例。
-
-视频录制demo可参考：[视频录制开发指导](../../media/video-recorder.md)
-
-### 属性
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-| 名称               | 类型                                   | 可读 | 可写 | 说明             |
-| ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
-| state<sup>9+</sup> | [VideoRecordState](#videorecordstate9) | 是   | 否   | 视频录制的状态。 |
-
-### prepare<sup>9+</sup><a name=videorecorder_prepare1></a>
-
-prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
-
-异步方式进行视频录制的参数设置。通过注册回调函数获取返回值。
-
-**需要权限：** ohos.permission.MICROPHONE
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**参数：**
-
-| 参数名   | 类型                                         | 必填 | 说明                                |
-| -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| config   | [VideoRecorderConfig](#videorecorderconfig9) | 是   | 配置视频录制的相关参数。            |
-| callback | AsyncCallback\<void>                         | 是   | 异步视频录制prepare方法的回调方法。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                                   |
-| -------- | ------------------------------------------ |
-| 201      | Permission denied. Return by callback.     |
-| 401      | Parameter error. Return by callback.       |
-| 5400102  | Operation not allowed. Return by callback. |
-| 5400105  | Service died. Return by callback.          |
-
-**示例：**
-
-```js
-let videoProfile = {
-    audioBitrate : 48000,
-    audioChannels : 2,
-    audioCodec : 'audio/mp4a-latm',
-    audioSampleRate : 48000,
-    fileFormat : 'mp4',
-    videoBitrate : 48000,
-    videoCodec : 'video/mp4v-es',
-    videoFrameWidth : 640,
-    videoFrameHeight : 480,
-    videoFrameRate : 30
-}
-
-let videoConfig = {
-    audioSourceType : 1,
-    videoSourceType : 0,
-    profile : videoProfile,
-    url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
-    orientationHint : 0,
-    location : { latitude : 30, longitude : 130 },
-}
-
-// asyncallback
-videoRecorder.prepare(videoConfig, (err) => {
-    if (err == null) {
-        console.info('prepare success');
-    } else {
-        console.info('prepare failed and error is ' + err.message);
-    }
-})
-```
-
-### prepare<sup>9+</sup><a name=videorecorder_prepare2></a>
-
-prepare(config: VideoRecorderConfig): Promise\<void>;
-
-异步方式进行视频录制的参数设置。通过Promise获取返回值。
-
-**需要权限：** ohos.permission.MICROPHONE
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**参数：**
-
-| 参数名 | 类型                                         | 必填 | 说明                     |
-| ------ | -------------------------------------------- | ---- | ------------------------ |
-| config | [VideoRecorderConfig](#videorecorderconfig9) | 是   | 配置视频录制的相关参数。 |
-
-**返回值：**
-
-| 类型           | 说明                                     |
-| -------------- | ---------------------------------------- |
-| Promise\<void> | 异步视频录制prepare方法的Promise返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 201      | Permission denied. Return by promise.     |
-| 401      | Parameter error. Return by promise.       |
-| 5400102  | Operation not allowed. Return by promise. |
-| 5400105  | Service died. Return by promise.          |
-
-**示例：**
-
-```js
-let videoProfile = {
-    audioBitrate : 48000,
-    audioChannels : 2,
-    audioCodec : 'audio/mp4a-latm',
-    audioSampleRate : 48000,
-    fileFormat : 'mp4',
-    videoBitrate : 48000,
-    videoCodec : 'video/mp4v-es',
-    videoFrameWidth : 640,
-    videoFrameHeight : 480,
-    videoFrameRate : 30
-}
-
-let videoConfig = {
-    audioSourceType : 1,
-    videoSourceType : 0,
-    profile : videoProfile,
-    url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
-    orientationHint : 0,
-    location : { latitude : 30, longitude : 130 },
-}
-
-// promise
-videoRecorder.prepare(videoConfig).then(() => {
-    console.info('prepare success');
-}).catch((err) => {
-    console.info('prepare failed and catch error is ' + err.message);
-});
-```
-
-### getInputSurface<sup>9+</sup>
-
-getInputSurface(callback: AsyncCallback\<string>): void;
-
-异步方式获得录制需要的surface。此surface提供给调用者，调用者从此surface中获取surfaceBuffer，填入相应的数据。
-
-应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
-
-只能在[prepare()](#videorecorder_prepare1)接口调用后调用。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**参数：**
-
-| 参数名   | 类型                   | 必填 | 说明                        |
-| -------- | ---------------------- | ---- | --------------------------- |
-| callback | AsyncCallback\<string> | 是   | 异步获得surface的回调方法。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                                   |
-| -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
-| 5400103  | I/O error. Return by callback.             |
-| 5400105  | Service died. Return by callback.          |
-
-**示例：**
-
-```js
-// asyncallback
-let surfaceID = null;                                               // 传递给外界的surfaceID
-videoRecorder.getInputSurface((err, surfaceId) => {
-    if (err == null) {
-        console.info('getInputSurface success');
-        surfaceID = surfaceId;
-    } else {
-        console.info('getInputSurface failed and error is ' + err.message);
-    }
-});
-```
-
-### getInputSurface<sup>9+</sup>
-
-getInputSurface(): Promise\<string>;
-
- 异步方式获得录制需要的surface。此surface提供给调用者，调用者从此surface中获取surfaceBuffer，填入相应的数据。
-
-应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
-
-只能在[prepare()](#videorecorder_prepare1)接口调用后调用。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**返回值：**
-
-| 类型             | 说明                             |
-| ---------------- | -------------------------------- |
-| Promise\<string> | 异步获得surface的Promise返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 5400102  | Operation not allowed. Return by promise. |
-| 5400103  | I/O error. Return by promise.             |
-| 5400105  | Service died. Return by promise.          |
-
-**示例：**
-
-```js
-// promise
-let surfaceID = null;                                               // 传递给外界的surfaceID
-videoRecorder.getInputSurface().then((surfaceId) => {
-    console.info('getInputSurface success');
-    surfaceID = surfaceId;
-}).catch((err) => {
-    console.info('getInputSurface failed and catch error is ' + err.message);
-});
-```
-
-### start<sup>9+</sup><a name=videorecorder_start1></a>
-
-start(callback: AsyncCallback\<void>): void;
-
-异步方式开始视频录制。通过注册回调函数获取返回值。
-
-在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)后调用，需要依赖数据源先给surface传递数据。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                         |
-| -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | 是   | 异步开始视频录制的回调方法。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                                   |
-| -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
-| 5400103  | I/O error. Return by callback.             |
-| 5400105  | Service died. Return by callback.          |
-
-**示例：**
-
-```js
-// asyncallback
-videoRecorder.start((err) => {
-    if (err == null) {
-        console.info('start videorecorder success');
-    } else {
-        console.info('start videorecorder failed and error is ' + err.message);
-    }
-});
-```
-
-### start<sup>9+</sup><a name=videorecorder_start2></a>
-
-start(): Promise\<void>;
-
-异步方式开始视频录制。通过Promise获取返回值。
-
-在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)后调用，需要依赖数据源先给surface传递数据。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**返回值：**
-
-| 类型           | 说明                                  |
-| -------------- | ------------------------------------- |
-| Promise\<void> | 异步开始视频录制方法的Promise返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 5400102  | Operation not allowed. Return by promise. |
-| 5400103  | I/O error. Return by promise.             |
-| 5400105  | Service died. Return by promise.          |
-
-**示例：**
-
-```js
-// promise
-videoRecorder.start().then(() => {
-    console.info('start videorecorder success');
-}).catch((err) => {
-    console.info('start videorecorder failed and catch error is ' + err.message);
-});
-```
-
-### pause<sup>9+</sup><a name=videorecorder_pause1></a>
-
-pause(callback: AsyncCallback\<void>): void;
-
-异步方式暂停视频录制。通过注册回调函数获取返回值。
-
-在[start()](#videorecorder_start1)后调用。可以通过调用[resume()](#videorecorder_resume1)接口来恢复录制。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                         |
-| -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | 是   | 异步暂停视频录制的回调方法。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                                   |
-| -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
-| 5400103  | I/O error. Return by callback.             |
-| 5400105  | Service died. Return by callback.          |
-
-**示例：**
-
-```js
-// asyncallback
-videoRecorder.pause((err) => {
-    if (err == null) {
-        console.info('pause videorecorder success');
-    } else {
-        console.info('pause videorecorder failed and error is ' + err.message);
-    }
-});
-```
-
-### pause<sup>9+</sup><a name=videorecorder_pause2></a>
-
-pause(): Promise\<void>;
-
-异步方式暂停视频录制。通过Promise获取返回值。
-
-在[start()](#videorecorder_start1)后调用。可以通过调用[resume()](#videorecorder_resume1)接口来恢复录制。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**返回值：**
-
-| 类型           | 说明                                  |
-| -------------- | ------------------------------------- |
-| Promise\<void> | 异步暂停视频录制方法的Promise返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 5400102  | Operation not allowed. Return by promise. |
-| 5400103  | I/O error. Return by promise.             |
-| 5400105  | Service died. Return by promise.          |
-
-**示例：**
-
-```js
-// promise
-videoRecorder.pause().then(() => {
-    console.info('pause videorecorder success');
-}).catch((err) => {
-    console.info('pause videorecorder failed and catch error is ' + err.message);
-});
-```
-
-### resume<sup>9+</sup><a name=videorecorder_resume1></a>
-
-resume(callback: AsyncCallback\<void>): void;
-
-异步方式恢复视频录制。通过注册回调函数获取返回值。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                         |
-| -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | 是   | 异步恢复视频录制的回调方法。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                                   |
-| -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
-| 5400103  | I/O error. Return by callback.             |
-| 5400105  | Service died. Return by callback.          |
-
-**示例：**
-
-```js
-// asyncallback
-videoRecorder.resume((err) => {
-    if (err == null) {
-        console.info('resume videorecorder success');
-    } else {
-        console.info('resume videorecorder failed and error is ' + err.message);
-    }
-});
-```
-
-### resume<sup>9+</sup><a name=videorecorder_resume2></a>
-
-resume(): Promise\<void>;
-
-异步方式恢复视频录制。通过Promise获取返回值。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**返回值：**
-
-| 类型           | 说明                                  |
-| -------------- | ------------------------------------- |
-| Promise\<void> | 异步恢复视频录制方法的Promise返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 5400102  | Operation not allowed. Return by promise. |
-| 5400103  | I/O error. Return by promise.             |
-| 5400105  | Service died. Return by promise.          |
-
-**示例：**
-
-```js
-// promise
-videoRecorder.resume().then(() => {
-    console.info('resume videorecorder success');
-}).catch((err) => {
-    console.info('resume videorecorder failed and catch error is ' + err.message);
-});
-```
-
-### stop<sup>9+</sup><a name=videorecorder_stop1></a>
-
-stop(callback: AsyncCallback\<void>): void;
-
-异步方式停止视频录制。通过注册回调函数获取返回值。
-
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                         |
-| -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | 是   | 异步停止视频录制的回调方法。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                                   |
-| -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
-| 5400103  | I/O error. Return by callback.             |
-| 5400105  | Service died. Return by callback.          |
-
-**示例：**
-
-```js
-// asyncallback
-videoRecorder.stop((err) => {
-    if (err == null) {
-        console.info('stop videorecorder success');
-    } else {
-        console.info('stop videorecorder failed and error is ' + err.message);
-    }
-});
-```
-
-### stop<sup>9+</sup><a name=videorecorder_stop2></a>
-
-stop(): Promise\<void>;
-
-异步方式停止视频录制。通过Promise获取返回值。
-
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**返回值：**
-
-| 类型           | 说明                                  |
-| -------------- | ------------------------------------- |
-| Promise\<void> | 异步停止视频录制方法的Promise返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 5400102  | Operation not allowed. Return by promise. |
-| 5400103  | I/O error. Return by promise.             |
-| 5400105  | Service died. Return by promise.          |
-
-**示例：**
-
-```js
-// promise
-videoRecorder.stop().then(() => {
-    console.info('stop videorecorder success');
-}).catch((err) => {
-    console.info('stop videorecorder failed and catch error is ' + err.message);
-});
-```
-
-### release<sup>9+</sup><a name=videorecorder_release1></a>
-
-release(callback: AsyncCallback\<void>): void;
-
-异步方式释放视频录制资源。通过注册回调函数获取返回值。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                             |
-| -------- | -------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<void> | 是   | 异步释放视频录制资源的回调方法。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                          |
-| -------- | --------------------------------- |
-| 5400105  | Service died. Return by callback. |
-
-**示例：**
-
-```js
-// asyncallback
-videoRecorder.release((err) => {
-    if (err == null) {
-        console.info('release videorecorder success');
-    } else {
-        console.info('release videorecorder failed and error is ' + err.message);
-    }
-});
-```
-
-### release<sup>9+</sup><a name=videorecorder_release2></a>
-
-release(): Promise\<void>;
-
-异步方式释放视频录制资源。通过Promise获取返回值。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**返回值：**
-
-| 类型           | 说明                                      |
-| -------------- | ----------------------------------------- |
-| Promise\<void> | 异步释放视频录制资源方法的Promise返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                          |
-| -------- | --------------------------------- |
-| 5400105  | Service died. Return by callback. |
-
-**示例：**
-
-```js
-// promise
-videoRecorder.release().then(() => {
-    console.info('release videorecorder success');
-}).catch((err) => {
-    console.info('release videorecorder failed and catch error is ' + err.message);
-});
-```
-
-### reset<sup>9+</sup><a name=videorecorder_reset1></a>
-
-reset(callback: AsyncCallback\<void>): void;
-
-异步方式重置视频录制。通过注册回调函数获取返回值。
-
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                         |
-| -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | 是   | 异步重置视频录制的回调方法。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                          |
-| -------- | --------------------------------- |
-| 5400103  | I/O error. Return by callback.    |
-| 5400105  | Service died. Return by callback. |
-
-**示例：**
-
-```js
-// asyncallback
-videoRecorder.reset((err) => {
-    if (err == null) {
-        console.info('reset videorecorder success');
-    } else {
-        console.info('reset videorecorder failed and error is ' + err.message);
-    }
-});
-```
-
-### reset<sup>9+</sup><a name=videorecorder_reset2></a>
-
-reset(): Promise\<void>;
-
-异步方式重置视频录制。通过Promise获取返回值。
-
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-**返回值：**
-
-| 类型           | 说明                                  |
-| -------------- | ------------------------------------- |
-| Promise\<void> | 异步重置视频录制方法的Promise返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                         |
-| -------- | -------------------------------- |
-| 5400103  | I/O error. Return by promise.    |
-| 5400105  | Service died. Return by promise. |
-
-**示例：**
-
-```js
-// promise
-videoRecorder.reset().then(() => {
-    console.info('reset videorecorder success');
-}).catch((err) => {
-    console.info('reset videorecorder failed and catch error is ' + err.message);
-});
-```
-
-### on('error')<sup>9+</sup>
-
-on(type: 'error', callback: ErrorCallback): void
-
-开始订阅视频录制错误事件，当上报error错误事件后，用户需处理error事件，退出录制操作。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**参数：**
-
-| 参数名   | 类型          | 必填 | 说明                                                         |
-| -------- | ------------- | ---- | ------------------------------------------------------------ |
-| type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：视频录制过程中发生错误，触发该事件。 |
-| callback | ErrorCallback | 是   | 录制错误事件回调方法。                                       |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
-
-| 错误码ID | 错误信息                          |
-| -------- | --------------------------------- |
-| 5400103  | I/O error. Return by callback.    |
-| 5400105  | Service died. Return by callback. |
-
-**示例：**
-
-```js
-// 当获取videoRecordState接口出错时通过此订阅事件上报
-videoRecorder.on('error', (error) => {                                  // 设置'error'事件回调
-    console.info(`audio error called, error: ${error}`); 
-})
-```
-
-## VideoRecordState<sup>(deprecated)</sup><a name=VideoRecordState9>
-
-视频录制的状态机。可通过state属性获取当前状态。</sup>
-
-> **说明：**
-> 从API version 9开始支持，从API version 9开始废弃，建议使用[AVRecorderConfig](#avrecorderconfig9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-| 名称     | 类型   | 说明                   |
-| -------- | ------ | ---------------------- |
-| idle     | string | 视频录制空闲。         |
-| prepared | string | 视频录制参数设置完成。 |
-| playing  | string | 视频正在录制。         |
-| paused   | string | 视频暂停录制。         |
-| stopped  | string | 视频录制停止。         |
-| error    | string | 错误状态。             |
-
-## VideoRecorderConfig<sup>(deprecated)</sup><a name=VideoRecorderConfig9>
-
-表示视频录制的参数设置。
-
-> **说明：**
-> 从API version 9开始支持，从API version 9开始废弃，建议使用[AVRecorderConfig](#avrecorderconfig9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-| 名称            | 类型                                           | 必填 | 说明                                                         |
-| --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](#audiosourcetype9)           | 是   | 视频录制的音频源类型。                                       |
-| videoSourceType | [VideoSourceType](#videosourcetype9)           | 是   | 视频录制的视频源类型。                                       |
-| profile         | [VideoRecorderProfile](#videorecorderprofile9) | 是   | 视频录制的profile。                                          |
-| rotation        | number                                         | 否   | 录制视频的旋转角度。                                         |
-| location        | [Location](#location)                          | 否   | 录制视频的地理位置。                                         |
-| url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |
-
-## VideoRecorderProfile<sup>(deprecated)</sup><a name=VideoRecorderProfile9>
-
-视频录制的配置文件。
-
-> **说明：**
-> 从API version 9开始支持，从API version 9开始废弃，建议使用[AVRecorderProfile](#avrecorderprofile9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
-
-**系统接口：** 该接口为系统接口
-
-| 名称             | 类型                                         | 必填 | 说明             |
-| ---------------- | -------------------------------------------- | ---- | ---------------- |
-| audioBitrate     | number                                       | 是   | 音频编码比特率。 |
-| audioChannels    | number                                       | 是   | 音频采集声道数。 |
-| audioCodec       | [CodecMimeType](#codecmimetype8)             | 是   | 音频编码格式。   |
-| audioSampleRate  | number                                       | 是   | 音频采样率。     |
-| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式。 |
-| videoBitrate     | number                                       | 是   | 视频编码比特率。 |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | 是   | 视频编码格式。   |
-| videoFrameWidth  | number                                       | 是   | 录制视频帧的宽。 |
-| videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
-| videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
