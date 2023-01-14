@@ -2478,7 +2478,7 @@ AVRecorder.off('error');
 | audioSourceType | [AudioSourceType](#audiosourcetype9)     | 否   | 选择录制的音频源类型。选择音频录制时必填。                   |
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | 否   | 选择录制的视频源类型。选择视频录制时必填。                   |
 | profile         | [AVRecorderProfile](#avrecorderprofile9) | 是   | 录制的profile，必要参数。                                    |
-| url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](https://gitee.com/huang-xl/docs/raw/20221216_avplayer_doc/zh-cn/application-dev/reference/apis/figures/zh-cn_image_url.png)，必要参数。 |
+| url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](figures/zh-cn_image_url.png)，必要参数。 |
 | rotation        | number                                   | 否   | 录制的视频旋转角度，仅支持0，90，180，270。                  |
 | location        | [Location](#location)                    | 否   | 录制的地理位置。                                             |
 
