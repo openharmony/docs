@@ -1,4 +1,4 @@
-# Facial Authentication
+#  @ohos.userIAM.faceAuth (Facial Authentication)
 
 The **userIAM.faceAuth** module provides APIs for face enrollment.
 
