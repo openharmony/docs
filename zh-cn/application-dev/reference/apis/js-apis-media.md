@@ -282,6 +282,7 @@ Audio/Video播放demo可参考：[AVPlayer开发指导](../../media/avplayer-pla
 | loop<sup>9+</sup>                                   | boolean                                                | 是   | 是   | 视频循环播放属性，默认'false'，设置为'true'表示循环播放，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                     | 是   | 是   | 视频缩放模式，默认VIDEO_SCALE_TYPE_FIT_CROP，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | 是   | 是   | 音频焦点模型，默认SHARE_MODE，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
+| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](js-apis-audio.md#audioRendererInfo8) | 是   | 是   | 设置音频渲染信息。<br/>只允许在**prepared**之前设置 |
 | state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                       | 是   | 否   | 音视频播放的状态，全状态有效，可查询参数。                   |
 | currentTime<sup>9+</sup>                            | number                                                 | 是   | 否   | 视频的当前播放位置，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。 |
 | duration<sup>9+</sup><a name=avplayer_duration></a> | number                                                 | 是   | 否   | 视频时长，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。<br/>直播场景默认返回(-1)。 |
@@ -1127,30 +1128,6 @@ off(type: 'availableBitrates'): void
 
 ```js
 avPlayer.off('availableBitrates')
-```
-
-### setAudioRendererInfo<sup>10+</sup>
-
-`setAudioRendererInfo(options: audio.AudioRendererInfo): void;`
-
-设置音频渲染信息，只能在prepare之前调用。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| audioRendererInfo | audio.audioRendererInfo | 是   | 指定音频渲染信息。 |
-**示例：**
-
-```js
-let audioRendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-  rendererFlags : 0
-}
-avPlayer.setAudioRendererInfo(audioRendererInfo)
 ```
 
 ### setVolume<sup>9+</sup>
