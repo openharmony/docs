@@ -68,25 +68,25 @@
     grantPermission();
    
     // Stage模型
-    import Ability from '@ohos.application.Ability';
+    import UIAbility from '@ohos.app.ability.UIAbility';
    
     let context = null;
-   
-    function grantPermission() {
-    class MainAbility extends Ability {
-        onWindowStageCreate(windowStage) {
+
+    class EntryAbility extends UIAbility {
+      onWindowStageCreate(windowStage) {
         let context = this.context;
-        }
+      }
     }
-   
-    let permissions = ['ohos.permission.DISTRIBUTED_DATASYNC'];
-    context.requestPermissionsFromUser(permissions).then((data) => {
+
+    function grantPermission() {
+      let permissions = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+      context.requestPermissionsFromUser(permissions).then((data) => {
         console.log('success: ${data}');
-    }).catch((error) => {
+      }).catch((error) => {
         console.log('failed: ${error}');
-    });
+      });
     }
-   
+
     grantPermission();
     ```
 
@@ -103,9 +103,9 @@
    let context = featureAbility.getContext();
    
    // Stage模型获取context
-   import AbilityStage from '@ohos.application.Ability';
+   import UIAbility from '@ohos.app.ability.UIAbility';
    let context = null;
-   class MainAbility extends AbilityStage{
+    class EntryAbility extends UIAbility {
       onWindowStageCreate(windowStage){
         context = this.context;
       }
