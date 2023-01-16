@@ -203,7 +203,7 @@
   - [@ohos.data.distributedKVStore](js-apis-distributedKVStore.md)
   - [@ohos.data.preferences](js-apis-data-preferences.md)
   - [@ohos.data.rdb](js-apis-data-rdb.md)
-  - [@ohos.data.ValuesBucket](js-apis-data-ValuesBucket.md)
+  - [@ohos.data.ValuesBucket](js-apis-data-valuesBucket.md)
   - data/rdb
     - [resultSet](js-apis-data-resultset.md)
 - File Management
@@ -293,6 +293,7 @@
   - [@ohos.runningLock](js-apis-runninglock.md)
   - [@ohos.sensor](js-apis-sensor.md)
   - [@ohos.settings](js-apis-settings.md)
+  - [@ohos.systemCapability](js-apis-system-capability.md)
   - [@ohos.systemParameterV9](js-apis-system-parameterV9.md)
   - [@ohos.thermal](js-apis-thermal.md)
   - [@ohos.update](js-apis-update.md)
