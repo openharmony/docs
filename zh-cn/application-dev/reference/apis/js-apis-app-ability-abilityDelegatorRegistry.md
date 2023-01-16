@@ -53,7 +53,7 @@ let want = {
     abilityName: "EntryAbility"
 };
 abilityDelegator.startAbility(want, (err) => {
-    if (err.code !== 0) {
+    if (err && err.code !== 0) {
         console.log("Success start ability.");
     } else {
         console.log("Failed start ability, error: " + JSON.stringify(err));

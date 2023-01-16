@@ -40,7 +40,7 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRunningInStabilityTest((err, flag) => {
-    if (err.code !== 0) {
+    if (err && err.code !== 0) {
         console.log("isRunningInStabilityTest faile, err: " + JSON.stringify(err));
     } else {
         console.log("The result of isRunningInStabilityTest is:" + JSON.stringify(flag));
@@ -146,7 +146,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRamConstrainedDevice((err, data) => {
-    if (err.code !== 0) {
+    if (err && err.code !== 0) {
         console.log("isRamConstrainedDevice faile, err: " + JSON.stringify(err));
     } else {
         console.log("The result of isRamConstrainedDevice is:" + JSON.stringify(data));
@@ -216,7 +216,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getAppMemorySize((err, data) => {
-    if (err.code !== 0) {
+    if (err && err.code !== 0) {
         console.log("getAppMemorySize faile, err: " + JSON.stringify(err));
     } else {
         console.log("The size of app memory is:" + JSON.stringify(data));
@@ -294,7 +294,7 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getProcessRunningInformation((err, data) => {
-    if (err.code !== 0) {
+    if (err && err.code !== 0) {
         console.log("getProcessRunningInformation faile, err: " + JSON.stringify(err));
     } else {
         console.log("The process running information is:" + JSON.stringify(data));
@@ -493,7 +493,7 @@ try {
 
 // 2.注销应用状态监听器
 function unregisterApplicationStateObserverCallback(err) {
-    if (err.code !== 0) {
+    if (err && err.code !== 0) {
         console.log("unregisterApplicationStateObserverCallback faile, err: " + JSON.stringify(err));
     } else {
         console.log("unregisterApplicationStateObserverCallback success.");
@@ -616,7 +616,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 import appManager from '@ohos.app.ability.appManager';
 
 function getForegroundApplicationsCallback(err, data) {
-    if (err.code !== 0) {
+    if (err && err.code !== 0) {
         console.log("getForegroundApplicationsCallback fail, err: " + JSON.stringify(err));
     } else {
         console.log("getForegroundApplicationsCallback success, data: " + JSON.stringify(data));
@@ -749,7 +749,7 @@ import appManager from '@ohos.app.ability.appManager';
 let bundleName = 'bundleName';
 let accountId = 0;
 function killProcessWithAccountCallback(err, data) {
-    if (err.code !== 0) {
+    if (err && err.code !== 0) {
         console.log("killProcessWithAccountCallback fail, err: " + JSON.stringify(err));
     } else {
         console.log("killProcessWithAccountCallback success.");
@@ -792,7 +792,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 let bundleName = 'bundleName';
 function killProcessesByBundleNameCallback(err, data) {
-    if (err.code !== 0) {
+    if (err && err.code !== 0) {
         console.log("killProcessesByBundleNameCallback fail, err: " + JSON.stringify(err));
     } else {
         console.log("killProcessesByBundleNameCallback success.");
@@ -888,7 +888,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 let bundleName = 'bundleName';
 function clearUpApplicationDataCallback(err, data) {
-    if (err) {
+    if (err && err.code !== 0) {
         console.log("clearUpApplicationDataCallback fail, err: " + JSON.stringify(err));
     } else {
         console.log("clearUpApplicationDataCallback success.");

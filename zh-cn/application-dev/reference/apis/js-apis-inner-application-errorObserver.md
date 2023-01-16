@@ -19,11 +19,11 @@ onUnhandledException(errMsg: string): void;
 **示例：**
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager'
+import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
     onUnhandledException(errorMsg) {
-        console.log('HXW onUnhandledException, errorMsg: ', errorMsg);
+        console.log('onUnhandledException, errorMsg: ', errorMsg);
     }
 }
 

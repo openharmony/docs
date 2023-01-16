@@ -292,7 +292,7 @@ export default class MySecondAbility extends UIAbility {
         let applicationContext = this.context.getApplicationContext();
         // 3.通过applicationContext注销监听应用内生命周期
         applicationContext.off("abilityLifecycle", globalThis.lifecycleId, (error) => {
-            if (error.code != 0) {
+            if (error && error.code != 0) {
                 console.log("unregisterAbilityLifecycleCallback failed, error: " + JSON.stringify(error));
             } else {
                 console.log("unregisterAbilityLifecycleCallback success.");
