@@ -78,7 +78,7 @@ error: install parse profile prop check error.
 error: install parse profile prop check error.
 ```
 
-对于xts或者本地调试的demo，无法修改板子上install_list_capability.json的，可以修改应用的bundleName，需要以"com.acts."为开头，同时在签名证书中申请对应的特权。
+对于xts或者本地调试的demo，无法修改开发板上install_list_capability.json的，可以修改应用的bundleName，需要以"com.acts."为开头，同时在签名证书中申请对应的特权。
 
 ## cl.bundlemanager.4 底层能力变更，安装hap时，hap中的文件不再解压到安装目录。
 
