@@ -168,6 +168,7 @@ vendor/hihope
       > OpenHarmony-v3.2-Beta2之前版本，RK3568的产品配置文件为productdefine/common/products/rk3568.json；从OpenHarmony-v3.2-Beta2版本开始，RK3568的产品配置文件为vendor/hihope/rk3568/config.json。
 
    - 3.2-Beta2之前版本
+                                                                                                                                                       
       在productdefine/common/products/rk3568.json中添加对应的hello部件，直接添加到原有部件后即可。
    
        ```
@@ -178,6 +179,7 @@ vendor/hihope
        ```
 
    - 3.2-Beta2及之后版本
+                                                                                                                                                       
       在vendor/hihope/rk3568/config.json中添加对应的hello部件，直接添加到原有部件后即可。
 
        ```
