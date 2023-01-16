@@ -458,15 +458,15 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 
 merge(toMerge: BundleStateInfo): void
 
-Merges the application usage information that has the same bundle name.
+合并相同包名的应用使用信息。
 
-**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**Parameters**
+**参数**：
 
-| Name    | Type                                 | Mandatory  | Description            |
-| ------- | ----------------------------------- | ---- | -------------- |
-| toMerge | [BundleStateInfo](#bundlestateinfo) | Yes   | Application usage information to merge.|
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| toMerge | [BundleStateInfo](#bundlestateinfo) | 是 | 相同包名的应用使用统计信息。|
 
 ## BundleActiveState
 
