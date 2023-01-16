@@ -387,11 +387,11 @@ struct GlobalAlpha {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-        this.context.fillStyle = 'rgb(255,0,0)'
-        this.context.fillRect(0, 0, 50, 50)
-        this.context.globalAlpha = 0.4
-        this.context.fillStyle = 'rgb(0,0,255)'
-        this.context.fillRect(50, 50, 50, 50)
+          this.context.fillStyle = 'rgb(0,0,255)'
+          this.context.fillRect(0, 0, 50, 50)
+          this.context.globalAlpha = 0.4
+          this.context.fillStyle = 'rgb(0,0,255)'
+          this.context.fillRect(50, 50, 50, 50)
       })
     }
     .width('100%')
