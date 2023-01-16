@@ -5,7 +5,7 @@
 API9的ApplicationInfo结构体[[bundleManager/applicationInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/monthly_20221018/api/bundleManager/applicationInfo.d.ts)]字段变更，删除entryDir字段。
 
 **变更影响**<br>
-对原有使用API version 9之前的应用无影响，使用API version 9的应用需要适配新模块和新接口。
+对使用API version 8及之前版本SDK的应用无影响，使用API version 9的应用需要适配新模块和新接口。
 
 **关键的接口/组件变更**<br>
 ApplicationInfo结构体发生变化的字段内容如下表所示。
@@ -21,7 +21,7 @@ ApplicationInfo结构体发生变化的字段内容如下表所示。
 API9的HapModuleInfo结构体[[bundleManager/hapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/monthly_20221018/api/bundleManager/hapModuleInfo.d.ts)]字段变更，删除moduleSourceDir字段。
 
 **变更影响**<br>
-对原有使用API version 9之前的应用无影响，使用API version 9的应用需要适配新模块和新接口。
+对使用API version 8及之前版本SDK的应用无影响，使用API version 9的应用需要适配新模块和新接口。
 
 **关键的接口/组件变更**<br>
 HapModuleInfo结构体发生变化的字段内容如下表所示。
