@@ -24,23 +24,35 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 **参数：**
 
-| 参数名   | 类型            | 必填 | 说明                                       |
-| -------- | ----------- | ---- | ---------------- |
-| time     | number                    | 是   | 目标时间戳（ms）。                         |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| 参数名   | 类型                      | 必填 | 说明               |
+| -------- | ------------------------- | ---- | ------------------ |
+| time     | number                    | 是   | 目标时间戳（ms）。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。         |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
 
 **示例：**
 
 ```js
 // time对应的时间为2021-01-20 02:36:25
 let time = 1611081385000;
-systemTime.setTime(time, (error, data) => {
+try {
+  systemTime.setTime(time, (error) => {
     if (error) {
-        console.error(`Failed to set systemTime. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to setting time. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in setting systemTime. Data:` + JSON.stringify(data));
-});
+    }console.info(`Succeeded in setting time`);
+  });
+} catch(e) {
+  console.info(`Failed to set time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.setTime
@@ -65,16 +77,28 @@ setTime(time : number) : Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **示例：**
 
 ```js
 // time对应的时间为2021-01-20 02:36:25
 let time = 1611081385000;
-systemTime.setTime(time).then((data) => {
-    console.log(`Succeeded in setting systemTime. Data:` + JSON.stringify(data));
-}).catch((error) => {
-    console.error(`Failed to set systemTime. Cause:` + JSON.stringify(error));
-});
+try {
+  systemTime.setTime(time).then(() => {
+    console.info(`Succeeded in setting time.`);
+  }).catch((error) => {
+    console.info(`Failed to setting time. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to set time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.getCurrentTime<sup>8+</sup>
@@ -87,21 +111,33 @@ getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 **参数：**
 
-| 参数名   | 类型       | 必填 | 说明                             |
-| -------- | -------------- | ---- | ------------------ |
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | isNano   | boolean                     | 是   | 返回结果是否为纳秒数。<br>- true：表示返回结果为纳秒数（ns）。 <br>- false：表示返回结果为毫秒数（ms）。 |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自Unix纪元以来经过的时间。         |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自Unix纪元以来经过的时间。                     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
 ```js
-systemTime.getCurrentTime(true, (error, data) => {
+try {
+  systemTime.getCurrentTime(true, (error, time) => {
     if (error) {
-        console.error(`Failed to get systemTime. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to getting currentTime. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in getting systemTime. Data:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in getting currentTime: ${time}`);
+  });
+} catch(e) {
+  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.getCurrentTime<sup>8+</sup>
@@ -114,20 +150,32 @@ getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
 **参数：**
 
-| 参数名   | 类型               | 必填 | 说明                            |
-| -------- | ----------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自Unix纪元以来经过的时间。         |
+| 参数名   | 类型                        | 必填 | 说明                                     |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自Unix纪元以来经过的时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
 ```js
-systemTime.getCurrentTime((error, data) => {
+try {
+  systemTime.getCurrentTime((error, time) => {
     if (error) {
-        console.error(`Succeeded in getting systemTime. Data:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to getting currentTime. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Failed to get systemTime. Cause:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in getting currentTime : ${time}`);
+  });
+} catch(e) {
+  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.getCurrentTime<sup>8+</sup>
@@ -140,24 +188,36 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 说明                     |
-| ------ | ------- | ---- | ------------------------- |
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
 | isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 
 **返回值：**
 
-| 类型        | 说明                               |
-| --------------------- | --------------------------- |
+| 类型                  | 说明                                        |
+| --------------------- | ------------------------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回自Unix纪元以来经过的时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
 ```js
-systemTime.getCurrentTime().then((data) => {
-    console.log(`Succeeded in getting systemTime. Data:` + JSON.stringify(data));
-}).catch((error) => {
-    console.error(`Failed to get systemTime. Cause:` + JSON.stringify(error));
-});
+try {
+  systemTime.getCurrentTime().then((time) => {
+    console.info(`Succeeded in getting currentTime : ${time}`);
+  }).catch((error) => {
+    console.info(`Failed to getting currentTime. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.getRealActiveTime<sup>8+</sup>
@@ -170,21 +230,33 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明   |
-| -------- | ---------- | ---- | -------------------------- |
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | isNano   | boolean                     | 是   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括度睡眠时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
 ```js
-systemTime.getRealActiveTime(true, (error, data) => {
+try {
+  systemTime.getRealActiveTime(true, (error, time) => {
     if (error) {
-        console.error(`Failed to get real active time. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to getting real active time. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in getting real active time. Data:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in getting real active time : ${time}`);
+  });
+} catch(e) {
+  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.getRealActiveTime<sup>8+</sup>
@@ -197,20 +269,32 @@ getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明    |
-| -------- | -------------- | ---- | --------------------- |
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括度睡眠时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
 ```js
-systemTime.getRealActiveTime((error, data) => {
+try {
+  systemTime.getRealActiveTime((error, time) => {
     if (error) {
-        console.error(`Failed to get real active time. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to getting real active time. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in getting real active time. Data:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in getting real active time : ${time}`);
+  });
+} catch(e) {
+  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.getRealActiveTime<sup>8+</sup>
@@ -223,24 +307,36 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 说明                              |
-| ------ | ------- | ---- | ----------------------------------- |
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
 | isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 
 **返回值：**
 
-| 类型                  | 说明         |
-| -------------- | -------------------------------- |
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise对象，返回自系统启动以来经过的时间，但不包括深度睡眠时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
 ```js
-systemTime.getRealActiveTime().then((data) => {
-    console.log(`Succeeded in getting real active time. Data:` + JSON.stringify(data));
-}).catch((error) => {
-    console.error(`Failed to get real active time. Cause:` + JSON.stringify(error));
-});
+try {
+  systemTime.getRealActiveTime().then((time) => {
+    console.info(`Succeeded in getting real active time : ${time}`);
+  }).catch((error) => {
+    console.info(`Failed to getting real active time. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.getRealTime<sup>8+</sup>
@@ -253,21 +349,33 @@ getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明   |
-| -------- | --------------- | ---- | ------------------------------- |
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | isNano   | boolean                     | 是   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，包括深度睡眠时间。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
 ```js
-systemTime.getRealTime(true, (error, data) => {
+try {
+  systemTime.getRealTime(true, (error, time) => {
     if (error) {
-        console.error(`Failed to get real time. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to getting real time. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in getting real time. Data:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in getting real time : ${time}`);
+  });
+} catch(e) {
+  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.getRealTime<sup>8+</sup>
@@ -280,20 +388,32 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明      |
-| -------- | --------- | ---- | --------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，包括深度睡眠时间。   |
+| 参数名   | 类型                        | 必填 | 说明                                                       |
+| -------- | --------------------------- | ---- | ---------------------------------------------------------- |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，包括深度睡眠时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
 ```js
-systemTime.getRealTime((error, data) => {
+try {
+  systemTime.getRealTime((error, time) => {
     if (error) {
-        console.error(`Failed to get real time. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to getting real time. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in getting real time. Data:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in getting real time : ${time}`);
+  });
+} catch(e) {
+  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.getRealTime<sup>8+</sup>
@@ -306,24 +426,36 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 说明                               |
-| ------ | ------- | ---- | ------------------------------- |
-| isNano | boolean | 否   | 返回结果是否为纳秒数。<<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 
 **返回值：**
 
-| 类型                  | 说明       |
-| --------------------- | ------------------------------- |
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise对象，返回自系统启动以来经过的时间，包括深度睡眠时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
 ```js
-systemTime.getRealTime().then((data) => {
-    console.log(`Succeeded in getting real time. Data:` + JSON.stringify(data));
-}).catch((error) => {
-    console.error(`Failed to get real time. Cause:` + JSON.stringify(error));
-});
+try {
+  systemTime.getRealTime().then((time) => {
+    console.info(`Succeeded in getting real time : ${time}`);
+  }).catch((error) => {
+    console.info(`Failed to getting real time. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.setDate
@@ -338,22 +470,34 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明             |
-| -------- | ------------- | ---- | --------------------- |
-| date     | Date                      | 是   | 目标日期。                                 |
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| date     | Date                      | 是   | 目标日期。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
 
 **示例：**
 
 ```js
-let data = new Date();
-systemTime.setDate(data,(error, data) => {       
-    if (error) {            
-    console.error('Failed to set system date. Cause:' + JSON.stringify(error));           
-    return;       
-}        
-    console.info('Succeeded in setting system date. Data:' + JSON.stringify(data));    
-});
+let date = new Date();
+try {
+  systemTime.setDate(date, (error) => {
+    if (error) {
+      console.info(`Failed to setting date. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in setting date.`);
+  });
+} catch(e) {
+  console.info(`Failed to set date. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.setDate
@@ -374,19 +518,31 @@ setDate(date: Date): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型                | 说明                 |
-| ------------------- | -------------------- |
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
 
 **示例：**
 
 ```js
-let data = new Date(); 
-systemTime.setDate(data).then((value) => {        
-    console.log(`Succeeded in setting system date. Data:` + JSON.stringify(value));    
-}).catch((error) => {        
-    console.error(`Failed to set system date. Cause:` + JSON.stringify(error));
-});
+let date = new Date(); 
+try {
+  systemTime.setDate(date).then(() => {
+    console.info(`Succeeded in setting date.`);
+  }).catch((error) => {
+    console.info(`Failed to setting date. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to set date. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.getDate<sup>8+</sup>
@@ -399,20 +555,32 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 **参数：**
 
-| 参数名   | 类型           | 必填 | 说明                   |
-| -------- | -------------- | ---- | --------------------- |
+| 参数名   | 类型                      | 必填 | 说明                         |
+| -------- | ------------------------- | ---- | ---------------------------- |
 | callback | AsyncCallback&lt;Date&gt; | 是   | 回调函数，返回当前系统日期。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
 ```js
-systemTime.getDate((error, data) => {
+try {
+  systemTime.getDate((error, date) => {
     if (error) {
-        console.error(`Failed to get system date. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in getting system date. Data:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in get date : ${date}`);;
+  });
+} catch(e) {
+  console.info(`Failed to get date. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.getDate<sup>8+</sup>
@@ -425,18 +593,30 @@ getDate(): Promise&lt;Date&gt;
 
 **返回值：**
 
-| 类型                | 说明                                      |
-| ------------------- | ----------------------------------------- |
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
 | Promise&lt;Date&gt; | Promise对象，返回当前系统日期。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
 ```js
-systemTime.getDate().then((data) => {
-    console.log(`Succeeded in getting system date. Data:` + JSON.stringify(data));
-}).catch((error) => {
-    console.error(`Failed to get system date. Cause:` + JSON.stringify(error));
-});
+try {
+  systemTime.getDate().then((date) => {
+    console.info(`Succeeded in getting date : ${date}`);
+  }).catch((error) => {
+    console.info(`Failed to getting date. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to get date. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.setTimezone
@@ -451,21 +631,33 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型              | 必填 | 说明                  |
-| -------- | ------------- | ---- | -------------------------- |
-| timezone | string                    | 是   | 系统时区。 具体可见[支持的系统时区](#支持的系统时区) 。        |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| 参数名   | 类型                      | 必填 | 说明                                                    |
+| -------- | ------------------------- | ---- | ------------------------------------------------------- |
+| timezone | string                    | 是   | 系统时区。 具体可见[支持的系统时区](#支持的系统时区) 。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
 
 **示例：**
 
 ```js
-systemTime.setTimezone('Asia/Shanghai', (error, data) => {       
-    if (error) {          
-        console.error('Failed to set system time zone. Cause:' + JSON.stringify(error));         
-        return;       
-    }       
-    console.info('Succeeded in setting system time zone. Data:' + JSON.stringify(data)); 
-});
+try {
+  systemTime.setTimezone('Asia/Shanghai', (error) => {
+    if (error) {
+      console.info(`Failed to setting timezone. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in setting timezone.`);
+  });
+} catch(e) {
+  console.info(`Failed to set timezone. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.setTimezone
@@ -480,24 +672,36 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明       |
-| -------- | ------ | ---- | ---------- |
+| 参数名   | 类型   | 必填 | 说明                                                   |
+| -------- | ------ | ---- | ------------------------------------------------------ |
 | timezone | string | 是   | 系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
 
 **返回值：**
 
-| 类型                | 说明                 |
-| ------------------- | -------------------- |
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
 
 **示例：**
 
 ```js
-systemTime.setTimezone('Asia/Shanghai').then((data) => {        
-    console.log(`Succeeded in setting system time zone. Data:` + JSON.stringify(data));     
-}).catch((error) => {        
-    console.error(`Failed to set system time zone. Cause:` + JSON.stringify(error));    
-});
+try {
+  systemTime.setTimezone('Asia/Shanghai').then(() => {
+    console.info(`Succeeded in setting timezone.`);
+  }).catch((error) => {
+    console.info(`Failed to setting timezone. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to set timezone. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.getTimezone<sup>8+</sup>
@@ -510,20 +714,32 @@ getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
 **参数：**
 
-| 参数名   | 类型              | 必填 | 说明                 |
-| -------- | --------- | ---- | ------------------------ |
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
 ```js
-systemTime.getTimezone((error, data) => {
+try {
+  systemTime.getTimezone((error, data) => {
     if (error) {
-        console.error(`Failed to get system time zone. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in getting system time zone. Data:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in get timezone : ${data}`);;
+  });
+} catch(e) {
+  console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## systemTime.getTimezone<sup>8+</sup>
@@ -536,54 +752,66 @@ getTimezone(): Promise&lt;string&gt;
 
 **返回值：**
 
-| 类型                  | 说明                                  |
-| --------------------- | ------------------------------------- |
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
 | Promise&lt;string&gt; | Promise对象，返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **示例：**
 
 ```js
-systemTime.getTimezone().then((data) => {
-    console.log(`Succeeded in getting system time zone. Data:` + JSON.stringify(data));
-}).catch((error) => {
-    console.error(`Failed to get system time zone. Cause:` + JSON.stringify(error));
-});
+try {
+  systemTime.getTimezone().then((data) => {
+    console.info(`Succeeded in getting timezone: ${data}`);
+  }).catch((error) => {
+    console.info(`Failed to getting timezone. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## 支持的系统时区
 
 支持的系统时区及各时区与0时区相比的偏移量（单位：h）可见下表。
 
-| 时区                           | 偏移量         |
-| ------------------------------ | --------------------- |
-| Antarctica/McMurdo             | 12                    |
-| America/Argentina/Buenos_Aires | -3                    |
-| Australia/Sydney               | 10                    |
-| America/Noronha                | -2                    |
-| America/St_Johns               | -3                    |
-| Africa/Kinshasa                | 1                     |
-| America/Santiago               | -3                    |
-| Asia/Shanghai                  | 8                     |
-| Asia/Nicosia                   | 3                     |
-| Europe/Berlin                  | 2                     |
-| America/Guayaquil              | -5                    |
-| Europe/Madrid                  | 2                     |
-| Pacific/Pohnpei                | 11                    |
-| America/Godthab                | -2                    |
-| Asia/Jakarta                   | 7                     |
-| Pacific/Tarawa                 | 12                    |
-| Asia/Almaty                    | 6                     |
-| Pacific/Majuro                 | 12                    |
-| Asia/Ulaanbaatar               | 8                     |
-| America/Mexico_City            | -5                    |
-| Asia/Kuala_Lumpur              | 8                     |
-| Pacific/Auckland               | 12                    |
-| Pacific/Tahiti                 | -10                   |
-| Pacific/Port_Moresby           | 10                    |
-| Asia/Gaza                      | 3                     |
-| Europe/Lisbon                  | 1                     |
-| Europe/Moscow                  | 3                     |
-| Europe/Kiev                    | 3                     |
-| Pacific/Wake                   | 12                    |
-| America/New_York               | -4                    |
-| Asia/Tashkent                  | 5                     |
+| 时区                           | 偏移量 |
+| ------------------------------ | ------ |
+| Antarctica/McMurdo             | 12     |
+| America/Argentina/Buenos_Aires | -3     |
+| Australia/Sydney               | 10     |
+| America/Noronha                | -2     |
+| America/St_Johns               | -3     |
+| Africa/Kinshasa                | 1      |
+| America/Santiago               | -3     |
+| Asia/Shanghai                  | 8      |
+| Asia/Nicosia                   | 3      |
+| Europe/Berlin                  | 2      |
+| America/Guayaquil              | -5     |
+| Europe/Madrid                  | 2      |
+| Pacific/Pohnpei                | 11     |
+| America/Godthab                | -2     |
+| Asia/Jakarta                   | 7      |
+| Pacific/Tarawa                 | 12     |
+| Asia/Almaty                    | 6      |
+| Pacific/Majuro                 | 12     |
+| Asia/Ulaanbaatar               | 8      |
+| America/Mexico_City            | -5     |
+| Asia/Kuala_Lumpur              | 8      |
+| Pacific/Auckland               | 12     |
+| Pacific/Tahiti                 | -10    |
+| Pacific/Port_Moresby           | 10     |
+| Asia/Gaza                      | 3      |
+| Europe/Lisbon                  | 1      |
+| Europe/Moscow                  | 3      |
+| Europe/Kiev                    | 3      |
+| Pacific/Wake                   | 12     |
+| America/New_York               | -4     |
+| Asia/Tashkent                  | 5      |
