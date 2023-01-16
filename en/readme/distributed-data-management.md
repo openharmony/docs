@@ -5,7 +5,7 @@
 
 **Distributed Data Management Subsystem**
 
-The Distributed Data Management subsystem can persistently store various structured data of a single device and also supports data synchronization and sharing across devices. With the Distributed Data Management subsystem, application data can be seamlessly processed across different devices, ensuring consistent user experience for the same application across devices.
+The Distributed Data Management subsystem can persistently store various structured data of a single device. It also supports data synchronization and sharing across devices. With the Distributed Data Management subsystem, application data can be seamlessly processed across devices, ensuring consistent user experience for the same application across devices.
 
 
 **Subsystem Architecture**
@@ -47,15 +47,15 @@ The **DataShare** module allows an application to manage its own data and share 
 
 ### DDS
 
-The Distributed Data Service (DDS) implements distributed database collaboration across devices for applications. The DDS isolates data based on a triplet of the account, application, and database. The DDS synchronizes data between trusted devices to provide users with consistent data access experience on different devices.
+The Distributed Data Service (DDS) implements database collaboration across devices for applications. The DDS isolates data based on a triplet of the account, application, and database. The DDS synchronizes data between trusted devices, delivering a consistent data access experience on different devices.
 
 ### Preferences
 
-The **Preferences** module allows quick access to data in KV pairs and storage of a small amount of data for local applications. The data is stored in local files and loaded in memory, which allows faster access and higher processing efficiency. Preferences provide non-relational data storage and are not suitable for storing a large amount of data.
+The **Preferences** module allows quick access to data in KV pairs and storage of a small amount of data for local applications. The data is stored in local files in KV pairs and loaded in memory, which allows for faster access and higher processing efficiency. Preferences provide non-relational data storage and are not suitable for storing a large amount of data.
 
 1.  The **Preferences** module provides APIs for **preferences** operations.
-2.  You can use **getPreferences()** to load the content of a specified file to a **Preferences** instance. Each file has only one **Preferences** instance. The system stores the instance data in memory through a static container until the app removes the instance from the memory or deletes the file.
-3.  After obtaining a **Preferences** instance, the app can call the APIs in **Preferences** to read data from or write data to the **Preferences** instance, and call **flush()** to save the instance data to a file.
+2.  You can use **getPreferences()** to load the content of a specified file to a **Preferences** instance. Each file has only one **Preferences** instance. The system stores the instance data in memory through a static container until the application removes the instance from the memory or deletes the file.
+3.  After obtaining a **Preferences** instance, the application can call the APIs of **Preferences** to read data from or write data to the **Preferences** instance, and call **flush()** to save the instance data to a file.
 
 ### RDB Store
 
