@@ -1,4 +1,4 @@
-#  @ohos.userIAM.faceAuth (Facial Authentication)
+# @ohos.userIAM.faceAuth (Facial Authentication)
 
 The **userIAM.faceAuth** module provides APIs for face enrollment.
 
@@ -34,17 +34,17 @@ A constructor used to create a **FaceAuthManager** object.
 
 **Example**
 
-  ```js
-  import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
+```js
+import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 
-  let faceAuthManager = new userIAM_faceAuth.FaceAuthManager();
-  ```
+let faceAuthManager = new userIAM_faceAuth.FaceAuthManager();
+```
 
 ### setSurfaceId
 
 setSurfaceId(surfaceId: string): void;
 
-Sets an [XComponent surface ID](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) for the face preview page in the face enrollment process.
+Sets an [XComponent surface ID](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) for the face preview page in the face enrollment process. This API must be used with [AddCredential](./js-apis-osAccount.md#addcredential8).
 
 **System capability**: SystemCapability.UserIAM.UserAuth.FaceAuth
 
@@ -56,17 +56,28 @@ Sets an [XComponent surface ID](../arkui-ts/ts-basic-components-xcomponent.md#ge
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | surfaceId       | string     | Yes  | ID of the surface held by the [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
 
+For details about the following error codes, see [User Authentication Error Codes](../errorcodes/errorcode-useriam.md).
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 12700001 | The operation is failed. |
+
 **Example**
 
-  ```js
-  import faceAuth from '@ohos.userIAM.faceAuth';
+```js
+import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 
-  let surfaceId = "123456";
-  let manager = new faceAuth.FaceAuthManager();
-  try {
-      manager.setSurfaceId(surfaceId);
-      console.info("Set the surface ID successfully");
-  } catch (e) {
-      console.error("Failed to set the surface ID, error = " + e);
-  }
-  ```
+// The surfaceId is obtained from the XComponent control. The surfaceId here is only an example.
+let surfaceId = "123456";
+let manager = new userIAM_faceAuth.FaceAuthManager();
+try {
+    manager.setSurfaceId(surfaceId);
+    console.info("Set the surface ID successfully");
+} catch (e) {
+    console.error("Failed to set the surface ID, error = " + e);
+}
+```
