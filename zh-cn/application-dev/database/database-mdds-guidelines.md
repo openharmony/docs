@@ -71,22 +71,22 @@
     import UIAbility from '@ohos.app.ability.UIAbility';
    
     let context = null;
-   
-    function grantPermission() {
-    class EntryAbility extends UIAbility {
-        onWindowStageCreate(windowStage) {
+
+    class EntryAbility  extends UIAbility  {
+      onWindowStageCreate(windowStage) {
         let context = this.context;
-        }
+      }
     }
-   
-    let permissions = ['ohos.permission.DISTRIBUTED_DATASYNC'];
-    context.requestPermissionsFromUser(permissions).then((data) => {
+
+    function grantPermission() {
+      let permissions = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+      context.requestPermissionsFromUser(permissions).then((data) => {
         console.log('success: ${data}');
-    }).catch((error) => {
+      }).catch((error) => {
         console.log('failed: ${error}');
-    });
+      });
     }
-   
+
     grantPermission();
     ```
 
