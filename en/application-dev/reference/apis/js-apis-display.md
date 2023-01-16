@@ -1,4 +1,5 @@
-# Display
+# @ohos.display
+
 The **Display** module provides APIs for managing displays, such as obtaining information about the default display, obtaining information about all displays, and listening for the addition and removal of displays.
 
 > **NOTE**
@@ -188,7 +189,7 @@ Checks whether there is a visible privacy window on a display. The privacy windo
 
 | Type                            | Description                                                                   |
 | -------------------------------- |-----------------------------------------------------------------------|
-|boolean | Whether there is a visible privacy window on the display.<br>The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.<br>|
+|boolean | Whether there is a visible privacy window on the display. The value **true** means that there is a visible privacy window on the display, and **false** means the opposite. |
 
 **Error codes**
 
@@ -264,7 +265,7 @@ Unsubscribes from display changes.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event that a display is connected.<br>- **remove**, indicating the display removal event. Example: event indicating that a display is disconnected.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
+| type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event that a display is connected.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
 | callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
 
 **Example**
@@ -404,6 +405,8 @@ Implements a **Display** instance, with properties and APIs defined.
 
 Before calling any API in **Display**, you must use [getAllDisplays()](#displaygetalldisplays9) or [getDefaultDisplaySync()](#displaygetdefaultdisplaysync9) to obtain a **Display** instance.
 
+### Attributes
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name| Type| Readable| Writable| Description|
@@ -416,9 +419,9 @@ Before calling any API in **Display**, you must use [getAllDisplays()](#displayg
 | rotation | number | Yes| No| Screen rotation angle of the display.<br>The value **0** indicates that the screen of the display rotates by 0°.<br>The value **1** indicates that the screen of the display rotates by 90°.<br>The value **2** indicates that the screen of the display rotates by 180°.<br>The value **3** indicates that the screen of the display rotates by 270°.|
 | width | number | Yes| No| Width of the display, in pixels.|
 | height | number | Yes| No| Height of the display, in pixels.|
-| densityDPI | number | Yes| No| Screen density of the display, in DPI.|
-| densityPixels | number | Yes| No| Screen density of the display, in pixels.|
-| scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display.|
+| densityDPI | number | Yes| No| Screen density of the display, that is, the number of dots per inch. Generally, the value is **160** or **480**.|
+| densityPixels | number | Yes| No| Logical density of the display, which is a scaling coefficient independent of the pixel unit. Generally, the value is **1** or **3**.|
+| scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display. Generally, the value is the same as that of **densityPixels**.|
 | xDPI | number | Yes| No| Exact physical dots per inch of the screen in the horizontal direction.|
 | yDPI | number | Yes| No| Exact physical dots per inch of the screen in the vertical direction.|
 

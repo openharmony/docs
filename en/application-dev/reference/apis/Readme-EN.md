@@ -125,9 +125,14 @@
       - [continuationResult](js-apis-continuation-continuationResult.md)
   
 - Common Event and Notification
+  - [@ohos.commonEventManager (Recommended)](js-apis-commonEventManager.md)
   - [@ohos.events.emitter](js-apis-emitter.md)
+  - [@ohos.notificationManager (Recommended)](js-apis-notificationManager.md)
+  - [@ohos.notificationSubscribe (Recommended)](js-apis-notificationSubscribe.md)
+  - [@ohos.commonEvent (To Be Deprecated Soon)](js-apis-commonEvent.md)
   - [@ohos.notification](js-apis-notification.md)
-  - application/[EventHub](js-apis-inner-application-eventHub.md)
+  - application
+    - [EventHub](js-apis-inner-application-eventHub.md)
 - Bundle Management 
   - [@ohos.bundle.appControl](js-apis-appControl.md)
   - [@ohos.bundle.bundleManager](js-apis-bundleManager.md)
@@ -154,6 +159,8 @@
     - [shortcutInfo](js-apis-bundleManager-shortcutInfo.md)
 - UI Page
   - [@ohos.animator](js-apis-animator.md)
+  - [@ohos.curves](js-apis-curve.md)
+  - [@ohos.matrix4](js-apis-matrix4.md)
   - [@ohos.mediaquery](js-apis-mediaquery.md)
   - [@ohos.promptAction](js-apis-promptAction.md)
   - [@ohos.router](js-apis-router.md)
@@ -187,13 +194,13 @@
   - [@ohos.resourceschedule.usageStatistics](js-apis-resourceschedule-deviceUsageStatistics.md)
   - [@ohos.WorkSchedulerExtensionAbility](js-apis-WorkSchedulerExtensionAbility.md)
 - Security
-  - [@ohos.abilityAccessCtrl](js-apis-abilityAccessCtrl.md)
-  - [@ohos.privacyManager](js-apis-privacyManager.md)
-  - [@ohos.security.cryptoFramework](js-apis-cryptoFramework.md)
-  - [@ohos.security.huks ](js-apis-huks.md)
-  - [@ohos.userIAM.faceAuth](js-apis-useriam-faceauth.md)
-  - [@ohos.userIAM.userAuth ](js-apis-useriam-userauth.md)
-  - [@system.cipher](js-apis-system-cipher.md)
+  - [@ohos.abilityAccessCtrl (Ability Access Control)](js-apis-abilityAccessCtrl.md)
+  - [@ohos.privacyManager (Privacy Management)](js-apis-privacyManager.md)
+  - [@ohos.security.cryptoFramework (Crypto Framework)](js-apis-cryptoFramework.md)
+  - [@ohos.security.huks (HUKS)](js-apis-huks.md)
+  - [@ohos.userIAM.faceAuth (Facial Authentication)](js-apis-useriam-faceauth.md)
+  - [@ohos.userIAM.userAuth (User Authentication)](js-apis-useriam-userauth.md)
+  - [@system.cipher (Cipher Algorithm)](js-apis-system-cipher.md)
 - Data Management
   - [@ohos.data.dataAbility ](js-apis-data-ability.md)
   - [@ohos.data.dataShare](js-apis-data-dataShare.md)
@@ -251,6 +258,8 @@
 - Basic Features
   - [@ohos.accessibility](js-apis-accessibility.md)
   - [@ohos.accessibility.config](js-apis-accessibility-config.md)
+  - [@ohos.accessibility.GesturePat](js-apis-accessibility-GesturePath.md)
+  - [@ohos.accessibility.GesturePoint](js-apis-accessibility-GesturePoint.md)
   - [@ohos.application.AccessibilityExtensionAbility](js-apis-application-accessibilityExtensionAbility.md)
   - [@ohos.faultLogger](js-apis-faultLogger.md)
   - [@ohos.hichecker](js-apis-hichecker.md)
@@ -260,10 +269,11 @@
   - [@ohos.hiTraceChain](js-apis-hitracechain.md)
   - [@ohos.hiTraceMeter](js-apis-hitracemeter.md)
   - [@ohos.hiviewdfx.hiAppEvent](js-apis-hiviewdfx-hiappevent.md)
-  - [@ohos.inputMethod](js-apis-inputmethod.md)
-  - [@ohos.inputMethodEngine](js-apis-inputmethodengine.md)
+  - [@ohos.inputmethod](js-apis-inputmethod.md)
+  - [@ohos.inputmethodengine](js-apis-inputmethodengine.md)
   - [@ohos.inputmethodextensionability](js-apis-inputmethod-extension-ability.md)
   - [@ohos.inputmethodextensioncontext](js-apis-inputmethod-extension-context.md)
+  - [@ohos.inputmethodsubtype](js-apis-inputmethod-subtype.md)
   - [@ohos.pasteboard](js-apis-pasteboard.md)
   - [@ohos.screenLock](js-apis-screen-lock.md)
   - [@ohos.systemTime](js-apis-system-time.md)
@@ -272,12 +282,15 @@
   - [@ohos.web.webview](js-apis-webview.md)
   - [console](js-apis-logs.md)
   - [Timer](js-apis-timer.md)
-  - application/[AccessibilityExtensionContext](js-apis-accessibility-extension-context.md)
+  - application
+    - [AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md)
 - Device Management
   - [@ohos.batteryInfo ](js-apis-battery-info.md)
+  - [@ohos.batteryStatistics](js-apis-batteryStatistics.md)
   - [@ohos.brightness](js-apis-brightness.md)
   - [@ohos.deviceInfo](js-apis-device-info.md)
   - [@ohos.distributedHardware.deviceManager](js-apis-device-manager.md)
+  - [@ohos.geoLocationManager](js-apis-geoLocationManager.md)
   - [@ohos.multimodalInput.inputConsumer](js-apis-inputconsumer.md)
   - [@ohos.multimodalInput.inputDevice](js-apis-inputdevice.md)
   - [@ohos.multimodalInput.inputDeviceCooperate](js-apis-cooperate.md)
@@ -294,6 +307,7 @@
   - [@ohos.sensor](js-apis-sensor.md)
   - [@ohos.settings](js-apis-settings.md)
   - [@ohos.stationary](js-apis-stationary.md)
+  - [@ohos.systemCapability (SystemCapability)](js-apis-system-capability.md)
   - [@ohos.systemParameterV9](js-apis-system-parameterV9.md)
   - [@ohos.thermal](js-apis-thermal.md)
   - [@ohos.update](js-apis-update.md)
@@ -305,7 +319,11 @@
   - [@ohos.account.osAccount](js-apis-osAccount.md)
 - Custom Management
   - [@ohos.configPolicy](js-apis-configPolicy.md)
-  - [@ohos.EnterpriseAdminExtensionAbility](js-apis-EnterpriseAdminExtensionAbility.md)
+  - [@ohos.enterprise.deviceInfo](js-apis-enterprise-deviceInfo.md)
+  - [@ohos.enterpriseAdminExtensionAbility](js-apis-EnterpriseAdminExtensionAbility.md)
+  - [@ohos.enterprise.adminManager](js-apis-enterprise-adminManager.md)
+  - [@ohos.enterprise.dateTimeManager](js-apis-enterprise-dateTimeManager.md)
+
  - Language Base Class Library 
   - [@ohos.buffer](js-apis-buffer.md)
   - [@ohos.convertxml](js-apis-convertxml.md)

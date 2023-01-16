@@ -134,13 +134,13 @@ ability支持单实例和多实例两种启动模式。
       if (typeof dmClass === 'object' && dmClass != null) {
           let list = dmClass.getTrustedDeviceListSync();
           if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
-            console.log("MainAbility onButtonClick getRemoteDeviceId err: list is null");
+            console.log("EntryAbility onButtonClick getRemoteDeviceId err: list is null");
             return;
           }
-          console.log("MainAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
+          console.log("EntryAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
           return list[0].deviceId;
       } else {
-          console.log("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null");
+          console.log("EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null");
       }
   }
 ```

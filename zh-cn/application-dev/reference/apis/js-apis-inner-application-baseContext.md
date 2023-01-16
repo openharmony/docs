@@ -19,10 +19,10 @@ BaseContext抽象类用于表示继承的子类Context是Stage模型还是FA模�
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-class MainAbility extends UIAbility {
+class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        // MainAbility onCreate, isStageMode: true
-        console.log("MainAbility onCreate, isStageMode: " + this.context.stageMode);
+        // EntryAbility onCreate, isStageMode: true
+        console.log("EntryAbility onCreate, isStageMode: " + this.context.stageMode);
     }
 }
 ```

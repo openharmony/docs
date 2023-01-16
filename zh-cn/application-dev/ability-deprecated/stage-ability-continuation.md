@@ -147,7 +147,7 @@
    导入模块
 
    ```javascript
-   import Ability from '@ohos.application.Ability';
+   import UIAbility from '@ohos.app.ability.UIAbility';
    import AbilityConstant from '@ohos.application.AbilityConstant';
    ```
 
@@ -185,14 +185,14 @@
    示例
    
    ```javascript
-    import Ability from '@ohos.application.Ability';
+    import UIAbility from '@ohos.app.ability.UIAbility';
     import distributedObject from '@ohos.data.distributedDataObject';
     
-    export default class MainAbility extends Ability {
+    export default class EntryAbility extends UIAbility {
         storage : LocalStorag;
 
         onCreate(want, launchParam) {
-            Logger.info(`MainAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
+            Logger.info(`EntryAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
             if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
                 // get user data from want params
                 let workInput = want.parameters.work
@@ -207,8 +207,6 @@
    ```
 如果是单实例应用，则同样的代码实现onNewWant接口即可。
 
-
-
 ### 迁移数据
 
 使用分布式对象
@@ -220,12 +218,12 @@
 - 发起端在onContinue()中，将待迁移的数据存入分布式对象中，并调用save接口将数据保存并同步到远端，然后设置好session id，并通过wantParam将session id传到远端设备。
 
   ```javascript
-     import Ability from '@ohos.application.Ability';
+     import UIAbility from '@ohos.app.ability.UIAbility';
      import distributedObject from '@ohos.data.distributedDataObject';
   
      var g_object = distributedObject.createDistributedObject({data:undefined});
   
-     export default class MainAbility extends Ability {
+     export default class EntryAbility extends UIAbility {
          sessionId : string;
   
       onContinue(wantParam : {[key: string]: any}) {
@@ -256,34 +254,33 @@
 - 目标设备在onCreate()中，取出发起端传过来的session id，建立分布式对象并关联该session id，这样就能实现分布式对象的同步。需要注意的是，在调用restoreWindowStage之前，迁移需要的分布式对象必须全部关联完，保证能够获取到正确的数据。
 
   ```javascript
-     import Ability from '@ohos.application.Ability';
-     import distributedObject from '@ohos.data.distributedDataObject';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import distributedObject from '@ohos.data.distributedDataObject';
   
-     var g_object = distributedObject.createDistributedObject({data:undefined});
+  var g_object = distributedObject.createDistributedObject({data:undefined});
   
-     export default class MainAbility extends Ability {
-         storage : LocalStorag;
+  export default class EntryAbility extends UIAbility {
+      storage : LocalStorag;
   
+      onCreate(want, launchParam) {
+          Logger.info(`EntryAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
+          if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+              // get distributed data object session id from want params
+              this.sessionId = want.parameters.session
+              Logger.info(`onCreate for continuation sessionId:  ${this.sessionId}`)
   
-         onCreate(want, launchParam) {
-             Logger.info(`MainAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
-             if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
-                 // get distributed data object session id from want params
-                 this.sessionId = want.parameters.session
-                 Logger.info(`onCreate for continuation sessionId:  ${this.sessionId}`)
+              // in order to fetch from remote, reset g_object.data to undefined first
+              g_object.data = undefined;
+              // set session id, so it will fetch data from remote
+              g_object.setSessionId(this.sessionId);
   
-                // in order to fetch from remote, reset g_object.data to undefined first
-                g_object.data = undefined;
-                // set session id, so it will fetch data from remote
-                g_object.setSessionId(this.sessionId);
+              AppStorage.SetOrCreate<string>('ContinueStudy', g_object.data)
+              this.storage = new LocalStorage();
+              this.context.restoreWindowStage(this.storage);
+          }
   
-                AppStorage.SetOrCreate<string>('ContinueStudy', g_object.data)
-                this.storage = new LocalStorage();
-                this.context.restoreWindowStage(this.storage);
-             }
-             
-         }
-     }
+      }
+  }
   ```
   
    

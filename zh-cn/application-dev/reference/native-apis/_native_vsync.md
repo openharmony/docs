@@ -7,7 +7,7 @@
 @syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 
 
-**自从：**
+**起始版本：**
 
 
 8
@@ -62,7 +62,7 @@ OH_NativeVSync* OH_NativeVSync_Create (const char * name, unsigned int length )
 
 返回一个指向OH_NativeVSync实例的指针
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -86,7 +86,7 @@ void OH_NativeVSync_Destroy (OH_NativeVSync * nativeVsync)
 | -------- | -------- |
 | nativeVsync | 参数是一个指向OH_NativeVSync实例的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -116,6 +116,6 @@ int OH_NativeVSync_RequestFrame (OH_NativeVSync * nativeVsync, OH_NativeVSync_Fr
 
 返回一个由GSError定义的int32_t类型的错误码
 
-**自从：**
+**起始版本：**
 
 8

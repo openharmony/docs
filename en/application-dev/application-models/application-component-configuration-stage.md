@@ -3,8 +3,7 @@
 
 When developing an application, you may need to configure certain tags to identify the application, such as the bundle name and application icon. This topic describes key tags that need to be configured during application development. Icons and labels are usually configured together. There is the application icon, application label, entry icon, and entry label, which correspond to the **icon** and **label** fields in the [app.json5 file](../quick-start/app-configuration-file.md) and [module.json5 file](../quick-start/module-configuration-file.md). The application icon and label are used in **Settings**. For example, they are displayed in the application list in **Settings**. The entry icon is displayed on the device's home screen after the application is installed. The entry icon maps to a [UIAbility](uiability-overview.md) component. Therefore, an application can have multiple entry icons and labels. When you touch one of them, the corresponding UIAbility page is displayed.
 
-
-  **Figure 1** Icons and labels 
+**Figure 1** Icons and labels 
 
 ![application-component-configuration-stage](figures/application-component-configuration-stage.png)
 
@@ -71,4 +70,3 @@ When developing an application, you may need to configure certain tags to identi
 
   The **requestPermission** field in the [module.json5 file](../quick-start/module-configuration-file.md) is used to configure the permission information required by the module to access the protected part of the system or other applications. This field declares the name of the permission to request, the reason for requesting the permission, and the scenario where the permission is used.
 
- <!--no_check--> 

@@ -1,9 +1,8 @@
-# Ethernet Connection Management
+# @ohos.net.ethernet (Ethernet Connection Management)
 
-The Ethernet Connection Management module provides wired network capabilities, which allow users to set the IP address, subnet mask, gateway, and Domain Name System (DNS) server of a wired network.
+The **ethernet** module provides wired network capabilities, which allow users to set the IP address, subnet mask, gateway, and Domain Name System (DNS) server of a wired network.
 
-> **NOTE**
->
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import

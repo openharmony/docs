@@ -232,7 +232,7 @@ The widget configuration file is named **config.json**. Find the **config.json**
          "type": "service",
          "srcLanguage": "ets",
          "formsEnabled": true,
-         "formConfigAbility": "ability://com.example.entry.MainAbility",
+         "formConfigAbility": "ability://com.example.entry.EntryAbility",
          "forms": [{
              "colorMode": "auto",
              "defaultDimension": "2*2",
@@ -434,7 +434,7 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
     "actions": {
       "routerEvent": {
         "action": "router",
-        "abilityName": "com.example.entry.MainAbility",
+        "abilityName": "com.example.entry.EntryAbility",
         "params": {
           "message": "add detail"
         }
@@ -452,8 +452,8 @@ You can set router and message events for components on a widget. The router eve
 
 2. Set the router event.
    - **action**: **router**, which indicates a router event.
-   - **abilityName**: name of the ability to redirect to (PageAbility component in the FA model and UIAbility component in the stage model). For example, the default MainAbility name of the FA model created by DevEco Studio is com.example.entry.MainAbility.
-   - **params**: custom parameters passed to the target ability. Set them as required. The value can be obtained from **parameters** in **want** used for starting the target ability. For example, in the lifecycle function **onCreate** of the main ability in the FA model, **featureAbility.getWant()** can be used to obtain **want** and its **parameters** field.
+   - **abilityName**: name of the ability to redirect to (PageAbility component in the FA model and UIAbility component in the stage model). For example, the default UIAbility name created by DevEco Studio in the FA model is com.example.entry.EntryAbility.
+   - **params**: custom parameters passed to the target ability. Set them as required. The value can be obtained from **parameters** in **want** used for starting the target ability. For example, in the lifecycle function **onCreate** of the EntryAbility in the FA model, **featureAbility.getWant()** can be used to obtain **want** and its **parameters** field.
 
 3. Set the message event.
    - **action**: **message**, which indicates a message event.
@@ -529,7 +529,7 @@ The following is an example:
     "actions": {
       "routerEvent": {
         "action": "router",
-        "abilityName": "com.example.entry.MainAbility",
+        "abilityName": "com.example.entry.EntryAbility",
         "params": {
           "message": "add detail"
         }

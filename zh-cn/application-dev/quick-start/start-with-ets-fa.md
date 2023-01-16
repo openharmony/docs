@@ -223,7 +223,10 @@
            .height('5%')
            // 跳转按钮绑定onClick事件，点击时跳转到第二页
            .onClick(() => {
-             router.pushUrl({ url: 'pages/second' })
+             router.push({ url: 'pages/second' })
+             // 若为API 9工程，则可使用以下接口
+             // router.pushUrl({ url: 'pages/second' })
+
            })
          }
          .width('100%')

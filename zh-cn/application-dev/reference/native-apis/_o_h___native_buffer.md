@@ -7,7 +7,7 @@
 @syscap SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
 
 
-**自从：**
+**起始版本：**
 
 
 9
@@ -72,7 +72,7 @@ OH_NativeBuffer* OH_NativeBuffer_Alloc (const OH_NativeBuffer_Config * config)
 
 创建成功则返回一个指向OH_NativeBuffer结构体实例的指针，否则返回NULL
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -97,7 +97,7 @@ void OH_NativeBuffer_GetConfig (OH_NativeBuffer * buffer, OH_NativeBuffer_Config
 | buffer | 参数是一个指向OH_NativeBuffer实例的指针 |
 | config | 参数是一个指向OH_NativeBuffer_Config的指针，用于接收OH_NativeBuffer的属性 |
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -125,7 +125,7 @@ uint32_t OH_NativeBuffer_GetSeqNum (OH_NativeBuffer * buffer)
 
 返回对应OH_NativeBuffer的唯一序列号
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -154,7 +154,7 @@ int32_t OH_NativeBuffer_Map (OH_NativeBuffer * buffer, void ** virAddr )
 
 返回一个由GSError定义的int32_t类型的错误码
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -182,7 +182,7 @@ int32_t OH_NativeBuffer_Reference (OH_NativeBuffer * buffer)
 
 返回一个由GSError定义的int32_t类型的错误码
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -210,7 +210,7 @@ int32_t OH_NativeBuffer_Unmap (OH_NativeBuffer * buffer)
 
 返回一个由GSError定义的int32_t类型的错误码
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -238,6 +238,6 @@ int32_t OH_NativeBuffer_Unreference (OH_NativeBuffer * buffer)
 
 返回一个由GSError定义的int32_t类型的错误码
 
-**自从：**
+**起始版本：**
 
 9

@@ -1,4 +1,4 @@
-# User Authentication
+#  @ohos.userIAM.userAuth (User Authentication)
 
 The **userIAM.userAuth** module provides user authentication capabilities in identity authentication scenarios, such as device unlocking, payment, and app login.
 

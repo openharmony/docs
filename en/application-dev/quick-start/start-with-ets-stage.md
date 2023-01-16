@@ -38,7 +38,7 @@
   - **src > main > ets > entryability**: entry to your application/service.
   - **src > main > ets > pages**: pages included in your application/service.
   - **src > main > resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files. For details about resource files, see [Resource Categories and Access](resource-categories-and-access.md#resource-categories).
-  - **src > main > module.json5**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file. For details about the configuration file, see [Application Package Structure Configuration File (Stage Model)](stage-structure.md).
+  - **src > main > module.json5**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file. For details, see [module.json5 Configuration File](module-configuration-file.md).
   - **build-profile.json5**: current module information and build configuration options, including **buildOption** and **targets**.
   - **hvigorfile.ts**: module-level build script. You can customize related tasks and code implementation.
 
@@ -216,7 +216,7 @@ You can implement page redirection through the [page router](../reference/apis/j
            .height('5%')
            // Bind the onClick event to the Next button so that clicking the button redirects the user to the second page.
            .onClick(() => {
-             router.push({ url: 'pages/Second' })
+             router.pushUrl({ url: 'pages/Second' })
            })
          }
          .width('100%')

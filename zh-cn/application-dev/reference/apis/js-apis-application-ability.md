@@ -15,7 +15,7 @@ Ability模块提供对Ability生命周期、上下文环境等调用管理的能
 ## 导入模块
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 ```
 
 ## 属性
@@ -47,7 +47,7 @@ Ability创建时回调，执行初始化业务逻辑操作。
 **示例：**
 
   ```ts
-  class myAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
       onCreate(want, param) {
           console.log('onCreate, want:' + want.abilityName);
       }
@@ -389,8 +389,9 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
-  class MyMessageAble{ // 自定义的Sequenceable数据结构
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
+  class MyMessageAble { // 自定义的Sequenceable数据结构
     name:""
     str:""
     num: 1
@@ -413,11 +414,11 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
   };
   var method = 'call_Function'; // 约定的通知消息字符串
   var caller;
-  export default class MainAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
         caller = obj;
@@ -473,7 +474,8 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
 **示例：**
 
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   class MyMessageAble{
     name:""
     str:""
@@ -497,11 +499,11 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
   };
   var method = 'call_Function';
   var caller;
-  export default class MainAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
         caller = obj;
@@ -544,14 +546,17 @@ release(): void;
 
 **示例：**
     
+
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   var caller;
-  export default class MainAbility extends Ability {
+  
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
         caller = obj;
@@ -586,13 +591,15 @@ release(): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   var caller;
-  export default class MainAbility extends Ability {
+  
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
           caller = obj;
@@ -643,7 +650,7 @@ on(method: string, callback: CalleeCallBack): void;
 **示例：**
 
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
       name:""
       str:""
@@ -672,7 +679,7 @@ on(method: string, callback: CalleeCallBack): void;
       pdata.readSequenceable(msg);
       return new MyMessageAble("test1", "Callee test");
   }
-  export default class MainAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');
       try {
@@ -711,9 +718,11 @@ off(method: string): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   var method = 'call_Function';
-  export default class MainAbility extends Ability {
+  
+  export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');
       try {

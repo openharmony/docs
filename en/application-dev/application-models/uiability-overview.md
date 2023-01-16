@@ -37,4 +37,3 @@ To enable an application to properly use a UIAbility component, declare the UIAb
 >
 > For the ability composition, see [Adding an Ability to a Module](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/ohos-adding-ability-0000001218280664-V3).
 
- <!--no_check--> 

@@ -125,9 +125,9 @@ import formInfo from '@ohos.app.form.formInfo';
 
 **系统能力**：SystemCapability.Ability.Form
 
-| 名称        | 说明         |
-| ----------- | ------------ |
-| moduleName   | 选填。仅保留moduleName与提供值相符的卡片信息。未填写时则不通过moduleName进行过滤。 |
+| 名称        | 类型   | 说明         |
+| ----------- | ---- | ------------ |
+| moduleName    | string    | 选填。仅保留moduleName与提供值相符的卡片信息。<br>未填写时则不通过moduleName进行过滤。   |
 
 ## VisibilityType
 

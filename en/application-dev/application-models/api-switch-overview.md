@@ -13,8 +13,8 @@ Due to the differences in the thread model and process model, certain APIs (mark
   import fa from '@ohos.ability.featureAbility';
   let parameter = {
     "want": {
-      bundleName: "ohos.samples.demo",
-      abilityName: "ohos.samples.demo.MainAbility"
+      bundleName: "com.example.myapplication",
+      abilityName: "com.example.myapplication.EntryAbility"
     }
   }
   fa.startAbility(parameter).then((data) => {
@@ -30,8 +30,8 @@ Due to the differences in the thread model and process model, certain APIs (mark
   // context is a member of the ability object and is required for invoking inside a non-ability object.
   // Pass in the Context object.
   let wantInfo = {
-    bundleName: "ohos.samples.demo",
-    abilityName: "ohos.samples.demo.MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   this.context.startAbility(wantInfo).then((data) => {
     console.info('startAbility success.');

@@ -1,4 +1,4 @@
-# Camera Management
+# @ohos.multimedia.camera (Camera Management)
 
 > **NOTE**
 >
@@ -22,7 +22,7 @@ Obtains a **CameraManager** instance. This API uses an asynchronous callback to 
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | [Context](../../ability/context-userguide.md)      | Yes  | Application context.                  |
+| context  | [Context](js-apis-inner-app-context.md)      | Yes  | Application context.                  |
 | callback | AsyncCallback<[CameraManager](#cameramanager)\> | Yes  | Callback used to return the **CameraManager** instance.|
 
 **Example**
@@ -49,7 +49,7 @@ Obtains a **CameraManager** instance. This API uses a promise to return the resu
 
 | Name   | Type   | Mandatory| Description        |
 | ------- | ------- | ---- | ------------ |
-| context | [Context](../../ability/context-userguide.md) | Yes  | Application context.|
+| context | [Context](js-apis-inner-app-context.md) | Yes  | Application context.|
 
 **Return value**
 
@@ -757,7 +757,7 @@ This is a system API.
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | Yes  | Event type. The value is fixed at **'cameraMute'**, indicating the camera mute status change event.|
-| callback | AsyncCallback<boolean> | Yes  | Callback used to return the camera mute status.              |
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the camera mute status.              |
 
 **Example**
 

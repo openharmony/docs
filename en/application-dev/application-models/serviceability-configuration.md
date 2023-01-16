@@ -14,4 +14,3 @@ Similar to a PageAbility, a ServiceAbility is configured in **abilities** under 
 
 For details about the configuration items, see [Internal Structure of module](../quick-start/module-structure.md).
 
- <!--no_check--> 

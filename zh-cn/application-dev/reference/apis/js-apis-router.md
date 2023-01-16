@@ -773,7 +773,7 @@ router.replace({
 });
 ```
 
-  ## router.replace<sup>(deprecated)</sup>
+## router.replace<sup>(deprecated)</sup>
 
 replace(options: RouterOptions, mode: RouterMode): void
 

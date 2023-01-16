@@ -38,11 +38,11 @@ registerAbilityLifecycleCallback(callback: AbilityLifecycleCallback): **number**
 **示例：**
 
 ```ts
-import Ability from "@ohos.application.Ability";
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 var lifecycleId;
 
-export default class MyAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log("MyAbility onCreate")
         let AbilityLifecycleCallback = {
@@ -105,11 +105,11 @@ unregisterAbilityLifecycleCallback(callbackId: **number**,  callback: AsyncCallb
 **示例：**
 
 ```ts
-import Ability from "@ohos.application.Ability";
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 var lifecycleId;
 
-export default class MyAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         console.log("stage applicationContext: " + JSON.stringify(applicationContext));
@@ -143,11 +143,11 @@ registerEnvironmentCallback(callback: EnvironmentCallback): **number**;
 **示例：**
 
 ```ts
-import Ability from "@ohos.application.Ability";
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 var callbackId;
 
-export default class MyAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log("MyAbility onCreate")
         globalThis.applicationContext = this.context.getApplicationContext();
@@ -186,11 +186,11 @@ unregisterEnvironmentCallback(callbackId: **number**,  callback: AsyncCallback<*
 **示例：**
 
 ```ts
-import Ability from "@ohos.application.Ability";
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 var callbackId;
 
-export default class MyAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.unregisterEnvironmentCallback(callbackId, (error, data) => {

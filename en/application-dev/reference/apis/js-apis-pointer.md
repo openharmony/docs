@@ -1,9 +1,8 @@
-# Mouse Pointer
+# @ohos.multimodalInput.pointer (Mouse Pointer)
 
-The mouse pointer module provides APIs related to pointer attribute management.
+The **pointer** module provides APIs related to pointer attribute management.
 
-> **NOTE**
->
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -276,7 +275,7 @@ import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
   win.getProperties((error, properties) => {
-    var windowId = properties.id;
+    let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;
@@ -319,7 +318,7 @@ import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
   win.getProperties((error, properties) => {
-    var windowId = properties.id;
+    let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;
@@ -358,7 +357,7 @@ import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
   win.getProperties((error, properties) => {
-    var windowId = properties.id;
+    let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;
@@ -396,7 +395,7 @@ import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
   win.getProperties((error, properties) => {
-    var windowId = properties.id;
+    let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;

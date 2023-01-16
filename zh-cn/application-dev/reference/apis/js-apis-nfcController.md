@@ -31,6 +31,9 @@ isNfcAvailable(): boolean
 
 查询设备是否有NFC能力。
 
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用canIUse("SystemCapability.Communication.NFC.Core")替代。
+
 **系统能力：** SystemCapability.Communication.NFC.Core
 
 **返回值：**
@@ -46,6 +49,9 @@ openNfc(): boolean
 
 打开NFC开关。
 
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[enableNfc](#controllerenablenfc9)替代。
+
 **需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS
 
 **系统能力：** SystemCapability.Communication.NFC.Core
@@ -56,11 +62,32 @@ openNfc(): boolean
 | -------- | -------- |
 | boolean | true: 打开NFC成功，&nbsp;false: 打开NFC失败。 |
 
+## controller.enableNfc<sup>9+</sup>
+
+enableNfc(): boolean
+
+打开NFC开关。
+
+**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS
+
+**系统能力：** SystemCapability.Communication.NFC.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 3100101 | NFC state is abnormal in service. |
+
 ## controller.closeNfc
 
 closeNfc(): boolean
 
 关闭NFC开关。
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[disableNfc](#controllerdisablenfc9)替代。
 
 **需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -71,6 +98,24 @@ closeNfc(): boolean
 | **类型** | **说明**                                    |
 | -------- | ------------------------------------------- |
 | boolean  | true: 关闭NFC成功，&nbsp;false: 关闭NFC失败。 |
+
+## controller.disableNfc<sup>9+</sup>
+
+disableNfc(): boolean
+
+关闭NFC开关。
+
+**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS
+
+**系统能力：** SystemCapability.Communication.NFC.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 3100101 | NFC state is abnormal in service. |
 
 ## controller.isNfcOpen
 
@@ -150,10 +195,26 @@ if (!controller.isNfcOpen()) {
   console.log("controller openNfc ret: " + ret);
 }
 
+// from api9, use 'enableNfc' to open nfc.
+try {
+    controller.enableNfc();
+    console.log("controller enableNfc success");
+} catch (busiError) {
+    console.log("controller enableNfc busiError: " + busiError);
+}
+
 // close nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS
 if (controller.isNfcOpen()) {
   var ret = controller.closeNfc();
   console.log("controller closeNfc ret: " + ret);
+}
+
+// from api9, use 'disableNfc' to close nfc.
+try {
+    controller.disableNfc();
+    console.log("controller disableNfc success");
+} catch (busiError) {
+    console.log("controller disableNfc busiError: " + busiError);
 }
 
 // unregister callback

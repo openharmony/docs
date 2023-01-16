@@ -1,4 +1,4 @@
-# Privacy Management
+#  @ohos.privacyManager (Privacy Management)
 
 The **privacyManager** module provides APIs for privacy management, such as management of permission usage records.
 

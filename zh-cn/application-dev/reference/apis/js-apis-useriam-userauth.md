@@ -277,7 +277,7 @@ start : () => void
 | -------- | ------- |
 | 201 | Permission verification failed. |
 | 401 | Incorrect parameters. |
-| 12500001 | Execution failed. |
+| 12500001 | Authentication failed. |
 | 12500002 | General operation error. |
 | 12500003 | The operation is canceled. |
 | 12500004 | The operation is time-out. |
@@ -480,7 +480,7 @@ try {
 }
 ```
 
-## ResultCodeV9<sup>9+</sup>
+## UserAuthResultCode<sup>9+</sup>
 
 表示返回码的枚举。
 
@@ -489,7 +489,7 @@ try {
 | 名称                    |   值   | 说明                 |
 | ----------------------- | ------ | -------------------- |
 | SUCCESS                 | 12500000      | 执行成功。           |
-| FAIL                    | 12500001      | 执行失败。           |
+| FAIL                    | 12500001      | 认证失败。           |
 | GENERAL_ERROR           | 12500002      | 操作通用错误。       |
 | CANCELED                | 12500003      | 操作取消。           |
 | TIMEOUT                 | 12500004      | 操作超时。           |
@@ -795,14 +795,14 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 表示返回码的枚举。
 
 > **说明：**
-> 从 API version 9 开始废弃，建议使用[ResultCodeV9](#resultcodev99)代替。
+> 从 API version 9 开始废弃，建议使用[UserAuthResultCode](#userauthresultcode9)代替。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称                    | 值 | 说明                 |
 | ----------------------- | ------ | -------------------- |
 | SUCCESS                 | 0      | 执行成功。           |
-| FAIL                    | 1      | 执行失败。           |
+| FAIL                    | 1      | 认证失败。           |
 | GENERAL_ERROR           | 2      | 操作通用错误。       |
 | CANCELED                | 3      | 操作取消。           |
 | TIMEOUT                 | 4      | 操作超时。           |

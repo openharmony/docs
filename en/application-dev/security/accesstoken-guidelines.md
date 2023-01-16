@@ -13,7 +13,7 @@ This document describes the following operations:
 
 ## Declaring Permissions in the Configuration File
 
-During the development, you need to declare the permissions required by your application one by one in the project configuration file. The application cannot obtain the permissions that are not declared in the configuration file. OpenHarmony provides two application models: FA model and stage model. For more information, see Application Models. The application bundle and configuration file vary with the application model.
+During the development, you need to declare the permissions required by your application one by one in the project configuration file. The application cannot obtain the permissions that are not declared in the configuration file. OpenHarmony provides two application models: FA model and stage model. For more information, see [Application Models](../application-models/application-model-description.md). The application bundle and configuration file vary with the application model.
 
 > **NOTE**<br>The default APL of an application is **normal**. When an application needs the **system_basic** or **system_core** APL, you must declare the permission in the configuration file and the [Access Control List (ACL)](#declaring-permissions-in-the-acl).
 
@@ -119,7 +119,7 @@ For example, if an application needs to access audio files of a user and capture
 If an application needs to access user privacy information or use system abilities, for example, accessing location or calendar information or using the camera to take photos or record videos, it must request the permission from users. A permission verification is performed first to determine whether the current invoker has the corresponding permission. If the application has not obtained that permission, a dialog box will be displayed to request user authorization. The following figure shows an example.
 <img src="figures/permission-read_calendar.png" width="40%;" />
 
-> **NOTE**<br>Each time before an API protected by a permission is accessed, the **requestPermissionsFromUser()** API will be called to request user authorization. After a permission is dynamically granted, the user may revoke the permission. Therefore, the previously granted authorization status cannot be persistent.
+> **NOTE**<br>Each time before an API protected by a permission is accessed, the [**requestPermissionsFromUser()**](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) API will be called to request user authorization. After a permission is dynamically granted, the user may revoke the permission. Therefore, the previously granted authorization status cannot be persistent.
 
 ### Stage Model
 
@@ -127,20 +127,20 @@ Example: Request the permission to read calendar information for an app.
 
 1. Apply for the **ohos.permission.READ_CALENDAR** permission. For details, see [Declaring Permissions in the Configuration File](#declaring-permissions-in-the-configuration-file).
 
-2. Call **requestPermissionsFromUser()** in the **onWindowStageCreate()** callback of the UIAbility to dynamically apply for the permission, or request user authorization on the UI based on service requirements. The return value of **requestPermissionsFromUser()** indicates whether the application has the target permission. If yes, the target API can be called normally.
-  
+2. Call [**requestPermissionsFromUser()**](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) in the **onWindowStageCreate()** callback of the UIAbility to dynamically apply for the permission, or request user authorization on the UI based on service requirements. The return value of [requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) indicates whether the app has the target permission. If yes, the target API can be called normally.
+   
    Request user authorization in UIAbility.
    
    ```typescript
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import Window from '@ohos.window';
+   import window from '@ohos.window';
    import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
    import { Permissions } from '@ohos.abilityAccessCtrl';
    
    export default class EntryAbility extends UIAbility {
        // ...
    
-       onWindowStageCreate(windowStage: Window.WindowStage) {
+       onWindowStageCreate(windowStage: window.WindowStage) {
            // Main window is created, set main page for this ability
            let context = this.context;
            let AtManager = abilityAccessCtrl.createAtManager();
