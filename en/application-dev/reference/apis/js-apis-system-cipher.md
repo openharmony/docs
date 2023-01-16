@@ -1,6 +1,6 @@
-# Encryption Algorithm
+#  @system.cipher (Cipher Algorithm)
 
-> **NOTE**<br>
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -31,7 +31,7 @@ Defines the input parameters of **cipher.rsa()**.
 | Name        | Type                                | Mandatory| Description                                                        |
 | -------------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | action         | string                               | Yes  | Action to perform. The options are as follows:<br>1. **encrypt**: Encrypts data.<br>2. **decrypt**: Decrypts data.|
-| text           | string                               | Yes  | Text to be encrypted or decrypted.<br> The text to be encrypted must be a common text and cannot exceed the length calculated based on the formula (keySize/8 - 66). **keySize** indicates the key length. For example, if the key length is 1024 bytes, the text cannot exceed 62 bytes (1024/8 - 66 = 62). The text to be decrypted must be a binary value encoded in Base64. The default format is used for Base64 encoding.|
+| text           | string                               | Yes  | Text to be encrypted or decrypted.<br> The text to be encrypted must be a common text and cannot exceed the length calculated based on the formula (keySize/8 - 66). **keySize** indicates the key length. <br>For example, if the key length is 1024 bytes, the text cannot exceed 62 bytes (1024/8 - 66 = 62). The text to be decrypted must be a binary value encoded in Base64. The default format is used for Base64 encoding. |
 | key            | string                               | Yes  | RSA key. It is a public key in encryption and a private key in decryption.     |
 | transformation | string                               | No  | RSA padding. The default value is **RSA/None/OAEPWithSHA256AndMGF1Padding**.|
 | success        | (data: [CipherResponse](#cipherresponse)) => void       | No  | Called when data is encrypted or decrypted successfully.                                    |

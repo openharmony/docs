@@ -1,4 +1,4 @@
-# Ability Access Control
+# @ohos.abilityAccessCtrl (Ability Access Control）
 
 The **AbilityAccessCtrl** module provides APIs for application permission management, including authentication, authorization, and revocation.
 
