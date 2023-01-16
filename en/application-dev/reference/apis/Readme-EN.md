@@ -325,7 +325,7 @@
   - [@ohos.enterprise.dateTimeManager](js-apis-enterprise-dateTimeManager.md)
 
  - Language Base Class Library 
-  - [@ohos.buffer](js-apis-buffer.md)
+  - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml](js-apis-convertxml.md)
   - [@ohos.process](js-apis-process.md)
   - [@ohos.uri](js-apis-uri.md)
