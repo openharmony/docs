@@ -186,7 +186,7 @@ Allows an application to publish sticky common events.
 
 ## ohos.permission.SYSTEM_FLOAT_WINDOW
 
-Allows an application to be displayed in a floating window on top of other apps.
+Allows an application to be displayed in a floating window on top of other applications.
 
 **Permission level**: system_basic
 
@@ -406,7 +406,7 @@ Allows an application to call the API for restoring factory settings.
 
 ## ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
-Allows an application to grant sensitive permissions to other apps.
+Allows an application to grant sensitive permissions to other applications.
 
 **Permission level**: system_core
 
@@ -416,7 +416,7 @@ Allows an application to grant sensitive permissions to other apps.
 
 ## ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
-Allows an application to revoke sensitive permissions granted to other apps.
+Allows an application to revoke sensitive permissions granted to other applications.
 
 **Permission level**: system_core
 
@@ -426,7 +426,7 @@ Allows an application to revoke sensitive permissions granted to other apps.
 
 ## ohos.permission.GET_SENSITIVE_PERMISSIONS
 
-Allows an application to obtain the sensitive permissions that have been granted to other apps.
+Allows an application to obtain the sensitive permissions that have been granted to other applications.
 
 **Permission level**: system_core
 
@@ -436,7 +436,7 @@ Allows an application to obtain the sensitive permissions that have been granted
 
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
-Allows an application to set the attributes of apps of other users.
+Allows an application to set the attributes of applications  of other users.
 
 **Permission level**: system_core
 
@@ -506,7 +506,7 @@ Allows an application to install and uninstall other applications.
 
 ## ohos.permission.MANAGE_SHORTCUTS
 
-Allows an application to query and start shortcuts of other apps.
+Allows an application to query and start shortcuts of other applications.
 
 **Permission level**: system_core
 
@@ -546,7 +546,7 @@ Allows an application to start Feature abilities in the background.
 
 ## ohos.permission.BUNDLE_ACTIVE_INFO
 
-Allows an application to obtain how long other apps have been running in the foreground or background.
+Allows an application to obtain how long other applications  have been running in the foreground or background.
 
 **Permission level**: system_basic
 
@@ -606,7 +606,7 @@ Allows an application to use agent-powered reminders.
 
 ## ohos.permission.CONTROL_TASK_SYNC_ANIMATOR
 
-Allows apps to use sync task animations.
+Allows applications  to use sync task animations.
 
 **Permission level**: system_core
 
@@ -616,7 +616,7 @@ Allows apps to use sync task animations.
 
 ## ohos.permission.INPUT_MONITORING
 
-Allows an application to listen for input events. Only the system signature apps can apply for this permission.
+Allows an application to listen for input events. Only the system signed applications  can apply for this permission.
 
 **Permission level**: system_core
 
@@ -1216,7 +1216,7 @@ Allows an application to read the health data of the user.
 
 ## ohos.permission.GET_DEFAULT_APPLICATION
 
-Allows an application to query default apps.
+Allows an application to query default applications.
 
 **Permission level**: system_core
 
@@ -1226,7 +1226,7 @@ Allows an application to query default apps.
 
 ## ohos.permission.SET_DEFAULT_APPLICATION
 
-Allows an application to set and reset default apps.
+Allows an application to set and reset default applications.
 
 **Permission level**: system_core
 
