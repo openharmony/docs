@@ -714,3 +714,41 @@ Fail to notify agent
 
 **处理步骤**
 检查client是否异常
+
+## 错误码适配指导
+文件管理子系统API支持异常处理。
+同步接口异常处理示例代码:
+```js
+import fs from '@ohos.file.fs'
+
+try {
+    let file = fs.openSync(path, fs.OpenMode.READ_ONLY);
+} catch (err) {
+    console.error("openSync errCode:" + err.code + ", errMessage:" + err.message);
+}
+```
+异步接口promise方法异常处理示例代码:
+```js
+import fs from '@ohos.file.fs'
+
+try {
+    let file = await fs.open(path, fs.OpenMode.READ_ONLY);
+} catch (err) {
+    console.error("open promise errCode:" + err.code + ", errMessage:" + err.message);
+}
+```
+
+异步接口callback方法异常处理示例代码:
+```js
+import fs from '@ohos.file.fs'
+
+try {
+    fs.open(path, fs.OpenMode.READ_ONLY, function(e, file){ //异步线程的错误（如系统调用等）在回调中获取
+        if (e) {
+            console.error("open in async errCode:" + e.code + ", errMessage:" + e.message);
+        }
+    });
+} catch (err) { //主线程的错误（如非法参数等）通过try catch获取
+    console.error("open callback errCode:" + err.code + ", errMessage:" + err.message);
+}
+```
