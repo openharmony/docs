@@ -1,10 +1,13 @@
-# @ohos.application.ServiceExtensionAbility
+# @ohos.application.ServiceExtensionAbility (ServiceExtensionAbility)
 
 The **ServiceExtensionAbility** module provides APIs for Service Extension abilities.
 
 > **NOTE**
-> 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+>
+> The APIs of this module are supported since API version 9 and are deprecated in versions later than API version 9. You are advised to use [@ohos.app.ability.ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility.md) instead. 
+>
+> Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+>
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
@@ -23,9 +26,9 @@ None.
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name| Type| Readable| Writable| Description| 
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)  | Yes| No| Service Extension context, which is inherited from **ExtensionContext**.| 
+| context | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)  | Yes| No| Service Extension context, which is inherited from **ExtensionContext**.|
 
 
 ## ServiceExtensionAbility.onCreate
@@ -40,9 +43,9 @@ Called when a Service Extension ability is created to initialize the service log
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | want |  [Want](js-apis-application-want.md) | Yes| Want information related to this Service Extension ability, including the ability name and bundle name.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want |  [Want](js-apis-application-want.md) | Yes| Want information related to this Service Extension ability, including the ability name and bundle name.|
 
 **Example**
 
@@ -88,10 +91,10 @@ Called after **onCreate** is invoked when a Service Extension ability is started
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | want |  [Want](js-apis-application-want.md) | Yes| Want information related to this Service Extension ability, including the ability name and bundle name.| 
-  | startId | number | Yes| Number of ability start times. The initial value is **1**, and the value is automatically incremented for each ability started.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want |  [Want](js-apis-application-want.md) | Yes| Want information related to this Service Extension ability, including the ability name and bundle name.|
+| startId | number | Yes| Number of ability start times. The initial value is **1**, and the value is automatically incremented for each ability started.|
 
 **Example**
 
@@ -116,15 +119,15 @@ Called after **onCreate** is invoked when a Service Extension ability is started
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | want |  [Want](js-apis-application-want.md)| Yes| Want information related to this Service Extension ability, including the ability name and bundle name.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want |  [Want](js-apis-application-want.md)| Yes| Want information related to this Service Extension ability, including the ability name and bundle name.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | rpc.RemoteObject | A **RemoteObject** object used for communication with the client.| 
+| Type| Description|
+| -------- | -------- |
+| rpc.RemoteObject | A **RemoteObject** object used for communication with the client.|
 
 **Example**
 
@@ -158,9 +161,9 @@ Called when this Service Extension ability is disconnected.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | want |[Want](js-apis-application-want.md)| Yes| Want information related to this Service Extension ability, including the ability name and bundle name.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want |[Want](js-apis-application-want.md)| Yes| Want information related to this Service Extension ability, including the ability name and bundle name.|
 
 **Example**
 
@@ -184,9 +187,9 @@ Called when this Service Extension ability is reconnected.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | want |[Want](js-apis-application-want.md)| Yes| Want information related to this Service Extension ability, including the ability name and bundle name.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want |[Want](js-apis-application-want.md)| Yes| Want information related to this Service Extension ability, including the ability name and bundle name.|
 
 **Example**
 
@@ -210,9 +213,9 @@ Called when the configuration of this Service Extension ability is updated.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-application-configuration.md) | Yes| New configuration.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| config | [Configuration](js-apis-application-configuration.md) | Yes| New configuration.|
 
 **Example**
     
@@ -236,9 +239,9 @@ Dumps the client information.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | params | Array\<string> | Yes| Parameters in the form of a command.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| params | Array\<string> | Yes| Parameters in the form of a command.|
 
 **Example**
     

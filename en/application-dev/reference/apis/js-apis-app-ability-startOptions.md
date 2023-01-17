@@ -1,6 +1,6 @@
-# @ohos.app.ability.StartOptions
+# @ohos.app.ability.StartOptions (StartOptions)
 
-The **StartOptions** module implements ability startup options.
+**StartOptions** is used as an input parameter of [startAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1) to specify the window mode of an ability.
 
 > **NOTE**
 >
@@ -21,4 +21,4 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | [windowMode](js-apis-application-abilityConstant.md#abilityconstantwindowmode) | number | No| Window mode.|
-| displayId | number | No| Display ID.|
+| displayId | number | No| Display ID. The default value is **0**, indicating the current display.|

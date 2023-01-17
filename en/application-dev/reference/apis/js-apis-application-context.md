@@ -1,4 +1,4 @@
-# @ohos.application.context
+# @ohos.application.context (Context)
 
 The **Context** module provides all level-2 module APIs for developers to export.
 

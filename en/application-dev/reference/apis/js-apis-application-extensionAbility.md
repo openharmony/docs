@@ -1,6 +1,6 @@
-# @ohos.application.ExtensionAbility
+# @ohos.application.ExtensionAbility (ExtensionAbility)
 
-The **ExtensionAbility** module manages the Extension ability lifecycle and context, such as creating and destroying an Extension ability, and dumping client information.
+The **ExtensionAbility** module manages the ExtensionAbility lifecycle and context, such as creating and destroying an ExtensionAbility, and dumping client information.
 
 > **NOTE**
 > 

@@ -1,4 +1,4 @@
-# @ohos.app.ability.AbilityStage
+# @ohos.app.ability.AbilityStage (AbilityStage)
 
 **AbilityStage** is a runtime class for HAP files.
 
@@ -25,13 +25,15 @@ Called when the application is created.
 
 **Example**
     
-  ```ts
-  class MyAbilityStage extends AbilityStage {
-      onCreate() {
-          console.log("MyAbilityStage.onCreate is called")
-      }
-  }
-  ```
+```ts
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
+class MyAbilityStage extends AbilityStage {
+    onCreate() {
+        console.log("MyAbilityStage.onCreate is called");
+    }
+}
+```
 
 
 ## AbilityStage.onAcceptWant
@@ -44,9 +46,9 @@ Called when a specified ability is started.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, such as the ability name and bundle name.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability, such as the ability name and bundle name.|
 
 **Return value**
 
@@ -56,14 +58,16 @@ Called when a specified ability is started.
 
 **Example**
     
-  ```ts
-  class MyAbilityStage extends AbilityStage {
-      onAcceptWant(want) {
-          console.log("MyAbilityStage.onAcceptWant called");
-          return "com.example.test";
-      }
-  }
-  ```
+```ts
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
+class MyAbilityStage extends AbilityStage {
+    onAcceptWant(want) {
+        console.log("MyAbilityStage.onAcceptWant called");
+        return "com.example.test";
+    }
+}
+```
 
 
 ## AbilityStage.onConfigurationUpdate
@@ -82,13 +86,15 @@ Called when the global configuration is updated.
 
 **Example**
     
-  ```ts
-  class MyAbilityStage extends AbilityStage {
-      onConfigurationUpdate(config) {
-          console.log('onConfigurationUpdate, language:' + config.language);
-      }
-  }
-  ```
+```ts
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
+class MyAbilityStage extends AbilityStage {
+    onConfigurationUpdate(config) {
+        console.log('onConfigurationUpdate, language:' + config.language);
+    }
+}
+```
 
 ## AbilityStage.onMemoryLevel
 
@@ -106,22 +112,24 @@ Called when the system has decided to adjust the memory level. For example, this
 
 **Example**
     
-  ```ts
-  class MyAbilityStage extends AbilityStage {
+```ts
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
+class MyAbilityStage extends AbilityStage {
     onMemoryLevel(level) {
         console.log('onMemoryLevel, level:' + JSON.stringify(level));
     } 
-  }
-  ```
+}
+```
 
 ## AbilityStage.context
 
 context: AbilityStageContext;
 
-Describes the configuration information about the context.
+Defines the context of **AbilityStage**.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name     | Type                       | Description                                                        |
 | ----------- | --------------------------- | ------------------------------------------------------------ |
-| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | Called when initialization is performed during ability startup.|
+| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | The context is obtained in the callback invoked when initialization is performed during ability startup.|

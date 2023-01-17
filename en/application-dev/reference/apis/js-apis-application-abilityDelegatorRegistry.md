@@ -1,10 +1,10 @@
-# @ohos.application.abilityDelegatorRegistry
+# @ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)
 
 The **AbilityDelegatorRegistry** module provides APIs for storing the global registers of the registered **AbilityDelegator** and **AbilityDelegatorArgs** objects. You can use the APIs to obtain the **AbilityDelegator** and **AbilityDelegatorArgs** objects of an application.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module are supported since API version 8 and deprecated since API version 9. You are advised to use [@ohos.app.ability.abilityDelegatorRegistry](js-apis-app-ability-abilityDelegatorRegistry.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
