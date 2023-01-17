@@ -20,7 +20,9 @@
 
 ## 约束与限制
 
-开发者在进行录制功能开发前，需要先对所开发的应用配置麦克风权限（ohos.permission.MICROPHONE）和相机权限（ohos.permission.CAMERA），权限配置相关内容可参考：[访问控制权限申请指导](../security/accesstoken-guidelines.md)
+开发者在进行录制功能开发前，需要先对所开发的应用配置相应权限。涉及音频录制，需要获取麦克风权限（ohos.permission.MICROPHONE），权限配置相关内容可参考：[访问控制权限申请指导](../security/accesstoken-guidelines.md)。
+
+使用相机进行视频录制还需要与相机模块配合，接口使用以及权限获取详见[相机管理](../reference/apis/js-apis-camera.md)。
 
 ## 开发指导
 
