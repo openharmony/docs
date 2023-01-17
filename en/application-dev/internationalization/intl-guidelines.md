@@ -44,9 +44,9 @@ Use [Locale](../reference/apis/js-apis-intl.md#locale) APIs to maximize or minim
 
    
    ```js
-   var locale = "zh-CN";
-   var options = {caseFirst: "false", calendar: "chinese", collation: "pinyin"};
-   var localeObj = new intl.Locale(locale, options);
+   let locale = "zh-CN";
+   let options = {caseFirst: "false", calendar: "chinese", collation: "pinyin"};
+   let localeObj = new intl.Locale(locale, options);
    ```
 
 2. Obtain the string representing a **Locale** object.
@@ -54,7 +54,7 @@ Use [Locale](../reference/apis/js-apis-intl.md#locale) APIs to maximize or minim
    Call the **toString** method to obtain the string representing a **Locale** object, which includes the language, region, and other options.
    
    ```js
-   var localeStr = localeObj.toString();
+   let localeStr = localeObj.toString();
    ```
 
 3. Maximize locale information.
@@ -62,7 +62,7 @@ Use [Locale](../reference/apis/js-apis-intl.md#locale) APIs to maximize or minim
    Call the **maximize** method to maximize locale information; that is, supplement the missing script and region information.
    
    ```js
-   var maximizedLocale = localeObj.maximize();
+   let maximizedLocale = localeObj.maximize();
    ```
 
 4. Minimize locale information.
@@ -70,7 +70,7 @@ Use [Locale](../reference/apis/js-apis-intl.md#locale) APIs to maximize or minim
    Call the **minimize** method to minimize locale information; that is, delete the unnecessary script and region information.
    
    ```js
-   var minimizedLocale = localeObj.minimize();
+   let minimizedLocale = localeObj.minimize();
    ```
 
 
@@ -98,14 +98,14 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md#datetimeformat) APIs to f
 
    
    ```js
-   var dateTimeFormat = new intl.DateTimeFormat();
+   let dateTimeFormat = new intl.DateTimeFormat();
    ```
 
    Alternatively, use your own locale and formatting parameters to create a **DateTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions).
    
    ```js
-   var options = {dateStyle: "full", timeStyle: "full"};
-   var dateTimeFormat = new intl.DateTimeFormat("zh-CN", options);
+   let options = {dateStyle: "full", timeStyle: "full"};
+   let dateTimeFormat = new intl.DateTimeFormat("zh-CN", options);
    ```
 
 2. Format the date and time.
@@ -113,8 +113,8 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md#datetimeformat) APIs to f
    Call the **format** method to format the date and time in the **DateTimeFormat** object. This method returns a string representing the formatting result.
    
    ```js
-   var date = new Date();
-   var formatResult = dateTimeFormat.format(date);
+   let date = new Date();
+   let formatResult = dateTimeFormat.format(date);
    ```
 
 3. Format a period.
@@ -122,9 +122,9 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md#datetimeformat) APIs to f
    Call the **formatRange** method to format the period in the **DateTimeFormat** object. This method requires input of two **Date** objects, which respectively indicate the start date and end date of a period. This method returns a string representing the formatting result.
    
    ```js
-   var startDate = new Date(2021, 11, 17, 3, 24, 0);
-   var endDate = new Date(2021, 11, 18, 3, 24, 0);
-   var datefmt = new Intl.DateTimeFormat("en-GB");
+   let startDate = new Date(2021, 11, 17, 3, 24, 0);
+   let endDate = new Date(2021, 11, 18, 3, 24, 0);
+   let datefmt = new Intl.DateTimeFormat("en-GB");
    datefmt.formatRange(startDate, endDate);
    ```
 
@@ -133,7 +133,7 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md#datetimeformat) APIs to f
    Call the **resolvedOptions** method to obtain attributes of the **DateTimeFormat** object. This method will return an array that contains all attributes and values of the object.
    
    ```js
-   var options = dateTimeFormat.resolvedOptions();
+   let options = dateTimeFormat.resolvedOptions();
    ```
 
 
@@ -160,14 +160,14 @@ Use [NumberFormat](../reference/apis/js-apis-intl.md#numberformat) APIs to forma
 
    
    ```js
-   var numberFormat = new intl.NumberFormat();
+   let numberFormat = new intl.NumberFormat();
    ```
 
    Alternatively, use your own locale and formatting parameters to create a **NumberFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [NumberOptions](../reference/apis/js-apis-intl.md#numberoptions).
    
    ```js
-   var options = {compactDisplay: "short", notation: "compact"};
-   var numberFormat = new intl.NumberFormat("zh-CN", options);
+   let options = {compactDisplay: "short", notation: "compact"};
+   let numberFormat = new intl.NumberFormat("zh-CN", options);
    ```
 
 2. Format a number.
@@ -175,8 +175,8 @@ Use [NumberFormat](../reference/apis/js-apis-intl.md#numberformat) APIs to forma
    Call the **format** method to format a number. A string is returned as the formatting result.
    
    ```js
-   var number = 1234.5678
-   var formatResult = numberFormat.format(number);
+   let number = 1234.5678
+   let formatResult = numberFormat.format(number);
    ```
 
 3. Obtain attributes of the **NumberFormat** object.
@@ -184,7 +184,7 @@ Use [NumberFormat](../reference/apis/js-apis-intl.md#numberformat) APIs to forma
    Call the **resolvedOptions** method to obtain attributes of the **NumberFormat** object. This method will return an array that contains all attributes and values of the object.
    
    ```js
-   var options = numberFormat.resolvedOptions();
+   let options = numberFormat.resolvedOptions();
    ```
 
 
@@ -211,13 +211,13 @@ Use [Collator](../reference/apis/js-apis-intl.md#collator8) APIs to sort strings
 
    
    ```js
-   var collator = new intl.Collator();
+   let collator = new intl.Collator();
    ```
 
    Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions9).
    
    ```js
-   var collator= new intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"});
+   let collator= new intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"});
    ```
 
 2. Compare two strings.
@@ -225,9 +225,9 @@ Use [Collator](../reference/apis/js-apis-intl.md#collator8) APIs to sort strings
    Call the **compare** method to compare two input strings. This method returns a value as the comparison result. The return value **-1** indicates that the first string is shorter than the second string, the return value **1** indicates that the first string is longer than the second string, and the return value **0** indicates that the two strings are of equal lengths. This allows you to sort character strings based on the comparison result.
    
    ```js
-   var str1 = "first string";
-   var str2 = "second string";
-   var compareResult = collator.compare(str1, str2);
+   let str1 = "first string";
+   let str2 = "second string";
+   let compareResult = collator.compare(str1, str2);
    ```
 
 3. Obtain attributes of the **Collator** object.
@@ -235,7 +235,7 @@ Use [Collator](../reference/apis/js-apis-intl.md#collator8) APIs to sort strings
    Call the **resolvedOptions** method to obtain attributes of the **Collator** object. This method will return an array that contains all attributes and values of the object.
    
    ```js
-   var options = collator.resolvedOptions();
+   let options = collator.resolvedOptions();
    ```
 
 
@@ -261,13 +261,13 @@ Use [PluralRules](../reference/apis/js-apis-intl.md#pluralrules8) APIs to determ
 
    
    ```js
-   var pluralRules = new intl.PluralRules();
+   let pluralRules = new intl.PluralRules();
    ```
 
    Alternatively, use your own locale and formatting parameters to create a **PluralRules** object. For a full list of parameters, see [PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions9).
    
    ```js
-   var pluralRules = new intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
+   let pluralRules = new intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
    ```
 
 2. Determine the singular-plural type.
@@ -275,8 +275,8 @@ Use [PluralRules](../reference/apis/js-apis-intl.md#pluralrules8) APIs to determ
    Call the **select** method to determine the singular-plural type of an input number. This method will return a string representing the singular-plural type, which can be any of the following: **zero**, **one**, **two**, **few**, **many**, and **other**.
    
    ```js
-   var number = 1234.5678
-   var categoryResult = plurals.select(number);
+   let number = 1234.5678
+   let categoryResult = plurals.select(number);
    ```
 
 
@@ -304,13 +304,13 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8) 
 
    
    ```js
-   var relativeTimeFormat = new intl.RelativeTimeFormat();
+   let relativeTimeFormat = new intl.RelativeTimeFormat();
    ```
 
    Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions9).
    
    ```js
-   var relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
+   let relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    ```
 
 2. Format the relative time.
@@ -318,9 +318,9 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8) 
    Call the **format** method to format the relative time. This method receives a numeric value representing the time length and a string-form unit, like **year**, **quarter**, **month**, **week**, **day**, **hour**, **minute**, and **second**. This method returns a string representing the formatting result.
    
    ```js
-   var number = 2;
-   var unit = "year"
-   var formatResult = relativeTimeFormat.format(number, unit);
+   let number = 2;
+   let unit = "year"
+   let formatResult = relativeTimeFormat.format(number, unit);
    ```
 
 3. Obtain each part of the relative time format.
@@ -328,9 +328,9 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8) 
    Upon obtaining each part of the relative time format, customize the relative time formatting result.
    
    ```js
-   var number = 2;
-   var unit = "year"
-   var formatResult = relativeTimeFormat.formatToParts(number, unit);
+   let number = 2;
+   let unit = "year"
+   let formatResult = relativeTimeFormat.formatToParts(number, unit);
    ```
 
 4. Obtain attributes of the **RelativeTimeFormat** object.
@@ -338,7 +338,7 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8) 
    Call the **resolvedOptions** method to obtain attributes of the **RelativeTimeFormat** object. This method will return an array that contains all attributes and values of the object. For a full list of attributes, see [RelativeTimeFormatResolvedOptions](../reference/apis/js-apis-intl.md#relativetimeformatresolvedoptions8).
    
    ```js
-   var options = numberFormat.resolvedOptions();
+   let options = numberFormat.resolvedOptions();
    ```
 
 ## Samples

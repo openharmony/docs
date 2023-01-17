@@ -28,7 +28,7 @@ You can use APIs provided in the following table to obtain the system language a
 
 
     ```js
-   var language = i18n.getSystemLanguage();
+   let language = i18n.getSystemLanguage();
    ```
 
 2. Obtain the system region.
@@ -36,7 +36,7 @@ You can use APIs provided in the following table to obtain the system language a
     Call the **getSystemRegion** method to obtain the system region.
      
     ```js
-   var region = i18n.getSystemRegion();
+   let region = i18n.getSystemRegion();
    ```
 
 3. Obtain the system locale.
@@ -44,7 +44,7 @@ You can use APIs provided in the following table to obtain the system language a
     Call the **getSystemLocale** method to obtain the system locale.
     
     ```js
-   var locale = i18n.getSystemLocale();
+   let locale = i18n.getSystemLocale();
    ```
 
 4. Check whether the locale's language is RTL.
@@ -53,7 +53,7 @@ You can use APIs provided in the following table to obtain the system language a
 
 
     ```js
-   var rtl = i18n.isRTL("zh-CN");
+   let rtl = i18n.isRTL("zh-CN");
    ```
 
 5. Check whether the system uses a 24-hour clock.
@@ -61,7 +61,7 @@ You can use APIs provided in the following table to obtain the system language a
     Call the **is24HourClock** method to check whether the system uses a 24-hour clock.
      
     ```js
-   var hourClock = i18n.is24HourClock();
+   let hourClock = i18n.is24HourClock();
    ```
 
 6. Obtain the localized display of a language.
@@ -69,10 +69,10 @@ You can use APIs provided in the following table to obtain the system language a
     Call the **getDisplayLanguage** method to obtain the localized display of a language. **language** indicates the language to be localized, **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
     
     ```js
-   var language = "en";
-   var locale = "zh-CN";
-   var sentenceCase = false;
-   var localizedLanguage = i18n.getDisplayLanguage(language, locale, sentenceCase);
+   let language = "en";
+   let locale = "zh-CN";
+   let sentenceCase = false;
+   let localizedLanguage = i18n.getDisplayLanguage(language, locale, sentenceCase);
    ```
 
 7. Obtain the localized display of a country.
@@ -80,10 +80,10 @@ You can use APIs provided in the following table to obtain the system language a
     Call the **getDisplayCountry** method to obtain the localized display of a country name. **country** indicates the country code (a two-letter code in compliance with ISO-3166, for example, CN), **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
     
     ```js
-   var country = "US";
-   var locale = "zh-CN";
-   var sentenceCase = false;
-   var localizedCountry = i18n.getDisplayCountry(country, locale, sentenceCase);
+   let country = "US";
+   let locale = "zh-CN";
+   let sentenceCase = false;
+   let localizedCountry = i18n.getDisplayCountry(country, locale, sentenceCase);
    ```
 
 
@@ -118,7 +118,7 @@ You can use APIs provided in the following table to obtain the system language a
 
 
     ```js
-   var calendar = i18n.getCalendar("zh-CN", "gregory");
+   let calendar = i18n.getCalendar("zh-CN", "gregory");
    ```
 
 2. Set the time for the **Calendar** object.
@@ -126,9 +126,9 @@ You can use APIs provided in the following table to obtain the system language a
     Call the **setTime** method to set the time of the **Calendar** object. This method receives two types of parameters. One is a **Date** object, and the other is a value indicating the number of milliseconds elapsed since January 1, 1970, 00:00:00 GMT.
      
     ```js
-   var date1 = new Date();
+   let date1 = new Date();
    calendar.setTime(date1);
-   var date2 = 1000;
+   let date2 = 1000;
    calendar.setTime(date2);
    ```
 
@@ -147,7 +147,7 @@ You can use APIs provided in the following table to obtain the system language a
 
     ```js
    calendar.setTimeZone("Asia/Shanghai");
-   var timezone = calendar.getTimeZone();
+   let timezone = calendar.getTimeZone();
    ```
 
 5. Set and obtain the first day of a week for the **Calendar** object.
@@ -157,7 +157,7 @@ You can use APIs provided in the following table to obtain the system language a
    
     ```js
    calendar.setFirstDayOfWeek(1);
-   var firstDayOfWeek = calendar.getFirstDayOfWeek();
+   let firstDayOfWeek = calendar.getFirstDayOfWeek();
    ```
 
 6. Set and obtain the minimum count of days in the first week for the **Calendar** object.
@@ -166,7 +166,7 @@ You can use APIs provided in the following table to obtain the system language a
     
     ```js
    calendar.setMinimalDaysInFirstWeek(3);
-   var minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek();
+   let minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek();
    ```
 
 7. Obtain the localized display of the **Calendar** object.
@@ -175,7 +175,7 @@ You can use APIs provided in the following table to obtain the system language a
 
 
     ```js
-   var localizedName = calendar.getDisplayName("zh-CN");
+   let localizedName = calendar.getDisplayName("zh-CN");
    ```
 
 8. Check whether a date is a weekend.
@@ -184,8 +184,8 @@ You can use APIs provided in the following table to obtain the system language a
 
    
     ```js
-   var date = new Date();
-   var weekend = calendar.isWeekend(date);
+   let date = new Date();
+   let weekend = calendar.isWeekend(date);
    ```
 
 
@@ -211,21 +211,21 @@ You can use APIs provided in the following table to obtain the system language a
 
 
     ```js
-   var phoneNumberFormat = new i18n.PhoneNumberFormat("CN", {type: "E164"});
+   let phoneNumberFormat = new i18n.PhoneNumberFormat("CN", {type: "E164"});
    ```
 
 2. Check whether the phone number format is correct.
     Call the **isValidNumber** method to check whether the format of the input phone number is correct.
      
     ```js
-   var validNumber = phoneNumberFormat.isValidNumber("15812341234");
+   let validNumber = phoneNumberFormat.isValidNumber("15812341234");
    ```
 
 3. Format a phone number.
     Call the **format** method of **PhoneNumberFormat** to format the input phone number.
     
     ```js
-   var formattedNumber = phoneNumberFormat.format("15812341234");
+   let formattedNumber = phoneNumberFormat.format("15812341234");
    ```
 
 
@@ -248,11 +248,11 @@ The **unitConvert** API is provided to help you implement measurement conversion
 
    
     ```js
-   var fromUnit = {unit: "cup", measureSystem: "US"};
-   var toUnit = {unit: "liter", measureSystem: "SI"};
-   var number = 1000;
-   var locale = "en-US";
-   var style = "long";
+   let fromUnit = {unit: "cup", measureSystem: "US"};
+   let toUnit = {unit: "liter", measureSystem: "SI"};
+   let number = 1000;
+   let locale = "en-US";
+   let style = "long";
    i18n.Util.unitConvert(fromUtil, toUtil, number, locale, style);
     ```
 
@@ -280,7 +280,7 @@ The **unitConvert** API is provided to help you implement measurement conversion
 
 
     ```js
-   var indexUtil = i18n.getInstance("zh-CN");
+   let indexUtil = i18n.getInstance("zh-CN");
    ```
 
 2. Obtain the index list.
@@ -288,7 +288,7 @@ The **unitConvert** API is provided to help you implement measurement conversion
     Call the **getIndexList** method to obtain the alphabet index list of the current locale.
      
     ```js
-   var indexList = indexUtil.getIndexList();
+   let indexList = indexUtil.getIndexList();
    ```
 
 3. Add an index.
@@ -304,7 +304,7 @@ The **unitConvert** API is provided to help you implement measurement conversion
     Call the **getIndex** method to obtain the alphabet index of a string.
     
     ```js
-   var text = "access index";
+   let text = "access index";
    indexUtil.getIndex(text);
    ```
 
@@ -338,8 +338,8 @@ When a text is displayed in more than one line, [BreakIterator8](../reference/ap
 
 
     ```js
-   var locale = "en-US"
-   var breakIterator = i18n.getLineInstance(locale);
+   let locale = "en-US"
+   let breakIterator = i18n.getLineInstance(locale);
    ```
 
 2. Set and access the text that requires line breaking.
@@ -348,9 +348,9 @@ When a text is displayed in more than one line, [BreakIterator8](../reference/ap
 
    
     ```js
-   var text = "Apple is my favorite fruit";
+   let text = "Apple is my favorite fruit";
    breakIterator.setLineBreakText(text);
-   var breakText = breakIterator.getLineBreakText();
+   let breakText = breakIterator.getLineBreakText();
    ```
 
 3. Obtain the current position of the **BreakIterator** object.
@@ -359,7 +359,7 @@ When a text is displayed in more than one line, [BreakIterator8](../reference/ap
 
 
     ```js
-   var pos = breakIterator.current();
+   let pos = breakIterator.current();
    ```
 
 4. Set the position of a **BreakIterator** object.
@@ -368,15 +368,15 @@ When a text is displayed in more than one line, [BreakIterator8](../reference/ap
 
    
     ```js
-   var firstPos = breakIterator.first(); // Set a BreakIterator object to the first break point, that is, the start position of the text.
-   var lastPos = breakIterator.last(); // Set a BreakIterator object to the last break point, that is, the position after the text end.
+   let firstPos = breakIterator.first(); // Set a BreakIterator object to the first break point, that is, the start position of the text.
+   let lastPos = breakIterator.last(); // Set a BreakIterator object to the last break point, that is, the position after the text end.
    // Move a BreakIterator object forward or backward by a certain number of break points.
    // If a positive number is input, move backward. If a negative number is input, move forward. If no value is input, move one position backward.
    // When the object is moved out of the text length range, -1 is returned.
-   var nextPos = breakIterator.next(-2);
-   var previousPos = breakIterator.previous(); // Move a BreakIterator object to the previous break point. When the text length is out of the range, -1 is returned.
+   let nextPos = breakIterator.next(-2);
+   let previousPos = breakIterator.previous(); // Move a BreakIterator object to the previous break point. When the text length is out of the range, -1 is returned.
    // Move a BreakIterator object to the break point following the position specified by offset. If the object is moved out of the text length range, -1 is returned.
-   var followingPos = breakIterator.following(10); 
+   let followingPos = breakIterator.following(10); 
    ```
 
 5. Determine whether a position is a break point.
@@ -385,7 +385,7 @@ When a text is displayed in more than one line, [BreakIterator8](../reference/ap
 
 
     ```js
-   var isboundary = breakIterator.isBoundary(5);
+   let isboundary = breakIterator.isBoundary(5);
    ```
 
    ```
