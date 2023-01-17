@@ -384,11 +384,15 @@ promise.then(data => {
 });
 ```
 
-## radio.isNrSupported<sup>7+</sup>
+## radio.isNrSupported<sup>(deprecated)</sup>
 
 isNrSupported\(\): boolean
 
 判断当前设备是否支持5G\(NR\)。
+
+> **说明：**
+>
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[isNRSupported](#isnrsupported9)替代。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -405,9 +409,64 @@ let result = radio.isNrSupported();
 console.log("Result: "+ result);
 ```
 
-## radio.isNrSupported<sup>8+</sup>
+## radio.isNrSupported<sup>(deprecated)</sup>
 
 isNrSupported\(slotId: number\): boolean
+
+判断当前设备是否支持5G\(NR\)。
+
+> **说明：**
+>
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[isNRSupported](#isnrsupported9-1)替代。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型               | 说明                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| boolean | - true：支持<br/>- false：不支持 |
+
+**示例：**
+
+```js
+let slotId = 0;
+let result = radio.isNrSupported(slotId);
+console.log("Result: "+ result);
+```
+
+
+## radio.isNRSupported<sup>9+</sup>
+
+isNRSupported\(\): boolean
+
+判断当前设备是否支持5G\(NR\)。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**返回值：**
+
+| 类型    | 说明                             |
+| ------- | -------------------------------- |
+| boolean | - true：支持<br/>- false：不支持 |
+
+**示例：**
+
+```js
+let result = radio.isNRSupported();
+console.log("Result: "+ result);
+```
+
+
+## radio.isNRSupported<sup>9+</sup>
+
+isNRSupported\(slotId: number\): boolean
 
 判断当前设备是否支持5G\(NR\)。
 
@@ -429,7 +488,7 @@ isNrSupported\(slotId: number\): boolean
 
 ```js
 let slotId = 0;
-let result = radio.isNrSupported(slotId);
+let result = radio.isNRSupported(slotId);
 console.log("Result: "+ result);
 ```
 
