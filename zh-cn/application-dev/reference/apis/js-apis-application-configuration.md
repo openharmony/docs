@@ -26,7 +26,6 @@ import Configuration from '@ohos.application.Configuration'
 具体字段描述参考ohos.application.Configuration.d.ts文件
 
 **示例：**
-    
   ```ts
 import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';

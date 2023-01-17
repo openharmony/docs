@@ -354,9 +354,9 @@ struct ImageExample3 {
 ###  渲染沙箱路径图片
 
 ```ts
-import fileio from '@ohos.fileio'
-import fs from '@ohos.file.fs'
-import context from '@ohos.application.context'
+import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
+import context from '@ohos.app.ability.context';
 
 @Entry
 @Component

@@ -63,8 +63,8 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 ## 编写单元测试脚本
 
 ```TS
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 export default function abilityTest() {

@@ -50,11 +50,10 @@ OpenHarmony提供了FA模型与Stage模型两种[应用模型](../application-mo
 
  **Stage模型：**
 
-| 类型   | UI开发范式   | 说明                                       |
-| ---- | -------- | ---------------------------------------- |
-| 应用   | 类web开发范式 | 当前不支持                                    |
-|      | 声明式开发范式  | UI开发语言：ArkTS <br>业务入口：应用模型基于ohos.application.Ability/ExtensionAbility等派生 <br>业务逻辑语言：ts |
-| 服务卡片 | 类web开发范式 | UI开发语言：卡片显示使用hml+css+json(action) <br>业务入口：从FormExtensionAbility派生 <br>业务逻辑语言：ts |
-|      | 声明式开发范式  | 当前不支持                                    |
-
+| 类型     | UI开发范式     | 说明                                                         |
+| -------- | -------------- | ------------------------------------------------------------ |
+| 应用     | 类web开发范式  | 当前不支持                                                   |
+|          | 声明式开发范式 | UI开发语言：ArkTS <br>业务入口：应用模型基于ohos.app.ability.UIAbility/ExtensionAbility等派生 <br>业务逻辑语言：ts |
+| 服务卡片 | 类web开发范式  | UI开发语言：卡片显示使用hml+css+json(action) <br>业务入口：从FormExtensionAbility派生 <br>业务逻辑语言：ts |
+|          | 声明式开发范式 | 当前不支持                                                   |
 

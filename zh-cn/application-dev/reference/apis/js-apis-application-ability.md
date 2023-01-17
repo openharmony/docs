@@ -136,7 +136,7 @@ Ability生命周期回调，在销毁时回调，执行资源清理等操作。
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
-    
+
   ```ts
   export default class EntryAbility extends UIAbility {
       onDestroy() {
@@ -155,7 +155,7 @@ Ability生命周期回调，当应用从后台转到前台时触发。
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
-    
+
   ```ts
   export default class EntryAbility extends UIAbility {
       onForeground() {
@@ -174,7 +174,7 @@ Ability生命周期回调，当应用从前台转到后台时触发。
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
-    
+
   ```ts
   export default class EntryAbility extends UIAbility {
       onBackground() {
@@ -205,9 +205,10 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
   | AbilityConstant.OnContinueResult | 继续的结果。 | 
 
 **示例：**
-    
+
   ```ts
-  import AbilityConstant from "@ohos.application.AbilityConstant"
+  import AbilityConstant from "@ohos.app.ability.AbilityConstant";
+  
   export default class EntryAbility extends UIAbility {
       onContinue(wantParams) {
           console.log('onContinue');
@@ -234,7 +235,7 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 | launchParams | AbilityConstant.LaunchParam | 是 | Ability启动的原因、上次异常退出的原因信息。 |
 
 **示例：**
-    
+
   ```ts
   export default class EntryAbility extends UIAbility {
       onNewWant(want, launchParams) {
@@ -259,7 +260,7 @@ onConfigurationUpdated(config: Configuration): void;
   | config | [Configuration](js-apis-application-configuration.md) | 是 | 发生全局配置变更时触发回调，当前全局配置包括系统语言、深浅色模式。 | 
 
 **示例：**
-    
+
   ```ts
   export default class EntryAbility extends UIAbility {
       onConfigurationUpdated(config) {
@@ -283,7 +284,7 @@ dump(params: Array\<string>): Array\<string>;
   | params | Array\<string> | 是 | 表示命令形式的参数。| 
 
 **示例：**
-    
+
   ```ts
   export default class EntryAbility extends UIAbility {
       dump(params) {
@@ -308,7 +309,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
   | level | [AbilityConstant.MemoryLevel](js-apis-application-abilityConstant.md#abilityconstantmemorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。| 
 
 **示例：**
-    
+
   ```ts
   export default class EntryAbility extends UIAbility {
     onMemoryLevel(level) {
@@ -341,7 +342,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any})
 **示例：**
 
   ```ts
-import AbilityConstant from '@ohos.application.AbilityConstant';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class EntryAbility extends UIAbility {
     onSaveState(reason, wantParam) {
@@ -351,8 +352,6 @@ export default class EntryAbility extends UIAbility {
     }
 }
   ```
-
-
 
 ## Caller
 
@@ -390,7 +389,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 | 16000050 | Internal Error. |
 
 **示例：**
-    
+
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   
@@ -548,7 +547,6 @@ release(): void;
 | 16000050 | Internal Error. |
 
 **示例：**
-    
 
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -592,7 +590,7 @@ release(): void;
   | callback | OnReleaseCallBack | 是 | 返回onRelease回调结果。 | 
 
 **示例：**
-    
+
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   
@@ -719,7 +717,6 @@ off(method: string): void;
 
 
 **示例：**
-    
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   

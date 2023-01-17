@@ -94,7 +94,7 @@ launchType字段配置为specified时，系统会根据AbilityStage的onAcceptWa
   
 ```typescript
 // MyAbilityStage.ts
-import AbilityStage from "@ohos.application.AbilityStage"
+import AbilityStage from "@ohos.app.ability.AbilityStage"
 import deviceInfo from'@ohos.deviceInfo'
 
 export default class MyAbilityStage extends AbilityStage {

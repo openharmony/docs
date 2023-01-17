@@ -87,9 +87,9 @@ export default class MyAbilityStage extends AbilityStage {
 #### 导包
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager'
-import appRecovery from '@ohos.app.ability.appRecovery'
-import AbilityConstant from '@ohos.app.ability.AbilityConstant'
+import errorManager from '@ohos.app.ability.errorManager';
+import appRecovery from '@ohos.app.ability.appRecovery';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 ```
 
 #### 主动触发保存和恢复

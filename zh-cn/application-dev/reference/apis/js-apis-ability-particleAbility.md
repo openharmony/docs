@@ -224,7 +224,7 @@ startBackgroundRunning(id: number, request: NotificationRequest, callback: Async
 ```ts
 import notification from '@ohos.notification';
 import particleAbility from '@ohos.ability.particleAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(err, data) {
     if (err) {
@@ -293,7 +293,7 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 ```ts
 import notification from '@ohos.notification';
 import particleAbility from '@ohos.ability.particleAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 let wantAgentInfo = {
     wants: [
