@@ -1,4 +1,4 @@
-# @system.app
+# @system.app (Application Context)
 
 > **NOTE**
 > - The APIs of this module are no longer maintained since API version 7. You are advised to use the new APIs.

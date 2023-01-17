@@ -219,8 +219,8 @@ Queries the application usage duration statistics based on the specified start t
 
 | Name     | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| begin    | number                                   | Yes   | Start time.                                  |
-| end      | number                                   | Yes   | End time.                                  |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
+| end      | number                                   | Yes   | End time, in milliseconds.                                  |
 | callback | AsyncCallback&lt;[BundleStatsMap](#bundlestatsmap)&gt; | Yes   | Callback used to return the application usage duration statistics.|
 
 **Error codes**
@@ -274,8 +274,8 @@ Queries the application usage duration statistics based on the specified start t
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -333,8 +333,8 @@ Queries the application usage duration statistics in the specified time frame at
 | Name       | Type                                      | Mandatory  | Description                                      |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | byInterval | [IntervalType](#intervaltype)            | Yes   | Type of information to be queried.                                   |
-| begin      | number                                   | Yes   | Start time.                                   |
-| end        | number                                   | Yes   | End time.                                   |
+| begin      | number                                   | Yes   | Start time, in milliseconds.                                   |
+| end        | number                                   | Yes   | End time, in milliseconds.                                   |
 | callback   | AsyncCallback&lt;Array&lt;[BundleStatsInfo](#bundlestatsinfo)&gt;&gt; | Yes   | Callback used to return the application usage duration statistics.|
 
 **Error codes**
@@ -387,8 +387,8 @@ Queries the application usage duration statistics in the specified time frame at
 | Name       | Type                           | Mandatory  | Description   |
 | ---------- | ----------------------------- | ---- | ----- |
 | byInterval | [IntervalType](#intervaltype) | Yes   | Type of information to be queried.|
-| begin      | number                        | Yes   | Start time.|
-| end        | number                        | Yes   | End time.|
+| begin      | number                        | Yes   | Start time, in milliseconds.|
+| end        | number                        | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -443,8 +443,8 @@ Queries events of all applications based on the specified start time and end tim
 
 | Name     | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| begin    | number                                   | Yes   | Start time.                                  |
-| end      | number                                   | Yes   | End time.                                  |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
+| end      | number                                   | Yes   | End time, in milliseconds.                                  |
 | callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Yes   | Callback used to return the events obtained.|
 
 **Error codes**
@@ -496,8 +496,8 @@ Queries events of all applications based on the specified start time and end tim
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -548,8 +548,8 @@ Queries events of this application based on the specified start time and end tim
 
 | Name     | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| begin    | number                                   | Yes   | Start time.                                  |
-| end      | number                                   | Yes   | End time.                                  |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
+| end      | number                                   | Yes   | End time, in milliseconds.                                  |
 | callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Yes   | Callback used to return the events obtained.|
 
 **Error codes**
@@ -597,8 +597,8 @@ Queries events of this application based on the specified start time and end tim
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -1276,8 +1276,8 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and scre
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -1329,8 +1329,8 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| begin    | number                                   | Yes   | Start time.                                   |
-| end      | number                                   | Yes   | End time.                                   |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                   |
+| end      | number                                   | Yes   | End time, in milliseconds.                                   |
 | callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the result.  |
 
 **Error codes**
@@ -1379,8 +1379,8 @@ Queries the number of notifications from all applications based on the specified
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -1432,8 +1432,8 @@ Queries the number of notifications from all applications based on the specified
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| begin    | number                                   | Yes   | Start time.                                   |
-| end      | number                                   | Yes   | End time.                                   |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                   |
+| end      | number                                   | Yes   | End time, in milliseconds.                                   |
 | callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the result.  |
 
 **Error codes**
@@ -1476,7 +1476,7 @@ Provides the information about the FA usage.
 | Name                 | Type                                      | Mandatory  | Description                           |
 | -------------------- | ---------------------------------------- | ---- | ----------------------------- |
 | deviceId             | string                                   | No   | ID of the device to which the FA belongs.                |
-| bundleName           | string                                   | Yes   | Name of the application bundle to which the FA belongs.                    |
+| bundleName           | string                                   | Yes   | Name of the bundle to which the FA belongs.            |
 | moduleName           | string                                   | Yes   | Name of the module to which the FA belongs.                 |
 | abilityName          | string                                   | No   | **MainAbility** name of the FA.             |
 | appLabelId           | number                                   | No   | Application label ID of the FA.                |

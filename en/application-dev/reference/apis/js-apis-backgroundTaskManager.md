@@ -159,12 +159,12 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 
 **Parameters**
 
-| Name      | Type                                | Mandatory  | Description                                      |
-| --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
-| bgMode    | [BackgroundMode](#backgroundmode8) | Yes   | Background mode requested.                             |
-| wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                |
-| callback  | AsyncCallback&lt;void&gt;          | Yes   | Callback used to return the result.                  |
+| Name   | Type                                         | Mandatory| Description                                                        |
+| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context   | Context                                       | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| bgMode    | [BackgroundMode](#backgroundmode8)            | Yes  | Background mode requested.                                      |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes  | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.            |
+| callback  | AsyncCallback&lt;void&gt;                     | Yes  | Callback used to return the result.                        |
 
 **Example**
 
@@ -187,7 +187,7 @@ let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -205,7 +205,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 Stage model:
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import wantAgent from '@ohos.wantAgent';
 
@@ -217,13 +217,13 @@ function callback(err, data) {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let wantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
-                    abilityName: "com.example.myapplication.MainAbility"
+                    abilityName: "EntryAbility"
                 }
             ],
             operationType: wantAgent.OperationType.START_ABILITY,
@@ -251,11 +251,11 @@ Requests a continuous task from the system. This API uses a promise to return th
 
 **Parameters**
 
-| Name      | Type                                | Mandatory  | Description                                      |
-| --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
-| bgMode    | [BackgroundMode](#backgroundmode8) | Yes   | Background mode requested.                             |
-| wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                 |
+| Name   | Type                                         | Mandatory| Description                                                        |
+| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context   | Context                                       | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| bgMode    | [BackgroundMode](#backgroundmode8)            | Yes  | Background mode requested.                                      |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes  | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.              |
 
 **Return value**
 
@@ -276,7 +276,7 @@ let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -297,17 +297,17 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 Stage model:
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import wantAgent from '@ohos.wantAgent';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let wantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
-                    abilityName: "com.example.myapplication.MainAbility"
+                    abilityName: "EntryAbility"
                 }
             ],
             operationType: wantAgent.OperationType.START_ABILITY,
@@ -365,7 +365,7 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callbac
 Stage model:
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 function callback(err, data) {
@@ -376,7 +376,7 @@ function callback(err, data) {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         backgroundTaskManager.stopBackgroundRunning(this.context, callback);
     }
@@ -422,10 +422,10 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 Stage model:
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
             console.info("Operation stopBackgroundRunning succeeded");

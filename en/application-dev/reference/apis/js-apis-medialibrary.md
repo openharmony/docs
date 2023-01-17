@@ -202,7 +202,7 @@ Subscribes to the media library changes. This API uses an asynchronous callback 
 
 | Name     | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| type     | 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange'               | Yes   | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
+| type     | 'deviceChange'&#124;<br>'albumChange'&#124;<br>'imageChange'&#124;<br>'audioChange'&#124;<br>'videoChange'&#124;<br>'fileChange'&#124;<br>'remoteFileChange'               | Yes   | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
 | callback | Callback&lt;void&gt; | Yes   | Void callback.                                   |
 
 **Example**
@@ -224,7 +224,7 @@ Unsubscribes from the media library changes. This API uses an asynchronous callb
 
 | Name     | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| type     | 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange'               | Yes   | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
+| type     | 'deviceChange'&#124;<br>'albumChange'&#124;<br>'imageChange'&#124;<br>'audioChange'&#124;<br>'videoChange'&#124;<br>'fileChange'&#124;<br>'remoteFileChange'               | Yes   | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
 | callback | Callback&lt;void&gt; | No   | Void callback.                                   |
 
 **Example**
