@@ -35,7 +35,7 @@ import uri from '@ohos.uri'
 
 标准uri定义由以下三个部分组成
 [scheme:]scheme-specific-part[#fragment]
-- Scheme: 协议名，根据需要填写。例如http、https、ftp、datashare、dataability等。
+- scheme: 协议名，根据需要填写。例如http、https、ftp、datashare、dataability等。
 - scheme-specific-part: URI的特定解码方案特定部分，由[//][authority][path][?query]组成，根据需要填写。
     - authority: URI的解码权限组件部分。由[userinfo@]host[:port]组成，根据需要填写。
         - userinfo: 用户信息，根据需要填写。
