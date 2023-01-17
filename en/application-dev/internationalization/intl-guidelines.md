@@ -240,7 +240,7 @@ Users in different regions have different requirements for string sorting. [Coll
    let collator = new Intl.Collator();
    ```
 
-     Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions9).
+     Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions8).
      The **sensitivity** parameter is used to specify the levels of differences that will be used for string comparison. The value **base** indicates that only characters are compared, but not the accent and capitalization. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **accent** indicates that the accent is considered, but not the capitalization. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **case** indicates that the capitalization is considered, but the accent. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **variant** indicates that the accent and capitalization are considered. For example, 'a' != 'b', 'a' == '', 'a'=='A'.
    
    ```js
@@ -301,7 +301,7 @@ According to grammars in certain languages, the singular or plural form of a nou
    let pluralRules = new Intl.PluralRules();
    ```
 
-     Alternatively, use your own locale and formatting parameters to create a **PluralRules** object. For a full list of parameters, see [PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions9).
+     Alternatively, use your own locale and formatting parameters to create a **PluralRules** object. For a full list of parameters, see [PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions8).
    
    ```js
    let pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
@@ -349,7 +349,7 @@ According to grammars in certain languages, the singular or plural form of a nou
    let relativeTimeFormat = new Intl.RelativeTimeFormat();
    ```
 
-     Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions9).
+     Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions8).
    
    ```js
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
