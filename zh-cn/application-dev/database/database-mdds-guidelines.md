@@ -68,25 +68,25 @@
     grantPermission();
    
     // Stage模型
-    import Ability from '@ohos.application.Ability';
-   
+    import AbilityStage from '@ohos.application.Ability';
+  
     let context = null;
-   
-    function grantPermission() {
-    class MainAbility extends Ability {
-        onWindowStageCreate(windowStage) {
+  
+    class MainAbility extends AbilityStage {
+      onWindowStageCreate(windowStage) {
         let context = this.context;
-        }
+      }
     }
-   
-    let permissions = ['ohos.permission.DISTRIBUTED_DATASYNC'];
-    context.requestPermissionsFromUser(permissions).then((data) => {
+  
+    function grantPermission() {
+      let permissions = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+      context.requestPermissionsFromUser(permissions).then((data) => {
         console.log('success: ${data}');
-    }).catch((error) => {
+      }).catch((error) => {
         console.log('failed: ${error}');
-    });
+      });
     }
-   
+  
     grantPermission();
     ```
 
