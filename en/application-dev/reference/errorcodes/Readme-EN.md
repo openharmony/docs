@@ -12,6 +12,7 @@
   - [Event Error Codes](errorcode-CommonEventService.md)
   - [DistributedNotificationService Error Codes](errorcode-DistributedNotificationService.md)
 - UI Page
+  - [Animator Error Codes](errorcode-animator.md)
   - [promptAction Error Codes](errorcode-promptAction.md)
   - [Router Error Codes](errorcode-router.md)
 - Graphics
@@ -27,7 +28,6 @@
   - [Resource Manager Error Codes](errorcode-resource-manager.md)
 - Resource Scheduling
   - [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md)
-  - [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md)
   - [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md)
   - [workScheduler Error Codes](errorcode-workScheduler.md)
 - Security
@@ -55,7 +55,6 @@
   - [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md)
   - [Input Method Framework Error Codes](errorcode-inputmethod-framework.md)
   - [Pasteboard Error Codes](errorcode-pasteboard.md)
-  - [Screen Lock Management Error Codes](errorcode-screenlock.md)
   - [Webview Error Codes](errorcode-webview.md)
 - Account Management
   - [Account Error Codes](errorcode-account.md)
@@ -73,6 +72,8 @@
   - [Vibrator Error Codes](errorcode-vibrator.md)
   - [System Parameter Error Codes](errorcode-system-parameterV9.md)
   - [USB Error Codes](errorcode-usb.md)
+  - [Update Error Codes](errorcode-update.md)
+  - [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md)
 - Customization Management
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
 - Language Base Class Library
