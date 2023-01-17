@@ -8,14 +8,11 @@ The **AbilityDelegator** module provides APIs for managing **AbilityMonitor** in
 
 ## Usage
 
-The ability delegator can be obtained by calling **getAbilityDelegator** in **AbilityDelegatorRegistry**.
+An **AbilityDelegator** object is obtained by calling [getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator) in **AbilityDelegatorRegistry**.
 ```ts
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 
-var abilityDelegator;
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 ```
 
 ## AbilityDelegator
@@ -1044,7 +1041,7 @@ abilityDelegator.waitAbilityStageMonitor(monitor, (err : any, data : any) => {
     console.info("waitAbilityStageMonitor callback");
 });
 ```
-  
+
 ### waitAbilityStageMonitor<sup>9+</sup>
 
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise\<AbilityStage>;

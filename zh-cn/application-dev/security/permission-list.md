@@ -924,6 +924,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.ENTERPRISE_RESET_DEVICE
+
+允许设备管理员恢复设备出厂设置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.NFC_TAG
 
 允许应用读取Tag卡片。
@@ -1603,3 +1613,13 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
+允许应用调用锁屏服务的系统API。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE

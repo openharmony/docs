@@ -1,4 +1,4 @@
-# @ohos.display
+# @ohos.display (Display)
 
 The **Display** module provides APIs for managing displays, such as obtaining information about the default display, obtaining information about all displays, and listening for the addition and removal of displays.
 
@@ -189,7 +189,7 @@ Checks whether there is a visible privacy window on a display. The privacy windo
 
 | Type                            | Description                                                                   |
 | -------------------------------- |-----------------------------------------------------------------------|
-|boolean | Whether there is a visible privacy window on the display. The value **true** means that there is a visible privacy window on the display, and **false** means the opposite. |
+|boolean | Whether there is a visible privacy window on the display. The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.|
 
 **Error codes**
 

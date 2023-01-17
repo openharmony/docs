@@ -1,9 +1,9 @@
-# url系统JS API变更Changelog
+# 公共基础类库子系统JS API变更Changelog
 
 OpenHarmony 3.2.10.1(Mr)版本相较于OpenHarmony 3.2.beta4版本，url子系统的API变更如下
 
-## cl.url.1.URLParams类接口变更
-url子系统URLParams类构造函数存在变更：
+## cl.commonlibrary.1.URLParams类接口变更
+公共基础类库子系统url模块URLParams类构造函数存在变更：
 
 constructor(init?: string[][] | Record<string, string> | string | URLSearchParams) 改为 constructor(init?: string[][] | Record<string, string> | string | URLParams);参数类型为原来的URLSearchParams类改为URLParams类。
 
@@ -37,8 +37,8 @@ try {
     console.error(`Fail to ceate URLParams.codeis${err.code},message is ${err.message}`);
 }
 ```
-## cl.url.2.URL类属性变更url子系统URLParams类构造函数存在变更：
-url子系统URL类属性存在变更：
+## cl.commonlibrary.2.URL类属性变更url子系统URLParams类构造函数存在变更：
+公共基础类库子系统url模块URL类属性存在变更：
 
 废弃searchParams: URLSearchParams属性，新增params: URLParams属性
 

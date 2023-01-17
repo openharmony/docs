@@ -1,4 +1,4 @@
-# @ohos.app.ability.wantAgent
+# @ohos.app.ability.wantAgent (WantAgent)
 
 The **app.ability.WantAgent** module provides APIs for creating and comparing **WantAgent** objects, and obtaining the user ID and bundle name of a **WantAgent** object. You are advised to use this module, since it will replace the [@ohos.wantAgent](js-apis-wantAgent.md) module in the near future.
 
