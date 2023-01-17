@@ -112,7 +112,7 @@ You can also implement redirection to the target application using a **want**, w
           "action": "router",
           "want": {
             "bundleName": "com.example.myapplication",
-            "abilityName": "com.example.entry.MainAbility"
+            "abilityName": "EntryAbility"
           }
         },
         "routerEventName2": { 

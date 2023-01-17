@@ -17,7 +17,7 @@ Before using the **AccessibilityExtensionContext** module, you must define a chi
 ```ts
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
 let axContext;
-class MainAbility extends AccessibilityExtensionAbility {
+class EntryAbility extends AccessibilityExtensionAbility {
     onConnect(): void {
         console.log('AxExtensionAbility onConnect');
         axContext = this.context;
