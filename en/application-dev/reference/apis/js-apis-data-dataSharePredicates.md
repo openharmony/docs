@@ -35,7 +35,7 @@ Currently, only the relational database (RDB) and key-value database (KVDB, sche
 | Name| Type                                               | Mandatory| Description                  |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
 | field  | string                                              | Yes  | Column name in the database table.    |
-| value  | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | Yes  | Value to match.|
+| value  | [ValueType](js-apis-data-valuesBucket.md#valuetype) | Yes  | Value to match.|
 
 **Return value**
 
@@ -65,7 +65,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 | Name| Type                                               | Mandatory| Description                  |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
 | field  | string                                              | Yes  | Column name in the database table.    |
-| value  | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | Yes  | Value to match.|
+| value  | [ValueType](js-apis-data-valuesBucket.md#valuetype) | Yes  | Value to match.|
 
 **Return value**
 
@@ -439,8 +439,8 @@ Currently, only the RDB supports this **DataSharePredicates** object.
 | Name| Type                                               | Mandatory| Description                    |
 | ------ | --------------------------------------------------- | ---- | ------------------------ |
 | field  | string                                              | Yes  | Column name in the database table.      |
-| low    | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | Yes  | The lowest value of the range.|
-| high   | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | Yes  | The highest value of the range.|
+| low    | [ValueType](js-apis-data-valuesBucket.md#valuetype) | Yes  | The lowest value of the range.|
+| high   | [ValueType](js-apis-data-valuesBucket.md#valuetype) | Yes  | The highest value of the range.|
 
 **Return value**
 
@@ -470,8 +470,8 @@ Currently, only the RDB supports this **DataSharePredicates** object.
 | Name| Type                                               | Mandatory| Description                    |
 | ------ | --------------------------------------------------- | ---- | ------------------------ |
 | field  | string                                              | Yes  | Column name in the database table.      |
-| low    | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | Yes  | The lowest value of the range.|
-| high   | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | Yes  | The highest value of the range.|
+| low    | [ValueType](js-apis-data-valuesBucket.md#valuetype) | Yes  | The lowest value of the range.|
+| high   | [ValueType](js-apis-data-valuesBucket.md#valuetype) | Yes  | The highest value of the range.|
 
 **Return value**
 
@@ -501,7 +501,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 | Name | Type     | Mandatory| Description                  |
 | ------- | --------- | ---- | ---------------------- |
 | field   | string    | Yes  | Column name in the database table.    |
-| value | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | Yes  | Value to match.|
+| value | [ValueType](js-apis-data-valuesBucket.md#valuetype) | Yes  | Value to match.|
 
 **Return value**
 
@@ -531,7 +531,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 | Name| Type                                               | Mandatory| Description                  |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
 | field  | string                                              | Yes  | Column name in the database table.    |
-| value  | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | Yes  | Value to match.|
+| value  | [ValueType](js-apis-data-valuesBucket.md#valuetype) | Yes  | Value to match.|
 
 **Return value**
 
@@ -561,7 +561,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 | Name | Type     | Mandatory| Description                  |
 | ------- | --------- | ---- | ---------------------- |
 | field   | string    | Yes  | Column name in the database table.    |
-| value | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | Yes  | Value to match.|
+| value | [ValueType](js-apis-data-valuesBucket.md#valuetype) | Yes  | Value to match.|
 
 **Return value**
 
@@ -591,7 +591,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 | Name | Type     | Mandatory| Description                  |
 | ------- | --------- | ---- | ---------------------- |
 | field   | string    | Yes  | Column name in the database table.    |
-| value | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | Yes  | Value to match.|
+| value | [ValueType](js-apis-data-valuesBucket.md#valuetype) | Yes  | Value to match.|
 
 **Return value**
 
@@ -790,7 +790,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 | Name | Type            | Mandatory| Description                                   |
 | ------- | ---------------- | ---- | --------------------------------------- |
 | field   | string           | Yes| Column name in the database table.                     |
-| value | Array&lt;[ValueType](js-apis-data-ValuesBucket.md#valuetype)&gt; | Yes  | Array of the values to match.|
+| value | Array&lt;[ValueType](js-apis-data-valuesBucket.md#valuetype)&gt; | Yes  | Array of the values to match.|
 
 **Return value**
 
@@ -820,7 +820,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 | Name | Type            | Mandatory| Description                                   |
 | ------- | ---------------- | ---- | --------------------------------------- |
 | field   | string           | Yes  | Column name in the database table.                     |
-| value | Array&lt;[ValueType](js-apis-data-ValuesBucket.md#valuetype)&gt; | Yes  | Array of the values to match.|
+| value | Array&lt;[ValueType](js-apis-data-valuesBucket.md#valuetype)&gt; | Yes  | Array of the values to match.|
 
 **Return value**
 

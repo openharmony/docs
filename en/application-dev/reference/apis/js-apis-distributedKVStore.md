@@ -2395,7 +2395,7 @@ Writes data to this single KV store. This API uses an asynchronous callback to r
 
 | Name  | Type                                                    | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| value    | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | Yes  | Data to write.|
+| value    | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to write.|
 | callback | AsyncCallback&lt;void&gt;                                     | Yes  | Callback invoked to return the result.        |
 
 **Error codes**
@@ -2447,7 +2447,7 @@ Write data to this KV store. This API uses a promise to return the result.
 
 | Name| Type                                                    | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | Yes  | Data to write. |
+| value  | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to write. |
 
 **Return value**
 

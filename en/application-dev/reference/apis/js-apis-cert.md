@@ -1861,7 +1861,7 @@ Provides APIs for certificate chain validator operations.
 validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
 Validates the X.509 certificate chain. This API uses an asynchronous callback to return the result.
-The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](./../security/cert-overview.md#certificate-specifications).
+The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](../../security/cert-overview.md#certificate-specifications).
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -1903,7 +1903,7 @@ validator.validate(certChainData, function (error, data) {
 validate(certChain : CertChainData) : Promise\<void>
 
 Validates the X.509 certificate chain. This API uses a promise to return the result.
-The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](./../security/cert-overview.md#certificate-specifications).
+The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](../../security/cert-overview.md#certificate-specifications).
 
 **System capability**: SystemCapability.Security.Cert
 
