@@ -1,5 +1,5 @@
 # Crypto Framework Overview
-The crypto framework shields the implementation differences of third-party cryptographic algorithm libraries and implements encryption and decryption, signing and signature verification, message authentication code (MAC), hash, and secure random number. You can use the APIs provided by this framework to implement cipher development quickly.
+The cryptographic (crypto for shot) framework shields the implementation differences of third-party cryptographic algorithm libraries and implements encryption and decryption, signing and signature verification, message authentication code (MAC), hash, and secure random number. You can use the APIs provided by this framework to implement cipher development quickly.
 ## Working Principles
 The crypto framework provides components in the following layers: 
 
