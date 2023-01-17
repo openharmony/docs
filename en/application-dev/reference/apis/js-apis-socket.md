@@ -1,4 +1,4 @@
-# @ohos.net.socket
+# @ohos.net.socket (Socket Connection)
 
 The **socket** module implements socket connection management and operation.
 

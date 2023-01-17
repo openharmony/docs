@@ -1,4 +1,4 @@
-# Distributed KV Store
+# @ohos.data.distributedKVStore (Distributed KV Store)
 
 The **distributedKVStore** module implements collaboration between databases for different devices that forms a Super Device. The APIs provided by this module can be used to save data to a distributed key-value (KV) store and perform operations, such as adding, deleting, modifying, querying, and synchronizing data in distributed KV stores.
 
@@ -2395,7 +2395,7 @@ Writes data to this single KV store. This API uses an asynchronous callback to r
 
 | Name  | Type                                                    | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| value    | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | Yes  | Data to write.|
+| value    | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to write.|
 | callback | AsyncCallback&lt;void&gt;                                     | Yes  | Callback invoked to return the result.        |
 
 **Error codes**
@@ -2447,7 +2447,7 @@ Write data to this KV store. This API uses a promise to return the result.
 
 | Name| Type                                                    | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | Yes  | Data to write. |
+| value  | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to write. |
 
 **Return value**
 

@@ -1,4 +1,4 @@
-# # @ohos.net.connection
+# @ohos.net.connection (Network Connection Management)
 
 The **connection** module provides basic network management capabilities. You can obtain the default active data network or the list of all active data networks, enable or disable the airplane mode, and obtain network capability information.
 

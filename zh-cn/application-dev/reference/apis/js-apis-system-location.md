@@ -1,12 +1,13 @@
 # @system.geolocation (地理位置)
 
+本模块仅提供GNSS定位、网络定位等基本功能。
+
 > **说明：**
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 从API Version 9开始，该接口不再维护，推荐使用新接口[geoLocationManager](js-apis-geoLocationManager.md)。
 
 
 ## 导入模块
-
 
 ```
 import geolocation from '@system.geolocation';
@@ -18,7 +19,7 @@ import geolocation from '@system.geolocation';
 ohos.permission.LOCATION
 
 
-## geolocation.getLocation<sup>(deprecated) </sup>
+## geolocation.getLocation<sup>(deprecated)</sup>
 
 getLocation(Object): void
 
@@ -55,7 +56,7 @@ fail返回错误代码：
 | -------- | -------- |
 | 601 | 获取定位权限失败，失败原因：用户拒绝。 |
 | 602 | 权限未声明。 |
-| 800 | 超时，失败原因：网络状况不佳或GPS不可用。 |
+| 800 | 超时，失败原因：网络状况不佳或GNSS不可用。 |
 | 801 | 系统位置开关未打开。 |
 | 802 | 该次调用结果未返回前接口又被重新调用，该次调用失败返回错误码。 |
 
@@ -77,14 +78,14 @@ export default {
 ```
 
 
-## geolocation.getLocationType<sup>(deprecated) </sup>
+## geolocation.getLocationType<sup>(deprecated)</sup>
 
 getLocationType(Object): void
 
 获取当前设备支持的定位类型。
 
 > **说明：**<br/>
-> 从API version 9开始废弃。
+> 从API version 9开始废弃。位置服务子系统仅支持gnss和network两种定位类型，后续不再提供接口查询支持的定位类型。
 
 **系统能力：** SystemCapability.Location.Location.Lite
 
@@ -120,7 +121,7 @@ export default {
 ```
 
 
-## geolocation.subscribe<sup>(deprecated) </sup>
+## geolocation.subscribe<sup>(deprecated)</sup>
 
 subscribe(Object): void
 
@@ -175,7 +176,7 @@ export default {
 ```
 
 
-## geolocation.unsubscribe<sup>(deprecated) </sup>
+## geolocation.unsubscribe<sup>(deprecated)</sup>
 
 unsubscribe(): void
 
@@ -197,14 +198,14 @@ export default {
 ```
 
 
-## geolocation.getSupportedCoordTypes<sup>(deprecated) </sup>
+## geolocation.getSupportedCoordTypes<sup>(deprecated)</sup>
 
 getSupportedCoordTypes(): Array&lt;string&gt;
 
 获取设备支持的坐标系类型。
 
 > **说明：**<br/>
-> 从API version 9开始废弃。
+> 从API version 9开始废弃。位置服务子系统仅支持wgs84坐标系，后续不再提供接口查询支持的坐标系类型。
 
 **系统能力：** SystemCapability.Location.Location.Lite
 

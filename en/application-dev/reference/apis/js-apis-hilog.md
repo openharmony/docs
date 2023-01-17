@@ -1,4 +1,4 @@
-# @ohos.hilog
+# @ohos.hilog (HiLog)
 
 The **hilog** module allows your applications or services to output logs based on the specified type, level, and format string. Such logs help you learn the running status of applications and better debug programs.
 

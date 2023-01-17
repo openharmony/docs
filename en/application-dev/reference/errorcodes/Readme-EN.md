@@ -33,8 +33,11 @@
 - Security
   - [Ability Access Control Error Codes](errorcode-access-token.md)
   - [HUKS Error Codes](errorcode-huks.md)
+  - [User Authentication Error Codes](errorcode-useriam.md)
 - Data Management
   - [RDB Error Codes](errorcode-data-rdb.md)
+  - [DataShare Error Codes](errorcode-datashare.md)
+  - [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md)
   - [Distributed KV Store Error Codes](errorcode-distributedKVStore.md)
   - [Preferences Error Codes](errorcode-preferences.md)
 - File Management

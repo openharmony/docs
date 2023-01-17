@@ -1,4 +1,4 @@
-# Preferences
+# @ohos.data.preferences (Preferences)
 
 The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs and supports persistence of the KV pairs when required.
 
@@ -497,7 +497,7 @@ Obtains the value of a key. This API uses a promise to return the result. If the
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
  **Parameters**
- 
+
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty.                             |

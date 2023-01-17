@@ -1,4 +1,4 @@
-# @ohos.thermal
+# @ohos.thermal (Thermal Management)
 
 The **thermal** module provides thermal level-related callback and query APIs to obtain the information required for thermal control.
 

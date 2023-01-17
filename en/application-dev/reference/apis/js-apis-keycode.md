@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.keyCode
+# @ohos.multimodalInput.keyCode (Key Code)
 
 The **keyCode** module provides keycodes for a key device.
 

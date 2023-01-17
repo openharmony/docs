@@ -42,11 +42,286 @@ import geoLocationManager from '@ohos.geoLocationManager';
 ```
 
 
+## ReverseGeoCodeRequest
+
+逆地理编码请求接口。
+
+**系统能力**：SystemCapability.Location.Location.Geocoder
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| locale | string | 是 | 是 | 指定位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
+| latitude | number | 是 | 是 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。 |
+| longitude | number | 是 | 是 | 表示经度信息，正值表示东经，负值表示西经。取值范围为-180到180。 |
+| maxItems | number | 是 | 是 | 指定返回位置信息的最大个数。取值范围为大于等于0，推荐该值小于10。 |
+
+
+## GeoCodeRequest
+
+地理编码请求接口。
+
+**系统能力**：SystemCapability.Location.Location.Geocoder
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| locale | string | 是 | 是 | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
+| description | string | 是 | 是 | 表示位置信息描述，如“上海市浦东新区xx路xx号”。 |
+| maxItems | number | 是 | 是 | 表示返回位置信息的最大个数。取值范围为大于等于0，推荐该值小于10。 |
+| minLatitude | number | 是 | 是 | 表示最小纬度信息，与下面三个参数一起，表示一个经纬度范围。取值范围为-90到90。 |
+| minLongitude | number | 是 | 是 | 表示最小经度信息。取值范围为-180到180。 |
+| maxLatitude | number | 是 | 是 | 表示最大纬度信息。取值范围为-90到90。 |
+| maxLongitude | number | 是 | 是 | 表示最大经度信息。取值范围为-180到180。 |
+
+
+## GeoAddress
+
+地理编码类型。
+
+**系统能力**：SystemCapability.Location.Location.Geocoder
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| latitude | number | 是 | 否  | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。 |
+| longitude | number | 是 | 否  | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。 |
+| locale | string | 是 | 否  | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
+| placeName | string | 是 | 否  | 表示地区信息。 |
+| countryCode | string | 是 | 否  | 表示国家码信息。 |
+| countryName | string| 是 | 否 | 表示国家信息。 |
+| administrativeArea | string | 是 | 否 | 表示省份区域信息。 |
+| subAdministrativeArea | string | 是 | 否 | 表示表示子区域信息。 |
+| locality | string | 是 | 否 | 表示城市信息。 |
+| subLocality | string | 是 | 否 | 表示子城市信息。 |
+| roadName | string | 是 | 否 |表示路名信息。 |
+| subRoadName | string | 是 | 否 | 表示子路名信息。 |
+| premises | string| 是 | 否|表示门牌号信息。 |
+| postalCode | string | 是 | 否 | 表示邮政编码信息。 |
+| phoneNumber | string | 是 | 否 | 表示联系方式信息。 |
+| addressUrl | string | 是 | 否 | 表示位置信息附件的网址信息。 |
+| descriptions | Array&lt;string&gt; | 是 | 否 | 表示附加的描述信息。 |
+| descriptionsSize | number | 是 | 否 | 表示附加的描述信息数量。取值范围为大于等于0，推荐该值小于10。 |
+| isFromMock | Boolean | 是 | 否 | 表示地名信息是否来自于逆地理编码模拟功能。<br>**系统API**：此接口为系统接口。 |
+
+
+## LocationRequest
+
+位置信息请求类型。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。 |
+| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
+| timeInterval | number | 是 | 是 | 表示上报位置信息的时间间隔，单位是秒。取值范围为大于0。 |
+| distanceInterval | number | 是 | 是 | 表示上报位置信息的距离间隔。单位是米，取值范围为大于0。 |
+| maxAccuracy | number | 是 | 是 | 表示精度信息。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。取值范围为大于0。 |
+
+
+## CurrentLocationRequest
+
+当前位置信息请求类型。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。 |
+| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
+| maxAccuracy | number | 是 | 是| 表示精度信息，单位是米。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。取值范围为大于0。 |
+| timeoutMs | number | 是 | 是 | 表示超时时间，单位是毫秒，最小为1000毫秒。取值范围为大于等于1000。 |
+
+
+## SatelliteStatusInfo
+
+卫星状态信息。
+
+**系统能力**：SystemCapability.Location.Location.Gnss
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| satellitesNumber | number | 是 | 否 | 表示卫星个数。取值范围为大于等于0。 |
+| satelliteIds | Array&lt;number&gt; | 是 | 否 | 表示每个卫星的ID，数组类型。取值范围为大于等于0。 |
+| carrierToNoiseDensitys | Array&lt;number&gt; | 是 | 否 | 表示载波噪声功率谱密度比，即cn0。取值范围为大于0。 |
+| altitudes | Array&lt;number&gt; | 是 | 否 | 表示卫星高度角信息。单位是“度”，取值范围为-90到90。 |
+| azimuths | Array&lt;number&gt; | 是 | 否 | 表示方位角。单位是“度”，取值范围为0到360。 |
+| carrierFrequencies | Array&lt;number&gt; | 是 | 否 | 表示载波频率。单位是Hz，取值范围为大于等于0。 |
+
+
+## CachedGnssLocationsRequest
+
+请求订阅GNSS缓存位置上报功能接口的配置参数。
+
+**系统能力**：SystemCapability.Location.Location.Gnss
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| reportingPeriodSec | number | 是 | 是 | 表示GNSS缓存位置上报的周期，单位是毫秒。取值范围为大于0。 |
+| wakeUpCacheQueueFull | boolean | 是 | 是  | true表示GNSS芯片底层缓存队列满之后会主动唤醒AP芯片，并把缓存位置上报给应用。<br/>false表示GNSS芯片底层缓存队列满之后不会主动唤醒AP芯片，会把缓存位置直接丢弃。 |
+
+
+## Geofence
+
+GNSS围栏的配置参数。目前只支持圆形围栏。
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| latitude | number | 是 | 是 |表示纬度。取值范围为-90到90。 |
+| longitude | number | 是 |是 | 表示经度。取值范围为-180到180。 |
+| radius | number | 是 |是 | 表示圆形围栏的半径。单位是米，取值范围为大于0。 |
+| expiration | number | 是 |是 | 围栏存活的时间，单位是毫秒。取值范围为大于0。 |
+
+
+## GeofenceRequest
+
+请求添加GNSS围栏消息中携带的参数，包括定位优先级、定位场景和围栏信息。
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是  |  表示定位场景。 |
+| geofence |  [Geofence](#geofence)| 是 | 是  |  表示围栏信息。 |
+
+
+## LocationCommand
+
+扩展命令结构体。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| scenario | [LocationRequestScenario](#locationrequestscenario)  | 是 | 是  | 表示定位场景。 |
+| command | string | 是 | 是  | 扩展命令字符串。 |
+
+
+## Location
+
+位置信息类型。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| latitude | number| 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。 |
+| longitude | number| 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。 |
+| altitude | number | 是 | 否 | 表示高度信息，单位米。 |
+| accuracy | number | 是 | 否 | 表示精度信息，单位米。 |
+| speed | number | 是 | 否 |表示速度信息，单位米每秒。 |
+| timeStamp | number | 是 | 否 | 表示位置时间戳，UTC格式。 |
+| direction | number | 是 | 否 | 表示航向信息。单位是“度”，取值范围为0到360。 |
+| timeSinceBoot | number | 是 | 否 | 表示位置时间戳，开机时间格式。 |
+| additions | Array&lt;string&gt; | 是 | 否 | 附加信息。 |
+| additionSize | number | 是 | 否 | 附加信息数量。取值范围为大于等于0。  |
+| isFromMock | Boolean | 是 | 否 | 表示位置信息是否来自于位置模拟功能。<br>**系统API**：此接口为系统接口。 |
+
+
+## ReverseGeocodingMockInfo
+
+逆地理编码模拟功能的配置信息，包含一个位置信息和一个地名信息。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| location |  [ReverseGeoCodeRequest](#reversegeocoderequest) | 是 | 是 | 表示经纬度信息。 |
+| geoAddress |  [GeoAddress](#geoaddress) | 是 | 是 |表示地名信息。 |
+
+
+## LocationMockConfig
+
+位置模拟功能的配置参数，包含了模拟位置上报的时间间隔和模拟位置数组。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| timeInterval | number | 是 | 是 | 表示模拟位置上报的时间间隔，单位是秒。 |
+| locations | Array&lt;[Location](#location)&gt; | 是 | 是 | 表示模拟位置数组。 |
+
+
+## CountryCode
+
+国家码信息结构体，包含国家码字符串和国家码的来源信息。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| country | string | 是 | 否 | 表示国家码字符串。 |
+| type |  [CountryCodeType](#countrycodetype) | 是 | 否 | 表示国家码信息来源。 |
+
+
+## LocationRequestPriority
+
+位置请求中位置信息优先级设置。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| UNSET | 0x200 | 表示未设置优先级，表示[LocationRequestPriority](#locationrequestpriority)无效。 |
+| ACCURACY | 0x201 | 表示精度优先。<br/>定位精度优先策略主要以GNSS定位技术为主，在开阔场景下可以提供米级的定位精度，具体性能指标依赖用户设备的定位硬件能力，但在室内等强遮蔽定位场景下，无法提供准确的位置服务。 |
+| LOW_POWER | 0x202 | 表示低功耗优先。<br/>低功耗定位优先策略主要使用基站定位和WLAN、蓝牙定位技术，也可以同时提供室内和户外场景下的位置服务，因为其依赖周边基站、可见WLAN、蓝牙设备的分布情况，定位结果的精度波动范围较大，如果对定位结果精度要求不高，或者使用场景多在有基站、可见WLAN、蓝牙设备高密度分布的情况下，推荐使用，可以有效节省设备功耗。 |
+| FIRST_FIX | 0x203 | 表示快速获取位置优先，如果应用希望快速拿到一个位置，可以将优先级设置为该字段。<br/>快速定位优先策略会同时使用GNSS定位、基站定位和WLAN、蓝牙定位技术，以便室内和户外场景下，通过此策略都可以获得位置结果，当各种定位技术都有提供位置结果时，系统会选择其中精度较好的结果返回给应用。因为对各种定位技术同时使用，对设备的硬件资源消耗较大，功耗也较大。 |
+
+
+## LocationRequestScenario
+
+  位置请求中定位场景设置。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| UNSET | 0x300 | 表示未设置场景信息。<br/>表示[LocationRequestScenario](#locationrequestscenario)字段无效。 |
+| NAVIGATION | 0x301 | 表示导航场景。<br/>适用于在户外定位设备实时位置的场景，如车载、步行导航。<br/>在此场景下，为保证系统提供位置结果精度最优，主要使用GNSS定位技术提供定位服务<br/>此场景默认以最小1秒间隔上报定位结果。 |
+| TRAJECTORY_TRACKING | 0x302 | 表示运动轨迹记录场景。<br/>适用于记录用户位置轨迹的场景，如运动类应用记录轨迹功能。主要使用GNSS定位技术提供定位服务。<br/>此场景默认以最小1秒间隔上报定位结果。 |
+| CAR_HAILING | 0x303 | 表示打车场景。<br/>适用于用户出行打车时定位当前位置的场景，如网约车类应用。<br/>此场景默认以最小1秒间隔上报定位结果。 |
+| DAILY_LIFE_SERVICE | 0x304 | 表示日常服务使用场景。<br/>适用于不需要定位用户精确位置的使用场景，如新闻资讯、网购、点餐类应用，做推荐、推送时定位用户大致位置即可。<br/>此场景默认以最小1秒间隔上报定位结果。 |
+| NO_POWER | 0x305 | 表示无功耗功场景，这种场景下不会主动触发定位，会在其他应用定位时，才给当前应用返回位置。 |
+
+
+## LocationPrivacyType
+
+定位服务隐私协议类型。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| OTHERS | 0 | 其他场景。预留字段。 |
+| STARTUP | 1 | 开机向导场景下的隐私协议。在开机时弹出协议，提醒用户阅读并选择是否授权。 |
+| CORE_LOCATION | 2 | 开启网络定位时弹出的隐私协议。 |
+
+
+## CountryCodeType
+
+国家码来源类型。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| COUNTRY_CODE_FROM_LOCALE | 1 | 从全球化模块的语言配置信息中获取到的国家码。 |
+| COUNTRY_CODE_FROM_SIM | 2 | 从SIM卡中获取到的国家码。 |
+| COUNTRY_CODE_FROM_LOCATION | 3 | 基于用户的位置信息，通过逆地理编码查询到的国家码。 |
+| COUNTRY_CODE_FROM_NETWORK | 4 | 从蜂窝网络注册信息中获取到的国家码。 |
+
+
 ## geoLocationManager.on('locationChange')
 
 on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void
 
-开启位置变化订阅，并发起定位请求。定位结果按照[LocationRequest](#locationrequest)的属性进行上报，
+开启位置变化订阅，并发起定位请求。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -74,8 +349,8 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
-  var locationChange = (location) => {
+  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let locationChange = (location) => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
   };
   try {
@@ -118,8 +393,8 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
-  var locationChange = (location) => {
+  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let locationChange = (location) => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
   };
   try {
@@ -158,7 +433,7 @@ on(type: 'locationEnabledChange', callback: Callback&lt;boolean&gt;): void
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var locationEnabledChange = (state) => {
+  let locationEnabledChange = (state) => {
       console.log('locationEnabledChange: ' + JSON.stringify(state));
   }
   try {
@@ -196,7 +471,7 @@ off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var locationEnabledChange = (state) => {
+  let locationEnabledChange = (state) => {
       console.log('locationEnabledChange: state: ' + JSON.stringify(state));
   }
   try {
@@ -240,10 +515,10 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var cachedLocationsCb = (locations) => {
+  let cachedLocationsCb = (locations) => {
       console.log('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
   }
-  var requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
+  let requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   try {
       geoLocationManager.on('cachedGnssLocationsChange', requestInfo, cachedLocationsCb);
   } catch (err) {
@@ -283,10 +558,10 @@ off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var cachedLocationsCb = (locations) => {
+  let cachedLocationsCb = (locations) => {
       console.log('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
   }
-  var requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
+  let requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   try {
       geoLocationManager.on('cachedGnssLocationsChange', requestInfo, cachedLocationsCb);
       geoLocationManager.off('cachedGnssLocationsChange');
@@ -326,7 +601,7 @@ on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;)
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var gnssStatusCb = (satelliteStatusInfo) => {
+  let gnssStatusCb = (satelliteStatusInfo) => {
       console.log('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
 
@@ -369,7 +644,7 @@ off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var gnssStatusCb = (satelliteStatusInfo) => {
+  let gnssStatusCb = (satelliteStatusInfo) => {
       console.log('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   try {
@@ -412,7 +687,7 @@ on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var nmeaCb = (str) => {
+  let nmeaCb = (str) => {
       console.log('nmeaMessage: ' + JSON.stringify(str));
   }
 
@@ -455,7 +730,7 @@ off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var nmeaCb = (str) => {
+  let nmeaCb = (str) => {
       console.log('nmeaMessage: ' + JSON.stringify(str));
   }
 
@@ -484,7 +759,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“gnssFenceStatusChange”，表示订阅围栏事件上报。 |
   | request |  [GeofenceRequest](#geofencerequest) | 是 | 围栏的配置参数。 |
-  | want | WantAgent | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
+  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
 
 **错误码**：
 
@@ -516,7 +791,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    var requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
     try {
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
     } catch (err) {
@@ -542,7 +817,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“gnssFenceStatusChange”，表示订阅围栏事件上报。 |
   | request | [GeofenceRequest](#geofencerequest) | 是 | 围栏的配置参数。 |
-  | want | WantAgent | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
+  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
 
 **错误码**：
 
@@ -574,7 +849,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    var requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
     try {
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
         geoLocationManager.off('gnssFenceStatusChange', requestInfo, wantAgentObj);
@@ -615,7 +890,7 @@ on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var callback = (code) => {
+  let callback = (code) => {
       console.log('countryCodeChange: ' + JSON.stringify(code));
   }
 
@@ -656,7 +931,7 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var callback = (code) => {
+  let callback = (code) => {
       console.log('countryCodeChange: ' + JSON.stringify(code));
   }
 
@@ -701,8 +976,8 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
-  var locationChange = (err, location) => {
+  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
+  let locationChange = (err, location) => {
       if (err) {
           console.log('locationChanger: err=' + JSON.stringify(err));
       }
@@ -748,7 +1023,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var locationChange = (err, location) => {
+  let locationChange = (err, location) => {
       if (err) {
           console.log('locationChanger: err=' + JSON.stringify(err));
       }
@@ -800,7 +1075,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
+  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
   try {
       geoLocationManager.getCurrentLocation(requestInfo).then((result) => {
           console.log('current location: ' + JSON.stringify(result));
@@ -845,7 +1120,7 @@ getLastLocation(): Location
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
-      var location = geoLocationManager.getLastLocation();
+      let location = geoLocationManager.getLastLocation();
   } catch (err) {
       console.error("errCode:" + err.code + ",errMessage:" + err.message);
   }
@@ -879,93 +1154,7 @@ isLocationEnabled(): boolean
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
-      var locationEnabled = geoLocationManager.isLocationEnabled();
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-
-## geoLocationManager.requestEnableLocation
-
-requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;): void
-
-请求使能位置服务，使用callback回调异步返回结果。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | callback返回true表示用户同意使能位置服务，false表示用户不同意使能位置服务。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.  |
-|3301700 | No response to the request.  |
-
-**示例**
-
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  try {
-      geoLocationManager.requestEnableLocation((err, data) => {
-          if (err) {
-              console.log('requestEnableLocation: err=' + JSON.stringify(err));
-          }
-          if (data) {
-              console.log('requestEnableLocation: data=' + JSON.stringify(data));
-          }
-      });
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-
-## geoLocationManager.requestEnableLocation
-
-requestEnableLocation(): Promise&lt;boolean&gt;
-
-请求使能位置服务，使用Promise方式异步返回结果。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**返回值**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;boolean&gt;  | boolean | NA | 返回true表示用户同意使能位置服务，false表示用户不同意使能位置服务。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.  |
-|3301700 | No response to the request.  |
-
-**示例**
-
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  try {
-      geoLocationManager.requestEnableLocation().then((result) => {
-          console.log('promise, requestEnableLocation: ' + JSON.stringify(result));
-      })  
-      .catch((error) => {
-          console.log('promise, requestEnableLocation: error=' + JSON.stringify(error));
-      });
+      let locationEnabled = geoLocationManager.isLocationEnabled();
   } catch (err) {
       console.error("errCode:" + err.code + ",errMessage:" + err.message);
   }
@@ -1117,7 +1306,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
+  let reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
           if (err) {
@@ -1166,7 +1355,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
+  let reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
           console.log('getAddressesFromLocation: ' + JSON.stringify(data));
@@ -1208,7 +1397,7 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
+  let geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocationName(geocodeRequest, (err, data) => {
           if (err) {
@@ -1257,7 +1446,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
+  let geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocationName(geocodeRequest).then((result) => {
           console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
@@ -1297,7 +1486,7 @@ isGeocoderAvailable(): boolean;
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
-      var isAvailable = geoLocationManager.isGeocoderAvailable();
+      let isAvailable = geoLocationManager.isGeocoderAvailable();
   } catch (err) {
       console.error("errCode:" + err.code + ",errMessage:" + err.message);
   }
@@ -1502,7 +1691,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var requestInfo = {'scenario': 0x301, 'command': "command_1"};
+  let requestInfo = {'scenario': 0x301, 'command': "command_1"};
   try {
       geoLocationManager.sendCommand(requestInfo, (err, result) => {
           if (err) {
@@ -1547,7 +1736,7 @@ sendCommand(command: LocationCommand): Promise&lt;void&gt;;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var requestInfo = {'scenario': 0x301, 'command': "command_1"};
+  let requestInfo = {'scenario': 0x301, 'command': "command_1"};
   try {
       geoLocationManager.sendCommand(requestInfo).then((result) => {
           console.log('promise, sendCommand success');
@@ -1712,6 +1901,8 @@ setMockedLocations(config: LocationMockConfig): void;
 
 设置模拟的位置信息，后面会以该接口中携带的时间间隔上报模拟位置。
 
+该接口需要在调用[geoLocationManager.enableLocationMock](#geolocationmanagerenablelocationmock)之后才能调用。
+
 **系统能力**：SystemCapability.Location.Location.Core
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
@@ -1735,15 +1926,16 @@ setMockedLocations(config: LocationMockConfig): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var locations = [
+  let locations = [
       {"latitude": 30.12, "longitude": 120.11, "altitude": 123, "accuracy": 1, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 1000000000, "additionSize": 0, "isFromMock": true},
       {"latitude": 31.13, "longitude": 121.11, "altitude": 123, "accuracy": 2, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 2000000000, "additionSize": 0, "isFromMock": true},
       {"latitude": 32.14, "longitude": 122.11, "altitude": 123, "accuracy": 3, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 3000000000, "additionSize": 0, "isFromMock": true},
       {"latitude": 33.15, "longitude": 123.11, "altitude": 123, "accuracy": 4, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 4000000000, "additionSize": 0, "isFromMock": true},
       {"latitude": 34.16, "longitude": 124.11, "altitude": 123, "accuracy": 5, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 5000000000, "additionSize": 0, "isFromMock": true}
   ];
-  var config = {"timeInterval": 5, "locations": locations};
+  let config = {"timeInterval": 5, "locations": locations};
   try {
+      geoLocationManager.enableLocationMock();
       geoLocationManager.setMockedLocations(config);
   } catch (err) {
       console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -1817,6 +2009,8 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
 
 设置逆地理编码模拟功能的配置信息，包含了位置和地名的对应关系，后续进行逆地理编码查询时如果位置信息位于配置信息中，就返回对应的地名。
 
+该接口需要在调用[geoLocationManager.enableReverseGeocodingMock](#geolocationmanagerenablereversegeocodingmock)之后才能调用。
+
 **系统能力**：SystemCapability.Location.Location.Core
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
@@ -1839,7 +2033,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var mockInfos = [
+  let mockInfos = [
       {"location": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1, "isFromMock": true}},
       {"location": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1, "isFromMock": true}},
       {"location": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1, "isFromMock": true}},
@@ -1847,6 +2041,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
       {"location": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
   ];
   try {
+      geoLocationManager.enableReverseGeocodingMock();
       geoLocationManager.setReverseGeocodingMockInfo(mockInfos);
   } catch (err) {
       console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -1889,7 +2084,7 @@ isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
-      var isConfirmed = geoLocationManager.isLocationPrivacyConfirmed(1);
+      let isConfirmed = geoLocationManager.isLocationPrivacyConfirmed(1);
   } catch (err) {
       console.error("errCode:" + err.code + ",errMessage:" + err.message);
   }
@@ -1933,276 +2128,3 @@ setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean)
       console.error("errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
-
-
-## LocationRequestPriority
-
-位置请求中位置信息优先级设置。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| UNSET | 0x200 | 表示未设置优先级。 |
-| ACCURACY | 0x201 | 表示精度优先。 |
-| LOW_POWER | 0x202 | 表示低功耗优先。 |
-| FIRST_FIX | 0x203 | 表示快速获取位置优先，如果应用希望快速拿到1个位置，可以将优先级设置为该字段。 |
-
-
-## LocationRequestScenario
-
-  位置请求中定位场景设置。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| UNSET | 0x300 | 表示未设置场景信息。 |
-| NAVIGATION | 0x301 | 表示导航场景。 |
-| TRAJECTORY_TRACKING | 0x302 | 表示运动轨迹记录场景。 |
-| CAR_HAILING | 0x303 | 表示打车场景。 |
-| DAILY_LIFE_SERVICE | 0x304 | 表示日常服务使用场景。 |
-| NO_POWER | 0x305 | 表示无功耗功场景，这种场景下不会主动触发定位，会在其他应用定位时，才给当前应用返回位置。 |
-
-
-## ReverseGeoCodeRequest
-
-逆地理编码请求接口。
-
-**系统能力**：SystemCapability.Location.Location.Geocoder
-
-| 名称 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| locale | string | 是 | 是 | 指定位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
-| latitude | number | 是 | 是 | 表示纬度信息，正值表示北纬，负值表示南纬。 |
-| longitude | number | 是 | 是 | 表示经度信息，正值表示东经，负值表示西经。 |
-| maxItems | number | 是 | 是 | 指定返回位置信息的最大个数。 |
-
-
-## GeoCodeRequest
-
-地理编码请求接口。
-
-**系统能力**：SystemCapability.Location.Location.Geocoder
-
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| locale | string | 是 | 是 | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
-| description | string | 是 | 是 | 表示位置信息描述，如“上海市浦东新区xx路xx号”。 |
-| maxItems | number | 是 | 是 | 表示返回位置信息的最大个数。 |
-| minLatitude | number | 是 | 是 | 表示最小纬度信息，与下面三个参数一起，表示一个经纬度范围。 |
-| minLongitude | number | 是 | 是 | 表示最小经度信息。 |
-| maxLatitude | number | 是 | 是 | 表示最大纬度信息。 |
-| maxLongitude | number | 是 | 是 | 表示最大经度信息。 |
-
-
-## GeoAddress
-
-地理编码类型。
-
-**系统能力**：SystemCapability.Location.Location.Geocoder
-
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| latitude | number | 是 | 否  | 表示纬度信息，正值表示北纬，负值表示南纬。 |
-| longitude | number | 是 | 否  | 表示经度信息，正值表示东经，负值表是西经。 |
-| locale | string | 是 | 否  | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
-| placeName | string | 是 | 否  | 表示地区信息。 |
-| countryCode | string | 是 | 否  | 表示国家码信息。 |
-| countryName | string| 是 | 否 | 表示国家信息。 |
-| administrativeArea | string | 是 | 否 | 表示省份区域信息。 |
-| subAdministrativeArea | string | 是 | 否 | 表示表示子区域信息。 |
-| locality | string | 是 | 否 | 表示城市信息。 |
-| subLocality | string | 是 | 否 | 表示子城市信息。 |
-| roadName | string | 是 | 否 |表示路名信息。 |
-| subRoadName | string | 是 | 否 | 表示子路名信息。 |
-| premises | string| 是 | 否|表示门牌号信息。 |
-| postalCode | string | 是 | 否 | 表示邮政编码信息。 |
-| phoneNumber | string | 是 | 否 | 表示联系方式信息。 |
-| addressUrl | string | 是 | 否 | 表示位置信息附件的网址信息。 |
-| descriptions | Array&lt;string&gt; | 是 | 否 | 表示附加的描述信息。 |
-| descriptionsSize | number | 是 | 否 | 表示附加的描述信息数量。 |
-| isFromMock | Boolean | 是 | 否 | 表示地名信息是否来自于逆地理编码模拟功能。 |
-
-
-## LocationRequest
-
-位置信息请求类型。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。 |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。 |
-| timeInterval | number | 是 | 是 | 表示上报位置信息的时间间隔。 |
-| distanceInterval | number | 是 | 是 | 表示上报位置信息的距离间隔。 |
-| maxAccuracy | number | 是 | 是 | 表示精度信息。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。 |
-
-
-## CurrentLocationRequest
-
-当前位置信息请求类型。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。 |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。 |
-| maxAccuracy | number | 是 | 是| 表示精度信息，单位是米。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。 |
-| timeoutMs | number | 是 | 是 | 表示超时时间，单位是毫秒，最小为1000毫秒。 |
-
-
-## SatelliteStatusInfo
-
-卫星状态信息。
-
-**系统能力**：SystemCapability.Location.Location.Gnss
-
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| satellitesNumber | number | 是 | 否 | 表示卫星个数。 |
-| satelliteIds | Array&lt;number&gt; | 是 | 否 | 表示每个卫星的ID，数组类型。 |
-| carrierToNoiseDensitys | Array&lt;number&gt; | 是 | 否 | 表示载波噪声功率谱密度比，即cn0。 |
-| altitudes | Array&lt;number&gt; | 是 | 否 | 表示高程信息。 |
-| azimuths | Array&lt;number&gt; | 是 | 否 | 表示方位角。 |
-| carrierFrequencies | Array&lt;number&gt; | 是 | 否 | 表示载波频率。 |
-
-
-## CachedGnssLocationsRequest
-
-请求订阅GNSS缓存位置上报功能接口的配置参数。
-
-**系统能力**：SystemCapability.Location.Location.Gnss
-
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| reportingPeriodSec | number | 是 | 是 | 表示GNSS缓存位置上报的周期，单位是毫秒。 |
-| wakeUpCacheQueueFull | boolean | 是 | 是  | true表示GNSS芯片底层缓存队列满之后会主动唤醒AP芯片，并把缓存位置上报给应用。<br/>false表示GNSS芯片底层缓存队列满之后不会主动唤醒AP芯片，会把缓存位置直接丢弃。 |
-
-
-## Geofence
-
-GNSS围栏的配置参数。目前只支持圆形围栏。
-
-**系统能力**：SystemCapability.Location.Location.Geofence
-
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| latitude | number | 是 | 是 |表示纬度。 |
-| longitude | number | 是 |是 | 表示经度。 |
-| radius | number | 是 |是 | 表示圆形围栏的半径。 |
-| expiration | number | 是 |是 | 围栏存活的时间，单位是毫秒。 |
-
-
-## GeofenceRequest
-
-请求添加GNSS围栏消息中携带的参数，包括定位优先级、定位场景和围栏信息。
-
-**系统能力**：SystemCapability.Location.Location.Geofence
-
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是  |  表示定位场景。 |
-| geofence |  [Geofence](#geofence)| 是 | 是  |  表示围栏信息。 |
-
-
-## LocationPrivacyType
-
-定位服务隐私协议类型。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| OTHERS | 0 | 其他场景。 |
-| STARTUP | 1 | 开机向导场景下的隐私协议。 |
-| CORE_LOCATION | 2 | 开启网络定位时弹出的隐私协议。 |
-
-
-## LocationCommand
-
-扩展命令结构体。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| scenario | [LocationRequestScenario](#locationrequestscenario)  | 是 | 是  | 表示定位场景。 |
-| command | string | 是 | 是  | 扩展命令字符串。 |
-
-
-## Location
-
-位置信息类型。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| latitude | number| 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。 |
-| longitude | number| 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。 |
-| altitude | number | 是 | 否 | 表示高度信息，单位米。 |
-| accuracy | number | 是 | 否 | 表示精度信息，单位米。 |
-| speed | number | 是 | 否 |表示速度信息，单位米每秒。 |
-| timeStamp | number | 是 | 否 | 表示位置时间戳，UTC格式。 |
-| direction | number | 是 | 否 | 表示航向信息。 |
-| timeSinceBoot | number | 是 | 否 | 表示位置时间戳，开机时间格式。 |
-| additions | Array&lt;string&gt; | 是 | 否 | 附加信息。 |
-| additionSize | number | 是 | 否 | 附加信息数量。 |
-| isFromMock | Boolean | 是 | 否 | 表示位置信息是否来自于位置模拟功能。 |
-
-
-## ReverseGeocodingMockInfo
-
-逆地理编码模拟功能的配置信息，包含一个位置信息和一个地名信息。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| location |  [ReverseGeoCodeRequest](#reversegeocoderequest) | 是 | 是 | 表示经纬度信息。 |
-| geoAddress |  [GeoAddress](#geoaddress) | 是 | 是 |表示地名信息。 |
-
-
-## LocationMockConfig
-
-位置模拟功能的配置参数，包含了模拟位置上报的时间间隔和模拟位置数组。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| timeInterval | number | 是 | 是 | 表示模拟位置上报的时间间隔，单位是秒。 |
-| locations | Array&lt;Location&gt; | 是 | 是 | 表示模拟位置数组。 |
-
-
-## CountryCode
-
-国家码信息结构体，包含国家码字符串和国家码的来源信息。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| country | string | 是 | 否 | 表示国家码字符串。 |
-| type |  [CountryCodeType](#countrycodetype) | 是 | 否 | 表示国家码信息来源。 |
-
-
-## CountryCodeType
-
-国家码来源类型。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| COUNTRY_CODE_FROM_LOCALE | 1 | 从全球化模块的语言配置信息中获取到的国家码。 |
-| COUNTRY_CODE_FROM_SIM | 2 | 从SIM卡中获取到的国家码。 |
-| COUNTRY_CODE_FROM_LOCATION | 3 | 基于用户的位置信息，通过逆地理编码查询到的国家码。 |
-| COUNTRY_CODE_FROM_NETWORK | 4 | 从蜂窝网络注册信息中获取到的国家码。 |

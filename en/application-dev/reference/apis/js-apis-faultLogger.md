@@ -1,4 +1,4 @@
-# @ohos.faultLogger
+# @ohos.faultLogger (Fault Logger)
 
 The **faultLogger** module implements fault logging functions.
 

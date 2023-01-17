@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.pointer
+# @ohos.multimodalInput.pointer (Mouse Pointer)
 
 The **pointer** module provides APIs related to pointer attribute management.
 
@@ -121,9 +121,13 @@ Checks the visible status of the mouse pointer. This API uses a promise to retur
 **Example**
 
 ```js
-pointer.isPointerVisible().then((visible) => {
-  console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
-});
+try {
+  pointer.isPointerVisible().then((visible) => {
+    console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
+  });
+} catch (error) {
+  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
 ```
 
 ## pointer.setPointerSpeed<sup>9+</sup>
