@@ -61,7 +61,7 @@ Stage模型的相关信息参考[Stage模型开发概述](../application-models/
 2、在应用内执行长时任务时，由于元能力启动管控规则限制，不支持同应用通过startAbilityByCall的形式在后台创建并运行Ability。可以直接在page中，执行相应的代码。Stage模型的Ability使用参考[Stage模型开发指导-UIAbility组件](../application-models/uiability-overview.md)。
 
 ```ts
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 
 @Entry
@@ -89,18 +89,22 @@ struct Index {
     };
 
     // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
-    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-        try {
-            backgroundTaskManager.startBackgroundRunning(this.context,
-                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-                console.info("Operation startBackgroundRunning succeeded");
-            }).catch((err) => {
-                console.error("Operation startBackgroundRunning failed Cause: " + err);
-            });
-        } catch (error) {
-            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-        }
-    });
+    try {
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            try {
+                backgroundTaskManager.startBackgroundRunning(this.context,
+                    backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+                    console.info("Operation startBackgroundRunning succeeded");
+                }).catch((err) => {
+                    console.error("Operation startBackgroundRunning failed Cause: " + err);
+                });
+            } catch (error) {
+                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            }
+        });
+    } catch (error) {
+        console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+    }
   }
 
   stopContinuousTask() {
@@ -151,8 +155,8 @@ struct Index {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import wantAgent from '@ohos.wantAgent';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 const MSG_SEND_METHOD: string = 'CallSendMsg';
 
@@ -176,23 +180,27 @@ function startContinuousTask() {
     };
 
     // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
-    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-        try {
-            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-                console.info("Operation startBackgroundRunning succeeded");
-            }).catch((error) => {
+    try {
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            try {
+                backgroundTaskManager.startBackgroundRunning(mContext,
+                    backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+                    console.info("Operation startBackgroundRunning succeeded");
+                }).catch((error) => {
+                    console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                });
+            } catch (error) {
                 console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-            });
-        } catch (error) {
-            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-        }
-    });
+            }
+        });
+    } catch (error) {
+        console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+    }
 }
 
 function stopContinuousTask() {
     try {
-        backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
+        backgroundTaskManager.stopBackgroundRunning(mContext).then(() => {
             console.info("Operation stopBackgroundRunning succeeded");
         }).catch((err) => {
             console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
@@ -312,9 +320,9 @@ export default class BgTaskAbility extends UIAbility {
 2、在Service Ability调用长时任务的申请和取消接口。
 
 ```js
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 import rpc from "@ohos.rpc";
 
 function startContinuousTask() {
@@ -335,18 +343,22 @@ function startContinuousTask() {
     };
 
     // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
-    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-        try {
-            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-                console.info("Operation startBackgroundRunning succeeded");
-            }).catch((err) => {
-                console.error("Operation startBackgroundRunning failed Cause: " + err);
-            });
-        } catch (error) {
-            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-        }
-    });
+    try {
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            try {
+                backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+                    backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+                    console.info("Operation startBackgroundRunning succeeded");
+                }).catch((err) => {
+                    console.error("Operation startBackgroundRunning failed Cause: " + err);
+                });
+            } catch (error) {
+                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            }
+        });
+    } catch (error) {
+        console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+    }
 }
 
 function stopContinuousTask() {
@@ -396,7 +408,7 @@ class MyStub extends rpc.RemoteObject {
 }
 
 export default {
-    onStart(want) {
+    onStart() {
         console.info('ServiceAbility onStart');
         mMyStub = new MyStub("ServiceAbility-test");
         // 在执行后台长时任前，调用申请接口。
@@ -416,7 +428,7 @@ export default {
     onDisconnect() {
         console.info('ServiceAbility onDisconnect');
     },
-    onCommand(want, restart, startId) {
+    onCommand(want, startId) {
         console.info('ServiceAbility onCommand');
     }
 };
