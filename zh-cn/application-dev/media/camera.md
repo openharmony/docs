@@ -512,4 +512,4 @@ captureSession = null
 ## 流程图
 
 应用使用相机的流程示意图如下
-![camera_framework process](figures/camera_framework_process.jpg)
+![camera_framework process](figures/camera_framework_process.png)
