@@ -1,4 +1,4 @@
-# @ohos.usbV9
+# @ohos.usbV9 (USB Management)
 
 The **usb** module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control.
 

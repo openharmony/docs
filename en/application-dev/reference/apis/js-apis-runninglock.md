@@ -1,4 +1,4 @@
-# @ohos.runningLock
+# @ohos.runningLock (Runninglock)
 
 The **runningLock** module provides APIs for creating, querying, holding, and releasing running locks.
 

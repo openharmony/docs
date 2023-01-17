@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.mouseEvent
+# @ohos.multimodalInput.mouseEvent (Mouse Event)
 
 The **mouseEvent** module provides mouse events reported by an input device.
 

@@ -1,4 +1,4 @@
-# @ohos.resourceManager
+# @ohos.resourceManager (Resource Manager)
 
 The **resourceManager** module provides APIs to obtain information about application resources based on the current configuration, including the language, region, screen direction, MCC/MNC, as well as device capability and density.
 

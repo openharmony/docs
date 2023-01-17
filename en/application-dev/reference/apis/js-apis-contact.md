@@ -1,4 +1,4 @@
-# @ohos.contact
+# @ohos.contact (Contact)
 
 >**NOTE**
 >

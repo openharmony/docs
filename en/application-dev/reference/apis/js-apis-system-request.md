@@ -1,6 +1,6 @@
-# Uploading and Downloading
+# @system.request (Uploading and Downloading)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
+> **NOTE**
 > - The APIs of this module are no longer maintained since API version 6. It is recommended that you use [`@ohos.request`](js-apis-request.md) instead.
 > 
 > - The initial APIs of this module are supported since API version 4. Newly added APIs will be marked with a superscript to indicate their earliest API version.

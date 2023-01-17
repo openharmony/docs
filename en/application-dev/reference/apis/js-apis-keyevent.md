@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.keyEvent
+# @ohos.multimodalInput.keyEvent (Key Event)
 
 The **keyEvent** module provides key events reported by an input device.
 

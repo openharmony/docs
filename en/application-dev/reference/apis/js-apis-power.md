@@ -1,4 +1,4 @@
-# @ohos.power (Power Manager)
+# @ohos.power (System Power Management)
 
 The **power** module provides APIs for rebooting and shutting down the system, as well as querying the screen status.
 

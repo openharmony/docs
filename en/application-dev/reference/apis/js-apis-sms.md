@@ -1,4 +1,4 @@
-# @ohos.telephony.sms
+# @ohos.telephony.sms (SMS)
 
 The **sms** module provides basic SMS management functions. You can create and send SMS messages, and obtain and set the default SIM card for sending and receiving SMS messages. Besides, you can obtain and set the SMSC address, and check whether the current device can send and receive SMS messages.
 

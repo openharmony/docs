@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.inputEvent
+# @ohos.multimodalInput.inputEvent (Input Event)
 
 The **inputEvent** module describes basic events reported by an input device.
 

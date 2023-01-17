@@ -1,4 +1,4 @@
-# @ohos.geolocation
+# @ohos.geolocation (Geolocation)
 
 The **geolocation** module provides location services such as GNSS positioning, network positioning, geocoding, reverse geocoding, country code and geofencing.
 
