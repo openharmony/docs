@@ -1,4 +1,4 @@
-# Distributed KV Store
+# @ohos.data.distributedKVStore (Distributed KV Store)
 
 The **distributedKVStore** module implements collaboration between databases for different devices that forms a Super Device. The APIs provided by this module can be used to save data to a distributed key-value (KV) store and perform operations, such as adding, deleting, modifying, querying, and synchronizing data in distributed KV stores.
 
