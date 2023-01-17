@@ -1,8 +1,9 @@
-# Sensor
+# @ohos.sensor (Sensor)
 
 The **Sensor** module provides APIs for obtaining the sensor list and subscribing to sensor data. It also provides some common sensor algorithms.
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -3495,9 +3496,9 @@ Describes the acceleration sensor data. It extends from [Response](#response).
 
 | Name| Type  | Readable| Writable| Description                                |
 | ---- | ------ | ---- | ---- | ------------------------------------ |
-| x    | number | Yes  | Yes  | Acceleration along the x-axis of the device, in m/s2.|
-| y    | number | Yes  | Yes  | Acceleration along the y-axis of the device, in m/s2.|
-| z    | number | Yes  | Yes  | Acceleration along the z-axis of the device, in m/s2.|
+| x    | number | Yes  | Yes  | Acceleration along the x-axis of the device, in m/s². |
+| y    | number | Yes  | Yes  | Acceleration along the y-axis of the device, in m/s². |
+| z    | number | Yes  | Yes  | Acceleration along the z-axis of the device, in m/s². |
 
 
 ## LinearAccelerometerResponse
@@ -3509,9 +3510,9 @@ Describes the linear acceleration sensor data. It extends from [Response](#respo
 
 | Name| Type  | Readable| Writable| Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| x    | number | Yes  | Yes  | Linear acceleration along the x-axis of the device, in m/s2.|
-| y    | number | Yes  | Yes  | Linear acceleration along the y-axis of the device, in m/s2.|
-| z    | number | Yes  | Yes  | Linear acceleration along the z-axis of the device, in m/s2.|
+| x    | number | Yes  | Yes  | Linear acceleration along the x-axis of the device, in m/s². |
+| y    | number | Yes  | Yes  | Linear acceleration along the y-axis of the device, in m/s². |
+| z    | number | Yes  | Yes  | Linear acceleration along the z-axis of the device, in m/s². |
 
 
 ## AccelerometerUncalibratedResponse
@@ -3523,12 +3524,12 @@ Describes the uncalibrated acceleration sensor data. It extends from [Response](
 
 | Name | Type  | Readable| Writable| Description                                            |
 | ----- | ------ | ---- | ---- | ------------------------------------------------ |
-| x     | number | Yes  | Yes  | Uncalibrated acceleration along the x-axis of the device, in m/s2.      |
-| y     | number | Yes  | Yes  | Uncalibrated acceleration along the y-axis of the device, in m/s2.      |
-| z     | number | Yes  | Yes  | Uncalibrated acceleration along the z-axis of the device, in m/s2.      |
-| biasX | number | Yes  | Yes  | Uncalibrated acceleration bias along the x-axis of the device, in m/s2.  |
-| biasY | number | Yes  | Yes  | Uncalibrated acceleration bias along the y-axis of the device, in m/s2.|
-| biasZ | number | Yes  | Yes  | Uncalibrated acceleration bias along the z-axis of the device, in m/s2.  |
+| x     | number | Yes  | Yes  | Uncalibrated acceleration along the x-axis of the device, in m/s².  |
+| y     | number | Yes  | Yes  | Uncalibrated acceleration along the y-axis of the device, in m/s².  |
+| z     | number | Yes  | Yes  | Uncalibrated acceleration along the z-axis of the device, in m/s².  |
+| biasX | number | Yes  | Yes  | Uncalibrated acceleration bias along the x-axis of the device, in m/s². |
+| biasY | number | Yes  | Yes  | Uncalibrated acceleration bias along the y-axis of the device, in m/s². |
+| biasZ | number | Yes  | Yes  | Uncalibrated acceleration bias along the z-axis of the device, in m/s². |
 
 
 ## GravityResponse
@@ -3540,9 +3541,9 @@ Describes the gravity sensor data. It extends from [Response](#response).
 
 | Name| Type  | Readable| Writable| Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| x    | number | Yes  | Yes  | Gravitational acceleration along the x-axis of the device, in m/s2.|
-| y    | number | Yes  | Yes  | Gravitational acceleration along the y-axis of the device, in m/s2.|
-| z    | number | Yes  | Yes  | Gravitational acceleration along the z-axis of the device, in m/s2.|
+| x    | number | Yes  | Yes  | Gravitational acceleration along the x-axis of the device, in m/s². |
+| y    | number | Yes  | Yes  | Gravitational acceleration along the y-axis of the device, in m/s². |
+| z    | number | Yes  | Yes  | Gravitational acceleration along the z-axis of the device, in m/s². |
 
 
 ## OrientationResponse

@@ -1,4 +1,5 @@
-# Window Animation Management
+# @ohos.animation.windowAnimationManager (Window Animation Management)
+
 The **WindowAnimationManager** module provides APIs to listen for application start/exit events and window minimization/maximization events and associate animations with these events.
 
 >  **NOTE**

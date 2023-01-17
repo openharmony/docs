@@ -1,7 +1,6 @@
-# Media
+# @ohos.multimedia.media (Media)
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 The multimedia subsystem provides a set of simple and easy-to-use APIs for you to access the system and use media resources.
@@ -1917,12 +1916,12 @@ Sets video recording parameters. This API uses an asynchronous callback to retur
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                               |
-| -------- | --------------------------------------- |
-| 201      | Permission denied. Return by callback.  |
-| 401      | Parameter error. Return by callback.    |
-| 5400102  | Operate not permit. Return by callback. |
-| 5400105  | Service died. Return by callback.       |
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 201      | Permission denied. Return by callback.     |
+| 401      | Parameter error. Return by callback.       |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400105  | Service died. Return by callback.          |
 
 **Example**
 
@@ -1987,12 +1986,12 @@ Sets video recording parameters. This API uses a promise to return the result.
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                              |
-| -------- | -------------------------------------- |
-| 201      | Permission denied. Return by promise.  |
-| 401      | Parameter error. Return by promise.    |
-| 5400102  | Operate not permit. Return by promise. |
-| 5400105  | Service died. Return by promise.       |
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 201      | Permission denied. Return by promise.     |
+| 401      | Parameter error. Return by promise.       |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.          |
 
 **Example**
 
@@ -2051,11 +2050,11 @@ This API can be called only after [prepare()](#videorecorder_prepare1) is called
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                               |
-| -------- | --------------------------------------- |
-| 5400102  | Operate not permit. Return by callback. |
-| 5400103  | IO error. Return by callback.           |
-| 5400105  | Service died. Return by callback.       |
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
 
 **Example**
 
@@ -2096,11 +2095,11 @@ This API can be called only after [prepare()](#videorecorder_prepare1) is called
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                              |
-| -------- | -------------------------------------- |
-| 5400102  | Operate not permit. Return by promise. |
-| 5400103  | IO error. Return by promise.           |
-| 5400105  | Service died. Return by promise.       |
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
 
 **Example**
 
@@ -2137,11 +2136,11 @@ This API can be called only after [prepare()](#videorecorder_prepare1) and [getI
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                               |
-| -------- | --------------------------------------- |
-| 5400102  | Operate not permit. Return by callback. |
-| 5400103  | IO error. Return by callback.           |
-| 5400105  | Service died. Return by callback.       |
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
 
 **Example**
 
@@ -2178,11 +2177,11 @@ This API can be called only after [prepare()](#videorecorder_prepare1) and [getI
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                              |
-| -------- | -------------------------------------- |
-| 5400102  | Operate not permit. Return by promise. |
-| 5400103  | IO error. Return by promise.           |
-| 5400105  | Service died. Return by promise.       |
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
 
 **Example**
 
@@ -2217,11 +2216,11 @@ This API can be called only after [start()](#videorecorder_start1) is called. Yo
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                               |
-| -------- | --------------------------------------- |
-| 5400102  | Operate not permit. Return by callback. |
-| 5400103  | IO error. Return by callback.           |
-| 5400105  | Service died. Return by callback.       |
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
 
 **Example**
 
@@ -2258,11 +2257,11 @@ This API can be called only after [start()](#videorecorder_start1) is called. Yo
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                              |
-| -------- | -------------------------------------- |
-| 5400102  | Operate not permit. Return by promise. |
-| 5400103  | IO error. Return by promise.           |
-| 5400105  | Service died. Return by promise.       |
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
 
 **Example**
 
@@ -2295,11 +2294,11 @@ Resumes video recording. This API uses an asynchronous callback to return the re
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                               |
-| -------- | --------------------------------------- |
-| 5400102  | Operate not permit. Return by callback. |
-| 5400103  | IO error. Return by callback.           |
-| 5400105  | Service died. Return by callback.       |
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
 
 **Example**
 
@@ -2334,11 +2333,11 @@ Resumes video recording. This API uses a promise to return the result.
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                              |
-| -------- | -------------------------------------- |
-| 5400102  | Operate not permit. Return by promise. |
-| 5400103  | IO error. Return by promise.           |
-| 5400105  | Service died. Return by promise.       |
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
 
 **Example**
 
@@ -2373,11 +2372,11 @@ To start another recording, you must call [prepare()](#videorecorder_prepare1) a
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                               |
-| -------- | --------------------------------------- |
-| 5400102  | Operate not permit. Return by callback. |
-| 5400103  | IO error. Return by callback.           |
-| 5400105  | Service died. Return by callback.       |
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
 
 **Example**
 
@@ -2414,11 +2413,11 @@ To start another recording, you must call [prepare()](#videorecorder_prepare1) a
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                              |
-| -------- | -------------------------------------- |
-| 5400102  | Operate not permit. Return by promise. |
-| 5400103  | IO error. Return by promise.           |
-| 5400105  | Service died. Return by promise.       |
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
 
 **Example**
 
@@ -2527,7 +2526,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 | ID| Error Message                         |
 | -------- | --------------------------------- |
-| 5400103  | IO error. Return by callback.     |
+| 5400103  | I/O error. Return by callback.    |
 | 5400105  | Service died. Return by callback. |
 
 **Example**
@@ -2567,7 +2566,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 5400103  | IO error. Return by promise.     |
+| 5400103  | I/O error. Return by promise.    |
 | 5400105  | Service died. Return by promise. |
 
 **Example**
@@ -2602,7 +2601,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 | ID| Error Message                         |
 | -------- | --------------------------------- |
-| 5400103  | IO error. Return by callback.     |
+| 5400103  | I/O error. Return by callback.    |
 | 5400105  | Service died. Return by callback. |
 
 **Example**

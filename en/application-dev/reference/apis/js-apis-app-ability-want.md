@@ -22,8 +22,8 @@ import Want from '@ohos.app.ability.Want';
 | bundleName   | string               | No  | Bundle name of the ability.|
 | moduleName | string | No| Name of the module to which the ability belongs.|
 | abilityName  | string               | No  | Name of the ability. If both **bundleName** and **abilityName** are specified in a **Want** object, the **Want** object can match a specific ability. The value of **abilityName** must be unique in an application.|
-| [action](js-apis-app-ability-wantConstant.md#wantConstant.Action) | string               | No  | Action to take, such as viewing and sharing application details. In implicit Want, you can define this field and use it together with **uri** or **parameters** to specify the operation to be performed on the data. For details about the definition and matching rules of implicit Want, see [Matching Rules of Explicit Want and Implicit Want](application-models/explicit-implicit-want-mappings.md).                    |
-| [entities](js-apis-app-ability-wantConstant.md#wantConstant.Entity) | Array\<string> | No| Additional category information (such as browser and video player) of the ability. It is a supplement to the **action** field for implicit Want. and is used to filter ability types.|
+| [action](js-apis-app-ability-wantConstant.md#wantconstantaction) | string               | No  | Action to take, such as viewing and sharing application details. In implicit Want, you can define this field and use it together with **uri** or **parameters** to specify the operation to be performed on the data. For details about the definition and matching rules of implicit Want, see [Matching Rules of Explicit Want and Implicit Want](../../application-models/explicit-implicit-want-mappings.md).              |
+| [entities](js-apis-app-ability-wantConstant.md#wantconstantentity) | Array\<string> | No| Additional category information (such as browser and video player) of the ability. It is a supplement to the **action** field for implicit Want. and is used to filter ability types.|
 | uri | string | No| Data carried. This field is used together with **type** to specify the data type. If **uri** is specified in a Want, the Want will match the specified URI information, including **scheme**, **schemeSpecificPart**, **authority**, and **path**.|
 | type | string | No| MIME type, that is, the type of the file to open, for example, **text/xml** and **image/***. For details about the MIME type definition, see https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com.|
 | parameters   | {[key: string]: any} | No  | Want parameters in the form of custom key-value (KV) pairs. By default, the following keys are carried:<br>- **ohos.aafwk.callerPid**: PID of the caller.<br>- **ohos.aafwk.param.callerToken**: token of the caller.<br>- **ohos.aafwk.param.callerUid**: UID in [BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1), that is, the application UID in the bundle information.          |
@@ -133,4 +133,4 @@ import Want from '@ohos.app.ability.Want';
 
 - For more details and examples, see [Want](../../application-models/want-overview.md).
 
-  <!--no_check-->
+  
