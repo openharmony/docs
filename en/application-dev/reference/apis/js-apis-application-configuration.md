@@ -1,9 +1,8 @@
-# @ohos.application.Configuration
+# @ohos.application.Configuration (Configuration)
 
 The **Configuration** module defines environment change information.
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > This module is deprecated since API version 9. You are advised to use [@ohos.app.ability.Configuration](js-apis-app-ability-configuration.md) instead.
 

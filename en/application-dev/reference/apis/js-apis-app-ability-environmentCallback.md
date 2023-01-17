@@ -1,4 +1,4 @@
-# @ohos.app.ability.EnvironmentCallback
+# @ohos.app.ability.EnvironmentCallback (EnvironmentCallback)
 
 The **EnvironmentCallback** module provides the **onConfigurationUpdated** API for the application context to listen for system environment changes.
 
@@ -33,18 +33,18 @@ Called when the system environment changes.
     
 
   ```ts
-import Ability from "@ohos.application.Ability";
+import UIAbility from "@ohos.app.ability.Ability";
 
 var callbackId;
 
-export default class MyAbility extends Ability {
+export default class MyAbility extends UIAbility {
     onCreate() {
         console.log("MyAbility onCreate")
         globalThis.applicationContext = this.context.getApplicationContext();
         let EnvironmentCallback  =  {
             onConfigurationUpdated(config){
                 console.log("onConfigurationUpdated config:" + JSON.stringify(config));
-            },
+            }
         }
         // 1. Obtain an applicationContext object.
         let applicationContext = globalThis.applicationContext;

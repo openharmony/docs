@@ -1,4 +1,4 @@
-# @ohos.app.ability.ConfigurationConstant
+# @ohos.app.ability.ConfigurationConstant (ConfigurationConstant)
 
 The **ConfigurationConstant** module provides the enumerated values of the environment configuration information.
 
@@ -25,7 +25,7 @@ You can obtain the value of this constant by calling the **ConfigurationConstant
 | COLOR_MODE_LIGHT | 1 | Light mode.| 
 
 
-## ConfigurationConstant.Direction<sup>9+</sup>
+## ConfigurationConstant.Direction
 
 You can obtain the value of this constant by calling the **ConfigurationConstant.Direction** API.
 
@@ -38,7 +38,7 @@ You can obtain the value of this constant by calling the **ConfigurationConstant
 | DIRECTION_HORIZONTAL | 1 | Horizontal direction.| 
 
 
-## ConfigurationConstant.ScreenDensity<sup>9+</sup>
+## ConfigurationConstant.ScreenDensity
 
 You can obtain the value of this constant by calling the **ConfigurationConstant.ScreenDensity** API.
 

@@ -1,4 +1,4 @@
-# @ohos.application.AbilityStage
+# @ohos.application.AbilityStage (AbilityStage)
 
 **AbilityStage** is a runtime class for HAP files.
 
@@ -38,21 +38,21 @@ Called when the application is created.
 
 onAcceptWant(want: Want): string;
 
-Called when a specified ability is started.
+Called when a UIAbility is started.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-want.md) | Yes| Information about the ability to start, such as the ability name and bundle name.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility, such as the ability name and bundle name.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | string | Returns an ability ID. If this ability has been started, no new instance is created and the ability is placed at the top of the stack. Otherwise, a new instance is created and started.| 
+| Type| Description|
+| -------- | -------- |
+| string | Returns a UIAbility ID. If this UIAbility has been started, no new instance is created and the UIAbility is placed at the top of the stack. Otherwise, a new instance is created and started.|
 
 **Example**
     
@@ -76,9 +76,9 @@ Called when the global configuration is updated.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-application-configuration.md) | Yes| Callback invoked when the global configuration is updated. The global configuration indicates the configuration of the environment where the application is running and includes the language and color mode.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| config | [Configuration](js-apis-application-configuration.md) | Yes| Callback invoked when the global configuration is updated. The global configuration indicates the configuration of the environment where the application is running and includes the language and color mode.|
 
 **Example**
     
@@ -100,9 +100,9 @@ Called when the system has decided to adjust the memory level. For example, this
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | level | [AbilityConstant.MemoryLevel](js-apis-application-abilityConstant.md#abilityconstantmemorylevel) | Yes| Memory level that indicates the memory usage status. When the specified memory level is reached, a callback will be invoked and the system will start adjustment.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| level | [AbilityConstant.MemoryLevel](js-apis-application-abilityConstant.md#abilityconstantmemorylevel) | Yes| Memory level that indicates the memory usage status. When the specified memory level is reached, a callback will be invoked and the system will start adjustment.|
 
 **Example**
     
@@ -118,10 +118,10 @@ Called when the system has decided to adjust the memory level. For example, this
 
 context: AbilityStageContext;
 
-Describes the configuration information about the context.
+Defines the **Context** object of **AbilityStage**.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name     | Type                       | Description                                                        |
-| ----------- | --------------------------- | ------------------------------------------------------------ |
-| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | Called when initialization is performed during ability startup.|
+| Name | Type                                                        | Description                      |
+| ------- | ------------------------------------------------------------ | -------------------------- |
+| context | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | **Context** object of AbilityStage.|

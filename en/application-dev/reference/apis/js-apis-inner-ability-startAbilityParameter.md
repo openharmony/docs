@@ -1,6 +1,6 @@
 # StartAbilityParameter
 
-The **StartAbilityParameter** module defines the parameters for starting an ability.
+The **StartAbilityParameter** module defines the parameters for starting an ability. The parameters can be used as input parameters in [startAbility](js-apis-ability-featureAbility.md#featureabilitystartability) to start the specified ability.
 
 > **NOTE**
 > 
@@ -11,8 +11,8 @@ The **StartAbilityParameter** module defines the parameters for starting an abil
 
 | Name              |   Type  | Mandatory  | Description                                   |
 | ------------------- | -------- | ---- | -------------------------------------- |
-| want                | [Want](js-apis-application-want.md)|   Yes  | Information about the ability to start.                    |
-| abilityStartSetting | {[key: string]: any} | No   | Special attribute of the ability to start. This attribute can be passed in the method call.|
+| want                | [Want](js-apis-application-want.md)|   Yes  | Want information about the target ability.                    |
+| abilityStartSetting | {[key: string]: any} | No   | Special attribute of the target ability. This attribute can be passed in the call.|
 
 **Example**
 ```ts
@@ -20,7 +20,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 
 let Want = {
     bundleName: "com.example.abilityStartSettingApp2",
-    abilityName: "com.example.abilityStartSettingApp.MainAbility",
+    abilityName: "com.example.abilityStartSettingApp.EntryAbility",
 }
 
 let abilityStartSetting ={
@@ -31,13 +31,15 @@ let abilityStartSetting ={
 }
 
 let startAbilityParameter = {
-    want:Want,
-    abilityStartSetting:abilityStartSetting
+    want : Want,
+    abilityStartSetting : abilityStartSetting
 }
 
-featureAbility.startAbility(startAbilityParameter, (err,data)=>{
-    console.log('errCode : ' + JSON.stringify(err));
-    console.log('data : ' + JSON.stringify(data));
+try {
+    featureAbility.startAbility(startAbilityParameter, (err, data) => {
+        console.log('errCode : ' + JSON.stringify(err));
+        console.log('data : ' + JSON.stringify(data));
+    });
 } catch(error) {
     console.log("startAbility error: " + JSON.stringify(error));
 }

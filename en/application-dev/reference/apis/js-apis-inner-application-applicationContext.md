@@ -38,11 +38,11 @@ Registers a listener to monitor the ability lifecycle of the application.
 **Example**
 
 ```ts
-import Ability from "@ohos.application.Ability";
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 var lifecycleId;
 
-export default class MyAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log("MyAbility onCreate")
         let AbilityLifecycleCallback = {
@@ -105,11 +105,11 @@ Deregisters the listener that monitors the ability lifecycle of the application.
 **Example**
 
 ```ts
-import Ability from "@ohos.application.Ability";
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 var lifecycleId;
 
-export default class MyAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         console.log("stage applicationContext: " + JSON.stringify(applicationContext));
@@ -143,11 +143,11 @@ Registers a listener for system environment changes. This API uses an asynchrono
 **Example**
 
 ```ts
-import Ability from "@ohos.application.Ability";
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 var callbackId;
 
-export default class MyAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log("MyAbility onCreate")
         globalThis.applicationContext = this.context.getApplicationContext();
@@ -155,6 +155,9 @@ export default class MyAbility extends Ability {
             onConfigurationUpdated(config){
                 console.log("onConfigurationUpdated config:" + JSON.stringify(config));
             },
+            onMemoryLevel(level){
+                console.log("onMemoryLevel level:" + level);
+            }
         }
         // 1. Obtain an applicationContext object.
         let applicationContext = globalThis.applicationContext;
@@ -183,11 +186,11 @@ Deregisters the listener for system environment changes. This API uses an asynch
 **Example**
 
 ```ts
-import Ability from "@ohos.application.Ability";
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 var callbackId;
 
-export default class MyAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.unregisterEnvironmentCallback(callbackId, (error, data) => {

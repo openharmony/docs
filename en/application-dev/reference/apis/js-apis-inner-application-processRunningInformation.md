@@ -1,6 +1,6 @@
 # ProcessRunningInformation
 
-The **ProcessRunningInformation** module provides process running information.
+The **ProcessRunningInformation** module defines the running information of a process.
 
 > **NOTE**
 > 
@@ -8,12 +8,13 @@ The **ProcessRunningInformation** module provides process running information.
 
 ## How to Use
 
-The process running information is obtained through [appManager](js-apis-application-appManager.md#appmanagergetprocessrunninginformation9).
+The process running information is obtained through [getProcessRunningInformation](js-apis-application-appManager.md#appmanagergetprocessrunninginformation9) in **appManager**.
 
 ```ts
 import appManager from '@ohos.application.appManager';
-appManager.getProcessRunningInformation((error,data) => { 
-    console.log("getProcessRunningInformation error: "  + error.code + " data: " + JSON.stringify(data));
+
+appManager.getProcessRunningInformation((error, data) => { 
+    console.log("error: "  + error.code + " data: " + JSON.stringify(data));
 });
 ```
 
@@ -21,9 +22,9 @@ appManager.getProcessRunningInformation((error,data) => {
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Readable| Writable| Description| 
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | Yes| No| Process ID.| 
-| uid | number | Yes| No| User ID.| 
-| processName | string | Yes| No| Process name.| 
-| bundleNames | Array&lt;string&gt; | Yes| No| Names of all running bundles in the process.| 
+| pid | number | Yes| No| Process ID.|
+| uid | number | Yes| No| User ID.|
+| processName | string | Yes| No| Process name.|
+| bundleNames | Array&lt;string&gt; | Yes| No| Names of all running bundles in the process.|

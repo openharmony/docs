@@ -1,4 +1,4 @@
-# @ohos.ability.ability
+# @ohos.ability.ability (Ability)
 
 The **Ability** module provides all level-2 module APIs for developers to export.
 

@@ -1,6 +1,6 @@
 # MissionParameter
 
-The **MissionParameter** module defines the parameters required for mission synchronization.
+The **MissionParameter** module defines the parameters required for mission synchronization. It can be used an input parameter in [startSyncRemoteMissions](js-apis-distributedMissionManager.md#distributedmissionmanagerstartsyncremotemissions).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
