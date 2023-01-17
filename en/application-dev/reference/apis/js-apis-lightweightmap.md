@@ -1,12 +1,13 @@
 # @ohos.util.LightWeightMap (Nonlinear Container LightWeightMap) 
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 **LightWeightMap** stores key-value (KV) pairs. Each key must be unique and have only one value.
 
-**LightWeightMap** is based on generics and uses a lightweight structure. Keys in the map are searched using hash values, which are stored in an array.
+**LightWeightMap** is based on generics and uses a lightweight structure. Its default initial capacity is 8, and it has the capacity doubled in each expansion.
+
+The keys in such a set are searched using hash values, which are stored in an array.
 
 Compared with **[HashMap](js-apis-hashmap.md)**, which can also store KV pairs, **LightWeightMap** occupies less memory.
 
@@ -44,7 +45,7 @@ A constructor used to create a **LightWeightMap** instance.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -73,7 +74,7 @@ Checks whether this container is empty (contains no element).
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -109,7 +110,7 @@ Checks whether this container contains all elements of the specified **LightWeig
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -149,7 +150,7 @@ Checks whether this container contains the specified key.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -159,10 +160,8 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-let result = lightWeightMap.hasKey;
-lightWeightMap.hasKey("squirrel");
 lightWeightMap.set("squirrel", 123);
-let result1 = lightWeightMap.hasKey("squirrel");
+let result = lightWeightMap.hasKey("squirrel");
 ```
 
 
@@ -188,7 +187,7 @@ Checks whether this container contains the specified value.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -214,7 +213,7 @@ Increases the capacity of this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -256,7 +255,7 @@ Obtains the value of the specified key in this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -294,7 +293,7 @@ Obtains the index of the first occurrence of an element with the specified key i
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -332,7 +331,7 @@ Obtains the index of the first occurrence of an element with the specified value
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -370,12 +369,12 @@ Obtains the key of an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The getKeyAt method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of index is out of range. |
 
 **Example**
 
@@ -403,7 +402,7 @@ Adds all elements in a **LightWeightMap** instance to this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -416,7 +415,7 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let map = new LightWeightMap();
-lightWeightMap.setAll(map);
+map.setAll(lightWeightMap); // Add all elements in lightWeightMap to the map.
 ```
 
 
@@ -442,7 +441,7 @@ Adds an element to this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -478,7 +477,7 @@ Removes an element with the specified key from this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -516,7 +515,7 @@ Removes an element at the specified position from this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -555,12 +554,12 @@ Sets a value for an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The setValueAt method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of index is out of range. |
 
 **Example**
 
@@ -594,12 +593,12 @@ Obtains the value of an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The getValueAt method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of index is out of range. |
 
 **Example**
 
@@ -621,7 +620,7 @@ Clears this container and sets its length to **0**.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -653,7 +652,7 @@ Obtains an iterator that contains all the keys in this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -690,7 +689,7 @@ Obtains an iterator that contains all the values in this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -735,7 +734,7 @@ callbackfn
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -769,7 +768,7 @@ Obtains an iterator that contains all the elements in this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -800,13 +799,13 @@ Concatenates the elements in this container into a string and returns the string
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| String | String obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | String | String obtained.|
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -818,7 +817,7 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
-let iter = lightWeightMap.toString();
+let result = lightWeightMap.toString();
 ```
 
 ### [Symbol.iterator]
@@ -837,7 +836,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
