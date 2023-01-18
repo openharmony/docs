@@ -366,7 +366,6 @@
       - [相册资源使用指导](file-management/medialibrary-album-guidelines.md)
     - 文件访问框架
       - [用户公共文件访问框架概述](file-management/file-access-framework-overview.md)
-    - [文件选择器使用指导](file-management/filepicker-guidelines.md)
   - 任务管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
