@@ -155,7 +155,9 @@ The global function **encodeURI** is used for URI encoding, and **decodeURI** is
 
 Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
 
-Yes. The **convert** API of the **convertxml** module can be used to convert XML text into JavaScript objects. Reference: [@ohos.convertxml](../reference/apis/js-apis-convertxml.md)
+Yes. The **convert** API of the **convertxml** module can be used to convert XML text into JavaScript objects.
+
+Reference: [@ohos.convertxml](../reference/apis/js-apis-convertxml.md)
 
 ## How do I configure application icons to be used across devices?
 
@@ -287,4 +289,4 @@ Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
 
 No. Relational database operations cannot be performed in the worker thread.
 
-<!--no_check-->  
+ <!--no_check--> 
