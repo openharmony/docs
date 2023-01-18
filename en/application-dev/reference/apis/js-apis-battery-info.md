@@ -1,4 +1,4 @@
-# @ohos.batteryInfo
+# @ohos.batteryInfo (Battery Information)
 
 >**NOTE**
 >

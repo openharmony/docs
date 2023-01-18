@@ -1,4 +1,4 @@
-# @ohos.hidebug
+# @ohos.hidebug (HiDebug)
 
 > **NOTE**
 > 

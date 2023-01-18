@@ -1,4 +1,4 @@
-# @ohos.geoLocationManager
+# @ohos.geoLocationManager (Geolocation Manager)
 
 The **geoLocationManager** module provides location service management functions.
 

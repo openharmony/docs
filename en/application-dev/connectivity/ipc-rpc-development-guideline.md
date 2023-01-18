@@ -10,7 +10,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 
 | Class/Interface | Function | Description |
 | --------------- | -------- | ----------- |
-| [IRemoteBroker](../reference/apis/js-apis-rpc.md#iremotebroker) | sptr<IRemoteObject> AsObject() | Obtains the holder of a remote proxy object. This method must be implemented by the derived classes of **IRemoteBroker**. If you call this method on the stub, the **RemoteObject** is returned; if you call this method on the proxy, the proxy object is returned. |
+| [IRemoteBroker](../reference/apis/js-apis-rpc.md#iremotebroker) | sptr\<IRemoteObject> AsObject() | Obtains the holder of a remote proxy object. This method must be implemented by the derived classes of **IRemoteBroker**. If you call this method on the stub, the **RemoteObject** is returned; if you call this method on the proxy, the proxy object is returned. |
 | IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &data, MessageParcel &reply, MessageOption &option) | Called to process a request from the proxy and return the result. Derived classes need to override this method. |
 | IRemoteProxy | | Service proxy classes are derived from the **IRemoteProxy** class. |
 
@@ -34,7 +34,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 
 2.  Define and implement service provider **TestAbilityStub**.
 
-    This class is related to the IPC framework and needs to inherit **IRemoteStub<ITestAbility\>**. You need to override **OnRemoteRequest** on the stub to receive requests from the proxy.
+    This class is related to the IPC framework and needs to inherit **IRemoteStub&lt;ITestAbility&gt;**. You need to override **OnRemoteRequest** on the stub to receive requests from the proxy.
 
     ```
     class TestAbilityStub : public IRemoteStub<ITestAbility> {

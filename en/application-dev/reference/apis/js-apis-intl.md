@@ -1,4 +1,4 @@
-# @ohos.intl
+# @ohos.intl (Internationalization)
 
 The **intl** module provides basic I18N capabilities, such as time and date formatting, number formatting, and string sorting, through the standard I18N APIs defined in ECMA 402.
 

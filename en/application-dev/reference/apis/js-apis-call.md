@@ -1,4 +1,4 @@
-# @ohos.telephony.call
+# @ohos.telephony.call (Call)
 
 The **call** module provides call management functions, including making calls, redirecting to the dial screen, obtaining the call status, and formatting phone numbers.
 

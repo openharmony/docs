@@ -1,6 +1,6 @@
-# DefaultAppManager
+# @ohos.bundle.defaultAppManager (Default Application Manager)
 
-The **DefaultAppManager** module provides APIs to query whether the current application is the default application of a specific type.
+The **defaultAppManager** module provides APIs to query whether the current application is the default application of a specific type.
 
 > **NOTE**
 >
