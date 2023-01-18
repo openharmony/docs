@@ -1,10 +1,9 @@
 # search
 
 >  **NOTE**
->
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<Search>** component provides an input area for users to search.
+The **\<search>** component provides an input area for users to search.
 
 
 ## Child Components
@@ -42,7 +41,7 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 | font-size                | &lt;length&gt;             | 16px            | No   | Font size of the search box.                               |
 | allow-scale              | boolean                    | true            | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
 | placeholder-color        | &lt;color&gt;              | \#99000000<br>| No   | Color of the hint text.                             |
-| font-weight              | number \| string | normal          | No   | Font weight. For details, see **font-weight** of the **[\<text>](../arkui-js/js-components-basic-text.md#styles)** component.|
+| font-weight              | number \| string | normal          | No   | Font weight. For details, see [font-weight](../arkui-js/js-components-basic-text.md#styles) of the **\<text>** component.|
 | font-family              | string                     | sans-serif      | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
 | caret-color<sup>6+</sup> | &lt;color&gt;              | -               | No   | Color of the caret.                              |
 

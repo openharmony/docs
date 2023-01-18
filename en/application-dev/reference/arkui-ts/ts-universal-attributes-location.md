@@ -17,7 +17,7 @@ The location attributes set the alignment mode, layout direction, and position o
 | position | [Position](ts-types.md#position8) | Offset of the component's upper left corner relative to the parent component's upper left corner. This offset is expressed using absolute values. When laying out components, this attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.|
 | markAnchor | [Position](ts-types.md#position8) | Anchor point of the component for positioning. The upper left corner of the component is used as the reference point for offset. Generally, this attribute is used together with the **position** and **offset** attributes. When used independently, this attribute is similar to **offset**.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>} |
 | offset | [Position](ts-types.md#position8) | Offset of the component relative to itself. This offset is expressed using relative values. This attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>} |
-| alignRules<sup>9+</sup> | {<br>left?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br>right?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br>middle?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br>top?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) };<br>bottom?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) };<br>center?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) }<br>} | Alignment rules relative to the container.<br>- **left**: left-aligned.<br>- **right**: right-aligned.<br>- **middle**: center-aligned.<br>- **top**: top-aligned.<br>- **bottom**: bottom-aligned.<br>- **center**: center-aligned.<br>**NOTE**<br>- **anchor**: ID of the component that functions as the anchor point.<br>- **align**: alignment mode relative to the anchor component.|
+| alignRules<sup>9+</sup> | {<br>left?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br>right?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br>middle?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br>top?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) };<br>bottom?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) };<br>center?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) }<br>} | Alignment rules relative to the container. This attribute is valid only when the container is [\<RelativeContainer>](ts-container-relativecontainer.md).<br>- **left**: left-aligned.<br>- **right**: right-aligned.<br>- **middle**: center-aligned.<br>- **top**: top-aligned.<br>- **bottom**: bottom-aligned.<br>- **center**: center-aligned.<br>**NOTE**<br>- **anchor**: ID of the component that functions as the anchor point.<br>- **align**: alignment mode relative to the anchor component.|
 
 
 ## Example
@@ -46,7 +46,7 @@ struct PositionExample1 {
           .fontSize(16)
           .backgroundColor(0xFFE4C4)
 
-        // To arrange the child components from left to right, set direction of the parent container to Direction.Auto or Direction.Ltr, or leave it to the default value.
+        // To arrange the child components from left to right, set direction of the parent container to Direction.Ltr.
         Text('direction').fontSize(9).fontColor(0xCCCCCC).width('90%')
         Row() {
           Text('1').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3)
@@ -55,19 +55,19 @@ struct PositionExample1 {
           Text('4').height(50).width('25%').fontSize(16).backgroundColor(0xD2B48C)
         }
         .width('90%')
-        .direction(Direction.Auto)
+        .direction(Direction.Ltr)
         // To arrange the child components from right to left, set direction of the parent container to Direction.Rtl.
         Row() {
-          Text('1').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3)
-          Text('2').height(50).width('25%').fontSize(16).backgroundColor(0xD2B48C)
-          Text('3').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3)
-          Text('4').height(50).width('25%').fontSize(16).backgroundColor(0xD2B48C)
+          Text('1').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3).textAlign(TextAlign.End)
+          Text('2').height(50).width('25%').fontSize(16).backgroundColor(0xD2B48C).textAlign(TextAlign.End)
+          Text('3').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3).textAlign(TextAlign.End)
+          Text('4').height(50).width('25%').fontSize(16).backgroundColor(0xD2B48C).textAlign(TextAlign.End)
         }
         .width('90%')
         .direction(Direction.Rtl)
       }
     }
-    .width('100%').margin({ top: 5 }).direction(Direction.Rtl)
+    .width('100%').margin({ top: 5 })
   }
 }
 ```

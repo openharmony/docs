@@ -1,6 +1,6 @@
 # Blank
 
-The **\<Blank>** component is able to automatically fill the empty spaces in the container along the main axis. It is valid only when the parent component is **\<Row>** or **\<Column>**.
+The **\<Blank>** component is able to automatically fill the empty spaces in the container along the main axis. It is valid only when the parent container is **\<Row>** or **\<Column>**.
 
 >  **NOTE**
 >
@@ -32,7 +32,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 
 ## Example
-
+### Example 1
+The sample below shows how the **\<Blank>** component fills the empty spaces in the container in landscape and portrait modes.
 ```ts
 // xxx.ets
 @Entry
@@ -57,3 +58,36 @@ Portrait mode
 Landscape mode
 
 ![en-us_image_0000001212378418](figures/en-us_image_0000001212378418.gif)
+
+
+### Example 2
+Set the **min** parameter when the width of the parent container of the **\<Blank>** component is not set.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct BlankExample {
+  build() {
+    Column({ space: 20 }) {
+      // If the width of the parent container is not set, the \<Blank> component becomes invalid. In this case, you can set min to specify the minimum width of the \<Blank> component.
+      Row() {
+        Text('Bluetooth').fontSize(18)
+        Blank().color(Color.Yellow)
+        Toggle({ type: ToggleType.Switch })
+      }.backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 })
+
+      Row() {
+        Text('Bluetooth').fontSize(18)
+        // Set the minimum width to 160.
+        Blank('160').color(Color.Yellow)
+        Toggle({ type: ToggleType.Switch })
+      }.backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 })
+      
+    }.backgroundColor(0xEFEFEF).padding(20).width('100%')
+  }
+}
+```
+If the width of the parent container is not set, set **min** to specify the minimum width of the **\<Blank>** component. 
+
+![blankmin](figures/blankmin.png)

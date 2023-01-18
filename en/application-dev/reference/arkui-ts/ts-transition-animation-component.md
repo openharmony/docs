@@ -20,46 +20,44 @@ Configure the component transition animations for when a component is inserted o
 | -------- | -------- | -------- | -------- |
 | type | [TransitionType](ts-appendix-enums.md#transitiontype)  | No| Transition type, which includes component addition and deletion by default.<br>Default value: **TransitionType.All**<br>**NOTE**<br>If **type** is not specified, insertion and deletion use the same transition type.|
 | opacity | number | No| Opacity of the component during transition, which is the value of the start point of insertion and the end point of deletion.<br>Default value: **1**|
-| translate | {<br>x? : number,<br>y? : number,<br>z? : number<br>} | No| Translation of the component during transition, which is the value of the start point of insertion and the end point of deletion.<br>-**x**: distance to translate along the x-axis.<br>-**y**: distance to translate along the y-axis.<br>-**z**: distance to translate along the z-axis.|
-| scale | {<br>x? : number,<br>y? : number,<br>z? : number,<br>centerX? : number,<br>centerY? : number<br>} | No| Scaling of the component during transition, which is the value of the start point of insertion and the end point of deletion.<br>- **x**: scale factor along the x-axis.<br>- **y**: scale factor along the y-axis.<br>- **z**: scale factor along the z-axis.<br>- **centerX** and **centerY**: x coordinate and y coordinate of the scale center, respectively.<br>- If the center point is 0, it indicates the upper left corner of the component.<br>|
-| rotate | {<br>x?: number,<br>y?: number,<br>z?: number,<br>angle?: Angle,<br>centerX?: Length,<br>centerY?: Length<br>} | No| Rotation of the component during transition, which is the value of the start point of insertion and the end point of deletion.<br>- **x**: rotation vector along the x-axis.<br>- **y**: rotation vector along the y-axis.<br>- **z**: rotation vector along the z-axis.<br>- **centerX** and **centerY**: x coordinate and y coordinate of the rotation center, respectively.<br>- If the center point is (0, 0), it indicates the upper left corner of the component.|
+| translate | {<br>x? : number \| string,<br>y? : number \| string,<br>z? : number \| string<br>} | No| Translation of the component during transition, which is the value of the start point of insertion and the end point of deletion.<br>-**x**: distance to translate along the x-axis.<br>-**y**: distance to translate along the y-axis.<br>-**z**: distance to translate along the z-axis.|
+| scale | {<br>x? : number,<br>y? : number,<br>z? : number,<br>centerX? : number \| string,<br>centerY? : number \| string<br>} | No| Scaling of the component during transition, which is the value of the start point of insertion and the end point of deletion.<br>- **x**: scale factor along the x-axis.<br>- **y**: scale factor along the y-axis.<br>- **z**: scale factor along the z-axis.<br>- **centerX** and **centerY**: x coordinate and y coordinate of the scale center, respectively. The default values are both **"50%"**.<br>- If the center point is 0, it indicates the upper left corner of the component.<br>|
+| rotate | {<br>x?: number,<br>y?: number,<br>z?: number,<br>angle?: number \| string,<br>centerX?: number \| string,<br>centerY?: number \| string<br>} | No| Rotation of the component during transition, which is the value of the start point of insertion and the end point of deletion.<br>- **x**: rotation vector along the x-axis.<br>- **y**: rotation vector along the y-axis.<br>- **z**: rotation vector along the z-axis.<br>- **centerX** and **centerY**: x coordinate and y coordinate of the rotation center, respectively. The default values are both **"50%"**.<br>- If the center point is (0, 0), it indicates the upper left corner of the component.|
 
 
 ## Example
-
-The following example shows how to use a button to control the appearance and disappearance of another button, and how to configure the required transition animations.
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TransitionExample {
-  @State btn: boolean = false
-  @State show: string = "show"
+  @State flag: boolean = true
+  @State show: string = 'show'
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center,}) {
-      Button(this.show).width(80).height(30).backgroundColor(0x317aff).margin({bottom:50})
+    Column() {
+      Button(this.show).width(80).height(30).margin(30)
         .onClick(() => {
+          // Click the button to show or hide the image.
           animateTo({ duration: 1000 }, () => {
-            this.btn = !this.btn
-            if(this.btn){
-              this.show = "hide"
-            }else{
-              this.show = "show"
+            if (this.flag) {
+              this.show = 'hide'
+            } else {
+              this.show = 'show'
             }
+            this.flag = !this.flag
           })
         })
-      if (this.btn) {
-        // The insertion and deletion have different transition effects.
-        Button() {
-          Image($r('app.media.bg1')).width("80%").height(300)
-        }.transition({ type: TransitionType.Insert, scale : {x:0,y:1.0} })
-        .transition({ type: TransitionType.Delete, scale: { x: 1.0, y: 0.0 } })
+      if (this.flag) {
+        // Apply different transition effects to the appearance and disappearance of the image.
+        Image($r('app.media.testImg')).width(300).height(300)
+          .transition({ type: TransitionType.Insert, scale: { x: 0, y: 1.0 } })
+          .transition({ type: TransitionType.Delete, rotate: { angle: 180 } })
       }
-    }.height(400).width("100%").padding({top:100})
+    }.width('100%')
   }
 }
 ```
 
-![en-us_image_0000001211898498](figures/en-us_image_0000001211898498.gif)
+![animateTo](figures/animateTo.gif)

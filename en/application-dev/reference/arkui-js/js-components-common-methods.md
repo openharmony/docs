@@ -32,7 +32,7 @@ animate( keyframes: Keyframes, options: Options): void
 | height             | number                                   | -                    | Height set for the component during playback of the animation.                      |
 | backgroundColor    | &lt;color&gt;                            | none                 | Background color set for the component during playback of the animation.                     |
 | opacity            | number                                   | 1                    | Opacity set for the component. The value ranges from 0 to 1.                     |
-| backgroundPosition | string                                   | -                    | The value format is **x y**, in percentage or pixels.<br>The first value indicates the horizontal position, and the second value indicates the vertical position.<br>If only one value is specified, the other value is **50%**.|
+| backgroundPosition | string                                   | -                    | The value format is **"x y"**, in percentage or pixels.<br>The first value indicates the horizontal position, and the second value indicates the vertical position.<br>If only one value is specified, the other value is **50%**.|
 | transformOrigin    | string                                   | 'center center' | Origin position of the transformed element.<br>The first value indicates the x-axis position. The value can be **left**, **center**, **right**, a length, or a percentage.<br>The second value indicates the y-axis position. The value can be **top**, **center**, **bottom**, a length, or a percentage.|
 | transform          | [Transform](../arkui-js/js-components-common-animation.md) | -                    | Transformation type set for a transformed element.                            |
 | offset             | number                                   | -                    | - The value of **offset** must be within (0.0, 1.0] and sorted in ascending order if it is provided.<br>- If there are only two frames, **offset** can be left empty.<br>- If there are more than two frames, **offset** is mandatory.|
@@ -53,10 +53,10 @@ animate( keyframes: Keyframes, options: Options): void
 | Value                                       | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
 | linear                                   | The animation speed keeps unchanged.                                 |
-| ease-in                                  | The animation starts at a low speed. **cubic-bezier(0.42, 0.0, 1.0, 1.0)**.|
-| ease-out                                 | The animation ends at a low speed. **cubic-bezier(0.0, 0.0, 0.58, 1.0)**.|
-| ease-in-out                              | The animation starts and ends at a low speed. **cubic-bezier(0.42, 0.0, 0.58, 1.0)**.|
-| friction                                 | The animation uses the damping curve, **cubic-bezier(0.2, 0.0, 0.2, 1.0)**.|
+| ease-in                                  | The animation starts at a low speed and then picks up speed until the end. The cubic-bezier curve (0.42, 0.0, 1.0, 1.0) is used.|
+| ease-out                                 | The animation ends at a low speed. The cubic-bezier curve (0.0, 0.0, 0.58, 1.0) is used.|
+| ease-in-out                              | The animation starts and ends at a low speed. The cubic-bezier curve (0.42, 0.0, 0.58, 1.0) is used.|
+| friction                                 | The animation uses the friction cubic-bezier curve (0.2, 0.0, 0.2, 1.0).|
 | extreme-deceleration                     | The animation uses the extreme deceleration cubic-bezier curve (0.0, 0.0, 0.0, 1.0).|
 | sharp                                    | The animation uses the sharp cubic-bezier curve (0.33, 0.0, 0.67, 1.0).|
 | rhythm                                   | The animation uses the rhythm cubic-bezier curve (0.7, 0.0, 0.2, 1.0).|
@@ -71,7 +71,7 @@ animate( keyframes: Keyframes, options: Options): void
 | --------- | ------- | ---------------------------------------- |
 | finished  | boolean | Read-only attribute, which indicates whether the animation playback is complete.                     |
 | pending   | boolean | Read-only attribute, which indicates whether the animation is waiting for the completion of other asynchronous operations (for example, start an animation with a delay).|
-| playState | string  | Read-write attribute, which indicates the playback status of the animation:<br>- **idle**: The animation is not running (playback ended or not started).<br>- **running**: The animation is running.<br>- **paused**: The animation is paused.<br>- **finished**: Animation playback ends.|
+| playState | string  | Read-write attribute, which indicates the playback status of the animation:<br>- **idle**: The animation is not running (playback ended or not started).<br>- **running**: The animation is running.<br>- **paused**: The animation is paused.<br>- **finished**: The animation finishes playing.|
 | startTime | number  | Read-write attribute, which indicates the animation start time. This attribute is similar to **delay** in the **options** attribute. |
 
   The **animation** methods are as follows.
@@ -103,7 +103,7 @@ animate( keyframes: Keyframes, options: Options): void
       start
     </button>
     <button @click="cancel">
-      cancels
+      cancel
     </button>
   </div>
 </div>
@@ -139,7 +139,7 @@ button{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default{
   data:{
     animation:'',
@@ -162,19 +162,19 @@ export default{
     this.animation = this.$element('idName').animate(frames, options);
     // handle finish event
     this.animation.onfinish = function(){
-      prompt.showToast({
+      promptAction.showToast({
         message: "The animation is finished."
       });
     };
     // handle cancel event
     this.animation.oncancel = function(){
-      prompt.showToast({
+      promptAction.showToast({
         message: "The animation is canceled."
       });
     };
     // handle repeat event
     this.animation.onrepeat = function(){
-       prompt.showToast({
+       promptAction.showToast({
           message: "The animation is repeated."
        });
     };

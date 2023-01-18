@@ -72,7 +72,7 @@ In addition to the [universal events](../arkui-js/js-components-common-events.md
 | scrollend                  | -                                        | Triggered when the list stops scrolling.                               |
 | scrolltouchup              | -                                        | Triggered when the list continues scrolling after the user lifts their fingers.                        |
 | requestitem                | -                                        | Triggered for a request to create a list-item.<br>This event is triggered when the number of cached list-items outside the visible area is less than the value of **cachedcount** during long list loading with delay.|
-| rotate<sup>7+</sup>        | { rotateValue: number }   | Triggered to indicate the incremental value of the rotation angle of the watch crown. This parameter is only supported by wearables.                    |
+| rotation<sup>7+</sup> | { rotateValue: number }   | Triggered to indicate the incremental value of the rotation angle of the watch crown. This parameter is only supported by wearables.                    |
 
 
 ## Methods
@@ -112,22 +112,6 @@ In addition to the [universal methods](../arkui-js/js-components-common-methods.
   </list>
 </div>
 ```
-
-```js
-// index.js
-export default {
-  data: {
-    todolist: [{
-      title: 'Prepare for the interview',
-      date: '2021-12-31 10:00:00',
-    }, {
-      title: 'Watch the movie',
-      date: '2021-12-31 20:00:00',
-    }],
-  },
-}
-```
-
 ```css
 /* index.css */
 .container {
@@ -152,5 +136,22 @@ export default {
   text-align: center;
 }
 ```
+
+```js
+// index.js
+export default {
+  data: {
+    todolist: [{
+      title: 'Prepare for the interview',
+      date: '2021-12-31 10:00:00'
+    }, {
+      title: 'Watch the movie',
+      date: '2021-12-31 20:00:00'
+    }],
+  },
+}
+```
+
+
 
 ![en-us_image_0000001185033226](figures/en-us_image_0000001185033226.png)

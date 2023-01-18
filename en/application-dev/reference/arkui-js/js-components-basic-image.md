@@ -31,7 +31,7 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 | object-fit                   | string  | cover        | No   | Image scale type. This style is not supported for SVG images. For details about available values, see **object-fit**.|
 | match-text-direction         | boolean | false        | No   | Whether image orientation changes with the text direction. This style is not supported for SVG images.                    |
 | fit-original-size            | boolean | false        | No   | Whether the **\<image>** component adapts to the image source size when its width and height are not set. If this style is set to **true**, **object-fit** will not take effect. This style is not supported for SVG images.|
-| object-position<sup>7+</sup> | string  | 0px 0px | No   | Position of an image in the component.<br>The options are as follows:<br>1. Pixels. For example, **15px 15px** indicates the moving position along the x-axis or y-axis.<br>2. Characters. Optional values are as follows:<br>- **left**: The image is displayed on the left of the component.<br>- **top** The image is displayed on the top of the component.<br>- **right** The image is displayed on the right of the component.<br>- **bottom** The image is displayed at the bottom of the component.|
+| object-position<sup>7+</sup> | string  | 0px 0px | No   | Position of the image in the component.<br>The options are as follows:<br>1. Pixels, in px. For example, **15px 15px** indicates the position to move along the x-axis or y-axis.<br>2. Characters. Optional values are as follows:<br>- **left**: The image is displayed on the left of the component.<<br>- **top**: The image is displayed on the top of the component.<br>- **right**: The image is displayed on the right of the component.<br>- **bottom**: The image is displayed at the bottom of the component.|
 
 **Table 1** object-fit
 
@@ -56,16 +56,18 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 >  1. If the **\<image>** component is too small to afford the SVG image, the SVG image is cropped and only its upper left part is displayed in the component.
 >
 >  2. If the **\<image>** component is big enough to afford the SVG image, this SVG image is displayed in the upper left corner of the component.
+>
+>  - For SVG images, only the following tags are included in the supported list: **svg**, **rect**, **circle**, **ellipse**, **path**, **line**, **polyline**, **polygon**, **animate**, **animateMotion**, and **animateTransform**.
 
 
 ## Events
 
 In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
 
-| Name            | Parameter                                      | Description                       |
-| -------------- | ---------------------------------------- | ------------------------- |
-| complete(Rich) | {<br> width: width,<br> height: height<br> } | Triggered when an image is successfully loaded. The loaded image size is returned.|
-| error(Rich)    | {<br> width: width,<br> height: height<br> } | Triggered when an exception occurs during image loading. In this case, the width and height are **0**.  |
+| Name      | Parameter                                      | Description                       |
+| -------- | ---------------------------------------- | ------------------------- |
+| complete | {<br> width: width,<br> height: height<br> } | Triggered when an image is successfully loaded. The loaded image size is returned.|
+| error    | {<br> width: width,<br> height: height<br> } | Triggered when an exception occurs during image loading. In this case, the width and height are **0**.  |
 
 ## Methods
 

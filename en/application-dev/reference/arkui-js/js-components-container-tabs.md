@@ -13,8 +13,7 @@ None
 
 ## Child Components
 
-A **\<tabs>** component can wrap at most one **[\<tab-bar>](../arkui-js/js-components-container-tab-bar.md)** and at most one **[\<tab-content>](../arkui-js/js-components-container-tab-content.md)**.
-
+Only [\<tab-bar>](../arkui-js/js-components-container-tab-bar.md) and [\<tab-content>](../arkui-js/js-components-container-tab-content.md) are supported.
 
 ## Attributes
 
@@ -23,7 +22,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 | Name      | Type     | Default Value  | Mandatory  | Description                                      |
 | -------- | ------- | ----- | ---- | ---------------------------------------- |
 | index    | number  | 0     | No   | Index of the active tab.                          |
-| vertical | boolean | false | No   | Whether the tab is vertical. Available values are as follows:<br>- **false**: The **\<tab-bar>** and **\<tab-content>** are arranged vertically.<br>- **true**: The **\<tab-bar>** and **\<tab-content>** are arranged horizontally.|
+| vertical | boolean | false | No   | Whether the tab is vertical. Available values are as follows:<br>- **false**: The **\<tab-bar>** and **\<tab-content>** are arranged vertically.<br>- **true**: The **\<tab-bar>** and **\<tab-content>** are arranged horizontally. |
 
 
 ## Styles

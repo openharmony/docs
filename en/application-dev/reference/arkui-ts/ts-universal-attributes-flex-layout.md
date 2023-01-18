@@ -10,10 +10,10 @@
 
 | Name        | Type                                    | Description                                      |
 | ---------- | ---------------------------------------- | ---------------------------------------- |
-| flexBasis  | number \| string                         | Base size of a component in the main axis of the parent container.<br>Default value: **'auto'** (indicating that the base size of the component in the main axis is the original size of the component)|
+| flexBasis  | number \| string                         | Base size of the component in the main axis of the parent container.<br>Default value: **'auto'** (indicating that the base size of the component in the main axis is the original size of the component)<br>This attribute cannot be set in percentage.|
 | flexGrow   | number                                   | Percentage of the parent container's remaining space that is allocated to the component.<br>Default value: **0**      |
 | flexShrink | number                                   | Percentage of the parent container's shrink size that is allocated to the component.<br>When the parent container is **\<Row>** or **\<Column>**, the default value is **0**.<br> When the parent container is **\<Flex>**, the default value is **1**.      |
-| alignSelf  | [ItemAlign](ts-appendix-enums.md#itemalign) | Alignment mode of the child components along the cross axis, which overwrites the default **alignItems** configuration in the parent container.<br>Default value: **ItemAlign.Auto**|
+| alignSelf  | [ItemAlign](ts-appendix-enums.md#itemalign) | Alignment mode of the child components along the cross axis of the parent container. The setting overwrites the **alignItems** setting of the parent container.<br>Default value: **ItemAlign.Auto**|
 
 
 ## Example
@@ -30,82 +30,79 @@ struct FlexExample {
       // The value of flexBasis() can be 'auto' or a number, which is equivalent to .width()/.height().
       Flex() {
         Text('flexBasis(100)')
-          .flexBasis('100')
+          .flexBasis(100) // The width is 100 vp.
           .height(100)
-          .lineHeight(70)
           .backgroundColor(0xF5DEB3)
           .textAlign(TextAlign.Center)
-        Text('flexBasis("auto")')
-          .flexBasis('auto')
+        Text(`flexBasis('auto')`)
+          .flexBasis('auto') // The width is 60% of the original width.
           .width('60%')
           .height(100)
-          .lineHeight(70)
           .backgroundColor(0xD2B48C)
           .textAlign(TextAlign.Center)
       }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
 
       Text('flexGrow').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      // Percentage of the remaining space
-      // flexGrow() specifies the percentage of the remaining space allocated to the component.
+      // flexGrow() indicates the percentage of the remaining space allocated to the component.
       Flex() {
         Text('flexGrow(2)')
-          .flexGrow(2)
+          .flexGrow(2) // The width allocated to the <Text> component is 2/3 of the remaining width of the parent container.
           .height(100)
-          .lineHeight(70)
           .backgroundColor(0xF5DEB3)
           .textAlign(TextAlign.Center)
         Text('flexGrow(1)')
-          .flexGrow(1)
+          .flexGrow(1) // The width allocated to the <Text> component is 1/3 of the remaining width of the parent container.
           .height(100)
-          .lineHeight(70)
           .backgroundColor(0xD2B48C)
           .textAlign(TextAlign.Center)
       }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
 
       Text('flexShrink').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      // flexShrink() specifies the percentage of the shrink size allocated to the component.
-      // The ratio of text1 is 0, and the default values of other parameters are 1. If the components cannot be completely displayed, the last two components are shrunk proportionally. The first component is not shrunk.
+      // flexShrink() indicates the percentage of the shrink size allocated to the component.
+      // The value is 0 for the first <Text> component and 1 for the other two <Text> components. This means that, if the components cannot be completely displayed in the parent container, the latter two are shrunk proportionally, while the former is not shrunk.
       Flex({ direction: FlexDirection.Row }) {
         Text('flexShrink(0)')
           .flexShrink(0)
           .width('50%')
           .height(100)
-          .lineHeight(70)
           .backgroundColor(0xF5DEB3)
           .textAlign(TextAlign.Center)
-        Text('no flexShrink')
+        Text('default flexShrink') // The default value is 1.
           .width('40%')
           .height(100)
-          .lineHeight(70)
           .backgroundColor(0xD2B48C)
           .textAlign(TextAlign.Center)
-        Text('flexShrink(2)')
-          .flexShrink(2)
+        Text('flexShrink(1)')
+          .flexShrink(1)
           .width('40%')
           .height(100)
-          .lineHeight(70)
           .backgroundColor(0xF5DEB3)
           .textAlign(TextAlign.Center)
       }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
 
       Text('alignSelf').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      // alignSelf() overwrites the default alignItems configuration in the flex layout.
+      // The alignSelf setting overrides the alignItems setting of the parent container.
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
-        Text('no alignSelf,height:80').width('33%').height(80)
-          .backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
-        Text('alignSelf stretch')
-          .alignSelf(ItemAlign.Stretch)
+        Text('no alignSelf,height:70')
           .width('33%')
-          .height(80)
-          .lineHeight(70)
+          .height(70)
+          .backgroundColor(0xF5DEB3)
+          .textAlign(TextAlign.Center)
+        Text('alignSelf End')
+          .alignSelf(ItemAlign.End)
+          .width('33%')
+          .height(70)
           .backgroundColor(0xD2B48C)
           .textAlign(TextAlign.Center)
-        Text('no alignSelf,height:100').width('34%').height(100)
-          .backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
+        Text('no alignSelf,height:100%')
+          .width('34%')
+          .height('100%')
+          .backgroundColor(0xF5DEB3)
+          .textAlign(TextAlign.Center)
       }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
     }.width('100%').margin({ top: 5 })
   }
 }
 ```
 
-![en-us_image_0000001212378394](figures/en-us_image_0000001212378394.png)
+![flex](figures/flex.PNG)

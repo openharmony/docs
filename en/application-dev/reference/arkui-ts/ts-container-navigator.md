@@ -78,7 +78,7 @@ import router from '@ohos.router'
 @Component
 struct DetailExample {
   // Receive the input parameters of Navigator.ets.
-  @State text: any = router.getParams().text
+  @State text: any = router.getParams()['text']
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {

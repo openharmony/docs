@@ -30,18 +30,20 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 ## Styles
 
+
+
 In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
 
-| Name                 | Type                        | Default Value       | Mandatory  | Description                                      |
-| ------------------- | -------------------------- | ---------- | ---- | ---------------------------------------- |
-| texton-color(Rich)  | &lt;color&gt;              | \#000000   | No   | Text color displayed when the component is checked.                             |
-| textoff-color(Rich) | &lt;color&gt;              | \#000000   | No   | Text color displayed when the component is not checked.                            |
-| text-padding(Rich)  | number                     | 0px        | No   | Distance between the two sides of the longest text in **texton** and **textoff** and the border of the slider.         |
-| font-size(Rich)     | &lt;length&gt;             | -          | No   | Font size. This attribute is available only when **texton** and **textoff** are set.               |
-| allow-scale(Rich)   | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
-| font-style(Rich)    | string                     | normal     | No   | Font style. This attribute is available only when **texton** and **textoff** are set. For details, see **font-style** of the [**\<text>**](../arkui-js/js-components-basic-text.md#styles) component.|
-| font-weight(Rich)   | number \| string | normal     | No   | Font weight. This attribute is available only when **texton** and **textoff** are set. For details, see **font-weight** of the [**\<text>**](../arkui-js/js-components-basic-text.md#styles) component.|
-| font-family(Rich)   | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text. This attribute is available only when **texton** and **textoff** are set.|
+| Name           | Type                        | Default Value       | Mandatory  | Description                                      |
+| ------------- | -------------------------- | ---------- | ---- | ---------------------------------------- |
+| texton-color  | &lt;color&gt;              | \#000000   | No   | Text color displayed when the component is checked. This attribute is available only when **texton** and **textoff** are set.         |
+| textoff-color | &lt;color&gt;              | \#000000   | No   | Text color displayed when the component is not checked. This attribute is available only when **texton** and **textoff** are set.        |
+| text-padding  | number                     | 0px        | No   | Distance between the two sides of the longest text in **texton** and **textoff** and the border of the slider.         |
+| font-size     | &lt;length&gt;             | -          | No   | Font size. This attribute is available only when **texton** and **textoff** are set.               |
+| allow-scale   | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
+| font-style    | string                     | normal     | No   | Font style. This attribute is available only when **texton** and **textoff** are set. For details, see [font-style](../arkui-js/js-components-basic-text.md#styles) of the **\<text>** component.|
+| font-weight   | number \| string | normal     | No   | Font weight. This attribute is available only when **texton** and **textoff** are set. For details, see [font-weight](../arkui-js/js-components-basic-text.md#styles) of the **\<text>** component.|
+| font-family   | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text. This attribute is available only when **texton** and **textoff** are set.|
 
 
 ## Events
@@ -61,45 +63,63 @@ The [universal methods](../arkui-js/js-components-common-methods.md) are support
 ```html
 <!-- xxx.hml -->
 <div class="container">
-  <switch showtext="true" texton="On" textoff="Off" checked="true" @change="switchChange">
-  </switch>
+    <switch @change="normalswitchChange">
+    </switch>
+    <switch class="switch" showtext="true" texton="On" textoff="Off" @change="switchChange">
+    </switch>
+    <switch class="switch text" showtext="true" texton="Switch on" textoff="Switch off" checked="true" @change="switchChange">
+    </switch>
 </div>
 ```
 
 ```css
 /* xxx.css */
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-switch{
-  texton-color:#002aff;
-  textoff-color:silver;
-  text-padding:20px;
+.switch {
+    texton-color: red;
+    textoff-color: forestgreen;
+}
+.text {
+    text-padding: 20px;
+    font-size: 30px;
+    font-weight: 700;
 }
 ```
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
-  data: {
-    title: 'World'
-  },
-  switchChange(e){
-    console.log(e.checked);
-    if(e.checked){
-      prompt.showToast({
-        message: "Switch on."
-      });
-    }else{
-      prompt.showToast({
-        message: "Switch off."
-      });
+    data: {
+        title: 'World'
+    },
+    switchChange(e) {
+        if (e.checked) {
+            promptAction.showToast({
+                message: "Switch on."
+            });
+        } else {
+            promptAction.showToast({
+                message: "Switch off."
+            });
+        }
+    },
+    normalswitchChange(e) {
+        if (e.checked) {
+            promptAction.showToast({
+                message: "switch on"
+            });
+        } else {
+            promptAction.showToast({
+                message: "switch off"
+            });
+        }
     }
-  }
 }
 ```
 
-![en-us_image_0000001152862510](figures/en-us_image_0000001152862510.gif)
+![en-us_image_0000001152862510](figures/switch.gif)
