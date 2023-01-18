@@ -38,7 +38,7 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 
 | Name  | Type                                            | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | Context            | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).                                                |
+| context  | Context            | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).                                                |
 | name     | string                                           | Yes  | Name of the **Preferences** instance.|
 | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **object** is the **Preferences** instance obtained. Otherwise, **err** is an error code.|
 
@@ -103,7 +103,7 @@ Obtains a **Preferences** instance. This API uses a promise to return the result
 
 | Name | Type                                 | Mandatory| Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).           |
+| context | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).           |
 | name    | string                                | Yes  | Name of the **Preferences** instance.|
 
 **Return value**
@@ -177,7 +177,7 @@ The deleted **Preferences** instance cannot be used for data operations. Otherwi
 
 | Name  | Type                                 | Mandatory| Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
-| context  | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).                                        |
+| context  | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).                                        |
 | name     | string                                | Yes  | Name of the **Preferences** instance to delete.                          |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
 
@@ -252,7 +252,7 @@ The deleted **Preferences** instance cannot be used for data operations. Otherwi
 
 | Name | Type                                 | Mandatory| Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).           |
+| context | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).           |
 | name    | string                                | Yes  | Name of the **Preferences** instance to delete.|
 
 **Return value**
@@ -328,7 +328,7 @@ The removed **Preferences** instance cannot be used for data operations. Otherwi
 
 | Name  | Type                                 | Mandatory| Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
-| context  | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).                                        |
+| context  | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).                                        |
 | name     | string                                | Yes  | Name of the **Preferences** instance to remove.                          |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
 
@@ -394,7 +394,7 @@ The removed **Preferences** instance cannot be used for data operations. Otherwi
 
 | Name | Type                                 | Mandatory| Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).           |
+| context | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).           |
 | name    | string                                | Yes  | Name of the **Preferences** instance to remove.|
 
 **Return value**

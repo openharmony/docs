@@ -220,7 +220,7 @@ onWindowStageCreate() {
 By default, the **user_grant** permissions must be dynamically authorized by the user through a dialog box. However, for pre-installed apps, you can pre-authroize the permissions, for example, the **ohos.permission.MICROPHONE** permission, in the [**install_list_permission.json**](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json) file to prevent the user authorization dialog box from being displayed. The **install_list_permissions.json** file is in the **/system/etc/app/** directory on a device. When the device is started, the **install_list_permissions.json** file is loaded. When the application is installed, the **user_grant** permissions in the file are granted. The **install_list_permissions.json** file contains the following fields:
 
 - **bundleName**: bundle name of the application.
-- `app_signature`: fingerprint information of the application. For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#configuration-in-install-list-capabilityjson).
+- `app_signature`: fingerprint information of the application. For details, see **Configuration in install_list_capability.json** in [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 - **permissions**: **name** specifies the name of the **user_grant** permission to pre-authorize. **userCancellable** specifies whether the user can revoke the pre-authorization. The value **true** means the user can revoke the pre-authorization; the vaue **false** means the opposite.
 
 > **NOTE**<br>This file is available only for preinstalled applications.
@@ -244,4 +244,3 @@ By default, the **user_grant** permissions must be dynamically authorized by the
   }
 ]
 ```
-<!--no_check-->
