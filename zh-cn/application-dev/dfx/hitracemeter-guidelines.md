@@ -7,7 +7,7 @@ hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
 ## 基本概念
 
 - **hiTraceMeter Tag**
-  
+
   跟踪数据使用类别分类，称作hiTraceMeter Tag或hiTraceMeter Category，一般每个软件子系统对应一个Tag，该Tag在打点API中以类别Tag参数传入。hiTraceMeter命令行工具采集跟踪数据时，只采集给定的Tag类别选项指定的跟踪数据。
 
 ## 实现原理
@@ -36,17 +36,17 @@ hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
 在应用启动执行页面加载后，开始分布式跟踪，完成业务之后，停止分布式跟踪。
 
 1. 新建一个JS应用工程，在“Project”窗口点击“entry > src > main > js > default > pages > index”，打开工程中的“index.js”文件，在页面执行加载后，在自己的业务中调用hiTraceMeter的接口，进行性能打点跟踪，示例代码如下：
-   
+
    ```js
    import hiTraceMeter from '@ohos.hiTraceMeter'
-   
+
    export default {
        data: {
            title: ""
        },
        onInit() {
            this.title = this.$t('strings.world');
-   
+
            // 跟踪并行执行的同名任务
            hiTraceMeter.startTrace("business", 1);
            // 业务流程
@@ -58,7 +58,7 @@ hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
            // 业务流程
            console.log(`business running`);
            hiTraceMeter.finishTrace("business", 2);
-   
+
            // 跟踪串行执行的同名任务
            hiTraceMeter.startTrace("business", 1);
            // 业务流程
@@ -69,7 +69,7 @@ hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
            hiTraceMeter.startTrace("business", 1);   // 第二个跟踪的同名任务开始，同名的待跟踪任务串行执行。
            // 业务流程
            console.log(`business running`);
-   
+
            let traceCount = 3;
            hiTraceMeter.traceByValue("myTestCount", traceCount);
            traceCount = 4;
@@ -80,15 +80,15 @@ hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
    ```
 
 2. 新建一个ArkTs应用工程，在“Project”窗口点击“entry > src > main > ets > pages > index”，打开工程中的“index.ets”文件，在页面执行加载后，在自己的业务中调用hiTraceMeter的接口，进行性能打点跟踪，以任务名name为HITRACE_TAG_APP为例 示例代码如下：
-   
+  
    ```ts
    import hitrace from '@ohos.hiTraceMeter'
-   
+  
    @Entry
    @Component
    struct Index {
      @State message: string = 'Hello World'
-   
+ 
      build() {
        Row() {
          Column() {
@@ -97,7 +97,7 @@ hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
              .fontWeight(FontWeight.Bold)
              .onClick(() => {
                this.message = 'Hello ArkUI'
-   
+
                // 跟踪并行执行的同名任务
                hitrace.startTrace("HITRACE_TAG_APP", 1001)
                // 业务流程
@@ -107,7 +107,7 @@ hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
                hitrace.startTrace("HITRACE_TAG_APP", 1002);
                // 业务流程
                console.log(`HITRACE_TAG_APP running`);
-   
+  
                hitrace.finishTrace("HITRACE_TAG_APP", 1001);
                hitrace.finishTrace("HITRACE_TAG_APP", 1002);
    
@@ -141,23 +141,23 @@ hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
       }
    }
    ```
-
-3. 运行项目，点击应用界面上的运行按钮，在shell中依次执行如下命令：
    
+3. 运行项目，点击应用界面上的运行按钮，在shell中依次执行如下命令：
+ 
    ```shell
    hdc shell
    hitrace --trace_begin app
    ```
    
    执行抓取trace命令后，先在设备中自己的业务里面调用接口，继续依次执行如下命令：
-   
+  
    ```shell
    hitrace --trace_dump | grep tracing_mark_write
    hitrace --trace_finish
    ```
-   
+  
    抓取trace成功的数据如下所示
-   
+  
    ```
    <...>-3310    (-------) [005] .... 351382.921936: tracing_mark_write: S|3310|H:HITRACE_TAG_APP 1001
    <...>-3310    (-------) [005] .... 351382.922138: tracing_mark_write: S|3310|H:HITRACE_TAG_APP 1002
