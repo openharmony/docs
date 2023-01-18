@@ -31,7 +31,7 @@ Stage widget development refers to the development conducted by the widget provi
 
 ## Available APIs
 
-The **FormExtension** class has the following APIs. For details, see [FormExtension](../reference/apis/js-apis-formextension.md).
+The **FormExtension** class has the following APIs. For details, see [FormExtension](../reference/apis/js-apis-app-form-formExtensionAbility.md).
 
 **Table 1** FormExtension APIs
 
@@ -45,7 +45,7 @@ The **FormExtension** class has the following APIs. For details, see [FormExtens
 | onDestroy(formId: string): void                              | Called to notify the widget provider that a **Form** instance (widget) has been destroyed.          |
 | onConfigurationUpdated(config: Configuration): void;         | Called when the configuration of the environment where the widget is running is updated.                      |
 
-The **FormExtension** class also has a member context, that is, the **FormExtensionContext** class. For details, see [FormExtensionContext](../reference/apis/js-apis-formextensioncontext.md).
+The **FormExtension** class also has a member context, that is, the **FormExtensionContext** class. For details, see [FormExtensionContext](../reference/apis/js-apis-inner-application-formExtensionContext.md).
 
 **Table 2** FormExtensionContext APIs
 
@@ -54,7 +54,7 @@ The **FormExtension** class also has a member context, that is, the **FormExtens
 | startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void | Starts an ability. This API uses an asynchronous callback to return the result. (This is a system API and cannot be called by third-party applications.)|
 | startAbility(want: Want): Promise&lt;void&gt;                | Starts an ability. This API uses a promise to return the result. (This is a system API and cannot be called by third-party applications.)|
 
-For details about the **FormProvider** APIs, see [FormProvider](../reference/apis/js-apis-formprovider.md).
+For details, see [FormProvider](../reference/apis/js-apis-application-formProvider.md).
 
 **Table 3** FormProvider APIs
 

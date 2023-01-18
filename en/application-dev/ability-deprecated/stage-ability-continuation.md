@@ -301,11 +301,13 @@ In the ability continuation scenario, the distributed data object is used to syn
 
 ### Restrictions
 
-1.   The continuation must be performed between the same ability, which means the same bundle name, module name, and ability name. For details, see [Application Package Structure Configuration File](../quick-start/stage-structure.md).
+1.   The continuation must be performed between the same ability, which means the same bundle name, module name, and ability name. For details, see [Application Package Structure Configuration File](../quick-start/module-configuration-file.md).
 2.    Currently, the application can only implement the continuation capability. The continuation action must be initiated by the system.
 
 
 
 ### Best Practice
 
-   For better user experience, you are advised to use the **wantParam** parameter to transmit data smaller than 100 KB and use distributed objects to transmit data larger than 100 KB.
+For better user experience, you are advised to use the **wantParam** parameter to transmit data smaller than 100 KB and use distributed objects to transmit data larger than 100 KB.
+
+ <!--no_check--> 

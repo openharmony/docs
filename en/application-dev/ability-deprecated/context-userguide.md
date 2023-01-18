@@ -4,12 +4,12 @@
 
 **Context** provides the capability of obtaining contextual information of an application.
 
-The OpenHarmony application framework has two models: Feature Ability (FA) model and stage model. Correspondingly, there are two sets of context mechanisms. **application/BaseContext** is a common context base class. It uses the **stageMode** attribute to specify whether the context is used for the stage model.
+ The OpenHarmony application framework has two models: Feature Ability (FA) model and stage model. Correspondingly, there are two sets of context mechanisms. **application/BaseContext** is a common context base class. It uses the **stageMode** attribute to specify whether the context is used for the stage model.
 
-- FA model 
-
-  Only the methods in **app/Context** can be used for the context in the FA model. Both the application-level context and ability-level context are instances of this type. If an ability-level method is invoked in the application-level context, an error occurs. Therefore, you must pay attention to the actual meaning of the **Context** instance.
-
+- FA model
+  
+Only the methods in **app/Context** can be used for the context in the FA model. Both the application-level context and ability-level context are instances of this type. If an ability-level method is invoked in the application-level context, an error occurs. Therefore, you must pay attention to the actual meaning of the **Context** instance.
+  
 - Stage model 
   
   The stage model has the following types of contexts: **application/Context**, **application/ApplicationContext**, **application/AbilityStageContext**, **application/ExtensionContext**, **application/AbilityContext**, and **application/FormExtensionContext**. For details about these contexts and how to use them, see [Context in the Stage Model](#context-in-the-stage-model).
@@ -239,7 +239,7 @@ export default class MainAbility extends Ability {
 
 ### application/FormExtensionContext
 
-For details, see [FormExtensionContext](../reference/apis/js-apis-formextensioncontext.md).
+For details, see [FormExtensionContext](../reference/apis/js-apis-inner-application-formExtensionContext.md).
 
 ### Obtaining the Context on an ArkTS Page
 
