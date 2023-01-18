@@ -14,6 +14,6 @@ The **CustomizeData** module provides custom metadata.
 
 | Name              | Type  | Readable| Writable| Description            |
 | ------------------ | ------ | ---- | ---- | ---------------- |
-| name               | string | Yes  | Yes  | Custom metadata name.|
-| value              | string | Yes  | Yes  | Custom metadata value.  |
-| extra<sup>8+</sup> | string | Yes  | Yes  | Custom metadata resources.      |
+| name               | string | Yes  | Yes  | Key that identifies a data element.|
+| value              | string | Yes  | Yes  | Value of the data element.  |
+| extra<sup>8+</sup> | string | Yes  | Yes  | Custom format of the data element. The value is an index to the resource that identifies the data.      |

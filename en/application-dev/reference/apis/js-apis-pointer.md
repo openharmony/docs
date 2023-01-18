@@ -1,9 +1,8 @@
-# Mouse Pointer
+# @ohos.multimodalInput.pointer (Mouse Pointer)
 
-The mouse pointer module provides APIs related to pointer attribute management.
+The **pointer** module provides APIs related to pointer attribute management.
 
-> **NOTE**
->
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -122,9 +121,13 @@ Checks the visible status of the mouse pointer. This API uses a promise to retur
 **Example**
 
 ```js
-pointer.isPointerVisible().then((visible) => {
-  console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
-});
+try {
+  pointer.isPointerVisible().then((visible) => {
+    console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
+  });
+} catch (error) {
+  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
 ```
 
 ## pointer.setPointerSpeed<sup>9+</sup>
@@ -135,12 +138,14 @@ Sets the mouse movement speed. This API uses an asynchronous callback to return 
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | speed    | number                    | Yes   | Mouse movement speed. The value ranges from **1** to **11**. The default value is **5**.  |
-| callback | AysncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -165,6 +170,8 @@ setPointerSpeed(speed: number): Promise&lt;void&gt;
 Sets the mouse movement speed. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -197,6 +204,8 @@ getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 Obtains the mouse movement speed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -254,6 +263,8 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name      | Type                                      | Mandatory  | Description            |
@@ -268,7 +279,7 @@ import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
   win.getProperties((error, properties) => {
-    var windowId = properties.id;
+    let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;
@@ -311,7 +322,7 @@ import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
   win.getProperties((error, properties) => {
-    var windowId = properties.id;
+    let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;
@@ -341,7 +352,7 @@ Sets the mouse pointer style. This API uses an asynchronous callback to return t
 | ------------ | ------------------------------ | ---- | ----------------------------------- |
 | windowId     | number                         | Yes   | Window ID.                         |
 | pointerStyle | [PointerStyle](#pointerstyle9) | Yes   | Mouse pointer style ID.                            |
-| callback     | AysncCallback&lt;void&gt;      | Yes   | Callback used to return the result.|
+| callback     | AsyncCallback&lt;void&gt;      | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -350,7 +361,7 @@ import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
   win.getProperties((error, properties) => {
-    var windowId = properties.id;
+    let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;
@@ -388,7 +399,7 @@ import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
   win.getProperties((error, properties) => {
-    var windowId = properties.id;
+    let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;

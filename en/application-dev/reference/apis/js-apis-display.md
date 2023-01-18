@@ -1,4 +1,5 @@
-# Display
+# @ohos.display (Display)
+
 The **Display** module provides APIs for managing displays, such as obtaining information about the default display, obtaining information about all displays, and listening for the addition and removal of displays.
 
 > **NOTE**
@@ -35,10 +36,10 @@ Describes a rectangle on the display.
 
 | Name  | Type| Readable| Writable| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | Yes  | Yes  | Left boundary of the rectangle.|
-| top    | number   | Yes  | Yes  | Top boundary of the rectangle.|
-| width  | number   | Yes  | Yes  | Width of the rectangle.  |
-| height | number   | Yes  | Yes  | Height of the rectangle.  |
+| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in pixels.|
+| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in pixels.|
+| width  | number   | Yes  | Yes  | Width of the rectangle, in pixels.  |
+| height | number   | Yes  | Yes  | Height of the rectangle, in pixels.  |
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
@@ -94,7 +95,7 @@ try {
     displayClass = display.getDefaultDisplaySync();
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## display.getAllDisplays<sup>9+</sup>
@@ -188,7 +189,7 @@ Checks whether there is a visible privacy window on a display. The privacy windo
 
 | Type                            | Description                                                                   |
 | -------------------------------- |-----------------------------------------------------------------------|
-|boolean | Whether there is a visible privacy window on the display.<br>The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.<br>|
+|boolean | Whether there is a visible privacy window on the display. The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.|
 
 **Error codes**
 
@@ -204,25 +205,24 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
+
+    let ret = undefined;
+    try {
+        ret = display.hasPrivateWindow(displayClass.id);
+    } catch (exception) {
+        console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
+    }
+    if (ret == undefined) {
+        console.log("Failed to check has privateWindow or not.");
+    }
+    if (ret) {
+        console.log("There has privateWindow.");
+    } else if (!ret) {
+        console.log("There has no privateWindow.");
+    }
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-    return;
-};
-
-let ret = undefined;
-try {
-    ret = display.hasPrivateWindow(displayClass.id);
-} catch (exception) {
-    console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
-};
-if (ret == undefined) {
-  console.log("Failed to check has privateWindow or not.");
 }
-if (ret) {
-  console.log("There has privateWindow.");
-} else if (!ret) {
-  console.log("There has no privateWindow.");
-};
 ```
 
 ## display.on('add'|'remove'|'change')
@@ -237,7 +237,7 @@ Subscribes to display changes.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event indicating that a display is connected to a PC.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected from a PC.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
+| type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event that a display is connected.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
 | callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display.|
 
 **Example**
@@ -250,7 +250,7 @@ try {
     display.on("add", callback);
 } catch (exception) {
     console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## display.off('add'|'remove'|'change')
@@ -265,7 +265,7 @@ Unsubscribes from display changes.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event indicating that a display is connected to a PC.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected from a PC.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
+| type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event that a display is connected.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
 | callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
 
 **Example**
@@ -275,7 +275,7 @@ try {
     display.off("remove");
 } catch (exception) {
     console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## display.getDefaultDisplay<sup>(deprecated)</sup>
@@ -405,6 +405,8 @@ Implements a **Display** instance, with properties and APIs defined.
 
 Before calling any API in **Display**, you must use [getAllDisplays()](#displaygetalldisplays9) or [getDefaultDisplaySync()](#displaygetdefaultdisplaysync9) to obtain a **Display** instance.
 
+### Attributes
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name| Type| Readable| Writable| Description|
@@ -417,9 +419,9 @@ Before calling any API in **Display**, you must use [getAllDisplays()](#displayg
 | rotation | number | Yes| No| Screen rotation angle of the display.<br>The value **0** indicates that the screen of the display rotates by 0°.<br>The value **1** indicates that the screen of the display rotates by 90°.<br>The value **2** indicates that the screen of the display rotates by 180°.<br>The value **3** indicates that the screen of the display rotates by 270°.|
 | width | number | Yes| No| Width of the display, in pixels.|
 | height | number | Yes| No| Height of the display, in pixels.|
-| densityDPI | number | Yes| No| Screen density of the display, in DPI.|
-| densityPixels | number | Yes| No| Screen density of the display, in pixels.|
-| scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display.|
+| densityDPI | number | Yes| No| Screen density of the display, that is, the number of dots per inch. Generally, the value is **160** or **480**.|
+| densityPixels | number | Yes| No| Logical density of the display, which is a scaling coefficient independent of the pixel unit. Generally, the value is **1** or **3**.|
+| scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display. Generally, the value is the same as that of **densityPixels**.|
 | xDPI | number | Yes| No| Exact physical dots per inch of the screen in the horizontal direction.|
 | yDPI | number | Yes| No| Exact physical dots per inch of the screen in the vertical direction.|
 
@@ -434,7 +436,7 @@ Obtains the cutout information of the display. This API uses an asynchronous cal
 
 | Name     | Type                       | Mandatory| Description                                                        |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **CutoutInfo** object obtained. Otherwise, **err** is an error object.|
+| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | Yes  | Callback used to return the **CutoutInfo** object.|
 
 **Error codes**
 
@@ -450,17 +452,17 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
+
+    displayClass.getCutoutInfo((err, data) => {
+        if (err.code) {
+            console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
+    });
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-};
-
-displayClass.getCutoutInfo((err, data) => {
-    if (err.code) {
-        console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
-});
+}
 ```
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(): Promise&lt;CutoutInfo&gt;
@@ -489,12 +491,14 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
+
+    let promise = displayClass.getCutoutInfo();
+    promise.then((data) => {
+        console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
+    }).catch((err) => {
+        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    });
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-};
-
-let promise = displayClass.getCutoutInfo();
-promise.then((data) => {
-    console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
-});
+}
 ```

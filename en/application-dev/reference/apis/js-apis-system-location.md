@@ -1,8 +1,7 @@
 # Geographic Location
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
-> - The APIs of this module are no longer maintained since API version 7. It is recommended that you use [`@ohos.geolocation`](js-apis-geolocation.md) instead.
-> 
+> **NOTE**
+> - The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.geolocation`](js-apis-geolocation.md).
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -31,7 +30,7 @@ Obtains the geographic location.
 
 | Parameter | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| timeout | number | No | Timeout&nbsp;duration,&nbsp;in&nbsp;milliseconds.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**30000**.<br/>The&nbsp;timeout&nbsp;duration&nbsp;is&nbsp;necessary&nbsp;in&nbsp;case&nbsp;the&nbsp;request&nbsp;to&nbsp;obtain&nbsp;the&nbsp;geographic&nbsp;location&nbsp;is&nbsp;rejected&nbsp;for&nbsp;the&nbsp;lack&nbsp;of&nbsp;the&nbsp;required&nbsp;permission,&nbsp;weak&nbsp;positioning&nbsp;signal,&nbsp;or&nbsp;incorrect&nbsp;location&nbsp;settings.&nbsp;After&nbsp;the&nbsp;timeout&nbsp;duration&nbsp;expires,&nbsp;the&nbsp;fail&nbsp;function&nbsp;will&nbsp;be&nbsp;called.<br/>The&nbsp;value&nbsp;is&nbsp;a&nbsp;32-digit&nbsp;positive&nbsp;integer.&nbsp;If&nbsp;the&nbsp;value&nbsp;set&nbsp;is&nbsp;less&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;**0**,&nbsp;the&nbsp;default&nbsp;value&nbsp;will&nbsp;be&nbsp;used. |
+| timeout | number | No | Timeout&nbsp;duration,&nbsp;in&nbsp;milliseconds.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**30000**.<br>The&nbsp;timeout&nbsp;duration&nbsp;is&nbsp;necessary&nbsp;in&nbsp;case&nbsp;the&nbsp;request&nbsp;to&nbsp;obtain&nbsp;the&nbsp;geographic&nbsp;location&nbsp;is&nbsp;rejected&nbsp;for&nbsp;the&nbsp;lack&nbsp;of&nbsp;the&nbsp;required&nbsp;permission,&nbsp;weak&nbsp;positioning&nbsp;signal,&nbsp;or&nbsp;incorrect&nbsp;location&nbsp;settings.&nbsp;After&nbsp;the&nbsp;timeout&nbsp;duration&nbsp;expires,&nbsp;the&nbsp;fail&nbsp;function&nbsp;will&nbsp;be&nbsp;called.<br>The&nbsp;value&nbsp;is&nbsp;a&nbsp;32-digit&nbsp;positive&nbsp;integer.&nbsp;If&nbsp;the&nbsp;value&nbsp;set&nbsp;is&nbsp;less&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;**0**,&nbsp;the&nbsp;default&nbsp;value&nbsp;will&nbsp;be&nbsp;used. |
 | coordType | string | No | Coordinate&nbsp;system&nbsp;type.&nbsp;Available&nbsp;types&nbsp;can&nbsp;be&nbsp;obtained&nbsp;by&nbsp;**getSupportedCoordTypes**.&nbsp;The&nbsp;default&nbsp;type&nbsp;is&nbsp;**wgs84**. |
 | success | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful. |
 | fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |

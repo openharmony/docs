@@ -1,4 +1,4 @@
-# User File Extension Info
+# @ohos.fileExtensionInfo
 
 The **fileExtensionInfo** module defines attributes in **RootInfo** and **FileInfo** of the user file access and management module.
 
@@ -37,10 +37,10 @@ Defines the values of **deviceFlags** used in **RootInfo**. **deviceFlags** is u
 
 ### Attributes
 
-  | Name| Type  | Value| Readable| Writable| Description    |
-  | ------ | ------ | ---- | ---- | ---- | -------- |
-  | SUPPORTS_READ   | number | 0b1 | Yes  | No  | Read support.|
-  | SUPPORTS_WRITE   | number | 0b10 | Yes  | No  | Write support.|
+  | Name| Type  | Readable| Writable| Description    |
+  | ------ | ------ | ---- | ---- | -------- |
+  | SUPPORTS_READ   | number | Yes  | No  | The device supports read.|
+  | SUPPORTS_WRITE   | number | Yes  | No  | This device supports write.|
 
 ## fileExtensionInfo.DocumentFlag
 
@@ -50,9 +50,9 @@ Defines the values of **mode** used in **FileInfo**.
 
 ### Attributes
 
-  | Name| Type  | Value| Readable| Writable| Description    |
-  | ------ | ------ | ---- | ---- | ---- | -------- |
-  | REPRESENTS_FILE   | number | 0b1 | Yes  | No  | File.|
-  | REPRESENTS_DIR   | number | 0b10 | Yes  | No  | Directory.|
-  | SUPPORTS_READ   | number | 0b100 | Yes  | No  | Read support.|
-  | SUPPORTS_WRITE   | number | 0b1000 | Yes  | No  | Write support.|
+  | Name| Type  | Readable| Writable| Description    |
+  | ------ | ------ | ---- | ---- | -------- |
+  | REPRESENTS_FILE   | number | Yes  | No  | File.|
+  | REPRESENTS_DIR   | number | Yes  | No  | Directory.|
+  | SUPPORTS_READ   | number | Yes  | No  | This file is readable.|
+  | SUPPORTS_WRITE   | number | Yes  | No  | This file is writable.|

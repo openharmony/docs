@@ -1,6 +1,6 @@
-# Call
+# @ohos.telephony.call (Call)
 
-The call module provides call management functions, including making calls, redirecting to the dial screen, obtaining the call status, and formatting phone numbers.
+The **call** module provides call management functions, including making calls, redirecting to the dial screen, obtaining the call status, and formatting phone numbers.
 
 To subscribe to the call status, use [`observer.on('callStateChange')`](js-apis-observer.md#observeroncallstatechange).
 
@@ -55,7 +55,7 @@ Initiates a call based on the specified options. This API uses an asynchronous c
 | Name     | Type                        | Mandatory | Description                             |
 | ----------- | ---------------------------- | ---- | --------------------------------------- |
 | phoneNumber | string                       | Yes  | Phone number.                           |
-| options     | [DialOptions](#dialoptions)  | Yes  | Call option, which indicates whether the call is a voice call or video call. |
+| options     | [DialOptions](#dialoptions)  | No  | Call option, which indicates whether the call is a voice call or video call. |
 | callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure |
 
 **Example**
@@ -313,7 +313,7 @@ Checks whether the called number is an emergency number based on the specified p
 | Name     | Type                                              | Mandatory | Description                                                       |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | phoneNumber | string                                             | Yes  | Phone number.                                                 |
-| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | Yes  | Phone number options.        |
+| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | No  | Phone number options.        |
 | callback    | AsyncCallback&lt;boolean&gt;                       | Yes  | Callback used to return the result.<br> - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number. |
 
 **Example**
@@ -397,7 +397,7 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 | Name     | Type                                        | Mandatory | Description                                |
 | ----------- | -------------------------------------------- | ---- | ------------------------------------ |
 | phoneNumber | string                                       | Yes  | Phone number.                          |
-| options     | [NumberFormatOptions](#numberformatoptions7) | Yes  | Number formatting options, for example, country code.              |
+| options     | [NumberFormatOptions](#numberformatoptions7) | No  | Number formatting options, for example, country code.              |
 | callback    | AsyncCallback&lt;string&gt;                  | Yes  | Callback used to return the result. |
 
 **Example**
@@ -568,33 +568,6 @@ promise.then(data => {
 
 ## call.answer<sup>7+</sup>
 
-answer\(callback: AsyncCallback<void\>\): void
-
-Answers a call. This API uses an asynchronous callback to return the result.
-
-This is a system API.
-
-**Required permission**: ohos.permission.ANSWER_CALL
-
-**System capability**: SystemCapability.Telephony.CallManager
-
-**Parameters**
-
-| Name  | Type                     | Mandatory| Description      |
-| -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-call.answer((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
-
-## call.answer<sup>7+</sup>
-
 answer\(callId: number, callback: AsyncCallback<void\>\): void
 
 Answers a call based on the specified call ID. This API uses an asynchronous callback to return the result.
@@ -658,11 +631,13 @@ promise.then(data => {
 
 ## call.hangup<sup>7+</sup>
 
-hangup\(callback: AsyncCallback<void\>\): void
+hangup\(callId: number, callback: AsyncCallback<void\>\): void
 
 Ends a call. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -670,24 +645,27 @@ This is a system API.
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
+| callId   | number                    | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
-call.hangup((err, data) => {
+call.hangup(1, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## call.hangup<sup>7+</sup>
+## call.answer<sup>9+</sup>
 
-hangup\(callId: number, callback: AsyncCallback<void\>\): void
+answer\(callback: AsyncCallback<void\>\): void
 
-Ends a call based on the specified call ID. This API uses an asynchronous callback to return the result.
+Answers a call.This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -695,13 +673,12 @@ This is a system API.
 
 | Name  | Type                     | Mandatory| Description                                           |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
-| callId   | number                    | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                     |
 
 **Example**
 
 ```js
-call.hangup(1, (err, data) => {
+call.answer((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -714,6 +691,8 @@ hangup\(callId?: number\): Promise<void\>
 Ends a call based on the specified call ID. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -740,13 +719,15 @@ promise.then(data => {
 });
 ```
 
-## call.reject<sup>7+</sup>
+## call.hangup<sup>9+</sup>
 
-reject\(callback: AsyncCallback<void\>\): void
+hangup\(callback: AsyncCallback<void\>\): void
 
-Rejects a call. This API uses an asynchronous callback to return the result.
+Ends a call. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -759,36 +740,7 @@ This is a system API.
 **Example**
 
 ```js
-call.reject((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
-
-## call.reject<sup>7+</sup>
-
-reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
-
-Rejects a call based on the specified options. This API uses an asynchronous callback to return the result.
-
-This is a system API.
-
-**System capability**: SystemCapability.Telephony.CallManager
-
-**Parameters**
-
-| Name  | Type                                          | Mandatory| Description          |
-| -------- | ---------------------------------------------- | ---- | -------------- |
-| options  | [RejectMessageOptions](#rejectmessageoptions7) | Yes  | Options for the call rejection message.|
-| callback | AsyncCallback&lt;void&gt;                      | Yes  | Callback used to return the result.    |
-
-**Example**
-
-```js
-let rejectMessageOptions={
-    messageContent: "Unknown number blocked"
-}
-call.reject(rejectMessageOptions, (err, data) => {
+call.hangup((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -801,6 +753,8 @@ reject(callId: number, callback: AsyncCallback\<void>): void
 Rejects a call based on the specified call ID. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -827,6 +781,8 @@ reject\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<v
 Rejects a call based on the specified call ID and options. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -858,6 +814,8 @@ Rejects a call based on the specified call ID and options. This API uses a promi
 
 This is a system API.
 
+**Required permission**: ohos.permission.ANSWER_CALL
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -887,6 +845,65 @@ promise.then(data => {
 });
 ```
 
+
+## call.reject<sup>9+</sup>
+
+reject\(callback: AsyncCallback<void\>\): void
+
+Rejects a call. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Example:**
+
+```js
+call.reject((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.reject<sup>9+</sup>
+
+reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
+
+Rejects a call. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                                          | Mandatory| Description          |
+| -------- | ---------------------------------------------- | ---- | -------------- |
+| options  | [RejectMessageOptions](#rejectmessageoptions7) | Yes  | Options for the call rejection message.|
+| callback | AsyncCallback&lt;void&gt;                      | Yes  | Callback used to return the result.    |
+
+**Example:**
+
+```js
+let rejectMessageOptions={
+    messageContent: "Unknown number blocked"
+}
+call.reject(rejectMessageOptions, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
 ## call.holdCall<sup>7+</sup>
 
 holdCall\(callId: number, callback: AsyncCallback<void\>\): void
@@ -894,6 +911,8 @@ holdCall\(callId: number, callback: AsyncCallback<void\>\): void
 Holds a call based on the specified call ID. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -920,6 +939,8 @@ holdCall\(callId: number\): Promise<void\>
 Holds a call based on the specified call ID. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -954,6 +975,8 @@ Unholds a call based on the specified call ID. This API uses an asynchronous cal
 
 This is a system API.
 
+**Required permission**: ohos.permission.ANSWER_CALL
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -979,6 +1002,8 @@ unHoldCall\(callId: number\): Promise<void\>
 Unholds a call based on the specified call ID. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1013,6 +1038,8 @@ Switches a call. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
+**Required permission**: ohos.permission.ANSWER_CALL
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1038,6 +1065,8 @@ switchCall\(callId: number\): Promise<void\>
 Switches a call. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1308,14 +1337,16 @@ Obtains the call waiting status. This API uses an asynchronous callback to retur
 
 This is a system API.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number                                                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
-| callback | AsyncCallback&lt;[CallWaitingStatus](#callwaitingstatus7)\> | Yes  | Callback used to return the result.<br><br>- **0**: Call waiting is disabled.<br>- **1**: Call waiting is enabled.|
+| slotId   | number                                                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2               |
+| callback | AsyncCallback&lt;[CallWaitingStatus](#callwaitingstatus7)\> | Yes  | Callback used to return the result.<br>- **0**: Call waiting is disabled.<br>- **1**: Call waiting is enabled.|
 
 **Example**
 
@@ -1333,6 +1364,8 @@ getCallWaitingStatus\(slotId: number\): Promise<CallWaitingStatus\>
 Obtains the call waiting status. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1367,6 +1400,8 @@ Sets the call waiting switch. This API uses an asynchronous callback to return t
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1393,6 +1428,8 @@ setCallWaiting\(slotId: number, activate: boolean\): Promise<void\>
 Sets the call waiting switch. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1604,6 +1641,8 @@ Subscribes to **callDetailsChange** events. This API uses an asynchronous callba
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1628,6 +1667,8 @@ on\(type: 'callEventChange', callback: Callback<CallEventOptions\>\): void
 Subscribes to **callEventChange** events. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1654,6 +1695,8 @@ Subscribes to **callDisconnectedCause** events. This API uses an asynchronous ca
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1661,7 +1704,7 @@ This is a system API.
 | Name  | Type                                                  | Mandatory| Description                      |
 | -------- | ------------------------------------------------------ | ---- | -------------------------- |
 | type     | string                                                 | Yes  | Cause of the call disconnection.|
-| callback | Callback<[DisconnectedDetails](#disconnecteddetails8)> | Yes  | Callback used to return the result.                |
+| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | Yes  | Callback used to return the result.                |
 
 **Example**
 
@@ -1678,6 +1721,8 @@ on\(type: 'mmiCodeResult', callback: Callback<MmiCodeResults\>\): void
 Subscribes to **mmiCodeResult** events. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1704,6 +1749,8 @@ Unsubscribes from **callDetailsChange** events. This API uses an asynchronous ca
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1728,6 +1775,8 @@ off\(type: 'callEventChange', callback?: Callback<CallEventOptions\>\): void
 Unsubscribes from **callEventChange** events. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1754,6 +1803,8 @@ Unsubscribes from **callDisconnectedCause** events. This API uses an asynchronou
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1761,7 +1812,7 @@ This is a system API.
 | Name  | Type                                                      | Mandatory| Description                |
 | -------- | ---------------------------------------------------------- | ---- | -------------------- |
 | type     | 'callDisconnectedCause'                                    | Yes  | Unsubscription from the call disconnection cause when a call ends.|
-| callback | Callback**<**[DisconnectedDetails](#disconnecteddetails8)> | No  | Callback used to return the result.          |
+| callback | Callback**<**[DisconnectedDetails](#disconnecteddetails9)> | No  | Callback used to return the result.          |
 
 **Example**
 
@@ -1778,6 +1829,8 @@ off\(type: 'mmiCodeResult', callback?: Callback<MmiCodeResults\>\): void
 Unsubscribes from **mmiCodeResult** events. This API uses an asynchronous callback to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1915,6 +1968,8 @@ Obtains the call restriction status. This API uses an asynchronous callback to r
 
 This is a system API.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -1941,6 +1996,8 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise<R
 Obtains the call restriction status. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1976,6 +2033,8 @@ Sets the call restriction status. This API uses an asynchronous callback to retu
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -2007,6 +2066,8 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise<void\>
 Sets the call restriction status. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2047,6 +2108,8 @@ Obtains call transfer information. This API uses an asynchronous callback to ret
 
 This is a system API.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -2073,6 +2136,8 @@ getCallTransferInfo\(slotId: number, type: CallTransferType): Promise<CallTransf
 Obtains call transfer information. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2108,6 +2173,8 @@ Sets call transfer information. This API uses an asynchronous callback to return
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -2139,6 +2206,8 @@ setCallTransfer\(slotId: number, info: CallTransferInfo): Promise<void\>
 Sets call transfer information. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2331,7 +2400,7 @@ promise.then(data => {
 });
 ```
 
-## call.setAudioDevice<sup>8+</sup>
+## call.setAudioDevice<sup>9+</sup>
 
 setAudioDevice\(device: AudioDevice, callback: AsyncCallback<void\>\): void
 
@@ -2357,7 +2426,7 @@ call.setAudioDevice(1, (err, data) => {
 ```
 
 
-## call.setAudioDevice<sup>8+</sup>
+## call.setAudioDevice<sup>9+</sup>
 
 setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: AsyncCallback<void\>\): void
 
@@ -2558,6 +2627,8 @@ Enables the IMS switch. This API uses an asynchronous callback to return the res
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -2582,6 +2653,8 @@ enableImsSwitch(slotId: number): Promise<void\>
 Enables the IMS switch. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2616,6 +2689,8 @@ Disables the IMS switch. This API uses an asynchronous callback to return the re
 
 This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
@@ -2640,6 +2715,8 @@ disableImsSwitch(slotId: number): Promise<void\>
 Disables the IMS switch. This API uses a promise to return the result.
 
 This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2831,11 +2908,15 @@ This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name     | Type                                                | Mandatory| Description            |
-| ----------- | ---------------------------------------------------- | ---- | ---------------- |
-| transferNum | string                                               | Yes  | Call transfer number.        |
-| type        | [CallTransferType](#calltransfertype8)               | Yes  | Call transfer type.    |
-| settingType | [CallTransferSettingType](#calltransfersettingtype8) | Yes  | Call transfer setting type.|
+|          Name           | Type                                                | Mandatory| Description            |
+| ------------------------ | ---------------------------------------------------- | ---- | ---------------- |
+| transferNum              | string                                               | Yes  | Call transfer number.        |
+| type                     | [CallTransferType](#calltransfertype8)               | Yes  | Call transfer type.    |
+| settingType              | [CallTransferSettingType](#calltransfersettingtype8) | Yes  | Call transfer setting type.|
+| startHour<sup>9+</sup>   | number                                               | No  | Hour in the start time.|
+| startMinute<sup>9+</sup> | number                                               | No  | Minute in the start time.|
+| endHour<sup>9+</sup>     | number                                               | No  | Hour in the end time.|
+| endMinute<sup>9+</sup>   | number                                               | No  | Minute in the end time.|
 
 ## CallTransferType<sup>8+</sup>
 
@@ -3051,10 +3132,14 @@ This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name| Type                              | Mandatory| Description    |
-| ------ | ---------------------------------- | ---- | -------- |
-| status | [TransferStatus](#transferstatus8) | Yes  | Transfer status.|
-| number | string                             | Yes  | Number.    |
+|          Name           |                 Type              | Mandatory|       Description      |
+| ------------------------ | ---------------------------------- | ---- | ---------------- |
+| status                   | [TransferStatus](#transferstatus8) |  Yes | Call transfer status.        |
+| number                   | string                             |  Yes | Call transfer number.            |
+| startHour<sup>9+</sup>   | number                             |  Yes | Hour in the start time.|
+| startMinute<sup>9+</sup> | number                             |  Yes | Minute in the start time.|
+| endHour<sup>9+</sup>     | number                             |  Yes | Hour in the end time.|
+| endMinute<sup>9+</sup>   | number                             |  Yes | Minute in the end time.|
 
 ## CallWaitingStatus<sup>7+</sup>
 
@@ -3095,7 +3180,20 @@ This is a system API.
 | TRANSFER_DISABLE | 0    | Call transfer disabled.|
 | TRANSFER_ENABLE  | 1    | Call transfer enabled.|
 
-## DisconnectedDetails<sup>8+</sup>
+## DisconnectedDetails<sup>9+</sup>
+
+Defines the cause of a call disconnection.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name   |                    Type                   | Mandatory| Description           |
+| ------- | ------------------------------------------ | ---- | --------------- |
+| reason  | [DisconnectedReason](#disconnectedreason8) | Yes  | Cause of the call disconnection.   |
+| message | string                                     | Yes  | Message indicating the call disconnection.|
+
+## DisconnectedReason<sup>8+</sup>
 
 Enumerates causes of call disconnection.
 
@@ -3103,28 +3201,87 @@ This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name                       | Value  | Description                  |
-| --------------------------- | ---- | ---------------------- |
-| UNASSIGNED_NUMBER           | 1    | Unallocated number.    |
-| NO_ROUTE_TO_DESTINATION     | 3    | No route to the destination.      |
-| CHANNEL_UNACCEPTABLE        | 6    | Unacceptable channel.        |
-| OPERATOR_DETERMINED_BARRING | 8    | Operator determined barring (ODB).            |
-| NORMAL_CALL_CLEARING        | 16   | Normal call clearing.          |
-| USER_BUSY                   | 17   | User busy.                |
-| NO_USER_RESPONDING          | 18   | No user response.            |
-| USER_ALERTING_NO_ANSWER     | 19   | Alerting but no answer.|
-| CALL_REJECTED               | 21   | Call rejected.              |
-| NUMBER_CHANGED              | 22   | Number changed.              |
-| DESTINATION_OUT_OF_ORDER    | 27   | Destination fault.              |
-| INVALID_NUMBER_FORMAT       | 28   | Invalid number format.          |
-| NETWORK_OUT_OF_ORDER        | 38   | Network fault.              |
-| TEMPORARY_FAILURE           | 41   | Temporary fault.              |
-| INVALID_PARAMETER           | 1025 | Invalid parameter.              |
-| SIM_NOT_EXIT                | 1026 | SIM card not exit.           |
-| SIM_PIN_NEED                | 1027 | SIM card PIN required.        |
-| CALL_NOT_ALLOW              | 1029 | Call not allowed.            |
-| SIM_INVALID                 | 1045 | Invalid SIM card.             |
-| UNKNOWN                     | 1279 | Unknown reason.              |
+|                              Name                           | Value  |                  Description                  |
+| ------------------------------------------------------------ | ---- | --------------------------------------- |
+| UNASSIGNED_NUMBER                                            | 1    | Unallocated (unassigned) number.                     |
+| NO_ROUTE_TO_DESTINATION                                      | 3    | No route to destination.                       |
+| CHANNEL_UNACCEPTABLE                                         | 6    | Channel unacceptable.                         |
+| OPERATOR_DETERMINED_BARRING                                  | 8    | Operator determined barring (ODB).                             |
+| CALL_COMPLETED_ELSEWHERE<sup>9+</sup>                        | 13   | Call completed elsewhere.                     |
+| NORMAL_CALL_CLEARING                                         | 16   | Normal call clearing.                           |
+| USER_BUSY                                                    | 17   | User busy.                                 |
+| NO_USER_RESPONDING                                           | 18   | No user responding.                             |
+| USER_ALERTING_NO_ANSWER                                      | 19   | User alerting, no answer.                 |
+| CALL_REJECTED                                                | 21   | Call rejected.                               |
+| NUMBER_CHANGED                                               | 22   | Number changed.                               |
+| CALL_REJECTED_DUE_TO_FEATURE_AT_THE_DESTINATION<sup>9+</sup> | 24   | Call rejected due to feature at the destination.|
+| FAILED_PRE_EMPTION<sup>9+</sup>                              | 25   | Failed preemption.                               |
+| NON_SELECTED_USER_CLEARING<sup>9+</sup>                      | 26   | Non-selected user clearing.                         |
+| DESTINATION_OUT_OF_ORDER                                     | 27   | Destination out of order.                               |
+| INVALID_NUMBER_FORMAT                                        | 28   | Invalid number format (incomplete number).                           |
+| FACILITY_REJECTED<sup>9+</sup>                               | 29   | Facility rejected.                           |
+| RESPONSE_TO_STATUS_ENQUIRY<sup>9+</sup>                      | 30   | Response to status enquiry.                       |
+| NORMAL_UNSPECIFIED<sup>9+</sup>                              | 31   | Normal, unspecified.                           |
+| NO_CIRCUIT_CHANNEL_AVAILABLE<sup>9+</sup>                    | 34   | No circuit/channel available.                        |
+| NETWORK_OUT_OF_ORDER                                         | 38   | Network fault.                               |
+| TEMPORARY_FAILURE                                            | 41   | Temporary failure.                               |
+| SWITCHING_EQUIPMENT_CONGESTION<sup>9+</sup>                  | 42   | Switching equipment congestion.                           |
+| ACCESS_INFORMATION_DISCARDED<sup>9+</sup>                    | 43   | Access information discarded.                         |
+| REQUEST_CIRCUIT_CHANNEL_NOT_AVAILABLE<sup>9+</sup>           | 44   | Requested circuit/channel unavailable                  |
+| RESOURCES_UNAVAILABLE_UNSPECIFIED<sup>9+</sup>               | 47   | Resources unavailable, unspecified.                       |
+| QUALITY_OF_SERVICE_UNAVAILABLE<sup>9+</sup>                  | 49   | QoS unavailable.                         |
+| REQUESTED_FACILITY_NOT_SUBSCRIBED<sup>9+</sup>               | 50   | Requested facility not subscribed.                       |
+| INCOMING_CALLS_BARRED_WITHIN_THE_CUG<sup>9+</sup>            | 55   | Incoming calls barred within the CUG.                          |
+| BEARER_CAPABILITY_NOT_AUTHORIZED<sup>9+</sup>                | 57   | Bearer capability not authorized.                         |
+| BEARER_CAPABILITY_NOT_PRESENTLY_AVAILABLE<sup>9+</sup>       | 58   | Bearer capability presently available.                     |
+| SERVICE_OR_OPTION_NOT_AVAILABLE_UNSPECIFIED<sup>9+</sup>     | 63   | Service or option not available, unspecified.               |
+| BEARER_SERVICE_NOT_IMPLEMENTED<sup>9+</sup>                  | 65   | Bearer service not implemented.                         |
+| ACM_EQUALTO_OR_GREATER_THAN_THE_MAXIMUM_VALUE<sup>9+</sup>   | 68   | ACM greater than or equal to the maximum value.                    |
+| REQUESTED_FACILITY_NOT_IMPLEMENTED<sup>9+</sup>              | 69   | Requested facility not implemented.                       |
+| ONLY_RESTRICTED_DIGITAL_INFO_BEARER_CAPABILITY_IS_AVAILABLE<sup>9+</sup> | 70   | Only restricted digital information capability available.     |
+| SERVICE_OR_OPTION_NOT_IMPLEMENTED_UNSPECIFIED<sup>9+</sup>   | 79   | Service or option not implemented, unspecified.               |
+| INVALID_TRANSACTION_IDENTIFIER_VALUE<sup>9+</sup>            | 81   | Invalid transaction identifier value.                     |
+| USER_NOT_MEMBER_OF_CUG<sup>9+</sup>                          | 87   | User not member of CUG.                        |
+| INCOMPATIBLE_DESTINATION<sup>9+</sup>                        | 88   | Incompatible destination.                             |
+| INVALID_TRANSIT_NETWORK_SELECTION<sup>9+</sup>               | 91   | Invalid transit network selection.                     |
+| SEMANTICALLY_INCORRECT_MESSAGE<sup>9+</sup>                  | 95   | Semantically incorrect message.                         |
+| INVALID_MANDATORY_INFORMATION<sup>9+</sup>                   | 96   | Invalid mandatory information.                         |
+| MESSAGE_TYPE_NON_EXISTENT_OR_NOT_IMPLEMENTED<sup>9+</sup>    | 97   | Message type non-existent or not implemented.                 |
+| MESSAGE_TYPE_NOT_COMPATIBLE_WITH_PROTOCOL_STATE<sup>9+</sup> | 98   | Message type not compatible with protocol state.               |
+| INFORMATION_ELEMENT_NON_EXISTENT_OR_NOT_IMPLEMENTED<sup>9+</sup>    | 99   | IE non-existent or not implemented.                |
+| CONDITIONAL_IE_ERROR<sup>9+</sup>                            | 100  | Conditional IE error.                             |
+| MESSAGE_NOT_COMPATIBLE_WITH_PROTOCOL_STATE<sup>9+</sup>      | 101  | Message not compatible with protocol state.                   |
+| RECOVERY_ON_TIMER_EXPIRED<sup>9+</sup>                       | 102  | Recovery on timer expiry.             |
+| PROTOCOL_ERROR_UNSPECIFIED<sup>9+</sup>                      | 111  | Protocol error, unspecified.                       |
+| INTERWORKING_UNSPECIFIED<sup>9+</sup>                        | 127  | Interworking, unspecified.                           |
+| CALL_BARRED<sup>9+</sup>                                     | 240  | Call barred.                             |
+| FDN_BLOCKED<sup>9+</sup>                                     | 241  | FDN blocked.                                |
+| IMSI_UNKNOWN_IN_VLR<sup>9+</sup>                             | 242  | IMSI unknown in VLR.                        |
+| IMEI_NOT_ACCEPTED<sup>9+</sup>                               | 243  | IMEI not accepted.                           |
+| DIAL_MODIFIED_TO_USSD<sup>9+</sup>                           | 244  | Dial request modified to USSD request.                         |
+| DIAL_MODIFIED_TO_SS<sup>9+</sup>                             | 245  | Dial request modified to SS request.                       |
+| DIAL_MODIFIED_TO_DIAL<sup>9+</sup>                           | 246  | Dial request modified to dial with different number.                       |
+| RADIO_OFF<sup>9+</sup>                                       | 247  | Radio off.                       |
+| OUT_OF_SERVICE<sup>9+</sup>                                  | 248  | Out of service.                               |
+| NO_VALID_SIM<sup>9+</sup>                                    | 249  | No valid SIM.                              |
+| RADIO_INTERNAL_ERROR<sup>9+</sup>                            | 250  | Radio internal error.                     |
+| NETWORK_RESP_TIMEOUT<sup>9+</sup>                            | 251  | Network response timeout.                           |
+| NETWORK_REJECT<sup>9+</sup>                                  | 252  | Request rejected by network.                               |
+| RADIO_ACCESS_FAILURE<sup>9+</sup>                            | 253  | Radio access failure.                         |
+| RADIO_LINK_FAILURE<sup>9+</sup>                              | 254  | Radio link failure.                         |
+| RADIO_LINK_LOST<sup>9+</sup>                                 | 255  | Radio link lost.                         |
+| RADIO_UPLINK_FAILURE<sup>9+</sup>                            | 256  | Radio uplink failure.                     |
+| RADIO_SETUP_FAILURE<sup>9+</sup>                             | 257  | Radio setup failure.                     |
+| RADIO_RELEASE_NORMAL<sup>9+</sup>                            | 258  | Radio release normal.                         |
+| RADIO_RELEASE_ABNORMAL<sup>9+</sup>                          | 259  | Radio release abnormal.                         |
+| ACCESS_CLASS_BLOCKED<sup>9+</sup>                            | 260  | Access class blocked.                           |
+| NETWORK_DETACH<sup>9+</sup>                                  | 261  | Network detached.                               |
+| INVALID_PARAMETER                                            | 1025 | Invalid parameter.                               |
+| SIM_NOT_EXIT                                                 | 1026 | SIM not exit.                            |
+| SIM_PIN_NEED                                                 | 1027 | SIM PIN needed.                         |
+| CALL_NOT_ALLOW                                               | 1029 | Call not allowed.                             |
+| SIM_INVALID                                                  | 1045 | No valid SIM.                              |
+| UNKNOWN                                                      | 1279 | Unknown reason.                               |
 
 ## MmiCodeResults<sup>9+</sup>
 

@@ -1,4 +1,4 @@
-# Linear Container Vector
+# @ohos.util.Vector (Linear Container Vector)
 
 > **NOTE**
 >
@@ -290,7 +290,7 @@ vector.removeByRange(2,4);
 
 ### replaceAllElements
 
-replaceAllElements(callbackfn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => T,
+replaceAllElements(callbackFn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => T,
 thisArg?: Object): void
 
 Replaces all elements in this container with new elements, and returns the new ones.
@@ -301,7 +301,7 @@ Replaces all elements in this container with new elements, and returns the new o
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked for replacement.|
+| callbackFn | function | Yes| Callback invoked for replacement.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -330,7 +330,7 @@ vector.replaceAllElements((value: number, index: number) => {
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => void,
 thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
@@ -341,7 +341,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked for replacement.|
+| callbackFn | function | Yes| Callback invoked for replacement.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
