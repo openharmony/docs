@@ -2324,7 +2324,7 @@ isMirrorSupported(): boolean
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| boolean | 回是否支持镜像拍照。 |
+| boolean | 返回是否支持镜像拍照。 |
 
 **示例：**
 
@@ -2847,7 +2847,7 @@ on(type: 'metadataObjectsAvailable', callback: AsyncCallback<Array<MetadataObjec
 | 参数名      | 类型                                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------ |
 | type     | string                            | 是   | 监听事件，固定为'metadataObjectsAvailable'，检测到有效的metadata数据时callback返回相应的metadata数据，metadataOutput创建成功时可监听。 |
-| callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | 是   | 回调函数，用于获取错误信息。               |
+| callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | 是   | 回调函数，用于获取metadata数据。 |
 
 **示例：**
 
@@ -2869,7 +2869,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 
 | 参数名     | 类型                                               | 必填 | 说明                                     |
 | -------- | ------------------------------------------------ | ---- | --------------------------------------- |
-| type     | string                                           | 是   | 监听事件，固定为'error'，callback 返回metadata输出接口使用错误时返回对应错误码，比如调用（start（），release（））接口是发生错误返回对应错误码。 |
+| type     | string                                           | 是   | 监听事件，固定为'error'，callback 返回metadata输出接口使用错误时返回对应错误码，比如调用（start（），release（））接口时发生错误返回对应错误码。 |
 | callback | Callback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)            |
 
 **示例：**
@@ -2888,7 +2888,7 @@ metadataOutput.on('error', (metadataOutputError) => {
 
 | 名称                       | 值   | 说明              |
 | ------------------------- | ---- | ----------------- |
-| FACE_DETECTION            | 0    | metadata对象类型。 |
+| FACE_DETECTION            | 0    | metadata对象类型,人脸检测。 |
 
 ## Rect
 
@@ -2909,6 +2909,6 @@ metadataOutput.on('error', (metadataOutputError) => {
 
 | 名称      | 类型                            | 必填  | 说明              |
 | -------- | ------------------------------- | ---- | -----------------|
-| type  | [MetadataObjectType](#metadataobjecttype)   | 否   | 图片质量。         |
-| timestamp | number | 否   | 图片旋转角度。      |
-| boundingBox | [Rect](#rect)           | 否   | 图片地理位置信息。   |
+| type  | [MetadataObjectType](#metadataobjecttype)   | 否   | metadata 类型，目前只有人脸识别。 |
+| timestamp | number | 否   | 当前时间戳（毫秒）。 |
+| boundingBox | [Rect](#rect)           | 否   | metadata 区域框 |

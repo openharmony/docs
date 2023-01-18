@@ -114,22 +114,22 @@ if (!cameraOutputCap) {
 }
 console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
 
-let previewProfilesArray = cameraOutputCap.GetPreviewProfiles();
+let previewProfilesArray = cameraOutputCap.previewProfiles;
 if (!previewProfilesArray) {
     console.error("createOutput previewProfilesArray == null || undefined")
 } 
 
-let photoProfilesArray = cameraOutputCap.GetPhotoProfiles();
+let photoProfilesArray = cameraOutputCap.photoProfiles;
 if (!photoProfilesArray) {
     console.error("createOutput photoProfilesArray == null || undefined")
 } 
 
-let videoProfilesArray = cameraOutputCap.GetVideoProfiles();
+let videoProfilesArray = cameraOutputCap.videoProfiles;
 if (!videoProfilesArray) {
     console.error("createOutput videoProfilesArray == null || undefined")
 } 
 
-let metadataObjectTypesArray = cameraOutputCap.GetSupportedMetadataObjectType();
+let metadataObjectTypesArray = cameraOutputCap.supportedMetadataObjectTypes;
 if (!metadataObjectTypesArray) {
     console.error("createOutput metadataObjectTypesArray == null || undefined")
 }
