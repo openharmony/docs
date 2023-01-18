@@ -1,170 +1,149 @@
 # Queue
 
-## Basic Concepts<a name="section5747112216469"></a>
 
-A queue, also called a message queue, is a data structure used for communication between tasks. The queue receives messages of unfixed length from tasks or interrupts, and determines whether to store the transferred messages in the queue based on different APIs.
+## Basic Concepts
 
-Tasks can read messages from a queue. When the queue has no messages, the tasks are suspended. When the queue has a new message, the suspended tasks are woken up and process the new message. Tasks can also write messages to the queue. When the queue is full, the write task is suspended. When there is an available message node in the queue, the suspended write task is woken up and writes a message.
+A message queue, also called a queue, is a mechanism for communication between tasks. The queue receives messages of unfixed length from tasks or interrupts, and determines whether to put the messages in the queue based on different APIs.
+
+Tasks can read messages from a queue. When the queue has no messages, the read task is suspended. When the queue has a new message, the suspended task is woken up to process new messages. Tasks can also write messages to the queue. When the queue is full, the write task is suspended. When there is an available message node in the queue, the suspended write task is woken up and writes a message.
 
 You can adjust the timeout period of the read queue and write queue to adjust the block mode of the read and write APIs. If the timeout period is set to **0** for the read queue and write queue, tasks will not be suspended and the API directly returns. This is the non-block mode. If the timeout period is greater than **0**, block mode is used.
 
 An asynchronous processing mechanism is provided to allow messages in a queue not to be processed immediately. In addition, queues can be used to buffer messages and implement asynchronous task communication. Queues have the following features:
 
--   Messages are queued in first-in-first-out \(FIFO\) mode and can be read and written asynchronously.
--   Both the read queue and write queue support the timeout mechanism.
--   Each time a message is read, the message node becomes available.
--   The types of messages to be sent are determined by the parties involved in communication. Messages of different lengths \(not exceeding the message node size of the queue\) are allowed.
--   A task can receive messages from and send messages to any message queue.
--   Multiple tasks can receive messages from and send messages to the same queue.
--   When a queue is created, the required dynamic memory space is automatically allocated in the queue API.
+- Messages are queued in first-in-first-out (FIFO) mode and can be read and written asynchronously.
+- Both the read queue and write queue support the timeout mechanism.
+- Each time a message is read, the message node becomes available.
+- The types of messages to be sent are determined by the parties involved in communication. Messages of different lengths (not exceeding the message node size of the queue) are allowed.
+- A task can receive messages from and send messages to any message queue.
+- Multiple tasks can receive messages from and send messages to the same queue.
+- The system dynamically applies for memory space required for creating normal queues. 
+- The space required for creating a static queue is passed in by the user. When the static queue is deleted, the space also needs to be released by the user.
+
 
 ## Working Principles
 
 ### Queue Control Block
 
+During the initialization of a queue, a control block, containing the queue name and status, is allocated. The control block is released when the queue is deleted.
+
+The data structure of the queue control block is as follows:
+
+
 ```
-/**
- * Data structure of the queue control block
-  */
 typedef struct 
 {
-    UINT8       *queue;                          /* Pointer to the memory space of queue messages */
-    UINT16      queueState;                      /* Queue status*/
-    UINT16      queueLen;                        /* Number of message nodes in a queue, that is, the queue length */
-    UINT16      queueSize;                       /* Size of a message node */
-    UINT16      queueID;                         /*Queue ID */
-    UINT16      queueHead;                       /* Position of the message head node (array subscript)*/
-    UINT16      queueTail;                       /* Position of the message tail node (array subscript) */
-    UINT16      readWriteableCnt[OS_READWRITE_LEN];/* The array element with subscript 0 indicates the number of readable messages in a queue.
-                                                    The element with subscript 1 indicates the number of writable messages in a queue. */
-    LOS_DL_LIST readWriteList[OS_READWRITE_LEN];    /* A linked list of tasks waiting to read or write messages.
-                                                    Subscript 0: list of tasks waiting to read messages. Subscript 1: list of tasks waiting to write messages. */
-    LOS_DL_LIST memList;                         /* A linked list of memory blocks*/
+    UINT8       *queue;                          		/* Pointer to the memory space of the queue */
+    UINT8 		*queueName								/* Queue name */
+    UINT16      queueState;                      		/* Queue status */
+    UINT16      queueLen;                        		/* Number of message nodes in the queue, that is, the queue length */
+    UINT16      queueSize;                       		/* Size of a message node */
+    UINT16      queueID;                         		/* Queue ID */
+    UINT16      queueHead;                       		 /* Position of the message head node (array subscript) */
+    UINT16      queueTail;                       		/* Position of the message tail node (array subscript) */
+    UINT16      readWriteableCnt[OS_READWRITE_LEN]; 	/* The element whose array subscript is 0 indicates the number of readable messages in the queue,                             
+                                                    		The element whose array subscript is 1 indicates the number of writable messages in the queue */
+    LOS_DL_LIST readWriteList[OS_READWRITE_LEN];    	/* A linked list of tasks waiting to read or write messages.
+                                                       		Subscript 0: read the linked list. Subscript 1: write the linked list. */
+    LOS_DL_LIST memList;                         		/* A linked list of memory blocks */
 } LosQueueCB;
 ```
 
 Each queue control block contains information about the queue status.
 
--   **OS\_QUEUE\_UNUSED**: The queue is not in use.
--   **OS\_QUEUE\_INUSED**: The queue is in use.
+- **OS_QUEUE_UNUSED**: The queue is not in use.
 
-### Working Principles<a name="section15384012164811"></a>
+- **OS_QUEUE_INUSED**: The queue is in use.
 
--   The queue ID is returned if a queue is created successfully.
--   The queue control block contains **Head** and **Tail**, which indicate the storage status of messages in a queue. **Head** indicates the start position of occupied message nodes in the queue. **Tail** indicates the end position of the occupied message nodes and the start position of idle message nodes. When a queue is created, **Head** and **Tail** point to the start position of the queue.
--   When data is to be written to a queue, **readWriteableCnt\[1\]** is used to determine whether data can be written to the queue. If **readWriteableCnt\[1\]** is **0**, the queue is full and data cannot be written to it. Data can be written to the head node or tail node of a queue. To write data to the tail node, locate the start idle message node based on **Tail** and write data to it. If **Tail** is pointing to the tail of the queue, the rewind mode is used. To write data to the head node, locate previous node based on **Head** and write data to it. If **Head** is pointing to the start position of the queue, the rewind mode is used.
--   When a queue is to be read, **readWriteableCnt\[0\]** is used to determine whether the queue has messages to read. Reading an idle queue \(**readWriteableCnt\[0\]** is **0**\) will cause task suspension. If the queue has messages to read, the system locates the first node to which data is written based on **Head** and read the message from the node. If **Head** is pointing to the tail of the queue, the rewind mode is used.
--   When a queue is to be deleted, the system locates the queue based on the queue ID, sets the queue status to **OS\_QUEUE\_UNUSED**, sets the queue control block to the initial state, and releases the memory occupied by the queue.
 
-**Figure 1** Reading and writing data in a queue<a name="fig1343517592468"></a> 
-![](figures/reading-and-writing-data-in-a-queue.png "reading-and-writing-data-in-a-queue")
+### Working Principles
+
+- The queue ID is returned when a queue is created successfully.
+
+- The queue control block contains **Head** and **Tail**, which indicate the storage status of messages in a queue. **Head** indicates the start position of occupied message nodes in the queue. **Tail** indicates the end position of the occupied message nodes and the start position of idle message nodes. When a queue is created, **Head** and **Tail** point to the start position of the queue.
+
+- When data is to be written to a queue, **readWriteableCnt[1]** is used to determine whether data can be written to the queue. If **readWriteableCnt[1]** is **0**, the queue is full and data cannot be written to it. Data can be written to the head node or tail node of a queue. To write data to the tail node, locate the start idle message node based on **Tail** and write data to it. If **Tail** is pointing to the tail of the queue, the rewind mode is used. To write data to the head node, locate previous node based on **Head** and write data to it. If **Head** is pointing to the start position of the queue, the rewind mode is used.
+
+- When a queue is to be read, **readWriteableCnt[0]** is used to determine whether the queue has messages to read. Reading an idle queue (**readWriteableCnt[0]** is** 0**) will cause task suspension. If the queue has messages to read, the system locates the first node to which data is written based on **Head** and read the message from the node. If **Head** is pointing to the tail of the queue, the rewind mode is used.
+
+- When a queue is to be deleted, the system locates the queue based on the queue ID, sets the queue status to **OS_QUEUE_UNUSED**, sets the queue control block to the initial state, and releases the memory occupied by the queue.
+
+  **Figure 1** Reading and writing data in a queue
+
+  ![](figures/reading-and-writing-data-in-a-queue.png "reading-and-writing-data-in-a-queue")
 
 The preceding figure illustrates how to write data to the tail node only. Writing data to the head node is similar.
 
+
 ## Available APIs
 
-<a name="table10903105695114"></a>
-<table><thead align="left"><tr id="row1293645645110"><th class="cellrowborder" valign="top" width="23.56%" id="mcps1.1.4.1.1"><p id="p59361562512"><a name="p59361562512"></a><a name="p59361562512"></a>Function</p>
-</th>
-<th class="cellrowborder" valign="top" width="24.29%" id="mcps1.1.4.1.2"><p id="p1393665645118"><a name="p1393665645118"></a><a name="p1393665645118"></a>API</p>
-</th>
-<th class="cellrowborder" valign="top" width="52.15%" id="mcps1.1.4.1.3"><p id="p119363564516"><a name="p119363564516"></a><a name="p119363564516"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1693665613516"><td class="cellrowborder" rowspan="2" valign="top" width="23.56%" headers="mcps1.1.4.1.1 "><p id="p193675615514"><a name="p193675615514"></a><a name="p193675615514"></a>Creating or deleting a message queue</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.29%" headers="mcps1.1.4.1.2 "><p id="p11936115612514"><a name="p11936115612514"></a><a name="p11936115612514"></a>LOS_QueueCreate</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.15%" headers="mcps1.1.4.1.3 "><p id="p1593620562517"><a name="p1593620562517"></a><a name="p1593620562517"></a>Creates a message queue. The system dynamically allocates the queue space.</p>
-</td>
-</tr>
-<tr id="row79361156175113"><td class="cellrowborder" valign="top" headers="mcps1.1.4.1.1 "><p id="p893615567517"><a name="p893615567517"></a><a name="p893615567517"></a>LOS_QueueDelete</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p4936155695111"><a name="p4936155695111"></a><a name="p4936155695111"></a>Deletes the specified queue based on the queue ID. </p>
-</td>
-</tr>
-<tr id="row093614566519"><td class="cellrowborder" rowspan="3" valign="top" width="23.56%" headers="mcps1.1.4.1.1 "><p id="p1593685614513"><a name="p1593685614513"></a><a name="p1593685614513"></a>Reading or writing data in a queue (without the content contained in the address)</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.29%" headers="mcps1.1.4.1.2 "><p id="p6936556155118"><a name="p6936556155118"></a><a name="p6936556155118"></a>LOS_QueueRead</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.15%" headers="mcps1.1.4.1.3 "><p id="p11936556155118"><a name="p11936556155118"></a><a name="p11936556155118"></a>Reads data in the head node of the specified queue. The data in the queue node is an address.</p>
-</td>
-</tr>
-<tr id="row199369565518"><td class="cellrowborder" valign="top" headers="mcps1.1.4.1.1 "><p id="p393655620513"><a name="p393655620513"></a><a name="p393655620513"></a>LOS_QueueWrite</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p12936256175120"><a name="p12936256175120"></a><a name="p12936256175120"></a>Writes the value of the input parameter <strong id="b2093863854458"><a name="b2093863854458"></a><a name="b2093863854458"></a>bufferAddr</strong> (buffer address) to the tail node of the specified queue.</p>
-</td>
-</tr>
-<tr id="row1293615635114"><td class="cellrowborder" valign="top" headers="mcps1.1.4.1.1 "><p id="p893625665119"><a name="p893625665119"></a><a name="p893625665119"></a>LOS_QueueWriteHead</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p193620566515"><a name="p193620566515"></a><a name="p193620566515"></a>Writes the value of the input parameter <strong id="b2553137414458"><a name="b2553137414458"></a><a name="b2553137414458"></a>bufferAddr</strong> (buffer address) to the head node of the specified queue.</p>
-</td>
-</tr>
-<tr id="row593675635117"><td class="cellrowborder" rowspan="3" valign="top" width="23.56%" headers="mcps1.1.4.1.1 "><p id="p293675615111"><a name="p293675615111"></a><a name="p293675615111"></a>Reading or writing in a queue (with the content contained in the address)</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.29%" headers="mcps1.1.4.1.2 "><p id="p14936356155113"><a name="p14936356155113"></a><a name="p14936356155113"></a>LOS_QueueReadCopy</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.15%" headers="mcps1.1.4.1.3 "><p id="p11936155616510"><a name="p11936155616510"></a><a name="p11936155616510"></a>Reads data from the head node of the specified queue.</p>
-</td>
-</tr>
-<tr id="row093619569510"><td class="cellrowborder" valign="top" headers="mcps1.1.4.1.1 "><p id="p179361256175117"><a name="p179361256175117"></a><a name="p179361256175117"></a>LOS_QueueWriteCopy</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p6936155616515"><a name="p6936155616515"></a><a name="p6936155616515"></a>Writes the data saved in the input parameter <strong id="b13905064014458"><a name="b13905064014458"></a><a name="b13905064014458"></a>bufferAddr</strong> to the tail node of the specified queue.</p>
-</td>
-</tr>
-<tr id="row16936856185111"><td class="cellrowborder" valign="top" headers="mcps1.1.4.1.1 "><p id="p49361156195113"><a name="p49361156195113"></a><a name="p49361156195113"></a>LOS_QueueWriteHeadCopy</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p1193625675116"><a name="p1193625675116"></a><a name="p1193625675116"></a>Writes the data saved in the input parameter <strong id="b1312795384458"><a name="b1312795384458"></a><a name="b1312795384458"></a>bufferAddr</strong> to the head node of the specified queue.</p>
-</td>
-</tr>
-<tr id="row1936756155114"><td class="cellrowborder" valign="top" width="23.56%" headers="mcps1.1.4.1.1 "><p id="p149371956105114"><a name="p149371956105114"></a><a name="p149371956105114"></a>Obtaining queue information</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.29%" headers="mcps1.1.4.1.2 "><p id="p7937145613516"><a name="p7937145613516"></a><a name="p7937145613516"></a>LOS_QueueInfoGet</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.15%" headers="mcps1.1.4.1.3 "><p id="p19371356175110"><a name="p19371356175110"></a><a name="p19371356175110"></a>Obtains information about the specified queue, including the queue ID, queue length, message node size, head node, tail node, number of readable nodes, number of writable nodes, tasks waiting for read operations, and tasks waiting for write operations.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Category| Description|
+| -------- | -------- |
+| Creating or deleting a message queue| **LOS_QueueCreate**: creates a message queue. The system dynamically allocates the queue space.<br>**LOS_QueueCreateStatic**: creates a static message queue. You need to pass in the queue space.<br>**LOS_QueueDelete**: deletes a message queue. After a static message queue is deleted, you need to release the queue space.|
+| Reading or writing data (address without the content) in a queue| **LOS_QueueRead**: reads data in the head node of the specified queue. The data in the queue node is an address.<br>**LOS_QueueWrite**: writes the **bufferAddr** (buffer address) to the tail node of the specified queue.<br>**LOS_QueueWriteHead**: writes the **bufferAddr** (buffer address) to the head node of the specified queue.|
+| Reading or writing data (data and address) in a queue| **LOS_QueueReadCopy**: reads data from the head node of a specified queue.<br>**LOS_QueueWriteCopy**: writes the data saved in the **bufferAddr** to the tail node of the specified queue.<br>**LOS_QueueWriteHeadCopy**: writes the data saved in the **bufferAddr** to the head node of the specified queue.|
+| Obtaining queue information| **LOS_QueueInfoGet**: obtains queue information, including the queue ID, queue length, message node size, head node, tail node, number of readable/writable nodes, and tasks waiting for read/write operations.|
+
 
 ## How to Develop
 
-1.  Call **LOS\_QueueCreate** to create a queue. The queue ID is returned when the queue is created.
-2.  Call **LOS\_QueueWrite** or **LOS\_QueueWriteCopy** to write messages to the queue.
-3.  Call **LOS\_QueueRead** or **LOS\_QueueReadCopy** to read messages from the queue.
-4.  Call **LOS\_QueueInfoGet** to obtain queue information.
-5.  Call **LOS\_QueueDelete** to delete the queue.
+1. Call **LOS_QueueCreate** to create a queue. The queue ID is returned when the queue is created.
 
->![](../public_sys-resources/icon-note.gif) **NOTE**<br/> 
->-   The maximum number of queues supported by the system is the total number of queue resources of the system, not the number of queue resources available to users. For example, if the system software timer occupies one more queue resource, the number of queue resources available to users decreases by one.
->-   The input parameters queue name and flags passed when a queue is created are reserved for future use.
->-   The input parameter **timeOut** in the queue interface function is relative time.
->-   **LOS\_QueueReadCopy**, **LOS\_QueueWriteCopy**, and **LOS\_QueueWriteHeadCopy** are a group of APIs that must be used together. **LOS\_QueueRead**, **LOS\_QueueWrite**, and **LOS\_QueueWriteHead** are a group of APIs that must be used together.
->-   As **LOS\_QueueWrite**, **LOS\_QueueWriteHead**, and **LOS\_QueueRead** are used to manage data addresses, you must ensure that the memory directed by the pointer obtained by calling **LOS\_QueueRead** is not modified or released abnormally when the queue is being read. Otherwise, unpredictable results may occur.
->-   If the input parameter **bufferSize** in **LOS\_QueueReadCopy** is less than the length of the message, the message will be truncated.
->-   **LOS\_QueueWrite**, **LOS\_QueueWriteHead**, and **LOS\_QueueRead** are called to manage data addresses, which means that the actual data read or written is pointer data. Therefore, before using these APIs, ensure that the message node size is the pointer length during queue creation, to avoid waste and read failures.
+2. Call **LOS_QueueWrite** or **LOS_QueueWriteCopy** to write data to the queue.
+
+3. Call **LOS_QueueRead** or **LOS_QueueReadCopy** to read data from the queue.
+
+4. Call **LOS_QueueInfoGet** to obtain queue information.
+
+5. Call **LOS_QueueDelete** to delete a queue.
+
+
+> **NOTE**
+> - The maximum number of queues supported by the system is the total number of queue resources of the system, not the number of queue resources available to users. For example, if the system software timer occupies one more queue resource, the number of queue resources available to users decreases by one.
+> 
+> - The input parameters queue name and flags passed when a queue is created are reserved for future use.
+> 
+> - The input parameter **timeOut** in the queue interface function is relative time.
+> 
+> - **LOS_QueueReadCopy**, **LOS_QueueWriteCopy**, and **LOS_QueueWriteHeadCopy** are a group of APIs that must be used together. **LOS_QueueRead**, **LOS_QueueWrite**, and **LOS_QueueWriteHead** are a group of APIs that must be used together.
+> 
+> - As **LOS_QueueWrite**, **LOS_QueueWriteHead**, and **LOS_QueueRead** are used to manage data addresses, you must ensure that the memory directed by the pointer obtained by calling **LOS_QueueRead** is not modified or released abnormally when the queue is being read. Otherwise, unpredictable results may occur.
+> 
+> - If the read length of **LOS_QueueReadCopy** is less than the actual message length, the message will be truncated.
+> 
+> - **LOS_QueueWrite**, **LOS_QueueWriteHead**, and **LOS_QueueRead** are called to manage data addresses, which means that the actual data read or written is pointer data. Therefore, before using these APIs, ensure that the message node size is the pointer length during queue creation, to avoid waste and read failures.
+
 
 ## Development Example
 
+
 ### Example Description
 
-Create a queue and two tasks. Enable task 1 to call the queue write API to send messages, and enable task 2 to receive messages by calling the queue read API.
+Create a queue and two tasks. Enable task 1 to write data to the queue, and task 2 to read data from the queue.
 
-1.  Create task 1 and task 2 by calling **LOS\_TaskCreate**.
-2.  Create a message queue by calling **LOS\_QueueCreate**.
-3.  Enable messages to be sent in task 1 by calling **SendEntry**.
-4.  Enable messages to be received in task 2 by calling **RecvEntry**.
-5.  Call **LOS\_QueueDelete** to delete the queue.
+1. Call **LOS_TaskCreate** to create task 1 and task 2.
+
+2. Call **LOS_QueueCreate** to create a message queue.
+
+3. Task 1 sends a message in **SendEntry**.
+
+4. Task 2 receives message in **RecvEntry**.
+
+5. Call **LOS_QueueDelete** to delete the queue.
+
 
 ### Sample Code
 
 The sample code is as follows:
 
+The sample code is compiled and verified in **./kernel/liteos_m/testsuites/src/osTest.c**. Call **ExampleQueue** in **TestTaskEntry**.
+
+
 ```
 #include "los_task.h"
 #include "los_queue.h"
-static UINT32 g_queue;
+
+STATIC UINT32 g_queue;
 #define BUFFER_LEN 50
 
 VOID SendEntry(VOID)
@@ -174,8 +153,8 @@ VOID SendEntry(VOID)
     UINT32 len = sizeof(abuf);
 
     ret = LOS_QueueWriteCopy(g_queue, abuf, len, 0);
-    if(ret != LOS_OK) {
-        printf("Failed to send the message, error: %x\n", ret);
+    if (ret != LOS_OK) {
+        printf("send message failure, error: %x\n", ret);
     }
 }
 
@@ -185,65 +164,71 @@ VOID RecvEntry(VOID)
     CHAR readBuf[BUFFER_LEN] = {0};
     UINT32 readLen = BUFFER_LEN;
 
-   // Sleep for 1s.
+    /* Sleep for 1s */
     usleep(1000000);
     ret = LOS_QueueReadCopy(g_queue, readBuf, &readLen, 0);
-    if(ret != LOS_OK) {
-        printf("Failed to receive the message, error: %x\n", ret);
+    if (ret != LOS_OK) {
+        printf("recv message failure, error: %x\n", ret);
     }
 
-    printf("recv message: %s\n", readBuf);
+    printf("recv message: %s.\n", readBuf);
 
     ret = LOS_QueueDelete(g_queue);
-    if(ret != LOS_OK) {
-        printf("Failed to delete the queue, error: %x\n", ret);
+    if (ret != LOS_OK) {
+        printf("delete the queue failure, error: %x\n", ret);
     }
 
-    printf("Deleted the queue successfully.\n");
+    printf("delete the queue success.\n");
 }
 
 UINT32 ExampleQueue(VOID)
 {
     printf("start queue example.\n");
     UINT32 ret = 0;
-    UINT32 task1, task2;
-    TSK_INIT_PARAM_S initParam = {0};
-
-    initParam.pfnTaskEntry = (TSK_ENTRY_FUNC)SendEntry;
-    initParam.usTaskPrio = 9;
-    initParam.uwStackSize = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
-    initParam.pcName = "SendQueue";
+    UINT32 task1;
+    UINT32 task2;
+    TSK_INIT_PARAM_S taskParam1 = { 0 };
+    TSK_INIT_PARAM_S taskParam2 = { 0 };
 
     LOS_TaskLock();
-    ret = LOS_TaskCreate(&task1, &initParam);
+
+    taskParam1.pfnTaskEntry = (TSK_ENTRY_FUNC)SendEntry;
+    taskParam1.usTaskPrio = 9;
+    taskParam1.uwStackSize = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
+    taskParam1.pcName = "SendQueue";
+    ret = LOS_TaskCreate(&task1, &taskParam1);
     if(ret != LOS_OK) {
-        printf("Failed to create task1, error: %x\n", ret);
+        printf("create task1 failed, error: %x\n", ret);
         return ret;
     }
 
-    initParam.pcName = "RecvQueue";
-    initParam.pfnTaskEntry = (TSK_ENTRY_FUNC)RecvEntry;
-    initParam.usTaskPrio = 10;
-    ret = LOS_TaskCreate(&task2, &initParam);
+    taskParam2.pfnTaskEntry = (TSK_ENTRY_FUNC)RecvEntry;
+    taskParam2.usTaskPrio = 10;
+    taskParam2.uwStackSize = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
+    taskParam2.pcName = "RecvQueue";
+    ret = LOS_TaskCreate(&task2, &taskParam2);
     if(ret != LOS_OK) {
-        printf("Failed to create task2, error: %x\n", ret);
+        printf("create task2 failed, error: %x\n", ret);
         return ret;
     }
 
     ret = LOS_QueueCreate("queue", 5, &g_queue, 0, 50);
     if(ret != LOS_OK) {
-        printf("Failed to create the queue, error: %x\n", ret);
+        printf("create queue failure, error: %x\n", ret);
     }
 
-    printf("Created the queue successfully.\n");
+    printf("create the queue success.\n");
     LOS_TaskUnlock();
     return ret;
 }
 ```
 
+
 ### Verification
 
 The development is successful if the return result is as follows:
+
+
 
 ```
 start queue example.
@@ -251,4 +236,3 @@ create the queue success.
 recv message: test message.
 delete the queue success.
 ```
-

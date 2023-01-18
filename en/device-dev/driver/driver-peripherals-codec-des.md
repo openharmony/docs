@@ -84,7 +84,7 @@ The codec module implements hardware encoding and decoding of video data. It con
 
 For more information, see [codec](https://gitee.com/openharmony/drivers_peripheral/tree/master/codec).
 
-### Development Procedure
+### How to Develop
 The codec HDI driver development procedure is as follows:
 
 #### Registering and Initializing the Driver

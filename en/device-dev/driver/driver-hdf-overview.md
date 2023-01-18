@@ -3,7 +3,7 @@
 
 ## Introduction
 
-The Hardware Driver Foundation (HDF) provides driver framework capabilities including driver loading, driver service management, and driver messaging mechanism. It strives to build a unified driver architecture platform to provide a more precise and efficient development environment, where you can perform one-time development for multi-device deployment.
+The Hardware Driver Foundation (HDF) provides driver framework capabilities, such as driver loading, driver service management, driver messaging mechanism, and configuration management, for driver developers. It strives to provide a more precise and efficient driver development environment, where you can perform one-time development for multi-device deployment.
 
 
 ## Driver Loading
@@ -12,18 +12,23 @@ The HDF supports the following loading modes:
 
 - On-demand loading
 
-  The driver is loaded by default during the operating system (OS) boot process or dynamically loaded after OS is started.
+  The HDF allows drivers to be loaded by default during the operating system (OS) boot process or dynamically loaded after the OS is started.
 
 - Sequential loading
 
-  The driver is loaded based on its priority during the OS boot process.
+  The HDF allows drivers to be loaded based on their priorities during the OS boot process.
 
 
 ## Driver Service Management
 
-The HDF allows centralized management of driver services. You can obtain a driver service by using the API provided by the HDF.
+The HDF supports centralized management of driver services. You can obtain a driver service by using the API provided by the HDF.
 
 
-## Driver messaging mechanism
+## Driver Messaging Mechanism
 
 The HDF provides a unified driver messaging mechanism, which allows messages to be exchanged between user-mode applications and kernel-mode drivers.
+
+
+## Configuration Management
+
+HDF Configuration Source (HCS) provides the source code that describes the HDF configuration in key-value pairs. It decouples the configuration code from driver code, simplifying configuration management.
