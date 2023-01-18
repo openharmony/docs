@@ -1,10 +1,12 @@
-# @ohos.events.emitter
+# @ohos.events.emitter (Emitter)
 
-The **Emitter** module provides APIs for sending and processing in-process events, including the APIs for processing events that are subscribed to in persistent or one-shot manner, unsubscribing from events, and emitting events to the event queue.
+The **Emitter** module provides the capabilities of sending and processing inter- or intra-thread events in a process. You can use the APIs of this module to subscribe to an event in persistent or one-shot manner, unsubscribe from an event, or emit an event to the event queue.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 7.
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs of this module can be used in the FA model or stage model.
 
 ## Modules to Import
 
@@ -20,16 +22,16 @@ None
 
 on(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)\>): void
 
-Subscribes to an event in persistent manner. This API uses a callback to return the event.
+Subscribes to an event in persistent manner and executes a callback after the event is received.
 
 **System capability**: SystemCapability.Notification.Emitter
 
 **Parameters**
 
-| Name  | Type                               | Mandatory| Description                                   |
-| -------- | ----------------------------------- | ---- | --------------------------------------- |
-| event    | [InnerEvent](#innerevent)           | Yes  | Event to subscribe to in persistent manner. The **EventPriority** settings do not take effect.|
-| callback | Callback\<[EventData](#eventdata)\> | Yes  | Callback used to return the event.               |
+| Name  | Type                               | Mandatory| Description                                                    |
+| -------- | ----------------------------------- | ---- | ------------------------------------------------------ |
+| event    | [InnerEvent](#innerevent)           | Yes  | Event to subscribe to in persistent manner. The [EventPriority](#eventpriority) settings do not take effect.|
+| callback | Callback\<[EventData](#eventdata)\> | Yes  | Callback to execute after the event is received.                      |
 
 **Example**
 
@@ -37,26 +39,28 @@ Subscribes to an event in persistent manner. This API uses a callback to return 
 let innerEvent = {
     eventId: 1
 };
-function EmitterCallback(eventData) {
+
+// Execute the callback after receiving the event whose eventId is 1.
+function emitterCallback() {
     console.info('callback');
 }
-emitter.on(innerEvent, EmitterCallback);
+emitter.on(innerEvent, emitterCallback);
 ```
 
 ## emitter.once
 
 once(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)\>): void
 
-Subscribes to an event in one-shot manner and unsubscribes from it after the event callback is received.
+Subscribes to an event in one-shot manner and unsubscribes from it after the event callback is executed.
 
 **System capability**: SystemCapability.Notification.Emitter
 
 **Parameters**
 
-| Name  | Type                               | Mandatory| Description                                   |
-| -------- | ----------------------------------- | ---- | --------------------------------------- |
-| event    | [InnerEvent](#innerevent)           | Yes  | Event to subscribe to in one-shot manner. The **EventPriority** settings do not take effect.|
-| callback | Callback\<[EventData](#eventdata)\> | Yes  | Callback used to return the event.               |
+| Name  | Type                               | Mandatory| Description                                                                           |
+| -------- | ----------------------------------- | ---- | ------------------------------------------------------------------------------ |
+| event    | [InnerEvent](#innerevent)           | Yes  | Event to subscribe to in one-shot manner. The [EventPriority](#eventpriority) settings do not take effect.|
+| callback | Callback\<[EventData](#eventdata)\> | Yes  | Callback to execute after the event is received.                                            |
 
 **Example**
 
@@ -64,10 +68,12 @@ Subscribes to an event in one-shot manner and unsubscribes from it after the eve
 let innerEvent = {
     eventId: 1
 };
-function EmitterCallback(eventData) {
+
+// Execute the callback after receiving the event whose eventId is 1.
+function emitterCallback() {
     console.info('once callback');
 };
-emitter.once(innerEvent, EmitterCallback);
+emitter.once(innerEvent, emitterCallback);
 ```
 
 ## emitter.off
@@ -92,17 +98,17 @@ emitter.off(1);
 
 ## emitter.emit
 
-emit(event: InnerEvent, data?: EventData): void
+emit(event: [InnerEvent](#innerevent), data?: [EventData](#eventdata)): void
 
-Emits an event to the event queue.
+Emits an event.
 
 **System capability**: SystemCapability.Notification.Emitter
 
 **Parameters**
 
 | Name| Type                     | Mandatory| Description          |
-| ------ | ------------------------- | ---- | -------------- |
-| event  | [InnerEvent](#innerevent) | Yes  | Event to emit.    |
+| ------ | ------------------------- | ---- | ------------- |
+| event  | [InnerEvent](#innerevent) | Yes  | Event to emit, where [EventPriority](#eventpriority) specifies the emit priority of the event.|
 | data   | [EventData](#eventdata)   | No  | Data carried by the event.|
 
 **Example**
@@ -112,11 +118,14 @@ let eventData = {
     data: {
         "content": "c",
         "id": 1,
-    }};
+    }
+};
+
 let innerEvent = {
     eventId: 1,
     priority: emitter.EventPriority.HIGH
 };
+
 emitter.emit(innerEvent, eventData);
 ```
 
@@ -126,23 +135,23 @@ Enumerates the event emit priority levels.
 
 **System capability**: SystemCapability.Notification.Emitter
 
-| Name     | Value  | Description                                               |
+| Name     | Value   | Description                                               |
 | --------- | ---- | --------------------------------------------------- |
-| IMMEDIATE | 0    | The event will be emitted immediately.                               |
-| HIGH      | 1    | The event will be emitted before low-priority events.                        |
-| LOW       | 2    | The event will be emitted before idle-priority events. By default, an event is in LOW priority.|
-| IDLE      | 3    | The event will be emitted after all the other events.         |
+| IMMEDIATE | 0    | The event will be emitted immediately.                                |
+| HIGH      | 1    | The event will be emitted before low-priority events.                          |
+| LOW       | 2    | The event will be emitted before idle-priority events. By default, an event is in LOW priority.    |
+| IDLE      | 3    | The event will be emitted after all the other events.            |
 
 ## InnerEvent
 
-Describes an in-process event.
+Describes an event to subscribe to or emit. The **EventPriority** settings do not take effect under event subscription.
 
 **System capability**: SystemCapability.Notification.Emitter
 
-| Name    | Type                       | Readable| Writable| Description                              |
-| -------- | ------------------------------- | ---- | ---- | ---------------------------------- |
+| Name    | Type                       | Readable| Writable| Description                                |
+| -------- | ------------------------------- | ---- | ---- | ------------------------------ |
 | eventId  | number                          | Yes  | Yes  | Event ID.|
-| priority | [EventPriority](#eventpriority) | Yes  | Yes  | Emit priority of the event.        |
+| priority | [EventPriority](#eventpriority) | Yes  | Yes  | Emit priority of the event.            |
 
 ## EventData
 
