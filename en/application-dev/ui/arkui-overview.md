@@ -27,7 +27,7 @@ ArkUI is a UI development framework for building OpenHarmony applications. It pr
   | Development Paradigm  | Description                                      | Applicable To            | Target Audience               |
   | -------- | ---------------------------------------- | ---------------- | ------------------- |
   | Declarative development paradigm | Uses [ArkTS](../quick-start/arkts-get-started.md) – a superset of TypeScript with declarative UI syntax, providing UI drawing capabilities from three dimensions: component, animation, and status management. The programming mode used is closer to natural semantics. You can intuitively describe the UI without caring about how the framework implements UI drawing and rendering, leading to simplified and efficient development.| Applications involving technological sophistication and teamwork| Mobile application and system application developers|
-  | Web-like development paradigm| Uses the classical three-stage programming model, in which OpenHarmony Markup Language (HML) is used for building layouts, CSS for defining styles, and JS for adding processing logic. UI components are associated with data through one-way data-binding. This means that when data changes, the UI automatically refreshes with the new data. This development paradigm has a low learning curve for frontend web developers, allowing them to quickly transform existing web applications into ArkUI applications.| Small- and medium-sized applications and service widgets with simple UIs | Frontend web developers   |
+  | Web-like development paradigm| Uses the classical three-stage programming model, in which OpenHarmony Markup Language (HML) is used for building layouts, CSS for defining styles, and JS for adding processing logic. UI components are associated with data through one-way data-binding. This means that when data changes, the UI automatically refreshes with the new data. This development paradigm has a low learning curve for frontend web developers, allowing them to quickly transform existing web applications into ArkUI applications.| Small- and medium-sized applications and service widgets with simple UIs  | Frontend web developers          |
 
 ## Framework Structure
 
@@ -37,22 +37,22 @@ As shown above, the two development paradigms share the UI backend engine and la
 
 ## Relationship Between UI and Ability Framework
 
-Ability is an essential part of OpenHarmony applications. The [ability framework](../ability/ability-brief.md) provides two models: Feature Ability (FA) model and stage model. The table below describes the relationship between the two models of the ability framework and the two development paradigms of ArkUI.
+OpenHarmony provides two application models: FA model and stage model. The table below describes the relationship between these two models and the two development paradigms of ArkUI.
 
  **FA Model**
 
-| Type|     UI Development Paradigm        | Description|
-| -------- | --------------------------- | --------------------------- |
-| Application| Web-like development paradigm| UI development: HML, CSS, and JS<br>Service entries: files with fixed file names, which are **app.ets** (Page ability), **service.ts** (Service ability), and **data.ts** (Data ability)<br>Service logic: JS and TS|
-|     | Declarative development paradigm| UI development: ArkTS<br>Service entries: files with fixed file names, which are **app.ets** (Page ability), **service.ts** (Service ability), and **data.ts** (Data ability)<br>Service logic: JS and TS|
+| Type  | UI Development Paradigm  | Description                                      |
+| ---- | -------- | ---------------------------------------- |
+| Application  | Web-like development paradigm| UI development: HML, CSS, and JS<br>Service entries: files with fixed file names, which are **app.ets** (Page ability), **service.ts** (Service ability), and **data.ts** (Data ability)<br>Service logic: JS and TS|
+|      | Declarative development paradigm | UI development: ArkTS<br>Service entries: files with fixed file names, which are **app.ets** (Page ability), **service.ts** (Service ability), and **data.ts** (Data ability)<br>Service logic: JS and TS|
 | Service widget| Web-like development paradigm| UI development: HML, CSS, and JSON (action)<br>Service entry: **form.ts**<br>Service logic: JS and TS|
-|      | Declarative development paradigm| Not supported currently|
+|      | Declarative development paradigm | Not supported currently                                   |
 
  **Stage Model**
 
-| Type|     UI Development Paradigm        | Description|
-| -------- | --------------------------- | --------------------------- |
-| Application| Web-like development paradigm| Not supported currently|
-|     | Declarative development paradigm| UI development: ArkTS<br>Service entries: derived from **ohos.application.Ability**/**ExtensionAbility**<br>Service logic: TS|
+| Type  | UI Development Paradigm  | Description                                      |
+| ---- | -------- | ---------------------------------------- |
+| Application  | Web-like development paradigm| Not supported currently                                   |
+|      | Declarative development paradigm | UI development: ArkTS<br>Service entries: derived from **ohos.application.Ability**/**ExtensionAbility**<br>Service logic: TS|
 | Service widget| Web-like development paradigm| UI development: HML, CSS, and JSON (action)<br>Service entries: derived from **FormExtensionAbility**<br>Service logic: TS|
-|      | Declarative development paradigm| Not supported currently|
+|      | Declarative development paradigm | Not supported currently                                   |

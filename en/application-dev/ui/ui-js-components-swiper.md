@@ -262,13 +262,13 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default{
   change(e){
-    prompt.showToast({duration:2000,message:"current index:"+e.index});
+    promptAction.showToast({duration:2000,message:"current index:"+e.index});
   },
   finish(){
-    prompt.showToast({duration:2000,message:"The switchover ends"});
+    promptAction.showToast({duration:2000,message:"The switchover ends"});
   },
   selectChange(e){
     this.$element('swiper').swipeTo({index: Number(e.newValue)});
@@ -344,7 +344,7 @@ swiper{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     index: 0,
