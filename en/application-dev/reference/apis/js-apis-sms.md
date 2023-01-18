@@ -1,6 +1,6 @@
-# SMS
+# @ohos.telephony.sms (SMS)
 
-The SMS module provides basic SMS management functions. You can create and send SMS messages, and obtain and set the default SIM card for sending and receiving SMS messages. Besides, you can obtain and set the SMSC address, and check whether the current device can send and receive SMS messages.
+The **sms** module provides basic SMS management functions. You can create and send SMS messages, and obtain and set the default SIM card for sending and receiving SMS messages. Besides, you can obtain and set the SMSC address, and check whether the current device can send and receive SMS messages.
 
 >**NOTE**
 >
@@ -870,7 +870,7 @@ promise.then(data => {
 
 ## sms.isImsSmsSupported<sup>8+</sup>
 
-isImsSmsSupported(callback: AsyncCallback<boolean\>): void
+isImsSmsSupported(slotId: number, callback: AsyncCallback<boolean\>): void
 
 Checks whether SMS is supported on IMS. This API uses an asynchronous callback to return the result.
 
@@ -882,12 +882,14 @@ Checks whether SMS is supported on IMS. This API uses an asynchronous callback t
 
 | Name  | Type                        | Mandatory| Description      |
 | -------- | ---------------------------- | ---- | ---------- |
+| slotId   | number                       | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
-sms.isImsSmsSupported((err, data) => {
+let slotId = 0;
+sms.isImsSmsSupported(slotId, (err, data) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -895,13 +897,19 @@ sms.isImsSmsSupported((err, data) => {
 
 ## sms.isImsSmsSupported<sup>8+</sup>
 
-isImsSmsSupported(): Promise<boolean\>
+isImsSmsSupported(slotId: number): Promise<boolean\>
 
 Checks whether SMS is supported on IMS. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
+
+**Parameters**
+
+| Name| Type  | Mandatory | Description                                 |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -912,7 +920,8 @@ Checks whether SMS is supported on IMS. This API uses a promise to return the re
 **Example**
 
 ```js
-let promise = sms.isImsSmsSupported();
+let slotId = 0;
+let promise = sms.isImsSmsSupported(slotId);
 promise.then(data => {
     console.log(`isImsSmsSupported success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1116,19 +1125,19 @@ Defines an SMS message instance.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name                  | Type                                   | Description                                                        |
-| ------------------------ | --------------------------------------- | ------------------------------------------------------------ |
-| hasReplyPath             | boolean                                 | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>**TP-Reply-Path**: The device returns a response based on the SMSC that sends the SMS message.|
-| isReplaceMessage         | boolean                                 | Whether the received SMS message is a **replace short message**. The default value is **false**.<br>For details, see section 9.2.3.9 in **3GPP TS 23.040**.|
-| isSmsStatusReportMessage | boolean                                 | Whether the received SMS message is an SMS delivery status report. The default value is **false**.<br>**SMS-Status-Report**: a message sent from the SMSC to the mobile station to show the SMS message delivery status.|
-| messageClass             | [ShortMessageClass](#shortmessageclass) | Enumerates SMS message types.                                                  |
-| pdu                      | Array&lt;number&gt;                     | PDU in the SMS message.                           |
-| protocolId               | number                                  | Protocol identifier used for delivering the SMS message.                                  |
-| scAddress                | string                                  | SMSC address.                                |
-| scTimestamp              | number                                  | SMSC timestamp.                                                |
-| status                   | number                                  | SMS message status sent by the SMSC in the **SMS-STATUS-REPORT** message.|
-| visibleMessageBody       | string                                  | SMS message body.                                                  |
-| visibleRawAddress        | string                                  | Sender address.                                                |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| hasReplyPath             | boolean                                 | Yes |Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>**TP-Reply-Path**: The device returns a response based on the SMSC that sends the SMS message.|
+| isReplaceMessage         | boolean                                 | Yes |Whether the received SMS message is a **replace short message**. The default value is **false**.<br>For details, see section 9.2.3.9 in **3GPP TS 23.040**.|
+| isSmsStatusReportMessage | boolean                                 | Yes |Whether the received SMS message is an SMS delivery status report. The default value is **false**.<br>**SMS-Status-Report**: a message sent from the SMSC to the mobile station to show the SMS message delivery status.|
+| messageClass             | [ShortMessageClass](#shortmessageclass) | Yes | SMS message type.                                                  |
+| pdu                      | Array&lt;number&gt;                     | Yes | PDU in the SMS message.                           |
+| protocolId               | number                                  | Yes | Protocol identifier used for delivering the SMS message.            |
+| scAddress                | string                                  | Yes | SMSC address.                                |
+| scTimestamp              | number                                  | Yes | SMSC timestamp.                                                |
+| status                   | number                                  | Yes | SMS message status sent by the SMSC in the **SMS-STATUS-REPORT** message.|
+| visibleMessageBody       | string                                  | Yes | SMS message body.                                                  |
+| visibleRawAddress        | string                                  | Yes | Sender address.                                                |
 
 
 ## ShortMessageClass

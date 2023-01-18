@@ -1,7 +1,6 @@
-# Linear Container Queue
+# @ohos.util.Queue (Linear Container Queue)
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 **Queue** follows the principle of First In First Out (FIFO). It supports insertion of elements at the end and removal from the front of the queue. **Queue** is implemented based on the queue data structure.
@@ -41,7 +40,7 @@ A constructor used to create a **Queue** instance.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -51,11 +50,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 
 ```ts
 let queue = new Queue();
-try {
-  let queue2 = Queue();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -81,7 +75,7 @@ Adds an element at the end of this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -97,11 +91,6 @@ let b = [1, 2, 3];
 let result2 = queue.add(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = queue.add(c);
-try {
-  queue.add.bind({}, "b")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### pop
@@ -120,7 +109,7 @@ Removes the first element from this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -136,11 +125,6 @@ queue.add(5);
 queue.add(2);
 queue.add(4);
 let result = queue.pop();
-try {
-  queue.pop.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getFirst
@@ -151,7 +135,7 @@ Obtains the first element of this container.
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Parameters**
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
@@ -159,7 +143,7 @@ Obtains the first element of this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -174,16 +158,11 @@ queue.add(4);
 queue.add(5);
 queue.add(2);
 let result = queue.getFirst();
-try {
-  queue.getFirst.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
 thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
@@ -194,7 +173,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -207,7 +186,7 @@ callbackfn
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -224,13 +203,6 @@ queue.add(4);
 queue.forEach((value, index) => {
   console.log("value:" + value, index);
 });
-try {
-  queue.forEach.bind({}, (value, index) => {
-    console.log("value:" + value, index);
-  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### [Symbol.iterator]
@@ -249,7 +221,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -274,10 +246,5 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-}
-try {
-  queue[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

@@ -1,18 +1,18 @@
-# Internationalization – I18N
+# @ohos.i18n (Internationalization)
 
- This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402.
-The [Intl](js-apis-intl.md) module provides basic I18N capabilities through the standard I18N APIs defined in ECMA 402. It works with the I18N module to provide a complete suite of I18N capabilities.
+The **i18n** module provides system-related or enhanced i18n capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in ECMA 402.
+The [intl](js-apis-intl.md) module provides basic i18n capabilities through the standard i18n APIs defined in ECMA 402. It works with the i18n module to provide a complete suite of i18n capabilities.
 
 >  **NOTE**
 >  - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
->  - This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402. For details about the basic I18N capabilities, see [Intl](js-apis-intl.md).
+>  - This module provides system-related or enhanced i18n capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in ECMA 402. For details about the basic i18n capabilities, see [intl](js-apis-intl.md).
 
 
 ## Modules to Import
 
 ```js
-import i18n from '@ohos.i18n';
+import I18n from '@ohos.i18n';
 ```
 
 
@@ -42,16 +42,16 @@ Obtains the localized script for the specified country.
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   try {
-    var displayCountry = i18n.System.getDisplayCountry("zh-CN", "en-GB");
+    let displayCountry = I18n.System.getDisplayCountry("zh-CN", "en-GB"); // displayCountry = "China"
   } catch(error) {
     console.error(`call System.getDisplayCountry failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -81,16 +81,16 @@ Obtains the localized script for the specified language.
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   try {
-    var displayLanguage = i18n.System.getDisplayLanguage("zh", "en-GB");
+    let displayLanguage = I18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
   } catch(error) {
     console.error(`call System.getDisplayLanguage failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -112,16 +112,16 @@ Obtains the list of system languages.
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   try {
-    var systemLanguages = i18n.System.getSystemLanguages();
+    let systemLanguages = I18n.System.getSystemLanguages(); // [ "en-Latn-US", "zh-Hans" ]
   } catch(error) {
     console.error(`call System.getSystemLanguages failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -137,9 +137,9 @@ Obtains the list of countries and regions supported for the specified language.
 
 **Parameters**
 
-| Name     | Type    | Description   |
-| -------- | ------ | ----- |
-| language | string | Language ID.|
+| Name     | Type    | Mandatory  | Description   |
+| -------- | ------ | ---- | ----- |
+| language | string | Yes   | Language ID.|
 
 **Return value**
 
@@ -149,16 +149,16 @@ Obtains the list of countries and regions supported for the specified language.
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   try {
-    var systemCountries = i18n.System.getSystemCountries('zh');
+    let systemCountries = I18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ], 240 countries or regions in total
   } catch(error) {
     console.error(`call System.getSystemCountries failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -187,16 +187,16 @@ Checks whether the system language matches the specified region.
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   try {
-    var res = i18n.System.isSuggested('zh', 'CN');
+    let res = I18n.System.isSuggested('zh', 'CN');  // res = true
   } catch(error) {
     console.error(`call System.isSuggested failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -218,16 +218,16 @@ Obtains the system language.
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   try {
-    var systemLanguage = i18n.System.getSystemLanguage();
+    let systemLanguage = I18n.System.getSystemLanguage(); // systemLanguage indicates the current system language.
   } catch(error) {
     console.error(`call System.getSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -239,7 +239,7 @@ static setSystemLanguage(language: string): void
 
 Sets the system language. Currently, this API does not support real-time updating of the system language.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -247,22 +247,22 @@ This is a system API.
 
 **Parameters**
 
-| Name     | Type    | Description   |
-| -------- | ------ | ----- |
-| language | string | Language ID.|
+| Name     | Type    | Mandatory  | Description   |
+| -------- | ------ | ---- | ----- |
+| language | string | Yes   | Language ID.|
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   try {
-    i18n.System.setSystemLanguage('zh');
+    I18n.System.setSystemLanguage('zh'); // Set the current system language to zh.
   } catch(error) {
     console.error(`call System.setSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -284,16 +284,16 @@ Obtains the system region.
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   try {
-    var systemRegion = i18n.System.getSystemRegion();
+    let systemRegion = I18n.System.getSystemRegion(); // Obtain the current system region.
   } catch(error) {
     console.error(`call System.getSystemRegion failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -305,7 +305,7 @@ static setSystemRegion(region: string): void
 
 Sets the system region.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -313,22 +313,22 @@ This is a system API.
 
 **Parameters**
 
-| Name   | Type    | Description   |
-| ------ | ------ | ----- |
-| region | string | Region ID.|
+| Name   | Type    | Mandatory  | Description   |
+| ------ | ------ | ---- | ----- |
+| region | string | Yes   | Region ID.|
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   try {
-    i18n.System.setSystemRegion('CN');
+    I18n.System.setSystemRegion('CN'); // Set the current system region to CN.
   } catch(error) {
     console.error(`call System.setSystemRegion failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -350,16 +350,16 @@ Obtains the system locale.
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   try {
-    var systemLocale = i18n.System.getSystemLocale();
+    let systemLocale = I18n.System.getSystemLocale(); // Obtain the current system locale.
   } catch(error) {
     console.error(`call System.getSystemLocale failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -371,7 +371,7 @@ static setSystemLocale(locale: string): void
 
 Sets the system locale.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -379,22 +379,22 @@ This is a system API.
 
 **Parameters**
 
-| Name   | Type    | Description             |
-| ------ | ------ | --------------- |
-| locale | string | System locale ID, for example, **zh-CN**.|
+| Name   | Type    | Mandatory  | Description             |
+| ------ | ------ | ---- | --------------- |
+| locale | string | Yes   | System locale ID, for example, **zh-CN**.|
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   try {
-    i18n.System.setSystemLocale('zh-CN');
+    I18n.System.setSystemLocale('zh-CN'); // Set the current system locale to zh-CN.
   } catch(error) {
     console.error(`call System.setSystemLocale failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -416,16 +416,16 @@ Checks whether the 24-hour clock is used.
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   try {
-    var is24HourClock = i18n.System.is24HourClock();
+    let is24HourClock = I18n.System.is24HourClock(); // Check whether the 24-hour clock is enabled.
   } catch(error) {
     console.error(`call System.is24HourClock failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -437,7 +437,7 @@ static set24HourClock(option: boolean): void
 
 Sets the 24-hour clock.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -451,17 +451,17 @@ This is a system API.
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   // Set the system time to the 24-hour clock.
   try {
-    i18n.System.set24HourClock(true);
+    I18n.System.set24HourClock(true);
   } catch(error) {
     console.error(`call System.set24HourClock failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -473,7 +473,7 @@ static addPreferredLanguage(language: string, index?: number): void
 
 Adds a preferred language to the specified position on the preferred language list.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -488,19 +488,19 @@ This is a system API.
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   // Add zh-CN to the preferred language list.
-  var language = 'zh-CN';
-  var index = 0;
+  let language = 'zh-CN';
+  let index = 0;
   try {
-    i18n.System.addPreferredLanguage(language, index);
+    I18n.System.addPreferredLanguage(language, index); // Add zh-CN to the first place in the preferred language list.
   } catch(error) {
     console.error(`call System.addPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -512,7 +512,7 @@ static removePreferredLanguage(index: number): void
 
 Deletes a preferred language from the specified position on the preferred language list.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -526,18 +526,18 @@ This is a system API.
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   // Delete the first preferred language from the preferred language list.
-  var index = 0;
+  let index = 0;
   try {
-    i18n.System.removePreferredLanguage(index);
+    I18n.System.removePreferredLanguage(index);
   } catch(error) {
     console.error(`call System.removePreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -547,7 +547,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 static getPreferredLanguageList(): Array&lt;string&gt;
 
-Obtains the list of preferred languages.
+Obtains the preferred language list.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -555,20 +555,20 @@ Obtains the list of preferred languages.
 
 | Type                 | Description       |
 | ------------------- | --------- |
-| Array&lt;string&gt; | List of preferred languages.|
+| Array&lt;string&gt; | Preferred language list.|
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   try {
-    var preferredLanguageList = i18n.System.getPreferredLanguageList();
+    let preferredLanguageList = I18n.System.getPreferredLanguageList(); // Obtain the current preferred language list.
   } catch(error) {
     console.error(`call System.getPreferredLanguageList failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -590,16 +590,16 @@ Obtains the first language in the preferred language list.
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   try {
-    var firstPreferredLanguage = i18n.System.getFirstPreferredLanguage();
+    let firstPreferredLanguage = I18n.System.getFirstPreferredLanguage(); // Obtain the first language in the preferred language list.
   } catch(error) {
     console.error(`call System.getFirstPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -621,16 +621,16 @@ Obtains the preferred language of an application.
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```js
   try {
-    var appPreferredLanguage = i18n.System.getAppPreferredLanguage();
+    let appPreferredLanguage = I18n.System.getAppPreferredLanguage(); // Obtain the preferred language of an application.
   } catch(error) {
     console.error(`call System.getAppPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -640,9 +640,9 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 static setUsingLocalDigit(flag: boolean): void
 
-Sets whether to turn on the local digit switch.
+Sets whether to enable the local digit switch.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -652,20 +652,20 @@ This is a system API.
 
 | Name | Type     | Mandatory  | Description                             |
 | ---- | ------- | ---- | ------------------------------- |
-| flag | boolean | Yes   | Whether to turn on the local digit switch. The value **true** means to turn on the local digit switch, and the value **false** indicates the opposite.|
+| flag | boolean | Yes   | Whether to enable the local digit switch. The value **true** means to enable the local digit switch, and the value **false** indicates the opposite.|
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```ts
   try {
-    i18n.System.setUsingLocalDigit(true);
+    I18n.System.setUsingLocalDigit(true); // Enable the local digit switch.
   } catch(error) {
     console.error(`call System.setUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -687,23 +687,23 @@ Checks whether the local digit switch is turned on.
 
 **Error codes**
 
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+For details about the error codes, see [i18n Error Codes](../errorcodes/errorcode-i18n.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **Example**
   ```ts
   try {
-    var status = i18n.System.getUsingLocalDigit();
+    let status = I18n.System.getUsingLocalDigit(); // Check whether the local digit switch is enabled.
   } catch(error) {
     console.error(`call System.getUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`)
   }
   ```
 
 
-## i18n.isRTL<sup>7+</sup>
+## I18n.isRTL<sup>7+</sup>
 
 isRTL(locale: string): boolean
 
@@ -713,9 +713,9 @@ Checks whether the localized script for the specified language is displayed from
 
 **Parameters**
 
-| Name   | Type    | Description     |
-| ------ | ------ | ------- |
-| locale | string | Locale ID.|
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| locale | string | Yes   | Locale ID.|
 
 **Return value**
 
@@ -730,7 +730,7 @@ Checks whether the localized script for the specified language is displayed from
   ```
 
 
-## i18n.getCalendar<sup>8+</sup>
+## I18n.getCalendar<sup>8+</sup>
 
 getCalendar(locale: string, type? : string): Calendar
 
@@ -753,7 +753,7 @@ Obtains a **Calendar** object.
 
 **Example**
   ```js
-  i18n.getCalendar("zh-Hans", "gregory");
+  I18n.getCalendar("zh-Hans", "chinese"); // Obtain the Calendar object for the Chinese lunar calendar.
   ```
 
 
@@ -776,8 +776,8 @@ Sets the date for this **Calendar** object.
 
 **Example**
   ```js
-  var calendar = i18n.getCalendar("en-US", "gregory");
-  var date = new Date(2021, 10, 7, 8, 0, 0, 0);
+  let calendar = I18n.getCalendar("en-US", "gregory");
+  let date = new Date(2021, 10, 7, 8, 0, 0, 0);
   calendar.setTime(date);
   ```
 
@@ -798,7 +798,7 @@ Sets the date and time for this **Calendar** object. The value is represented by
 
 **Example**
   ```js
-  var calendar = i18n.getCalendar("en-US", "gregory");
+  let calendar = I18n.getCalendar("en-US", "gregory");
   calendar.setTime(10540800000);
   ```
 
@@ -824,7 +824,7 @@ Sets the year, month, day, hour, minute, and second for this **Calendar** object
 
 **Example**
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
+  let calendar = I18n.getCalendar("zh-Hans");
   calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
   ```
 
@@ -845,7 +845,7 @@ Sets the time zone of this **Calendar** object.
 
 **Example**
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
+  let calendar = I18n.getCalendar("zh-Hans");
   calendar.setTimeZone("Asia/Shanghai");
   ```
 
@@ -866,9 +866,9 @@ Obtains the time zone of this **Calendar** object.
 
 **Example**
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
+  let calendar = I18n.getCalendar("zh-Hans");
   calendar.setTimeZone("Asia/Shanghai");
-  calendar.getTimeZone(); // Asia/Shanghai"
+  let timezone = calendar.getTimeZone(); // timezone = "Asia/Shanghai"
   ```
 
 
@@ -888,8 +888,8 @@ Obtains the start day of a week for this **Calendar** object.
 
 **Example**
   ```js
-  var calendar = i18n.getCalendar("en-US", "gregory");
-  calendar.getFirstDayOfWeek();
+  let calendar = I18n.getCalendar("en-US", "gregory");
+  let firstDayOfWeek = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 1
   ```
 
 
@@ -905,12 +905,13 @@ Sets the start day of a week for this **Calendar** object.
 
 | Name  | Type    | Mandatory  | Description                   |
 | ----- | ------ | ---- | --------------------- |
-| value | number | No   | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
+| value | number | Yes   | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
 
 **Example**
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
-  calendar.setFirstDayOfWeek(0);
+  let calendar = I18n.getCalendar("zh-Hans");
+  calendar.setFirstDayOfWeek(3);
+  let firstDayOfWeek = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 3
   ```
 
 
@@ -930,8 +931,8 @@ Obtains the minimum number of days in the first week of a year.
 
 **Example**
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
-  calendar.getMinimalDaysInFirstWeek();
+  let calendar = I18n.getCalendar("zh-Hans");
+  let minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 1
   ```
 
 
@@ -947,12 +948,13 @@ Sets the minimum number of days in the first week of a year.
 
 | Name  | Type    | Mandatory  | Description          |
 | ----- | ------ | ---- | ------------ |
-| value | number | No   | Minimum number of days in the first week of a year.|
+| value | number | Yes   | Minimum number of days in the first week of a year.|
 
 **Example**
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
+  let calendar = I18n.getCalendar("zh-Hans");
   calendar.setMinimalDaysInFirstWeek(3);
+  let minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 3
   ```
 
 
@@ -978,9 +980,9 @@ Obtains the value of the specified field in the **Calendar** object.
 
 **Example**
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
+  let calendar = I18n.getCalendar("zh-Hans");
   calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
-  calendar.get("hour_of_day"); // 8
+  let hourOfDay = calendar.get("hour_of_day"); // hourOfDay = 8
   ```
 
 
@@ -1006,8 +1008,8 @@ Obtains the **Calendar** object name displayed for the specified locale.
 
 **Example**
   ```js
-  var calendar = i18n.getCalendar("en-US", "buddhist");
-  calendar.getDisplayName("zh"); // Obtain the name of the Buddhist calendar in zh.
+  let calendar = I18n.getCalendar("en-US", "buddhist");
+  let calendarName = calendar.getDisplayName("zh"); // calendarName = "Buddhist Calendar"
   ```
 
 
@@ -1033,10 +1035,10 @@ Checks whether the specified date in this **Calendar** object is a weekend.
 
 **Example**
   ```js
-  var calendar = i18n.getCalendar("zh-Hans");
+  let calendar = I18n.getCalendar("zh-Hans");
   calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
   calendar.isWeekend(); // false
-  var date = new Date(2011, 11, 6, 9, 0, 0);
+  let date = new Date(2011, 11, 6, 9, 0, 0);
   calendar.isWeekend(date); // true
   ```
 
@@ -1057,11 +1059,11 @@ Creates a **PhoneNumberFormat** object.
 | Name    | Type                                      | Mandatory  | Description              |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | country | string                                   | Yes   | Country or region to which the phone number to be formatted belongs.|
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions9) | No   | Options of the **PhoneNumberFormat** object. |
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No   | Options of the **PhoneNumberFormat** object. |
 
 **Example**
   ```js
-  var phoneNumberFormat= new i18n.PhoneNumberFormat("CN", {"type": "E164"});
+  let phoneNumberFormat= new I18n.PhoneNumberFormat("CN", {"type": "E164"});
   ```
 
 
@@ -1087,8 +1089,8 @@ Checks whether the format of the specified phone number is valid.
 
 **Example**
   ```js
-  var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
-  phonenumberfmt.isValidNumber("15812312312");
+  let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
+  let isValidNumber = phonenumberfmt.isValidNumber("15812312312"); // isValidNumber = true
   ```
 
 
@@ -1114,8 +1116,8 @@ Formats a phone number.
 
 **Example**
   ```js
-  var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
-  phonenumberfmt.format("15812312312");
+  let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
+  let formattedPhoneNumber = phonenumberfmt.format("15812312312"); // formattedPhoneNumber = "158 1231 2312"
   ```
 
 
@@ -1142,18 +1144,18 @@ Obtains the home location of a phone number.
 
 **Example**
   ```js
-  var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
-  phonenumberfmt.getLocationName("15812312345", "zh-CN");
+  let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
+  let locationName = phonenumberfmt.getLocationName("15812312345", "zh-CN"); // locationName = "Zhanjiang, Guangdong Province"
   ```
 
 
-## PhoneNumberFormatOptions<sup>9+</sup>
+## PhoneNumberFormatOptions<sup>8+</sup>
 
 Defines the options for this PhoneNumberFormat object.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name  | Type  | Readable  | Writable  | Description                                      |
+| Name  | Type    | Readable  | Writable  | Description                                      |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | type | string | Yes   | Yes   | Format type of a phone number. The available options are as follows: E164,&nbsp;INTERNATIONAL,&nbsp;NATIONAL, and&nbsp;RFC3966.|
 
@@ -1164,7 +1166,7 @@ Defines the measurement unit information.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name           | Type  | Readable  | Writable  | Description                                      |
+| Name           | Type    | Readable  | Writable  | Description                                      |
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
 | unit          | string | Yes   | Yes   | Name of the measurement unit, for example, **meter**, **inch**, or **cup**.|
 | measureSystem | string | Yes   | Yes   | Measurement system. The value can be **SI**,&nbsp;**US**, or&nbsp;**UK**.|
@@ -1192,7 +1194,7 @@ Creates an **IndexUtil** object.
 
 **Example**
   ```js
-  var indexUtil= i18n.getInstance("zh-CN");
+  let indexUtil= I18n.getInstance("zh-CN");
   ```
 
 
@@ -1215,8 +1217,10 @@ Obtains the index list for this **locale** object.
 
 **Example**
   ```js
-  var indexUtil = i18n.getInstance("zh-CN");
-  var indexList = indexUtil.getIndexList();
+  let indexUtil = I18n.getInstance("zh-CN");
+  // indexList = [ "...", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+  //              "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "..." ]
+  let indexList = indexUtil.getIndexList();
   ```
 
 
@@ -1236,7 +1240,7 @@ Adds the index of the new **locale** object to the index list.
 
 **Example**
   ```js
-  var indexUtil = i18n.getInstance("zh-CN");
+  let indexUtil = I18n.getInstance("zh-CN");
   indexUtil.addLocale("en-US");
   ```
 
@@ -1263,12 +1267,12 @@ Obtains the index of a text object.
 
 **Example**
   ```js
-  var indexUtil= i18n.getInstance("zh-CN");
-  indexUtil.getIndex("hi"); // Return hi.
+  let indexUtil= I18n.getInstance("zh-CN");
+  let index = indexUtil.getIndex("hi");  // index = "H"
   ```
 
 
-## i18n.getLineInstance<sup>8+</sup>
+## I18n.getLineInstance<sup>8+</sup>
 
 getLineInstance(locale: string): BreakIterator
 
@@ -1290,7 +1294,7 @@ Obtains a [BreakIterator](#breakiterator8) object for text segmentation.
 
 **Example**
   ```js
-  var iterator = i18n.getLineInstance("en");
+  let iterator = I18n.getLineInstance("en");
   ```
 
 
@@ -1313,8 +1317,8 @@ Sets the text to be processed by the [BreakIterator](#breakiterator8) object.
 
 **Example**
   ```js
-  var iterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  let iterator = I18n.getLineInstance("en");
+  iterator.setLineBreakText("Apple is my favorite fruit ."); // Set a short sentence as the text to be processed by the BreakIterator object.
   ```
 
 
@@ -1334,9 +1338,9 @@ Obtains the text being processed by the [BreakIterator](#breakiterator8) object.
 
 **Example**
   ```js
-  var iterator = i18n.getLineInstance("en");
+  let iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.getLineBreakText(); // Apple is my favorite fruit.
+  let breakText = iterator.getLineBreakText(); // breakText = "Apple is my favorite fruit."
   ```
 
 
@@ -1356,9 +1360,9 @@ Obtains the position of the [BreakIterator](#breakiterator8) object in the text 
 
 **Example**
   ```js
-  var iterator = i18n.getLineInstance("en");
+  let iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.current(); // 0
+  let currentPos = iterator.current(); // currentPos = 0
   ```
 
 
@@ -1378,9 +1382,9 @@ Puts the [BreakIterator](#breakiterator8) object to the first text boundary, whi
 
 **Example**
   ```js
-  var iterator = i18n.getLineInstance("en");
+  let iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.first(); // 0
+  let firstPos = iterator.first(); // firstPos = 0
   ```
 
 
@@ -1400,9 +1404,9 @@ Puts the [BreakIterator](#breakiterator8) object to the last text boundary, whic
 
 **Example**
   ```js
-  var iterator = i18n.getLineInstance("en");
+  let iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.last(); // 27
+  let lastPos = iterator.last(); // lastPos = 27
   ```
 
 
@@ -1428,11 +1432,11 @@ Moves the [BreakIterator](#breakiterator8) object backward by the specified numb
 
 **Example**
   ```js
-  var iterator = i18n.getLineInstance("en");
+  let iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.first(); // 0
-  iterator.next(); // 6
-  iterator.next(10); // -1
+  let pos = iterator.first(); // pos = 0
+  pos = iterator.next(); // pos = 6
+  pos = iterator.next(10); // pos = -1
   ```
 
 
@@ -1452,11 +1456,11 @@ Moves the [BreakIterator](#breakiterator8) object to the previous text boundary.
 
 **Example**
   ```js
-  var iterator = i18n.getLineInstance("en");
+  let iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.first(); // 0
-  iterator.next(3); // 12
-  iterator.previous(); // 9
+  let pos = iterator.first(); // pos = 0
+  pos = iterator.next(3); // pos = 12
+  pos = iterator.previous(); // pos = 9
   ```
 
 
@@ -1482,11 +1486,11 @@ Moves the [BreakIterator](#breakiterator8) object to the text boundary after the
 
 **Example**
   ```js
-  var iterator = i18n.getLineInstance("en");
+  let iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.following(0); // 6
-  iterator.following(100); // -1
-  iterator.current(); // 27
+  let pos = iterator.following(0); // pos = 6
+  pos = iterator.following(100); // pos = -1
+  pos = iterator.current(); // pos = 27
   ```
 
 
@@ -1512,14 +1516,14 @@ Checks whether the position specified by the offset is a text boundary. If **tru
 
 **Example**
   ```js
-  var iterator = i18n.getLineInstance("en");
+  let iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  iterator.isBoundary(0); // true;
-  iterator.isBoundary(5); // false;
+  let isBoundary = iterator.isBoundary(0); // isBoundary = true;
+  isBoundary = iterator.isBoundary(5); // isBoundary = false;
   ```
 
 
-## i18n.getTimeZone<sup>7+</sup>
+## I18n.getTimeZone<sup>7+</sup>
 
 getTimeZone(zoneID?: string): TimeZone
 
@@ -1541,7 +1545,7 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
 
 **Example**
   ```js
-  var timezone = i18n.getTimeZone();
+  let timezone = I18n.getTimeZone();
   ```
 
 
@@ -1564,8 +1568,8 @@ Obtains the ID of the specified **TimeZone** object.
 
 **Example**
   ```js
-  var timezone = i18n.getTimeZone();
-  timezone.getID();
+  let timezone = I18n.getTimeZone();
+  let timezoneID = timezone.getID(); // timezoneID = "Asia/Shanghai"
   ```
 
 
@@ -1573,7 +1577,7 @@ Obtains the ID of the specified **TimeZone** object.
 
 getDisplayName(locale?: string, isDST?: boolean): string
 
-Obtains the representation of a **TimeZone** object in the specified locale.
+Obtains the localized representation of the time zone.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1592,8 +1596,8 @@ Obtains the representation of a **TimeZone** object in the specified locale.
 
 **Example**
   ```js
-  var timezone = i18n.getTimeZone();
-  timezone.getDisplayName("zh-CN", false);
+  let timezone = I18n.getTimeZone();
+  let timezoneName = timezone.getDisplayName("zh-CN", false); // timezoneName = "China Standard Time"
   ```
 
 
@@ -1613,8 +1617,8 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 
 **Example**
   ```js
-  var timezone = i18n.getTimeZone();
-  timezone.getRawOffset();
+  let timezone = I18n.getTimeZone();
+  let offset = timezone.getRawOffset(); // offset = 28800000
   ```
 
 
@@ -1634,8 +1638,8 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 
 **Example**
   ```js
-  var timezone = i18n.getTimeZone();
-  timezone.getOffset(1234567890);
+  let timezone = I18n.getTimeZone();
+  let offset = timezone.getOffset(1234567890); // offset = 28800000
   ```
 
 
@@ -1655,7 +1659,8 @@ Obtains the list of time zone IDs supported by the system.
 
 **Example**
   ```ts
-  var ids = i18n.TimeZone.getAvailableIDs();
+  // ids = ["America/Adak", "America/Anchorage", "America/Bogota", "America/Denver", "America/Los_Angeles", "America/Montevideo", "America/Santiago", "America/Sao_Paulo", "Asia/Ashgabat", "Asia/Hovd", "Asia/Jerusalem", "Asia/Magadan", "Asia/Omsk", "Asia/Shanghai", "Asia/Tokyo", "Asia/Yerevan", "Atlantic/Cape_Verde", "Australia/Lord_Howe", "Europe/Dublin", "Europe/London", "Europe/Moscow", "Pacific/Auckland", "Pacific/Easter", "Pacific/Pago-Pago"], 24 time zones supported in total
+  let ids = I18n.TimeZone.getAvailableIDs();
   ```
 
 
@@ -1675,7 +1680,8 @@ Obtains the list of time zone city IDs supported by the system.
 
 **Example**
   ```ts
-  var cityIDs = i18n.TimeZone.getAvailableZoneCityIDs();
+  // cityIDs = ["Auckland", "Magadan", "Lord Howe Island", "Tokyo", "Shanghai", "Hovd", "Omsk", "Ashgabat", "Yerevan", "Moscow", "Tel Aviv", "Dublin", "London", "Praia", "Montevideo", "Brasília", "Santiago", "Bogotá", "Easter Island", "Salt Lake City", "Los Angeles", "Anchorage", "Adak", "Pago Pago"], 24 time zone cities supported in total
+  let cityIDs = I18n.TimeZone.getAvailableZoneCityIDs();
   ```
 
 
@@ -1683,7 +1689,7 @@ Obtains the list of time zone city IDs supported by the system.
 
 static getCityDisplayName(cityID: string, locale: string): string
 
-Obtains the localized display of a time zone city in the specified locale.
+Obtains the localized representation of a time zone city in the specified locale.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1702,7 +1708,7 @@ Obtains the localized display of a time zone city in the specified locale.
 
 **Example**
   ```ts
-  var displayName = i18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN");
+  let displayName = I18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN"); // displayName = "Shanghai (China)"
   ```
 
 
@@ -1728,7 +1734,7 @@ Obtains the **TimeZone** object corresponding to the specified time zone city ID
 
 **Example**
   ```ts
-  var timezone = i18n.TimeZone.getTimezoneFromCity("Shanghai");
+  let timezone = I18n.TimeZone.getTimezoneFromCity("Shanghai");
   ```
 
 
@@ -1751,7 +1757,9 @@ Obtains a list of IDs supported by the **Transliterator** object.
 
 **Example**
   ```ts
-  i18n.Transliterator.getAvailableIDs();
+  // ids = ["ASCII-Latin", "Accents-Any", "Amharic-Latin/BGN", ...], 671 IDs supported in total
+  // Each ID consists of two parts separated by a hyphen (-). The format is source-destination.
+  let ids = I18n.Transliterator.getAvailableIDs();
   ```
 
 
@@ -1777,7 +1785,7 @@ Creates a **Transliterator** object.
 
 **Example**
   ```ts
-  var transliterator = i18n.Transliterator.getInstance("Any-Latn");
+  let transliterator = I18n.Transliterator.getInstance("Any-Latn");
   ```
 
 
@@ -1803,8 +1811,8 @@ Converts the input string from the source format to the target format.
 
 **Example**
   ```ts
-  var transliterator = i18n.Transliterator.getInstance("Any-Latn");
-  transliterator.transform ("China");
+  let transliterator = I18n.Transliterator.getInstance("Any-Latn");
+  let res = transliterator.transform("China"); // res = "zhōng guó"
   ```
 
 
@@ -1833,7 +1841,7 @@ Checks whether the input character string is composed of digits.
 
 **Example**
   ```js
-  var isdigit = i18n.Unicode.isDigit("1"); // Return true.
+  let isdigit = I18n.Unicode.isDigit("1");  // isdigit = true
   ```
 
 
@@ -1859,7 +1867,7 @@ Checks whether the input character is a space.
 
 **Example**
   ```js
-  var isspacechar = i18n.Unicode.isSpaceChar("a"); // Return false.
+  let isspacechar = I18n.Unicode.isSpaceChar("a");  // isspacechar = false
   ```
 
 
@@ -1885,7 +1893,7 @@ Checks whether the input character is a white space.
 
 **Example**
   ```js
-  var iswhitespace = i18n.Unicode.isWhitespace("a"); // Return false.
+  let iswhitespace = I18n.Unicode.isWhitespace("a");  // iswhitespace = false
   ```
 
 
@@ -1911,7 +1919,7 @@ Checks whether the input character is of the right to left (RTL) language.
 
 **Example**
   ```js
-  var isrtl = i18n.Unicode.isRTL("a"); // Return false.
+  let isrtl = I18n.Unicode.isRTL("a");  // isrtl = false
   ```
 
 
@@ -1937,7 +1945,7 @@ Checks whether the input character is an ideographic character.
 
 **Example**
   ```js
-  var isideograph = i18n.Unicode.isIdeograph("a"); // Return false.
+  let isideograph = I18n.Unicode.isIdeograph("a");  // isideograph = false
   ```
 
 
@@ -1963,7 +1971,7 @@ Checks whether the input character is a letter.
 
 **Example**
   ```js
-  var isletter = i18n.Unicode.isLetter("a"); // Return true.
+  let isletter = I18n.Unicode.isLetter("a");  // isletter = true
   ```
 
 
@@ -1989,7 +1997,7 @@ Checks whether the input character is a lowercase letter.
 
 **Example**
   ```js
-  var islowercase = i18n.Unicode.isLowerCase("a"); // Return true.
+  let islowercase = I18n.Unicode.isLowerCase("a");  // islowercase = true
   ```
 
 
@@ -2015,7 +2023,7 @@ Checks whether the input character is an uppercase letter.
 
 **Example**
   ```js
-  var isuppercase = i18n.Unicode.isUpperCase("a"); // Return false.
+  let isuppercase = I18n.Unicode.isUpperCase("a");  // isuppercase = false
   ```
 
 
@@ -2041,7 +2049,7 @@ Obtains the type of the input character string.
 
 **Example**
   ```js
-  var type = i18n.Unicode.getType("a");
+  let type = I18n.Unicode.getType("a"); // type = "U_LOWERCASE_LETTER"
   ```
 
 
@@ -2074,7 +2082,7 @@ Converts one measurement unit into another and formats the unit based on the spe
 
 **Example**
   ```js
-  i18n.I18NUtil.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
+  let res = I18n.I18NUtil.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long"); // res = 236.588 liters
   ```
 
 
@@ -2100,11 +2108,11 @@ Obtains the sequence of the year, month, and day in the specified locale.
 
 **Example**
   ```js
-  i18n.I18NUtil.getDateOrder("zh-CN");
+  let order = I18n.I18NUtil.getDateOrder("zh-CN");  // order = "y-L-d"
   ```
 
 
-## i18n.getDisplayCountry<sup>(deprecated)</sup>
+## I18n.getDisplayCountry<sup>(deprecated)</sup>
 
 getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
 
@@ -2130,12 +2138,12 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 
 **Example**
   ```js
-  i18n.getDisplayCountry("zh-CN", "en-GB", true);
-  i18n.getDisplayCountry("zh-CN", "en-GB");
+  let countryName = I18n.getDisplayCountry("zh-CN", "en-GB", true); // countryName = true
+  countryName = I18n.getDisplayCountry("zh-CN", "en-GB"); // countryName = true
   ```
 
 
-## i18n.getDisplayLanguage<sup>(deprecated)</sup>
+## I18n.getDisplayLanguage<sup>(deprecated)</sup>
 
 getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
 
@@ -2161,12 +2169,12 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 
 **Example**
   ```js
-  i18n.getDisplayLanguage("zh", "en-GB", true);
-  i18n.getDisplayLanguage("zh", "en-GB");
+  let languageName = I18n.getDisplayLanguage("zh", "en-GB", true); // languageName = "Chinese"
+  languageName = I18n.getDisplayLanguage("zh", "en-GB"); // languageName = "Chinese"
   ```
 
 
-## i18n.getSystemLanguage<sup>(deprecated)</sup>
+## I18n.getSystemLanguage<sup>(deprecated)</sup>
 
 getSystemLanguage(): string
 
@@ -2184,11 +2192,11 @@ This API is deprecated since API version 9. You are advised to use [System.getSy
 
 **Example**
   ```js
-  i18n.getSystemLanguage();
+  let systemLanguage = I18n.getSystemLanguage(); // Obtain the current system language.
   ```
 
 
-## i18n.getSystemRegion<sup>(deprecated)</sup>
+## I18n.getSystemRegion<sup>(deprecated)</sup>
 
 getSystemRegion(): string
 
@@ -2206,11 +2214,11 @@ This API is deprecated since API version 9. You are advised to use [System.getSy
 
 **Example**
   ```js
-  i18n.getSystemRegion();
+  let region = I18n.getSystemRegion(); // Obtain the current system region.
   ```
 
 
-## i18n.getSystemLocale<sup>(deprecated)</sup>
+## I18n.getSystemLocale<sup>(deprecated)</sup>
 
 getSystemLocale(): string
 
@@ -2228,11 +2236,11 @@ This API is deprecated since API version 9. You are advised to use [System.getSy
 
 **Example**
   ```js
-  i18n.getSystemLocale();
+  let locale = I18n.getSystemLocale (); // Obtain the system locale.
   ```
 
 
-## i18n.is24HourClock<sup>(deprecated)</sup>
+## I18n.is24HourClock<sup>(deprecated)</sup>
 
 is24HourClock(): boolean
 
@@ -2250,11 +2258,11 @@ This API is deprecated since API version 9. You are advised to use [System.is24H
 
 **Example**
   ```js
-  var is24HourClock = i18n.is24HourClock();
+  let is24HourClock = I18n.is24HourClock();
   ```
 
 
-## i18n.set24HourClock<sup>(deprecated)</sup>
+## I18n.set24HourClock<sup>(deprecated)</sup>
 
 set24HourClock(option: boolean): boolean
 
@@ -2281,11 +2289,11 @@ This API is deprecated since API version 9. You are advised to use [System.set24
 **Example**
   ```js
   // Set the system time to the 24-hour clock.
-  var success = i18n.set24HourClock(true);
+  let success = I18n.set24HourClock(true);
   ```
 
 
-## i18n.addPreferredLanguage<sup>(deprecated)</sup>
+## I18n.addPreferredLanguage<sup>(deprecated)</sup>
 
 addPreferredLanguage(language: string, index?: number): boolean
 
@@ -2313,13 +2321,13 @@ This API is supported since API version 8 and is deprecated since API version 9.
 **Example**
   ```js
   // Add zh-CN to the preferred language list.
-  var language = 'zh-CN';
-  var index = 0;
-  var success = i18n.addPreferredLanguage(language, index);
+  let language = 'zh-CN';
+  let index = 0;
+  let success = I18n.addPreferredLanguage(language, index);
   ```
 
 
-## i18n.removePreferredLanguage<sup>(deprecated)</sup>
+## I18n.removePreferredLanguage<sup>(deprecated)</sup>
 
 removePreferredLanguage(index: number): boolean
 
@@ -2346,16 +2354,16 @@ This API is supported since API version 8 and is deprecated since API version 9.
 **Example**
   ```js
   // Delete the first preferred language from the preferred language list.
-  var index = 0;
-  var success = i18n.removePreferredLanguage(index);
+  let index = 0;
+  let success = I18n.removePreferredLanguage(index);
   ```
 
 
-## i18n.getPreferredLanguageList<sup>(deprecated)</sup>
+## I18n.getPreferredLanguageList<sup>(deprecated)</sup>
 
 getPreferredLanguageList(): Array&lt;string&gt;
 
-Obtains the list of preferred languages.
+Obtains the preferred language list.
 
 This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.getPreferredLanguageList](#getpreferredlanguagelist9) instead.
 
@@ -2365,15 +2373,15 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type                 | Description       |
 | ------------------- | --------- |
-| Array&lt;string&gt; | List of preferred languages.|
+| Array&lt;string&gt; | Preferred language list.|
 
 **Example**
   ```js
-  var preferredLanguageList = i18n.getPreferredLanguageList();
+  let preferredLanguageList = I18n.getPreferredLanguageList(); // Obtain the preferred language list.
   ```
 
 
-## i18n.getFirstPreferredLanguage<sup>(deprecated)</sup>
+## I18n.getFirstPreferredLanguage<sup>(deprecated)</sup>
 
 getFirstPreferredLanguage(): string
 
@@ -2391,7 +2399,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 **Example**
   ```js
-  var firstPreferredLanguage = i18n.getFirstPreferredLanguage();
+  let firstPreferredLanguage = I18n.getFirstPreferredLanguage();
   ```
 
 

@@ -1,4 +1,4 @@
-# Settings
+# @ohos.settings
 
 The **settings** module provides APIs for setting data items.
 
@@ -24,8 +24,8 @@ Provides data items for setting the time and date formats.
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | DATE_FORMAT         | string | Yes  | Yes  | Date format.<br>The value can be **mm/dd/yyyy**, **dd/mm/yyyy**, or **yyyy/mm/dd**, where **mm** indicates the month, **dd** indicates the day, and **yyyy** indicates the year.|
 | TIME_FORMAT         | string | Yes  | Yes  | Time format.<br>**12**: 12-hour format.<br>**24**: 24-hour format.|
-| AUTO_GAIN_TIME      | string | Yes  | Yes  | Whether the date, time, and time zone are automatically obtained from the Network Identity and Time Zone (NITZ).<br>The value **true** means that the date, time, and time zone are automatically obtained from NITZ; and **false** means the opposite.|
-| AUTO_GAIN_TIME_ZONE | string | Yes  | Yes  | Whether the time zone is automatically obtained from NITZ.<br>The value **true** means that the time zone is automatically obtained from NITZ; and **false** means the opposite.|
+| AUTO_GAIN_TIME      | string | Yes  | Yes  | Whether the date, time, and time zone are automatically obtained from the Network Identity and Time Zone (NITZ).<br>The value **true** means that the date, time, and time zone are automatically obtained from NITZ; and **false** means the opposite. |
+| AUTO_GAIN_TIME_ZONE | string | Yes  | Yes  | Whether the time zone is automatically obtained from NITZ.<br>The value **true** means that the time zone is automatically obtained from NITZ; and **false** means the opposite. |
 
 ## display
 
@@ -39,7 +39,7 @@ Provides data items for setting the display effects.
 | ----------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | FONT_SCALE                    | string | Yes  | Yes  | Scale factor of the font. The value is a floating point number.                                |
 | SCREEN_BRIGHTNESS_STATUS      | string | Yes  | Yes  | Screen brightness. The value ranges from 0 to 255.                              |
-| AUTO_SCREEN_BRIGHTNESS        | string | Yes  | Yes  | Whether automatic screen brightness adjustment is enabled.<br>**AUTO_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is enabled.<br>**MANUAL_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is disabled.|
+| AUTO_SCREEN_BRIGHTNESS        | string | Yes  | Yes  | Whether automatic screen brightness adjustment is enabled.<br>**AUTO_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is enabled.<br>**MANUAL_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is disabled. |
 | AUTO_SCREEN_BRIGHTNESS_MODE   | number | Yes  | Yes  | Value of **AUTO_SCREEN_BRIGHTNESS** when automatic screen brightness adjustment is enabled.          |
 | MANUAL_SCREEN_BRIGHTNESS_MODE | number | Yes  | Yes  | Value of **AUTO_SCREEN_BRIGHTNESS** when automatic screen brightness adjustment is disabled.          |
 | SCREEN_OFF_TIMEOUT            | string | Yes  | Yes  | Waiting time for the device to enter the sleep state when not in use (unit: ms).  |
@@ -47,7 +47,7 @@ Provides data items for setting the display effects.
 | ANIMATOR_DURATION_SCALE       | string | Yes  | Yes  | Scale factor for the animation duration. This affects the start delay and duration of all such animations.<br>If the value is **0**, the animation ends immediately. The default value is **1**.|
 | TRANSITION_ANIMATION_SCALE    | string | Yes  | Yes  | Scale factor for transition animations.<br>The value **0** indicates that the transition animations are disabled.          |
 | WINDOW_ANIMATION_SCALE        | string | Yes  | Yes  | Scale factor for normal window animations.<br>The value **0** indicates that window animations are disabled.      |
-| DISPLAY_INVERSION_STATUS      | string | Yes  | Yes  | Whether display color inversion is enabled.<br>**1**: Display color inversion is enabled.<br>**0**: Display color inversion is disabled.|
+| DISPLAY_INVERSION_STATUS      | string | Yes  | Yes  | Whether display color inversion is enabled.<br>**1**: Display color inversion is enabled.<br>**0**: Display color inversion is disabled. |
 
 ## general
 
@@ -248,7 +248,7 @@ Obtains the value of a data item in the database. This API uses an asynchronous 
 
 | Name           | Type                                             | Mandatory| Description                                                        |
 | ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
 | name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
 | callback          | AsyncCallback\<object>                            | Yes  | Callback used to return the value of the data item.                            |
 
@@ -280,7 +280,7 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 
 | Name           | Type                                             | Mandatory| Description                                                        |
 | ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
 | name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
 
 **Return value**
@@ -315,7 +315,7 @@ Sets the value for a data item. This API uses an asynchronous callback to return
 
 | Name           | Type                                             | Mandatory| Description                                                        |
 | ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
 | name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
 | value             | object                                            | Yes  | Value of the data item. The value range varies by service.                              |
 | callback          | AsyncCallback\<boolean>                           | Yes  | Callback used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.              |
@@ -347,7 +347,7 @@ Sets the value for a data item. This API uses a promise to return the result.
 
 | Name           | Type                                             | Mandatory| Description                                                        |
 | ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
 | name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
 | value             | object                                            | Yes  | Value of the data item. The value range varies by service.                              |
 
@@ -512,9 +512,9 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 
 | Name           | Type                                             | Mandatory| Description                                                        |
 | ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
 | name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
-| defValue          | string                                            | Yes  | Default value, which is returned when the value of a data item is not found in the database. Set this attribute as needed.|
+| defValue          | string                                            | Yes  | Default value, which is returned when the value of a data item is not found in the database. Set this parameter as needed. |
 
 **Return value**
 
@@ -541,7 +541,7 @@ Sets the value for a data item. Unlike **setValue**, this API returns the result
 
 If the specified data item exists in the database, the **setValueSync** method updates the value of the data item. If the data item does not exist in the database, the **setValueSync** method inserts the data item into the database.
 
-**Required permissions**: ohos.permission.MANAGE_SECUER_SETTINGS (available only to system applications)
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only to system applications)
 
 **System capability**: SystemCapability.Applications.settings.Core
 
@@ -549,7 +549,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 
 | Name           | Type                                             | Mandatory| Description                                                        |
 | ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
 | name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
 | value             | string                                            | Yes  | Value of the data item. The value range varies by service.                      |
 

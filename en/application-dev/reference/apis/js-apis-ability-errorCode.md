@@ -1,6 +1,6 @@
-# ErrorCode
+# @ohos.ability.errorCode (ErrorCode)
 
-The **ErrorCode** module defines the error codes that can be used when the ability is started. 
+The **ErrorCode** module defines the error codes that may be returned when an ability is started.
 
 > **NOTE**
 > 
@@ -8,19 +8,19 @@ The **ErrorCode** module defines the error codes that can be used when the abili
 
 ## Modules to Import
 
-```
+```ts
 import errorCode from '@ohos.ability.errorCode'
 ```
 
 ## ErrorCode
 
-Defines the error codes used when the ability is started.
+Enumerates the error codes that may be returned when an ability is started.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name                            | Value   | Description                                      |
 | ------------------------------ | ---- | ---------------------------------------- |
-| NO_ERROR         | 0    | No error occurs.  |
+| NO_ERROR         | 0    | No error.  |
 | INVALID_PARAMETER | -1   | Invalid parameter.|
 | ABILITY_NOT_FOUND | -2   | The ability is not found.|
 | PERMISSION_DENY   | -3   | Permission denied.  |

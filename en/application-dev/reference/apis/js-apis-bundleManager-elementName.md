@@ -1,6 +1,6 @@
 # ElementName
 
-The **ElementName** module provides information about an element name. The information can be obtained through [Context.getElementName](js-apis-Context.md).
+The **ElementName** module provides element name information, which can be obtained through [Context.getElementName](js-apis-inner-app-context.md).
 
 
 > **NOTE**

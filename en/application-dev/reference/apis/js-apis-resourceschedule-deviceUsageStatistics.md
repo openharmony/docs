@@ -1,4 +1,4 @@
-# Device Usage Statistics
+# @ohos.resourceschedule.usageStatistics (Device Usage Statistics)
 
 This module provides APIs for collecting statistics on device usage.
 
@@ -219,8 +219,8 @@ Queries the application usage duration statistics based on the specified start t
 
 | Name     | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| begin    | number                                   | Yes   | Start time.                                  |
-| end      | number                                   | Yes   | End time.                                  |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
+| end      | number                                   | Yes   | End time, in milliseconds.                                  |
 | callback | AsyncCallback&lt;[BundleStatsMap](#bundlestatsmap)&gt; | Yes   | Callback used to return the application usage duration statistics.|
 
 **Error codes**
@@ -274,8 +274,8 @@ Queries the application usage duration statistics based on the specified start t
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -333,8 +333,8 @@ Queries the application usage duration statistics in the specified time frame at
 | Name       | Type                                      | Mandatory  | Description                                      |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | byInterval | [IntervalType](#intervaltype)            | Yes   | Type of information to be queried.                                   |
-| begin      | number                                   | Yes   | Start time.                                   |
-| end        | number                                   | Yes   | End time.                                   |
+| begin      | number                                   | Yes   | Start time, in milliseconds.                                   |
+| end        | number                                   | Yes   | End time, in milliseconds.                                   |
 | callback   | AsyncCallback&lt;Array&lt;[BundleStatsInfo](#bundlestatsinfo)&gt;&gt; | Yes   | Callback used to return the application usage duration statistics.|
 
 **Error codes**
@@ -387,8 +387,8 @@ Queries the application usage duration statistics in the specified time frame at
 | Name       | Type                           | Mandatory  | Description   |
 | ---------- | ----------------------------- | ---- | ----- |
 | byInterval | [IntervalType](#intervaltype) | Yes   | Type of information to be queried.|
-| begin      | number                        | Yes   | Start time.|
-| end        | number                        | Yes   | End time.|
+| begin      | number                        | Yes   | Start time, in milliseconds.|
+| end        | number                        | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -443,8 +443,8 @@ Queries events of all applications based on the specified start time and end tim
 
 | Name     | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| begin    | number                                   | Yes   | Start time.                                  |
-| end      | number                                   | Yes   | End time.                                  |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
+| end      | number                                   | Yes   | End time, in milliseconds.                                  |
 | callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Yes   | Callback used to return the events obtained.|
 
 **Error codes**
@@ -496,8 +496,8 @@ Queries events of all applications based on the specified start time and end tim
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -548,8 +548,8 @@ Queries events of this application based on the specified start time and end tim
 
 | Name     | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| begin    | number                                   | Yes   | Start time.                                  |
-| end      | number                                   | Yes   | End time.                                  |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
+| end      | number                                   | Yes   | End time, in milliseconds.                                  |
 | callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Yes   | Callback used to return the events obtained.|
 
 **Error codes**
@@ -597,8 +597,8 @@ Queries events of this application based on the specified start time and end tim
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -703,7 +703,7 @@ Queries FA usage records. This API uses an asynchronous callback to return a max
 
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes   | Callback used to return a maximum of 1000 FA usage records.|
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes   | Callback used to return a maximum of **maxNum** FA usage records.|
 
 **Error codes**
 
@@ -1182,8 +1182,6 @@ Deregisters the callback for application group changes. This API uses a promise 
 
 **System API**: This is a system API.
 
-**Parameters**: none
-
 **Return value**
 
 | Type           | Description                      |
@@ -1278,8 +1276,8 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and scre
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -1297,7 +1295,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
 | 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed           |
+| 10000006   | Get application info failed.          |
 | 10000007   | Get system or actual time failed.     |
 
 **Example**
@@ -1331,8 +1329,8 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| begin    | number                                   | Yes   | Start time.                                   |
-| end      | number                                   | Yes   | End time.                                   |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                   |
+| end      | number                                   | Yes   | End time, in milliseconds.                                   |
 | callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the result.  |
 
 **Error codes**
@@ -1345,7 +1343,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
 | 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed           |
+| 10000006   | Get application info failed.           |
 | 10000007   | Get system or actual time failed.     |
 
 **Example**
@@ -1381,8 +1379,8 @@ Queries the number of notifications from all applications based on the specified
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -1400,7 +1398,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
 | 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed           |
+| 10000006   | Get application info failed.          |
 | 10000007   | Get system or actual time failed.     |
 
 **Example**
@@ -1434,8 +1432,8 @@ Queries the number of notifications from all applications based on the specified
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| begin    | number                                   | Yes   | Start time.                                   |
-| end      | number                                   | Yes   | End time.                                   |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                   |
+| end      | number                                   | Yes   | End time, in milliseconds.                                   |
 | callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the result.  |
 
 **Error codes**
@@ -1448,7 +1446,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
 | 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed           |
+| 10000006   | Get application info failed.          |
 | 10000007   | Get system or actual time failed.     |
 
 **Example**
@@ -1478,7 +1476,7 @@ Provides the information about the FA usage.
 | Name                 | Type                                      | Mandatory  | Description                           |
 | -------------------- | ---------------------------------------- | ---- | ----------------------------- |
 | deviceId             | string                                   | No   | ID of the device to which the FA belongs.                |
-| bundleName           | string                                   | Yes   | Name of the application bundle to which the FA belongs.                    |
+| bundleName           | string                                   | Yes   | Name of the bundle to which the FA belongs.            |
 | moduleName           | string                                   | Yes   | Name of the module to which the FA belongs.                 |
 | abilityName          | string                                   | No   | **MainAbility** name of the FA.             |
 | appLabelId           | number                                   | No   | Application label ID of the FA.                |
@@ -1566,6 +1564,8 @@ Provides the usage duration information of an application.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**System API**: This is a system API.
+
 | Name                           | Type                                      | Mandatory  | Description            |
 | ------------------------------ | ---------------------------------------- | ---- | -------------- |
 | [key: string]: BundleStatsInfo | [key: string]: [BundleStatsInfo](#bundlestatsinfo) | Yes   | Usage duration information by application.|
@@ -1590,7 +1590,9 @@ Enumerates the interval types for querying the application usage duration.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-| Name          | Default Value | Description                                      |
+**System API**: This is a system API.
+
+| Name          | Value | Description                                      |
 | ------------ | ---- | ---------------------------------------- |
 | BY_OPTIMIZED | 0    | The system queries the application usage duration statistics in the specified time frame at the interval the system deems appropriate.|
 | BY_DAILY     | 1    | The system queries the application usage duration statistics in the specified time frame on a daily basis.             |
@@ -1606,7 +1608,7 @@ Enumerates the application group types.
 
 **System API**: This is a system API.
 
-| Name                | Default Value | Description               |
+| Name                | Value | Description               |
 | ------------------ | ---- | ----------------- |
 | ALIVE_GROUP | 10   | Group of active applications.             |
 | DAILY_GROUP | 20   | Group of frequently used applications that are not in the active state.   |

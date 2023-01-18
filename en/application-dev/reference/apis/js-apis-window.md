@@ -1,4 +1,4 @@
-# Window
+# @ohos.window
 
 The **Window** module provides basic window management capabilities, such as creating and destroying the current window, setting properties for the current window, and managing and scheduling windows.
 
@@ -46,17 +46,15 @@ Enumerates the window types.
 
 ## Configuration<sup>9+</sup>
 
-Defines the parameters used for creating a subwindow.
-
-An asynchronous callback is used when a system window is created in the case that [ServiceExtensionContext](js-apis-service-extension-context.md) is used as the context.
+Defines the parameters for creating a subwindow or system window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name| Type| Mandatory| Description|
 | ---------- | -------------------------- | -- | ----------------------------------- |
-| name       | string                     | Yes| Name of the subwindow.                        |
-| windowType | [WindowType](#windowtype7) | Yes| Type of the subwindow.                        |
-| ctx        | BaseContext                | No| Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-service-extension-context.md).<br> If this parameter is not set, no context is used.     |
+| name       | string                     | Yes| Name of the window.                        |
+| windowType | [WindowType](#windowtype7) | Yes| Type of the window.                        |
+| ctx        | BaseContext                | No| Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md). If this parameter is not set, no context is used.<br>A system window is created when **Context** is [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md).|
 | displayId  | number                     | No| ID of the current physical screen. If this parameter is not set, the default value **-1** is used.|
 | parentId   | number                     | No| ID of the parent window. If this parameter is not set, the default value **-1** is used.     |
 
@@ -250,7 +248,7 @@ Enumerates the color spaces.
 
 | Name      | Value| Description          |
 | ---------- | ------ | -------------- |
-| DEFAULT    | 0      | Default gamut.|
+| DEFAULT    | 0      | Default SRGB gamut.|
 | WIDE_GAMUT | 1      | Wide-gamut.  |
 
 ## ScaleOptions<sup>9+</sup>
@@ -302,7 +300,7 @@ Describes the translation parameters.
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
-Creates a subwindow. This API uses an asynchronous callback to return the result.
+Creates a subwindow or system window. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -310,8 +308,8 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
 
 | Name| Type| Mandatory| Description|
 | -------- | -------------------------------------- | -- | --------------------------------- |
-| config   | [Configuration](#configuration9)       | Yes| Current application context.               |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes| Callback used to return the subwindow created.|
+| config   | [Configuration](#configuration9)       | Yes| Parameters used for creating the window.  |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes| Callback used to return the window created.|
 
 **Error codes**
 
@@ -346,7 +344,7 @@ try {
 
 createWindow(config: Configuration): Promise&lt;Window&gt;
 
-Creates a subwindow. This API uses a promise to return the result.
+Creates a subwindow or system window. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -354,13 +352,13 @@ Creates a subwindow. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | ------ | -------------------------------- | -- | ------------------ |
-| config | [Configuration](#configuration9) | Yes| Current application context.|
+| config | [Configuration](#configuration9) | Yes| Parameters used for creating the window.|
 
 **Return value**
 
 | Type| Description|
 | -------------------------------- | ------------------------------------ |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created.|
+| Promise&lt;[Window](#window)&gt; | Promise used to return the window created.|
 
 **Error codes**
 
@@ -393,7 +391,7 @@ try {
 
 findWindow(name: string): Window
 
-Finds a window based on the ID.
+Finds a window based on the name.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -432,7 +430,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 | Name| Type| Mandatory| Description|
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
-| ctx      | BaseContext                            | Yes| Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx      | BaseContext                            | Yes| Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes| Callback used to return the top window obtained.|
 
 **Error codes**
@@ -474,7 +472,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 | Name| Type| Mandatory| Description|
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx    | BaseContext | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
 
 **Return value**
 
@@ -899,7 +897,7 @@ promise.then((data)=> {
 
 create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-Creates a subwindow in the FA model or a system window in the stage model. This API uses an asynchronous callback to return the result.
+Creates a subwindow (in API version 8) or a system window (from API version 9). This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
@@ -911,7 +909,7 @@ Creates a subwindow in the FA model or a system window in the stage model. This 
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-service-extension-context.md).|
+| ctx      | BaseContext                            | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md).|
 | id       | string                                 | Yes  | Window ID.                                                    |
 | type     | [WindowType](#windowtype7)              | Yes  | Window type.                                                  |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.                        |
@@ -935,7 +933,7 @@ window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, 
 
 create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
-Creates a subwindow in the FA model or a system window in the stage model. This API uses a promise to return the result.
+Creates a subwindow (in API version 8) or a system window (from API version 9). This API uses a promise to return the result.
 
 > **NOTE**
 > 
@@ -947,7 +945,7 @@ Creates a subwindow in the FA model or a system window in the stage model. This 
 
 | Name| Type                     | Mandatory| Description                                                        |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext               | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-service-extension-context.md).|
+| ctx    | BaseContext               | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md).|
 | id     | string                    | Yes  | Window ID.                                                    |
 | type   | [WindowType](#windowtype7) | Yes  | Window type.                                                  |
 
@@ -1123,7 +1121,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx      | BaseContext                            | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.                |
 
 **Example**
@@ -1156,7 +1154,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx    | BaseContext | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
 
 **Return value**
 
@@ -1546,6 +1544,8 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 Moves this window. This API uses an asynchronous callback to return the result.
 
+This operation is not supported in a window in full-screen mode.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -1586,6 +1586,8 @@ try {
 moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 Moves this window. This API uses a promise to return the result.
+
+This operation is not supported in a window in full-screen mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1638,6 +1640,8 @@ The system window has the following size limits: [0, 2560] in width and [0, 2560
 
 The new width and height you set must meet the limits.
 
+This operation is not supported in a window in full-screen mode.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -1684,6 +1688,8 @@ The main window and subwindow have the following size limits: [320, 2560] in wid
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
 The new width and height you set must meet the limits.
+
+This operation is not supported in a window in full-screen mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1983,7 +1989,7 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 | Name| Type| Mandatory| Description|
 | -------- | ---------------------------- | -- | --------- |
-| names    | Array<'status'\|'navigation'> | Yes | Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
+| names    | Array<'status'\|'navigation'> | Yes| Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -4320,6 +4326,8 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 Moves this window. This API uses an asynchronous callback to return the result.
 
+This operation is not supported in a window in full-screen mode.
+
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [moveWindowTo()](#movewindowto9) instead.
@@ -4352,6 +4360,8 @@ windowClass.moveTo(300, 300, (err)=>{
 moveTo(x: number, y: number): Promise&lt;void&gt;
 
 Moves this window. This API uses a promise to return the result.
+
+This operation is not supported in a window in full-screen mode.
 
 > **NOTE**
 >
@@ -4396,6 +4406,8 @@ The system window has the following size limits: [0, 2560] in width and [0, 2560
 
 The new width and height you set must meet the limits.
 
+This operation is not supported in a window in full-screen mode.
+
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [resize()](#resize9) instead.
@@ -4434,6 +4446,8 @@ The main window and subwindow have the following size limits: [320, 2560] in wid
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
 The new width and height you set must meet the limits.
+
+This operation is not supported in a window in full-screen mode.
 
 > **NOTE**
 >
@@ -5902,12 +5916,12 @@ Describes the lifecycle of a window stage.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name       | Value | Description                                    |
-| ---------- | ----- | ---------------------------------------------- |
-| FOREGROUND | 1     | The window stage is running in the foreground. |
-| ACTIVE     | 2     | The window stage gains focus.                  |
-| INACTIVE   | 3     | The window stage loses focus.                  |
-| BACKGROUND | 4     | The window stage is running in the background. |
+| Name     | Value | Description                                    |
+| -------- | ----- | ---------------------------------------------- |
+| SHOWN    | 1     | The window stage is running in the foreground. |
+| ACTIVE   | 2     | The window stage gains focus.                  |
+| INACTIVE | 3     | The window stage loses focus.                  |
+| HIDDEN   | 4     | The window stage is running in the background. |
 
 ## WindowStage<sup>9+</sup>
 
@@ -5943,9 +5957,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -5990,9 +6006,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6036,9 +6054,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6080,9 +6100,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6138,9 +6160,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6187,9 +6211,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6233,9 +6259,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6281,9 +6309,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
@@ -6340,9 +6370,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
@@ -6392,9 +6424,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6442,9 +6476,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6490,9 +6526,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6530,9 +6568,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('disableWindowDecor');
         windowStage.disableWindowDecor();
@@ -6571,9 +6611,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {

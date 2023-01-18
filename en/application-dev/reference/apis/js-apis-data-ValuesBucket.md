@@ -1,4 +1,4 @@
-# Value Bucket
+# @ohos.data.ValuesBucket (Value Bucket)
 
 The **ValueBucket** module holds data in key-value (KV) pairs. You can use it to insert data into a database.
 
@@ -34,6 +34,6 @@ Defines the types of the key and value in a KV pair.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
-| Key Type         | Value Type                                     | 
-| ------------- | --------------------------------------------- | 
-|  string | [ValueType](#valuetype)\| Uint8Array \| null | 
+| Key Type         | Value Type                                     |
+| ------------- | --------------------------------------------- |
+|  string | [ValueType](#valuetype)\| Uint8Array \| null |

@@ -1,6 +1,6 @@
-# Observer
+# @ohos.telephony.observer (Observer)
 
-The observer module provides event subscription management functions. You can register or unregister an observer that listens for the following events: network status change, signal status change, call status change, cellular data connection status, uplink and downlink data flow status of cellular data services, and SIM status change.
+The **observer** module provides event subscription management functions. You can register or unregister an observer that listens for the following events: network status change, signal status change, call status change, cellular data connection status, uplink and downlink data flow status of cellular data services, and SIM status change.
 
 >**NOTE**
 >
@@ -531,8 +531,8 @@ Enumerates SIM card types and states.
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
-| Name           | Type                 | Description                                                        |
-| ----------------- | --------------------- | ------------------------------------------------------------ |
-| type  | [CardType](js-apis-sim.md#cardtype) | SIM card type. For details, see [CardType](js-apis-sim.md#cardtype).|
-| state | [SimState](js-apis-sim.md#simstate) | SIM card status. For details, see [SimState](js-apis-sim.md#simstate).|
-| reason<sup>8+</sup>       | [LockReason](#lockreason8) | SIM card lock type.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| type  | [CardType](js-apis-sim.md#cardtype) | Yes| SIM card type. For details, see [CardType](js-apis-sim.md#cardtype).|
+| state | [SimState](js-apis-sim.md#simstate) | Yes| SIM card status. For details, see [SimState](js-apis-sim.md#simstate).|
+| reason<sup>8+</sup>       | [LockReason](#lockreason8) | Yes| SIM card lock type.|

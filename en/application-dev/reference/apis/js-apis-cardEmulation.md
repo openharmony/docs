@@ -1,10 +1,10 @@
-# Standard NFC Card Emulation
+# @ohos.nfc.cardEmulation
 
 The **cardEmulation** module implements Near-Field Communication (NFC) card emulation. You can use the APIs provided by this module to determine the card emulation type supported and implement Host-based Card Emulation (HCE).
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 
 ## Modules to Import
 
@@ -18,7 +18,7 @@ Enumerates the NFC card emulation types.
 
 **System capability**: SystemCapability.Communication.NFC.Core
 
-| Name| Default Value| Description|
+| Name| Value| Description|
 | -------- | -------- | -------- |
 | HCE | 0 | HCE.|
 | UICC | 1 | Subscriber identity module (SIM) card emulation.|
@@ -30,8 +30,6 @@ isSupported(feature: number): boolean
 
 Checks whether a certain type of card emulation is supported.
 
-**Required permissions**: ohos.permission.NFC_CARD_EMULATION
-
 **System capability**: SystemCapability.Communication.NFC.Core
 
 **Parameters**
@@ -42,9 +40,9 @@ Checks whether a certain type of card emulation is supported.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the card emulation type is supported; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the card emulation type is supported; returns **false** otherwise.|
 
 ## HceService<sup>8+</sup>
 

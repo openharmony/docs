@@ -1,7 +1,6 @@
-# Nonlinear Container PlainArray 
+# @ohos.util.PlainArray (Nonlinear Container PlainArray) 
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 **PlainArray** stores key-value (KV) pairs. Each key must be unique, be of the number type, and have only one value.
@@ -44,7 +43,7 @@ A constructor used to create a **PlainArray** instance.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -54,11 +53,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 
 ```ts
 let plainArray = new PlainArray();
-try {
-  let plainArray2 = PlainArray();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -78,7 +72,7 @@ Checks whether this container is empty.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -89,11 +83,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 ```ts
 const plainArray = new PlainArray();
 let result = plainArray.isEmpty();
-try {
-  plainArray.isEmpty.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -119,7 +108,7 @@ Checks whether this container contains the specified key.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -132,11 +121,6 @@ let plainArray = new PlainArray();
 plainArray.has(1);
 plainArray.add(1, "squirrel");
 let result1 = plainArray.has(1);
-try {
-  plainArray.has.bind({}, 1)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -162,7 +146,7 @@ Obtains the value of the specified key in this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -175,11 +159,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.get(1);
-try {
-  plainArray.get.bind({}, 1)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -205,7 +184,7 @@ Obtains the index of the first occurrence of an element with the specified key i
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -218,11 +197,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfKey(2);
-try {
-  plainArray.getIndexOfKey.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -248,7 +222,7 @@ Obtains the index of the first occurrence of an element with the specified value
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -261,11 +235,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfValue("squirrel");
-try {
-  plainArray.getIndexOfValue.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -291,7 +260,7 @@ Obtains the key of the element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -304,11 +273,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getKeyAt(1);
-try {
-  plainArray.getKeyAt.bind({}, 1)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getValueAt
@@ -321,24 +285,24 @@ Obtains the value of an element at the specified position in this container.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+  | Name| Type | Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | index | number | Yes| Position index of the target element.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| T | Returns the value of the element if obtained; returns **undefined** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | T | Returns the value of the element if obtained; returns **undefined** otherwise.|
 
   **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The getValueAt method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The value of index is out of range. |
 
 **Example**
 
@@ -347,16 +311,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getValueAt(1);
-try {
-  plainArray.getValueAt.bind({}, 1)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  plainArray.getValueAt(10);
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### clone
@@ -375,7 +329,7 @@ Clones this container and returns a copy. The modification to the copy does not 
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -388,11 +342,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let newPlainArray = plainArray.clone();
-try {
-  plainArray.clone.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -413,7 +362,7 @@ Adds an element to this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -424,11 +373,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 ```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
-try {
-  plainArray.add.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -454,7 +398,7 @@ Removes an element with the specified key from this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -467,11 +411,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.remove(2);
-try {
-  plainArray.remove.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -497,7 +436,7 @@ Removes an element at the specified position from this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -510,11 +449,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.removeAt(1);
-try {
-  plainArray.removeAt.bind({}, 1)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -541,12 +475,12 @@ Removes elements in a specified range from this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The removeRangeFrom method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The value of index is out of range. |
 
 **Example**
 
@@ -555,16 +489,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.removeRangeFrom(1, 3);
-try {
-  plainArray.removeRangeFrom.bind({}, 1, 3)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  plainArray.removeRangeFrom(10, 3);
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -585,12 +509,12 @@ Sets a value for an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The setValueAt method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The value of index is out of range. |
 
 **Example**
 
@@ -599,16 +523,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.setValueAt(1, 3546);
-try {
-  plainArray.setValueAt.bind({}, 1, 3546)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
-try {
-  plainArray.setValueAt(10, 3);
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -628,7 +542,7 @@ Obtains a string that contains all elements in this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -641,11 +555,6 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.toString();
-try {
-  plainArray.toString.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -659,7 +568,7 @@ Clears this container and sets its length to **0**.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -672,17 +581,12 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.clear();
-try {
-  plainArray.clear.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
+forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
@@ -692,7 +596,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -704,7 +608,7 @@ callbackfn
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -719,13 +623,6 @@ plainArray.add(2, "sparrow");
 plainArray.forEach((value, index) => {
   console.log("value:" + value, index);
 });
-try {
-  plainArray.forEach.bind({}, (value, index) => {
-    console.log("value:" + value, index);
-  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -745,7 +642,7 @@ Obtains an iterator object that contains key-value pairs, where the key is of th
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -771,10 +668,5 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
-}
-try {
-  plainArray[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

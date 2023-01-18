@@ -1,6 +1,6 @@
 # ElementName
 
-The **ElementName** module provides the element name information, which can be obtained through [Context.getElementName](js-apis-Context.md).
+The **ElementName** module provides element name information, which can be obtained through [Context.getElementName](js-apis-inner-app-context.md).
 
 > **NOTE**
 >
@@ -8,7 +8,9 @@ The **ElementName** module provides the element name information, which can be o
 
 ## ElementName<sup>(deprecated)</sup>
 
-> This API is deprecated since API version 9. You are advised to use [ElementName](js-apis-bundleManager-elementName.md) instead.
+> This API is deprecated since API version 9. You are advised to use [bundleManager-ElementName](js-apis-bundleManager-elementName.md) instead.
+
+Describes the element name information, which identifies the basic information about an ability and is obtained through [Context.getElementName](js-apis-inner-app-context.md).
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 

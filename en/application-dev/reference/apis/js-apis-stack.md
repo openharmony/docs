@@ -1,7 +1,6 @@
-# Linear Container Stack
+# @ohos.util.Stack (Linear Container Stack)
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 **Stack** is implemented based on the array data structure. It follows the principle Last Out First In (LOFI) and supports data insertion and removal at one end.
@@ -18,9 +17,6 @@ This topic uses the following to identify the use of generics:
 ```ts
 import Stack from '@ohos.util.Stack';  
 ```
-
-
-
 
 ## Stack
 
@@ -43,7 +39,7 @@ A constructor used to create a **Stack** instance.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -53,11 +49,6 @@ For details about the error codes, see [containers Error Codes](../errorcodes/er
 
 ```ts
 let stack = new Stack();
-try {
-  let stack2 = Stack();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -83,7 +74,7 @@ Adds an element at the top of this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -99,11 +90,6 @@ let b = [1, 2, 3];
 let result2 = stack.push(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = stack.push(c);
-try {
-  stack.push.bind({}, "b")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### pop
@@ -122,7 +108,7 @@ Removes the top element from this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -138,11 +124,6 @@ stack.push(5);
 stack.push(2);
 stack.push(4);
 let result = stack.pop();
-try {
-  stack.pop.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### peek
@@ -161,7 +142,7 @@ Obtains the top element of this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -176,11 +157,6 @@ stack.push(4);
 stack.push(5);
 stack.push(2);
 let result = stack.peek();
-try {
-  stack.peek.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### locate
@@ -205,7 +181,7 @@ Obtains the index of the first occurrence of the specified element in this conta
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -220,16 +196,11 @@ stack.push(4);
 stack.push(5);
 stack.push(2);
 let result = stack.locate(2);
-try {
-  stack.locate.bind({}, 2)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
 thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
@@ -240,7 +211,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -253,7 +224,7 @@ callbackfn
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -270,13 +241,6 @@ stack.push(4);
 stack.forEach((value, index) => {
  console.log("value:" + value, index);
 });
-try {
-  stack.forEach.bind({}, (value, index) => {
-    console.log("value:" + value, index);
-  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### isEmpty
@@ -295,7 +259,7 @@ Checks whether this container is empty (contains no elements).
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -310,11 +274,6 @@ stack.push(4);
 stack.push(5);
 stack.push(4);
 let result = stack.isEmpty();
-try {
-  stack.isEmpty.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### [Symbol.iterator]
@@ -333,7 +292,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -358,10 +317,5 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-}
-try {
-  stack[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

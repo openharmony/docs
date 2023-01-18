@@ -1,6 +1,6 @@
-# Bundle.launcherBundleManager
+# @ohos.bundle.launcherBundleManager
 
-The **Bundle.launcherBundleManager** module providers APIs for the **Home Screen** application to obtain the launcher ability information and shortcut information.
+The **bundle.launcherBundleManager** module providers APIs for the **Home Screen** application to obtain the launcher ability information and shortcut information.
 
 > **NOTE**
 >
@@ -27,7 +27,7 @@ Obtains the launcher ability information based on the given bundle name and user
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description          |
+| Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | Yes  | Bundle name of the application.|
 | userId     | number | Yes  | User ID.|
@@ -78,7 +78,7 @@ Obtains the launcher ability information based on the given bundle name and user
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description          |
+| Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | Yes  | Bundle name of the application.|
 | userId     | number | Yes  | User ID.|
@@ -128,7 +128,7 @@ Obtains the launcher ability information of all applications based on the given 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description          |
+| Name| Type  | Mandatory| Description        |
 | ------ | ------ | ---- | -------------- |
 | userId | number | Yes  | User ID.|
 
@@ -176,7 +176,7 @@ Obtains the launcher ability information of all applications based on the given 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description          |
+| Name| Type  | Mandatory| Description        |
 | ------ | ------ | ---- | -------------- |
 | userId | number | Yes  | User ID.|
 
@@ -222,7 +222,7 @@ Obtains the shortcut information of the current user based on the given bundle n
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
 
-| Name    | Type  | Mandatory| Description          |
+| Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | Yes  | Bundle name of the application.|
 
@@ -269,13 +269,13 @@ Obtains the shortcut information of the current user based on the given bundle n
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
 
-| Name    | Type  | Mandatory| Description          |
+| Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | Yes  | Bundle name of the application.|
 
 **Return value**
 
-| Template                  | Description                                           |
+| Type                  | Description                                           |
 | ---------------------- | ----------------------------------------------- |
 | Promise\<Array<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>> | Promise used to return the **ShortcutInfo** object obtained.|
 

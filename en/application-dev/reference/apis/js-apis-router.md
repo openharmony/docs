@@ -1,4 +1,4 @@
-# Page Routing
+# @ohos.router
 
 The **Router** module provides APIs to access pages through URLs. You can use the APIs to navigate to a specified page in an application, replace the current page with another one in an application, and return to the previous page or a specified page.
 
@@ -40,9 +40,9 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | Internal error. |
-| 100002    | Uri error. The uri of router is not exist. |
-| 100003    | Page stack error. The pages are pushed too much. |
+| 100001    | If UI execution context not found. |
+| 100002    | If the uri is not exist. |
+| 100003    | If the pages are pushed too much. |
 
 **Example**
 
@@ -54,8 +54,8 @@ try {
       data1: 'message',
       data2: {
         data3: [123, 456, 789]
-      },
-    },
+      }
+    }
   })
     .then(() => {
       // success
@@ -89,9 +89,9 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | Internal error. |
-| 100002    | Uri error. The uri of router is not exist. |
-| 100003    | Page stack error. The pages are pushed too much. |
+| 100001    | If UI execution context not found. |
+| 100002    | If the uri is not exist. |
+| 100003    | If the pages are pushed too much. |
 
 **Example**
 
@@ -103,8 +103,8 @@ try {
       data1: 'message',
       data2: {
         data3: [123, 456, 789]
-      },
-    },
+      }
+    }
   }, (err) => {
     if (err) {
       console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -143,9 +143,9 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | Internal error. |
-| 100002    | Uri error. The uri of router is not exist. |
-| 100003    | Page stack error. The pages are pushed too much. |
+| 100001    | If UI execution context not found. |
+| 100002    | If the uri is not exist. |
+| 100003    | If the pages are pushed too much. |
 
 **Example**
 
@@ -157,8 +157,8 @@ try {
       data1: 'message',
       data2: {
         data3: [123, 456, 789]
-      },
-    },
+      }
+    }
   }, router.RouterMode.Standard)
     .then(() => {
       // success
@@ -193,9 +193,9 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | Internal error. |
-| 100002    | Uri error. The uri of router is not exist. |
-| 100003    | Page stack error. The pages are pushed too much. |
+| 100001    | If UI execution context not found. |
+| 100002    | If the uri is not exist. |
+| 100003    | If the pages are pushed too much. |
 
 **Example**
 
@@ -207,8 +207,8 @@ try {
       data1: 'message',
       data2: {
         data3: [123, 456, 789]
-      },
-    },
+      }
+    }
   }, router.RouterMode.Standard, (err) => {
     if (err) {
       console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -247,8 +247,8 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | Internal error. |
-| 200002    | Uri error. The uri of router is not exist. |
+| 100001    | If UI execution context not found, only throw in standard system. |
+| 200002    | If the uri is not exist. |
 
 **Example**
 
@@ -257,8 +257,8 @@ try {
   router.replaceUrl({
     url: 'pages/detail',
     params: {
-      data1: 'message',
-    },
+      data1: 'message'
+    }
   })
     .then(() => {
       // success
@@ -292,8 +292,8 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | Internal error. |
-| 200002    | Uri error. The uri of router is not exist. |
+| 100001    | If UI execution context not found, only throw in standard system. |
+| 200002    | If the uri is not exist. |
 
 **Example**
 
@@ -302,8 +302,8 @@ try {
   router.replaceUrl({
     url: 'pages/detail',
     params: {
-      data1: 'message',
-    },
+      data1: 'message'
+    }
   }, (err) => {
     if (err) {
       console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -344,8 +344,8 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | Internal error. |
-| 200002    | Uri error. The uri of router is not exist. |
+| 100001    | If UI execution context not found, only throw in standard system. |
+| 200002    | If the uri is not exist. |
 
 **Example**
 
@@ -354,8 +354,8 @@ try {
   router.replaceUrl({
     url: 'pages/detail',
     params: {
-      data1: 'message',
-    },
+      data1: 'message'
+    }
   }, router.RouterMode.Standard)
     .then(() => {
       // success
@@ -390,8 +390,8 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | Internal error. |
-| 200002    | Uri error. The uri of router is not exist. |
+| 100001    | If UI execution context not found, only throw in standard system. |
+| 200002    | If the uri is not exist. |
 
 **Example**
 
@@ -400,8 +400,8 @@ try {
   router.replaceUrl({
     url: 'pages/detail',
     params: {
-      data1: 'message',
-    },
+      data1: 'message'
+    }
   }, router.RouterMode.Standard, (err) => {
     if (err) {
       console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -465,7 +465,7 @@ Obtains the number of pages in the current stack.
 **Example**
 
 ```js
-var size = router.getLength();        
+let size = router.getLength();        
 console.log('pages stack size = ' + size);    
 ```
 
@@ -486,7 +486,7 @@ Obtains state information about the current page.
 **Example**
 
 ```js
-var page = router.getState();
+let page = router.getState();
 console.log('current index = ' + page.index);
 console.log('current name = ' + page.name);
 console.log('current path = ' + page.path);
@@ -498,11 +498,11 @@ Describes the page routing state.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Type    | Description                                |
-| ----- | ------ | ---------------------------------- |
-| index | number | Index of the current page in the stack. The index starts from 1 from the bottom to the top of the stack.|
-| name  | string | Name of the current page, that is, the file name.                 |
-| path  | string | Path of the current page.                        |
+| Name | Type  | Mandatory| Description                                                        |
+| ----- | ------ | ---- | ------------------------------------------------------------ |
+| index | number | Yes  | Index of the current page in the stack. The index starts from 1 from the bottom to the top of the stack.|
+| name  | string | No  | Name of the current page, that is, the file name.                          |
+| path  | string | Yes  | Path of the current page.                                        |
 
 ## router.enableBackPageAlert<sup>9+</sup>
 
@@ -524,7 +524,7 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | Internal error. |
+| 100001    | If UI execution context not found. |
 
 **Example**
 
@@ -590,7 +590,7 @@ Describes the page routing options.
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | url    | string | Yes  | URL of the target page, in either of the following formats:<br>- Absolute path of the page. The value is available in the pages list in the **config.json** file, for example:<br>- pages/index/index<br>- pages/detail/detail<br>- Particular path. If the URL is a slash (/), the home page is displayed.|
-| params | Object | No  | Data that needs to be passed to the target page during redirection. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.|
+| params | object | No  | Data that needs to be passed to the target page during redirection. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.|
 
 
   > **NOTE**
@@ -602,9 +602,9 @@ Enumerates the routing modes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Description                                      |
-| -------- | ---------------------------------------- |
-| Standard | Standard mode.<br>The target page is added to the top of the page stack, regardless of whether a page with the same URL exists in the stack.                           |
+| Name    | Description                                                        |
+| -------- | ------------------------------------------------------------ |
+| Standard | Standard mode.<br>The target page is added to the top of the page stack, regardless of whether a page with the same URL exists in the stack.|
 | Single   | Singleton mode.<br>If the URL of the target page already exists in the page stack, the page closest to the top of the stack is moved as a new page to the top of the stack.<br>If the URL of the target page does not exist in the page stack, the page is redirected to in standard mode.|
 
 ## Examples
@@ -618,8 +618,8 @@ export default {
     router.push({
       url: 'pages/detail/detail',
       params: {
-        data1: 'message',
-      },
+        data1: 'message'
+      }
     });
   }
 }
@@ -642,18 +642,18 @@ import router from '@ohos.router'
 @Entry
 @Component
 struct Index {
-  async  routePage() {
+  async routePage() {
     let options = {
       url: 'pages/second',
       params: {
         text: 'This is the value on the first page.',
         data: {
           array: [12, 45, 78]
-        },
+        }
       }
     }
     try {
-      await router.push(options)
+      await router.pushUrl(options)
     } catch (err) {
       console.info(` fail callback, code: ${err.code}, msg: ${err.msg}`)
     }
@@ -661,18 +661,18 @@ struct Index {
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Text('This is the first page.')
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
+      Text('This is the first page.')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
       Button() {
         Text('next page')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
-          .margin({ top: 20 })
-          .backgroundColor('#ccc')
-          .onClick(() => {
-            this.routePage()
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
       })
     }
     .width('100%')
@@ -704,7 +704,7 @@ struct Second {
           this.secondData = (this.data.array[1]).toString()
         })
       .margin({top:20})
-      Text('Value from the first page '+'' + this.secondData)
+      Text(`This is the data passed from the first page: ${this.secondData}`)
         .fontSize(20)
         .margin({top:20})
         .backgroundColor('red')      
@@ -741,8 +741,8 @@ router.push({
     data1: 'message',
     data2: {
       data3: [123, 456, 789]
-    },
-  },
+    }
+  }
 });
 ```
 ## router.push<sup>(deprecated)</sup>
@@ -772,8 +772,8 @@ router.push({
     data1: 'message',
     data2: {
       data3: [123, 456, 789]
-    },
-  },
+    }
+  }
 },router.RouterMode.Standard);
 ```
 
@@ -799,12 +799,12 @@ This API is deprecated since API version 9. You are advised to use [replaceUrl<s
 router.replace({
   url: 'pages/detail',
   params: {
-    data1: 'message',
-  },
+    data1: 'message'
+  }
 });
 ```
 
-  ## router.replace<sup>(deprecated)</sup>
+## router.replace<sup>(deprecated)</sup>
 
 replace(options: RouterOptions, mode: RouterMode): void
 
@@ -812,7 +812,7 @@ Replaces the current page with another one in the application and destroys the c
 
 This API is deprecated since API version 9. You are advised to use [replaceUrl<sup>9+</sup>](#routerreplaceurl9) instead.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
 **Parameters**
 
@@ -827,8 +827,8 @@ This API is deprecated since API version 9. You are advised to use [replaceUrl<s
 router.replace({
   url: 'pages/detail/detail',
   params: {
-    data1: 'message',
-  },
+    data1: 'message'
+  }
 }, router.RouterMode.Standard);
 ```
 
