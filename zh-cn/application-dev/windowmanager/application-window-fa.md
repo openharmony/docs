@@ -54,7 +54,7 @@
    
    let windowClass = null;
    // 方式一：创建子窗口。
-   let config = {name: "subWindow", windowType: window.WindowType.TYPE_APP, ctx: this.context};
+   let config = {name: "subWindow", windowType: window.WindowType.TYPE_APP};
    window.createWindow(config, (err, data) => {
        if (err.code) {
            console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
@@ -72,8 +72,8 @@
        console.info('Succeeded in finding subWindow. Data: ' + JSON.stringify(data));
        windowClass = data;
    });
-   ```
-   
+```
+
 2. 设置子窗口属性。
 
    子窗口创建成功后，可以改变其大小、位置等，还可以根据应用需要设置窗口背景色、亮度等属性。
