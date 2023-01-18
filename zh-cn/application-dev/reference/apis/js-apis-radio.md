@@ -392,7 +392,7 @@ isNrSupported\(\): boolean
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[isNRSupported](#isnrsupported9)替代。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[isNRSupported](#radioisnrsupported9)替代。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -417,7 +417,7 @@ isNrSupported\(slotId: number\): boolean
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[isNRSupported](#isnrsupported9-1)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[isNRSupported](#radioisnrsupported9-1)替代。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
