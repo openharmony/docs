@@ -9,7 +9,7 @@ AbilityDelegatorRegistry模块提供用于存储已注册的AbilityDelegator和A
 ## 导入模块
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 ```
 
 ## AbilityLifecycleState

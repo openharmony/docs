@@ -10,7 +10,7 @@ AbilityManager模块提供对Ability相关信息和状态信息进行获取、�
 ## 导入模块
 
 ```ts
-import abilityManager from '@ohos.application.abilityManager'
+import abilityManager from '@ohos.application.abilityManager';
 ```
 
 ## AbilityState
@@ -38,7 +38,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 **需要权限**: ohos.permission.UPDATE_CONFIGURATION
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
- 
+
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明             |
@@ -176,7 +176,7 @@ abilityManager.getExtensionRunningInfos(upperLimit, (err,data) => {
 getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
 
 获取关于运行扩展能力的信息（Promise形式）。
- 
+
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
@@ -232,7 +232,7 @@ abilityManager.getTopAbility((err,data) => {
 getTopAbility(): Promise\<ElementName>;
 
 获取窗口焦点的ability接口（Promise形式）。
- 
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**

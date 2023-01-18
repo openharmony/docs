@@ -62,9 +62,9 @@ FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-applic
 1. 导入相关模块。
 
    ```javascript
-   import formBindingData from '@ohos.application.formBindingData'
-   import formInfo from '@ohos.application.formInfo'
-   import formProvider from '@ohos.application.formProvider'
+   import formBindingData from '@ohos.app.form.formBindingData';
+   import formInfo from '@ohos.app.form.formInfo';
+   import formProvider from '@ohos.app.form.formProvider';
    ```
    
 2. 实现LifecycleForm生命周期接口。

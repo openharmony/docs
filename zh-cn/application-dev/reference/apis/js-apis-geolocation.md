@@ -404,7 +404,7 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  import wantAgent from '@ohos.wantAgent';
+  import wantAgent from '@ohos.app.ability.wantAgent';
   
   let wantAgentInfo = {
       wants: [
@@ -452,7 +452,7 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
   ```ts
   import geolocation from '@ohos.geolocation';
-  import wantAgent from '@ohos.wantAgent';
+  import wantAgent from '@ohos.app.ability.wantAgent';
   
   let wantAgentInfo = {
       wants: [

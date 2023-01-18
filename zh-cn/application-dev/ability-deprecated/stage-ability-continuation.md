@@ -148,7 +148,7 @@
 
    ```javascript
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import AbilityConstant from '@ohos.application.AbilityConstant';
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
    ```
 
    要实现迁移，此接口必须实现并返回AGREE，否则默认为拒绝迁移。

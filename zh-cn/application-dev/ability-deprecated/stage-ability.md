@@ -56,8 +56,8 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
 ### 实现AbilityStage及Ability生命周期
 创建Stage模型的Page Ability应用，需实现AbilityStage接口及Ability生命周期接口，并使用窗口提供的方法设置页面。具体示例代码如下：
 1. 导入AbilityStage模块。
-   ```
-   import AbilityStage from "@ohos.application.AbilityStage"
+   ```ts
+   import AbilityStage from "@ohos.app.ability.AbilityStage";
    ```
 2. 实现AbilityStage接口，接口生成的默认相对路径：entry\src\main\ets\Application\AbilityStage.ts。
    ```ts
@@ -113,7 +113,8 @@ AbilityStage类及Ability类均拥有context属性，应用可以通过`this.con
 如下示例展示了AbilityStage通过context属性获取包代码路径、HAP名称、Ability名称以及系统语言的方法。具体示例代码如下：
 
 ```ts
-import AbilityStage from "@ohos.application.AbilityStage"
+import AbilityStage from "@ohos.app.ability.AbilityStage";
+
 export default class MyAbilityStage extends AbilityStage {
     onCreate() {
         console.log("MyAbilityStage onCreate")
@@ -156,8 +157,8 @@ export default class EntryAbility extends UIAbility {
 
 如下示例展示了AbilityStage的`onConfigurationUpdated`回调实现，系统语言和颜色模式发生变化时触发该回调。具体示例代码如下：
 ```ts
-import AbilityStage from '@ohos.application.AbilityStage'
-import ConfigurationConstant from '@ohos.application.ConfigurationConstant'
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 export default class MyAbilityStage extends AbilityStage {
     onConfigurationUpdated(config) {
@@ -171,7 +172,7 @@ export default class MyAbilityStage extends AbilityStage {
 如下示例展示了Ability的`onConfigurationUpdated`回调实现，系统语言、颜色模式以及Display相关的参数，比如方向、Density，发生变化时触发该回调。具体示例代码如下：
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import ConfigurationConstant from '@ohos.application.ConfigurationConstant';
+import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 export default class EntryAbility extends UIAbility {
     direction : number;

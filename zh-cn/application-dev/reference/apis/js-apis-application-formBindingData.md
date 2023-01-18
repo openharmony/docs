@@ -48,7 +48,7 @@ createFormBindingData(obj?: Object | string): FormBindingData
 **示例：**
 
 ```ts
-import formBindingData from @ohos.application.formBindingData;
+import formBindingData from '@ohos.application.formBindingData';
 import fs from '@ohos.file.fs';
 
 try {

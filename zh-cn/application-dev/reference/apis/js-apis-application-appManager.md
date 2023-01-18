@@ -420,7 +420,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
-  
+
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
