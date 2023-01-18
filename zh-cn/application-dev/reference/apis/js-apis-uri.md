@@ -35,7 +35,7 @@ import uri from '@ohos.uri'
 
 标准uri定义由以下三个部分组成
 [scheme:]scheme-specific-part[#fragment]
-- Scheme: 协议名，必填。例如http、https、ftp、datashare、dataability等。
+- scheme: 协议名，根据需要填写。例如http、https、ftp、datashare、dataability等。
 - scheme-specific-part: URI的特定解码方案特定部分，由[//][authority][path][?query]组成，根据需要填写。
     - authority: URI的解码权限组件部分。由[userinfo@]host[:port]组成，根据需要填写。
         - userinfo: 用户信息，根据需要填写。
@@ -226,7 +226,9 @@ checkIsAbsolute(): boolean
 
 ```js
 const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080?query=pppppp');
-uriInstance.checkIsAbsolute();
+console.log(uriInstance.checkIsAbsolute()); // true
+const uriInstance1 = new uri.URI('xxx.com/suppliers.htm');
+console.log(uriInstance1.checkIsAbsolute()); // false
 ```
 
 
@@ -248,6 +250,7 @@ normalize(): URI
 
 ```js
 const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
+console.log(uriInstance.path); // /path/path1/../path2/./path3
 let uriInstance1 = uriInstance.normalize();
-uriInstance1.path;
+console.log(uriInstance1.path); // /path/path2/path3
 ```
