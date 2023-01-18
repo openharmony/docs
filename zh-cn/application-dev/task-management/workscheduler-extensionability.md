@@ -109,7 +109,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
     导入模块。
 
     ```ts
-    import workScheduler from '@ohos.resourceschedule.workScheduler'
+    import workScheduler from '@ohos.resourceschedule.workScheduler';
     ```
 
     封装延迟任务注册、停止接口。
@@ -163,7 +163,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
       .height(40)
       .fontSize(30)
       .onClick(() => {
-        this.work.startWork('ohos.samples.workscheduler', 'WorkTest')
+        this.work.startWork('ohos.samples.workscheduler', 'WorkTest');
       });
     ```
 
