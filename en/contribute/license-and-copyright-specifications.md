@@ -7,7 +7,7 @@ This document describes how code contributors, committers, and PMC members in th
 3. Copyright and license header
 
 ## Scope
-This document applies only to the OpenHarmony community. It is not applicable to the scenario where the OpenHarmony project is used by individuals or enterprises to develop their products or the scenario where third-party open-source software is introduced. For details, see [Introducing Third-Party Open-Source Software](introducing-third-party-open-source-software.md).
+This document applies only to the OpenHarmony community. It is not applicable to the scenario where the OpenHarmony project is used by individuals or enterprises to develop their products or the scenario where third-party open-source software is introduced. 
 
 ## Improvements and Revisions
 1. This document is drafted and maintained by the OpenHarmony PMC. What you are reading now is the latest version of this document.
