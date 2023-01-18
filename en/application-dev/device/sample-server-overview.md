@@ -30,7 +30,7 @@ The following is an example of the JSON response returned by the server. Note th
         "descriptPackageId": "abcdefg1234567ABCDEFG"
     }],
     "descriptInfo": [{
-        "descriptPackageId": "abcdefg1234567ABCDEFG",
+        "descriptionType": 0,
         "content": "This package is used for update."
     }]
 }

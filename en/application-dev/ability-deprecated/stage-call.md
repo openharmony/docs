@@ -34,7 +34,7 @@ The table below describes the ability call APIs. For details, see [Ability](../r
 **Table 2** Ability call APIs
 |API|Description|
 |:------|:------|
-|startAbilityByCall(want: Want): Promise\<Caller>|Starts an ability in the foreground (through the **want** configuration) or background (default) and obtains the **Caller** object for communication with the ability. For details, see [AbilityContext](../reference/apis/js-apis-ability-context.md#abilitycontextstartabilitybycall) or [ServiceExtensionContext](../reference/apis/js-apis-service-extension-context.md#serviceextensioncontextstartabilitybycall).|
+|startAbilityByCall(want: Want): Promise\<Caller>|Starts an ability in the foreground (through the **want** configuration) or background (default) and obtains the **Caller** object for communication with the ability. For details, see [AbilityContext](../reference/apis/js-apis-ability-context.md#abilitycontextstartabilitybycall) or [ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextstartabilitybycall).|
 |on(method: string, callback: CalleeCallBack): void|Callback invoked when the callee ability registers a method.|
 |off(method: string): void|Callback invoked when the callee ability deregisters a method.|
 |call(method: string, data: rpc.Sequenceable): Promise\<void>|Sends agreed sequenceable data to the callee ability.|
