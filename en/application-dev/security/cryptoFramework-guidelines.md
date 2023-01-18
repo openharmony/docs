@@ -573,8 +573,8 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 |Sign|init(priKey : PriKey) : Promise\<void>|Sets a key and initializes the **Sign** instance. This API uses a promise to return the result.|
 |Sign|update(data : DataBlob, callback : AsyncCallback\<void>) : void|Updates the data for signing. This API uses an asynchronous callback to return the result.|
 |Sign|update(data : DataBlob) : Promise\<void>|Updates the data for signing. This API uses a promise to return the result.|
-|Sign|sign(data : DataBlob, callback : AsyncCallback<DataBlob>) : void|Signs the data. This API uses an asynchronous callback to return the result.|
-|Sign|sign(data : DataBlob) : Promise<DataBlob>|Signs the data. This API uses a promise to return the result.|
+|Sign|sign(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|Signs the data. This API uses an asynchronous callback to return the result.|
+|Sign|sign(data : DataBlob) : Promise\<DataBlob>|Signs the data. This API uses a promise to return the result.|
 |cryptoFramework|function createVerify(algName : string) : Verify|Creates a **Verify** instance.|
 |Verify|init(priKey : PriKey, callback : AsyncCallback\<void>) : void|Sets a key and initializes the **Verify** instance. This API uses an asynchronous callback to return the result.|
 |Verify|init(priKey : PriKey) : Promise\<void>|Sets a key and initializes the **Verify** instance. This API uses a promise to return the result.|
@@ -802,10 +802,10 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 | Instance         | API                                                      | Description                                              |
 | --------------- | ------------------------------------------------------------ | -------------------------------------------------- |
 | cryptoFramework | function createMd(algName : string) : Md;                    | Creates an **Md** instance.                  |
-| Md              | update(input : DataBlob, callback : AsyncCallback\<void\>) : void; | Updates the data for a digest. This API uses an asynchronous callback to return the result.|
-| Md              | update(input : DataBlob) : Promise\<void\>;                  | Updates the data for a digest. This API uses a promise to return the result. |
-| Md              | digest(callback : AsyncCallback\<DataBlob\>) : void;         | Generates the digest. This API uses an asynchronous callback to return the result.                      |
-| Md              | digest() : Promise\<DataBlob\>;                              | Generates the digest. This API uses a promise to return the result.                       |
+| Md              | update(input : DataBlob, callback : AsyncCallback\<void>) : void; | Updates the data for a digest. This API uses an asynchronous callback to return the result.|
+| Md              | update(input : DataBlob) : Promise\<void>;                  | Updates the data for a digest. This API uses a promise to return the result. |
+| Md              | digest(callback : AsyncCallback\<DataBlob>) : void;         | Generates the digest. This API uses an asynchronous callback to return the result.                      |
+| Md              | digest() : Promise\<DataBlob>;                              | Generates the digest. This API uses a promise to return the result.                       |
 | Md              | getMdLength() : number;                                      | Obtains the digest length based on the specified digest algorithm.            |
 | Md              | readonly algName : string;                                   | Obtains the digest algorithm.                          |
 
@@ -966,13 +966,13 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 
 | Instance         | API                                                      | Description                                               |
 | --------------- | ------------------------------------------------------------ | --------------------------------------------------- |
-| cryptoFramework | function createMac(algName : string) : Md;                    | Creates a **Mac** instance.                |
-| Mac             | init(key : SymKey, callback : AsyncCallback\<void\>) : void; | Initializes the MAC operation. This API uses an asynchronous callback to return the result.|
-| Mac             | init(key : SymKey) : Promise\<void\>;                        | Initializes the MAC operation. This API uses a promise to return the result. |
-| Mac             | update(input : DataBlob, callback : AsyncCallback\<void\>) : void; | Updates the data for the MAC operation. This API uses an asynchronous callback to return the result.      |
-| Mac             | update(input : DataBlob) : Promise\<void\>;                  | Updates the data for the MAC operation. This API uses a promise to return the result.       |
-| Mac             | doFinal(callback : AsyncCallback\<DataBlob\>) : void;        | Finalizes the MAC operation to generate a MAC. This API uses an asynchronous callback to return the result.                |
-| Mac             | doFinal() : Promise\<DataBlob\>;                             | Finalizes the MAC operation to generate a MAC. This API uses a promise to return the result.                 |
+| cryptoFramework | function createMac(algName : string) : Mac;                    | Creates a **Mac** instance.                |
+| Mac             | init(key : SymKey, callback : AsyncCallback\<void>) : void; | Initializes the MAC operation. This API uses an asynchronous callback to return the result.|
+| Mac             | init(key : SymKey) : Promise\<void>;                        | Initializes the MAC operation. This API uses a promise to return the result. |
+| Mac             | update(input : DataBlob, callback : AsyncCallback\<void>) : void; | Updates the data for the MAC operation. This API uses an asynchronous callback to return the result.      |
+| Mac             | update(input : DataBlob) : Promise\<void>;                  | Updates the data for the MAC operation. This API uses a promise to return the result.       |
+| Mac             | doFinal(callback : AsyncCallback\<DataBlob>) : void;        | Finalizes the MAC operation to generate a MAC. This API uses an asynchronous callback to return the result.                |
+| Mac             | doFinal() : Promise\<DataBlob>;                             | Finalizes the MAC operation to generate a MAC. This API uses a promise to return the result.                 |
 | Mac             | getMacLength() : number;                                     | Obtains the length of the MAC based on the specified algorithm.              |
 | Mac             | readonly algName : string;                                   | Obtains the algorithm.                           |
 
@@ -1099,10 +1099,10 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 | Instance         | API                                                      | Description                                          |
 | --------------- | ------------------------------------------------------------ | ---------------------------------------------- |
 | cryptoFramework | function createRandom() : Random;                            | Creates a **Random** instance.                          |
-| Random          | generateRandom(len : number, callback: AsyncCallback\<DataBlob\>) : void; | Generates a random number. This API uses an asynchronous callback to return the result.    |
-| Random          | generateRandom(len : number) : Promise\<DataBlob\>;          | Generates a random number. This API uses a promise to return the result.     |
-| Random          | setSeed(seed : DataBlob, callback : AsyncCallback\<void\>) : void; | Sets a seed. This API uses an asynchronous callback to return the result.|
-| Random          | setSeed(seed : DataBlob) : Promise\<void\>;                  | Sets a seed. This API uses a promise to return the result. |
+| Random          | generateRandom(len : number, callback: AsyncCallback\<DataBlob>) : void; | Generates a random number. This API uses an asynchronous callback to return the result.    |
+| Random          | generateRandom(len : number) : Promise\<DataBlob>;          | Generates a random number. This API uses a promise to return the result.     |
+| Random          | setSeed(seed : DataBlob, callback : AsyncCallback\<void>) : void; | Sets a seed. This API uses an asynchronous callback to return the result.|
+| Random          | setSeed(seed : DataBlob) : Promise\<void>;                  | Sets a seed. This API uses a promise to return the result. |
 
 **How to Develop**
 
