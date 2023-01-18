@@ -52,7 +52,7 @@ Not supported
 ```
 
 
-![zh-cn_image_0000001173324703](figures/zh-cn_image_0000001173324703.gif)
+![en-us_image_0000001173324703](figures/en-us_image_0000001173324703.gif)
 
 
 ```html
@@ -68,7 +68,7 @@ Not supported
 ```
 
 
-![zh-cn_image_0000001167662852](figures/zh-cn_image_0000001167662852.gif)
+![en-us_image_0000001167662852](figures/en-us_image_0000001167662852.gif)
 
 
 ```html
@@ -83,7 +83,7 @@ Not supported
 ```
 
 
-![zh-cn_image_0000001127284938](figures/zh-cn_image_0000001127284938.gif)
+![en-us_image_0000001127284938](figures/en-us_image_0000001127284938.gif)
 
 
 ```html
@@ -117,4 +117,4 @@ Not supported
 ```
 
 
-![animate-4](figures/animate-4.gif)
+![en-us_image_0000001127125126](figures/en-us_image_0000001127125126.gif)

@@ -12,7 +12,7 @@ A menu – a vertical list of items – can be bound to a component and displaye
 
 | Name                          | Type                                                       | Description                                                        |
 | ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| bindMenu                     | Array<MenuItem&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | Menu bound to the component, which is displayed when you click the component. Textual and custom menu items are supported.|
+| bindMenu                     | Array<[MenuItem](#menuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | Menu bound to the component, which is displayed when you click the component. Textual and custom menu items are supported.|
 | bindContextMenu<sup>8+</sup> | content: [CustomBuilder](ts-types.md#custombuilder8),<br>responseType: [ResponseType](ts-appendix-enums.md#responsetype8) | Context menu bound to the component, which is displayed when you long-press or right-click the component. Only custom menu items are supported.|
 
 ## MenuItem
@@ -25,7 +25,9 @@ A menu – a vertical list of items – can be bound to a component and displaye
 
 ## Example
 
-#### Menu with Textual Menu Items
+### Example 1
+
+Menu with Textual Menu Items
 
 ```ts
 // xxx.ets
@@ -58,58 +60,59 @@ struct MenuExample {
 
 ![en_image_0000001174582862](figures/en_image_0000001174582862.gif)
 
-#### Menu with Custom Menu Items
+### Example 2
+
+Menu with Custom Menu Items
 
 ```ts
-// xxx.ets
-import router from '@system.router';
-
 @Entry
 @Component
 struct MenuExample {
+  @State listData: number[] = [0, 0, 0]
+
   @Builder MenuBuilder() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      Text('text1')
-        .fontSize(20)
-        .width(100)
-        .height(50)
-        .textAlign(TextAlign.Center)
+      ForEach(this.listData, (item, index) => {
+        Column() {
+          Row() {
+            Image($r("app.media.icon")).width(20).height(20).margin({ right: 5 })
+            Text(`Menu${index + 1}`).fontSize(20)
+          }
+          .width('100%')
+          .height(30)
+          .justifyContent(FlexAlign.Center)
+          .align(Alignment.Center)
+          .onClick(() => {
+            console.info(`Menu${index + 1} Clicked!`)
+          })
 
-      Divider().height(10)
-
-      Text('text2')
-        .fontSize(20)
-        .width(100)
-        .height(50)
-        .textAlign(TextAlign.Center)
-
-      Divider().height(10)
-
-      Button('Next')
-        .fontSize(20)
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          router.push({ uri: 'pages/details' })
-        })
-
+          if (index != this.listData.length - 1) {
+            Divider().height(10).width('80%').color('#ccc')
+          }
+        }.padding(5).height(40)
+      })
     }.width(100)
   }
 
   build() {
     Column() {
       Text('click for menu')
+        .fontSize(20)
+        .margin({ top: 20 })
+        .bindMenu(this.MenuBuilder)
     }
+    .height('100%')
     .width('100%')
-    .margin({ top: 5 })
-    .bindMenu(this.MenuBuilder)
+    .backgroundColor('#f0f0f0')
   }
 }
 ```
 
 ![en_image_0000001186807708](figures/en_image_0000001186807708.gif)
 
-#### Context Menu (Displayed Upon Right-Clicking)
+### Example 3
+
+Context Menu (Displayed Upon Right-Clicking)
 
 ```ts
 // xxx.ets

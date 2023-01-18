@@ -194,6 +194,7 @@ Example of involved components
           dur="3s" repeatCount="indefinite"></animateTransform>
       </rect>
       <text x="20" y="700" fill="#D2691E" font-size="40">
+        animate-transform
         <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0" to="300"
           dur="3s" repeatCount="indefinite"></animateTransform>
       </text>

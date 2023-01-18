@@ -3,7 +3,7 @@
 The **\<Stepper>** component provides a step navigator.
 
 
-> **NOTE**
+>  **NOTE**
 >
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -45,6 +45,22 @@ None
 
 ```ts
 // xxx.ets
+@Styles function itemStyle () {
+  .width(336)
+  .height(621)
+  .margin({ top: 48, left: 12 })
+  .borderRadius(24)
+  .backgroundColor('#FFFFFF')
+}
+
+@Extend(Text) function itemTextStyle () {
+  .fontColor('#182431')
+  .fontSize(36)
+  .fontWeight(500)
+  .opacity(0.4)
+  .margin({ top: 82, bottom: 40 })
+}
+
 @Entry
 @Component
 struct StepperExample {
@@ -61,15 +77,13 @@ struct StepperExample {
       StepperItem() {
         Column() {
           Text('Page One')
-            .fontSize(35)
-            .fontColor(Color.Blue)
-            .lineHeight(50)
-            .margin({ top: 250, bottom: 50 })
+            .itemTextStyle()
           Button('change status:' + this.firstState)
+            .backgroundColor('#007dFF')
             .onClick(() => {
               this.firstState = this.firstState === ItemState.Skip ? ItemState.Normal : ItemState.Skip
             })
-        }.width('100%')
+        }.itemStyle()
       }
       .nextLabel('Next')
       .status(this.firstState)
@@ -77,15 +91,13 @@ struct StepperExample {
       StepperItem() {
         Column() {
           Text('Page Two')
-            .fontSize(35)
-            .fontColor(Color.Blue)
-            .lineHeight(50)
-            .margin({ top: 250, bottom: 50 })
+            .itemTextStyle()
           Button('change status:' + this.secondState)
+            .backgroundColor('#007dFF')
             .onClick(() => {
               this.secondState = this.secondState === ItemState.Disabled ? ItemState.Normal : ItemState.Disabled
             })
-        }.width('100%')
+        }.itemStyle()
       }
       .nextLabel('Next')
       .prevLabel('Previous')
@@ -94,29 +106,25 @@ struct StepperExample {
       StepperItem() {
         Column() {
           Text('Page Three')
-            .fontSize(35)
-            .fontColor(Color.Blue)
-            .lineHeight(50)
-            .margin({ top: 250, bottom: 50 })
+            .itemTextStyle()
           Button('change status:' + this.thirdState)
+            .backgroundColor('#007dFF')
             .onClick(() => {
               this.thirdState = this.thirdState === ItemState.Waiting ? ItemState.Normal : ItemState.Waiting
             })
-        }.width('100%')
+        }.itemStyle()
       }
       .status(this.thirdState)
       // Fourth step page
       StepperItem() {
-        Text('Page four')
-          .fontSize(35)
-          .fontColor(Color.Blue)
-          .width('100%')
-          .textAlign(TextAlign.Center)
-          .lineHeight(50)
-          .margin({ top: 250 })
+        Column() {
+          Text('Page Four')
+            .itemTextStyle()
+        }.itemStyle()
       }
       .nextLabel('Finish')
     }
+    .backgroundColor('#F1F3F5')
     .onFinish(() => {
       // Define the processing logic for when Finish on the last page is clicked, for example, redirection.
       console.info('onFinish')
@@ -133,4 +141,4 @@ struct StepperExample {
 ```
 
 
-![en-us_image_0000001250678457](figures/en-us_image_0000001250678457.gif)
+![stepper](figures/stepper.gif)

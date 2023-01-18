@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<Swiper>** component provides a container that allows users to switch among child components using swipe gestures.
+The **\<swiper>** component provides a container that allows users to switch among child components using swipe gestures.
 
 ## Required Permissions
 

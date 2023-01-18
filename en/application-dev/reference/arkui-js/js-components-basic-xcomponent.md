@@ -1,18 +1,18 @@
 # xcomponent
 
-  > **NOTE**
-  >
-  > This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+> 
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
-  The **\<xcomponent>** displays the components to which the EGL/OpenGLES or media data is written.
+The **\<xcomponent>** displays the components to which the EGL/OpenGLES or media data is written.
 
 ## Required Permissions
 
- None
+None
 
 ## Child Components
 
-  Not supported
+Not supported
 
 ## Attributes
 

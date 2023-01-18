@@ -1,16 +1,10 @@
 # Line
 
-
 The **\<Line>** component is used to draw a straight line.
 
 >  **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-## Required Permissions
-
-None
-
 
 ## Child Components
 

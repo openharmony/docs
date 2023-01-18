@@ -37,7 +37,7 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 | color       | &lt;color&gt;              | \#e5000000 | No   | Font color of the scrolling text.                          |
 | font-size   | &lt;length&gt;             | 37.5       | No   | Font size of the scrolling text.                          |
 | allow-scale | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
-| font-weight | number&nbsp;\|&nbsp;string | normal     | No   | Font weight of the scrolling text. For details, see **font-weight** of the **[\<text> component](../arkui-js/js-components-basic-text.md#styles)**.|
+| font-weight | number \| string | normal     | No   | Font weight of the scrolling text. For details, see **font-weight** of the **[\<text> component](../arkui-js/js-components-basic-text.md#styles)**.|
 | font-family | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
 
 
@@ -45,17 +45,17 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 
 In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
 
-| Name          | Parameter  | Description                                      |
-| ------------ | ---- | ---------------------------------------- |
-| bounce(Rich) | -    | Triggered when the marquee scrolls to the end.                         |
-| finish(Rich) | -    | Triggered when the marquee finishes the specified number of scrollings (value of the **loop** attribute). It can be triggered only when the **loop** attribute is set to a number greater than 0.|
-| start(Rich)  | -    | Triggered when the marquee starts to scroll.                          |
+| Name    | Parameter  | Description                                      |
+| ------ | ---- | ---------------------------------------- |
+| bounce | -    | Triggered when the marquee scrolls to the end.                         |
+| finish | -    | Triggered when the marquee finishes the specified number of scrollings (value of the **loop** attribute). It can be triggered only when the **loop** attribute is set to a number greater than 0.|
+| start  | -    | Triggered when the marquee starts to scroll.                          |
 
 ## Methods
 
 In addition to the [universal methods](../arkui-js/js-components-common-methods.md), the following methods are supported.
 
-| Name   | Parameter | Description   |
+| Name   | Parameter  | Description   |
 | ----- | ---- | ----- |
 | start | -    | Starts scrolling.|
 | stop  | -    | Stops scrolling.|
@@ -65,72 +65,75 @@ In addition to the [universal methods](../arkui-js/js-components-common-methods.
 
 ```html
 <!-- xxx.hml -->
-<div class="container">
-  <marquee id="customMarquee" class="customMarquee" scrollamount="{{scrollAmount}}" loop="{{loop}}"direction="{{marqueeDir}}"
-    onbounce="onMarqueeBounce" onstart="onMarqueeStart" onfinish="onMarqueeFinish">{{marqueeCustomData}}</marquee>
-  <div class="content">
-    <button class="controlButton" onclick="onStartClick">Start</button>
-    <button class="controlButton" onclick="onStopClick">Stop</button>
+<div class="tutorial-page">
+  <div class="mymarquee">
+    <marquee  style="color: {{color1}}" loop="{{loopval}}" scrollamount="{{scroll}}" direction="{{isleft}}" class="marqueetext" 
+    id="testmarquee" onfinish="setfinish">
+      Life is a journey, not the destination.
+    </marquee>
+  </div>
+  <div style="width: 600px;height: 150px;flex-direction: row;justify-content: space-around;">
+    <button onclick="makestart"  value="start"></button>
+    <button onclick="makestop" value="stop"></button>
   </div>
 </div>
 ```
 
 ```css
 /* xxx.css */
-.container {
+.tutorial-page {
+  width: 750px;
+  height: 100%;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background-color: #ffffff;
+  justify-content: center;
 }
-.customMarquee {
-  width: 100%;
+.marqueetext {
+  font-size: 37px;
+}
+.mymarquee {
+  margin-top: 20px;
+  width:100%;
+  height: 100px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 1px solid #dc0f27;
+  border-radius: 15px;
+  align-items: center;
+}
+button{
+  width: 200px;
   height: 80px;
-  padding: 10px;
-  margin: 20px;
-  border: 4px solid #ff8888;
-  border-radius: 20px;
-  font-size: 40px;
-  color: #ff8888;
-  font-weight: bolder;
-  font-family: serif;
-  background-color: #ffdddd;
-}
-.content {
-  flex-direction: row;
-}
-.controlButton {
-  flex-grow: 1;
-  background-color: #F2F2F2;
-  text-color: #0D81F2;
+  margin-top: 100px;
 }
 ```
 
 ```js
 // xxx.js
 export default {
-  data: {
-    scrollAmount: 30,
-    loop: 3,
-    marqueeDir: 'left',
-    marqueeCustomData: 'Custom marquee',
+  private: {
+    loopval: 1,
+    scroll: 8,
+    color1: 'red'
   },
-  onMarqueeBounce: function() {
-    console.log("onMarqueeBounce");
+  onInit(){
   },
-  onMarqueeStart: function() {
-    console.log("onMarqueeStart");
+  setfinish(e) {
+    this.loopval=  this.loopval + 1,
+    this.r = Math.floor(Math.random()*255),
+    this.g = Math.floor(Math.random()*255),
+    this.b = Math.floor(Math.random()*255),
+    this.color1 = 'rgba('+ this.r +','+ this.g +','+ this.b +',0.8)',
+    this.$element('testmarquee').start(),
+    this.loopval=  this.loopval - 1
   },
-  onMarqueeFinish: function() {
-    console.log("onMarqueeFinish");
+  makestart(e) {
+    this.$element('testmarquee').start()
   },
-  onStartClick (evt) {
-    this.$element('customMarquee').start();
-  },
-  onStopClick (evt) {
-    this.$element('customMarquee').stop();
+  makestop(e) {
+    this.$element('testmarquee').stop()
   }
 }
 ```
 
-![lite_bar](figures/lite_bar.gif)
+![zh-cn_image_0000001176075554](figures/zh-cn_image_0000001176075554.gif)
