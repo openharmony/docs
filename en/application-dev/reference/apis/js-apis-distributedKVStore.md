@@ -10,7 +10,7 @@ The **distributedKVStore** module provides the following functions:
 - [SingleKVStore](#singlekvstore): provides APIs for querying data in single KV stores and synchronizing data. The single KV stores manage data without distinguishing devices.
 - [DeviceKVStore](#devicekvstore): provides APIs for querying in device KV stores and synchronizing data. This class inherits from [SingleKVStore](#singlekvstore). The device KV stores manage data by device.
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -248,79 +248,9 @@ try {
 
 ## distributedKVStore.createKVManager
 
-createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void
+createKVManager(config: KVManagerConfig): KVManager
 
-Creates a **KVManager** instance to manage KV stores. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name  | Type                                    | Mandatory| Description                                                       |
-| -------- | -------------------------------------------- | ---- | ----------------------------------------------------------- |
-| config   | [KVManagerConfig](#kvmanagerconfig)          | Yes  | **KVManager** instance configuration, including the bundle name of the invoker and the context of the application.|
-| callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | Yes  | Callback invoked to return the **KVManager** instance created.                    |
-
-**Example**
-
-Stage model:
-
-```js
-import AbilityStage from '@ohos.application.Ability'
-let kvManager;
-export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.log("MyAbilityStage onCreate")
-        let context = this.context
-        const kvManagerConfig = {
-            context: context,
-            bundleName: 'com.example.datamanagertest',
-        }
-        try {
-            distributedKVStore.createKVManager(kvManagerConfig, function (err, manager) {
-                if (err) {
-                    console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-                    return;
-                }
-                console.log("Created KVManager successfully");
-                kvManager = manager;
-            });
-        } catch (e) {
-            console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
-        }
-    }
-}
-```
-
-FA model:
-
-```js
-import featureAbility from '@ohos.ability.featureAbility'
-let kvManager;
-let context = featureAbility.getContext()
-const kvManagerConfig = {
-    context: context,
-    bundleName: 'com.example.datamanagertest',
-}
-try {
-    distributedKVStore.createKVManager(kvManagerConfig, function (err, manager) {
-        if (err) {
-            console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.log("Created KVManager successfully");
-        kvManager = manager;
-    });
-} catch (e) {
-    console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
-}
-```
-
-## distributedKVStore.createKVManager
-
-createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
-
-Creates a **KVManager** instance to manage KV stores. This API uses a promise to return the result.
+Creates a **KVManager** instance to manage KV stores.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -328,13 +258,13 @@ Creates a **KVManager** instance to manage KV stores. This API uses a promise to
 
 | Name| Type                     | Mandatory| Description                                                     |
 | ------ | ----------------------------- | ---- | --------------------------------------------------------- |
-| config | [KVManagerConfig](#kvmanager) | Yes  | Configuration of the **KVManager** instance, including the bundle name and user information of the caller.|
+| config | [KVManagerConfig](#kvmanagerconfig) | Yes  | **KVManager** instance configuration, including the bundle name and user information of the caller.|
 
 **Return value**
 
 | Type                                  | Description                                      |
 | -------------------------------------- | ------------------------------------------ |
-| Promise&lt;[KVManager](#kvmanager)&gt; | Promise used to return the **KVManager** instance created.|
+| [KVManager](#kvmanager) | **KVManager** instance created.|
 
 **Example**
 
@@ -352,12 +282,8 @@ export default class MyAbilityStage extends AbilityStage {
             bundleName: 'com.example.datamanagertest',
         }
         try {
-            distributedKVStore.createKVManager(kvManagerConfig).then((manager) => {
-                console.log("Created KVManager successfully");
-                kvManager = manager;
-            }).catch((err) => {
-                console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-            });
+            kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+            console.log("Created KVManager successfully");
         } catch (e) {
             console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
         }
@@ -376,12 +302,8 @@ const kvManagerConfig = {
     bundleName: 'com.example.datamanagertest',
 }
 try {
-    distributedKVStore.createKVManager(kvManagerConfig).then((manager) => {
-        console.log("Created KVManager successfully");
-        kvManager = manager;
-    }).catch((err) => {
-        console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-    });
+    kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+    console.log("Created KVManager successfully");
 } catch (e) {
     console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
 }
@@ -617,7 +539,7 @@ Deletes a distributed KV store. This API uses an asynchronous callback to return
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**|
+| ID| **Error Message**|
 | ------------ | ------------ |
 | 15100004     | Not found.   |
 
@@ -681,7 +603,7 @@ Deletes a distributed KV store. This API uses a promise to return the result.
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**|
+| ID| **Error Message**|
 | ------------ | ------------ |
 | 15100004     | Not found.   |
 
@@ -799,7 +721,7 @@ Subscribes to service status changes.
 | Name       | Type            | Mandatory| Description                                                        |
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
 | event         | string               | Yes  | Event to subscribe to. The value is **distributedDataServiceDie**, which indicates a service status change event.|
-| deathCallback | Callback&lt;void&gt; | Yes  | Callback invoked to return the result.                                                  |
+| deathCallback | Callback&lt;void&gt; | Yes  | Callback invoked to service status changes.                            |
 
 **Example**
 
@@ -2185,7 +2107,7 @@ Adds a KV pair of the specified type to this KV store. This API uses an asynchro
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2234,7 +2156,7 @@ Adds a KV pair of the specified type to this KV store. This API uses a promise t
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2275,7 +2197,7 @@ Batch inserts KV pairs to this single KV store. This API uses an asynchronous ca
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2342,7 +2264,7 @@ Batch inserts KV pairs to this single KV store. This API uses a promise to retur
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2402,7 +2324,7 @@ Writes data to this single KV store. This API uses an asynchronous callback to r
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2459,7 +2381,7 @@ Write data to this KV store. This API uses a promise to return the result.
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2507,7 +2429,7 @@ Deletes a KV pair from this KV store. This API uses an asynchronous callback to 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005    | Database or result set already closed. |
@@ -2562,7 +2484,7 @@ Deletes a KV pair from this KV store. This API uses a promise to return the resu
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2610,7 +2532,7 @@ Deletes KV pairs from this KV store. This API uses an asynchronous callback to r
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005    | Database or result set already closed. |
@@ -2660,7 +2582,7 @@ Deletes KV pairs from this KV store. This API uses a promise to return the resul
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2709,7 +2631,7 @@ Batch deletes KV pairs from this single KV store. This API uses an asynchronous 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2777,7 +2699,7 @@ Batch deletes KV pairs from this single KV store. This API uses a promise to ret
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2836,7 +2758,7 @@ Deletes data of a device. This API uses an asynchronous callback to return the r
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -2890,7 +2812,7 @@ Deletes data of a device. This API uses a promise to return the result.
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -2941,7 +2863,7 @@ Obtains the value of the specified key. This API uses an asynchronous callback t
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
@@ -2997,7 +2919,7 @@ Obtains the value of the specified key. This API uses a promise to return the re
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
@@ -3044,7 +2966,7 @@ Obtains all KV pairs that match the specified key prefix. This API uses an async
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3112,7 +3034,7 @@ Obtains all KV pairs that match the specified key prefix. This API uses a promis
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3170,7 +3092,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3237,7 +3159,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses a 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3298,7 +3220,7 @@ Obtains a result set with the specified prefix from this single KV store. This A
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3372,7 +3294,7 @@ Obtains a result set with the specified prefix from this single KV store. This A
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3435,7 +3357,7 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3503,7 +3425,7 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3565,7 +3487,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3626,7 +3548,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3745,7 +3667,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3808,7 +3730,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3866,7 +3788,7 @@ Backs up a distributed KV store. This API uses an asynchronous callback to retur
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -3912,7 +3834,7 @@ Backs up an RDB store. This API uses a promise to return the result.
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -3951,7 +3873,7 @@ Restores a distributed KV store from a database file. This API uses an asynchron
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -3997,7 +3919,7 @@ Restores a distributed KV store from a database file. This API uses a promise to
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4104,7 +4026,7 @@ Starts the transaction in this single KV store. This API uses an asynchronous ca
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4172,7 +4094,7 @@ Starts the transaction in this single KV store. This API uses a promise to retur
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4214,7 +4136,7 @@ Commits the transaction in this single KV store. This API uses an asynchronous c
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4253,7 +4175,7 @@ Commits the transaction in this single KV store. This API uses a promise to retu
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4290,7 +4212,7 @@ Rolls back the transaction in this single KV store. This API uses an asynchronou
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4329,7 +4251,7 @@ Rolls back the transaction in this single KV store. This API uses a promise to r
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4579,7 +4501,7 @@ Synchronizes the KV store manually. For details about the synchronization modes 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**       |
+| ID| **Error Message**       |
 | ------------ | ------------------- |
 | 15100003     | Database corrupted. |
 | 15100004     | Not found.          |
@@ -4632,7 +4554,7 @@ Synchronizes the KV store manually. This API returns the result synchronously. F
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**       |
+| ID| **Error Message**       |
 | ------------ | ------------------- |
 | 15100003     | Database corrupted. |
 | 15100004     | Not found.          |
@@ -4679,13 +4601,13 @@ Subscribes to data changes of the specified type.
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event to subscribe to. The value is **dataChange**, which indicates a data change event.|
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the result.                                          |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the data change.                         |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100001     | Over max subscribe limits.             |
 | 15100005     | Database or result set already closed. |
@@ -4716,7 +4638,7 @@ Subscribes to synchronization complete events.
 | Name      | Type                                     | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
 | event        | string                                        | Yes  | Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return the synchronization result.            |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the synchronization complete event. |
 
 **Example**
 
@@ -4751,13 +4673,13 @@ Unsubscribes from data changes.
 | Name  | Type                                                 | Mandatory| Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | Yes  | Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.|
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback invoked to return the result.                                              |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for data changes.                           |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4805,7 +4727,7 @@ Unsubscribes from synchronization complete events.
 | Name      | Type                                     | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | Yes  | Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback used to return the synchronization result.                |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for the synchronization complete event.                |
 
 **Example**
 
@@ -4856,7 +4778,7 @@ Obtains the security level of this KV store. This API uses an asynchronous callb
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4895,7 +4817,7 @@ Obtains the security level of this KV store. This API uses a promise to return t
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4943,7 +4865,7 @@ Obtains the value of the specified key for this device. This API uses an asynchr
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
@@ -4999,7 +4921,7 @@ Obtains the value of the specified key for this device. This API uses a promise 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
@@ -5047,7 +4969,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
@@ -5104,7 +5026,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
@@ -5151,7 +5073,7 @@ Obtains all KV pairs that match the specified key prefix for this device. This A
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5219,7 +5141,7 @@ Obtains all KV pairs that match the specified key prefix for this device. This A
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5278,7 +5200,7 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5347,7 +5269,7 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5402,13 +5324,13 @@ Obtains all KV pairs that match the specified **Query** object for this device. 
 | Name  | Type                                  | Mandatory| Description                                                 |
 | -------- | -------------------------------------- | ---- | ----------------------------------------------------- |
 | query    | [Query](query)                         | Yes  | Key prefix to match.                                 |
-| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs obtained.|
+| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5475,7 +5397,7 @@ Obtains all KV pairs that match the specified **Query** object for this device. 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5537,7 +5459,7 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5611,7 +5533,7 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5673,7 +5595,7 @@ Obtains a result set with the specified prefix for this device. This API uses an
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5747,7 +5669,7 @@ Obtains a result set with the specified prefix for this device. This API uses a 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5811,7 +5733,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5867,7 +5789,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5914,7 +5836,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5991,7 +5913,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6064,7 +5986,7 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6130,7 +6052,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6200,7 +6122,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6261,7 +6183,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6314,7 +6236,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6376,7 +6298,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6425,7 +6347,7 @@ Obtains the number of results that match the specified **Query** object for this
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6488,7 +6410,7 @@ Obtains the number of results that match the specified **Query** object for this
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6547,7 +6469,7 @@ Obtains the number of results that matches the specified device ID and **Query**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6616,7 +6538,7 @@ Obtains the number of results that matches the specified device ID and **Query**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
