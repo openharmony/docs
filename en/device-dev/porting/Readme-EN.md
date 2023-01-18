@@ -58,6 +58,14 @@ The download steps for other resources are the same as those in the mainline ver
 ## SoC Porting Cases
 
 - Mini System SoC Porting Cases
-  - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting-bes2600w-on-minisystem-display-demo.md)
-  - [Combo Solution – ASR Chip Porting Case](porting-asr582x-combo-demo.md)
-
+    - [Mini-System Devices with Screens – Bestechnic SoC Porting Case](porting-bes2600w-on-minisystem-display-demo.md)
+    - [Combo Solution – ASR Chip Porting Case](porting-asr582x-combo-demo.md)
+    - [IoT Solution - Chipsea CST85 Chip Porting Case](porting-cst85f01-combo-demo.md)
+    - [Mini System STM32F407 SoC Porting Case](porting-stm32f407-on-minisystem-eth.md)
+    - [Combo Solution – W800 Chip Porting Case](porting-w800-combo-demo.md)
+- Small System SoC Porting Cases
+    - [Mini-System Devices – STM32MP1 SoC Porting Case](porting-stm32mp15xx-on-smallsystem.md)
+- Standard System SoC Porting Cases
+    - [Standard System Solution – Rockchip RK3568 Porting Case](porting-dayu200-on_standard-demo.md)
+    - [Standard System Solution – Rockchip RK3566 Porting Case](https://gitee.com/openharmony/vendor_kaihong/blob/master/khdvk_3566b/porting-khdvk_3566b-on_standard-demo.md)
+    - [Standard System Solution – Yangfan Porting Case](porting-yangfan-on_standard-demo.md)

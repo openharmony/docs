@@ -24,7 +24,7 @@ General application privileges are privileges available to applications on all t
 
 ### Configuration
 
-1. In the [HarmonyAppProvision file](../../application-dev/quick-start/app-provision-structure.md), configure the general privileges in the **app-privilege-capabilities** field.
+1. In the [HarmonyAppProvision file](../../application-dev/security/app-provision-structure.md), configure the general privileges in the **app-privilege-capabilities** field.
 2. Use the signing tool hapsigner to sign the HarmonyAppProvision file and generate a **.p7b** file.
 3. Use the **.p7b** file to sign the HAP.
 
