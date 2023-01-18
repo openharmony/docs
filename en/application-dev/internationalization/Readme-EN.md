@@ -1,6 +1,6 @@
 # Internationalization
 
 - [Internationalization Overview](international-overview.md)
-- [Internationalization Development (intl)](intl-guidelines.md)
-- [Internationalization Development (i18n)](i18n-guidelines.md)
+- [intl Development](intl-guidelines.md)
+- [i18n Development](i18n-guidelines.md)
 

@@ -2,52 +2,87 @@
 
 - [Application Development Overview](application-dev-guide.md)
 - About OpenHarmony
-    - [OpenHarmony Project](../OpenHarmony-Overview.md)
-    - [Glossary](../glossary.md)
-    - [OpenHarmony Release Notes](../release-notes/Readme.md)
+  - [OpenHarmony Project](../OpenHarmony-Overview.md)
+  - [Glossary](../glossary.md)
+  - [OpenHarmony Release Notes](../release-notes/Readme.md)
 - Quick Start
-    - Getting Started
-        - [Preparations](quick-start/start-overview.md)
-        - [Getting Started with ArkTS in Stage Model](quick-start/start-with-ets-stage.md)
-        - [Getting Started with ArkTS in FA Model](quick-start/start-with-ets-fa.md)
-        - [Getting Started with JavaScript in FA Model](quick-start/start-with-js-fa.md)
-    - Development Fundamentals
-        - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
-        - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
-        - [SysCap](quick-start/syscap.md)
-
+  - Getting Started
+    - [Before You Start](quick-start/start-overview.md)
+    - [Getting Started with ArkTS in Stage Model](quick-start/start-with-ets-stage.md)
+    - [Getting Started with ArkTS in FA Model](quick-start/start-with-ets-fa.md)
+    - [Getting Started with JavaScript in FA Model](quick-start/start-with-js-fa.md)
+  - Development Fundamentals
+    - Application Package Fundamentals
+      - [Application Package Overview](quick-start/application-package-overview.md)
+      - Application Package Structure
+        - [Application Package Structure in Stage Model)](quick-start/application-package-structure-stage.md)
+        - [Application Package Structure in FA Model](quick-start/application-package-structure-fa.md)
+        - [HAR File Structure](quick-start/har-structure.md)
+      - Multi-HAP Mechanism
+        - [Multi-HAP Design Objectives](quick-start/multi-hap-objective.md)
+        - [Multi-HAP Build View](quick-start/multi-hap-build-view.md)
+        - [Multi-HAP Development, Debugging, Release, and Deployment Process](quick-start/multi-hap-release-deployment.md)
+        - [Multi-HAP Usage Rules](quick-start/multi-hap-rules.md)
+        - [Multi-HAP Operation Mechanism and Data Communication Modes](quick-start/multi-hap-principles.md)
+      - [Application Installation and Uninstallation Process](quick-start/application-package-install-uninstall.md)
+    - Application Configuration Files in Stage Model
+      - [Application Configuration File Overview (Stage Model)](quick-start/application-configuration-file-overview-stage.md)
+      - [app.json5 Configuration File](quick-start/app-configuration-file.md)
+      - [module.json5 Configuration File](quick-start/module-configuration-file.md)
+    - Application Configuration Files in FA Model
+      - [Application Configuration File Overview (FA Model)](quick-start/application-configuration-file-overview-fa.md)
+      - [Internal Structure of the app Tag](quick-start/app-structure.md)
+      - [Internal structure of deviceConfig Tag](quick-start/deviceconfig-structure.md)
+      - [Internal Structure of the module Tag](quick-start/module-structure.md)
+    - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
+  - Learning ArkTS
+    - [Getting Started with ArkTS](quick-start/arkts-get-started.md)
+    - ArkTS Syntax (Declarative UI)
+      - [Basic UI Description](quick-start/arkts-basic-ui-description.md)
+      - State Management
+        - [Basic Concepts](quick-start/arkts-state-mgmt-concepts.md)
+        - [State Management with Page-level Variables](quick-start/arkts-state-mgmt-page-level.md)
+        - [State Management with Application-level Variables](quick-start/arkts-state-mgmt-application-level.md)
+      - [Dynamic UI Element Building](quick-start/arkts-dynamic-ui-elememt-building.md)
+      - [Rendering Control](quick-start/arkts-rendering-control.md)
+      - [Restrictions and Extensions](quick-start/arkts-restrictions-and-extensions.md)
 - Development
-    - [Ability Development](ability/Readme-EN.md)
-    - [UI Development](ui/Readme-EN.md)
-    - [Common Event and Notification](notification/Readme-EN.md)
-    - [Window Manager](windowmanager/Readme-EN.md)
-    - [WebGL](webgl/Readme-EN.md)
-    - [Media](media/Readme-EN.md)
-    - [Security](security/Readme-EN.md)
-    - [Connectivity](connectivity/Readme-EN.md)
-    - [Data Management](database/Readme-EN.md)
-    - [File Management](file-management/Readme-EN.md)
-    - [Telephony](telephony/Readme-EN.md)
-    - [Task Management](task-management/Readme-EN.md)
-    - [Device Management](device/Readme-EN.md)
-    - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
-    - [DFX](dfx/Readme-EN.md)
-    - [Internationalization](internationalization/Readme-EN.md)
-    - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
-    - [Using Native APIs in Application Projects](napi/Readme-EN.md)
+  - [Application Models](application-models/Readme-EN.md)
+  - [UI Development](ui/Readme-EN.md)
+  - [Common Event and Notification](notification/Readme-EN.md)
+  - [Window Manager](windowmanager/Readme-EN.md)
+  - [WebGL](webgl/Readme-EN.md)
+  - [Media](media/Readme-EN.md)
+  - [Security](security/Readme-EN.md)
+  - [Connectivity](connectivity/Readme-EN.md)
+  - [Data Management](database/Readme-EN.md)
+  - [File Management](file-management/Readme-EN.md)
+  - [Telephony](telephony/Readme-EN.md)
+  - [Task Management](task-management/Readme-EN.md)
+  - [Device Management](device/Readme-EN.md)
+  - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
+  - [DFX](dfx/Readme-EN.md)
+  - [Internationalization](internationalization/Readme-EN.md)
+  - [Application Test](application-test/Readme-EN.md)
+  - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
+  - [Using Native APIs in Application Projects](napi/Readme-EN.md)
 - Tools
     - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials
     - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
     - [Codelabs](https://gitee.com/openharmony/codelabs)
 - API References
-    - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
-    - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
-    - APIs
-      -   [JS and TS APIs](reference/apis/Readme-EN.md)
-      -   Native APIs
-        - [Standard Libraries](reference/native-lib/third_party_libc/musl.md)
-        - [Node_API](reference/native-lib/third_party_napi/napi.md)
+  - [SystemCapability](reference/syscap.md)
+  - [SystemCapability List](reference/syscap-list.md)
+  - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
+  - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
+  - [JS Service Widget UI Components](reference/js-service-widget-ui/Readme-EN.md)
+  - APIs
+    - [ArkTS and JS APIs](reference/apis/Readme-EN.md)
+    - [Error Codes](reference/errorcodes/Readme-EN.md)
+    - Native APIs
+      - [Standard Libraries](reference/native-lib/third_party_libc/musl.md)
+      - [Node_API](reference/native-lib/third_party_napi/napi.md)
 - [FAQs](faqs/Readme-EN.md)
 - Contribution
-    - [How to Contribute](../contribute/documentation-contribution.md)
+  - [How to Contribute](../contribute/documentation-contribution.md)

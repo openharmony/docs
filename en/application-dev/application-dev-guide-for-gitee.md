@@ -18,7 +18,7 @@ To facilitate your application development, we provide development guidelines fo
 
 First thing first, familiarize yourself with the two cornerstone frameworks in OpenHarmony applications:
 
-- Application framework: [Ability Development](ability/Readme-EN.md)
+- Application framework: [Application Models](application-models/Readme-EN.md)
 - UI framework: [UI Development](ui/Readme-EN.md)
 
 All applications should be developed on top of these frameworks.
@@ -37,6 +37,7 @@ Then, equip yourself for developing the key features, with the following guideli
 - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
 - [DFX](dfx/Readme-EN.md)
 - [Internationalization](internationalization/Readme-EN.md)
+- [Application Test](application-test/Readme-EN.md)
 - [IDL Specifications and User Guide](IDL/idl-guidelines.md)
 - [Using Native APIs in Application Projects](napi/Readme-EN.md)
 
@@ -56,11 +57,11 @@ API references encompass all components and APIs available in OpenHarmony, helpi
 They are organized as follows:
 
 - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
-
--   [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
--   APIs
-    -   [JS and TS APIs](reference/apis/Readme-EN.md)
-    -   Native APIs
+- [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
+- [JS Service Widget UI Components](reference/js-service-widget-ui/Readme-EN.md) 
+- APIs
+    - [JS and TS APIs](reference/apis/Readme-EN.md)
+    - Native APIs
         -   [Standard Library](reference/native-lib/third_party_libc/musl.md)
         -   [Node_API](reference/native-lib/third_party_napi/napi.md)
 
