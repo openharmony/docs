@@ -1,6 +1,6 @@
 # PermissionDef
 
-The **PermissionDef** module provides permission details defined in the configuration file. The information can be obtained using [bundleManager.getPermissionDef](js-apis-bundleManager.md).  
+The **PermissionDef** module provides permission details defined in the configuration file. The information can be obtained using [bundleManager.getPermissionDef](js-apis-bundleManager.md).
 
 > **NOTE**
 >
@@ -16,5 +16,5 @@ The **PermissionDef** module provides permission details defined in the configur
 | -------------- | ------ | ---- | ---- | -------------- |
 | permissionName | string | Yes  | No  | Name of the permission.  |
 | grantMode      | number | Yes  | No  | Grant mode of the permission.|
-| labelId        | number | Yes  | No  | Label ID of the permission.  |
-| descriptionId  | number | Yes  | No  | Description ID of the permission.  |
+| labelId        | number | Yes  | No  | ID of the permission label.  |
+| descriptionId  | number | Yes  | No  | ID of the permission description.  |

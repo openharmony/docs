@@ -10,6 +10,7 @@ The **ModuleInfo** module provides module information of an application.
 > This API is deprecated since API version 9. You are advised to use [bundleManager-HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) instead.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
+
 | Name           | Type  | Readable| Writable| Description    |
 | --------------- | ------ | ---- | ---- | -------- |
 | moduleName      | string | Yes  | No  | Module name.|
