@@ -1,6 +1,6 @@
 # ExtensionAbilityInfo
 
-The **ExtensionAbilityInfo** module provides information about an Extension ability. Unless otherwise specified, all attributes are obtained through [getBundleInfo](js-apis-bundleManager.md), and flags are obtained through [GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY](js-apis-bundleManager.md#bundleflag).
+The **ExtensionAbilityInfo** module defines the ExtensionAbility information. A system application can obtain its own or others' ExtensionAbility information through [bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo). A third-party application can obtain its own ExtensionAbility information through [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself). **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY** must be passed in to the input parameter [bundleFlags](js-apis-bundleManager.md#bundleflag) to obtain the information.
 
 > **NOTE**
 >
@@ -10,19 +10,19 @@ The **ExtensionAbilityInfo** module provides information about an Extension abil
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name                | Type                                                       | Readable| Writable| Description                                              |
-| -------------------- | ----------------------------------------------------------- | ---- | ---- | -------------------------------------------------- |
-| bundleName           | string                                                      | Yes  | No  | Bundle name.                                          |
-| moduleName           | string                                                      | Yes  | No  | Name of the HAP file to which the Extension ability belongs.                 |
-| name                 | string                                                      | Yes  | No  | Name of the Extension ability.                              |
-| labelId              | number                                                      | Yes  | No  | Label ID of the Extension ability.                      |
-| descriptionId        | number                                                      | Yes  | No  | Description ID of the Extension ability.                      |
-| iconId               | number                                                      | Yes  | No  | Icon ID of the Extension ability.                      |
-| isVisible            | boolean                                                     | Yes  | No  | Whether the Extension ability can be called by other bundles.        |
-| extensionAbilityType | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype)  | Yes  | No  | Type of the Extension ability.                              |
-| permissions          | Array\<string>                                              | Yes  | No  | Permissions required for other bundles to call the Extension ability.|
-| applicationInfo      | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | Yes  | No  | Application information of the Extension ability.                                |
-| metadata             | Array\<[Metadata](js-apis-bundleManager-metadata.md)>       | Yes  | No  | Metadata of the Extension ability.                          |
-| enabled              | boolean                                                     | Yes  | No  | Whether the Extension ability is enabled.                          |
-| readPermission       | string                                                      | Yes  | No  | Permission required for reading data from the Extension ability.                |
-| writePermission      | string                                                      | Yes  | No  | Permission required for writing data to the Extension ability.                |
+| Name                | Type                                                        | Readable| Writable| Description                                                |
+| -------------------- | ------------------------------------------------------------ | ---- | ---- | ---------------------------------------------------- |
+| bundleName           | string                                                       | Yes  | No  | Bundle name.                                    |
+| moduleName           | string                                                       | Yes  | No  | Name of the HAP file to which the ExtensionAbility belongs.                   |
+| name                 | string                                                       | Yes  | No  | Name of the ExtensionAbility.                              |
+| labelId              | number                                                       | Yes  | No  | ID of the ExtensionAbility label.                      |
+| descriptionId        | number                                                       | Yes  | No  | ID of the ExtensionAbility description.                      |
+| iconId               | number                                                       | Yes  | No  | ID of the ExtensionAbility icon.                      |
+| isVisible            | boolean                                                      | Yes  | No  | Whether the ExtensionAbility can be called by other bundles.        |
+| extensionAbilityType | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | Yes  | No  | Type of the ExtensionAbility.                              |
+| permissions          | Array\<string>                                               | Yes  | No  | Permissions required for other bundles to call the ExtensionAbility.|
+| applicationInfo      | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md)  | Yes  | No  | Application information.                                |
+| metadata             | Array\<[Metadata](js-apis-bundleManager-metadata.md)>        | Yes  | No  | Metadata of the ExtensionAbility.                          |
+| enabled              | boolean                                                      | Yes  | No  | Whether the ExtensionAbility is enabled.                          |
+| readPermission       | string                                                       | Yes  | No  | Permission required for reading data from the ExtensionAbility.                |
+| writePermission      | string                                                       | Yes  | No  | Permission required for writing data to the ExtensionAbility.                |

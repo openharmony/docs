@@ -8,7 +8,7 @@ The **BundleInstaller** module provides APIs for you to install, uninstall, and 
 
 ## BundleInstaller.install<sup>(deprecated)<sup>
 
-> This API is deprecated since API version 9. You are advised to use [install](js-apis-installer.md) instead.
+> This API is deprecated since API version 9. You are advised to use [@ohos.bundle.installer.install](js-apis-installer.md) instead.
 
 install(bundleFilePaths: Array&lt;string&gt;, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
@@ -26,10 +26,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name         | Type                                                | Mandatory| Description                                                        |
-| --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| bundleFilePaths | Array&lt;string&gt;                                  | Yes  | Sandbox path where the HAP files of the bundle are stored. For details about how to obtain the sandbox path, see [Obtaining the Sandbox Path](#obtaining-the-sandbox-path).|
-| param           | [InstallParam](#installparamdeprecated)                        | Yes  | Parameters required for bundle installation.                                    |
+| Name         | Type                                                        | Mandatory| Description                                                        |
+| --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleFilePaths | Array&lt;string&gt;                                          | Yes  | Sandbox path where the HAP files of the bundle are stored. For details about how to obtain the sandbox path, see [Obtaining the Sandbox Path](#obtaining-the-sandbox-path).|
+| param           | [InstallParam](#installparamdeprecated)                      | Yes  | Parameters required for bundle installation.                                    |
 | callback        | AsyncCallback&lt;[InstallStatus](#installstatusdeprecated)&gt; | Yes  | Callback used to return the installation status.              |
 
 **Example**
@@ -43,7 +43,7 @@ let installParam = {
     installFlag: 1,
 };
 
-bundle.getBundleInstaller().then(installer=>{
+bundle.getBundleInstaller().then(installer => {
     installer.install(hapFilePaths, installParam, err => {
         if (err) {
             console.error('install failed:' + JSON.stringify(err));
@@ -76,10 +76,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name    | Type                                                | Mandatory| Description                                          |
-| ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
-| bundleName | string                                               | Yes  | Bundle name.                                          |
-| param      | [InstallParam](#installparamdeprecated)                        | Yes  | Parameters required for bundle uninstall.                      |
+| Name    | Type                                                        | Mandatory| Description                                          |
+| ---------- | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
+| bundleName | string                                                       | Yes  | Bundle name.                              |
+| param      | [InstallParam](#installparamdeprecated)                      | Yes  | Parameters required for bundle uninstall.                      |
 | callback   | AsyncCallback&lt;[InstallStatus](#installstatusdeprecated)&gt; | Yes  | Callback used to return the installation status.|
 
 **Example**
@@ -93,7 +93,7 @@ let installParam = {
     installFlag: 1,
 };
 
-bundle.getBundleInstaller().then(installer=>{
+bundle.getBundleInstaller().then(installer => {
     installer.uninstall(bundleName, installParam, err => {
         if (err) {
             console.error('uninstall failed:' + JSON.stringify(err));
@@ -125,10 +125,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name    | Type                                                | Mandatory| Description                                          |
-| ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
-| bundleName | string                                               | Yes  | Bundle name.                                          |
-| param      | [InstallParam](#installparamdeprecated)                        | Yes  | Parameters required for bundle recovery.                      |
+| Name    | Type                                                        | Mandatory| Description                                              |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
+| bundleName | string                                                       | Yes  | Bundle name.                                  |
+| param      | [InstallParam](#installparamdeprecated)                      | Yes  | Parameters required for bundle recovery.                      |
 | callback   | AsyncCallback&lt;[InstallStatus](#installstatusdeprecated)&gt; | Yes  | Callback used to return the recovery status.|
 
 **Example**
@@ -143,7 +143,7 @@ let installParam = {
     installFlag: 1,
 };
 
-bundle.getBundleInstaller().then(installer=>{
+bundle.getBundleInstaller().then(installer => {
     installer.recover(bundleName, installParam, err => {
         if (err) {
             console.error('recover failed:' + JSON.stringify(err));
@@ -166,9 +166,9 @@ Describes the parameters required for bundle installation, recovery, or uninstal
 
 | Name       | Type   | Readable| Writable| Description              |
 | ----------- | ------- | ---- | ---- | ------------------ |
-| userId      | number  | Yes  | No  | User ID.        |
-| installFlag | number  | Yes  | No  | Installation flag.      |
-| isKeepData  | boolean | Yes  | No  | Whether data is kept.|
+| userId      | number  | Yes  | Yes  | User ID. The default value is the user ID of the caller.|
+| installFlag | number  | Yes  | Yes  | Installation flag.<br>**1** (default): overwrite installation.<br>**16**: installation-free.|
+| isKeepData  | boolean | Yes  | Yes  | Whether data is kept. The default value is **false**.|
 
 ## InstallStatus<sup>(deprecated)<sup>
 
@@ -180,17 +180,17 @@ Describes the bundle installation or uninstall status.
 
 | Name         | Type                                                        | Readable| Writable| Description                          |
 | ------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------ |
-| status        | bundle.[InstallErrorCode](js-apis-Bundle.md#installerrorcode) | Yes  | No  | Installation or uninstall error code.      |
-| statusMessage | string                                                       | Yes  | No  | Installation or uninstall status message.|
+| status        | bundle.[InstallErrorCode](js-apis-Bundle.md#installerrorcode) | Yes  | No  | Installation or uninstall error code. The value must be defined in [InstallErrorCode](js-apis-Bundle.md#installerrorcode). |
+| statusMessage | string                                                       | Yes  | No  | Installation or uninstall status message.  <br>**SUCCESS**: install_succeed<br>**STATUS_INSTALL_FAILURE**: Installation failed (no installation file exists).<br>**STATUS_INSTALL_FAILURE_ABORTED**: Installation aborted.<br>**STATUS_INSTALL_FAILURE_INVALID**: Invalid installation parameter.<br>**STATUS_INSTALL_FAILURE_CONFLICT**: Installation conflict. (The basic information of the application to update is inconsistent with that of the existing application.)<br>**STATUS_INSTALL_FAILURE_STORAGE**: Failed to store the bundle information.<br>**STATUS_INSTALL_FAILURE_INCOMPATIBLE**: Installation incompatibility. (A downgrade occurs or the signature information is incorrect.)<br>**STATUS_UNINSTALL_FAILURE**: Uninstallation failed. (The application to be uninstalled is not found.)<br>**STATUS_UNINSTALL_FAILURE_ABORTED**: Uninstallation aborted. (This error code is not in use.)<br>**STATUS_UNINSTALL_FAILURE_ABORTED**: Uninstallation conflict. (Failed to uninstall a system application or end the application process.)<br>**STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT**: Installation failed. (Download timed out.)<br>**STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED**: Installation failed. (Download failed.)<br>**STATUS_RECOVER_FAILURE_INVALID**: Failed to restore the pre-installed application.<br>**STATUS_ABILITY_NOT_FOUND**: Ability not found.<br>**STATUS_BMS_SERVICE_ERROR**: BMS service error.<br>**STATUS_FAILED_NO_SPACE_LEFT**: Insufficient device space.<br>**STATUS_GRANT_REQUEST_PERMISSIONS_FAILED**: Application authorization failed.<br>**STATUS_INSTALL_PERMISSION_DENIED**: No installation permission.<br>**STATUS_UNINSTALL_PERMISSION_DENIED**: No uninstallation permission. |
 
 ## Obtaining the Sandbox Path
-For the FA model, the sandbox path of a bundle can be obtained using the APIs in [Context](js-apis-inner-app-context.md). For the sage model, the sandbox path can be obtained using the attribute in [Context](js-apis-ability-context.md#abilitycontext). The following describes how to obtain the sandbox path.
+For the FA model, the sandbox path of a bundle can be obtained using the APIs in [Context](js-apis-inner-app-context.md). For the stage model, the sandbox path can be obtained using the attribute in [Context](js-apis-ability-context.md#abilitycontext). The following describes how to obtain the sandbox path.
 
 **Example**
 ``` ts
 // Stage model
-import Ability from '@ohos.application.Ability';
-class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         let context = this.context;
         let pathDir = context.filesDir;
