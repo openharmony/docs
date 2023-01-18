@@ -19,3 +19,4 @@ The **RemoteAbilityInfo** module provides information about a remote ability.
 | elementName | [ElementName](js-apis-bundle-ElementName.md) | Yes  | No  | Element name information of the ability.      |
 | label       | string                                       | Yes  | No  | Ability name.  |
 | icon        | string                                       | Yes  | No  | Icon of the ability.|
+
