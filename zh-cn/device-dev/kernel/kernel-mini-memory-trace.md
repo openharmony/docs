@@ -246,6 +246,8 @@ Index   Time(cycles)      EventType      CurTask   Identity      params
 6       0x3706f804        0x45           0x1       0x0           0x1f         0x4       0x0
 7       0x37070e59        0x45           0x0       0x1           0x0          0x8       0x1f
 ***TraceInfo end***
+
+根据实际运行环境，上文中的数据会有差异，非固定结果
 ```
 
 输出的事件信息包括：发生时间、事件类型、事件发生在哪个任务中、事件操作的主体对象、事件的其他参数。
