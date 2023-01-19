@@ -178,7 +178,7 @@ function startContinuousTask() {
     // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
     wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
         try {
-            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+            backgroundTaskManager.startBackgroundRunning(mContext,
                 backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
                 console.info("Operation startBackgroundRunning succeeded");
             }).catch((error) => {
@@ -192,9 +192,9 @@ function startContinuousTask() {
 
 function stopContinuousTask() {
     try {
-        backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
+        backgroundTaskManager.stopBackgroundRunning(mContext).then(() => {
             console.info("Operation stopBackgroundRunning succeeded");
-        }).catch((err) => {
+        }).catch((error) => {
             console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
         });
     } catch (error) {
