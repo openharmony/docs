@@ -21,7 +21,7 @@
 
 - [Context](application-context-stage.md)
 
-  在Stage模型上，Context及其派生类向开发者提供在运行期可以调用的各种能力。UIAbility组件和各种ExtensionAbility派生类都有各自不同的Context类，他们都继承自基类Context，但是各自又根据所属组件，提供不同的能力。
+  在Stage模型上，Context及其派生类向开发者提供在运行期可以调用的各种资源和能力。UIAbility组件和各种ExtensionAbility派生类都有各自不同的Context类，他们都继承自基类Context，但是各自又根据所属组件，提供不同的能力。
 
 - [AbilityStage](abilitystage.md)
 
