@@ -121,7 +121,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | mode          | [DiscoverMode ](#discovermode)    | 否    | 发现模式。             |
 | medium        | [ExchangeMedium](#exchangemedium) | 否    | 发现类型。             |
 | freq          | [ExchangeFreq](#exchangefreq)     | 否    | 发现频率。             |
-| isSameAccount | boolean                           | 否    | 是否同账号。            |
+| isSameAccount | boolean                           | 否    | 是否同帐号。            |
 | isWakeRemote  | boolean                           | 否    | 是否唤醒设备。           |
 | capability    | [SubscribeCap](#subscribecap)     | 否    | 发现能力。             |
 
@@ -687,7 +687,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
       deviceType: 0x0E
   };
   let authParam = {
-      "authType": 1, // 认证类型： 1 - 无账号PIN码认证
+      "authType": 1, // 认证类型： 1 - 无帐号PIN码认证
       "extraInfo": {} 
   }
   try {
