@@ -60,13 +60,7 @@
            } catch (error) {
                console.info(`explicit start ability failed with ${error.code}`)
            }
-           let context = getContext(this) as common.UIAbilityContext;
-           await context.startAbility(want)
-           console.info(`explicit start ability succeed`)
-       } catch (error) {
-           console.info(`explicit start ability failed with ${error.code}`)
-       }
-   }
+        }
    ```
 
      匹配过程如下：
