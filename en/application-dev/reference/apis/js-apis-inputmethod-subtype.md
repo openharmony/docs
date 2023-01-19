@@ -1,4 +1,4 @@
-# @ohos.inputmethodsubtype
+# @ohos.inputmethodsubtype (Input Method Subtype)
 
 The **inputMethodSubtype** module provides APIs for managing the attributes of input method subtypes. Different attribute settings result in different subtypes.
 

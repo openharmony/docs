@@ -1,4 +1,4 @@
-# @ohos.systemDateTime
+# @ohos.systemDateTime (System Time and Time Zone)
 
 The **systemDateTime** module provides system time and time zone features. You can use the APIs of this module to set and obtain the system time and time zone.
 
@@ -35,15 +35,15 @@ Sets the system time. This API uses an asynchronous callback to return the resul
 // Set the system time to 2021-01-20 02:36:25.
 let time = 1611081385000;
 try {
-    systemDateTime.setTime(time, (error) => {
-        if (error) {
-            console.info(`Failed to set time. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in setting time`);
-	});
+  systemDateTime.setTime(time, (error) => {
+    if (error) {
+      console.info(`Failed to set time. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in setting time`);
+  });
 } catch(e) {
-    console.info(`Failed to set time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to set time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -75,13 +75,13 @@ Sets the system time. This API uses a promise to return the result.
 // Set the system time to 2021-01-20 02:36:25.
 let time = 1611081385000;
 try {
-    systemDateTime.setTime(time).then(() => {
-    	console.info(`Succeeded in setting time.`);
-	}).catch((error) => {
-    	console.info(`Failed to set time. message:${error.message}, code:${error.code}`);
-	});
+  systemDateTime.setTime(time).then(() => {
+    console.info(`Succeeded in setting time.`);
+  }).catch((error) => {
+    console.info(`Failed to set time. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to set time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to set time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -104,15 +104,15 @@ Obtains the time elapsed since the Unix epoch. This API uses an asynchronous cal
 
 ```js
 try {
-    systemDateTime.getCurrentTime(true, (error, time) => {
-        if (error) {
-            console.info(`Failed to get currentTime. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in getting currentTime : ${time}`);
-	});
+  systemDateTime.getCurrentTime(true, (error, time) => {
+    if (error) {
+      console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting currentTime : ${time}`);
+  });
 } catch(e) {
-    console.info(`Failed to get currentTime. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -134,15 +134,15 @@ Obtains the time elapsed since the Unix epoch. This API uses an asynchronous cal
 
 ```js
 try {
-    systemDateTime.getCurrentTime((error, time) => {
-        if (error) {
-            console.info(`Failed to get currentTime. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in getting currentTime : ${time}`);
-	});
+  systemDateTime.getCurrentTime((error, time) => {
+    if (error) {
+      console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting currentTime : ${time}`);
+  });
 } catch(e) {
-    console.info(`Failed to get currentTime. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -170,13 +170,13 @@ Obtains the time elapsed since the Unix epoch. This API uses a promise to return
 
 ```js
 try {
-    systemDateTime.getCurrentTime().then((time) => {
-    	console.info(`Succeeded in getting currentTime : ${time}`);
-	}).catch((error) => {
-    	console.info(`Failed to get currentTime. message:${error.message}, code:${error.code}`);
-	});
+  systemDateTime.getCurrentTime().then((time) => {
+    console.info(`Succeeded in getting currentTime : ${time}`);
+  }).catch((error) => {
+    console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to get currentTime. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -199,15 +199,15 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 ```js
 try {
-    systemDateTime.getRealActiveTime(true, (error, time) => {
-        if (error) {
-            console.info(`Failed to get real active time. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in getting real active time : ${time}`);
-	});
+  systemDateTime.getRealActiveTime(true, (error, time) => {
+    if (error) {
+      console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting real active time : ${time}`);
+  });
 } catch(e) {
-    console.info(`Failed to get real active time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -229,15 +229,15 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 ```js
 try {
-    systemDateTime.getRealActiveTime((error, time) => {
-        if (error) {
-            console.info(`Failed to get real active time. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in getting real active time : ${time}`);
-	});
+  systemDateTime.getRealActiveTime((error, time) => {
+    if (error) {
+      console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting real active time : ${time}`);
+  });
 } catch(e) {
-    console.info(`Failed to get real active time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -265,13 +265,13 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 ```js
 try {
-    systemDateTime.getRealActiveTime().then((time) => {
-    	console.info(`Succeeded in getting real active time : ${time}`);
-	}).catch((error) => {
-    	console.info(`Failed to get real active time. message:${error.message}, code:${error.code}`);
-	});
+  systemDateTime.getRealActiveTime().then((time) => {
+    console.info(`Succeeded in getting real active time : ${time}`);
+  }).catch((error) => {
+    console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to get real active time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -294,15 +294,15 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 ```js
 try {
-    systemDateTime.getRealTime(true, (error, time) => {
-        if (error) {
-            console.info(`Failed to get real time. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in getting real time : ${time}`);
-	});
+  systemDateTime.getRealTime(true, (error, time) => {
+    if (error) {
+      console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting real time : ${time}`);
+  });
 } catch(e) {
-    console.info(`Failed to get real time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -324,15 +324,15 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 ```js
 try {
-    systemDateTime.getRealTime((error, time) => {
-        if (error) {
-            console.info(`Failed to get real time. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in getting real time : ${time}`);
-	});
+  systemDateTime.getRealTime((error, time) => {
+    if (error) {
+      console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting real time : ${time}`);
+  });
 } catch(e) {
-    console.info(`Failed to get real time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -360,13 +360,13 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 ```js
 try {
-    systemDateTime.getRealTime().then((time) => {
-    	console.info(`Succeeded in getting real time : ${time}`);
-	}).catch((error) => {
-    	console.info(`Failed to get real time. message:${error.message}, code:${error.code}`);
-	});
+  systemDateTime.getRealTime().then((time) => {
+    console.info(`Succeeded in getting real time : ${time}`);
+  }).catch((error) => {
+    console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to get real time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -392,15 +392,15 @@ Sets the system date. This API uses an asynchronous callback to return the resul
 ```js
 let date = new Date();
 try {
-    systemDateTime.setDate(date, (error) => {
-        if (error) {
-            console.info(`Failed to set date. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in setting date.`);
-	});
+  systemDateTime.setDate(date, (error) => {
+    if (error) {
+      console.info(`Failed to set date. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in setting date.`);
+  });
 } catch(e) {
-    console.info(`Failed to set date. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to set date. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -431,13 +431,13 @@ Sets the system date. This API uses a promise to return the result.
 ```js
 let date = new Date(); 
 try {
-    systemDateTime.setDate(date).then(() => {
-    	console.info(`Succeeded in setting date.`);
-	}).catch((error) => {
-    	console.info(`Failed to set date. message:${error.message}, code:${error.code}`);
-	});
+  systemDateTime.setDate(date).then(() => {
+    console.info(`Succeeded in setting date.`);
+  }).catch((error) => {
+    console.info(`Failed to set date. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to set date. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to set date. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -459,15 +459,15 @@ Obtains the current system date. This API uses an asynchronous callback to retur
 
 ```js
 try {
-    systemDateTime.getDate((error, date) => {
-        if (error) {
-            console.info(`Failed to get date. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in getting date : ${date}`);;
-	});
+  systemDateTime.getDate((error, date) => {
+    if (error) {
+      console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting date : ${date}`);;
+  });
 } catch(e) {
-    console.info(`Failed to get date. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get date. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -489,13 +489,13 @@ Obtains the current system date. This API uses a promise to return the result.
 
 ```js
 try {
-    systemDateTime.getDate().then((date) => {
-    	console.info(`Succeeded in getting date : ${date}`);
-	}).catch((error) => {
-    	console.info(`Failed to get date. message:${error.message}, code:${error.code}`);
-	});
+  systemDateTime.getDate().then((date) => {
+    console.info(`Succeeded in getting date : ${date}`);
+  }).catch((error) => {
+    console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to get date. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get date. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -520,15 +520,15 @@ Sets the system time zone. This API uses an asynchronous callback to return the 
 
 ```js
 try {
-    systemDateTime.setTimezone('Asia/Shanghai', (error) => {
-        if (error) {
-            console.info(`Failed to set timezone. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in setting timezone.`);
-	});
+  systemDateTime.setTimezone('Asia/Shanghai', (error) => {
+    if (error) {
+      console.info(`Failed to set timezone. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in setting timezone.`);
+  });
 } catch(e) {
-    console.info(`Failed to set timezone. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to set timezone. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -558,13 +558,13 @@ Sets the system time zone. This API uses a promise to return the result.
 
 ```js
 try {
-    systemDateTime.setTimezone('Asia/Shanghai').then(() => {
-    	console.info(`Succeeded in setting timezone.`);
-	}).catch((error) => {
-    	console.info(`Failed to set timezone. message:${error.message}, code:${error.code}`);
-	});
+  systemDateTime.setTimezone('Asia/Shanghai').then(() => {
+    console.info(`Succeeded in setting timezone.`);
+  }).catch((error) => {
+    console.info(`Failed to set timezone. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to set timezone. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to set timezone. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -586,15 +586,15 @@ Obtains the system time zone. This API uses an asynchronous callback to return t
 
 ```js
 try {
-    systemDateTime.getTimezone((error, data) => {
-        if (error) {
-            console.info(`Failed to get timezone. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in get timezone : ${data}`);;
-	});
+  systemDateTime.getTimezone((error, data) => {
+    if (error) {
+      console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in get timezone : ${data}`);;
+  });
 } catch(e) {
-    console.info(`Failed to get timezone. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -616,13 +616,13 @@ Obtains the system time zone. This API uses a promise to return the result.
 
 ```js
 try {
-    systemDateTime.getTimezone().then((data) => {
-    	console.info(`Succeeded in getting timezone: ${data}`);
-	}).catch((error) => {
-    	console.info(`Failed to get timezone. message:${error.message}, code:${error.code}`);
-	});
+  systemDateTime.getTimezone().then((data) => {
+    console.info(`Succeeded in getting timezone: ${data}`);
+  }).catch((error) => {
+    console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to get timezone. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
 }
 ```
 

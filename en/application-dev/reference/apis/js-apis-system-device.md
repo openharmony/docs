@@ -1,4 +1,4 @@
-# @system.device
+# @system.device (Device Information)
 
 The **device** module provides APIs for checking information about the current device.
 

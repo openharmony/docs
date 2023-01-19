@@ -1,6 +1,6 @@
-# @ohos.animator
+# @ohos.animator (Animator)
 
-The **animator** module provides APIs for applying animation effects, including defining animations, starting animations, and playing animations in reverse order.
+The **Animator** module provides APIs for applying animation effects, including defining animations, starting animations, and playing animations in reverse order.
 
 > **NOTE**
 >

@@ -1,6 +1,6 @@
-# @ohos.accessibility.GesturePoint
+# @ohos.accessibility.GesturePoint (Gesture Point)
 
- The **GesturePoint** module provides APIs for creating gesture touch point information required for an accessibility application to inject gestures.
+The **GesturePoint** module provides APIs for creating gesture touch point information required for an accessibility application to inject gestures.
 
 > **NOTE**
 >
