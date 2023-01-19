@@ -69,6 +69,7 @@
   - [Native API的相关指导](napi/Readme-CN.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
+  - [调试工具](tools/Readme-CN.md)
 - 示例教程
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
