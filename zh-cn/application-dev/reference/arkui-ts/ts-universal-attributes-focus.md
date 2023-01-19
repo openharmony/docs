@@ -200,7 +200,7 @@ focusControl.requestFocus示例代码：
 使用focusContrl.requestFocus接口使指定组件获取焦点。
 ```ts
 // requestFocus.ets
-import prompt from '@ohos.prompt'
+import promptAction from '@ohos.promptAction';
 
 @Entry
 @Component
@@ -252,9 +252,9 @@ struct RequestFocusExample {
           .onClick(() => {
             var res = focusControl.requestFocus(this.selectId)      // 使选中的this.selectId的组件获焦
             if (res) {
-              prompt.showToast({message: 'Request success'})
+              promptAction.showToast({message: 'Request success'})
             } else {
-              prompt.showToast({message: 'Request failed'})
+              promptAction.showToast({message: 'Request failed'})
             }
           })
       }
