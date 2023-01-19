@@ -17,9 +17,9 @@
 | getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void<br/>getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&lt;T&gt; | 指定`Options`和`storeId`，创建并获取指定类型`KVStore`数据库。 |
 | put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void<br/>put(key: string, value: Uint8Array\|string\|number\|boolean): Promise&lt;void> | 插入和更新数据。                                             |
 | delete(key: string, callback: AsyncCallback&lt;void&gt;): void<br/>delete(key: string): Promise&lt;void> | 删除数据。                                                   |
-| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void<br/>get(key: string): Promise&lt;Uint8Array\|string\|boolean\|number> | 查询数据。                                                   |
+| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void<br/>get(key: string): Promise&lt;Uint8Array\|string\|boolean\|number> | 获取数据。                                                   |
 | on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void<br/>on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string,number]&gt;&gt;): void | 订阅数据库中数据的变化。                                     |
-| sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void | 在手动模式下，触发数据库同步。                               |
+| sync(deviceIdList: string[], mode: SyncMode, delayMs?: number): void | 在手动模式下，触发数据库同步。                               |
 
 ## 开发步骤
 
@@ -61,7 +61,7 @@
     context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666).then((data) => {
         console.info('success: ${data}');
     }).catch((error) => {
-        console.info('failed: ${error}');
+        console.error('failed: ${error}');
     })
     }
    
@@ -83,7 +83,7 @@
       context.requestPermissionsFromUser(permissions).then((data) => {
         console.log('success: ${data}');
       }).catch((error) => {
-        console.log('failed: ${error}');
+        console.error('failed: ${error}');
       });
     }
 
