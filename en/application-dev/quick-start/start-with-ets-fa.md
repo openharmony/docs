@@ -223,7 +223,10 @@ You can implement page redirection through the [page router](../reference/apis/j
            .height('5%')
            // Bind the onClick event to the Next button so that clicking the button redirects the user to the second page.
            .onClick(() => {
-             router.pushUrl({ url: 'pages/second' })
+             router.push({ url: 'pages/second' })
+             // In a project of API version 9, you can use the API below instead:
+             // router.pushUrl({ url: 'pages/second' })
+
            })
          }
          .width('100%')
