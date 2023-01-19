@@ -105,6 +105,14 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 | -------- | -------- |
 | Readonly&lt;[USBDevicePipe](#usbdevicepipe)&gt; | USB device pipe for data transfer.|
 
+**Error codes**
+
+For details about the error codes, see [USB Error Codes](../errorcodes/errorcode-usb.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 14400001 |Permission denied. Need call requestRight to get permission. |
+
 **Example**
 
 ```js

@@ -1864,7 +1864,7 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- |----------------------------------| -- | ------------------------------------------------------------ |
-| type | [AvoidAreaType](#avoidareatype7) | 是 | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。type为TYPE_SYSTEM_GESTURE，表示手势区域。type为TYPE_KEYBOARD，表示软键盘区域。 |
+| type | [AvoidAreaType](#avoidareatype7) | 是 | 表示规避区类型。 |
 
 **返回值：**
 
@@ -2500,7 +2500,7 @@ off(type: 'windowSizeChange', callback?: Callback&lt;Size&gt;): void
 | 参数名   | 类型                          | 必填 | 说明                                                     |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
 | type     | string                        | 是   | 监听事件，固定为'windowSizeChange'，即窗口尺寸变化事件。 |
-| callback | Callback&lt;[Size](#size)&gt; | 否   | 回调函数。返回当前的窗口尺寸。                           |
+| callback | Callback&lt;[Size](#size7)&gt; | 否   | 回调函数。返回当前的窗口尺寸。                           |
 
 **示例：**
 
@@ -3006,7 +3006,7 @@ setWindowColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;):
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ---------- | ------------------------- | -- | ----------- |
-| colorSpace | [ColorSpace](#colorspace) | 是 | 设置色域模式。 |
+| colorSpace | [ColorSpace](#colorspace8) | 是 | 设置色域模式。 |
 | callback   | AsyncCallback&lt;void&gt; | 是 | 回调函数。   |
 
 **错误码：**
@@ -3045,7 +3045,7 @@ setWindowColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ---------- | ------------------------- | -- | ------------- |
-| colorSpace | [ColorSpace](#colorspace) | 是 | 设置色域模式。 |
+| colorSpace | [ColorSpace](#colorspace8) | 是 | 设置色域模式。 |
 
 **返回值：**
 
@@ -3088,7 +3088,7 @@ getWindowColorSpace(): ColorSpace
 
 | 类型 | 说明 |
 | ------------------------- | ------------- |
-| [ColorSpace](#colorspace) | 当前色域模式。 |
+| [ColorSpace](#colorspace8) | 当前色域模式。 |
 
 **错误码：**
 
@@ -4615,7 +4615,7 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;
 
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- |-----------------------------------------------| ---- | ------------------------------------------------------------ |
-| type     | [AvoidAreaType](#avoidareatype7)              | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。type为TYPE_SYSTEM_GESTURE，表示手势区域。type为TYPE_KEYBOARD，表示软键盘区域。 |
+| type     | [AvoidAreaType](#avoidareatype7)              | 是   | 表示规避区类型。 |
 | callback | AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt; | 是   | 回调函数。返回窗口内容规避区域。                             |
 
 **示例：**
@@ -4647,7 +4647,7 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#av
 
 | 参数名 | 类型                               | 必填 | 说明                                                         |
 | ------ |----------------------------------| ---- | ------------------------------------------------------------ |
-| type   | [AvoidAreaType](#avoidareatype7) | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。type为TYPE_SYSTEM_GESTURE，表示手势区域。type为TYPE_KEYBOARD，表示软键盘区域。 |
+| type   | [AvoidAreaType](#avoidareatype7) | 是   | 表示规避区类型。 |
 
 **返回值：**
 
@@ -5205,7 +5205,7 @@ setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名     | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
-| colorSpace | [ColorSpace](#colorspace) | 是   | 设置色域模式。 |
+| colorSpace | [ColorSpace](#colorspace8) | 是   | 设置色域模式。 |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。   |
 
 **示例：**
@@ -5236,7 +5236,7 @@ setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
 | 参数名     | 类型                      | 必填 | 说明           |
 | ---------- | ------------------------- | ---- | -------------- |
-| colorSpace | [ColorSpace](#colorspace) | 是   | 设置色域模式。 |
+| colorSpace | [ColorSpace](#colorspace8) | 是   | 设置色域模式。 |
 
 **返回值：**
 
@@ -5271,7 +5271,7 @@ getColorSpace(callback: AsyncCallback&lt;ColorSpace&gt;): void
 
 | 参数名   | 类型                                           | 必填 | 说明                                                       |
 | -------- | ---------------------------------------------- | ---- | ---------------------------------------------------------- |
-| callback | AsyncCallback&lt;[ColorSpace](#colorspace)&gt; | 是   | 回调函数。当获取成功，err为undefined，data为当前色域模式。 |
+| callback | AsyncCallback&lt;[ColorSpace](#colorspace8)&gt; | 是   | 回调函数。当获取成功，err为undefined，data为当前色域模式。 |
 
 **示例：**
 
@@ -5301,7 +5301,7 @@ getColorSpace(): Promise&lt;ColorSpace&gt;
 
 | 类型                                     | 说明                            |
 | ---------------------------------------- | ------------------------------- |
-| Promise&lt;[ColorSpace](#colorspace)&gt; | Promise对象。返回当前色域模式。 |
+| Promise&lt;[ColorSpace](#colorspace8)&gt; | Promise对象。返回当前色域模式。 |
 
 **示例：**
 
