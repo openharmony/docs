@@ -81,14 +81,14 @@ You can set a USB device as the USB host to connect to other USB devices for dat
                     number: 1,
                     type: 3,
                     interfaceId: 0,
-                 }
-               ]
-             }
-           ]
-         }
-       ]
-     }
-   ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
     */
     ```
 
