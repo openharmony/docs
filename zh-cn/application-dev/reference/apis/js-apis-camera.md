@@ -484,11 +484,7 @@ on(type: 'cameraStatus', callback: AsyncCallback<CameraStatusInfo\>): void
 **示例：**
 
 ```js
-cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
-    if (err) {
-        console.error(`Failed to get cameraStatus callback. ${err.message}`);
-        return;
-    }
+cameraManager.on('cameraStatus', (cameraStatusInfo) => {
     console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.log(`status: ${cameraStatusInfo.status}`);
 })
@@ -514,11 +510,7 @@ on(type: 'cameraMute', callback: AsyncCallback<boolean\>): void
 **示例：**
 
 ```js
-cameraManager.on('cameraMute', (err, curMuetd) => {
-    if (err) {
-        console.error(`Failed to get cameraMute callback. ${err.message}`);
-        return;
-    }
+cameraManager.on('cameraMute', (curMuetd) => {
     let isMuted = curMuetd;
 })
 ```
@@ -642,7 +634,6 @@ open\(callback: AsyncCallback<void\>\): void
 ```js
 cameraInput.open((err) => {
     if (err) {
-        console.error(`Failed to open the camera. ${err.message}`);
         console.error(`Failed to open the camera. ${err.code}`);
         return;
     }
@@ -670,7 +661,6 @@ open(): Promise<void\>
 cameraInput.open().then(() => {
     console.log('Promise returned with camera opened.');
 }).catch((err) => {
-    console.log('Failed to open the camera '+ err.message);
     console.error(`Failed to open the camera. ${err.code}`);
 });
 ```
@@ -694,7 +684,6 @@ close\(callback: AsyncCallback<void\>\): void
 ```js
 cameraInput.close((err) => {
     if (err) {
-        console.error(`Failed to close the cameras. ${err.message}`);
         console.error(`Failed to close the cameras. ${err.code}`);
         return;
     }
@@ -722,7 +711,6 @@ close(): Promise<void\>
 cameraInput.close().then(() => {
     console.log('Promise returned with camera closed.');
 }).catch((err) => {
-    console.log('Failed to close the camera '+ err.message);
     console.error(`Failed to close the cameras. ${err.code}`);
 });
 ```
@@ -864,7 +852,6 @@ commitConfig(callback: AsyncCallback<void\>): void
 ```js
 captureSession.commitConfig((err) => {
     if (err) {
-        console.error(`Failed to commit the configuration. ${err.message}`);
         console.log('Failed to commitConfig '+ err.code);
         return;
     }
@@ -893,7 +880,6 @@ captureSession.commitConfig().then(() => {
     console.log('Promise returned to indicate the commit config success.');
 }).catch((err) => {
     // 失败返回错误码error.code并处理
-    console.log('Failed to commitConfig '+ err.message);
     console.log('Failed to commitConfig '+ err.code);
 });
 ```
@@ -1041,7 +1027,6 @@ start\(callback: AsyncCallback<void\>\): void
 ```js
 captureSession.start((err) => {
     if (err) {
-        console.error(`Failed to start the session ${err.message}`);
         console.error(`Failed to start the session ${err.code}`);
         return;
     }
@@ -1069,7 +1054,6 @@ start\(\): Promise<void\>
 captureSession.start().then(() => {
     console.log('Promise returned to indicate the session start success.');
 }).catch((err) => {
-    console.log('Failed to captureSession start '+ err.message);
     console.error(`Failed to start the session ${err.code}`);
 });
 ```
@@ -1093,7 +1077,6 @@ stop\(callback: AsyncCallback<void\>\): void
 ```js
 captureSession.stop((err) => {
     if (err) {
-        console.error(`Failed to stop the session ${err.message}`);
         console.error(`Failed to stop the session ${err.code}`);
         return;
     }
@@ -1121,7 +1104,6 @@ stop(): Promise<void\>
 captureSession.stop().then(() => {
     console.log('Promise returned to indicate the session stop success.');
 }).catch((err) => {
-    console.log('Failed to captureSession stop '+ err.message);
     console.error(`Failed to stop the session ${err.code}`);
 });
 ```
@@ -1145,7 +1127,6 @@ release\(callback: AsyncCallback<void\>\): void
 ```js
 captureSession.release((err) => {
     if (err) {
-        console.error(`Failed to release the CaptureSession instance ${err.message}`);
         console.error(`Failed to release the CaptureSession instance ${err.code}`);
         return;
     }
@@ -1173,7 +1154,6 @@ release(): Promise<void\>
 captureSession.release().then(() => {
     console.log('Promise returned to indicate that the CaptureSession instance is released successfully.');
 }).catch((err) => {
-    console.log('Failed to captureSession release '+ err.message);
     console.error(`Failed to release the CaptureSession instance ${err.code}`);
 });
 ```
@@ -1930,7 +1910,6 @@ start(callback: AsyncCallback<void\>): void
 ```js
 previewOutput.start((err) => {
     if (err) {
-        console.error(`Failed to start the previewOutput. ${err.message}`);
         console.error(`Failed to start the previewOutput. ${err.code}`);
         return;
     }
@@ -1958,7 +1937,6 @@ start(): Promise<void\>
 previewOutput.start().then(() => {
     console.log('Promise returned with previewOutput started.');
 }).catch((err) => {
-    console.log('Failed to previewOutput start '+ err.message);
     console.log('Failed to previewOutput start '+ err.code);
 });
 ```
@@ -1982,7 +1960,7 @@ stop(callback: AsyncCallback<void\>): void
 ```js
 previewOutput.stop((err) => {
     if (err) {
-        console.error(`Failed to stop the previewOutput. ${err.message}`);
+        console.error(`Failed to stop the previewOutput. ${err.code}`);
         return;
     }
     console.log('Callback returned with previewOutput stopped.');
@@ -2009,7 +1987,7 @@ stop(): Promise<void\>
 previewOutput.stop().then(() => {
     console.log('Callback returned with previewOutput stopped.');
 }).catch((err) => {
-    console.log('Failed to previewOutput stop '+ err.message);
+    console.log('Failed to previewOutput stop '+ err.code);
 });
 ```
 
@@ -2032,7 +2010,6 @@ release(callback: AsyncCallback<void\>): void
 ```js
 previewOutput.release((err) => {
     if (err) {
-        console.error(`Failed to release the PreviewOutput instance ${err.message}`);
         console.error(`Failed to release the PreviewOutput instance ${err.code}`);
         return;
     }
@@ -2060,7 +2037,6 @@ release(): Promise<void\>
 previewOutput.release().then(() => {
     console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
 }).catch((err) => {
-    console.log('Failed to previewOutput release '+ err.message);
     console.log('Failed to previewOutput release '+ err.code);
 });
 ```
@@ -2208,7 +2184,6 @@ capture(callback: AsyncCallback<void\>): void
 ```js
 photoOutput.capture((err) => {
     if (err) {
-        console.error(`Failed to capture the photo ${err.message}`);
         console.error(`Failed to capture the photo ${err.code}`);
         return;
     }
@@ -2236,7 +2211,6 @@ capture(): Promise<void\>
 photoOutput.capture().then(() => {
     console.log('Promise returned to indicate that photo capture request success.');
 }).catch((err) => {
-    console.log('Failed to photoOutput capture '+ err.message);
     console.log('Failed to photoOutput capture '+ err.code);
 });
 ```
@@ -2272,7 +2246,6 @@ let settings = {
 }
 photoOutput.capture(settings, (err) => {
     if (err) {
-        console.error(`Failed to capture the photo ${err.message}`);
         console.error(`Failed to capture the photo ${err.code}`);
         return;
     }
@@ -2307,7 +2280,6 @@ capture(setting?: PhotoCaptureSetting): Promise<void\>
 photoOutput.capture(settings).then(() => {
     console.log('Promise returned to indicate that photo capture request success.');
 }).catch((err) => {
-    console.log('Failed to photoOutput capture '+ err.message);
     console.log('Failed to photoOutput capture '+ err.code);
 });
 ```
@@ -2351,7 +2323,6 @@ release(callback: AsyncCallback<void\>): void
 ```js
 photoOutput.release((err) => {
     if (err) {
-        console.error(`Failed to release the PreviewOutput instance ${err.message}`);
         console.error(`Failed to release the PreviewOutput instance ${err.code}`);
         return;
     }
@@ -2379,7 +2350,6 @@ release(): Promise<void\>
 photoOutput.release().then(() => {
     console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
 }).catch((err) => {
-    console.log('Failed to photoOutput release '+ err.message);
     console.log('Failed to photoOutput release '+ err.code);
 });
 ```
@@ -2402,7 +2372,7 @@ on(type: 'captureStart', callback: AsyncCallback<number\>): void
 **示例：**
 
 ```js
-photoOutput.on('captureStart', (err, captureId) => {
+photoOutput.on('captureStart', (captureId) => {
     console.log(`photo capture stated, captureId : ${captureId}`);
 })
 ```
@@ -2425,7 +2395,7 @@ on(type: 'frameShutter', callback: AsyncCallback<FrameShutterInfo\>): void
 **示例：**
 
 ```js
-photoOutput.on('frameShutter', (err, frameShutterInfo) => {
+photoOutput.on('frameShutter', (frameShutterInfo) => {
     console.log(`photo capture end, captureId : ${frameShutterInfo.captureId}`);
     console.log(`Timestamp for frame : ${frameShutterInfo.timestamp}`);
 })
@@ -2449,7 +2419,7 @@ on(type: 'captureEnd', callback: AsyncCallback<CaptureEndInfo\>): void
 **示例：**
 
 ```js
-photoOutput.on('captureEnd', (err, captureEndInfo) => {
+photoOutput.on('captureEnd', (captureEndInfo) => {
     console.log(`photo capture end, captureId : ${captureEndInfo.captureId}`);
     console.log(`frameCount : ${captureEndInfo.frameCount}`);
 })
@@ -2473,7 +2443,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 **示例：**
 
 ```js
-photoOutput.on('error', (err, error) => {
+photoOutput.on('error', (error) => {
     console.log(`Photo output error code: ${error.code}`);
 })
 ```
@@ -2523,7 +2493,6 @@ start(callback: AsyncCallback<void\>): void
 ```js
 videoOutput.start((err) => {
     if (err) {
-        console.error(`Failed to start the video output ${err.message}`);
         console.error(`Failed to start the video output ${err.code}`);
         return;
     }
@@ -2552,7 +2521,6 @@ start(): Promise<void\>
 videoOutput.start().then(() => {
     console.log('Promise returned to indicate that start method execution success.');
 }).catch((err) => {
-    console.log('Failed to videoOutput start '+ err.message);
     console.log('Failed to videoOutput start '+ err.code);
 });
 ```
@@ -2576,7 +2544,7 @@ stop(callback: AsyncCallback<void\>): void
 ```js
 videoOutput.stop((err) => {
     if (err) {
-        console.error(`Failed to stop the video output ${err.message}`);
+        console.error(`Failed to stop the video output ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate the video output stop success.');
@@ -2603,7 +2571,7 @@ stop(): Promise<void\>
 videoOutput.stop().then(() => {
     console.log('Promise returned to indicate that stop method execution success.');
 }).catch((err) => {
-    console.log('Failed to videoOutput stop '+ err.message);
+    console.log('Failed to videoOutput stop '+ err.code);
 });
 ```
 
@@ -2626,7 +2594,6 @@ release(callback: AsyncCallback<void\>): void
 ```js
 videoOutput.release((err) => {
     if (err) {
-        console.error(`Failed to release the PreviewOutput instance ${err.message}`);
         console.error(`Failed to release the PreviewOutput instance ${err.code}`);
         return;
     }
@@ -2654,7 +2621,6 @@ release(): Promise<void\>
 videoOutput.release().then(() => {
     console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
 }).catch((err) => {
-    console.log('Failed to videoOutput release '+ err.message);
     console.log('Failed to videoOutput release '+ err.code);
 });
 ```
@@ -2751,7 +2717,6 @@ start(callback: AsyncCallback<void\>): void
 ```js
 metadataOutput.start((err) => {
     if (err) {
-        console.error(`Failed to start metadataOutput. ${err.message}`);
         console.error(`Failed to start metadataOutput. ${err.code}`);
         return;
     }
@@ -2779,7 +2744,6 @@ start(): Promise<void\>
 metadataOutput.start().then(() => {
     console.log('Callback returned with metadataOutput started.');
 }).catch((err) => {
-    console.log('Failed to metadataOutput start '+ err.message);
     console.log('Failed to metadataOutput start '+ err.code);
 });
 ```
@@ -2803,7 +2767,7 @@ stop(callback: AsyncCallback<void\>): void
 ```js
 metadataOutput.stop((err) => {
     if (err) {
-        console.error(`Failed to stop the metadataOutput. ${err.message}`);
+        console.error(`Failed to stop the metadataOutput. ${err.code}`);
         return;
     }
     console.log('Callback returned with metadataOutput stopped.');
@@ -2830,7 +2794,7 @@ stop(): Promise<void\>
 metadataOutput.stop().then(() => {
     console.log('Callback returned with metadataOutput stopped.');
 }).catch((err) => {
-    console.log('Failed to metadataOutput stop '+ err.message);
+    console.log('Failed to metadataOutput stop '+ err.code);
 });
 ```
 
