@@ -43,7 +43,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
     导入模块。
 
     ```ts
-    import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
+    import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
     ```
 
     实现WorkSchedulerExtension生命周期接口。
@@ -52,27 +52,27 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
     export default class workAbility extends WorkSchedulerExtensionAbility {
       // 延迟任务开始回调
       onWorkStart(workInfo) {
-        console.log(`onWorkStart CommonEvent publish start ${JSON.stringify(workInfo)}`)
+        console.log(`onWorkStart CommonEvent publish start ${JSON.stringify(workInfo)}`);
         // 发送升级通知
-        let notificationRequest = notification.getNotificationContentBasic('upgrade', upgradeMessage, '')
+        let notificationRequest = notification.getNotificationContentBasic('upgrade', upgradeMessage, '');
         notification.publish(notificationRequest, (err) => {
           if (err) {
-            console.log(`onWorkStart notification publish err ${JSON.stringify(err)}`)
+            console.log(`onWorkStart notification publish err ${JSON.stringify(err)}`);
           }
-          console.log(`onWorkStart notification publish success`)
-        })
+          console.log(`onWorkStart notification publish success`);
+        });
       }
 
       // 延迟任务结束回调
       onWorkStop(workInfo) {
         // 发送升级完成通知
-        let notificationRequest = notification.getNotificationContentBasic('upgrade', 'upgrade success', '')
+        let notificationRequest = notification.getNotificationContentBasic('upgrade', 'upgrade success', '');
         notification.publish(notificationRequest, (err) => {
           if (err) {
-            console.log(`onWorkStop notification publish err ${JSON.stringify(err)}`)
+            console.log(`onWorkStop notification publish err ${JSON.stringify(err)}`);
           }
-          console.log(`onWorkStop notification publish success`)
-        })
+          console.log(`onWorkStop notification publish success`);
+        });
       }
     }
     ```
@@ -83,7 +83,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
     导入模块。
 
     ```ts
-    import { workAbility } from '@ohos/library'
+    import { workAbility } from '@ohos/library';
     ```
 
     继承workAbility，实现WorkSchedulerExtension生命周期接口。
@@ -91,13 +91,13 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
     ```ts
     export default class WorkTest extends workAbility {
       onWorkStart(workInfo) {
-        console.log(`onWorkStartTest start ${JSON.stringify(workInfo)}`)
-        super.onWorkStart(workInfo)
+        console.log(`onWorkStartTest start ${JSON.stringify(workInfo)}`);
+        super.onWorkStart(workInfo);
       }
 
       onWorkStopTest(workInfo) {
-        super.onWorkStop(workInfo)
-        console.log(`onWorkStop value`)
+        super.onWorkStop(workInfo);
+        console.log(`onWorkStop value`);
       }
     }
     ```
@@ -109,7 +109,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
     导入模块。
 
     ```ts
-    import workScheduler from '@ohos.resourceschedule.workScheduler'
+    import workScheduler from '@ohos.resourceschedule.workScheduler';
     ```
 
     封装延迟任务注册、停止接口。
@@ -124,13 +124,13 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
       }
       // 注册延迟任务
       startWork(bundleName: string, abilityName: string) {
-        this.workInfo.bundleName = bundleName
-        this.workInfo.abilityName = abilityName
+        this.workInfo.bundleName = bundleName;
+        this.workInfo.abilityName = abilityName;
         try {
-          workScheduler.startWork(this.workInfo)
-          console.log(`startWork success`)
+          workScheduler.startWork(this.workInfo);
+          console.log(`startWork success`);
         } catch (error) {
-          Logger.error(TAG, `startWork startwork failed. code is ${error.code} message is ${error.message}`)
+          Logger.error(TAG, `startWork startwork failed. code is ${error.code} message is ${error.message}`);
           prompt.showToast({
             message: `${error.message}`
           })
@@ -139,10 +139,10 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
 
       // 停止延迟任务
       stopWork(bundleName: string, abilityName: string) {
-        this.workInfo.bundleName = bundleName
-        this.workInfo.abilityName = abilityName
-        workScheduler.stopWork(this.workInfo, false)
-        console.log(`stopWork`)
+        this.workInfo.bundleName = bundleName;
+        this.workInfo.abilityName = abilityName;
+        workScheduler.stopWork(this.workInfo, false);
+        console.log(`stopWork`);
       }
     }
     ```
@@ -152,7 +152,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
     导入模块。
 
     ```ts
-    import { workAbility } from '@ohos/library'
+    import { workAbility } from '@ohos/library';
     ```
 
     增加“升级”按钮，调用library封装的延迟任务注册接口，传入bundleName和abilityName，其中bilityName为WorkTest。
@@ -163,7 +163,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
       .height(40)
       .fontSize(30)
       .onClick(() => {
-        this.work.startWork('ohos.samples.workscheduler', 'WorkTest')
+        this.work.startWork('ohos.samples.workscheduler', 'WorkTest');
       })
     ```
 
@@ -171,7 +171,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
 
     ```ts
     aboutToDisappear() {
-      this.work.stopWork('ohos.samples.workscheduler', 'WorkTest')
+      this.work.stopWork('ohos.samples.workscheduler', 'WorkTest');
     }
     ```
 
