@@ -5,16 +5,16 @@
 
 The agent-powered reminder feature provides APIs for publishing background reminders. You can call these APIs to create scheduled reminders for countdown timers, calendar events, and alarm clocks. The APIs are encapsulated in the [reminderAgentManager](../reference/apis/js-apis-reminderAgentManager.md) class.
 
-**Table 1** Major APIs in reminderAgentManager
+  **Table 1** Major APIs in reminderAgentManager
 
-| API                                                          | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&gt;): void<br>publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | Publishes a scheduled reminder.<br>The maximum number of valid notifications (excluding expired ones that will not pop up again) is 30 for one application and 2000 for the entire system. |
-| cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void<br>cancelReminder(reminderId: number): Promise&lt;void&gt; | Cancels a specified reminder. (The value of **reminderId** is obtained from the return value of **publishReminder**.) |
-| getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): void<br>getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | Obtains all valid reminders set by the current application.  |
-| cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void<br>cancelAllReminders(): Promise&lt;void&gt; | Cancels all reminders set by the current application.        |
-| addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;): void<br>addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | Registers a **NotificationSlot** instance to be used by the reminder. |
-| removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&lt;void&gt;): void<br>removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | Removes a **NotificationSlot** instance of a specified type. |
+| API                                     | Description                                      |
+| ---------------------------------------- | ---------------------------------------- |
+| publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&gt;): void<br>publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | Publishes a scheduled reminder.<br>The maximum number of valid notifications (excluding expired ones that will not pop up again) is 30 for one application<br>and 2000 for the entire system.|
+| cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void<br>cancelReminder(reminderId: number): Promise&lt;void&gt; | Cancels a specified reminder. (The value of **reminderId** is obtained from the return value of **publishReminder**.)|
+| getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): void<br>getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | Obtains all valid reminders set by the current application.                       |
+| cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void<br>cancelAllReminders(): Promise&lt;void&gt; | Cancels all reminders set by the current application.                          |
+| addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;): void<br>addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | Registers a **NotificationSlot** instance to be used by the reminder.           |
+| removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&lt;void&gt;): void<br>removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | Removes a **NotificationSlot** instance of a specified type.                |
 
 
 ## How to Develop
@@ -27,7 +27,7 @@ The agent-powered reminder feature provides APIs for publishing background remin
 
    ```js
    import reminderAgentManager from '@ohos.reminderAgentManager';
-   import notificationManager from '@ohos.notificationManager';
+   import NotificationManager from '@ohos.notificationManager';
    ```
 
 4. Define a reminder agent. You can define the following types of reminder agents based on project requirements.
@@ -51,11 +51,11 @@ The agent-powered reminder feature provides APIs for publishing background remin
           pkgName: 'com.example.myapplication',
           abilityName: 'EntryAbility'
         },
-        title:'this is title', // Reminder title.
-        content:'this is content', // Reminder content.
-        expiredContent:'This reminder has expired', // Content to be displayed after the reminder expires.
+        title: 'this is title', // Reminder title.
+        title: 'this is title', // Reminder content.
+        expiredContent: 'this reminder has expired', // Content to be displayed after the reminder expires.
         notificationId: 100, // Notification ID used by the reminder. If there are reminders with the same notification ID, the later one will overwrite the earlier one.
-        slotType: notificationManager.SlotType.SOCIAL_COMMUNICATION // Type of the slot used by the reminder.
+        slotType: NotificationManager.SlotType.SOCIAL_COMMUNICATION // Type of the slot used by the reminder.
       }
       ```
    - Calendar event
@@ -94,12 +94,12 @@ The agent-powered reminder feature provides APIs for publishing background remin
         ringDuration: 5, // Ringing duration, in seconds.
         snoozeTimes: 2, // Number of reminder snooze times.
         timeInterval: 5, // Reminder snooze interval, in seconds.
-        title:'this is title', // Reminder title.
+        title: 'this is title', // Reminder title.
         content:'this is content', // Reminder content.
-        expiredContent:'This reminder has expired', // Content to be displayed after the reminder expires.
-        snoozeContent:'remind later', // Content to be displayed when the reminder is snoozed.
+        expiredContent: 'this reminder has expired', // Content to be displayed after the reminder expires.
+        snoozeContent: 'remind later', // Content to be displayed when the reminder is snoozed.
         notificationId: 100, // Notification ID used by the reminder. If there are reminders with the same notification ID, the later one will overwrite the earlier one.
-        slotType: notificationManager.SlotType.SOCIAL_COMMUNICATION // Type of the slot used by the reminder.
+        slotType: NotificationManager.SlotType.SOCIAL_COMMUNICATION // Type of the slot used by the reminder.
       }
       ```
    - Alarm clock
@@ -131,12 +131,12 @@ The agent-powered reminder feature provides APIs for publishing background remin
         ringDuration: 5, // Ringing duration, in seconds.
         snoozeTimes: 2, // Number of reminder snooze times.
         timeInterval: 5, // Reminder snooze interval, in seconds.
-        title:'this is title', // Reminder title.
-        content:'this is content', // Reminder content.
-        expiredContent:'This reminder has expired', // Content to be displayed after the reminder expires.
-        snoozeContent:'remind later', // Content to be displayed when the reminder is snoozed.
+        title: 'this is title', // Reminder title.
+        content: 'this is content', // Reminder content.
+        expiredContent: 'this reminder has expired', // Content to be displayed after the reminder expires.
+        snoozeContent: 'remind later', // Content to be displayed when the reminder is snoozed.
         notificationId: 99, // Notification ID used by the reminder. If there are reminders with the same notification ID, the later one will overwrite the earlier one.
-        slotType: notificationManager.SlotType.SOCIAL_COMMUNICATION // Type of the slot used by the reminder.
+        slotType: NotificationManager.SlotType.SOCIAL_COMMUNICATION // Type of the slot used by the reminder.
       }
       ```
 
@@ -175,7 +175,3 @@ The agent-powered reminder feature provides APIs for publishing background remin
        console.log("cancelReminder code: " + error.code + ", message: " + error.message);
    };
    ```
-
-
-
- <!--no_check--> 
