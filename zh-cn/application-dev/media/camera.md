@@ -66,11 +66,7 @@ if (!cameraManager) {
     return;
 } 
 // 监听相机状态变化
-cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
-    if (err) {
-        console.error(`Failed to get cameraStatus callback. ${err.message}`);
-        return;
-    }
+cameraManager.on('cameraStatus', (cameraStatusInfo) => {
     console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.log(`status: ${cameraStatusInfo.status}`);
 })
