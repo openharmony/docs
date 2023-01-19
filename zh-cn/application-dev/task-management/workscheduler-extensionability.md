@@ -60,7 +60,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
             console.log(`onWorkStart notification publish err ${JSON.stringify(err)}`);
           }
           console.log(`onWorkStart notification publish success`);
-        })
+        });
       }
 
       // 延迟任务结束回调
@@ -72,7 +72,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
             console.log(`onWorkStop notification publish err ${JSON.stringify(err)}`);
           }
           console.log(`onWorkStop notification publish success`);
-        })
+        });
       }
     }
     ```
