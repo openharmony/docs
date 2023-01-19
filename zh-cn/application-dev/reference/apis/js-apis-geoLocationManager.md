@@ -775,7 +775,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  import wantAgent from '@ohos.wantAgent';
+  import wantAgent from '@ohos.app.ability.wantAgent';
   
   let wantAgentInfo = {
       wants: [
@@ -833,7 +833,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  import wantAgent from '@ohos.wantAgent';
+  import wantAgent from '@ohos.app.ability.wantAgent';
   
   let wantAgentInfo = {
       wants: [

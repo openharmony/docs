@@ -1,4 +1,4 @@
-# @ohos.enterprise.adminManager
+# @ohos.enterprise.adminManager (Enterprise Device Management)
 
 The **adminManager** module provides enterprise device management capabilities so that devices have the custom capabilities required in enterprise settings.
 
@@ -48,7 +48,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 let enterpriseInfo = {
     name: "enterprise name",
@@ -100,7 +100,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 let enterpriseInfo = {
     name: "enterprise name",
@@ -157,7 +157,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 let enterpriseInfo = {
     name: "enterprise name",
@@ -324,7 +324,7 @@ Disables a device super administrator application based on the specified bundle 
 
 For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                          |
+| ID| Error Message                                                          |   
 | ------- | ----------------------------------------------------------------- |
 | 9200005 | failed to disable the administrator application of the device.    |
 
@@ -582,7 +582,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 let enterpriseInfo = {
     name: "enterprise name",
@@ -635,7 +635,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 let enterpriseInfo = {
     name: "enterprise name",
@@ -676,7 +676,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 adminManager.getEnterpriseInfo(wantTemp, (error, result) => {
     if (error != null) {
@@ -723,7 +723,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 adminManager.getEnterpriseInfo(wantTemp).then((result) => {
     console.log(result.name);

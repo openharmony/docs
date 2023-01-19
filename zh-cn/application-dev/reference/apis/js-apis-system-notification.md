@@ -9,7 +9,7 @@
 ## 导入模块
 
 
-```
+```ts
 import notification from '@system.notification';
 ```
 

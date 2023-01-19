@@ -73,10 +73,10 @@ FormProvider类具体的API介绍详见[接口文档](../reference/apis/js-apis-
 1. 导入相关模块
 
    ```javascript
-   import FormExtension from '@ohos.application.FormExtension'
-   import formBindingData from '@ohos.application.formBindingData'
-   import formInfo from '@ohos.application.formInfo'
-   import formProvider from '@ohos.application.formProvider'
+   import FormExtension from '@ohos.app.ability.FormExtension';
+   import formBindingData from '@ohos.app.form.formBindingData';
+   import formInfo from '@ohos.app.form.formInfo';
+   import formProvider from '@ohos.app.form.formProvider';
    ```
 
 2. 实现FormExtension生命周期接口

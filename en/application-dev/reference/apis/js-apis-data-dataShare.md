@@ -1,4 +1,4 @@
-# @ohos.data.dataShare
+# @ohos.data.dataShare (DataShare)
 
 The **DataShare** module allows an application to manage its own data and share data with other applications on the same device.
 

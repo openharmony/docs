@@ -1,4 +1,4 @@
-# @ohos.app.ability.quickFixManager
+# @ohos.app.ability.quickFixManager (quickFixManager)
 
 The **quickFixManager** module provides APIs for quick fix. With quick fix, you can fix bugs in your application by applying patches, which is more efficient than by updating the entire application.
 
@@ -36,7 +36,7 @@ Defines the quick fix information at the application level.
 
 | Name       | Type                | Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| bundleName    | string               | Yes  | Bundle name of the application.                              |
+| bundleName    | string               | Yes  | Bundle name.                      |
 | bundleVersionCode    | number               | Yes  | Internal version number of the application.                              |
 | bundleVersionName    | string               | Yes  | Version number of the application that is shown to users.                              |
 | quickFixVersionCode    | number               | Yes  | Version code of the quick fix patch package.                              |
@@ -65,8 +65,6 @@ Applies a quick fix patch. This API uses an asynchronous callback to return the 
 **Example**
     
 ```ts
-  import quickFixManager from '@ohos.app.ability.quickFixManager'
-
   try {
     let hapModuleQuickFixFiles = ["/data/storage/el2/base/entry.hqf"]
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
@@ -108,8 +106,6 @@ Applies a quick fix patch. This API uses a promise to return the result.
 **Example**
     
 ```ts
-  import quickFixManager from '@ohos.app.ability.quickFixManager'
-
   let hapModuleQuickFixFiles = ["/data/storage/el2/base/entry.hqf"]
   try {
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
@@ -136,16 +132,14 @@ Obtains the quick fix information of the application. This API uses an asynchron
 
 **Parameters**
 
-  | Parameter| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes|Bundle name of the application. | 
-  | callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Yes| Callback used to return the quick fix information.| 
+| Parameter| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes|Bundle name. |
+| callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Yes| Callback used to return the quick fix information.|
 
 **Example**
     
 ```ts
-  import quickFixManager from '@ohos.app.ability.quickFixManager'
-
   try {
     let bundleName = "bundleName"
     quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
@@ -174,9 +168,9 @@ Obtains the quick fix information of the application. This API uses a promise to
 
 **Parameters**
 
-  | Parameter| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Bundle name of the application. | 
+| Parameter| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name.|
 
 **Return value**
 
@@ -187,8 +181,6 @@ Obtains the quick fix information of the application. This API uses a promise to
 **Example**
     
   ```ts 
-  import quickFixManager from '@ohos.app.ability.quickFixManager'
-
   try {
     let bundleName = "bundleName"
     quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {
@@ -199,4 +191,4 @@ Obtains the quick fix information of the application. This API uses a promise to
   } catch (paramError) {
     console.log("error: " + paramError.code + ", " + paramError.message);
   }
-```
+  ```

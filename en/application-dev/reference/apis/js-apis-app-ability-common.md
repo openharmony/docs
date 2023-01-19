@@ -1,4 +1,4 @@
-# @ohos.app.ability.common
+# @ohos.app.ability.common (Context)
 
 The **Common** module provides all level-2 module APIs for developers to export.
 
@@ -15,21 +15,21 @@ import common from '@ohos.app.ability.common'
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name       | Type                | Mandatory| Description                                                        |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| UIAbilityContext    | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)               | No  | Level-2 module **UIAbilityContext**.                               |
-| AbilityStageContext   | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)               | No  | Level-2 module **AbilityStageContext**.|
-| ApplicationContext   | [ApplicationContext](js-apis-inner-application-applicationContext.md)               | No  | Level-2 module **ApplicationContext**.|
-| BaseContext   | [BaseContext](js-apis-inner-application-baseContext.md)               | No  | Level-2 module **BaseContext**.|
-| Context   | [Context](js-apis-inner-application-context.md)               | No  | Level-2 module **Context**.|
-| ExtensionContext   | [ExtensionContext](js-apis-inner-application-extensionContext.md)               | No  | Level-2 module **ExtensionContext**.|
-| FormExtensionContext   | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)               | No  | Level-2 module **FormExtensionContext**.|
-| AreaMode   | [AreaMode](#areamode)               | No  | Enumerated values of **AreaMode**.|
-| EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | No  | Level-2 module **EventHub**.|
-| PermissionRequestResult   | [PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)               | No  | Level-2 module **PermissionRequestResult**.|
-| PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#PacMap)               | No  | Level-2 module **PacMap**.|
-| AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | No  | Level-2 module **AbilityResult**.|
-| ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | No  | Level-2 module **ConnectOptions**.|
+| Name       | Type                | Description                                                        |
+| ----------- | -------------------- | ------------------------------------------------------------ |
+| UIAbilityContext    | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)               | Level-2 module **UIAbilityContext**.                               |
+| AbilityStageContext   | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)               | Level-2 module **AbilityStageContext**.|
+| ApplicationContext   | [ApplicationContext](js-apis-inner-application-applicationContext.md)               | Level-2 module **ApplicationContext**.|
+| BaseContext   | [BaseContext](js-apis-inner-application-baseContext.md)               | Level-2 module **BaseContext**.|
+| Context   | [Context](js-apis-inner-application-context.md)               | Level-2 module **Context**.|
+| ExtensionContext   | [ExtensionContext](js-apis-inner-application-extensionContext.md)               | Level-2 module **ExtensionContext**.|
+| FormExtensionContext   | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)               | Level-2 module **FormExtensionContext**.|
+| AreaMode   | [AreaMode](#areamode)               | Enumerated values of **AreaMode**.|
+| EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | Level-2 module **EventHub**.|
+| PermissionRequestResult   | [PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)               | Level-2 module **PermissionRequestResult**.|
+| PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#PacMap)               | Level-2 module **PacMap**.|
+| AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | Level-2 module **AbilityResult**.|
+| ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | Level-2 module **ConnectOptions**.|
 
 **Example**
 ```ts
@@ -52,11 +52,11 @@ let connectOptions: common.ConnectOptions;
 
 ## AreaMode
 
-Defines the area where the file to be access is located. Each area has its own content.
+Enumerates the data encryption levels.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name           | Value   | Description           |
 | --------------- | ---- | --------------- |
-| EL1             | 0    | Device-level encryption area.  |
-| EL2             | 1    | User credential encryption area. The default value is **EL2**.|
+| EL1             | 0    | Device-level encryption area, which is accessible after the device is powered on.  |
+| EL2             | 1    | User-level encryption area, which is accessible only after the device is powered on and the password is entered (for the first time).|

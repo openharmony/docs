@@ -7,3 +7,4 @@
 
 - File Access Framework
   - [File Access Framework Overview](file-access-framework-overview.md)
+- [FilePicker Guide](filepicker-guidelines.md)

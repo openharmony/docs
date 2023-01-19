@@ -1,6 +1,6 @@
 # MissionDeviceInfo
 
-The **MissionDeviceInfo** module defines the parameters required for registering a listener.
+The **MissionDeviceInfo** module defines the parameters required for registering a listener. It can be used as an input parameter in [registerMissionListener](js-apis-distributedMissionManager.md#distributedmissionmanagerregistermissionlistener).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 

@@ -94,7 +94,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 **示例：**
 
   ```ts
-  import formBindingData from '@ohos.application.formBindingData';
+  import formBindingData from '@ohos.app.form.formBindingData';
   import formProvider from '@ohos.app.form.formProvider';
 
   let formId = "12400633174999288";

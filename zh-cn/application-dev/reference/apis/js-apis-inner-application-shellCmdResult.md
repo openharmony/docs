@@ -19,7 +19,7 @@
 
 **示例：**
 ```ts
-import AbilityDelegatorRegistry from "@ohos.application.abilityDelegatorRegistry";
+import AbilityDelegatorRegistry from "@ohos.app.ability.abilityDelegatorRegistry";
 let abilityDelegator;
 let cmd = "cmd";
 

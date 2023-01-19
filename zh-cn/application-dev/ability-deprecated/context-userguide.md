@@ -283,7 +283,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // pages/index.ets
-import context from '@ohos.application.context'
+import context from '@ohos.app.ability.context'
 
 type Context = context.Context
 

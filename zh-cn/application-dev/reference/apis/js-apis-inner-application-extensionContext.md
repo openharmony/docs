@@ -31,8 +31,9 @@ ExtensionContext主要用于查询所属Extension的信息、Module的配置信�
 
 三个Module内都定义一个相同名称的ServiceExtension：
 ```ts
-import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility'
-import Want from '@ohos.application.Want'
+import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+
 export default class TheServiceExtension extends ServiceExtension {
     onCreate(want:Want) {
         console.log('ServiceAbility onCreate, want: ' + want.abilityName);

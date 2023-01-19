@@ -242,7 +242,7 @@ For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode
 
 ## tag.getMifareClassic<sup>9+</sup>
 
-getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfctech.md#mifareclassictag-9)
+getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfctech.md#mifareclassictag9)
 
 Obtains a **MifareClassicTag** object, which allows access to the tags that use MIFARE Classic.
 
@@ -258,7 +258,7 @@ Obtains a **MifareClassicTag** object, which allows access to the tags that use 
 
 | **Type**| **Description**                         |
 | ----------------- | ------------------------|
-| [MifareClassicTag](js-apis-nfctech.md#mifareclassictag-9)  | **MifareClassicTag** object obtained.|
+| [MifareClassicTag](js-apis-nfctech.md#mifareclassictag9)  | **MifareClassicTag** object obtained.|
 
 **Error codes**
 

@@ -11,7 +11,6 @@ import Url from '@ohos.url'
 ```
 ## URLParams<sup>9+</sup>
 
-
 ### constructor<sup>9+</sup>
 
 constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLSearchParams)
@@ -32,7 +31,7 @@ A constructor used to create a **URLParams** instance.
 let objectParams = new Url.URLParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
 let objectParams1 = new Url.URLParams({"fod" : '1' , "bard" : '2'});
 let objectParams2 = new Url.URLParams('?fod=1&bard=2');
-let urlObject = new Url.URL('https://developer.mozilla.org/?fod=1&bard=2');
+let urlObject = Url.URL.parseURL('https://developer.mozilla.org/?fod=1&bard=2');
 let params = new Url.URLParams(urlObject.search);
 ```
 
@@ -55,7 +54,7 @@ Appends a key-value pair into the query string.
 **Example**
 
 ```js
-let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let urlObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new Url.URLParams(urlObject.search.slice(1));
 paramsObject.append('fod', '3');
 ```
@@ -78,9 +77,9 @@ Deletes key-value pairs of the specified key.
 **Example**
 
 ```js
-let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsobject = new Url.URLParams(urlObject.search.slice(1));
-paramsobject.delete('fod');
+let urlObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
+let paramsObject = new Url.URLParams(urlObject.search.slice(1));
+paramsObject.delete('fod');
 ```
 
 
@@ -88,7 +87,7 @@ paramsobject.delete('fod');
 
 getAll(name: string): string[]
 
-Obtains all the key-value pairs based on the specified key.
+Obtains all the key-value pairs based on the specified name.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -102,12 +101,12 @@ Obtains all the key-value pairs based on the specified key.
 
 | Type| Description|
 | -------- | -------- |
-| string[] | All key-value pairs matching the specified key.|
+| string[] | Key-value pairs obtained.|
 
 **Example**
 
 ```js
-let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let urlObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new Url.URLParams(urlObject.search.slice(1));
 params.append('fod', '3'); // Add a second value for the fod parameter.
 console.log(params.getAll('fod').toString()) // Output ["1","3"].
@@ -132,7 +131,7 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 ```js
 let searchParamsObject = new Url.URLParams("keyName1=valueName1&keyName2=valueName2"); 
-for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pairs
+for (var pair of searchParamsObject.entries()) { // Show keyName/valueName pairs
     console.log(pair[0]+ ', '+ pair[1]);
 }
 ```
@@ -164,9 +163,9 @@ Traverses the key-value pairs in the **URLSearchParams** instance by using a cal
 **Example**
 
 ```js
-const myURLObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2'); 
-myURLObject.searchParams.forEach((value, name, searchParams) => {  
-    console.log(name, value, myURLObject.searchParams === searchParams);
+const myURLObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2'); 
+myURLObject.params.forEach((value, name, searchParams) => {  
+    console.log(name, value, myURLObject.params === searchParams);
 });
 ```
 
@@ -224,7 +223,7 @@ Checks whether a key has a value.
 **Example**
 
 ```js
-let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let urlObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new Url.URLParams(urlObject.search.slice(1)); 
 paramsObject.has('bard') === true;
 ```
@@ -248,7 +247,7 @@ Sets the value for a key. If key-value pairs matching the specified key exist, t
 **Example**
 
 ```js
-let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let urlObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new Url.URLParams(urlObject.search.slice(1));
 paramsObject.set('baz', '3'); // Add a third parameter.
 ```
@@ -360,7 +359,7 @@ Obtains search parameters that are serialized as a string and, if necessary, per
 **Example**
 
 ```js
-let url = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let url = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new Url.URLParams(url.search.slice(1)); 
 params.append('fod', '3');
 console.log(params.toString());
@@ -384,19 +383,19 @@ console.log(params.toString());
 | port | string | Yes| Yes| Port in a URL.|
 | protocol | string | Yes| Yes| Protocol in a URL.|
 | search | string | Yes| Yes| Serialized query string in a URL.|
-| searchParams | URLSearchParams | Yes| No| **URLSearchParams** object allowing access to the query parameters in a URL.|
-| URLParams | URLParams | Yes| No| **URLParams** object allowing access to the query parameters in a URL.|
+| searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | Yes| No| **URLSearchParams** object allowing access to the query parameters in a URL.<br>- **NOTE**: This attribute is supported since API version 7 and is deprecated since API version 9. You are advised to use params<sup>9+</sup> instead.|
+| params<sup>9+</sup> | [URLParams](#urlparams9) | Yes| No| **URLParams** object allowing access to the query parameters in a URL.|
 | username | string | Yes| Yes| Username in a URL.|
 
 ### constructor<sup>(deprecated)</sup>
 
-constructor(url: string, base?: string | URL)
-
-Creates a URL.
-
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [parseURL<sup>9+</sup>](#parseurl9) instead.
+
+constructor(url: string, base?: string | URL)
+
+Creates a URL.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -410,13 +409,13 @@ Creates a URL.
 **Example**
 
 ```js
-let mm = 'http://username:password@host:8080';
-let a = new Url.URL("/", mm); // Output 'http://username:password@host:8080/';
-let b = new Url.URL(mm); // Output 'http://username:password@host:8080/';
-new Url.URL('path/path1', b); // Output 'http://username:password@host:8080/path/path1';
-let c = new Url.URL('/path/path1', b);  // Output 'http://username:password@host:8080/path/path1';
-new Url.URL('/path/path1', c); // Output 'http://username:password@host:8080/path/path1';
-new Url.URL('/path/path1', a); // Output 'http://username:password@host:8080/path/path1';
+let mm = 'https://username:password@host:8080';
+let a = new Url.URL("/", mm); // Output 'https://username:password@host:8080/';
+let b = new Url.URL(mm); // Output 'https://username:password@host:8080/';
+new Url.URL('path/path1', b); // Output 'https://username:password@host:8080/path/path1';
+let c = new Url.URL('/path/path1', b);  // Output 'https://username:password@host:8080/path/path1'; 
+new Url.URL('/path/path1', c); // Output 'https://username:password@host:8080/path/path1';
+new Url.URL('/path/path1', a); // Output 'https://username:password@host:8080/path/path1';
 new Url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
 new Url.URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
 new Url.URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
@@ -424,8 +423,16 @@ new Url.URL('https://www.example.com', ); // Output https://www.example.com/
 new Url.URL('https://www.example.com', b); // Output https://www.example.com/
 ```
 
-### parseURL<sup>9+</sup>
+### constructor<sup>9+</sup>
 
+constructor()
+
+A no-argument constructor used to create a URL. It returns a **URL** object after **parseURL** is called. It is not used independently.
+
+**System capability**: SystemCapability.Utils.Lang
+
+### parseURL<sup>9+</sup>
+                                            
 static parseURL(url : string, base?: string | URL): URL
 
 Parses a URL.
@@ -447,11 +454,13 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | -------- | -------- |
 | 10200002 | Invalid url string. |
 
+
 **Example**
 
 ```js
-let mm = 'http://username:password@host:8080';
-Url.URL.parseURL(mm); // Output 'http://username:password@host:8080/';
+let mm = 'https://username:password@host:8080';
+let url = Url.URL.parseURL(mm); 
+url.toString(); // Output 'https://username:password@host:8080/';
 ```
 
 ### tostring
@@ -471,10 +480,9 @@ Converts the parsed URL into a string.
 **Example**
 
 ```js
-const url = new Url.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const url = Url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 url.toString();
 ```
-
 
 ### toJSON
 
@@ -492,7 +500,7 @@ Converts the parsed URL into a JSON string.
 
 **Example**
 ```js
-const url = new Url.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const url = Url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 url.toJSON();
 ```
 
@@ -634,7 +642,7 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 ```js
 let searchParamsObject = new Url.URLSearchParams("keyName1=valueName1&keyName2=valueName2"); 
-for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pairs
+for (var pair of searchParamsObject.entries()) { // Show keyName/valueName pairs
     console.log(pair[0]+ ', '+ pair[1]);
 }
 ```
@@ -657,7 +665,7 @@ Traverses the key-value pairs in the **URLSearchParams** instance by using a cal
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the key-value pairs in the **URLSearchParams** instance.|
-| thisArg | Object | No| Value to use when **callbackFn** is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
 
 **Table 1** callbackFn parameter description
 
@@ -901,127 +909,5 @@ let url = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new Url.URLSearchParams(url.search.slice(1)); 
 params.append('fod', '3');
 console.log(params.toString());
-```
-
-## URL
-
-### Attributes
-
-**System capability**: SystemCapability.Utils.Lang
-
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| hash | string | Yes| Yes| String that contains a harsh mark (#) followed by the fragment identifier of a URL.|
-| host | string | Yes| Yes| Host information in a URL.|
-| hostname | string | Yes| Yes| Hostname (without the port) in a URL.|
-| href | string | Yes| Yes| String that contains the whole URL.|
-| origin | string | Yes| No| Read-only string that contains the Unicode serialization of the origin of the represented URL.|
-| password | string | Yes| Yes| Password in a URL.|
-| pathname | string | Yes| Yes| Path in a URL.|
-| port | string | Yes| Yes| Port in a URL.|
-| protocol | string | Yes| Yes| Protocol in a URL.|
-| search | string | Yes| Yes| Serialized query string in a URL.|
-| searchParams | URLSearchParams | Yes| No| **URLSearchParams** object allowing access to the query parameters in a URL.|
-| URLParams | URLParams | Yes| No| **URLParams** object allowing access to the query parameters in a URL.|
-| username | string | Yes| Yes| Username in a URL.|
-
-### constructor<sup>(deprecated)</sup>
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [parseURL<sup>9+</sup>](#parseurl9) instead.
-
-constructor(url: string, base?: string | URL)
-
-Creates a URL.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| url | string | Yes| Input object.|
-| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object|
-
-**Example**
-
-```js
-let mm = 'https://username:password@host:8080';
-let a = new Url.URL("/", mm); // Output 'https://username:password@host:8080/';
-let b = new Url.URL(mm); // Output 'https://username:password@host:8080/';
-new Url.URL('path/path1', b); // Output 'https://username:password@host:8080/path/path1';
-let c = new Url.URL('/path/path1', b);  // Output 'https://username:password@host:8080/path/path1'; 
-new Url.URL('/path/path1', c); // Output 'https://username:password@host:8080/path/path1';
-new Url.URL('/path/path1', a); // Output 'https://username:password@host:8080/path/path1';
-new Url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
-new Url.URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
-new Url.URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
-new Url.URL('https://www.example.com', ); // Output https://www.example.com/
-new Url.URL('https://www.example.com', b); // Output https://www.example.com/
-```
-
-### parseURL<sup>9+</sup>
-
-static parseURL(url : string, base?: string | URL): URL
-
-Parses a URL.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| url | string | Yes| Input object.|
-| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object|
-
-**Example**
-
-```js
-let mm = 'https://username:password@host:8080';
-Url.URL.parseURL(mm); // Output 'https://username:password@host:8080/';
-```
-
-### tostring
-
-toString(): string
-
-Converts the parsed URL into a string.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| string | Website address in a serialized string.|
-
-**Example**
-
-```js
-const url = new Url.URL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toString();
-```
-
-
-### toJSON
-
-toJSON(): string
-
-Converts the parsed URL into a JSON string.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| string | Website address in a serialized string.|
-
-**Example**
-```js
-const url = new Url.URL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toJSON();
 ```
 <!--no_check-->

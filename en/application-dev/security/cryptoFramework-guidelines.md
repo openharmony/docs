@@ -32,10 +32,10 @@ The table below describes the APIs used in this guide.
 |AsyKeyGenerator|generateKeyPair() : Promise\<KeyPair>|Generates an asymmetric key pair randomly. This API uses a promise to return the result.|
 |SymKeyGenerator|generateSymKey(callback : AsyncCallback\<SymKey>) : void|Generates a symmetric key randomly. This API uses an asynchronous callback to return the result.|
 |SymKeyGenerator|generateSymKey() : Promise\<SymKey>|Generates a symmetric key randomly. This API uses a promise to return the result.|
-| AsyKeyGenerator          | convertKey(pubKey : DataBlob, priKey : DataBlob, callback : AsyncCallback\<KeyPair>) : void | Converts binary data into a key pair. This API uses an asynchronous callback to return the result.<br>(**pubKey** or **priKey** can be **null**. That is, you can pass in only **pubKey** or **priKey**. As a result, the return **KeyPair** instance contains only the public or private key.) |
-| AsyKeyGenerator          | convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair> | Converts the binary public key and private key data into a key pair. This API uses a promise to return the result.<br>(**pubKey** or **priKey** can be **null**. That is, you can pass in only **pubKey** or **priKey**. As a result, the returned **KeyPair** instance contains only the public or private key.) |
-| SymKeyGenerator         | convertKey(key : DataBlob, callback : AsyncCallback\<SymKey>) : void| Converts binary data into a symmetric key. This API uses an asynchronous callback to return the result.|
-| SymKeyGenerator         |convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair>| Converts binary data into a symmetric key. This API uses a promise to return the result.|
+| AsyKeyGenerator          | convertKey(pubKey : DataBlob, priKey : DataBlob, callback : AsyncCallback\<KeyPair>) : void | Converts the binary data into a key pair. This API uses an asynchronous callback to return the result.<br>(**pubKey** or **priKey** can be **null**. That is, you can pass in only **pubKey** or **priKey**. As a result, the return **KeyPair** instance contains only the public or private key.) |
+| AsyKeyGenerator          | convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair> | Converts the binary data into a key pair. This API uses a promise to return the result.<br>(**pubKey** or **priKey** can be **null**. That is, you can pass in only **pubKey** or **priKey**. As a result, the returned **KeyPair** instance contains only the public or private key.) |
+| SymKeyGenerator         | convertKey(key : DataBlob, callback : AsyncCallback\<SymKey>) : void| Converts the binary data into a symmetric key. This API uses an asynchronous callback to return the result. |
+| SymKeyGenerator         |convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair>| Converts the binary data into a symmetric key. This API uses a promise to return the result. |
 | Key | getEncoded() : DataBlob;  | Obtains the binary data of a key. (The child class instances of **Key** include **SymKey**, **PubKey**, and **PriKey**.)|
 
 **How to Develop**
@@ -121,11 +121,11 @@ function convertAsyKey() {
 }
 ```
 
-**NOTE**
+> **NOTE**
+>
+> The public key returned by **convertKey()** must be in the DER format complying with X.509 specifications, and the private key must be in the DER format complying with PKCS #8 specifications.
 
-The public key returned by **convertKey()** must be in the DER format complying with X.509 specifications, and the private key must be in the DER format complying with PKCS #8 specifications.
-
-Example 4: Generate an asymmetric key pair from the binary ECC key data.
+ Example 4: Generate an asymmetric key pair from the binary ECC key data.
 
 1. Obtain the ECC binary key data and encapsulate it into a **DataBlob** instance.
 2. Call **convertKey()** to convert the key binary data (data of the private or public key, or both) passed in to a **KeyPair** instance.
@@ -264,14 +264,14 @@ function stringToUint8Array(str) {
   return new Uint8Array(arr);
 }
 
-// Convert byte streams into strings in plaintext.
+// Output the byte streams in hexadecimal format.
 function uint8ArrayToShowStr(uint8Array) {
   return Array.prototype.map
     .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
     .join('');
 }
 
-// Output the byte streams in hexadecimal format.
+// Convert byte streams into strings in plaintext.
 function uint8ArrayToString(array) {
   let arrayString = '';
   for (let i = 0; i < array.length; i++) {
@@ -383,14 +383,14 @@ function stringToUint8Array(str) {
   return new Uint8Array(arr);
 }
 
-// Convert byte streams into strings in plaintext.
+// Output the byte streams in hexadecimal format.
 function uint8ArrayToShowStr(uint8Array) {
   return Array.prototype.map
     .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
     .join('');
 }
 
-// Output the byte streams in hexadecimal format.
+// Convert byte streams into strings in plaintext.
 function uint8ArrayToString(array) {
   let arrayString = '';
   for (let i = 0; i < array.length; i++) {
@@ -492,17 +492,9 @@ function test3DesEcb() {
 
 Example 2: Encrypt and decrypt data using an asymmetric key pair.
 
-1. Generate an RSA key pair. 
-
-   Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an RSA asymmetric key pair.
-
-2. Create a **Cipher** instance.
-
-   Call **createCipher()** to create a **Cipher** instance, and set the key and encryption/decryption mode.
-
-3. Perform encryption and decryption operations. 
-
-   Call **doFinal()** provided by the **Cipher** instance to encrypt data or decrypt data.
+1. Generate an RSA key pair.<br> Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an RSA asymmetric key pair.
+2. Create a **Cipher** instance.<br> Call **createCipher()** to create a **Cipher** instance, and set the key and encryption/decryption mode.
+3. Perform encryption and decryption operations.<br> Call **doFinal()** provided by the **Cipher** instance to encrypt data or decrypt data.
 
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
@@ -548,19 +540,19 @@ function encryptMessageCallback() {
 }
 ```
 
-**NOTE**
-
-- In RSA encryption and decryption, **init()** cannot be repeatedly called to initialize the **Cipher** instance. You must create a **Cipher** instance for each of encryption and decryption.
-- The RSA encryption has a limit on the length of the plaintext to be encrypted. For details, see "Basic Concepts" in [Crypto Framework Overview](cryptoFramework-overview.md).
-- In RSA decryption, the length of the ciphertext to be decrypted each time is the number of bits of the RSA key divided by 8.
+> **NOTE**
+>
+> - In RSA encryption and decryption, **init()** cannot be repeatedly called to initialize the **Cipher** instance. You must create a **Cipher** instance for each of encryption and decryption.
+> - The RSA encryption has a limit on the length of the plaintext to be encrypted. For details, see "Basic Concepts" in [Crypto Framework Overview](cryptoFramework-overview.md).
+> - In RSA decryption, the length of the ciphertext to be decrypted each time is the number of bits of the RSA key divided by 8.
 
 ## Signing Data and Verifying Signatures
 
 **When to Use**
 
 A digital signature can be used to verify the authenticity of a message. Typical signing and signature verification operations involve the following:
-1. Use RSA to sign data and verify the signature.
-2. Use ECC to sign data and verify the signature.
+- Use RSA to sign data and verify the signature.
+- Use ECC to sign data and verify the signature.
 
 **Available APIs**
 
@@ -573,38 +565,24 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 |Sign|init(priKey : PriKey) : Promise\<void>|Sets a key and initializes the **Sign** instance. This API uses a promise to return the result.|
 |Sign|update(data : DataBlob, callback : AsyncCallback\<void>) : void|Updates the data for signing. This API uses an asynchronous callback to return the result.|
 |Sign|update(data : DataBlob) : Promise\<void>|Updates the data for signing. This API uses a promise to return the result.|
-|Sign|sign(data : DataBlob, callback : AsyncCallback<DataBlob>) : void|Signs the data. This API uses an asynchronous callback to return the result.|
-|Sign|sign(data : DataBlob) : Promise<DataBlob>|Signs the data. This API uses a promise to return the result.|
+|Sign|sign(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|Signs the data. This API uses an asynchronous callback to return the result.|
+|Sign|sign(data : DataBlob) : Promise\<DataBlob>|Signs the data. This API uses a promise to return the result.|
 |cryptoFramework|function createVerify(algName : string) : Verify|Creates a **Verify** instance.|
 |Verify|init(priKey : PriKey, callback : AsyncCallback\<void>) : void|Sets a key and initializes the **Verify** instance. This API uses an asynchronous callback to return the result.|
 |Verify|init(priKey : PriKey) : Promise\<void>|Sets a key and initializes the **Verify** instance. This API uses a promise to return the result.|
 |Verify|update(data : DataBlob, callback : AsyncCallback\<void>) : void|Updates the data for signature verification. This API uses an asynchronous callback to return the result.|
 |Verify|update(data : DataBlob) : Promise\<void>|Updates the data for signature verification. This API uses a promise to return the result.|
-|Verify|verify(data : DataBlob, signatureData : DataBlob, callback : AsyncCallback<boolean>) : void|Verifies the signature. This API uses an asynchronous callback to return the result.|
-|Verify|verify(data : DataBlob, signatureData : DataBlob) : Promise<boolean>|Verifies the signature. This API uses a promise to return the result.|
+|Verify|verify(data : DataBlob, signatureData : DataBlob, callback : AsyncCallback\<boolean>) : void|Verifies the signature. This API uses an asynchronous callback to return the result.|
+|Verify|verify(data : DataBlob, signatureData : DataBlob) : Promise\<boolean>|Verifies the signature. This API uses a promise to return the result.|
 
 **How to Develop**
 
 Example 1: Use RSA to sign data and verify the signature.
-1. Generate an RSA key pair.
-
-   Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an RSA asymmetric key pair.
-
-2. Create a **Sign** instance.
-
-   Call **createSign()** to create a **Sign** instance, initialize the **Sign** instance, and set a private key for signing.
-
-3. Generate a signature.
-
-   Call **update()** provided by the **Sign** class to add the data for signing and call **sign()** to generate a signature.
-
-4. Create a **Verify** instance.
-
-   Call **createVerify()** to create a **Verify** instance, initialize the instance, and set a public key for signature verification.
-
-5. Verify the signature.
-
-   Call **update()** provided by the **Verify** class to add signature data and call **verify()** to verify the signature.
+1. Generate an RSA key pair.<br> Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an RSA asymmetric key pair.
+2. Create a **Sign** instance.<br> Call **createSign()** to create a **Sign** instance, initialize the **Sign** instance, and set a private key for signing.
+3. Generate a signature.<br> Call **update()** provided by the **Sign** class to add the data for signing and call **sign()** to generate a signature.
+4. Create a **Verify** instance.<br> Call **createVerify()** to create a **Verify** instance, initialize the instance, and set a public key for signature verification.
+5. Verify the signature.<br> Call **update()** provided by the **Verify** class to add signature data and call **verify()** to verify the signature.
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
@@ -684,25 +662,11 @@ function verifyMessageCallback() {
 ```
 
 Example 2: Using ECC to sign data and verify the signature.
-1. Generate an ECC key.
-
-   Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an ECC asymmetric key pair.
-
-2. Create a **Sign** instance.
-
-   Call **createSign()** to create a **Sign** instance, initialize the **Sign** instance, and set a private key for signing.
-
-3. Generate a signature.
-
-   Call **update()** provided by the **Sign** class to add the data for signing and call **doFinal()** to generate a signature.
-
-4. Create a **Verify** instance.
-
-   Call **createVerify()** to create a **Verify** instance, initialize the instance, and set a public key for signature verification.
-
-5. Verify the signature.
-
-   Call **update()** provided by the **Verify** class to add signature data and call **doFinal()** to verify the signature.
+1. Generate an ECC key.<br> Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an ECC asymmetric key pair.
+2. Create a **Sign** instance.<br> Call **createSign()** to create a **Sign** instance, initialize the **Sign** instance, and set a private key for signing.
+3. Generate a signature.<br> Call **update()** provided by the **Sign** class to add the data for signing and call **doFinal()** to generate a signature.
+4. Create a **Verify** instance.<br> Call **createVerify()** to create a **Verify** instance, initialize the instance, and set a public key for signature verification.
+5. Verify the signature.<br> Call **update()** provided by the **Verify** class to add signature data and call **doFinal()** to verify the signature.
 
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
@@ -802,10 +766,10 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 | Instance         | API                                                      | Description                                              |
 | --------------- | ------------------------------------------------------------ | -------------------------------------------------- |
 | cryptoFramework | function createMd(algName : string) : Md;                    | Creates an **Md** instance.                  |
-| Md              | update(input : DataBlob, callback : AsyncCallback\<void\>) : void; | Updates the data for a digest. This API uses an asynchronous callback to return the result.|
-| Md              | update(input : DataBlob) : Promise\<void\>;                  | Updates the data for a digest. This API uses a promise to return the result. |
-| Md              | digest(callback : AsyncCallback\<DataBlob\>) : void;         | Generates the digest. This API uses an asynchronous callback to return the result.                      |
-| Md              | digest() : Promise\<DataBlob\>;                              | Generates the digest. This API uses a promise to return the result.                       |
+| Md              | update(input : DataBlob, callback : AsyncCallback\<void>) : void; | Updates the data for a digest. This API uses an asynchronous callback to return the result.|
+| Md              | update(input : DataBlob) : Promise\<void>;                  | Updates the data for a digest. This API uses a promise to return the result. |
+| Md              | digest(callback : AsyncCallback\<DataBlob>) : void;         | Generates the digest. This API uses an asynchronous callback to return the result.                      |
+| Md              | digest() : Promise\<DataBlob>;                              | Generates the digest. This API uses a promise to return the result.                       |
 | Md              | getMdLength() : number;                                      | Obtains the digest length based on the specified digest algorithm.            |
 | Md              | readonly algName : string;                                   | Obtains the digest algorithm.                          |
 
@@ -907,10 +871,7 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 
 **How to Develop**
 
-1. Generate an ECC key.
-
-   Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an ECC asymmetric key pair.
-
+1. Generate an ECC key.<br> Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an ECC asymmetric key pair.
 2. Generate a shared secret by using the private and public ECC keys.
 
 ```javascript
@@ -966,15 +927,15 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 
 | Instance         | API                                                      | Description                                               |
 | --------------- | ------------------------------------------------------------ | --------------------------------------------------- |
-| cryptoFramework | function createMac(algName : string) : Md;                    | Creates a **Mac** instance.                |
-| Mac             | init(key : SymKey, callback : AsyncCallback\<void\>) : void; | Initializes the MAC operation. This API uses an asynchronous callback to return the result.|
-| Mac             | init(key : SymKey) : Promise\<void\>;                        | Initializes the MAC operation. This API uses a promise to return the result. |
-| Mac             | update(input : DataBlob, callback : AsyncCallback\<void\>) : void; | Updates the data for the MAC operation. This API uses an asynchronous callback to return the result.      |
-| Mac             | update(input : DataBlob) : Promise\<void\>;                  | Updates the data for the MAC operation. This API uses a promise to return the result.       |
-| Mac             | doFinal(callback : AsyncCallback\<DataBlob\>) : void;        | Finalizes the MAC operation to generate a MAC. This API uses an asynchronous callback to return the result.                |
-| Mac             | doFinal() : Promise\<DataBlob\>;                             | Finalizes the MAC operation to generate a MAC. This API uses a promise to return the result.                 |
+| cryptoFramework | function createMac(algName : string) : Mac;                  | Creates a **Mac** instance.                |
+| Mac             | init(key : SymKey, callback : AsyncCallback\<void>) : void; | Initializes the MAC operation. This API uses an asynchronous callback to return the result.|
+| Mac             | init(key : SymKey) : Promise\<void>;                        | Initializes the MAC operation. This API uses a promise to return the result. |
+| Mac             | update(input : DataBlob, callback : AsyncCallback\<void>) : void; | Updates the data for the MAC operation. This API uses an asynchronous callback to return the result.      |
+| Mac             | update(input : DataBlob) : Promise\<void>;                  | Updates the data for the MAC operation. This API uses a promise to return the result.       |
+| Mac             | doFinal(callback : AsyncCallback\<DataBlob>) : void;        | Finalizes the MAC operation to generate a MAC. This API uses an asynchronous callback to return the result.                |
+| Mac             | doFinal() : Promise\<DataBlob>;                             | Finalizes the MAC operation to generate a MAC. This API uses a promise to return the result.                 |
 | Mac             | getMacLength() : number;                                     | Obtains the length of the MAC based on the specified algorithm.              |
-| Mac             | readonly algName : string;                                   | Obtains the algorithm.                           |
+| Mac             | readonly algName : string;                                   | Obtains the digest algorithm.                           |
 
 **How to Develop**
 
@@ -1099,10 +1060,9 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 | Instance         | API                                                      | Description                                          |
 | --------------- | ------------------------------------------------------------ | ---------------------------------------------- |
 | cryptoFramework | function createRandom() : Random;                            | Creates a **Random** instance.                          |
-| Random          | generateRandom(len : number, callback: AsyncCallback\<DataBlob\>) : void; | Generates a random number. This API uses an asynchronous callback to return the result.    |
-| Random          | generateRandom(len : number) : Promise\<DataBlob\>;          | Generates a random number. This API uses a promise to return the result.     |
-| Random          | setSeed(seed : DataBlob, callback : AsyncCallback\<void\>) : void; | Sets a seed. This API uses an asynchronous callback to return the result.|
-| Random          | setSeed(seed : DataBlob) : Promise\<void\>;                  | Sets a seed. This API uses a promise to return the result. |
+| Random          | generateRandom(len : number, callback: AsyncCallback\<DataBlob>) : void; | Generates a random number. This API uses an asynchronous callback to return the result.  |
+| Random          | generateRandom(len : number) : Promise\<DataBlob>;          | Generates a random number. This API uses a promise to return the result.     |
+| Random          | setSeed(seed : DataBlob) : void;                            | Sets a seed. |
 
 **How to Develop**
 
@@ -1124,10 +1084,11 @@ function doRandByPromise(len) {
   var promiseGenerateRand = rand.generateRandom(len);
   promiseGenerateRand.then(randData => {
     console.error("[Promise]: rand result: " + randData.data);
-    var promiseSetSeed = rand.setSeed(randData);
-    return promiseSetSeed;
-  }).then(() => {
-    console.error("[Promise]: setSeed success");
+      try {
+          rand.setSeed(randData);
+      } catch (error) {
+          console.log("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
+      }
   }).catch(error => {
     console.error("[Promise]: error: " + error.message);
   });
@@ -1146,13 +1107,11 @@ function doRandByCallback(len) {
       console.error("[Callback]: err: " + err.code);
     } else {
       console.error("[Callback]: generate random result: " + randData.data);
-      rand.setSeed(randData, (err1,) => {
-        if (err1) {
-          console.error("[Callback] err: " + err1.code);
-        } else {
-          console.error("[Callback]: setSeed success");
-        }
-      });
+      try {
+          rand.setSeed(randData);
+      } catch (error) {
+          console.log("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
+      }
     }
   });
 }

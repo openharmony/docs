@@ -75,7 +75,8 @@ let rdbStore;
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     onCreate(want, callback) {
         rdb.getRdbStore(this.context, {
-            name: DB_NAME
+            name: DB_NAME,
+            securityLevel: rdb.SecurityLevel.S1
         }, function (err, data) {
             console.log('getRdbStore done, data : ' + data);
             rdbStore = data;

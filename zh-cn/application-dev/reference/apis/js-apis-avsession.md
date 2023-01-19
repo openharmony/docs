@@ -1001,7 +1001,7 @@ setLaunchAbility(ability: WantAgent): Promise\<void>
 **示例：**
 
 ```js
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 //WantAgentInfo对象
 let wantAgentInfo = {
@@ -1066,7 +1066,7 @@ setLaunchAbility(ability: WantAgent, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 //WantAgentInfo对象
 let wantAgentInfo = {
@@ -2222,7 +2222,7 @@ getLaunchAbility(): Promise\<WantAgent>
 **示例：**
 
 ```js
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 controller.getLaunchAbility().then((agent) => {
     console.info(`GetLaunchAbility : SUCCESS : wantAgent : ${agent}`);
@@ -2257,7 +2257,7 @@ getLaunchAbility(callback: AsyncCallback\<WantAgent>): void
 **示例：**
 
 ```js
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 controller.getLaunchAbility(function (err, agent) {
     if (err) {

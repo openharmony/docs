@@ -2,7 +2,6 @@
 
 The **PackInfo** module provides information in the **pack.info** file. The information can be obtained using [freeInstall.getBundlePackInfo](js-apis-freeInstall.md).
 
-
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -49,10 +48,10 @@ The **PackInfo** module provides information in the **pack.info** file. The info
 
 **System capability**: SystemCapability.BundleManager.BundleFrameWork.FreeInstall
 
-| Name      | Type               | Readable| Writable| Description                              |
-| ---------- | ------------------- | ---- | ---- | ---------------------------------- |
-| bundleName | string              | Yes  | No  | Bundle name. It uniquely identifies the application.|
-| version    | [Version](#version) | Yes  | No  | Bundle version.                        |
+| Name      | Type               | Readable| Writable| Description                                  |
+| ---------- | ------------------- | ---- | ---- | -------------------------------------- |
+| bundleName | string              | Yes  | No  | Bundle name. It uniquely identifies an application.|
+| version    | [Version](#version) | Yes  | No  | Bundle version.                            |
 
 ## ModuleConfigInfo
 
@@ -67,7 +66,7 @@ The **PackInfo** module provides information in the **pack.info** file. The info
 | deviceType         | Array\<string>                                    | Yes  | No  | Device types supported by the module.                |
 | distro             | [ModuleDistroInfo](#moduledistroinfo)             | Yes  | No  | Distribution information of the module.                |
 | abilities          | Array\<[ModuleAbilityInfo](#moduleabilityinfo)>   | Yes  | No  | Ability information of the module.              |
-| extensionAbilities | Array\<[ExtensionAbilities](#extensionability)> | Yes  | No  | Extension ability information of the module.|
+| extensionAbilities | Array\<[ExtensionAbilities](#extensionability)> | Yes  | No  | ExtensionAbility information of the module.|
 
 ## ModuleDistroInfo
 
@@ -103,7 +102,7 @@ The **PackInfo** module provides information in the **pack.info** file. The info
 
 | Name | Type                                       | Readable| Writable| Description                                                        |
 | ----- | ------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| name | string | Yes| No| Name of the Extension ability.|
+| name | string | Yes| No| Name of the ExtensionAbility.|
 | forms | Array\<[AbilityFormInfo](#abilityforminfo)> | Yes  | No  | Widget information.|
 
 ## AbilityFormInfo
@@ -132,7 +131,7 @@ The **PackInfo** module provides information in the **pack.info** file. The info
 | ----------- | ------ | ---- | ---- | -------------------- |
 | releaseType | string | Yes  | No  | Name of the API version.        |
 | compatible  | number | Yes  | No  | Minimum API version.|
-| target      | number  | Yes  | No  | Target API version.        |
+| target      | number | Yes  | No  | Target API version.        |
 
 ## Version
 

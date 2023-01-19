@@ -8,7 +8,7 @@ The **AbilityRunningInfo** module defines the running information and state of a
 
 ## Usage
 
-The ability running information is obtained by using the **getAbilityRunningInfos** API in **abilityManager**.
+The ability running information is obtained by calling [getAbilityRunningInfos](js-apis-app-ability-abilityManager.md#getabilityrunninginfos) in **abilityManager**.
 
 ## Attributes
 

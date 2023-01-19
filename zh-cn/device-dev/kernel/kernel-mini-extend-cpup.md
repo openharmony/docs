@@ -51,8 +51,11 @@ OpenHarmony  LiteOS-M提供以下两种CPU占用率的信息查询：
 | 输出任务CPU占用率 | LOS_CpupUsageMonitor：输出任务历史CPU占用率 |
 | 获取中断CPU占用率 | LOS_GetAllIrqCpuUsage：获取所有中断CPU占用率 |
 
-
 ## 开发流程
+
+在kernel/liteos_m目录下执行 make menuconfig 命令配置"Kernel->Enable Cpup"中打开YES开启任务cpup；
+
+开启后出现新选项“Enable Cpup include irq”打开YES开启中断cpup。
 
 CPU占用率的典型开发流程：
 
@@ -60,7 +63,7 @@ CPU占用率的典型开发流程：
 
 2. 调用获取系统历史CPU占用率函数LOS_HistorySysCpuUsage。
 
-3. 调用获取指定任务CPU使占用率函数LOS_TaskCpuUsage。
+3. 调用获取指定任务CPU占用率函数LOS_TaskCpuUsage。
    - 若任务已创建，则关中断，正常获取，恢复中断；
    - 若任务未创建，则返回错误码；
 
@@ -95,7 +98,7 @@ CPU占用率的典型开发流程：
 
 前提条件：
 
-在target_config.h中将LOSCFG_BASE_CORE_CPUP配置项打开。
+在kernel/liteos_m目录下执行 make menuconfig命令配置"Kernel->Enable Cpup"中开启任务cpup：
 
 代码实现如下：
 

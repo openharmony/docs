@@ -17,7 +17,7 @@ emitter数据大小限制不超过10240。
 示例：
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 async function publishNotification() {
   let wantAgentInfo = {

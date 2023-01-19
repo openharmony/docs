@@ -103,7 +103,7 @@ CPU占用率的典型开发流程：
 
 **示例代码**
 
-该示例代码的测试函数可以加在 kernel /liteos_a/testsuites /kernel /src /osTest.c  中的 TestTaskEntry 中进行测试。
+本演示代码在 . kernel /liteos_a/testsuites /kernel /src /osTest.c中编译验证，在TestTaskEntry中调用验证入口函数CpupTest。
 代码实现如下：
 
 
@@ -114,12 +114,13 @@ CPU占用率的典型开发流程：
 UINT32 g_cpuTestTaskID;
 VOID ExampleCpup(VOID)
 {
-    printf("entry cpup test example\n");
-    while (1) {
+    int i = 0;
+    dprintf("entry cpup test example\n");
+    for (i = 0; i < 10; i++) {
         usleep(100); // 100: delay for 100ms
     }
 }
-UINT32 ItCpupTest(VOID)
+UINT32 CpupTest(VOID)
 {
     UINT32 ret;
     UINT32 cpupUse;
@@ -138,12 +139,12 @@ UINT32 ItCpupTest(VOID)
     usleep(100); // 100: delay for 100ms
 
     /* 获取当前系统历史CPU占用率 */
-    cpupUse = LOS_HistorySysCpuUsage(CPU_LESS_THAN_1S);
-    printf("the history system cpu usage in all time：%u.%u\n",
+    cpupUse = LOS_HistorySysCpuUsage(CPUP_LAST_ONE_SECONDS);
+    dprintf("the history system cpu usage in all time：%u.%u\n",
            cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT);
     /* 获取指定任务的CPU占用率，该测试例程中指定的任务为以上创建的cpup测试任务 */
-    cpupUse = LOS_HistoryTaskCpuUsage(g_cpuTestTaskID, CPU_LESS_THAN_1S);
-    printf("cpu usage of the cpupTestTask in all time:\n TaskID: %d\n usage: %u.%u\n",
+    cpupUse = LOS_HistoryTaskCpuUsage(g_cpuTestTaskID, CPUP_LAST_ONE_SECONDS);
+    dprintf("cpu usage of the cpupTestTask in all time:\n TaskID: %d\n usage: %u.%u\n",
            g_cpuTestTaskID, cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT);
     return LOS_OK;
 }
@@ -158,4 +159,6 @@ UINT32 ItCpupTest(VOID)
 entry cpup test example
 the history system cpu usage in all time: 3.0
 cpu usage of the cpupTestTask in all time: TaskID:10 usage: 0.0
+
+根据实际运行环境，打印会有差异
 ```

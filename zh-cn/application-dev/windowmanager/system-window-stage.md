@@ -58,7 +58,7 @@
    当不再需要音量条窗口时，可根据具体实现逻辑，使用`hide`接口或`destroyWindow`接口对其进行隐藏或销毁。
 
 ```ts
-import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+import ExtensionContext from '@ohos.app.ability.ServiceExtensionAbility';
 import window from '@ohos.window';
 
 export default class ServiceExtensionAbility1 extends ExtensionContext {

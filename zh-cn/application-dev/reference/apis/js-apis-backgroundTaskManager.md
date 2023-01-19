@@ -173,7 +173,7 @@ FA模型示例：
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(err, data) {
     if (err) {
@@ -207,7 +207,7 @@ Stage模型示例：
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(err, data) {
     if (err) {
@@ -270,7 +270,7 @@ FA模型示例：
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 let wantAgentInfo = {
     wants: [
@@ -299,7 +299,7 @@ Stage模型示例：
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {

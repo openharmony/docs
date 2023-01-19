@@ -271,9 +271,10 @@ createKVManager(config: KVManagerConfig): KVManager
 Stage模型下的示例：
 
 ```js
-import AbilityStage from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let kvManager;
-export default class MyAbilityStage extends AbilityStage {
+export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log("MyAbilityStage onCreate")
         let context = this.context
@@ -294,7 +295,7 @@ export default class MyAbilityStage extends AbilityStage {
 FA模型下的示例：
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 let kvManager;
 let context = featureAbility.getContext()
 const kvManagerConfig = {
