@@ -12,6 +12,7 @@
   - [Event Error Codes](errorcode-CommonEventService.md)
   - [DistributedNotificationService Error Codes](errorcode-DistributedNotificationService.md)
 - UI Page
+  - [Animator Error Codes](errorcode-animator.md)
   - [promptAction Error Codes](errorcode-promptAction.md)
   - [Router Error Codes](errorcode-router.md)
 - Graphics
@@ -73,6 +74,7 @@
   - [Vibrator Error Codes](errorcode-vibrator.md)
   - [System Parameter Error Codes](errorcode-system-parameterV9.md)
   - [USB Error Codes](errorcode-usb.md)
+  - [Update Error Codes](errorcode-update.md)
 - Customization Management
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
 - Language Base Class Library
