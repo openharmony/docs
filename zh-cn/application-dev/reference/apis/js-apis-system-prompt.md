@@ -38,7 +38,7 @@ export default {
   showToast() {        
     prompt.showToast({            
       message: 'Message Info',            
-      duration: 2000,        
+      duration: 2000
     });    
   }
 }
@@ -67,11 +67,11 @@ export default {
   showDialog() {       
     prompt.showDialog({           
       title: 'Title Info',            
-      message: 'Message Info',           
+      message: 'Message Info',          
       buttons: [                
         {                    
            text: 'button',                   
-           color: '#666666',                
+           color: '#666666'          
          },            
        ],            
        success: function(data) {                
@@ -110,12 +110,12 @@ export default {
       buttons: [                
         {                    
           text: 'item1',                    
-          color: '#666666',                
+          color: '#666666'            
         },                
         {                    
            text: 'item2',                    
-           color: '#000000',                
-        },            
+           color: '#000000'         
+        },           
       ],            
       success: function(tapIndex) {                
         console.log('dialog success callback，click button : ' + tapIndex);            
