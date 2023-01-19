@@ -70,12 +70,12 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称    | 类型   | 可读 | 可写 | 说明                      |
-| ------- | ------ | ---- | ---- | ------------------------- |
-| leftX   | number | 是   | 否   | 控件边框的左上角的X坐标。 |
-| topY    | number | 是   | 否   | 控件边框的左上角的Y坐标。 |
-| rightX  | number | 是   | 否   | 控件边框的右下角的X坐标。 |
-| bottomY | number | 是   | 否   | 控件边框的右下角的Y坐标。 |
+| 名称   | 类型   | 可读 | 可写 | 说明                      |
+| ------ | ------ | ---- | ---- | ------------------------- |
+| left   | number | 是   | 否   | 控件边框的左上角的X坐标。 |
+| top    | number | 是   | 否   | 控件边框的左上角的Y坐标。 |
+| right  | number | 是   | 否   | 控件边框的右下角的X坐标。 |
+| bottom | number | 是   | 否   | 控件边框的右下角的Y坐标。 |
 
 ## WindowMode<sup>9+</sup>
 
