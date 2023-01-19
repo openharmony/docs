@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```js
-import fileExtensionInfo from '@ohos.fileExtensionInfo';
+import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 ```
 
 ## fileExtensionInfo.DeviceType
