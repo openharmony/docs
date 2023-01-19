@@ -1,4 +1,4 @@
-# @ohos.bundle.bundleManager
+# @ohos.bundle.bundleManager (bundleManager)
 
 The **bundleManager** module provides APIs for querying information about bundles, applications, abilities, Extension abilities, and more.
 

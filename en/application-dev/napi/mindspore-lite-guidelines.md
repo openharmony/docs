@@ -15,7 +15,6 @@ Before getting started, you need to understand the following basic concepts:
 **Float16 inference**: a mode in which Float16 is used for inference. Float16, also called half-precision, uses 16 bits to represent a number. 
 
 
-
 ## Available APIs
 APIs involved in MindSpore Lite model inference are categorized into context APIs, model APIs, and tensor APIs.
 ### Context APIs
@@ -53,6 +52,33 @@ The following figure shows the development process for MindSpore Lite model infe
 
 **Figure 1** Development process for MindSpore Lite model inference
 ![how-to-use-mindspore-lite](figures/01.png)
+
+Before moving to the main process, you need to reference related header files and compile functions to generate random input.
+
+Example code:
+
+```c
+#include <stdlib.h>
+#include <stdio.h>
+#include "mindspore/model.h"
+
+// Generate random input.
+int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
+  for (size_t i = 0; i < inputs.handle_num; ++i) {
+    float *input_data = (float *)OH_AI_TensorGetMutableData(inputs.handle_list[i]);
+    if (input_data == NULL) {
+      printf("MSTensorGetMutableData failed.\n");
+      return OH_AI_STATUS_LITE_ERROR;
+    }
+    int64_t num = OH_AI_TensorGetElementNum(inputs.handle_list[i]);
+    const int divisor = 10;
+    for (size_t j = 0; j < num; j++) {
+      input_data[j] = (float)(rand() % divisor) / divisor;  // 0--0.9f
+    }
+  }
+  return OH_AI_STATUS_SUCCESS;
+}
+```
 
 The development process consists of the following main steps:
 
@@ -101,8 +127,8 @@ The development process consists of the following main steps:
       return OH_AI_STATUS_LITE_ERROR;
     }
 
-    // Load and build the model. The model type is OH_AI_ModelTypeMindIR.
-    int ret = OH_AI_ModelBuildFromFile(model, argv[1], OH_AI_ModelTypeMindIR, context);
+    // Load and build the model. The model type is OH_AI_MODELTYPE_MINDIR.
+    int ret = OH_AI_ModelBuildFromFile(model, argv[1], OH_AI_MODELTYPE_MINDIR, context);
     if (ret != OH_AI_STATUS_SUCCESS) {
       printf("OH_AI_ModelBuildFromFile failed, ret: %d.\n", ret);
       OH_AI_ModelDestroy(&model);
@@ -193,7 +219,7 @@ The development process consists of the following main steps:
             dl
     )
     ```
-   - To use ohos-sdk for cross compilation, you need to set the native toolchain path for the CMake tool as follows: `-DCMAKE_TOOLCHAIN_FILE="/xxx/ohos-sdk/linux/native/build/cmake/ohos.toolchain.cmake"`.
+   - To use ohos-sdk for cross compilation, you need to set the native toolchain path for the CMake tool as follows: `-DCMAKE_TOOLCHAIN_FILE="/xxx/ohos-sdk/linux/native/build/cmake/ohos.toolchain.camke"`.
     
    - The toolchain builds a 64-bit application by default. To build a 32-bit application, add the following configuration: `-DOHOS_ARCH="armeabi-v7a"`.
 
