@@ -1856,7 +1856,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 | Name| Type| Mandatory| Description|
 | ---- |----------------------------------| -- | ------------------------------------------------------------ |
-| type | [AvoidAreaType](#avoidareatype7) | Yes| Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. **TYPE_SYSTEM_GESTURE** indicates the gesture area. **TYPE_KEYBOARD** indicates the soft keyboard area.|
+| type | [AvoidAreaType](#avoidareatype7) | Yes| Type of the area. |
 
 **Return value**
 
@@ -2492,7 +2492,7 @@ Disables listening for window size changes.
 | Name  | Type                         | Mandatory| Description                                                    |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
 | type     | string                        | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event.|
-| callback | Callback&lt;[Size](#size)&gt; | No  | Callback used to return the window size.                          |
+| callback | Callback&lt;[Size](#size7)&gt; | No  | Callback used to return the window size.                          |
 
 **Example**
 
@@ -2998,7 +2998,7 @@ Sets a color space for this window. This API uses an asynchronous callback to re
 
 | Name| Type| Mandatory| Description|
 | ---------- | ------------------------- | -- | ----------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes| Color space to set.|
+| colorSpace | [ColorSpace](#colorspace8) | Yes| Color space to set.|
 | callback   | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.  |
 
 **Error codes**
@@ -3037,7 +3037,7 @@ Sets a color space for this window. This API uses a promise to return the result
 
 | Name| Type| Mandatory| Description|
 | ---------- | ------------------------- | -- | ------------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes| Color space to set.|
+| colorSpace | [ColorSpace](#colorspace8) | Yes| Color space to set.|
 
 **Return value**
 
@@ -3080,7 +3080,7 @@ Obtains the color space of this window.
 
 | Type| Description|
 | ------------------------- | ------------- |
-| [ColorSpace](#colorspace) | Color space obtained.|
+| [ColorSpace](#colorspace8) | Color space obtained.|
 
 **Error codes**
 
@@ -4579,7 +4579,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 | Name     | Type                                          | Mandatory | Description                                                  |
 | -------- | --------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [AvoidAreaType](#avoidareatype7)              | Yes       | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. **TYPE_SYSTEM_GESTURE** indicates the gesture area. **TYPE_KEYBOARD** indicates the soft keyboard area. |
+| type     | [AvoidAreaType](#avoidareatype7)              | Yes       | Type of the area.  |
 | callback | AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt; | Yes       | Callback used to return the area.                            |
 
 **Example**
@@ -4612,7 +4612,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 | Name | Type                             | Mandatory | Description                                                  |
 | ---- | -------------------------------- | --------- | ------------------------------------------------------------ |
-| type | [AvoidAreaType](#avoidareatype7) | Yes       | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. **TYPE_SYSTEM_GESTURE** indicates the gesture area. **TYPE_KEYBOARD** indicates the soft keyboard area. |
+| type | [AvoidAreaType](#avoidareatype7) | Yes       | Type of the area. |
 
 **Return value**
 
@@ -5187,7 +5187,7 @@ Sets a color space for this window. This API uses an asynchronous callback to re
 
 | Name       | Type                      | Mandatory | Description                         |
 | ---------- | ------------------------- | --------- | ----------------------------------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes       | Color space to set.                 |
+| colorSpace | [ColorSpace](#colorspace8) | Yes       | Color space to set.                 |
 | callback   | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result. |
 
 **Example**
@@ -5219,7 +5219,7 @@ Sets a color space for this window. This API uses a promise to return the result
 
 | Name       | Type                      | Mandatory | Description         |
 | ---------- | ------------------------- | --------- | ------------------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes       | Color space to set. |
+| colorSpace | [ColorSpace](#colorspace8) | Yes       | Color space to set. |
 
 **Return value**
 
@@ -5255,7 +5255,7 @@ Obtains the color space of this window. This API uses an asynchronous callback t
 
 | Name     | Type                                           | Mandatory | Description                                                  |
 | -------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;[ColorSpace](#colorspace)&gt; | Yes       | Callback used to return the result. When the color space is obtained successfully, **err** is **undefined**, and **data** is the current color space. |
+| callback | AsyncCallback&lt;[ColorSpace](#colorspace8)&gt; | Yes       | Callback used to return the result. When the color space is obtained successfully, **err** is **undefined**, and **data** is the current color space. |
 
 **Example**
 
@@ -5286,7 +5286,7 @@ Obtains the color space of this window. This API uses a promise to return the re
 
 | Type                                     | Description                                     |
 | ---------------------------------------- | ----------------------------------------------- |
-| Promise&lt;[ColorSpace](#colorspace)&gt; | Promise used to return the current color space. |
+| Promise&lt;[ColorSpace](#colorspace8)&gt; | Promise used to return the current color space. |
 
 **Example**
 
