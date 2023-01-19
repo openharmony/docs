@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```
+```ts
 import router from '@ohos.router'
 ```
 
@@ -47,25 +47,21 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```js
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
+  }
+})
+  .then(() => {
+    // success
   })
-    .then(() => {
-      // success
-    })
-    .catch(err => {
-      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-    })
-} catch (error) {
-  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
-};
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -96,25 +92,21 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, (err) => {
-    if (err) {
-      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    }
-    console.info('pushUrl success');
-  });
-} catch (error) {
-  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
-};
+  }
+}, (err) => {
+  if (err) {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('pushUrl success');
+});
 ```
 ## router.pushUrl<sup>9+</sup>
 
@@ -135,7 +127,7 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 | 类型                | 说明        |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | 异常返回结果 |
+| Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
@@ -150,25 +142,21 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 **示例：**
 
 ```js
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, router.RouterMode.Standard)
-    .then(() => {
-      // success
-    })
-    .catch(err => {
-      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-    })
-} catch (error) {
-  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
-};
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -200,25 +188,21 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```js
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, router.RouterMode.Standard, (err) => {
-    if (err) {
-      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    }
-    console.info('pushUrl success');
-  });
-} catch (error) {
-  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
-};
+  }
+}, router.RouterMode.Standard, (err) => {
+  if (err) {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('pushUrl success');
+});
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -253,22 +237,18 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```js
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+})
+  .then(() => {
+    // success
   })
-    .then(() => {
-      // success
-    })
-    .catch(err => {
-      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-    })
-} catch (error) {
-  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
-};
+  .catch(err => {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -298,22 +278,18 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
-  }, (err) => {
-    if (err) {
-      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    }
-    console.info('replaceUrl success');
-  });
-} catch (error) {
-  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
-};
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+}, (err) => {
+  if (err) {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('replaceUrl success');
+});
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -350,22 +326,18 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 **示例：**
 
 ```js
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
-  }, router.RouterMode.Standard)
-    .then(() => {
-      // success
-    })
-    .catch(err => {
-      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-    })
-} catch (error) {
-  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
-};
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -396,22 +368,18 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 **示例：**
 
 ```js
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
-  }, router.RouterMode.Standard, (err) => {
-    if (err) {
-      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    }
-    console.info('replaceUrl success');
-  });
-} catch (error) {
-  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
-};
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+}, router.RouterMode.Standard, (err) => {
+  if (err) {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('replaceUrl success');
+});
 ```
 
 ## router.back
@@ -571,9 +539,9 @@ getParams(): Object
 
 **返回值：**
 
-| 类型     | 说明                |
-| ------ | ----------------- |
-| Object | 发起跳转的页面往当前页传入的参数。 |
+| 类型   | 说明                               |
+| ------ | ---------------------------------- |
+| object | 发起跳转的页面往当前页传入的参数。 |
 
 **示例：**
 
@@ -636,7 +604,7 @@ export default {
 ### 基于TS扩展的声明式开发范式
 
 ```ts
-// 通过router.push跳转至目标页携带params参数
+// 通过router.pushUrl跳转至目标页携带params参数
 import router from '@ohos.router'
 
 @Entry
