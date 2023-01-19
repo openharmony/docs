@@ -246,7 +246,7 @@
 
 ## ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-允许应用管理本地用户账号。
+允许应用管理本地用户帐号。
 
 **权限级别**：system_basic
 
@@ -256,7 +256,7 @@
 
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-允许多个系统账号之间相互访问。
+允许多个系统帐号之间相互访问。
 
 **权限级别**：system_basic
 
