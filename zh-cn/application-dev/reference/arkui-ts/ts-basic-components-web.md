@@ -3241,7 +3241,7 @@ confirm(userName: string, pwd: string): boolean
 
 isHttpAuthInfoSaved(): boolean
 
-通知Web组件用户使用服务器缓存的账号密码认证。
+通知Web组件用户使用服务器缓存的帐号密码认证。
 
 **返回值：**
 
