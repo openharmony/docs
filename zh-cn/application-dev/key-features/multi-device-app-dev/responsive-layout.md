@@ -32,6 +32,8 @@
 > - 以设备屏幕宽度作为参照物，也可以实现类似的效果。考虑到应用可能以非全屏窗口的形式显示，以应用窗口宽度为参照物更为通用。
 > 
 > - 开发者可以根据实际使用场景决定适配哪些断点。如xs断点对应的一般是智能穿戴类设备，如果确定某页面不会在智能穿戴设备上显示，则可以不适配xs断点。
+>
+> - 可以根据实际需要在lg断点后面新增xl、xxl等断点，但注意新增断点会同时增加UX设计师及应用开发者的工作量，除非必要否则不建议盲目新增断点。
 
 OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而可以调整应用的布局。常见的监听断点变化的方法如下所示：
 
@@ -45,68 +47,72 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
 
 通过窗口对象监听断点变化的核心是获取窗口对象及注册窗口尺寸变化的回调函数。
 
-1. 在Ability的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，获取并记录[窗口](../../reference/apis/js-apis-window.md)对象。
-   
-   ```
+1. 在Ability的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，通过[窗口](../../reference/apis/js-apis-window.md)对象获取启动时的应用窗口宽度并注册回调函数监听窗口尺寸变化。将窗口尺寸的长度单位[由px换算为vp](../../key-features/multi-device-app-dev/visual-basics.md#视觉基础)后，即可基于前文中介绍的规则得到当前断点值，此时可以使用[状态变量](../../quick-start/arkts-state-mgmt-application-level.md)记录当前的断点值方便后续使用。
+
+   ```ts
    // MainAbility.ts
    import window from '@ohos.window'
+   import display from '@ohos.display'
    
    export default class MainAbility extends Ability {
+     private windowObj: window.Window
+     private curBp: string
      ...
-     onWindowStageCreate(windowStage) {
-       window.getTopWindow(this.context).then((windowObj) => {
-         AppStorage.SetOrCreate('windowObj', windowObj)
-       })
+     // 根据当前窗口尺寸更新断点
+     private updateBreakpoint(windowWidth) {
+       // 将长度的单位由px换算为vp
+       let windowWidthVp = windowWidth / (display.getDefaultDisplaySync().densityDPI / 160)
+       let newBp: string = ''
+       if (windowWidthVp < 320) {
+         newBp = 'xs'
+       } else if (windowWidthVp < 520) {
+         newBp = 'sm'
+       } else if (windowWidthVp < 840) {
+         newBp = 'md'
+       } else {
+         newBp = 'lg'
+       }
+       if (this.curBp !== newBp) {
+         this.curBp = newBp
+         // 使用状态变量记录当前断点值
+         AppStorage.SetOrCreate('currentBreakpoint', this.curBp)
+       }
+     }
+
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       windowStage.getMainWindow().then((windowObj) => {
+         this.windowObj = windowObj
+         // 获取应用启动时的窗口尺寸
+         this.updateBreakpoint(windowObj.getWindowProperties().windowRect.width)
+         // 注册回调函数，监听窗口尺寸变化
+         windowObj.on('windowSizeChange', (windowSize)=>{
+           this.updateBreakpoint(windowSize.width)
+         })
+       });
+       ...
+     }
+       
+     // 窗口销毁时，取消窗口尺寸变化监听
+     onWindowStageDestroy() {
+       if (this.windowObj) {
+         this.windowObj.off('windowSizeChange')
+       }
      }
      ...
    }
    ```
 
-2. 在页面中，通过窗口对象获取启动时的应用窗口宽度，同时注册回调函数监听窗口尺寸变化。
-   
-   ```
+2. 在页面中，获取及使用当前的断点。
+
+   ```ts
    @Entry
    @Component
    struct Index {
-     @State private currentBreakpoint: string = 'sm'
-    
-     private updateBreakpoint(windowWidth) {
-       if (windowWidth < 320) {
-         this.currentBreakpoint = 'xs'
-         return
-       }
-       if (windowWidth < 520) {
-         this.currentBreakpoint = 'sm'
-         return
-       }
-       if (windowWidth < 840) {
-         this.currentBreakpoint = 'md'
-         return
-       }
-       this.currentBreakpoint = 'lg'
-     }
-   
-     aboutToAppear() {
-       let windowObj: window.Window = AppStorage.Get('windowObj')
-       // 获取应用启动时的窗口尺寸
-       windowObj.getProperties().then((windowProperties) => {
-         this.updateBreakpoint(px2vp(windowProperties.windowRect.width))
-       })
-   
-       // 注册回调函数，监听窗口尺寸变化 
-       windowObj.on('windowSizeChange', (data) => {
-         this.updateBreakpoint(px2vp(data.width))
-       });
-     }
-   
-     aboutToDisappear() {
-       let windowObj: window.Window = AppStorage.Get('windowObj')
-       windowObj.off('windowSizeChange')
-     }
-   
+     @StorageProp('currentBreakpoint') curBp: string = 'sm'
+
      build() {
        Flex({justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center}) {
-         Text(this.currentBreakpoint).fontSize(50).fontWeight(FontWeight.Medium)
+         Text(this.curBp).fontSize(50).fontWeight(FontWeight.Medium)
        }
        .width('100%')
        .height('100%')
@@ -115,7 +121,7 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
    ```
 
 3. 运行及验证效果。
-     | | | |
+   | | | |
    | -------- | -------- | -------- |
    | ![zh-cn_image_0000001336485520](figures/zh-cn_image_0000001336485520.jpg) | ![zh-cn_image_0000001386645965](figures/zh-cn_image_0000001386645965.jpg) | ![zh-cn_image_0000001386325621](figures/zh-cn_image_0000001386325621.jpg) | 
 

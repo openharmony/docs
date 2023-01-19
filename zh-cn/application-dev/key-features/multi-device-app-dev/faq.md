@@ -6,18 +6,18 @@
 设备类型分为default（默认设备）、tablet、tv、wearable等，有多种查询设备类型的方式。
 
 1. 通过命令行的方式查询设备类型。
-   通过命令行查询指定系统参数（const.build.characteristics）进而确定设备类型，详见[系统参数介绍](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
+   通过命令行查询指定系统参数（const.product.devicetype）进而确定设备类型，详见[系统参数介绍](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
 
    
    ```shell
     # 方法一
-    hdc shell param get "const.build.characteristics"
+    hdc shell param get "const.product.devicetype"
     # 方法二
-    hdc shell cat /etc/param/ohos.para | grep const.build.characteristic
+    hdc shell cat /etc/param/ohos.para | grep const.product.devicetype
    ```
 
 2. 在应用开发过程中查询设备类型。
-   - 通过js接口查询指定系统参数（const.build.characteristics）进而确定设备类型，详见[系统属性](../../reference/apis/js-apis-system-parameter.md)。
+   - 通过js接口查询指定系统参数（const.product.devicetype）进而确定设备类型，详见[系统属性](../../reference/apis/js-apis-system-parameter.md)。
      
       ```typescript
       import parameter from '@ohos.systemparameter'
@@ -29,7 +29,7 @@
       
         aboutToAppear() {
           try {
-            this.deviceType = parameter.getSync("const.build.characteristics")
+            this.deviceType = parameter.getSync("const.product.devicetype")
           } catch(e) {
             console.log("getSync unexpected error: " + e)
           }
@@ -179,3 +179,57 @@ hdc shell reboot
   }
 }
 ```
+
+## 如何获取组件的尺寸
+
+实际开发过程中，开发者可能有获取页面中某个组件或某块区域的尺寸的诉求，以便通过手动计算等进行更精确的布局计算及优化。
+
+开发者可以通过[组件区域变化事件](../../reference/arkui-ts/ts-universal-component-area-change-event.md)（即组件显示的尺寸、位置等发生变化时触发的事件）来获取指定组件的尺寸。
+
+如下所示，通过onAreaChange事件获取Row组件（页面中白色区域）的尺寸。
+
+![](figures/onAreaChange.gif)
+
+```
+@Entry
+@Component
+struct OnAreaChangeSample {
+  @State rate: number = 0.8
+  @State info: string = ''
+
+  // 底部滑块，可以通过拖拽滑块改变容器尺寸
+  @Builder slider() {
+    Slider({ value: this.rate * 100, min: 30, max: 80, style: SliderStyle.OutSet })
+      .blockColor(Color.White)
+      .width('60%')
+      .onChange((value: number) => {
+        this.rate = value / 100;
+      })
+      .position({ x: '20%', y: '80%' })
+  }
+
+  build() {
+    Column() {
+      Column() {
+        Row() {
+          Text(this.info).fontSize(20).lineHeight(22)
+        }
+        .borderRadius(12)
+        .padding(24)
+        .backgroundColor('#FFFFFF')
+        .width(this.rate * 100 + '%')
+        .onAreaChange((oldValue: Area, newValue: Area) => {
+          this.info = JSON.stringify(newValue)
+        })
+      }
+
+      this.slider()
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F1F3F5')
+    .justifyContent(FlexAlign.Center)
+  }
+}
+```
+
