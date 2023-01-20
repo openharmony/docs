@@ -127,7 +127,7 @@ The code snippets provided below are all from [Sample](https://gitee.com/openhar
             if (needGrantPermission) {
                 Logger.info("app permission needGrantPermission")
                 try {
-                    await this.context.requestPermissionsFromUser(permissions)
+                    await accessManger.requestPermissionsFromUser(this.context, permissions)
                 } catch (err) {
                     Logger.error(`app permission ${JSON.stringify(err)}`)
                 }
@@ -147,8 +147,8 @@ The code snippets provided below are all from [Sample](https://gitee.com/openhar
    Modules to import:
 
    ```javascript
-   import Ability from '@ohos.application.Ability';
-   import AbilityConstant from '@ohos.application.AbilityConstant';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
    ```
 
    To implement ability continuation, you must implement this API and have the value **AGREE** returned.
@@ -185,14 +185,14 @@ The code snippets provided below are all from [Sample](https://gitee.com/openhar
    Example
    
    ```javascript
-    import Ability from '@ohos.application.Ability';
+    import UIAbility from '@ohos.app.ability.UIAbility';
     import distributedObject from '@ohos.data.distributedDataObject';
     
-    export default class MainAbility extends Ability {
+    export default class EntryAbility extends UIAbility {
         storage : LocalStorag;
 
         onCreate(want, launchParam) {
-            Logger.info(`MainAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
+            Logger.info(`EntryAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
             if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
                 // Obtain the user data from the want parameter.
                 let workInput = want.parameters.work
@@ -207,8 +207,6 @@ The code snippets provided below are all from [Sample](https://gitee.com/openhar
    ```
 For a singleton ability, use **onNewWant()** to achieve the same implementation.
 
-
-
 ### Data Continuation
 
 Use distributed objects.
@@ -220,12 +218,12 @@ In the ability continuation scenario, the distributed data object is used to syn
 - In **onContinue()**, the initiator saves the data to be migrated to the distributed object, calls the **save()** API to save the data and synchronize the data to the target device, sets the session ID, and sends the session ID to the target device through **wantParam**.
 
   ```javascript
-     import Ability from '@ohos.application.Ability';
+     import UIAbility from '@ohos.app.ability.UIAbility';
      import distributedObject from '@ohos.data.distributedDataObject';
   
      var g_object = distributedObject.createDistributedObject({data:undefined});
   
-     export default class MainAbility extends Ability {
+     export default class EntryAbility extends UIAbility {
          sessionId : string;
   
       onContinue(wantParam : {[key: string]: any}) {
@@ -256,34 +254,33 @@ In the ability continuation scenario, the distributed data object is used to syn
 - The target device obtains the session ID from **onCreate()**, creates a distributed object, and associates the distributed object with the session ID. In this way, the distributed object can be synchronized. Before calling **restoreWindowStage**, ensure that all distributed objects required for continuation have been associated.
 
   ```javascript
-     import Ability from '@ohos.application.Ability';
-     import distributedObject from '@ohos.data.distributedDataObject';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import distributedObject from '@ohos.data.distributedDataObject';
   
-     var g_object = distributedObject.createDistributedObject({data:undefined});
+  var g_object = distributedObject.createDistributedObject({data:undefined});
   
-     export default class MainAbility extends Ability {
-         storage : LocalStorag;
+  export default class EntryAbility extends UIAbility {
+      storage : LocalStorag;
   
+      onCreate(want, launchParam) {
+          Logger.info(`EntryAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
+          if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+              // Obtain the session ID of the distributed data object from the want parameter.
+              this.sessionId = want.parameters.session
+              Logger.info(`onCreate for continuation sessionId:  ${this.sessionId}`)
   
-         onCreate(want, launchParam) {
-             Logger.info(`MainAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
-             if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
-                 // Obtain the session ID of the distributed data object from the want parameter.
-                 this.sessionId = want.parameters.session
-                 Logger.info(`onCreate for continuation sessionId:  ${this.sessionId}`)
+              // Before fetching data from the remote device, reset g_object.data to undefined.
+              g_object.data = undefined;
+              // Set the session ID, so the target will fetch data from the remote device.
+              g_object.setSessionId(this.sessionId);
   
-                // Before fetching data from the remote device, reset g_object.data to undefined.
-                g_object.data = undefined;
-                // Set the session ID, so the target will fetch data from the remote device.
-                g_object.setSessionId(this.sessionId);
+              AppStorage.SetOrCreate<string>('ContinueStudy', g_object.data)
+              this.storage = new LocalStorage();
+              this.context.restoreWindowStage(this.storage);
+          }
   
-                AppStorage.SetOrCreate<string>('ContinueStudy', g_object.data)
-                this.storage = new LocalStorage();
-                this.context.restoreWindowStage(this.storage);
-             }
-             
-         }
-     }
+      }
+  }
   ```
   
    
@@ -309,5 +306,3 @@ In the ability continuation scenario, the distributed data object is used to syn
 ### Best Practice
 
 For better user experience, you are advised to use the **wantParam** parameter to transmit data smaller than 100 KB and use distributed objects to transmit data larger than 100 KB.
-
- <!--no_check--> 
