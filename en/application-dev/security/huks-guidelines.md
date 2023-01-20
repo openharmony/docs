@@ -9,9 +9,13 @@ The HUKS provides the capability of randomly generating keys for services. For a
 
 Use [huks.generateKeyItem(keyAlias,options,callback)](../reference/apis/js-apis-huks.md#huksgeneratekeyitem9) to generate a key. You need to pass in the key alias in **keyAlias**, a key attribute set in **options**, and **callback** to result the result asynchronously. For details about the APIs, see [HUKS](../reference/apis/js-apis-huks.md).
 
+
+
 1. Determine the key alias.
 2. Initialize the key attributes.<br>Use [HuksParam](../reference/apis/js-apis-huks.md#huksparam) to encapsulate key attributes. Use a **HuksParam** array to assign values to the **properties** field of [HuksOptions](../reference/apis/js-apis-huks.md#huksoptions). The parameters [HuksKeyAlg](../reference/apis/js-apis-huks.md#hukskeyalg), [HuksKeySize](../reference/apis/js-apis-huks.md#hukskeysize), and [HuksKeyPurpose](../reference/apis/js-apis-huks.md#hukskeypurpose) are mandatory.
 3. Pass in the key alias and key parameter set to generate a key.
+
+
 
 > **NOTE**
 >
@@ -209,7 +213,7 @@ Compared with import of plaintext, secure import has complex key material and op
 
 
 
-**Figure 1** Development process of secure import
+**Figure 2** Development process of secure import
 
 ![huks_import_wrapped_key](figures/huks_import_wrapped_key.png)
 
@@ -2081,55 +2085,57 @@ If secondary user identity authentication is enabled for a key, initialize the k
 	| Name           | Value | Description                     |
 	| ------------------------------- |---|------------------------ |
 	| HUKS_USER_AUTH_TYPE_FINGERPRINT |0x0001  | Fingerprint authentication. |
-	| HUKS_USER_AUTH_TYPE_FACE     |0x0002   | Facial authentication. |
-| HUKS_USER_AUTH_TYPE_PIN      |0x0004  | PIN authentication. |
+	| HUKS_USER_AUTH_TYPE_FACE     |0x0002   | Facial authentication.|
+	| HUKS_USER_AUTH_TYPE_PIN      |0x0004  | PIN authentication. |
 	
 	> **NOTE**
 	>
 	> You can specify any or a combination of the three authentication types. 
 	
 
-**Table 4** Secure access types
+	**Table 4** Secure access types
+	
+	| Name                                   | Value  | Description            |
+	| --------------------------------------- | ---- | ------------------------------------------------ |
+	| HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD | 1    | Invalidates the key after the screen lock password is cleared.      |
+	| HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL | 2    | Invalidates the key after a biometric enrollment is added. The user authentication types must include the biometric authentication.|
 
-| Name                                    | Value | Description                                                  |
-| --------------------------------------- | ----- | ------------------------------------------------------------ |
-| HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD | 1     | Invalidates the key after the screen lock password is cleared. |
-| HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL | 2     | Invalidates the key after a biometric enrollment is added. The user authentication types must include the biometric authentication. |
-|                                         |       |                                                              |
-
-> **NOTE**
+	> **NOTE**
 	>
 	> **HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD** and **HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL** are mutually exclusive.
 
-**Table 5** Challenge types
+	**Table 5** Challenge types
 
-| Name                           | Value  | Description                       |
-| ------------------------------- | ---- | ------------------------------ |
-| HUKS_CHALLENGE_TYPE_NORMAL | 0    | Normal challenge, which requires an independent user authentication for each use of the key.|
-| HUKS_CHALLENGE_TYPE_CUSTOM        | 1    | Custom challenge, which supports only one user authentication for multiple keys.|
-| HUKS_CHALLENGE_TYPE_NONE         | 2    | No challenge is required during user authentication.|
+	| Name                           | Value  | Description                       |
+	| ------------------------------- | ---- | ------------------------------ |
+	| HUKS_CHALLENGE_TYPE_NORMAL | 0    | Normal challenge, which requires an independent user authentication for each use of the key.|
+	| HUKS_CHALLENGE_TYPE_CUSTOM        | 1    | Custom challenge, which supports only one user authentication for multiple keys.|
+	| HUKS_CHALLENGE_TYPE_NONE         | 2    | No challenge is required during user authentication.|
 
-> **NOTICE**
->
-> The three challenge types are mutually exclusive.
->
-> If the challenge type is **HUKS_CHALLENGE_TYPE_NONE**, no challenge is required. However, the key can be accessed only within a specified time period (set by **HUKS_TAG_AUTH_TIMEOUT**) after a successful authentication. The maximum value of **HUKS_TAG_AUTH_TIMEOUT** is 60 seconds.
-
-
-2. To use a key, initialize the key session, and determine whether a challenge is required based on the challenge type specified when the key is generated or imported.     
-   **Table 6** APIs for using a key
-    
-| API                     | Description                |
-	| -------------------------------------- | ----------------------------|
-	|initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksSessionHandle>) : void| Initializes the key session and obtains the challenge value.|
-	|updateSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void| Operates data by segment and passes the authentication token.|
-	|finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void| Finalizes the key session.|
+	> **NOTICE**
+	>
+	> The three challenge types are mutually exclusive.
+	>
+	> If the challenge type is **HUKS_CHALLENGE_TYPE_NONE**, no challenge is required. However, the key can be accessed only within a specified time period (set by **HUKS_TAG_AUTH_TIMEOUT**) after a successful authentication. The maximum value of **HUKS_TAG_AUTH_TIMEOUT** is 60 seconds.
 
 
+2. To use a key, initialize the key session, and determine whether a challenge is required based on the challenge type specified when the key is generated or imported.
+	
+	**Table 6** APIs for using a key
+	
+	| API           | Description                          |
+	|-------------- | ------------------------------------ |
+	| initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksSessionHandle>) : void |Initializes the key session and obtains the challenge value.|
+	| updateSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void| Operates data by segment and passes the authentication token.|
+	| finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void | Finalizes the key session.|
+   
+   
 
 **How to Develop**
+	
 
 1. Generate a key and specify user authentication attributes.
+
 ```ts
 import huks from '@ohos.security.huks';
 
