@@ -1,4 +1,4 @@
-# @ohos.settings
+# @ohos.settings (Data Item Settings)
 
 The **settings** module provides APIs for setting data items.
 

@@ -1,6 +1,4 @@
-
-
-# @ohos.web.webview
+# @ohos.web.webview (Webview)
 
 The **Webview** module provides APIs for web control.
 

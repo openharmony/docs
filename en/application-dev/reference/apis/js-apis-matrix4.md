@@ -1,4 +1,4 @@
-# @ohos.matrix4
+# @ohos.matrix4 (Matrix Transformation)
 
 The **matrix4** module provides APIs for matrix transformation. You can use these APIs to translate, rotate, and scale images.
 

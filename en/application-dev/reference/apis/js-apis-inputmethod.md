@@ -1,4 +1,4 @@
-# @ohos.inputmethod
+# @ohos.inputmethod (Input Method Framework)
 
 The **inputMethod** module provides an input method framework, which can be used to hide the keyboard, obtain the list of installed input methods, display the dialog box for input method selection, and more.
 

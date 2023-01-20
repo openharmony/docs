@@ -1,4 +1,4 @@
-# @ohos.enterprise.dateTimeManager
+# @ohos.enterprise.dateTimeManager (System Time Management)
 
 The **dateTimeManager** module provides APIs for system time management, which can only be called by device administrator applications.
 
