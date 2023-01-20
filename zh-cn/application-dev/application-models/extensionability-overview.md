@@ -9,7 +9,7 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 
 - [FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)：FORM类型的ExtensionAbility组件，用于提供服务卡片场景相关能力。
 
-- [WorkSchedulerExtensionAbility](../reference/apis/js-apis-resourceschedule-workScheduler.md)：WORK_SCHEDULER类型的ExtensionAbility组件，用于提供延迟任务注册、取消、查询的能力。
+- [WorkSchedulerExtensionAbility](../reference/apis/js-apis-resourceschedule-workScheduler.md)：WORK_SCHEDULER类型的ExtensionAbility组件，用于提供延迟任务回调实现的能力。
 
 - [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md)：INPUT_METHOD类型的ExtensionAbility组件，提供对输入法框架的管理，包括隐藏输入法、查询已安装的输入法列表和显示输入法选择对话框。
 

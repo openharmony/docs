@@ -3,7 +3,14 @@
 
 ## Introduction<a name="section11660541593"></a>
 
-The **commonlibrary** subsystem provides common enhanced APIs for development in C, C++ and JS.
+The **commonlibrary** subsystem stores basic OpenHarmony components which provides common enhanced APIs for development in C, C++ and JS that are commonly used by OpenHarmony service subsystems and upper-layer applications. Including repositories:
+```
+/commonlibrary
+    ├── c_utils                  # Enhanced basic C/C++ library for developers 
+    ├── ets_utils                # Enhanced basic JS library for developers
+    └── utils_lite               # Basic tools for liteOS, including C and JS.
+```
+ Features provided by every repositories are listed here:
 
 **c_utils**
 
@@ -24,15 +31,8 @@ The **commonlibrary** subsystem provides common enhanced APIs for development in
 
 -   Hardware Abstraction Layer (HAL) APIs for performing operations on standard files
 -   APIs for internal functions, such as the timer
-
-## Directory Structure<a name="section17271017133915"></a>
-
-```
-/commonlibrary
-    ├── c_utils                  # Enhanced basic C/C++ library for developers 
-    ├── ets_utils                # Enhanced basic JS library for developers
-    └── utils_lite               # Basic tools for liteOS, including C and JS.
-```
+## Related Documents<a name="section17271017133915"></a>
+[Commonlibrary Development Guidelines](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-utils-guide.md)
 
 ## Repositories Involved<a name="section1249817110914"></a>
 

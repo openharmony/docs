@@ -66,8 +66,8 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
     let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
         console.info("Request suspension delay will time out.");
     })
-    var id = delayInfo.requestId;
-    var time = delayInfo.actualDelayTime;
+    let id = delayInfo.requestId;
+    let time = delayInfo.actualDelayTime;
     console.info("The requestId is: " + id);
     console.info("The actualDelayTime is: " + time);
   } catch (error) {
@@ -281,14 +281,18 @@ export default class EntryAbility extends UIAbility {
             wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
 
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-            try {
-                backgroundTaskManager.startBackgroundRunning(this.context,
-                    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
-            } catch (error) {
-                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-            }
-        });
+        try {
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+                try {
+                    backgroundTaskManager.startBackgroundRunning(this.context,
+                        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
+                } catch (error) {
+                    console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                }
+            });
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+        }
     }
 };
 ```
@@ -352,18 +356,22 @@ export default class EntryAbility extends UIAbility {
             wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
 
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-            try {
-                backgroundTaskManager.startBackgroundRunning(this.context,
-                    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
-                    console.info("Operation startBackgroundRunning succeeded");
-                }).catch((error) => {
+        try {
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+                try {
+                    backgroundTaskManager.startBackgroundRunning(this.context,
+                        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
+                        console.info("Operation startBackgroundRunning succeeded");
+                    }).catch((error) => {
+                        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                    });
+                } catch (error) {
                     console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-                });
-            } catch (error) {
-                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-            }
-        });
+                }
+            });
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+        }
     }
 };
 ```

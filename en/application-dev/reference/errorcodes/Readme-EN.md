@@ -74,7 +74,7 @@
   - [Vibrator Error Codes](errorcode-vibrator.md)
   - [System Parameter Error Codes](errorcode-system-parameterV9.md)
   - [USB Error Codes](errorcode-usb.md)
-  - [Update Error Code](errorcode-update.md)
+  - [Update Error Codes](errorcode-update.md)
 - Customization Management
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
 - Utils
