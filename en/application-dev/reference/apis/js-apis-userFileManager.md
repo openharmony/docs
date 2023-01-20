@@ -1,4 +1,4 @@
-# @ohos.filemanagement.userFileManager
+# @ohos.filemanagement.userFileManager (User Data Management)
 
 The **userFileManager** module provides user data management capabilities, including accessing and modifying user media data (audio and video clips, images, and files).
 
