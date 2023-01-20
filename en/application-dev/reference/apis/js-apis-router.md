@@ -1,4 +1,4 @@
-# @ohos.router
+# @ohos.router (Page Routing)
 
 The **Router** module provides APIs to access pages through URLs. You can use the APIs to navigate to a specified page in an application, replace the current page with another one in an application, and return to the previous page or a specified page.
 
@@ -804,7 +804,7 @@ router.replace({
 });
 ```
 
-  ## router.replace<sup>(deprecated)</sup>
+## router.replace<sup>(deprecated)</sup>
 
 replace(options: RouterOptions, mode: RouterMode): void
 

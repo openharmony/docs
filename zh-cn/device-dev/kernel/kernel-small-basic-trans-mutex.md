@@ -104,13 +104,13 @@
 本演示代码在./kernel/liteos_a/testsuites/kernel/src/osTest.c中编译验证，在TestTaskEntry中调用验证入口函数Example_MutexEntry。
 
 示例代码如下：
-  
+
 ```
 #include <string.h>
 #include "los_mux.h"
 
 /* 互斥锁 */
-LosMux g_testMux;
+LosMux g_testMutex;
 /* 任务ID */
 UINT32 g_testTaskId01;
 UINT32 g_testTaskId02;
@@ -118,48 +118,49 @@ UINT32 g_testTaskId02;
 VOID Example_MutexTask1(VOID)
 {
     UINT32 ret;
+    LOS_TaskDelay(50);
 
-    printf("task1 try to get mutex, wait 10 ticks.\n");
+    dprintf("task1 try to get mutex, wait 10 ticks.\n");
     /* 申请互斥锁 */
-    ret = LOS_MuxLock(&g_testMux, 10);
+    ret = LOS_MuxLock(&g_testMutex, 10);
 
     if (ret == LOS_OK) {
-        printf("task1 get mutex g_testMux.\n");
+        dprintf("task1 get mutex g_testMux.\n");
         /* 释放互斥锁 */
-        LOS_MuxUnlock(&g_testMux);
+        LOS_MuxUnlock(&g_testMutex);
         return;
-    } 
-    if (ret == LOS_ETIMEDOUT ) {
-            printf("task1 timeout and try to get mutex, wait forever.\n");
-            /* 申请互斥锁 */
-            ret = LOS_MuxLock(&g_testMux, LOS_WAIT_FOREVER);
-            if (ret == LOS_OK) {
-                printf("task1 wait forever, get mutex g_testMux.\n");
-                /* 释放互斥锁 */
-                LOS_MuxUnlock(&g_testMux);
-                /* 删除互斥锁 */
-                LOS_MuxDestroy(&g_testMux);
-                printf("task1 post and delete mutex g_testMux.\n");
-                return;
-            }
+    }
+    if (ret == LOS_ETIMEDOUT) {
+        dprintf("task1 timeout and try to get mutex, wait forever.\n");
+        /* 申请互斥锁 */
+        ret = LOS_MuxLock(&g_testMutex, LOS_WAIT_FOREVER);
+        if (ret == LOS_OK) {
+            dprintf("task1 wait forever, get mutex g_testMux.\n");
+            /* 释放互斥锁 */
+            LOS_MuxUnlock(&g_testMutex);
+            /* 删除互斥锁 */
+            LOS_MuxDestroy(&g_testMutex);
+            dprintf("task1 post and delete mutex g_testMux.\n");
+            return;
+        }
     }
     return;
 }
 
 VOID Example_MutexTask2(VOID)
 {
-    printf("task2 try to get mutex, wait forever.\n");
+    dprintf("task2 try to get mutex, wait forever.\n");
     /* 申请互斥锁 */
-    (VOID)LOS_MuxLock(&g_testMux, LOS_WAIT_FOREVER);
+    (VOID)LOS_MuxLock(&g_testMutex, LOS_WAIT_FOREVER);
 
-    printf("task2 get mutex g_testMux and suspend 100 ticks.\n");
+    dprintf("task2 get mutex g_testMux and suspend 100 ticks.\n");
 
     /* 任务休眠100Ticks */
     LOS_TaskDelay(100);
 
-    printf("task2 resumed and post the g_testMux\n");
+    dprintf("task2 resumed and post the g_testMux\n");
     /* 释放互斥锁 */
-    LOS_MuxUnlock(&g_testMux);
+    LOS_MuxUnlock(&g_testMutex);
     return;
 }
 
@@ -170,7 +171,7 @@ UINT32 Example_MutexEntry(VOID)
     TSK_INIT_PARAM_S task2;
 
     /* 初始化互斥锁 */
-    LOS_MuxInit(&g_testMux, NULL);
+    LOS_MuxInit(&g_testMutex, NULL);
 
     /* 锁任务调度 */
     LOS_TaskLock();
@@ -183,7 +184,7 @@ UINT32 Example_MutexEntry(VOID)
     task1.usTaskPrio   = 5;
     ret = LOS_TaskCreate(&g_testTaskId01, &task1);
     if (ret != LOS_OK) {
-        printf("task1 create failed.\n");
+        dprintf("task1 create failed.\n");
         return LOS_NOK;
     }
 
@@ -195,7 +196,7 @@ UINT32 Example_MutexEntry(VOID)
     task2.usTaskPrio   = 4;
     ret = LOS_TaskCreate(&g_testTaskId02, &task2);
     if (ret != LOS_OK) {
-        printf("task2 create failed.\n");
+        dprintf("task2 create failed.\n");
         return LOS_NOK;
     }
 
@@ -210,11 +211,11 @@ UINT32 Example_MutexEntry(VOID)
 
 编译运行得到的结果为：
 
-  
+
 ```
-task1 try to get mutex, wait 10 ticks.
 task2 try to get mutex, wait forever.
 task2 get mutex g_testMux and suspend 100 ticks.
+task1 try to get mutex, wait 10 ticks.
 task1 timeout and try to get mutex, wait forever.
 task2 resumed and post the g_testMux
 task1 wait forever, get mutex g_testMux.

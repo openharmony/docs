@@ -9,7 +9,7 @@
 ## 导入模块
 
 
-```
+```ts
 import notification from '@system.notification';
 ```
 
@@ -59,9 +59,9 @@ export default {
             clickAction: {
                 bundleName: 'com.example.testapp',
                 abilityName: 'notificationDemo',
-                uri: '/path/to/notification',
-            },
+                uri: '/path/to/notification'
+            }
         });
-    },
+    }
 }
 ```

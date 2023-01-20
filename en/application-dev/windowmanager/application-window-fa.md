@@ -47,30 +47,30 @@ You can create a subwindow, such as a dialog box, and set its properties.
    - Call **window.createWindow** to create a subwindow.
    - Call **window.findWindow** to find an available subwindow.
    
-```js
-   import window from '@ohos.window';
+   ```js
+      import window from '@ohos.window';
    
-   let windowClass = null;
-   // Method 1: Create a subwindow.
-   let config = {name: "subWindow", windowType: window.WindowType.TYPE_APP, ctx: this.context};
-   window.createWindow(config, (err, data) => {
-       if (err.code) {
-           console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
-           return;
-       }
-       console.info('Succeeded in creating subWindow. Data: ' + JSON.stringify(data));
-       windowClass = data;
-   });
-   // Method 2: Find a subwindow.
-   window.findWindow("subWindow", (err, data) => {
-       if (err.code) {
-           console.error('Failed to find the subWindow. Cause: ' + JSON.stringify(err));
-           return;
-       }
-       console.info('Succeeded in finding subWindow. Data: ' + JSON.stringify(data));
-       windowClass = data;
-   });
-```
+      let windowClass = null;
+      // Method 1: Create a subwindow.
+      let config = {name: "subWindow", windowType: window.WindowType.TYPE_APP, ctx: this.context};
+      window.createWindow(config, (err, data) => {
+          if (err.code) {
+              console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
+              return;
+          }
+          console.info('Succeeded in creating subWindow. Data: ' + JSON.stringify(data));
+          windowClass = data;
+      });
+      // Method 2: Find a subwindow.
+      window.findWindow("subWindow", (err, data) => {
+          if (err.code) {
+              console.error('Failed to find the subWindow. Cause: ' + JSON.stringify(err));
+              return;
+          }
+          console.info('Succeeded in finding subWindow. Data: ' + JSON.stringify(data));
+          windowClass = data;
+      });
+   ```
 
 2. Set the properties of the subwindow.
 
@@ -180,7 +180,8 @@ To create a better video watching and gaming experience, you can use the immersi
      }
      console.info('Succeeded in setting the system bar to be visible.');
    });
-   // Use method 2 to implement the immersive effect. 
+   // Use method 2 to implement the immersive effect.
+    
    let isLayoutFullScreen = true;
    mainWindowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err) => {
      if (err.code) {
@@ -204,7 +205,7 @@ To create a better video watching and gaming experience, you can use the immersi
      console.info('Succeeded in setting the system bar properties.');
    });
    ```
-   
+
 3. Load content for the immersive window and show it.
 
    Call **SetUIContent** and **showWindow** to load and display the content in the immersive window.

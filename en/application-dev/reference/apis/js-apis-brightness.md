@@ -1,6 +1,6 @@
-# Screen Brightness
+# @ohos.brightness (Screen Brightness)
 
-The Brightness module provides an API for setting the screen brightness.
+The **brightness** module provides an API for setting the screen brightness.
 
 > **NOTE**
 >

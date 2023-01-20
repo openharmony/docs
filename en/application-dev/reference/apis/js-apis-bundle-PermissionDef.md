@@ -18,5 +18,5 @@ The **PermissionDef** module provides permission details defined in the configur
 | -------------- | ------ | ---- | ---- | -------------- |
 | permissionName | string | Yes  | No  | Name of the permission.  |
 | grantMode      | number | Yes  | No  | Grant mode of the permission. The value **0** means that the system automatically grants the permission after the application installation, and **1** means that the application needs to dynamically request the permission from the user.|
-| labelId        | number | Yes  | No  | Label ID of the permission.  |
-| descriptionId  | number | Yes  | No  | Description ID of the permission.  |
+| labelId        | number | Yes  | No  | ID of the permission label. |
+| descriptionId  | number | Yes  | No  | ID of the permission description. |

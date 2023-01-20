@@ -30,7 +30,7 @@ Ability监听器
 **示例：**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
@@ -46,5 +46,4 @@ abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
     console.info("addAbilityMonitor callback");
 });
 ```
-
 

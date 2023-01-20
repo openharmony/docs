@@ -1,4 +1,4 @@
-# @ohos.application.FormExtension
+# @ohos.application.FormExtension (FormExtension)
 
 The **FormExtension** module provides APIs related to Form Extension abilities.
 

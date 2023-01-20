@@ -7,7 +7,7 @@
 @syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
 
 
-**自从：**
+**起始版本：**
 
 
 9
@@ -60,13 +60,13 @@ OHNativeWindow* OH_NativeImage_AcquireNativeWindow (OH_NativeImage * image)
 
 | Name | 描述 |
 | -------- | -------- |
-| image | 指向&lt;b&gt;OH_NativeImage&lt;/b&gt;实例的指针。 |
+| image | 指向OH_NativeImage实例的指针。 |
 
 **返回：**
 
 成功则返回一个指向OHNativeWindow实例的指针，否则返回**NULL**。
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -95,7 +95,7 @@ int32_t OH_NativeImage_AttachContext (OH_NativeImage * image, uint32_t textureId
 
 返回一个由**SurfaceError**定义的int32_t类型的错误码。
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -124,7 +124,7 @@ OH_NativeImage* OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarge
 
 返回一个指向**OH_NativeImage**实例的指针，否则返回**NULL**。
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -172,7 +172,7 @@ int32_t OH_NativeImage_DetachContext (OH_NativeImage * image)
 
 返回一个由**SurfaceError**定义的int32_t类型的错误码。
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -200,7 +200,7 @@ int64_t OH_NativeImage_GetTimestamp (OH_NativeImage * image)
 
 返回纹理图像的相关时间戳。
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -229,7 +229,7 @@ int32_t OH_NativeImage_GetTransformMatrix (OH_NativeImage * image, float matrix[
 
 返回一个由**SurfaceError**定义的int32_t类型的错误码。
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -257,6 +257,6 @@ int32_t OH_NativeImage_UpdateSurfaceImage (OH_NativeImage * image)
 
 返回一个由**SurfaceError**定义的int32_t类型的错误码。
 
-**自从：**
+**起始版本：**
 
 9

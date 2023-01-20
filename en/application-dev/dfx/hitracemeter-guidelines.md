@@ -1,8 +1,23 @@
 # Development of Performance Tracing
 
-## When to Use
+## Introduction
 
-HiTraceMeter provides APIs for system performance tracing. You can call the APIs provided by HiTraceMeter module in your own service logic to effectively track service processes and check the system performance.
+hiTraceMeter provides APIs for system performance tracing. You can call the APIs provided by the hiTraceMeter module in your own service logic to effectively track service processes and check the system performance.
+
+## Basic Concepts
+
+- **hiTraceMeter Tag**
+
+  Tag used for tracing data categorization. It is also known as **hiTraceMeter Category**. Generally, one subsystem maps to a tag. The tag is passed as the **Tag** parameter in performance tracing APIs. When you use the hiTraceMeter CLI tool to collect tracing data, only the tracing data specified by the **Tag** parameter is collected.
+
+## Working Principles
+
+- The application calls hiTraceMeter APIs to perform performance tracing. The APIs output the tracing data to the kernel's ftrace data buffer through the kernel's sysfs file interface.
+- The hiTraceMeter CLI tool reads the tracing data in the ftrace data buffer and saves the trace data as a text file on the device.
+
+## Constraints
+
+Due to the asynchronous I/O feature of JS, the hiTraceMeter module provides only asynchronous APIs.
 
 ## Available APIs
  

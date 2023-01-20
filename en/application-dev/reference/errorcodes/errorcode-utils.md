@@ -219,3 +219,57 @@ The buffer is read-only.
 **Solution**
 
 Do not set the read-only attribute for the buffer.
+
+## 10200014 Non-Concurrent Function Error
+
+**Error Message**
+
+The function is not mark as concurrent.
+
+**Description**
+
+The function is not marked as **concurrent**.
+
+**Possible Causes**
+
+**@Concurrent** is not added to the function required by the task to be executed in the task pool.
+
+**Solution**
+
+Check the functions required by the tasks executed by the task pool and add the **@Concurrent** decorator.
+
+## 10200015 Failed to Cancel a Task That Does Not Exist
+
+**Error Message**
+
+The task is not exist when cancel it.
+
+**Description**
+
+This error code is reported when you attempt to cancel a task that does not exist.
+
+**Possible Causes**
+
+The task to cancel does not exist in the task pool.
+
+**Solution**
+
+Before canceling a task, ensure that the task is placed into the task pool by calling **taskpool.execute**.
+
+## 10200016 Failed to Cancel a Task Being Executed
+
+**Error Message**
+
+The task is running when cancel it.
+
+**Description**
+
+This error code is reported when you attempt to cancel a task that is being executed.
+
+**Possible Causes**
+
+The task to cancel is being executed.
+
+**Solution**
+
+Before canceling a task, ensure that the task finishes execution.

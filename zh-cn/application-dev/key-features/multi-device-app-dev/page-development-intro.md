@@ -31,8 +31,8 @@
 | ------------------------------------------------------------ | -------------- | ------------------------------------------------------------ |
 | [页面开发一多能力](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities) | 声明式开发范式 | 本章配套的示例代码，包括自适应布局、响应式布局、典型布局场景以及资源文件使用等。 |
 | [页面开发一多能力](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/JsAdaptiveCapabilities) | 类Web开发范式  | 本章配套的示例代码，包括自适应布局、响应式布局及资源文件使用等。 |
+| [天气](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Weather) | 声明式开发范式 | 一多示例应用，以天气应用为例，演示如何使用一多能力实现包含多个页面的应用。 |
 | [应用市场首页](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AppMarket) | 声明式开发范式 | 本章配套的示例代码，以应用市场首页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
 | [音乐专辑页](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/MusicAlbum) | 声明式开发范式 | 本章配套的示例代码，以音乐专辑页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
-| [蔬菜百科首页](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Vegetable) | 声明式开发范式 | 一多示例页面，以蔬菜百科首页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
-| [天气](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Weather) | 声明式开发范式 | 一多示例应用，以天气应用为例，演示如何使用一多能力实现包含多个页面的应用。 |
+| [设置应用页面](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Settings) | 声明式开发范式 | 本章配套的示例代码，以设置应用页面为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
 

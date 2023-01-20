@@ -1682,9 +1682,9 @@ Creates a linear gradient and returns a **CanvasGradient** object. For details, 
       // Linear gradient: start(50,0) end(300,100)
       var gradient = ctx.createLinearGradient(50,0, 300,100);
       // Add three color stops
-      gradient.addColorStop(0.0, 'red');
-      gradient.addColorStop(0.5, 'white');
-      gradient.addColorStop(1.0, 'green');
+      gradient.addColorStop(0.0, '#ff0000');
+      gradient.addColorStop(0.5, '#ffffff');
+      gradient.addColorStop(1.0, '#00ff00');
       // Set the fill style and draw a rectangle
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 500, 500);

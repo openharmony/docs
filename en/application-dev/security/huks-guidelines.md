@@ -2,7 +2,7 @@
 
 OpenHarmony Universal KeyStore (HUKS) provides KeyStore (KS) capabilities for applications, including key management and key cryptography operations. HUKS also provides APIs for applications to import or generate keys.
 
-> **NOTE**<br>
+> **NOTE**
 >
 > This document is based on API version 9 and applies only to ArkTS development.
 
@@ -20,9 +20,9 @@ Generate a key for an application by specifying the alias and key parameters.
 
 > **NOTE**
 >
-> 1. When a key is used if the parameters passed in does not comply with the parameters passed in during the key generation, the parameter verification will fail. 
+> - When a key is used if the parameters passed in does not comply with the parameters passed in during the key generation, the parameter verification will fail. 
 >
-> 2. If an optional parameter required by the algorithm is not passed in during the key generation process, it must be passed in when the key is used.
+> - If an optional parameter required by the algorithm is not passed in during the key generation process, it must be passed in when the key is used.
 
 **Supported Key Types**
 

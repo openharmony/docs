@@ -1,6 +1,6 @@
-# 证书模块
+# @ohos.security.cert (证书模块)
 
-crypto framework提供证书相关接口。其中，依赖加解密算法库框架的基础算法能力的部分，详细接口说明可参考[cryptoFramework API参考](./js-apis-cryptoFramework.md)。
+crypto framework提供证书相关接口。其中，依赖加解密算法库框架的基础算法能力的部分，详细接口说明可参考[cryptoFramework API参考](js-apis-cryptoFramework.md)。
 
 > **说明：**
 > 
@@ -203,7 +203,7 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
         console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
         console.log("createX509Cert success");
-        // 业务需通过AsyKeyGenerator生成PubKey或通过上级X509Cert证书对象的getPublicKey获取PubKey
+        // 业务需通过上级X509Cert证书对象的getPublicKey获取PubKey
 		let pubKey = null;
         x509Cert.verify(pubKey, function (error, data) {
             if (error != null) {
@@ -355,8 +355,7 @@ getPublicKey() : cryptoFramework.PubKey
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| cryptoFramework.PubKey | X509证书公钥对象 |
-
+| cryptoFramework.PubKey | X509证书公钥对象：仅用于X509Cert的verify接口 |
 
 **示例：**
 
@@ -398,8 +397,7 @@ checkValidityWithDate(date: string) : void
 
 | 参数名   | 类型            | 必填 | 说明        |
 | -------- | -------------- | ---- | ---------- |
-| date     | string         | 是   | 日期        |
-
+| date     | string         | 是   | 日期（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间必须以Z结尾：表示标准时间） |
 
 **示例：**
 
@@ -584,9 +582,9 @@ getNotBeforeTime() : string
 
 **返回值**：
 
-| 类型   | 说明                       |
-| ------ | -------------------------- |
-| string | 表示X509证书有效期起始时间 |
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| string | 表示X509证书有效期起始时间（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间以Z结尾：表示标准时间） |
 
 **示例：**
 
@@ -620,9 +618,9 @@ getNotAfterTime() : string
 
 **返回值**：
 
-| 类型   | 说明                       |
-| ------ | -------------------------- |
-| string | 表示X509证书有效期截止时间 |
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| string | 表示X509证书有效期截止时间（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间以Z结尾：表示标准时间） |
 
 **示例：**
 

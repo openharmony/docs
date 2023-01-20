@@ -44,30 +44,24 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
@@ -115,35 +109,29 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var options = {
+  let options = {
     windowMode: 0
   };
 
@@ -195,34 +183,28 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
-  var options = {
+  let options = {
     windowMode: 0,
   };
 
@@ -268,33 +250,27 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -340,35 +316,29 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var options = {
+  let options = {
     windowMode: 0,
   };
 
@@ -422,53 +392,47 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+let want = {
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
-  };
-  var options = {
+    abilityName: "EntryAbility"
+};
+let options = {
     windowMode: 0,
-  };
+};
 
-  try {
+try {
     this.context.startAbilityForResult(want, options)
-      .then((result) => {
+        .then((result) => {
         // 执行正常业务
         console.log("startAbilityForResult succeed, result.resultCode = " + result.resultCode);
-      })
-      .catch((error) => {
+    })
+        .catch((error) => {
         // 处理业务逻辑错误
         console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
+                    ' error.message: ' + JSON.stringify(error.message));
+    });
+} catch (paramError) {
     // 处理入参错误异常
     console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+                ' error.message: ' + JSON.stringify(paramError.message));
+}
   ```
 
 ## UIAbilityContext.startAbilityForResultWithAccount
@@ -500,36 +464,29 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startAbilityForResultWithAccount(want, accountId, (error, result) => {
@@ -581,37 +538,30 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -669,37 +619,30 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -742,23 +685,19 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
@@ -802,23 +741,19 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
@@ -866,25 +801,24 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error) => {
@@ -927,33 +861,28 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId)
-      .then((data) => {
+      .then(() => {
         // 执行正常业务
         console.log('startServiceExtensionAbilityWithAccount succeed');
       })
@@ -989,20 +918,18 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
@@ -1046,20 +973,18 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
@@ -1067,7 +992,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
   try {
     this.context.stopServiceExtensionAbility(want)
-      .then((data) => {
+      .then(() => {
         // 执行正常业务
         console.log('stopServiceExtensionAbility succeed');
       })
@@ -1107,26 +1032,23 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
@@ -1169,30 +1091,27 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
-      .then((data) => {
+      .then(() => {
         // 执行正常业务
         console.log('stopServiceExtensionAbilityWithAccount succeed');
       })
@@ -1226,12 +1145,12 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **示例：**
 
@@ -1273,12 +1192,12 @@ terminateSelf(): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **示例：**
 
@@ -1321,23 +1240,23 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   }
-  var resultCode = 100;
+  let resultCode = 100;
   // 返回给接口调用方AbilityResult信息
-  var abilityResult = {
+  let abilityResult = {
     want,
     resultCode
   }
@@ -1385,31 +1304,30 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
-
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   }
-  var resultCode = 100;
+  let resultCode = 100;
   // 返回给接口调用方AbilityResult信息
-  var abilityResult = {
+  let abilityResult = {
     want,
     resultCode
   }
 
   try {
     this.context.terminateSelfWithResult(abilityResult)
-      .then((data) => {
+      .then(() => {
         // 执行正常业务
         console.log('terminateSelfWithResult succeed');
       })
@@ -1452,23 +1370,20 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000005 | The specified process does not have the permission. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
   };
-  var options = {
+  let options = {
     onConnect(elementName, remote) {
       console.log('----------- onConnect -----------')
     },
@@ -1480,7 +1395,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
     }
   }
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbility(want, options);
   } catch (paramError) {
@@ -1521,25 +1436,21 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000006 | Can not cross user operations. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000005 | The specified process does not have the permission. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     onConnect(elementName, remote) {
       console.log('----------- onConnect -----------')
     },
@@ -1551,7 +1462,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
     }
   }
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
   } catch (paramError) {
@@ -1569,8 +1480,6 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1587,22 +1496,20 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000003 | Input error. The specified id does not exist. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000005 | The specified process does not have the permission. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **示例：**
 
   ```ts
   // connection为connectServiceExtensionAbility中的返回值
-  var connection = 1;
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection)
-      .then((data) => {
+      .then(() => {
         // 执行正常业务
         console.log('disconnectServiceExtensionAbility succeed');
       })
@@ -1626,8 +1533,6 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1639,18 +1544,16 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000003 | Input error. The specified id does not exist. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000005 | The specified process does not have the permission. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **示例：**
 
   ```ts
   // connection为connectServiceExtensionAbility中的返回值
-  var connection = 1;
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
@@ -1683,6 +1586,8 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1695,18 +1600,36 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 | -------- | -------- |
 | Promise&lt;Caller&gt; | 获取要通讯的caller对象。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
 **示例：**
 
   后台启动：
 
   ```ts
-  var caller = undefined;
+  let caller = undefined;
 
   // 后台启动Ability，不配置parameters
-  var wantBackground = {
+  let wantBackground = {
     bundleName: "com.example.myservice",
     moduleName: "entry",
-    abilityName: "MainAbility",
+    abilityName: "EntryAbility",
     deviceId: ""
   };
 
@@ -1731,13 +1654,13 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   前台启动：
 
   ```ts
-  var caller = undefined;
+  let caller = undefined;
 
   // 前台启动Ability，将parameters中的"ohos.aafwk.param.callAbilityToForeground"配置为true
-  var wantForeground = {
+  let wantForeground = {
     bundleName: "com.example.myservice",
     moduleName: "entry",
-    abilityName: "MainAbility",
+    abilityName: "EntryAbility",
     deviceId: "",
     parameters: {
       "ohos.aafwk.param.callAbilityToForeground": true
@@ -1791,36 +1714,29 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startAbilityWithAccount(want, accountId, (error) => {
@@ -1871,37 +1787,30 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -1953,43 +1862,36 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
   try {
     this.context.startAbilityWithAccount(want, accountId, options)
-      .then((data) => {
+      .then(() => {
         // 执行正常业务
         console.log('startAbilityWithAccount succeed');
       })
@@ -2048,6 +1950,13 @@ setMissionLabel(label: string): Promise&lt;void&gt;;
 | -------- | -------- |
 | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
 **示例：**
 
   ```ts
@@ -2074,13 +1983,20 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 | icon | image.PixelMap | 是 | 在最近的任务中显示的ability图标。 |
 | callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
 **示例：**
 
   ```ts
   import image from '@ohos.multimedia.image';
-  var imagePixelMap;
-  var color = new ArrayBuffer(0);
-  var initializationOptions = {
+  let imagePixelMap;
+  let color = new ArrayBuffer(0);
+  let initializationOptions = {
     size: {
       height: 100,
       width: 100
@@ -2121,12 +2037,19 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 | -------- | -------- |
 | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
 **示例：**
 
   ```ts
-  var imagePixelMap;
-  var color = new ArrayBuffer(0);
-  var initializationOptions = {
+  let imagePixelMap;
+  let color = new ArrayBuffer(0);
+  let initializationOptions = {
     size: {
       height: 100,
       width: 100
@@ -2161,10 +2084,17 @@ restoreWindowStage(localStorage: LocalStorage) : void;
 | -------- | -------- | -------- | -------- |
 | localStorage | image.LocalStorage | 是 | 用于恢复window stage的存储数据。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
 **示例：**
 
   ```ts
-  var storage = new LocalStorage();
+  let storage = new LocalStorage();
   this.context.restoreWindowStage(storage);
   ```
 
@@ -2182,9 +2112,16 @@ isTerminating(): boolean;
 | -------- | -------- |
 | bool | true：ability当前处于terminating状态；false：不处于terminating状态。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
 **示例：**
 
   ```ts
-  var isTerminating = this.context.isTerminating();
+  let isTerminating = this.context.isTerminating();
   console.log('ability state :' + isTerminating);
   ```

@@ -1,4 +1,5 @@
-# Window Extension Ability
+# @ohos.application.WindowExtensionAbility (WindowExtensionAbility)
+
 **WindowExtensionAbility** inherits from **ExtensionAbility**. The content in a **WindowExtensionAbility** object can be displayed as an ability component in other application windows.
 
 > **NOTE**

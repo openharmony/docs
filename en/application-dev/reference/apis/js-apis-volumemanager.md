@@ -1,11 +1,10 @@
-# Volume Management
+# @ohos.volumeManager (Volume Management)
 
 The volumeManager module provides APIs for volume and disk management, including obtaining volume information, mounting or unmounting volumes, partitioning disks, and formatting volumes.
 
-> **NOTE**<br>
+> **NOTE**
 >
 > - The initial APIs of this module are supported since API version 9.
-> - API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 > - The APIs of this module are system APIs and cannot be called by third-party applications.
 
 ## Modules to Import
@@ -52,7 +51,7 @@ Asynchronously obtains information about all available volumes. This API uses a 
 
   | Name  | Type                                             | Mandatory| Description                                |
   | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | callback: AsyncCallback&lt;[Volume](#volume)[]&gt; | Yes  | Callback invoked to return the volume information obtained.|
+  | callback | AsyncCallback&lt;[Volume](#volume)[]&gt; | Yes  | Callback invoked to return the volume information obtained.|
 
 **Example**
 
@@ -110,7 +109,7 @@ Asynchronously obtains the available space of the specified volume. This API use
   | Name  | Type                                 | Mandatory| Description                |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | Yes  | Volume ID.                |
-  | callback | callback: AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the execution result.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the execution result.|
 
 **Example**
 
@@ -167,7 +166,7 @@ Asynchronously unmounts a volume. This API uses a callback to return the result.
   | Name  | Type                                 | Mandatory| Description                |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | Yes  | Volume ID.                |
-  | callback | callback: AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the execution result.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the execution result.|
 
 **Example**
 
@@ -226,7 +225,7 @@ Asynchronously obtains volume information based on the UUID. This API uses a cal
   | Name   | Type                                                | Mandatory| Description                |
   | -------- | ------------------------------------------------ | ---- | -------------------- |
   | uuid | string                                                 | Yes  | UUID of the volume.                |
-  | callback | callback: AsyncCallback&lt;[Volume](#volume)&gt;  | Yes  | Callback invoked to return the volume information obtained.|
+  | callback | AsyncCallback&lt;[Volume](#volume)&gt;  | Yes  | Callback invoked to return the volume information obtained.|
 
 **Example**
 
@@ -285,7 +284,7 @@ Asynchronously obtains volume information based on the volume ID. This API uses 
   | Name  | Type                     | Mandatory| Description                         |
   | -------- | ------------------------- | ---- | ----------------------------- |
   | volumeId | string                    | Yes  | Volume ID.               |
-  | callback | callback:AsyncCallback&lt;[Volume](#volume)&gt; | Yes  | Callback invoked to return the volume information obtained. |
+  | callback | AsyncCallback&lt;[Volume](#volume)&gt; | Yes  | Callback invoked to return the volume information obtained. |
 
 **Example**
 
@@ -347,7 +346,7 @@ Asynchronously sets the volume description based on the UUID. This API uses a ca
   | ---------- | --------------------------------------- | ---- | ---------------- |
   | uuid       | string                                  | Yes  | UUID of the volume.           |
   | description | string                                 | Yes  | Volume description.           |
-  | callback   | callback: AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the result.|
+  | callback   | AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the result.|
 
 **Example**
 
@@ -410,7 +409,7 @@ Asynchronously formats a volume. This API uses a callback to return the result.
   | -------- | ------------------------- | ---- | ----------------------------- |
   | volumeId | string                    | Yes  | Volume ID.               |
   | fsType    | string | Yes  | File system type.|
-  | callback | callback: AsyncCallback&lt;void&gt;  | Yes  | Called after the volume is formatted. |
+  | callback | AsyncCallback&lt;void&gt;  | Yes  | Called after the volume is formatted. |
 
 **Example**
 
@@ -473,7 +472,7 @@ Asynchronously partitions a disk. This API uses a callback to return the result.
   | -------- | --------------------------------------- | ---- | ---------------- |
   | diskId   | string                                  | Yes  | ID of the disk to which the volume belongs.     |
   | type     | number                                  | Yes  | Partition type.          |
-  | callback | callback: AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the result.     |
+  | callback | AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the result.     |
 
 **Example**
 
@@ -491,12 +490,12 @@ Asynchronously partitions a disk. This API uses a callback to return the result.
 
 ### Attributes
 
-| Name        | Type   | Description                |
-| ----------- | ------- | -------------------- |
-| id          | string  | Volume ID.                |
-| uuid        | string  | UUID of the volume.              |
-| diskId      | string  | ID of the disk to which the volume belongs.       |
-| description | string  | Description of the volume.          |
-| removable   | boolean | Whether the volume is a removable storage device.|
-| state       | number  | Volume state.          |
-| path        | string  | Mount address of the volume.        |
+| Name        | Type   | Readable  | Writable  | Description                |
+| ----------- | ------- | ------- | ----- | -------------------- |
+| id          | string  | Yes| No| Volume ID.                |
+| uuid        | string  | Yes| No| UUID of the volume.              |
+| diskId      | string  | Yes| No| ID of the disk to which the volume belongs.       |
+| description | string  | Yes| No| Description of the volume.          |
+| removable   | boolean | Yes| No| Whether the volume is a removable storage device.|
+| state       | number  | Yes| No| Volume state.          |
+| path        | string  | Yes| No| Mount address of the volume.        |

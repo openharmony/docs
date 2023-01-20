@@ -1,4 +1,4 @@
-# @ohos.inputmethodengine
+# @ohos.inputmethodengine (Input Method Service)
 
 The **inputMethodEngine** module streamlines the interaction between input methods and applications. By calling APIs of this module, applications can be bound to input method services to accept text input through the input methods, request the keyboard to display or hide, listen for the input method status, and much more.
 

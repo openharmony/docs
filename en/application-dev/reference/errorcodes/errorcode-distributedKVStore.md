@@ -66,20 +66,20 @@ Not found.
 
 **Description**
 
-Related data is found when **deleteKVStore()**, **delete()**, **deleteBatch()**, or **get()** is called.
+Related data is not found when **deleteKVStore()**, **sync()**, or **get()** is called.
 
 **Possible Causes**
 
 The possible causes are as follows:
 1. The KV store to delete does not exist or has been deleted.
 2. The data queried does not exist or has been deleted.
-3. The data to delete does not exist or has been deleted.
+3. The KV store specified for the data synchronization operation does not exist or has been deleted.
 
 **Solution**
 
 1. Before deleting a KV store, check that the KV store exists.
 2. When querying data in a KV store, check whether the query keywords are correct.
-3. When deleting data from a KV store, check that the keyword for the deletion is correct and the data to delete exists.
+3. Before synchronizing data, check that the related KV store is available.
 
 ## 15100005 KV Store or Result Set Closed
 

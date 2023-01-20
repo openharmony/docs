@@ -16,8 +16,8 @@
 
 目前系统仅通知栏订阅了通知，将通知显示在通知栏里。基础类型通知呈现效果示意图如下所示。
 
-
-  **图1** 基础类型通知呈现效果示意图  ![zh-cn_image_0000001466462305](figures/zh-cn_image_0000001466462305.png)
+**图1** 基础类型通知呈现效果示意图  
+![zh-cn_image_0000001466462305](figures/zh-cn_image_0000001466462305.png)
 
 
 ## 接口说明
@@ -66,8 +66,7 @@
       });
       ```
 
-      运行效果如下图所示。
-     
+      运行效果如下图所示。  
      ![zh-cn_image_0000001466782033](figures/zh-cn_image_0000001466782033.png)
    - 长文本类型通知继承了普通文本类型的字段，同时新增了长文本内容、内容概要和通知展开时的标题，其中长文本内容不超过1024字节，其他字段小于200字节。通知默认显示与普通文本相同，展开后，标题显示为展开后标题内容，内容为长文本内容。
      
@@ -97,7 +96,7 @@
       });
       ```
    
-      运行效果如下图所示。
+      运行效果如下图所示。  
      ![zh-cn_image_0000001416745530](figures/zh-cn_image_0000001416745530.png)
    - 多行文本类型通知继承了普通文本类型的字段，同时新增了多行文本内容、内容概要和通知展开时的标题，其字段均小于200字节。通知默认显示与普通文本相同，展开后，标题显示为展开后标题内容，多行文本内容多行显示。
      
@@ -126,7 +125,7 @@
       });
       ```
    
-      运行效果如下图所示。
+      运行效果如下图所示。  
      ![zh-cn_image_0000001417062446](figures/zh-cn_image_0000001417062446.png)
    - 图片类型通知继承了普通文本类型的字段，同时新增了图片内容、内容概要和通知展开时的标题，图片内容为PixelMap型对象，其大小不能超过2M。
      
@@ -136,14 +135,14 @@
           id: 1,
           content: {
       	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
-      	picture: {
-      	  title: 'test_title',
-      	  text: 'test_text',
-      	  additionalText: 'test_additionalText',
-      	  briefText: 'test_briefText',
-      	  expandedTitle: 'test_expandedTitle',
-      	  picture: notificationPicture
-      	}
+              picture: {
+                title: 'test_title',
+                text: 'test_text',
+                additionalText: 'test_additionalText',
+                briefText: 'test_briefText',
+                expandedTitle: 'test_expandedTitle',
+                picture: notificationPicture
+              }
           }
       }
       
@@ -157,5 +156,5 @@
       });
       ```
    
-      运行效果如下图所示。
+      运行效果如下图所示。  
      ![zh-cn_image_0000001466582045](figures/zh-cn_image_0000001466582045.png)

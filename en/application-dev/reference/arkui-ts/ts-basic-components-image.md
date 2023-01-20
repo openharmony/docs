@@ -27,7 +27,7 @@ Obtains an image from the specified source for subsequent rendering and display.
 
 | Name| Type                                                    | Mandatory| Description                                                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src    | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Yes  | Image source. Both local and online images are supported.<br>When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use **$r** to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. The value format is data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where [base64 data] is a Base64 string.<br/>\- Strings with the **datashare://path** prefix are supported, which are used to access the image path provided by a data ability.<br>\- Strings with the **file:///data/storage** prefix are supported, which are used to read image resources in the **files** folder in the installation directory of the application. Ensure that the files in the directory package path have the read permission. |
+| src    | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Yes  | Image source. Both local and online images are supported.<br>When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use **\$r** to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. The value format is data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where [base64 data] is a Base64 string.<br/>\- Strings with the **datashare://path** prefix are supported, which are used to access the image path provided by a data ability. Before loading images, the application must [request the required permissions](../../file-management/medialibrary-overview.md#requesting-permissions).<br>\- Strings with the **file:///data/storage** prefix are supported, which are used to read image resources in the **files** folder in the installation directory of the application. Ensure that the files in the directory package path have the read permission.|
 
 ## Attributes
 
@@ -38,7 +38,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | alt                   | string \| [Resource](ts-types.md#resource)| Placeholder image displayed during loading. Local images are supported.                |
 | objectFit             | [ImageFit](ts-appendix-enums.md#imagefit)                           | Image scale mode.<br>Default value: **ImageFit.Cover**                 |
 | objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | Whether the image is repeated.<br>Default value: **ImageRepeat.NoRepeat**<br>**NOTE**<br>This attribute is not applicable to SVG images.|
-| interpolation         | [ImageInterpolation](#imageinterpolation)               | Interpolation effect of the image. This attribute is intended to alleviate aliasing that occurs when a low-definition image is zoomed in.<br>Default value: **ImageInterpolation.None**<br>**NOTE**<br>This attribute is not applicable to SVG images and **PixelMap** objects. |
+| interpolation         | [ImageInterpolation](#imageinterpolation)               | Interpolation effect of the image. This attribute is intended to alleviate aliasing that occurs when a low-definition image is zoomed in.<br>Default value: **ImageInterpolation.None**<br>**NOTE**<br>This attribute is not applicable to SVG images.<br>This attribute is not applicable to **PixelMap** objects.|
 | renderMode            | [ImageRenderMode](#imagerendermode)                     | Rendering mode of the image.<br>Default value: **ImageRenderMode.Original**<br>**NOTE**<br>This attribute is not applicable to SVG images.|
 | sourceSize            | {<br>width: number,<br>height: number<br>} | Size of the decoded image. The original image is decoded into a **pixelMap** of the specified size, in px.<br>**NOTE**<br>This attribute is not applicable to **PixelMap** objects.|
 | matchTextDirection     | boolean | Whether to display the image in the system language direction. When this parameter is set to true, the image is horizontally flipped in the right-to-left (RTL) language context.<br>Default value: **false**  |
@@ -48,6 +48,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | syncLoad<sup>8+</sup> | boolean                                  | Whether to load the image synchronously. By default, the image is loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder diagram is not displayed.<br>Default value: **false**|
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9)  | Whether the image can be copied. (SVG images cannot be copied.)<br>When **copyOption** is set to a value other than **CopyOptions.None**, the image can be copied in various manners, such as long pressing, right-clicking, or pressing Ctrl+C.<br>Default value: **CopyOptions.None**|
 | colorFilter<sup>9+</sup> | [ColorFilter](ts-types.md#colorfilter9) | Color filter of the image.|
+| draggable<sup>9+</sup> | boolean | Whether the image is draggable. This attribute cannot be used together with the [onDragStart](ts-universal-events-drag-drop.md) event.<br>Default value: **false**|
 
 >  **NOTE**
 >
@@ -74,11 +75,11 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                                                         | Description                                                  |
+| Name                                                        | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onComplete(callback: (event?: { width: number, height: number, componentWidth: number,<br> componentHeight: number, loadingStatus: number }) =&gt; void) | Triggered when an image is successfully loaded. The size of the loaded image is returned.<br>- **width**: width of the image, in pixels.<br>- **height**: height of the image, in pixels.<br>- **componentWidth**: width of the container component, in pixels.<br>- **componentHeight**: height of the container component, in pixels.<br>- **loadingStatus**: image loading status. |
-| onError(callback: (event?: { componentWidth: number, componentHeight: number , message<sup>9+</sup>: string }) =&gt; void) | Triggered when an exception occurs during image loading.<br>- **componentWidth**: width of the container component, in pixels.<br>- **componentHeight**: height of the container component, in pixels. |
-| onFinish(event: () =&gt; void)                               | Triggered when the animation playback in the loaded SVG image is complete. If the animation is an infinite loop, this callback is not triggered. |
+| onComplete(callback: (event?: { width: number, height: number, componentWidth: number,<br> componentHeight: number, loadingStatus: number }) =&gt; void) | Triggered when an image is successfully loaded. The size of the loaded image is returned.<br>- **width**: width of the image, in pixels.<br>- **height**: height of the image, in pixels.<br>- **componentWidth**: width of the container component, in pixels.<br>- **componentHeight**: height of the container component, in pixels.<br>- **loadingStatus**: image loading status.<br>|
+| onError(callback: (event?: { componentWidth: number, componentHeight: number , message<sup>9+</sup>: string }) =&gt; void) | Triggered when an exception occurs during image loading.<br>- **componentWidth**: width of the container component, in pixels.<br>- **componentHeight**: height of the container component, in pixels.|
+| onFinish(event: () =&gt; void)                | Triggered when the animation playback in the loaded SVG image is complete. If the animation is an infinite loop, this callback is not triggered.|
 
 ## Example
 
@@ -161,7 +162,7 @@ The default network timeout period is 5 minutes for loading online images. When 
 ```tsx
 // @ts-nocheck
 import http from '@ohos.net.http';
-import ResponseCode from '@ohos.net.http';
+import ResponseCode from '@ohos.net.http'
 import image from '@ohos.multimedia.image'
 
 
@@ -176,7 +177,7 @@ struct Index {
     Column({space: 10}) {
       Button ("Get Online Image")
         .onClick(() => {
-          this.httpRequest();
+          this.httpRequest()
         })
       Image(this.image).height(100).width(100)
     }
@@ -187,7 +188,7 @@ struct Index {
 
   // Request an online image.
   private httpRequest() {
-    let httpRequest = http.createHttp();
+    let httpRequest = http.createHttp()
 	
     httpRequest.request(
       "https://www.example.com/xxx.png",   // Enter a specific URL of the online image.
@@ -198,7 +199,7 @@ struct Index {
           let code = data.responseCode
           if(ResponseCode.ResponseCode.OK == code) {
             let imageSource = image.createImageSource(data.result)
-            let options = {alphaType: 0,                     // Transparency
+            let options = {alphaType: 0,                     // Opacity
                            editable: false,                  // Whether the image is editable
                            pixelFormat: 3,                   // Pixel format
                            scaleMode: 1,                     // Scale mode
@@ -207,7 +208,7 @@ struct Index {
               this.image = pixelMap
             })
           } else {
-            console.log("response code: " + code);
+            console.log("response code: " + code)
           }
         }
       }
@@ -216,9 +217,9 @@ struct Index {
 }
 ```
 
->  **NOTE**
->  
->  For details about the request mode, timeout, and additional request parameters for loading online images, see [request()](../../reference/apis/js-apis-http.md) in the HTTP module.
+> **NOTE**
+> 
+> For details about the request mode, timeout, and additional request parameters for loading online images, see [request()](../../reference/apis/js-apis-http.md) in the HTTP module.
 
 ### Setting Attributes
 
@@ -355,9 +356,9 @@ struct ImageExample3 {
 ###  Rendering Sandbox Images
 
 ```ts
-import fileio from '@ohos.fileio'
+import fileio from '@ohos.fileio';
 import fs from '@ohos.file.fs';
-import context from '@ohos.application.context'
+import context from '@ohos.app.ability.context';
 
 @Entry
 @Component

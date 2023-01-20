@@ -2,8 +2,8 @@
 
 OpenHarmony 3.2.10.1(Mr)版本相较于OpenHarmony 3.2.beta4版本，container子系统的API变更如下
 
-## cl.commonlibrary.1 错误码及信息变更
-commonlibrary子系统中ArrayList、List、LinkedList、Stack、Queue、Deque、PlainArray、LightWeightMap、LightWeightSet、HashMap、HashSet、TreeMap、TreeSet类的接口抛出的错误码及信息变更：
+## cl.公共基础类库子系统.1 错误码及信息变更
+公共基础类库子系统子系统中ArrayList、List、LinkedList、Stack、Queue、Deque、PlainArray、LightWeightMap、LightWeightSet、HashMap、HashSet、TreeMap、TreeSet类的接口抛出的错误码及信息变更：
 
 变更后的错误码详细介绍请参见[语言基础类库错误码](../../../application-dev/reference/errorcodes/errorcode-utils.md)。
 

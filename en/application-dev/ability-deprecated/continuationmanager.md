@@ -126,7 +126,7 @@ As the entry of the ability continuation capability, **continuationManager** is 
         if (needGrantPermission) {
             try {
                 // globalThis.context is Ability.context, which must be assigned a value in the MainAbility.ts file in advance.
-                await globalThis.context.requestPermissionsFromUser(permissions);
+                await atManger.requestPermissionsFromUser(globalThis.context, permissions);
             } catch (err) {
                 console.error('app permission request permissions error' + JSON.stringify(err));
             }
@@ -175,7 +175,7 @@ As the entry of the ability continuation capability, **continuationManager** is 
             let want = {
                 deviceId: remoteDeviceId,
                 bundleName: 'ohos.samples.continuationmanager',
-                abilityName: 'MainAbility'
+                abilityName: 'EntryAbility'
             };
             globalThis.abilityContext.startAbility(want).then((data) => {
                 console.info('StartRemoteAbility finished, ' + JSON.stringify(data));

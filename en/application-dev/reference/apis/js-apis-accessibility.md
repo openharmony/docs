@@ -1,4 +1,4 @@
-# @ohos.accessibility
+# @ohos.accessibility (Accessibility)
 
 The **Accessibility** module implements the accessibility functions, including obtaining the accessibility application list, accessibility application enabled status, and captions configuration.
 

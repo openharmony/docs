@@ -1,4 +1,4 @@
-# Environment
+# @ohos.environment (Directory Environment Capability)
 
 The **Environment** module provides APIs for obtaining the root directories of the storage and public files.
 

@@ -17,11 +17,11 @@
 适用于：OpenHarmony SDK 3.2.6.3版本，API9 Stage模型
 
 1. 可以在onWindowStageCreate方法获取windowClass对象。
-     
-   ```
+   
+   ```ts
    onWindowStageCreate(windowStage) {
      // Main window is created, set main page for this ability
-     console.log("[Demo] MainAbility onWindowStageCreate")
+     console.log("[Demo] EntryAbility onWindowStageCreate")
      windowStage.getMainWindow((err, data) => {
        if (err.code) {
          console.error('Failed to obtain the main window.')
@@ -34,8 +34,8 @@
    ```
 
 2. 设置窗口全屏，隐藏状态栏。
-     
-   ```
+   
+   ```ts
     globalThis.windowClass.setFullScreen(isFullScreen, (err, data) => {
      if (err.code) {
        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
@@ -53,8 +53,8 @@
 
 示例：
 
-  
-```
+
+```ts
 let promise = windowClass.getProperties();
 promise.then((data)=> {
   console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data.windowRect));
@@ -69,8 +69,8 @@ promise.then((data)=> {
 
 参考如下方式实现，示例：
 
-  
-```
+
+```ts
 window.getTopWindow(globalThis.mainContext).then(win => {
   var systemBarProperties = {
     statusBarColor: '#19B6FF', // 状态栏背景颜色

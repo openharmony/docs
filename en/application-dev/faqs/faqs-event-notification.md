@@ -16,15 +16,15 @@ Reference: [Notification](../reference/apis/js-apis-notification.md#notification
 
 Example:
 
-```
-import WantAgent from '@ohos.wantAgent';
+```ts
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 async function publishNotification() {
   let wantAgentInfo = {
     wants: [
       {
-        bundleName: "com.example.notification",
-        abilityName: "MainAbility",
+        bundleName: "com.example.myapplication",
+        abilityName: "EntryAbility",
       }
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,

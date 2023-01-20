@@ -1,4 +1,4 @@
-# @ohos.enterprise.deviceInfo
+# @ohos.enterprise.deviceInfo (Device Information Management)
 
 The **deviceInfo** module provides APIs for enterprise device information management, including the API for obtaining device serial numbers. These APIs can only be called by device administrator applications.
 
@@ -45,7 +45,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDeviceSerial(wantTemp, (error, result) => {
     if (error != null) {
@@ -94,7 +94,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDeviceSerial(wantTemp).then((result) => {
     console.log(result);
@@ -136,7 +136,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDisplayVersion(wantTemp, (error, result) => {
     if (error != null) {
@@ -185,7 +185,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDisplayVersion(wantTemp).then((result) => {
     console.log(result);
@@ -227,7 +227,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDeviceName(wantTemp, (error, result) => {
     if (error != null) {
@@ -276,7 +276,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDeviceName(wantTemp).then((result) => {
     console.log(result);

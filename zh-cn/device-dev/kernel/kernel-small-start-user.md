@@ -27,7 +27,7 @@ LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
 }
 ```
 
-> 上述启动代码在 kernel/liteos_a/kernel/user/src/los_user_init.c 中，g_initPath 根据启动设置的不同，其值为 /dev/shm/init 或 /bin/init。
+> 上述启动代码已在 kernel/liteos_a/kernel/user/src/los_user_init.c 中，g_initPath 根据启动设置的不同，其值为 /dev/shm/init 或 /bin/init。
 
 系统启动阶段，OsUserInitProcess启动init进程。具体过程如下：
 

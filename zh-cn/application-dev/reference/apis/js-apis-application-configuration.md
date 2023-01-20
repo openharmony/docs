@@ -26,13 +26,12 @@ import Configuration from '@ohos.application.Configuration'
 具体字段描述参考ohos.application.Configuration.d.ts文件
 
 **示例：**
-    
   ```ts
 import hilog from '@ohos.hilog';
-import Ability from '@ohos.application.Ability'
-import Window from '@ohos.window'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Window from '@ohos.window';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
     }
 

@@ -24,8 +24,10 @@ The ability call process is as follows:
  - The callee ability, which holds a **Callee** object, uses **on()** of the **Callee** object to register a callback. This callback is invoked when the callee ability receives data from the caller ability.
 ![stage-call](figures/stage-call.png)
 
-> **NOTE**<br/>
+> **NOTE**
+>
 > The launch type of the callee ability must be **singleton**.
+>
 > Currently, only system applications can use the ability call.
 
 ## Available APIs
@@ -34,7 +36,7 @@ The table below describes the ability call APIs. For details, see [Ability](../r
 **Table 2** Ability call APIs
 |API|Description|
 |:------|:------|
-|startAbilityByCall(want: Want): Promise\<Caller>|Starts an ability in the foreground (through the **want** configuration) or background (default) and obtains the **Caller** object for communication with the ability. For details, see [AbilityContext](../reference/apis/js-apis-ability-context.md#abilitycontextstartabilitybycall) or [ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextstartabilitybycall).|
+|startAbilityByCall(want: Want): Promise\<Caller>|Starts an ability in the foreground (through the **want** configuration) or background (default) and obtains the **Caller** object for communication with the ability. For details, see [AbilityContext](../reference/apis/js-apis-ability-context.md#abilitycontextstartabilitybycall) or **ServiceExtensionContext**.|
 |on(method: string, callback: CalleeCallBack): void|Callback invoked when the callee ability registers a method.|
 |off(method: string): void|Callback invoked when the callee ability deregisters a method.|
 |call(method: string, data: rpc.Sequenceable): Promise\<void>|Sends agreed sequenceable data to the callee ability.|
@@ -210,22 +212,25 @@ function getRemoteDeviceId() {
     if (typeof dmClass === 'object' && dmClass != null) {
         var list = dmClass.getTrustedDeviceListSync()
         if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
-            console.log("MainAbility onButtonClick getRemoteDeviceId err: list is null")
+            console.log("EntryAbility onButtonClick getRemoteDeviceId err: list is null")
             return
         }
-        console.log("MainAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId)
+        console.log("EntryAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId)
         return list[0].deviceId
     } else {
-        console.log("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null")
+        console.log("EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null")
     }
 }
 ```
   In the cross-device scenario, your application must also apply for the data synchronization permission from end users. The code snippet is as follows:
 ```ts
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl.d.ts';
+
 requestPermission() {
     let context = this.context
     let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC']
-    context.requestPermissionsFromUser(permissions).then((data) => {
+    let atManager = abilityAccessCtrl.createAtManager();
+    atManager.requestPermissionsFromUser(context, permissions).then((data) => {
         console.log("Succeed to request permission from user with data: "+ JSON.stringify(data))
     }).catch((error) => {
         console.log("Failed to request permission from user with error: "+ JSON.stringify(error))

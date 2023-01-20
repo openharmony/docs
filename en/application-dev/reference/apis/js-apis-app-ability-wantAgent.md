@@ -1,6 +1,6 @@
-# @ohos.app.ability.wantAgent
+# @ohos.app.ability.wantAgent (WantAgent)
 
-The **app.ability.WantAgent** module provides APIs for triggering, canceling, and comparing **WantAgent** objects. You can use the APIs to create a **WantAgent** object, and obtain the user ID, bundle name, and want information of the object. You are advised to use this module, since it will replace the [@ohos.wantAgent](js-apis-wantAgent.md) module in the near future.
+The **app.ability.WantAgent** module provides APIs for creating and comparing **WantAgent** objects, and obtaining the user ID and bundle name of a **WantAgent** object. You are advised to use this module, since it will replace the [@ohos.wantAgent](js-apis-wantAgent.md) module in the near future.
 
 > **NOTE**
 > 
@@ -24,7 +24,7 @@ Obtains a **WantAgent** object. This API uses an asynchronous callback to return
 
 | Name    | Type                      | Mandatory| Description                   |
 | -------- | -------------------------- | ---- | ----------------------- |
-| info     | WantAgentInfo              | Yes  | Information about the **WantAgent** object to obtain.          |
+| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | Yes  | Information about the **WantAgent** object to obtain.          |
 | callback | AsyncCallback\<WantAgent\> | Yes  | Callback used to return the **WantAgent** object.|
 
 **Error codes**
@@ -43,7 +43,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000011   | Context does not exist.|
 | 16000050   | Internal Error.|
 | 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install. |
+| 16000052   | Free install not support. The application does not support free install.|
 | 16000053   | Not top ability. The application is not top ability.|
 | 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
 | 16000055   | Free install timeout.|
@@ -54,33 +54,30 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000152   | wantAgent object not found.|
 | 16000153   | wangAgent object canceled.|
 
-
 **Example**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
 // WantAgent object
-var wantAgent;
+let wantAgent;
 // WantAgentInfo object
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -92,15 +89,15 @@ var wantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed' + JSON.stringify(err));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -119,7 +116,7 @@ Obtains a **WantAgent** object. This API uses a promise to return the result.
 
 | Name| Type         | Mandatory| Description         |
 | ---- | ------------- | ---- | ------------- |
-| info | WantAgentInfo | Yes  | Information about the **WantAgent** object to obtain.|
+| info | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | Yes  | Information about the **WantAgent** object to obtain.|
 
 **Return value**
 
@@ -143,7 +140,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000011   | Context does not exist.|
 | 16000050   | Internal Error.|
 | 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install. |
+| 16000052   | Free install not support. The application does not support free install.|
 | 16000053   | Not top ability. The application is not top ability.|
 | 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
 | 16000055   | Free install timeout.|
@@ -157,28 +154,25 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
-
 // WantAgentInfo object
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -217,6 +211,7 @@ Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the bundle name.|
 
 **Error codes**
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 | ID   | Error Message           |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -231,7 +226,7 @@ Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous
 | 16000011   | Context does not exist.|
 | 16000050   | Internal Error.|
 | 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install. |
+| 16000052   | Free install not support. The application does not support free install.|
 | 16000053   | Not top ability. The application is not top ability.|
 | 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
 | 16000055   | Free install timeout.|
@@ -245,28 +240,27 @@ Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous
 **Example**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
 // WantAgent object
-var wantAgent;
+let wantAgent;
 // WantAgentInfo object
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -278,7 +272,7 @@ var wantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed' + JSON.stringify(wantAgent));
@@ -297,9 +291,9 @@ function getWantAgentCallback(err, data) {
         console.info('getBundleName failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -342,7 +336,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000011   | Context does not exist.|
 | 16000050   | Internal Error.|
 | 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install. |
+| 16000052   | Free install not support. The application does not support free install.|
 | 16000053   | Not top ability. The application is not top ability.|
 | 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
 | 16000055   | Free install timeout.|
@@ -356,29 +350,27 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
  // WantAgent object
-var wantAgent;
+let wantAgent;
 // WantAgentInfo object
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -390,7 +382,7 @@ var wantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
@@ -405,9 +397,9 @@ function getWantAgentCallback(err, data) {
         console.info('getBundleName failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -445,7 +437,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000011   | Context does not exist.|
 | 16000050   | Internal Error.|
 | 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install. |
+| 16000052   | Free install not support. The application does not support free install.|
 | 16000053   | Not top ability. The application is not top ability.|
 | 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
 | 16000055   | Free install timeout.|
@@ -461,26 +453,26 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import WantAgent from '@ohos.app.ability.wantAgent';
 // WantAgent object
-var wantAgent;
+let wantAgent;
 // WantAgentInfo object
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -492,7 +484,7 @@ var wantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed' + JSON.stringify(err));
@@ -511,9 +503,9 @@ function getWantAgentCallback(err, data) {
         console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -556,7 +548,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000011   | Context does not exist.|
 | 16000050   | Internal Error.|
 | 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install. |
+| 16000052   | Free install not support. The application does not support free install.|
 | 16000053   | Not top ability. The application is not top ability.|
 | 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
 | 16000055   | Free install timeout.|
@@ -570,29 +562,27 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
- // WantAgent object
-var wantAgent;
+// WantAgent object
+let wantAgent;
 // WantAgentInfo object
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -604,7 +594,7 @@ var wantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
@@ -619,9 +609,9 @@ function getWantAgentCallback(err, data) {
         console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -642,11 +632,10 @@ Obtains the want in a **WantAgent** object. This API uses an asynchronous callba
 | Name    | Type                 | Mandatory| Description                           |
 | -------- | --------------------- | ---- | ------------------------------- |
 | agent    | WantAgent             | Yes  | Target **WantAgent** object.                  |
-| callback | AsyncCallback\<Want\> | Yes  | Callback used to return the want.|
+| callback | AsyncCallback\<[Want](js-apis-app-ability-want.md)\> | Yes  | Callback used to return the want.|
 
 **Error codes**
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID   | Error Message           |
 |-----------|--------------------|
 | 16000001   | Input error. The specified ability name does not exist. |
@@ -661,7 +650,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000011   | Context does not exist.|
 | 16000050   | Internal Error.|
 | 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install. |
+| 16000052   | Free install not support. The application does not support free install.|
 | 16000053   | Not top ability. The application is not top ability.|
 | 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
 | 16000055   | Free install timeout.|
@@ -675,28 +664,27 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
 // WantAgent object
-var wantAgent;
+let wantAgent;
 // WantAgentInfo object
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -708,7 +696,7 @@ var wantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed' + JSON.stringify(wantAgent));
@@ -727,9 +715,9 @@ function getWantAgentCallback(err, data) {
         console.info('getWant failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -774,7 +762,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000011   | Context does not exist.|
 | 16000050   | Internal Error.|
 | 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install. |
+| 16000052   | Free install not support. The application does not support free install.|
 | 16000053   | Not top ability. The application is not top ability.|
 | 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
 | 16000055   | Free install timeout.|
@@ -788,29 +776,27 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
- // WantAgent object
-var wantAgent;
+// WantAgent object
+let wantAgent;
 // WantAgentInfo object
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -822,7 +808,7 @@ var wantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
@@ -837,9 +823,9 @@ function getWantAgentCallback(err, data) {
         console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -877,7 +863,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000011   | Context does not exist.|
 | 16000050   | Internal Error.|
 | 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install. |
+| 16000052   | Free install not support. The application does not support free install.|
 | 16000053   | Not top ability. The application is not top ability.|
 | 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
 | 16000055   | Free install timeout.|
@@ -891,28 +877,27 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
 // WantAgent object
-var wantAgent;
+let wantAgent;
 // WantAgentInfo object
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -924,7 +909,7 @@ var wantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed' + JSON.stringify(wantAgent));
@@ -943,9 +928,9 @@ function getWantAgentCallback(err, data) {
         console.info('cancel failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -988,7 +973,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000011   | Context does not exist.|
 | 16000050   | Internal Error.|
 | 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install. |
+| 16000052   | Free install not support. The application does not support free install.|
 | 16000053   | Not top ability. The application is not top ability.|
 | 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
 | 16000055   | Free install timeout.|
@@ -1002,29 +987,27 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
 // WantAgent object
-var wantAgent;
+let wantAgent;
 // WantAgentInfo object
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -1036,7 +1019,7 @@ var wantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
@@ -1051,16 +1034,12 @@ function getWantAgentCallback(err, data) {
         console.info('cancel failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
-
-
-//TODO WantAgent.trigger Callback
-
 
 ## WantAgent.trigger
 
@@ -1075,8 +1054,8 @@ Triggers a **WantAgent** object. This API uses an asynchronous callback to retur
 | Name       | Type                         | Mandatory| Description                           |
 | ----------- | ----------------------------- | ---- | ------------------------------- |
 | agent       | WantAgent                     | Yes  | Target **WantAgent** object.                  |
-| triggerInfo | TriggerInfo                   | Yes  | **TriggerInfo** object.                |
-| callback    | AsyncCallback\<CompleteData\> | No  | Callback used to return the result.|
+| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | Yes  | **TriggerInfo** object.                |
+| callback    | AsyncCallback\<[CompleteData](#completedata)\> | No  | Callback used to return the result.|
 
 **Error codes**
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -1094,7 +1073,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000011   | Context does not exist.|
 | 16000050   | Internal Error.|
 | 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install. |
+| 16000052   | Free install not support. The application does not support free install.|
 | 16000053   | Not top ability. The application is not top ability.|
 | 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
 | 16000055   | Free install timeout.|
@@ -1108,32 +1087,31 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
 // WantAgent object
-var wantAgent;
+let wantAgent;
 // triggerInfo
-var triggerInfo = {
-        code: 0
+let triggerInfo = {
+        code: 0 // Custom result code.
     }
 // WantAgentInfo object
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -1145,7 +1123,7 @@ var wantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed' + JSON.stringify(wantAgent));
@@ -1164,9 +1142,9 @@ function getWantAgentCallback(err, data) {
         console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -1177,7 +1155,7 @@ try{
 
 equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
 
-Checks whether two **WantAgent** objects are equal. This API uses an asynchronous callback to return the result.
+Checks whether two **WantAgent** objects are equal to determine whether the same operation is from the same application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1205,7 +1183,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000011   | Context does not exist.|
 | 16000050   | Internal Error.|
 | 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install. |
+| 16000052   | Free install not support. The application does not support free install.|
 | 16000053   | Not top ability. The application is not top ability.|
 | 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
 | 16000055   | Free install timeout.|
@@ -1219,29 +1197,28 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
 // WantAgent object
-var wantAgent1;
-var wantAgent2;
+let wantAgent1;
+let wantAgent2;
 // WantAgentInfo object
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -1253,7 +1230,7 @@ var wantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
@@ -1273,9 +1250,9 @@ function getWantAgentCallback(err, data) {
         console.info('equal failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -1286,7 +1263,7 @@ try{
 
 equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
-Checks whether two **WantAgent** objects are equal. This API uses a promise to return the result.
+Checks whether two **WantAgent** objects are equal to determine whether the same operation is from the same application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1319,7 +1296,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000011   | Context does not exist.|
 | 16000050   | Internal Error.|
 | 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install. |
+| 16000052   | Free install not support. The application does not support free install.|
 | 16000053   | Not top ability. The application is not top ability.|
 | 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
 | 16000055   | Free install timeout.|
@@ -1333,30 +1310,28 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
- // WantAgent object
-var wantAgent1;
-var wantAgent2;
+// WantAgent object
+let wantAgent1;
+let wantAgent2;
 // WantAgentInfo object
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -1368,7 +1343,7 @@ var wantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
@@ -1384,9 +1359,9 @@ function getWantAgentCallback(err, data) {
         console.info('equal failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -1422,7 +1397,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000011   | Context does not exist.|
 | 16000050   | Internal Error.|
 | 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install. |
+| 16000052   | Free install not support. The application does not support free install.|
 | 16000053   | Not top ability. The application is not top ability.|
 | 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
 | 16000055   | Free install timeout.|
@@ -1436,28 +1411,27 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
 // WantAgent object
-var wantAgent;
+let wantAgent;
 // WantAgentInfo object
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -1469,7 +1443,7 @@ var wantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed' + JSON.stringify(wantAgent));
@@ -1488,9 +1462,9 @@ function getWantAgentCallback(err, data) {
         console.info('getOperationTypeCallback failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```
@@ -1531,7 +1505,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000011   | Context does not exist.|
 | 16000050   | Internal Error.|
 | 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install. |
+| 16000052   | Free install not support. The application does not support free install.|
 | 16000053   | Not top ability. The application is not top ability.|
 | 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
 | 16000055   | Free install timeout.|
@@ -1545,29 +1519,27 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
-
- // WantAgent object
-var wantAgent;
+// WantAgent object
+let wantAgent;
 // WantAgentInfo object
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -1579,7 +1551,7 @@ var wantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
-    if (err == undefined) {
+    if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
@@ -1594,9 +1566,9 @@ function getWantAgentCallback(err, data) {
         console.info('getOperationType failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
 }
-try{
+try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err){
+} catch(err) {
     console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
 }
 ```

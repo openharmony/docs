@@ -1,8 +1,6 @@
-# @ohos.app.ability.AbilityConstant
+# @ohos.app.ability.AbilityConstant (AbilityConstant)
 
-The **AbilityConstant** module provides ability launch parameters.
-
-The parameters include the initial launch reasons, reasons for the last exit, and ability continuation results.
+The **AbilityConstant** module defines the ability-related enums, including the initial launch reasons, reasons for the last exit, ability continuation results, and window modes.
 
 > **NOTE**
 > 
@@ -17,31 +15,48 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 ## Attributes
 
+## AbilityConstant.LaunchParam
+
+Defines the parameters for starting an ability.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Readable| Writable| Description| 
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | LaunchReason| Yes| Yes| Ability launch reason.| 
-| lastExitReason | LastExitReason | Yes| Yes| Reason for the last exit.| 
+| launchReason | [LaunchReason](#abilityconstantlaunchreason)| Yes| Yes| Ability launch reason, which is an enumerated type.|
+| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | Yes| Yes| Reason for the last exit, which is an enumerated type.|
 
 ## AbilityConstant.LaunchReason
 
-Enumerates the ability launch reasons.
+Enumerates the initial ability launch reasons. You can use it together with [onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate) of [Ability](js-apis-app-ability-uiAbility.md) to complete different operations.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name                         | Value  | Description                                                        |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | Unknown reason.|
-| START_ABILITY          | 1    | Ability startup.|
-| CALL | 2    | Call.|
-| CONTINUATION           | 3    | Ability continuation.|
-| APP_RECOVERY           | 4    | Application recovery.|
+| START_ABILITY          | 1    | The ability is started by calling [startAbility](js-apis-ability-context.md#abilitycontextstartability).|
+| CALL | 2    | The ability is started by calling [startAbilityByCall](js-apis-ability-context.md#abilitycontextstartabilitybycall).|
+| CONTINUATION           | 3    | The ability is started by means of cross-device migration.|
+| APP_RECOVERY           | 4    | The ability is automatically started when the application is restored from a fault.|
 
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+class MyAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
+            console.log("The ability has been started by the way of startAbility.");
+        }
+    }
+}
+```
 
 ## AbilityConstant.LastExitReason
 
-Enumerates reasons for the last exit.
+Enumerates the reasons for the last exit. You can use it together with [onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate) of [Ability](js-apis-app-ability-uiAbility.md) to complete different operations.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -49,12 +64,25 @@ Enumerates reasons for the last exit.
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | Unknown reason.|
 | ABILITY_NOT_RESPONDING          | 1    | The ability does not respond.|
-| NORMAL | 2    | Normal status.|
+| NORMAL | 2    | The ability exits normally.|
 
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+class MyAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        if (launchParam.lastExitReason === AbilityConstant.LastExitReason.ABILITY_NOT_RESPONDING) {
+            console.log("The ability has exit last because the ability was not responding.");
+        }
+    }
+}
+```
 
 ## AbilityConstant.OnContinueResult 
 
-Enumerates ability continuation results.
+Enumerates the ability continuation results. You can use it together with [onContinue(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncontinue) of [Ability](js-apis-app-ability-uiAbility.md) to complete different operations.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -64,9 +92,21 @@ Enumerates ability continuation results.
 | REJECT           | 1    | Continuation denied.|
 | MISMATCH  | 2    | Mismatch.|
 
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+class MyAbility extends UIAbility {
+    onContinue(wantParam) {
+        return AbilityConstant.OnConinueResult.AGREE;
+    }
+}
+```
+
 ## AbilityConstant.WindowMode
 
-Enumerates the window modes in which an ability can be displayed at startup.
+Enumerates the window modes in which an ability can be displayed at startup. It can be used in **startAbility()** to specify the window mode when the ability is started.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -78,36 +118,81 @@ Enumerates the window modes in which an ability can be displayed at startup.
 | WINDOW_MODE_SPLIT_SECONDARY | 101 | The ability is displayed in the secondary window in split-screen mode.  |
 | WINDOW_MODE_FLOATING        | 102 | The ability is displayed in a floating window.|
 
+**Example**
+
+```ts
+let want = {
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
+};
+let option = {
+    windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
+};
+
+// Ensure that the context is obtained.
+this.context.startAbility(want, option).then(()={
+    console.log("Succeed to start ability.");
+}).catch((error)=>{
+    console.log("Failed to start ability with error: " + JSON.stringify(error));
+});
+```
+
 ## AbilityConstant.MemoryLevel
 
-Enumerates the memory levels.
+Enumerates the memory levels. You can use it in [onMemoryLevel(level)](js-apis-app-ability-ability.md#abilityonmemorylevel) of [Ability](js-apis-app-ability-ability.md) to complete different operations.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name                        | Value| Description               |
-| ---                         | --- | ---                  |
-| MEMORY_LEVEL_MODERATE       | 0   | Moderate memory usage.      |
-| MEMORY_LEVEL_LOW            | 1   | Low memory usage.           |
+| ---                         | --- | ---           |
+| MEMORY_LEVEL_MODERATE       | 0   | Moderate memory usage.|
+| MEMORY_LEVEL_LOW            | 1   | Low memory usage.  |
 | MEMORY_LEVEL_CRITICAL       | 2   | High memory usage.  |
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+class MyAbility extends UIAbility {
+    onMemoryLevel(level) {
+        if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
+            console.log("The memory of device is critical, please release some memory.");
+        }
+    }
+}
+```
 
 ## AbilityConstant.OnSaveResult
 
-Enumerates the result types for the operation of saving application data.
+Enumerates the result types for the operation of saving application data. You can use it in [onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of [Ability](js-apis-app-ability-uiAbility.md) to complete different operations.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name                         | Value  | Description                                                        |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
-| ALL_AGREE           | 0    | Agreed to save the status.|
+| ALL_AGREE           | 0    | Always agreed to save the status.|
 | CONTINUATION_REJECT           | 1    | Rejected to save the status in continuation.|
 | CONTINUATION_MISMATCH  | 2    | Continuation mismatch.|
 | RECOVERY_AGREE           | 3    | Agreed to restore the saved status.|
 | RECOVERY_REJECT  | 4    | Rejected to restore the saved state.|
-| ALL_REJECT  | 5    | Rejected to save the status.|
+| ALL_REJECT  | 5    | Always rejected to save the status.|
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+class MyAbility extends UIAbility {
+    onSaveState(reason, wantParam) {
+        return AbilityConstant.OnSaveResult.ALL_AGREE;
+    }
+}
+```
 
 ## AbilityConstant.StateType
 
-Enumerates the scenarios for saving application data.
+Enumerates the scenarios for saving application data. You can use it in [onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of [Ability](js-apis-app-ability-uiAbility.md) to complete different operations.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -115,3 +200,18 @@ Enumerates the scenarios for saving application data.
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | CONTINUATION           | 0    | Saving the status in continuation.|
 | APP_RECOVERY           | 1    | Saving the status in application recovery.|
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+class MyAbility extends UIAbility {
+    onSaveState(reason, wantParam) {
+        if (reason === AbilityConstant.StateType.CONTINUATION) {
+            console.log("Save the ability data when the ability continuation.");
+        } 
+        return AbilityConstant.OnSaveResult.ALL_AGREE;
+    }
+}
+```

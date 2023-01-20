@@ -15,7 +15,7 @@ WantAgent封装了一个行为意图信息，可以通过WantAgent.trigger接口
 1. 导入WantAgent模块。
 
    ```ts
-   import wantAgent from '@ohos.wantAgent';
+   import wantAgent from '@ohos.app.ability.wantAgent';
    ```
    
 2. 创建拉起Ability的WantAgentInfo信息。详细的WantAgentInfo信息数据类型及包含的参数请见[WantAgentInfo文档](../reference/apis/js-apis-wantAgent.md#wantagentinfo)介绍。
@@ -29,7 +29,7 @@ WantAgent封装了一个行为意图信息，可以通过WantAgent.trigger接口
            {
                deviceId: "",
                bundleName: "com.example.test",
-               abilityName: "com.example.test.MainAbility",
+               abilityName: "com.example.test.EntryAbility",
                action: "",
                entities: [],
                uri: "",

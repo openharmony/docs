@@ -48,6 +48,7 @@ Image(src: string | PixelMap | Resource)
 | syncLoad<sup>8+</sup> | boolean                                  | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false |
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9)  | 设置图片是否可复制（SVG图片不支持复制）。<br/>当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。<br/>默认值：CopyOptions.None |
 | colorFilter<sup>9+</sup> | [ColorFilter](ts-types.md#colorfilter9) | 给图像设置颜色滤镜效果。 |
+| draggable<sup>9+</sup> | boolean | 设置默认拖拽效果。（不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用。）<br/>默认值：false |
 
 >  **说明：**
 >
@@ -353,9 +354,9 @@ struct ImageExample3 {
 ###  渲染沙箱路径图片
 
 ```ts
-import fileio from '@ohos.fileio'
-import fs from '@ohos.file.fs'
-import context from '@ohos.application.context'
+import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
+import context from '@ohos.app.ability.context';
 
 @Entry
 @Component

@@ -1,5 +1,7 @@
 # DataAbilityHelper
 
+The **DataAbilityHelper** object is obtained through [acquireDataAbilityHelper](js-apis-ability-featureAbility.md#featureabilityacquiredataabilityhelper7).
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
@@ -9,15 +11,15 @@
 
 Import the following modules based on the actual situation before using the current module:
 ```ts
-import ohos_data_ability from '@ohos.data.dataAbility'
-import ohos_data_rdb from '@ohos.data.rdb'
+import ohos_data_ability from '@ohos.data.dataAbility';
+import ohos_data_rdb from '@ohos.data.rdb';
 ```
 
 ## DataAbilityHelper.openFile
 
 openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
-Opens a file with a specified URI. This API uses an asynchronous callback to return the result.
+Opens a file with a specified URI. This API uses an asynchronous callback to return a file descriptor.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -26,22 +28,19 @@ Opens a file with a specified URI. This API uses an asynchronous callback to ret
 | Name    | Type                  | Mandatory| Description                              |
 | -------- | ---------------------- | ---- | ---------------------------------- |
 | uri      | string                 | Yes  | URI of the file to open.          |
-| mode     | string                 | Yes  | Mode for opening the file. The value can be **rwt**.           |
+| mode     | string                 | Yes  | Mode for opening the file. The value **r** indicates read-only access, **w** indicates **write-only** access, and **rw** indicates read-write access.           |
 | callback | AsyncCallback\<number> | Yes  | Callback used to return the file descriptor.|
 
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var mode = "rwt";
-DAHelper.openFile(
-    "dataability:///com.example.DataAbility",
-    mode,
-    (err) => {
-		console.info("==========================>Called=======================>");
+var mode = "rw";
+DAHelper.openFile("dataability:///com.example.DataAbility", mode, (err, data) => {
+    console.info("openFile err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -49,7 +48,7 @@ DAHelper.openFile(
 
 openFile(uri: string, mode: string): Promise\<number>
 
-Opens a file with a specified URI. This API uses a promise to return the result.
+Opens a file with a specified URI. This API uses a promise to return a file descriptor.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -58,7 +57,7 @@ Opens a file with a specified URI. This API uses a promise to return the result.
 | Name| Type  | Mandatory| Description                    |
 | ---- | ------ | ---- | ------------------------ |
 | uri  | string | Yes  | URI of the file to open.|
-| mode | string | Yes  | Mode for opening the file. The value can be **rwt**. |
+| mode | string | Yes  | Mode for opening the file. The value **r** indicates read-only access, **w** indicates **write-only** access, and **rw** indicates read-write access. |
 
 **Return value**
 
@@ -69,15 +68,13 @@ Opens a file with a specified URI. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var mode = "rwt";
-DAHelper.openFile(
-    "dataability:///com.example.DataAbility",
-    mode).then((data) => {
-		console.info("==========================>openFileCallback=======================>");
+var mode = "rw";
+DAHelper.openFile("dataability:///com.example.DataAbility", mode).then((data) => {
+    console.info("openFile data: " + JSON.stringify(data));
 });
 ```
 
@@ -85,7 +82,7 @@ DAHelper.openFile(
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
-Registers an observer to observe data specified by a given URI. This API uses an asynchronous callback to return the result.
+Registers an observer to listen for changes in the data specified by a given URI.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -93,32 +90,32 @@ Registers an observer to observe data specified by a given URI. This API uses an
 
 | Name    | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| type     | string               | Yes  | Type of the event to observe. The value is **dataChange**.              |
+| type     | string               | Yes  | The value **dataChange** means data changes.              |
 | uri      | string               | Yes  | URI of the data.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked when the data is changed.  |
 
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-var helper = featureAbility.acquireDataAbilityHelper(
+import featureAbility from '@ohos.ability.featureAbility';
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 function onChangeNotify() {
-    console.info("==========================>onChangeNotify=======================>");
+    console.info("onChangeNotify call back");
 };
-helper.on(
+DAHelper.on(
     "dataChange",
     "dataability:///com.example.DataAbility",
     onChangeNotify
-)
+);
 ```
 
 ## DataAbilityHelper.off
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
-Deregisters the observer used to observe data specified by a given URI. This API uses an asynchronous callback to return the result.
+Deregisters the observer that listens for changes in the data specified by a given URI.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -126,36 +123,36 @@ Deregisters the observer used to observe data specified by a given URI. This API
 
 | Name    | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| type     | string               | Yes  | Type of the event to observe. The value is **dataChange**.              |
+| type     | string               | Yes  | The value **dataChange** means data changes.              |
 | uri      | string               | Yes  | URI of the data.|
-| callback | AsyncCallback\<void> | No  | Callback used to return the result.      |
+| callback | AsyncCallback\<void> | No  | Callback of the listener to deregister. If the callback is set to **null**, all data change listeners are canceled.      |
 
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-var helper = featureAbility.acquireDataAbilityHelper(
+import featureAbility from '@ohos.ability.featureAbility';
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 function onChangeNotify() {
-    console.info("==========================>onChangeNotify=======================>");
+    console.info("onChangeNotify call back");
 };
-helper.off(
-    "dataChange",
-    "dataability:///com.example.DataAbility",
-)
-helper.off(
+DAHelper.off(
     "dataChange",
     "dataability:///com.example.DataAbility",
     onChangeNotify
-)
+);
+DAHelper.off(
+    "dataChange",
+    "dataability:///com.example.DataAbility",
+);
 ```
 
 ## DataAbilityHelper.getType
 
 getType(uri: string, callback: AsyncCallback\<string>): void
 
-Obtains the MIME type of the data specified by a given URI. This API uses an asynchronous callback to return the result.
+Obtains the media resource type of the data specified by a given URI. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -164,19 +161,17 @@ Obtains the MIME type of the data specified by a given URI. This API uses an asy
 | Name    | Type                  | Mandatory| Description                                         |
 | -------- | ---------------------- | ---- | --------------------------------------------- |
 | uri      | string                 | Yes  | URI of the data.                     |
-| callback | AsyncCallback\<string> | Yes  | Callback used to return the MIME type.|
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the media resource type.|
 
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-DAHelper.getType(
-    "dataability:///com.example.DataAbility",
-    (err, data) => {
-		console.info("==========================>Called=======================>");
+DAHelper.getType("dataability:///com.example.DataAbility", (err, data) => {
+    console.info("getType err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -184,7 +179,7 @@ DAHelper.getType(
 
 getType(uri: string): Promise\<string>
 
-Obtains the MIME type of the data specified by a given URI. This API uses a promise to return the result.
+Obtains the media resource type of the data specified by a given URI. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -198,19 +193,17 @@ Obtains the MIME type of the data specified by a given URI. This API uses a prom
 
 | Type            | Description                               |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | Promise used to return the MIME type.|
+| Promise\<string> | Promise used to return the media resource type.|
 
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-DAHelper.getType(
-    "dataability:///com.example.DataAbility"
-	).then((data) => {
-		console.info("==========================>getTypeCallback=======================>");
+DAHelper.getType("dataability:///com.example.DataAbility").then((data) => {
+    console.info("getType data: " + JSON.stringify(data));
 });
 ```
 
@@ -218,7 +211,7 @@ DAHelper.getType(
 
 getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\<string>>): void
 
-Obtains the supported MIME types of a specified file. This API uses an asynchronous callback to return the result.
+Obtains the supported media resource types of a specified file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -227,31 +220,26 @@ Obtains the supported MIME types of a specified file. This API uses an asynchron
 | Name          | Type                          | Mandatory| Description                              |
 | -------------- | ------------------------------ | ---- | ---------------------------------- |
 | uri            | string                         | Yes  | URI of the file.          |
-| mimeTypeFilter | string                         | Yes  | MIME type of the file.      |
-| callback       | AsyncCallback\<Array\<string>> | Yes  | Callback used to return the supported MIME types.|
+| mimeTypeFilter | string                         | Yes  | Media resource type of the file to obtain.      |
+| callback       | AsyncCallback\<Array\<string>> | Yes  | Callback used to return an array holding the media resource type.|
 
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-DAHelper.getFileTypes(
-    "dataability:///com.example.DataAbility",
-    "image/*",
-    (err, data) => {
-		console.info("==========================>Called=======================>");
+DAHelper.getFileTypes( "dataability:///com.example.DataAbility", "image/*", (err, data) => {
+    console.info("getFileTypes err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## DataAbilityHelper.getFileTypes
 
 getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
-Obtains the supported MIME types of a specified file. This API uses a promise to return the result.
+Obtains the supported media resource types of a specified file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -260,26 +248,23 @@ Obtains the supported MIME types of a specified file. This API uses a promise to
 | Name          | Type  | Mandatory| Description                        |
 | -------------- | ------ | ---- | ---------------------------- |
 | uri            | string | Yes  | URI of the file.    |
-| mimeTypeFilter | string | Yes  | MIME type of the file.|
+| mimeTypeFilter | string | Yes  | Media resource type of the file to obtain.|
 
 **Return value**
 
 | Type                    | Description                    |
 | ------------------------ | ------------------------ |
-| Promise\<Array\<string>> | Promise used to return the supported MIME types.|
+| Promise\<Array\<string>> | Promise used to return an array holding the media resource type.|
 
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-DAHelper.getFileTypes(
-    "dataability:///com.example.DataAbility",
-    "image/*"
-	).then((data) => {
-		console.info("==========================>getFileTypesCallback=======================>");
+DAHelper.getFileTypes("dataability:///com.example.DataAbility", "image/*").then((data) => {
+    console.info("getFileTypes data: " + JSON.stringify(data));
 });
 ```
 
@@ -301,14 +286,12 @@ Converts the URI that refers to a Data ability into a normalized URI. This API u
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-DAHelper.normalizeUri(
-    "dataability:///com.example.DataAbility",
-    (err, data) => {
-		console.info("==========================>Called=======================>");
+DAHelper.normalizeUri("dataability:///com.example.DataAbility", (err, data) => {
+    console.info("normalizeUri err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -335,14 +318,12 @@ Converts the URI that refers to a Data ability into a normalized URI. This API u
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-DAHelper.normalizeUri(
-    "dataability:///com.example.DataAbility",
-	).then((data) => {
-		console.info("==========================>normalizeUriCallback=======================>");
+DAHelper.normalizeUri("dataability:///com.example.DataAbility",).then((data) => {
+    console.info("normalizeUri data: " + JSON.stringify(data));
 });
 ```
 
@@ -358,24 +339,20 @@ Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: str
 
 | Name    | Type                  | Mandatory| Description                                               |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
-| uri      | string                 | Yes  | URI object to normalize.                            |
+| uri      | string                 | Yes  | URI object to denormalize.                            |
 | callback | AsyncCallback\<string> | Yes  | Callback used to return the denormalized URI object.|
 
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-DAHelper.denormalizeUri(
-    "dataability:///com.example.DataAbility",
-    (err, data) => {
-		console.info("==========================>Called=======================>");
+DAHelper.denormalizeUri("dataability:///com.example.DataAbility", (err, data) => {
+    console.info("denormalizeUri err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## DataAbilityHelper.denormalizeUri
 
@@ -400,14 +377,12 @@ Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: str
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-DAHelper.denormalizeUri(
-    "dataability:///com.example.DataAbility",
-	).then((data) => {
-		console.info("==========================>denormalizeUriCallback=======================>");
+DAHelper.denormalizeUri("dataability:///com.example.DataAbility",).then((data) => {
+    console.info("denormalizeUri data: " + JSON.stringify(data));
 });
 ```
 
@@ -423,20 +398,18 @@ Notifies the registered observer of a change to the data specified by the URI. T
 
 | Name    | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| uri      | string               | Yes  | URI of the data.|
+| uri      | string               | Yes  | URI of the data that changes.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.              |
 
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-var helper = featureAbility.acquireDataAbilityHelper(
+import featureAbility from '@ohos.ability.featureAbility';
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-helper.notifyChange(
-    "dataability:///com.example.DataAbility",
-    (err) => {
-		console.info("==========================>Called=======================>");
+DAHelper.notifyChange("dataability:///com.example.DataAbility", (err) => {
+    console.info("==========================>Called=======================>");
 });
 ```
 
@@ -452,7 +425,7 @@ Notifies the registered observer of a change to the data specified by the URI. T
 
 | Name| Type  | Mandatory| Description                    |
 | ---- | ------ | ---- | ------------------------ |
-| uri  | string | Yes  | URI of the data.|
+| uri  | string | Yes  | URI of the data that changes.|
 
 **Return value**
 
@@ -463,14 +436,12 @@ Notifies the registered observer of a change to the data specified by the URI. T
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-DAHelper.notifyChange(
-    "dataability:///com.example.DataAbility",
-	).then(() => {
-		console.info("==========================>notifyChangeCallback=======================>");
+DAHelper.notifyChange("dataability:///com.example.DataAbility").then(() => {
+    console.info("================>notifyChangeCallback================>");
 });
 ```
 
@@ -493,7 +464,7 @@ Inserts a single data record into the database. This API uses an asynchronous ca
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -502,12 +473,9 @@ const valueBucket = {
     "age": 22,
     "salary": 200.5,
     "blobType": "u8",
-}
-DAHelper.insert(
-    "dataability:///com.example.DataAbility",
-    valueBucket,
-    (err, data) => {
-		console.info("==========================>Called=======================>");
+};
+DAHelper.insert("dataability:///com.example.DataAbility", valueBucket, (err, data) => {
+    console.info("insert err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -535,7 +503,7 @@ Inserts a single data record into the database. This API uses a promise to retur
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -544,12 +512,9 @@ const valueBucket = {
     "age": 221,
     "salary": 20.5,
     "blobType": "u8",
-}
-DAHelper.insert(
-    "dataability:///com.example.DataAbility",
-    valueBucket
-	).then((data) => {
-		console.info("==========================>insertCallback=======================>");
+};
+DAHelper.insert("dataability:///com.example.DataAbility", valueBucket).then((data) => {
+    console.info("insert data: " + JSON.stringify(data));
 });
 ```
 
@@ -572,18 +537,15 @@ Inserts multiple data records into the database. This API uses an asynchronous c
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": "u8",},
                      {"name": "roe12", "age": 21, "salary": 20.5, "blobType": "u8",},
-                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",})
-DAHelper.batchInsert(
-    "dataability:///com.example.DataAbility",
-    cars,
-    (err, data) => {
-		console.info("==========================>Called=======================>");
+                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",});
+DAHelper.batchInsert("dataability:///com.example.DataAbility", cars, (err, data) => {
+    console.info("batchInsert err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -600,7 +562,7 @@ Inserts multiple data records into the database. This API uses a promise to retu
 | Name        | Type                   | Mandatory| Description                    |
 | ------------ | ----------------------- | ---- | ------------------------ |
 | uri          | string                  | Yes  | URI of the data to insert.|
-| valuesBucket | Array<rdb.ValuesBucket> | Yes  | Data record to insert.  |
+| valuesBucket | Array<rdb.ValuesBucket> | Yes  | Data records to insert.  |
 
 **Return value**
 
@@ -611,18 +573,15 @@ Inserts multiple data records into the database. This API uses a promise to retu
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": "u8",},
                      {"name": "roe12", "age": 21, "salary": 20.5, "blobType": "u8",},
-                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",})
-DAHelper.batchInsert(
-    "dataability:///com.example.DataAbility",
-    cars
-	).then((data) => {
-		console.info("==========================>batchInsertCallback=======================>");
+                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",});
+DAHelper.batchInsert("dataability:///com.example.DataAbility", cars).then((data) => {
+    console.info("batchInsert data: " + JSON.stringify(data));
 });
 ```
 
@@ -645,17 +604,14 @@ Deletes one or more data records from the database. This API uses an asynchronou
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-let da = new ohos_data_ability.DataAbilityPredicates()
-DAHelper.delete(
-    "dataability:///com.example.DataAbility",
-    da,
-    (err, data) => {
-		console.info("==========================>Called=======================>");
+let da = new ohos_data_ability.DataAbilityPredicates();
+DAHelper.delete("dataability:///com.example.DataAbility", da, (err, data) => {
+    console.info("delete err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -683,17 +639,14 @@ Deletes one or more data records from the database. This API uses a promise to r
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-let da = new ohos_data_ability.DataAbilityPredicates()
-DAHelper.delete(
-    "dataability:///com.example.DataAbility",
-    da
-	).then((data) => {
-		console.info("==========================>deleteCallback=======================>");
+let da = new ohos_data_ability.DataAbilityPredicates();
+DAHelper.delete("dataability:///com.example.DataAbility", da).then((data) => {
+    console.info("delete data: " + JSON.stringify(data));
 });
 ```
 
@@ -717,8 +670,8 @@ Updates data records in the database. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -727,14 +680,10 @@ const va = {
     "age": 21,
     "salary": 20.5,
     "blobType": "u8",
-}
-let da = new ohos_data_ability.DataAbilityPredicates()
-DAHelper.update(
-    "dataability:///com.example.DataAbility",
-    va,
-    da,
-    (err, data) => {
-		console.info("==========================>Called=======================>");
+};
+let da = new ohos_data_ability.DataAbilityPredicates();
+DAHelper.update("dataability:///com.example.DataAbility", va, da, (err, data) => {
+    console.info("update err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -763,8 +712,8 @@ Updates data records in the database. This API uses a promise to return the resu
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -773,14 +722,10 @@ const va = {
     "age": 21,
     "salary": 20.5,
     "blobType": "u8",
-}
-let da = new ohos_data_ability.DataAbilityPredicates()
-DAHelper.update(
-    "dataability:///com.example.DataAbility",
-    va,
-    da
-	).then((data) => {
-		console.info("==========================>updateCallback=======================>");
+};
+let da = new ohos_data_ability.DataAbilityPredicates();
+DAHelper.update("dataability:///com.example.DataAbility", va, da).then((data) => {
+    console.info("update data: " + JSON.stringify(data));
 });
 ```
 
@@ -804,19 +749,15 @@ Queries data in the database. This API uses an asynchronous callback to return t
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 var cars=new Array("value1", "value2", "value3", "value4");
-let da = new ohos_data_ability.DataAbilityPredicates()
-DAHelper.query(
-    "dataability:///com.example.DataAbility",
-    cars,
-    da,
-    (err, data) => {
-		console.info("==========================>Called=======================>");
+let da = new ohos_data_ability.DataAbilityPredicates();
+DAHelper.query("dataability:///com.example.DataAbility", cars, da, (err, data) => {
+    console.info("query err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
 ```
 
@@ -847,27 +788,23 @@ Queries data in the database. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var cars=new Array("value1", "value2", "value3", "value4");
-let da = new ohos_data_ability.DataAbilityPredicates()
-DAHelper.query(
-    "dataability:///com.example.DataAbility",
-    cars,
-    da
-	).then((data) => {
-		console.info("==========================>queryCallback=======================>");
+var cars = new Array("value1", "value2", "value3", "value4");
+let da = new ohos_data_ability.DataAbilityPredicates();
+DAHelper.query("dataability:///com.example.DataAbility", cars, da).then((data) => {
+    console.info("query data: " + JSON.stringify(data));
 });
 ```
 
 ## DataAbilityHelper.call
 
-call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
+call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback\<PacMap>): void
 
-Calls the extended API of the Data ability. This API uses a promise to return the result.
+Calls an extended API of the DataAbility. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -875,9 +812,45 @@ Calls the extended API of the Data ability. This API uses a promise to return th
 
 | Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                 | Yes  | URI of the Data ability. Example: "dataability:///com.example.xxx.xxxx".          |
+| uri        | string                 | Yes  | URI of the DataAbility. Example: "dataability:///com.example.xxx.xxxx".          |
 | method    | string                  | Yes  | Name of the API to call.  |
-| arg      | string                   | Yes  |Parameter to pass.     |
+| arg      | string                   | Yes  | Parameter to pass in.     |
+| extras   | [PacMap](#pacmap)        | Yes  | Key-value pair parameter.      |
+| callback | AsyncCallback\<[PacMap](#pacmap)> | Yes| Callback used to return the result.    |
+
+**Example**
+
+```ts
+import featureAbility from '@ohos.ability.featureAbility';
+
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    "dataability:///com.example.jsapidemo.UserDataAbility"
+);
+dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility",
+    "method", "arg", {"key1":"value1"}, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + err);
+        return;
+    }
+    console.info('Operation succeeded: ' + data);
+});
+```
+
+## DataAbilityHelper.call
+
+call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
+
+Calls an extended API of the DataAbility. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Parameters**
+
+| Name      | Type                             | Mandatory| Description                                            |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                 | Yes  | URI of the DataAbility. Example: "dataability:///com.example.xxx.xxxx".          |
+| method    | string                  | Yes  | Name of the API to call.  |
+| arg      | string                   | Yes  | Parameter to pass in.     |
 | extras   | [PacMap](#pacmap)        | Yes  | Key-value pair parameter.      |
 
 **Return value**
@@ -891,44 +864,14 @@ Calls the extended API of the Data ability. This API uses a promise to return th
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
-let dataAbilityHelper = featureAbility.acquireDataAbilityHelper("dataability:///com.example.jsapidemo.UserDataAbility");
-dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility", "method", "arg", {"key1":"value1"}).then((data) => {
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    "dataability:///com.example.jsapidemo.UserDataAbility"
+);
+dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility",
+    "method", "arg", {"key1":"value1"}).then((data) => {
     console.info('Operation succeeded: ' + data);
 }).catch((error) => {
     console.error('Operation failed. Cause: ' + error);
-});
-```
-
-## DataAbilityHelper.call
-
-call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback\<PacMap>): void
-
-Calls the extended API of the Data ability. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
-
-**Parameters**
-
-| Name      | Type                             | Mandatory| Description                                            |
-| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                 | Yes  | URI of the Data ability. Example: "dataability:///com.example.xxx.xxxx".          |
-| method    | string                  | Yes  | Name of the API to call.  |
-| arg      | string                   | Yes  |Parameter to pass.     |
-| extras   | [PacMap](#pacmap)        | Yes  | Key-value pair parameter.      |
-| callback | AsyncCallback\<[PacMap](#pacmap)> | Yes| Callback used to return the result.    |
-
-**Example**
-
-```ts
-import featureAbility from '@ohos.ability.featureAbility';
-
-let dataAbilityHelper = featureAbility.acquireDataAbilityHelper("dataability:///com.example.jsapidemo.UserDataAbility");
-dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility", "method", "arg", {"key1":"value1"}, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + err);
-        return;
-    }
-    console.info('Operation succeeded: ' + data);
 });
 ```
 
@@ -936,17 +879,17 @@ dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility", "
 
 executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void;
 
-Operates data in the database. This API uses an asynchronous callback to return the result.
+Operates data in the database in batches. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
-| Name           | Type                                        | Mandatory| Description                                            |
-| ----------    | ---------------------------------             | ---- | ------------------------------------------------ |
-| uri           | string                                        | Yes  | URI of the Data ability. Example: "dataability:///com.example.xxx.xxxx".|
-| operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>               | Yes  | A list of data operations on the database.  |
-| callback      |  AsyncCallback\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>>    | Yes  |Callback used to return the result of each operation in the **DataAbilityResult** array.     |
+| Name       | Type                         | Mandatory| Description                                            |
+| ----------| ---------------------------------| ---- | ------------------------------------------------ |
+| uri       | string                           | Yes  | URI of the DataAbility. Example: "dataability:///com.example.xxx.xxxx".|
+| operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>        | Yes  | An array holding the data operations on the database.  |
+| callback      |  AsyncCallback\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>>    | Yes  | Callback used to return the result of each operation in the **DataAbilityResult** array.     |
 
 **Example**
 
@@ -955,7 +898,9 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 // Select the operations to be performed on the database according to the DataAbilityOperation array.
 let op=new Array();
-let dataAbilityHelper = featureAbility.acquireDataAbilityHelper("dataability:///com.example.jsapidemo.UserDataAbility");
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    "dataability:///com.example.jsapidemo.UserDataAbility"
+);
 dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbility", op, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + err);
@@ -969,7 +914,7 @@ dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbi
 
 executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Array\<DataAbilityResult>>;
 
-Operates data in the database. This API uses a promise to return the result.
+Operates data in the database in batches. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -977,14 +922,14 @@ Operates data in the database. This API uses a promise to return the result.
 
 | Name         | Type                           | Mandatory| Description                                            |
 | ----------    | -------------------------------| ---- | ------------------------------------------------ |
-| uri           | string                         | Yes  | URI of the Data ability. Example: "dataability:///com.example.xxx.xxxx".|
-| operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>  | Yes  | A list of data operations on the database.  |
+| uri           | string                         | Yes  | URI of the DataAbility. Example: "dataability:///com.example.xxx.xxxx".|
+| operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>  | Yes  | An array holding the data operations on the database.  |
 
 **Return value**
 
 | Type| Description|
 |------ | ------- |
-|Promise\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>> | Callback used to return the result of each operation in the **DataAbilityResult** array.|
+|Promise\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>> | Promise used to return the result of each operation in the **DataAbilityResult** array.|
 
 **Example**
 
@@ -993,8 +938,10 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 // Select the operations to be performed on the database according to the DataAbilityOperation array.
 let op=new Array();
-let dataAbilityHelper = featureAbility.acquireDataAbilityHelper("dataability:///com.example.jsapidemo.UserDataAbility");
-dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbility",op ).then((data) => {
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    "dataability:///com.example.jsapidemo.UserDataAbility"
+);
+dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbility", op).then((data) => {
     console.info('Operation succeeded: ' + data);
 }).catch((error) => {
     console.error('Operation failed. Cause: ' + error);
