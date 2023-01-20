@@ -3,7 +3,7 @@
 ## When to Use
 
 If an application has a perceivable task that needs to run in an extended period of time in the background, it can request a continuous task so that it will not be suspended. Examples of continuous tasks include music playback, navigation, device connection, and VoIP.
-There is no time limit for a continuous task running in the background. To prevent abuse, the system limits the number of continuous tasks that can be requested. It also attaches a notification to the task so that the task is perceivable. In addition, the system verifies whether the application is actually executing the continuous task.
+There is no time limit for a continuous task running in the background. To prevent abuse, the system limits the number of continuous tasks that can be requested. It also attaches a notification to each of the tasks so that the tasks are perceivable. In addition, the system verifies whether the application is actually executing a continuous task.
 
 ## Available APIs
 
@@ -34,9 +34,9 @@ For details about **wantAgent**, see [WantAgent](../reference/apis/js-apis-wantA
 
 ## How to Develop
 
-### Development on the FA Model
+### Development in the FA Model
 
-For details about how to use the Service ability in the FA model, see [Service Ability Development](../ability/fa-serviceability.md).
+For details about how to use the ServiceAbility in the FA model, see [ServiceAbility Component Overview](../application-models/serviceability-overview.md).
 
 If an application does not need to interact with a continuous task in the background, you can use **startAbility()** to start the Service ability. In the **onStart** callback of the Service ability, call **startBackgroundRunning()** to declare that the Service ability needs to run in the background for a long time. After the task execution is complete, call **stopBackgroundRunning()** to release resources.
 
@@ -177,9 +177,9 @@ export default {
 };
 ```
 
-### Development on the Stage Model
+### Development in the Stage Model
 
-For details about the stage model, see [Stage Model Overview](../ability/stage-brief.md).
+For details about the stage model, see [Stage Model Development Overview](../application-models/stage-model-development-overview.md).
 
 1. Create an API version 9 project. Then right-click the project directory and choose **New > Ability** to create an ability. Configure the continuous task permission (ohos.permission.KEEP_BACKGROUND_RUNNING) and background mode type in the **module.json5** file.
 
@@ -201,7 +201,7 @@ For details about the stage model, see [Stage Model Overview](../ability/stage-b
 }
 ```
 
-2. If an application needs to execute a continuous task for its own, include the execution logic in the Page ability. This is because an application cannot use **startAbilityByCall** to create and run its own ability in the background due to the restriction of ability startup controls. For details about how to use an ability in the stage model, see [Ability Development](../ability/stage-ability.md).
+2. If an application needs to execute a continuous task for its own, include the execution logic in the Page ability. This is because an application cannot use **startAbilityByCall** to create and run its own ability in the background due to the restriction of ability startup controls.  For details, see [UIAbility Component Overview](../application-models/uiability-overview.md).
 
 ```ts
 import wantAgent from '@ohos.wantAgent';
@@ -290,7 +290,7 @@ struct Index {
 }
 ```
 
-3. If a continuous task needs to be executed in the background for another application or on another device, you can create and run an ability in the background in Call mode. For details, see [Call Development](../ability/stage-call.md).
+3. If a continuous task needs to be executed in the background for another application or on another device, you can create and run an ability in the background in Call mode. For details, see [Using Ability Call (Intra-Device)](../application-models/uiability-intra-device-interaction.md#using-ability-call-to-implement-uiability-interaction) and [Using Ability Call (Inter-Device)](../application-models/hop-multi-device-collaboration.md#using-cross-device-ability-call).
 
 ```ts
 import Ability from '@ohos.application.Ability'
