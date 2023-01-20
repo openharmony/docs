@@ -66,8 +66,6 @@ requestFullWindow(options?: RequestFullWindowOptions): void
 
 请求应用以全窗口运行，FA在某些场景下（如半模态FA）会以非全窗口运行，调用该接口会从非全窗口切换为全窗口运行，如果已经以全窗口运行则该接口调用无效。
 
-此接口为系统接口，三方应用不支持调用。
-
 > **说明：** 从API Version 7开始，推荐使用[`@ohos.window`](js-apis-window.md)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -100,7 +98,7 @@ setImageCacheCount(value: number): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 内存中解码后图片的缓存数量。 |
+| value | number | 是 | 内存中解码后图片的缓存数量。 |
 
 **示例：**
 
@@ -130,7 +128,7 @@ setImageRawDataCacheSize(value: number): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 内存中解码前图片数据的缓存大小，单位为字节。 |
+| value | number | 是 | 内存中解码前图片数据的缓存大小，单位为字节。 |
 
 **示例：**
 
@@ -161,7 +159,7 @@ setImageFileCacheSize(value: number): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 图片文件的缓存大小，单位为字节。 |
+| value | number | 是 | 图片文件的缓存大小，单位为字节。 |
 
 **示例：**
 
@@ -187,12 +185,26 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力有所不同，详见下表。
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- |-------- |
 | appID<sup>6+</sup> | string | 是 | 表示应用的包名，用于标识应用的唯一性。 <br> **系统能力：** SystemCapability.ArkUI.ArkUI.Full|
 | appName | string | 是 | 表示应用的名称。 <br> **系统能力：** SystemCapability.ArkUI.ArkUI.Lite|
 | versionName | string | 是 | 表示应用的版本名称。 <br> **系统能力：** SystemCapability.ArkUI.ArkUI.Lite|
 | versionCode | number | 是 | 表示应用的版本号。 <br> **系统能力：** SystemCapability.ArkUI.ArkUI.Lite|
+
+## ScreenOnVisible<sup>(deprecated)</sup>
+
+screenOnVisible(options?: ScreenOnVisibleOptions)
+
+定义屏幕唤醒时是否保持应用可见。
+
+**说明：**  该接口从API Version 8 开始废弃。
+
+**系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- |-------- |
+| options | ScreenOnVisibleOptions | 否 |  当启动保活时，锁屏时将阻止系统返回桌面显示，以保持屏幕唤醒时应用可见。  |
 
 ## ScreenOnVisibleOptions
 
@@ -200,7 +212,7 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | visible | boolean | 否 | 是否启动保活，默认值false。 |
 | success | () => void | 否 | 接口调用成功的回调函数。 |
@@ -213,7 +225,7 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | duration | number | 是 | 定义动画选项的持续时间，单位为毫秒。 |
 

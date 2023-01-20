@@ -126,7 +126,7 @@ back(options?: BackRouterOptions): void
 
 | 参数名     | 类型                                      | 必填   | 说明                      |
 | ------- | --------------------------------------- | ---- | ----------------------- |
-| options | [BackRouterOptions](#backrouteroptions) | 是    | 详细请参考BackRouterOptions。 |
+| options | [BackRouterOptions](#backrouteroptions) | 否    | 详细请参考BackRouterOptions。 |
 
 **示例：**
 
@@ -186,7 +186,7 @@ export default {
 > **说明：**
 > 示例中的uri字段是页面路由，由配置文件中的pages列表指定。
 
-## router.getParams
+## router.getParams<sup>7+</sup>
 
 getParams(): ParamsInterface
 
@@ -339,7 +339,7 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Lite
 
-| 名称   | 参数类型 | 必填 | 说明                                                         |
+| 名称   | 类型 | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | uri    | string   | 是   | 目标页面的uri，可以是以下的两种格式：<br/>1. 页面的绝对路径，由config.json文件中的页面列表提供。例如：<br/>- pages/index/index<br/> -pages/detail/detail<br/>2. 特定路径。如果URI为斜杠（/），则显示主页。 |
 | params | object   | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
@@ -351,7 +351,7 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力有所不同，详见下表。
 
-| 名称   | 参数类型 | 必填 | 说明                                                         |
+| 名称   | 类型 | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | uri    | string   | 否   | 返回到指定uri的界面，如果页面栈上没有uri页面，则不响应该情况。如果uri未设置，则返回上一页。 <br>**系统能力：** SystemCapability.ArkUI.ArkUI.Full |
 | params | object   | 否   | 跳转时要同时传递到目标页面的数据。 <br>**系统能力：** SystemCapability.ArkUI.ArkUI.Lite |
@@ -362,7 +362,7 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 参数类型   | 必填   | 说明                                 |
+| 名称    | 类型   | 必填   | 说明                                 |
 | ----- | ------ | ---- | ---------------------------------- |
 | index | number | 是    | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。 |
 | name  | string | 是    | 表示当前页面的名称，即对应文件名。                  |
@@ -374,7 +374,7 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 参数类型                 | 必填 | 说明                                               |
+| 名称     | 类型                 | 必填 | 说明                                               |
 | -------- | ------------------------ | ---- | -------------------------------------------------- |
 | message  | string                   | 是   | 询问对话框内容。                                   |
 | success  | (errMsg: string) => void | 否   | 用户选择对话框确认按钮时触发，errMsg表示返回信息。 |
@@ -387,7 +387,7 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 参数类型                 | 必填 | 说明                                               |
+| 名称     | 类型                 | 必填 | 说明                                               |
 | -------- | ------------------------ | ---- | -------------------------------------------------- |
 | success  | (errMsg: string) => void | 否   | 关闭询问对话框能力成功时触发，errMsg表示返回信息。 |
 | cancel   | (errMsg: string) => void | 否   | 关闭询问对话框能力失败时触发，errMsg表示返回信息。 |

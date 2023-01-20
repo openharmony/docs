@@ -40,9 +40,9 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
-| 100002    | If the uri is not exist. |
-| 100003    | If the pages are pushed too much. |
+| 100001    | if UI execution context not found. |
+| 100002    | if the uri is not exist. |
+| 100003    | if the pages are pushed too much. |
 
 **示例：**
 
@@ -89,9 +89,9 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
-| 100002    | If the uri is not exist. |
-| 100003    | If the pages are pushed too much. |
+| 100001    | if UI execution context not found. |
+| 100002    | if the uri is not exist. |
+| 100003    | if the pages are pushed too much. |
 
 **示例：**
 
@@ -143,9 +143,9 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
-| 100002    | If the uri is not exist. |
-| 100003    | If the pages are pushed too much. |
+| 100001    | if UI execution context not found. |
+| 100002    | if the uri is not exist. |
+| 100003    | if the pages are pushed too much. |
 
 **示例：**
 
@@ -193,9 +193,9 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
-| 100002    | If the uri is not exist. |
-| 100003    | If the pages are pushed too much. |
+| 100001    | if UI execution context not found. |
+| 100002    | if the uri is not exist. |
+| 100003    | if the pages are pushed too much. |
 
 **示例：**
 
@@ -247,8 +247,8 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found, only throw in standard system. |
-| 200002    | If the uri is not exist. |
+| 100001    | if UI execution context not found, only throw in standard system. |
+| 200002    | if the uri is not exist. |
 
 **示例：**
 
@@ -292,8 +292,8 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found, only throw in standard system. |
-| 200002    | If the uri is not exist. |
+| 100001    | if UI execution context not found, only throw in standard system. |
+| 200002    | if the uri is not exist. |
 
 **示例：**
 
@@ -344,8 +344,8 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found, only throw in standard system. |
-| 200002    | If the uri is not exist. |
+| 100001    | if UI execution context not found, only throw in standard system. |
+| 200002    | if the uri is not exist. |
 
 **示例：**
 
@@ -390,8 +390,8 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found, only throw in standard system. |
-| 200002    | If the uri is not exist. |
+| 100001    | if UI execution context not found, only throw in standard system. |
+| 200002    | if the uri is not exist. |
 
 **示例：**
 
@@ -524,7 +524,7 @@ enableBackPageAlert(options: EnableAlertOptions): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **示例：**
 
@@ -745,37 +745,6 @@ router.push({
   }
 });
 ```
-## router.push<sup>(deprecated)</sup>
-
-push(options: RouterOptions, mode: RouterMode): void
-
-跳转到应用内的指定页面。
-
-从API version9开始不再维护，建议使用[pushUrl<sup>9+</sup>](#routerpushurl9)
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名     | 类型                              | 必填   | 说明         |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
-
-
-**示例：**
-
-```js
-router.push({
-  url: 'pages/routerpage2/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
-    }
-  }
-},router.RouterMode.Standard);
-```
 
 ## router.replace<sup>(deprecated)</sup>
 
@@ -785,7 +754,7 @@ replace(options: RouterOptions): void
 
 从API version9开始不再维护，建议使用[replaceUrl<sup>9+</sup>](#routerreplaceurl9)
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **参数：**
 
@@ -802,34 +771,6 @@ router.replace({
     data1: 'message'
   }
 });
-```
-
-  ## router.replace<sup>(deprecated)</sup>
-
-replace(options: RouterOptions, mode: RouterMode): void
-
-用应用内的某个页面替换当前页面，并销毁被替换的页面。
-
-从API version9开始不再维护，建议使用[replaceUrl<sup>9+</sup>](#routerreplaceurl9)
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Lite
-
-**参数：**
-
-| 参数名     | 类型                              | 必填   | 说明         |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
-
-**示例：**
-
-```js
-router.replace({
-  url: 'pages/detail/detail',
-  params: {
-    data1: 'message'
-  }
-}, router.RouterMode.Standard);
 ```
 
 ## router.enableAlertBeforeBackPage<sup>(deprecated)</sup>
