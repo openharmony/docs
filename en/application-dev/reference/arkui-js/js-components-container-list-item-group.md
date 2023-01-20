@@ -27,7 +27,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 | Name  | Type    | Default Value    | Mandatory  | Description                                      |
 | ---- | ------ | ------- | ---- | ---------------------------------------- |
-| type | string | default | No   | Type of the list item group. A list supports multiple list item group types. The same type of list item groups must have the same view layout after being rendered. If the type is fixed, replace the **if** attribute with the **show** attribute to ensure that the view layout remains unchanged.|
+| type | string | default | No   | Type of the list-item-group. A list supports multiple list-item-group types. The same type of list-item-groups must have the same view layout after being rendered. If the type is fixed, replace the **if** attribute with the **show** attribute to ensure that the view layout remains unchanged.|
 
 >  **NOTE**
 >
@@ -48,11 +48,11 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 
 In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
 
-| Name           | Name                                | Description                                      |
+| Name           | Parameter                                | Description                                      |
 | ------------- | ---------------------------------- | ---------------------------------------- |
 | groupclick    | { groupid: string } | Triggered when a group is clicked.<br>**groupid**: ID of the group that is clicked.    |
-| groupcollapse | { groupid: string } | Triggered when a group is collapsed.<br>**groupid**: ID of the group that is collapsed.<br>If the parameter is not carried or **groupid** is left empty, all groups are collapsed.|
-| groupexpand   | { groupid: string } | Triggered when a group is expanded.<br>**groupid**: ID of the group that is expanded.<br>If the parameter is not carried or **groupid** is left empty, all groups are expanded.|
+| groupcollapse | { groupid: string } | Triggered when a group is collapsed.<br>**groupid**: ID of the group collapsed.<br>If the parameter is not carried or **groupid** is left empty, all groups are collapsed.|
+| groupexpand   | { groupid: string } | Triggered when a group is expanded.<br>**groupid**: ID of the group expanded.<br>If the parameter is not carried or **groupid** is left empty, all groups are expanded.|
 
 
 ## Methods
@@ -124,7 +124,7 @@ The [universal methods](../arkui-js/js-components-common-methods.md) are support
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     direction: 'column',
@@ -158,12 +158,12 @@ export default {
     this.$element('mylist').expandGroup()
   },
   collapse(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Close ' + e.groupid
     })
   },
   expand(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Open ' + e.groupid
     })
   }
