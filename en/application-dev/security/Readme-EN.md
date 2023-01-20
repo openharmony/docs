@@ -11,6 +11,7 @@
 - HUKS
   - [HUKS Overview](huks-overview.md)
   - [HUKS Development](huks-guidelines.md)
+  - [HUKS Cipher Algorithm Specifications](huks-appendix.md)
 - Crypto Framework
   - [Crypto Framework Overview](cryptoFramework-overview.md)
   - [Crypto Framework Development](cryptoFramework-guidelines.md)
