@@ -3,13 +3,14 @@
 The **device** module provides APIs for checking information about the current device.
 
 > **NOTE**
+>
 > - The APIs of this module are no longer maintained since API version 6. It is recommended that you use [@ohos.deviceInfo](js-apis-device-info.md) instead.
-> 
+>
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
-```
+```typescript
 import device from '@system.device';
 ```
 
@@ -39,14 +40,14 @@ Obtains the device information.
 | -------- | -------- | -------- |
 | brand | string | Brand.|
 | manufacturer | string | Manufacturer.|
-| model | string | Model. |
+| model | string | Model.|
 | product | string | Product number.|
 | language<sup>4+</sup> | string | System language.|
 | region<sup>4+</sup> | string | System region.|
 | windowWidth | number | Window width.|
 | windowHeight | number | Window height.|
 | screenDensity<sup>4+</sup> | number | Screen density.|
-| screenShape<sup>4+</sup> | string | Screen shape. The options are as follows:<br>- **rect**: rectangle screen<br>- **circle**: circle screen|
+| screenShape<sup>4+</sup> | string | Screen shape. The options are as follows:<br>- **rect**: rectangular screen<br>- **circle**: round screen|
 | apiVersion<sup>4+</sup> | number | API version.|
 | releaseType<sup>4+</sup> | string | Release type. The value includes both the release type and the API version, for example, Beta1.<br>Available release types are as follows:<br>- **Canary**: For the same API version, different canary releases are compatible with each other, but not compatible with those of the **beta** and **release** type.<br>- **Beta**: For the same API version, different beta releases are compatible with each other, but not compatible with those of the **release** type.<br>- **Release**: Releases of this type are compatible with the latest five API versions.|
 | deviceType<sup>4+</sup> | string | Device type.|
@@ -55,11 +56,11 @@ Obtains the device information.
 
 | Error Code| Description|
 | -------- | -------- |
-| 200 | The returned result contains information that cannot be obtained.|
+| 200 | Certain information cannot be obtained.|
 
 **Example**
 
-```
+```typescript
 export default {    
   getInfo() {        
     device.getInfo({            
