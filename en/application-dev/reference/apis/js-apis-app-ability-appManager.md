@@ -1,4 +1,4 @@
-# @ohos.app.ability.appManager
+# @ohos.app.ability.appManager (appManager)
 
 The **appManager** module implements application management. You can use the APIs of this module to query whether the application is undergoing a stability test, whether the application is running on a RAM constrained device, the memory size of the application, and information about the running process.
 
@@ -12,7 +12,7 @@ The **appManager** module implements application management. You can use the API
 import appManager from '@ohos.app.ability.appManager';
 ```
 
-## appManager.isRunningInStabilityTest<sup>9+</sup>
+## appManager.isRunningInStabilityTest
 
 static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -22,21 +22,34 @@ Checks whether this application is undergoing a stability test. This API uses an
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
+  | Type| Description| 
+  | -------- | -------- |
+  |AsyncCallback&lt;boolean&gt; |Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```ts
-  import app from '@ohos.application.appManager';
-  app.isRunningInStabilityTest((err, flag) => {
-      console.log('startAbility result:' + JSON.stringify(err));
-  })  
-  ```
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.isRunningInStabilityTest((err, flag) => {
+    if (err.code !== 0) {
+        console.log("isRunningInStabilityTest faile, err: " + JSON.stringify(err));
+    } else {
+        console.log("The result of isRunningInStabilityTest is:" + JSON.stringify(flag));
+    }
+})  
+```
 
 
-## appManager.isRunningInStabilityTest<sup>9+</sup>
+## appManager.isRunningInStabilityTest
 
 static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
@@ -48,18 +61,27 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
   | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
+  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```ts
-  import app from '@ohos.application.appManager';
-  app.isRunningInStabilityTest().then((flag) => {
-      console.log('success:' + JSON.stringify(flag));
-  }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
-  });
-  ```
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.isRunningInStabilityTest().then((flag) => {
+    console.log("The result of isRunningInStabilityTest is:" + JSON.stringify(flag));
+}).catch((error) => {
+    console.log("error:" + JSON.stringify(error));
+});
+```
 
 
 ## appManager.isRamConstrainedDevice
@@ -74,17 +96,27 @@ Checks whether this application is running on a RAM constrained device. This API
 
   | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```ts
-  app.isRamConstrainedDevice().then((data) => {
-      console.log('success:' + JSON.stringify(data));
-  }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
-  });
-  ```
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.isRamConstrainedDevice().then((data) => {
+    console.log("The result of isRamConstrainedDevice is:" + JSON.stringify(data));
+}).catch((error) => {
+    console.log("error:" + JSON.stringify(error));
+});
+```
 
 ## appManager.isRamConstrainedDevice
 
@@ -96,18 +128,31 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+  | Type| Description| 
+  | -------- | -------- |
+  | AsyncCallback&lt;boolean&gt; |Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```ts
-  app.isRamConstrainedDevice((err, data) => {
-    console.log('startAbility result failed:' + JSON.stringify(err));
-    console.log('startAbility result success:' + JSON.stringify(data));
-  })
-  ```
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.isRamConstrainedDevice((err, data) => {
+    if (err.code !== 0) {
+        console.log("isRamConstrainedDevice faile, err: " + JSON.stringify(err));
+    } else {
+        console.log("The result of isRamConstrainedDevice is:" + JSON.stringify(data));
+    }
+})
+```
 
 ## appManager.getAppMemorySize
 
@@ -121,17 +166,27 @@ Obtains the memory size of this application. This API uses a promise to return t
 
   | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;number&gt; | Size of the application memory.| 
+  | Promise&lt;number&gt; | Promise used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.| 
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```ts
-  app.getAppMemorySize().then((data) => {
-      console.log('success:' + JSON.stringify(data));
-  }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
-  });
-  ```
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.getAppMemorySize().then((data) => {
+    console.log("The size of app memory is:" + JSON.stringify(data));
+}).catch((error) => {
+    console.log("error:" + JSON.stringify(error));
+});
+```
 
 ## appManager.getAppMemorySize
 
@@ -143,20 +198,33 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | Yes| Size of the application memory.| 
+  | Type| Description| 
+  | -------- | -------- |
+  |AsyncCallback&lt;number&gt; |Callback used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.| 
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```ts
-  app.getAppMemorySize((err, data) => {
-      console.log('startAbility result failed :' + JSON.stringify(err));
-      console.log('startAbility result success:' + JSON.stringify(data));
-  })
-  ```
 
-## appManager.getProcessRunningInformation<sup>9+</sup>
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.getAppMemorySize((err, data) => {
+    if (err.code !== 0) {
+        console.log("getAppMemorySize faile, err: " + JSON.stringify(err));
+    } else {
+        console.log("The size of app memory is:" + JSON.stringify(data));
+    }
+})
+```
+
+## appManager.getProcessRunningInformation
 
 getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 
@@ -172,17 +240,27 @@ Obtains information about the running processes. This API uses a promise to retu
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | Promise used to return the process information.|
+| Promise\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | Promise used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```ts
-  app.getProcessRunningInformation().then((data) => {
-      console.log('success:' + JSON.stringify(data));
-  }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
-  });
-  ```
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.getProcessRunningInformation().then((data) => {
+    console.log("The process running information is:" + JSON.stringify(data));
+}).catch((error) => {
+    console.log("error:" + JSON.stringify(error));
+});
+```
 
 ## appManager.getProcessRunningInformation<sup>9+</sup>
 
@@ -198,18 +276,31 @@ Obtains information about the running processes. This API uses an asynchronous c
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | Yes| Callback used to return the process information.|
+| Type| Description|
+| -------- | -------- |
+|AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```ts
-  app.getProcessRunningInformation((err, data) => {
-    console.log('startAbility result failed :' + JSON.stringify(err));
-    console.log('startAbility result success:' + JSON.stringify(data));
-  })
-  ```
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.getProcessRunningInformation((err, data) => {
+    if (err.code !== 0) {
+        console.log("getProcessRunningInformation faile, err: " + JSON.stringify(err));
+    } else {
+        console.log("The process running information is:" + JSON.stringify(data));
+    }
+})
+```
 
 ## appManager.on
 
@@ -227,37 +318,52 @@ Registers an observer to listen for the state changes of all applications.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the API to call.|
-| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | Yes| Numeric code of the observer.|
+| type | string | Yes| Type of the API to call. It is fixed at **"applicationState"**.|
+| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | Yes| Application state observer, which is used to observe the lifecycle change of an application.|
+
+**Return value**
+
+| Type| Description|
+| --- | --- |
+| number | Digital code of the observer, which will be used in **off()** to deregister the observer.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```js
-  var applicationStateObserver = {
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
-        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
     },
     onAbilityStateChanged(abilityStateData) {
-        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
     },
     onProcessCreated(processData) {
-        console.log('------------ onProcessCreated -----------', processData);
+        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
     },
     onProcessDied(processData) {
-        console.log('------------ onProcessDied -----------', processData);
+        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
     },
     onProcessStateChanged(processData) {
-        console.log('------------ onProcessStateChanged -----------', processData);
+        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-  }
-  try {
-    const observerCode = app.on(applicationStateObserver);
-    console.log('-------- observerCode: ---------', observerCode);
-  } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
-  }
-
-  ```
+}
+try {
+    const observerId = appManager.on('applicationState', applicationStateObserver);
+    console.log(`[appManager] observerCode: ${observerId}`);
+} catch (paramError) {
+    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+}
+```
 
 ## appManager.on
 
@@ -275,39 +381,55 @@ Registers an observer to listen for the state changes of a specified application
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the API to call.|
-| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | Yes| Numeric code of the observer.|
-| bundleNameList | Array<string> | Yes| **bundleName** array of the application. A maximum of 128 bundle names can be passed.|
+| type | string | Yes| Type of the API to call. It is fixed at **"applicationState"**.|
+| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | Yes| Application state observer, which is used to observe the lifecycle change of an application.|
+| bundleNameList | `Array<string>` | Yes| **bundleName** array of the application. A maximum of 128 bundle names can be passed.|
+
+**Return value**
+
+| Type| Description|
+| --- | --- |
+| number | Digital code of the observer, which will be used in **off()** to deregister the observer.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```js
-  var applicationStateObserver = {
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
-        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
     },
     onAbilityStateChanged(abilityStateData) {
-        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
     },
     onProcessCreated(processData) {
-        console.log('------------ onProcessCreated -----------', processData);
+        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
     },
     onProcessDied(processData) {
-        console.log('------------ onProcessDied -----------', processData);
+        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
     },
     onProcessStateChanged(processData) {
-        console.log('------------ onProcessStateChanged -----------', processData);
+        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-  }
-  var bundleNameList = ['bundleName1', 'bundleName2'];
-  try {
-    const observerCode = app.on("applicationState", applicationStateObserver, bundleNameList);
-    console.log('-------- observerCode: ---------', observerCode);
-  } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
-  }
+}
+let bundleNameList = ['bundleName1', 'bundleName2'];
+try {
+    const observerId = appManager.on("applicationState", applicationStateObserver, bundleNameList);
+    console.log(`[appManager] observerCode: ${observerId}`);
+} catch (paramError) {
+    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+}
+```
 
-  ```
 ## appManager.off
 
 off(type: "applicationState", observerId: number,  callback: AsyncCallback\<void>): void;
@@ -321,29 +443,68 @@ Deregisters the application state observer. This API uses an asynchronous callba
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
- 
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the API to call.|
-| observerId | number | Yes| Numeric code of the observer.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| type | string | Yes| Type of the API to call. It is fixed at **"applicationState"**.|
+| observerId | number | Yes| Digital code of the observer.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```js
-    var observerId = 100;
 
-    function unregisterApplicationStateObserverCallback(err) {
-      if (err) {
-          console.log('------------ unregisterApplicationStateObserverCallback ------------', err);
-      }
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let observeId = 0;
+
+// 1. Register an application state observer.
+let applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    },
+    onProcessCreated(processData) {
+        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
+    },
+    onProcessDied(processData) {
+        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
+    },
+    onProcessStateChanged(processData) {
+        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-    try {
-      app.off(observerId, unregisterApplicationStateObserverCallback);
-    } catch (paramError) {
-      console.log('error: ' + paramError.code + ', ' + paramError.message);
+}
+let bundleNameList = ['bundleName1', 'bundleName2'];
+try {
+    observerId = appManager.on("applicationState", applicationStateObserver, bundleNameList);
+    console.log(`[appManager] observerCode: ${observerId}`);
+} catch (paramError) {
+    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+}
+
+// 2. Deregister the application state observer.
+function unregisterApplicationStateObserverCallback(err) {
+    if (err.code !== 0) {
+        console.log("unregisterApplicationStateObserverCallback faile, err: " + JSON.stringify(err));
+    } else {
+        console.log("unregisterApplicationStateObserverCallback success.");
     }
-  ```
+}
+try {
+    appManager.off("applicationState", observerId, unregisterApplicationStateObserverCallback);
+} catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+}
+```
 
 ## appManager.off
 
@@ -361,38 +522,73 @@ Deregisters the application state observer. This API uses an asynchronous callba
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the API to call.|
-| observerId | number | Yes| Numeric code of the observer.|
+| type | string | Yes| Type of the API to call. It is fixed at **"applicationState"**.|
+| observerId | number | Yes| Digital code of the observer.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise used to return the API call result. You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```js
-    var observerId = 100;
-    
-    try {
-      app.off(observerId)
-        .then((data) => {
-          console.log('----------- unregisterApplicationStateObserver success ----------', data);
-        })
-        .catch((err) => {
-          console.log('----------- unregisterApplicationStateObserver fail ----------', err);
-        })
-    } catch (paramError) {
-      console.log('error: ' + paramError.code + ', ' + paramError.message);
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let observeId = 0;
+
+// 1. Register an application state observer.
+let applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    },
+    onProcessCreated(processData) {
+        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
+    },
+    onProcessDied(processData) {
+        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
+    },
+    onProcessStateChanged(processData) {
+        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-  ```
+}
+let bundleNameList = ['bundleName1', 'bundleName2'];
+try {
+    observerId = appManager.on("applicationState", applicationStateObserver, bundleNameList);
+    console.log(`[appManager] observerCode: ${observerId}`);
+} catch (paramError) {
+    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+}
+    
+// 2. Deregister the application state observer.
+try {
+    appManager.off("applicationState", observerId).then((data) => {
+        console.log("unregisterApplicationStateObserver success, data: " + JSON.stringify(data));
+    }).catch((err) => {
+        console.log("unregisterApplicationStateObserver faile, err: " + JSON.stringify(err));
+    })
+} catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+}
+```
 
 ## appManager.getForegroundApplications
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
-Obtains applications that are running in the foreground. This API uses an asynchronous callback to return the result.
+Obtains applications that are running in the foreground. This API uses an asynchronous callback to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md).
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -400,96 +596,44 @@ Obtains applications that are running in the foreground. This API uses an asynch
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-**Parameters**
+**Error codes**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<AppStateData>> | Yes| Callback used to return the application state data.|
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
 
-**Example**
-    
-  ```js
-    function getForegroundApplicationsCallback(err, data) {
-      if (err) {
-          console.log('--------- getForegroundApplicationsCallback fail ---------', err.code + ': ' + err.message);
-      } else {
-          console.log('--------- getForegroundApplicationsCallback success ---------', data)
-      }
-    }
-    app.getForegroundApplications(getForegroundApplicationsCallback);
-  ```
-
-unregisterApplicationStateObserver(observerId: number): Promise\<void>;
-
-Deregisters the application state observer. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| observerId | number | Yes| Numeric code of the observer.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Yes| Callback used to return the API call result and an array holding the application state data. You can perform error handling or custom processing in this callback.|
 
 **Example**
-    
-  ```ts
-  var observerId = 100;
-  app.unregisterApplicationStateObserver(observerId)
-  .then((data) => {
-      console.log('----------- unregisterApplicationStateObserver success ----------', data);
-  })
-  .catch((err) => {
-      console.log('----------- unregisterApplicationStateObserver fail ----------', err);
-  })
-  ```
 
-## appManager.getForegroundApplications<sup>9+</sup>
+```ts
+import appManager from '@ohos.app.ability.appManager';
 
-getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
-
-Obtains applications that are running in the foreground. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.GET_RUNNING_INFO
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<AppStateData>> | Yes| Callback used to return the application state data.|
-
-**Example**
-    
-  ```ts
-  function getForegroundApplicationsCallback(err, data) {
-    if (err) {
-        console.log('--------- getForegroundApplicationsCallback fail ---------', err);
+function getForegroundApplicationsCallback(err, data) {
+    if (err.code !== 0) {
+        console.log("getForegroundApplicationsCallback fail, err: " + JSON.stringify(err));
     } else {
-        console.log('--------- getForegroundApplicationsCallback success ---------', data)
+        console.log("getForegroundApplicationsCallback success, data: " + JSON.stringify(data));
     }
-  }
-  app.getForegroundApplications(getForegroundApplicationsCallback);
-  ```
+}
+try {
+    appManager.getForegroundApplications(getForegroundApplicationsCallback);
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
+```
 
-## appManager.getForegroundApplications<sup>9+</sup>
+## appManager.getForegroundApplications
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>;
 
-Obtains applications that are running in the foreground. This API uses a promise to return the result.
+Obtains applications that are running in the foreground. This API uses a promise to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md).
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -501,27 +645,35 @@ Obtains applications that are running in the foreground. This API uses a promise
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Array\<ProcessRunningInfo>> | Promise used to return the application state data.|
+| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Promise used to return an array holding the application state data|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```ts
-  app.getForegroundApplications()
-  .then((data) => {
-      console.log('--------- getForegroundApplications success -------', data);
-  })
-  .catch((err) => {
-      console.log('--------- getForegroundApplications fail -------', err);
-  })
-  ```
 
-## appManager.killProcessWithAccount<sup>9+</sup>
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.getForegroundApplications().then((data) => {
+    console.log("getForegroundApplications success, data: " + JSON.stringify(data));
+}).catch((err) => {
+    console.log("getForegroundApplications fail, err: " + JSON.stringify(err));
+})
+```
+
+## appManager.killProcessWithAccount
 
 killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 Kills a process by bundle name and account ID. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS (required only when the account ID is not the current user) and ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -529,27 +681,39 @@ Kills a process by bundle name and account ID. This API uses a promise to return
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Bundle name of an application.| 
-  | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
 ```ts
-var bundleName = 'bundleName';
-var accountId = 0;
-app.killProcessWithAccount(bundleName, accountId)
-   .then((data) => {
-       console.log('------------ killProcessWithAccount success ------------', data);
-   })
-   .catch((err) => {
-       console.log('------------ killProcessWithAccount fail ------------', err);
-   })
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = 'bundleName';
+let accountId = 0;
+try {
+    appManager.killProcessWithAccount(bundleName, accountId).then(() => {
+        console.log("killProcessWithAccount success");
+    }).catch((err) => {
+        console.log("killProcessWithAccount fail, err: " + JSON.stringify(err));
+    })
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```
 
 
-## appManager.killProcessWithAccount<sup>9+</sup>
+## appManager.killProcessWithAccount
 
 killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCallback\<void\>): void
 
@@ -559,32 +723,42 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS (required only when the account ID is not the current user) and ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **Parameters**
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Bundle name of an application.| 
+  | bundleName | string | Yes| Bundle name.| 
   | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).| 
-  | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.| 
+  | callback | AsyncCallback\<void\> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.| 
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
 ```ts
-var bundleName = 'bundleName';
-var accountId = 0;
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = 'bundleName';
+let accountId = 0;
 function killProcessWithAccountCallback(err, data) {
-   if (err) {
-       console.log('------------- killProcessWithAccountCallback fail, err: --------------', err);
-   } else {
-       console.log('------------- killProcessWithAccountCallback success, data: --------------', data);
-   }
+    if (err.code !== 0) {
+        console.log("killProcessWithAccountCallback fail, err: " + JSON.stringify(err));
+    } else {
+        console.log("killProcessWithAccountCallback success.");
+    }
 }
-app.killProcessWithAccount(bundleName, accountId, killProcessWithAccountCallback);
+appManager.killProcessWithAccount(bundleName, accountId, killProcessWithAccountCallback);
 ```
 
-## appManager.killProcessesByBundleName<sup>9+</sup>
+## appManager.killProcessesByBundleName
 
 killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 
@@ -600,24 +774,38 @@ Kills a process by bundle name. This API uses an asynchronous callback to return
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Bundle name of an application.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| bundleName | string | Yes| Bundle name.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```ts
-  var bundleName = 'bundleName';
-  function killProcessesByBundleNameCallback(err, data) {
-    if (err) {
-        console.log('------------- killProcessesByBundleNameCallback fail, err: --------------', err);
-    } else {
-        console.log('------------- killProcessesByBundleNameCallback success, data: --------------', data);
-    }
-  }
-  app.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
-  ```
 
-## appManager.killProcessesByBundleName<sup>9+</sup>
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = 'bundleName';
+function killProcessesByBundleNameCallback(err, data) {
+    if (err.code !== 0) {
+        console.log("killProcessesByBundleNameCallback fail, err: " + JSON.stringify(err));
+    } else {
+        console.log("killProcessesByBundleNameCallback success.");
+    }
+}
+try {
+    appManager.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
+```
+
+## appManager.killProcessesByBundleName
 
 killProcessesByBundleName(bundleName: string): Promise\<void>;
 
@@ -633,7 +821,7 @@ Kills a process by bundle name. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Bundle name of an application.|
+| bundleName | string | Yes| Bundle name.|
 
 **Return value**
 
@@ -641,20 +829,32 @@ Kills a process by bundle name. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise\<void> | Promise used to return the result.|
 
-**Example**
-    
-  ```ts
-var bundleName = 'bundleName';
-app.killProcessesByBundleName(bundleName)
-   .then((data) => {
-       console.log('------------ killProcessesByBundleName success ------------', data);
-   })
-   .catch((err) => {
-       console.log('------------ killProcessesByBundleName fail ------------', err);
-   })
-  ```
+**Error codes**
 
-## appManager.clearUpApplicationData<sup>9+</sup>
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = 'bundleName';
+try {
+    appManager.killProcessesByBundleName(bundleName).then((data) => {
+        console.log("killProcessesByBundleName success.");
+    }).catch((err) => {
+        console.log("killProcessesByBundleName fail, err: " + JSON.stringify(err));
+    })
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
+```
+
+## appManager.clearUpApplicationData
 
 clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 
@@ -670,24 +870,38 @@ Clears application data by bundle name. This API uses an asynchronous callback t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Bundle name of an application.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| bundleName | string | Yes| Bundle name.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```ts
-  var bundleName = 'bundleName';
-  function clearUpApplicationDataCallback(err, data) {
-    if (err) {
-        console.log('------------- clearUpApplicationDataCallback fail, err: --------------', err);
-    } else {
-        console.log('------------- clearUpApplicationDataCallback success, data: --------------', data);
-    }
-  }
-  app.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
-  ```
 
-## appManager.clearUpApplicationData<sup>9+</sup>
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = 'bundleName';
+function clearUpApplicationDataCallback(err, data) {
+    if (err) {
+        console.log("clearUpApplicationDataCallback fail, err: " + JSON.stringify(err));
+    } else {
+        console.log("clearUpApplicationDataCallback success.");
+    }
+}
+try {
+    appManager.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
+```
+
+## appManager.clearUpApplicationData
 
 clearUpApplicationData(bundleName: string): Promise\<void>;
 
@@ -703,28 +917,42 @@ Clears application data by bundle name. This API uses a promise to return the re
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Bundle name of an application.|
+| bundleName | string | Yes| Bundle name.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise used to return the API call result. You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
-    
-  ```ts
-  var bundleName = 'bundleName';
-  app.clearUpApplicationData(bundleName)
-    .then((data) => {
-        console.log('------------ clearUpApplicationData success ------------', data);
-    })
-    .catch((err) => {
-        console.log('------------ clearUpApplicationData fail ------------', err);
-    })
-  ```
 
-## ApplicationState<sup>9+</sup>
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = 'bundleName';
+try {
+    appManager.clearUpApplicationData(bundleName).then((data) => {
+        console.log("clearUpApplicationData success.");
+    }).catch((err) => {
+        console.log("clearUpApplicationData fail, err: " + JSON.stringify(err));
+    })
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
+```
+
+## ApplicationState
+
+Enumerates the application states. This enum can be used together with [AbilityStateData](js-apis-inner-application-appStateData.md) to return the application state.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -738,7 +966,9 @@ Clears application data by bundle name. This API uses a promise to return the re
 | STATE_BACKGROUND        | 4   |       State indicating that the application is running in the background.          |
 | STATE_DESTROY        | 5   |           State indicating that the application is destroyed.      |
 
-## ProcessState<sup>9+</sup>
+## ProcessState
+
+Enumerates the process states. This enum can be used together with [ProcessData](js-apis-inner-application-processData.md) to return the process state.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

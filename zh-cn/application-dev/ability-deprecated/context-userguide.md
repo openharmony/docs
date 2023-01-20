@@ -94,13 +94,13 @@ export default {
 **示例**
 
 ```javascript
-import Ability from "@ohos.application.Ability";
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 var lifecycleid;
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate() {
-        console.log("MainAbility onCreate")
+        console.log("EntryAbility onCreate")
         let AbilityLifecycleCallback  =  {
             onAbilityCreate(ability){
                 console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));        
@@ -189,25 +189,25 @@ export default class MyAbilityStage extends AbilityStage {
 **示例**
 
 ```javascript
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate")
+        console.log("[Demo] EntryAbility onCreate")
         globalThis.abilityWant = want;
     }
 
     onDestroy() {
-        console.log("[Demo] MainAbility onDestroy")
+        console.log("[Demo] EntryAbility onDestroy")
     }
 
     onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility onWindowStageCreate")
+        console.log("[Demo] EntryAbility onWindowStageCreate")
 
         // 在这里获取AbilityContext，打印ability的信息
         let context = this.context;
-        console.log("[Demo] MainAbility bundleName " + context.abilityInfo.bundleName)
+        console.log("[Demo] EntryAbility bundleName " + context.abilityInfo.bundleName)
 
         windowStage.loadContent("pages/index", (err, data) => {
             if (err.code) {
@@ -220,17 +220,17 @@ export default class MainAbility extends Ability {
 
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
-        console.log("[Demo] MainAbility onWindowStageDestroy")
+        console.log("[Demo] EntryAbility onWindowStageDestroy")
     }
 
     onForeground() {
         // Ability has brought to foreground
-        console.log("[Demo] MainAbility onForeground")
+        console.log("[Demo] EntryAbility onForeground")
     }
 
     onBackground() {
         // Ability has back to background
-        console.log("[Demo] MainAbility onBackground")
+        console.log("[Demo] EntryAbility onBackground")
     }
 };
 ```
@@ -256,16 +256,16 @@ Stage模型下，在Ability的`onWindowStageCreate`生命周期中，可以通�
 **示例**
 
 ```ts
-// MainAbility.ts
-import Ability from '@ohos.application.Ability'
+// EntryAbility.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate")
+        console.log("[Demo] EntryAbility onCreate")
     }
 
     onDestroy() {
-        console.log("[Demo] MainAbility onDestroy")
+        console.log("[Demo] EntryAbility onDestroy")
     }
 
     onWindowStageCreate(windowStage) {
@@ -283,7 +283,7 @@ export default class MainAbility extends Ability {
 
 ```ts
 // pages/index.ets
-import context from '@ohos.application.context'
+import context from '@ohos.app.ability.context'
 
 type Context = context.Context
 

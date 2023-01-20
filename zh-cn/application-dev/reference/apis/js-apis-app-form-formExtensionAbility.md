@@ -90,7 +90,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onUpdateForm(formId: string): void
 
-卡片提供方接收更新卡片的通知接口。获取最新数据后调用[FormExtensionContext](js-apis-inner-application-formExtensionContext.md)的updateForm接口刷新卡片数据。
+卡片提供方接收更新卡片的通知接口。获取最新数据后调用formProvider的[updateForm](js-apis-app-form-formProvider.md#updateform)接口刷新卡片数据。
 
 **系统能力**：SystemCapability.Ability.Form
 

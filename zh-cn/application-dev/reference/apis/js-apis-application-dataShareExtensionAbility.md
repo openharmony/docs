@@ -63,7 +63,7 @@ DataShare客户端连接DataShareExtensionAbility服务端时，服务端回调�
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -75,8 +75,9 @@ let rdbStore;
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     onCreate(want, callback) {
         rdb.getRdbStore(this.context, {
-            name: DB_NAME
-        }, 1, function (err, data) {
+            name: DB_NAME,
+            securityLevel: rdb.SecurityLevel.S1
+        }, function (err, data) {
             console.log('getRdbStore done, data : ' + data);
             rdbStore = data;
             rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
@@ -109,7 +110,7 @@ insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;numbe
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -154,7 +155,7 @@ update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueB
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -196,7 +197,7 @@ delete?(uri: string, predicates: dataSharePredicates.DataSharePredicates, callba
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -239,7 +240,7 @@ query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -284,7 +285,7 @@ batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: Asy
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";

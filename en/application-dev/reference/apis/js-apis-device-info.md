@@ -1,4 +1,4 @@
-# Device Information
+# @ohos.deviceInfo (Device Information)
 
 The **deviceInfo** module provides product information.
 

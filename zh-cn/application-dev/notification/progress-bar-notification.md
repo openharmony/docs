@@ -12,9 +12,8 @@
 
 [isSupportTemplate()](../reference/apis/js-apis-notificationManager.md#notificationissupporttemplate)是查询模板是否支持接口，目前仅支持进度条模板。
 
-| | |
-| -------- | -------- |
 | **接口名** | **描述** |
+| -------- | -------- |
 | isSupportTemplate(templateName:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;boolean&gt;):&nbsp;void | 查询模板是否存在。 |
 
 

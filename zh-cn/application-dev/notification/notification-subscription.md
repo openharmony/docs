@@ -20,17 +20,16 @@
 
 **表2** 通知订阅回调接口介绍
 
-| | |
-| -------- | -------- |
 | **接口名** | **描述** |
-| onConsume?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void | 通知回调。 |
-| onCancel?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void | 通知取消回调。 |
-| onUpdate?:(data:&nbsp;NotificationSortingMap)&nbsp;=&gt;&nbsp;void | 通知排序更新回调。 |
-| onConnect?:()&nbsp;=&gt;&nbsp;void; | 订阅成功回调。 |
-| onDisconnect?:()&nbsp;=&gt;&nbsp;void; | 取消订阅回调。 |
-| onDestroy?:()&nbsp;=&gt;&nbsp;void | 与通知子系统断开回调。 |
+| -------- | -------- |
+| onConsume?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void | 通知回调。               |
+| onCancel?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void | 通知取消回调。           |
+| onUpdate?:(data:&nbsp;NotificationSortingMap)&nbsp;=&gt;&nbsp;void | 通知排序更新回调。       |
+| onConnect?:()&nbsp;=&gt;&nbsp;void;                          | 订阅成功回调。           |
+| onDisconnect?:()&nbsp;=&gt;&nbsp;void;                       | 取消订阅回调。           |
+| onDestroy?:()&nbsp;=&gt;&nbsp;void                           | 与通知子系统断开回调。   |
 | onDoNotDisturbDateChange?:(mode:&nbsp;notification.DoNotDisturbDate)&nbsp;=&gt;&nbsp;void | 免打扰时间选项变更回调。 |
-| onEnabledNotificationChanged?:(callbackData:&nbsp;EnabledNotificationCallbackData)&nbsp;=&gt;&nbsp;void | 通知开关变更回调。 |
+| onEnabledNotificationChanged?:(callbackData:&nbsp;EnabledNotificationCallbackData)&nbsp;=&gt;&nbsp;void | 通知开关变更回调。       |
 
 
 ## 开发步骤
@@ -40,7 +39,7 @@
 2. 导入通知订阅模块。
    
    ```ts
-   import NotificationSubscribe from '@ohos.notificationSubscribe';
+   import notificationSubscribe from '@ohos.notificationSubscribe';
    ```
 
 3. 创建订阅者对象。
@@ -73,7 +72,7 @@
 4. 发起通知订阅。
    
    ```ts
-   NotificationSubscribe.subscribe(subscriber, (err, data) => { // callback形式调用异步接口
+   notificationSubscribe.subscribe(subscriber, (err, data) => { // callback形式调用异步接口
      if (err) {
        console.error(`[ANS] failed to subscribe, error[${err}]`);
        return;

@@ -12,14 +12,14 @@ The show/hide event is triggered when a component is mounted or unmounted from t
 | Name                                            | Bubbling Supported| Description                  |
 | ------------------------------------------------ | -------- | -------------------------- |
 | onAppear(event: () =&gt; void)    | No      | Triggered when the component is displayed.|
-| onDisappear(event: () =&gt; void) | No      | Triggered when the component is hidden. |
+| onDisAppear(event: () =&gt; void) | No      | Triggered when the component is hidden.|
 
 
 ## Example
 
 ```ts
 // xxx.ets
-import prompt from '@ohos.prompt'
+import promptAction from '@ohos.promptAction'
 
 @Entry
 @Component
@@ -38,14 +38,14 @@ struct AppearExample {
         Text(this.myText).fontSize(26).fontWeight(FontWeight.Bold)
           .onAppear(() => {
             this.changeAppear = 'Hide Text'
-            prompt.showToast({
+            promptAction.showToast({
               message: 'The text is shown',
               duration: 2000
             })
           })
           .onDisAppear(() => {
             this.changeAppear = 'Show Text'
-            prompt.showToast({
+            promptAction.showToast({
               message: 'The text is hidden',
               duration: 2000
             })

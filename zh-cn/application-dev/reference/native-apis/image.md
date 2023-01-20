@@ -7,7 +7,7 @@
 @Syscap SystemCapability.Multimedia.Image
 
 
-**自从：**
+**起始版本：**
 
 
 8
@@ -34,8 +34,8 @@
 
 | 枚举名称 | 描述 |
 | -------- | -------- |
-| { OH_NATIVEXCOMPONENT_RESULT_SUCCESS = 0, <br/>OH_NATIVEXCOMPONENT_RESULT_FAILED = -1, <br/>OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER = -2, <br/>OHOS_IMAGE_RESULT_SUCCESS = 0,   <br/>OHOS_IMAGE_RESULT_BAD_PARAMETER = -1 } | 函数方法返回值的错误码的[枚举](#anonymous-enum)。 |
-| { OHOS_PIXEL_MAP_FORMAT_NONE = 0, <br/>OHOS_PIXEL_MAP_FORMAT_RGBA_8888 = 3, <br/>OHOS_PIXEL_MAP_FORMAT_RGB_565 = 2 } | pixel 格式的[枚举](#anonymous-enum-1)。 |
+| { OHOS_IMAGE_RESULT_SUCCESS = 0,   <br/>OHOS_IMAGE_RESULT_BAD_PARAMETER = -1 } | 函数方法返回值的错误码的枚举。 |
+| { OHOS_PIXEL_MAP_FORMAT_NONE = 0, <br/>OHOS_PIXEL_MAP_FORMAT_RGBA_8888 = 3, <br/>OHOS_PIXEL_MAP_FORMAT_RGB_565 = 2 } | pixel 格式的枚举。 |
 
 
 ### 函数
@@ -66,13 +66,10 @@ anonymous enum
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| OH_NATIVEXCOMPONENT_RESULT_SUCCESS | 成功结果。 |
-| OH_NATIVEXCOMPONENT_RESULT_FAILED | 失败结果。 |
-| OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER | 无效参数。 |
 | OHOS_IMAGE_RESULT_SUCCESS | 成功的结果。 |
 | OHOS_IMAGE_RESULT_BAD_PARAMETER | 无效值。 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -94,7 +91,7 @@ pixel 格式的枚举。
 | OHOS_PIXEL_MAP_FORMAT_RGBA_8888 | 32-bit RGBA。由 R, G, B组成，包括 A 都需要占用 8 bits。存储顺序是从高位到低位。 |
 | OHOS_PIXEL_MAP_FORMAT_RGB_565 | 16-bit RGB。仅由 R, G, B 组成。存储顺序是从高位到低位: 红色占用5 bits,绿色占用6 bits,蓝色占用5 bits。 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -131,7 +128,7 @@ int32_t OH_AccessPixels (napi_env env, napi_value value, void ** addrPtr )
 
 操作成功则返回OHOS_IMAGE_RESULT_SUCCESS; 如果操作失败，则返回错误码。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -163,7 +160,7 @@ int32_t OH_GetImageInfo (napi_env env, napi_value value, OhosPixelMapInfo * info
 
 [OhosPixelMapInfo](_ohos_pixel_map_info.md)
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -194,6 +191,6 @@ int32_t OH_UnAccessPixels (napi_env env, napi_value value )
 
 AccessPixels
 
-**自从：**
+**起始版本：**
 
 8

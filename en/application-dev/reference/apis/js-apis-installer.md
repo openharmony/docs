@@ -1,4 +1,4 @@
-# @ohos.bundle.installer
+# @ohos.bundle.installer (installer)
 
 The **bundle.installer** module provides APIs for you to install, uninstall, and recover bundles on devices.
 

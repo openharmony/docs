@@ -5,7 +5,7 @@ The **ExtensionContext** module, inherited from **Context**, implements the cont
 This module provides APIs for accessing resources of a specific Extension ability. An Extension ability can use the context directly provided by **ExtensionContext** or that extended from **ExtensionContext**. For example, **ServiceExtension** uses [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md), which extends the capabilities of starting, stopping, binding, and unbinding abilities based on **ExtensionContext**.
 
 > **NOTE**
-> 
+>
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
 
@@ -61,10 +61,11 @@ export default class TheServiceExtension extends ServiceExtension {
 
 Start **ServiceExtension** within the **onCreate** callback of the main ability of the entry.
 ```ts
-import Ability from '@ohos.app.ability.Ability'
-export default class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate");
+        console.log("[Demo] EntryAbility onCreate");
         let wantExt = {
             deviceId: "",
             bundleName: "com.example.TheServiceExtension",

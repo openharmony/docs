@@ -1,4 +1,4 @@
-# Vibrator
+# @ohos.vibrator (Vibrator)
 
 The **vibrator** module provides APIs for starting or stopping vibration.
 

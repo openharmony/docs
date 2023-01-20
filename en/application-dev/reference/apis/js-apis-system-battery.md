@@ -1,6 +1,6 @@
-# Battery Info
+# @system.battery (Battery Information)
 
-This module allows you to query the charging status and remaining power of a device.
+The **battery** module allows you to query the charging status and remaining power of a device.
 
 >  **NOTE**
 >  - The APIs of this module are no longer maintained since API version 6. It is recommended that you use [`@ohos.batteryInfo`](js-apis-battery-info.md) instead.

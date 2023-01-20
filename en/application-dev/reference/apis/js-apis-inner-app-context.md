@@ -5,11 +5,12 @@ The **Context** module provides context for abilities or applications. It allows
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs of this module can be used only in the FA model.
 
 ## Usage
 
-The **Context** object is created in a **featureAbility** and returned through its **getContext()** API. Therefore, you must import the **@ohos.ability.featureAbility** package before using the **Context** module. An example is as follows:
+The **Context** object is created in a **featureAbility** and returned through its [getContext](js-apis-ability-featureAbility.md#featureabilitygetcontext) API. Therefore, you must import the **@ohos.ability.featureAbility** package before using the **Context** module. An example is as follows:
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
@@ -93,14 +94,15 @@ Verifies whether a specific PID and UID have the given permission. This API uses
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import bundle from '@ohos.bundle';
+import bundle from '@ohos.bundle.bundleManager';
 var context = featureAbility.getContext();
 bundle.getBundleInfo('com.context.test', 1, (err, datainfo) =>{
-    context.verifyPermission("com.example.permission", {uid:datainfo.uid}, (err, data) =>{
+    context.verifyPermission("com.example.permission", {uid:datainfo.appInfo.uid}, (err, data) =>{
         console.info("verifyPermission err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
     });
 });
 ```
+For details about **getBundleInfo** in the sample code, see [bundleManager](js-apis-bundleManager.md).
 
 
 
@@ -250,7 +252,7 @@ Obtains information about the current application. This API uses an asynchronous
 
 | Name      | Type                             | Mandatory  | Description          |
 | -------- | ------------------------------- | ---- | ------------ |
-| callback | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | Yes   | Callback used to return the application information.|
+| callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | Yes   | Callback used to return the application information.|
 
 **Example**
 
@@ -352,7 +354,7 @@ Obtains the display orientation of this ability. This API uses an asynchronous c
 
 | Name    | Type                                                        | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| callback | AsyncCallback\<[bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation)> | Yes  | Callback used to return the display orientation.|
+| callback | AsyncCallback\<[bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation)> | Yes  | Callback used to return the display orientation.|
 
 **Example**
 
@@ -376,7 +378,7 @@ Obtains the display orientation of this ability. This API uses a promise to retu
 
 | Type                                      | Description       |
 | ---------------------------------------- | --------- |
-| Promise\<[bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation)> | Promise used to return the display orientation.|
+| Promise\<[bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation)> | Promise used to return the display orientation.|
 
 **Example**
 
@@ -448,7 +450,7 @@ Sets the display orientation for this ability. This API uses an asynchronous cal
 
 | Name         | Type                                      | Mandatory  | Description          |
 | ----------- | ---------------------------------------- | ---- | ------------ |
-| orientation | [bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation) | Yes   | Display orientation to set.|
+| orientation | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) | Yes   | Display orientation to set.|
 | callback    | AsyncCallback\<void> | Yes   | Callback used to return the display orientation.   |
 
 **Example**
@@ -457,7 +459,7 @@ Sets the display orientation for this ability. This API uses an asynchronous cal
 import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle';
 var context = featureAbility.getContext();
-var orientation=bundle.DisplayOrientation.UNSPECIFIED
+var orientation = bundle.DisplayOrientation.UNSPECIFIED;
 context.setDisplayOrientation(orientation, (err) => {
     console.info("setDisplayOrientation err: " + JSON.stringify(err));
 });
@@ -475,7 +477,7 @@ Sets the display orientation for this ability. This API uses a promise to return
 
 | Type                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| orientation                              | [bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation) |
+| orientation                              | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) |
 | Promise\<void> | Promise used to return the display orientation.                               |
 
 **Example**
@@ -484,7 +486,7 @@ Sets the display orientation for this ability. This API uses a promise to return
 import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle';
 var context = featureAbility.getContext();
-var orientation=bundle.DisplayOrientation.UNSPECIFIED
+var orientation = bundle.DisplayOrientation.UNSPECIFIED;
 context.setDisplayOrientation(orientation).then((data) => {
     console.info("setDisplayOrientation data: " + JSON.stringify(data));
 });
@@ -510,7 +512,7 @@ Sets whether to show this feature at the top of the lock screen so that the feat
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext();
-var show=true
+var show = true;
 context.setShowOnLockScreen(show, (err) => {
     console.info("setShowOnLockScreen err: " + JSON.stringify(err));
 });
@@ -541,7 +543,7 @@ Sets whether to show this feature at the top of the lock screen so that the feat
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext();
-var show=true
+var show = true;
 context.setShowOnLockScreen(show).then((data) => {
     console.info("setShowOnLockScreen data: " + JSON.stringify(data));
 });
@@ -567,7 +569,7 @@ Sets whether to wake up the screen when this feature is restored. This API uses 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext();
-var wakeUp=true
+var wakeUp = true;
 context.setWakeUpScreen(wakeUp, (err) => {
     console.info("setWakeUpScreen err: " + JSON.stringify(err));
 });
@@ -598,7 +600,7 @@ Sets whether to wake up the screen when this feature is restored. This API uses 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext();
-var wakeUp=true
+var wakeUp = true;
 context.setWakeUpScreen(wakeUp).then((data) => {
     console.info("setWakeUpScreen data: " + JSON.stringify(data));
 });
@@ -673,7 +675,7 @@ This API is available only to Page abilities.
 
 | Name      | Type                         | Mandatory  | Description                                    |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<[ElementName](js-apis-bundle-ElementName.md)> | Yes   | Callback used to return the **ohos.bundle.ElementName** object.|
+| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | Yes   | Callback used to return the **ohos.bundle.ElementName** object.|
 
 **Example**
 
@@ -701,7 +703,7 @@ This API is available only to Page abilities.
 
 | Type                   | Description                                  |
 | --------------------- | ------------------------------------ |
-| Promise\<[ElementName](js-apis-bundle-ElementName.md)> | Promise used to return the **ohos.bundle.ElementName** object.|
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | Promise used to return the **ohos.bundle.ElementName** object.|
 
 **Example**
 
@@ -769,7 +771,7 @@ context.getProcessName().then((data) => {
 
 getCallingBundle(callback: AsyncCallback\<string>): void
 
-Obtains the bundle name of the calling ability. This API uses an asynchronous callback to return the result.
+Obtains the bundle name of the caller ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -795,7 +797,7 @@ context.getCallingBundle((err, data) => {
 
 getCallingBundle(): Promise\<string>
 
-Obtains the bundle name of the calling ability. This API uses a promise to return the result.
+Obtains the bundle name of the caller ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -925,7 +927,7 @@ If the distributed file path does not exist, the system will create one and retu
 
 | Name      | Type                    | Mandatory  | Description                                      |
 | -------- | ---------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback\<string> | Yes   | Callback used to return the distributed file path. If the distributed file path does not exist, the system will create one and return the created path.|
+| callback | AsyncCallback\<string> | Yes   | Callback used to return the distributed file path.<br>If the path does not exist, the system will create one and return the created path.|
 
 **Example**
 
@@ -951,7 +953,7 @@ If the distributed file path does not exist, the system will create one and retu
 
 | Type              | Description                                 |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | Promise used to return the distributed file path. If this API is called for the first time, a new path will be created.|
+| Promise\<string> | Promise used to return the distributed file path. If this API is called for the first time, a path will be created.|
 
 **Example**
 
@@ -1023,7 +1025,7 @@ Obtains the **ModuleInfo** object of the application. This API uses an asynchron
 
 | Name      | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundle-HapModuleInfo.md)> | Yes   | Callback used to return the **ModuleInfo** object.|
+| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Yes   | Callback used to return the **ModuleInfo** object.|
 
 **Example**
 
@@ -1047,7 +1049,7 @@ Obtains the **ModuleInfo** object of the application. This API uses a promise to
 
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
-| Promise\<[HapModuleInfo](js-apis-bundle-HapModuleInfo.md)> | Promise used to return the **ModuleInfo** object.|
+| Promise\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Promise used to return the **ModuleInfo** object.|
 
 **Example**
 
@@ -1119,7 +1121,7 @@ Obtains information about this ability. This API uses an asynchronous callback t
 
 | Name      | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| callback | AsyncCallback\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)> | Yes   | Callback used to return the ability information.|
+| callback | AsyncCallback\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | Yes   | Callback used to return the ability information.|
 
 **Example**
 
@@ -1143,7 +1145,7 @@ Obtains information about this ability. This API uses a promise to return the re
 
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
-| Promise\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)> | Promise used to return the ability information.|
+| Promise\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | Promise used to return the ability information.|
 
 **Example**
 

@@ -1,8 +1,8 @@
 # ErrorObserver
 
-The **ErrorObserver** module defines the listener to observe errors.
+The **ErrorObserver** module defines an observer to listen for application errors. It can be used as an input parameter in [ErrorManager.on](js-apis-app-ability-errorManager.md#errormanageron) to listen for errors that occur in the current application.
 
-## onUnhandledException
+## ErrorObserver.onUnhandledException
 
 onUnhandledException(errMsg: string): void;
 
@@ -16,15 +16,21 @@ Called when an unhandled exception occurs in the JS runtime.
 | -------- | -------- | -------- | -------- |
 | errMsg | string | No| Message and error stack trace about the exception.|
 
-**Example**    
+**Example**
 
 ```ts
-import errorManager from '@ohos.application.errorManager';
+import errorManager from '@ohos.app.ability.errorManager'
 
 let observer = {
     onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ' + JSON.stringify(errorMsg));
+        console.log('HXW onUnhandledException, errorMsg: ', errorMsg);
     }
 }
-errorManager.registerErrorObserver(observer)
+
+try {
+    errorManager.on("error", observer);
+} catch (error) {
+    console.log('registerErrorObserver' + ' failed, error.code: ' + JSON.stringify(error.code) +
+        ' error.message: ' + JSON.stringify(error.message));
+}
 ```

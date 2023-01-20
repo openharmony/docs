@@ -1,4 +1,4 @@
-# Color Space Management
+# @ohos.graphics.colorSpaceManager (Color Space Management)
 
 The **colorSpaceManager** module provides APIs for creating and managing color space objects and obtaining basic color space attributes.
 

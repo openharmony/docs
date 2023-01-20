@@ -1,14 +1,14 @@
-# Mouse Event
+# @ohos.multimodalInput.mouseEvent (Mouse Event)
 
-Represents mouse events reported by an input device.
+The **mouseEvent** module provides mouse events reported by an input device.
 
->  **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```js
-import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mouseEvent';
+import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInput.mouseEvent';
 ```
 
 ## Action

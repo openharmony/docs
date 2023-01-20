@@ -1,4 +1,4 @@
-# @ohos.matrix4
+# @ohos.matrix4 (Matrix Transformation)
 
 The **matrix4** module provides APIs for matrix transformation. You can use these APIs to translate, rotate, and scale images.
 
@@ -145,11 +145,12 @@ Copies this matrix object.
 ```ts
 // xxx.ets
 import matrix4 from '@ohos.matrix4'
+
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({x:100})
-  private matrix2 = this.matrix1.copy().scale({x:2})
+  private matrix1 = matrix4.identity().translate({ x: 100 })
+  private matrix2 = this.matrix1.copy().scale({ x: 2 })
 
   build() {
     Column() {
@@ -160,7 +161,7 @@ struct Test {
       Image($r("app.media.bg2"))
         .width("40%")
         .height(100)
-        .margin({top:50})
+        .margin({ top: 50 })
         .transform(this.matrix2)
     }
   }
@@ -199,11 +200,12 @@ Combines the effects of two matrices to generate a new matrix object.
 ```ts
 // xxx.ets
 import matrix4 from '@ohos.matrix4'
+
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({x:200}).copy()
-  private matrix2 = matrix4.identity().scale({x:2}).copy()
+  private matrix1 = matrix4.identity().translate({ x: 200 }).copy()
+  private matrix2 = matrix4.identity().scale({ x: 2 }).copy()
 
   build() {
     Column() {
@@ -211,13 +213,13 @@ struct Test {
       Image($r("app.media.icon"))
         .width("40%")
         .height(100)
-        .margin({top:50})
+        .margin({ top: 50 })
       // Translate the x-axis by 200px, and then scale it twice to obtain the resultant matrix.
       Image($r("app.media.icon"))
         .transform(this.matrix1.combine(this.matrix2))
         .width("40%")
-      .height(100)
-        .margin({top:50})
+        .height(100)
+        .margin({ top: 50 })
     }
   }
 }
@@ -245,8 +247,9 @@ Inverts this matrix object.
 ```ts
 import matrix4 from '@ohos.matrix4'
 // The effect of matrix 1 (width scaled up by 2x) is opposite to that of matrix 2 (width scaled down by 2x).
-let matrix1 = matrix4.identity().scale({x:2})
+let matrix1 = matrix4.identity().scale({ x: 2 })
 let matrix2 = matrix1.invert()
+
 @Entry
 @Component
 struct Tests {
@@ -295,10 +298,11 @@ Translates this matrix object along the x, y, and z axes.
 ```ts
 // xxx.ets
 import matrix4 from '@ohos.matrix4'
+
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({x:100, y:200, z:30})
+  private matrix1 = matrix4.identity().translate({ x: 100, y: 200, z: 30 })
 
   build() {
     Column() {
@@ -346,7 +350,7 @@ import matrix4 from '@ohos.matrix4'
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().scale({x:2, y:3, z:4, centerX:50, centerY:50})
+  private matrix1 = matrix4.identity().scale({ x:2, y:3, z:4, centerX:50, centerY:50 })
 
   build() {
     Column() { 
@@ -392,17 +396,18 @@ Rotates this matrix object along the x, y, and z axes.
 ```ts
 // xxx.ets
 import matrix4 from '@ohos.matrix4'
+
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().rotate({x:1, y:1, z:2, angle:30})
+  private matrix1 = matrix4.identity().rotate({ x: 1, y: 1, z: 2, angle: 30 })
 
   build() {
     Column() {
       Image($r("app.media.bg1")).transform(this.matrix1)
         .width("40%")
         .height(100)
-    }.width("100%").margin({top:50})
+    }.width("100%").margin({ top: 50 })
   }
 }
 ```

@@ -14,7 +14,8 @@ AbilityStageContext提供允许访问特定于abilityStage的资源的能力，�
 通过AbilityStage实例来获取。
 
 ```ts
-import AbilityStage from '@ohos.application.AbilityStage';
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
 class MyAbilityStage extends AbilityStage {
     onCreate() {
         let abilityStageContext = this.context;

@@ -1,4 +1,4 @@
-# App Storage Statistics
+# @ohos.storageStatistics (Application Storage Statistics)
 
 The **storageStatistics** module provides APIs for obtaining storage space information, including the space of built-in and plug-in memory cards, space occupied by different types of data, and space of application data.
 
@@ -68,7 +68,7 @@ This is a system API and cannot be called by third-party applications.
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | volumeUuid | string                               | Yes  | UUID of the volume.                      |
-  | callback   | callback: AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total size of the volume.|
+  | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the total size of the volume.|
 
 **Example**
 
@@ -137,7 +137,7 @@ This is a system API and cannot be called by third-party applications.
   | Name    | Type                                | Mandatory| Description                        |
   | ---------- | ------------------------------------ | ---- | ---------------------------- |
   | volumeUuid | string                               | Yes  | UUID of the volume.                        |
-  | callback   | callback: AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the available space of the volume.|
+  | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available space of the volume.|
 
 **Example**
 
@@ -173,7 +173,7 @@ This is a system API and cannot be called by third-party applications.
 
   | Type                                      | Description                      |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the space information obtained.|
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the space information obtained.|
 
 **Example**
 
@@ -205,7 +205,7 @@ This is a system API and cannot be called by third-party applications.
   | Name  | Type                                                     | Mandatory| Description                                |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | Yes  | Bundle name of the application.|
-  | callback | callback: AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | Yes  | Callback invoked to return the space information obtained.|
+  | callback | AsyncCallback&lt;[Bundlestats](#bundlestats9)&gt; | Yes  | Callback invoked to return the space information obtained.|
 
 **Example**
 
@@ -229,7 +229,7 @@ Asynchronously obtains space information of the current third-party application.
 
   | Type                                       | Description                      |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the space information obtained.     |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the space information obtained.     |
 
 **Example**
 
@@ -250,7 +250,7 @@ Asynchronously obtains space information of the current third-party application.
 
   | Name   | Type                                                      | Mandatory | Description                                |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | callback: AsyncCallback&lt;[BundleStats](#bundlestats)&gt; | Yes  | Callback invoked to return the space information obtained.       |
+  | callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | Yes  | Callback invoked to return the space information obtained.       |
 
 **Example**
 
@@ -270,11 +270,11 @@ Asynchronously obtains space information of the current third-party application.
 
 This is a system API and cannot be called by third-party applications.
 
-| Name     | Type  | Description          |
-| --------- | ------ | -------------- |
-| appSize   | number | Size of the application.   |
-| cacheSize | number | Cache size of the application.  |
-| dataSize  | number | Total data size of the application.|
+| Name     | Type  | Readable| Writable| Description          |
+| --------- | ------ | --- | ---- | -------------- |
+| appSize   | number | Yes| No| Size of the application.   |
+| cacheSize | number | Yes| No| Cache size of the application.  |
+| dataSize  | number | Yes| No| Total data size of the application.|
 
 
 ## storageStatistics.getTotalSize<sup>9+</sup>
@@ -322,7 +322,7 @@ This is a system API and cannot be called by third-party applications.
 
   | Name   | Type                                 | Mandatory | Description                    |
   | -------- | ------------------------------------ | ---- | ------------------------ |
-  | callback | callback: AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total space of the built-in memory card.|
+  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the total space of the built-in memory card.|
 
 **Example**
 
@@ -380,7 +380,7 @@ This is a system API and cannot be called by third-party applications.
 
   | Name   | Type                                 | Mandatory| Description                      |
   | -------- | ------------------------------------ | ---- | ------------------------- |
-  | callback | callback: AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the available space of the built-in memory card.|
+  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available space of the built-in memory card.|
 
 **Example**
 
@@ -439,7 +439,7 @@ This is a system API and cannot be called by third-party applications.
 
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | callback   | callback: AsyncCallback&lt;number&gt; | Yes  | Callback used to return the system space obtained.|
+  | callback   |  AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the system space obtained.|
 
 **Example**
 
@@ -452,7 +452,7 @@ This is a system API and cannot be called by third-party applications.
 
 ## storageStatistics.getUserStorageStats<sup>9+</sup>
 
-getUserStorageStats(userId? : number): Promise&lt;StorageStats&gt;
+getUserStorageStats(userId?: number): Promise&lt;StorageStats&gt;
 
 Asynchronously obtains the space occupied by each type of user data. This API uses a promise to return the result.
 
@@ -474,7 +474,7 @@ This is a system API and cannot be called by third-party applications.
 
   | Type                 | Description            |
   | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#storagestats)&gt; | Promise used to return the information obtained.|
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the information obtained.|
 
 **Example**
 
@@ -489,7 +489,7 @@ This is a system API and cannot be called by third-party applications.
 
 ## storageStatistics.getUserStorageStats<sup>9+</sup>
 
-getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;): void
+getUserStorageStats(userId?: number, callback: AsyncCallback&lt;StorageStats&gt;): void
 
 Asynchronously obtains the space occupied by each type of user data. This API uses a callback to return the result.
 
@@ -506,7 +506,7 @@ This is a system API and cannot be called by third-party applications.
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | userId | number                               | No  | User ID.<br>Value:<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.                      |
-  | callback   | callback: AsyncCallback&lt;[StorageStats](#storagestats)&gt; | Yes  | Callback invoked to return the information obtained.|
+  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback invoked to return the information obtained.|
 
 **Example**
 
@@ -528,11 +528,11 @@ This is a system API and cannot be called by third-party applications.
 
 This is a system API and cannot be called by third-party applications.
 
-| Name     | Type  | Description          |
-| --------- | ------ | -------------- |
-| total   | number | Total space of the built-in memory card.   |
-| audio | number | Space occupied by audio data.  |
-| video  | number | Space occupied by video data.|
-| image   | number | Space occupied by image data.   |
-| file | number | Space occupied by files.  |
-| app  | number | Space occupied by application data.|
+| Name     | Type  | Readable | Writable | Description          |
+| --------- | ------ | ---- | ----- | -------------- |
+| total   | number | Yes| No| Total space of the built-in memory card.   |
+| audio | number  |Yes| No| Space occupied by audio data.  |
+| video  | number | Yes| No| Space occupied by video data.|
+| image   | number | Yes| No| Space occupied by image data.   |
+| file | number | Yes| No| Space occupied by files.  |
+| app  | number | Yes| No| Space occupied by application data.|

@@ -14,7 +14,7 @@ In addition to the attributes that are supported by **CanvasRenderingContext2D**
 
 | Name    | Type    | Description                                      |
 | ------ | ------ | ---------------------------------------- |
-| filter | string | Image filter.<br>Available options are as follows:<br>- **blur**: applies the Gaussian blur for the image.<br>- **brightness**: applies a linear multiplication to the image to make it look brighter or darker.<br>- **contrast**: adjusts the image contrast.<br>- **drop-shadow**: sets a shadow effect for the image.<br>- **grayscale**: converts the image to a grayscale image.<br>- **hue-rotate**: applies hue rotation to the image.<br>- **invert**: inverts the input image.<br>- **opacity**: sets the opacity of the image.<br>- **saturate**: sets the saturation of the image.<br>- **sepia**: converts the image to dark brown. |
+| filter | string | Image filter.<br>Available options are as follows:<br>- **blur**: applies the Gaussian blur for the image.<br>- **brightness**: applies a linear multiplication to the image to make it look brighter or darker.<br>- **contrast**: adjusts the image contrast.<br>- **drop-shadow**: sets a shadow effect for the image.<br>- **grayscale**: converts the image to a grayscale image.<br>- **hue-rotate**: applies hue rotation to the image.<br>- **invert**: inverts the image.<br>- **opacity**: sets the image opacity.<br>- **saturate**: sets the image saturation.<br>- **sepia**: converts the image to sepia.|
 
 **Example**
 ```html
@@ -199,13 +199,13 @@ export default {
    var offscreenCanvasCtx = offscreen.getContext("2d");
 
    offscreenCanvasCtx.transform(1, 0, 1.7, 1, 0, 0);
-   offscreenCanvasCtx.fillStyle = 'gray';
+   offscreenCanvasCtx.fillStyle = '#a9a9a9';
    offscreenCanvasCtx.fillRect(40, 40, 50, 20);
    offscreenCanvasCtx.fillRect(40, 90, 50, 20);
 
    // Non-skewed rectangles
    offscreenCanvasCtx.resetTransform();
-   offscreenCanvasCtx.fillStyle = 'red';
+   offscreenCanvasCtx.fillStyle = '#ff0000';
    offscreenCanvasCtx.fillRect(40, 40, 50, 20);
    offscreenCanvasCtx.fillRect(40, 90, 50, 20);
 

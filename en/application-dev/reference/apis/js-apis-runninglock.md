@@ -1,8 +1,8 @@
-# RunningLock
+# @ohos.runningLock (Runninglock)
 
-The RunningLock module provides APIs for creating, querying, holding, and releasing running locks.
+The **runningLock** module provides APIs for creating, querying, holding, and releasing running locks.
 
-> **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import

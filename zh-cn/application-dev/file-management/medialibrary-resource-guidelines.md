@@ -33,14 +33,14 @@ selectionArgs： MediaType.IMAGE，媒体类型为图片。
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fileType = mediaLibrary.MediaType.IMAGE
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileType = mediaLibrary.MediaType.IMAGE;
     let option = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
     };
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     for (let i = 0; i < fetchFileResult.getCount(); i++) {
         fetchFileResult.getNextObject((err, fileAsset) => {
@@ -64,13 +64,13 @@ selectionArgs：2022-8-5，具体添加时间的字符串。
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let option = {
         selections: fileKeyObj.DATE_ADDED + '= ?',
         selectionArgs: ['2022-8-5'],
     };
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     for (let i = 0; i < fetchFileResult.getCount(); i++) {
         fetchFileResult.getNextObject((err, fileAsset) => {
@@ -92,15 +92,15 @@ order： FileKey.DATE_ADDED，根据文件添加日期排序；并设置排列�
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fileType = mediaLibrary.MediaType.IMAGE
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileType = mediaLibrary.MediaType.IMAGE;
     let option = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
         order: fileKeyObj.DATE_ADDED + " DESC",
     };
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     for (let i = 0; i < fetchFileResult.getCount(); i++) {
         fetchFileResult.getNextObject((err, fileAsset) => {
@@ -124,14 +124,14 @@ selectionArgs：'myAlbum'，具体相册名称。
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fileType = mediaLibrary.MediaType.IMAGE
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileType = mediaLibrary.MediaType.IMAGE;
     let option = {
         selections: fileKeyObj.ALBUM_NAME + '= ?',
         selectionArgs: ['myAlbum'],
     };
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     for (let i = 0; i < fetchFileResult.getCount(); i++) {
         fetchFileResult.getNextObject((err, fileAsset) => {
@@ -186,7 +186,7 @@ async function example() {
 ```ts
 async function getCameraImagePromise() {
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let imagesFetchOp = {
@@ -235,7 +235,7 @@ async function getCameraImagePromise() {
 ```ts
 async function getFirstThumbnailPromise() {
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let imagesFetchOp = {
@@ -279,7 +279,7 @@ async function example() {
     let mediaType = mediaLibrary.MediaType.FILE;
     let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     const path = await media.getPublicDirectory(DIR_DOCUMENTS);
     media.createAsset(mediaType, "testFile.text", path).then ((asset) => {
         console.info("createAsset successfully:"+ JSON.stringify(asset));
@@ -311,25 +311,25 @@ async function example() {
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fileType = mediaLibrary.MediaType.FILE
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileType = mediaLibrary.MediaType.FILE;
     let option = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
     };
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     let asset = await fetchFileResult.getFirstObject();
     if (asset == undefined) {
-      console.error('asset not exist')
-      return
+      console.error('asset not exist');
+      return;
     }
     //回调为空
     asset.trash(true).then(() => {
         console.info("trash successfully");
     }).catch((err) => {
-        console.info("trash failed with error:"+ err);
+        console.info("trash failed with error: " + err);
     });
 }
 ```
@@ -359,19 +359,19 @@ async function example() {
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fileType = mediaLibrary.MediaType.FILE
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileType = mediaLibrary.MediaType.FILE;
     let option = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
     };
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     let asset = await fetchFileResult.getFirstObject();
     if (asset == undefined) {
-      console.error('asset not exist')
-      return
+      console.error('asset not exist');
+      return;
     }
     asset.displayName = 'newImage.jpg';
     //回调为空
@@ -381,6 +381,6 @@ async function example() {
            return;
        }
        console.log('fileRename successful.');
-    })
+    });
 }
 ```

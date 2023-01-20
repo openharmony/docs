@@ -53,7 +53,7 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.Data",
-            abilityName: "com.example.Data.MainAbility",
+            abilityName: "EntryAbility",
             uri: ""
         },
     },
@@ -104,7 +104,7 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.Data",
-            abilityName: "com.example. Data.MainAbility",
+            abilityName: "EntryAbility",
             uri: ""
         },
     },
@@ -224,7 +224,7 @@ startBackgroundRunning(id: number, request: NotificationRequest, callback: Async
 ```ts
 import notification from '@ohos.notification';
 import particleAbility from '@ohos.ability.particleAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(err, data) {
     if (err) {
@@ -238,7 +238,7 @@ let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -293,13 +293,13 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 ```ts
 import notification from '@ohos.notification';
 import particleAbility from '@ohos.ability.particleAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,

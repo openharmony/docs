@@ -28,8 +28,8 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
   ```ts
   let want = {
       "deviceId": "", // deviceId为空表示本设备
-      "bundleName": "com.extreme.test",
-      "abilityName": "MainAbility",
+      "bundleName": "com.example.myapplication",
+      "abilityName": "EntryAbility",
       "moduleName": "entry" // moduleName非必选
   };
   this.context.startAbility(want, (error) => {
@@ -52,8 +52,8 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
   }
   let want = {
       "deviceId": "", // deviceId为空表示本设备
-      "bundleName": "com.extreme.test",
-      "abilityName": "MainAbility",
+      "bundleName": "com.example.myapplication",
+      "abilityName": "EntryAbility",
       "moduleName": "entry", // moduleName非必选
       "parameters": {
           "keyFd":{"type":"FD", "value":fd}

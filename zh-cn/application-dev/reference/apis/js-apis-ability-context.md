@@ -14,10 +14,10 @@ AbilityContext模块提供允许访问特定Ability的资源的能力，包括�
 在使用AbilityContext的功能前，需要通过Ability子类实例获取。
 
 ```ts
-import Ability from '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
- let context = undefined;
-class MainAbility extends Ability {
+let context = undefined;
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         context = this.context;
     }
@@ -59,13 +59,14 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
-    bundleName: "com.example.myapp",
+    bundleName: "com.example.myapplication",
     abilityName: "MyAbility"
   };
 
@@ -114,15 +115,16 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var options = {
     windowMode: 0
@@ -177,13 +179,14 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
-    bundleName: "com.example.myapp",
+    bundleName: "com.example.myapplication",
     abilityName: "MyAbility"
   };
   var options = {
@@ -234,15 +237,16 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -290,15 +294,16 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var options = {
     windowMode: 0,
@@ -356,13 +361,14 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
-    bundleName: "com.example.myapp",
+    bundleName: "com.example.myapplication",
     abilityName: "MyAbility"
   };
   var options = {
@@ -417,15 +423,16 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -480,15 +487,16 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {
@@ -551,15 +559,16 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {
@@ -606,15 +615,16 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -656,15 +666,16 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -710,15 +721,16 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -764,15 +776,16 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -815,15 +828,16 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -871,15 +885,16 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -931,15 +946,16 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -991,15 +1007,16 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -1046,7 +1063,8 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1083,7 +1101,8 @@ terminateSelf(): Promise&lt;void&gt;;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1119,7 +1138,8 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1180,7 +1200,8 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 
 **示例：**
@@ -1243,15 +1264,16 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
@@ -1301,15 +1323,16 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {
@@ -1353,7 +1376,8 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1399,7 +1423,8 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1463,7 +1488,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   var wantBackground = {
       bundleName: "com.example.myservice",
       moduleName: "entry",
-      abilityName: "MainAbility",
+      abilityName: "EntryAbility",
       deviceId: ""
   };
 
@@ -1494,7 +1519,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   var wantForeground = {
       bundleName: "com.example.myservice",
       moduleName: "entry",
-      abilityName: "MainAbility",
+      abilityName: "EntryAbility",
       deviceId: "",
       parameters: {
         "ohos.aafwk.param.callAbilityToForeground": true
@@ -1549,15 +1574,16 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
 
@@ -1611,15 +1637,16 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {
@@ -1675,15 +1702,16 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   var want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   var accountId = 100;
   var options = {

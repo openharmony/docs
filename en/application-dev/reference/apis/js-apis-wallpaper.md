@@ -1,4 +1,4 @@
-# @ohos.wallpaper
+# @ohos.wallpaper (Wallpaper)
 
 The **wallpaper** module is a system service module in OpenHarmony that provides the wallpaper management service. You can use the APIs of this module to show, set, and switch between wallpapers.
 

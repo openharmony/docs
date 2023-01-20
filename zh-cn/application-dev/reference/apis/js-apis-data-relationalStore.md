@@ -57,14 +57,14 @@ const STORE_CONFIG = {
     name: "RdbTest.db",
     securityLevel: data_rdb.SecurityLevel.S1
 }
-data_rdb.getRdbStore(context, STORE_CONFIG, function (err, RdbStore) {
+data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
     if (err) {
         console.info("Get RdbStore failed, err: " + err)
         return
     }    
-    if (rdbStore.openStatus == OpenStatus.ON_CREATA) {
-        console.log("RdbStore status is ON_CREATA")
-    } else if (rdbStore.openStatus == OpenStatus.ON_OPEN) {
+    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
+        console.log("RdbStore status is ON_CREATE")
+    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
         console.log("RdbStore status is ON_OPEN")
     } else {
         return
@@ -77,9 +77,11 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability'
-let context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -90,14 +92,14 @@ const STORE_CONFIG = {
     name: "RdbTest.db",
     securityLevel: data_rdb.SecurityLevel.S1
 }
-data_rdb.getRdbStore(context, STORE_CONFIG, function (err, RdbStore) {
+data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
     if (err) {
         console.info("Get RdbStore failed, err: " + err)
         return
     }
-    if (rdbStore.openStatus == OpenStatus.ON_CREATA) {
-        console.log("RdbStore status is ON_CREATA")
-    } else if (rdbStore.openStatus == OpenStatus.ON_OPEN) {
+    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
+        console.log("RdbStore status is ON_CREATE")
+    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
         console.log("RdbStore status is ON_OPEN")
     } else {
         return
@@ -152,9 +154,9 @@ const STORE_CONFIG = {
 }
 let promise = data_rdb.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
-    if (rdbStore.openStatus == OpenStatus.ON_CREATA) {
-        console.log("RdbStore status is ON_CREATA")
-    } else if (rdbStore.openStatus == OpenStatus.ON_OPEN) {
+    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
+        console.log("RdbStore status is ON_CREATE")
+    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
         console.log("RdbStore status is ON_OPEN")
     } else {
         return
@@ -169,9 +171,11 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability'
-let context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -184,9 +188,9 @@ const STORE_CONFIG = {
 }
 let promise = data_rdb.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
-    if (rdbStore.openStatus == OpenStatus.ON_CREATA) {
-        console.log("RdbStore status is ON_CREATA")
-    } else if (rdbStore.openStatus == OpenStatus.ON_OPEN) {
+    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
+        console.log("RdbStore status is ON_CREATE")
+    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
         console.log("RdbStore status is ON_OPEN")
     } else {
         return
@@ -244,9 +248,11 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability'
-let context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -313,9 +319,11 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability'
-let context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }

@@ -5,7 +5,7 @@
 
 注册鼠标事件的回调。
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -21,5 +21,5 @@
 
   | 成员变量名称 | 描述 | 
 | -------- | -------- |
-| [DispatchMouseEvent](_o_h___native_x_component.md#dispatchmouseevent) )([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void \*window) | 当鼠标事件被触发时调用。 | 
-| [DispatchHoverEvent](_o_h___native_x_component.md#dispatchhoverevent) )([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, bool isHover) | 当悬停事件被触发时调用。 | 
+| [DispatchMouseEvent](_o_h___native_x_component.md#dispatchmouseevent) | 当鼠标事件被触发时调用。 | 
+| [DispatchHoverEvent](_o_h___native_x_component.md#dispatchhoverevent) | 当悬停事件被触发时调用。 | 

@@ -48,7 +48,7 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。             |
+| tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。             |
 | permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 
 **返回值：**
@@ -71,7 +71,7 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 try {
     atManager.checkAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS").then((data) => {
         console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
@@ -95,7 +95,7 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | 是   | 要校验应用的身份标识。              |
+| tokenID   |  number   | 是   | 要校验应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。              |
 | permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 
 **返回值：**
@@ -116,7 +116,7 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 ```js
 let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0;
+let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let data = atManager.verifyAccessTokenSync(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
 console.log(`data->${JSON.stringify(data)}`);
 ```
@@ -137,7 +137,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 | 参数名    | 类型                | 必填 | 说明                                                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。            |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。            |
 | permissionName | Permissions              | 是   | 被授予的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 | permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
 
@@ -165,7 +165,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlag = 1;
 try {
     atManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag).then(() => {
@@ -194,7 +194,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。|
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。|
 | permissionName | Permissions              | 是   | 被授予的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 | permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
 | callback | AsyncCallback&lt;void&gt; | 是 | 授予应用user grant权限。当授予权限成功时，err为undefine；否则为错误对象。 |
@@ -208,7 +208,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 | 12100001 | The parameter is invalid. The tokenID is 0 |
 | 12100002 | TokenId does not exist. |
 | 12100003 | Permission does not exist. |
-| 12100006 | The specified application does not support the permissions granted or ungranted as specified. |
+| 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
+| 12100007 | Service is abnormal. |
 
 **示例：**
 
@@ -216,7 +217,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlag = 1;
 try {
     atManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
@@ -247,7 +248,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 | 参数名    | 类型                | 必填 | 说明                                                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。           |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。           |
 | permissionName | Permissions              | 是   | 被撤销的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 | permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
 
@@ -275,7 +276,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlag = 1;
 try {
     atManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag).then(() => {
@@ -304,7 +305,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。           |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。           |
 | permissionName | Permissions              | 是   | 被撤销的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 | permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
 | callback | AsyncCallback&lt;void&gt; | 是 | 撤销应用user grant权限。当撤销权限成功时，err为undefine；否则为错误对象。 |
@@ -318,7 +319,8 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 | 12100001 | The parameter is invalid. The tokenID is 0 |
 | 12100002 | TokenId does not exist. |
 | 12100003 | Permission does not exist. |
-| 12100006 | The specified application does not support the permissions granted or ungranted as specified. |
+| 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
+| 12100007 | Service is abnormal. |
 
 **示例：**
 
@@ -326,7 +328,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlag = 1;
 try {
     atManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
@@ -357,7 +359,7 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。            |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。            |
 | permissionName | Permissions              | 是   | 查询的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 
 **返回值：**
@@ -384,7 +386,7 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 try {
     atManager.getPermissionFlags(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS").then((data) => {
         console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
@@ -535,7 +537,7 @@ verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Gran
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。             |
+| tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。             |
 | permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 
 **返回值：**
@@ -550,7 +552,7 @@ verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Gran
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let promise = atManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
@@ -660,7 +662,7 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。             |
+| tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。             |
 | permissionName | string | 是   | 需要校验的权限名称。 |
 
 **返回值：**
@@ -675,7 +677,7 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let promise = atManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);

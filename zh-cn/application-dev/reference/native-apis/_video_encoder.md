@@ -7,7 +7,7 @@ VideoEncoder模块提供用于视频编码功能的函数和枚举。
 
 @syscap SystemCapability.Multimedia.Media.VideoEncoder
 
-**Since:**
+**起始版本：**
 9
 **Version:**
 1.0

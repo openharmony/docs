@@ -1,11 +1,9 @@
-# Data Request
+# @ohos.net.http (Data Request)
 
-This module provides the HTTP data request capability. An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
+The **http** module provides the HTTP data request capability. An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
 
->**NOTE**
->
->The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
+> **NOTE**<br>
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -72,7 +70,7 @@ Creates an HTTP request. You can use this API to initiate or destroy an HTTP req
 **Return value**
 
 | Type       | Description                                                        |
-| :---------- | :----------------------------------------------------------- |
+| ---------- | ----------------------------------------------------------- |
 | HttpRequest | An **HttpRequest** object, which contains the **request**, **destroy**, **on**, or **off** method.|
 
 **Example**
@@ -181,7 +179,7 @@ Initiates an HTTP request to a given URL. This API uses a promise to return the 
 **Return value**
 
 | Type                                  | Description                             |
-| :------------------------------------- | :-------------------------------- |
+| ------------------------------------- | -------------------------------- |
 | Promise<[HttpResponse](#httpresponse)> | Promise used to return the result.|
 
 
@@ -374,7 +372,7 @@ Defines an HTTP request method.
 **System capability**: SystemCapability.Communication.NetStack
 
 | Name   | Value     | Description               |
-| :------ | ------- | :------------------ |
+| ------ | ------- | ------------------ |
 | OPTIONS | "OPTIONS" | OPTIONS method.|
 | GET     | "GET"     | GET method.    |
 | HEAD    | "HEAD"    | HEAD method.   |
@@ -459,7 +457,7 @@ Creates a default object to store responses to HTTP access requests.
 **Return value**
 
 | Type       | Description                                                        |
-| :---------- | :----------------------------------------------------------- |
+| ---------- | ----------------------------------------------------------- |
 | [HttpResponseCache](#httpresponsecache9) | Object that stores the response to the HTTP request.|
 
 **Example**
@@ -602,6 +600,6 @@ Enumerates HTTP protocol versions.
 **System capability**: SystemCapability.Communication.NetStack
 
 | Name | Description    |
-| :-------- | :----------- |
+| -------- | ----------- |
 | HTTP1_1   |  HTTP1.1 |
 | HTTP2     |  HTTP2   |

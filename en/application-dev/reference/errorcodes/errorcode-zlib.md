@@ -8,11 +8,11 @@ The input source file is invalid.
 
 **Description**
 
-This error code is reported when the source file passed in the **compress** or **decompress** API is invalid.
+This error code is reported when the source file passed in the **compressFile()** or **decompressFile()** API is invalid.
 
 **Possible Causes**
 
-When the **compress** API is called, the file to compress does not exist. When the **decompress** API is called, the file to decompress does not exist.
+When the **compressFile()** API is called, the file to compress does not exist. When the **decompressFile()** API is called, the file to decompress does not exist.
 
 **Solution**
 
@@ -27,12 +27,12 @@ The input destination file is invalid.
 
 **Description**
 
-This error code is reported when the destination file passed in the **compress** or **decompress** API is invalid.
+This error code is reported when the destination file passed in the **compressFile()** or **decompressFile()** API is invalid.
 
 **Possible Causes**
 
-1. When the **compress** API is called, the passed destination file path is invalid, for example, a non-exist sandbox path.
-2. When the **decompress** API is called, the destination folder does not exist.
+1. When the **compressFile()** API is called, the passed destination file path is invalid, for example, a non-exist sandbox path.
+2. When the **decompressFile()** API is called, the destination folder does not exist.
 
 **Solution**
 

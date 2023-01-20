@@ -7,10 +7,8 @@ CodecBase模块提供运行音视频编解码通用的结构体、字符常量�
 
 @syscap SystemCapability.Multimedia.Media.CodecBase
 
-**Since:**
+**起始版本：**
 9
-**Version:**
-1.0
 
 ## 汇总
 

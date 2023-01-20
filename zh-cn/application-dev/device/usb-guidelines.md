@@ -24,13 +24,13 @@ USB类开放能力如下，具体请查阅[API参考文档](../reference/apis/js
 | getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;          | 获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。                                            |
 | setConfiguration(pipe: USBDevicePipe, config: USBConfig): number | 设置设备的配置。                                             |
 | setInterface(pipe: USBDevicePipe, iface: USBInterface): number   | 设置设备的接口。                                             |
-| claimInterface(pipe: USBDevicePipe, iface: USBInterface,force?: boolean): number | 注册通信接口。                                                   |
-| bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt; | 批量传输。                                                   |
+| claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number | 注册通信接口。                                                   |
+| bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise&lt;number&gt; | 批量传输。                                                   |
 | closePipe(pipe: USBDevicePipe): number                         | 关闭设备消息控制通道。                                       |
 | releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | 释放注册过的通信接口。                                                   |
 | getFileDescriptor(pipe: USBDevicePipe): number                 | 获取文件描述符。                                             |
 | getRawDescriptor(pipe: USBDevicePipe): Uint8Array              | 获取原始的USB描述符。                                        |
-| controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: number): Promise&lt;number&gt; | 控制传输。                                                   |
+| controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise&lt;number&gt; | 控制传输。                                                   |
 
 
 ## 开发步骤
@@ -57,7 +57,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
        vendorId: 7531,
        productId: 2,
        clazz: 9,
-       subclass: 0,
+       subClass: 0,
        protocol: 1,
        devAddress: 1,
        busNum: 1,
@@ -74,7 +74,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
                id: 0,
                protocol: 0,
                clazz: 9,
-               subclass: 0,
+               subClass: 0,
                alternateSetting: 0,
                name: "1-1",
                endpoints: [
@@ -115,11 +115,12 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    ```js
    // 打开设备，获取数据传输通道。
    let pipe = usb.connectDevice(deviceList[0]);
+   let interface1 = deviceList[0].configs[0].interfaces[0];
    /*
     打开对应接口，在设备信息（deviceList）中选取对应的interface。
    interface1为设备配置中的一个接口。
    */
-   usb.claimInterface(pipe, interface1, true); 
+   usb.claimInterface(pipe, interface1, true);
    ```
 
 4. 数据传输。
@@ -129,7 +130,9 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
     读取数据，在device信息中选取对应数据接收的endpoint来做数据传输
    （endpoint.direction == 0x80）；dataUint8Array是要读取的数据，类型为Uint8Array。
    */
-   
+   let inEndpoint = interface1.endpoints[2];
+   let outEndpoint = interface1.endpoints[1];
+   let dataUint8Array = new Uint8Array(1024);
    usb.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then(dataLength => {
    if (dataLength >= 0) {
      console.info("usb readData result Length : " + dataLength);
@@ -142,7 +145,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    console.info("usb readData error : " + JSON.stringify(error));
    });
    // 发送数据，在device信息中选取对应数据发送的endpoint来做数据传输。（endpoint.direction == 0）
-   usb.bulkTransfer(pipe, endpoint, dataUint8Array, 15000).then(dataLength => {
+   usb.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then(dataLength => {
      if (dataLength >= 0) {
        console.info("usb writeData result write length : " + dataLength);
      } else {

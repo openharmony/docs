@@ -10,7 +10,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 
-**自从：**
+**起始版本：**
 
 
 8
@@ -173,7 +173,7 @@ typedef struct OH_Drawing_Bitmap OH_Drawing_Bitmap
 
 OH_Drawing_Bitmap定义为位图，位图是一块内存，内存中包含了描述一张图片的像素数据
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -189,7 +189,7 @@ typedef struct OH_Drawing_Brush OH_Drawing_Brush
 
 OH_Drawing_Brush定义为画刷，画刷用于描述填充图形的样式和颜色
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -205,7 +205,7 @@ typedef struct OH_Drawing_Canvas OH_Drawing_Canvas
 
 OH_Drawing_Canvas定义为一块矩形的画布，可以结合画笔和画刷在上面绘制各种形状、图片和文字
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -221,7 +221,7 @@ typedef struct OH_Drawing_FontCollection OH_Drawing_FontCollection
 
 OH_Drawing_FontCollection用于加载字体
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -237,7 +237,7 @@ typedef struct OH_Drawing_Path OH_Drawing_Path
 
 OH_Drawing_Path定义为路径，路径用于自定义各种形状
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -253,7 +253,7 @@ typedef struct OH_Drawing_Pen OH_Drawing_Pen
 
 OH_Drawing_Pen定义为画笔，画笔用于描述绘制图形轮廓的样式和颜色
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -269,7 +269,7 @@ typedef struct OH_Drawing_TextStyle OH_Drawing_TextStyle
 
 OH_Drawing_TextStyle用于管理字体颜色、装饰等
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -285,7 +285,7 @@ typedef struct OH_Drawing_Typography OH_Drawing_Typography
 
 OH_Drawing_Typography用于管理排版的布局和显示等
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -301,7 +301,7 @@ typedef struct OH_Drawing_TypographyCreate OH_Drawing_TypographyCreate
 
 OH_Drawing_TypographyCreate用于创建OH_Drawing_Typography
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -317,7 +317,7 @@ typedef struct OH_Drawing_TypographyStyle OH_Drawing_TypographyStyle
 
 OH_Drawing_TypographyStyle用于管理排版风格，如文字方向等
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -343,7 +343,7 @@ OH_Drawing_AlphaFormat用于描述位图像素的透明度分量
 | ALPHA_FORMAT_PREMUL | 每个像素的颜色组件由透明度分量预先乘以 |
 | ALPHA_FORMAT_UNPREMUL | 每个像素的颜色组件未由透明度分量预先乘以 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -368,7 +368,7 @@ OH_Drawing_ColorFormat用于描述位图像素的存储格式
 | COLOR_FORMAT_RGBA_8888 | 每个像素用一个32位的量表示，高位到低位依次是8个比特位表示透明度，8个比特位表示红，8个比特位表示绿，8个比特位表示蓝 |
 | COLOR_FORMAT_BGRA_8888 | 每个像素用一个32位的量表示，高位到低位依次是8个比特位表示蓝，8个比特位表示绿，8个比特位表示红，8个比特位表示透明度 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -389,7 +389,7 @@ enum OH_Drawing_FontStyle
 | FONT_STYLE_NORMAL | 非斜体 |
 | FONT_STYLE_ITALIC | 斜体 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -417,7 +417,7 @@ enum OH_Drawing_FontWeight
 | FONT_WEIGHT_800 | 字重为extra-bold |
 | FONT_WEIGHT_900 | 字重为black |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -439,7 +439,7 @@ enum OH_Drawing_PenLineCapStyle
 | LINE_SQUARE_CAP | 笔帽的样式为方框，线条的头尾端点处多出一个方框，方框宽度和线段一样宽，高度时线段厚度的一半 |
 | LINE_ROUND_CAP | 笔帽的样式为圆弧，线条的头尾端点处多出一个半圆弧，半圆的直径与线段厚度一致 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -461,7 +461,7 @@ enum OH_Drawing_PenLineJoinStyle
 | LINE_ROUND_JOIN | 转角类型为圆头 |
 | LINE_BEVEL_JOIN | 转角类型为平头 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -486,7 +486,7 @@ enum OH_Drawing_TextAlign
 | TEXT_ALIGN_START | 当OH_Drawing_TextDirection是TEXT_DIRECTION_LTR时， TEXT_ALIGN_START和TEXT_ALIGN_LEFT相同； 类似地，当OH_Drawing_TextDirection是TEXT_DIRECTION_RTL时， TEXT_ALIGN_START和TEXT_ALIGN_RIGHT相同。 |
 | TEXT_ALIGN_END | 当OH_Drawing_TextDirection是TEXT_DIRECTION_LTR时， TEXT_ALIGN_END和TEXT_ALIGN_RIGHT相同； 类似地，当OH_Drawing_TextDirection是TEXT_DIRECTION_RTL时， TEXT_ALIGN_END和TEXT_ALIGN_LEFT相同。 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -507,7 +507,7 @@ enum OH_Drawing_TextBaseline
 | TEXT_BASELINE_ALPHABETIC | 用于表音文字，基线在中间偏下的位置 |
 | TEXT_BASELINE_IDEOGRAPHIC | 用于表意文字，基线位于底部 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -530,7 +530,7 @@ enum OH_Drawing_TextDecoration
 | TEXT_DECORATION_OVERLINE | 上划线 |
 | TEXT_DECORATION_LINE_THROUGH | 删除线 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -551,7 +551,7 @@ enum OH_Drawing_TextDirection
 | TEXT_DIRECTION_RTL | 方向：从右到左 |
 | TEXT_DIRECTION_LTR | 方向：从左到右 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -581,7 +581,7 @@ void OH_Drawing_BitmapBuild (OH_Drawing_Bitmap * , const uint32_t width, const u
 | height | 参数是位图要初始化设置的高度 |
 | [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) | 参数是位图要初始化设置的像素格式，包括像素的颜色类型和透明度类型 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -603,7 +603,7 @@ OH_Drawing_Bitmap* OH_Drawing_BitmapCreate (void )
 
 函数会返回一个指针，指针指向创建的位图对象
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -627,7 +627,7 @@ void OH_Drawing_BitmapDestroy (OH_Drawing_Bitmap * )
 | -------- | -------- |
 | OH_Drawing_Bitmap | 参数是一个指向位图对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -655,7 +655,7 @@ uint32_t OH_Drawing_BitmapGetHeight (OH_Drawing_Bitmap * )
 
 函数返回位图的高度
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -683,7 +683,7 @@ void* OH_Drawing_BitmapGetPixels (OH_Drawing_Bitmap * )
 
 函数返回位图的像素地址
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -711,7 +711,7 @@ uint32_t OH_Drawing_BitmapGetWidth (OH_Drawing_Bitmap * )
 
 函数返回位图的宽度
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -733,7 +733,7 @@ OH_Drawing_Brush* OH_Drawing_BrushCreate (void )
 
 函数会返回一个指针，指针指向创建的画刷对象
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -757,7 +757,7 @@ void OH_Drawing_BrushDestroy (OH_Drawing_Brush * )
 | -------- | -------- |
 | OH_Drawing_Brush | 参数是一个指向画刷对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -785,7 +785,7 @@ uint32_t OH_Drawing_BrushGetColor (const OH_Drawing_Brush * )
 
 函数返回一个描述颜色的32位（ARGB）变量
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -813,7 +813,7 @@ bool OH_Drawing_BrushIsAntiAlias (const OH_Drawing_Brush * )
 
 函数返回画刷对象是否设置抗锯齿属性，返回真则设置了抗锯齿，返回假则没有设置抗锯齿
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -838,7 +838,7 @@ void OH_Drawing_BrushSetAntiAlias (OH_Drawing_Brush * , bool  )
 | OH_Drawing_Brush | 参数是一个指向画刷对象的指针 |
 | bool | 参数真为抗锯齿，参数假则不做抗锯齿处理 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -863,7 +863,7 @@ void OH_Drawing_BrushSetColor (OH_Drawing_Brush * , uint32_t color )
 | OH_Drawing_Brush | 参数是一个指向画刷对象的指针 |
 | color | 参数是一个描述颜色的32位（ARGB）变量 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -888,7 +888,7 @@ void OH_Drawing_CanvasAttachBrush (OH_Drawing_Canvas * , const OH_Drawing_Brush 
 | OH_Drawing_Canvas | 参数为一个指向画布对象的指针 |
 | OH_Drawing_Brush | 参数为一个指向画刷对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -913,7 +913,7 @@ void OH_Drawing_CanvasAttachPen (OH_Drawing_Canvas * , const OH_Drawing_Pen *  )
 | OH_Drawing_Canvas | 参数为一个指向画布对象的指针 |
 | OH_Drawing_Pen | 参数为一个指向画笔对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -938,7 +938,7 @@ void OH_Drawing_CanvasBind (OH_Drawing_Canvas * , OH_Drawing_Bitmap *  )
 | OH_Drawing_Canvas | 参数为一个指向画布对象的指针 |
 | OH_Drawing_Bitmap | 参数为一个指向位图对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -963,7 +963,7 @@ void OH_Drawing_CanvasClear (OH_Drawing_Canvas * , uint32_t color )
 | OH_Drawing_Canvas | 参数为一个指向画布对象的指针 |
 | color | 参数为一个描述颜色的32位（ARGB）变量 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -985,7 +985,7 @@ OH_Drawing_Canvas* OH_Drawing_CanvasCreate (void )
 
 函数会返回一个指针，指针指向创建的画布对象
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1009,7 +1009,7 @@ void OH_Drawing_CanvasDestroy (OH_Drawing_Canvas * )
 | -------- | -------- |
 | OH_Drawing_Canvas | 参数是一个指向画布对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1033,7 +1033,7 @@ void OH_Drawing_CanvasDetachBrush (OH_Drawing_Canvas * )
 | -------- | -------- |
 | OH_Drawing_Canvas | 参数为一个指向画布对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1057,7 +1057,7 @@ void OH_Drawing_CanvasDetachPen (OH_Drawing_Canvas * )
 | -------- | -------- |
 | OH_Drawing_Canvas | 参数为一个指向画布对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1085,7 +1085,7 @@ void OH_Drawing_CanvasDrawLine (OH_Drawing_Canvas * , float x1, float y1, float 
 | x2 | 参数为线段结束点的横坐标 |
 | y2 | 参数为线段结束点的纵坐标 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1110,7 +1110,7 @@ void OH_Drawing_CanvasDrawPath (OH_Drawing_Canvas * , const OH_Drawing_Path *  )
 | OH_Drawing_Canvas | 参数为一个指向画布对象的指针 |
 | OH_Drawing_Path | 参数为一个指向路径对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1134,7 +1134,7 @@ void OH_Drawing_CanvasRestore (OH_Drawing_Canvas * )
 | -------- | -------- |
 | OH_Drawing_Canvas | 参数为一个指向画布对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1158,7 +1158,7 @@ void OH_Drawing_CanvasSave (OH_Drawing_Canvas * )
 | -------- | -------- |
 | OH_Drawing_Canvas | 参数为一个指向画布对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1189,7 +1189,7 @@ uint32_t OH_Drawing_ColorSetArgb (uint32_t alpha, uint32_t red, uint32_t green, 
 
 函数返回一个描述颜色的32位（ARGB）变量
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1211,7 +1211,7 @@ OH_Drawing_FontCollection* OH_Drawing_CreateFontCollection (void )
 
 指向创建的OH_Drawing_FontCollection对象的指针
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1233,7 +1233,7 @@ OH_Drawing_TextStyle* OH_Drawing_CreateTextStyle (void )
 
 指向创建的OH_Drawing_TextStyle对象的指针
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1261,7 +1261,7 @@ OH_Drawing_Typography* OH_Drawing_CreateTypography (OH_Drawing_TypographyCreate 
 
 指向OH_Drawing_Typography对象的指针
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1290,7 +1290,7 @@ OH_Drawing_TypographyCreate* OH_Drawing_CreateTypographyHandler (OH_Drawing_Typo
 
 指向新创建的OH_Drawing_TypographyCreate对象的指针
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1312,7 +1312,7 @@ OH_Drawing_TypographyStyle* OH_Drawing_CreateTypographyStyle (void )
 
 指向创建的OH_Drawing_TypographyStyle对象的指针
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1336,7 +1336,7 @@ void OH_Drawing_DestroyFontCollection (OH_Drawing_FontCollection * )
 | -------- | -------- |
 | OH_Drawing_FontCollection | 指向OH_Drawing_FontCollection对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1360,7 +1360,7 @@ void OH_Drawing_DestroyTextStyle (OH_Drawing_TextStyle * )
 | -------- | -------- |
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1384,7 +1384,7 @@ void OH_Drawing_DestroyTypography (OH_Drawing_Typography * )
 | -------- | -------- |
 | OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1408,7 +1408,7 @@ void OH_Drawing_DestroyTypographyHandler (OH_Drawing_TypographyCreate * )
 | -------- | -------- |
 | OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1432,7 +1432,7 @@ void OH_Drawing_DestroyTypographyStyle (OH_Drawing_TypographyStyle * )
 | -------- | -------- |
 | OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1462,7 +1462,7 @@ void OH_Drawing_PathArcTo (OH_Drawing_Path * , float x1, float y1, float x2, flo
 |startDeg | 参数为起始的角度 |
 |sweepDeg | 参数为扫描的度数 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1486,7 +1486,7 @@ void OH_Drawing_PathClose (OH_Drawing_Path * )
 | -------- | -------- |
 | OH_Drawing_Path | 参数为一个指向路径对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1508,7 +1508,7 @@ OH_Drawing_Path* OH_Drawing_PathCreate (void )
 
 函数会返回一个指针，指针指向创建的路径对象
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1538,7 +1538,7 @@ void OH_Drawing_PathCubicTo (OH_Drawing_Path * , float ctrlX1, float ctrlY1, flo
 | endX | 参数为目标点位置的横坐标 |
 | endY | 参数为目标点位置的纵坐标 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1562,7 +1562,7 @@ void OH_Drawing_PathDestroy (OH_Drawing_Path * )
 | -------- | -------- |
 | OH_Drawing_Path | 参数为一个指向路径对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1588,7 +1588,7 @@ void OH_Drawing_PathLineTo (OH_Drawing_Path * , float x, float y )
 | x | 参数为目标点的横坐标 |
 | y | 参数为目标点的纵坐标 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1614,7 +1614,7 @@ void OH_Drawing_PathMoveTo (OH_Drawing_Path * , float x, float y )
 | x | 参数为起始点的横坐标 |
 | y | 参数为起始点的纵坐标 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1642,7 +1642,7 @@ void OH_Drawing_PathQuadTo (OH_Drawing_Path * , float ctrlX, float ctrlY, float 
 | endX | 参数为目标点位置的横坐标 |
 | endY | 参数为目标点位置的纵坐标 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1666,7 +1666,7 @@ void OH_Drawing_PathReset (OH_Drawing_Path * )
 | -------- | -------- |
 | OH_Drawing_Path | 参数为一个指向路径对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1688,7 +1688,7 @@ OH_Drawing_Pen* OH_Drawing_PenCreate (void )
 
 函数会返回一个指针，指针指向创建的画笔对象
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1712,7 +1712,7 @@ void OH_Drawing_PenDestroy (OH_Drawing_Pen * )
 | -------- | -------- |
 | OH_Drawing_Pen | 参数是一个指向画笔对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1740,7 +1740,7 @@ OH_Drawing_PenLineCapStyle OH_Drawing_PenGetCap (const OH_Drawing_Pen * )
 
 函数返回画笔笔帽样式
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1768,7 +1768,7 @@ uint32_t OH_Drawing_PenGetColor (const OH_Drawing_Pen * )
 
 函数返回一个描述颜色的32位（ARGB）变量
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1796,7 +1796,7 @@ OH_Drawing_PenLineJoinStyle OH_Drawing_PenGetJoin (const OH_Drawing_Pen * )
 
 函数返回折线转角的样式
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1824,7 +1824,7 @@ float OH_Drawing_PenGetMiterLimit (const OH_Drawing_Pen * )
 
 函数返回尖角的限制值
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1852,7 +1852,7 @@ float OH_Drawing_PenGetWidth (const OH_Drawing_Pen * )
 
 函数返回画笔的厚度
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1880,7 +1880,7 @@ bool OH_Drawing_PenIsAntiAlias (const OH_Drawing_Pen * )
 
 函数返回画笔对象是否设置抗锯齿属性，返回真则设置了抗锯齿，返回假则没有设置抗锯齿
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1905,7 +1905,7 @@ void OH_Drawing_PenSetAntiAlias (OH_Drawing_Pen * , bool  )
 | OH_Drawing_Pen | 参数是一个指向画笔对象的指针 |
 | bool | 参数真为抗锯齿，参数假则不做抗锯齿处理 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1930,7 +1930,7 @@ void OH_Drawing_PenSetCap (OH_Drawing_Pen * , OH_Drawing_PenLineCapStyle  )
 | OH_Drawing_Pen | 参数是一个指向画笔对象的指针 |
 | OH_Drawing_PenLineCapStyle | 参数是一个描述画笔笔帽样式的变量 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1955,7 +1955,7 @@ void OH_Drawing_PenSetColor (OH_Drawing_Pen * , uint32_t color )
 | OH_Drawing_Pen | 参数是一个指向画笔对象的指针 |
 | color | 参数是一个描述颜色的32位（ARGB）变量 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -1980,7 +1980,7 @@ void OH_Drawing_PenSetJoin (OH_Drawing_Pen * , OH_Drawing_PenLineJoinStyle  )
 | OH_Drawing_Pen | 参数是一个指向画笔对象的指针 |
 | OH_Drawing_PenLineJoinStyle | 参数值一个描述折线转角样式的变量 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2005,7 +2005,7 @@ void OH_Drawing_PenSetMiterLimit (OH_Drawing_Pen * , float miter )
 | OH_Drawing_Pen | 参数是一个指向画笔对象的指针 |
 | miter | 参数是一个描述尖角限制值的变量 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2030,7 +2030,7 @@ void OH_Drawing_PenSetWidth (OH_Drawing_Pen * , float width )
 | OH_Drawing_Pen | 参数是一个指向画笔对象的指针 |
 | width | 参数是一个描述画笔厚度的变量 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2055,7 +2055,7 @@ void OH_Drawing_SetTextStyleBaseLine (OH_Drawing_TextStyle * , int  )
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
 | int | OH_Drawing_TextBaseline枚举类型 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2080,7 +2080,7 @@ void OH_Drawing_SetTextStyleColor (OH_Drawing_TextStyle * , uint32_t  )
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
 | uint32_t | 颜色 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2105,7 +2105,7 @@ void OH_Drawing_SetTextStyleDecoration (OH_Drawing_TextStyle * , int  )
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
 | int | OH_Drawing_TextDecoration枚举类型 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2130,7 +2130,7 @@ void OH_Drawing_SetTextStyleDecorationColor (OH_Drawing_TextStyle * , uint32_t  
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
 | uint32_t | 颜色 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2156,7 +2156,7 @@ void OH_Drawing_SetTextStyleFontFamilies (OH_Drawing_TextStyle * , int , const c
 | int | 字体名称数量 |
 | fontFamilies | 指向字体类型的指针数组 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2181,7 +2181,7 @@ void OH_Drawing_SetTextStyleFontHeight (OH_Drawing_TextStyle * , double  )
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
 | double | 字体高度 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2206,7 +2206,7 @@ void OH_Drawing_SetTextStyleFontSize (OH_Drawing_TextStyle * , double  )
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
 | double | 字号 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2231,7 +2231,7 @@ void OH_Drawing_SetTextStyleFontStyle (OH_Drawing_TextStyle * , int  )
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
 | int | OH_Drawing_FontStyle枚举类型 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2256,7 +2256,7 @@ void OH_Drawing_SetTextStyleFontWeight (OH_Drawing_TextStyle * , int  )
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
 | int | OH_Drawing_FontWeight枚举类型 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2281,7 +2281,7 @@ void OH_Drawing_SetTextStyleLocale (OH_Drawing_TextStyle * , const char *  )
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
 | char | 语言区域，数据类型为指向char的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2306,7 +2306,7 @@ void OH_Drawing_SetTypographyTextAlign (OH_Drawing_TypographyStyle * , int  )
 | OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针 |
 | int | OH_Drawing_TextAlign枚举类型 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2331,7 +2331,7 @@ void OH_Drawing_SetTypographyTextDirection (OH_Drawing_TypographyStyle * , int  
 | OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针 |
 | int | OH_Drawing_TextDirection枚举类型 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2356,7 +2356,7 @@ void OH_Drawing_SetTypographyTextMaxLines (OH_Drawing_TypographyStyle * , int  )
 | OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针 |
 | int | 最大行数 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2381,7 +2381,7 @@ void OH_Drawing_TypographyHandlerAddText (OH_Drawing_TypographyCreate * , const 
 | OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针 |
 | char | 指向文本内容的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2405,7 +2405,7 @@ void OH_Drawing_TypographyHandlerPopTextStyle (OH_Drawing_TypographyCreate * )
 | -------- | -------- |
 | OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2430,7 +2430,7 @@ void OH_Drawing_TypographyHandlerPushTextStyle (OH_Drawing_TypographyCreate * , 
 | OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针 |
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2455,7 +2455,7 @@ void OH_Drawing_TypographyLayout (OH_Drawing_Typography * , double  )
 | OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针 |
 | double | 文本最大宽度 |
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -2482,6 +2482,6 @@ void OH_Drawing_TypographyPaint (OH_Drawing_Typography * , OH_Drawing_Canvas * ,
 | double | x坐标 |
 | double | y坐标 |
 
-**自从：**
+**起始版本：**
 
 8

@@ -1,9 +1,8 @@
-# USB
+# @ohos.usbV9 (USB Management)
 
-The USB module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control on the host side as well as port management, and function switch and query on the device side.
+The **usb** module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control on the host side as well as port management, and function switch and query on the device side.
 
->  **NOTE**
-> 
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -87,7 +86,7 @@ console.log(`devicesList = ${JSON.stringify(devicesList)}`);
 
 connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
-Connects to a USB device.
+Connects to a USB device based on the device list obtained by using **getDevices()**.
 
 Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and device information, and then call [usb.requestRight](#usbrequestright) to request the device access permission.
 
@@ -133,6 +132,8 @@ console.log(`devicepipe = ${JSON.stringify(devicepipe)}`);
 hasRight(deviceName: string): boolean
 
 Checks whether the application has the permission to access the device.
+
+The value **true** is returned if the device access permission is available; the value **false** is returned otherwise.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -187,7 +188,7 @@ usb.requestRight(devicesName).then((ret) => {
 
 ## usb.removeRight
 
-removeRight(deviceName: string): boolean;
+removeRight(deviceName: string): boolean
 
 Removes the permission for the application to access a USB device.
 
@@ -216,7 +217,7 @@ if (usb.removeRight(devicesName) {
 
 ## usb.addRight
 
-addRight(bundleName: string, deviceName: string): boolean;
+addRight(bundleName: string, deviceName: string): boolean
 
 Adds the permission for the application to access a USB device.
 

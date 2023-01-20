@@ -54,7 +54,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## SwiperController
 
-Controller of the **\<Swiper>** component. You can bind this object to the **<Swiper>** component and use it to control page switching.
+Controller of the **\<Swiper>** component. You can bind this object to the **\<Swiper>** component and use it to control page switching.
 
 ### showNext
 
@@ -76,7 +76,7 @@ Stops an animation.
 
 **Parameters**
 
-| Name   | Type  | Mandatory.| Description|
+| Name   | Type  | Mandatory | Description|
 | --------- | ---------- | ------ | -------- |
 | callback  | () => void | No    | Callback invoked when the animation stops.|
 
@@ -87,6 +87,10 @@ Stops an animation.
 onChange(event: (index: number) => void)
 
 Triggered when the index of the currently displayed child component changes.
+
+> **NOTE**
+> 
+> When the **\<Swiper>** component is used together with **LazyForEach**, the subpage UI cannot be refreshed in the **onChange** event.
 
 **Return value**
 

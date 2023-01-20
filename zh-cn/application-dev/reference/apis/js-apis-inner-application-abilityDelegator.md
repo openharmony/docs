@@ -10,7 +10,7 @@ AbilityDelegator提供添加用于监视指定ability的生命周期状态更改
 
 通过AbilityDelegatorRegistry中[getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator)方法获取。
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 ```
@@ -35,13 +35,13 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
-var monitor = {
+let monitor = {
     abilityName: "abilityname",
     onAbilityCreate: onAbilityCreateCallback
 }
@@ -75,13 +75,13 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 **示例：**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
-var monitor = {
+let monitor = {
     abilityName: "abilityname",
     onAbilityCreate: onAbilityCreateCallback
 }
@@ -91,8 +91,6 @@ abilityDelegator.addAbilityMonitor(monitor).then(() => {
     console.info("addAbilityMonitor promise");
 });
 ```
-
-
 
 ### removeAbilityMonitor<sup>9+</sup>
 
@@ -112,13 +110,13 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 **示例：**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
-var monitor = {
+let monitor = {
     abilityName: "abilityname",
     onAbilityCreate: onAbilityCreateCallback
 }
@@ -128,8 +126,6 @@ abilityDelegator.removeAbilityMonitor(monitor, (err : any) => {
     console.info("removeAbilityMonitor callback");
 });
 ```
-
-
 
 ### removeAbilityMonitor<sup>9+</sup>
 
@@ -154,13 +150,13 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 - 示例
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
-var monitor = {
+let monitor = {
     abilityName: "abilityname",
     onAbilityCreate: onAbilityCreateCallback
 }
@@ -170,8 +166,6 @@ abilityDelegator.removeAbilityMonitor(monitor).then(() => {
     console.info("removeAbilityMonitor promise");
 });
 ```
-
-
 
 ### waitAbilityMonitor<sup>9+</sup>
 
@@ -191,13 +185,13 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>)
 **示例：**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
-var monitor = {
+let monitor = {
     abilityName: "abilityname",
     onAbilityCreate: onAbilityCreateCallback
 }
@@ -227,14 +221,14 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 **示例：**
 
 ```ts
-var abilityDelegator;
-var timeout = 100;
+let abilityDelegator;
+let timeout = 100;
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
-var monitor = {
+let monitor = {
     abilityName: "abilityname",
     onAbilityCreate: onAbilityCreateCallback
 }
@@ -271,13 +265,13 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 **示例：**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
-var monitor = {
+let monitor = {
     abilityName: "abilityname",
     onAbilityCreate: onAbilityCreateCallback
 }
@@ -287,8 +281,6 @@ abilityDelegator.waitAbilityMonitor(monitor).then((data : any) => {
     console.info("waitAbilityMonitor promise");
 });
 ```
-
-
 
 ### getAppContext<sup>9+</sup>
 
@@ -307,13 +299,11 @@ getAppContext(): Context;
 **示例：**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-var context = abilityDelegator.getAppContext();
+let context = abilityDelegator.getAppContext();
 ```
-
-
 
 ### getAbilityState<sup>9+</sup>
 
@@ -338,19 +328,17 @@ getAbilityState(ability: UIAbility): number;
 **示例：**
 
 ```ts
-var abilityDelegator;
-var ability;
+let abilityDelegator;
+let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
-    var state = abilityDelegator.getAbilityState(ability);
+    let state = abilityDelegator.getAbilityState(ability);
     console.info("getAbilityState" + state);
 });
 ```
-
-
 
 ### getCurrentTopAbility<sup>9+</sup>
 
@@ -369,8 +357,8 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void;
 **示例：**
 
 ```ts
-var abilityDelegator;
-var ability;
+let abilityDelegator;
+let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
@@ -378,8 +366,6 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     ability = data;
 });
 ```
-
-
 
 ### getCurrentTopAbility<sup>9+</sup>
 
@@ -398,8 +384,8 @@ getCurrentTopAbility(): Promise\<UIAbility>;
 **示例：**
 
 ```ts
-var abilityDelegator;
-var ability;
+let abilityDelegator;
+let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility().then((data : any) => {
@@ -407,8 +393,6 @@ abilityDelegator.getCurrentTopAbility().then((data : any) => {
     ability = data;
 });
 ```
-
-
 
 ### startAbility<sup>9+</sup>
 
@@ -428,8 +412,8 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-var abilityDelegator;
-var want = {
+let abilityDelegator;
+let want = {
     bundleName: "bundleName",
     abilityName: "abilityName"
 };
@@ -439,8 +423,6 @@ abilityDelegator.startAbility(want, (err : any, data : any) => {
     console.info("startAbility callback");
 });
 ```
-
-
 
 ### startAbility<sup>9+</sup>
 
@@ -465,8 +447,8 @@ startAbility(want: Want): Promise\<void>;
 **示例：**
 
 ```ts
-var abilityDelegator;
-var want = {
+let abilityDelegator;
+let want = {
     bundleName: "bundleName",
     abilityName: "abilityName"
 };
@@ -476,8 +458,6 @@ abilityDelegator.startAbility(want).then((data: any) => {
     console.info("startAbility promise");
 });
 ```
-
-
 
 ### doAbilityForeground<sup>9+</sup>
 
@@ -497,8 +477,8 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-var abilityDelegator;
-var ability;
+let abilityDelegator;
+let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
@@ -509,8 +489,6 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     });
 });
 ```
-
-
 
 ### doAbilityForeground<sup>9+</sup>
 
@@ -535,8 +513,8 @@ doAbilityForeground(ability: UIAbility): Promise\<void>;
 **示例：**
 
 ```ts
-var abilityDelegator;
-var ability;
+let abilityDelegator;
+let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
@@ -547,8 +525,6 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     });
 });
 ```
-
-
 
 ### doAbilityBackground<sup>9+</sup>
 
@@ -568,8 +544,8 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-var abilityDelegator;
-var ability;
+let abilityDelegator;
+let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
@@ -580,8 +556,6 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     });
 });
 ```
-
-
 
 ### doAbilityBackground<sup>9+</sup>
 
@@ -606,8 +580,8 @@ doAbilityBackground(ability: UIAbility): Promise\<void>;
 **示例：**
 
 ```ts
-var abilityDelegator;
-var ability;
+let abilityDelegator;
+let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
@@ -618,8 +592,6 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     });
 });
 ```
-
-
 
 ### printSync<sup>9+</sup>
 
@@ -638,14 +610,12 @@ printSync(msg: string): void;
 **示例：**
 
 ```ts
-var abilityDelegator;
-var msg = "msg";
+let abilityDelegator;
+let msg = "msg";
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.printSync(msg);
 ```
-
-
 
 ### print
 
@@ -665,16 +635,14 @@ print(msg: string, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-var abilityDelegator;
-var msg = "msg";
+let abilityDelegator;
+let msg = "msg";
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.print(msg, (err : any) => {
     console.info("print callback");
 });
 ```
-
-
 
 ### print
 
@@ -699,16 +667,14 @@ print(msg: string): Promise\<void>;
 **示例：**
 
 ```ts
-var abilityDelegator;
-var msg = "msg";
+let abilityDelegator;
+let msg = "msg";
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.print(msg).then(() => {
     console.info("print promise");
 });
 ```
-
-
 
 ### executeShellCommand
 
@@ -728,16 +694,14 @@ executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 **示例：**
 
 ```ts
-var abilityDelegator;
-var cmd = "cmd";
+let abilityDelegator;
+let cmd = "cmd";
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.executeShellCommand(cmd, (err : any, data : any) => {
     console.info("executeShellCommand callback");
 });
 ```
-
-
 
 ### executeShellCommand
 
@@ -758,17 +722,15 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 **示例：**
 
 ```ts
-var abilityDelegator;
-var cmd = "cmd";
-var timeout = 100;
+let abilityDelegator;
+let cmd = "cmd";
+let timeout = 100;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.executeShellCommand(cmd, timeout, (err : any, data : any) => {
     console.info("executeShellCommand callback");
 });
 ```
-
-
 
 ### executeShellCommand
 
@@ -794,17 +756,15 @@ executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 **示例：**
 
 ```ts
-var abilityDelegator;
-var cmd = "cmd";
-var timeout = 100;
+let abilityDelegator;
+let cmd = "cmd";
+let timeout = 100;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.executeShellCommand(cmd, timeout).then((data : any) => {
     console.info("executeShellCommand promise");
 });
 ```
-
-
 
 ### finishTest<sup>9+</sup>
 
@@ -825,16 +785,14 @@ finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-var abilityDelegator;
-var msg = "msg";
+let abilityDelegator;
+let msg = "msg";
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.finishTest(msg, 0, (err : any) => {
     console.info("finishTest callback");
 });
 ```
-
-
 
 ### finishTest<sup>9+</sup>
 
@@ -860,8 +818,8 @@ finishTest(msg: string, code: number): Promise\<void>;
 **示例：**
 
 ```ts
-var abilityDelegator;
-var msg = "msg";
+let abilityDelegator;
+let msg = "msg";
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.finishTest(msg, 0).then(() => {
@@ -887,9 +845,9 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 **示例：**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
-var monitor = {
+let monitor = {
     moduleName: "moduleName",
     srcEntrance: "srcEntrance",
 }
@@ -899,8 +857,6 @@ abilityDelegator.addAbilityStageMonitor(monitor, (err : any) => {
     console.info("addAbilityStageMonitor callback");
 });
 ```
-
-
 
 ### addAbilityStageMonitor<sup>9+</sup>
 
@@ -925,9 +881,9 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 **示例：**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
-var monitor = {
+let monitor = {
     moduleName: "moduleName",
     srcEntrance: "srcEntrance",
 }
@@ -956,9 +912,9 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\
 **示例：**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
-var monitor = {
+let monitor = {
     moduleName: "moduleName",
     srcEntrance: "srcEntrance",
 }
@@ -968,8 +924,6 @@ abilityDelegator.removeAbilityStageMonitor(monitor, (err : any) => {
     console.info("removeAbilityStageMonitor callback");
 });
 ```
-
-
 
 ### removeAbilityStageMonitor<sup>9+</sup>
 
@@ -994,9 +948,9 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 **示例：**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
-var monitor = {
+let monitor = {
     moduleName: "moduleName",
     srcEntrance: "srcEntrance",
 }
@@ -1025,13 +979,13 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<A
 **示例：**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
-var monitor = {
+let monitor = {
     moduleName: "moduleName",
     srcEntrance: "srcEntrance",
 }
@@ -1066,13 +1020,13 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 **示例：**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
-var monitor = {
+let monitor = {
     moduleName: "moduleName",
     srcEntrance: "srcEntrance",
 }
@@ -1102,14 +1056,14 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 **示例：**
 
 ```ts
-var abilityDelegator;
-var timeout = 100;
+let abilityDelegator;
+let timeout = 100;
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
-var monitor = {
+let monitor = {
     moduleName: "moduleName",
     srcEntrance: "srcEntrance",
 }

@@ -46,11 +46,11 @@ onMemoryLevel(level: number): void;
 **示例：**
 
   ```ts
-import Ability from "@ohos.application.Ability";
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 var callbackId;
 
-export default class MyAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log("MyAbility onCreate")
         globalThis.applicationContext = this.context.getApplicationContext();

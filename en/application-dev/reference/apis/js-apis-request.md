@@ -1,9 +1,8 @@
-# @ohos.request
+# @ohos.request (Upload and Download)
 
 The **request** module provides applications with basic upload, download, and background transmission agent capabilities.
 
-> **NOTE**
->
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 

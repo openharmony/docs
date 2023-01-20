@@ -1,8 +1,9 @@
-# File Interaction
+# @ohos.document (File Operation)
 
-> **NOTE**<br/>
+> **NOTE**
+>
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module have been deprecated since API version 9 and are not recommended for use. An exception will be thrown if any of the APIs is called.
+> - The APIs provided by this module have been deprecated since API version 9 and are not recommended for use. An exception will be thrown if any of the APIs is called.
 
 ## Modules to Import
 
@@ -12,7 +13,7 @@ import document from '@ohos.document';
 
 ## document.choose<sup>(deprecated)</sup>
 
-choose(types? : string[]): Promise&lt;string&gt;
+choose(types?: string[]): Promise&lt;string&gt;
 
 Chooses files of the specified types using the file manager. This API uses a promise to return the result.
 

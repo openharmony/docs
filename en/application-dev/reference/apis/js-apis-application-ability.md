@@ -1,4 +1,4 @@
-# @ohos.application.Ability
+# @ohos.application.Ability (Ability)
 
 The **Ability** module manages the ability lifecycle and context, such as creating and destroying an ability, and dumping client information.
 
@@ -15,7 +15,7 @@ This module provides the following common ability-related functions:
 ## Modules to Import
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 ```
 
 ## Attributes
@@ -47,7 +47,7 @@ Called to initialize the service logic when an ability is created.
 **Example**
 
   ```ts
-  class myAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
       onCreate(want, param) {
           console.log('onCreate, want:' + want.abilityName);
       }
@@ -67,7 +67,7 @@ Called when a **WindowStage** is created for this ability.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | windowStage | window.WindowStage | Yes| **WindowStage** information.| 
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** information.| 
 
 **Example**
     
@@ -111,7 +111,7 @@ Called when the **WindowStage** is restored during the migration of this ability
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | windowStage | window.WindowStage | Yes| **WindowStage** information.| 
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** information.| 
 
 **Example**
     
@@ -219,23 +219,24 @@ Called to save data during the ability migration preparation process.
 
 onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
-Called when the ability startup mode is set to singleton.
+Called when a new Want is passed in and this UIAbility is started again.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-want.md) | Yes| Want parameters, such as the ability name and bundle name.| 
-  | launchParams | AbilityConstant.LaunchParam | Yes| Reason for the ability startup and the last abnormal exit.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | Yes| Want information, such as the ability name and bundle name.|
+| launchParams | AbilityConstant.LaunchParam | Yes| Reason for the ability startup and the last abnormal exit.|
 
 **Example**
     
   ```ts
   class myAbility extends Ability {
-      onNewWant(want) {
+      onNewWant(want, launchParams) {
           console.log('onNewWant, want:' + want.abilityName);
+          console.log('onNewWant, launchParams:' + JSON.stringify(launchParams));
       }
   }
   ```
@@ -388,8 +389,9 @@ Sends sequenceable data to the target ability.
 **Example**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
-  class MyMessageAble{ // Custom sequenceable data structure
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
+  class MyMessageAble{ // Custom sequenceable data structure.
     name:""
     str:""
     num: 1
@@ -412,11 +414,11 @@ Sends sequenceable data to the target ability.
   };
   var method = 'call_Function'; // Notification message string negotiated by the two abilities
   var caller;
-  export default class MainAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
         caller = obj;
@@ -472,7 +474,8 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
 **Example**
 
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   class MyMessageAble{
     name:""
     str:""
@@ -496,11 +499,11 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
   };
   var method = 'call_Function';
   var caller;
-  export default class MainAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
         caller = obj;
@@ -543,14 +546,17 @@ Releases the caller interface of the target ability.
 
 **Example**
     
+
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   var caller;
-  export default class MainAbility extends Ability {
+  
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
         caller = obj;
@@ -585,13 +591,15 @@ Registers a callback that is invoked when the stub on the target ability is disc
 **Example**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   var caller;
-  export default class MainAbility extends Ability {
+  
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
           caller = obj;
@@ -642,7 +650,7 @@ Registers a caller notification callback, which is invoked when the target abili
 **Example**
 
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
       name:""
       str:""
@@ -671,7 +679,7 @@ Registers a caller notification callback, which is invoked when the target abili
       pdata.readSequenceable(msg);
       return new MyMessageAble("test1", "Callee test");
   }
-  export default class MainAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');
       try {
@@ -710,9 +718,11 @@ Deregisters a caller notification callback, which is invoked when the target abi
 **Example**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   var method = 'call_Function';
-  export default class MainAbility extends Ability {
+  
+  export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');
       try {
@@ -724,7 +734,7 @@ Deregisters a caller notification callback, which is invoked when the target abi
     }
   }
   ```
-  
+
 ## OnReleaseCallBack
 
 (msg: string): void;

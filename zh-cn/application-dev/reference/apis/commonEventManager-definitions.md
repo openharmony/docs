@@ -261,22 +261,22 @@
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN
-（预留事件，暂未支持）表示分布式账号登录成功的动作。
+（预留事件，暂未支持）表示分布式帐号登录成功的动作。
 - 值： usual.event.DISTRIBUTED_ACCOUNT_LOGIN
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT
-（预留事件，暂未支持）表示分布式账号登出成功的动作。
+（预留事件，暂未支持）表示分布式帐号登出成功的动作。
 - 值： usual.event.DISTRIBUTED_ACCOUNT_LOGOUT
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID
-（预留事件，暂未支持）表示分布式账号token令牌无效的动作。
+（预留事件，暂未支持）表示分布式帐号token令牌无效的动作。
 - 值： usual.event.DISTRIBUTED_ACCOUNT_TOKEN_INVALID
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF
-（预留事件，暂未支持）表示分布式账号注销的动作。
+（预留事件，暂未支持）表示分布式帐号注销的动作。
 - 值： usual.event.DISTRIBUTED_ACCOUNT_LOGOFF
 - 订阅者所需权限： 无
 

@@ -290,7 +290,7 @@
            - [魔法键使用方法](kernel/kernel-small-debug-shell-magickey.md)
            - [用户态异常信息说明](kernel/kernel-small-debug-shell-error.md)
          - [Trace调测](kernel/kernel-small-debug-trace.md)
-         - [Perf调测](kernel/kernel-mini-memory-perf.md)
+         - [Perf调测](kernel/kernel-small-debug-perf.md)
          - [LMS调测](kernel/kernel-small-memory-lms.md)
          - [进程调测](kernel/kernel-small-debug-process-cpu.md)
          - 内核态内存调测

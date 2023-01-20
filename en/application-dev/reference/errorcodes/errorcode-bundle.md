@@ -9,6 +9,7 @@ The specified bundle name is not found.
 When a query API is called, the bundle name passed in does not exist.
 
 **Possible Causes**
+
 1. The bundle name is misspelled.
 2. The corresponding bundle is not installed.
 
@@ -42,11 +43,11 @@ When a query API is called, the ability name passed in does not exist.
 
 **Possible Causes**
 1. The ability name is misspelled.
-2. The corresponding bundle is not installed.
+2. The application does not have the ability specified by **abilityName**.
 
 **Solution**
 1. Check whether the spelling of the ability name is correct.
-2. Check whether the ability is installed.
+2. Check whether the application has the ability specified by **abilityName**.
 
 ## 17700004 User ID Does Not Exist
 
@@ -57,16 +58,17 @@ The specified user ID is not found.
 When a user-related API is called, the user ID passed in does not exist.
 
 **Possible Causes**
-The user ID is incorrect. The user does not exist.
+1. Incorrect username.
+2. The user does not exist in the system.
 
 **Solution**
 1. Check whether the user ID is correct.
 2. Check whether the user exists.
 
-## 17700005 Application ID Does Not Exist
+## 17700005 appId Is an Empty String
 
 **Error Message**
-The specified app ID is not found.
+The specified app ID is empty string.
 
 **Description**
 When an API of the **appControl** module is called, the application ID passed in does not exist.
@@ -124,7 +126,7 @@ When the **install** API of the **installer** module is called, the HAP passed i
 
 **Solution**
 1. Check whether the HAP is in ZIP format.
-2. Check whether the configuration file is in [JSON format](../../quick-start/stage-structure.md).
+2. Check whether the configuration file is in [JSON format](../../quick-start/application-configuration-file-overview-stage.md).
 3. Check whether an error message is displayed when DevEco Studio compiles the HAP. If necessary fields are missing, an error message will be displayed.
 
 ## 17700011 Bundle Installation Failure Due to Signature Verification Failure
@@ -144,8 +146,9 @@ Calling the **install** API of the **installer** module to install the bundle fa
 
 **Solution**
 1. Check whether the HAP is signed.
-2. Check whether the same certificate is used for signing multiple HAPs.
-3. Check whether the certificate used for signing the upgrade HAP is the same as the certificate used for signing the installed HAP.
+2. Ensure that the signature certificate of the HAP is applied for from the application market.
+3. Check whether the same certificate is used for signing multiple HAPs.
+4. Check whether the certificate used for signing the upgrade HAP is the same as the certificate used for signing the installed HAP.
 
 ## 17700012 Bundle Installation Failure Due to Invalid File Path or Too Large File
 
@@ -165,7 +168,7 @@ Calling the **install** API of the **installer** module to install the bundle fa
 2. Check whether the HAP is read only or executable.
 3. Check whether the size of the HAP exceeds 4 GB.
 
-## 17700015 Bundle Installation Failure Due to Different Configuration Information of Multiple HAP Packages
+## 17700015 Bundle Installation Failure Due to Different Configuration Information of Multiple HAPs
 
 **Error Message**
 Failed to install the HAPs because they have different configuration information.
@@ -205,7 +208,7 @@ Calling the **install** API of the **installer** module to install the bundle fa
 The version number is earlier than the version in use.
 
 **Solution**
-Ensure that the version of the bundle to install is later than the version in use.
+Ensure that the version of the bundle to install is not earlier than the version in use.
 
 ## 17700020 Failure to Uninstall Preinstalled Applications
 
@@ -298,7 +301,8 @@ When an API of the **defaultAppManager** module is called, the type passed in is
 2. The type passed in the API does not exist.
 
 **Solution**
-Check whether the spelling of type is correct.
+1. Check whether the spelling of type is correct.
+2. Enter a type that exists.
 
 ## 17700026 Bundle Disabled
 
@@ -368,4 +372,6 @@ The application is a system application and the **AllowAppDataNotCleared** field
 
 **Solution**
 1. Check whether the application is a system application. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the application information and check whether the value of **isSystemApp** is **true**.
-2. Check whether the **AllowAppDataNotCleared** field is configured for the application. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the application information and check whether the value of **userDataClearable** is **true**.
+2. Check whether the **AllowAppDataNotCleared field** is configured for the application. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the application information and check whether the value of **userDataClearable** is **true**.
+
+<!--no_check-->

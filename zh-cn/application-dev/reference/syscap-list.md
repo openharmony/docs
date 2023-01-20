@@ -989,7 +989,7 @@ TS/JS语言基础库
 
 ## SystemCapability.Account.AppAccount
 
-应用账号
+应用帐号
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |

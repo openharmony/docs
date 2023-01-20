@@ -1,4 +1,4 @@
-# MissionCallbacks
+# MissionCallback
 
 作为可以[registerMissionListener](js-apis-distributedMissionManager.md#distributedmissionmanagerregistermissionlistener)的入参，表示开始同步后，建立的回调函数。
 

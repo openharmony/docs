@@ -1,4 +1,4 @@
-# Data Sharing
+# @ohos.data.dataShare (DataShare)
 
 The **DataShare** module allows an application to manage its own data and share data with other applications on the same device.
 
@@ -17,12 +17,37 @@ The **DataShare** module allows an application to manage its own data and share 
 import dataShare from '@ohos.data.dataShare'
 ```
 
+## URI Naming Rule
+
+The URIs are in the following format:
+
+**Scheme://authority/path** 
+- *Scheme*: scheme name, which has a fixed value of **datashare** for the **DataShare** module.
+- *authority*: [userinfo@]host[:port]
+    - *userinfo*: login information, which can be left unspecified.
+    - *host*: server address. It is the target device ID for cross-device access and empty for local device access.
+    - *port*: port number of the server, which can be left unspecified.
+- *path*: **DataShare** identifier and the resource path. The **DataShare** identifier is mandatory, and the resource path is optional.
+
+Example:
+
+- URI without the resource path:<br>**datashare:///com.samples.datasharetest.DataShare**
+
+- URI with the resource path:<br>**datashare:///com.samples.datasharetest.DataShare/DB00/TBL00**
+
+**com.samples.datasharetest.DataShare** is the data share identifier, and **DB00/TBL00** is the resource path.
+
 
 ## dataShare.createDataShareHelper
 
 createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;DataShareHelper&gt;): void
 
 Creates a **DataShareHelper** instance. This API uses an asynchronous callback to return the result.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to access **DataShareExtension**, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target **DataShareExtension** is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -34,21 +59,33 @@ Creates a **DataShareHelper** instance. This API uses an asynchronous callback t
 | uri      | string                                                   | Yes  | Uniform Resource Identifier (URI) of the server application to connect.                              |
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](../errorcodes/errorcode-datashare.md).
+
+| ID| Error Message                                            |
+| -------- | ---------------------------------------------------- |
+| 15700010 | The dataShareHelper is not initialized successfully. |
+
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper;
-dataShare.createDataShareHelper(this.context, uri, (err, data) => {
-    if (err != undefined) {
-        console.info("createDataShareHelper failed, error message : " + err);
-    } else {
+try {
+    dataShare.createDataShareHelper(this.context, uri, (err, data) => {
+        if (err != undefined) {
+            console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+            return;
+        }
         console.info("createDataShareHelper succeed, data : " + data);
         dataShareHelper = data;
-    }
-});
+    });
+} catch (err) {
+    console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ## dataShare.createDataShareHelper
@@ -56,6 +93,11 @@ dataShare.createDataShareHelper(this.context, uri, (err, data) => {
 createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper&gt;
 
 Creates a **DataShareHelper** instance. This API uses a promise to return the result.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to access **DataShareExtension**, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target **DataShareExtension** is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -72,19 +114,31 @@ Creates a **DataShareHelper** instance. This API uses a promise to return the re
 | -------------------------------------------------- | -------------------------------------- |
 | Promise&lt;[DataShareHelper](#datasharehelper)&gt; | Promise used to return the **DataShareHelper** instance created.|
 
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](../errorcodes/errorcode-datashare.md).
+
+| ID| Error Message                                            |
+| -------- | ---------------------------------------------------- |
+| 15700010 | The dataShareHelper is not initialized successfully. |
+
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper;
-dataShare.createDataShareHelper(this.context, uri).then((data) => {
-    console.info("createDataShareHelper succeed, data : " + data);
-    dataShareHelper = data;
-}).catch((err) => {
-	console.info("createDataShareHelper failed, error message : " + err); 
-})
+try {
+    dataShare.createDataShareHelper(this.context, uri).then((data) => {
+        console.info("createDataShareHelper succeed, data : " + data);
+        dataShareHelper = data;
+    }). catch((err) => {
+        console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+    });
+} catch (err) {
+    console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ## DataShareHelper
@@ -101,16 +155,17 @@ Subscribes to changes of the specified data. After an observer is registered, th
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
+| Name    | Type                | Mandatory| Description                   |
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | Yes  | Event type to subscribe to. The value is **dataChange**, which indicates data change events.|
 | uri      | string               | Yes  | URI of the data.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the data is changed, the value of **err** is **undefined**. Otherwise, this callback is not invoked or the value of **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If data is changed, the value of **err** is undefined. Otherwise, this callback is not invoked or the value of **err** is an error object.|
 
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 function onCallback() {
     console.info("**** Observer on callback ****");
 }
@@ -128,7 +183,7 @@ Unsubscribes from the changes of the specified data. This API uses an asynchrono
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
+| Name    | Type                | Mandatory| Description                   |
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | Yes  | Event type to unsubscribe from. The value is **dataChange**, which indicates data change events.|
 | uri      | string               | Yes  | URI of the data.|
@@ -137,7 +192,8 @@ Unsubscribes from the changes of the specified data. This API uses an asynchrono
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 function offCallback() {
     console.info("**** Observer off callback ****");
 }
@@ -155,29 +211,34 @@ Inserts a single data record into the database. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name    | Type                                                     | Mandatory| Description                                                        |
+| Name    | Type                                                     | Mandatory| Description                                                       |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                                                    | Yes  | URI of the data to insert.                                    |
-| value    | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | Yes  | Data to insert. If this parameter is empty, a blank row will be inserted.          |
+| value    | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | Yes  | Data to insert. If this parameter is empty, a blank row will be inserted.          |
 | callback | AsyncCallback&lt;number&gt;                               | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the index of the inserted data record. Otherwise, **err** is an error object.<br>The data index is not returned if the APIs of the database in use, for example, the key-value database (KVDB), do not support the return of indexes.|
 
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 const valueBucket = {
     "name": "rose",
     "age": 22,
     "salary": 200.5,
 }
-dataShareHelper.insert(uri, valueBucket, (err, data) => {
-    if (err != undefined) {
-        console.log("insert failed, error message : " + err);
-    }else{
-        console.log("insert succeed, data : " + data);
-    }
-});
+try {
+    dataShareHelper.insert(uri, valueBucket, (err, data) => {
+        if (err != undefined) {
+            console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+            return;
+        }
+        console.info("insert succeed, data : " + data);
+    });
+} catch (err) {
+    console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### insert
@@ -193,7 +254,7 @@ Inserts a single data record into the database. This API uses a promise to retur
 | Name | Type                                                     | Mandatory| Description                                              |
 | ----- | --------------------------------------------------------- | ---- | -------------------------------------------------- |
 | uri   | string                                                    | Yes  | URI of the data to insert.                          |
-| value | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | Yes  | Data to insert. If this parameter is empty, a blank row will be inserted.|
+| value | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | Yes  | Data to insert. If this parameter is empty, a blank row will be inserted.|
 
 **Return value**
 
@@ -204,18 +265,23 @@ Inserts a single data record into the database. This API uses a promise to retur
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 const valueBucket = {
     "name": "rose1",
     "age": 221,
     "salary": 20.5,
 }
-dataShareHelper.insert(uri, valueBucket).then((data) => {
-    console.log("insert succeed, data : " + data);
-}).catch((err) => {
-    console.log("insert failed, error message : " + err);
-});
+try {
+    dataShareHelper.insert(uri, valueBucket).then((data) => {
+        console.log("insert succeed, data : " + data);
+    }). catch((err) => {
+        console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+    });
+} catch (err) {
+    console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### delete
@@ -231,25 +297,29 @@ Deletes one or more data records from the database. This API uses an asynchronou
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to delete.                                    |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**.|
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of deleted data records. Otherwise, **err** is an error object.<br>The number of deleted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
-dataShareHelper.delete(uri, da, (err, data) => {
-    if (err != undefined) {
-        console.log("delete failed, error message : " + err);
-    }else{
-        console.log("delete succeed, data : " + data);
-    }
-});
+try {
+    dataShareHelper.delete(uri, da, (err, data) => {
+        if (err != undefined) {
+            console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+            return;
+        }
+        console.info("delete succeed, data : " + data);
+    });
+} catch (err) {
+    console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### delete
@@ -265,7 +335,7 @@ Deletes one or more data records from the database. This API uses a promise to r
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to delete.                                    |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**.|
 
 **Return value**
 
@@ -276,17 +346,21 @@ Deletes one or more data records from the database. This API uses a promise to r
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
-dataShareHelper.delete(uri, da).then((data) => {
-    console.log("delete succeed, data : " + data);
-}).catch((err) => {
-    console.log("delete failed, error message : " + err);
-});
+try {
+    dataShareHelper.delete(uri, da).then((data) =>  {
+        console.log("delete succeed, data : " + data);
+    }). catch((err) => {
+        console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+    });
+} catch (err) {
+    console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### query
@@ -302,27 +376,31 @@ Queries data in the database. This API uses an asynchronous callback to return t
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to query.                                    |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**.|
 | columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is empty, all columns will be queried.              |
 | callback   | AsyncCallback&lt;[DataShareResultSet](js-apis-data-DataShareResultSet.md#datashareresultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the result set obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
-dataShareHelper.query(uri, da, columns, (err, data) => {
-    if (err != undefined) {
-        console.log("query failed, error message : " + err);
-    }else{
+try {
+    dataShareHelper.query(uri, da, columns, (err, data) => {
+        if (err != undefined) {
+            console.error(`query error: code: ${err.code}, message: ${err.message} `);
+            return;
+        }
         console.log("query succeed, rowCount : " + data.rowCount);
-    }
-});
+    });
+} catch (err) {
+    console.error(`query error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### query
@@ -338,7 +416,7 @@ Queries data in the database. This API uses a promise to return the result.
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to query.                                    |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**.|
 | columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is empty, all columns will be queried.              |
 
 **Return value**
@@ -350,18 +428,22 @@ Queries data in the database. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
-dataShareHelper.query(uri, da, columns).then((data) => {
-    console.log("query succeed, rowCount : " + data.rowCount);
-}).catch((err) => {
-    console.log("query failed, error message : " + err);
-});
+try {
+    dataShareHelper.query(uri, da, columns).then((data) =>  {
+        console.log("query succeed, rowCount : " + data.rowCount);
+    }). catch((err) => {
+        console.error(`query error: code: ${err.code}, message: ${err.message} `);
+    });
+} catch (err) {
+    console.error(`query error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### update
@@ -377,15 +459,15 @@ Updates data in the database. This API uses an asynchronous callback to return t
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to update.                                    |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates.|
-| value      | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)    | Yes  | New data.                                          |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates.|
+| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data.                                          |
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of updated data records. Otherwise, **err** is an error object.<br>The number of updated data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -396,13 +478,17 @@ const va = {
     "salary": 20.5,
    
 }
-dataShareHelper.update(uri, da, va, (err, data) => {
-    if (err != undefined) {
-        console.log("update failed, error message : " + err);
-    }else{
+try {
+    dataShareHelper.update(uri, da, va, (err, data) => {
+        if (err != undefined) {
+            console.error(`update error: code: ${err.code}, message: ${err.message} `);
+            return;
+        }
         console.log("update succeed, data : " + data);
-    }
-});
+    });
+} catch (err) {
+    console.error(`update error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### update
@@ -418,8 +504,8 @@ Updates data in the database. This API uses a promise to return the result.
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to update.                                    |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates.|
-| value      | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)    | Yes  | New data.                                          |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates.|
+| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data.                                          |
 
 **Return value**
 
@@ -430,8 +516,8 @@ Updates data in the database. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -442,11 +528,15 @@ const va = {
     "salary": 20.5,
    
 }
-dataShareHelper.update(uri, da, va).then((data) => {
-    console.log("update succeed, data : " + data);
-}).catch((err) => {
-    console.log("update failed, error message : " + err);
-});
+try {
+    dataShareHelper.update(uri, da, va).then((data) =>  {
+        console.log("update succeed, data : " + data);
+    }). catch((err) => {
+        console.error(`update error: code: ${err.code}, message: ${err.message} `);
+    });
+} catch (err) {
+    console.error(`update error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### batchInsert
@@ -462,24 +552,29 @@ Batch inserts data into the database. This API uses an asynchronous callback to 
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri      | string                                                       | Yes  | URI of the data to insert.                                    |
-| values   | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | Yes  | Data to insert.                                          |
+| values   | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to insert.                                          |
 | callback | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of data records inserted. Otherwise, **err** is an error object.<br>The number of inserted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe12", "age": 21, "salary": 20.5,},
                      {"name": "roe13", "age": 21, "salary": 20.5,})
-dataShareHelper.batchInsert(uri, vbs, (err, data) => {
-    if (err != undefined) {
-        console.log("batchInsert failed, error message : " + err);
-    }else{
+try {
+    dataShareHelper.batchInsert(uri, vbs, (err, data) => {
+        if (err != undefined) {
+            console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+            return;
+        }
         console.log("batchInsert succeed, data : " + data);
-    }
-});
+    });
+} catch (err) {
+    console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### batchInsert
@@ -495,7 +590,7 @@ Batch inserts data into the database. This API uses a promise to return the resu
 | Name  | Type                                                        | Mandatory| Description                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | uri    | string                                                       | Yes  | URI of the data to insert.|
-| values | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | Yes  | Data to insert.      |
+| values | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to insert.      |
 
 **Return value**
 
@@ -506,16 +601,21 @@ Batch inserts data into the database. This API uses a promise to return the resu
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe12", "age": 21, "salary": 20.5,},
                      {"name": "roe13", "age": 21, "salary": 20.5,})
-dataShareHelper.batchInsert(uri, vbs).then((data) => {
-    console.log("batchInsert succeed, data : " + data);
-}).catch((err) => {
-    console.log("batchInsert failed, error message : " + err);
-});
+try {
+    dataShareHelper.batchInsert(uri, vbs).then((data) =>  {
+        console.log("batchInsert succeed, data : " + data);
+    }). catch((err) => {
+        console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+    });
+} catch (err) {
+    console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### normalizeUri
@@ -536,7 +636,8 @@ Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the lo
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri, (err, data) => {
     if (err != undefined) {
@@ -570,7 +671,8 @@ Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the lo
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri).then((data) => {
     console.log("normalizeUri = " + data);
@@ -597,7 +699,8 @@ Denormalizes a URI. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri, (err, data) => {
     if (err != undefined) {
@@ -631,7 +734,8 @@ Denormalizes a URI. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri).then((data) => {
     console.log("denormalizeUri = " + data);
@@ -650,7 +754,7 @@ Notifies the registered observer of data changes. This API uses an asynchronous 
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
+| Name   | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | uri      | string               | Yes  | URI of the data.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the observer is notified of the data changes, **err** is **undefined**. Otherwise, **err** is an error object.|
@@ -658,7 +762,8 @@ Notifies the registered observer of data changes. This API uses an asynchronous 
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri, () => {
     console.log("***** notifyChange *****");
@@ -688,7 +793,8 @@ Notifies the registered observer of data changes. This API uses a promise to ret
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri);
 ```

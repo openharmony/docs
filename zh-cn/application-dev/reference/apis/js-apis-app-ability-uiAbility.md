@@ -332,7 +332,8 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
@@ -412,7 +413,8 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -573,7 +575,8 @@ release(): void;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
@@ -628,7 +631,8 @@ on(method: string, callback: CalleeCallback): void;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -693,7 +697,8 @@ off(method: string): void;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 
 **示例：**
