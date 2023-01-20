@@ -18,10 +18,10 @@ Applicable to: OpenHarmony SDK 3.2.6.3, stage model of API version 9
 
 1. Use the **onWindowStageCreate** to obtain a **windowClass** object.
    
-   ```
+   ```ts
    onWindowStageCreate(windowStage) {
      // When the main window is created, set the main page for this ability.
-     console.log("[Demo] MainAbility onWindowStageCreate")
+     console.log("[Demo] EntryAbility onWindowStageCreate")
      windowStage.getMainWindow((err, data) => {
        if (err.code) {
          console.error('Failed to obtain the main window.')
@@ -35,7 +35,7 @@ Applicable to: OpenHarmony SDK 3.2.6.3, stage model of API version 9
 
 2. Enable the full-screen mode for the window and hide the status bar.
    
-   ```
+   ```ts
     globalThis.windowClass.setFullScreen(isFullScreen, (err, data) => {
      if (err.code) {
        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
@@ -54,7 +54,7 @@ Use **window.getProperties()** to obtain the window properties. The **windowRect
 Example:
 
 
-```
+```ts
 let promise = windowClass.getProperties();
 promise.then((data)=> {
   console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data.windowRect));
@@ -70,7 +70,7 @@ Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
 Refer to the following code:
 
 
-```
+```ts
 window.getTopWindow(globalThis.mainContext).then(win => {
   var systemBarProperties = {
     statusBarColor: '#19B6FF', // Set the background color of the status bar.
