@@ -112,10 +112,10 @@ import call from '@ohos.telephony.call';
 
 **System capability**: SystemCapability.*A.B* (This part is mandatory.)
 
-| Name            | Type                                     | Description                                      |
-| ---------------- | ----------------------------------------- | ------------------------------------------ |
-| uid              | number                                    | User identifier (UID) of a process.                          |
-| pid              | number                                    | Process ID (PID) of a process.                           |
+| Name            | Type                                     |                                      | Description                                      |
+| ---------------- | ----------------------------------------- | ------------------------------------------ | ------------------------------------------ |
+| uid              | number                                    | 1                                   | User identifier (UID) of a process.                          |
+| pid              | number                                    | 2                                   | Process ID (PID) of a process.                           |
 
 ## Methods
 

@@ -37,7 +37,7 @@ As shown above, the two development paradigms share the UI backend engine and la
 
 ## Relationship Between UI and Ability Framework
 
-OpenHarmony provides two application models: FA model and stage model. The table below describes the relationship between these two models and the two development paradigms of ArkUI.
+OpenHarmony provides two [application models](../application-models/application-model-description.md): FA model and stage model. The table below describes the relationship between these two models and the two development paradigms of ArkUI.
 
  **FA Model**
 
@@ -46,13 +46,13 @@ OpenHarmony provides two application models: FA model and stage model. The table
 | Application  | Web-like development paradigm| UI development: HML, CSS, and JS<br>Service entries: files with fixed file names, which are **app.ets** (Page ability), **service.ts** (Service ability), and **data.ts** (Data ability)<br>Service logic: JS and TS|
 |      | Declarative development paradigm | UI development: ArkTS<br>Service entries: files with fixed file names, which are **app.ets** (Page ability), **service.ts** (Service ability), and **data.ts** (Data ability)<br>Service logic: JS and TS|
 | Service widget| Web-like development paradigm| UI development: HML, CSS, and JSON (action)<br>Service entry: **form.ts**<br>Service logic: JS and TS|
-|      | Declarative development paradigm | Not supported currently                                   |
+|      | Declarative development paradigm | Not supported                                   |
 
  **Stage Model**
 
-| Type  | UI Development Paradigm  | Description                                      |
-| ---- | -------- | ---------------------------------------- |
-| Application  | Web-like development paradigm| Not supported currently                                   |
-|      | Declarative development paradigm | UI development: ArkTS<br>Service entries: derived from **ohos.application.Ability**/**ExtensionAbility**<br>Service logic: TS|
-| Service widget| Web-like development paradigm| UI development: HML, CSS, and JSON (action)<br>Service entries: derived from **FormExtensionAbility**<br>Service logic: TS|
-|      | Declarative development paradigm | Not supported currently                                   |
+| Type    | UI Development Paradigm    | Description                                                        |
+| -------- | -------------- | ------------------------------------------------------------ |
+| Application    | Web-like development paradigm | Not supported                                                  |
+|          | Declarative development paradigm| UI development: ArkTS<br>Service entries: derived from **ohos.app.ability.UIAbility**/**ExtensionAbility**<br>Service logic: TS|
+| Service widget| Web-like development paradigm | UI development: HML, CSS, and JSON (action)<br>Service entries: derived from **FormExtensionAbility**<br>Service logic: TS|
+|          | Declarative development paradigm| Not supported                                                  |
