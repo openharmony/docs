@@ -77,7 +77,7 @@
   - [Update Error Codes](errorcode-update.md)
 - Customization Management
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
-- Language Base Class Library
+- Utils
   - [Utils Error Codes](errorcode-utils.md)
 - Test
   - [UiTest Error Codes](errorcode-uitest.md)
