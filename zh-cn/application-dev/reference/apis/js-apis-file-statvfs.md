@@ -1,19 +1,19 @@
-# @ohos.statfs (statfs)
+# @ohos.file.statvfs (文件系统空间统计)
 
 该模块提供文件系统相关存储信息的功能，向应用程序提供获取文件系统总字节数、空闲字节数的JS接口。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块自API 9开始废弃，建议使用[@ohos.file.statvfs](./js-apis-file-statvfs.md)替代。
+> **说明：**
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块支持对错误码进行处理，错误码及其适配方式[参考文档](../errorcodes/errorcode-filemanagement.md#错误码适配指导)。
 
 ## 导入模块
 
 ```js
-import statfs from '@ohos.statfs';
+import statvfs from '@ohos.file.statvfs';
 ```
-## statfs.getFreeBytes
+## statvfs.getFreeSize
 
-getFreeBytes(path:string):Promise&lt;number&gt;
+getFreeSize(path:string):Promise&lt;number&gt;
 
 异步方法获取指定文件系统空闲字节数，以Promise形式返回结果。
 
@@ -35,16 +35,16 @@ getFreeBytes(path:string):Promise&lt;number&gt;
 
   ```js
   let path = "/dev";
-  statfs.getFreeBytes(path).then(function (number) {
-      console.info("getFreeBytes promise successfully:" + number);
+  statfs.getFreeSize(path).then(function (number) {
+    console.info("getFreeSize promise successfully, Size: " + number);
   }).catch(function (err) {
-      console.info("getFreeBytes failed with error:" + err);
+    console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
-## statfs.getFreeBytes
+## statfs.getFreeSize
 
-getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
+getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
 异步方法获取指定文件系统空闲字节数，使用callback形式返回结果。
 
@@ -60,18 +60,19 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-  let context = featureAbility.getContext();
-  context.getFilesDir().then(function (path) {
-      statfs.getFreeBytes(path, function (err, number) {
-          console.info("getFreeBytes callback successfully:" + number);
-      });
+  let path = "/dev";
+  statfs.getFreeSize(path, function (err, number) {
+    if (err) {
+      console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("getFreeSize callback successfully, Size: " + number);
+    }
   });
   ```
 
-## statfs.getTotalBytes
+## statfs.getTotalSize
 
-getTotalBytes(path: string): Promise&lt;number&gt;
+getTotalSize(path: string): Promise&lt;number&gt;
 
 异步方法获取指定文件系统总字节数，以Promise形式返回结果。
 
@@ -93,16 +94,16 @@ getTotalBytes(path: string): Promise&lt;number&gt;
 
   ```js
   let path = "/dev";
-  statfs.getTotalBytes(path).then(function (number) {
-      console.info("getTotalBytes promise successfully:" + number);
+  statfs.getTotalSize(path).then(function (number) {
+    console.info("getTotalSize promise successfully, Size: " + number);
   }).catch(function (err) {
-      console.info("getTotalBytes failed with error:" + err);
+    console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
-## statfs.getTotalBytes
+## statfs.getTotalSize
 
-getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
+getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
 异步方法获取指定文件系统总字节数，使用callback形式返回结果。
 
@@ -118,12 +119,13 @@ getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-  let context = featureAbility.getContext();
-  context.getFilesDir().then(function (path) {
-      statfs.getTotalBytes(path, function(err, number) {
-          console.info("getTotalBytes callback successfully:" + number);
-      });
+  let path = "/dev";
+  statfs.getTotalSize(path, function(err, number) {
+    if (err) {
+      console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("getTotalSize promise successfully, Size: " + number);
+    }
   });
   ```
 
