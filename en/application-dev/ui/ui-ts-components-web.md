@@ -4,7 +4,7 @@ The **\<Web>** component can be used to display web pages. For details, see [Web
 
 ## Creating a Component
 
-Create a **\<Web>** component in the .ets file under **main/ets/MainAbility/pages**. Then, in the created component, use **src** to specify the web page URI to be referenced, and bind a controller to the component to call the component APIs.
+Create a **\<Web>** component in the .ets file under **main/ets/entryability/pages**. Then, in the created component, use **src** to specify the web page URI to be referenced, and bind a controller to the component to call the component APIs.
 
   ```ts
   // xxx.ets
