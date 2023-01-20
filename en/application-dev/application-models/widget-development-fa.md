@@ -184,7 +184,7 @@ The widget configuration file is named **config.json**. Find the **config.json**
   | type | Type of the JavaScript component. The value can be:<br>**normal**: indicates an application instance.<br>**form**: indicates a widget instance.| String| Yes (initial value: **normal**)|
   | mode | Development mode of the JavaScript component.| Object| Yes (initial value: left empty)|
 
-  A configuration example is as follows:
+  Example configuration:
 
   
   ```json
@@ -211,14 +211,14 @@ The widget configuration file is named **config.json**. Find the **config.json**
   | defaultDimension | Default grid style of the widget. The value must be available in the **supportDimensions** array of the widget.| String| No|
   | updateEnabled | Whether the widget can be updated periodically.<br>**true**: The widget can be updated at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** takes precedence over **scheduledUpdateTime**.<br>**false**: The widget cannot be updated periodically.| Boolean| No|
   | scheduledUpdateTime | Scheduled time to update the widget. The value is in 24-hour format and accurate to minute.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| String| Yes (initial value: **0:0**)|
-  | updateDuration | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this attribute does not take effect.<br>If the value is a positive integer *N*, the interval is calculated by multiplying *N* and 30 minutes.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| Number| Yes (initial value: **0**)|
+  | updateDuration | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer *N*, the interval is calculated by multiplying *N* and 30 minutes.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| Number| Yes (initial value: **0**)|
   | formConfigAbility | Link to a specific page of the application. The value is a URI.| String| Yes (initial value: left empty)|
   | formVisibleNotify | Whether the widget is allowed to use the widget visibility notification.| String| Yes (initial value: left empty)|
   | jsComponentName | Component name of the widget. The value is a string with a maximum of 127 bytes.| String| No|
-  | metaData | Metadata of the widget. This attribute contains the array of the **customizeData** attribute.| Object| Yes (initial value: left empty)|
+  | metaData | Metadata of the widget. This field contains the array of the **customizeData** field.| Object| Yes (initial value: left empty)|
   | customizeData | Custom information about the widget.| Object array| Yes (initial value: left empty)|
 
-  A configuration example is as follows:
+  Example configuration:
 
   
   ```json
@@ -236,7 +236,7 @@ The widget configuration file is named **config.json**. Find the **config.json**
          "forms": [{
              "colorMode": "auto",
              "defaultDimension": "2*2",
-             "description": "This is a service widget.",
+             "description": "This is a widget.",
              "formVisibleNotify": true,
              "isDefault": true,
              "jsComponentName": "widget",
@@ -282,7 +282,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
         let formId = want.parameters["ohos.extra.param.key.form_identity"];
         let formName = want.parameters["ohos.extra.param.key.form_name"];
         let tempFlag = want.parameters["ohos.extra.param.key.form_temporary"];
-        // Persistently store widget information for subsequent use, such as instance acquisition and update.
+        // Persistently store widget data for subsequent use, such as instance acquisition and update.
         // Implement this API based on project requirements.
         storeFormInfo(formId, formName, tempFlag);
 
@@ -325,7 +325,7 @@ async function deleteFormInfo(formId: string) {
 
 For details about how to implement persistent data storage, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
 
-The **Want** object passed by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
+The **Want** object passed in by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
 
 - Normal widget: a widget persistently used by the widget host
 
@@ -451,12 +451,12 @@ You can set router and message events for components on a widget. The router eve
 1. Set the **onclick** field in the HML file to **routerEvent** or **messageEvent**, depending on the **actions** settings in the JSON file.
 
 2. Set the router event.
-   - **action**: **router**, which indicates a router event.
+   - **action**: **"router"**, which indicates a router event.
    - **abilityName**: name of the ability to redirect to (PageAbility component in the FA model and UIAbility component in the stage model). For example, the default UIAbility name created by DevEco Studio in the FA model is com.example.entry.EntryAbility.
    - **params**: custom parameters passed to the target ability. Set them as required. The value can be obtained from **parameters** in **want** used for starting the target ability. For example, in the lifecycle function **onCreate** of the EntryAbility in the FA model, **featureAbility.getWant()** can be used to obtain **want** and its **parameters** field.
 
 3. Set the message event.
-   - **action**: **message**, which indicates a message event.
+   - **action**: **"message"**, which indicates a message event.
    - **params**: custom parameters of the message event. Set them as required. The value can be obtained from **message** in the widget lifecycle function **onEvent**.
 
 The following is an example:

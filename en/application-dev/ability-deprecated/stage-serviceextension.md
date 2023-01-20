@@ -52,7 +52,7 @@ OpenHarmony does not support creation of a Service Extension ability for third-p
         onRemoteRequest(code, data, reply, option) {
         }
     }
-
+    
     class ServiceExtAbility extends ServiceExtensionAbility {
         onCreate(want) {
             console.log('onCreate, want:' + want.abilityName);
