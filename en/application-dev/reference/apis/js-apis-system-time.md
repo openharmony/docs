@@ -1,4 +1,4 @@
-# @ohos.systemTime
+# @ohos.systemTime (System Time and Time Zone)
 
 The **systemTime** module provides system time and time zone features. You can use the APIs of this module to set and obtain the system time and time zone.
 
@@ -29,21 +29,29 @@ Sets the system time. This API uses an asynchronous callback to return the resul
 | time     | number                    | Yes  | Timestamp to set, in milliseconds.                        |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **Example**
 
 ```js
 // Set the system time to 2021-01-20 02:36:25.
 let time = 1611081385000;
 try {
-    systemTime.setTime(time, (error) => {
-        if (error) {
-            console.info(`Failed to setting time. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in setting time`);
-	});
+  systemTime.setTime(time, (error) => {
+    if (error) {
+      console.info(`Failed to setting time. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    }console.info(`Succeeded in setting time`);
+  });
 } catch(e) {
-    console.info(`Failed to set time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to set time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -69,19 +77,27 @@ Sets the system time. This API uses a promise to return the result.
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **Example**
 
 ```js
 // Set the system time to 2021-01-20 02:36:25.
 let time = 1611081385000;
 try {
-    systemTime.setTime(time).then(() => {
-    	console.info(`Succeeded in setting time.`);
-	}).catch((error) => {
-    	console.info(`Failed to setting time. message:${error.message}, code:${error.code}`);
-	});
+  systemTime.setTime(time).then(() => {
+    console.info(`Succeeded in setting time.`);
+  }).catch((error) => {
+    console.info(`Failed to setting time. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to set time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to set time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -101,22 +117,30 @@ Obtains the time elapsed since the Unix epoch. This API uses an asynchronous cal
 
 | Name  | Type      | Mandatory| Description                            |
 | -------- | -------------- | ---- | ------------------ |
-| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds (ns).<br>- **false**: in milliseconds (ms).|
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time elapsed since the Unix epoch.        |
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **Example**
 
 ```js
 try {
-    systemTime.getCurrentTime(true, (error, time) => {
-        if (error) {
-            console.info(`Failed to getting currentTime. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in getting currentTime : ${time}`);
-	});
+  systemTime.getCurrentTime(true, (error, time) => {
+    if (error) {
+      console.info(`Failed to getting currentTime. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting currentTime: ${time}`);
+  });
 } catch(e) {
-    console.info(`Failed to get currentTime. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -138,19 +162,27 @@ Obtains the time elapsed since the Unix epoch. This API uses an asynchronous cal
 | -------- | ----------- | ---- | ---------------------------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time elapsed since the Unix epoch.        |
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **Example**
 
 ```js
 try {
-    systemTime.getCurrentTime((error, time) => {
-        if (error) {
-            console.info(`Failed to getting currentTime. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in getting currentTime : ${time}`);
-	});
+  systemTime.getCurrentTime((error, time) => {
+    if (error) {
+      console.info(`Failed to getting currentTime. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting currentTime : ${time}`);
+  });
 } catch(e) {
-    console.info(`Failed to get currentTime. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -170,7 +202,7 @@ Obtains the time elapsed since the Unix epoch. This API uses a promise to return
 
 | Name| Type   | Mandatory| Description                    |
 | ------ | ------- | ---- | ------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds (ns).<br>- **false**: in milliseconds (ms).|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
 
 **Return value**
 
@@ -178,17 +210,25 @@ Obtains the time elapsed since the Unix epoch. This API uses a promise to return
 | --------------------- | --------------------------- |
 | Promise&lt;number&gt; | Promise used to return the time elapsed since the Unix epoch.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **Example**
 
 ```js
 try {
-    systemTime.getCurrentTime().then((time) => {
-    	console.info(`Succeeded in getting currentTime : ${time}`);
-	}).catch((error) => {
-    	console.info(`Failed to getting currentTime. message:${error.message}, code:${error.code}`);
-	});
+  systemTime.getCurrentTime().then((time) => {
+    console.info(`Succeeded in getting currentTime : ${time}`);
+  }).catch((error) => {
+    console.info(`Failed to getting currentTime. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to get currentTime. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -208,22 +248,30 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 | Name  | Type                       | Mandatory| Description  |
 | -------- | ---------- | ---- | -------------------------- |
-| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds (ns).<br>- **false**: in milliseconds (ms).|
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.|
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **Example**
 
 ```js
 try {
-    systemTime.getRealActiveTime(true, (error, time) => {
-        if (error) {
-            console.info(`Failed to getting real active time. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in getting real active time : ${time}`);
-	});
+  systemTime.getRealActiveTime(true, (error, time) => {
+    if (error) {
+      console.info(`Failed to getting real active time. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting real active time : ${time}`);
+  });
 } catch(e) {
-    console.info(`Failed to get real active time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -245,19 +293,27 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 | -------- | -------------- | ---- | --------------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **Example**
 
 ```js
 try {
-    systemTime.getRealActiveTime((error, time) => {
-        if (error) {
-            console.info(`Failed to getting real active time. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in getting real active time : ${time}`);
-	});
+  systemTime.getRealActiveTime((error, time) => {
+    if (error) {
+      console.info(`Failed to getting real active time. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting real active time : ${time}`);
+  });
 } catch(e) {
-    console.info(`Failed to get real active time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -277,7 +333,7 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 | Name| Type   | Mandatory| Description                             |
 | ------ | ------- | ---- | ----------------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds (ns).<br>- **false**: in milliseconds (ms).|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
 
 **Return value**
 
@@ -285,17 +341,25 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 | -------------- | -------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the time elapsed since system startup, excluding the deep sleep time.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **Example**
 
 ```js
 try {
-    systemTime.getRealActiveTime().then((time) => {
-    	console.info(`Succeeded in getting real active time : ${time}`);
-	}).catch((error) => {
-    	console.info(`Failed to getting real active time. message:${error.message}, code:${error.code}`);
-	});
+  systemTime.getRealActiveTime().then((time) => {
+    console.info(`Succeeded in getting real active time : ${time}`);
+  }).catch((error) => {
+    console.info(`Failed to getting real active time. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to get real active time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -315,22 +379,30 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 | Name  | Type                       | Mandatory| Description  |
 | -------- | --------------- | ---- | ------------------------------- |
-| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds (ns).<br>- **false**: in milliseconds (ms).|
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.  |
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
 
 **Example**
 
 ```js
 try {
-    systemTime.getRealTime(true, (error, time) => {
-        if (error) {
-            console.info(`Failed to getting real time. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in getting real time : ${time}`);
-	});
+  systemTime.getRealTime(true, (error, time) => {
+    if (error) {
+      console.info(`Failed to getting real time. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting real time : ${time}`);
+  });
 } catch(e) {
-    console.info(`Failed to get real time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -352,19 +424,27 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 | -------- | --------- | ---- | --------------------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.  |
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **Example**
 
 ```js
 try {
-    systemTime.getRealTime((error, time) => {
-        if (error) {
-            console.info(`Failed to getting real time. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in getting real time : ${time}`);
-	});
+  systemTime.getRealTime((error, time) => {
+    if (error) {
+      console.info(`Failed to getting real time. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in getting real time : ${time}`);
+  });
 } catch(e) {
-    console.info(`Failed to get real time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -384,7 +464,7 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 | Name| Type   | Mandatory| Description                              |
 | ------ | ------- | ---- | ------------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds (ns).<br>- **false**: in milliseconds (ms).|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
 
 **Return value**
 
@@ -392,17 +472,25 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 | --------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the time elapsed since system startup, including the deep sleep time.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **Example**
 
 ```js
 try {
-    systemTime.getRealTime().then((time) => {
-    	console.info(`Succeeded in getting real time : ${time}`);
-	}).catch((error) => {
-    	console.info(`Failed to getting real time. message:${error.message}, code:${error.code}`);
-	});
+  systemTime.getRealTime().then((time) => {
+    console.info(`Succeeded in getting real time : ${time}`);
+  }).catch((error) => {
+    console.info(`Failed to getting real time. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to get real time. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -423,20 +511,28 @@ Sets the system date. This API uses an asynchronous callback to return the resul
 | date     | Date                      | Yes  | Target date to set.                                |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **Example**
 
 ```js
 let date = new Date();
 try {
-    systemTime.setDate(date, (error) => {
-        if (error) {
-            console.info(`Failed to setting date. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in setting date.`);
-	});
+  systemTime.setDate(date, (error) => {
+    if (error) {
+      console.info(`Failed to setting date. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in setting date.`);
+  });
 } catch(e) {
-    console.info(`Failed to set date. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to set date. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -462,18 +558,26 @@ Sets the system date. This API uses a promise to return the result.
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **Example**
 
 ```js
 let date = new Date(); 
 try {
-    systemTime.setDate(date).then(() => {
-    	console.info(`Succeeded in setting date.`);
-	}).catch((error) => {
-    	console.info(`Failed to setting date. message:${error.message}, code:${error.code}`);
-	});
+  systemTime.setDate(date).then(() => {
+    console.info(`Succeeded in setting date.`);
+  }).catch((error) => {
+    console.info(`Failed to setting date. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to set date. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to set date. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -495,19 +599,27 @@ Obtains the current system date. This API uses an asynchronous callback to retur
 | -------- | -------------- | ---- | --------------------- |
 | callback | AsyncCallback&lt;Date&gt; | Yes  | Callback used to return the current system date.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **Example**
 
 ```js
 try {
-    systemTime.getDate((error, date) => {
-        if (error) {
-            console.info(`Failed to get date. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in get date : ${date}`);;
-	});
+  systemTime.getDate((error, date) => {
+    if (error) {
+      console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in get date : ${date}`);;
+  });
 } catch(e) {
-    console.info(`Failed to get date. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get date. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -529,17 +641,25 @@ Obtains the current system date. This API uses a promise to return the result.
 | ------------------- | ----------------------------------------- |
 | Promise&lt;Date&gt; | Promise used to return the current system date.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **Example**
 
 ```js
 try {
-    systemTime.getDate().then((date) => {
-    	console.info(`Succeeded in getting date : ${date}`);
-	}).catch((error) => {
-    	console.info(`Failed to getting date. message:${error.message}, code:${error.code}`);
-	});
+  systemTime.getDate().then((date) => {
+    console.info(`Succeeded in getting date : ${date}`);
+  }).catch((error) => {
+    console.info(`Failed to getting date. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to get date. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get date. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -560,19 +680,27 @@ Sets the system time zone. This API uses an asynchronous callback to return the 
 | timezone | string                    | Yes  | System time zone to set. For details, see [Supported System Time Zones](#supported-system-time-zones).       |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **Example**
 
 ```js
 try {
-    systemTime.setTimezone('Asia/Shanghai', (error) => {
-        if (error) {
-            console.info(`Failed to setting timezone. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in setting timezone.`);
-	});
+  systemTime.setTimezone('Asia/Shanghai', (error) => {
+    if (error) {
+      console.info(`Failed to setting timezone. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in setting timezone.`);
+  });
 } catch(e) {
-    console.info(`Failed to set timezone. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to set timezone. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -598,17 +726,25 @@ Sets the system time zone. This API uses a promise to return the result.
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **Example**
 
 ```js
 try {
-    systemTime.setTimezone('Asia/Shanghai').then(() => {
-    	console.info(`Succeeded in setting timezone.`);
-	}).catch((error) => {
-    	console.info(`Failed to setting timezone. message:${error.message}, code:${error.code}`);
-	});
+  systemTime.setTimezone('Asia/Shanghai').then(() => {
+    console.info(`Succeeded in setting timezone.`);
+  }).catch((error) => {
+    console.info(`Failed to setting timezone. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to set timezone. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to set timezone. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -630,19 +766,27 @@ Obtains the system time zone. This API uses an asynchronous callback to return t
 | -------- | --------- | ---- | ------------------------ |
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the system time zone. For details, see [Supported System Time Zones](#supported-system-time-zones).|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **Example**
 
 ```js
 try {
-    systemTime.getTimezone((error, data) => {
-        if (error) {
-            console.info(`Failed to get timezone. message:${error.message}, code:${error.code}`);
-            return;
-        }
-    	console.info(`Succeeded in get timezone : ${data}`);;
-	});
+  systemTime.getTimezone((error, data) => {
+    if (error) {
+      console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in get timezone : ${data}`);;
+  });
 } catch(e) {
-    console.info(`Failed to get timezone. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
@@ -664,17 +808,25 @@ Obtains the system time zone. This API uses a promise to return the result.
 | --------------------- | ------------------------------------- |
 | Promise&lt;string&gt; | Promise used to return the system time zone. For details, see [Supported System Time Zones](#supported-system-time-zones).|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](../errorcodes/errorcode-time.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **Example**
 
 ```js
 try {
-    systemTime.getTimezone().then((data) => {
-    	console.info(`Succeeded in getting timezone: ${data}`);
-	}).catch((error) => {
-    	console.info(`Failed to getting timezone. message:${error.message}, code:${error.code}`);
-	});
+  systemTime.getTimezone().then((data) => {
+    console.info(`Succeeded in getting timezone: ${data}`);
+  }).catch((error) => {
+    console.info(`Failed to getting timezone. message: ${error.message}, code: ${error.code}`);
+  });
 } catch(e) {
-    console.info(`Failed to get timezone. message:${e.message}, code:${e.code}`);
+  console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
 }
 ```
 
