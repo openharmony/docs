@@ -428,7 +428,7 @@ struct LineDashOffset {
           this.context.arc(100, 75, 50, 0, 6.28)
           this.context.setLineDash([10,20])
           this.context.lineDashOffset = 10.0
-          this.context.stroke()
+          this.context.stroke();
       })
     }
     .width('100%')
@@ -721,8 +721,8 @@ Draws an outlined rectangle on the canvas.
   @Entry
   @Component
   struct StrokeRect {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -802,8 +802,6 @@ Draws filled text on the canvas.
 | text     | string | Yes  | ''     | Text to draw.         |
 | x        | number | Yes  | 0      | X-coordinate of the lower left corner of the text.|
 | y        | number | Yes  | 0      | Y-coordinate of the lower left corner of the text.|
-| maxWidth | number | No  | -      | Maximum width allowed for the text.     |
-
 **Example**
 
   ```ts
@@ -1583,7 +1581,7 @@ struct Fill {
           region.lineTo(270, 90)
           region.closePath()
           // Fill path
-          this.context.fillStyle = 'green'
+          this.context.fillStyle = '#00ff00'
           this.context.fill(region, "evenodd")
         })
     }
@@ -2269,7 +2267,7 @@ struct CanvasGetLineDash {
           .onReady(() => {
             this.context.arc(100, 75, 50, 0, 6.28)
             this.context.setLineDash([10,20])
-            this.context.stroke()
+            this.context.stroke();
             let res = this.context.getLineDash()
           })
       }
@@ -2408,7 +2406,8 @@ Restores the saved drawing context.
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-
+    private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
+  
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -2417,7 +2416,7 @@ Restores the saved drawing context.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.save() // save the default state
-            this.context.fillStyle = "green"
+            this.context.fillStyle = "#00ff00"
             this.context.fillRect(20, 20, 100, 100)
             this.context.restore() // restore to the default state
             this.context.fillRect(150, 75, 100, 100)
@@ -2455,7 +2454,7 @@ Saves all states of the canvas in the stack. This API is usually called when the
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.save() // save the default state
-            this.context.fillStyle = "green"
+            this.context.fillStyle = "#00ff00"
             this.context.fillRect(20, 20, 100, 100)
             this.context.restore() // restore to the default state
             this.context.fillRect(150, 75, 100, 100)
@@ -2502,9 +2501,9 @@ Creates a linear gradient.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.context.createLinearGradient(50,0, 300,100)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.context.fillStyle = grad
             this.context.fillRect(0, 0, 500, 500)
           })
@@ -2553,9 +2552,9 @@ Creates a linear gradient.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.context.createRadialGradient(200,200,50, 200,200,200)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.context.fillStyle = grad
             this.context.fillRect(0, 0, 500, 500)
           })

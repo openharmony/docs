@@ -17,10 +17,10 @@ Adds a color stop for the **CanvasGradient** object based on the specified offse
 
 **Parameters**
 
-  | Name    | Type    | Mandatory  | Default Value      | Description                          |
-  | ------ | ------ | ---- | --------- | ---------------------------- |
-  | offset | number | Yes   | 0         | Relative position of the gradient stop along the gradient vector. The value ranges from 0 to 1.|
-  | color  | string | Yes   | '#ffffff' | Gradient color to set.                    |
+| Name    | Type    | Mandatory  | Default Value      | Description                          |
+| ------ | ------ | ---- | --------- | ---------------------------- |
+| offset | number | Yes   | 0         | Relative position of the gradient stop along the gradient vector. The value ranges from 0 to 1.|
+| color  | string | Yes   | '#ffffff' | Gradient color to set.                    |
 
 
 **Example**
@@ -41,9 +41,9 @@ struct Page45 {
         .backgroundColor('#ffff00')
         .onReady(() => {
           var grad = this.context.createLinearGradient(50, 0, 300, 100)
-          grad.addColorStop(0.0, 'red')
-          grad.addColorStop(0.5, 'white')
-          grad.addColorStop(1.0, 'green')
+          grad.addColorStop(0.0, '#ff0000')
+          grad.addColorStop(0.5, '#ffffff')
+          grad.addColorStop(1.0, '#00ff00')
           this.context.fillStyle = grad
           this.context.fillRect(0, 0, 500, 500)
         })

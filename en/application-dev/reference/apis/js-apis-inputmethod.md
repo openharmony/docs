@@ -13,7 +13,7 @@ The **inputMethod** module provides an input method framework, which can be used
 import inputMethod from '@ohos.inputmethod';
 ```
 
-## Constants
+## Constants<sup>8+</sup>
 
 Provides the constants.
 
@@ -23,7 +23,7 @@ Provides the constants.
 | -------- | -------- | -------- | -------- |
 | MAX_TYPE_NUM | number | 128 | Maximum number of supported input methods.|
 
-## InputMethodProperty
+## InputMethodProperty<sup>8+</sup>
 
 Describes the input method application attributes.
 
@@ -56,7 +56,7 @@ Obtains an **[InputMethodController](#inputmethodcontroller)** instance.
 let inputMethodController = inputMethod.getInputMethodController();
 ```
 
-## inputMethod.getInputMethodSetting
+## inputMethod.getInputMethodSetting<sup>8+</sup>
 
 getInputMethodSetting(): InputMethodSetting
 
@@ -136,7 +136,7 @@ inputMethodController.stopInput().then((result) => {
 })
 ```
 
-## InputMethodSetting
+## InputMethodSetting<sup>8+</sup>
 
 In the following API examples, you must first use [getInputMethodSetting](#inputmethodgetinputmethodsetting) to obtain an **InputMethodSetting** instance, and then call the APIs using the obtained instance.
 
@@ -152,7 +152,7 @@ Obtains a list of installed input methods. This API uses an asynchronous callbac
 
 | Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty)>&gt; | Yes  | Callback used to return the list of installed input methods.|
+| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | Yes  | Callback used to return the list of installed input methods.|
 
 **Example**
 
@@ -166,7 +166,7 @@ inputMethodSetting.listInputMethod((err, data) => {
  });
 ```
 
-### listInputMethod
+### listInputMethod<sup>8+</sup>
 
 listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
@@ -190,7 +190,7 @@ inputMethodSetting.listInputMethod().then((data) => {
 })
 ```
 
-### displayOptionalInputMethod
+### displayOptionalInputMethod<sup>8+</sup>
 
 displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
@@ -216,7 +216,7 @@ inputMethodSetting.displayOptionalInputMethod((err) => {
 });
 ```
 
-### displayOptionalInputMethod
+### displayOptionalInputMethod<sup>8+</sup>
 
 displayOptionalInputMethod(): Promise&lt;void&gt;
 
