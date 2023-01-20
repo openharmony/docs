@@ -58,7 +58,7 @@ For details about how to use DevEco Studio to start the test framework, see [Ope
 
 ## Introduction to AbilityMonitor
 
-**AbilityMonitor** is provided by the test framework for binding to and listening for abilities. You can use **AbilityMonitor** to bind to an **Ability** instance and add **AbilityMonitor** to the listening list. When **AbilityMonitor** is bound to an ability, the creation and lifecycle changes of the ability will trigger the related callback in **AbilityMonitor**. You can test and verify the ability in these callbacks. For details, see [AbilityMonitor](../reference/apis/js-apis-inner-application-abilityMonitor.md).
+**AbilityMonitor** is provided by the test framework for binding to and listening for abilities. You can use **AbilityMonitor** to bind to an **Ability** instance and add **AbilityMonitor** to the listening list. When **AbilityMonitor** is bound to an ability, the creation and lifecycle changes of the ability will trigger the related callback in **AbilityMonitor**. You can test and verify the ability in these callbacks. For details, see [AbilityMonitor](../reference/apis/js-apis-application-abilityMonitor.md).
 
 **Example**
 

@@ -127,7 +127,7 @@ The code snippets provided below are all from [Sample](https://gitee.com/openhar
             if (needGrantPermission) {
                 Logger.info("app permission needGrantPermission")
                 try {
-                    await this.context.requestPermissionsFromUser(permissions)
+                    await accessManger.requestPermissionsFromUser(this.context, permissions)
                 } catch (err) {
                     Logger.error(`app permission ${JSON.stringify(err)}`)
                 }
@@ -206,8 +206,6 @@ The code snippets provided below are all from [Sample](https://gitee.com/openhar
     }
    ```
 For a singleton ability, use **onNewWant()** to achieve the same implementation.
-
-
 
 ### Data Continuation
 
@@ -309,5 +307,3 @@ In the ability continuation scenario, the distributed data object is used to syn
 ### Best Practice
 
 For better user experience, you are advised to use the **wantParam** parameter to transmit data smaller than 100 KB and use distributed objects to transmit data larger than 100 KB.
-
- <!--no_check--> 
