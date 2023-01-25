@@ -134,8 +134,7 @@
    ```typescript
    import UIAbility from '@ohos.app.ability.UIAbility';
    import window from '@ohos.window';
-   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-   import { Permissions } from '@ohos.abilityAccessCtrl';
+   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
    
    export default class EntryAbility extends UIAbility {
        // ...
@@ -165,8 +164,7 @@
    
    在UI界面中向用户申请授权。
    ```typescript
-   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-   import { Permissions } from '@ohos.abilityAccessCtrl';
+   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
    import common from '@ohos.app.ability.common';
    
    @Entry
