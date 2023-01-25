@@ -1,5 +1,4 @@
 # WLAN
-
 The **WLAN** module provides basic wireless local area network (WLAN) functions, peer-to-peer (P2P) functions, and WLAN message notification services. It allows applications to communicate with other devices over WLAN.
 
 > **NOTE**
@@ -1038,7 +1037,7 @@ Removes the specified network configuration.
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-| id | number | Yes| ID of the network configuration to remove.|
+  | id | number | Yes| ID of the network configuration to remove.|
 
 **Return value**
 
@@ -1788,7 +1787,7 @@ Unregisters the WLAN state change events.
   ```
 
 
-## wifi.on('wifiConnectionChange')<sup>7+</sup>
+## wifi.on('wifiConnectionChange')<sup>9+</sup>
 
 on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
 

@@ -1,4 +1,4 @@
-# @ohos.account.osAccount
+# @ohos.account.osAccount (OS Account Management)
 
 The **osAccount** module provides basic capabilities for managing OS accounts, including adding, deleting, querying, setting, subscribing to, and enabling an OS account.
 
@@ -155,7 +155,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
 | Name  | Type                        | Mandatory| Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -192,7 +192,7 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
 
 | Type                  | Description                                                       |
 | :--------------------- | :--------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -483,7 +483,7 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
 
 | Name  | Type                        | Mandatory| Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If true is returned, the current account has been verified. If false is returned, the current account has not been verified.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -1690,7 +1690,7 @@ Creates an OS account and associates it with the specified domain account. This 
 
 | Type                                          | Description                                   |
 | ---------------------------------------------- | -------------------------------------- |
-| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the OS account created.|
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the information about the created OS account.|
 
 **Error codes**
 
@@ -2709,6 +2709,7 @@ Obtains the constraint source information of an OS account. This API uses a prom
     console.info('queryOsAccountConstraintSourceType exception:' + JSON.stringify(e));
   }
   ```
+
 ### isMultiOsAccountEnable<sup>(deprecated)</sup>
 
 isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
@@ -2725,7 +2726,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
 | Name  | Type                        | Mandatory| Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
 
 **Example**
 
@@ -2756,7 +2757,7 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
 
 | Type                  | Description                                                      |
 | :--------------------- | :--------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
 
 **Example**
 
@@ -3694,7 +3695,7 @@ Obtains the OS account ID based on the SN. This API uses an asynchronous callbac
 
 getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 
-Obtains the OS account ID based on the SN. This API uses a promise to return the result.
+Obtains the OS account ID based on the serial number. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -4360,7 +4361,7 @@ Register a credential inputer.
   let authType = account_osAccount.AuthType.DOMAIN;
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
-    InputerMgr.registerInputer(authType, {
+    inputerMgr.registerInputer(authType, {
         onGetData: (authSubType, callback) => {
           callback.onSetData(authSubType, password);
         }

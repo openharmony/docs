@@ -263,7 +263,7 @@ Represents the WLAN configuration.
 
 ## IpType<sup>7+</sup>
 
-Enumerate the IP address types.
+Enumerates the IP address types.
 
 **System API**: This is a system API.
 
