@@ -1,25 +1,26 @@
 # User Authentication Overview
 
-OpenHarmony provides biometric recognition that can be used for identity authentication in device unlocking, application login, and payment.
+## UserAuth Module
 
-OpenHarmony provides both 2D and 3D facial recognition. You can provide either or both of them on your device based on the hardware and technology applied on the device. 3D facial recognition is superior to 2D facial recognition in terms of recognition rate and anti-counterfeiting capability. However, you can use 3D facial recognition only if your device supports capabilities such as 3D structured light and 3D Time of Flight \(TOF\).
+The **UserAuth** module provides user authentication capabilities. You can use the APIs provided by this module to authenticate users in scenarios, such as device unlocking, payment, and application logins.
+
+Currently, user authentication comes with facial recognition and fingerprint recognition capabilities. The specific capabilities supported by a device vary depending on the hardware and technology implementation.
 
 ## Basic Concepts
 
-Biometric recognition \(also known as biometric authentication\) uses optical, acoustical, and biological sensors, as well as the biological statistics mechanism to identify individuals.
+- Facial recognition is a biometric recognition technology that identifies individuals based on their facial characteristics. A camera is used to collect images or video streams that contain human faces, and automatically detect, track, and recognize the human faces.
 
-Facial recognition is a biometric recognition technology that identifies individuals based on facial characteristics. A camera is used to collect images or video streams that contain human faces, and automatically detect, track, and recognize the human faces.
+- Fingerprint recognition is a biometric recognition technology that identifies individuals based on fingerprint ridge patterns. When the user places their finger against the fingerprint sensor, the sensor captures the fingerprint image of the user, and transmits it to the fingerprint recognition module for processing, which then compares the fingerprint image with the fingerprint information pre-registered by the user to identify the user identity.
 
 ## Working Principles
 
-Facial recognition establishes a secure channel between a camera and a trusted execution environment \(TEE\). Through this channel, face image data is transmitted to the TEE. This protects against any attack from the rich execution environment \(REE\) as the face image data cannot be obtained from the REE. The face image collection, characteristic extraction, alive human body detection, and characteristic comparison are all completed in the TEE. The TEE implements security isolation based on the trust zone. The external face framework only initiates face authentication and processes authentication results. It does not process the human face data.
+During facial or fingerprint recognition, the feature collecting device transmits the collected biometrics information to the Trusted Execution Environment (TEE) directly through a secure channel. This security mechanism prevents malware from attacking the Rich Execution Environment (REE). Processing of the biometrics information, from alive human body detection to characteristic extraction, storage, and comparison, is all done in the TEE, where security isolation is implemented based on the trust zone. The service framework that provides APIs only deals with authentication requests and authentication results. It does not process the biometrics information.
 
-Facial characteristics are stored in the TEE, which uses strong cryptographic algorithms to encrypt and protect the integrity of facial characteristics. The collected and stored facial characteristics will not be transferred out of the TEE without user authorization. This ensures that system or third-party applications cannot obtain facial characteristics, or send or back them up to any external storage medium.
+Biometrics information is stored in trust zones in a TEE, which uses strong cryptographic algorithms to encrypt and protect the integrity of the information. The collected and stored biometrics information will not be transferred out of the TEE without user authorization. That is, no application can obtain the biometrics information or send it to any external storage medium without user authorization.
 
 ## Constraints
 
--   OpenHarmony only supports facial recognition and local authentication, and does not support an authentication UI.
--   To use biometric recognition, a device must have a camera with a face image pixel greater than 100x100.
--   The device must have a TEE, where encrypted facial characteristics are stored.
--   Facial recognition may not work for people with similar looks and children whose facial features keep changing. If you are concerned about this, consider using other authentication modes.
-
+- Only facial and fingerprint recognition is currently available and can only be executed on a local device. Moreover, no authentication UI is provided.
+- To implement user authentication, a device must have a component for collecting the biometrics information, and the face image must be greater than 100 x 100 pixels.
+- The device must have a TEE, where encrypted biometrics information is stored.
+- Facial recognition may not work for people with similar looks and children whose facial characteristics keep changing. If you are concerned about this, consider using other authentication modes.
