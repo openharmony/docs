@@ -49,7 +49,7 @@ let mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 参数类型    | 必填   | 说明    |
+| 名称      | 类型    | 必填   | 说明    |
 | ------- | ------- | ---- | ----- |
 | matches | boolean | 是    | 匹配结果。 |
 
@@ -61,7 +61,7 @@ let mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 参数类型    | 必填   | 说明                |
+| 名称      | 类型    | 必填   | 说明                |
 | ------- | ------- | ---- | ----------------- |
 | media   | string  | 否    | 序列化媒体查询条件，该参数为只读。 |
 | matches | boolean | 是    | 匹配结果。             |
