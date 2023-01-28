@@ -76,7 +76,7 @@ Allows an application to read telephony information.
 
 ## ohos.permission.REQUIRE_FORM
 
-Allows an application to obtain widgets.
+Allows an application to obtain the Ability Form.
 
 **Permission level**: system_basic
 
@@ -166,7 +166,7 @@ Allows an application to set the system time zone.
 
 ## ohos.permission.DOWNLOAD_SESSION_MANAGER
 
-Allows an application to manage download sessions.
+Allows an application to manage the download sessions.
 
 **Permission level**: system_core
 
@@ -436,7 +436,7 @@ Allows an application to obtain the sensitive permissions that have been granted
 
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
-Allows an application to set the attributes of applications  of other users.
+Allows an application to set attributes for the applications of other users.
 
 **Permission level**: system_core
 
@@ -546,7 +546,7 @@ Allows an application to start Feature abilities in the background.
 
 ## ohos.permission.BUNDLE_ACTIVE_INFO
 
-Allows an application to obtain how long other applications  have been running in the foreground or background.
+Allows an application to obtain how long other applications have been running in the foreground or background.
 
 **Permission level**: system_basic
 
@@ -606,7 +606,7 @@ Allows an application to use agent-powered reminders.
 
 ## ohos.permission.CONTROL_TASK_SYNC_ANIMATOR
 
-Allows applications  to use sync task animations.
+Allows an application to use sync task animations.
 
 **Permission level**: system_core
 
@@ -616,7 +616,7 @@ Allows applications  to use sync task animations.
 
 ## ohos.permission.INPUT_MONITORING
 
-Allows an application to listen for input events. Only the system signed applications  can apply for this permission.
+Allows an application to listen for input events. Only the system signed applications can apply for this permission.
 
 **Permission level**: system_core
 
@@ -924,6 +924,16 @@ Allows the device administrator application to obtain device information.
 
 **Enable ACL**: TRUE
 
+## ohos.permission.ENTERPRISE_RESET_DEVICE
+
+Allows the device administrator to restore factory settings of the device.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: TRUE
+
 ## ohos.permission.NFC_TAG
 
 Allows an application to read NFC tag information.
@@ -1156,7 +1166,7 @@ Allows an application to obtain the approximate location information of a device
 
 ## ohos.permission.MEDIA_LOCATION
 
-Allow an application to access geographical locations in the user's media file.
+Allows an application to access geographical locations in the user's media file.
 
 **Permission level**: normal
 
@@ -1603,3 +1613,13 @@ Allows an application to publish system common events.
 **Authorization mode**: system_grant
 
 **Enable ACL**: TRUE
+
+## ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
+Allows an application to call the system API of the lock screen service.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE

@@ -38,6 +38,7 @@ Obtains a **UserFileManager** instance. This instance can be used to access and 
 **Example**
 
 ```ts
+// The userFileManager instance obtained is a global object. It is used by default in subsequent operations. If the code snippet is not added, an error will be reported indicating that mgr is not defined.
 const context = getContext(this);
 let mgr = userFileManager.getUserFileMgr(context);
 ```
@@ -127,7 +128,7 @@ async function example() {
     predicates: predicates
   };
   try {
-    var fetchResult = await mgr.getPhotoAssets(fetchOptions);
+    let fetchResult = await mgr.getPhotoAssets(fetchOptions);
     if (fetchResult != undefined) {
       console.info('fetchResult success');
       let fileAsset = await fetchResult.getFirstObject();
@@ -410,7 +411,7 @@ Obtains the system album. This API uses a promise to return the result.
 async function example() {
   console.info('getPrivateAlbumDemo');
   try {
-    var fetchResult = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
+    let fetchResult = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
     let trashAlbum = await fetchResult.getFirstObject();
     console.info('first album.albumName = ' + trashAlbum.albumName);
   } catch (err) {

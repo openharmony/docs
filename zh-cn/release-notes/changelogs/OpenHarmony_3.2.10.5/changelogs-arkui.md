@@ -43,8 +43,8 @@
 
 2. @State、@Provide、 @Link和@Consume四种状态变量的数据类型声明只能由简单数据类型或引用数据类型的其中一种构成。
 
-    类型定义中的Length、Resource、ResourceColor三个类型是简单数据类型或引用数据类型的组合，所以不能被以上四种状态装饰器变量使用。
-    Length、Resource、ResourceColor的定义请看文档[arkui-ts类型定义](../../../application-dev/reference/arkui-ts/ts-types.md)。
+    类型定义中的Length、ResourceStr、ResourceColor三个类型是简单数据类型或引用数据类型的组合，所以不能被以上四种状态装饰器变量使用。
+    Length、ResourceStr、ResourceColor的定义请看文档[arkui-ts类型定义](../../../application-dev/reference/arkui-ts/ts-types.md)。
 
     示例：
 
