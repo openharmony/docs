@@ -584,7 +584,7 @@ let ret = usb.usbFunctionsToString(funcs);
 
 ## usb.setCurrentFunctions
 
-setCurrentFunctions(funcs: FunctionType): Promise\<boolean\>
+setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 
 Sets the current USB function list in Device mode.
 
@@ -602,13 +602,17 @@ Sets the current USB function list in Device mode.
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
 ```js
 let funcs = HDC;
-let ret = usb.setCurrentFunctions(funcs);
+usb.setCurrentFunctions(funcs).then(() => {
+    console.info('usb setCurrentFunctions successfully.');
+}).catch(err => {
+    console.error('usb setCurrentFunctions failed: ' + err.code + ' message: ' + err.message);
+});
 ```
 
 ## usb.getCurrentFunctions
@@ -685,7 +689,7 @@ let ret = usb.getSupportedModes(0);
 
 ## usb.setPortRoles
 
-setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<boolean\>
+setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<void\>
 
 Sets the role types supported by a specified port, which can be **powerRole** (for charging) and **dataRole** (for data transfer).
 
@@ -705,12 +709,17 @@ Sets the role types supported by a specified port, which can be **powerRole** (f
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+| Promise\<void\> | Promise used to return the result. |
 
 **Example**
 
 ```js
-let ret = usb.getSupportedModes(0);
+let portId = 1;
+usb.usb.setPortRoles(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
+    console.info('usb setPortRoles successfully.');
+}).catch(err => {
+    console.error('usb setPortRoles failed: ' + err.code + ' message: ' + err.message);
+});
 ```
 
 ## USBEndpoint
