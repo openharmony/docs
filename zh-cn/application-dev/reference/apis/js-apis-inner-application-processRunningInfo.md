@@ -19,7 +19,7 @@
 
 ## 使用说明
 
-通过appManager中[getProcessRunningInfos](js-apis-application-appManager.md##appManager.getProcessRunningInfos<sup>(deprecated)</sup>)方法来获取。
+通过appManager中[getProcessRunningInfos](js-apis-application-appManager.md#appmanagergetprocessrunninginfosdeprecated)方法来获取。
 
 **示例：**
 ```ts
