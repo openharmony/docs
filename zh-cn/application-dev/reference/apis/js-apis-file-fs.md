@@ -46,7 +46,7 @@ FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.m
 
 stat(file: string|number): Promise&lt;Stat&gt;
 
-获取文件信息，使用Promise异步回调。
+获取文件详细属性信息，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -66,9 +66,9 @@ stat(file: string|number): Promise&lt;Stat&gt;
 
   ```js
   let filePath = pathDir + "test.txt";
-  fs.stat(filePath).then(function (stat) {
+  fs.stat(filePath).then((stat) => {
       console.info("get file info succeed, the size of file is " + stat.size);
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -77,7 +77,7 @@ stat(file: string|number): Promise&lt;Stat&gt;
 
 stat(file: string|number, callback: AsyncCallback&lt;Stat&gt;): void
 
-获取文件信息，使用callback异步回调。
+获取文件详细属性信息，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -91,7 +91,7 @@ stat(file: string|number, callback: AsyncCallback&lt;Stat&gt;): void
 **示例：**
 
   ```js
-  fs.stat(pathDir, function (err, stat) {
+  fs.stat(pathDir, (err, stat) => {
     if (err) {
       console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -104,7 +104,7 @@ stat(file: string|number, callback: AsyncCallback&lt;Stat&gt;): void
 
 statSync(file: string|number): Stat
 
-以同步方法获取文件的信息。
+以同步方法获取文件详细属性信息。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -152,11 +152,11 @@ access(path: string): Promise&lt;boolean&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fs.access(filePath).then(function (res) {
+  fs.access(filePath).then((res) => {
     if (res) {
       console.info("file exists");
     }
-  }).catch(function (err) {
+  }).catch((err) => {
     console.info("access failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -181,7 +181,7 @@ access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fs.access(filePath, function (err, res) {
+  fs.access(filePath, (err, res) => {
     if (err) {
       console.info("access failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -246,10 +246,10 @@ close(file: File|number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.close(file).then(function () {
+  fs.close(file).then(() => {
       console.info("close file succeed");
       fs.closeSync(file);
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -274,7 +274,7 @@ close(file: File|number, callback: AsyncCallback&lt;void&gt;): void
   ```js
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.close(file, function (err) {
+  fs.close(file, (err) => {
     if (err) {
       console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -305,7 +305,6 @@ closeSync(file: File|number): void
   fs.closeSync(file);
   ```
 
-
 ## fs.copyFile
 
 copyFile(src: string|number, dest: string|number, mode?: number): Promise&lt;void&gt;
@@ -333,9 +332,9 @@ copyFile(src: string|number, dest: string|number, mode?: number): Promise&lt;voi
   ```js
   let srcPath = pathDir + "srcDir/test.txt";
   let dstPath = pathDir + "dstDir/test.txt";
-  fs.copyFile(srcPath, dstPath).then(function () {
+  fs.copyFile(srcPath, dstPath).then(() => {
       console.info("copy file succeed");
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -362,7 +361,7 @@ copyFile(src: string|number, dest: string|number, mode?: number, callback: Async
   ```js
   let srcPath = pathDir + "srcDir/test.txt";
   let dstPath = pathDir + "dstDir/test.txt";
-  fs.copyFile(srcPath, dstPath, function (err) {
+  fs.copyFile(srcPath, dstPath, (err) => {
     if (err) {
       console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -421,9 +420,9 @@ mkdir(path: string): Promise&lt;void&gt;
 
   ```js
   let dirPath = pathDir + '/testDir';
-  fs.mkdir(dirPath).then(function () {
+  fs.mkdir(dirPath).then(() => {
       console.info("mkdir succeed");
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -448,7 +447,7 @@ mkdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let dirPath = pathDir + '/testDir';
-  fs.mkdir(dirPath, function (err) {
+  fs.mkdir(dirPath, (err) => {
     if (err) {
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -505,9 +504,9 @@ open(path: string, flags?: number): Promise&lt;File&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then(function (file) {
+  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then((file) => {
       console.info("file fd: " + file.fd);
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -532,7 +531,7 @@ open(path: string, flags?: number, callback: AsyncCallback&lt;File&gt;): void
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, function (err, file) {
+  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err, file) => {
     if (err) {
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -599,11 +598,11 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
   let buf = new ArrayBuffer(4096);
-  fs.read(file.fd, buf).then(function (readLen) {
+  fs.read(file.fd, buf).then((readLen) => {
       console.info("read file data succeed");
       console.info(String.fromCharCode.apply(null, new Uint8Array(readLen)));
       fs.closeSync(file);
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -631,7 +630,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
   let buf = new ArrayBuffer(4096);
-  fs.read(file.fd, buf, function (err, readLen) {
+  fs.read(file.fd, buf, (err, readLen) => {
     if (err) {
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -700,9 +699,9 @@ rmdir(path: string): Promise&lt;void&gt;
 
   ```js
   let dirPath = pathDir + '/testDir';
-  fs.rmdir(dirPath).then(function () {
+  fs.rmdir(dirPath).then(() => {
       console.info("rmdir succeed");
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -727,7 +726,7 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let dirPath = pathDir + '/testDir';
-  fs.rmdir(dirPath, function (err) {
+  fs.rmdir(dirPath, (err) => {
     if (err) {
       console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -783,9 +782,9 @@ unlink(path: string): Promise&lt;void&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fs.unlink(filePath).then(function () {
+  fs.unlink(filePath).then(() => {
       console.info("remove file succeed");
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("remove file failed with error message: " + err.message + ", error code: " + err.codeor);
   });
   ```
@@ -810,7 +809,7 @@ unlink(path: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fs.unlink(filePath, function (err) {
+  fs.unlink(filePath, (err) => {
     if (err) {
       console.info("remove file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -869,10 +868,10 @@ write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; lengt
   ```js
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  fs.write(file.fd, "hello, world").then(function (writeLen) {
+  fs.write(file.fd, "hello, world").then((writeLen) => {
     console.info("write data to file succeed and size is:" + writeLen);
     fs.closeSync(file);
-  }).catch(function (err) {
+  }).catch((err) => {
     console.info("write data to file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -900,7 +899,7 @@ write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; lengt
   ```js
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  fs.write(file.fd, "hello, world", function (err, writeLen) {
+  fs.write(file.fd, "hello, world", (err, writeLen) => {
     if (err) {
       console.info("write failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -969,9 +968,9 @@ truncate(file: string|number, len?: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let len = 5;
-  fs.truncate(filePath, len).then(function () {
+  fs.truncate(filePath, len).then(() => {
       console.info("truncate file succeed");
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("truncate file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -998,7 +997,7 @@ truncate(file: string|number, len?: number, callback: AsyncCallback&lt;void&gt;)
   ```js
   let filePath = pathDir + "/test.txt";
   let len = 5;
-  fs.truncate(filePath, len, function (err) {
+  fs.truncate(filePath, len, (err) => {
     if (err) {
       console.info("truncate failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1057,9 +1056,9 @@ readText(filePath: string, options?: { offset?: number; length?: number; encodin
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fs.readText(filePath).then(function (str) {
+  fs.readText(filePath).then((str) => {
       console.info("readText succeed:" + str);
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("readText failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -1085,7 +1084,7 @@ readText(filePath: string, options?: { offset?: number; length?: number; encodin
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fs.readText(filePath, { offset: 1, encoding: 'UTF-8' }, function (err, str) {
+  fs.readText(filePath, { offset: 1, encoding: 'UTF-8' }, (err, str) => {
     if (err) {
       console.info("read text failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1148,9 +1147,9 @@ lstat(path: string): Promise&lt;Stat&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fs.lstat(filePath).then(function (stat) {
+  fs.lstat(filePath).then((stat) => {
       console.info("get link status succeed, the size of file is" + stat.size);
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("get link status failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -1175,7 +1174,7 @@ lstat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fs.lstat(filePath, function (err, stat) {
+  fs.lstat(filePath, (err, stat) => {
       if (err) {
         console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
       } else {
@@ -1237,9 +1236,9 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
   ```js
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/new.txt';
-  fs.rename(srcFile, dstFile).then(function () {
+  fs.rename(srcFile, dstFile).then(() => {
       console.info("rename succeed");
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -1265,7 +1264,7 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
   ```js
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/new.txt';
-  fs.rename(srcFile, dstFile, function (err) {
+  fs.rename(srcFile, dstFile, (err) => {
     if (err) {
       console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1323,9 +1322,9 @@ fsync(fd: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fsync(file.fd).then(function () {
+  fs.fsync(file.fd).then(() => {
       console.info("sync data succeed");
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -1351,7 +1350,7 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
   ```js
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fsync(file.fd, function (err) {
+  fs.fsync(file.fd, (err) => {
     if (err) {
       console.info("fsync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1411,10 +1410,10 @@ fdatasync(fd: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdatasync(file.fd).then(function (err) {
+  fs.fdatasync(file.fd).then((err) => {
     console.info("sync data succeed");
     fs.closeSync(file);
-  }).catch(function (err) {
+  }).catch((err) => {
     console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -1440,7 +1439,7 @@ fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
   ```js
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdatasync (file.fd, function (err) {
+  fs.fdatasync (file.fd, (err) => {
     if (err) {
       console.info("fdatasync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1500,9 +1499,9 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
   ```js
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/test';
-  fs.symlink(srcFile, dstFile).then(function () {
+  fs.symlink(srcFile, dstFile).then(() => {
       console.info("symlink succeed");
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -1528,7 +1527,7 @@ symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): v
   ```js
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/test';
-  fs.symlink(srcFile, dstFile, function (err) {
+  fs.symlink(srcFile, dstFile, (err) => {
     if (err) {
       console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1583,9 +1582,9 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  fs.mkdtemp(pathDir + "/XXXXXX").then(function (pathDir) {
+  fs.mkdtemp(pathDir + "/XXXXXX").then((pathDir) => {
       console.info("mkdtemp succeed:" + pathDir);
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -1609,7 +1608,7 @@ mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-  fs.mkdtemp(pathDir + "/XXXXXX", function (err, res) {
+  fs.mkdtemp(pathDir + "/XXXXXX", (err, res) => {
     if (err) {
       console.info("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1669,9 +1668,9 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fs.createStream(filePath, "r+").then(function (stream) {
+  fs.createStream(filePath, "r+").then((stream) => {
       console.info("createStream succeed");
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("createStream failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -1697,7 +1696,7 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fs.createStream(filePath, "r+", function (err, stream) {
+  fs.createStream(filePath, "r+", (err, stream) => {
     if (err) {
       console.info("create stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1761,10 +1760,10 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdopenStream(file.fd, "r+").then(function (stream) {
+  fs.fdopenStream(file.fd, "r+").then((stream) => {
       console.info("openStream succeed");
       fs.closeSync(file);
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("openStream failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -1791,7 +1790,7 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
   ```js
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-  fs.fdopenStream(file.fd, "r+", function (err, stream) {
+  fs.fdopenStream(file.fd, "r+", (err, stream) => {
     if (err) {
       console.info("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2027,9 +2026,9 @@ close(): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let ss= fs.createStreamSync(filePath, "r+");
-  ss.close().then(function () {
+  ss.close().then(() => {
       console.info("close fileStream succeed");
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("close fileStream  failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -2054,7 +2053,7 @@ close(callback: AsyncCallback&lt;void&gt;): void
   ```js
   let filePath = pathDir + "/test.txt";
   let ss= fs.createStreamSync(filePath, "r+");
-  ss.close(function (err) {
+  ss.close((err) => {
     if (err) {
       console.info("close stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2098,9 +2097,9 @@ flush(): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let ss= fs.createStreamSync(filePath, "r+");
-  ss.flush().then(function () {
+  ss.flush().then(() => {
       console.info("flush succeed");
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("flush failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -2125,7 +2124,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
   ```js
   let filePath = pathDir + "/test.txt";
   let ss= fs.createStreamSync(filePath, "r+");
-  ss.flush(function (err) {
+  ss.flush((err) => {
     if (err) {
       console.info("flush stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2176,9 +2175,9 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
   ```js
   let filePath = pathDir + "/test.txt";
   let ss= fs.createStreamSync(filePath, "r+");
-  ss.write("hello, world",{ offset: 5, length: 5, encoding: 'utf-8' }).then(function (number) {
+  ss.write("hello, world",{ offset: 5, length: 5, encoding: 'utf-8' }).then((number) => {
       console.info("write succeed and size is:" + number);
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("write failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -2205,7 +2204,7 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
   ```js
   let filePath = pathDir + "/test.txt";
   let ss= fs.createStreamSync(filePath, "r+");
-  ss.write("hello, world", { offset: 5, length: 5, encoding :'utf-8'}, function (err, bytesWritten) {
+  ss.write("hello, world", { offset: 5, length: 5, encoding :'utf-8'}, (err, bytesWritten) => {
     if (err) {
       console.info("write stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2272,10 +2271,10 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
   let filePath = pathDir + "/test.txt";
   let ss = fs.createStreamSync(filePath, "r+");
   let buf = new ArrayBuffer(4096);
-  ss.read(buf, {offset: 5, length: 5}).then(function (readLen) {
+  ss.read(buf, {offset: 5, length: 5}).then((readLen) => {
     console.info("read data succeed");
     console.log(String.fromCharCode.apply(null, new Uint8Array(buf)));
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -2303,7 +2302,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
   let filePath = pathDir + "/test.txt";
   let ss = fs.createStreamSync(filePath, "r+");
   let buf = new ArrayBuffer(4096)
-  ss.read(buf, {offset: 5, length: 5},function (err, readLen) {
+  ss.read(buf, {offset: 5, length: 5}, (err, readLen) => {
     if (err) {
       console.info("read stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
