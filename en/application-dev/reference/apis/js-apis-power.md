@@ -87,7 +87,7 @@ try {
 
 isActive(): boolean
 
-Checks whether the current device is active. In the active state, the screen is on if the device has a screen and the device is not in sleep state if the device does not have a screen.
+Checks whether the current device is active.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
@@ -292,6 +292,7 @@ power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
 
 rebootDevice(reason: string): void
 
+> NOTE<br>
 > This API is deprecated since API version 9. You are advised to use [power.reboot](#powerreboot9) instead.
 
 Reboots the system.
@@ -316,6 +317,7 @@ power.rebootDevice('reboot_test');
 
 isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
 
+> NOTE<br>
 > This API is deprecated since API version 9. You are advised to use [power.isActive](#powerisactive9) instead.
 
 Checks the screen status of the current device. This API uses an asynchronous callback to return the result.
@@ -344,6 +346,7 @@ power.isScreenOn((err, data) => {
 
 isScreenOn(): Promise&lt;boolean&gt;
 
+> NOTE<br>
 > This API is deprecated since API version 9. You are advised to use [power.isActive](#powerisactive9) instead.
 
 Checks the screen status of the current device. This API uses a promise to return the result.

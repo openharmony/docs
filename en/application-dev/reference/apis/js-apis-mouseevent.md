@@ -13,6 +13,8 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 ## Action
 
+Defines a mouse action.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name       | Value| Description                |
@@ -27,6 +29,8 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 
 ## Button
+
+Enumerates mouse actions.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -43,6 +47,8 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 ## Axis
 
+Enumerates mouse axis types.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name               | Value    | Description   |
@@ -54,6 +60,8 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 ## AxisValue
 
+Defines a mouse axis type and value.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name   | Type  | Readable  | Writable  | Description  |
@@ -63,6 +71,8 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 
 ## MouseEvent
+
+Defines a mouse event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 

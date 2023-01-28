@@ -14,6 +14,8 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode';
 
 ## KeyCode
 
+Enumerates keycodes.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name                              | Value  |  Description       |
