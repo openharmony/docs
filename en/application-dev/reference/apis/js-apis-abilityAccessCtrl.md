@@ -720,4 +720,4 @@ Defines the detailed permission grant state change information.
 | -------------- | ------------------------- | ---- | ---- | ------------------ |
 | change         | [PermissionStateChangeType](#permissionstatechangetype9) | Yes  | No  | Operation that triggers the permission grant state change.       |
 | tokenID        | number                    | Yes  | No  | Token ID of the application whose permission grant state changes are subscribed.|
-| permissionName | Permissions                    | Yes  | No  | permission whose grant state is changed. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
+| permissionName | Permissions                    | Yes  | No  | Permission whose authorization status changes. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
