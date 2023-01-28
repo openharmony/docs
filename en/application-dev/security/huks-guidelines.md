@@ -229,9 +229,9 @@ You need to use the APIs for generating a key, exporting a public key, importing
 | API                     | Description                |
 | -------------------------------------- | ----------------------------|
 |generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void| Generates a key.|
-|exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksReturnResult>) : void| Exports the public key of a key pair.|
-|importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions, callback: AsyncCallback<void>) : void|Imports a wrapped key.|
-|deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback<void>) : void|Deletes a key.|
+|exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void| Exports the public key of a key pair.|
+|importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void|Imports a wrapped key.|
+|deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void|Deletes a key.|
 
 >**NOTE**<br>The public key plaintext material returned by **exportKeyItem()** is encapsulated in X.509 format, and the key material to be imported by **importWrappedKeyItem()** must be encapsulated in **Length<sub>Data</sub>-Data** format. Specifically, the application needs to apply for a Uint8Array and encapsulate the Uint8Array in the sequence listed in the following table.
 
