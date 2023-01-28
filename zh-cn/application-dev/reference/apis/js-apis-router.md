@@ -743,6 +743,7 @@ router.replace({
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 ## router.replace<sup>(deprecated)</sup>
 
@@ -773,6 +774,8 @@ router.replace({
 ```
 
 >>>>>>> ccc442cafb6fdfbbc989e4614e23fb9d48f34cc6
+=======
+>>>>>>> b7ff5e905cd94af1b1d8c5d384704079dba71c6d
 ## router.enableAlertBeforeBackPage<sup>(deprecated)</sup>
 
 enableAlertBeforeBackPage(options: EnableAlertOptions): void

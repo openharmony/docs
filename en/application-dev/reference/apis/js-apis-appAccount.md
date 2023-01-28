@@ -1,4 +1,4 @@
-# @ohos.account.appAccount
+# @ohos.account.appAccount (App Account Management) 
 
 The **appAccount** module provides APIs for adding, deleting, modifying, and querying app account information, and supports inter-app authentication and distributed data synchronization.
 
@@ -4883,7 +4883,7 @@ Creates an app account implicitly based on the specified account owner. This API
 | options          | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)  | Yes   | Options for implicitly creating the account.     |
 | callback         | [AuthCallback](#authcallback9) | Yes   | Authenticator callback invoked to return the result.|
 
-### addAccountImplicitly<sup>deprecated</sup>
+### addAccountImplicitly<sup>(deprecated)</sup>
 
 addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
 
@@ -4922,7 +4922,7 @@ Authenticates an app account to obtain the authorization token. This API uses an
 | options          | {[key: string]: Object}  | Yes   | Options for the authentication.     |
 | callback         | [AuthCallback](#authcallback9) | Yes   | Callback invoked to return the result.|
 
-### authenticate<sup>deprecated</sup>
+### authenticate<sup>(deprecated)</sup>
 
 authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
 
