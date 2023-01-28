@@ -241,7 +241,7 @@ The HiSysEvent tool is a command line tool preconfigured in the **/system/bin** 
 
 ## System Event Validity Check
 
-- Enabling system event validity check
+- Command for enabling system event validity check
 
     ```shell
     hisysevent -v
