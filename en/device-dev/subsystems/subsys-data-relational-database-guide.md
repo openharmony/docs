@@ -14,20 +14,11 @@ The table below describes the APIs for creating and deleting an RDB store.
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
 | RdbStoreConfig | RdbStoreConfig(const std::string &path, <br> StorageMode storageMode = StorageMode::MODE_DISK, <br> bool readOnly = false, <br> const std::vector<uint8_t> &encryptKey = std::vector<uint8_t>(), <br> const std::string &journalMode = "", <br> const std::string &syncMode = "", <br> const std::string &databaseFileType = "", <br> const std::string &databaseFileSecurityLevel = "") | Configures an RDB store, including setting the RDB store name, storage mode, log mode, synchronization mode, and read-only mode, and whether to encrypt the RDB store.<br/> - **path**: path of the RDB store. <br>- **readOnly**: whether the RDB store is read-only. <br>- **storageMode**: storage mode. <br>- **encryptKey**: key used to encrypt the RDB store. <br>- **journalMode**: logging mode. <br>- **syncMode**: data synchronization mode. <br>- **databaseFileType**: RDB store type. <br>- **databaseFileSecurityLevel**: security level of the RDB store.|
-| RdbOpenCallback | int OnCreate(RdbStore &rdbStore) | Called when an RDB store is created. You can add the method for initializing the table structure and initialization data used by your application in this callback.|
+| RdbOpenCallback | int OnCreate(RdbStore &rdbStore) | Called when an RDB store is created. You can add the method for initializing the table structure and data used by your application in this callback. |
 | RdbOpenCallback | int OnUpgrade(RdbStore &rdbStore, int currentVersion, int targetVersion) | Called when the RDB store is upgraded.|
 | RdbOpenCallback | int OnDowngrade(RdbStore &rdbStore, int currentVersion, int targetVersion) | Called when the RDB store is downgraded.|
 | RdbHelper | std::shared_ptr\<RdbStore\> GetRdbStore(const RdbStoreConfig &config, int version, RdbOpenCallback &openCallback, int &errCode) | Creates or obtains an RDB store.|
 | RdbHelper | int DeleteRdbStore(const std::string &path) | Deletes an RDB store.|
-
-### Encrypting an RDB Store
-
-When creating an RDB store, you can add a key for security purposes. After that, the RDB store can be accessed only with the correct key.
-
-**Table 2** API for changing the key
-| Class| API| Description|
-|  ----  |  ----  |  ----  |
-| RdbStore | int ChangeEncryptKey(const std::vector<uint8_t> &newKey) | Changes the encryption key for an RDB store. <br>Note that the encryption key can be changed only for an encrypted RDB store.|
 
 ### Using Predicates
 
@@ -36,7 +27,7 @@ The RDB store provides **AbsRdbPredicates** for you to set database operation co
 - **RdbPredicates**: allows you to combine SQL statements by simply calling methods in this class, such as **equalTo**, **notEqualTo**, **groupBy**, **orderByAsc**, and **beginsWith**. With this class, you do not need to write complex SQL statements.
 - **RawRdbPredicates**: allows you to write complex SQL statements, such as setting **whereClause** and **whereArgs**. However, this class does not support APIs such as **equalTo**.
 
-  **Table 3** APIs for setting RDB predicates 
+  **Table 2** APIs for setting RDB predicates 
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
   | RdbPredicates | AbsPredicates *EqualTo(std::string field, std::string value) | Sets an **AbsPredicates** to match the field that is equal to the specified value.|
@@ -50,6 +41,7 @@ The RDB store provides **AbsRdbPredicates** for you to set database operation co
   | RdbPredicates | AbsRdbPredicates *InAllDevices() | Sets an **AbsPredicates** to connect to all remote devices on the network when synchronizing distributed databases.|
 
 
+
 ### Managing Data in an RDB Store
 
 You can use the APIs provided by the RDB to insert, delete, update, and query local data.
@@ -58,7 +50,7 @@ You can use the APIs provided by the RDB to insert, delete, update, and query lo
 
   Call **int Insert()** to insert data through **ValuesBucket**. If data is inserted, the row number of the data inserted is returned; otherwise, **-1** is returned.
 
-  **Table 4** API for inserting data
+  **Table 3** API for inserting data
 
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
@@ -68,7 +60,7 @@ You can use the APIs provided by the RDB to insert, delete, update, and query lo
   
   Call **delete()** to delete the data that meets the conditions specified by **AbsRdbPredicates**. If data is deleted, the row number of the deleted data is returned; otherwise, **0** is returned.
 
-  **Table 5** API for deleting data
+  **Table 4** API for deleting data
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
   | RdbStore | int Delete(int &deletedRows, const AbsRdbPredicates &predicates) | Deletes data.<br> - **deletedRows**: number of rows to delete.<br> - **predicates**: table name and conditions for deleting the data. **AbsRdbPredicates** has the following classes:<br> - **RdbPredicates**: specifies query conditions by calling its methods, such as **equalTo**.<br> - **RawRdbPredicates**: specifies the table name, **whereClause**, and **whereArgs** only. |
@@ -77,7 +69,7 @@ You can use the APIs provided by the RDB to insert, delete, update, and query lo
 
   Call **update()** to update data based on the passed data and the conditions specified by **AbsRdbPredicates**. If data is updated, the row number of the updated data is returned; otherwise, **0** is returned.
 
-  **Table 6** API for updating data
+  **Table 5** API for updating data
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
   | RdbStore | int Update(int &changedRows, const ValuesBucket &values, const AbsRdbPredicates &predicates) | Updates the data that meets the conditions specified by predicates.<br> - **changedRows**: number of rows to update.<br> - **values**: new data stored in **ValuesBucket**.<br> - **predicates**: table name and conditions for the update operation. **AbsRdbPredicates** has the following classes:<br> - **RdbPredicates**: specifies update conditions by calling its methods, such as **equalTo**.<br> - **RawRdbPredicates**: specifies the table name, **whereClause**, and **whereArgs** only. |
@@ -89,7 +81,7 @@ You can use the APIs provided by the RDB to insert, delete, update, and query lo
   - Call the **query()** method to query data based on the predicates, without passing any SQL statement.
   - Run the native SQL statement.
 
-  **Table 7** APIs for querying data
+  **Table 6** APIs for querying data
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
   | RdbStore | std::unique_ptr<AbsSharedResultSet> Query(const AbsRdbPredicates &predicates, const std::vector\<std::string\> columns) | Queries data.<br> - **predicates**: query conditions. **AbsRdbPredicates** has the following classes:<br> - **RdbPredicates**: specifies query conditions by calling its methods, such as **equalTo**.<br> - **RawRdbPredicates**: specifies the table name, **whereClause**, and **whereArgs** only.<br> - **columns**: number of columns returned. |
@@ -99,7 +91,7 @@ You can use the APIs provided by the RDB to insert, delete, update, and query lo
 
 You can use the APIs provided by **ResultSet** to traverse and access the data you have queried. A result set can be regarded as a row of data in the queried result. The table below describes the APIs of **ResultSet**.
 
-**Table 8** APIs of **ResultSet**
+**Table 7** APIs of **ResultSet**
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
 | ResultSet | int GoTo(int offset) | Moves forwards or backwards by the specified offset relative to its current position.|
@@ -120,7 +112,7 @@ You can use the APIs provided by **ResultSet** to traverse and access the data y
 
 Call **bool SetDistributedTables()** to set distributed tables for data operations across devices.
 
-**Table 9** API for setting distributed tables
+**Table 8** API for setting distributed tables
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
 | RdbStore | bool SetDistributedTables(const std::vector<std::string>& tables) | Sets distributed tables.<br> **tables**: names of the distributed tables to set. |
@@ -129,28 +121,28 @@ Call **bool SetDistributedTables()** to set distributed tables for data operatio
 
 You can obtain the distributed table name for a remote device based on the local table name. The distributed table name can be used to query the RDB store of the remote device.<br>
 
-**Table 10** API for obtaining the distributed table name of a remote device
+**Table 9** API for obtaining the distributed table name of a remote device
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
 | RdbStore | std::string ObtainDistributedTableName(const std::string& device, const std::string& table) | Obtains the distributed table name of a remote device based on the local table name. The distributed table name can be used to query the RDB store of the remote device.<br> - **device**: ID of the remote device. <br>- **table**: name of the local table.|
 
 ### Synchronizing Data Between Devices
 
-**Table 11** API for synchronizing data between devices
+**Table 10** API for synchronizing data between devices
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
 | RdbStore | bool Sync(const SyncOption& option, const AbsRdbPredicates& predicate, const SyncCallback& callback) | Synchronizes data between devices. <br/>- **option**: synchronization options, which include **mode** and **isBlock**. **mode** specifies how data is synchronized. The value **push** means to push data from the local device to the remote device; the value **pull** means to pull data from the remote device to the local device. **isBlock** specifies whether the invocation of this function is blocked. <br>- **callback**: callback used to return the result. |
 
 ### Registering an RDB Store Observer
 
-**Table 12** API for registering an observer
+**Table 11** API for registering an observer
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
 | RdbStore | bool Subscribe(const SubscribeOption& option, RdbStoreObserver *observer) | Registers an observer for this RDB store to listen for distributed data changes. When data in the RDB store changes, a callback will be invoked to return the data changes. <br/>- **option**: subscription type.<br>- **observer**: observer that listens for data changes in the RDB store. |
 
 ### Unregistering an RDB Store Observer
 
-**Table 13** API for unregistering an observer
+**Table 12** API for unregistering an observer
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
 | RdbStore | bool UnSubscribe(const SubscribeOption& option, RdbStoreObserver *observer) | Unregisters the observer of the specified type. <br/>- **option**: subscription type to unregister.<br>- **observer**: observer to unregister. |
@@ -163,7 +155,7 @@ You can use the APIs provided by **rdbStore** to back up and restore local datab
 
   Call **int Backup()** to back up the current database file. **databasePath** specifies the name or path of the backup file to be generated. If the backup is successful, **0** is returned; otherwise, an error code is returned.
 
-  Table 14 API for backing up an RDB store
+  **Table 13** API for backing up an RDB store
 
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
@@ -173,7 +165,7 @@ You can use the APIs provided by **rdbStore** to back up and restore local datab
 
   Call **int Restore()** to restore an RDB from the backup file. **backupPath** specifies the name or path of the backup file. If the restore is successful, **0** is returned; otherwise, an error code is returned.
 
-  Table 15 API for restoring an RDB store
+  **Table 14** API for restoring an RDB store
 
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
@@ -181,15 +173,15 @@ You can use the APIs provided by **rdbStore** to back up and restore local datab
 
 ### Transaction
 
-  A transaction is a unit of work performed in a database. If a transaction is successful, **0** is returned. Otherwise, an error code is returned.
+A transaction is a unit of work performed in a database. If a transaction is successful, **0** is returned. Otherwise, an error code is returned.
 
-  Table 16 Transaction APIs
+**Table 15** Transaction APIs
 
-  | Class| API| Description|
-  |  ----  |  ----  |  ----  |
-  | RdbStore | int BeginTransaction() | Starts a transaction.|
-  | RdbStore | int Commit() | Commits the changes.|
-  | RdbStore | int RollBack() | Rolls back the changes.|
+| Class| API| Description|
+|  ----  |  ----  |  ----  |
+| RdbStore | int BeginTransaction() | Starts a transaction.|
+| RdbStore | int Commit() | Commits the changes.|
+| RdbStore | int RollBack() | Rolls back the changes.|
 
 ## Constraints
 
@@ -338,7 +330,7 @@ None.
    ```c++
     std::string tableName = store->ObtainDistributedTableName("123456789abcd", "test");
     auto resultSet = store->QuerySql("SELECT * from ?;", tableName);
-    ```
+   ```
 
 8. Back up and restore an RDB store.
 
@@ -352,4 +344,4 @@ None.
     std::vector<uint8_t> key; // Key used to encrypt the RDB store.
     int errno = store->Backup(backupName, key);
     errno = store->Restore(backupName, key);
-    ```
+   ```
