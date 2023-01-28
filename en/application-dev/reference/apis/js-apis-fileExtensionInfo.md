@@ -1,4 +1,4 @@
-# @ohos.fileExtensionInfo (User File Access and Management Attributes)
+# @ohos.file.fileExtensionInfo (User File Extension Information)
 
 The **fileExtensionInfo** module defines attributes in **RootInfo** and **FileInfo** of the user file access and management module.
 
@@ -10,7 +10,7 @@ The **fileExtensionInfo** module defines attributes in **RootInfo** and **FileIn
 ## Modules to Import
 
 ```js
-import fileExtensionInfo from '@ohos.fileExtensionInfo';
+import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 ```
 
 ## fileExtensionInfo.DeviceType
@@ -40,7 +40,7 @@ Defines the values of **deviceFlags** used in **RootInfo**. **deviceFlags** is u
   | Name| Type  | Readable| Writable| Description    |
   | ------ | ------ | ---- | ---- | -------- |
   | SUPPORTS_READ   | number | Yes  | No  | The device supports read.|
-  | SUPPORTS_WRITE   | number | Yes  | No  | This device supports write.|
+  | SUPPORTS_WRITE   | number | Yes  | No  | The device supports write.|
 
 ## fileExtensionInfo.DocumentFlag
 

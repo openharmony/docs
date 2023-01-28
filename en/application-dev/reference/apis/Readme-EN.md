@@ -216,8 +216,8 @@
     - [resultSet](js-apis-data-resultset.md)
 - File Management
   - [@ohos.environment](js-apis-environment.md)
-  - [@ohos.data.fileAccess (User File Access and Management)](js-apis-fileAccess.md)
-  - [@ohos.fileExtensionInfo (User File Access and Management Attributes)](js-apis-fileExtensionInfo.md)
+  - [@ohos.file.fileAccess (User File Access and Management)](js-apis-fileAccess.md)
+  - [@ohos.file.fileExtensionInfo (User File Extension Information)](js-apis-fileExtensionInfo.md)
   - [@ohos.fileio (File Management)](js-apis-fileio.md)
   - [@ohos.filemanagement.userFileManager (User Data Management)](js-apis-userFileManager.md)
   - [@ohos.multimedia.medialibrary (Media Library Management)](js-apis-medialibrary.md)
