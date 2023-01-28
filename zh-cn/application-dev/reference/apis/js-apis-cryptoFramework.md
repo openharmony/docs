@@ -29,6 +29,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 ## DataBlob
 
 buffer数组。
+
  **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称 | 类型       | 可读 | 可写 | 说明   |
@@ -60,7 +61,7 @@ createMac(algName : string) : Mac
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 17620001 | memory error       |
+| 17620001 | memory error.       |
 
 **示例：**
 
@@ -100,14 +101,14 @@ init(key : SymKey, callback : AsyncCallback\<void>) : void;
 
 | 参数名   | 类型                 | 必填 | 说明         |
 | -------- | -------------------- | ---- | ------------ |
-| key      | SymKey               | 是   | 共享对称密钥 |
+| key      | [SymKey](#symkey)    | 是   | 共享对称密钥 |
 | callback | AsyncCallback\<void> | 是   | 回调函数     |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -146,7 +147,7 @@ init(key : SymKey) : Promise\<void>;
 
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
-| key    | SymKey | 是   | 共享对称密钥 |
+| key    | [SymKey](#symkey) | 是   | 共享对称密钥 |
 
 **返回值：**
 
@@ -158,7 +159,7 @@ init(key : SymKey) : Promise\<void>;
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -197,14 +198,14 @@ update(input : DataBlob, callback : AsyncCallback\<void>) : void;
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| input    | DataBlob             | 是   | 传入的消息 |
+| input    | [DataBlob](#datablob)| 是   | 传入的消息 |
 | callback | AsyncCallback\<void> | 是   | 回调函数   |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -249,7 +250,7 @@ update(input : DataBlob) : Promise\<void>;
 
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
-| input  | DataBlob | 是   | 传入的消息 |
+| input  | [DataBlob](#datablob) | 是   | 传入的消息 |
 
 **返回值：**
 
@@ -261,7 +262,7 @@ update(input : DataBlob) : Promise\<void>;
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -304,14 +305,14 @@ doFinal(callback : AsyncCallback\<DataBlob>) : void;
 
 | 参数名   | 类型                     | 必填 | 说明     |
 | -------- | ------------------------ | ---- | -------- |
-| callback | AsyncCallback\<DataBlob> | 是   | 回调函数 |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数 |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -363,14 +364,14 @@ doFinal() : Promise\<DataBlob>
 
 | 类型               | 说明        |
 | ------------------ | ----------- |
-| Promise\<DataBlob> | Promise对象 |
+| Promise\<[DataBlob](#datablob)> | Promise对象 |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -423,7 +424,7 @@ getMacLength() : number
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -484,7 +485,7 @@ createMd(algName : string) : Md
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 17620001 | memory error       |
+| 17620001 | memory error.       |
 
 **示例：**
 
@@ -524,14 +525,14 @@ update(input : DataBlob, callback : AsyncCallback\<void>) : void;
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| input    | DataBlob             | 是   | 传入的消息 |
+| input    | [DataBlob](#datablob)| 是   | 传入的消息 |
 | callback | AsyncCallback\<void> | 是   | 回调函数   |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -576,7 +577,7 @@ update(input : DataBlob) : Promise\<void>;
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -616,8 +617,8 @@ digest(callback : AsyncCallback\<DataBlob>) : void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -659,14 +660,14 @@ digest() : Promise\<DataBlob>
 
 | 类型               | 说明        |
 | ------------------ | ----------- |
-| Promise\<DataBlob> | Promise对象 |
+| Promise\<[DataBlob](#datablob)> | Promise对象 |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -711,7 +712,7 @@ getMdLength() : number
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -758,7 +759,7 @@ createRandom() : Random
 
 | 错误码ID | 错误信息     |
 | -------- | ------------ |
-| 17620001 | memory error |
+| 17620001 | memory error. |
 
 **示例：**
 
@@ -789,14 +790,14 @@ generateRandom(len : number, callback: AsyncCallback\<DataBlob>) : void;
 | 参数名   | 类型                     | 必填 | 说明                 |
 | -------- | ------------------------ | ---- | -------------------- |
 | len      | number                   | 是   | 表示生成随机数的长度 |
-| callback | AsyncCallback\<DataBlob> | 是   | 回调函数             |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数             |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -836,14 +837,14 @@ generateRandom(len : number) : Promise\<DataBlob>;
 
 | 类型               | 说明        |
 | ------------------ | ----------- |
-| Promise\<DataBlob> | Promise对象 |
+| Promise\<[DataBlob](#datablob)> | Promise对象 |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -881,7 +882,7 @@ setSeed(seed : DataBlob) : void;
 
 | 错误码ID | 错误信息           |
 | -------- | ----------------- |
-| 17620001 | memory error      |
+| 17620001 | memory error.      |
 
 **示例：**
 
@@ -1388,7 +1389,7 @@ createAsyKeyGenerator(algName : string) : AsyKeyGenerator
 
 | 类型            | 说明                         |
 | --------------- | ---------------------------- |
-| asyKeyGenerator | 返回非对称密钥生成器的对象。 |
+| [AsyKeyGenerator](#asykeygenerator) | 返回非对称密钥生成器的对象。 |
 
 **示例：**
 
@@ -1422,7 +1423,13 @@ generateKeyPair(callback : AsyncCallback\<KeyPair>) : void;
 
 | 参数名     | 类型                    | 必填 | 说明                           |
 | -------- | ----------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<KeyPair> | 是   | 回调函数，用于获取非对称密钥。 |
+| callback | AsyncCallback\<[KeyPair](#keypair)> | 是   | 回调函数，用于获取非对称密钥。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **示例：**
 
@@ -1452,7 +1459,13 @@ generateKeyPair() : Promise\<KeyPair>
 
 | 类型              | 说明                              |
 | ----------------- | --------------------------------- |
-| Promise\<KeyPair> | 使用Promise的方式获取非对称密钥。 |
+| Promise\<[KeyPair](#keypair)> | 使用Promise的方式获取非对称密钥。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **示例：**
 
@@ -1480,9 +1493,15 @@ convertKey(pubKey : DataBlob, priKey : DataBlob, callback : AsyncCallback\<KeyPa
 
 | 参数名     | 类型       | 必填 | 说明                           |
 | -------- | ----------- | ---- | ------------------------------ |
-| pubKey   | DataBlob    | 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null        |
-| priKey   | DataBlob    | 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null        |
-| callback | AsyncCallback\<KeyPair> | 是   | 回调函数，用于获取非对称密钥。 |
+| pubKey   | [DataBlob](#datablob)     | 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null。        |
+| priKey   | [DataBlob](#datablob)     | 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null。        |
+| callback | AsyncCallback\<[KeyPair](#keypair)> | 是   | 回调函数，用于获取非对称密钥。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **示例：**
 
@@ -1519,7 +1538,13 @@ convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair>
 
 | 类型              | 说明                              |
 | ----------------- | --------------------------------- |
-| Promise\<KeyPair> | 使用Promise的方式获取非对称密钥。 |
+| Promise\<[KeyPair](#keypair)> | 使用Promise的方式获取非对称密钥。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **示例：**
 
@@ -2004,9 +2029,13 @@ let singer2 = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256")
 ## Sign
 
 Sign类，使用Sign方法之前需要创建该类的实例进行操作，通过createSign(algName : string) : Sign方法构造此实例。Sign类不支持重复初始化，当业务方需要使用新密钥签名时，需要重新创建新Sign对象并调用init初始化。
+
 业务方使用时，在createSign时确定签名的模式，调用init接口设置密钥。
+
 当待签名数据较短时，可在init初始化后直接调用sign接口传入原文数据进行签名。
+
 当待签名数据较长时，可通过update接口分段传入切分后的原文数据，最后调用sign接口对整体原文数据进行签名。
+
 当使用update分段传入原文时，sign接口支持传null，业务方可在循环中调用update接口，循环结束后调用sign进行签名。
 
 ### 属性
@@ -2029,8 +2058,16 @@ init(priKey : PriKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                 | 必填 | 说明             |
 | -------- | -------------------- | ---- | ---------------- |
-| priKey   | PriKey                  | 是   | 用于Sign的初始化 |
-| callback | AsyncCallback\<void> | 是   | 回调函数的       |
+| priKey   | [PriKey](#prikey)    | 是   | 用于Sign的初始化 |
+| callback | AsyncCallback\<void> | 是   | 回调函数       |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### init
 
@@ -2044,13 +2081,21 @@ init(priKey : PriKey) : Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明             |
 | ------ | ---- | ---- | ---------------- |
-| priKey | PriKey  | 是   | 用于Sign的初始化 |
+| priKey | [PriKey](#prikey)  | 是   | 用于Sign的初始化 |
 
 **返回值：**
 
 | 类型           | 说明        |
 | -------------- | ----------- |
 | Promise\<void> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2064,8 +2109,16 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| data     | DataBlob             | 是   | 传入的消息 |
+| data     | [DataBlob](#datablob)| 是   | 传入的消息 |
 | callback | AsyncCallback\<void> | 是   | 回调函数   |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2079,13 +2132,21 @@ update(data : DataBlob) : Promise\<void>;
 
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
-| data   | DataBlob | 是   | 传入的消息 |
+| data   | [DataBlob](#datablob)  | 是   | 传入的消息 |
 
 **返回值：**
 
 | 类型           | 说明        |
 | -------------- | ----------- |
 | Promise\<void> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### sign
 
@@ -2099,8 +2160,16 @@ sign(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| data     | DataBlob             | 是   | 传入的消息 |
-| callback | AsyncCallback\<DataBlob> | 是   | 回调函数   |
+| data     | [DataBlob](#datablob)              | 是   | 传入的消息 |
+| callback | AsyncCallback\<[DataBlob](#datablob) > | 是   | 回调函数   |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### sign
 
@@ -2114,13 +2183,19 @@ sign(data : DataBlob) : Promise\<DataBlob>
 
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
-| data   | DataBlob | 是   | 传入的消息 |
+| data   | [DataBlob](#datablob)  | 是   | 传入的消息 |
 
 **返回值：**
 
 | 类型           | 说明        |
 | -------------- | ----------- |
 | Promise\<void> | Promise对象 |
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 **callback示例：**
 
@@ -2235,10 +2310,15 @@ let verifyer2 = cryptoFramework.createVerify("RSA1024|PSS|SHA256|MGF1_SHA256")
 ## Verify
 
 Verify类，使用Verify方法之前需要创建该类的实例进行操作，通过createVerify(algName : string) : Verify方法构造此实例。
+
 Verify类不支持重复初始化，当业务方需要使用新密钥验签时，需要重新创建新Verify对象并调用init初始化。
+
 业务方使用时，在createVerify时确定验签的模式，调用init接口设置密钥。
-当待签名数据较短时，可在init初始化后直接调用verify接口传入签名数据和原文进行验签。
-当待签名数据较长时，可通过update接口分段传入待签名数据，最后调用verify接口对整体数据进行验签。
+
+当签名数据较短时，可在init初始化后直接调用verify接口传入签名数据和原文进行验签。
+
+当签名数据较长时，可通过update接口分段传入签名数据，最后调用verify接口对整体签名数据进行验签。
+
 当使用update分段传入签名数据时，verify接口的签名数据支持传null，业务方可在循环中调用update接口，循环结束后调用verify传入原文进行验签。
 
 ### 属性
@@ -2263,8 +2343,16 @@ init(pubKey : PubKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| pubKey   | PubKey                  | 是   | 公钥对象，用于Verify的初始化 |
+| pubKey   | [PubKey](#pubkey)    | 是   | 公钥对象，用于Verify的初始化 |
 | callback | AsyncCallback\<void> | 是   | 回调函数                     |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### init
 
@@ -2278,13 +2366,21 @@ init(pubKey : PubKey) : Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明                         |
 | ------ | ---- | ---- | ---------------------------- |
-| pubKey | PubKey  | 是   | 公钥对象，用于Verify的初始化 |
+| pubKey | [PubKey](#pubkey)  | 是   | 公钥对象，用于Verify的初始化 |
 
 **返回值：**
 
 | 类型           | 说明        |
 | -------------- | ----------- |
 | Promise\<void> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2298,8 +2394,16 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| data     | DataBlob             | 是   | 传入的消息 |
+| data     | [DataBlob](#datablob)| 是   | 传入的消息 |
 | callback | AsyncCallback\<void> | 是   | 回调函数   |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2313,13 +2417,21 @@ update(data : DataBlob) : Promise\<void>;
 
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
-| data   | DataBlob | 是   | 传入的消息 |
+| data   | [DataBlob](#datablob)  | 是   | 传入的消息 |
 
 **返回值：**
 
 | 类型           | 说明        |
 | -------------- | ----------- |
 | Promise\<void> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### verify
 
@@ -2333,9 +2445,17 @@ verify(data : DataBlob, signatureData : DataBlob, callback : AsyncCallback\<bool
 
 | 参数名        | 类型                 | 必填 | 说明       |
 | ------------- | -------------------- | ---- | ---------- |
-| data          | DataBlob             | 是   | 传入的消息 |
-| signatureData | DataBlob             | 是   | 签名数据   |
+| data          | [DataBlob](#datablob)              | 是   | 传入的消息 |
+| signatureData | [DataBlob](#datablob)              | 是   | 签名数据   |
 | callback      | AsyncCallback\<boolean> | 是   | 回调函数   |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### verify
 
@@ -2349,14 +2469,22 @@ verify(data : DataBlob, signatureData : DataBlob) : Promise\<boolean>
 
 | 参数名        | 类型     | 必填 | 说明       |
 | ------------- | -------- | ---- | ---------- |
-| data          | DataBlob | 是   | 传入的消息 |
-| signatureData | DataBlob | 是   | 签名数据   |
+| data          | [DataBlob](#datablob)  | 是   | 传入的消息 |
+| signatureData | [DataBlob](#datablob)  | 是   | 签名数据   |
 
 **返回值：**
 
 | 类型              | 说明                         |
 | ----------------- | ---------------------------- |
 | Promise\<boolean> | 异步返回值，代表验签是否通过 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 **callback示例：**
 
@@ -2450,9 +2578,17 @@ generateSecret(priKey : PriKey, pubKey : PubKey, callback : AsyncCallback\<DataB
 
 | 参数名   | 类型                     | 必填 | 说明                   |
 | -------- | ------------------------ | ---- | ---------------------- |
-| priKey   | PriKey                   | 是   | 设置密钥协商的私钥输入 |
-| pubKey   | PubKey                   | 是   | 设置密钥协商的公钥输入 |
-| callback | AsyncCallback\<DataBlob> | 是   | 异步接受共享秘密的回调 |
+| priKey   | [PriKey](#prikey)        | 是   | 设置密钥协商的私钥输入 |
+| pubKey   | [PubKey](#pubkey)        | 是   | 设置密钥协商的公钥输入 |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 异步接受共享秘密的回调 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### generateSecret
 
@@ -2466,14 +2602,22 @@ generateSecret(priKey : PriKey, pubKey : PubKey) : Promise\<DataBlob>
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| priKey | PriKey | 是   | 设置密钥协商的私钥输入 |
-| pubKey | PubKey | 是   | 设置密钥协商的公钥输入 |
+| priKey | [PriKey](#prikey) | 是   | 设置密钥协商的私钥输入 |
+| pubKey | [PubKey](#pubkey) | 是   | 设置密钥协商的公钥输入 |
 
 **返回值：**
 
 | 类型               | 说明     |
 | ------------------ | -------- |
-| Promise\<DataBlob> | 共享秘密 |
+| Promise\<[DataBlob](#datablob)> | 共享秘密 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 **callback示例：**
 
