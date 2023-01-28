@@ -742,40 +742,6 @@ router.replace({
 });
 ```
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-## router.replace<sup>(deprecated)</sup>
-
-replace(options: RouterOptions, mode: RouterMode): void
-
-用应用内的某个页面替换当前页面，并销毁被替换的页面。
-
-从API version9开始不再维护，建议使用[replaceUrl<sup>9+</sup>](#routerreplaceurl9)
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Lite
-
-**参数：**
-
-| 参数名     | 类型                              | 必填   | 说明         |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
-
-**示例：**
-
-```js
-router.replace({
-  url: 'pages/detail/detail',
-  params: {
-    data1: 'message'
-  }
-}, router.RouterMode.Standard);
-```
-
->>>>>>> ccc442cafb6fdfbbc989e4614e23fb9d48f34cc6
-=======
->>>>>>> b7ff5e905cd94af1b1d8c5d384704079dba71c6d
 ## router.enableAlertBeforeBackPage<sup>(deprecated)</sup>
 
 enableAlertBeforeBackPage(options: EnableAlertOptions): void
