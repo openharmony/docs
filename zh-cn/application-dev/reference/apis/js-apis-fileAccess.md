@@ -627,7 +627,7 @@ mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&
 
 openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 
-以异步方法打开文件，返回文件句柄。使用Promise异步回调。
+以异步方法打开文件，返回文件描述符。使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService。
 
@@ -644,7 +644,7 @@ openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 
 | 类型 | 说明 |
 | --- | -- |
-| Promise&lt;number&gt; | 文件句柄 |
+| Promise&lt;number&gt; | 文件描述符 |
 
 **示例：**
 
@@ -665,7 +665,7 @@ openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 
 openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) : void;
 
-以异步方法打开文件，返回文件句柄。使用callback异步回调。
+以异步方法打开文件，返回文件描述符。使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService。
 
@@ -677,7 +677,7 @@ openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) :
   | --- | --- | --- | -- |
   | uri | string | 是 | 待打开文件的uri |
   | flags | [OPENFLAGS](#openflags) | 是 | 文件打开的标志 |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 文件句柄 |
+  | callback | AsyncCallback&lt;number&gt; | 是 | 文件描述符 |
 
 **示例：**
 
