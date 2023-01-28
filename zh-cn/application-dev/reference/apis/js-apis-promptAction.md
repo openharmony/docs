@@ -40,7 +40,7 @@ showToast(options: ShowToastOptions): void
 try {
   promptAction.showToast({            
     message: 'Message Info',
-    duration: 2000,      
+    duration: 2000 
   });
 } catch (error) {
   console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
@@ -100,11 +100,11 @@ try {
     buttons: [
       {
         text: 'button1',
-        color: '#000000',
+        color: '#000000'
       },
       {
         text: 'button2',
-        color: '#000000',
+        color: '#000000'
       }
     ],
   })
@@ -154,11 +154,11 @@ try {
     buttons: [
       {
         text: 'button1',
-        color: '#000000',
+        color: '#000000'
       },
       {
         text: 'button2',
-        color: '#000000',
+        color: '#000000'
       }
     ]
   }, (err, data) => {
@@ -229,11 +229,11 @@ try {
     buttons: [
       {
         text: 'item1',
-        color: '#666666',
+        color: '#666666'
       },
       {
         text: 'item2',
-        color: '#000000',
+        color: '#000000'
       },
     ]
   }, (err, data) => {
@@ -287,11 +287,11 @@ try {
     buttons: [
       {
         text: 'item1',
-        color: '#666666',
+        color: '#666666'
       },
       {
         text: 'item2',
-        color: '#000000',
+        color: '#000000'
       },
     ]
   })

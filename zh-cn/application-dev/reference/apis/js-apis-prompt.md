@@ -32,7 +32,7 @@ showToast(options: ShowToastOptions): void
 ```js
 prompt.showToast({            
   message: 'Message Info',
-    duration: 2000,      
+    duration: 2000
 });
 ```
 
@@ -79,11 +79,11 @@ prompt.showDialog({
   buttons: [
     {
       text: 'button1',
-      color: '#000000',
+      color: '#000000'
     },
     {
       text: 'button2',
-      color: '#000000',
+      color: '#000000'
     }
   ],
 })
@@ -121,11 +121,11 @@ prompt.showDialog({
   buttons: [
     {
       text: 'button1',
-      color: '#000000',
+      color: '#000000'
     },
     {
       text: 'button2',
-      color: '#000000',
+      color: '#000000'
     }
   ]
 }, (err, data) => {
@@ -185,11 +185,11 @@ prompt.showActionMenu({
   buttons: [
     {
       text: 'item1',
-      color: '#666666',
+      color: '#666666'
     },
     {
       text: 'item2',
-      color: '#000000',
+      color: '#000000'
     },
   ]
 }, (err, data) => {
@@ -231,11 +231,11 @@ prompt.showActionMenu({
   buttons: [
     {
       text: 'item1',
-      color: '#666666',
+      color: '#666666'
     },
     {
       text: 'item2',
-      color: '#000000',
+      color: '#000000'
     },
   ]
 })
