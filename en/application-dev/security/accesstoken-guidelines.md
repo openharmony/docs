@@ -2,7 +2,7 @@
 
 ## When to Use
 
-The [Ability Privilege Level (APL)](accesstoken-overview.md#app-apls) of an application can be **normal**, **system_basic**, or **system_core**. The default APL is **normal**. The [permission types](accesstoken-overview.md#permission-types) include **system_grant** and **user_grant**. For details about the permissions for apps, see the [App Permission List](permission-list.md).
+The [Ability Privilege Level (APL)](accesstoken-overview.md#app-apls) of an application can be **normal**, **system_basic**, or **system_core**. The default APL is **normal**. The [permission types](accesstoken-overview.md#permission-types) include **system_grant** and **user_grant**. For details about the permissions for apps, see the [Application Permission List](permission-list.md).
 
 This document describes the following operations:
 
