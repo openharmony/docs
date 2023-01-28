@@ -1195,7 +1195,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 | 参数名      | 类型                          | 必填   | 说明                                  |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | 是    | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写） |
-| callback | AsyncCallback&lt;number&gt; | 是    | 回调返回文件句柄                            |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调返回文件描述符                            |
 
 **示例：**
 
@@ -1237,7 +1237,7 @@ open(mode: string): Promise&lt;number&gt;
 
 | 类型                    | 说明            |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise返回文件句柄 |
+| Promise&lt;number&gt; | Promise返回文件描述符 |
 
 **示例：**
 
