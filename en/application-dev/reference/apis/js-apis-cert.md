@@ -203,7 +203,7 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
         console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
         console.log("createX509Cert success");
-        // Generate a public key by AsyKeyGenerator or obtain the public key by using getPublicKey() of the X509Cert instance.
+        // The service needs to call getPublicKey() of the upper-level X509Cert object to obtain the public key.
 		let pubKey = null;
         x509Cert.verify(pubKey, function (error, data) {
             if (error != null) {
@@ -355,8 +355,7 @@ Obtains the public key of this X.509 certificate. This API uses an asynchronous 
 
 | Type  | Description            |
 | ------ | ---------------- |
-| cryptoFramework.PubKey | X.509 certificate public key obtained.|
-
+| cryptoFramework.PubKey | Public key of the X509 certificate obtained. This object is used only for **verify()** of **X509Cert**.|
 
 **Example**
 
@@ -398,8 +397,7 @@ Checks the validity period of this X.509 certificate. This API uses an asynchron
 
 | Name  | Type           | Mandatory| Description       |
 | -------- | -------------- | ---- | ---------- |
-| date     | string         | Yes  | Date of the certificate to check.       |
-
+| date     | string         | Yes  | Date in the YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ format. The date must end with **Z**, which indicates the UTC.|
 
 **Example**
 
@@ -584,9 +582,9 @@ Obtains the start time of this X.509 certificate.
 
 **Return value**
 
-| Type  | Description                      |
-| ------ | -------------------------- |
-| string | Start time of the X.509 certificate obtained.|
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| string | Start time of the X509 certificate validity period, in the YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ format. The value must end with **Z**, which indicates the UTC.|
 
 **Example**
 
@@ -620,9 +618,9 @@ Obtains the expiration time of this X.509 certificate.
 
 **Return value**
 
-| Type  | Description                      |
-| ------ | -------------------------- |
-| string | Expiration time of the X.509 certificate obtained.|
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| string | Expiration time of the X509 certificate validity period, in the YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ format. The value must end with **Z**, which indicates the UTC.|
 
 **Example**
 
