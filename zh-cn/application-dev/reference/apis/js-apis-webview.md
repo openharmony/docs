@@ -1468,12 +1468,10 @@ struct WebComponent {
       Button('postMessage')
         .onClick(() => {
           try {
-            // 1、创建两个消息端口
+            // 1、创建两个消息端口。
             this.ports = this.controller.createWebMessagePorts();
-            // 2、将其中一个消息端口发送到HTML侧，由HTML侧保存并使用。
-            this.controller.postMessage('__init_port__', [this.ports[0]], '*');
-            // 3、另一个消息端口在应用侧注册回调事件。
-            this.ports[1].onMessageEvent((result: WebMessage) => {
+            // 2、在应用侧的消息端口(如端口1)上注册回调事件。
+            this.ports[1].onMessageEvent((result: web_webview.WebMessage) => {
                 var msg = 'Got msg from HTML:';    
                 if (typeof(result) == "string") {
                   console.log("received string message from html5, string is:" + result);
@@ -1490,6 +1488,8 @@ struct WebComponent {
                 }
                 this.receivedFromHtml = msg;
               })
+              // 3、将另一个消息端口(如端口0)发送到HTML侧，由HTML侧保存并使用。
+              this.controller.postMessage('__init_port__', [this.ports[0]], '*');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -1505,7 +1505,7 @@ struct WebComponent {
               console.error(`ports is null, Please initialize first`);
             }
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
           }
         })
       Web({ src: $rawfile('xxx.html'), controller: this.controller })
@@ -1527,7 +1527,7 @@ struct WebComponent {
     <h1>WebView Message Port Demo</h1>
     <div>
         <input type="button" value="SendToEts" onclick="PostMsgToEts(msgFromJS.value);"/><br/>
-        <input id="msgFromJs" type="text" value="send this message from HTML to ets"/><br/>
+        <input id="msgFromJS" type="text" value="send this message from HTML to ets"/><br/>
     </div>
     <p class="output">display received message send from ets</p>
   </body>
@@ -4294,6 +4294,10 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 ## GeolocationPermissions
 
 web组件地理位置权限管理对象。
+
+### 需要权限
+
+访问地理位置时需添加权限：ohos.permission.LOCATION、ohos.permission.APPROXIMATELY_LOCATION、ohos.permission.LOCATION_IN_BACKGROUND，具体权限说明请参考[位置服务](./js-apis-geolocation.md)。
 
 ### allowGeolocation
 
