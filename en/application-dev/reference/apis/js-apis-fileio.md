@@ -5,7 +5,7 @@ The **fileio** module provides APIs for file storage and management, including b
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+> The APIs provided by this module are deprecated since API version 9. You are advised to use [@ohos.file.fs](./js-apis-file-fs.md).
 
 ## Modules to Import
 
@@ -3454,3 +3454,5 @@ Defines the file filter configuration.
 | fileSizeOver    | number | File size to match. The files which are of the same or a lager size are matched.      |
 | lastModifiedAfter    | Date | File modification time to match. The files modified after the specified time are matched.      |
 | excludeMedia    | Boolean | Whether to exclude the files already in Media.      |
+
+<!--no_check-->
