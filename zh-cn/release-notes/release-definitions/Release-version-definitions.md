@@ -27,6 +27,16 @@ OpenHarmony社区Beta分支是在社区开发和演进过程中不定期从Maste
 
 OpenHarmony社区基于LTS/Release分支以patch形式合入少量补丁代码，用于解决单点bug、安全漏洞、以及其他必须的适配修改，经过集成验证之后发布的稳定可靠的标签版本。
 
+### 维护分支下载命令
+
+| 分支          | 下载命令（repo + https）                                     | 下载命令（repo + ssh)                                        |
+| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 1.0.1-Release | repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony_1.0.1_release -m default.xml --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' |
+| 3.0-LTS       | repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-3.0-LTS --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.0-LTS --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' |
+| 3.1-Release   | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' |
+
+
+
 ## 维护策略
 
 ### 生命周期策略
