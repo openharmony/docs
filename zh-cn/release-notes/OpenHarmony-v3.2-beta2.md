@@ -206,7 +206,7 @@
 | -------- | -------- |
 | [I4Z3G9](https://gitee.com/openharmony/graphic_graphic_2d/issues/I4Z3G9) | 【RK3568】打开沉浸式主窗口和在主窗口上打开辅助窗口出现闪屏 |
 | [I59M4Q](https://gitee.com/openharmony/developtools_hdc/issues/I59M4Q) | API9 hdc_std连接设备低概率断连 |
-| [I54D32](https://gitee.com/openharmony/multimedia_camera_standard/issues/I54D32) | 【RK3568】【必现】相机连续多次录像出现黑屏 |
+| [I54D32](https://gitee.com/openharmony/multimedia_camera_framework/issues/I54D32) | 【RK3568】【必现】相机连续多次录像出现黑屏 |
 
 
 ## 遗留缺陷列表
