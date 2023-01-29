@@ -108,7 +108,6 @@
       - [MissionListener](js-apis-inner-application-missionListener.md)
       - [MissionParameter](js-apis-inner-application-missionParameter.md)
       - [MissionSnapshot](js-apis-inner-application-missionSnapshot.md)
-      - [PermissionRequestResult](js-apis-permissionrequestresult.md)
       - [ProcessData](js-apis-inner-application-processData.md)
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
       - [ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)
@@ -192,7 +191,7 @@
   - [@ohos.intl (国际化-Intl)](js-apis-intl.md)
   - [@ohos.resourceManager (资源管理)](js-apis-resource-manager.md)
 
-- 资源调度
+- 后台任务
   - [@ohos.distributedMissionManager (分布式任务管理)](js-apis-distributedMissionManager.md)
   - [@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
   - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](js-apis-resourceschedule-backgroundTaskManager.md)
@@ -209,6 +208,8 @@
   - [@ohos.userIAM.faceAuth (人脸认证)](js-apis-useriam-faceauth.md)
   - [@ohos.userIAM.userAuth (用户认证)](js-apis-useriam-userauth.md)
   - [@system.cipher (加密算法)](js-apis-system-cipher.md)
+  - security
+    - [PermissionRequestResult](js-apis-permissionrequestresult.md)
 
 - 数据管理
   - [@ohos.data.dataAbility (DataAbility谓词)](js-apis-data-ability.md)
@@ -224,14 +225,15 @@
     - [resultSet (结果集)](js-apis-data-resultset.md)
 
 - 文件管理
-  - [@ohos.environment (目录环境能力)](js-apis-environment.md)
-  - [@ohos.data.fileAccess (公共文件访问与管理)](js-apis-fileAccess.md)
-  - [@ohos.fileExtensionInfo (公共文件访问与管理属性信息)](js-apis-fileExtensionInfo.md)
-  - [@ohos.fileio (文件管理)](js-apis-fileio.md)
+  - [@ohos.file.environment (目录环境能力)](js-apis-file-environment.md)
+  - [@ohos.file.fileAccess (公共文件访问与管理)](js-apis-fileAccess.md)
+  - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)](js-apis-fileExtensionInfo.md)
+  - [@ohos.file.fs (文件管理)](js-apis-file-fs.md)
+  - [@ohos.file.hash (文件哈希处理)](js-apis-file-hash.md)
+  - [@ohos.file.securityLabel (数据标签)](js-apis-file-securityLabel.md)
+  - [@ohos.file.statvfs (文件系统空间统计)](js-apis-file-statvfs.md)
   - [@ohos.filemanagement.userFileManager (用户数据管理)](js-apis-userFileManager.md)
   - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
-  - [@ohos.securityLabel (数据标签)](js-apis-securityLabel.md)
-  - [@ohos.statfs (statfs)](js-apis-statfs.md)
   - [@ohos.storageStatistics (应用空间统计)](js-apis-storage-statistics.md)
   - [@ohos.volumeManager (卷管理)](js-apis-volumemanager.md)
 
@@ -380,10 +382,12 @@
   - [@ohos.data.rdb (关系型数据库)](js-apis-data-rdb.md)
   - [@ohos.distributedBundle (分布式包管理)](js-apis-Bundle-distributedBundle.md)
   - [@ohos.document (文件交互)](js-apis-document.md)
+  - [@ohos.fileio (文件管理)](js-apis-fileio.md)
   - [@ohos.geolocation (位置服务)](js-apis-geolocation.md)
   - [@ohos.hiAppEvent (应用打点)](js-apis-hiappevent.md)
   - [@ohos.prompt (弹窗)](js-apis-prompt.md)
   - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
+  - [@ohos.statfs (statfs)](js-apis-statfs.md)
   - [@ohos.systemParameter (系统属性)](js-apis-system-parameter.md)
   - [@ohos.usb (USB管理)](js-apis-usb-deprecated.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
