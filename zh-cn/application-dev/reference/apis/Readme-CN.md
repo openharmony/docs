@@ -327,7 +327,7 @@
   - [@ohos.systemParameterV9 (系统属性)](js-apis-system-parameterV9.md)
   - [@ohos.thermal (热管理)](js-apis-thermal.md)
   - [@ohos.update (升级)](js-apis-update.md)
-  - [@ohos.usbV9 (USB管理)](js-apis-usb.md)
+  - [@ohos.usbManager (USB管理)](js-apis-usbManager.md)
   - [@ohos.vibrator (振动)](js-apis-vibrator.md)
 
 - 帐号管理
@@ -389,6 +389,7 @@
   - [@ohos.statfs (statfs)](js-apis-statfs.md)
   - [@ohos.systemParameter (系统属性)](js-apis-system-parameter.md)
   - [@ohos.usb (USB管理)](js-apis-usb-deprecated.md)
+  - [@ohos.usbV9 (USB管理)](js-apis-usb.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)
