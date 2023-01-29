@@ -16,7 +16,8 @@ Call **createDistributedObject()** to create a distributed data object instance.
 
 
 **Table 1** API for creating a distributed data object instance
-| Package| API| Description|
+
+| Bundle Name| API| Description|
 | -------- | -------- | -------- |
 | ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | Creates a distributed data object instance for data operations.<br>- **source**: attributes of the distributed data object to set.<br>- **DistributedObject**: returns the distributed data object created. |
 
@@ -25,7 +26,8 @@ Call **createDistributedObject()** to create a distributed data object instance.
 Call **genSessionId()** to generate a session ID randomly. The generated session ID can be used to set the session ID of a distributed data object.
 
 **Table 2** API for generating a session ID randomly
-| Package| API| Description|
+
+| Bundle Name| API| Description|
 | -------- | -------- | -------- |
 | ohos.data.distributedDataObject| genSessionId(): string | Generates a session ID, which can be used as the session ID of a distributed data object.|
 
@@ -34,9 +36,10 @@ Call **genSessionId()** to generate a session ID randomly. The generated session
 Call **setSessionId()** to set a session ID for a distributed data object. The session ID is a unique identifier for one collaboration across devices. The distributed data objects to be synchronized must be associated with the same session ID.
 
 **Table 3** API for setting a session ID
+
 | Class| API| Description|
 | -------- | -------- | -------- |
-| DistributedDataObject | setSessionId(sessionId?: string): boolean | Sets a session ID for a distributed data object.<br>**sessionId**: session ID of a distributed data object in a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty. |
+| DistributedDataObject | setSessionId(sessionId?: string): boolean | Sets a session ID for this distributed data object.<br>**sessionId**: ID of the distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
 
 ### Observing Data Changes
 
@@ -54,6 +57,7 @@ Call **on()** to subscribe to data changes of a distributed data object. When th
 Call **on()** to subscribe to status changes of a distributed data object. The status can be online or offline. When the status changes, a callback will be invoked to return the status. You can use **off()** to unsubscribe from the status changes.
 
 **Table 5** APIs for observing status changes of a distributed data object
+
 | Class| API| Description|
 | -------- | -------- | -------- |
 | DistributedDataObject| on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }>): void | Subscribes to the status changes of a distributed data object.|
@@ -90,86 +94,78 @@ The following example shows how to implement distributed data object synchroniza
    
 2. Apply for the permission.
 
-   Add the permissions required (FA model) to the **config.json** file. The sample code is as follows:
+   Add the permissions required (FA model) to the **config.json** file.
 
-    ```json
-     {
+   ```json
+   {
        "module": {
            "reqPermissions": [
                {
-                  "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+                   "name": "ohos.permission.DISTRIBUTED_DATASYNC"
                }
            ]
        }
-     }
-    ```
+   }
+   ```
    For the apps based on the stage model, see [Declaring Permissions](../security/accesstoken-guidelines.md#stage-model).
 
-   This permission must also be granted by the user when the application is started for the first time. The sample code is as follows:
+   This permission must also be granted by the user when the application is started for the first time.
 
-    ```js
-    import featureAbility from '@ohos.ability.featureAbility';
+   ```js
+   import featureAbility from '@ohos.ability.featureAbility';
 	
-    function grantPermission() {
-        console.info('grantPermission');
-        let context = featureAbility.getContext();
-        context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
-            console.info(`result.requestCode=${result.requestCode}`)
+   function grantPermission() {
+       console.info('grantPermission');
+       let context = featureAbility.getContext();
+       context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
+           console.info(`result.requestCode=${result.requestCode}`)
     
-        })
-        console.info('end grantPermission');
-    }
+       })
+       console.info('end grantPermission');
+   }
     
-    grantPermission();
-    ```
+   grantPermission();
+   ```
    
 3. Obtain a distributed data object instance.
 
-   The sample code is as follows:
-
    ```js
-   var local_object = distributedObject.createDistributedObject({
-     name: undefined,
-     age: undefined,
-     isVis: true,
-     parent: undefined,
-     list: undefined
+   let localObject = distributedObject.createDistributedObject({
+       name: undefined,
+       age: undefined,
+       isVis: true,
+       parent: undefined,
+       list: undefined
    });
-   var sessionId = distributedObject.genSessionId();
+   let sessionId = distributedObject.genSessionId();
    ```
-
+   
 4. Add the distributed data object instance to a network for data synchronization. The data objects in the synchronization network include the local and remote objects.
    
-   The sample code is as follows:
-
-   ```js
+```js
    // Local object
-   var local_object = distributedObject.createDistributedObject({
-     name: "jack",
-     age: 18,
-     isVis: true,
-     parent: { mother: "jack mom", father: "jack Dad" },
-     list: [{ mother: "jack mom" }, { father: "jack Dad" }]
+   let localObject = distributedObject.createDistributedObject({
+       name: "jack",
+       age: 18,
+       isVis: true,
+       parent: { mother: "jack mom", father: "jack Dad" },
+       list: [{ mother: "jack mom" }, { father: "jack Dad" }]
    });
-   local_object.setSessionId(sessionId);
+   localObject.setSessionId(sessionId);
    
    // Remote object
-   var remote_object = distributedObject.createDistributedObject({
-     name: undefined,
-     age: undefined,
-     isVis: true,
-     parent: undefined,
-     list: undefined
+   let remoteObject = distributedObject.createDistributedObject({
+       name: undefined,
+       age: undefined,
+       isVis: true,
+       parent: undefined,
+       list: undefined
    });
    // After learning that the local device goes online, the remote object synchronizes data. That is, name changes to jack and age to 18.
-   remote_object.setSessionId(sessionId);
+   remoteObject.setSessionId(sessionId);
    ```
    
-5. Observe the data changes of the distributed data object. 
-
-   You can subscribe to data changes of the remote object. When the data in the remote object changes, a callback will be called to return the data changes.
-   
-   The sample code is as follows:
+5. Observe the data changes of the distributed data object. You can subscribe to data changes of the remote object. When the data in the remote object changes, a callback will be invoked to return the data changes.
    
    ```js
    function changeCallback(sessionId, changeData) {
@@ -177,89 +173,78 @@ The following example shows how to implement distributed data object synchroniza
    
        if (changeData != null && changeData != undefined) {
            changeData.forEach(element => {
-               console.info("changed !" + element + " " + local_object[element]);
-       });
-    }
+               console.info("changed !" + element + " " + localObject[element]);
+           });
+       }
    } 
    
    // To refresh the page in changeCallback, correctly bind (this) to the changeCallback.
-   local_object.on("change", this.changeCallback.bind(this));
+   localObject.on("change", this.changeCallback.bind(this));
    ```
    
-6. Modify attributes of the distributed data object. 
-
-   The object attributes support basic data types (such as number, Boolean, and string) and complex data types (array and nested basic types).
-
-   The sample code is as follows:
+6. Modify attributes of the distributed data object. The object attributes support basic data types (such as number, Boolean, and string) and complex data types (array and nested basic types).
 
    ```js
-   local_object.name = "jack";
-   local_object.age = 19;
-   local_object.isVis = false;
-   local_object.parent = { mother: "jack mom", father: "jack Dad" };
-   local_object.list = [{ mother: "jack mom" }, { father: "jack Dad" }];
+   localObject.name = "jack";
+   localObject.age = 19;
+   localObject.isVis = false;
+   localObject.parent = { mother: "jack mom", father: "jack Dad" };
+   localObject.list = [{ mother: "jack mom" }, { father: "jack Dad" }];
    ```
 
    > **NOTE**<br>
-   > For the distributed data object of the complex type, only the root attribute can be modified. The subordinate attributes cannot be modified. Example:
+   > For the distributed data object of the complex type, only the root attribute can be modified. The subordinate attributes cannot be modified.
 
    ```js
    // Supported modification.
-   local_object.parent = { mother: "mom", father: "dad" };
+   localObject.parent = { mother: "mom", father: "dad" };
    // Modification not supported.
-   local_object.parent.mother = "mom";
+   localObject.parent.mother = "mom";
    ```
 
 7. Access the distributed data object. 
 
    Obtain the distributed data object attributes, which are the latest data on the network.
 
-   The sample code is as follows:
-
    ```js
-   console.info("name " + local_object["name"]); 
+console.info("name " + localObject["name"]); 
    ```
-
-8. Unsubscribe from data changes. 
-
-   You can specify the callback to unregister. If you do not specify the callback, all data change callbacks of the distributed data object will be unregistered.
-
-   The sample code is as follows:
-
-   ```js
-   // Unregister the specified data change callback.
-   local_object.off("change", changeCallback);
-   // Unregister all data change callbacks. 
-   local_object.off("change"); 
-   ```
-
-9. Subscribe to the status (online/offline) changes of the distributed data object. A callback will be invoked to report the status change when the target distributed data object goes online or offline.
-   The sample code is as follows:
-
-   ```js
-    function statusCallback(sessionId, networkId, status) {
-      this.response += "status changed " + sessionId + " " + status + " " + networkId;
-    }
    
-    local_object.on("status", this.statusCallback);
-   ```
+8. Unsubscribe from data changes. You can specify the callback to unregister. If you do not specify the callback, all data change callbacks of the distributed data object will be unregistered.
 
+   ```js
+// Unregister the specified data change callback.
+   localObject.off("change", changeCallback);
+   // Unregister all data change callbacks. 
+   localObject.off("change"); 
+   ```
+   
+9. Subscribe to status changes of this distributed data object. A callback will be invoked to report the status change when the target distributed data object goes online or offline.
+   
+```js
+   function statusCallback(sessionId, networkId, status) {
+       this.response += "status changed " + sessionId + " " + status + " " + networkId;
+   }
+   
+   localObject.on("status", this.statusCallback);
+   ```
+   
 10. Save a distributed data object and delete it.
 
     ```js
     // Save a distributed data object.
-    g_object.save("local").then((result) => {
-      console.info("save sessionId " + result.sessionId);
-      console.info("save version " + result.version);
-      console.info("save deviceId " + result.deviceId);
+    localObject.save("local").then((result) => {
+        console.info("save sessionId " + result.sessionId);
+        console.info("save version " + result.version);
+        console.info("save deviceId " + result.deviceId);
     }, (result) => {
-      console.info("save local failed.");
+        console.info("save local failed.");
     });
-    // Delete a distributed data object..
-    g_object.revokeSave().then((result) => {
-      console.info("revokeSave success.");
+    // Revoke the data saving operation.
+    localObject.revokeSave().then((result) => {
+        console.info("revokeSave success.");
     }, (result) => {
-      console.info("revokeSave failed.");
+        console.info("revokeSave failed.");
     });
     ```
 
@@ -267,19 +252,15 @@ The following example shows how to implement distributed data object synchroniza
 
     You can specify the callback to unregister. If you do not specify the callback, all status change callbacks of this distributed data object will be unregistered.
 
-    The sample code is as follows:
-
     ```js
-    // Unregister the specified status change callback.
-    local_object.off("status", this.statusCallback);
+// Unregister the specified status change callback.
+    localObject.off("status", this.statusCallback);
     // Unregister all status change callbacks.
-    local_object.off("status");
+    localObject.off("status");
     ```
-
-12. Remove a distributed data object from the synchronization network. Data changes on the local object will not be synchronized to the removed distributed data object.
-
-    The sample code is as follows:
+    
+12. Remove the distributed data object from the synchronization network. The data changes on the local object will not be synchronized to the removed distributed data object.
 
     ```js
-    local_object.setSessionId("");
+localObject.setSessionId("");
     ```
