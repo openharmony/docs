@@ -117,6 +117,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
 | 17700018 | Failed to install because the dependent module does not exist. |
+| 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
 
 **示例：**
 
