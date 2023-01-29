@@ -198,7 +198,7 @@ ohos_source_set("helloworld") {
 }
 ```
 
-![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>Only **sources** and **part_name** are mandatory.
+>**NOTE**<br>Only **sources** and **part_name** are mandatory.
 
 ### Prebuilt Template Example
 
@@ -281,7 +281,7 @@ ohos_prebuilt_static_library("helloworld") {
 }
 ```
 
-![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>Only **sources** and **part_name** are mandatory.
+>**NOTE**<br>Only **sources** and **part_name** are mandatory.
 
 ### HAP Templates
 
@@ -326,7 +326,7 @@ ohos_sa_profile("helloworld") {
 }
 ```
 
-![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**: Only **sources** and **part_name** are mandatory.
+>**NOTE**: Only **sources** and **part_name** are mandatory.
 
 ## Adding and Building a Module
 
@@ -388,7 +388,7 @@ The figure below illustrates the process for adding a module. A module belongs t
    }
    ```
 
-   ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The **bundle.json** file must be in the folder of the corresponding subsystem.
+   >**NOTE**<br>The **bundle.json** file must be in the folder of the corresponding subsystem.
 
 3. Start the build and check whether a .so file or binary file is generated.
 
