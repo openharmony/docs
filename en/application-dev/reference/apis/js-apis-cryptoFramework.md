@@ -1998,7 +1998,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let signer1 = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
 
-let singer2 = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256")
+let signer2 = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256")
 ```
 
 ## Sign
