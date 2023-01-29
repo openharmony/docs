@@ -24,6 +24,7 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
 | INITIAL | 0 | 表示ability为初始化状态。| 
+| ACTIVE | 2 | 表示ability为获焦状态。 | 
 | FOREGROUND | 9 | 表示ability为前台状态。  | 
 | BACKGROUND | 10 | 表示ability为后台状态。  | 
 | FOREGROUNDING | 11 | 表示ability为前台调度中状态。  | 
@@ -70,7 +71,7 @@ const config = {
 
 try {
     abilityManager.updateConfiguration(config, (err) => {
-        if (err.code !== 0) {
+        if (err && err.code !== 0) {
             console.log("updateConfiguration fail, err: " + JSON.stringify(err));
         } else {
             console.log("updateConfiguration success.");
@@ -169,7 +170,7 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 try {
     abilityManager.getAbilityRunningInfos((err, data) => {
-        if (err.code !== 0) {
+        if (err && err.code !== 0) {
             console.log("getAbilityRunningInfos fail, error: " + JSON.stringify(err));
         } else {
             console.log("getAbilityRunningInfos success, data: " + JSON.stringify(data));
@@ -256,7 +257,7 @@ let upperLimit = 10;
 
 try {
     abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => { 
-        if (err.code !== 0) {
+        if (err && err.code !== 0) {
             console.log("getExtensionRunningInfos fail, err: " + JSON.stringify(err));
         } else {
             console.log("getExtensionRunningInfos success, data: " + JSON.stringify(data));
@@ -345,7 +346,7 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 import abilityManager from '@ohos.app.ability.abilityManager';
 
 abilityManager.getTopAbility((err, data) => { 
-    if (err.code !== 0) {
+    if (err && err.code !== 0) {
         console.log("getTopAbility fail, err: " + JSON.stringify(err));
     } else {
         console.log("getTopAbility success, data: " + JSON.stringify(data));
