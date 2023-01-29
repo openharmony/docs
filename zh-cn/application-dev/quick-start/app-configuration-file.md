@@ -43,8 +43,8 @@ app.json5配置文件包含以下标签。
 | versionCode | 标识应用的版本号，该标签值为32位非负整数。此数字仅用于确定某个版本是否比另一个版本更新，数值越大表示版本越高。开发者可以将该值设置为任何正整数，但是必须确保应用的新版本都使用比旧版本更大的值。该标签不可缺省，versionCode值应小于2^31次方。 | 数值 | 该标签不可缺省。 |
 | versionName | 标识应用版本号的文字描述，用于向用户展示。<br/>该标签仅由数字和点构成，推荐采用“A.B.C.D”四段式的形式。四段式推荐的含义如下所示。<br/>第一段：主版本号/Major，范围0-99，重大修改的版本，如实现新的大功能或重大变化。<br/>第二段：次版本号/Minor，范围0-99，表示实现较突出的特点，如新功能添加或大问题修复。<br/>第三段：特性版本号/Feature，范围0-99，标识规划的新版本特性。<br/>第四段：修订版本号/Patch，范围0-999，表示维护版本，修复bug。<br/>标签最大字节长度为127。 | 字符串 | 该标签不可缺省。 |
 | minCompatibleVersionCode | 标识应用能够兼容的最低历史版本号，用于跨设备兼容性判断。 | 数值 | 该标签可缺省，缺省值等于versionCode标签值。 |
-| minAPIVersion | 标识应用运行需要的SDK的API最小版本。 | 数值 | 由bundle-profile.json5中的compatibleSdkVersion生成。 |
-| targetAPIVersion | 标识应用运行需要的API目标版本。 | 数值 | 由bundle-profile.json5中的compileSdkVersion生成。 |
+| minAPIVersion | 标识应用运行需要的SDK的API最小版本。 | 数值 | build-profile.json5中的compatibleSdkVersion生成。 |
+| targetAPIVersion | 标识应用运行需要的API目标版本。 | 数值 | build-profile.json5中的compileSdkVersion生成。 |
 | apiReleaseType | 标识应用运行需要的API目标版本的类型，采用字符串类型表示。取值为“CanaryN”、“BetaN”或者“Release”，其中，N代表大于零的整数。<br/>-&nbsp;Canary：受限发布的版本。<br/>-&nbsp;Beta：公开发布的Beta版本。<br/>-&nbsp;Release：公开发布的正式版本。<br/>该字段由DevEco&nbsp;Studio读取当前使用的SDK的Stage来生成。 | 字符串 | 该标签可缺省，由IDE生成并覆盖。 |
 | distributedNotificationEnabled | 标识应用是否开启分布式通知，当开启分布式通知时，同一分布式组网下的两个设备(A和B)，当设备A收到一条消息时，设备B会收到一天分布式消息用于设备B的使用者去查看设备A的消息。<br/>-&nbsp;true：开启。<br/>-&nbsp;false：不开启。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | entityType | 标识应用的类别，分别有：<br/>-&nbsp;game：游戏类。<br/>-&nbsp;media：影音类。<br/>-&nbsp;communication：社交通信类。<br/>-&nbsp;news：新闻类。<br/>-&nbsp;travel：出行类。<br/>-&nbsp;utility：工具类。<br/>-&nbsp;shopping：购物类。<br/>-&nbsp;education：教育类。<br/>-&nbsp;kids：少儿类。<br/>-&nbsp;business：商务类。<br/>-&nbsp;photography：拍摄类。<br/>-&nbsp;unspecified：不属于上述的任何一类。 | 字符串 | 该标签可以缺省，缺省为unspecified。 |
