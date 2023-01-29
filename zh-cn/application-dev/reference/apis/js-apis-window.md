@@ -296,6 +296,21 @@ import window from '@ohos.window';
 | y    | number   | 否   | 是   | Y轴的平移参数，默认值为0.0。 |
 | z    | number   | 否   | 是   | Z轴的平移参数，默认值为0.0。 |
 
+## WindowEventType<sup>10+</sup>
+
+窗口生命周期。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+| 名称       | 值 | 说明       |
+| ---------- | ------ | ---------- |
+| SHOWN      | 1      | 切到前台。 |
+| ACTIVE     | 2      | 获焦状态。 |
+| INACTIVE   | 3      | 失焦状态。 |
+| HIDDEN     | 4      | 切到后台。 |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -2782,6 +2797,62 @@ off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 ```js
 try {
     windowClass.off('dialogTargetTouch');
+} catch (exception) {
+    console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### on('windowEvent')<sup>10+</sup>
+
+on(type: 'windowEvent', callback: Callback&lt;WindowEventType&gt;): void
+
+开启窗口生命周期变化的监听。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                                       | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | 是   | 监听事件，固定为'windowEvent'，即窗口生命周期变化事件。 |
+| callback | Callback&lt;[WindowEventType](#windoweventtype10)&gt; | 是   | 回调函数。返回当前的窗口生命周期状态。                 |
+
+**示例：**
+
+```js
+try {
+    windowClass.on('windowEvent', (data) => {
+        console.info('Window event happened. Event:' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowEvent')<sup>10+</sup>
+
+off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
+
+关闭窗口生命周期变化的监听。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                                       | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | 是   | 监听事件，固定为'windowEvent'，即窗口生命周期变化事件。 |
+| callback | Callback&lt;[WindowEventType](#windoweventtype10)&gt; | 否   | 回调函数。返回当前的窗口生命周期状态。                 |
+
+**示例：**
+
+```js
+try {
+    windowClass.off('windowEvent');
 } catch (exception) {
     console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
 }
