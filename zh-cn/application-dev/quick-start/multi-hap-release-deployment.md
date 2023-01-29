@@ -33,7 +33,7 @@
     使用bm工具进行安装、更新HAP时，传入的文件路径为真机上   的文件路径，命令参考如下：
     ```
     // 安装、更新，多HAP可以指定多个文件路径
-    bm install -p /data/app/entry.hap /data/app/    feature.hap
+    bm install -p /data/app/entry.hap /data/app/feature.hap
     // 执行结果
     install bundle successfully.
     // 卸载
