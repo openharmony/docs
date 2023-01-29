@@ -385,11 +385,8 @@
      - Audio/Video
        - [Audio/Video Overview](subsystems/subsys-multimedia-video-overview.md)
        - [Audio/Video Playback Development](subsystems/subsys-multimedia-video-play-guide.md)
-       - [Audio/Video Recording Development](subsystems/subsys-multimedia-video-record-guide.md)
-  -  Utils
-     - [Utils Overview](subsystems/subsys-utils-overview.md)
-     - [Utils Development](subsystems/subsys-utils-guide.md)
-     - [Utils FAQ](subsystems/subsys-utils-faqs.md)
+       - [Audio/Video Recording Development](subsystems/subsys-multimedia-video-record-guide.md)     
+  -  [Utils Development](subsystems/subsys-utils-guide.md)  
   -  [AI Framework Development](subsystems/subsys-ai-aiframework-devguide.md)
   -  Data Management
      - RDB
