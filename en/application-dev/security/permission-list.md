@@ -436,7 +436,7 @@ Allows an application to obtain the sensitive permissions that have been granted
 
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
-Allows an application to set the attributes of applications  of other users.
+Allows an application to set the attributes of applications of other users.
 
 **Permission level**: system_core
 
@@ -456,7 +456,7 @@ Allows an application to listen for changes in other applications, when they are
 
 ## ohos.permission.GET_BUNDLE_INFO
 
-Allows an application to query information about another application. This permission applies only to third-party applications.
+Allows an application to obtain information about another application. This permission applies only to third-party applications.
 
 **Permission level**: normal
 
@@ -466,7 +466,7 @@ Allows an application to query information about another application. This permi
 
 ## ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-Allows an application to query information about other applications at the same time.
+Allows an application to obtain information about other applications at the same time. This permission applies only to privileged applications and applications with the same signature.
 
 **Permission level**: system_basic
 
@@ -546,7 +546,7 @@ Allows an application to start Feature abilities in the background.
 
 ## ohos.permission.BUNDLE_ACTIVE_INFO
 
-Allows an application to obtain how long other applications  have been running in the foreground or background.
+Allows an application to obtain how long other applications have been running in the foreground or background.
 
 **Permission level**: system_basic
 
@@ -606,7 +606,7 @@ Allows an application to use agent-powered reminders.
 
 ## ohos.permission.CONTROL_TASK_SYNC_ANIMATOR
 
-Allows applications  to use sync task animations.
+Allows an application to use sync task animations.
 
 **Permission level**: system_core
 
@@ -616,7 +616,7 @@ Allows applications  to use sync task animations.
 
 ## ohos.permission.INPUT_MONITORING
 
-Allows an application to listen for input events. Only the system signed applications  can apply for this permission.
+Allows an application to listen for input events. Only the system signed applications can apply for this permission.
 
 **Permission level**: system_core
 
@@ -872,7 +872,7 @@ Allows an application to access system event logging data.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable ACL**: FALSE
 
 ## ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -1567,36 +1567,6 @@ Allows a file management application to access user data files through the FAF.
 ## ohos.permission.MANAGE_AUDIO_CONFIG
 
 Allows an application to to mute microphones globally.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable ACL**: TRUE
-
-## ohos.permission.ACCESS_SERVICE_DM
-
-Allows a system application to obtain the authentication and networking capability of distributed devices.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable ACL**: TRUE
-
-## ohos.permission.RUN_ANY_CODE
-
-Allows an application to run unsigned code.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable ACL**: TRUE
-
-## ohos.permission.PUBLISH_SYSTEM_COMMON_EVENT
-
-Allows an application to publish system common events.
 
 **Permission level**: system_basic
 
