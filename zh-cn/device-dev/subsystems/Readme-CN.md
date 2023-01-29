@@ -37,10 +37,7 @@
         - [音视频开发概述](subsys-multimedia-video-overview.md)
         - [音视频播放开发指导](subsys-multimedia-video-play-guide.md)
         - [音视频录制开发指导](subsys-multimedia-video-record-guide.md)
-- 公共基础
-    - [公共基础库概述](subsys-utils-overview.md)
-    - [公共基础库开发指导](subsys-utils-guide.md)
-    - [公共基础库常见问题](subsys-utils-faqs.md)
+- [公共基础库开发指导](subsys-utils-guide.md)
 - [AI框架开发指导](subsys-ai-aiframework-devguide.md)
 - 数据管理
     - 关系型数据库
