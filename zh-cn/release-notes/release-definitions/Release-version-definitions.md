@@ -4,8 +4,6 @@
 
 为了保障OpenHarmony社区版本的平滑演进和历史发布版本的持续稳定可靠，会定期从Master主干拉出LTS/Release/Beta等类型分支，并按照OpenHarmony生命周期定义对其进行管理。
 
-![1.png](figures/1.png)
-
 
 ### Master （主干分支）
 
@@ -13,11 +11,11 @@ Master作为OpenHarmony社区持续滚动开发的主干，积极接纳社区每
 
 ###  LTS分支（长期支持维护分支）
 
-OpenHarmony社区LTS长期支持维护分支按照每12个月一个周期在每年的Q3季度从Master主干分支拉出来。该LTS分支在经过集中编译、构建、集成测试并最终通过社区评审发布。
+OpenHarmony社区LTS分支为长期支持维护分支，按年度从Master主干分支拉出来。该LTS分支在经过集中编译、构建、集成测试并最终通过社区评审发布。
 
 ### Release分支（发布分支）
 
-OpenHarmony社区Release分支按照每12个月一个周期在每年的Q1季度从master主干分支拉出来。该分支在经过集中编译、构建、集成测试并最终通过社区评审发布。其与LTS分支的发布要求一致，但其维护周期短于LTS分支。
+OpenHarmony社区Release分支为社区发布的稳定分支。该分支在经过集中编译、构建、集成测试并最终通过社区评审发布。其与LTS分支的发布要求一致，但其维护周期短于LTS分支。
 
 ### Beta分支（测试分支）
 
