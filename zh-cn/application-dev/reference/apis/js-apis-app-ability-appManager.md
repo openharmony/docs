@@ -41,7 +41,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRunningInStabilityTest((err, flag) => {
     if (err && err.code !== 0) {
-        console.log("isRunningInStabilityTest faile, err: " + JSON.stringify(err));
+        console.log("isRunningInStabilityTest fail, err: " + JSON.stringify(err));
     } else {
         console.log("The result of isRunningInStabilityTest is:" + JSON.stringify(flag));
     }
@@ -147,7 +147,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRamConstrainedDevice((err, data) => {
     if (err && err.code !== 0) {
-        console.log("isRamConstrainedDevice faile, err: " + JSON.stringify(err));
+        console.log("isRamConstrainedDevice fail, err: " + JSON.stringify(err));
     } else {
         console.log("The result of isRamConstrainedDevice is:" + JSON.stringify(data));
     }
@@ -217,7 +217,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 appManager.getAppMemorySize((err, data) => {
     if (err && err.code !== 0) {
-        console.log("getAppMemorySize faile, err: " + JSON.stringify(err));
+        console.log("getAppMemorySize fail, err: " + JSON.stringify(err));
     } else {
         console.log("The size of app memory is:" + JSON.stringify(data));
     }
@@ -295,7 +295,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 appManager.getProcessRunningInformation((err, data) => {
     if (err && err.code !== 0) {
-        console.log("getProcessRunningInformation faile, err: " + JSON.stringify(err));
+        console.log("getProcessRunningInformation fail, err: " + JSON.stringify(err));
     } else {
         console.log("The process running information is:" + JSON.stringify(data));
     }
@@ -494,7 +494,7 @@ try {
 // 2.注销应用状态监听器
 function unregisterApplicationStateObserverCallback(err) {
     if (err && err.code !== 0) {
-        console.log("unregisterApplicationStateObserverCallback faile, err: " + JSON.stringify(err));
+        console.log("unregisterApplicationStateObserverCallback fail, err: " + JSON.stringify(err));
     } else {
         console.log("unregisterApplicationStateObserverCallback success.");
     }
@@ -577,7 +577,7 @@ try {
     appManager.off("applicationState", observerId).then((data) => {
         console.log("unregisterApplicationStateObserver success, data: " + JSON.stringify(data));
     }).catch((err) => {
-        console.log("unregisterApplicationStateObserver faile, err: " + JSON.stringify(err));
+        console.log("unregisterApplicationStateObserver fail, err: " + JSON.stringify(err));
     })
 } catch (paramError) {
     console.log('error: ' + paramError.code + ', ' + paramError.message);

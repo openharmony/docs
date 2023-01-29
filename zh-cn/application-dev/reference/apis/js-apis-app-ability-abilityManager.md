@@ -24,6 +24,7 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
 | INITIAL | 0 | 表示ability为初始化状态。| 
+| ACTIVE | 2 | 表示ability为获焦状态。 | 
 | FOREGROUND | 9 | 表示ability为前台状态。  | 
 | BACKGROUND | 10 | 表示ability为后台状态。  | 
 | FOREGROUNDING | 11 | 表示ability为前台调度中状态。  | 
