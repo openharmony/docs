@@ -134,8 +134,7 @@
    ```typescript
    import UIAbility from '@ohos.app.ability.UIAbility';
    import window from '@ohos.window';
-   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-   import { Permissions } from '@ohos.abilityAccessCtrl';
+   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
    
    export default class EntryAbility extends UIAbility {
        // ...
@@ -143,10 +142,10 @@
        onWindowStageCreate(windowStage: window.WindowStage) {
            // Main window is created, set main page for this ability
            let context = this.context;
-           let AtManager = abilityAccessCtrl.createAtManager();
+           let atManager = abilityAccessCtrl.createAtManager();
            // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
            const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
-           AtManager.requestPermissionsFromUser(context, permissions).then((data) => {
+           atManager.requestPermissionsFromUser(context, permissions).then((data) => {
                console.info(`[requestPermissions] data: ${JSON.stringify(data)}`);
                let grantStatus: Array<number> = data.authResults;
                if (grantStatus[0] === -1) {
@@ -165,8 +164,7 @@
    
    在UI界面中向用户申请授权。
    ```typescript
-   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-   import { Permissions } from '@ohos.abilityAccessCtrl';
+   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
    import common from '@ohos.app.ability.common';
    
    @Entry
@@ -174,10 +172,10 @@
    struct Index {
      reqPermissions() {
        let context = getContext(this) as common.UIAbilityContext;
-       let AtManager = abilityAccessCtrl.createAtManager();
+       let atManager = abilityAccessCtrl.createAtManager();
        // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
        const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
-       AtManager.requestPermissionsFromUser(context, permissions).then((data) => {
+       atManager.requestPermissionsFromUser(context, permissions).then((data) => {
          console.info(`[requestPermissions] data: ${JSON.stringify(data)}`);
          let grantStatus: Array<number> = data.authResults;
          if (grantStatus[0] === -1) {
