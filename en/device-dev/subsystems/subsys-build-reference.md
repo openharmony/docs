@@ -60,7 +60,7 @@ The dependency between modules can be classified into **deps** (left in the figu
   }
   ```
 
-  ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The dependency between components must be written in the format of **Component name:Module name** in **external_deps**. The dependent module must be declared in **inner_kits**.
+ > **NOTE**<br>The dependency between components must be written in the format of **Component name:Module name** in **external_deps**. The dependent module must be declared in **inner_kits**.
 
 ## Using Sanitizer
 

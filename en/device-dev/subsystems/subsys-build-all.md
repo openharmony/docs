@@ -122,7 +122,7 @@ You must install the software packages required for build. The command is as fol
   # export PATH=~/.local/bin:$PATH
   ```
 
-  ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The hb tool will be installed during the installation of **ohos-build**. If hb tool fails to be installed, [install hb](../../device-dev/quick-start/quickstart-pkg-install-tool.md#hb-installation) again.
+  >**NOTE**<br>The hb tool will be installed during the installation of **ohos-build**. If hb tool fails to be installed, [install hb](../../device-dev/quick-start/quickstart-pkg-install-tool.md#hb-installation) again.
 
 
 ## Configuration Rules
@@ -205,7 +205,7 @@ Then, run the build commands in command line (CLI) mode or hb mode.
   ```shell
   ./build.sh --product-name {product_name} --gn-args is_debug=true
   ```
-  > ![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
+  > **CAUTION**<br/>
   > Due to the limitation of the image size, the full build for the debug version may fail to be burnt. You are advised to build the binary file for each module separately. Run the following command to build a module separately:
   > 
   > 

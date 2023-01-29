@@ -47,7 +47,7 @@ The **bundle.json** file of a component is stored in the root directory of the c
  }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>Existing components on the LiteOS are configured in the JSON file of the corresponding subsystem in the **build/lite/components** directory. The directory is named in the **{Domain}/{Subsystem}/{Component}** format. The component directory structure is as follows:
+> **CAUTION**<br>Existing components on the LiteOS are configured in the JSON file of the corresponding subsystem in the **build/lite/components** directory. The directory is named in the **{Domain}/{Subsystem}/{Component}** format. The component directory structure is as follows:
 
 ```shell
 component
