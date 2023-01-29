@@ -118,6 +118,7 @@ try {
 
 subscribeThermalLevel(callback: AsyncCallback&lt;ThermalLevel&gt;): void
 
+> NOTE<br>
 > This API is deprecated since API version 9. You are advised to use [thermal.registerThermalLevelCallback](#thermalregisterthermallevelcallback9) instead.
 
 Subscribes to thermal level changes.
@@ -142,6 +143,7 @@ thermal.subscribeThermalLevel((level) => {
 
 unsubscribeThermalLevel(callback?: AsyncCallback\<void>): void
 
+> NOTE<br>
 > This API is deprecated since API version 9. You are advised to use [thermal.unregisterThermalLevelCallback](#thermalunregisterthermallevelcallback9) instead.
 
 Unsubscribes from thermal level changes.
@@ -166,6 +168,7 @@ thermal.unsubscribeThermalLevel(() => {
 
 getThermalLevel(): ThermalLevel
 
+> NOTE<br>
 > This API is deprecated since API version 9. You are advised to use [thermal.getLevel](#thermalgetlevel9) instead.
 
 Obtains the current thermal level.

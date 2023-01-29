@@ -203,9 +203,8 @@ try {
   inputMonitor.on("touch", touchEvent => {
     if (touchEvent.touches.length == 3) {// Three fingers are pressed.
       return true;
-    } else {
-      return false;
     }
+    return false;
   });
 } catch (error) {
     console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
