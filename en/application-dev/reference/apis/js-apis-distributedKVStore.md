@@ -271,9 +271,10 @@ Creates a **KVManager** instance to manage KV stores.
 Stage model:
 
 ```js
-import AbilityStage from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let kvManager;
-export default class MyAbilityStage extends AbilityStage {
+export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log("MyAbilityStage onCreate")
         let context = this.context
@@ -294,7 +295,7 @@ export default class MyAbilityStage extends AbilityStage {
 FA model:
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 let kvManager;
 let context = featureAbility.getContext()
 const kvManagerConfig = {
@@ -327,7 +328,7 @@ Creates and obtains a distributed KV store. This API uses an asynchronous callba
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | storeId  | string                 | Yes  | Unique identifier of the KV store. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
 | options  | [Options](#options)    | Yes  | Configuration of the KV store to create.                              |
-| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the distributed single or device KV store created. |
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the distributed KV store (**SingleKVStore** or **DeviceKVStore**) instance created.|
 
 **Error codes**
 
@@ -384,7 +385,7 @@ Creates and obtains a distributed KV store. This API uses a promise to return th
 
 | Type            | Description                                                        |
 | ---------------- | ------------------------------------------------------------ |
-| Promise&lt;T&gt; | Promise used to return the distributed single or device KV store created.|
+| Promise&lt;T&gt; | Promise used to return the distributed KV store (**SingleKVStore** or **DeviceKVStore**) instance created.|
 
 **Error codes**
 
