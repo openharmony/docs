@@ -87,7 +87,7 @@
 | tempDir | string | 是 | 否 | 应用的临时文件路径。<br/>在应用卸载后，系统会删除存储在此目录中的文件。 |
 | filesDir | string | 是 | 否 | 应用在内部存储上的文件路径。<br/>本目录下存放的文件可能会被应用迁移或者备份的时候同步到其他目录中。 |
 | databaseDir | string | 是 | 否 | 获取本地数据库存储路径。 |
-| bundleCodeDir | string | 是 | 否 | 应用在内部存储上的安装路径。 |
+| bundleCodeDir | string | 是 | 否 | 应用在内部存储上的安装路径。不能拼接路径访问资源文件，请使用[资源管理接口](../reference/apis/js-apis-resource-manager.md)访问资源。 |
 | distributedFilesDir | string | 是 | 否 | 应用的分布式文件路径。 |
 | preferencesDir | string | 是 | 是 | 指示应用程序首选项目录。 |
 
