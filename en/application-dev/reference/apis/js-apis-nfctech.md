@@ -1,4 +1,4 @@
-# nfctech
+# nfctech (Standard NFC Technologies)
 
 The **nfctech** module provides APIs for reading and writing tags that use different Near-Field Communication (NFC) technologies.
 
@@ -28,7 +28,7 @@ Obtains the SAK value of this NFC-A tag.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -54,7 +54,7 @@ Obtains the ATQA value of this NFC-A tag.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -88,7 +88,7 @@ Obtains the application data of this NFC-B tag.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -114,7 +114,7 @@ Obtains the protocol information of this NFC-B tag.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -148,7 +148,7 @@ Obtains the system code from this NFC-F tag.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -174,7 +174,7 @@ Obtains the PMm (consisting of the IC code and manufacturer parameters) informat
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -208,7 +208,7 @@ Obtains the response flags from this NFC-V tag.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -234,7 +234,7 @@ Obtains the data storage format identifier (DSFID) from this NFC-V tag.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -266,7 +266,7 @@ getHistoricalBytes(): number[]
 
 Obtains the historical bytes for the given tag. This API applies only to the IsoDep cards that use the NFC-A technology.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -290,7 +290,7 @@ getHiLayerResponse(): number[]
 
 Obtains the higher-layer response bytes for the given tag. This API applies only to the IsoDep cards that use the NFC-B technology.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -316,7 +316,7 @@ Checks whether an extended application protocol data unit (APDU) is supported. T
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -367,7 +367,7 @@ Checks whether an extended APDU is supported. This API uses an asynchronous call
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -419,7 +419,7 @@ getNdefRecords(): [tag.NdefRecord](js-apis-nfcTag.md#ndefrecord9)[]
 
 Obtains all NDEF records.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -454,7 +454,7 @@ getNdefTagType(): [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)
 
 Obtains the NDEF tag type.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -478,7 +478,7 @@ getNdefMessage(): [NdefMessage](#ndefmessage9)
 
 Obtains the NDEF message from this NDEF tag.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -501,7 +501,7 @@ isNdefWritable(): boolean;
 
 Check whether this NDEF tag is writable. Before calling the data write API, check whether the write operation is supported.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -527,7 +527,7 @@ Reads the NDEF message from this tag. This API uses a promise to return the resu
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -577,7 +577,7 @@ Reads the NDEF message from this tag. This API uses an asynchronous callback to 
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -629,7 +629,7 @@ Writes an NDEF message to this tag. This API uses a promise to return the result
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -682,7 +682,7 @@ Writes an NDEF message to this tag. This API uses an asynchronous callback to re
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -738,7 +738,7 @@ Checks whether this NDEF tag can be set to read-only.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -772,7 +772,7 @@ Sets this NDEF tag to read-only. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Error codes**
 
@@ -816,7 +816,7 @@ Sets this NDEF tag to read-only. This API uses an asynchronous callback to retur
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -866,7 +866,7 @@ getNdefTagTypeString(type: [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)):
 
 Converts an NFC Forum Type tag to a string defined in the NFC Forum.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -911,7 +911,7 @@ Authenticates a sector using a key. The sector can be accessed only after the au
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -965,7 +965,7 @@ Authenticates a sector using a key. The sector can be accessed only after the au
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1021,7 +1021,7 @@ Reads a block (16 bytes) on this tag. This API uses a promise to return the resu
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1078,7 +1078,7 @@ Reads a block (16 bytes) on this tag. This API uses an asynchronous callback to 
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1132,7 +1132,7 @@ Writes data to a block on this tag. This API uses a promise to return the result
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1186,7 +1186,7 @@ Writes data to a block on this tag. This API uses an asynchronous callback to re
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1243,7 +1243,7 @@ Increments a block with data. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1296,7 +1296,7 @@ Increments a block with data. This API uses an asynchronous callback to return t
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1352,7 +1352,7 @@ Decrements a block. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1405,7 +1405,7 @@ Decrements a block. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1461,7 +1461,7 @@ Transfers data from the temporary register to a block. This API uses a promise t
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1512,7 +1512,7 @@ Transfers data from the temporary register to a block. This API uses an asynchro
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1566,7 +1566,7 @@ Restores data in the temporary register from a block. This API uses a promise to
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1617,7 +1617,7 @@ Restores data in the temporary register from a block. This API uses an asynchron
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1669,7 +1669,7 @@ getSectorCount(): number
 
 Obtains the number of sectors in this MIFARE Classic tag.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -1693,7 +1693,7 @@ getBlockCountInSector(sectorIndex: number): number
 
 Obtains the number of blocks in a sector.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1729,7 +1729,7 @@ getType(): [tag.MifareClassicType](js-apis-nfcTag.md#mifareclassictype9)
 
 Obtains the type of this MIFARE Classic tag.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -1753,7 +1753,7 @@ getTagSize(): number
 
 Obtains the size of this tag. For details, see [MifareClassicSize](js-apis-nfcTag.md#mifareclassicsize9).
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -1777,7 +1777,7 @@ isEmulatedTag(): boolean
 
 Checks whether it is an emulated tag.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -1801,7 +1801,7 @@ getBlockIndex(sectorIndex: number): number
 
 Obtains the index of the first block in a sector.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1835,9 +1835,9 @@ try {
 
 getSectorIndex(blockIndex: number): number
 
-Obtains the index of a sector that holds the specified block.
+Obtains the index of the sector that holds the specified block.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1883,7 +1883,7 @@ Reads four pages (4 bytes per page) from this tag. This API uses a promise to re
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1941,7 +1941,7 @@ Reads four pages (4 bytes per page) from this tag. This API uses an asynchronous
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -1995,7 +1995,7 @@ Writes one page (4 bytes) of data to this tag. This API uses a promise to return
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -2048,7 +2048,7 @@ Writes one page (4 bytes) of data to this tag. This API uses an asynchronous cal
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -2102,7 +2102,7 @@ getType(): [tag.MifareUltralightType](js-apis-nfcTag.md#mifareultralighttype9)
 
 Obtains the type of this MIFARE Ultralight tag.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -2136,7 +2136,7 @@ Formats this tag as an NDEF tag, and writes an NDEF message to it. This API uses
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -2190,7 +2190,7 @@ Formats this tag as an NDEF tag, and writes an NDEF message to it. This API uses
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -2245,7 +2245,7 @@ Formats this tag as an NDEF tag, writes an NDEF message to it, and then sets the
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -2299,7 +2299,7 @@ Formats this tag as an NDEF tag, writes an NDEF message to the NDEF tag, and the
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 

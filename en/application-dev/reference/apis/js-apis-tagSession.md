@@ -1,4 +1,4 @@
-# tagSession
+# tagSession (Standard NFC Tag Session) 
 
 The **tagSession** module provides common APIs for establishing connections and transferring data.
 
@@ -28,7 +28,7 @@ Obtains the **tagInfo** object provided by the NFC service when the tag is dispa
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -56,7 +56,7 @@ Connects to this tag. Call this API to set up a connection before reading data f
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -84,7 +84,7 @@ Resets the connection to this tag.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Example**
 
@@ -105,7 +105,7 @@ Checks whether the tag is connected.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -133,7 +133,7 @@ Obtains the maximum length of the data that can be sent to this tag.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -160,7 +160,7 @@ Obtains the timeout period for sending data to this tag, in milliseconds.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -188,7 +188,7 @@ Sets the timeout period for sending data to this tag, in milliseconds.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -223,7 +223,7 @@ Sends data to this tag. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -269,7 +269,7 @@ Sends data to this tag. This API uses an asynchronous callback to return the res
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
