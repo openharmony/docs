@@ -329,7 +329,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 **示例：**
 
 ```js
-let profile = cameraoutputcapability.previewProfiles[0];
+let profile = cameraOutputCapability.previewProfiles[0];
 let previewOutput;
 try {
     previewOutput = cameraManager.createPreviewOutput(profile, surfaceId);
@@ -363,7 +363,7 @@ createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 **示例：**
 
 ```js
-let profile = cameraoutputcapability.photoProfiles[0];
+let profile = cameraOutputCapability.photoProfiles[0];
 let photoOutput;
 try {
     photoOutput = cameraManager.createPhotoOutput(profile, surfaceId);
@@ -397,7 +397,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 **示例：**
 
 ```js
-let profile = cameraoutputcapability.videoProfiles[0];
+let profile = cameraOutputCapability.videoProfiles[0];
 let videoOutput;
 try {
     videoOutput = cameraManager.createVideoOutput(profile, surfaceId);
@@ -430,7 +430,7 @@ createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>): MetadataOu
 **示例：**
 
 ```js
-let metadataObjectTypes = cameraoutputcapability.supportedMetadataObjectTypes;
+let metadataObjectTypes = cameraOutputCapability.supportedMetadataObjectTypes;
 let metadataOutput;
 try {
     metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
