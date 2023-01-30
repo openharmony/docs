@@ -179,7 +179,7 @@ try {
                 case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
                 // Do something;
                 case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
-                // Do something;
+                // Do something.
                 default:
                 // Do others.
             }
