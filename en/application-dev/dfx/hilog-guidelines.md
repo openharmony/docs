@@ -2,7 +2,7 @@
 ## Introduction
 HiLog is the log system of OpenHarmony that provides logging for the system framework, services, and applications to record information on user operations and system running status.
 > **NOTE**
-> This development guide is applicable only when you use Native APIs for application development. For details about the APIs, see [HiLog Native API Reference](../reference/native-apis/_hi_log.md).
+> This development guide is applicable only when you use Native APIs for application development. For details about the APIs, see [HiLog Native API Reference](https://gitee.com/openharmony-sig/interface_native_header/blob/master/en/native_sdk/dfx/log.h).
 
 ## Available APIs
 | API/Macro| Description| 
