@@ -2,7 +2,7 @@
 
 ## cl.inputmethod_frameworks.1 API文件名变更
 
-下列模块与HarmonyOS中的SDK不兼容，且不符合OpenHarmony接口文件名命名规范。在API9进行变更。
+下列模块不符合OpenHarmony接口文件名命名规范。在API9进行变更。
 
  **变更影响**
  
