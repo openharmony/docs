@@ -1097,9 +1097,9 @@ let emptyOptions = {
 try {
     huks.isKeyItemExist(keyAlias, emptyOptions, function (error, data) {
         if (error) {
-            console.info(`callback: isKeyItemExist success, data = ${JSON.stringify(data)}`);
-        } else {
             console.error(`callback: isKeyItemExist failed, code: ${error.code}, msg: ${error.message}`);
+        } else {
+            console.info(`callback: isKeyItemExist success, data = ${JSON.stringify(data)}`);
         }
     });
 } catch (error) {
@@ -1580,7 +1580,7 @@ async function huksFinish() {
 async function huksAbort() {
     console.log('enter huksAbort');
     try {
-        await huks.abortSession(keyAlias, options)
+        await huks.abortSession(handle, options)
             .then ((data) => {
                 console.info(`promise: abortSession success`);
             })
@@ -1602,26 +1602,26 @@ async function huksAbort() {
 
 **系统能力**：SystemCapability.Security.Huks
 
-| 名称                                           | 值 |  说明                        | 
-| ---------------------------------------------- | -------- |--------------------------- | 
-| HUKS_ERR_CODE_PERMISSION_FAIL                  | 201      | 权限错误导致失败。          | 
-| HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 401      | 参数错误导致失败。          | 
-| HUKS_ERR_CODE_NOT_SUPPORTED_API                | 801      | 不支持的API。               | 
-| HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED            | 12000001 | 不支持的功能/特性。         | 
-| HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT      | 12000002 | 缺少密钥算法参数。          | 
-| HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT      | 12000003 | 无效密钥算法参数。          | 
-| HUKS_ERR_CODE_FILE_OPERATION_FAIL              | 12000004 | 文件操作失败。              | 
-| HUKS_ERR_CODE_COMMUNICATION_FAIL               | 12000005 | 通信失败。                  | 
-| HUKS_ERR_CODE_CRYPTO_FAIL                      | 12000006 | 算法库操作失败。            | 
-| HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED | 12000007 | 密钥访问失败-密钥访问失效。 | 
-| HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED           | 12000008 | 密钥访问失败-密钥认证失败。 | 
-| HUKS_ERR_CODE_KEY_AUTH_TIME_OUT                | 12000009 | 密钥访问失败-密钥访问超时。 | 
-| HUKS_ERR_CODE_SESSION_LIMIT                    | 12000010 | 密钥操作会话数已达上限。    | 
-| HUKS_ERR_CODE_ITEM_NOT_EXIST                   | 12000011 | 目标对象不存在。            | 
-| HUKS_ERR_CODE_EXTERNAL_ERROR                   | 12000012 | 外部错误。                  | 
-| HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 12000013 | 缺失所需凭据。              | 
-| HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | 内存不足。                  | 
-| HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | 调用其他系统服务失败。      | 
+| 名称                                           | 值 |  说明                        |
+| ---------------------------------------------- | -------- |--------------------------- |
+| HUKS_ERR_CODE_PERMISSION_FAIL                  | 201      | 权限错误导致失败。          |
+| HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 401      | 参数错误导致失败。          |
+| HUKS_ERR_CODE_NOT_SUPPORTED_API                | 801      | 不支持的API。               |
+| HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED            | 12000001 | 不支持的功能/特性。         |
+| HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT      | 12000002 | 缺少密钥算法参数。          |
+| HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT      | 12000003 | 无效密钥算法参数。          |
+| HUKS_ERR_CODE_FILE_OPERATION_FAIL              | 12000004 | 文件操作失败。              |
+| HUKS_ERR_CODE_COMMUNICATION_FAIL               | 12000005 | 通信失败。                  |
+| HUKS_ERR_CODE_CRYPTO_FAIL                      | 12000006 | 算法库操作失败。            |
+| HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED | 12000007 | 密钥访问失败-密钥访问失效。 |
+| HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED           | 12000008 | 密钥访问失败-密钥认证失败。 |
+| HUKS_ERR_CODE_KEY_AUTH_TIME_OUT                | 12000009 | 密钥访问失败-密钥访问超时。 |
+| HUKS_ERR_CODE_SESSION_LIMIT                    | 12000010 | 密钥操作会话数已达上限。    |
+| HUKS_ERR_CODE_ITEM_NOT_EXIST                   | 12000011 | 目标对象不存在。            |
+| HUKS_ERR_CODE_EXTERNAL_ERROR                   | 12000012 | 外部错误。                  |
+| HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 12000013 | 缺失所需凭据。              |
+| HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | 内存不足。                  |
+| HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | 调用其他系统服务失败。      |
 
 ## HuksKeyPurpose
 
