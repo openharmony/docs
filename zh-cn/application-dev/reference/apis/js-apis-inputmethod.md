@@ -1,4 +1,4 @@
-# @ohos.inputmethod (输入法框架)
+# @ohos.inputMethod (输入法框架)
 
 本模块提供对输入法框架的管理，包括隐藏输入法、查询已安装的输入法列表和显示输入法选择对话框。
 
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```js
-import inputMethod from '@ohos.inputmethod';
+import inputMethod from '@ohos.inputMethod';
 ```
 
 ## 常量<sup>8+</sup>
