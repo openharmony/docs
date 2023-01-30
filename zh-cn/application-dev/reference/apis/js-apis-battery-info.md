@@ -89,7 +89,9 @@ import batteryInfo from '@ohos.batteryInfo';
 | LEVEL_HIGH     | 2      | 表示电池电量等级为高电量。   |
 | LEVEL_NORMAL   | 3      | 表示电池电量等级为正常电量。 |
 | LEVEL_LOW      | 4      | 表示电池电量等级为低电量。   |
-| LEVEL_CRITICAL | 5      | 表示电池电量等级为极低电量。 |
+| LEVEL_WARNING  | 5      | 表示电池电量等级为告警电量。 |
+| LEVEL_CRITICAL | 6      | 表示电池电量等级为极低电量。 |
+| LEVEL_SHUTDOWN | 7      | 表示电池电量等级为关机电量。 |
 
 ## CommonEventBatteryChangedCode<sup>9+</sup>
 
@@ -110,3 +112,4 @@ import batteryInfo from '@ohos.batteryInfo';
 | EXTRA_CHARGE_COUNTER | 8      | 表示当前设备电池充电次数的查询键。                 |
 | EXTRA_PRESENT        | 9      | 表示当前设备是否支持电池或者电池是否在位的查询键。 |
 | EXTRA_TECHNOLOGY     | 10     | 表示当前设备电池技术型号的查询键。                 |
+| EXTRA_CAPACITY_LEVEL | 11     | 表示当前设备电池电量等级的查询键。                 |
