@@ -29,8 +29,8 @@
 -   其它一些内部功能，如定时器等。
 
 ## 各仓库开发指导
-[C++公共基础库(c_utils)开发指导](https://gitee.com/openharmony/commonlibrary_c_utils/blob/master/docs/zh-cn/c-utils-guide.md)
+[C++公共基础库(c_utils)说明文档](https://gitee.com/openharmony/commonlibrary_c_utils/blob/master/README_zh.md)
 
 # 公共基础类库常见问题
 ## c_utils常见问题
-具体各应用场景常见问题，参见[C++公共基础库(c_utils)开发指导](https://gitee.com/openharmony/commonlibrary_c_utils/blob/master/docs/zh-cn/c-utils-guide.md)
+具体各应用场景常见问题，参见[C++公共基础库(c_utils)说明文档](https://gitee.com/openharmony/commonlibrary_c_utils/blob/master/README_zh.md)
