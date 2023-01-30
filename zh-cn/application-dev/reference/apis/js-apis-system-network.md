@@ -33,16 +33,9 @@ getType(Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| success | Function | 否 | 接口调用成功的回调函数。 |
+| success | Function | 否 | 接口调用成功的回调函数。 返回值为[NetworkResponse](#NetworkResponse)>|
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
-
-success返回值：
-
-| 参数名 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| metered | boolean | 是否按照流量计费。 |
-| type | string | 网络类型，可能的值有2g，3g，4g，5g，wifi，none等。 |
 
 fail返回值：
 
@@ -80,15 +73,8 @@ subscribe(Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| success | Function | 否 | 网络发生变化的回调函数。 |
+| success | Function | 否 | 网络发生变化的回调函数。返回值为[NetworkResponse](#NetworkResponse)> |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
-
-success返回值：
-
-| 参数名 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| metered | boolean | 是否按照流量计费。 |
-| type | string | 网络类型，可能的值为2g，3g，4g，5g，wifi，none。 |
 
 fail返回值：
 
@@ -132,3 +118,11 @@ export default {
   },
 }
 ```
+
+
+## NetworkResponse
+
+| 参数名 | 类型 | 说明 |
+| -------- | -------- | -------- |
+| metered | boolean | 是否按照流量计费。 |
+| type | string | 网络类型，可能的值有2g，3g，4g，5g，wifi，none等。 |
