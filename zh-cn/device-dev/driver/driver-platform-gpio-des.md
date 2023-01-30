@@ -133,7 +133,7 @@ int32_t ret;
 
 ret = GpioSetDir(3, GPIO_DIR_OUT);    // 将3号GPIO管脚配置为输出
 if (ret != 0) {
-    HDF_LOGE("GpioSerDir: failed, ret %d\n", ret);
+    HDF_LOGE("GpioSetDir: failed, ret %d\n", ret);
     return ret;
 }
 ```
