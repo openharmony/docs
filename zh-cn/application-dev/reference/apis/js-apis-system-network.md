@@ -1,6 +1,6 @@
 # @system.network (网络状态)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.telephony.observer`](js-apis-observer.md)。
 > 
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -33,7 +33,7 @@ getType(Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| success | Function | 否 | 接口调用成功的回调函数。 返回值为[NetworkResponse](#NetworkResponse)>|
+| success | Function | 否 | 接口调用成功的回调函数，返回值为[NetworkResponse](#networkresponse) |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
 
@@ -73,7 +73,7 @@ subscribe(Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| success | Function | 否 | 网络发生变化的回调函数。返回值为[NetworkResponse](#NetworkResponse)> |
+| success | Function | 否 | 网络发生变化的回调函数，返回值为[NetworkResponse](#networkresponse) |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 
 fail返回值：

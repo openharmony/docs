@@ -1,6 +1,6 @@
 # @system.fetch (数据请求)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 从API Version 6开始，该接口不再维护，推荐使用新接口[`@ohos.net.http`](js-apis-http.md)。
 > 
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -30,7 +30,7 @@ fetch(Object): void
 | header | Object | 否 | 设置请求的header。 |
 | method | string | 否 | 请求方法默认为GET，可选值为：OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE。 |
 | responseType | string | 否 | 默认会根据服务器返回header中的Content-Type确定返回类型，支持文本和json格式。详见success返回值。 |
-| success | Function | 否 | 接口调用成功的回调函数。返回值为[FetchResponse](#FetchResponse)>|
+| success | Function | 否 | 接口调用成功的回调函数，返回值为[FetchResponse](#fetchresponse) |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
 
@@ -84,7 +84,7 @@ export default {
 ```
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >   默认支持https，如果要支持http，需要在config.json里增加network标签，属性标识 "cleartextTraffic":  true。即：
 >   
 > ```
