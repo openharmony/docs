@@ -93,7 +93,7 @@ You can set a USB device as the USB host to connect to other USB devices for dat
     ```
    
 
-2.  Obtain the device operation permissions.
+2. Obtain the device operation permissions.
 
     ```js
     let deviceName = deviceList[0].name;
@@ -105,7 +105,7 @@ You can set a USB device as the USB host to connect to other USB devices for dat
     });
     ```
 
-3.  Open the device.
+3. Open the device.
 
     ```js
     // Open the device, and obtain the USB device pipe for data transfer.
@@ -117,38 +117,38 @@ You can set a USB device as the USB host to connect to other USB devices for dat
     usb.claimInterface(pipe, interface1, true);
     ```
 
-4.  Perform data transfer.
+4. Perform data transfer.
 
-   ```js
-   /*
-   Read data. Select the corresponding RX endpoint from deviceList for data transfer.
-   (endpoint.direction == 0x80); dataUint8Array indicates the data to read. The data type is Uint8Array.
-   */
-   let inEndpoint = interface1.endpoints[2];
-   let outEndpoint = interface1.endpoints[1];
-   let dataUint8Array = new Uint8Array(1024);
-   usb.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then(dataLength => {
-   if (dataLength >= 0) {
-     console.info("usb readData result Length : " + dataLength);
-     let resultStr = this.ab2str(dataUint8Array); // Convert uint8 data into a string.
-     console.info("usb readData buffer : " + resultStr);
-   } else {
-     console.info("usb readData failed : " + dataLength);
-   }
-   }).catch(error => {
-   console.info("usb readData error : " + JSON.stringify(error));
-   });
-   // Send data. Select the corresponding TX endpoint from deviceList for data transfer. (endpoint.direction == 0)
-   usb.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then(dataLength => {
-     if (dataLength >= 0) {
-       console.info("usb writeData result write length : " + dataLength);
-     } else {
-       console.info("writeData failed");
-     }
-   }).catch(error => {
-     console.info("usb writeData error : " + JSON.stringify(error));
-   });
-   ```
+    ```js
+    /*
+    Read data. Select the corresponding RX endpoint from deviceList for data transfer.
+    (endpoint.direction == 0x80); dataUint8Array indicates the data to read. The data type is Uint8Array.
+    */
+    let inEndpoint = interface1.endpoints[2];
+    let outEndpoint = interface1.endpoints[1];
+    let dataUint8Array = new Uint8Array(1024);
+    usb.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then(dataLength => {
+    if (dataLength >= 0) {
+      console.info("usb readData result Length : " + dataLength);
+      let resultStr = this.ab2str(dataUint8Array); // Convert uint8 data into a string.
+      console.info("usb readData buffer : " + resultStr);
+    } else {
+      console.info("usb readData failed : " + dataLength);
+    }
+    }).catch(error => {
+    console.info("usb readData error : " + JSON.stringify(error));
+    });
+    // Send data. Select the corresponding TX endpoint from deviceList for data transfer. (endpoint.direction == 0)
+    usb.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then(dataLength => {
+      if (dataLength >= 0) {
+        console.info("usb writeData result write length : " + dataLength);
+      } else {
+        console.info("writeData failed");
+      }
+    }).catch(error => {
+      console.info("usb writeData error : " + JSON.stringify(error));
+    });
+    ```
 
 5.  Release the USB interface, and close the USB device.
 
