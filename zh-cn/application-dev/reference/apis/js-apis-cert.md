@@ -115,7 +115,7 @@ let encodingData = null;
 let encodingBlob = {
     data: encodingData,
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
 };
 cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
@@ -189,7 +189,6 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 ```js
 import cryptoCert from '@ohos.security.cert';
-import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // 证书二进制数据，需业务自行赋值
 let encodingData = null;
@@ -250,7 +249,7 @@ let encodingBlob = {
 };
 cryptoCert.createX509Cert(encodingBlob).then(x509Cert => {
     console.log("createX509Cert success");
-    // 业务需通过AsyKeyGenerator生成PubKey或通过上级X509Cert证书对象的getPublicKey获取PubKey
+    // 业务可通过上级X509Cert证书对象的getPublicKey获取PubKey
 	let pubKey = null;
     x509Cert.verify(pubKey).then(result => {
         console.log("verify success");
@@ -1217,7 +1216,7 @@ cryptoCert.createX509Crl(encodingBlob).then(x509Crl => {
 
 verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
-表示对X509证书吊销列表进行验签。
+表示对X509证书吊销列表进行验签。验签支持RSA算法。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1225,7 +1224,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| key      | cryptoFramework.PubKey               | 是   | 表示用于验签的公钥对象                                       |
+| key      | cryptoFramework.PubKey | 是   | 表示用于验签的公钥对象                                       |
 | callback | AsyncCallback\<void> | 是   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
 
 
@@ -1264,7 +1263,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 verify(key : cryptoFramework.PubKey) : Promise\<void>
 
-表示对X509证书吊销列表进行验签。
+表示对X509证书吊销列表进行验签。验签支持RSA算法。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1272,7 +1271,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| key    | cryptoFramework.PubKey | 是   | 表示用于验签的公钥对象 |
+| key    | cryptoFramework.PubKey | 是   | 表示用于验签的公钥对象。 |
 
 **返回值**：
 
@@ -2061,7 +2060,7 @@ getCertIssuer() : DataBlob
 **返回值**：
 
 | 类型                  | 说明                     |
-| --------------------- | ---------------------- - |
+| --------------------- | ----------------------- |
 | [DataBlob](#datablob) | 表示被吊销证书的颁发者信息 |
 
 **示例：**
