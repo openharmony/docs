@@ -3,6 +3,11 @@
 
 Hi3861V100开发板支持串口烧录方式，在Windows下通过以下步骤进行烧录：
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 
+> 当前文档中匹配的是DevEco Device Tool 3.0 Release版本。不同版本的界面和使用方法略有差异，若您使用的是最新版本的DevEco Device Tool，可参考[轻量系统（基于Hi3861开发板）烧录](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-ide-3861-burn.md)。
+
+
 
 1. 请连接好电脑和待烧录开发板，需要连接USB口，具体可参考[Hi3861V100开发板介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-introduction-hi3861.md)。
 

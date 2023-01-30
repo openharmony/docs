@@ -1,5 +1,9 @@
 # 编译
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 
+> 当前文档中匹配的是DevEco Device Tool 3.0 Release版本。不同版本的界面和使用方法略有差异，若您使用的是最新版本的DevEco Device Tool，可参考[Hi3516标准系统入门（IDE方式）](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-appendix-hi3516-ide.md)。
+
 
 1. 在Projects中，点击**Settings**按钮，进入Hi3516DV300配置界面。
 
