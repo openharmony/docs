@@ -586,11 +586,11 @@ var connectId = featureAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = featureAbility.disconnectAbility(connectId,
-    (error) => {
-        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code)
-    },
-);
+
+featureAbility.disconnectAbility(connectId, (err) => {
+    console.log("featureAbilityTest disconnectAbility err====>"
+    + ("json err=") + JSON.stringify(err));
+});
 ```
 
 ## featureAbility.disconnectAbility<sup>7+</sup>

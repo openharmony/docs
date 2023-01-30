@@ -432,7 +432,6 @@ particleAbility.disconnectAbility(connId).then((data) => {
 }).catch((error) => {
     console.log('particleAbilityTest result errCode : ' + error.code)
 });
-    
 ```
 
 ## particleAbility.disconnectAbility
@@ -477,10 +476,10 @@ var connId = particleAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(" data: " + data);
-}).catch((error) => {
-    console.log('particleAbilityTest result errCode : ' + error.code)
+
+particleAbility.disconnectAbility(connId, (err) => {
+    console.log("particleAbilityTest disconnectAbility err====>"
+    + ("json err=") + JSON.stringify(err));
 });
 ```
 
@@ -545,12 +544,3 @@ particleAbility.disconnectAbility(connId).then((data) => {
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | INVALID_PARAMETER         | -1    | 无效的参数。 |
-
-
-
-
-
-
-
-
-
