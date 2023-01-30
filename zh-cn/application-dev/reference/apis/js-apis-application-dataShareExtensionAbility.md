@@ -57,7 +57,7 @@ DataShare客户端连接DataShareExtensionAbility服务端时，服务端回调�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
-| want | [Want](js-apis-application-want.md#want) | 是  | Want类型信息，包括ability名称、bundle名称等。 |
+| want | [Want](js-apis-application-want.md#want) | 是  | Want类型信息，包括Ability名称、Bundle名称等。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。无返回值。 |
 
 **示例：**
@@ -75,7 +75,7 @@ let rdbStore;
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     onCreate(want, callback) {
         rdb.getRdbStore(this.context, {
-            name: DB_NAME
+            name: DB_NAME,
             securityLevel: rdb.SecurityLevel.S1
         }, function (err, data) {
             console.log('getRdbStore done, data : ' + data);
