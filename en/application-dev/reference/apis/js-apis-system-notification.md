@@ -1,4 +1,4 @@
-# @system.notification
+# @system.notification (Notification)
 
 > **NOTE**
 > - The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.notification`](js-apis-notification.md).
@@ -9,7 +9,7 @@
 ## Modules to Import
 
 
-```
+```ts
 import notification from '@system.notification';
 ```
 
@@ -59,9 +59,9 @@ export default {
             clickAction: {
                 bundleName: 'com.example.testapp',
                 abilityName: 'notificationDemo',
-                uri: '/path/to/notification',
-            },
+                uri: '/path/to/notification'
+            }
         });
-    },
+    }
 }
 ```
