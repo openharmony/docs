@@ -33,6 +33,8 @@
 - Security
   - [Ability Access Control Error Codes](errorcode-access-token.md)
   - [HUKS Error Codes](errorcode-huks.md)
+  - [Crypto Framework Error Codes](errorcode-crypto-framework.md)
+  - [Certificate Error Codes](errorcode-cert.md)
   - [User Authentication Error Codes](errorcode-useriam.md)
 - Data Management
   - [RDB Error Codes](errorcode-data-rdb.md)
@@ -55,6 +57,7 @@
   - [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md)
   - [Input Method Framework Error Codes](errorcode-inputmethod-framework.md)
   - [Pasteboard Error Codes](errorcode-pasteboard.md)
+  - [Time and Time Zone Service Error Codes](errorcode-time.md)
   - [Webview Error Codes](errorcode-webview.md)
 - Account Management
   - [Account Error Codes](errorcode-account.md)
