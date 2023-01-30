@@ -42,7 +42,7 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
 
    ```ts
    import Extension from '@ohos.application.DataShareExtensionAbility';
-   import rdb from '@ohos.data.rdb';
+   import rdb from '@ohos.data.relationalStore';
    import fileIo from '@ohos.fileio';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
    ```
@@ -69,8 +69,9 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
            result = this.context.cacheDir + '/datashare.txt'
            // 业务实现使用RDB
            rdb.getRdbStore(this.context, {
-               name: DB_NAME
-           }, 1, function (err, data) {
+               name: DB_NAME,
+               securityLevel: rdb.SecurityLevel.S1
+           }, function (err, data) {
                rdbStore = data;
                rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
                    console.log('DataShareExtAbility onCreate, executeSql done err:' + JSON.stringify(err));
