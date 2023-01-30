@@ -534,9 +534,9 @@
 
 **ACL使能**：TRUE
 
-## ohos.permission.START_ABILIIES_FROM_BACKGROUND
+## ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
-允许应用在后台启动FA。
+允许应用在后台启动或者访问其他组件。
 
 **权限级别**：system_basic
 
