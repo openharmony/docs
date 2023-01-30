@@ -2301,9 +2301,9 @@ notificationManager.getDoNotDisturbDate(userId).then((data) => {
 ```
 
 
-## notificationManager.supportDoNotDisturbMode
+## notificationManager.isSupportDoNotDisturbMode
 
-supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
+ isSupportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 
 查询是否支持免打扰功能（Callback形式）。
 
@@ -2330,20 +2330,20 @@ supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-function supportDoNotDisturbModeCallback(err,data) {
+function isSupportDoNotDisturbModeCallback(err,data) {
     if (err) {
-        console.info("supportDoNotDisturbMode failed " + JSON.stringify(err));
+        console.info("isSupportDoNotDisturbMode failed " + JSON.stringify(err));
     } else {
-        console.info("supportDoNotDisturbMode success");
+        console.info("isSupportDoNotDisturbMode success");
     }
 }
 
-notificationManager.supportDoNotDisturbMode(supportDoNotDisturbModeCallback);
+notificationManager.isSupportDoNotDisturbMode(isSupportDoNotDisturbModeCallback);
 ```
 
-## notificationManager.supportDoNotDisturbMode
+## notificationManager.isSupportDoNotDisturbMode
 
-supportDoNotDisturbMode(): Promise\<boolean\>
+isSupportDoNotDisturbMode(): Promise\<boolean\>
 
 查询是否支持勿扰模式功能（Promise形式）。
 
@@ -2370,7 +2370,7 @@ supportDoNotDisturbMode(): Promise\<boolean\>
 **示例：**
 
 ```ts
-notificationManager.supportDoNotDisturbMode().then((data) => {
+notificationManager.isSupportDoNotDisturbMode().then((data) => {
 	console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
 });
 ```
