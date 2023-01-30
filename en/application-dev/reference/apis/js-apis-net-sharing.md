@@ -1,9 +1,8 @@
-# Network Sharing Management
+# @ohos.net.sharing (Network Sharing)
 
-The Network Sharing Management module allows you to share your device's Internet connection with other connected devices by means of Wi-Fi hotspot, and Bluetooth sharing. It also allows you to query the network sharing state and shared mobile data volume.
+The **sharing** module allows you to share your device's Internet connection with other connected devices by means of Wi-Fi hotspot, Bluetooth, and USB sharing. It also allows you to query the network sharing state and shared mobile data volume.
 
-> **NOTE**
->
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import

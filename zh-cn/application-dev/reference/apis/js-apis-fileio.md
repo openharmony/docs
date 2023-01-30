@@ -3,8 +3,8 @@
 该模块提供文件存储管理能力，包括文件基本管理、文件目录管理、文件信息统计、文件流式读写等常用功能。
 
 > **说明：**
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+> - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块从API version 9开始废弃，建议使用[@ohos.file.fs](js-apis-file-fs.md)替代。
 
 ## 导入模块
 
@@ -20,8 +20,9 @@ import fileio from '@ohos.fileio';
 **Stage模型**
 
  ```js
-import Ability from '@ohos.application.Ability';
-class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         let context = this.context;
         let pathDir = context.filesDir;
@@ -35,6 +36,7 @@ class MainAbility extends Ability {
 
  ```js
  import featureAbility from '@ohos.ability.featureAbility';
+ 
  let context = featureAbility.getContext();
  context.getFilesDir().then((data) => {
       let pathDir = data;

@@ -293,4 +293,3 @@ The ServiceExtensionAbility component returns an IRemoteObject in the **onConnec
   })
   ```
 
- <!--no_check--> 

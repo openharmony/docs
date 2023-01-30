@@ -1,8 +1,9 @@
-# statfs
+# @ohos.statfs (statfs)
 
-The statfs module provides APIs for obtaining file system information, including the total number of bytes and the number of idle bytes of the file system.
+The **statfs** module provides APIs for obtaining file system information, including the total number of bytes and the number of idle bytes of the file system.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import

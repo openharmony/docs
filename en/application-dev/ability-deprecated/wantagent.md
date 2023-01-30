@@ -1,6 +1,6 @@
 # WantAgent Development
 ## When to Use
-The **WantAgent** class encapsulates want information that specifies a particular action, which can be starting an ability or publishing a common event. You can either call **wantAgent.trigger** to trigger a **WantAgent** directly or add a **WantAgent** to a notification so that it will be triggered when users tap the notification.
+The **WantAgent** class encapsulates want information that specifies a particular action, which can be starting an ability or publishing a common event. You can either call **wantAgent.trigger** to trigger a **WantAgent** directly or add a **WantAgent** to a notification so that it will be triggered when users tap the notification. 
 
 ## Available APIs
 | API                                                                                         | Description|
@@ -12,13 +12,13 @@ The **WantAgent** class encapsulates want information that specifies a particula
 ## How to Develop
 1. Import the **WantAgent** module.
 
-   ```
-   import wantAgent from '@ohos.wantAgent';
+   ```ts
+   import wantAgent from '@ohos.app.ability.wantAgent';
    ```
    
 2. Create a **WantAgentInfo** object that will be used for starting an ability. For details about the data types and parameters of **WantAgentInfo**, see [WantAgent](../reference/apis/js-apis-wantAgent.md#wantagentinfo).
 
-   ```
+   ```ts
    private wantAgentObj = null // Save the WantAgent object created. It will be used to complete the trigger operations.
    
    // wantAgentInfo
@@ -27,7 +27,7 @@ The **WantAgent** class encapsulates want information that specifies a particula
            {
                deviceId: "",
                bundleName: "com.example.test",
-               abilityName: "com.example.test.MainAbility",
+               abilityName: "com.example.test.EntryAbility",
                action: "",
                entities: [],
                uri: "",
@@ -42,7 +42,7 @@ The **WantAgent** class encapsulates want information that specifies a particula
 
 3. Create a **WantAgentInfo** object for publishing a common event.
 
-   ```
+   ```ts
    private wantAgentObj = null // Save the WantAgent object created. It will be used to complete the trigger operations.
    
    // wantAgentInfo
@@ -61,7 +61,7 @@ The **WantAgent** class encapsulates want information that specifies a particula
 
 4. Create a **WantAgent** object and save the returned **wantAgentObj** for subsequent trigger operations.
 
-   ```
+   ```ts
    // Create a WantAgent object.
    wantAgent.getWantAgent(wantAgentInfo, (err, wantAgentObj) => {
        if (err.code) {
@@ -75,7 +75,7 @@ The **WantAgent** class encapsulates want information that specifies a particula
 
 5. Trigger the **WantAgent** object.
 
-   ```
+   ```ts
    // Trigger the WantAgent object.
    var triggerInfo = {
        code:0

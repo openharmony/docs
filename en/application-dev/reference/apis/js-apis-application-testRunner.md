@@ -1,4 +1,4 @@
-# @ohos.application.testRunner
+# @ohos.application.testRunner (TestRunner)
 
 The **TestRunner** module provides a test framework. You can use the APIs of this module to prepare the unit test environment and run test cases.
 

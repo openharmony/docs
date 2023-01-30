@@ -4,7 +4,7 @@ Both the public SDK and full SDK are toolkits for application development. <br>T
 
 The full SDK is intended for original equipment manufacturers (OEMs) and provided separately. It contains system APIs.
 
-The SDK of API version 8 provided in DevEco Studio is a public SDK. If your project depends on any system API, such as the **animator** component, **XComponent**, or APIs in **@ohos.application.abilityManager.d.ts**, **@ohos.application.formInfo.d.ts**, or **@ohos.bluetooth.d.ts**, switch to the full SDK by performing the following steps.
+The SDK of API version 8 provided in DevEco Studio is a public SDK. If your project depends on any system API, such as the **animator** component, **xcomponent** component, or APIs in **@ohos.app.ability.abilityManager.d.ts**, **@ohos.app.form.formInfo.d.ts**, or **@ohos.bluetooth.d.ts**, switch to the full SDK by performing the following steps.
 
 > **NOTE**
 >
@@ -34,7 +34,7 @@ In DevEco Studio, choose **Tools** > **OpenHarmony SDK Manager** to check the lo
 
    ![image-20220613220702504](figures/en-us_image_0000001655129232.png)
 
-   b. Verify that the SDK contains system APIs (such as APIs defined in **@ohos.application.abilityManager.d.ts**, **@ohos.application.formInfo.d.ts**, and **@ohos.bluetooth.d.ts**).
+   b. Verify that the SDK contains system APIs, including the APIs in **@ohos.app.ability.abilityManager.d.ts**, **@ohos.app.form.formInfo.d.ts**, and **@ohos.bluetooth.d.ts**.
 
    Note: The criteria for identifying system APIs are subject to the official API documentation.
 

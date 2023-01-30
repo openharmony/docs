@@ -239,7 +239,7 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
 | 参数名      | 类型                    | 必填   | 说明                      |
 | -------- | --------------------- | ---- | ----------------------- |
 | owner    | string                | 是    | 应用帐号所有者的包名。          |
-| options    | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)   | 是    | 隐式创建账号的选项。          |
+| options    | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)   | 是    | 隐式创建帐号的选项。          |
 | callback | [AuthCallback](#authcallback9) | 是    | 认证器回调对象，返回创建结果。         |
 
 **错误码：**
@@ -1114,8 +1114,6 @@ getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 获取所有可访问的应用帐号信息。使用callback异步回调。
 
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS。
-
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
@@ -1153,8 +1151,6 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 获取所有可访问的应用帐号信息。使用Promise异步回调。
 
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS。
-
 **系统能力：** SystemCapability.Account.AppAccount
 
 **返回值：**
@@ -1189,8 +1185,6 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 根据应用帐号所有者获取调用方可访问的应用帐号列表。使用callback异步回调。
-
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1231,8 +1225,6 @@ getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccount
 getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 根据应用帐号所有者获取调用方可访问的应用帐号列表。使用Promise异步回调。
-
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1312,7 +1304,7 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 
 ### off('accountChange')<sup>9+</sup>
 
-off(type: 'accountChange', callback?: Callback<Array\<AppAccountInfo>>): void
+off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 取消订阅帐号信息变更事件。
 
@@ -1323,7 +1315,7 @@ off(type: 'accountChange', callback?: Callback<Array\<AppAccountInfo>>): void
 | 参数名      | 类型                               | 必填   | 说明           |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'accountChange'                         | 是    | 事件回调类型，支持的事件为'accountChange'，当帐号所有者更新帐号信息时，触发该事件。    |
-| callback | Callback<Array\<[AppAccountInfo](#appaccountinfo)>> | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
 
 **错误码：**
 
@@ -1337,7 +1329,7 @@ off(type: 'accountChange', callback?: Callback<Array\<AppAccountInfo>>): void
 
   ```js
   let appAccountManager = account_appAccount.createAppAccountManager();
-  function changeOnCallback(data){
+  function changeOnCallback(data) {
   	console.log("receive change data:" + JSON.stringify(data));
   }
   try{
@@ -2802,7 +2794,7 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 | 参数名       | 类型                        | 必填   | 说明                                       |
 | --------- | ------------------------- | ---- | ---------------------------------------- |
 | name      | string                    | 是    | 应用帐号的名称。                              |
-| extraInfo | string                    | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用账号密码、token等）。 |
+| extraInfo | string                    | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等）。 |
 | callback  | AsyncCallback&lt;void&gt; | 是    | 回调函数。当创建成功时，err为null，否则为错误对象。             |
 
 **示例：**
@@ -2830,7 +2822,7 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
 | name      | string | 是    | 应用帐号的名称。                            |
-| extraInfo | string | 否    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用账号密码、token等）。 |
+| extraInfo | string | 否    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等）。 |
 
 **返回值：**
 
@@ -3239,7 +3231,7 @@ setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;
 | 参数名       | 类型                        | 必填   | 说明              |
 | --------- | ------------------------- | ---- | --------------- |
 | name      | string                    | 是    | 应用帐号的名称。         |
-| extraInfo | string                    | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用账号密码、token等）。       |
+| extraInfo | string                    | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等）。       |
 | callback  | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置成功时，err为null，否则为错误对象。 |
 
 **示例：**
@@ -3269,7 +3261,7 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 | 参数名       | 类型     | 必填   | 说明        |
 | --------- | ------ | ---- | --------- |
 | name      | string | 是    | 应用帐号的名称。   |
-| extraInfo | string | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用账号密码、token等）。 |
+| extraInfo | string | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等）。 |
 
 **返回值：**
 
@@ -3790,7 +3782,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 
 ### off('change')<sup>(deprecated)</sup>
 
-off(type: 'change', callback?: Callback<Array\<AppAccountInfo>>): void
+off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 取消订阅帐号信息变更事件。
 
@@ -3805,7 +3797,7 @@ off(type: 'change', callback?: Callback<Array\<AppAccountInfo>>): void
 | 参数名      | 类型                               | 必填   | 说明           |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'change'                         | 是    | 事件回调类型，支持的事件为'change'，当帐号所有者更新帐号信息时，触发该事件。    |
-| callback | Callback<Array\<[AppAccountInfo](#appaccountinfo)>> | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
 
 **示例：**
 
@@ -4558,7 +4550,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 ## CreateAccountOptions<sup>9+</sup>
 
-表示创建账号的选项。
+表示创建帐号的选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
@@ -4568,7 +4560,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 ## CreateAccountImplicitlyOptions<sup>9+</sup>
 
-表示隐式创建账号的选项。
+表示隐式创建帐号的选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
@@ -4878,7 +4870,7 @@ createAccountImplicitly(options: CreateAccountImplicitlyOptions, callback: AuthC
 
 | 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
-| options          | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)  | 是    | 隐式创建账号的选项。      |
+| options          | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)  | 是    | 隐式创建帐号的选项。      |
 | callback         | [AuthCallback](#authcallback9) | 是    | 认证器回调对象，用于返回创建结果。 |
 
 ### addAccountImplicitly<sup>(deprecated)</sup>

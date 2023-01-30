@@ -32,7 +32,7 @@
 
 ```js
 import avSession from '@ohos.multimedia.avsession';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 import featureAbility from '@ohos.ability.featureAbility';
 ```
 
@@ -87,7 +87,7 @@ let wantAgentInfo = {
   wants: [
     {
       bundleName: "com.neu.setResultOnAbilityResultTest1",
-      abilityName: "com.example.test.MainAbility",
+      abilityName: "com.example.test.EntryAbility",
     }
   ],
   operationType: wantAgent.OperationType.START_ABILITIES,
@@ -372,7 +372,7 @@ currentSession.deactivate().then(() => {
 ```js
 import avSession from '@ohos.multimedia.avsession';
 import {Action, KeyEvent} from '@ohos.multimodalInput.KeyEvent';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 import audio from '@ohos.multimedia.audio';
 ```
 

@@ -97,7 +97,7 @@ The **@Prop** decorated state variable has the following features:
 
 **Example**
 
-In the preceding example, when the user presses **+1** or **-1**, the status of the parent component changes and the **build** method is executed again. In this case, a new **CountDownComponent** instance is created. The **countDownStartValue** attribute of the parent component is used to initialize the **@Prop** decorated variable of the child component. When the **count - costOfOneAttempt** button of the child component is touched, the value of the **@Prop** decorated variable **count** is changed. As a result, the **CountDownComponent** is rendered again. However, the change of the **count** value does not affect the **countDownStartValue** value of the parent component.
+In the following example, when the user presses **+1** or **-1**, the status of the parent component changes and the **build** method is executed again. In this case, a new **CountDownComponent** instance is created. The **countDownStartValue** attribute of the parent component is used to initialize the **@Prop** decorated variable of the child component. When the **count - costOfOneAttempt** button of the child component is touched, the value of the **@Prop** decorated variable **count** is changed. As a result, the **CountDownComponent** is rendered again. However, the change of the **count** value does not affect the **countDownStartValue** value of the parent component.
 
 ```ts
 // xxx.ets

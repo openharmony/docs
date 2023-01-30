@@ -1,10 +1,10 @@
-# @ohos.application.errorManager
+# @ohos.application.errorManager (ErrorManager)
 
 The **ErrorManager** module provides APIs for registering and deregistering error observers.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module are supported since API version 9 and are deprecated in versions later than API version 9. You are advised to use [@ohos.app.ability.errorManager](js-apis-app-ability-errorManager.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 ```ts

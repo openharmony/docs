@@ -1,9 +1,8 @@
-# USB
+# @ohos.usbV9 (USB Management)
 
-The USB module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control on the host side as well as port management, and function switch and query on the device side.
+The **usb** module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control on the host side as well as port management, and function switch and query on the device side.
 
->  **NOTE**
-> 
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -87,7 +86,7 @@ console.log(`devicesList = ${JSON.stringify(devicesList)}`);
 
 connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
-Connects to a USB device.
+Connects to a USB device based on the device list obtained by using **getDevices()**.
 
 Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and device information, and then call [usb.requestRight](#usbrequestright) to request the device access permission.
 
@@ -133,6 +132,8 @@ console.log(`devicepipe = ${JSON.stringify(devicepipe)}`);
 hasRight(deviceName: string): boolean
 
 Checks whether the application has the permission to access the device.
+
+The value **true** is returned if the device access permission is available; the value **false** is returned otherwise.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -187,7 +188,7 @@ usb.requestRight(devicesName).then((ret) => {
 
 ## usb.removeRight
 
-removeRight(deviceName: string): boolean;
+removeRight(deviceName: string): boolean
 
 Removes the permission for the application to access a USB device.
 
@@ -216,7 +217,7 @@ if (usb.removeRight(devicesName) {
 
 ## usb.addRight
 
-addRight(bundleName: string, deviceName: string): boolean;
+addRight(bundleName: string, deviceName: string): boolean
 
 Adds the permission for the application to access a USB device.
 
@@ -583,7 +584,7 @@ let ret = usb.usbFunctionsToString(funcs);
 
 ## usb.setCurrentFunctions
 
-setCurrentFunctions(funcs: FunctionType): Promise\<boolean\>
+setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 
 Sets the current USB function list in Device mode.
 
@@ -601,13 +602,17 @@ Sets the current USB function list in Device mode.
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
 ```js
 let funcs = HDC;
-let ret = usb.setCurrentFunctions(funcs);
+usb.setCurrentFunctions(funcs).then(() => {
+    console.info('usb setCurrentFunctions successfully.');
+}).catch(err => {
+    console.error('usb setCurrentFunctions failed: ' + err.code + ' message: ' + err.message);
+});
 ```
 
 ## usb.getCurrentFunctions
@@ -684,7 +689,7 @@ let ret = usb.getSupportedModes(0);
 
 ## usb.setPortRoles
 
-setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<boolean\>
+setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<void\>
 
 Sets the role types supported by a specified port, which can be **powerRole** (for charging) and **dataRole** (for data transfer).
 
@@ -704,12 +709,17 @@ Sets the role types supported by a specified port, which can be **powerRole** (f
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+| Promise\<void\> | Promise used to return the result. |
 
 **Example**
 
 ```js
-let ret = usb.getSupportedModes(0);
+let portId = 1;
+usb.usb.setPortRoles(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
+    console.info('usb setPortRoles successfully.');
+}).catch(err => {
+    console.error('usb setPortRoles failed: ' + err.code + ' message: ' + err.message);
+});
 ```
 
 ## USBEndpoint

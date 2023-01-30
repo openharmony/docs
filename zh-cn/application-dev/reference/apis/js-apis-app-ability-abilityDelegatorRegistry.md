@@ -49,11 +49,11 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 let want = {
-    bundleName: "com.ohos.example",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
 };
 abilityDelegator.startAbility(want, (err) => {
-    if (err.code !== 0) {
+    if (!err || err.code === 0) {
         console.log("Success start ability.");
     } else {
         console.log("Failed start ability, error: " + JSON.stringify(err));

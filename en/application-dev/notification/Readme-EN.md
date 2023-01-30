@@ -1,9 +1,10 @@
-# Common Event and Notification
+# Notification
 
-- [Common Event and Notification Overview](notification-brief.md)
-- [Common Event Development](common-event.md)
-- [Notification Development](notification-guidelines.md)
-- Agent-Powered Scheduled Reminder 
-  - [Agent-Powered Scheduled Reminder Overview](background-agent-scheduled-reminder-overview.md)
-  - [Agent-Powered Scheduled Reminder Development](background-agent-scheduled-reminder-guide.md)
-- [Debugging Assistant Usage](assistant-guidelines.md)
+- [Notification Overview](notification-overview.md)
+- [Notification Subscription (Open Only to System Applications)](notification-subscription.md)
+- [Enabling Notification](notification-enable.md)
+- Publishing a Notification
+  - [Publishing a Basic Notification](text-notification.md)
+  - [Publishing a Progress Notification](progress-bar-notification.md)
+  - [Adding a WantAgent Object to a Notification](notification-with-wantagent.md)
+

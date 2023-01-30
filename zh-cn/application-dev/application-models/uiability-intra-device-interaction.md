@@ -62,7 +62,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    }
    ```
 
-3. 在FuncAbility业务完成之后，如需要停止当前UIAbility实例，在FuncAbility中通过调用terminateSelf()方法实现。
+3. 在FuncAbility业务完成之后，如需要停止当前UIAbility实例，在FuncAbility中通过调用[terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法实现。
    
    ```ts
    // context为需要停止的UIAbility实例的AbilityContext
@@ -70,13 +70,17 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
        // ...
    });
    ```
+   
+   > **说明：**
+   >
+   > 调用[terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法停止当前UIAbility实例时，默认会保留该实例的快照（Snapshot），即在最近任务列表中仍然能查看到该实例对应的任务。如不需要保留该实例的快照，可以在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，将[abilities标签](../quick-start/module-configuration-file.md#abilities标签)的removeMissionAfterTerminate字段配置为true。
 
 
 ## 启动应用内的UIAbility并获取返回结果
 
 在一个EntryAbility启动另外一个FuncAbility时，希望在被启动的FuncAbility完成相关业务后，能将结果返回给调用方。例如在应用中将入口功能和帐号登录功能分别设计为两个独立的UIAbility，在帐号登录UIAbility中完成登录操作后，需要将登录的结果返回给入口UIAbility。
 
-1. 在EntryAbility中，调用startAbilityForResult()接口启动FuncAbility，异步回调中的data用于接收FuncAbility停止自身后返回给EntryAbility的信息。示例中的context的获取方式参见[获取UIAbility的Context属性](uiability-usage.md#获取uiability的上下文信息)。
+1. 在EntryAbility中，调用[startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口启动FuncAbility，异步回调中的data用于接收FuncAbility停止自身后返回给EntryAbility的信息。示例中的context的获取方式参见[获取UIAbility的Context属性](uiability-usage.md#获取uiability的上下文信息)。
    
    ```ts
    let wantInfo = {
@@ -117,7 +121,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    });
    ```
 
-3. FuncAbility停止自身后，EntryAbility通过startAbilityForResult()方法回调接收被FuncAbility返回的信息，RESULT_CODE需要与前面的数值保持一致。
+3. FuncAbility停止自身后，EntryAbility通过[startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法回调接收被FuncAbility返回的信息，RESULT_CODE需要与前面的数值保持一致。
    
    ```ts
    const RESULT_CODE: number = 1001;
@@ -149,7 +153,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 本章节主要讲解如何通过隐式Want启动其他应用的UIAbility。
 
-1. 将多个待匹配的文档应用安装到设备，在其对应UIAbility的module.json5配置文件中，配置skills的[entities](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity)字段和[actions](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction)字段。
+1. 将多个待匹配的文档应用安装到设备，在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，配置skills的[entities](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity)字段和[actions](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction)字段。
    
    ```json
    {
@@ -198,7 +202,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    效果示意如下图所示，点击“打开PDF文档”时，会弹出选择框供用户选择。
    <img src="figures/uiability-intra-device-interaction.png" alt="uiability-intra-device-interaction" style="zoom:50%;" />
    
-3. 在文档应用使用完成之后，如需要停止当前UIAbility实例，通过调用terminateSelf()方法实现。
+3. 在文档应用使用完成之后，如需要停止当前UIAbility实例，通过调用[terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法实现。
    
    ```ts
    // context为需要停止的UIAbility实例的AbilityContext
@@ -210,7 +214,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 ## 启动其他应用的UIAbility并获取返回结果
 
-当使用隐式Want启动其他应用的UIAbility并希望获取返回结果时，调用方需要使用startAbilityForResult()方法启动目标UIAbility。例如主应用中需要启动三方支付并获取支付结果。
+当使用隐式Want启动其他应用的UIAbility并希望获取返回结果时，调用方需要使用[startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法启动目标UIAbility。例如主应用中需要启动三方支付并获取支付结果。
 
 1. 在支付应用对应UIAbility的module.json5配置文件中，配置skills的[entities](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity)字段和[actions](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction)字段。
    
@@ -238,7 +242,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    }
    ```
 
-2. 调用方使用startAbilityForResult()方法启动支付应用的UIAbility，在调用方want参数中的entities和action需要被包含在待匹配UIAbility的skills配置的entities和actions中。异步回调中的data用于后续接收支付UIAbility停止自身后返回给调用方的信息。系统匹配到符合entities和actions参数条件的UIAbility后，会弹出选择框展示匹配到的UIAbility实例列表供用户选择使用。
+2. 调用方使用[startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法启动支付应用的UIAbility，在调用方want参数中的entities和action需要被包含在待匹配UIAbility的skills配置的entities和actions中。异步回调中的data用于后续接收支付UIAbility停止自身后返回给调用方的信息。系统匹配到符合entities和actions参数条件的UIAbility后，会弹出选择框展示匹配到的UIAbility实例列表供用户选择使用。
    
    ```ts
    let wantInfo = {
@@ -279,7 +283,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    });
    ```
 
-4. 在调用方startAbilityForResult()方法回调中接收支付应用返回的信息，RESULT_CODE需要与前面terminateSelfWithResult()返回的数值保持一致。
+4. 在调用方[startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法回调中接收支付应用返回的信息，RESULT_CODE需要与前面terminateSelfWithResult()返回的数值保持一致。
    
    ```ts
    const RESULT_CODE: number = 1001;

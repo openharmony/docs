@@ -1,4 +1,4 @@
-# @ohos.accessibility.config
+# @ohos.accessibility.config (System Accessibility Configuration)
 
 The System Accessibility Configuration module allows you to configure system accessibility features, including accessibility extension, high-contrast text, mouse buttons, and captions.
 

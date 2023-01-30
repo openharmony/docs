@@ -1,4 +1,4 @@
-# @system.router
+# @system.router (Page Routing)
 
 The **Router** module provides APIs to access pages through URIs.
 

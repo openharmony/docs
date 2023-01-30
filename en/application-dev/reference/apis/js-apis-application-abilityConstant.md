@@ -1,12 +1,10 @@
-# @ohos.application.AbilityConstant
+# @ohos.application.AbilityConstant (AbilityConstant)
 
-The **AbilityConstant** module provides ability launch parameters.
-
-The parameters include the initial launch reasons, reasons for the last exit, and ability continuation results.
+The **AbilityConstant** module defines the ability-related enums, including the initial launch reasons, reasons for the last exit, ability continuation results, and window modes.
 
 > **NOTE**
 > 
-> The APIs of this module are supported and deprecated since API version 9. You are advised to use [@ohos.app.ability.AbilityConstant](js-apis-app-ability-abilityConstant.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module are supported since API version 9 and are deprecated in versions later than API version 9. You are advised to use [@ohos.app.ability.AbilityConstant](js-apis-app-ability-abilityConstant.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
@@ -21,12 +19,12 @@ import AbilityConstant from '@ohos.application.AbilityConstant';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | LaunchReason| Yes| Yes| Ability launch reason.|
-| lastExitReason | LastExitReason | Yes| Yes| Reason for the last exit.|
+| launchReason | [LaunchReason](#abilityconstantlaunchreason)| Yes| Yes| Ability launch reason.|
+| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | Yes| Yes| Reason for the last exit.|
 
 ## AbilityConstant.LaunchReason
 
-Enumerates ability launch reasons.
+Enumerates the initial ability launch reasons.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -41,7 +39,7 @@ Enumerates ability launch reasons.
 
 ## AbilityConstant.LastExitReason
 
-Enumerates reasons for the last exit.
+Enumerates the reasons for the last exit.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -54,7 +52,7 @@ Enumerates reasons for the last exit.
 
 ## AbilityConstant.OnContinueResult 
 
-Enumerates ability continuation results.
+Enumerates the ability continuation results.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

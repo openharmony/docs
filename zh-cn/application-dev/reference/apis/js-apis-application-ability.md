@@ -8,14 +8,17 @@ Ability模块提供对Ability生命周期、上下文环境等调用管理的能
 - [Callee](#callee)：通用组件服务端注册和解除客户端caller通知送信的callback接口。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+>
+> 从API Version 9开始，该接口不再维护，推荐使用新接口[`@ohos.app.ability.UIAbility (UIAbility)`](js-apis-app-ability-uiAbility.md)。
+>
+> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.application.Ability';
 ```
 
 ## 属性
@@ -47,7 +50,7 @@ Ability创建时回调，执行初始化业务逻辑操作。
 **示例：**
 
   ```ts
-  class myAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
       onCreate(want, param) {
           console.log('onCreate, want:' + want.abilityName);
       }
@@ -72,7 +75,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
       onWindowStageCreate(windowStage) {
           console.log('onWindowStageCreate');
       }
@@ -91,7 +94,7 @@ onWindowStageDestroy(): void
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
       onWindowStageDestroy() {
           console.log('onWindowStageDestroy');
       }
@@ -116,7 +119,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
       onWindowStageRestore(windowStage) {
           console.log('onWindowStageRestore');
       }
@@ -133,9 +136,9 @@ Ability生命周期回调，在销毁时回调，执行资源清理等操作。
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
-    
+
   ```ts
-  class myAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
       onDestroy() {
           console.log('onDestroy');
       }
@@ -152,9 +155,9 @@ Ability生命周期回调，当应用从后台转到前台时触发。
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
-    
+
   ```ts
-  class myAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
       onForeground() {
           console.log('onForeground');
       }
@@ -171,9 +174,9 @@ Ability生命周期回调，当应用从前台转到后台时触发。
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
-    
+
   ```ts
-  class myAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
       onBackground() {
           console.log('onBackground');
       }
@@ -202,10 +205,11 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
   | AbilityConstant.OnContinueResult | 继续的结果。 | 
 
 **示例：**
-    
+
   ```ts
-  import AbilityConstant from "@ohos.application.AbilityConstant"
-  class myAbility extends Ability {
+  import AbilityConstant from "@ohos.app.ability.AbilityConstant";
+  
+  export default class EntryAbility extends UIAbility {
       onContinue(wantParams) {
           console.log('onContinue');
           wantParams["myData"] = "my1234567";
@@ -231,9 +235,9 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 | launchParams | AbilityConstant.LaunchParam | 是 | Ability启动的原因、上次异常退出的原因信息。 |
 
 **示例：**
-    
+
   ```ts
-  class myAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
       onNewWant(want, launchParams) {
           console.log('onNewWant, want:' + want.abilityName);
           console.log('onNewWant, launchParams:' + JSON.stringify(launchParams));
@@ -256,9 +260,9 @@ onConfigurationUpdated(config: Configuration): void;
   | config | [Configuration](js-apis-application-configuration.md) | 是 | 发生全局配置变更时触发回调，当前全局配置包括系统语言、深浅色模式。 | 
 
 **示例：**
-    
+
   ```ts
-  class myAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
       onConfigurationUpdated(config) {
           console.log('onConfigurationUpdated, language:' + config.language);
       }
@@ -280,9 +284,9 @@ dump(params: Array\<string>): Array\<string>;
   | params | Array\<string> | 是 | 表示命令形式的参数。| 
 
 **示例：**
-    
+
   ```ts
-  class myAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
       dump(params) {
           console.log('dump, params:' + JSON.stringify(params));
           return ["params"]
@@ -305,9 +309,9 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
   | level | [AbilityConstant.MemoryLevel](js-apis-application-abilityConstant.md#abilityconstantmemorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。| 
 
 **示例：**
-    
+
   ```ts
-  class myAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
     onMemoryLevel(level) {
         console.log('onMemoryLevel, level:' + JSON.stringify(level));
     } 
@@ -338,9 +342,9 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any})
 **示例：**
 
   ```ts
-import AbilityConstant from '@ohos.application.AbilityConstant'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onSaveState(reason, wantParam) {
         console.log('onSaveState');
         wantParam["myData"] = "my1234567";
@@ -348,8 +352,6 @@ class myAbility extends Ability {
     }
 }
   ```
-
-
 
 ## Caller
 
@@ -387,10 +389,11 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 | 16000050 | Internal Error. |
 
 **示例：**
-    
+
   ```ts
-  import Ability from '@ohos.application.Ability';
-  class MyMessageAble{ // 自定义的Sequenceable数据结构
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
+  class MyMessageAble { // 自定义的Sequenceable数据结构
     name:""
     str:""
     num: 1
@@ -413,11 +416,11 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
   };
   var method = 'call_Function'; // 约定的通知消息字符串
   var caller;
-  export default class MainAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
         caller = obj;
@@ -473,7 +476,8 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
 **示例：**
 
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   class MyMessageAble{
     name:""
     str:""
@@ -497,11 +501,11 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
   };
   var method = 'call_Function';
   var caller;
-  export default class MainAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
         caller = obj;
@@ -543,15 +547,17 @@ release(): void;
 | 16000050 | Internal Error. |
 
 **示例：**
-    
+
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   var caller;
-  export default class MainAbility extends Ability {
+  
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
         caller = obj;
@@ -584,15 +590,17 @@ release(): void;
   | callback | OnReleaseCallBack | 是 | 返回onRelease回调结果。 | 
 
 **示例：**
-    
+
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   var caller;
-  export default class MainAbility extends Ability {
+  
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
           caller = obj;
@@ -643,7 +651,7 @@ on(method: string, callback: CalleeCallBack): void;
 **示例：**
 
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
       name:""
       str:""
@@ -672,7 +680,7 @@ on(method: string, callback: CalleeCallBack): void;
       pdata.readSequenceable(msg);
       return new MyMessageAble("test1", "Callee test");
   }
-  export default class MainAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');
       try {
@@ -709,11 +717,12 @@ off(method: string): void;
 
 
 **示例：**
-    
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   var method = 'call_Function';
-  export default class MainAbility extends Ability {
+  
+  export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');
       try {

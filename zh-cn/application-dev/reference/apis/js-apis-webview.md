@@ -228,19 +228,19 @@ static initializeWebEngine(): void
 
 **示例：**
 
-本示例以 MainAbility 为例，描述了在 Ability 创建阶段完成 Web 组件动态库加载的功能。
+本示例以EntryAbility为例，描述了在 Ability 创建阶段完成 Web 组件动态库加载的功能。
 
 ```ts
 // xxx.ts
-import Ability from '@ohos.application.Ability'
-import web_webview from '@ohos.web.webview'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("MainAbility onCreate")
+        console.log("EntryAbility onCreate")
         web_webview.WebviewController.initializeWebEngine()
         globalThis.abilityWant = want
-        console.log("MainAbility onCreate done")
+        console.log("EntryAbility onCreate done")
     }
 }
 ```
@@ -249,12 +249,51 @@ export default class MainAbility extends Ability {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### setWebDebuggingAccess
+
+static setWebDebuggingAccess(webDebuggingAccess: boolean): void
+
+设置是否启用网页调试功能。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名              | 类型    | 必填   |  说明 |
+| ------------------ | ------- | ---- | ------------- |
+| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。|
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  aboutToAppear():void {
+    try {
+      web_webview.WebviewController.setWebDebuggingAccess(true);
+    } catch(error) {
+      console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+    }
+  }
 
   build() {
     Column() {
@@ -1469,12 +1508,10 @@ struct WebComponent {
       Button('postMessage')
         .onClick(() => {
           try {
-            // 1、创建两个消息端口
+            // 1、创建两个消息端口。
             this.ports = this.controller.createWebMessagePorts();
-            // 2、将其中一个消息端口发送到HTML侧，由HTML侧保存并使用。
-            this.controller.postMessage('__init_port__', [this.ports[0]], '*');
-            // 3、另一个消息端口在应用侧注册回调事件。
-            this.ports[1].onMessageEvent((result: WebMessage) => {
+            // 2、在应用侧的消息端口(如端口1)上注册回调事件。
+            this.ports[1].onMessageEvent((result: web_webview.WebMessage) => {
                 var msg = 'Got msg from HTML:';    
                 if (typeof(result) == "string") {
                   console.log("received string message from html5, string is:" + result);
@@ -1491,6 +1528,8 @@ struct WebComponent {
                 }
                 this.receivedFromHtml = msg;
               })
+              // 3、将另一个消息端口(如端口0)发送到HTML侧，由HTML侧保存并使用。
+              this.controller.postMessage('__init_port__', [this.ports[0]], '*');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -1506,7 +1545,7 @@ struct WebComponent {
               console.error(`ports is null, Please initialize first`);
             }
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
           }
         })
       Web({ src: $rawfile('xxx.html'), controller: this.controller })
@@ -1528,7 +1567,7 @@ struct WebComponent {
     <h1>WebView Message Port Demo</h1>
     <div>
         <input type="button" value="SendToEts" onclick="PostMsgToEts(msgFromJS.value);"/><br/>
-        <input id="msgFromJs" type="text" value="send this message from HTML to ets"/><br/>
+        <input id="msgFromJS" type="text" value="send this message from HTML to ets"/><br/>
     </div>
     <p class="output">display received message send from ets</p>
   </body>
@@ -2750,6 +2789,104 @@ struct WebComponent {
 }
 ```
 
+### pageUp
+
+pageUp(top:boolean): void
+
+将Webview的内容向上滚动半个视框大小或者跳转到页面最顶部，通过top入参控制。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| top    | boolean | 是   | 是否跳转到页面最顶部，设置为false时将页面内容向上滚动半个视框大小，设置为true时跳转到页面最顶部。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('pageUp')
+        .onClick(() => {
+          try {
+            this.controller.pageUp(false);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### pageDown
+
+pageDown(bottom:boolean): void
+
+将Webview的内容向下滚动半个视框大小或者跳转到页面最底部，通过bottom入参控制。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| bottom | boolean | 是   | 是否跳转到页面最底部，设置为false时将页面内容向下滚动半个视框大小，设置为true时跳转到页面最底部。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('pageDown')
+        .onClick(() => {
+          try {
+            this.controller.pageDown(false);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### getBackForwardEntries
 
 getBackForwardEntries(): BackForwardList
@@ -2789,6 +2926,122 @@ struct WebComponent {
         .onClick(() => {
           try {
             let list = this.controller.getBackForwardEntries()
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### serializeWebState
+
+serializeWebState(): Uint8Array
+
+将当前Webview的页面状态历史记录信息序列化。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型       | 说明                                          |
+| ---------- | --------------------------------------------- |
+| Uint8Array | 当前Webview的页面状态历史记录序列化后的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import fileio from '@ohos.fileio';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('serializeWebState')
+        .onClick(() => {
+          try {
+            let state = this.controller.serializeWebState();
+            let path = globalThis.AbilityContext.cacheDir;
+            path += '/WebState';
+            let fd = fileio.openSync(path, 0o2 | 0o100, 0o666);
+            fileio.writeSync(fd, state.buffer);
+            fileio.closeSync(fd);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### restoreWebState
+
+restoreWebState(state: Uint8Array): void
+
+当前Webview从序列化数据中恢复页面状态历史记录。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明                         |
+| ------ | ---------- | ---- | ---------------------------- |
+| state  | Uint8Array | 是   | 页面状态历史记录序列化数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import fileio from '@ohos.fileio';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('RestoreWebState')
+        .onClick(() => {
+          try {
+            let path = globalThis.AbilityContext.cacheDir;
+            path += '/WebState';
+            let fd = fileio.openSync(path, 0o002, 0o666);
+            let stat = fileio.fstatSync(fd);
+            let size = stat.size;
+            let buf = new ArrayBuffer(size);
+            fileio.read(fd, buf, (err, data) => {
+              if (data) {
+                this.controller.restoreWebState(new Uint8Array(data.buffer));
+              }
+              fileio.closeSync(fd);
+            });
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -4082,6 +4335,10 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 web组件地理位置权限管理对象。
 
+### 需要权限
+
+访问地理位置时需添加权限：ohos.permission.LOCATION、ohos.permission.APPROXIMATELY_LOCATION、ohos.permission.LOCATION_IN_BACKGROUND，具体权限说明请参考[位置服务](./js-apis-geolocation.md)。
+
 ### allowGeolocation
 
 static allowGeolocation(origin: string): void
@@ -4469,6 +4726,8 @@ Web组件返回的请求/响应头对象。
 
 用于描述[WebMessagePort](#webmessageport)所支持的数据类型。
 
+**系统能力：** SystemCapability.Web.Webview.Core
+
 | 类型       | 说明                                     |
 | -------- | -------------------------------------- |
 | string   | 字符串类型数据。 |
@@ -4492,10 +4751,10 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称         | 类型   | 可读 | 可写 | 说明                         |
-| ------------ | ------ | ---- | ---- | ---------------------------- |
-| currentIndex | number | 是   | 否   | 当前页面在页面历史列表中的索引。 |
-| size         | number | 是   | 否   | 历史列表中索引的数量。       |
+| 名称         | 类型   | 可读 | 可写 | 说明                                                         |
+| ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| currentIndex | number | 是   | 否   | 当前在页面历史列表中的索引。                                 |
+| size         | number | 是   | 否   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
 
 ### getItemAtIndex
 

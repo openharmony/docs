@@ -8,11 +8,11 @@
 
 ## 导入模块
 
-```js
-import Notification from '@ohos.notificationManager';
+```ts
+import notificationManager from '@ohos.notificationManager';
 ```
 
-## Notification.publish
+## notificationManager.publish
 
 publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
@@ -40,7 +40,7 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 //publish回调
 function publishCallback(err) {
     if (err) {
@@ -53,7 +53,7 @@ function publishCallback(err) {
 let notificationRequest = {
     id: 1,
     content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -61,12 +61,10 @@ let notificationRequest = {
         }
     }
 };
-Notification.publish(notificationRequest, publishCallback);
+notificationManager.publish(notificationRequest, publishCallback);
 ```
 
-
-
-## Notification.publish
+## notificationManager.publish
 
 publish(request: NotificationRequest): Promise\<void\>
 
@@ -93,12 +91,12 @@ publish(request: NotificationRequest): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 // 通知Request对象
 let notificationRequest = {
     notificationId: 1,
     content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -106,13 +104,13 @@ let notificationRequest = {
         }
     }
 };
-Notification.publish(notificationRequest).then(() => {
+notificationManager.publish(notificationRequest).then(() => {
 	console.info("publish success");
 });
 
 ```
 
-## Notification.publish
+## notificationManager.publish
 
 publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<void\>): void
 
@@ -146,7 +144,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 **示例：**
 
-```js
+```ts
 // publish回调
 function publishCallback(err) {
     if (err) {
@@ -161,7 +159,7 @@ let userId = 1;
 let notificationRequest = {
     id: 1,
     content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -169,10 +167,10 @@ let notificationRequest = {
         }
     }
 };
-Notification.publish(notificationRequest, userId, publishCallback);
+notificationManager.publish(notificationRequest, userId, publishCallback);
 ```
 
-## Notification.publish
+## notificationManager.publish
 
 publish(request: NotificationRequest, userId: number): Promise\<void\>
 
@@ -205,11 +203,11 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 let notificationRequest = {
     notificationId: 1,
     content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -220,13 +218,13 @@ let notificationRequest = {
 
 let userId = 1;
 
-Notification.publish(notificationRequest, userId).then(() => {
+notificationManager.publish(notificationRequest, userId).then(() => {
 	console.info("publish success");
 });
 ```
 
 
-## Notification.cancel
+## notificationManager.cancel
 
 cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 
@@ -253,7 +251,7 @@ cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 // cancel回调
 function cancelCallback(err) {
     if (err) {
@@ -262,12 +260,10 @@ function cancelCallback(err) {
         console.info("cancel success");
     }
 }
-Notification.cancel(0, "label", cancelCallback);
+notificationManager.cancel(0, "label", cancelCallback);
 ```
 
-
-
-## Notification.cancel
+## notificationManager.cancel
 
 cancel(id: number, label?: string): Promise\<void\>
 
@@ -293,15 +289,13 @@ cancel(id: number, label?: string): Promise\<void\>
 
 **示例：**
 
-```js
-Notification.cancel(0).then(() => {
+```ts
+notificationManager.cancel(0).then(() => {
 	console.info("cancel success");
 });
 ```
 
-
-
-## Notification.cancel
+## notificationManager.cancel
 
 cancel(id: number, callback: AsyncCallback\<void\>): void
 
@@ -327,7 +321,7 @@ cancel(id: number, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 // cancel回调
 function cancelCallback(err) {
     if (err) {
@@ -336,12 +330,10 @@ function cancelCallback(err) {
         console.info("cancel success");
     }
 }
-Notification.cancel(0, cancelCallback);
+notificationManager.cancel(0, cancelCallback);
 ```
 
-
-
-## Notification.cancelAll
+## notificationManager.cancelAll
 
 cancelAll(callback: AsyncCallback\<void\>): void
 
@@ -365,7 +357,7 @@ cancelAll(callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 // cancel回调
 function cancelAllCallback(err) {
     if (err) {
@@ -374,12 +366,10 @@ function cancelAllCallback(err) {
         console.info("cancelAll success");
     }
 }
-Notification.cancelAll(cancelAllCallback);
+notificationManager.cancelAll(cancelAllCallback);
 ```
 
-
-
-## Notification.cancelAll
+## notificationManager.cancelAll
 
 cancelAll(): Promise\<void\>
 
@@ -397,15 +387,13 @@ cancelAll(): Promise\<void\>
 
 **示例：**
 
-```js
-Notification.cancelAll().then(() => {
+```ts
+notificationManager.cancelAll().then(() => {
 	console.info("cancelAll success");
 });
 ```
 
-
-
-## Notification.addSlot
+## notificationManager.addSlot
 
 addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
@@ -434,7 +422,7 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 // addslot回调
 function addSlotCallBack(err) {
     if (err) {
@@ -445,14 +433,12 @@ function addSlotCallBack(err) {
 }
 // 通知slot对象
 let notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
+    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
-Notification.addSlot(notificationSlot, addSlotCallBack);
+notificationManager.addSlot(notificationSlot, addSlotCallBack);
 ```
 
-
-
-## Notification.addSlot
+## notificationManager.addSlot
 
 addSlot(slot: NotificationSlot): Promise\<void\>
 
@@ -480,19 +466,17 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 // 通知slot对象
 let notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
+    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
-Notification.addSlot(notificationSlot).then(() => {
+notificationManager.addSlot(notificationSlot).then(() => {
 	console.info("addSlot success");
 });
 ```
 
-
-
-## Notification.addSlot
+## notificationManager.addSlot
 
 addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 
@@ -517,7 +501,7 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 // addslot回调
 function addSlotCallBack(err) {
     if (err) {
@@ -526,12 +510,10 @@ function addSlotCallBack(err) {
         console.info("addSlot success");
     }
 }
-Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack);
+notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack);
 ```
 
-
-
-## Notification.addSlot
+## notificationManager.addSlot
 
 addSlot(type: SlotType): Promise\<void\>
 
@@ -555,15 +537,13 @@ addSlot(type: SlotType): Promise\<void\>
 
 **示例：**
 
-```js
-Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION).then(() => {
+```ts
+notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION).then(() => {
 	console.info("addSlot success");
 });
 ```
 
-
-
-## Notification.addSlots
+## notificationManager.addSlots
 
 addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): void
 
@@ -592,7 +572,7 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 **示例：**
 
-```js
+```ts
 // addSlots回调
 function addSlotsCallBack(err) {
     if (err) {
@@ -603,18 +583,16 @@ function addSlotsCallBack(err) {
 }
 // 通知slot对象
 let notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
+    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 // 通知slot array 对象
 let notificationSlotArray = new Array();
 notificationSlotArray[0] = notificationSlot;
 
-Notification.addSlots(notificationSlotArray, addSlotsCallBack);
+notificationManager.addSlots(notificationSlotArray, addSlotsCallBack);
 ```
 
-
-
-## Notification.addSlots
+## notificationManager.addSlots
 
 addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
@@ -642,23 +620,21 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 // 通知slot对象
 let notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
+    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 // 通知slot array 对象
 let notificationSlotArray = new Array();
 notificationSlotArray[0] = notificationSlot;
 
-Notification.addSlots(notificationSlotArray).then(() => {
+notificationManager.addSlots(notificationSlotArray).then(() => {
 	console.info("addSlots success");
 });
 ```
 
-
-
-## Notification.getSlot
+## notificationManager.getSlot
 
 getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 
@@ -683,7 +659,7 @@ getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 
 **示例：**
 
-```js
+```ts
 // getSlot回调
 function getSlotCallback(err,data) {
     if (err) {
@@ -692,13 +668,11 @@ function getSlotCallback(err,data) {
         console.info("getSlot success");
     }
 }
-let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
-Notification.getSlot(slotType, getSlotCallback);
+let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+notificationManager.getSlot(slotType, getSlotCallback);
 ```
 
-
-
-## Notification.getSlot
+## notificationManager.getSlot
 
 getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
@@ -728,16 +702,14 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
 **示例：**
 
-```js
-let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
-Notification.getSlot(slotType).then((data) => {
+```ts
+let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+notificationManager.getSlot(slotType).then((data) => {
 	console.info("getSlot success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.getSlots
+## notificationManager.getSlots
 
 getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
 
@@ -761,7 +733,7 @@ getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
 
 **示例：**
 
-```js
+```ts
 // getSlots回调
 function getSlotsCallback(err,data) {
     if (err) {
@@ -770,12 +742,10 @@ function getSlotsCallback(err,data) {
         console.info("getSlots success");
     }
 }
-Notification.getSlots(getSlotsCallback);
+notificationManager.getSlots(getSlotsCallback);
 ```
 
-
-
-## Notification.getSlots
+## notificationManager.getSlots
 
 getSlots(): Promise\<Array\<NotificationSlot\>>
 
@@ -799,15 +769,13 @@ getSlots(): Promise\<Array\<NotificationSlot\>>
 
 **示例：**
 
-```js
-Notification.getSlots().then((data) => {
+```ts
+notificationManager.getSlots().then((data) => {
 	console.info("getSlots success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.removeSlot
+## notificationManager.removeSlot
 
 removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
@@ -832,7 +800,7 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 // removeSlot回调
 function removeSlotCallback(err) {
     if (err) {
@@ -841,13 +809,11 @@ function removeSlotCallback(err) {
         console.info("removeSlot success");
     }
 }
-let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
-Notification.removeSlot(slotType,removeSlotCallback);
+let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+notificationManager.removeSlot(slotType,removeSlotCallback);
 ```
 
-
-
-## Notification.removeSlot
+## notificationManager.removeSlot
 
 removeSlot(slotType: SlotType): Promise\<void\>
 
@@ -871,16 +837,14 @@ removeSlot(slotType: SlotType): Promise\<void\>
 
 **示例：**
 
-```js
-let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
-Notification.removeSlot(slotType).then(() => {
+```ts
+let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+notificationManager.removeSlot(slotType).then(() => {
 	console.info("removeSlot success");
 });
 ```
 
-
-
-## Notification.removeAllSlots
+## notificationManager.removeAllSlots
 
 removeAllSlots(callback: AsyncCallback\<void\>): void
 
@@ -904,7 +868,7 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 function removeAllCallBack(err) {
     if (err) {
         console.info("removeAllSlots failed " + JSON.stringify(err));
@@ -912,12 +876,10 @@ function removeAllCallBack(err) {
         console.info("removeAllSlots success");
     }
 }
-Notification.removeAllSlots(removeAllCallBack);
+notificationManager.removeAllSlots(removeAllCallBack);
 ```
 
-
-
-## Notification.removeAllSlots
+## notificationManager.removeAllSlots
 
 removeAllSlots(): Promise\<void\>
 
@@ -935,15 +897,13 @@ removeAllSlots(): Promise\<void\>
 
 **示例：**
 
-```js
-Notification.removeAllSlots().then(() => {
+```ts
+notificationManager.removeAllSlots().then(() => {
 	console.info("removeAllSlots success");
 });
 ```
 
-
-
-## Notification.setNotificationEnable
+## notificationManager.setNotificationEnable
 
 setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
@@ -974,7 +934,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 
 **示例：**
 
-```js
+```ts
 function setNotificationEnablenCallback(err) {
     if (err) {
         console.info("setNotificationEnablenCallback failed " + JSON.stringify(err));
@@ -985,12 +945,10 @@ function setNotificationEnablenCallback(err) {
 let bundle = {
     bundle: "bundleName1",
 };
-Notification.setNotificationEnable(bundle, false, setNotificationEnablenCallback);
+notificationManager.setNotificationEnable(bundle, false, setNotificationEnablenCallback);
 ```
 
-
-
-## Notification.setNotificationEnable
+## notificationManager.setNotificationEnable
 
 setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
@@ -1020,18 +978,16 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 let bundle = {
     bundle: "bundleName1",
 };
-Notification.setNotificationEnable(bundle, false).then(() => {
+notificationManager.setNotificationEnable(bundle, false).then(() => {
 	console.info("setNotificationEnable success");
 });
 ```
 
-
-
-## Notification.isNotificationEnabled
+## notificationManager.isNotificationEnabled
 
 isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
@@ -1061,7 +1017,7 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 
 **示例：**
 
-```js
+```ts
 function isNotificationEnabledCallback(err, data) {
     if (err) {
         console.info("isNotificationEnabled failed " + JSON.stringify(err));
@@ -1072,12 +1028,10 @@ function isNotificationEnabledCallback(err, data) {
 let bundle = {
     bundle: "bundleName1",
 };
-Notification.isNotificationEnabled(bundle, isNotificationEnabledCallback);
+notificationManager.isNotificationEnabled(bundle, isNotificationEnabledCallback);
 ```
 
-
-
-## Notification.isNotificationEnabled
+## notificationManager.isNotificationEnabled
 
 isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
@@ -1112,18 +1066,16 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
 let bundle = {
     bundle: "bundleName1",
 };
-Notification.isNotificationEnabled(bundle).then((data) => {
+notificationManager.isNotificationEnabled(bundle).then((data) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.isNotificationEnabled
+## notificationManager.isNotificationEnabled
 
 isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
@@ -1151,7 +1103,7 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 **示例：**
 
-```js
+```ts
 function isNotificationEnabledCallback(err, data) {
     if (err) {
         console.info("isNotificationEnabled failed " + JSON.stringify(err));
@@ -1160,12 +1112,10 @@ function isNotificationEnabledCallback(err, data) {
     }
 }
 
-Notification.isNotificationEnabled(isNotificationEnabledCallback);
+notificationManager.isNotificationEnabled(isNotificationEnabledCallback);
 ```
 
-
-
-## Notification.isNotificationEnabled
+## notificationManager.isNotificationEnabled
 
 isNotificationEnabled(): Promise\<boolean\>
 
@@ -1200,15 +1150,13 @@ isNotificationEnabled(): Promise\<boolean\>
 
 **示例：**
 
-```js
-Notification.isNotificationEnabled().then((data) => {
+```ts
+notificationManager.isNotificationEnabled().then((data) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.displayBadge
+## notificationManager.displayBadge
 
 displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
@@ -1239,7 +1187,7 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 
 **示例：**
 
-```js
+```ts
 function displayBadgeCallback(err) {
     if (err) {
         console.info("displayBadge failed " + JSON.stringify(err));
@@ -1250,12 +1198,10 @@ function displayBadgeCallback(err) {
 let bundle = {
     bundle: "bundleName1",
 };
-Notification.displayBadge(bundle, false, displayBadgeCallback);
+notificationManager.displayBadge(bundle, false, displayBadgeCallback);
 ```
 
-
-
-## Notification.displayBadge
+## notificationManager.displayBadge
 
 displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
@@ -1285,18 +1231,16 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 let bundle = {
     bundle: "bundleName1",
 };
-Notification.displayBadge(bundle, false).then(() => {
+notificationManager.displayBadge(bundle, false).then(() => {
 	console.info("displayBadge success");
 });
 ```
 
-
-
-## Notification.isBadgeDisplayed
+## notificationManager.isBadgeDisplayed
 
 isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
@@ -1326,7 +1270,7 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
 **示例：**
 
-```js
+```ts
 function isBadgeDisplayedCallback(err, data) {
     if (err) {
         console.info("isBadgeDisplayed failed " + JSON.stringify(err));
@@ -1337,12 +1281,10 @@ function isBadgeDisplayedCallback(err, data) {
 let bundle = {
     bundle: "bundleName1",
 };
-Notification.isBadgeDisplayed(bundle, isBadgeDisplayedCallback);
+notificationManager.isBadgeDisplayed(bundle, isBadgeDisplayedCallback);
 ```
 
-
-
-## Notification.isBadgeDisplayed
+## notificationManager.isBadgeDisplayed
 
 isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
@@ -1377,18 +1319,16 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
 let bundle = {
     bundle: "bundleName1",
 };
-Notification.isBadgeDisplayed(bundle).then((data) => {
+notificationManager.isBadgeDisplayed(bundle).then((data) => {
 	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.setSlotByBundle
+## notificationManager.setSlotByBundle
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
@@ -1417,11 +1357,9 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 | 1600003  | Failed to connect service.               |
 | 17700001 | The specified bundle name was not found. |
 
-
-
 **示例：**
 
-```js
+```ts
 function setSlotByBundleCallback(err) {
     if (err) {
         console.info("setSlotByBundle failed " + JSON.stringify(err));
@@ -1433,14 +1371,12 @@ let bundle = {
     bundle: "bundleName1",
 };
 let notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
+    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
-Notification.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
+notificationManager.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
 ```
 
-
-
-## Notification.setSlotByBundle
+## notificationManager.setSlotByBundle
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
@@ -1470,21 +1406,19 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 let bundle = {
     bundle: "bundleName1",
 };
 let notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
+    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
-Notification.setSlotByBundle(bundle, notificationSlot).then(() => {
+notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
 });
 ```
 
-
-
-## Notification.getSlotsByBundle
+## notificationManager.getSlotsByBundle
 
 getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<NotificationSlot\>>): void
 
@@ -1514,7 +1448,7 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<Notificati
 
 **示例：**
 
-```js
+```ts
 function getSlotsByBundleCallback(err, data) {
     if (err) {
         console.info("getSlotsByBundle failed " + JSON.stringify(err));
@@ -1525,12 +1459,10 @@ function getSlotsByBundleCallback(err, data) {
 let bundle = {
     bundle: "bundleName1",
 };
-Notification.getSlotsByBundle(bundle, getSlotsByBundleCallback);
+notificationManager.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 ```
 
-
-
-## Notification.getSlotsByBundle
+## notificationManager.getSlotsByBundle
 
 getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
 
@@ -1565,18 +1497,16 @@ getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
 
 **示例：**
 
-```js
+```ts
 let bundle = {
     bundle: "bundleName1",
 };
-Notification.getSlotsByBundle(bundle).then((data) => {
+notificationManager.getSlotsByBundle(bundle).then((data) => {
 	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.getSlotNumByBundle
+## notificationManager.getSlotNumByBundle
 
 getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): void
 
@@ -1606,7 +1536,7 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 
 **示例：**
 
-```js
+```ts
 function getSlotNumByBundleCallback(err, data) {
     if (err) {
         console.info("getSlotNumByBundle failed " + JSON.stringify(err));
@@ -1617,12 +1547,10 @@ function getSlotNumByBundleCallback(err, data) {
 let bundle = {
     bundle: "bundleName1",
 };
-Notification.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
+notificationManager.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
 ```
 
-
-
-## Notification.getSlotNumByBundle
+## notificationManager.getSlotNumByBundle
 
 getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
@@ -1657,19 +1585,17 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 **示例：**
 
-```js
+```ts
 let bundle = {
     bundle: "bundleName1",
 };
-Notification.getSlotNumByBundle(bundle).then((data) => {
+notificationManager.getSlotNumByBundle(bundle).then((data) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
 });
 ```
 
 
-
-
-## Notification.getAllActiveNotifications
+## notificationManager.getAllActiveNotifications
 
 getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): void
 
@@ -1697,7 +1623,7 @@ getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>)
 
 **示例：**
 
-```js
+```ts
 function getAllActiveNotificationsCallback(err, data) {
     if (err) {
         console.info("getAllActiveNotifications failed " + JSON.stringify(err));
@@ -1706,12 +1632,10 @@ function getAllActiveNotificationsCallback(err, data) {
     }
 }
 
-Notification.getAllActiveNotifications(getAllActiveNotificationsCallback);
+notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback);
 ```
 
-
-
-## Notification.getAllActiveNotifications
+## notificationManager.getAllActiveNotifications
 
 getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationrequest)\>\>
 
@@ -1739,15 +1663,13 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notification
 
 **示例：**
 
-```js
-Notification.getAllActiveNotifications().then((data) => {
+```ts
+notificationManager.getAllActiveNotifications().then((data) => {
 	console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.getActiveNotificationCount
+## notificationManager.getActiveNotificationCount
 
 getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 
@@ -1771,7 +1693,7 @@ getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 
 **示例：**
 
-```js
+```ts
 function getActiveNotificationCountCallback(err, data) {
     if (err) {
         console.info("getActiveNotificationCount failed " + JSON.stringify(err));
@@ -1780,12 +1702,10 @@ function getActiveNotificationCountCallback(err, data) {
     }
 }
 
-Notification.getActiveNotificationCount(getActiveNotificationCountCallback);
+notificationManager.getActiveNotificationCount(getActiveNotificationCountCallback);
 ```
 
-
-
-## Notification.getActiveNotificationCount
+## notificationManager.getActiveNotificationCount
 
 getActiveNotificationCount(): Promise\<number\>
 
@@ -1809,15 +1729,13 @@ getActiveNotificationCount(): Promise\<number\>
 
 **示例：**
 
-```js
-Notification.getActiveNotificationCount().then((data) => {
+```ts
+notificationManager.getActiveNotificationCount().then((data) => {
 	console.info("getActiveNotificationCount success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.getActiveNotifications
+## notificationManager.getActiveNotifications
 
 getActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): void
 
@@ -1841,7 +1759,7 @@ getActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): v
 
 **示例：**
 
-```js
+```ts
 function getActiveNotificationsCallback(err, data) {
     if (err) {
         console.info("getActiveNotifications failed " + JSON.stringify(err));
@@ -1850,12 +1768,10 @@ function getActiveNotificationsCallback(err, data) {
     }
 }
 
-Notification.getActiveNotifications(getActiveNotificationsCallback);
+notificationManager.getActiveNotifications(getActiveNotificationsCallback);
 ```
 
-
-
-## Notification.getActiveNotifications
+## notificationManager.getActiveNotifications
 
 getActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationrequest)\>\>
 
@@ -1879,15 +1795,13 @@ getActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationreq
 
 **示例：**
 
-```js
-Notification.getActiveNotifications().then((data) => {
+```ts
+notificationManager.getActiveNotifications().then((data) => {
 	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.cancelGroup
+## notificationManager.cancelGroup
 
 cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
@@ -1912,7 +1826,7 @@ cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 function cancelGroupCallback(err) {
     if (err) {
         console.info("cancelGroup failed " + JSON.stringify(err));
@@ -1923,12 +1837,10 @@ function cancelGroupCallback(err) {
 
 let groupName = "GroupName";
 
-Notification.cancelGroup(groupName, cancelGroupCallback);
+notificationManager.cancelGroup(groupName, cancelGroupCallback);
 ```
 
-
-
-## Notification.cancelGroup
+## notificationManager.cancelGroup
 
 cancelGroup(groupName: string): Promise\<void\>
 
@@ -1952,16 +1864,14 @@ cancelGroup(groupName: string): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 let groupName = "GroupName";
-Notification.cancelGroup(groupName).then(() => {
+notificationManager.cancelGroup(groupName).then(() => {
 	console.info("cancelGroup success");
 });
 ```
 
-
-
-## Notification.removeGroupByBundle
+## notificationManager.removeGroupByBundle
 
 removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCallback\<void\>): void
 
@@ -1992,7 +1902,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 
 **示例：**
 
-```js
+```ts
 function removeGroupByBundleCallback(err) {
     if (err) {
         console.info("removeGroupByBundle failed " + JSON.stringify(err));
@@ -2004,12 +1914,10 @@ function removeGroupByBundleCallback(err) {
 let bundleOption = {bundle: "Bundle"};
 let groupName = "GroupName";
 
-Notification.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCallback);
+notificationManager.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCallback);
 ```
 
-
-
-## Notification.removeGroupByBundle
+## notificationManager.removeGroupByBundle
 
 removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
@@ -2039,17 +1947,15 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 let bundleOption = {bundle: "Bundle"};
 let groupName = "GroupName";
-Notification.removeGroupByBundle(bundleOption, groupName).then(() => {
+notificationManager.removeGroupByBundle(bundleOption, groupName).then(() => {
 	console.info("removeGroupByBundle success");
 });
 ```
 
-
-
-## Notification.setDoNotDisturbDate
+## notificationManager.setDoNotDisturbDate
 
 setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): void
 
@@ -2078,7 +1984,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 
 **示例：**
 
-```js
+```ts
 function setDoNotDisturbDateCallback(err) {
     if (err) {
         console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
@@ -2088,17 +1994,15 @@ function setDoNotDisturbDateCallback(err) {
 }
 
 let doNotDisturbDate = {
-    type: Notification.DoNotDisturbType.TYPE_ONCE,
+    type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
 
-Notification.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
+notificationManager.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
 ```
 
-
-
-## Notification.setDoNotDisturbDate
+## notificationManager.setDoNotDisturbDate
 
 setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
@@ -2126,19 +2030,19 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 let doNotDisturbDate = {
-    type: Notification.DoNotDisturbType.TYPE_ONCE,
+    type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
-Notification.setDoNotDisturbDate(doNotDisturbDate).then(() => {
+notificationManager.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 	console.info("setDoNotDisturbDate success");
 });
 ```
 
 
-## Notification.setDoNotDisturbDate
+## notificationManager.setDoNotDisturbDate
 
 setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallback\<void\>): void
 
@@ -2169,7 +2073,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 
 **示例：**
 
-```js
+```ts
 function setDoNotDisturbDateCallback(err) {
     if (err) {
         console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
@@ -2179,19 +2083,17 @@ function setDoNotDisturbDateCallback(err) {
 }
 
 let doNotDisturbDate = {
-    type: Notification.DoNotDisturbType.TYPE_ONCE,
+    type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
 
 let userId = 1;
 
-Notification.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
+notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
 ```
 
-
-
-## Notification.setDoNotDisturbDate
+## notificationManager.setDoNotDisturbDate
 
 setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
@@ -2221,22 +2123,22 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 let doNotDisturbDate = {
-    type: Notification.DoNotDisturbType.TYPE_ONCE,
+    type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
 
 let userId = 1;
 
-Notification.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
+notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 	console.info("setDoNotDisturbDate success");
 });
 ```
 
 
-## Notification.getDoNotDisturbDate
+## notificationManager.getDoNotDisturbDate
 
 getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
@@ -2264,7 +2166,7 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
 **示例：**
 
-```js
+```ts
 function getDoNotDisturbDateCallback(err,data) {
     if (err) {
         console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
@@ -2273,12 +2175,10 @@ function getDoNotDisturbDateCallback(err,data) {
     }
 }
 
-Notification.getDoNotDisturbDate(getDoNotDisturbDateCallback);
+notificationManager.getDoNotDisturbDate(getDoNotDisturbDateCallback);
 ```
 
-
-
-## Notification.getDoNotDisturbDate
+## notificationManager.getDoNotDisturbDate
 
 getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
@@ -2306,14 +2206,14 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
 **示例：**
 
-```js
-Notification.getDoNotDisturbDate().then((data) => {
+```ts
+notificationManager.getDoNotDisturbDate().then((data) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
 });
 ```
 
 
-## Notification.getDoNotDisturbDate
+## notificationManager.getDoNotDisturbDate
 
 getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>): void
 
@@ -2343,7 +2243,7 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 
 **示例：**
 
-```js
+```ts
 function getDoNotDisturbDateCallback(err,data) {
     if (err) {
         console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
@@ -2354,12 +2254,10 @@ function getDoNotDisturbDateCallback(err,data) {
 
 let userId = 1;
 
-Notification.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
+notificationManager.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
 ```
 
-
-
-## Notification.getDoNotDisturbDate
+## notificationManager.getDoNotDisturbDate
 
 getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
@@ -2394,16 +2292,16 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
 **示例：**
 
-```js
+```ts
 let userId = 1;
 
-Notification.getDoNotDisturbDate(userId).then((data) => {
+notificationManager.getDoNotDisturbDate(userId).then((data) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
 });
 ```
 
 
-## Notification.supportDoNotDisturbMode
+## notificationManager.supportDoNotDisturbMode
 
 supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 
@@ -2431,7 +2329,7 @@ supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 
 **示例：**
 
-```js
+```ts
 function supportDoNotDisturbModeCallback(err,data) {
     if (err) {
         console.info("supportDoNotDisturbMode failed " + JSON.stringify(err));
@@ -2440,12 +2338,10 @@ function supportDoNotDisturbModeCallback(err,data) {
     }
 }
 
-Notification.supportDoNotDisturbMode(supportDoNotDisturbModeCallback);
+notificationManager.supportDoNotDisturbMode(supportDoNotDisturbModeCallback);
 ```
 
-
-
-## Notification.supportDoNotDisturbMode
+## notificationManager.supportDoNotDisturbMode
 
 supportDoNotDisturbMode(): Promise\<boolean\>
 
@@ -2473,15 +2369,13 @@ supportDoNotDisturbMode(): Promise\<boolean\>
 
 **示例：**
 
-```js
-Notification.supportDoNotDisturbMode().then((data) => {
+```ts
+notificationManager.supportDoNotDisturbMode().then((data) => {
 	console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.isSupportTemplate
+## notificationManager.isSupportTemplate
 
 isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
 
@@ -2517,12 +2411,10 @@ function isSupportTemplateCallback(err, data) {
     }
 }
 
-Notification.isSupportTemplate(templateName, isSupportTemplateCallback);
+notificationManager.isSupportTemplate(templateName, isSupportTemplateCallback);
 ```
 
-
-
-## Notification.isSupportTemplate
+## notificationManager.isSupportTemplate
 
 isSupportTemplate(templateName: string): Promise\<boolean\>
 
@@ -2556,14 +2448,12 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 ```javascript
 let templateName = 'process';
 
-Notification.isSupportTemplate(templateName).then((data) => {
+notificationManager.isSupportTemplate(templateName).then((data) => {
     console.info("isSupportTemplate success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.requestEnableNotification
+## notificationManager.requestEnableNotification
 
 requestEnableNotification(callback: AsyncCallback\<void\>): void
 
@@ -2596,12 +2486,10 @@ function requestEnableNotificationCallback(err) {
     }
 };
 
-Notification.requestEnableNotification(requestEnableNotificationCallback);
+notificationManager.requestEnableNotification(requestEnableNotificationCallback);
 ```
 
-
-
-## Notification.requestEnableNotification
+## notificationManager.requestEnableNotification
 
 requestEnableNotification(): Promise\<void\>
 
@@ -2620,14 +2508,14 @@ requestEnableNotification(): Promise\<void\>
 **示例：**
 
 ```javascript
-Notification.requestEnableNotification().then(() => {
+notificationManager.requestEnableNotification().then(() => {
     console.info("requestEnableNotification success");
 });
 ```
 
 
 
-## Notification.setDistributedEnable
+## notificationManager.setDistributedEnable
 
 setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
@@ -2668,12 +2556,10 @@ function setDistributedEnableCallback() {
 
 let enable = true;
 
-Notification.setDistributedEnable(enable, setDistributedEnableCallback);
+notificationManager.setDistributedEnable(enable, setDistributedEnableCallback);
 ```
 
-
-
-## Notification.setDistributedEnable
+## notificationManager.setDistributedEnable
 
 setDistributedEnable(enable: boolean): Promise\<void>
 
@@ -2705,13 +2591,13 @@ setDistributedEnable(enable: boolean): Promise\<void>
 ```javascript
 let enable = true;
 
-Notification.setDistributedEnable(enable).then(() => {
+notificationManager.setDistributedEnable(enable).then(() => {
         console.info("setDistributedEnable success");
     });
 ```
 
 
-## Notification.isDistributedEnabled
+## notificationManager.isDistributedEnabled
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
@@ -2745,12 +2631,12 @@ function isDistributedEnabledCallback(err, data) {
     }
 };
 
-Notification.isDistributedEnabled(isDistributedEnabledCallback);
+notificationManager.isDistributedEnabled(isDistributedEnabledCallback);
 ```
 
 
 
-## Notification.isDistributedEnabled
+## notificationManager.isDistributedEnabled
 
 isDistributedEnabled(): Promise\<boolean>
 
@@ -2776,14 +2662,14 @@ isDistributedEnabled(): Promise\<boolean>
 **示例：**
 
 ```javascript
-Notification.isDistributedEnabled()
+notificationManager.isDistributedEnabled()
     .then((data) => {
         console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
     });
 ```
 
 
-## Notification.setDistributedEnableByBundle
+## notificationManager.setDistributedEnableByBundle
 
 setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void
 
@@ -2830,12 +2716,12 @@ let bundle = {
 
 let enable = true
 
-Notification.setDistributedEnableByBundle(bundle, enable, setDistributedEnableByBundleCallback);
+notificationManager.setDistributedEnableByBundle(bundle, enable, setDistributedEnableByBundleCallback);
 ```
 
 
 
-## Notification.setDistributedEnableByBundle
+## notificationManager.setDistributedEnableByBundle
 
 setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
 
@@ -2873,12 +2759,12 @@ let bundle = {
 
 let enable = true
 
-Notification.setDistributedEnableByBundle(bundle, enable).then(() => {
-        console.info("setDistributedEnableByBundle success");
-    });
+notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
+    console.info("setDistributedEnableByBundle success");
+});
 ```
 
-## Notification.isDistributedEnabledByBundle
+## notificationManager.isDistributedEnabledByBundle
 
 isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<boolean>): void
 
@@ -2922,12 +2808,10 @@ let bundle = {
     bundle: "bundleName1",
 };
 
-Notification.isDistributedEnabledByBundle(bundle, isDistributedEnabledByBundleCallback);
+notificationManager.isDistributedEnabledByBundle(bundle, isDistributedEnabledByBundleCallback);
 ```
 
-
-
-## Notification.isDistributedEnabledByBundle
+## notificationManager.isDistributedEnabledByBundle
 
 isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
@@ -2968,13 +2852,13 @@ let bundle = {
     bundle: "bundleName1",
 };
 
-Notification.isDistributedEnabledByBundle(bundle).then((data) => {
+notificationManager.isDistributedEnabledByBundle(bundle).then((data) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
 });
 ```
 
 
-## Notification.getDeviceRemindType
+## notificationManager.getDeviceRemindType
 
 getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
@@ -3011,12 +2895,10 @@ function getDeviceRemindTypeCallback(err, data) {
     }
 };
 
-Notification.getDeviceRemindType(getDeviceRemindTypeCallback);
+notificationManager.getDeviceRemindType(getDeviceRemindTypeCallback);
 ```
 
-
-
-## Notification.getDeviceRemindType
+## notificationManager.getDeviceRemindType
 
 getDeviceRemindType(): Promise\<DeviceRemindType\>
 
@@ -3045,13 +2927,13 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 **示例：**
 
 ```javascript
-Notification.getDeviceRemindType().then((data) => {
+notificationManager.getDeviceRemindType().then((data) => {
     console.info("getDeviceRemindType success, data: " + JSON.stringify(data));
 });
 ```
 
 
-## Notification.publishAsBundle
+## notificationManager.publishAsBundle
 
 publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
 
@@ -3086,7 +2968,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 **示例：**
 
-```js
+```ts
 //publishAsBundle回调
 function callback(err) {
     if (err) {
@@ -3103,7 +2985,7 @@ let userId = 100;
 let request = {
     id: 1,
     content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -3112,10 +2994,10 @@ let request = {
     }
 };
 
-Notification.publishAsBundle(request, representativeBundle, userId, callback);
+notificationManager.publishAsBundle(request, representativeBundle, userId, callback);
 ```
 
-## Notification.publishAsBundle
+## notificationManager.publishAsBundle
 
 publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number): Promise\<void\>
 
@@ -3150,7 +3032,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 **示例：**
 
-```js
+```ts
 // 被代理应用的包名
 let representativeBundle = "com.example.demo";
 // 用户ID
@@ -3159,7 +3041,7 @@ let userId = 100;
 let request = {
     id: 1,
     content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -3168,12 +3050,12 @@ let request = {
     }
 };
 
-Notification.publishAsBundle(request, representativeBundle, userId).then(() => {
+notificationManager.publishAsBundle(request, representativeBundle, userId).then(() => {
 	console.info("publishAsBundle success");
 });
 ```
 
-## Notification.cancelAsBundle
+## notificationManager.cancelAsBundle
 
 cancelAsBundle(id: number, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
 
@@ -3208,7 +3090,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 
 **示例：**
 
-```js
+```ts
 // cancelAsBundle
 function cancelAsBundleCallback(err) {
     if (err) {
@@ -3222,10 +3104,10 @@ let representativeBundle = "com.example.demo";
 // 用户ID
 let userId = 100;
 
-Notification.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
+notificationManager.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
 ```
 
-## Notification.cancelAsBundle
+## notificationManager.cancelAsBundle
 
 cancelAsBundle(id: number, representativeBundle: string, userId: number): Promise\<void\>
 
@@ -3259,18 +3141,18 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 **示例：**
 
-```js
+```ts
 // 被代理应用的包名
 let representativeBundle = "com.example.demo";
 // 用户ID
 let userId = 100;
 
-Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
+notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
 });
 ```
 
-## Notification.setNotificationEnableSlot 
+## notificationManager.setNotificationEnableSlot 
 
 setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
 
@@ -3302,7 +3184,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 **示例：**
 
-```js
+```ts
 // setNotificationEnableSlot
 function setNotificationEnableSlotCallback(err) {
     if (err) {
@@ -3312,14 +3194,14 @@ function setNotificationEnableSlotCallback(err) {
     }
 };
 
-Notification.setNotificationEnableSlot(
+notificationManager.setNotificationEnableSlot(
     { bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION,
+    notificationManager.SlotType.SOCIAL_COMMUNICATION,
     true,
     setNotificationEnableSlotCallback);
 ```
 
-## Notification.setNotificationEnableSlot
+## notificationManager.setNotificationEnableSlot
 
 setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise\<void> 
 
@@ -3350,17 +3232,17 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean)
 
 **示例：**
 
-```js
+```ts
 // setNotificationEnableSlot
-Notification.setNotificationEnableSlot(
+notificationManager.setNotificationEnableSlot(
     { bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION,
+    notificationManager.SlotType.SOCIAL_COMMUNICATION,
     true).then(() => {
         console.info("setNotificationEnableSlot success");
     });
 ```
 
-## Notification.isNotificationSlotEnabled
+## notificationManager.isNotificationSlotEnabled
 
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback\<boolean\>): void
 
@@ -3391,7 +3273,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 
 **示例：**
 
-```js
+```ts
 // isNotificationSlotEnabled
 function getEnableSlotCallback(err, data) {
     if (err) {
@@ -3401,13 +3283,13 @@ function getEnableSlotCallback(err, data) {
     }
 };
 
-Notification.isNotificationSlotEnabled(
+notificationManager.isNotificationSlotEnabled(
     { bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION,
+    notificationManager.SlotType.SOCIAL_COMMUNICATION,
     getEnableSlotCallback);
 ```
 
-## Notification.isNotificationSlotEnabled
+## notificationManager.isNotificationSlotEnabled
 
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolean\>  
 
@@ -3443,16 +3325,16 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 **示例：**
 
-```js
+```ts
 // isNotificationSlotEnabled
-Notification.isNotificationSlotEnabled({ bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION).then((data) => {
+notificationManager.isNotificationSlotEnabled({ bundle: "ohos.samples.notification", },
+    notificationManager.SlotType.SOCIAL_COMMUNICATION).then((data) => {
     console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
 });
 ```
 
 
-## Notification.setSyncNotificationEnabledWithoutApp
+## notificationManager.setSyncNotificationEnabledWithoutApp
 
 setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: AsyncCallback\<void\>): void
 
@@ -3483,7 +3365,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 
 **示例：**
 
-```js
+```ts
 let userId = 100;
 let enable = true;
 
@@ -3495,11 +3377,11 @@ function callback(err) {
     }
 }
 
-Notification.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
+notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
 ```
 
 
-## Notification.setSyncNotificationEnabledWithoutApp
+## notificationManager.setSyncNotificationEnabledWithoutApp
 
 setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<void>
 
@@ -3535,11 +3417,11 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 
 **示例：**
 
-```js
+```ts
 let userId = 100;
 let enable = true;
 
-Notification.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
+notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
 }).catch((err) => {
     console.info('setSyncNotificationEnabledWithoutApp, err:' + JSON.stringify(err));
@@ -3547,7 +3429,7 @@ Notification.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
 ```
 
 
-## Notification.getSyncNotificationEnabledWithoutApp
+## notificationManager.getSyncNotificationEnabledWithoutApp
 
 getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<boolean>): void
 
@@ -3577,7 +3459,7 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 
 **示例：**
 
-```js
+```ts
 let userId = 100;
 
 function getSyncNotificationEnabledWithoutAppCallback(err, data) {
@@ -3588,11 +3470,11 @@ function getSyncNotificationEnabledWithoutAppCallback(err, data) {
     }
 }
 
-Notification.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
+notificationManager.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
 ```
 
 
-## Notification.getSyncNotificationEnabledWithoutApp
+## notificationManager.getSyncNotificationEnabledWithoutApp
 
 getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
@@ -3627,19 +3509,14 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
 let userId = 100;
-Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
+notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
     console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
 }).catch((err) => {
     console.info('getSyncNotificationEnabledWithoutApp, err:' + err);
 });
-    .catch((err) => {
-        console.info('getSyncNotificationEnabledWithoutApp, err:', err);
-    });
 ```
-
-
 
 
 ## DoNotDisturbDate
@@ -3653,8 +3530,6 @@ Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
 | type  | [DoNotDisturbType](#donotdisturbtype) | 是   | 是   | 免打扰设置的时间类型。 |
 | begin | Date                                  | 是   | 是   | 免打扰设置的起点时间。 |
 | end   | Date                                  | 是   | 是   | 免打扰设置的终点时间。 |
-
-
 
 ## DoNotDisturbType
 

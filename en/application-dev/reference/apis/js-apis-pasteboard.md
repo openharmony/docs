@@ -1,4 +1,4 @@
-# Pasteboard
+# @ohos.pasteboard (Pasteboard)
 
 The **pasteboard** module provides the copy and paste support for the system pasteboard. You can use the APIs of this module to operate pasteboard content of the plain text, HTML, URI, Want, pixel map, and other types.
 
@@ -120,11 +120,11 @@ Enumerates the paste options of data.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
-| Name | Description                   |
-| -----  | ----------------------- |
-| InApp  |Only intra-application pasting is allowed.|
-| LocalDevice  |Paste is allowed in any application on the local device.|
-| CrossDevice  |Paste is allowed in any application across devices.|
+| Name| Value| Description               |
+| ---- |---|-------------------|
+| InApp | 0 | Only intra-application pasting is allowed.     |
+| LocalDevice | 1 | Paste is allowed in any application on the local device.|
+| CrossDevice | 2 | Paste is allowed in any application across devices. |
 
 ## pasteboard.createHtmlData<sup>(deprecated)</sup>
 
@@ -418,7 +418,7 @@ Forcibly converts the content in a **PasteData** object to text. This API uses a
 **Example**
 
 ```js
-let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
+let record = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 record.convertToTextV9((err, data) => {
     if (err) {
         console.error(`Failed to convert to text. Cause: ${err.message}`);
@@ -445,7 +445,7 @@ Forcibly converts the content in a **PasteData** object to text. This API uses a
 **Example**
 
 ```js
-let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
+let record = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 record.convertToTextV9().then((data) => {
     console.info(`Succeeded in converting to text. Data: ${data}`);
 }).catch((err) => {
@@ -536,7 +536,7 @@ Obtains the plain text of the primary record.
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let plainText = pasteData.getPrimaryText();
 ```
 
@@ -558,7 +558,7 @@ Obtains the HTML content of the primary record.
 
 ```js
 let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-let pasteData = pasteboard.createHtmlData(html);
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_HTML, html);
 let htmlText = pasteData.getPrimaryHtml();
 ```
 
@@ -583,7 +583,7 @@ let object = {
     bundleName: "com.example.aafwk.test",
     abilityName: "com.example.aafwk.test.TwoAbility"
 };
-let pasteData = pasteboard.createWantData(object);
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_WANT, object);
 let want = pasteData.getPrimaryWant();
 ```
 
@@ -604,7 +604,7 @@ Obtains the URI of the primary record.
 **Example**
 
 ```js
-let pasteData = pasteboard.createUriData('dataability:///com.example.myapplication1/user.txt');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 let uri = pasteData.getPrimaryUri();
 ```
 
@@ -636,7 +636,7 @@ let opt = {
   scaleMode: 1
 };
 image.createPixelMap(buffer, opt).then((pixelMap) => {
-    let pasteData = pasteboard.createData('app/xml',pixelMap);
+    let pasteData = pasteboard.createData(MIMETYPE_PIXELMAP, pixelMap);
     let PixelMap = pasteData.getPrimaryPixelMap();
 });
 ```
@@ -660,10 +660,10 @@ The pasteboard supports a maximum number of 512 data records.
 **Example**
 
 ```js
-let pasteData = pasteboard.createUriData('dataability:///com.example.myapplication1/user.txt');
-let textRecord = pasteboard.createPlainTextRecord('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
+let textRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-let htmlRecord = pasteboard.createHtmlTextRecord(html);
+let htmlRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_HTML, html);
 pasteData.addRecord(textRecord);
 pasteData.addRecord(htmlRecord);
 ```
@@ -695,7 +695,7 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 **Example**
 
   ```js
-  let pasteData = pasteboard.createUriData('dataability:///com.example.myapplication1/user.txt');
+  let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
   let dataXml = new ArrayBuffer(256);
   pasteData.addRecord('app/xml', dataXml);
   ```
@@ -717,7 +717,7 @@ Obtains a list of **mimeTypes** objects in [PasteDataProperty](#pastedatapropert
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let types = pasteData.getMimeTypes();
 ```
 
@@ -738,7 +738,7 @@ Obtains the data type of the primary record in this pasteboard.
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let type = pasteData.getPrimaryMimeType();
 ```
 
@@ -759,7 +759,7 @@ Obtains the property of the pasteboard data.
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let property = pasteData.getProperty();
 ```
 
@@ -780,7 +780,7 @@ Sets the property (attributes) for the pasteboard data. Currently, only the **sh
 **Example**
 
 ```js
-let pasteData = pasteboard.createHtmlData('application/xml');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_HTML, 'application/xml');
 let prop = pasteData.getProperty();
 prop.shareOption = pasteboard.ShareOption.InApp;
 pasteData.setProperty(prop);
@@ -817,7 +817,7 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let record = pasteData.getRecord(0);
 ```
 
@@ -838,7 +838,7 @@ Obtains the number of records in the pasteboard.
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let count = pasteData.getRecordCount();
 ```
 
@@ -859,7 +859,7 @@ Obtains the custom tag from the pasteboard. If no custom tag is set, null is ret
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let tag = pasteData.getTag();
 ```
 
@@ -886,7 +886,7 @@ Checks whether the pasteboard contains data of the specified type.
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 let hasType = pasteData.hasType(pasteboard.MIMETYPE_TEXT_PLAIN);
 ```
 
@@ -915,7 +915,7 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
 pasteData.removeRecord(0);
 ```
 
@@ -945,8 +945,8 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('hello');
-let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+let record = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 pasteData.replaceRecord(0, record);
 ```
 ### addHtmlRecord<sup>(deprecated)</sup>

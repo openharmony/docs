@@ -28,4 +28,3 @@ OpenHarmony has reconstructed the [deviceConfig](../quick-start/deviceconfig-str
 | compressNativeLibs | Whether the **libs** libraries are packaged in the HAP file after being compressed.| / | This configuration is not supported in the stage model.|
 | network | Network security configuration.| / | This configuration is not supported in the stage model.|
 
- <!--no_check--> 

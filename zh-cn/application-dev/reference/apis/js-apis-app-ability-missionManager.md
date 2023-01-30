@@ -58,9 +58,9 @@ var listener = {
 
 var listenerId = -1;
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate");
+        console.log("[Demo] EntryAbility onCreate");
         globalThis.abilityWant = want;
         globalThis.context = this.context;
     }
@@ -75,12 +75,12 @@ export default class MainAbility extends UIAbility {
         } catch (paramError) {
             console.log("error: " + paramError.code + ", " + paramError.message);
         }
-        console.log("[Demo] MainAbility onDestroy")
+        console.log("[Demo] EntryAbility onDestroy")
     }
 
     onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility onWindowStageCreate")
+        console.log("[Demo] EntryAbility onWindowStageCreate")
         try {
             listenerId = missionManager.on("mission", listener);
         } catch (paramError) {
@@ -140,9 +140,9 @@ var listener = {
 
 var listenerId = -1;
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate")
+        console.log("[Demo] EntryAbility onCreate")
         globalThis.abilityWant = want;
         globalThis.context = this.context;
     }
@@ -157,12 +157,12 @@ export default class MainAbility extends UIAbility {
         } catch (paramError) {
             console.log("error: " + paramError.code + ", " + paramError.message);
         }
-        console.log("[Demo] MainAbility onDestroy")
+        console.log("[Demo] EntryAbility onDestroy")
     }
 
     onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility onWindowStageCreate")
+        console.log("[Demo] EntryAbility onWindowStageCreate")
         try {
             listenerId = missionManager.on("mission", listener);
         } catch (paramError) {
@@ -227,9 +227,9 @@ var listener = {
 
 var listenerId = -1;
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate")
+        console.log("[Demo] EntryAbility onCreate")
         globalThis.abilityWant = want;
         globalThis.context = this.context;
     }
@@ -244,12 +244,12 @@ export default class MainAbility extends UIAbility {
         } catch (paramError) {
             console.log("error: " + paramError.code + ", " + paramError.message);
         }
-        console.log("[Demo] MainAbility onDestroy")
+        console.log("[Demo] EntryAbility onDestroy")
     }
 
     onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility onWindowStageCreate")
+        console.log("[Demo] EntryAbility onWindowStageCreate")
         try {
             listenerId = missionManager.on("mission", listener);
         } catch (paramError) {

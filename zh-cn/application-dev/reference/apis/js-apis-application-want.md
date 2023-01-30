@@ -36,8 +36,8 @@ import Want from '@ohos.application.Want';
   ```ts
     let want = {
         "deviceId": "", // deviceId为空表示本设备
-        "bundleName": "com.extreme.test",
-        "abilityName": "MainAbility",
+        "bundleName": "com.example.myapplication",
+        "abilityName": "EntryAbility",
         "moduleName": "entry" // moduleName非必选
     };
     this.context.startAbility(want, (error) => {
@@ -51,8 +51,8 @@ import Want from '@ohos.application.Want';
     * 字符串（String）
         ```ts
         let want = {
-            bundleName: "com.example.demo",
-            abilityName: "com.example.demo.MainAbility",
+            bundleName: "com.example.myapplication",
+            abilityName: "EntryAbility",
             parameters: {
                 keyForString: "str",
             },
@@ -61,8 +61,8 @@ import Want from '@ohos.application.Want';
     * 数字（Number）
         ```ts
         let want = {
-            bundleName: "com.example.demo",
-            abilityName: "com.example.demo.MainAbility",
+            bundleName: "com.example.myapplication",
+            abilityName: "EntryAbility",
             parameters: {
                 keyForInt: 100,
                 keyForDouble: 99.99,
@@ -72,8 +72,8 @@ import Want from '@ohos.application.Want';
     * 布尔（Boolean）
         ```ts
         let want = {
-            bundleName: "com.example.demo",
-            abilityName: "com.example.demo.MainAbility",
+            bundleName: "com.example.myapplication",
+            abilityName: "EntryAbility",
             parameters: {
                 keyForBool: true,
             },
@@ -82,8 +82,8 @@ import Want from '@ohos.application.Want';
     * 对象（Object）
         ```ts
         let want = {
-            bundleName: "com.example.demo",
-            abilityName: "com.example.demo.MainAbility",
+            bundleName: "com.example.myapplication",
+            abilityName: "EntryAbility",
             parameters: {
                 keyForObject: {
                     keyForObjectString: "str",
@@ -97,8 +97,8 @@ import Want from '@ohos.application.Want';
     * 数组（Array）
         ```ts
         let want = {
-            bundleName: "com.example.demo",
-            abilityName: "com.example.demo.MainAbility",
+            bundleName: "com.example.myapplication",
+            abilityName: "EntryAbility",
             parameters: {
                 keyForArrayString: ["str1", "str2", "str3"],
                 keyForArrayInt: [100, 200, 300, 400],
@@ -118,8 +118,8 @@ import Want from '@ohos.application.Want';
             }
             let want = {
                 "deviceId": "", // deviceId为空表示本设备
-                "bundleName": "com.extreme.test",
-                "abilityName": "MainAbility",
+                "bundleName": "com.example.myapplication",
+                "abilityName": "EntryAbility",
                 "moduleName": "entry", // moduleName非必选
                 "parameters": {
                     "keyFd":{"type":"FD", "value":fd}

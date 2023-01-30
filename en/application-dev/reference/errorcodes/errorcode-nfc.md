@@ -4,7 +4,7 @@
 
 **Error Message**
 
-NFC opening or closing state is abnormal in service.
+NFC state is abnormal in service.
 
 **Description**
 
@@ -12,11 +12,13 @@ The NFC service fails to enable or disable NFC.
 
 **Possible Causes**
 
-Communication with the NFC service failed.
+1. Communication with the NFC service failed.
+2. The NFC chip communication is abnormal.
 
 **Solution**
 
-Enable or disable NFC again.
+1. Enable or disable NFC again.
+2. Enable or disable NFC again or restart the device, and try again.
 
 ## 3100201
 

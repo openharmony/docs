@@ -246,7 +246,7 @@
 
 ## ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-允许应用管理本地用户账号。
+允许应用管理本地用户帐号。
 
 **权限级别**：system_basic
 
@@ -256,7 +256,7 @@
 
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-允许多个系统账号之间相互访问。
+允许多个系统帐号之间相互访问。
 
 **权限级别**：system_basic
 
@@ -536,7 +536,7 @@
 
 ## ohos.permission.START_ABILIIES_FROM_BACKGROUND
 
-允许应用在后台启动FA。
+允许应用在后台启动或者访问其他组件。
 
 **权限级别**：system_basic
 
@@ -917,6 +917,16 @@
 ## ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
 允许设备管理员读取设备信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_RESET_DEVICE
+
+允许设备管理员恢复设备出厂设置。
 
 **权限级别**：system_basic
 
@@ -1603,3 +1613,13 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
+允许应用调用锁屏服务的系统API。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE

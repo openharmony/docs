@@ -63,7 +63,7 @@ AbilityMonitor是测试框架提供用来绑定并监听Ability类。开发者�
 **示例**
 
 ```javascript
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
@@ -87,11 +87,11 @@ AbilityDelegator是测试框架主要功能类，提供了启动Ability、获取
 **导入模块**
 
 ```javascript
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 ```
 
 ```javascript
-var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 ```
 
 ### 启动Ability并监听Ability状态变化

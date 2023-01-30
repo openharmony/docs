@@ -297,9 +297,9 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
-    bundleName: "com.test.app",
+    bundleName: "com.example.myapplication",
     moduleName: "module01",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
 }).then((data) => {
     console.info('Operation successful.');
 }).catch((error) => {
@@ -308,9 +308,9 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
 
 let userId = 100;
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
-    bundleName: "com.test.app",
+    bundleName: "com.example.myapplication",
     moduleName: "module01",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
 }, userId).then((data) => {
     console.info('Operation successful.');
 }).catch((error) => {
@@ -318,9 +318,9 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
 });
 
 defaultAppMgr.setDefaultApplication("image/png", {
-    bundleName: "com.test.app",
+    bundleName: "com.example.myapplication",
     moduleName: "module01",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
 }, userId).then((data) => {
     console.info('Operation successful.');
 }).catch((error) => {
@@ -365,9 +365,9 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
-    bundleName: "com.test.app",
+    bundleName: "com.example.myapplication",
     moduleName: "module01",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
 }, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -377,9 +377,9 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
  });
 
 defaultAppMgr.setDefaultApplication("image/png", {
-    bundleName: "com.test.app",
+    bundleName: "com.example.myapplication",
     moduleName: "module01",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
 }, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -424,9 +424,9 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
-    bundleName: "com.test.app",
+    bundleName: "com.example.myapplication",
     moduleName: "module01",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
 }, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -436,9 +436,9 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
  });
 
 defaultAppMgr.setDefaultApplication("image/png", {
-    bundleName: "com.test.app",
+    bundleName: "com.example.myapplication",
     moduleName: "module01",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
 }, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));

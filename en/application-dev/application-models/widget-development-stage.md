@@ -181,7 +181,7 @@ To create a widget in the stage model, implement the lifecycle callbacks of **Fo
 ### Configuring the Widget Configuration File
 
 1. Configure ExtensionAbility information under **extensionAbilities** in the [module.json5 file](../quick-start/module-configuration-file.md). For a FormExtensionAbility, you must specify **metadata**. Specifically, set **name** to **ohos.extension.form** (fixed), and set **resource** to the index of the widget configuration information.
-   A configuration example is as follows:
+   Example configuration:
 
    
    ```json
@@ -222,19 +222,19 @@ To create a widget in the stage model, implement the lifecycle callbacks of **Fo
    | defaultDimension | Default grid style of the widget. The value must be available in the **supportDimensions** array of the widget.| String| No|
    | updateEnabled | Whether the widget can be updated periodically.<br>**true**: The widget can be updated at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** takes precedence over **scheduledUpdateTime**.<br>**false**: The widget cannot be updated periodically.| Boolean| No|
    | scheduledUpdateTime | Scheduled time to update the widget. The value is in 24-hour format and accurate to minute.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| String| Yes (initial value: **0:0**)|
-   | updateDuration | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this attribute does not take effect.<br>If the value is a positive integer *N*, the interval is calculated by multiplying *N* and 30 minutes.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| Number| Yes (initial value: **0**)|
+   | updateDuration | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer *N*, the interval is calculated by multiplying *N* and 30 minutes.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| Number| Yes (initial value: **0**)|
    | formConfigAbility | Link to a specific page of the application. The value is a URI.| String| Yes (initial value: left empty)|
    | formVisibleNotify | Whether the widget is allowed to use the widget visibility notification.| String| Yes (initial value: left empty)|
-   | metaData | Metadata of the widget. This attribute contains the array of the **customizeData** attribute.| Object| Yes (initial value: left empty)|
+   | metaData | Metadata of the widget. This field contains the array of the **customizeData** field.| Object| Yes (initial value: left empty)|
 
-   A configuration example is as follows:
+   Example configuration:
    
    ```json
    {
      "forms": [
        {
          "name": "widget",
-         "description": "This is a service widget.",
+         "description": "This is a widget.",
          "src": "./js/widget/pages/index/index",
          "window": {
            "designWidth": 720,
@@ -288,7 +288,7 @@ export default class EntryFormAbility extends FormExtension {
         let formId = want.parameters["ohos.extra.param.key.form_identity"];
         let formName = want.parameters["ohos.extra.param.key.form_name"];
         let tempFlag = want.parameters["ohos.extra.param.key.form_temporary"];
-        // Persistently store widget information for subsequent use, such as instance acquisition and update.
+        // Persistently store widget data for subsequent use, such as instance acquisition and update.
         // Implement this API based on project requirements.
         storeFormInfo(formId, formName, tempFlag);
 
@@ -334,7 +334,7 @@ export default class EntryFormAbility extends FormExtension {
 
 For details about how to implement persistent data storage, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
 
-The **Want** object passed by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
+The **Want** object passed in by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
 
 - Normal widget: a widget persistently used by the widget host
 
@@ -462,12 +462,12 @@ The key steps are as follows:
 1. Set the **onclick** field in the HML file to **routerEvent** or **messageEvent**, depending on the **actions** settings in the JSON file.
 
 2. Set the router event.
-   - **action**: **router**, which indicates a router event.
+   - **action**: **"router"**, which indicates a router event.
    - **abilityName**: name of the ability to redirect to (PageAbility component in the FA model and UIAbility component in the stage model). For example, the default UIAbility name of the stage model created by DevEco Studio is EntryAbility.
    - **params**: custom parameters passed to the target ability. Set them as required. The value can be obtained from **parameters** in **want** used for starting the target ability. For example, in the lifecycle function **onCreate** of the main ability in the stage model, you can obtain **want** and its **parameters** field.
 
 3. Set the message event.
-   - **action**: **message**, which indicates a message event.
+   - **action**: **"message"**, which indicates a message event.
    - **params**: custom parameters of the message event. Set them as required. The value can be obtained from **message** in the widget lifecycle function **onFormEvent()**.
 
 The following is an example:
@@ -597,4 +597,3 @@ The following is an example:
   };
   ```
 
- <!--no_check--> 

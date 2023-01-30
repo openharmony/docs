@@ -12,6 +12,7 @@
   - [Event Error Codes](errorcode-CommonEventService.md)
   - [DistributedNotificationService Error Codes](errorcode-DistributedNotificationService.md)
 - UI Page
+  - [Animator Error Codes](errorcode-animator.md)
   - [promptAction Error Codes](errorcode-promptAction.md)
   - [Router Error Codes](errorcode-router.md)
 - Graphics
@@ -33,8 +34,11 @@
 - Security
   - [Ability Access Control Error Codes](errorcode-access-token.md)
   - [HUKS Error Codes](errorcode-huks.md)
+  - [User Authentication Error Codes](errorcode-useriam.md)
 - Data Management
   - [RDB Error Codes](errorcode-data-rdb.md)
+  - [DataShare Error Codes](errorcode-datashare.md)
+  - [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md)
   - [Distributed KV Store Error Codes](errorcode-distributedKVStore.md)
   - [Preferences Error Codes](errorcode-preferences.md)
 - File Management
@@ -70,9 +74,10 @@
   - [Vibrator Error Codes](errorcode-vibrator.md)
   - [System Parameter Error Codes](errorcode-system-parameterV9.md)
   - [USB Error Codes](errorcode-usb.md)
+  - [Update Error Codes](errorcode-update.md)
 - Customization Management
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
-- Language Base Class Library
+- Utils
   - [Utils Error Codes](errorcode-utils.md)
 - Test
   - [UiTest Error Codes](errorcode-uitest.md)

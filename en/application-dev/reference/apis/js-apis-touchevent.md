@@ -1,6 +1,6 @@
-# Touch Event
+# @ohos.multimodalInput.touchEvent (Touch Event)
 
-Represents touch events reported by an input device.
+The **touchEvent** module provides touch events reported by an input device.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -13,6 +13,8 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 
 ## Action
 
+Enumerates touch actions.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name   | Value | Description |
@@ -23,6 +25,8 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 | UP     | 3 | Lifting of touch.                |
 
 ## ToolType
+
+Enumerates tool types.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -39,6 +43,8 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 
 ## SourceType 
 
+Enumerates source types.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name | Value | Description |
@@ -48,6 +54,8 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 | TOUCH_PAD    | 2 | Touchpad   |
 
 ## Touch
+
+Defines a touch action.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -73,6 +81,8 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 | toolType | ToolType | Yes| No| Tool type.|
 
 ## TouchEvent
+
+Defines a touch event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 

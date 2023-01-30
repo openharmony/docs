@@ -1,10 +1,10 @@
-# @system.request
+# @system.request (Upload and Download)
 
 The **system.request** module provides applications with basic upload and download capabilities.
 
 > **NOTE**
-> - The APIs of this module are deprecated since API version 9. You are advised to use [`@ohos.request`](js-apis-request.md) instead.
 > 
+> - The APIs of this module are deprecated since API version 9. You are advised to use [`@ohos.request`](js-apis-request.md) instead.
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 

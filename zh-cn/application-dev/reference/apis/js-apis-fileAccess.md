@@ -1,4 +1,4 @@
-# @ohos.data.fileAccess (公共文件访问与管理)
+# @ohos.file.fileAccess (公共文件访问与管理)
 
 fileAccess模块是基于extension机制实现的一个对公共文件访问和操作的框架。该模块一方面对接各类文件管理服务，如媒体库、外置存储管理服务等，另一方面为系统应用提供一套统一的文件访问管理接口。其中，媒体库服务提供本地设备、分布式设备等公共文件访问服务；外置存储管理服务可以提供共享盘、U盘、SD卡等设备的公共文件访问服务。
 
@@ -10,7 +10,7 @@ fileAccess模块是基于extension机制实现的一个对公共文件访问和�
 ## 导入模块
 
 ```js
-import fileAccess from '@ohos.data.fileAccess';
+import fileAccess from '@ohos.file.fileAccess';
 ```
 
 ## fileAccess.getFileAccessAbilityInfo
@@ -38,7 +38,41 @@ getFileAccessAbilityInfo( ) : Promise&lt;Array&lt;Want&gt;&gt;
       wantInfos = await fileAccess.getFileAccessAbilityInfo();
       console.log("getFileAccessAbilityInfo data " + JSON.stringify(wantInfos));
     } catch (error) {
-      console.error("getFileAccessAbilityInfo failed, error " + error);
+      console.error("getFileAccessAbilityInfo failed, errCode:" + error.code + ", errMessage:" + error.message);
+    }
+  }
+  ```
+
+## fileAccess.getFileAccessAbilityInfo
+
+getFileAccessAbilityInfo(callback: AsyncCallback&lt;Array&lt;Want&gt;&gt;): void;
+
+以异步方法获取系统内extension配置为fileAcesss类型的所有Want信息。使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | callback | AsyncCallback&lt;Array&lt;Want&gt;&gt; | 是 | 表示当前系统配置fileAccess的所有文件管理类服务 |
+
+**示例：**
+
+  ```js
+  async getFileAccessAbilityInfo() {
+    try {
+      fileAccess.getFileAccessAbilityInfo(function (err, wantInfos) {
+        if (err) {
+          console.error("Failed to getFileAccessAbilityInfo in async, errCode:" + err.code + ", errMessage:" + err.message);
+          return;
+        }
+        console.log("getFileAccessAbilityInfo data " + JSON.stringify(wantInfos));
+      });
+    } catch (error) {
+      console.error("getFileAccessAbilityInfo failed, errCode:" + error.code + ", errMessage:" + error.message);
     }
   }
   ```
@@ -85,7 +119,7 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
       if (!fileAccessHelper)
         console.error("createFileAccessHelper interface returns an undefined object");
     } catch (error) {
-      console.error("createFileAccessHelper failed, error " + error);
+      console.error("createFileAccessHelper failed, errCode:" + error.code + ", errMessage:" + error.message);
     }
   }
   ```
@@ -124,7 +158,7 @@ createFileAccessHelper(context: Context) : FileAccessHelper
       if (!fileAccesssHelperAllServer)
         console.error("createFileAccessHelper interface returns an undefined object");
     } catch (error) {
-      console.error("createFileAccessHelper failed, error " + error);
+      console.error("createFileAccessHelper failed, errCode:" + error.code + ", errMessage:" + error.message);
     }
   }
   ```
@@ -168,7 +202,51 @@ getRoots( ) : Promise&lt;RootIterator&gt;
           rootinfos.push(result.value);
       }
     } catch (error) {
-      console.error("getRoots failed, error " + error);
+      console.error("getRoots failed, errCode:" + error.code + ", errMessage:" + error.message);
+    }
+  }
+  ```
+
+## FileAccessHelper.getRoots
+
+getRoots(callback:AsyncCallback&lt;RootIterator&gt;) : void;
+
+以异步方法获取helper对象连接的文件管理服务类的设备根节点信息。使用callback异步回调。
+callback带回迭代器对象RootIterator，然后通过[next](#rootiteratornext)方法返回[RootInfo](#rootinfo)。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | callback | AsyncCallback&lt;RootIterator&gt; | 是 | 根设备目录信息组成迭代器对象 |
+
+**示例：**
+
+  ```js
+  async getRoots() {
+    let rootinfos = [];
+    let isDone = false;
+    try {
+      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+      fileAccessHelper.getRoots(function (err, rootIterator) {
+        if (err) {
+          console.error("Failed to getRoots in async, errCode:" + err.code + ", errMessage:" + err.message);
+          return;
+        }
+        while (!isDone) {
+          let result = rootIterator.next();
+          console.log("next result = " + JSON.stringify(result));
+          isDone = result.done;
+          if (!isDone)
+            rootinfos.push(result.value);
+        }
+      });
+    } catch (error) {
+      console.error("getRoots failed, errCode:" + error.code + ", errMessage:" + error.message);
     }
   }
   ```
@@ -200,7 +278,7 @@ listFile(filter?: Filter) : FileIterator
 
   ```js
   // rootinfos 从getRoots()获取
-  // let filter = {suffix : [".txt"， ".jpg", ".xlsx"]};
+  // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
   let rootInfo = rootinfos[0];
   let fileInfos = [];
   let isDone = false;
@@ -220,7 +298,7 @@ listFile(filter?: Filter) : FileIterator
         fileInfos.push(result.value);
     }
   } catch (error) {
-    console.log("listFile failed, error " + error);
+    console.error("listFile failed, errCode:" + error.code + ", errMessage:" + error.message);
   }
   ```
 
@@ -250,7 +328,7 @@ scanFile(filter?: Filter) : FileIterator
 
   ```js
   // rootInfos 从 getRoots()获取
-  // let filter = {suffix : [".txt"， ".jpg", ".xlsx"]};
+  // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
   let rootInfo = rootInfos[0];
   let fileInfos = [];
   let isDone = false;
@@ -270,7 +348,7 @@ scanFile(filter?: Filter) : FileIterator
         fileInfos.push(result.value);
     }
   } catch (error) {
-    console.error("scanFile failed, error " + error);
+    console.error("scanFile failed, errCode:" + error.code + ", errMessage:" + error.message);
   }
   ```
 
@@ -300,7 +378,7 @@ listFile(filter?: Filter) : FileIterator
 
   ```js
   // fileInfoDir 表示某个目录信息
-  // let filter = { suffix : [".txt"， ".jpg", ".xlsx"] };
+  // let filter = { suffix : [".txt", ".jpg", ".xlsx"] };
   let fileInfoDir = fileInfos[0];
   let subfileInfos = [];
   let isDone = false;
@@ -320,7 +398,7 @@ listFile(filter?: Filter) : FileIterator
         subfileInfos.push(result.value);
     }
   } catch (error) {
-    console.error("listFile failed, error " + error);
+    console.error("listFile failed, errCode:" + error.code + ", errMessage:" + error.message);
   }
   ```
 
@@ -351,7 +429,7 @@ scanFile(filter?: Filter) : FileIterator;
 
   ```js
   // fileInfoDir 表示某个目录信息
-  // let filter = {suffix : [".txt"， ".jpg", ".xlsx"]};
+  // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
   let fileInfoDir = fileInfos[0];
   let subfileInfos = [];
   let isDone = false;
@@ -371,7 +449,7 @@ scanFile(filter?: Filter) : FileIterator;
         subfileInfos.push(result.value);
     }
   } catch (error) {
-    console.error("scanFile-filter failed, error " + error);
+    console.error("scanFile failed, errCode:" + error.code + ", errMessage:" + error.message);
   }
   ```
 
@@ -390,7 +468,7 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
   | uri | string | 是 | 表示需要创建文件的父目录的Uri |
-  | displayName | string | 是 | 待创建文件的名称，本地文件需要添加后缀，共享盘不要求|
+  | displayName | string | 是 | 待创建文件的名称，默认本地文件需要添加后缀 |
 
 **返回值：**
 
@@ -414,9 +492,49 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
       console.error("createFile return undefined object");
       return;
     }
-    console.log("createFile sucess， fileUri: " + JSON.stringify(fileUri));
+    console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));
   } catch (error) {
-    console.error("createFile failed, error " + error);
+    console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+## FileAccessHelper.createFile
+
+createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void;
+
+以异步方法创建文件到指定目录，返回新文件uri。使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | uri | string | 是 | 表示需要创建文件的父目录的Uri |
+  | displayName | string | 是 | 待创建文件的名称，默认本地文件需要添加后缀 |
+  | callback | AsyncCallback&lt;string&gt; | 是 | 新创建的文件的uri |
+
+**示例：**
+
+  ```js
+  // 以媒体库uri为例
+  // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let sourceUri = "datashare:///media/file/6";
+  let displayName = "file1"
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.createFile(sourceUri, displayName, function (err, fileUri) {
+      if (err) {
+        console.error("Failed to createFile in async, errCode:" + err.code + ", errMessage:" + err.message);
+        return;
+      }
+      console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));
+    });
+  } catch (error) {
+    console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
   };
   ```
 
@@ -459,9 +577,49 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
       console.error("mkDir return undefined object");
       return;
     }
-    console.log("mkDir sucess， dirUri: " + JSON.stringify(dirUri));
+    console.log("mkDir sucess, dirUri: " + JSON.stringify(dirUri));
   } catch (error) {
-    console.error("mkDir failed, error " + error);
+    console.error("mkDir failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+## FileAccessHelper.mkDir
+
+mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void;
+
+以异步方法创建文件夹到指定目录，返回文件夹uri。使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | parentUri | string | 是 | 表示需要创建文件夹的父目录的Uri |
+  | displayName | string | 是 | 待创建文件夹的名称|
+  | callback | AsyncCallback&lt;string&gt; | 是 | 新创建的文件夹的uri |
+
+**示例：**
+
+  ```js
+  // 以媒体库uri为例
+  // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let sourceUri = "datashare:///media/file/6";
+  let dirName = "dirTest"
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.mkDir(sourceUri, dirName, function (err, dirUri) {
+      if (err) {
+        console.error("Failed to mkDir in async, errCode:" + err.code + ", errMessage:" + err.message);
+        return;
+      }
+      console.log("mkDir sucess, dirUri: " + JSON.stringify(dirUri));
+    });
+  } catch (error) {
+    console.error("mkDir failed, errCode:" + error.code + ", errMessage:" + error.message);
   };
   ```
 
@@ -469,7 +627,7 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
 
 openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 
-以异步方法打开文件，返回文件句柄。使用Promise异步回调。
+以异步方法打开文件，返回文件描述符。使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService。
 
@@ -486,7 +644,7 @@ openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 
 | 类型 | 说明 |
 | --- | -- |
-| Promise&lt;number&gt; | 文件句柄 |
+| Promise&lt;number&gt; | 文件描述符 |
 
 **示例：**
 
@@ -499,7 +657,46 @@ openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let fd = await fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ);
   } catch (error) {
-    console.error("openFile failed, error " + error);
+    console.error("openFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+## FileAccessHelper.openFile
+
+openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) : void;
+
+以异步方法打开文件，返回文件描述符。使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService。
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | uri | string | 是 | 待打开文件的uri |
+  | flags | [OPENFLAGS](#openflags) | 是 | 文件打开的标志 |
+  | callback | AsyncCallback&lt;number&gt; | 是 | 文件描述符 |
+
+**示例：**
+
+  ```js
+  // 以媒体库uri为例
+  // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let targetUri  = "datashare:///media/file/100";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ, function (err, fd) {
+      if (err) {
+        console.error("Failed to openFile in async, errCode:" + err.code + ", errMessage:" + err.message);
+        return;
+      }
+      console.log("openFile sucess, fd: " + fd);
+    });
+  } catch (error) {
+    console.error("openFile failed, errCode:" + error.code + ", errMessage:" + error.message);
   };
   ```
 
@@ -538,7 +735,45 @@ delete(uri: string) : Promise&lt;number&gt;
     if (code != 0)
       console.error("delete failed, code " + code);
   } catch (error) {
-    console.error("delete failed, error " + error);
+    console.error("delete failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+## FileAccessHelper.delete
+
+delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void;
+
+以异步方法删除文件(夹)，返回错误码。使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService。
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | uri | string | 是 | 待删除文件(夹)的uri |
+  | callback | AsyncCallback&lt;number&gt; | 是 | 删除操作的错误码 |
+
+**示例：**
+
+  ```js
+  // 以媒体库uri为例
+  // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let targetUri = "datashare:///media/file/100";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.delete(targetUri, function (err, code) {
+      if (err) {
+        console.error("Failed to delete in async, errCode:" + err.code + ", errMessage:" + err.message);
+        return;
+      }
+      console.log("delete sucess, code: " + code);
+    });
+  } catch (error) {
+    console.error("delete failed, errCode:" + error.code + ", errMessage:" + error.message);
   };
   ```
 
@@ -576,9 +811,49 @@ move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let fileUri = await fileAccessHelper.move(sourceFile, destFile);
-    console.log("move sucess， fileUri: " + JSON.stringify(fileUri));
+    console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
   } catch (error) {
-    console.error("move failed, error " + error);
+    console.error("move failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+## FileAccessHelper.move
+
+move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;) : void;
+
+以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService。
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | sourceFile | string | 是 | 待移动的源文件(夹)的uri |
+  | destFile | string | 是 | 目标文件夹的uri |
+  | callback | AsyncCallback&lt;string&gt; | 是 | 新路径下的文件(夹)的uri |
+
+**示例：**
+
+  ```js
+  // 以媒体库uri为例
+  // 示例代码sourceFile destFile表示Download目录下文件或文件夹，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let sourceFile = "datashare:///media/file/102";
+  let destFile = "datashare:///media/file/101";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.move(sourceFile, destFile, function (err, fileUri) {
+      if (err) {
+        console.error("Failed to move in async, errCode:" + err.code + ", errMessage:" + err.message);
+        return;
+      }
+      console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
+    });
+  } catch (error) {
+    console.error("move failed, errCode:" + error.code + ", errMessage:" + error.message);
   };
   ```
 
@@ -615,9 +890,48 @@ rename(uri: string, displayName: string) : Promise&lt;string&gt;
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
-    console.log("rename sucess， DestDir: " + JSON.stringify(DestDir));
+    console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
   } catch (error) {
-    console.error("rename failed, error " + error);
+    console.error("rename failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+## FileAccessHelper.rename
+
+rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void;
+
+以异步方法重命名文件(夹)，返回重命名后的文件(夹)的Uri。使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService。
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | uri | string | 是 | 源文件(夹)的uri |
+  | displayName | string | 是 | 文件(夹)名，支持带后缀 |
+  | callback | AsyncCallback&lt;string&gt; | 是 | 重命名后的文件(夹)的uri |
+
+**示例：**
+
+  ```js
+  // 以媒体库uri为例
+  // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let sourceDir = "datashare:///media/file/100";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.rename(sourceDir, "testDir", function (err, DestDir) {
+      if (err) {
+        console.error("Failed to rename in async, errCode:" + err.code + ", errMessage:" + err.message);
+        return;
+      }
+      console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
+    });
+  } catch (error) {
+    console.error("rename failed, errCode:" + error.code + ", errMessage:" + error.message);
   };
   ```
 
@@ -658,7 +972,48 @@ access(sourceFileUri: string) : Promise&lt;boolean&gt;
     else
       console.log("sourceDir does not exist");
   } catch (error) {
-    console.error("rename failed, error " + error);
+    console.error("access failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+## FileAccessHelper.access
+
+access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void;
+
+以异步方法判断文件(夹)是否存在。使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService。
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | sourceFileUri | string | 是 | 文件(夹)的uri |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 文件(夹)是否存在 |
+
+**示例：**
+
+  ```js
+  // 以媒体库uri为例
+  // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let sourceDir = "datashare:///media/file/100";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.access(sourceDir, function (err, existJudgment) {
+      if (err) {
+        console.error("Failed to access in async, errCode:" + err.code + ", errMessage:" + err.message);
+        return;
+      }
+      if (existJudgment)
+        console.log("sourceDir exists");
+      else
+        console.log("sourceDir does not exist");
+    });
+  } catch (error) {
+    console.error("access failed, errCode:" + error.code + ", errMessage:" + error.message);
   };
   ```
 

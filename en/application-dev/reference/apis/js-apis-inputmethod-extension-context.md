@@ -1,4 +1,4 @@
-# InputMethodExtensionContext
+# @ohos.inputmethodextensioncontext (InputMethodExtensionContext)
 
 The **InputMethodExtensionContext** module, inherited from **ExtensionContext**, provides context for **InputMethodExtension** abilities.
 
@@ -20,7 +20,7 @@ Before using the **InputMethodExtensionContext** module, you must define a child
 
 ```js
 import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
-class MainAbility extends InputMethodExtensionAbility {
+class EntryAbility extends InputMethodExtensionAbility {
     onCreate() {
         let context = this.context;
     }

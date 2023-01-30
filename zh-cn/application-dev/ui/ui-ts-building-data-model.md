@@ -59,7 +59,7 @@
      ]
    ```
 
-   实际开发中，开发者可以自定义更多的数据资源，当食物资源很多时，建议使用数据懒加载LazyForEach。
+   实际开发中，开发者可以自定义更多的数据资源，当食物资源很多时，建议使用[数据懒加载LazyForEach](../quick-start/arkts-rendering-control.md#数据懒加载)。
 
 5. 创建initializeOnStartUp方法来初始化FoodData的数组。在FoodDataModels.ets中使用了定义在FoodData.ets的FoodData和Category，所以要将FoodData.ets的FoodData类export，在FoodDataModels.ets内import FoodData和Category。
    ```ts

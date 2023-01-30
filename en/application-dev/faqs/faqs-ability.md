@@ -60,7 +60,7 @@ Applicable to: OpenHarmony SDK 3.2.3.5, stage model of API version 9
 
 Configure the **startWindowIcon** attribute under **abilities** in the **module.json5** file.
 
-Reference: [Application Package Structure Configuration File](../quick-start/stage-structure.md)
+Reference: [Application Package Structure (Stage Model)](../quick-start/module-configuration-file.md)
 
 Example:
 
@@ -83,17 +83,15 @@ Applicable to: OpenHarmony SDK 3.2.3.5, stage model of API version 9
 
 Implement the **onConfigurationUpdated** callback in the **Ability** class. The callback is triggered when the system language, color mode, or display parameters (such as the orientation and density) change.
 
-Reference: [Ability Development](../ability/stage-ability.md)
-
 ## Can I obtain the context through globalThis in the stage model?
 
 Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
 
 Do not use **globalThis** to obtain the context in the stage model. This is because all the processes of an application share a JS VM instance in the stage model. Multiple abilities can run on these processes and share the same global object. If **globalThis** is used, the context of different abilities of the same JS VM instance may be returned.
 
-For details about the recommended operation, see [Context in the Stage Model](../ability/context-userguide.md#context-in-the-stage-model).
+Reference of the recommended operation: [Context (Stage Model)](../application-models/application-context-stage.md)
 
-## How do I obtain the HAP file installation path of application B from application A?
+## How do I obtain the HAP installation path of application B from application A?
 
 Applicable to: OpenHarmony SDK 3.0 or later, stage model of API version 9
 
@@ -109,7 +107,7 @@ The callee uses **AbilityContext.terminateSelfWithResult** to destroy its abilit
 
 Applicable to: OpenHarmony SDK 3.2.5.5, FA model of API version 8
 
-After a widget is added, the **onCreate()** lifecycle is triggered so that related user information (silent login) can be displayed even when the application is not started. However, users must manually add the widget after the application is installed.
+After a widget is added, the **oncreate()** lifecycle is triggered so that related user information (silent login) can be displayed even when the application is not started. However, users must manually add the widget after the application is installed.
 
 ## How do I obtain the context?
 

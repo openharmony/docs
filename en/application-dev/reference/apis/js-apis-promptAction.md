@@ -1,4 +1,4 @@
-# @ohos.promptAction
+# @ohos.promptAction (Prompt)
 
 The **PromptAction** module provides APIs for creating and showing toasts, dialog boxes, and action menus.
 

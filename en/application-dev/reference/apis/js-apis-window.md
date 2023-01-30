@@ -248,7 +248,7 @@ Enumerates the color spaces.
 
 | Name      | Value| Description          |
 | ---------- | ------ | -------------- |
-| DEFAULT    | 0      | Default gamut.|
+| DEFAULT    | 0      | Default SRGB gamut.|
 | WIDE_GAMUT | 1      | Wide-gamut.  |
 
 ## ScaleOptions<sup>9+</sup>
@@ -1544,6 +1544,8 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 Moves this window. This API uses an asynchronous callback to return the result.
 
+This operation is not supported in a window in full-screen mode.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -1584,6 +1586,8 @@ try {
 moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 Moves this window. This API uses a promise to return the result.
+
+This operation is not supported in a window in full-screen mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1636,6 +1640,8 @@ The system window has the following size limits: [0, 2560] in width and [0, 2560
 
 The new width and height you set must meet the limits.
 
+This operation is not supported in a window in full-screen mode.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -1682,6 +1688,8 @@ The main window and subwindow have the following size limits: [320, 2560] in wid
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
 The new width and height you set must meet the limits.
+
+This operation is not supported in a window in full-screen mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1856,7 +1864,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 | Name| Type| Mandatory| Description|
 | ---- |----------------------------------| -- | ------------------------------------------------------------ |
-| type | [AvoidAreaType](#avoidareatype7) | Yes| Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. **TYPE_SYSTEM_GESTURE** indicates the gesture area. **TYPE_KEYBOARD** indicates the soft keyboard area.|
+| type | [AvoidAreaType](#avoidareatype7) | Yes| Type of the area. |
 
 **Return value**
 
@@ -2492,7 +2500,7 @@ Disables listening for window size changes.
 | Name  | Type                         | Mandatory| Description                                                    |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
 | type     | string                        | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event.|
-| callback | Callback&lt;[Size](#size)&gt; | No  | Callback used to return the window size.                          |
+| callback | Callback&lt;[Size](#size7)&gt; | No  | Callback used to return the window size.                          |
 
 **Example**
 
@@ -2998,7 +3006,7 @@ Sets a color space for this window. This API uses an asynchronous callback to re
 
 | Name| Type| Mandatory| Description|
 | ---------- | ------------------------- | -- | ----------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes| Color space to set.|
+| colorSpace | [ColorSpace](#colorspace8) | Yes| Color space to set.|
 | callback   | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.  |
 
 **Error codes**
@@ -3037,7 +3045,7 @@ Sets a color space for this window. This API uses a promise to return the result
 
 | Name| Type| Mandatory| Description|
 | ---------- | ------------------------- | -- | ------------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes| Color space to set.|
+| colorSpace | [ColorSpace](#colorspace8) | Yes| Color space to set.|
 
 **Return value**
 
@@ -3080,7 +3088,7 @@ Obtains the color space of this window.
 
 | Type| Description|
 | ------------------------- | ------------- |
-| [ColorSpace](#colorspace) | Color space obtained.|
+| [ColorSpace](#colorspace8) | Color space obtained.|
 
 **Error codes**
 
@@ -3721,6 +3729,41 @@ try {
 
 ### snapshot<sup>9+</sup>
 
+snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
+
+Captures this window. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name     | Type                                                         | Mandatory | Description                         |
+| -------- | ------------------------------------------------------------ | --------- | ----------------------------------- |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes       | Callback used to return the result. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**Example**
+
+```js
+windowClass.snapshot((err, pixelMap) => {
+    if (err.code) {
+        console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    pixelMap.release(); // Release the memory in time after the PixelMap is used.
+});
+```
+
+### snapshot<sup>9+</sup>
+
 snapshot(): Promise&lt;image.PixelMap&gt;
 
 Captures this window. This API uses a promise to return the result.
@@ -4041,6 +4084,7 @@ try {
 } catch (exception) {
     console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
 }
+
 ```
 
 ### setBackdropBlurStyle<sup>9+</sup>
@@ -4282,6 +4326,8 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 Moves this window. This API uses an asynchronous callback to return the result.
 
+This operation is not supported in a window in full-screen mode.
+
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [moveWindowTo()](#movewindowto9) instead.
@@ -4314,6 +4360,8 @@ windowClass.moveTo(300, 300, (err)=>{
 moveTo(x: number, y: number): Promise&lt;void&gt;
 
 Moves this window. This API uses a promise to return the result.
+
+This operation is not supported in a window in full-screen mode.
 
 > **NOTE**
 >
@@ -4358,6 +4406,8 @@ The system window has the following size limits: [0, 2560] in width and [0, 2560
 
 The new width and height you set must meet the limits.
 
+This operation is not supported in a window in full-screen mode.
+
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [resize()](#resize9) instead.
@@ -4396,6 +4446,8 @@ The main window and subwindow have the following size limits: [320, 2560] in wid
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
 The new width and height you set must meet the limits.
+
+This operation is not supported in a window in full-screen mode.
 
 > **NOTE**
 >
@@ -4579,7 +4631,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 | Name     | Type                                          | Mandatory | Description                                                  |
 | -------- | --------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [AvoidAreaType](#avoidareatype7)              | Yes       | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. **TYPE_SYSTEM_GESTURE** indicates the gesture area. **TYPE_KEYBOARD** indicates the soft keyboard area. |
+| type     | [AvoidAreaType](#avoidareatype7)              | Yes       | Type of the area.  |
 | callback | AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt; | Yes       | Callback used to return the area.                            |
 
 **Example**
@@ -4612,7 +4664,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 | Name | Type                             | Mandatory | Description                                                  |
 | ---- | -------------------------------- | --------- | ------------------------------------------------------------ |
-| type | [AvoidAreaType](#avoidareatype7) | Yes       | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. **TYPE_SYSTEM_GESTURE** indicates the gesture area. **TYPE_KEYBOARD** indicates the soft keyboard area. |
+| type | [AvoidAreaType](#avoidareatype7) | Yes       | Type of the area.  |
 
 **Return value**
 
@@ -5187,7 +5239,7 @@ Sets a color space for this window. This API uses an asynchronous callback to re
 
 | Name       | Type                      | Mandatory | Description                         |
 | ---------- | ------------------------- | --------- | ----------------------------------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes       | Color space to set.                 |
+| colorSpace | [ColorSpace](#colorspace8) | Yes       | Color space to set.                 |
 | callback   | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result. |
 
 **Example**
@@ -5219,7 +5271,7 @@ Sets a color space for this window. This API uses a promise to return the result
 
 | Name       | Type                      | Mandatory | Description         |
 | ---------- | ------------------------- | --------- | ------------------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes       | Color space to set. |
+| colorSpace | [ColorSpace](#colorspace8) | Yes       | Color space to set. |
 
 **Return value**
 
@@ -5255,7 +5307,7 @@ Obtains the color space of this window. This API uses an asynchronous callback t
 
 | Name     | Type                                           | Mandatory | Description                                                  |
 | -------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;[ColorSpace](#colorspace)&gt; | Yes       | Callback used to return the result. When the color space is obtained successfully, **err** is **undefined**, and **data** is the current color space. |
+| callback | AsyncCallback&lt;[ColorSpace](#colorspace8)&gt; | Yes       | Callback used to return the result. When the color space is obtained successfully, **err** is **undefined**, and **data** is the current color space. |
 
 **Example**
 
@@ -5286,7 +5338,7 @@ Obtains the color space of this window. This API uses a promise to return the re
 
 | Type                                     | Description                                     |
 | ---------------------------------------- | ----------------------------------------------- |
-| Promise&lt;[ColorSpace](#colorspace)&gt; | Promise used to return the current color space. |
+| Promise&lt;[ColorSpace](#colorspace8)&gt; | Promise used to return the current color space. |
 
 **Example**
 
@@ -5864,12 +5916,12 @@ Describes the lifecycle of a window stage.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name       | Value | Description                                    |
-| ---------- | ----- | ---------------------------------------------- |
-| FOREGROUND | 1     | The window stage is running in the foreground. |
-| ACTIVE     | 2     | The window stage gains focus.                  |
-| INACTIVE   | 3     | The window stage loses focus.                  |
-| BACKGROUND | 4     | The window stage is running in the background. |
+| Name     | Value | Description                                    |
+| -------- | ----- | ---------------------------------------------- |
+| SHOWN    | 1     | The window stage is running in the foreground. |
+| ACTIVE   | 2     | The window stage gains focus.                  |
+| INACTIVE | 3     | The window stage loses focus.                  |
+| HIDDEN   | 4     | The window stage is running in the background. |
 
 ## WindowStage<sup>9+</sup>
 
@@ -5905,9 +5957,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -5952,9 +6006,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -5998,9 +6054,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6042,9 +6100,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6100,9 +6160,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6149,9 +6211,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6195,9 +6259,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6243,9 +6309,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
@@ -6302,9 +6370,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
@@ -6354,9 +6424,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6404,9 +6476,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6452,9 +6526,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6492,9 +6568,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('disableWindowDecor');
         windowStage.disableWindowDecor();
@@ -6533,9 +6611,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6659,6 +6739,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
     );
     console.info('complete transition end');
 };
+
 ```
 
 ### animationForHidden<sup>9+</sup>
@@ -6706,4 +6787,3 @@ controller.animationForHidden = (context : window.TransitionContext) => {
     console.info('complete transition end');
 };
 ```
-

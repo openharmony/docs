@@ -1,4 +1,4 @@
-# @ohos.uitest
+# @ohos.uitest (UiTest)
 
 The **UiTest** module provides APIs that you can use to simulate UI actions during testing, such as clicks, double-clicks, long-clicks, and swipes.
 

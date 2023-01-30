@@ -1,4 +1,4 @@
-# Interaction Intra-Device Between UIAbility Components
+# Intra-Device Interaction Between UIAbility Components
 
 
 UIAbility is the minimum unit that can be scheduled by the system. Jumping between functional modules in a device involves starting of specific UIAbility components, which belong to the same or a different application (for example, starting UIAbility of a third-party payment application).
@@ -50,7 +50,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
    
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import Window from '@ohos.window';
+   import window from '@ohos.window';
    
    export default class FuncAbility extends UIAbility {
        onCreate(want, launchParam) {
@@ -196,6 +196,7 @@ This section describes how to start the UIAbility of another application through
    ```
 
    The following figure shows the effect. When you click **Open PDF**, a dialog box is displayed for you to select.
+   
    <img src="figures/uiability-intra-device-interaction.png" alt="uiability-intra-device-interaction" style="zoom:50%;" />
    
 3. To stop the **UIAbility** instance after the document application is used, call **terminateSelf()**.
@@ -442,7 +443,8 @@ Ability call is usually used in the following scenarios:
 
 The following figure shows the ability call process.
 
-Figure 1 Ability call process 
+**Figure 1** Ability call process 
+
 <img src="figures/call.png" alt="call" style="zoom:67%;" />
 
 - The caller ability uses **startAbilityByCall** to obtain a caller object and uses **call()** of the caller object to send data to the callee ability.
@@ -461,7 +463,7 @@ Figure 1 Ability call process
 
 The following table describes the main APIs used for the ability call. For details, see [AbilityContext](../reference/apis/js-apis-app-ability-uiAbility.md#caller).
 
-  **Table 2** Ability call APIs
+**Table 2** Ability call APIs
 
 | API| Description|
 | -------- | -------- |
@@ -486,8 +488,7 @@ For the callee ability, implement the callback to receive data and the methods t
 
 1. Configure the ability launch type.
    
-
-Set **launchType** of the callee ability to **singleton** in the **module.json5** file.
+   Set **launchType** of the callee ability to **singleton** in the **module.json5** file.
 
 | JSON Field| Description|
 | -------- | -------- |
@@ -595,8 +596,8 @@ An example of the ability configuration is as follows:
 
 2. Obtain the caller interface.
    
-
    The **context** attribute of the ability implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **context** attribute of the ability, uses **startAbilityByCall** to start the callee ability, obtain the caller object, and register the **onRelease** listener of the caller ability. You need to implement processing based on service requirements.
+
 
    ```ts
    // Register the onRelease() listener of the caller ability.

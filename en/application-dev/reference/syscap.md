@@ -4,7 +4,7 @@
 
 ### System Capabilities and APIs
 
-SysCap is short for SystemCapability. It refers to a standalone feature in the operating system, for example, Bluetooth, Wi-Fi, NFC, or camera. Each SysCap corresponds to a set of APIs, whose availability depends on the support of the target device. Such a set of APIs can be provided in DevEco Studio for association.
+SystemCapability (SysCap in short) refers to a standalone feature in the operating system, for example, Bluetooth, Wi-Fi, NFC, or camera. Each SysCap corresponds to a set of APIs, whose availability depends on the support of the target device. Such a set of APIs can be provided in DevEco Studio for association.
 
 ![image-20220326064841782](figures/image-20220326064841782.png)
 

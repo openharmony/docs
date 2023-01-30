@@ -27,7 +27,7 @@ Obtains an image from the specified source for subsequent rendering and display.
 
 | Name| Type                                                    | Mandatory| Description                                                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src    | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Yes  | Image source. Both local and online images are supported.<br>When using an image referenced using a relative path, for example, `Image("common/test.jpg")`, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use `$r` to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. The value format is data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where [base64 data] is a Base64 string.<br/>\- Strings with the **datashare://path** prefix are supported, which are used to access the image path provided by a data ability. Before loading images, the application must [request the required permissions](../../file-management/medialibrary-overview.md#requesting-permissions).<br>\- Strings with the **file:///data/storage** prefix are supported, which are used to read image resources in the **files** folder in the installation directory of the application. Ensure that the files in the directory package path have the read permission.|
+| src    | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Yes  | Image source. Both local and online images are supported.<br>When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use **\$r** to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. The value format is data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where [base64 data] is a Base64 string.<br/>\- Strings with the **datashare://path** prefix are supported, which are used to access the image path provided by a data ability. Before loading images, the application must [request the required permissions](../../file-management/medialibrary-overview.md#requesting-permissions).<br>\- Strings with the **file:///data/storage** prefix are supported, which are used to read image resources in the **files** folder in the installation directory of the application. Ensure that the files in the directory package path have the read permission.|
 
 ## Attributes
 
@@ -48,6 +48,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | syncLoad<sup>8+</sup> | boolean                                  | Whether to load the image synchronously. By default, the image is loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder diagram is not displayed.<br>Default value: **false**|
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9)  | Whether the image can be copied. (SVG images cannot be copied.)<br>When **copyOption** is set to a value other than **CopyOptions.None**, the image can be copied in various manners, such as long pressing, right-clicking, or pressing Ctrl+C.<br>Default value: **CopyOptions.None**|
 | colorFilter<sup>9+</sup> | [ColorFilter](ts-types.md#colorfilter9) | Color filter of the image.|
+| draggable<sup>9+</sup> | boolean | Whether the image is draggable. This attribute cannot be used together with the [onDragStart](ts-universal-events-drag-drop.md) event.<br>Default value: **false**|
 
 >  **NOTE**
 >
@@ -198,7 +199,7 @@ struct Index {
           let code = data.responseCode
           if(ResponseCode.ResponseCode.OK == code) {
             let imageSource = image.createImageSource(data.result)
-            let options = {alphaType: 0,                     // Transparency
+            let options = {alphaType: 0,                     // Opacity
                            editable: false,                  // Whether the image is editable
                            pixelFormat: 3,                   // Pixel format
                            scaleMode: 1,                     // Scale mode
@@ -355,9 +356,9 @@ struct ImageExample3 {
 ###  Rendering Sandbox Images
 
 ```ts
-import fileio from '@ohos.fileio'
-import fs from '@ohos.file.fs'
-import context from '@ohos.application.context'
+import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
+import context from '@ohos.app.ability.context';
 
 @Entry
 @Component

@@ -7,7 +7,7 @@ VideoDecoder模块提供用于视频解码功能的函数。
 
 @syscap SystemCapability.Multimedia.Media.VideoDecoder
 
-**Since:**
+**起始版本：**
 9
 **Version:**
 1.0

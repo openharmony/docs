@@ -4,7 +4,7 @@ The **\<Flex>** component allows for flexible layout of child components.
 
 > **NOTE**
 > - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-> - The **\<Flex>** component adapts the layout of flex items during rendering. This may affect the performance. Therefore, you are advised to use **[Column](ts-container-column.md)** or **[Row](ts-container-row.md)** instead under scenarios where consistently high performance is required.
+> - The **\<Flex>** component adapts the layout of flex items during rendering. This may affect the performance. Therefore, you are advised to use **[\<Column>](ts-container-column.md)** or **[\<Row>](ts-container-row.md)** instead under scenarios where consistently high performance is required.
 
 
 ## Required Permissions
@@ -30,7 +30,7 @@ Creates a standard **\<Flex>** component.
   | wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap)  | No   | FlexWrap.NoWrap   | Whether the **\<Flex>** component has a single line or multiple lines.                    |
   | justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in the **\<Flex>** component along the main axis.                     |
   | alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No   | ItemAlign.Start | Alignment mode of the child components in the **\<Flex>** component along the cross axis.                    |
-  | alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in a multi-line **<Flex>** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.|
+  | alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in a multi-line **\<Flex>** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**. |
 
 
 ## Example

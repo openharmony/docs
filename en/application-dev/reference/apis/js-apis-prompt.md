@@ -1,4 +1,4 @@
-# @ohos.prompt
+# @ohos.prompt (Prompt)
 
 The **Prompt** module provides APIs for creating and showing toasts, dialog boxes, and action menus.
 

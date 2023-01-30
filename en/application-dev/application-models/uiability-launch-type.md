@@ -18,6 +18,7 @@ The launch type of the UIAbility component refers to the state of the UIAbility 
 Each time [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, if a UIAbility instance of this type already exists in the application process, the instance is reused. Therefore, only one UIAbility instance of this type exists in the system, that is, displayed in **Recents**.
 
 **Figure 1** Demonstration effect in singleton mode 
+
 <img src="figures/uiability-launch-type1.png" alt="uiability-launch-type1" width="40%;" />
 
 > **NOTE**
@@ -47,6 +48,7 @@ To use the singleton mode, set **launchType** in the [module.json5 configuration
 In standard mode, each time [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, a new UIAbility instance of this type is created in the application process. Multiple UIAbility instances of this type are displayed in **Recents**.  
 
 **Figure 2** Demonstration effect in standard mode 
+
 <img src="figures/standard-mode.png" alt="standard-mode" width="40%;" />
 
 To use the standard mode, set **launchType** in the [module.json5 configuration file](../quick-start/module-configuration-file.md) to **standard**.
@@ -72,6 +74,7 @@ To use the standard mode, set **launchType** in the [module.json5 configuration 
 The **specified** mode is used in some special scenarios. For example, in a document application, you want a document instance to be created each time you create a document, but you want to use the same document instance when you repeatedly open an existing document.
 
 **Figure 3** Demonstration effect in specified mode 
+
 <img src="figures/uiability-launch-type2.png" alt="uiability-launch-type2" style="zoom:50%;" />
 
 For example, there are EntryAbility and SpecifiedAbility, and the launch type of SpecifiedAbility is set to **specified**. You are required to start SpecifiedAbility from EntryAbility.
@@ -93,7 +96,7 @@ For example, there are EntryAbility and SpecifiedAbility, and the launch type of
    ```
 
 2. Before a UIAbility instance is created, you can create a unique string key for the instance. The key is bound to the UIAbility instance when it is created. Each time [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, the application is asked which UIAbility instance is used to respond to the [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) request.
-   In EntryAbility, add a custom parameter, for example, **instanceKey**, to the **want** parameter in [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to distinguish the UIAbility instances.
+   In EntryAbility, add a custom parameter, for example, **instanceKey**, to the [want](want-overview.md) parameter in [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to distinguish the UIAbility instances.
    
    ```ts
    // Configure an independent key for each UIAbility instance.
@@ -146,7 +149,8 @@ For example, there are EntryAbility and SpecifiedAbility, and the launch type of
    
    For example, in the document application, different key values are bound to different document instances. Each time a document is created, a new key value (for example, file path) is passed, and a new UIAbility instance is created when UIAbility is started in AbilityStage. However, when you open an existing document, the same UIAbility instance is started again in AbilityStage.
    
-   The following steps are used as an example.
+
+The following steps are used as an example.
    1. Open file A. A UIAbility instance, for example, UIAbility instance 1, is started.
    
    2. Close the process of file A in **Recents**. UIAbility instance 1 is destroyed. Return to the home screen and open file A again. A new UIAbility instance is started, for example, UIAbility instance 2.

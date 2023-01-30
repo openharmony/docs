@@ -102,20 +102,19 @@ Ability：一个应用程序可以拥有多个Ability，一个Ability中的所�
 LocalStorage通过loadContent接口加载，接口说明详见[loadContent](../reference/apis/js-apis-window.md#loadcontent9-1)。
 
 ```ts
-// MainAbility.ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     storage: LocalStorage
 
     onCreate() {
         this.storage = new LocalStorage()
         this.storage.setOrCreate('storageSimpleProp', 121)
-        console.info('[Demo MainAbility onCreate]')
+        console.info('[Demo EntryAbility onCreate]')
     }
 
     onDestroy() {
-        console.info('[Demo MainAbility onDestroy]')
+        console.info('[Demo EntryAbility onDestroy]')
     }
 
     onWindowStageCreate(windowStage) {
@@ -124,15 +123,15 @@ export default class MainAbility extends Ability {
     }
 
     onWindowStageDestroy() {
-        console.info('[Demo] MainAbility onWindowStageDestroy')
+        console.info('[Demo] EntryAbility onWindowStageDestroy')
     }
 
     onForeground() {
-        console.info('[Demo] MainAbility onForeground')
+        console.info('[Demo] EntryAbility onForeground')
     }
 
     onBackground() {
-        console.info('[Demo] MainAbility onBackground')
+        console.info('[Demo] EntryAbility onBackground')
     }
 }
 ```

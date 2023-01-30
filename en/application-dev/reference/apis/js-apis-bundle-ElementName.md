@@ -17,7 +17,7 @@ Describes the element name information, which identifies the basic information a
 | Name                    | Type    | Readable| Writable| Description                      |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
 | deviceId                | string   | Yes  | Yes  | Device ID.                  |
-| bundleName              | string   | Yes  | Yes  | Bundle name of the application.                 |
-| abilityName             | string   | Yes  | Yes  | Name of the ability.              |
+| bundleName              | string   | Yes  | Yes  | Bundle name.         |
+| abilityName             | string   | Yes  | Yes  | Ability name.              |
 | uri                     | string   | Yes  | Yes  | Resource ID.                |
 | shortName               | string   | Yes  | Yes  | Short name of the ability.              |

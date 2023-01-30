@@ -5,8 +5,8 @@
 >  **说明：**
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 
-> 从API version 9开始，该接口不再维护，推荐使用新接口[`@ohos.usbV9`](js-apis-usb.md)。
+>
+> 从API version 9开始，该接口不再维护，推荐使用新接口[`@ohos.usbManager`](js-apis-usbManager.md)。
 
 ## 导入模块
 
@@ -45,7 +45,7 @@ console.log(`devicesList = ${JSON.stringify(devicesList)}`);
     vendorId: 7531,
     productId: 2,
     clazz: 9,
-    subclass: 0,
+    subClass: 0,
     protocol: 1,
     devAddress: 1,
     busNum: 1,
@@ -62,7 +62,7 @@ console.log(`devicesList = ${JSON.stringify(devicesList)}`);
             id: 0,
             protocol: 0,
             clazz: 9,
-            subclass: 0,
+            subClass: 0,
             alternateSetting: 0,
             name: "1-1",
             endpoints: [
@@ -173,7 +173,7 @@ usb.requestRight(devicesName).then((ret) => {
 
 ## usb.claimInterface
 
-claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number
+claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number
 
 注册通信接口。
 
@@ -350,7 +350,7 @@ let ret = usb.getFileDescriptor(devicepipe);
 
 ## usb.controlTransfer
 
-controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout?: number): Promise&lt;number&gt;
+controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise&lt;number&gt;
 
 控制传输。
 
@@ -382,7 +382,7 @@ usb.controlTransfer(devicepipe, USBControlParams).then((ret) => {
 
 ## usb.bulkTransfer
 
-bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;
+bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise&lt;number&gt;
 
 批量传输。
 

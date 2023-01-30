@@ -61,7 +61,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
@@ -126,12 +126,12 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var options = {
+  let options = {
     windowMode: 0
   };
 
@@ -200,11 +200,11 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
-  var options = {
+  let options = {
     windowMode: 0,
   };
 
@@ -267,10 +267,10 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -333,12 +333,12 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var options = {
+  let options = {
     windowMode: 0,
   };
 
@@ -409,30 +409,30 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 **示例：**
 
   ```ts
-  var want = {
+let want = {
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
-  };
-  var options = {
+    abilityName: "EntryAbility"
+};
+let options = {
     windowMode: 0,
-  };
+};
 
-  try {
+try {
     this.context.startAbilityForResult(want, options)
-      .then((result) => {
+        .then((result) => {
         // 执行正常业务
         console.log("startAbilityForResult succeed, result.resultCode = " + result.resultCode);
-      })
-      .catch((error) => {
+    })
+        .catch((error) => {
         // 处理业务逻辑错误
         console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
+                    ' error.message: ' + JSON.stringify(error.message));
+    });
+} catch (paramError) {
     // 处理入参错误异常
     console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+                ' error.message: ' + JSON.stringify(paramError.message));
+}
   ```
 
 ## UIAbilityContext.startAbilityForResultWithAccount
@@ -481,12 +481,12 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startAbilityForResultWithAccount(want, accountId, (error, result) => {
@@ -555,13 +555,13 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -636,13 +636,13 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -697,7 +697,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
@@ -753,7 +753,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
@@ -813,12 +813,12 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error) => {
@@ -873,16 +873,16 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId)
-      .then((data) => {
+      .then(() => {
         // 执行正常业务
         console.log('startServiceExtensionAbilityWithAccount succeed');
       })
@@ -929,7 +929,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
@@ -984,7 +984,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
@@ -992,7 +992,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
   try {
     this.context.stopServiceExtensionAbility(want)
-      .then((data) => {
+      .then(() => {
         // 执行正常业务
         console.log('stopServiceExtensionAbility succeed');
       })
@@ -1043,12 +1043,12 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
@@ -1102,16 +1102,16 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
-      .then((data) => {
+      .then(() => {
         // 执行正常业务
         console.log('stopServiceExtensionAbilityWithAccount succeed');
       })
@@ -1250,13 +1250,13 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   }
-  var resultCode = 100;
+  let resultCode = 100;
   // 返回给接口调用方AbilityResult信息
-  var abilityResult = {
+  let abilityResult = {
     want,
     resultCode
   }
@@ -1314,20 +1314,20 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   }
-  var resultCode = 100;
+  let resultCode = 100;
   // 返回给接口调用方AbilityResult信息
-  var abilityResult = {
+  let abilityResult = {
     want,
     resultCode
   }
 
   try {
     this.context.terminateSelfWithResult(abilityResult)
-      .then((data) => {
+      .then(() => {
         // 执行正常业务
         console.log('terminateSelfWithResult succeed');
       })
@@ -1350,8 +1350,6 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 将当前Ability连接到一个使用AbilityInfo.AbilityType.SERVICE模板的Ability。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -1378,12 +1376,12 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
   };
-  var options = {
+  let options = {
     onConnect(elementName, remote) {
       console.log('----------- onConnect -----------')
     },
@@ -1395,7 +1393,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
     }
   }
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbility(want, options);
   } catch (paramError) {
@@ -1444,13 +1442,13 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
     abilityName: "ServiceExtensionAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     onConnect(elementName, remote) {
       console.log('----------- onConnect -----------')
     },
@@ -1462,7 +1460,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
     }
   }
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
   } catch (paramError) {
@@ -1505,11 +1503,11 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
   ```ts
   // connection为connectServiceExtensionAbility中的返回值
-  var connection = 1;
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection)
-      .then((data) => {
+      .then(() => {
         // 执行正常业务
         console.log('disconnectServiceExtensionAbility succeed');
       })
@@ -1553,7 +1551,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 
   ```ts
   // connection为connectServiceExtensionAbility中的返回值
-  var connection = 1;
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
@@ -1623,13 +1621,13 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   后台启动：
 
   ```ts
-  var caller = undefined;
+  let caller = undefined;
 
   // 后台启动Ability，不配置parameters
-  var wantBackground = {
+  let wantBackground = {
     bundleName: "com.example.myservice",
     moduleName: "entry",
-    abilityName: "MainAbility",
+    abilityName: "EntryAbility",
     deviceId: ""
   };
 
@@ -1654,13 +1652,13 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   前台启动：
 
   ```ts
-  var caller = undefined;
+  let caller = undefined;
 
   // 前台启动Ability，将parameters中的"ohos.aafwk.param.callAbilityToForeground"配置为true
-  var wantForeground = {
+  let wantForeground = {
     bundleName: "com.example.myservice",
     moduleName: "entry",
-    abilityName: "MainAbility",
+    abilityName: "EntryAbility",
     deviceId: "",
     parameters: {
       "ohos.aafwk.param.callAbilityToForeground": true
@@ -1731,12 +1729,12 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startAbilityWithAccount(want, accountId, (error) => {
@@ -1804,13 +1802,13 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -1879,19 +1877,19 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
   try {
     this.context.startAbilityWithAccount(want, accountId, options)
-      .then((data) => {
+      .then(() => {
         // 执行正常业务
         console.log('startAbilityWithAccount succeed');
       })
@@ -1994,9 +1992,9 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
   ```ts
   import image from '@ohos.multimedia.image';
-  var imagePixelMap;
-  var color = new ArrayBuffer(0);
-  var initializationOptions = {
+  let imagePixelMap;
+  let color = new ArrayBuffer(0);
+  let initializationOptions = {
     size: {
       height: 100,
       width: 100
@@ -2047,9 +2045,9 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 **示例：**
 
   ```ts
-  var imagePixelMap;
-  var color = new ArrayBuffer(0);
-  var initializationOptions = {
+  let imagePixelMap;
+  let color = new ArrayBuffer(0);
+  let initializationOptions = {
     size: {
       height: 100,
       width: 100
@@ -2094,7 +2092,7 @@ restoreWindowStage(localStorage: LocalStorage) : void;
 **示例：**
 
   ```ts
-  var storage = new LocalStorage();
+  let storage = new LocalStorage();
   this.context.restoreWindowStage(storage);
   ```
 
@@ -2122,6 +2120,6 @@ isTerminating(): boolean;
 **示例：**
 
   ```ts
-  var isTerminating = this.context.isTerminating();
+  let isTerminating = this.context.isTerminating();
   console.log('ability state :' + isTerminating);
   ```

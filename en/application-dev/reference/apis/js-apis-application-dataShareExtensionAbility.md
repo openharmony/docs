@@ -1,6 +1,6 @@
-# @ohos.application.DataShareExtensionAbility
+# @ohos.application.DataShareExtensionAbility (DataShare Extension Ability)
 
-The **DataShareExtensionAbility** module provides extension abilities for data share services.
+The **DataShareExtensionAbility** module provides data share services based on the Extension ability.
 
 >**NOTE**
 >
@@ -17,13 +17,33 @@ The **DataShareExtensionAbility** module provides extension abilities for data s
 import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility'
 ```
 
+## URI Naming Rule
+
+The URIs are in the following format:
+
+**Scheme://authority/path** 
+- *Scheme*: scheme name, which has a fixed value of **datashare** for the **DataShare** module.
+- *authority*: [userinfo@]host[:port]
+    - *userinfo*: login information, which can be left unspecified.
+    - *host*: server address. It is the target device ID for cross-device access and empty for local device access.
+    - *port*: port number of the server, which can be left unspecified.
+- *path*: **DataShare** identifier and the resource path. The **DataShare** identifier is mandatory, and the resource path is optional.
+
+Example:
+
+- URI without the resource path:<br>**datashare:///com.samples.datasharetest.DataShare**
+
+- URI with the resource path:<br>**datashare:///com.samples.datasharetest.DataShare/DB00/TBL00**
+
+**com.samples.datasharetest.DataShare** is the data share identifier, and **DB00/TBL00** is the resource path.
+
 ## Attributes
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
 
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| context | [ExtensionContext](js-apis-inner-application-extensionContext.md)  | Yes| No|Context of the DataShare Extension ability.| 
+| context | [ExtensionContext](js-apis-inner-application-extensionContext.md)  | Yes| No|Context of the DataShare Extension ability.|
 
 ## onCreate
 
@@ -43,7 +63,7 @@ Called by the server to initialize service logic when the DataShare client conne
 **Example**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -55,8 +75,9 @@ let rdbStore;
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     onCreate(want, callback) {
         rdb.getRdbStore(this.context, {
-            name: DB_NAME
-        }, 1, function (err, data) {
+            name: DB_NAME,
+            securityLevel: rdb.SecurityLevel.S1
+        }, function (err, data) {
             console.log('getRdbStore done, data : ' + data);
             rdbStore = data;
             rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
@@ -89,7 +110,7 @@ Inserts data into the database. This API can be overridden as required.
 **Example**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -134,7 +155,7 @@ Updates data in the database. This API can be overridden as required.
 **Example**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -176,7 +197,7 @@ Deletes data from the database. This API can be overridden as required.
 **Example**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -219,7 +240,7 @@ Queries data from the database. This API can be overridden as required.
 **Example**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -264,7 +285,7 @@ Batch inserts data into the database. This API is called by the server and can b
 **Example**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";

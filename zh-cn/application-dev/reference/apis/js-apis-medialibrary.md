@@ -202,7 +202,7 @@ on(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'
 
 | 参数名      | 类型                   | 必填   | 说明                                       |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| type     | 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange'               | 是    | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
+| type     | 'deviceChange'&#124;<br/>'albumChange'&#124;<br/>'imageChange'&#124;<br/>'audioChange'&#124;<br/>'videoChange'&#124;<br/>'fileChange'&#124;<br/>'remoteFileChange'               | 是    | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
 | callback | Callback&lt;void&gt; | 是    | 回调返回空                                    |
 
 **示例：**
@@ -224,7 +224,7 @@ off(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange
 
 | 参数名      | 类型                   | 必填   | 说明                                       |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| type     | 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange'               | 是    | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
+| type     | 'deviceChange'&#124;<br/>'albumChange'&#124;<br/>'imageChange'&#124;<br/>'audioChange'&#124;<br/>'videoChange'&#124;<br/>'fileChange'&#124;<br/>'remoteFileChange'               | 是    | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
 | callback | Callback&lt;void&gt; | 否    | 回调返回空                                    |
 
 **示例：**
@@ -1195,7 +1195,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 | 参数名      | 类型                          | 必填   | 说明                                  |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | 是    | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写） |
-| callback | AsyncCallback&lt;number&gt; | 是    | 回调返回文件句柄                            |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调返回文件描述符                            |
 
 **示例：**
 
@@ -1237,7 +1237,7 @@ open(mode: string): Promise&lt;number&gt;
 
 | 类型                    | 说明            |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise返回文件句柄 |
+| Promise&lt;number&gt; | Promise返回文件描述符 |
 
 **示例：**
 

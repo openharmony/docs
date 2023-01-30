@@ -1,17 +1,19 @@
-# Mouse Event
+# @ohos.multimodalInput.mouseEvent (Mouse Event)
 
-Represents mouse events reported by an input device.
+The **mouseEvent** module provides mouse events reported by an input device.
 
->  **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```js
-import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mouseEvent';
+import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInput.mouseEvent';
 ```
 
 ## Action
+
+Defines a mouse action.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -28,6 +30,8 @@ import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mou
 
 ## Button
 
+Enumerates mouse actions.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name     | Value | Description   |
@@ -43,6 +47,8 @@ import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mou
 
 ## Axis
 
+Enumerates mouse axis types.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name               | Value    | Description   |
@@ -54,6 +60,8 @@ import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mou
 
 ## AxisValue
 
+Defines a mouse axis type and value.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name   | Type  | Readable  | Writable  | Description  |
@@ -63,6 +71,8 @@ import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mou
 
 
 ## MouseEvent
+
+Defines a mouse event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
