@@ -1,4 +1,4 @@
-# @ohos.systemDateTime
+# @ohos.systemDateTime (System Time and Time Zone)
 
 The **systemDateTime** module provides system time and time zone features. You can use the APIs of this module to set and obtain the system time and time zone.
 

@@ -1,6 +1,6 @@
 
 
-# @ohos.web.webview
+# @ohos.web.webview (Webview)
 
 The **Webview** module provides APIs for web control.
 
@@ -228,19 +228,19 @@ Loads the dynamic link library (DLL) file of the web engine. This API can be cal
 
 **Example**
 
-The following code snippet exemplifies calling this API after the EntryAbility is created.
+The following code snippet exemplifies calling this API after the MainAbility is created.
 
 ```ts
 // xxx.ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
+import Ability from '@ohos.application.Ability'
+import web_webview from '@ohos.web.webview'
 
-export default class EntryAbility extends UIAbility {
+export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
-        console.log("EntryAbility onCreate")
+        console.log("MainAbility onCreate")
         web_webview.WebviewController.initializeWebEngine()
         globalThis.abilityWant = want
-        console.log("EntryAbility onCreate done")
+        console.log("MainAbility onCreate done")
     }
 }
 ```
@@ -249,7 +249,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import web_webview from '@ohos.web.webview'
 
 @Entry
 @Component
@@ -1471,10 +1471,8 @@ struct WebComponent {
           try {
             // 1. Create two message ports.
             this.ports = this.controller.createWebMessagePorts();
-            // 2. Send one of the message ports to the HTML side, which can then save and use the port.
-            this.controller.postMessage('__init_port__', [this.ports[0]], '*');
-            // 3. Register a callback for the other message port on the application side.
-            this.ports[1].onMessageEvent((result: WebMessage) => {
+            // 2. Register a callback on a message port (for example, port 1) on the application side.
+            this.ports[1].onMessageEvent((result: web_webview.WebMessage) => {
                 var msg = 'Got msg from HTML:';    
                 if (typeof(result) == "string") {
                   console.log("received string message from html5, string is:" + result);
@@ -1491,12 +1489,14 @@ struct WebComponent {
                 }
                 this.receivedFromHtml = msg;
               })
+              // 3. Send another message port (for example, port 0) to the HTML side, which can then save the port for future use.
+              this.controller.postMessage('__init_port__', [this.ports[0]], '*');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
         })
 
-      // 4. Use the port on the application side to send messages to the message port that has been sent to the HTML.
+      // 4. Use the port on the application side to send messages to the port that has been sent to the HTML side.
       Button('SendDataToHTML')
         .onClick(() => {
           try {
@@ -1506,7 +1506,7 @@ struct WebComponent {
               console.error(`ports is null, Please initialize first`);
             }
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
           }
         })
       Web({ src: $rawfile('xxx.html'), controller: this.controller })
@@ -1528,7 +1528,7 @@ struct WebComponent {
     <h1>WebView Message Port Demo</h1>
     <div>
         <input type="button" value="SendToEts" onclick="PostMsgToEts(msgFromJS.value);"/><br/>
-        <input id="msgFromJs" type="text" value="send this message from HTML to ets"/><br/>
+        <input id="msgFromJS" type="text" value="send this message from HTML to ets"/><br/>
     </div>
     <p class="output">display received message send from ets</p>
   </body>
@@ -2750,6 +2750,104 @@ struct WebComponent {
 }
 ```
 
+### pageUp
+
+pageUp(top:boolean): void
+
+Scrolls the page up by half the view port or jumps to the top of the page.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| top    | boolean | Yes  | Whether to jump to the top of the page. The value **true** means to jump to the top of the page; and **false** means to scroll the page up by half the view port.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('pageUp')
+        .onClick(() => {
+          try {
+            this.controller.pageUp(false);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### pageDown
+
+pageDown(bottom:boolean): void
+
+Scrolls the page down by half the view port or jumps to the bottom of the page.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| bottom | boolean | Yes  | Whether to jump to the bottom of the page. The value **true** means to jump to the bottom of the page; and **false** means to scroll the page down by half the view port.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('pageDown')
+        .onClick(() => {
+          try {
+            this.controller.pageDown(false);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### getBackForwardEntries
 
 getBackForwardEntries(): BackForwardList
@@ -2789,6 +2887,122 @@ struct WebComponent {
         .onClick(() => {
           try {
             let list = this.controller.getBackForwardEntries()
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### serializeWebState
+
+serializeWebState(): Uint8Array
+
+Serializes the page status history of the current Webview.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type      | Description                                         |
+| ---------- | --------------------------------------------- |
+| Uint8Array | Serialized data of the page status history of the current WebView.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import fileio from '@ohos.fileio';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('serializeWebState')
+        .onClick(() => {
+          try {
+            let state = this.controller.serializeWebState();
+            let path = globalThis.AbilityContext.cacheDir;
+            path += '/WebState';
+            let fd = fileio.openSync(path, 0o2 | 0o100, 0o666);
+            fileio.writeSync(fd, state.buffer);
+            fileio.closeSync(fd);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### restoreWebState
+
+restoreWebState(state: Uint8Array): void
+
+Restores the page status history from the serialized data of the current WebView.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type      | Mandatory| Description                        |
+| ------ | ---------- | ---- | ---------------------------- |
+| state  | Uint8Array | Yes  | Serialized data of the page status history.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import fileio from '@ohos.fileio';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('RestoreWebState')
+        .onClick(() => {
+          try {
+            let path = globalThis.AbilityContext.cacheDir;
+            path += '/WebState';
+            let fd = fileio.openSync(path, 0o002, 0o666);
+            let stat = fileio.fstatSync(fd);
+            let size = stat.size;
+            let buf = new ArrayBuffer(size);
+            fileio.read(fd, buf, (err, data) => {
+              if (data) {
+                this.controller.restoreWebState(new Uint8Array(data.buffer));
+              }
+              fileio.closeSync(fd);
+            });
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -4001,7 +4215,7 @@ Stores this web page. This API uses an asynchronous callback to return the resul
 | Name     | Type                                    | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | baseName | string | Yes| Save path. The value cannot be null. |
-| autoName | boolean | Yes| Whether to automatically generate a file name.<br>The value **false** means not to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory. |
+| autoName | boolean | Yes| Whether to automatically generate a file name.<br>The value **false** means not to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.  |
 | callback | AsyncCallback\<string> | Yes   | Callback used to return the save path if the operation is successful and null otherwise.|
 
 **Example**
@@ -4081,6 +4295,10 @@ Stores this web page. This API uses a promise to return the result.
 ## GeolocationPermissions
 
 Implements a **GeolocationPermissions** object.
+
+### Required Permissions
+
+**ohos.permission.LOCATION**, **ohos.permission.APPROXIMATELY_LOCATION**, and **ohos.permission.LOCATION_IN_BACKGROUND**, which are required for accessing the location information. For details about the permissions, see [@ohos.geolocation (Geolocation)](./js-apis-geolocation.md).
 
 ### allowGeolocation
 
@@ -4469,6 +4687,8 @@ Provides the element information of the area being clicked. For details about th
 
 Describes the data types supported for [WebMessagePort](#webmessageport).
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Type      | Description                                    |
 | -------- | -------------------------------------- |
 | string   | String type.|
@@ -4492,10 +4712,10 @@ Provides the historical information list of the current webview.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name        | Type  | Readable| Writable| Description                        |
-| ------------ | ------ | ---- | ---- | ---------------------------- |
-| currentIndex | number | Yes  | No  | Index of the current page in the page history stack.|
-| size         | number | Yes  | No  | Number of indexes in the history stack.      |
+| Name        | Type  | Readable| Writable| Description                                                        |
+| ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| currentIndex | number | Yes  | No  | Index of the current page in the page history stack.                                |
+| size         | number | Yes  | No  | Number of indexes in the history stack. The maximum value is 50. If this value is exceeded, the earliest index will be overwritten.|
 
 ### getItemAtIndex
 
@@ -4537,8 +4757,8 @@ struct WebComponent {
           try {
             let list = this.controller.getBackForwardEntries();
             let historyItem = list.getItemAtIndex(list.currentIndex);
-			console.log("HistoryItem: " + JSON.stringify(historyItem));
-  			this.icon = historyItem.icon;
+            console.log("HistoryItem: " + JSON.stringify(historyItem));
+            this.icon = historyItem.icon;
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
