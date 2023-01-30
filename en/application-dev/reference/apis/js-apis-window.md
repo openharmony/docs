@@ -1,4 +1,4 @@
-# @ohos.window
+# @ohos.window (Window)
 
 The **Window** module provides basic window management capabilities, such as creating and destroying the current window, setting properties for the current window, and managing and scheduling windows.
 
