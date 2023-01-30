@@ -510,7 +510,7 @@ metadata中指定shortcut信息，其中：
 | screenShape | 标识屏幕形状的支持策略。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | screenWindow | 标识应用运行时窗口的分辨率支持策略。该字段仅支持对轻量级智能穿戴设备进行配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | screenDensity | 标识屏幕的像素密度（dpi：Dot&nbsp;Per&nbsp;Inch）。该字段可选，如果配置了该字段，取值必须合法。该标签为字符串数组，字符串范围如下。<br/>-&nbsp;sdpi：表示小规模的屏幕密度（Small-scale&nbsp;Dots&nbsp;per&nbsp;Inch），适用于dpi取值为(0,120]的设备。<br/>-&nbsp;mdpi：表示中规模的屏幕密度（Medium-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(120,160]的设备。<br/>-&nbsp;ldpi：表示大规模的屏幕密度（Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(160,240]的设备。<br/>-&nbsp;xldpi：表示大规模的屏幕密度（Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(240,320]的设备。<br/>-&nbsp;xxldpi：表示大规模的屏幕密度（Extra&nbsp;Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(320，480]的设备。<br/>-&nbsp;xxxldpi：表示大规模的屏幕密度（Extra&nbsp;Extra&nbsp;Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(480,&nbsp;640]的设备。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| countryCode | 表示应用需要分发的国家地区码，具体值以[ISO-3166-1](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/basic-resource-file-categories-0000001052066099)标准为准。支持多个国家和地区枚举定义。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| countryCode | 表示应用需要分发的国家地区码，具体值以[ISO-3166-1](resource-categories-and-access.md)标准为准。支持多个国家和地区枚举定义。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 
   **表10** **apiVersion标签说明**
 
