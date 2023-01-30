@@ -469,7 +469,7 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
 
 openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 
-以异步方法打开文件，返回文件句柄。使用Promise异步回调。
+以异步方法打开文件，返回文件描述符。使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService。
 
@@ -486,7 +486,7 @@ openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 
 | 类型 | 说明 |
 | --- | -- |
-| Promise&lt;number&gt; | 文件句柄 |
+| Promise&lt;number&gt; | 文件描述符 |
 
 **示例：**
 
