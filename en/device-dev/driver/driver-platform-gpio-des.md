@@ -138,7 +138,7 @@ int32_t ret;
 
 ret = GpioSetDir(3, GPIO_DIR_OUT);    // Set GPIO pin 3 as an output.
 if (ret != 0) {
-    HDF_LOGE("GpioSerDir: failed, ret %d\n", ret);
+    HDF_LOGE("GpioSetDir: failed, ret %d\n", ret);
     return ret;
 }
 ```
