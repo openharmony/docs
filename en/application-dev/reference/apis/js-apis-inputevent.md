@@ -13,6 +13,8 @@ import InputEvent from '@ohos.multimodalInput.inputEvent';
 
 ## InputEvent 
 
+Defines an input event.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 **Parameters**

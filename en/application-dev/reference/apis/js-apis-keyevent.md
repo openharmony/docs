@@ -13,6 +13,8 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 
 ## Action
 
+Defines a key action.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name  | Value | Description    |
@@ -23,6 +25,8 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 
 ## Key
 
+Defines a key.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name       | Type| Readable| Writable| Description          |
@@ -32,6 +36,8 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 | deviceId    | number   | Yes  | No  | ID of the device to which the key belongs.  |
 
 ## KeyEvent
+
+Defines a key event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
