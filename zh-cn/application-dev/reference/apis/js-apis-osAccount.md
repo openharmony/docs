@@ -4323,13 +4323,13 @@ unregisterInputer(): void;
   pinAuth.unregisterInputer();
   ```
 
-### InputerManager <sup>10+</sup>
+## InputerManager <sup>9+</sup>
 
 凭据输入管理器。
 
-### registerInputer<sup>10+</sup>
+### registerInputer<sup>9+</sup>
 
-registerInputer(authType: AuthType, inputer: IInputer): void;
+static registerInputer(authType: AuthType, inputer: IInputer): void
 
 注册凭据输入器。
 
@@ -4357,11 +4357,10 @@ registerInputer(authType: AuthType, inputer: IInputer): void;
 
 **示例：**
   ```js
-  let inputerMgr = new account_osAccount.InputerManager();
   let authType = account_osAccount.AuthType.DOMAIN;
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
-    inputerMgr.registerInputer(authType, {
+    account_osAccount.InputerManager.registerInputer(authType, {
         onGetData: (authSubType, callback) => {
           callback.onSetData(authSubType, password);
         }
@@ -4372,9 +4371,9 @@ registerInputer(authType: AuthType, inputer: IInputer): void;
   }
   ```
 
-### unregisterInputer<sup>10+</sup>
+### unregisterInputer<sup>9+</sup>
 
-unregisterInputer(authType: AuthType): void;
+static unregisterInputer(authType: AuthType): void
 
 解注册凭据输入器。
 
@@ -4398,13 +4397,126 @@ unregisterInputer(authType: AuthType): void;
 
 **示例：**
   ```js
-  let inputerMgr = new account_osAccount.InputerManager();
   let authType = account_osAccount.AuthType.DOMAIN;
   try {
-    inputerMgr.unregisterInputer(authType);
+    account_osAccount.InputerManager.unregisterInputer(authType);
     console.log('unregisterInputer success.');
   } catch(err) {
     console.log("unregisterInputer err:" + JSON.stringify(err));
+  }
+  ```
+
+## DomainPlugin<sup>9+</sup>
+
+域插件，提供域帐号认证功能。
+
+**系统接口：** 此接口为系统接口。
+
+### auth<sup>9+</sup>
+
+auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUserAuthCallback): void
+
+认证指定的域帐号。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| credential   | Uint8Array  | 是   | 指示域帐号的凭据。|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
+
+**示例：**
+  ```js
+  let plugin = {
+    auth: (domainInfo, credential, callback) => {
+      // mock authentication
+      callback.onResult(0, {});
+    }
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin);
+  let userAuth = new account_osAccount.UserAuth();
+  let challenge = new Uint8Array([0]);
+  let authType = account_osAccount.AuthType.PIN;
+  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  try {
+    userAuth.auth(challenge, authType, authTrustLevel, {
+      onResult: (resultCode, authResult) => {
+          console.log('auth resultCode = ' + resultCode);
+          console.log('auth authResult = ' + JSON.stringify(authResult));
+      }
+    });
+  } catch (err) {
+    console.log('auth exception = ' + JSON.stringify(err));
+  }
+  ```
+
+## DomainAccountManager <sup>9+</sup>
+域帐号管理器类。
+
+### registerPlugin<sup>9+</sup>
+
+static registerPlugin(plugin: DomainPlugin): void
+
+注册域插件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                      |
+| ----------| ----------------------- | --- | -------------------------- |
+| plugin   | [DomainPlugin](#domainplugin9)  | 是  | 指示域插件。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300201 | The domain plugin has been registered. |
+
+**示例：**
+  ```js
+  let plugin = {
+    auth: (domainInfo, credential, callback) => {
+      // mock authentication
+      callback.onResult(0, {});
+    }
+  }
+  try {
+    account_osAccount.DomainAccountManager.registerPlugin(plugin);
+    console.log('registerPlugin success.');
+  } catch(err) {
+    console.log("registerPlugin err:" + JSON.stringify(err));
+  }
+  ```
+
+### unregisterPlugin<sup>9+</sup>
+
+static unregisterPlugin(): void
+
+注销域插件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**示例：**
+  ```js
+  try {
+    account_osAccount.DomainAccountManager.unregisterPlugin();
+    console.log('unregisterPlugin success.');
+  } catch(err) {
+    console.log("unregisterPlugin err:" + JSON.stringify(err));
   }
   ```
 
