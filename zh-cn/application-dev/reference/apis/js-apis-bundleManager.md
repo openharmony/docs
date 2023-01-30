@@ -2235,8 +2235,8 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName does not exist.                      |
-| 17700003 | The specified abilityName does not exist.                     |
+| 17700002 | The specified moduleName is not existed.                      |
+| 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 | 17700029 | The specified ability is disabled.                            |
@@ -2291,8 +2291,8 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName does not exist.                      |
-| 17700003 | The specified abilityName does not exist.                     |
+| 17700002 | The specified moduleName is not existed.                      |
+| 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 | 17700029 | The specified ability is disabled.                            |
@@ -2356,7 +2356,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName does not exist.                      |
+| 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
@@ -2411,7 +2411,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName does not exist.                      |
+| 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
@@ -2770,6 +2770,7 @@ try {
 ### bundleManager.getApplicationInfoSync
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
+getApplicationInfoSync(bundleName: string, applicationFlags: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
 
 以同步方法根据给定的bundleName、applicationFlags和userId获取ApplicationInfo。
 
@@ -2785,7 +2786,7 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 | ----------- | ------ | ---- | ----------------------------------------------------------|
 | bundleName  | string | 是   | 表示应用程序的bundleName。                                  |
 | applicationFlags | [number](#applicationflag) | 是   | 表示用于指定将返回的ApplicationInfo对象中包含的信息。       |
-| userId      | number | 否   | 表示用户ID。                                         |
+| userId      | number | 是   | 表示用户ID。                                         |
 
 **返回值：**
 
@@ -2837,6 +2838,7 @@ try {
 ### bundleManager.getBundleInfoSync
 
 getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId: number): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
+getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
 
 以同步方法根据给定的bundleName、bundleFlags和userId获取BundleInfo。
 
