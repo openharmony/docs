@@ -34,7 +34,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 
 在工程Module对应的ets目录下，右键选择“New &gt; Extention Ability > Input Method”，即可创建出InputMethodExtensionAbility的最小化模板。
 
-在最小化模板中包含了一个最基本的输入法应用。包含软键盘的拉起以及输入删除功能。
+最小化模板为一个最基本的输入法应用，包含软键盘拉起以及输入删除功能。后续开发者可在此基础上添加功能，如隐藏键盘等，实现自己的输入法应用。
 
 最小化模板主要包含四个文件，分别为KeyboardController.ts、InputMethodService.ts、Index.ets以及KeyboardKeyData.ts。目录如下：
 
@@ -232,7 +232,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 
    主要描绘了具体按键功能。如按下数字键，就会将数字内容在输入框中打印出来，按下删除键，就会将内容删除。
 
-   同时在resources/base/profile/main_pages.json文件的src字段中中添加此文件路径。
+   同时在resources/base/profile/main_pages.json文件的src字段中添加此文件路径。
 
    ```ets
    import { numberSourceListData, sourceListType } from './keyboardKeyData'
