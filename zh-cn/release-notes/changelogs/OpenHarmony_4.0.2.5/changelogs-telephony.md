@@ -2,10 +2,8 @@
 
 
 
-## cl.telephony.1 radio模块接口变更
+## cl.telephony.radio.1 isNrSupported接口变更
 
-
-### 电话子系统radio模块 `isNrSupported` 接口存在变更：
 
 NR是专有名词，需要全部大写。
 
@@ -59,9 +57,7 @@ console.log("Result: "+ result);
 ```
 
 
-## cl.telephony.2 call模块接口变更
-
-### 电话子系统radio模块 `dial` 接口存在变更：
+## cl.telephony.call.2 dial接口变更
 
 从API9开始，废弃此接口，改为使用dialCall接口。
 
