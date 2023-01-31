@@ -15,6 +15,8 @@
 
 ## 相关实例
 
+基于ArkTS的常用组件开发，有以下相关实例可供参考：
+
 - [`ComponentCollection`：组件集合（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/ComponentCollection)
 
 - [`OrangeShopping`：购物示例应用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/OrangeShopping)
