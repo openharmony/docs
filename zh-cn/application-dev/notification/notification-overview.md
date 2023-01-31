@@ -25,3 +25,9 @@ OpenHarmony通过ANS（Advanced Notification Service，通知系统服务）对�
 系统应用还支持通知相关配置，如使能开关、配置参数由系统配置发起请求，发送到通知子系统存储到内存和数据库。
 
 ![zh-cn_image_0000001466582017](figures/zh-cn_image_0000001466582017.png)
+
+## 相关实例
+
+基于通知的开发，有以下相关实例可供参考：
+
+- [`CustomNotification`：自定义通知（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/CustomNotification)
