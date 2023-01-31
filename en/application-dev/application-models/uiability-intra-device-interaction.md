@@ -196,8 +196,8 @@ This section describes how to start the UIAbility of another application through
    ```
 
    The following figure shows the effect. When you click **Open PDF**, a dialog box is displayed for you to select.
-   
-   <img src="figures/uiability-intra-device-interaction.png" alt="uiability-intra-device-interaction" style="zoom:50%;" />
+ 
+   ![uiability-intra-device-interaction](figures/uiability-intra-device-interaction.png)  
    
 3. To stop the **UIAbility** instance after the document application is used, call **terminateSelf()**.
    
@@ -445,7 +445,7 @@ The following figure shows the ability call process.
 
 **Figure 1** Ability call process 
 
-<img src="figures/call.png" alt="call" style="zoom:67%;" />
+![call](figures/call.png)
 
 - The caller ability uses **startAbilityByCall** to obtain a caller object and uses **call()** of the caller object to send data to the callee ability.
 
