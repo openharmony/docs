@@ -1,4 +1,4 @@
-| 操作 | 新版本 | 旧版本 | d.ts文件 |
+| 操作 | 旧版本 | 新版本 | d.ts文件 |
 | ---- | ------ | ------ | -------- |
 |新增(权限)|方法名 or 属性名：hangup<br>权限:N/A|方法名 or 属性名：hangup<br>权限:ohos.permission.ANSWER_CALL|@ohos.telephony.call.d.ts|
 |新增(权限)|方法名 or 属性名：hangup<br>权限:N/A|方法名 or 属性名：hangup<br>权限:ohos.permission.ANSWER_CALL|@ohos.telephony.call.d.ts|

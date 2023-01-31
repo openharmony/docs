@@ -1,23 +1,9 @@
-| 操作 | 新版本 | 旧版本 | d.ts文件 |
+| 操作 | 旧版本 | 新版本 | d.ts文件 |
 | ---- | ------ | ------ | -------- |
-|新增||模块名：ohos.power<br>类名:power<br>方法名 or 属性名:shutdown|@ohos.power.d.ts|
-|新增||模块名：ohos.power<br>类名:power<br>方法名 or 属性名:reboot|@ohos.power.d.ts|
-|新增||模块名：ohos.power<br>类名:power<br>方法名 or 属性名:isActive|@ohos.power.d.ts|
-|新增||模块名：ohos.power<br>类名:power<br>方法名 or 属性名:wakeup|@ohos.power.d.ts|
-|新增||模块名：ohos.power<br>类名:power<br>方法名 or 属性名:suspend|@ohos.power.d.ts|
-|新增||方法名 or 属性名：getPowerMode<br>函数：function getPowerMode(): DevicePowerMode;|@ohos.power.d.ts|
-|新增||模块名：ohos.runningLock<br>类名:RunningLock<br>方法名 or 属性名:hold|@ohos.runningLock.d.ts|
-|新增||模块名：ohos.runningLock<br>类名:RunningLock<br>方法名 or 属性名:isHolding|@ohos.runningLock.d.ts|
-|新增||模块名：ohos.runningLock<br>类名:RunningLock<br>方法名 or 属性名:unhold|@ohos.runningLock.d.ts|
-|新增||模块名：ohos.runningLock<br>类名:runningLock<br>方法名 or 属性名:isSupported|@ohos.runningLock.d.ts|
-|新增||模块名：ohos.runningLock<br>类名:runningLock<br>方法名 or 属性名:create|@ohos.runningLock.d.ts|
-|新增||模块名：ohos.runningLock<br>类名:runningLock<br>方法名 or 属性名:create|@ohos.runningLock.d.ts|
-|新增||模块名：ohos.thermal<br>类名:thermal<br>方法名 or 属性名:registerThermalLevelCallback|@ohos.thermal.d.ts|
-|新增||模块名：ohos.thermal<br>类名:thermal<br>方法名 or 属性名:unregisterThermalLevelCallback|@ohos.thermal.d.ts|
-|新增||模块名：ohos.thermal<br>类名:thermal<br>方法名 or 属性名:getLevel|@ohos.thermal.d.ts|
-|删除|模块名：ohos.power<br>类名:power<br>方法名 or 属性名:shutdownDevice||@ohos.power.d.ts|
-|删除|模块名：ohos.power<br>类名:power<br>方法名 or 属性名:wakeupDevice||@ohos.power.d.ts|
-|删除|模块名：ohos.power<br>类名:power<br>方法名 or 属性名:suspendDevice||@ohos.power.d.ts|
+|新增|NA|方法名 or 属性名：getPowerMode<br>函数：function getPowerMode(): DevicePowerMode;|@ohos.power.d.ts|
+|删除|模块名：ohos.power<br>类名:power<br>方法名 or 属性名:shutdownDevice|NA|@ohos.power.d.ts|
+|删除|模块名：ohos.power<br>类名:power<br>方法名 or 属性名:wakeupDevice|NA|@ohos.power.d.ts|
+|删除|模块名：ohos.power<br>类名:power<br>方法名 or 属性名:suspendDevice|NA|@ohos.power.d.ts|
 |废弃版本有变化|方法名 or 属性名：rebootDevice<br>废弃版本：N/A|方法名 or 属性名：rebootDevice<br>废弃版本：9<br>代替接口：{@link power|@ohos.power.d.ts|
 |废弃版本有变化|方法名 or 属性名：isScreenOn<br>废弃版本：N/A|方法名 or 属性名：isScreenOn<br>废弃版本：9<br>代替接口：{@link power|@ohos.power.d.ts|
 |废弃版本有变化|方法名 or 属性名：isScreenOn<br>废弃版本：N/A|方法名 or 属性名：isScreenOn<br>废弃版本：9|@ohos.power.d.ts|
