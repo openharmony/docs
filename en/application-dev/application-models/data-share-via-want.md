@@ -67,7 +67,7 @@ Users often need to share data (such as a text or an image) from one application
   
       For example, when **"ability.picker.type"** is **"application/pdf"**, **"ability.picker.fileNames"** is **"["APIs.pdf"]"**, and **"ability.picker.fileSizes"** is **"[350 \* 1024]"**, the application selector is displayed as follows:
       
-      <img src="figures/stage-want2.png" alt="stage-want2" style="zoom:50%;" />
+      ![stage-want2](figures/stage-want2.png)     
       
       In the preceding code, the **ability.want.params.INTENT** field is nested Want. In this field, **action** and **type** are used for implicit matching by the application selector. For details about implicit matching, see [Implicit Want Matching Rules](explicit-implicit-want-mappings.md#interpretation-of-implicit-want-matching-rules). After the user selects an application, the nested Want of the **ability.want.params.INTENT** field is passed to that application.
   
