@@ -2,8 +2,7 @@
 
 The Performance Tracing module provides the functions of tracing service processes and monitoring the system performance. It provides the data needed for hiTraceMeter to carry out performance analysis.
 
-> **NOTE**
-> 
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 

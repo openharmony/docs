@@ -1,6 +1,6 @@
 # Update
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 The Update module applies to updates throughout the entire system, including built-in resources and preset applications, but not third-party applications.

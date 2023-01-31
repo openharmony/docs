@@ -1,8 +1,7 @@
 # Application Configuration
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > - The APIs of this module are no longer maintained since API version 7. It is recommended that you use [`@ohos.i18n`](js-apis-i18n.md) and [`@ohos.intl`](js-apis-intl.md) instead.
->
 > 
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 

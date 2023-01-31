@@ -4,8 +4,7 @@ The Log module provides basic log printing capabilities and supports log printin
 
 If you want to use more advanced log printing services, for example, filtering logs by the specified ID, you are advised to use [`@ohos.hilog`](js-apis-hilog.md).
 
-> **NOTE**
->
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
