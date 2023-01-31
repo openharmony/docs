@@ -35,7 +35,7 @@ Naming format:
 
 A standard URI consists of the following parts:
 [scheme:]scheme-specific-part[#fragment]
-- Scheme: scheme component, which is mandatory. Example values: **http**, **https**, **ftp**, **datashare**, and **dataability**.
+- scheme: scheme component. Set this parameter as required. Example values: **http**, **https**, **ftp**, **datashare**, and **dataability**.
 - scheme-specific-part: specific part of the URI decoding scheme. The value consists of [//][authority][path][?query]. Set this parameter as required.
     - authority: decoding authority component of the URI. The value consists of [userinfo@]host[:port]. Set this parameter as required.
         - userinfo: user information. Set this parameter as required.
@@ -226,7 +226,9 @@ Checks whether this URI is an absolute URI (whether the scheme component is defi
 
 ```js
 const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080?query=pppppp');
-uriInstance.checkIsAbsolute();
+console.log(uriInstance.checkIsAbsolute()); // true
+const uriInstance1 = new uri.URI('xxx.com/suppliers.htm');
+console.log(uriInstance1.checkIsAbsolute()); // false
 ```
 
 
@@ -248,6 +250,7 @@ Normalizes the path of this URI.
 
 ```js
 const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
+console.log(uriInstance.path); // /path/path1/../path2/./path3
 let uriInstance1 = uriInstance.normalize();
-uriInstance1.path;
+console.log(uriInstance1.path); // /path/path2/path3
 ```
