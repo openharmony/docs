@@ -26,7 +26,6 @@ import Configuration from '@ohos.application.Configuration'
 For details about the fields, see the **ohos.application.Configuration.d.ts** file.
 
 **Example**
-    
   ```ts
 import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';

@@ -14,7 +14,8 @@ This module provides APIs for accessing a specific ability stage. You can use th
 The ability stage context is obtained through an **AbilityStage** instance.
 
 ```ts
-import AbilityStage from '@ohos.application.AbilityStage';
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
 class MyAbilityStage extends AbilityStage {
     onCreate() {
         let abilityStageContext = this.context;

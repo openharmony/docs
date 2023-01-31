@@ -31,8 +31,9 @@ To adapt to devices with different performance, an application provides three mo
 
 Define a **ServiceExtension** with the same name for the three modules.
 ```ts
-import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility'
-import Want from '@ohos.application.Want'
+import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+
 export default class TheServiceExtension extends ServiceExtension {
     onCreate(want:Want) {
         console.log('ServiceAbility onCreate, want: ' + want.abilityName);
