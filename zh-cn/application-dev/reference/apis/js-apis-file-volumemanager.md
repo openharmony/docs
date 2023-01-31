@@ -1,16 +1,17 @@
-# @ohos.volumeManager (卷管理)
+# @ohos.file.volumeManager (卷管理)
 
 该模块提供卷、磁盘查询和管理的相关功能：包括查询卷信息，对卷的挂载卸载、对磁盘分区以及卷的格式化等功能。
 
 > **说明：**
 >
-> - 本模块首批接口从API version 9开始支持。
-> - 本模块接口为系统接口，三方应用不支持调用。
+> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块接口为系统接口。
+> - 本模块支持对错误码进行处理，错误码及其适配方式[参考文档](../errorcodes/errorcode-filemanagement.md#错误码适配指导)。
 
 ## 导入模块
 
 ```js
-import volumemanager from "@ohos.volumeManager";
+import volumemanager from "@ohos.file.volumeManager";
 ```
 
 ## volumemanager.getAllVolumes
@@ -65,7 +66,7 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
 ## volumemanager.mount
 
-mount(volumeId: string): Promise&lt;boolean&gt;
+mount(volumeId: string): Promise&lt;void&gt;
 
 异步挂载指定卷，以promise方式返回。
 
@@ -83,7 +84,7 @@ mount(volumeId: string): Promise&lt;boolean&gt;
 
   | 类型                   | 说明       |
   | ---------------------- | ---------- |
-  | Promise&lt;boolean&gt; | 挂载指定卷 |
+  | Promise&lt;void&gt; | 挂载指定卷 |
 
 **示例：**
 
@@ -96,7 +97,7 @@ mount(volumeId: string): Promise&lt;boolean&gt;
 
 ## volumemanager.mount
 
-mount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
+mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 
 异步获取指定卷的可用空间大小，以callback方式返回。
 
@@ -109,7 +110,7 @@ mount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
   | 参数名   | 类型                                  | 必填 | 说明                 |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | 是   | 卷id                 |
-  | callback | AsyncCallback&lt;boolean&gt; | 是   | 挂载指定卷之后的回调 |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 挂载指定卷之后的回调 |
 
 **示例：**
 
@@ -122,7 +123,7 @@ mount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 
 ## volumemanager.unmount
 
-unmount(volumeId: string): Promise&lt;boolean&gt;
+unmount(volumeId: string): Promise&lt;void&gt;
 
 异步卸载指定卷，以promise方式返回。
 
@@ -140,7 +141,7 @@ unmount(volumeId: string): Promise&lt;boolean&gt;
 
   | 类型                   | 说明       |
   | ---------------------- | ---------- |
-  | Promise&lt;boolean&gt; | 卸载指定卷 |
+  | Promise&lt;void&gt; | 卸载指定卷 |
 
 **示例：**
 
@@ -153,7 +154,7 @@ unmount(volumeId: string): Promise&lt;boolean&gt;
 
 ## volumemanager.unmount
 
-unmount(volumeId: string, callback: AsyncCallback&lt;boolean&gt;): void
+unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
 
 异步卸载指定卷，以callback方式返回。
 
@@ -166,7 +167,7 @@ unmount(volumeId: string, callback: AsyncCallback&lt;boolean&gt;): void
   | 参数名   | 类型                                  | 必填 | 说明                 |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | 是   | 卷id                 |
-  | callback | AsyncCallback&lt;boolean&gt; | 是   | 卸载指定卷之后的回调 |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 卸载指定卷之后的回调 |
 
 **示例：**
 
