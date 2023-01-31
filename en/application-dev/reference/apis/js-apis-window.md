@@ -54,7 +54,7 @@ Defines the parameters for creating a subwindow or system window.
 | ---------- | -------------------------- | -- | ----------------------------------- |
 | name       | string                     | Yes| Name of the window.                        |
 | windowType | [WindowType](#windowtype7) | Yes| Type of the window.                        |
-| ctx        | BaseContext                | No| Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md). If this parameter is not set, no context is used.<br>A system window is created when **Context** is [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md).|
+| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | No| Current application context. If this parameter is not set, no context is used.<br>You do not need to set this parameter to create a subwindow in the FA model or a system window in the stage model. |
 | displayId  | number                     | No| ID of the current physical screen. If this parameter is not set, the default value **-1** is used.|
 | parentId   | number                     | No| ID of the parent window. If this parameter is not set, the default value **-1** is used.     |
 
@@ -430,7 +430,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 | Name| Type| Mandatory| Description|
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
-| ctx      | BaseContext                            | Yes| Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx      | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Current application context.|
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes| Callback used to return the top window obtained.|
 
 **Error codes**
@@ -472,7 +472,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 | Name| Type| Mandatory| Description|
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Current application context.|
 
 **Return value**
 
@@ -897,7 +897,7 @@ promise.then((data)=> {
 
 create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-Creates a subwindow (in API version 8) or a system window (from API version 9). This API uses an asynchronous callback to return the result.
+Creates a system window. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
@@ -907,12 +907,12 @@ Creates a subwindow (in API version 8) or a system window (from API version 9). 
 
 **Parameters**
 
-| Name  | Type                                  | Mandatory| Description                                                        |
-| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md).|
-| id       | string                                 | Yes  | Window ID.                                                    |
-| type     | [WindowType](#windowtype7)              | Yes  | Window type.                                                  |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.                        |
+| Name  | Type                                                   | Mandatory| Description                                |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------ |
+| ctx      | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Current application context.                |
+| id       | string                                                  | Yes  | Window ID.                            |
+| type     | [WindowType](#windowtype7)                              | Yes  | Window type.                          |
+| callback | AsyncCallback&lt;[Window](#window)&gt;                  | Yes  | Callback used to return the subwindow created.|
 
 **Example**
 
@@ -933,7 +933,7 @@ window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, 
 
 create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
-Creates a subwindow (in API version 8) or a system window (from API version 9). This API uses a promise to return the result.
+Creates a system window. This API uses a promise to return the result.
 
 > **NOTE**
 > 
@@ -945,7 +945,7 @@ Creates a subwindow (in API version 8) or a system window (from API version 9). 
 
 | Name| Type                     | Mandatory| Description                                                        |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext               | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md).|
+| ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Current application context.|
 | id     | string                    | Yes  | Window ID.                                                    |
 | type   | [WindowType](#windowtype7) | Yes  | Window type.                                                  |
 
@@ -1121,7 +1121,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx      | [BaseContext](js-apis-inner-application-baseContext.md)                            | Yes  | Current application context.|
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.                |
 
 **Example**
@@ -1154,7 +1154,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Current application context.|
 
 **Return value**
 
@@ -1864,7 +1864,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 | Name| Type| Mandatory| Description|
 | ---- |----------------------------------| -- | ------------------------------------------------------------ |
-| type | [AvoidAreaType](#avoidareatype7) | Yes| Type of the area. |
+| type | [AvoidAreaType](#avoidareatype7) | Yes| Type of the area.|
 
 **Return value**
 
@@ -4629,10 +4629,10 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Parameters**
 
-| Name     | Type                                          | Mandatory | Description                                                  |
-| -------- | --------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [AvoidAreaType](#avoidareatype7)              | Yes       | Type of the area.  |
-| callback | AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt; | Yes       | Callback used to return the area.                            |
+| Name     | Type                                          | Mandatory | Description                       |
+| -------- | --------------------------------------------- | --------- | --------------------------------- |
+| type     | [AvoidAreaType](#avoidareatype7)              | Yes       | Type of the area.                 |
+| callback | AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt; | Yes       | Callback used to return the area. |
 
 **Example**
 
@@ -4662,9 +4662,9 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Parameters**
 
-| Name | Type                             | Mandatory | Description                                                  |
-| ---- | -------------------------------- | --------- | ------------------------------------------------------------ |
-| type | [AvoidAreaType](#avoidareatype7) | Yes       | Type of the area.  |
+| Name | Type                             | Mandatory | Description       |
+| ---- | -------------------------------- | --------- | ----------------- |
+| type | [AvoidAreaType](#avoidareatype7) | Yes       | Type of the area. |
 
 **Return value**
 
@@ -5237,10 +5237,10 @@ Sets a color space for this window. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name       | Type                      | Mandatory | Description                         |
-| ---------- | ------------------------- | --------- | ----------------------------------- |
+| Name       | Type                       | Mandatory | Description                         |
+| ---------- | -------------------------- | --------- | ----------------------------------- |
 | colorSpace | [ColorSpace](#colorspace8) | Yes       | Color space to set.                 |
-| callback   | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result. |
+| callback   | AsyncCallback&lt;void&gt;  | Yes       | Callback used to return the result. |
 
 **Example**
 
@@ -5269,8 +5269,8 @@ Sets a color space for this window. This API uses a promise to return the result
 
 **Parameters**
 
-| Name       | Type                      | Mandatory | Description         |
-| ---------- | ------------------------- | --------- | ------------------- |
+| Name       | Type                       | Mandatory | Description         |
+| ---------- | -------------------------- | --------- | ------------------- |
 | colorSpace | [ColorSpace](#colorspace8) | Yes       | Color space to set. |
 
 **Return value**
@@ -5305,8 +5305,8 @@ Obtains the color space of this window. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name     | Type                                           | Mandatory | Description                                                  |
-| -------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
+| Name     | Type                                            | Mandatory | Description                                                  |
+| -------- | ----------------------------------------------- | --------- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;[ColorSpace](#colorspace8)&gt; | Yes       | Callback used to return the result. When the color space is obtained successfully, **err** is **undefined**, and **data** is the current color space. |
 
 **Example**
@@ -5336,8 +5336,8 @@ Obtains the color space of this window. This API uses a promise to return the re
 
 **Return value**
 
-| Type                                     | Description                                     |
-| ---------------------------------------- | ----------------------------------------------- |
+| Type                                      | Description                                     |
+| ----------------------------------------- | ----------------------------------------------- |
 | Promise&lt;[ColorSpace](#colorspace8)&gt; | Promise used to return the current color space. |
 
 **Example**
