@@ -32,3 +32,7 @@
 - [`QRCode`：二维码（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/QRCode)
 
 - [`Gallery`：组件集合（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Gallery)
+
+- [List组件的使用之商品列表（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/List_HDC)
+
+- [List组件的使用之设置项（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/List_HDC)
