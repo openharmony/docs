@@ -70,5 +70,4 @@ When a user touches a button in an application, the application often needs to s
 
 5. When you touch **CLICKME**, the corresponding page is displayed.
    
-
-<img src="figures/startAbilityWtExplicitWant.PNG" alt="startAbilityWtExplicitWant" style="zoom: 80%;" />
+   ![startAbilityWtExplicitWant](figures/startAbilityWtExplicitWant.PNG)
