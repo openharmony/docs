@@ -1,4 +1,4 @@
-# @ohos.wantAgent
+# @ohos.wantAgent (wantAgent)
 
 The **WantAgent** module provides APIs for creating and comparing **WantAgent** objects, and obtaining the user ID and bundle name of a **WantAgent** object.
 

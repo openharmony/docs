@@ -2771,6 +2771,7 @@ try {
 ### bundleManager.getApplicationInfoSync
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
+getApplicationInfoSync(bundleName: string, applicationFlags: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
 
 Synchronously obtains the application information based on the given bundle name, application flags, and user ID.
 
@@ -2786,7 +2787,7 @@ Synchronously obtains the application information based on the given bundle name
 | ----------- | ------ | ---- | ----------------------------------------------------------|
 | bundleName  | string | Yes  | Bundle name.                                 |
 | applicationFlags | [number](#applicationflag) | Yes  | Type of the application information to obtain.      |
-| userId      | number | No  | User ID.                                        |
+| userId      | number | Yes  | User ID.                                        |
 
 **Return value**
 
@@ -2838,6 +2839,7 @@ try {
 ### bundleManager.getBundleInfoSync
 
 getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId: number): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
+getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
 
 Synchronously obtains the bundle information based on the given bundle name, bundle flags, and user ID.
 
