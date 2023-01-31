@@ -10,7 +10,7 @@
   **图1** 任务与singleton模式
   ![mission-and-singleton](figures/mission-and-singleton.png)
   
-- standard：多实例模式，每次调用startAbility()方法，都会在应用进程中创建一个该Ability的实例。
+- standard：多实例模式，每次调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法，都会在应用进程中创建一个该Ability的实例。
   
   **图2** 任务与standard模式
   ![mission-and-standard](figures/mission-and-standard.png)
