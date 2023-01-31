@@ -21,32 +21,14 @@
 
 - [`OrangeShopping`：购物示例应用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/OrangeShopping)
 
+- [`Canvas`：画布组件（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Canvas)
+
 - [`Clock`：简单时钟（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/Clock)
 
 - [`PatternLock`：图案密码锁组件（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/PatternLock)
 
-- [`BringApp`：拉起系统应用（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/BringApp)
+- [`Search`：Search组件（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Search)
 
-- [`Chat`：聊天示例应用（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/AppSample/Chat)
+- [`QRCode`：二维码（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/QRCode)
 
-- [`Shopping`：购物示例应用（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/AppSample/Shopping)
-
-- [`Lottie`：Lottie（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Lottie)
-
-- [`Flybird`：小鸟避障游戏（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/Flybird)
-
-- [`AdaptiveCapabilities`：多设备自适应能力（ArkTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities)
-
-- [`Game2048`：2048游戏（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Game2048)
-
-- [极简声明式UI范式（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts)
-
-- [购物应用（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)
-
-- [转场动画的使用（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimtaionEts)
-
-- [弹窗（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts)
-
-- [`UpgradePopup`：自定义弹窗（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/UpgradePopup)
-
-- [CustomComponent:组件化（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/CustomComponent)
+- [`Gallery`：组件集合（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Gallery)
