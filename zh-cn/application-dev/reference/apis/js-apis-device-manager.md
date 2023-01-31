@@ -589,8 +589,8 @@ stopDeviceDiscovery(subscribeId: number): void
 
   ```js
   try {
-    // 入参需要和startDeviceDiscovery接口传入的subscribeId配对使用
-    var subscribeId = 123456;
+    // stopDeviceDiscovery和startDeviceDiscovery需配对使用，入参需要和startDeviceDiscovery接口传入的subscribeId值相等
+    var subscribeId = 12345;
     dmInstance.stopDeviceDiscovery(subscribeId);
   } catch (err) {
     console.error("stopDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
@@ -668,8 +668,8 @@ unPublishDeviceDiscovery(publishId: number): void
 
   ```js
   try {
-    // 入参需要和publishDeviceDiscovery接口传入的publishId配对使用
-    var publishId = 123456;
+    // unPublishDeviceDiscovery和publishDeviceDiscovery配对使用，入参需要和publishDeviceDiscovery接口传入的publishId值相等
+    var publishId = 12345;
     dmInstance.unPublishDeviceDiscovery(publishId);
   } catch (err) {
     console.error("unPublishDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
