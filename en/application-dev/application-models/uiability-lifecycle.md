@@ -7,8 +7,9 @@ When a user opens, switches, and returns to an application, the UIAbility instan
 
 The lifecycle of UIAbility has four states: **Create**, **Foreground**, **Background**, and **Destroy**, as shown in the figure below.
 
-**Figure 1** UIAbility lifecycle states 
-<img src="figures/Ability-Life-Cycle.png" alt="Ability-Life-Cycle" style="zoom:50%;" />
+**Figure 1** UIAbility lifecycle states
+
+![Ability-Life-Cycle](figures/Ability-Life-Cycle.png) 
 
 
 ## Description of Lifecycle States
@@ -36,8 +37,9 @@ export default class EntryAbility extends UIAbility {
 
 After the UIAbility instance is created but before it enters the **Foreground** state, the system creates a WindowStage instance and triggers the **onWindowStageCreate()** callback. You can set UI loading and WindowStage event subscription in the callback.
 
-**Figure 2** WindowStageCreate and WindowStageDestory 
-<img src="figures/Ability-Life-Cycle-WindowStage.png" alt="Ability-Life-Cycle-WindowStage" style="zoom:50%;" />
+**Figure 2** WindowStageCreate and WindowStageDestory
+
+![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png) 
 
 In the **onWindowStageCreate()** callback, use **loadContent()** to set the page to be loaded, and subscribe to [WindowStage events](../reference/apis/js-apis-window.md#windowstageeventtype9), for example, having or losing focus, or becoming visible or invisible.
 
