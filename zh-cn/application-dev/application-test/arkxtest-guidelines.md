@@ -58,7 +58,7 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 ## 新建测试脚本
 
 1. 在DevEco Studio中新建应用开发工程，其中ohos目录即为测试脚本所在的目录。
-2. 在工程目录下打开待测试模块下的ets文件，将光标置于代码中任意位置，单击**右键 > Show Context Actions** **> Create Ohos Test**或快捷键**Alt+enter** **> Create Ohos Test**创建测试类，更多指导请参考DevEco Studio中[指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-openharmony-test-framework-0000001267284568)。
+2. 在工程目录下打开待测试模块下的ets文件，将光标置于代码中任意位置，单击**右键 > Show Context Actions** **> Create Ohos Test**或快捷键**Alt+enter** **> Create Ohos Test**创建测试类，更多指导请参考DevEco Studio中[指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-openharmony-test-framework-0000001263160453)。
 
 ## 编写单元测试脚本
 
@@ -197,7 +197,8 @@ export default function abilityTest() {
 | breakOnError | 遇错即停模式，当执行用例断言失败或者发生错误时，退出测试执行流程 | true/false(默认值)                                           | -s breakOnError true                      |
 | testType     | 指定要执行用例的用例类型                                      | function，performance，power，reliability， security，global，compatibility，user，standard，safety，resilience' | -s testType function                      |
 | level        | 指定要执行用例的用例级别                                      | 0,1,2,3,4                                                    | -s level 0                                |
-| size         | 指定要执行用例的用例规模                                    | small，medium，large                                         | -s size small                             |
+| size         | 指定要执行用例的用例规模                                    | small，medium，large                                         | -s size small        
+| stress       | 指定要执行用例的执行次数                                    |  正整数                                         | -s stress 1000                            |
 
 **通过在cmd窗口直接执行命令。**
 
@@ -264,6 +265,12 @@ export default function abilityTest() {
 
 ```shell  
   hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s size small
+```
+
+**示例代码11**：执行测试用例指定次数。
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s stress 1000
 ```
 
 **查看测试结果**
@@ -412,11 +419,11 @@ UI测试用例执行失败，查看hilog日志发现日志中有“uitest-api do
 
 2.避免多进程执行UI测试用例。
 
-**3、失败日志有“dose not exist on current UI! Check if the UI has changed after you got the widget object”错误信息**
+**3、失败日志有“does not exist on current UI! Check if the UI has changed after you got the widget object”错误信息**
 
 **问题描述**
 
-UI测试用例执行失败，查看hilog日志发现日志中有“dose not exist on current UI! Check if the UI has changed after you got the widget object”错误信息。
+UI测试用例执行失败，查看hilog日志发现日志中有“does not exist on current UI! Check if the UI has changed after you got the widget object”错误信息。
 
 **可能原因**
 
