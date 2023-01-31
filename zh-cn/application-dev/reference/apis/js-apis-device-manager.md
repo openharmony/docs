@@ -719,7 +719,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
           'appName': 'xxx',
           'appDescription': 'xxx',
           'business': '0'
-        }
+  }
   let authParam = {
       'authType': 1,// 认证类型： 1 - 无帐号PIN码认证
       'extraInfo': extraInfo
