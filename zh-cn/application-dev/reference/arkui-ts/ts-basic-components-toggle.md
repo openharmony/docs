@@ -30,9 +30,9 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 ## ToggleType枚举说明
 | 名称       | 描述                 |
 | -------- | ---------------- |
-| Checkbox | 提供单选框样式。<br>>&nbsp;**说明：**<br/>>&nbsp;[通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 14 vp,<br>&nbsp;right: 6 vp,<br>&nbsp;bottom: 14 vp,<br>&nbsp;left: 6 vp<br> } |
+| Checkbox | 提供单选框样式。<br>&nbsp;**说明：**<br/>&nbsp;[通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 14 vp,<br>&nbsp;right: 6 vp,<br>&nbsp;bottom: 14 vp,<br>&nbsp;left: 6 vp<br> } |
 | Button   | 提供状态按钮样式，如果子组件有文本设置，则相应的文本内容会显示在按钮内部。       |
-| Switch   | 提供开关样式。<br>>&nbsp;**说明：**<br/>>&nbsp;[通用属性padding](ts-universal-attributes-size.md)默认值为：<br>{<br/>&nbsp;top: 12 vp,<br/>&nbsp;right: 12 vp,<br/>&nbsp;bottom: 12 vp,<br/>&nbsp;left: 12 vp<br/> } |
+| Switch   | 提供开关样式。<br>&nbsp;**说明：**<br/>&nbsp;[通用属性padding](ts-universal-attributes-size.md)默认值为：<br>{<br/>&nbsp;top: 12 vp,<br/>&nbsp;right: 12 vp,<br/>&nbsp;bottom: 12 vp,<br/>&nbsp;left: 12 vp<br/> } |
 
 
 ## 属性
