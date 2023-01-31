@@ -52,7 +52,7 @@ You can create a subwindow, such as a dialog box, and set its properties.
    
       let windowClass = null;
       // Method 1: Create a subwindow.
-      let config = {name: "subWindow", windowType: window.WindowType.TYPE_APP, ctx: this.context};
+      let config = {name: "subWindow", windowType: window.WindowType.TYPE_APP};
       window.createWindow(config, (err, data) => {
           if (err.code) {
               console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));

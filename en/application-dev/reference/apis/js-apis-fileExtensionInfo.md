@@ -1,4 +1,4 @@
-# @ohos.fileExtensionInfo
+# @ohos.file.fileExtensionInfo (User File Extension Information)
 
 The **fileExtensionInfo** module defines attributes in **RootInfo** and **FileInfo** of the user file access and management module.
 
