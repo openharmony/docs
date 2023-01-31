@@ -54,7 +54,3 @@ FA模型的应用包的工程目录结构，请参考[OpenHarmony工程介绍](h
 - [分布式新闻客户端（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/NewsDemo)
 - [分布式手写板（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDatabaseDrawEts)
 - [分布式鉴权（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/GameAuthOpenH)
-- [分布式游戏手柄（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/HandleGameApplication)
-- [分布式邮件（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/OHMailETS)
-- [分布式亲子早教系统（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/OpenHarmonyPictureGame)
-- [分布式遥控器（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/RemoteControllerETS)
