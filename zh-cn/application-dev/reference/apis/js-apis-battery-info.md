@@ -84,7 +84,6 @@ import batteryInfo from '@ohos.batteryInfo';
 
 | 名称           | 值 | 说明                       |
 | -------------- | ------ | ---------------------------- |
-| LEVEL_NONE     | 0      | 表示电池电量等级未知。       |
 | LEVEL_FULL     | 1      | 表示电池电量等级为满电量。   |
 | LEVEL_HIGH     | 2      | 表示电池电量等级为高电量。   |
 | LEVEL_NORMAL   | 3      | 表示电池电量等级为正常电量。 |
