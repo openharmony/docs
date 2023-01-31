@@ -30,9 +30,9 @@ getStorageDataDir():Promise&lt;string&gt;
 **示例：**
 
   ```js
-  environment.getStorageDataDir().then(function (path) {
+  environment.getStorageDataDir().then((path) => {
       console.info("getStorageDataDir successfully, Path: " + path);
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -54,7 +54,7 @@ getStorageDataDir(callback:AsyncCallback&lt;string&gt;):void
 **示例：**
 
   ```js
-  environment.getStorageDataDir(function (error, path) {
+  environment.getStorageDataDir((err, path) => {
     if (err) {
       console.info("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -80,9 +80,9 @@ getUserDataDir():Promise&lt;string&gt;
 **示例：**
 
   ```js
-  environment.getUserDataDir().then(function (path) {
+  environment.getUserDataDir().then((path) => {
     console.info("getUserDataDir successfully, Path: " + path);
-  }).catch(function (err) {
+  }).catch((err) => {
     console.info("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -104,7 +104,7 @@ getUserDataDir(callback:AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-  environment.getUserDataDir(function (err, path) {
+  environment.getUserDataDir((err, path) => {
     if (err) {
       console.info("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
