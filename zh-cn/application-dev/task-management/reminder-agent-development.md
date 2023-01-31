@@ -175,3 +175,9 @@
        console.log("cancelReminder code: " + error.code + ", message: " + error.message);
    };
    ```
+
+## 相关实例
+
+基于后台代理提醒的开发，有以下相关实例可供参考：
+
+- [闹钟（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/CommonEventAndNotification/AlarmClock)

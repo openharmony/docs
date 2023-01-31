@@ -231,3 +231,7 @@ struct WebComponent {
 针对Web开发，有以下相关实例可供参考：
 
 - [`Web`：Web（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Web)
+
+- [Web组件的使用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/WebCookie)
+
+- [Web组件抽奖案例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/WebComponent)
