@@ -209,6 +209,7 @@ To implement data synchronization between the UIAbility and ExtensionAbility com
 ### Precautions for Using globalThis
 
   **Figure 2** Precautions for globalThis
+
 ![globalThis2](figures/globalThis2.png)
 
 - In the stage model, all the UIAbility components in a process share one ArkTS engine instance. When using **globalThis**, do not store objects with the same name. For example, if AbilityA and AbilityB use **globalThis** to store two objects with the same name, the object stored earlier will be overwritten.
