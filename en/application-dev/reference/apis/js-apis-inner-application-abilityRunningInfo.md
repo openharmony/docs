@@ -28,7 +28,8 @@ The ability running information is obtained by calling [getAbilityRunningInfos](
 **Example**
 
 ```ts
-import abilitymanager from '@ohos.application.abilityManager';
+import abilitymanager from '@ohos.app.ability.abilityManager';
+
 abilitymanager.getAbilityRunningInfos((err,data) => { 
     console.log("getAbilityRunningInfos err: "  + err + " data: " + JSON.stringify(data));
     for (let i = 0; i < data.length; i++) {

@@ -156,7 +156,7 @@ Called when an ability is continued on another device.
 **Example**
 
 ```ts
-import AbilityStage from "@ohos.application.AbilityStage";
+import AbilityStage from "@ohos.app.ability.AbilityStage";
 
 var lifecycleId;
 

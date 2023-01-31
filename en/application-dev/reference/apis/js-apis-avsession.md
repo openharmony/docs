@@ -1001,7 +1001,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 // WantAgentInfo object
 let wantAgentInfo = {
@@ -1066,7 +1066,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 // WantAgentInfo object
 let wantAgentInfo = {
@@ -2222,7 +2222,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 controller.getLaunchAbility().then((agent) => {
     console.info(`GetLaunchAbility : SUCCESS : wantAgent : ${agent}`);
@@ -2257,7 +2257,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 controller.getLaunchAbility(function (err, agent) {
     if (err) {
