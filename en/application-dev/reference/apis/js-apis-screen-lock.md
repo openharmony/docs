@@ -226,7 +226,7 @@ screenlock.lock().then((data) => {
 
 onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
-Registers a callback for system events related to screen locking.
+Registers a callback for system events related to screen locking. This API can be called only by system screen lock applications.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
