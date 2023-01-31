@@ -75,7 +75,7 @@ struct TextTimerExample {
 
   build() {
     Column() {
-      TextTimer({ controller: this.textTimerController, isCountDown: true, count: 30000 })
+      TextTimer({ isCountDown: true, count: 30000, controller: this.textTimerController })
         .format(this.format)
         .fontColor(Color.Black)
         .fontSize(50)

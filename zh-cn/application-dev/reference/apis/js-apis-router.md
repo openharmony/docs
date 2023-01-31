@@ -100,13 +100,13 @@ router.pushUrl({
       data3: [123, 456, 789]
     }
   }
-})
-  .then(() => {
-    // success
-  })
-  .catch(err => {
+}, (err) => {
+  if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+    return;
+  }
+  console.info('pushUrl success');
+})
 ```
 ## router.pushUrl<sup>9+</sup>
 
@@ -573,7 +573,7 @@ router.getParams();
 
 | 名称     | 说明                                                         |
 | -------- | ------------------------------------------------------------ |
-| Standard | 标准模式。 <br/>目标页面会被添加到页面路由栈顶，无论栈中是否存在相同url的页面。 |
+| Standard | 标准模式。 <br/>目标页面会被添加到页面路由栈顶，无论栈中是否存在相同url的页面。<br/>**说明：**不使用路由跳转模式时，按标准模式跳转。 |
 | Single   | 单实例模式。<br/>如果目标页面的url在页面栈中已经存在同url页面，离栈顶最近的页面会被移动到栈顶，移动后的页面为新建页。<br/>如目标页面的url在页面栈中不存在同url页面，按标准模式跳转。 |
 
 ## 完整示例
