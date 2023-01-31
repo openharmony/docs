@@ -1,6 +1,6 @@
-# @ohos.inputmethodengine
+# @ohos.inputMethodEngine (Input Method Service)
 
-The **inputMethodEngine** module streamlines the interaction between input methods and applications. By calling APIs of this module, applications can be bound to input method services to accept text input through the input methods, request the keyboard to display or hide, listen for the input method status, and much more.
+The **inputMethodEngine** module streamlines the interactions between input methods and applications. By calling APIs of this module, applications can be bound to input method services to accept text input, request the keyboard to display or hide, listen for the input method status, and much more.
 
 > **NOTE**
 >
@@ -9,7 +9,7 @@ The **inputMethodEngine** module streamlines the interaction between input metho
 ## Modules to Import
 
 ```
-import inputMethodEngine from '@ohos.inputmethodengine';
+import inputMethodEngine from '@ohos.inputMethodEngine';
 ```
 
 ## Constants
@@ -203,7 +203,7 @@ Enables listening for a keyboard event. This API uses an asynchronous callback t
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event. |
+| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
 | callback | () => void   | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -418,7 +418,7 @@ Disables listening for a keyboard event. This API uses an asynchronous callback 
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type.<br>The value **'keyboardShow'** indicates the keyboard display event.<br>The value **'keyboardHide'** indicates the keyboard hiding event.|
+| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
 | callback | () => void   | No  | Callback used to return the result.    |
 
 **Example**
