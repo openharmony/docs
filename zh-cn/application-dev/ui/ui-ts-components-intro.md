@@ -15,6 +15,10 @@
 
 ## 相关实例
 
+- [`ComponentCollection`：组件集合（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/ComponentCollection)
+
+- [`OrangeShopping`：购物示例应用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/OrangeShopping)
+
 - [`Canvas`：画布组件（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Canvas)
 
 - [`Clock`：简单时钟（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/Clock)
@@ -25,6 +29,6 @@
 
 - [`QRCode`：二维码（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/QRCode)
 
-- [基础组件Slider的使用（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderApplicationEts)
-
 - [`Gallery`：组件集合（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Gallery)
+
+- [基础组件Slider的使用（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderApplicationEts)
