@@ -60,8 +60,9 @@ The system matches the [action](../reference/apis/js-apis-ability-wantConstant.m
 
 - If **action** in the passed **want** parameter is specified, and **actions** under **skills** of an ability is specified but does not contain **action** in the passed **want** parameter, the matching fails.
 
-  **Figure 1** Matching rules of action in the want parameter 
-  <img src="figures/want-action.png" alt="want-action" style="zoom:80%;" />
+  **Figure 1** Matching rules of action in the want parameter
+
+  ![want-action](figures/want-action.png) 
 
 
 ### Matching Rules of entities in the want Parameter
@@ -78,8 +79,9 @@ The system matches the [entities](../reference/apis/js-apis-ability-wantConstant
 
 - If **entities** in the passed **want** parameter is specified, and **entities** under **skills** of an ability is specified but does not contain **entities** in the passed **want** parameter, the matching fails.
 
-  Figure 2 Matching rule of entities in the want parameter 
-<img src="figures/want-entities.png" alt="want-entities" style="zoom:80%;" />
+  Figure 2 Matching rule of entities in the want parameter
+
+  ![want-entities](figures/want-entities.png) 
 
 
 ### Matching Rules of uri and type in the want Parameter
@@ -87,7 +89,8 @@ The system matches the [entities](../reference/apis/js-apis-ability-wantConstant
 When the **uri** and **type** parameters are specified in the **want** parameter to initiate a component startup request, the system traverses the list of installed components and matches the **uris** array under **skills** of the abilities one by one. If one of the **uris** arrays under **skills** matches the **uri** and **type** in the passed **want**, the matching is successful.
 
 Figure 3 Matching rules when uri and type are specified in the want parameter 
-<img src="figures/want-uri-type1.png" alt="want-uri-type1" style="zoom: 80%;" />
+
+![want-uri-type1](figures/want-uri-type1.png)
 
 There are four combinations of **uri** and **type** settings. The matching rules are as follows:
 
@@ -113,7 +116,8 @@ To simplify the description, **uri** and **type** passed in the **want** paramet
 
 
 Figure 4 Matching rules of uri and type in the want parameter
-<img src="figures/want-uri-type2.png" alt="want-uri-type2" style="zoom:80%;" />
+
+![want-uri-type2](figures/want-uri-type2.png)
 
 
 ### Matching Rules of uri
