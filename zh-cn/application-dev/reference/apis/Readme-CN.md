@@ -110,7 +110,7 @@
       - [MissionSnapshot](js-apis-inner-application-missionSnapshot.md)
       - [ProcessData](js-apis-inner-application-processData.md)
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
-      - [ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)
+      - [ProcessInformation](js-apis-inner-application-processInformation.md)
       - [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)

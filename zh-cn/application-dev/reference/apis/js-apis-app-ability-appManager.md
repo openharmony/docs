@@ -224,9 +224,9 @@ appManager.getAppMemorySize((err, data) => {
 })
 ```
 
-## appManager.getProcessRunningInformation
+## appManager.getRunningProcessInformation
 
-getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
+getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
 获取有关运行进程的信息。
 
@@ -234,13 +234,11 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -255,16 +253,16 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 
-appManager.getProcessRunningInformation().then((data) => {
-    console.log("The process running information is:" + JSON.stringify(data));
+appManager.getRunningProcessInformation().then((data) => {
+    console.log("The running process information is:" + JSON.stringify(data));
 }).catch((error) => {
     console.log("error:" + JSON.stringify(error));
 });
 ```
 
-## appManager.getProcessRunningInformation<sup>9+</sup>
+## appManager.getRunningProcessInformation<sup>9+</sup>
 
-getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInformation>>): void;
+getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
 获取有关运行进程的信息。
 
@@ -272,13 +270,11 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-|AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+|AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -293,9 +289,9 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 
-appManager.getProcessRunningInformation((err, data) => {
+appManager.getRunningProcessInformation((err, data) => {
     if (err && err.code !== 0) {
-        console.log("getProcessRunningInformation fail, err: " + JSON.stringify(err));
+        console.log("getRunningProcessInformation fail, err: " + JSON.stringify(err));
     } else {
         console.log("The process running information is:" + JSON.stringify(data));
     }
