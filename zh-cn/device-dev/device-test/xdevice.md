@@ -490,7 +490,7 @@ run指令基本使用方法如下。
 
    2. 配置输出->编辑输出表文件。
 
-      ![NFS-1](igures/NFS-1.PNG)
+      ![NFS-1](figures/NFS-1.PNG)
 
    3. 添加路径NFS共享路径（如：D:\HS\NFS_Share_File -public –alldirs），这里要注意ftp的IP地址192.168.1.10为开发板的IP。
 
