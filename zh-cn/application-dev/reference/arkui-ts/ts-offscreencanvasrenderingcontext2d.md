@@ -407,7 +407,7 @@ struct GlobalAlpha {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          this.offContext.fillStyle = 'rgb(255,0,0)'
+          this.offContext.fillStyle = 'rgb(0,0,255)'
           this.offContext.fillRect(0, 0, 50, 50)
           this.offContext.globalAlpha = 0.4
           this.offContext.fillStyle = 'rgb(0,0,255)'
