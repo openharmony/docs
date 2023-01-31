@@ -1,6 +1,6 @@
 # web子系统ChangeLog
 
-OpenHarmony 4.0.3.1 版本相较于OpenHarmony 之前的版本，web的API变更如下。
+OpenHarmony 4.0.3.2 版本相较于OpenHarmony 之前的版本，web的API变更如下。
 
 ## cl.web.1 HitTestTypeV9命名变更
 
@@ -8,7 +8,7 @@ OpenHarmony 4.0.3.1 版本相较于OpenHarmony 之前的版本，web的API变更
 
 **变更影响**
 
-枚举类HitTestTypeV9，以及使用HitTestTypeV9作为参数或返回值的接口，在4.0.3.1版本及后续版本中无法继续正常使用。
+枚举类HitTestTypeV9，以及使用HitTestTypeV9作为参数或返回值的接口，在4.0.3.2版本及后续版本中无法继续正常使用。
 
 **关键的接口/组件变更**
 
@@ -38,7 +38,7 @@ OpenHarmony 4.0.3.1 版本相较于OpenHarmony 之前的版本，web的API变更
 
 **变更影响**
 
-结构体HeaderV9，以及使用HeaderV9作为参数或返回值的接口，在4.0.3.1版本及后续版本中无法继续正常使用。
+结构体HeaderV9，以及使用HeaderV9作为参数或返回值的接口，在4.0.3.2版本及后续版本中无法继续正常使用。
 
 **关键的接口/组件变更**
 
@@ -68,7 +68,7 @@ OpenHarmony 4.0.3.1 版本相较于OpenHarmony 之前的版本，web的API变更
 
 **变更影响**
 
-结构体HitTestValue，以及使用HitTestValue作为参数或返回值的接口，在4.0.3.1版本及后续版本中无法继续正常使用。
+结构体HitTestValue，以及使用HitTestValue作为参数或返回值的接口，在4.0.3.2版本及后续版本中无法继续正常使用。
 
 **关键的接口/组件变更**
 
@@ -128,7 +128,7 @@ loadUrl接口中的参数headers，由于其类型的命名规范问题，类型
 
 **变更影响**
 
-loadUrl接口若使用了headers参数，则在4.0.3.1版本及后续版本中无法继续正常使用。
+loadUrl接口若使用了headers参数，则在4.0.3.2版本及后续版本中无法继续正常使用。
 
 **关键的接口/组件变更**
 
@@ -158,7 +158,7 @@ getHitTest接口中的返回值,由于其类型的命名规范问题，变更为
 
 **变更影响**
 
-getHitTest接口，在4.0.3.1版本及后续版本中无法继续正常使用。
+getHitTest接口，在4.0.3.2版本及后续版本中无法继续正常使用。
 
 **关键的接口/组件变更**
 
