@@ -5,8 +5,9 @@
 
 [Want](../reference/apis/js-apis-app-ability-want.md) is used as the carrier to transfer information between application components. It is used as a parameter of **startAbility()** to specify the startup target and information that needs to be carried during startup, for example, **bundleName** and **abilityName**, which respectively indicate the bundle name of the target ability and the ability name in the bundle. For example, when UIAbilityA starts UIAbilityB and needs to transfer some data to UIAbilityB, it can use Want to transfer the data.
 
-**Figure 1** Want usage 
-<img src="figures/usage-of-want.png" alt="usage-of-want" style="zoom:80%;" />
+**Figure 1** Want usage
+
+![usage-of-want](figures/usage-of-want.png) 
 
 
 ## Types of Want
