@@ -19,7 +19,8 @@ Each time **startAbility()** is called, if a UIAbility instance of this type alr
 
 **Figure 1** Demonstration effect in singleton mode 
 
-<img src="figures/uiability-launch-type1.png" alt="uiability-launch-type1" style="zoom:50%;" />
+![uiability-launch-type1](figures/uiability-launch-type1.png)
+
 
 > **NOTE**
 >
@@ -49,7 +50,7 @@ In standard mode, each time **startAbility()** is called, a new UIAbility instan
 
 **Figure 2** Demonstration effect in standard mode 
 
-<img src="figures/standard-mode.png" alt="standard-mode" style="zoom:50%;" />
+![standard-mode](figures/standard-mode.png)
 
 To use the standard mode, set **launchType** in the [module.json5 configuration file](../quick-start/module-configuration-file.md) to **standard**.
 
@@ -75,8 +76,9 @@ The **specified** mode is used in some special scenarios. For example, in a docu
 
 Before a UIAbility instance is created, you can create a unique string key for the instance. The key is bound to the UIAbility instance when it is created. Each time **startAbility()** is called, the application is asked which UIAbility instance is used to respond to the **startAbility()** request. During running, the internal service of UIAbility determines whether to create multiple instances. If the key is matched, the UIAbility instance bound to the key is started. Otherwise, a new UIAbility instance is created. 
 
-**Figure 3** Demonstration effect in specified mode 
-<img src="figures/uiability-launch-type2.png" alt="uiability-launch-type2" style="zoom:50%;" />
+**Figure 3** Demonstration effect in specified mode
+
+![uiability-launch-type2](figures/uiability-launch-type2.png) 
 
 > **NOTE**
 >
