@@ -91,7 +91,8 @@ Before using EventHub, you must obtain an EventHub object, which is provided by 
 **globalThis** is a global object inside the [ArkTS engine instance](thread-model-stage.md) and can be used by UIAbility, ExtensionAbility, and Page inside the engine. Therefore, you can use **globalThis** for data synchronization.
 
   **Figure 1** Using globalThis for data synchronization
-<img src="figures/globalThis1.png" alt="globalThis1" style="zoom:67%;" />
+
+  ![globalThis1](figures/globalThis1.png)
 
 
 The following describes how to use **globalThis** in three scenarios. Precautions are provided as well.
