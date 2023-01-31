@@ -2,9 +2,9 @@
 
 ## When to Use
 
-The [Ability Privilege Level (APL)](accesstoken-overview.md#app-apls) of an application can be **normal**, **system_basic**, or **system_core**. The default APL is **normal**. The [permission types](accesstoken-overview.md#permission-types) include **system_grant** and **user_grant**. For details about the permissions for apps, see the [Application Permission List](permission-list.md).
+The [Ability Privilege Level (APL)](accesstoken-overview.md#app-apls) of an application can be **normal**, **system_basic**, or **system_core**. The default APL is **normal**. The [permission types](accesstoken-overview.md#permission-types) include **system_grant** and **user_grant**. For details about the permissions for applications, see the [Application Permission List](permission-list.md).
 
-This document describes the following operations:
+This document describes:
 
 - [Declaring Permissions in the Configuration File](#declaring-permissions-in-the-configuration-file)
 - [Declaring Permissions in the ACL](#declaring-permissions-in-the-acl)
@@ -119,23 +119,22 @@ For example, if an application needs to access audio files of a user and capture
 If an application needs to access user privacy information or use system abilities, for example, accessing location or calendar information or using the camera to take photos or record videos, it must request the permission from users. A permission verification is performed first to determine whether the current invoker has the corresponding permission. If the application has not obtained that permission, a dialog box will be displayed to request user authorization. The following figure shows an example.
 <img src="figures/permission-read_calendar.png" width="40%;" />
 
-> **NOTE**<br>Each time before an API protected by a permission is accessed, the [**requestPermissionsFromUser()**](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) API will be called to request user authorization. After a permission is dynamically granted, the user may revoke the permission. Therefore, the previously granted authorization status cannot be persistent.
+> **NOTE**<br>Each time before an API protected by a permission is accessed, [**requestPermissionsFromUser()**](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) will be called to request user authorization. After a permission is dynamically granted, the user may revoke the permission. Therefore, the previously granted authorization status cannot be persistent.
 
 ### Stage Model
 
-Example: Request the permission to read calendar information for an app.
+Example: Request the permission for an application to access calendar information.
 
 1. Apply for the **ohos.permission.READ_CALENDAR** permission. For details, see [Declaring Permissions in the Configuration File](#declaring-permissions-in-the-configuration-file).
 
-2. Call [**requestPermissionsFromUser()**](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) in the **onWindowStageCreate()** callback of the UIAbility to dynamically apply for the permission, or request user authorization on the UI based on service requirements. The return value of [requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) indicates whether the app has the target permission. If yes, the target API can be called normally.
+2. Call [**requestPermissionsFromUser()**](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) in the **onWindowStageCreate()** callback of the UIAbility to dynamically apply for the permission, or request user authorization on the UI based on service requirements. The return value of [requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) indicates whether the application has the target permission. If yes, the target API can be called normally.
    
    Request user authorization in UIAbility.
    
    ```typescript
    import UIAbility from '@ohos.app.ability.UIAbility';
    import window from '@ohos.window';
-   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-   import { Permissions } from '@ohos.abilityAccessCtrl';
+   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
    
    export default class EntryAbility extends UIAbility {
        // ...
@@ -143,10 +142,10 @@ Example: Request the permission to read calendar information for an app.
        onWindowStageCreate(windowStage: window.WindowStage) {
            // Main window is created, set main page for this ability
            let context = this.context;
-           let AtManager = abilityAccessCtrl.createAtManager();
+           let atManager = abilityAccessCtrl.createAtManager();
            // The return value of requestPermissionsFromUser determines whether to display a dialog box to request user authorization.
            const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
-           AtManager.requestPermissionsFromUser(context, permissions).then((data) => {
+           atManager.requestPermissionsFromUser(context, permissions).then((data) => {
                console.info(`[requestPermissions] data: ${JSON.stringify(data)}`);
                let grantStatus: Array<number> = data.authResults;
                if (grantStatus[0] === -1) {
@@ -165,8 +164,7 @@ Example: Request the permission to read calendar information for an app.
    
    Request user authorization on the UI.
    ```typescript
-   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-   import { Permissions } from '@ohos.abilityAccessCtrl';
+   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
    import common from '@ohos.app.ability.common';
    
    @Entry
@@ -174,10 +172,10 @@ Example: Request the permission to read calendar information for an app.
    struct Index {
      reqPermissions() {
        let context = getContext(this) as common.UIAbilityContext;
-       let AtManager = abilityAccessCtrl.createAtManager();
+       let atManager = abilityAccessCtrl.createAtManager();
        // The return value of requestPermissionsFromUser determines whether to display a dialog box to request user authorization.
        const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
-       AtManager.requestPermissionsFromUser(context, permissions).then((data) => {
+       atManager.requestPermissionsFromUser(context, permissions).then((data) => {
          console.info(`[requestPermissions] data: ${JSON.stringify(data)}`);
          let grantStatus: Array<number> = data.authResults;
          if (grantStatus[0] === -1) {
@@ -217,11 +215,11 @@ onWindowStageCreate() {
 }
 ```
 ## Pre-Authorizing user_grant Permissions
-By default, the **user_grant** permissions must be dynamically authorized by the user through a dialog box. However, for pre-installed apps, you can pre-authroize the permissions, for example, the **ohos.permission.MICROPHONE** permission, in the [**install_list_permission.json**](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json) file to prevent the user authorization dialog box from being displayed. The **install_list_permissions.json** file is in the **/system/etc/app/** directory on a device. When the device is started, the **install_list_permissions.json** file is loaded. When the application is installed, the **user_grant** permissions in the file are granted. The **install_list_permissions.json** file contains the following fields:
+By default, the **user_grant** permissions must be dynamically authorized by the user through a dialog box. However, for pre-installed applications, you can pre-authorize the permissions, for example, the **ohos.permission.MICROPHONE** permission for camera applications, in the [**install_list_permission.json**] file to prevent the user authorization dialog box from being displayed. The [**install_list_permissions.json** file](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json) is in the **/system/etc/app/** directory on a device. When the device is started, the **install_list_permissions.json** file is loaded. When the application is installed, the **user_grant** permissions in the file are granted. The **install_list_permissions.json** file contains the following fields:
 
 - **bundleName**: bundle name of the application.
-- `app_signature`: fingerprint information of the application. For details, see **Configuration in install_list_capability.json** in [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
-- **permissions**: **name** specifies the name of the **user_grant** permission to pre-authorize. **userCancellable** specifies whether the user can revoke the pre-authorization. The value **true** means the user can revoke the pre-authorization; the vaue **false** means the opposite.
+- **app_signature**: fingerprint information of the application. For details, see **Configuration in install_list_capability.json** in [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
+- **permissions**: **name** specifies the name of the **user_grant** permission to pre-authorize. **userCancellable** specifies whether the user can revoke the pre-authorization. The value **true** means the user can revoke the pre-authorization; the value **false** means the opposite.
 
 > **NOTE**<br>This file is available only for preinstalled applications.
 
