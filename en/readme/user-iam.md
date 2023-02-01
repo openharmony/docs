@@ -6,7 +6,7 @@ The user identity and access management (IAM) subsystem provides a unified frame
 
 **Figure 1** Subsystem architecture
 
-<img src="figures/User-IAM-subsystem-architecture.png" alt="User IAM subsystem architecture" style="zoom:80%;" />
+![User IAM subsystem architecture](figures/User-IAM-subsystem-architecture.png)
 
 The user IAM subsystem consists of the unified user authentication framework and authentication executor. The unified user authentication framework consists of the following parts:
 
