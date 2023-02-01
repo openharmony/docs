@@ -66,9 +66,9 @@ setSecurityLabel(path:string, type:dataLevel):Promise&lt;void&gt;
 **示例：**
 
   ```js
-  securityLabel.setSecurityLabel(path, "s0").then(function () {
+  securityLabel.setSecurityLabel(path, "s0").then(() => {
       console.info("setSecurityLabel successfully");
-  }).catch(function (err) {
+  }).catch((err) => {
       console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -92,7 +92,7 @@ setSecurityLabel(path:string, type:dataLevel, callback: AsyncCallback&lt;void&gt
 **示例：**
 
   ```js
-  securityLabel.setSecurityLabel(path, "s0", function (err) {
+  securityLabel.setSecurityLabel(path, "s0", (err) => {
     if (err) {
       console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -145,9 +145,9 @@ getSecurityLabel(path:string):Promise&lt;string&gt;
 **示例：**
 
   ```js
-  securityLabel.getSecurityLabel(path).then(function (type) {
+  securityLabel.getSecurityLabel(path).then((type) => {
       console.log("getSecurityLabel successfully, Label: " + type);
-  }).catch(function (err) {
+  }).catch((err) => {
       console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -170,7 +170,7 @@ getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-  securityLabel.getSecurityLabel(path, function (err, type) {
+  securityLabel.getSecurityLabel(path, (err, type) => {
     if (err) {
       console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
