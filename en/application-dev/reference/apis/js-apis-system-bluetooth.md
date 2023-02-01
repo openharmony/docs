@@ -1,4 +1,4 @@
-# Bluetooth
+# @system.bluetooth (Bluetooth)
 
 
 > **NOTE**<br/>

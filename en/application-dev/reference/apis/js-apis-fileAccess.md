@@ -1,4 +1,4 @@
-# @ohos.data.fileAccess
+# @ohos.file.fileAccess (User File Access and Management)
 
 The **fileAccess** module is a framework for accessing and operating user files based on the Extension ability mechanism. This module interacts with diverse file management services, such as the media library and external storage management service, and provides a set of file access and management APIs for system applications. The media library service allows access to user files on local devices and distributed devices. The external storage management service allows access to the user files stored on devices such as shared disks, USB flash drives, and SD cards.
 
