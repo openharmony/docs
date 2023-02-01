@@ -1,4 +1,4 @@
-# @ohos.inputmethodextensionability (InputMethodExtensionAbility)
+# @ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)
 
 The **InputMethodExtensionAbility** module provides APIs for developing input methods and managing their lifecycles.
 
@@ -9,7 +9,7 @@ The **InputMethodExtensionAbility** module provides APIs for developing input me
 ## Modules to Import
 
 ```js
-import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 ```
 
 ## Attributes
