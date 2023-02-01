@@ -160,8 +160,15 @@ function getWantAgentCallback(err, data) {
     if (err.code == 0) {
     	wantAgent = data;
     } else {
-        console.info('----getWantAgent failed!----');
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
     }
+
+    //getBundleName回调
+    function getBundleNameCallback(err, data) {
+        console.info('==========================>getBundleNameCallback=======================>');
+    }
+    WantAgent.getBundleName(wantAgent, getBundleNameCallback);
 }
 //WantAgentInfo对象
 let wantAgentInfo = {
@@ -192,12 +199,6 @@ let wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//getBundleName回调
-function getBundleNameCallback(err, data) {
-	console.info('==========================>getBundleNameCallback=======================>');
-}
-WantAgent.getBundleName(wantAgent, getBundleNameCallback);
 ```
 
 
@@ -261,10 +262,11 @@ let wantAgentInfo = {
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
-});
-
-WantAgent.getBundleName(wantAgent).then((data) => {
-	console.info('==========================>getBundleNameCallback=======================>');
+    if (wantAgent) {
+        WantAgent.getBundleName(wantAgent).then((data) => {
+            console.info('==========================>getBundleNameCallback=======================>');
+        });
+    }
 });
 ```
 
@@ -300,8 +302,15 @@ function getWantAgentCallback(err, data) {
     if (err.code == 0) {
     	wantAgent = data;
     } else {
-        console.info('----getWantAgent failed!----');
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
     }
+
+    //getUid回调
+    function getUidCallback(err, data) {
+        console.info('==========================>getUidCallback=======================>');
+    }
+    WantAgent.getUid(wantAgent, getUidCallback);
 }
 //WantAgentInfo对象
 let wantAgentInfo = {
@@ -332,12 +341,6 @@ let wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//getUid回调
-function getUidCallback(err, data) {
-	console.info('==========================>getUidCallback=======================>');
-}
-WantAgent.getUid(wantAgent, getUidCallback);
 ```
 
 
@@ -402,10 +405,11 @@ let wantAgentInfo = {
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
-});
-
-WantAgent.getUid(wantAgent).then((data) => {
-	console.info('==========================>getUidCallback=======================>');
+    if (wantAgent) {
+        WantAgent.getUid(wantAgent).then((data) => {
+        console.info('==========================>getUidCallback=======================>');
+    });
+    }
 });
 ```
 
@@ -440,8 +444,15 @@ function getWantAgentCallback(err, data) {
     if (err.code == 0) {
     	wantAgent = data;
     } else {
-        console.info('----getWantAgent failed!----');
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
     }
+
+    //cancel回调
+    function cancelCallback(err, data) {
+        console.info('==========================>cancelCallback=======================>');
+    }
+    WantAgent.cancel(wantAgent, cancelCallback);
 }
 //WantAgentInfo对象
 let wantAgentInfo = {
@@ -472,12 +483,6 @@ let wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//cancel回调
-function cancelCallback(err, data) {
-	console.info('==========================>cancelCallback=======================>');
-}
-WantAgent.cancel(wantAgent, cancelCallback);
 ```
 
 
@@ -542,10 +547,11 @@ let wantAgentInfo = {
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
-});
-
-WantAgent.cancel(wantAgent).then((data) => {
-	console.info('==========================>cancelCallback=======================>');
+    if (wantAgent) {        
+        WantAgent.cancel(wantAgent).then((data) => {
+            console.info('==========================>cancelCallback=======================>');
+        });
+    }
 });
 ```
 
@@ -582,8 +588,19 @@ function getWantAgentCallback(err, data) {
     if (err.code == 0) {
     	wantAgent = data;
     } else {
-        console.info('----getWantAgent failed!----');
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
     }
+
+    //trigger回调
+    function triggerCallback(data) {
+        console.info('==========================>triggerCallback=======================>');
+    }
+
+    var triggerInfo = {
+        code:0
+    }
+    WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
 }
 //WantAgentInfo对象
 let wantAgentInfo = {
@@ -614,16 +631,6 @@ let wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//trigger回调
-function triggerCallback(data) {
-	console.info('==========================>triggerCallback=======================>');
-}
-
-var triggerInfo = {
-    code:0
-}
-WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
 ```
 
 
@@ -661,8 +668,15 @@ function getWantAgentCallback(err, data) {
     	wantAgent1 = data;
         wantAgent2 = data;
     } else {
-        console.info('----getWantAgent failed!----');
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
     }
+
+    //equal回调
+    function equalCallback(err, data) {
+        console.info('==========================>equalCallback=======================>');
+    }
+    WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
 }
 //WantAgentInfo对象
 let wantAgentInfo = {
@@ -693,12 +707,6 @@ let wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//equal回调
-function equalCallback(err, data) {
-	console.info('==========================>equalCallback=======================>');
-}
-WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
 ```
 
 
@@ -766,6 +774,11 @@ WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent1 = data;
     wantAgent2 = data;
+    if (data) {
+        WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
+            console.info('==========================>equalCallback=======================>');
+        });
+    }
 });
 
 WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
@@ -827,11 +840,12 @@ let wantAgentInfo = {
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
+    if (data) {
+        WantAgent.getOperationType(wantAgent, (OperationType) => {
+            console.log('----------- getOperationType ----------, OperationType: ' + OperationType);
+        })
+    }
 });
-
-WantAgent.getOperationType(wantAgent, (OperationType) => {
-    console.log('----------- getOperationType ----------, OperationType: ' + OperationType);
-})
 ```
 
 ## WantAgent.getOperationType<sup>9+</sup>
@@ -901,7 +915,6 @@ WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 });
 ```
 
-
 ## WantAgentFlags
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
@@ -940,5 +953,5 @@ WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 | info           | WantAgent                       | 是   | 触发的wantAgent。       |
 | want           | Want                            | 是   | 存在的被触发的want。     |
 | finalCode      | number                          | 是   | 触发wantAgent的请求代码。|
-| finalData      | string                          | 否   | 公共事件收集的最终数据。  |
+| finalData      | string                          | 是   | 公共事件收集的最终数据。  |
 | extraInfo      | {[key: string]: any}            | 否   | 额外数据。               |
