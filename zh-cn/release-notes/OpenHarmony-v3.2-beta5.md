@@ -198,9 +198,9 @@ ArkUI适配了根据资源名称获取资源的能力。
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 |
 | -------- | -------- | -------- | -------- |
-| I6ATXO | 【RK3568】XTS执行测试，OpenGL测试套执行结果存在失败项 | 用例用于测试OpenGL接口，系统其他模块变更后用例未适配，但使用OpenGL接口的模块/应用不受影响，风险可控。 | 2023年2月5号 |
-| I6B1IC | 【RK3568】【低概率1/10】【XTS】进程/vendor/bin/ispserver下的ispserver线程导致librkaiq.z.so出现cppcrash | 压测情况下，低概率出现ipserver线程cppcrash，出现crash后能自动重新启动ipserver线程，业务不受影响。 | 2023年2月5号 |
-| I6BJ9Z<br/>I6BJ82 | alloc_file_pseudo 内存泄漏问题跟踪 | accept4引用计数不平衡导致内存泄漏，selinux_netlbl_sock_genattr、new_inode_pseudo、inet_create 内存泄漏，上游社区无补丁，跟随上游社区补丁合入。 | 2023年3月30号 |
-| I641A2<br/>I64726 | 蓝牙模块存在静默配对问题，其他设备可以静默配对后通过蓝牙键盘、鼠标完全控制设备 | 蓝牙模块存在静默配对问题。在后续版本以需求跟踪解决。 | 2023年3月30号 |
-| I6BRTS | 调用rdb::executeSql接口会引起内存泄漏风险 | 反复初始化调用rdb::executeSql接口出现少量内存泄露，此接口为应用初始化时调用，但不会多次调用，内存泄露影响可控。 | 2023年2月10号 |
-| I6AZ4T | 带textinput输入框组件的应用存在内存泄漏风险 | 高频反复调用textinput框出现少量内存泄露，根因为调用三方库flutter库，内存未回收。需排查是否为开源flutter组件问题。 | 2023年3月30号 |
+| I6ATXO | 【RK3568】XTS执行测试，OpenGL测试套执行结果存在失败项 | 用例用于测试OpenGL接口，系统其他模块变更后用例未适配，但使用OpenGL接口的模块/应用不受影响，风险可控。 | 2023年2月5日 |
+| I6B1IC | 【RK3568】【低概率1/10】【XTS】进程/vendor/bin/ispserver下的ispserver线程导致librkaiq.z.so出现cppcrash | 压测情况下，低概率出现ipserver线程cppcrash，出现crash后能自动重新启动ipserver线程，业务不受影响。 | 2023年2月5日 |
+| I6BJ9Z<br/>I6BJ82 | alloc_file_pseudo 内存泄漏问题跟踪 | accept4引用计数不平衡导致内存泄漏，selinux_netlbl_sock_genattr、new_inode_pseudo、inet_create 内存泄漏，上游社区无补丁，跟随上游社区补丁合入。 | 2023年3月30日 |
+| I641A2<br/>I64726 | 蓝牙模块存在静默配对问题，其他设备可以静默配对后通过蓝牙键盘、鼠标完全控制设备 | 蓝牙模块存在静默配对问题。在后续版本以需求跟踪解决。 | 2023年3月30日 |
+| I6BRTS | 调用rdb::executeSql接口会引起内存泄漏风险 | 反复初始化调用rdb::executeSql接口出现少量内存泄露，此接口为应用初始化时调用，但不会多次调用，内存泄露影响可控。 | 2023年2月10日 |
+| I6AZ4T | 带textinput输入框组件的应用存在内存泄漏风险 | 高频反复调用textinput框出现少量内存泄露，根因为调用三方库flutter库，内存未回收。需排查是否为开源flutter组件问题。 | 2023年3月30日 |
