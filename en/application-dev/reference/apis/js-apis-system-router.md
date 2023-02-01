@@ -127,7 +127,7 @@ Returns to the previous page or a specified page.
 
 | Name    | Type                                     | Mandatory  | Description                     |
 | ------- | --------------------------------------- | ---- | ----------------------- |
-| options | [BackRouterOptions](#backrouteroptions) | Yes   | For details, see **BackRouterOptions**.|
+| options | [BackRouterOptions](#backrouteroptions) | No   | For details, see **BackRouterOptions**.|
 
 **Example**
 
@@ -188,7 +188,7 @@ export default {
 >
 > In the example, the **uri** field indicates the page route, which is specified by the **pages** list in the **config.json** file.
 
-## router.getParams
+## router.getParams<sup>7+</sup>
 
 getParams(): ParamsInterface
 
@@ -397,6 +397,6 @@ Defines the **DisableAlertBeforeBackPage** parameters.
 
 ## ParamsInterface
 
-| Name           | Type  | Description     |
-| ------------- | ------ | ------- |
-| [key: string] | Object | List of routing parameters.|
+| Name         | Type| Description          |
+| ------------- | -------- | -------------- |
+| [key: string] | object   | List of routing parameters.|
