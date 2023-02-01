@@ -135,7 +135,7 @@
                 - [Magic Key](kernel-small-debug-shell-magickey.md)
                 - [User-Space Exception Information](kernel-small-debug-shell-error.md)
             - [Trace](kernel-small-debug-trace.md)
-            - [Perf](kernel-mini-memory-perf.md)
+            - [Perf](kernel-small-debug-perf.md)
             - [LMS](kernel-small-memory-lms.md)
             - [Process Debugging](kernel-small-debug-process-cpu.md)
             - Kernel-Mode Memory Debugging
