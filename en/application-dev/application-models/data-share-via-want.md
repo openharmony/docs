@@ -56,18 +56,18 @@ Users often need to share data (such as a text or an image) from one application
               }
           }
       }
-    ```
+      ```
   
-    In the preceding code, the custom field **parameters** is used. The **ability.picker.\*** fields in the first-layer **parameters** are used to pass the information to be displayed on the application selector. The following fields are involved:
+      In the preceding code, the custom field **parameters** is used. The **ability.picker.\*** fields in the first-layer **parameters** are used to pass the information to be displayed on the application selector. The following fields are involved:
   
       - **"ability.picker.type"**: The application selector renders the file type icon based on this field.
       - **"ability.picker.fileNames"**: The application selector displays the file name based on this field.
       - **"ability.picker.fileSizes"**: The application selector displays the file size based on this field. The unit is byte.
-    - **"ability.picker.fileNames"** and **"ability.picker.fileSizes"** are arrays and have a one-to-one mapping.
+      - **"ability.picker.fileNames"** and **"ability.picker.fileSizes"** are arrays and have a one-to-one mapping.
   
       For example, when **"ability.picker.type"** is **"application/pdf"**, **"ability.picker.fileNames"** is **"["APIs.pdf"]"**, and **"ability.picker.fileSizes"** is **"[350 \* 1024]"**, the application selector is displayed as follows:
       
-      <img src="figures/stage-want2.png" alt="stage-want2" style="zoom:50%;" />
+      ![stage-want2](figures/stage-want2.png)     
       
       In the preceding code, the **ability.want.params.INTENT** field is nested Want. In this field, **action** and **type** are used for implicit matching by the application selector. For details about implicit matching, see [Implicit Want Matching Rules](explicit-implicit-want-mappings.md#interpretation-of-implicit-want-matching-rules). After the user selects an application, the nested Want of the **ability.want.params.INTENT** field is passed to that application.
   
