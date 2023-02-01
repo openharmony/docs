@@ -202,39 +202,77 @@
 
     ```js
    import data_rdb from '@ohos.data.relationalStore'
-    // 获取context
    import featureAbility from '@ohos.ability.featureAbility'
+   
+   // 获取context
    let context = featureAbility.getContext()
    
-   const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
+   const STORE_CONFIG = { 
+       name: "RdbTest.db",
+       securityLevel: data_rdb.SecurityLevel.S1
+   }
    
-   const STORE_CONFIG = { name: "RdbTest.db",
-                         securityLevel: data_rdb.SecurityLevel.S1}
+   // 假设当前数据库版本为3
    data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
-      rdbStore.executeSql(CREATE_TABLE_TEST)
-      console.info('create table done.')
+        // 当数据库创建时，数据库默认版本为0
+        if (rdbStore.version == 0) {
+            rdbStore.executeSql("CREATE TABLE IF NOT EXISTS student (id INTEGER PRIMARY KEY AUTOINCREMENT, score REAL);", null)
+            // 设置数据库的版本，入参为大于0的整数
+            rdbStore.version = 3
+        }
+        
+        // 当数据库存在并假定版本为1时，例应用从某一版本升级到当前版本，数据库需要从1版本升级到2版本
+        if (rdbStore.version != 3 && rdbStore.version == 1) {
+            // version = 1：表结构：student (id, age) => version = 2：表结构：student (id, age, score)
+            rdbStore.executeSql("ALTER TABLE student ADD COLUMN score REAL", null)
+            rdbStore.version = 2
+        }
+        
+        // 当数据库存在并假定版本为2时，例应用从某一版本升级到当前版本，数据库需要从2版本升级到3版本
+        if (rdbStore.version != 3 && rdbStore.version == 2) {
+            // version = 2：表结构：student (id, age, score) => version = 3：表结构：student (id, score)
+            rdbStore.executeSql("ALTER TABLE student DROP COLUMN age INTEGER", null)
+            rdbStore.version = 3
+        }
    })
     ```
     Stage模型示例：
      ```ts
    import data_rdb from '@ohos.data.relationalStore'
-    // 获取context
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   let context = null
+   import UIAbility from '@ohos.app.ability.UIAbility'
+   
    class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
-         context = this.context
+           const STORE_CONFIG = { 
+               name: "rdbstore.db",
+               securityLevel: data_rdb.SecurityLevel.S1
+           }
+   
+           // 假设当前数据库版本为3
+           data_rdb.getRdbStore(this.context, STORE_CONFIG, function (err, rdbStore) {
+               // 当数据库创建时，数据库默认版本为0
+               if (rdbStore.version == 0) {
+                   rdbStore.executeSql("CREATE TABLE IF NOT EXISTS student (id INTEGER PRIMARY KEY AUTOINCREMENT, score REAL);", null)
+                   // 设置数据库的版本，入参为大于0的整数
+                   rdbStore.version = 3
+               }
+    
+               // 当数据库存在并假定版本为1时，例应用从某一版本升级到当前版本，数据库需要从1版本升级到2版本
+               if (rdbStore.version != 3 && rdbStore.version == 1) {
+                   // version = 1：表结构：student (id, age) => version = 2：表结构：student (id, age, score)
+                   rdbStore.executeSql("ALTER TABLE student ADD COLUMN score REAL", null)
+                   rdbStore.version = 2
+               }
+    
+               // 当数据库存在并假定版本为2时，例应用从某一版本升级到当前版本，数据库需要从2版本升级到3版本
+               if (rdbStore.version != 3 && rdbStore.version == 2) {
+                   // version = 2：表结构：student (id, age, score) => version = 3：表结构：student (id, score)
+                   rdbStore.executeSql("ALTER TABLE student DROP COLUMN age INTEGER", null)
+                   rdbStore.version = 3
+               }
+           })
        }
    }
-   
-   const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
-   
-   const STORE_CONFIG = { name: "rdbstore.db",
-                          securityLevel: data_rdb.SecurityLevel.S1}
-   data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
-       rdbStore.executeSql(CREATE_TABLE_TEST)
-       console.info('create table done.')
-   })
      ```
 
 2. 插入数据。
@@ -384,14 +422,13 @@
     
 8. 远程查询。
    
-   
    (1) 构造用于查询分布式表的谓词对象，指定组网内的远程分布式表名和设备。
    
    (2) 调用结果集接口，返回查询结果。
    
    示例代码如下：
-   
-    ```js
+
+   ```js
     let rdbPredicate = new data_rdb.RdbPredicates('employee')
     predicates.greaterThan("id", 0) 
     let promiseQuery = rdbStore.remoteQuery('12345678abcde', 'employee', rdbPredicate)
@@ -406,34 +443,35 @@
     }).catch((err) => {
         console.info("failed to remoteQuery, err: " + err)
     })
-    ```
-   
+   ```
+
 9. 数据库的备份和恢复。
 
    (1) 调用数据库的备份接口，备份当前数据库文件。
 
-    示例代码如下：
+   示例代码如下：
 
-    ```js
+   ```js
     let promiseBackup = rdbStore.backup("dbBackup.db")
     promiseBackup.then(() => {
-        console.info('Backup success.')
+       console.info('Backup success.')
     }).catch((err) => {
-        console.info('Backup failed, err: ' + err)
+       console.info('Backup failed, err: ' + err)
     })
-    ```
-   (2) 调用数据库的恢复接口，从数据库的备份文件恢复数据库文件。
+   ```
    
-    示例代码如下：
+   (2) 调用数据库的恢复接口，从数据库的备份文件恢复数据库文件。
 
-    ```js
+   示例代码如下：
+
+   ```js
     let promiseRestore = rdbStore.restore("dbBackup.db")
     promiseRestore.then(() => {
-        console.info('Restore success.')
+       console.info('Restore success.')
     }).catch((err) => {
-        console.info('Restore failed, err: ' + err)
+       console.info('Restore failed, err: ' + err)
     })
-    ```
+   ```
 
 ## 相关实例
 针对关系型数据库开发，有以下相关实例可供参考：
