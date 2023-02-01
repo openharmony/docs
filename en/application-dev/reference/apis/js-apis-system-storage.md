@@ -1,23 +1,22 @@
 # @system.storage (Data Storage)
 
->  **NOTE**<br/>
+>  **NOTE**
 >
-> - The APIs of this module are no longer maintained since API Version 6, and you are advised to use [`@ohos.data.storage`](js-apis-data-storage.md). From API Version 9, you are advised to use [`@ohos.data.preferences`](js-apis-data-preferences.md).
+>  - The APIs of this module are no longer maintained since API version 6, and you are advised to use [`@ohos.data.storage`](js-apis-data-storage.md). From API version 9, you are advised to use [`@ohos.data.preferences`](js-apis-data-preferences.md).
 >
-> - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module can be used only in the FA model.
+>  - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>  
+>  - The APIs of this module can be used only in the FA model.
 
 ## Modules to Import
-
 
 ```js
 import storage from '@system.storage';
 ```
 
-
 ## storage.get
 
-get(Object): void
+get(options: GetStorageOptions): void
 
 Reads the value stored in the cache based on the specified key.
 
@@ -25,13 +24,9 @@ Reads the value stored in the cache based on the specified key.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| key | string | Yes| Key of the data to read.|
-| default | string | No| Default value returned when the **key** does not exist.|
-| success | Function | No| Called to return the value obtained when **storage.get()** is successful.|
-| fail | Function | No| Called when **storage.get()** fails. In the callback, **data** indicates the error information, and **code** indicates the error code.|
-| complete | Function | No| Called when **storage.get()** is complete.|
+| Name | Type                   | Mandatory| Description      |
+| ------- | -------------------- | ---- | ---------- |
+| options | [GetStorageOptions](#getstorageoptions) | Yes  | API configuration.|
 
 **Example**
 
@@ -54,10 +49,9 @@ export default {
 }
 ```
 
-
 ## storage.set
 
-set(Object): void
+get(options: SetStorageOptions): void
 
 Sets the value in the cache based on the specified key.
 
@@ -65,13 +59,9 @@ Sets the value in the cache based on the specified key.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| key | string | Yes| Key of the data to set.|
-| value | string | Yes| New value to set. The length must be less than 128 bytes.|
-| success | Function | No| Called when **storage.set()** is successful.|
-| fail | Function | No| Called when **storage.set()** fails. In the callback, **data** indicates the error information, and **code** indicates the error code.|
-| complete | Function | No| Called when **storage.set()** is complete.|
+| Name | Type                  | Mandatory| Description      |
+| ------- | ------------------- | ---- | ---------- |
+| options | [SetStorageOptions](#setstorageoptions) | Yes  | API configuration.|
 
 **Example**
 
@@ -92,10 +82,9 @@ export default {
 }
 ```
 
-
 ## storage.clear
 
-clear(Object): void
+clear(options?: ClearStorageOptions): void
 
 Clears the key-value pairs from the cache.
 
@@ -103,11 +92,9 @@ Clears the key-value pairs from the cache.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| success | Function | No| Called when **storage.clear()** is successful.|
-| fail | Function | No| Called when **storage.clear()** fails. In the callback, **data** indicates the error information, and **code** indicates the error code.|
-| complete | Function | No| Called when **storage.clear()** is complete.|
+| Name | Type                                       | Mandatory| Description          |
+| ------- | ------------------------------------------- | ---- | -------------- |
+| options | [ClearStorageOptions](#clearstorageoptions) | No  | API configuration.|
 
 **Example**
 
@@ -126,10 +113,9 @@ export default {
 }
 ```
 
-
 ## storage.delete
 
-delete(Object): void
+delete(options: DeleteStorageOptions): void
 
 Deletes the key-value pair based on the specified key.
 
@@ -137,12 +123,9 @@ Deletes the key-value pair based on the specified key.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| key | string | Yes| Key of the data to delete.|
-| success | Function | No| Called when **storage.delete()** is successful.|
-| fail | Function | No| Called when **storage.delete()** fails. In the callback, **data** indicates the error information, and **code** indicates the error code.|
-| complete | Function | No| Called when **storage.delete()** is complete.|
+| Name | Type                                         | Mandatory| Description          |
+| ------- | --------------------------------------------- | ---- | -------------- |
+| options | [DeleteStorageOptions](#deletestorageoptions) | Yes  | API configuration.|
 
 **Example**
 
@@ -161,3 +144,52 @@ export default {
   }
 }
 ```
+
+## GetStorageOptions
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+| Name    | Type         | Mandatory| Description                    |
+| -------- | ---------------- | ---- | ------------------- |
+| key      | string                               | Yes  | Key of the target data.                                     |
+| default  | string                               | No  | Default value returned when the specified key does not exist.                |
+| success  | (data: any) => void                  | No  | Called to return the result when **storage.get()** is called successfully. **data** is the value indexed by the specified key. |
+| fail     | (data: string, code: number) => void | No  | Called to return the result when **storage.get()** fails to be called. **data** is the error information, and **code** indicates the error code. |
+| complete | () => void                           | No  | Called when **storage.get()** is complete.     |
+
+
+## SetStorageOptions
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+| Name    | Type               | Mandatory| Description                  |
+| -------- | ------------------- | ---- | -------------------- |
+| key      | string                               | Yes  | Key of the data to set.                                |
+| value    | string                               | Yes  | New value to set. The length must be less than 128 bytes.                             |
+| success  | () => void                           | No  | Called when **storage.set()** is called successfully.                     |
+| fail     | (data: string, code: number) => void | No  | Called to return the result when **storage.get()** fails to be called. **data** is the error information, and **code** indicates the error code. |
+| complete | () => void                           | No  | Called when **storage.get()** is complete.                              |
+
+
+## ClearStorageOptions
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+| Name    | Type            | Mandatory| Description                        |
+| -------- | --------------------- | ---- | -------------------- |
+| success  | () => void                           | No  | Called when **storage.clear()** is called successfully.                |
+| fail     | (data: string, code: number) => void | No  | Called to return the result when **storage.clear()** fails to be called. **data** is the error information, and **code** indicates the error code. |
+| complete | () => void                           | No  | Called when **storage.clear()** is complete.                         |
+
+
+## DeleteStorageOptions
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+| Name    | Type                | Mandatory| Description                 |
+| -------- | -------------------- | ---- | ------------------ |
+| key      | string                               | Yes  | Key of the data to delete.                                            |
+| success  | () => void                           | No  | Called when **storage.delete()** is called successfully.               |
+| fail     | (data: string, code: number) => void | No  | Called to return the result when **storage.delete()** fails to be called. **data** is the error information, and **code** indicates the error code. |
+| complete | () => void                           | No  | Called when **storage.delete()** is complete.                        |
+
