@@ -112,7 +112,7 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<AbilityRunningInfo>>  | 是    | 被指定的回调方法。      |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | 是    | 被指定的回调方法。      |
 
 **示例**：
 
@@ -138,7 +138,7 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<AbilityRunningInfo>> | 返回执行结果。 |
+| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | 返回执行结果。 |
 
 **示例**：
 
@@ -167,7 +167,7 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | upperLimit | number                                   | 是 | 获取消息数量的最大限制。 |
-| callback  | AsyncCallback\<Array\<AbilityRunningInfo>>  | 是    | 被指定的回调方法。      |
+| callback  | AsyncCallback\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>>  | 是    | 被指定的回调方法。      |
 
 **示例**：
 
@@ -201,7 +201,7 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<AbilityRunningInfo>> | 返回执行结果。 |
+| Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>> | 返回执行结果。 |
 
 **示例**：
 
@@ -229,7 +229,7 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<ElementName>  | 是    | 被指定的回调方法。      |
+| callback  | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)>  | 是    | 被指定的回调方法。      |
 
 **示例**：
 
@@ -253,7 +253,7 @@ getTopAbility(): Promise\<ElementName>;
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<ElementName>| 返回执行结果。 |
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)>| 返回执行结果。 |
 
 **示例**：
 

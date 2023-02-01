@@ -23,8 +23,8 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | [LaunchReason](#abilityconstantlaunchreason)| 是 | 是 | 枚举类型，表示启动原因。 |
-| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | 是 | 是 | 枚举类型，表示最后退出原因。 |
+| launchReason | [LaunchReason](#abilityconstantlaunchreason)| 是 | 是 | 指示启动原因。 |
+| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | 是 | 是 | 表示最后退出原因。 |
 
 ## AbilityConstant.LaunchReason
 

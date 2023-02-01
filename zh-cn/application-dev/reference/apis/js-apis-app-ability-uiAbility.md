@@ -42,7 +42,7 @@ Ability创建时回调，执行初始化业务逻辑操作。
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | want | [Want](js-apis-app-ability-want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 | 
-  | param | AbilityConstant.LaunchParam | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 | 
+  | param | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 |
 
 **示例：**
 
@@ -67,7 +67,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | windowStage | window.WindowStage | 是 | WindowStage相关信息。 | 
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
 
 **示例：**
     
@@ -111,7 +111,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | windowStage | window.WindowStage | 是 | WindowStage相关信息。 | 
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
 
 **示例：**
     
@@ -199,13 +199,13 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | AbilityConstant.OnContinueResult | 继续的结果。 | 
+  | [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult) | 继续的结果。 |
 
 **示例：**
     
   ```ts
-  import AbilityConstant from "@ohos.application.AbilityConstant"
-  class myAbility extends Ability {
+  import AbilityConstant from "@ohos.app.ability.AbilityConstant"
+  class MyUIAbility extends UIAbility {
       onContinue(wantParams) {
           console.log('onContinue');
           wantParams["myData"] = "my1234567";
@@ -219,7 +219,7 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
 
 onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
-当ability的启动模式设置为单例时回调会被调用。
+当传入新的Want，ability再次被拉起时会回调执行该方法。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -227,17 +227,18 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-want.md) | 是 | Want类型参数，如ability名称，包名等。 | 
-  | launchParams | AbilityConstant.LaunchParam | 是 | Ability启动的原因、上次异常退出的原因信息。 |
+  | want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，如ability名称，包名等。 |
+  | launchParams | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | UIAbility启动的原因、上次异常退出的原因信息。 |
 
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
-      onNewWant(want) {
+   class MyUIAbility extends UIAbility {
+      onNewWant(want, launchParams) {
           console.log('onNewWant, want:' + want.abilityName);
-      }
-  }
+          console.log('onNewWant, launchParams:' + JSON.stringify(launchParams));
+       }
+   }
   ```
 
 ## Ability.onDump
@@ -290,9 +291,9 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any})
 **示例：**
 
   ```ts
-import AbilityConstant from '@ohos.application.AbilityConstant'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant'
 
-class myAbility extends Ability {
+class MyUIAbility extends UIAbility {
     onSaveState(reason, wantParam) {
         console.log('onSaveState');
         wantParam["myData"] = "my1234567";
@@ -320,7 +321,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | method | string | 是 | 约定的服务端注册事件字符串。 | 
-  | data | rpc.Sequenceable | 是 | 由开发者实现的Sequenceable可序列化数据。 | 
+  | data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
 
 **返回值：**
 
@@ -401,13 +402,13 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | method | string | 是 | 约定的服务端注册事件字符串。 | 
-  | data | rpc.Sequenceable | 是 | 由开发者实现的Sequenceable可序列化数据。 | 
+  | data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
 
 **返回值：**
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;rpc.MessageParcel&gt; | Promise形式返回通用组件服务端应答数据。 | 
+  | Promise&lt;[rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)&gt; | Promise形式返回通用组件服务端应答数据。 | 
 
 **错误码：**
 
@@ -527,7 +528,7 @@ release(): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | OnReleaseCallBack | 是 | 返回onRelease回调结果。 | 
+  | callback | [OnReleaseCallBack](#onreleasecallback) | 是 | 返回onRelease回调结果。 | 
 
 **示例：**
     
@@ -571,7 +572,7 @@ release(): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 监听releaseCall事件，固定为'release'。 | 
-  | callback | OnReleaseCallback | 是 | 返回onRelease回调结果。 | 
+  | callback | [OnReleaseCallBack](#onreleasecallback) | 是 | 返回onRelease回调结果。 | 
 
 **错误码：**
 
@@ -627,7 +628,7 @@ on(method: string, callback: CalleeCallback): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | method | string | 是 | 与客户端约定的通知消息字符串。 | 
-  | callback | CalleeCallback | 是 | 一个rpc.MessageParcel类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的rpc.Sequenceable数据对象,&nbsp;其他视为函数执行错误。 | 
+  | callback | [CalleeCallback](#calleecallback) | 是 | 一个[rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的[rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated)数据对象,&nbsp;其他视为函数执行错误。 | 
 
 **错误码：**
 
@@ -739,4 +740,4 @@ off(method: string): void;
 
 | 名称 | 可读 | 可写 | 类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: rpc.MessageParcel) | 是 | 否 | rpc.Sequenceable | 被调用方注册的消息侦听器函数接口的原型。 | 
+| (indata: [rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)) | 是 | 否 | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 被调用方注册的消息侦听器函数接口的原型。 | 
