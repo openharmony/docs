@@ -60,13 +60,7 @@ The **module.json5** of a browser application is as follows:
            } catch (error) {
                console.info(`explicit start ability failed with ${error.code}`)
            }
-           let context = getContext(this) as common.UIAbilityContext;
-           await context.startAbility(want)
-           console.info(`explicit start ability succeed`)
-       } catch (error) {
-           console.info(`explicit start ability failed with ${error.code}`)
-       }
-   }
+        }
    ```
 
      The matching process is as follows:
