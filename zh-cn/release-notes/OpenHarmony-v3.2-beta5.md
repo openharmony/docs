@@ -46,8 +46,8 @@ ArkUI适配了根据资源名称获取资源的能力。
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2 Beta5 | NA |
 | Public SDK | Ohos_sdk_public 3.2.10.6 (API Version 9 Beta5) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 |
-| HUAWEI DevEco Studio（可选） | 3.1 Beta1 | OpenHarmony应用开发推荐使用。 |
-| HUAWEI DevEco Device Tool（可选） | 3.1 Beta1 | OpenHarmony智能设备集成开发环境推荐使用。 |
+| HUAWEI DevEco Studio（可选） | *待发布* | OpenHarmony应用开发推荐使用。 |
+| HUAWEI DevEco Device Tool（可选） | *待发布* | OpenHarmony智能设备集成开发环境推荐使用。 |
 
 
 ## 源码获取
@@ -167,15 +167,14 @@ ArkUI适配了根据资源名称获取资源的能力。
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| web | [JS注入与执行](https://gitee.com/openharmony/applications_app_samples/tree/master/Web/RunJsInWeb) | 本示例基于H5游戏，通过arkui的button实现对游戏实现基本控制，展示webview的JS注入与执行能力，及native应用与H5的通信能力。 | ArkTs |
+| web | [JS注入与执行](https://gitee.com/openharmony/applications_app_samples/tree/master/Web/RunJsInWeb) | 本示例基于H5游戏，通过ArkUI的button实现对游戏实现基本控制，展示webview的JS注入与执行能力，及native应用与H5的通信能力。 | ArkTs |
 | 媒体子系统 | [二维码扫描](https://gitee.com/openharmony/applications_app_samples/tree/master/media/QRCodeScan) | 本示例展示二维码扫描，从文件中选择二维码图片进行解析和读取，识别二维码信息。 | ArkTs |
 | ArkUI | [一多设置典型页面](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Settings) | 本示例展示了设置应用的典型页面，其在小窗口和大窗口有不同的显示效果，体现一次开发、多端部署的能力。 | ArkTs |
 | 文件管理 | [文件管理](https://gitee.com/openharmony/applications_app_samples/tree/master/FileManager/FileManager) | 本示例主要展示了文件管理相关的功能，使用[mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)、[userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userfilemanager.md)、[fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)等接口，实现了媒体库文件、应用沙箱内文件的添加和访问等功能。 | ArkTs |
 | 媒体子系统 | [录屏](https://gitee.com/openharmony/applications_app_samples/tree/master/media/ScreenRecorder) | 该示例展示设备屏幕（含音频）录制功能。屏幕录制的主要工作是通过创建一个虚拟屏，捕获屏幕显示图形帧，完成视频编码并保存到文件中，帮助OEM设备厂家系统应用实现屏幕录制功能，也可以通过此应用抓取屏幕帧用于问题复现录制。 | ArkTs |
 | 窗口子系统 | [屏幕探测](https://gitee.com/openharmony/applications_app_samples/tree/master/device/ScreenDetector) | 本示例实时监测连接的屏幕数量状态，支持创建至多5个虚拟屏幕，点击对应的屏幕矩形能显示该屏幕的相关属性。 | ArkTs |
 | 元能力 | [Stage模型卡片小游戏](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormGame) | 本示例展示了如何通过Stage模型实现一个简单的游戏卡片。 | ArkTs |
-|  |  |  |  |
-|  |  |  |  |
+
 
 请访问[Samples](https://gitee.com/openharmony/app_samples)仓了解更多信息。
 
@@ -186,7 +185,7 @@ ArkUI适配了根据资源名称获取资源的能力。
 
 | ISSUE单 | 问题描述 |
 | -------- | -------- |
-| I5KMQX | 【rk3568】【ToC】【概率：必现】联系人-拨号子Tab切换完成时延标准值：440ms，实际值：1770.8ms，超基线1330ms |
+| I5KMQX | 【RK3568】联系人到拨号子页签切换动作的完成时延要求未达标 |
 | I5UFS1 | 组件das u-boot扫描发现新增漏洞CVE-2022-2347 |
 | I5UDY5 | linux kernel漏洞:CVE-2022-41218 |
 | I5YPMZ | linux kernel漏洞:CVE-2022-3344 |
@@ -198,7 +197,7 @@ ArkUI适配了根据资源名称获取资源的能力。
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 |
 | -------- | -------- | -------- | -------- |
-| I6ATXO | 【rk3568】【必现-5/5】1018分支XTS执行测试，opengl测试套执行结果存在fail | 用例用于测试opengl接口，原因是系统其他模块变更后用例未适配，但使用opengl接口的模块/应用不受影响，风险可控 | 2023年2月5号 |
-| I6B1IC | 【RK3568】【压力测试】【ToC】【低概率1/10】【xts】进程/vendor/bin/ispserver下的ispserver线程导致librkaiq.z.so出现cppcrash | 压测情况下，低概率出现ipserver线程cppcrash，出现crash后能自动重新启动ipserver线程，业务不受影响 | 2023年2月5号 |
-| I6BJ9Z、I6BJ82 | alloc_file_pseudo 内存泄漏问题跟踪 | accept4引用计数不平衡导致内存泄漏，selinux_netlbl_sock_genattr、new_inode_pseudo、inet_create 内存泄漏，上游社区无补丁，跟随上游社区补丁合入 | 2023年3月30号 |
-| I641A2、I64726 | 蓝牙模块存在静默配对问题，其他设备可以静默配对后通过蓝牙键盘、鼠标完全控制设备 | 蓝牙模块存在静默配对问题。以需求跟踪解决 | 2023年3月30号 |
+| I6ATXO | 【RK3568】XTS执行测试，OpenGL测试套执行结果存在失败项 | 用例用于测试OpenGL接口，系统其他模块变更后用例未适配，但使用OpenGL接口的模块/应用不受影响，风险可控。 | 2023年2月5号 |
+| I6B1IC | 【RK3568】【低概率1/10】【XTS】进程/vendor/bin/ispserver下的ispserver线程导致librkaiq.z.so出现cppcrash | 压测情况下，低概率出现ipserver线程cppcrash，出现crash后能自动重新启动ipserver线程，业务不受影响。 | 2023年2月5号 |
+| I6BJ9Z<br/>I6BJ82 | alloc_file_pseudo 内存泄漏问题跟踪 | accept4引用计数不平衡导致内存泄漏，selinux_netlbl_sock_genattr、new_inode_pseudo、inet_create 内存泄漏，上游社区无补丁，跟随上游社区补丁合入。 | 2023年3月30号 |
+| I641A2<br/>I64726 | 蓝牙模块存在静默配对问题，其他设备可以静默配对后通过蓝牙键盘、鼠标完全控制设备 | 蓝牙模块存在静默配对问题。在后续版本以需求跟踪解决。 | 2023年3月30号 |
