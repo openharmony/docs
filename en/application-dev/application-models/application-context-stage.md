@@ -6,10 +6,12 @@
 [Context](../reference/apis/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, for example, **resourceManager**, **applicationInfo**, **dir** (application development path), and **area** (encrypted area). It also provides basic methods such as **createBundleContext()** and **getApplicationContext()**. The UIAbility component and ExtensionAbility derived class components have their own **Context** classes, for example, the base class **Context**, **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, **ExtensionContext**, and **ServiceExtensionContext**.
 
 - The figure below illustrates the inheritance relationship of contexts.
-  <img src="figures/context-inheritance.png" alt="context-inheritance" style="zoom: 50%;" />
+
+  ![context-inheritance](figures/context-inheritance.png)
 
 - The figure below illustrates the holding relationship of contexts.
-  <img src="figures/context-holding.png" alt="context-holding" style="zoom:50%;" />
+
+  ![context-holding](figures/context-holding.png)
 
 - The following describes the information provided by different contexts.
   - [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md): Each UIAbility has the **Context** attribute, which provides APIs to operate the ability, obtain the ability configuration, and more.
@@ -89,7 +91,8 @@ The following table describes the application development paths obtained from co
 The capability of obtaining the application development path is provided by the base class **Context**. This capability is also provided by **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, and **ExtensionContext**. However, the paths obtained from different contexts may differ, as shown below.
 
 **Figure 1** Application development paths obtained from context
-<img src="figures/context-dir.png" alt="context-dir" style="zoom: 50%;" />
+
+![context-dir](figures/context-dir.png)
 
 - Obtain the application-level path through **ApplicationContext**. It is recommended that global application information be stored in this path. Files stored in this path will be deleted only when the application is uninstalled.
     | Name| Path|

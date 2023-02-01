@@ -36,7 +36,8 @@ OpenHarmony provides a set of APIs for you to implement continuation in your app
 The following figure shows the continuation architecture.
 
   **Figure 1** Continuation architecture 
-<img src="figures/hop-structure.png" alt="hop-structure" style="zoom:80%;" />
+
+  ![hop-structure](figures/hop-structure.png)
 
 - Cross-device migration task management: The initiator accepts a migration request from the user, provides a migration entry, and displays the migration result. (This capability is unavailable yet.)
 
