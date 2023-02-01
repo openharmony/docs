@@ -2,7 +2,8 @@
 
 The **request** module provides applications with basic upload, download, and background transmission agent capabilities.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -35,7 +36,6 @@ The **cleartextTraffic** attribute is not involved during application developmen
 
 The download server must support the HTTP HEAD method so that the size of the data to download can be obtained through **Content-length**. Otherwise, the download task fails. If this is the case, you can check the failure cause through [on('fail')<sup>7+</sup>](#onfail7).
 
-Only HTTP requests are supported. HTTPS requests are not supported.
 
 ## Constants
 
@@ -77,7 +77,7 @@ The table below lists the causes of download pause that may be returned by [getT
 | PAUSED_QUEUED_FOR_WIFI<sup>7+</sup> | number |   0   | Download paused and queuing for a WLAN connection, because the file size exceeds the maximum value allowed by a mobile network session.|
 | PAUSED_WAITING_FOR_NETWORK<sup>7+</sup> | number |   1   | Download paused due to a network connection problem, for example, network disconnection.|
 | PAUSED_WAITING_TO_RETRY<sup>7+</sup> | number |   2   | Download paused and then retried.|
-| PAUSED_BY_USER<sup>9+</sup> | number |   3   | The user paused the session. |
+| PAUSED_BY_USER<sup>9+</sup> | number |   3   | The user paused the session.|
 | PAUSED_UNKNOWN<sup>7+</sup> | number |   4   | Download paused due to unknown reasons.|
 
 ### Download Task Status Codes
@@ -128,7 +128,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://patch',
+    url: 'https://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -176,7 +176,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://patch',
+    url: 'https://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -228,7 +228,7 @@ Uploads files. This API uses a promise to return the result.
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://patch',
+    url: 'https://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -270,7 +270,7 @@ Uploads files. This API uses an asynchronous callback to return the result.
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://patch',
+    url: 'https://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -318,7 +318,7 @@ Uploads files. This API uses a promise to return the result.
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://patch',
+    url: 'https://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -359,7 +359,7 @@ Uploads files. This API uses an asynchronous callback to return the result.
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://patch',
+    url: 'https://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -376,7 +376,7 @@ Uploads files. This API uses an asynchronous callback to return the result.
 
 ## UploadTask
 
-Implements file uploads. Before using any APIs of this class, you must obtain an **UploadTask** object through [request.uploadFile<sup>9+</sup>](#requestuploadfile9) in promise mode or [request.uploadFile<sup>9+</sup>](#requestuploadfile9-1) in callback mode.
+Implements file uploads. Before using any APIs of this class, you must obtain an **UploadTask** object.
 
 ### on('progress')
 
@@ -399,8 +399,8 @@ Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| uploadedSize | number | Yes| Size of the uploaded files, in bytes. |
-| totalSize | number | Yes| Total size of the files to upload, in bytes. |
+| uploadedSize | number | Yes| Size of the uploaded files, in bits. |
+| totalSize | number | Yes| Total size of the files to upload, in bits. |
 
 **Example**
 
@@ -504,12 +504,12 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (upload progress).|
 | callback | function | No| Callback for the upload progress event.|
 
- Parameters of the callback function
+Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| uploadedSize | number | Yes| Size of the uploaded files, in bytes. |
-| totalSize | number | Yes| Total size of the files to upload, in bytes. |
+| uploadedSize | number | Yes| Size of the uploaded files, in bits. |
+| totalSize | number | Yes| Total size of the files to upload, in bits. |
 
 **Example**
 
@@ -764,7 +764,7 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 | -------- | -------- | -------- | -------- |
 | filename | string | Yes| File name in the header when **multipart** is used.|
 | name | string | Yes| Name of a form item when **multipart** is used. The default value is **file**.|
-| uri | string | Yes| Local path for storing files.<br>The **dataability** and **internal** protocol types are supported. However, the **internal** protocol type supports only temporary directories. Below are examples:<br>dataability:///com.domainname.dataability.persondata/person/10/file.txt<br><br>internal://cache/path/to/file.txt |
+| uri | string | Yes| Local path for storing files.<br>Only the **internal** protocol type is supported. In the value, **internal://cache/** is mandatory. Example:<br>internal://cache/path/to/file.txt |
 | type | string | Yes| Type of the file content. By default, the type is obtained based on the extension of the file name or URI.|
 
 
@@ -1027,7 +1027,7 @@ Downloads files. This API uses an asynchronous callback to return the result.
 
 ## DownloadTask
 
-Implements file downloads. Before using any APIs of this class, you must obtain a **DownloadTask** object through [request.downloadFile<sup>9+</sup>](#requestdownloadfile9) in promise mode or [request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1) in callback mode.
+Implements file downloads. Before using any APIs of this class, you must obtain a **DownloadTask** object.
 
 
 ### on('progress')
@@ -1047,12 +1047,12 @@ Subscribes to a download event. This API uses an asynchronous callback to return
 | type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (download progress).|
 | callback | function | Yes| Callback for the download progress event.|
 
-  Parameters of the callback function
+Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| receivedSize | number | Yes| Size of the downloaded files, in bytes. |
-| totalSize | number | Yes| Total size of the files to download, in bytes. |
+| receivedSize | number | Yes| Size of the downloaded files, in bits. |
+| totalSize | number | Yes| Total size of the files to download, in bits. |
 
 **Example**
 
@@ -1085,8 +1085,8 @@ Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| receivedSize | number | Yes| Size of the downloaded files, in bytes. |
-| totalSize | number | Yes| Total size of the files to download, in bytes. |
+| receivedSize | number | Yes| Size of the downloaded files, in bits. |
+| totalSize | number | Yes| Total size of the files to download, in bits. |
 
 **Example**
 
@@ -1252,7 +1252,7 @@ Removes this download task. This API uses a promise to return the result.
 
 delete(callback: AsyncCallback&lt;boolean&gt;): void
 
-Removes this download task. This API uses an asynchronous callback to return the result.
+Deletes this download task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1262,7 +1262,7 @@ Removes this download task. This API uses an asynchronous callback to return the
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task removal result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result. |
 
 **Example**
 
