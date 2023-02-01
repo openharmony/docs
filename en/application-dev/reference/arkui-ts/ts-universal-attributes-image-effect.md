@@ -73,4 +73,4 @@ struct ImageEffectsExample {
 }
 ```
 
-<img src="figures/image-effect.png" alt="image-effect"  />
+![image-effect](figures/image-effect.png)
