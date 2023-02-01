@@ -1,4 +1,4 @@
-# File Management
+# @ohos.fileio (File Management)
 
 The **fileio** module provides APIs for file storage and management, including basic file management, directory management, file information statistics, and stream read and write.
 
@@ -40,7 +40,7 @@ FA Model
       let pathDir = data;
  })
  ```
- 
+
  For details about how to obtain the context of the FA model, see [FA Model](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-Context.md#context).
 
 ## fileio.stat
