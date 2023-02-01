@@ -1214,7 +1214,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 在connectAbility中返回的number。 |
+| connection | number | 是 | 在connectServiceExtensionAbility中返回的number。 |
 | callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
@@ -1266,7 +1266,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 在connectAbility中返回的number。 |
+| connection | number | 是 | 在connectServiceExtensionAbility中返回的number。 |
 
 **返回值：**
 
@@ -1288,7 +1288,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  // connection为connectAbility中的返回值
+  // connection为connectServiceExtensionAbility中的返回值
   var connection = 1;
 
   try {

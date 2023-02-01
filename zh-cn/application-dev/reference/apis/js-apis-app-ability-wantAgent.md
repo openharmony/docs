@@ -1152,6 +1152,6 @@ try {
 | info           | WantAgent                       | 是   | 触发的wantAgent。       |
 | want           | Want                            | 是   | 存在的被触发的want。     |
 | finalCode      | number                          | 是   | 触发wantAgent的请求代码。|
-| finalData      | string                          | 否   | 公共事件收集的最终数据。  |
+| finalData      | string                          | 是   | 公共事件收集的最终数据。  |
 | extraInfo      | {[key: string]: any}            | 否   | 额外数据。               |
 
