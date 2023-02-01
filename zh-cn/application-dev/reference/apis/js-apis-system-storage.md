@@ -49,7 +49,7 @@ export default {
 
 ## storage.set
 
-get(options: SetStorageOptions): void
+set(options: SetStorageOptions): void
 
 修改缓存中索引对应的值。
 
