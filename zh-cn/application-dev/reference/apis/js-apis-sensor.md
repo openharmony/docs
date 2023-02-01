@@ -3178,7 +3178,7 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 try {
     let gravity = [-0.27775216, 0.5351276, 9.788099];
     let geomagnetic = [210.87253, -78.6096, -111.44444];
-    sensor.getRotationMatrix(gravity, geomagnetic, function (err, data) => {
+    sensor.getRotationMatrix(gravity, geomagnetic, function (err, data) {
         if (err) {
             console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
             return;
