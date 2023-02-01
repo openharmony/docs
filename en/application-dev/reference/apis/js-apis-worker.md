@@ -107,7 +107,7 @@ In the FA model:
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/entryability/workers/worker.ts"
+        "./src/main/ets/MainAbility/workers/worker.ts"
       ]
     }
   }
@@ -1192,7 +1192,7 @@ In the FA model:
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/entryability/workers/worker.ts"
+        "./src/main/ets/MainAbility/workers/worker.ts"
       ]
     }
   }
@@ -2114,7 +2114,7 @@ Configuration of the **build-profile.json5** file:
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/entryability/workers/worker.ts"
+        "./src/main/ets/MainAbility/workers/worker.ts"
       ]
     }
   }
