@@ -73,4 +73,5 @@ The **module.json5** of a browser application is as follows:
    4. If **type** in the passed **want** parameter is specified and is included in **type** under **skills**, the matching is successful.
 
 2. When there are multiple matching applications, a dialog box is displayed for you to select one of them. 
-<img src="figures/stage-want1.png" alt="stage-want1" style="zoom:80%;" />
+
+   ![stage-want1](figures/stage-want1.png)
