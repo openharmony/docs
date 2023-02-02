@@ -117,7 +117,8 @@
 ## 向用户申请授权
 
 应用需要获取用户的隐私信息或使用系统能力时，例如获取位置信息、访问日历、使用相机拍摄照片或者录制视频等，需要向用户申请授权。此时应用申请的权限包括了`user_grant`类型权限，需要先通过权限校验，判断当前调用者是否具备相应权限。当权限校验结果显示当前应用尚未被授权该权限时，再通过动态弹框授权方式给用户提供手动授权入口。示意效果如下图所示。
-<img src="figures/permission-read_calendar.jpeg" width="40%;" />
+
+![](figures/permission-read_calendar.jpeg)
 
 > **说明**：每次访问受目标权限保护的接口前，都需要调用[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口请求权限，用户在动态授予后可能通过设置取消应用的权限，因此不能把之前授予的授权状态持久化。
 
