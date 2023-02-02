@@ -3,7 +3,7 @@
 ## Overview
 
 ### Kconfig Visual Configuration
-Kconfig visual configuration is implemented on [Kconfiglib](https://github.com/ulfalizer/Kconfiglib) and [Kconfig](https://www.kernel.org/doc/html/latest/kbuild/kconfig-language.html#introduction). It allows customized configuration of OpenHarmony subsystem components.
+Kconfig visual configuration is implemented on [Kconfiglib](https://github.com/ulfalizer/Kconfiglib) and [Kconfig](https://www.kernel.org/doc/html/latest/kbuild/kconfig-language.html). It allows customized configuration of OpenHarmony subsystem components.
 
 Kconfig visual configuration has the following advantages:
 
