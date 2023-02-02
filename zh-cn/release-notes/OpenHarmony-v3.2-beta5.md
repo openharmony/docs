@@ -120,7 +120,7 @@ ArkUI适配了根据资源名称获取资源的能力。
 
 | 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
-| 全量代码（标准、轻量和小型系统）        | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/code-v3.2-Beta5.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/code-v3.2-Beta5.tar.gz.sha256) |   |
+| 全量代码（标准、轻量和小型系统）        | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/code-v3.2-Beta5.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/code-v3.2-Beta5.tar.gz.sha256) | 21.3 GB |
 | Hi3861解决方案（二进制）        | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/hispark_pegasus.tar.gz.sha256) | 22.9 MB |
 | Hi3516解决方案-LiteOS（二进制） | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_LiteOS.tar.gz.sha256) | 293.6 MB |
 | Hi3516解决方案-Linux（二进制）  | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_Linux.tar.gz.sha256) | 174.3 MiB |
