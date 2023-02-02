@@ -30,30 +30,24 @@ struct TextStyleExample {
   build() {
     Column({ space: 5 }) {
       Text('default text')
-      Divider()
       
       Text('text font color red').fontColor(Color.Red)
-      Divider()
       
       Text('text font default')
       Text('text font size 10').fontSize(10)
       Text('text font size 10fp').fontSize('10fp')
       Text('text font size 20').fontSize(20)
-      Divider()
       
       Text('text font style Italic').fontStyle(FontStyle.Italic)
-      Divider()
       
       Text('text fontWeight bold').fontWeight(700)
       Text('text fontWeight lighter').fontWeight(FontWeight.Lighter)
-      Divider()
       
       Text('red 20 Italic bold text')
         .fontColor(Color.Red)
         .fontSize(20)
         .fontStyle(FontStyle.Italic)
         .fontWeight(FontWeight.Bold)
-      Divider()
       
       Text('Orange 18 Normal text')
         .fontColor(Color.Orange)
@@ -64,4 +58,4 @@ struct TextStyleExample {
 }
 ```
 
-![textstyle](figures/textstyle.png)
+![textstyle](figures/textstyle.PNG)

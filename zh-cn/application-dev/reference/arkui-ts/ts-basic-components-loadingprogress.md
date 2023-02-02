@@ -41,4 +41,4 @@ struct LoadingProgressExample {
 }
 ```
 
-![zh-cn_image_000000111864201](figures/zh-cn_image_000000111864201.gif)
+![loadProgress](figures/loadProgress.jpeg)

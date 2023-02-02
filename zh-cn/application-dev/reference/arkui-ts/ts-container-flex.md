@@ -96,7 +96,7 @@ struct FlexExample1 {
 }
 ```
 
-![zh-cn_image_0000001219744189](figures/zh-cn_image_0000001219744189.gif)
+![zh-cn_image_0000001219744189](figures/zh-cn_image_0000001219744189.PNG)
 
 ```ts
 // xxx.ets
@@ -142,7 +142,7 @@ struct FlexExample2 {
 }
 ```
 
-![zh-cn_image_0000001174264366](figures/zh-cn_image_0000001174264366.png)
+![zh-cn_image_0000001174264366](figures/zh-cn_image_0000001174264366.PNG)
 
 ```ts
 // xxx.ets
@@ -191,7 +191,7 @@ struct FlexExample3 {
 }
 ```
 
-![zh-cn_image_0000001174582854](figures/zh-cn_image_0000001174582854.gif)
+![zh-cn_image_0000001174582854](figures/zh-cn_image_0000001174582854.PNG)
 
 ```ts
 // xxx.ets
@@ -289,4 +289,4 @@ struct FlexExample5 {
 }
 ```
 
-![zh-cn_image_0000001174422906](figures/zh-cn_image_0000001174422906.gif)
+![zh-cn_image_0000001174422906](figures/zh-cn_image_0000001174422906.PNG)
