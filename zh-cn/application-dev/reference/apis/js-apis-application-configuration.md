@@ -1,16 +1,10 @@
 # @ohos.application.Configuration (Configuration)
 
-定义环境变化信息。
+定义环境变化信息。Configuration是接口定义，仅做字段申明。
 
 > **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块从API version 9废弃，替换模块为[@ohos.app.ability.Configuration (Configuration)](js-apis-app-ability-configuration.md)
-
-## 导入模块
-
-```ts
-import Configuration from '@ohos.application.Configuration'
-```
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
