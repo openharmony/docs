@@ -30,3 +30,5 @@ In the multi-dimensional state management mechanism for ArkUI, UI-related data c
 - **@LocalStorageProp**: establishes one-way data binding between a component and the **LocalStorage**. Specifically, this is achieved by decorating the component's state variable with **@LocalStorageProp(*key*)**. Wherein, **key** is the attribute key value in the **LocalStorage**.
 - **PersistentStorage**: provides a set of static methods for managing persistent data of applications. Persistent data with specific tags can be linked to the **AppStorage**, and then the persistent data can be accessed through the **AppStorage** APIs. Alternatively, the **@StorageLink** decorator can be used to access the variable that matches the specific key.
 - **Environment**: provides the **AppStorage** with an array of environment state attributes that are required by the application and describe the device environment where the application runs. It is a singleton object created by the framework when the application is started.
+
+For details about how to use state variables, see [Restrictions on Data Type Declarations of State Variables](arkts-restrictions-and-extensions.md).
