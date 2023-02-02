@@ -1,6 +1,6 @@
 # @ohos.application.Configuration (Configuration)
 
-定义环境变化信息。Configuration是接口定义，仅做字段申明。
+定义环境变化信息。Configuration是接口定义，仅做字段声明。
 
 > **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
