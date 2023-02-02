@@ -120,7 +120,7 @@ getAppMemorySize(): Promise\<number>;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;number&gt; | 应用程序内存大小。 | 
+  | Promise&lt;number&gt; | 应用程序内存大小, 单位为M。 | 
 
 **示例：**
     
@@ -144,7 +144,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 应用程序内存大小。 | 
+  | callback | AsyncCallback&lt;number&gt; | 是 | 应用程序内存大小, 单位为M。 | 
 
 **示例：**
     
