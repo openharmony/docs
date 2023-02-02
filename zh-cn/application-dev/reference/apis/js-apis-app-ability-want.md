@@ -25,7 +25,7 @@ import Want from '@ohos.app.ability.Want';
 | type         | string               | 否   | 表示MIME type类型描述，打开文件的类型，主要用于文管打开文件。比如："text/xml" 、 "image/*"等，MIME定义参考：https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com。   |
 | flags        | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](js-apis-ability-wantConstant.md#wantConstant.Flags)。 |
 | action      | string               | 否   | 表示要执行的通用操作（如：查看、分享、应用详情）。在隐式Want中，您可以定义该字段，配合uri或parameters来表示对数据要执行的操作。                           |
-| parameters   | {[key: string]: any} | 否   | 表示WantParams描述，由开发者自行决定传入的键值对。默认会携带以下key值：<br>ohos.aafwk.callerPid 表示拉起方的pid。<br>ohos.aafwk.param.callerToken 表示拉起方的token。<br>ohos.aafwk.param.callerUid 表示[bundleInfo](js-apis-bundle-BundleInfo.md#bundleinfo-1)中的uid，应用包里应用程序的uid。                                       |
+| parameters   | {[key: string]: any} | 否   | 表示WantParams描述，由开发者自行决定传入的键值对。默认会携带以下key值：<br />- ohos.aafwk.callerPid：表示拉起方的pid。<br />- ohos.aafwk.param.callerToken：表示拉起方的token。<br />- ohos.aafwk.param.callerUid：表示[BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1)中的uid，应用包里应用程序的uid。<br />- component.startup.newRules：表示是否启用新的管控规则。<br />- moduleName：表示拉起方的模块名，该字段的值即使定义成其他字符串，在传递到另一端时会被修改为正确的值。<br />- ohos.dlp.params.sandbox：表示dlp文件才会有。           |                      |
 | entities    | Array\<string>       | 否   | 表示目标Ability额外的类别信息（如：浏览器、视频播放器），在隐式Want中是对action字段的补充。在隐式Want中，您可以定义该字段，来过滤匹配Ability类型。                                    |
 | moduleName | string | 否    | 表示待启动的Ability所属的模块（module）。 |
 
@@ -122,7 +122,7 @@ import Want from '@ohos.app.ability.Want';
                 "abilityName": "MainAbility",
                 "moduleName": "entry", // moduleName非必选
                 "parameters": {
-                    "keyFd":{"type":"FD", "value":fd}
+                    "keyFd":{"type":"FD", "value":fd} // {"type":"FD", "value":fd}是固定用法，用于表示该数据是FD
                 }
             };
             this.context.startAbility(want, (error) => {
