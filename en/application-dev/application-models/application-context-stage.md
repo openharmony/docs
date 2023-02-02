@@ -192,7 +192,7 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
           // ...
       }
   }
-```
+  ```
   
 - Call **createModuleContext(bundleName:string, moduleName:string)** to obtain the context of a specified module of another application. After obtaining the context, you can obtain the resource information of that module.
   > **NOTE**
