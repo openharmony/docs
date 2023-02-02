@@ -331,7 +331,7 @@ zh-cn/application-dev/reference/apis/js-apis-deviceUsageStatistics.md @shuaytao 
 zh-cn/application-dev/reference/apis/js-apis-display.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-distributed-account.md @nianCode @zengyawen @JiDong-CS @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-distributed-data.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-distributedMissionManager.md @wangwenli_wolf @ningningW @tangtiantian2021 @nan-xiansen
+zh-cn/application-dev/reference/apis/js-apis-distributedMissionManager.md @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-document.md @panqinxu @zengyawen @bubble_mao @jinhaihw
 zh-cn/application-dev/reference/apis/js-apis-effectKit.md @zhangqiang183  @ge-yafang @wind_zj @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-emitter.md @jayleehw @RayShih @li-weifeng2 @currydavids
@@ -476,8 +476,8 @@ zh-cn/application-dev/reference/apis/js-apis-wifiext.md @cheng_guohong @RayShih 
 zh-cn/application-dev/reference/apis/js-apis-window.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-windowAnimationManager.md @zhangqiang183  @ge-yafang @wind_zj @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-worker.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
-zh-cn/application-dev/reference/apis/js-apis-workScheduler.md @wangwenli_wolf @ningningW @tangtiantian2021 @nan-xiansen
-zh-cn/application-dev/reference/apis/js-apis-WorkSchedulerExtensionAbility.md @wangwenli_wolf @ningningW @tangtiantian2021 @nan-xiansen
+zh-cn/application-dev/reference/apis/js-apis-workScheduler.md @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
+zh-cn/application-dev/reference/apis/js-apis-WorkSchedulerExtensionAbility.md @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-xml.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
 zh-cn/application-dev/reference/apis/js-apis-zlib.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-webview.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
@@ -537,10 +537,10 @@ zh-cn/application-dev/reference/apis/js-apis-net-ethernet.md @zhang-hai-feng @ze
 zh-cn/application-dev/reference/apis/js-apis-net-sharing.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-nfctech.md @cheng_guohong @RayShih @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-promptAction.md @huaweimaxuchu @HelloCrease @niulihua @tomatodevboy
-zh-cn/application-dev/reference/apis/js-apis-reminderAgentManager.md @wangwenli_wolf @ningningW @tangtiantian2021 @nan-xiansen
+zh-cn/application-dev/reference/apis/js-apis-reminderAgentManager.md @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
-zh-cn/application-dev/reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md @wangwenli_wolf @ningningW @tangtiantian2021 @nan-xiansen
-zh-cn/application-dev/reference/apis/js-apis-resourceschedule-workScheduler.md @wangwenli_wolf @ningningW @tangtiantian2021 @nan-xiansen
+zh-cn/application-dev/reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
+zh-cn/application-dev/reference/apis/js-apis-resourceschedule-workScheduler.md @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-stationary.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-system-capability.md taiyipei  taiyipei BlackStone
 zh-cn/application-dev/reference/apis/js-apis-system-parameterV9.md @mupceet @zengyawen @handyohos @nan-xiansen
