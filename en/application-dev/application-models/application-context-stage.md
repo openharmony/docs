@@ -177,7 +177,7 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
   >
   > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
   >
-> - This is a system API and cannot be called by third-party applications.
+  > - This is a system API and cannot be called by third-party applications.
   
   For example, application information displayed on the home screen includes the application name and icon. The home screen application calls the foregoing method to obtain the context information, so as to obtain the resource information including the application name and icon.
   
@@ -201,7 +201,7 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
   >
   > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
   >
-> - This is a system API and cannot be called by third-party applications.
+  > - This is a system API and cannot be called by third-party applications.
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
