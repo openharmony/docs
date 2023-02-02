@@ -132,7 +132,7 @@ zh-cn/device-dev/subsystems/subsys-xts-guide.md @Austin23
 
 zh-cn/application-dev/ability/ @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/IDL/ @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
-zh-cn/application-dev/device-usage-statistics/ @RayShih @shuaytao @wangzhen107 @inter515
+zh-cn/application-dev/device-usage-statistics/ @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
 zh-cn/application-dev/ui/ @HelloCrease @huaweimaxuchu @tomatodevboy @niulihua
 zh-cn/application-dev/notification/ @RayShih @jayleehw @li-weifeng2 @currydavids
 zh-cn/application-dev/windowmanager/ @ge-yafang @zhangqiang183  @zhouyaoying @zxg-gitee
@@ -244,7 +244,7 @@ zh-cn/application-dev/reference/js-service-widget-ui/ @HelloCrease
 zh-cn/application-dev/faqs/ @zengyawen
 zh-cn/application-dev/file-management/ @zengyawen
 zh-cn/application-dev/application-test/ @ningningW
-zh-cn/application-dev/device-usage-statistics/ @RayShih @shuaytao @wangzhen107 @inter515
+zh-cn/application-dev/device-usage-statistics/ @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
 
 zh-cn/application-dev/reference/apis/js-apis-ability-context.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-ability-errorCode.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
