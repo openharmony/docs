@@ -120,14 +120,14 @@ ArkUI适配了根据资源名称获取资源的能力。
 
 | 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
-| 全量代码（标准、轻量和小型系统）        | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/code-v3.2-Beta5.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/code-v3.2-Beta5.tar.gz.sha256) |  |
-| Hi3861解决方案（二进制）        | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/hispark_pegasus.tar.gz.sha256) |  |
-| Hi3516解决方案-LiteOS（二进制） | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_LiteOS.tar.gz.sha256) |  |
-| Hi3516解决方案-Linux（二进制）  | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_Linux.tar.gz.sha256) |  |
-| RK3568标准系统解决方案（二进制）        | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/dayu200_standard_arm32.tar.gz.sha256) |  |
-| 标准系统Public SDK包（Mac）             | 3.2.10.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/ohos-sdk-mac-public.tar.gz.sha256) |  |
-| 标准系统Public SDK包（Mac-M1）             | 3.2.10.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) |  |
-| 标准系统Public SDK包（Windows\Linux）   | 3.2.10.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/ohos-sdk-windows_linux-public.tar.gz.sha256) |  |
+| 全量代码（标准、轻量和小型系统）        | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/code-v3.2-Beta5.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/code-v3.2-Beta5.tar.gz.sha256) |   |
+| Hi3861解决方案（二进制）        | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/hispark_pegasus.tar.gz.sha256) | 22.9 MB |
+| Hi3516解决方案-LiteOS（二进制） | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_LiteOS.tar.gz.sha256) | 293.6 MB |
+| Hi3516解决方案-Linux（二进制）  | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_Linux.tar.gz.sha256) | 174.3 MiB |
+| RK3568标准系统解决方案（二进制）        | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/dayu200_standard_arm32.tar.gz.sha256) | 3.9 GiB |
+| 标准系统Public SDK包（Mac）             | 3.2.10.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/ohos-sdk-mac-public.tar.gz.sha256) | 674.5 MiB |
+| 标准系统Public SDK包（Mac-M1）             | 3.2.10.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 634.5 MiB |
+| 标准系统Public SDK包（Windows\Linux）   | 3.2.10.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/ohos-sdk-windows_linux-public.tar.gz.sha256) | 1.6 GiB |
 
 
 
@@ -203,6 +203,6 @@ ArkUI适配了根据资源名称获取资源的能力。
 | I6BJ9Z<br/>I6BJ82 | alloc_file_pseudo 内存泄漏问题跟踪 | accept4引用计数不平衡导致内存泄漏，selinux_netlbl_sock_genattr、new_inode_pseudo、inet_create 内存泄漏，上游社区无补丁，跟随上游社区补丁合入。 | 2023年3月30日 |
 | I641A2<br/>I64726 | 蓝牙模块存在静默配对问题，其他设备可以静默配对后通过蓝牙键盘、鼠标完全控制设备 | 蓝牙模块存在静默配对问题。在后续版本以需求跟踪解决。 | 2023年3月30日 |
 | I6BRTS | 调用rdb::executeSql接口会引起内存泄漏风险 | 反复初始化调用rdb::executeSql接口出现少量内存泄露，此接口为应用初始化时调用，但不会多次调用，内存泄露影响可控。 | 2023年2月10日 |
-| I6AZ4T | 带textinput输入框组件的应用存在内存泄漏风险 | 高频反复调用textinput框出现少量内存泄露，根因为调用三方库flutter库，内存未回收。需排查是否为开源flutter组件问题。 | 2023年3月30日 |
+| I6AZ4T | 带textinput输入框组件的应用存在内存泄漏风险 | 高频反复调用textinput框出现少量内存泄露，根因为调用三方库flutter库，内存未回收。需排查是否为开源flutter组件问题。 | 2023年2月10日 |
 
 <!--no_check-->
