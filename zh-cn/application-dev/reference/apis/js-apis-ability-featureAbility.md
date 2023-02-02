@@ -41,7 +41,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbility(
     {
         want:
@@ -94,7 +94,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbility(
     {
         want:
@@ -174,7 +174,7 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbilityForResult(
    {
         want:
@@ -225,7 +225,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbilityForResult(
     {
         want:
@@ -276,7 +276,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
@@ -333,7 +333,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
