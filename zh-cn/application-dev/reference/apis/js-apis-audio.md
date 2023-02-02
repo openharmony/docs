@@ -1973,7 +1973,7 @@ audioManager.isMicrophoneMute().then((value) => {
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeManager中的[on](#on9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeManager中的[on('volumeChange')](#onvolumechange9)替代。
 
 监听系统音量变化事件。
 
@@ -2035,7 +2035,7 @@ on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
 设备更改。音频设备连接状态变化。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[on](#on9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[on('deviceChange')](#ondevicechange9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -2064,7 +2064,7 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 取消订阅音频设备连接变化事件。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[off](#off9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[off('deviceChange')](#offdevicechange9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -3424,7 +3424,7 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)
 });
 ```
 
-### on<sup>9+</sup>
+### on('deviceChange')<sup>9+</sup>
 
 on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChangeAction\>): void
 
@@ -3459,7 +3459,7 @@ audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (de
 });
 ```
 
-### off<sup>9+</sup>
+### off('deviceChange')<sup>9+</sup>
 
 off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
@@ -3893,6 +3893,125 @@ async function selectOutputDeviceByFilter(){
 }
 ```
 
+### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
+
+getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
+
+根据音频信息，返回优先级最高的输出设备，使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| rendererInfo                | [AudioRendererInfo](#audiorendererinfo8)                     | 是   | 表示渲染器信息。             |
+| callback                    | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;  | 是   | 回调，返回优先级最高的输出设备信息。 |
+
+**示例：**
+```js
+let rendererInfo = {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0 };
+
+async function getPreferOutputDevice() {
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err, desc) => {
+    if (err) {
+      console.error(`Result ERROR: ${JSON.stringify(err)}`);
+    } else {
+      console.info('device descriptor: ' + JSON.stringify(desc));
+    }
+  });
+}
+```
+
+### getPreferOutputDeviceForRendererInfo<sup>9+</sup>
+getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
+
+根据音频信息，返回优先级最高的输出设备，使用promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                 | 类型                                                         | 必填 | 说明                      |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| rendererInfo          | [AudioRendererInfo](#audiorendererinfo8)                     | 是   | 表示渲染器信息。            |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;   | Promise返回优先级最高的输出设备信息。 |
+
+**示例：**
+
+```js
+let rendererInfo = {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0 };
+
+async function getPreferOutputDevice() {
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
+    console.info('device descriptor: ' + JSON.stringify(desc));
+  }).catch((err) => {
+    console.error(`Result ERROR: ${JSON.stringify(err)}`);
+  })
+}
+```
+
+### on('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
+
+on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors\>): void
+
+订阅最高优先级输出设备变化事件，使用callback获取最高优先级输出设备。
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'preferOutputDeviceChangeForRendererInfo' |
+| rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)        | 是   | 表示渲染器信息。              |
+| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 获取优先级最高的输出设备信息。                         |
+
+**示例：**
+
+```js
+let rendererInfo = {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0 };
+
+audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
+  console.info('device descriptor: ' + JSON.stringify(desc));
+});
+```
+
+### off('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
+
+off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors\>): void
+
+取消订阅最高优先级输出音频设备变化事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'preferOutputDeviceChangeForRendererInfo' |
+| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 监听方法的回调函数。                         |
+
+**示例：**
+
+```js
+audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo', () => {
+  console.info('Should be no callback.');
+});
+```
+
 ## AudioRendererChangeInfoArray<sup>9+</sup>
 
 数组类型，AudioRenderChangeInfo数组，只读。
@@ -4062,7 +4181,7 @@ promise.then(function (value) {
 
 | 名称          | 类型                                     | 必填 | 说明          |
 | -------------| ---------------------------------------- | ---- | -------------- |
-| uid          | number                                   |  是  | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
+| uid          | number                                   |  否  | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
 | rendererInfo | [AudioRendererInfo](#audiorendererinfo8) |  否  | 表示渲染器信息。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
 | rendererId   | number                                   |  否  | 音频流唯一id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
 
