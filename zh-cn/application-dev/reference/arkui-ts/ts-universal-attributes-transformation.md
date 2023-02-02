@@ -31,13 +31,13 @@ struct TransformExample {
       Text('rotate').width('90%').fontColor(0xCCCCCC).padding(15).fontSize(14)
       Row()
         .rotate({
-          x: 1,
-          y: 1,
+          x: 0,
+          y: 0,
           z: 1,
           centerX: '50%',
           centerY: '50%',
           angle: 300
-        }) // 组件以矢量(1,1,1)为旋转轴，绕中心点顺时针旋转300度
+        }) // 组件以矢量(0,0,1)为旋转轴，绕中心点顺时针旋转300度
         .width(100).height(100).backgroundColor(0xAFEEEE)
 
       Text('translate').width('90%').fontColor(0xCCCCCC).padding(10).fontSize(14)
