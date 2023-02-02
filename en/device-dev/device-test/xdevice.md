@@ -476,7 +476,7 @@ Check whether xDevice runs properly.
 
    The COM port whose **type** is **cmd** corresponds to the AT command serial port on the board. The port is used to send commands to the device. In the example, the **ChA(COM20)** serial port is used.
 
-   <img src="figures/L0-1.PNG" alt="L0-1" style="zoom:67%;" />
+   ![L0-1](figures/L0-1.PNG)
 
    IP camera devices have two connection modes. One is to connect through the local serial port, and the other is to connect through the IP address of the local area network.
 
@@ -492,7 +492,7 @@ Check whether xDevice runs properly.
 
       Add an NFS sharing path, for example, **D:\HS\NFS_Share_File -public –alldirs**. Note that the FTP IP address 192.168.1.10 is the IP address of the development board.
 
-      <img src="figures/NFS-2.PNG" style="zoom:75%;" />
+      ![NFS-2](figures/NFS-2.PNG)
 
    3. Stop the NFS server and restart the NFS server to make the added sharing path take effect.
 
