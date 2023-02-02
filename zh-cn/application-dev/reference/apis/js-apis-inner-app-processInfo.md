@@ -19,9 +19,11 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 var context = featureAbility.getContext();
 context.getProcessInfo((err, data) => {
-    console.info("getProcessInfo err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
-    let pid = data.pid;
-    let processName = data.processName;
+    if (err.code != 0) {
+        console.info("getProcessInfo err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+        let pid = data.pid;
+        let processName = data.processName;
+    }
 });
 ```
 
