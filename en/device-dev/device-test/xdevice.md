@@ -492,7 +492,7 @@ Check whether xDevice runs properly.
 
       Add an NFS sharing path, for example, **D:\HS\NFS_Share_File -public –alldirs**. Note that the FTP IP address 192.168.1.10 is the IP address of the development board.
 
-      ![NFS-2.PNG](figures/NFS-2.PNG)
+      ![NFS-2](figures/NFS-2.PNG)
 
    3. Stop the NFS server and restart the NFS server to make the added sharing path take effect.
 
