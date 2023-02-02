@@ -278,7 +278,7 @@ zh-cn/application-dev/reference/apis/js-apis-application-WindowExtensionAbility.
 zh-cn/application-dev/reference/apis/js-apis-appmanager.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-arraylist.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
 zh-cn/application-dev/reference/apis/js-apis-audio.md @liuyuehua1 @zengyawen @magekkkk @currydavids
-zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md @wangwenli_wolf @ningningW @tangtiantian2021 @nan-xiansen
+zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-battery-info.md @aqxyjay @zengyawen @aqxyjay @alien0208
 zh-cn/application-dev/reference/apis/js-apis-bluetooth.md @cheng_guohong @RayShih @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-brightness.md @aqxyjay @zengyawen @aqxyjay @alien0208
@@ -538,7 +538,7 @@ zh-cn/application-dev/reference/apis/js-apis-net-sharing.md @zhang-hai-feng @zen
 zh-cn/application-dev/reference/apis/js-apis-nfctech.md @cheng_guohong @RayShih @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-promptAction.md @huaweimaxuchu @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-reminderAgentManager.md @wangwenli_wolf @ningningW @tangtiantian2021 @nan-xiansen
-zh-cn/application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md @wangwenli_wolf @ningningW @tangtiantian2021 @nan-xiansen
+zh-cn/application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md @wangwenli_wolf @ningningW @tangtiantian2021 @nan-xiansen
 zh-cn/application-dev/reference/apis/js-apis-resourceschedule-workScheduler.md @wangwenli_wolf @ningningW @tangtiantian2021 @nan-xiansen
 zh-cn/application-dev/reference/apis/js-apis-stationary.md @mayunteng_1 @ningningW @cococoler @alien0208
