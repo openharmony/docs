@@ -46,33 +46,77 @@ struct bindPopupPage {
 
 ## Restrictions on Data Type Declarations of State Variables
 
-The data type declaration of the **@State**, **@Provide**, **@Link**, or **@Consume** decorated state variables can consist of only one of the primitive data types or reference data types.
+1. The data types of state variables decorated by state decorators must be explicitly declared. They cannot be declared as **any** or **Date**.
 
-Example:
+    Example:
 
-```ts
-// xxx.ets
-@Entry
-@Component
-struct IndexPage {
-  // Incorrect: @State message: string | Resource = 'Hello World'
-  @State message: string = 'Hello World'
+    ```ts
+    // xxx.ets
+    @Entry
+    @Component
+    struct DatePickerExample {
+      // Incorrect: @State isLunar: any = false
+      @State isLunar: boolean = false
+      // Incorrect: @State selectedDate: Date = new Date('2021-08-08')
+      private selectedDate: Date = new Date('2021-08-08')
 
-  build() {
-    Row() {
-      Column() {
-        Text(`${this.message}`)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
+      build() {
+        Column() {
+          Button('Switch Calendar')
+            .margin({ top: 30 })
+            .onClick(() => {
+              this.isLunar = !this.isLunar
+            })
+          DatePicker({
+            start: new Date('1970-1-1'),
+            end: new Date('2100-1-1'),
+            selected: this.selectedDate
+          })
+            .lunar(this.isLunar)
+            .onChange((value: DatePickerResult) => {
+              this.selectedDate.setFullYear(value.year, value.month, value.day)
+              console.info('select current date is: ' + JSON.stringify(value))
+            })
+
+        }.width('100%')
       }
-      .width('100%')
     }
-    .height('100%')
-  }
-}
-```
+    ```
 
-![hello](figures/hello.PNG)
+    ![datePicker](../../application-dev/reference/arkui-ts/figures/datePicker.gif)
+
+2. The data type declaration of the **@State**, **@Provide**, **@Link**, or **@Consume** decorated state variables can consist of only one of the primitive data types or reference data types.
+
+    The **Length**, **ResourceStr**, and **ResourceColor** types are combinations of primitive data types or reference data types. Therefore, they cannot be used by the aforementioned types of state variables.
+    For details about the definitions of **Length**, **ResourceStr**, and **ResourceColor**, see [Types](../../application-dev/reference/arkui-ts/ts-types.md).
+
+    Example:
+
+    ```ts
+    // xxx.ets
+    @Entry
+    @Component
+    struct IndexPage {
+      // Incorrect: @State message: string | Resource = 'Hello World'
+      @State message: string = 'Hello World'
+      // Incorrect: @State message: ResourceStr = $r('app.string.hello')
+      @State resourceStr: Resource = $r('app.string.hello')
+
+      build() {
+        Row() {
+          Column() {
+            Text(`${this.message}`)
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+          }
+          .width('100%')
+        }
+        .height('100%')
+      }
+    }
+    ```
+
+    ![hello](figures/hello.PNG)
 
 ## Initialization and Restrictions of Custom Components' Member Variables
 
@@ -98,6 +142,8 @@ The allowed method depends on the decorator of the state variable, as shown in t
 | @Link        | Forbidden   | Mandatory         |
 | @StorageLink | Mandatory   | Forbidden         |
 | @StorageProp | Mandatory   | Forbidden         |
+| @LocalStorageLink | Mandatory   | Forbidden         |
+| @LocalStorageProp | Mandatory   | Forbidden         |
 | @Provide     | Mandatory   | Optional         |
 | @Consume     | Forbidden   | Forbidden         |
 | @ObjectLink  | Forbidden   | Mandatory         |
@@ -111,25 +157,78 @@ As indicated by the preceding table:
 
 Comply with the following rules when using constructors to initialize member variables:
 
-| From the Variable in the Parent Component (Below) to the Variable in the Child Component (Right)| @State | @Link  | @Prop  | Normal Variable|
-| -------------------------------------------- | ------ | ------ | ------ | -------- |
-| @State                                       | Not allowed| Allowed  | Allowed  | Allowed    |
-| @Link                                        | Not allowed| Allowed  | Not recommended| Allowed    |
-| @Prop                                        | Not allowed| Not allowed| Allowed  | Allowed    |
-| @StorageLink                                 | Not allowed| Allowed  | Not allowed| Not allowed  |
-| @StorageProp                                 | Not allowed| Not allowed| Not allowed| Allowed    |
-| Normal variable                                    | Allowed  | Not allowed| Not allowed| Allowed    |
+| **From the Variable in the Parent Component (Right) to the Variable in the Child Component (Below)**| **regular** | **@State** | **@Link** | **@Prop** | **@Provide** | **@Consume** | **@ObjectLink** |
+|---------------------------------|----------------------------|------------|-----------|-----------|--------------|--------------|------------------|
+| **regular**                    | Supported                        | Supported        | Supported       | Supported       | Not supported           | Not supported           | Supported              |
+| **@State**                     | Supported                        | Supported        | Supported       | Supported       | Supported          | Supported          | Supported              |
+| **@Link**                      | Not supported                         | Supported (1)     | Supported (1)    | Supported (1)    | Supported (1)       | Supported (1)       | Supported (1)           |
+| **@Prop**                      | Supported                        | Supported        | Supported       | Supported       | Supported          | Supported          | Supported              |
+| **@Provide**                   | Supported                        | Supported        | Supported       | Supported       | Supported          | Supported          | Supported              |
+| **@Consume**                   | Not supported                         | Not supported         | Not supported        | Not supported        | Not supported           | Not supported           | Not supported               |
+| **@ObjectLink**                | Not supported                         | Not supported     | Not supported        | Not supported        | Not supported           | Not supported           | Not supported               |
 
-As indicated by the preceding table:
+| **From the Variable in the Parent Component (Right) to the Variable in the Child Component (Below)**| **@StorageLink** | **@StorageProp** | **@LocalStorageLink** | **@LocalStorageProp** |
+|------------------|------------------|------------------|-----------------------|------------------------|
+| **regular**                   | Supported              | Not supported               | Not supported                    | Not supported             |
+| **@State**                    | Supported              | Supported              | Supported                   | Supported                    |
+| **@Link**                     | Supported (1)           | Supported (1)           | Supported (1)                | Supported (1)                 |
+| **@Prop**                     | Supported              | Supported              | Supported                   | Supported                    |
+| **@Provide**                  | Supported              | Supported              | Supported                   | Supported                    |
+| **@Consume**                  | Not supported            | Not supported             | Not supported                 | Not supported                  |
+| **@ObjectLink**               | Not supported            | Not supported             | Not supported                 | Not supported                  |
 
-- The normal variables of the parent component can be used to initialize the **@State** decorated variables of the child component, but not the **@Link** or **@Prop** decorated variables.
+> **NOTE**
+>
+> **Supported (1)**: The dollar sign ($) must be used, for example, **this.$varA**.
+>
+> **regular**: refers to a regular variable that is not decorated by any decorator.
 
-- The **@State** decorated variable of the parent component can be used to initialize the **@Prop**, **@Link** (using **$**), or normal variables of the child component, but not the **@State** decorated variables of the child component.
+As indicated by the preceding tables:
 
-- The **@Link** decorated variables of the parent component can be used to initialize the **@Link** decorated or normal variables of the child component. However, initializing the **@State** decorated members of the child component can result in a syntax error. In addition, initializing the **@Prop** decorated variables is not recommended.
+- The **@ObjectLink** decorated variable cannot be directly initialized from a decorated variable in the parent component. The source of the parent component must be an array item or object attribute decorated by **@State**, **@Link**, **@Provide**, **@Consume**, or **@ObjectLink**.
 
-- The **@Prop** decorated variables of the parent component can be used to initialize the normal variables or **@Prop** decorated variables of the child component, but not the **@State** or **@Link** decorated variables.
+- The regular variables of the parent component can be used to initialize the **@State** variable of the child component, but cannot be used to initialize the **@Link**, **@Consume**, and **@ObjectLink** variables.
 
-- Passing **@StorageLink** and **@StorageProp** from the parent component to the child component is prohibited.
+- The **@State** variable of the parent component can be used to initialize the **@Prop**, **@Link** (through **$**), or regular variables of the child component, but cannot be used to initialize the **@Consume** variable.
+
+- The **@Link** variable of the parent component cannot be used to initialize the **@Consume** and **@ObjectLink** variables of the child component.
+
+- The **@Prop** variable of the parent component cannot be used to initialize the **@Consume** and **@ObjectLink** variables of the child component.
+
+- **@StorageLink**, **@StorageProp**, **@LocalStorageLink**, and **@LocalStorageProp** variables cannot be initialized from the parent component.
 
 - In addition to the preceding rules, the TypeScript strong type rules need to be followed.
+
+Example:
+```ts
+@Entry
+@Component
+struct Parent {
+  message: string = "Hello World"
+  build() {
+    Column() {
+      Child({
+        stateMessage: this.message,
+        /* ArkTS:ERROR The regular property 'message' cannot be assigned  
+           to the @Link property 'linkMessage'.*/
+        linkMessage: this.$message
+      })
+    }
+    .width('100%')
+  }
+}
+
+@Component
+struct Child {
+  @State stateMessage: string = "Hello World"
+  @Link linkMessage: string
+  build() {
+    Column() {
+      Text(this.stateMessage)
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+  }
+}
+```
