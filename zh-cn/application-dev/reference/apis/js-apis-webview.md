@@ -265,7 +265,7 @@ struct WebComponent {
 
 ### loadUrl
 
-loadUrl(url: string | Resource, headers?: Array\<HeaderV9>): void
+loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 加载指定的URL。
 
@@ -276,7 +276,7 @@ loadUrl(url: string | Resource, headers?: Array\<HeaderV9>): void
 | 参数名  | 类型             | 必填 | 说明                  |
 | ------- | ---------------- | ---- | :-------------------- |
 | url     | string \| Resource | 是   | 需要加载的 URL。      |
-| headers | Array\<[HeaderV9](#headerv9)> | 否   | URL的附加HTTP请求头。 |
+| headers | Array\<[WebHeader](#webheader)> | 否   | URL的附加HTTP请求头。 |
 
 **错误码：**
 
@@ -789,7 +789,7 @@ struct WebComponent {
 
 ### getHitTest
 
-getHitTest(): HitTestTypeV9
+getHitTest(): WebHitTestType
 
 获取当前被点击区域的元素类型。
 
@@ -799,7 +799,7 @@ getHitTest(): HitTestTypeV9
 
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
-| [HitTestTypeV9](#hittesttypev9)| 被点击区域的元素类型。 |
+| [WebHitTestType](#webhittesttype)| 被点击区域的元素类型。 |
 
 **错误码：**
 
@@ -4646,7 +4646,7 @@ struct WebComponent {
   }
 }
 ```
-## HeaderV9
+## WebHeader
 Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -4656,7 +4656,7 @@ Web组件返回的请求/响应头对象。
 | headerKey   | string | 是 | 是 | 请求/响应头的key。   |
 | headerValue | string | 是 | 是 | 请求/响应头的value。 |
 
-## HitTestTypeV9
+## WebHitTestType
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4679,7 +4679,7 @@ Web组件返回的请求/响应头对象。
 
 | 名称 | 类型 | 可读 | 可写 | 说明|
 | ---- | ---- | ---- | ---- |---- |
-| type | [HitTestTypeV9](#hittesttypev9) | 是 | 否 | 当前被点击区域的元素类型。|
+| type | [WebHitTestType](#webhittesttype) | 是 | 否 | 当前被点击区域的元素类型。|
 | extra | string        | 是 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
 ## WebMessage
