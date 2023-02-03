@@ -114,9 +114,9 @@ try {
 }
 ```
 
-## privacyManager.getPermissionUsedRecords
+## privacyManager.getPermissionUsedRecord
 
-getPermissionUsedRecords(request: PermissionUsedRequest): Promise&lt;PermissionUsedResponse&gt;
+getPermissionUsedRecord(request: PermissionUsedRequest): Promise&lt;PermissionUsedResponse&gt;
 
 Obtains historical permission usage records. This API uses a promise to return the result.
 
@@ -161,19 +161,19 @@ let request = {
     "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
 try {
-    privacyManager.getPermissionUsedRecords(request).then((data) => {
-        console.log(`getPermissionUsedRecords success, data->${JSON.stringify(data)}`);
+    privacyManager.getPermissionUsedRecord(request).then((data) => {
+        console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
     }).catch((err) => {
-        console.log(`getPermissionUsedRecords fail, err->${JSON.stringify(err)}`);
+        console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
 }
 ```
 
-## privacyManager.getPermissionUsedRecords
+## privacyManager.getPermissionUsedRecord
 
-getPermissionUsedRecords(request: PermissionUsedRequest, callback: AsyncCallback&lt;PermissionUsedResponse&gt;): void
+getPermissionUsedRecord(request: PermissionUsedRequest, callback: AsyncCallback&lt;PermissionUsedResponse&gt;): void
 
 Obtains historical permission usage records. This API uses an asynchronous callback to return the result.
 
@@ -213,11 +213,11 @@ let request = {
     "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
 try {
-    privacyManager.getPermissionUsedRecords(request, (err, data) => {
+    privacyManager.getPermissionUsedRecord(request, (err, data) => {
         if (err) {
-            console.log(`getPermissionUsedRecords fail, err->${JSON.stringify(err)}`);
+            console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
-            console.log(`getPermissionUsedRecords success, data->${JSON.stringify(data)}`);
+            console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
         }
     });
 } catch(err) {
