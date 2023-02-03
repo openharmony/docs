@@ -41,7 +41,7 @@ onMemoryLevel(level: number): void;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | level  | [MemoryLevel](js-apis-application-abilityConstant.md#abilityconstantmemorylevel) | 是 | 表示当前内存的基线水平。 |
+  | level  | [MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | 是 | 表示当前内存的基线水平。 |
 
 **示例：**
 

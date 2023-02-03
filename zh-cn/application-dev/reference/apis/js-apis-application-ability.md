@@ -306,7 +306,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | level | [AbilityConstant.MemoryLevel](js-apis-application-abilityConstant.md#abilityconstantmemorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。| 
+  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。| 
 
 **示例：**
 
@@ -330,7 +330,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any})
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | reason | [AbilityConstant.StateType](js-apis-application-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
+  | reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
   | wantParam | {[key:&nbsp;string]:&nbsp;any} | 是 | want相关参数。 |
 
 **返回值：**
