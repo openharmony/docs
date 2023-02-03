@@ -1,6 +1,6 @@
-# ProcessRunningInformation
+# ProcessInformation
 
-ProcessRunningInformation模块提供对进程运行信息进行设置和查询的能力。
+ProcessInformation模块提供对进程运行信息进行设置和查询的能力。
 
 > **说明：**
 > 
@@ -8,12 +8,12 @@ ProcessRunningInformation模块提供对进程运行信息进行设置和查询�
 
 ## 使用说明
 
-通过appManager的[getProcessRunningInformation](js-apis-application-appManager.md#appmanagergetprocessrunninginformation9)来获取。
+通过appManager的[getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation9)来获取。
 
 ```ts
-import appManager from '@ohos.application.appManager';
+import appManager from '@ohos.app.ability.appManager';
 
-appManager.getProcessRunningInformation((error, data) => { 
+appManager.getRunningProcessInformation((error, data) => { 
     console.log("error: "  + error.code + " data: " + JSON.stringify(data));
 });
 ```
