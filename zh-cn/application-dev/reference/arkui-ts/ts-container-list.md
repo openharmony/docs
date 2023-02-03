@@ -70,7 +70,8 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | onScrollIndex(event: (start: number, end: number) => void) | 列表滑动时触发。<br/>计算索引值时，ListItemGroup作为一个整体占一个索引值，不计算ListItemGroup内部ListItem的索引值。<br/>- start: 滑动起始位置索引值。<br/>- end: 滑动结束位置索引值。 |
 | onReachStart(event: () => void) | 列表到达起始位置时触发。 |
 | onReachEnd(event: () => void) | 列表到底末尾位置时触发。 |
-| onScrollBegin<sup>9+</sup>(event: (dx: number, dy: number) => { dxRemain: number, dyRemain: number }) | 列表开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，列表将按照返回值的实际滑动量进行滑动。<br/>\- dx：即将发生的水平方向滑动量。<br/>\- dy：即将发生的竖直方向滑动量。<br/>- dxRemain：水平方向实际滑动量。<br/>\- dyRemain：竖直方向实际滑动量。 |
+| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | 列表开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，列表将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量。<br/>\- state：当前滑动状态。<br/>- offsetRemain：水平方向实际滑动量。 |
+| onScrollStart<sup>9+</sup>(event: () => void) | 列表滑动开始时触发。手指拖动列表或列表的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的滑动，不会触发该事件。 |
 | onScrollStop(event: () => void) | 列表滑动停止时触发。手拖动列表或列表的滚动条触发的滑动，手离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的滑动，不会触发该事件。 |
 | onItemMove(event: (from: number, to: number) => boolean) | 列表元素发生移动时触发。<br/>- from: 移动前索引值。<br/>- to: 移动后索引值。 |
 | onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => ((() => any) \| void) | 开始拖拽列表元素时触发。<br/>- event: 见[ItemDragInfo对象说明](ts-container-grid.md#itemdraginfo对象说明)。<br/>- itemIndex: 被拖拽列表元素索引值。 |
