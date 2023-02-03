@@ -1,4 +1,4 @@
-# @ohos.curves
+# @ohos.curves (Interpolation Calculation)
 
 The **Curves** module provides APIs for interpolation calculation to create step, cubic Bezier, and spring curves.
 
@@ -309,7 +309,6 @@ Creates a spring curve. This API is deprecated since API version 9. You are advi
 ```ts
 // xxx.ets
 import Curves from '@ohos.curves'
-
 @Entry
 @Component
 struct ImageComponent {
@@ -319,16 +318,16 @@ struct ImageComponent {
   build() {
     Column() {
       Text()
-        .margin({ top: 100 })
+        .margin({top:100})
         .width(this.widthSize)
         .height(this.heightSize)
         .backgroundColor(Color.Red)
-        .onClick(() => {
+        .onClick(()=> {
           let curve = Curves.cubicBezierCurve(0.25, 0.1, 0.25, 1.0);
           this.widthSize = curve.interpolate(0.5) * this.widthSize;
           this.heightSize = curve.interpolate(0.5) * this.heightSize;
         })
-        .animation({ duration: 2000, curve: Curves.stepsCurve(9, true) })
+        .animation({ duration: 2000 , curve: Curves.stepsCurve(9, true) })
     }.width("100%").height("100%")
   }
 }
