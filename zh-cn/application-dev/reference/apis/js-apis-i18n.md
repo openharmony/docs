@@ -100,7 +100,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 static getSystemLanguages(): Array&lt;string&gt;
 
-获取系统支持的语言列表。
+获取系统支持的语言列表。语言的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -131,7 +131,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 static getSystemCountries(language: string): Array&lt;string&gt;
 
-获取针对输入语言系统支持的国家或地区列表。
+获取针对输入语言系统支持的国家或地区列表。国家或地区的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -206,7 +206,7 @@ static isSuggested(language: string, region?: string): boolean
 
 static getSystemLanguage(): string
 
-获取系统语言。
+获取系统语言。语言的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -272,7 +272,7 @@ static setSystemLanguage(language: string): void
 
 static getSystemRegion(): string
 
-获取系统地区。
+获取系统地区。地区的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -338,7 +338,7 @@ static setSystemRegion(region: string): void
 
 static getSystemLocale(): string
 
-获取系统区域。
+获取系统区域。区域的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
 
 **系统能力**：SystemCapability.Global.I18n
 
