@@ -1219,7 +1219,7 @@ The universal events are not supported.
 
 onAlert(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
 
-Triggered when **alert()** is invoked to display an alert dialog box on the web page.
+Called when **alert()** is invoked to display an alert dialog box on the web page.
 
 **Parameters**
 
@@ -1233,7 +1233,7 @@ Triggered when **alert()** is invoked to display an alert dialog box on the web 
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
 
 **Example**
 
@@ -1277,7 +1277,7 @@ Triggered when **alert()** is invoked to display an alert dialog box on the web 
 
 onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
 
-Triggered when this page is about to exit after the user refreshes or closes the page. This callback is triggered only when the page has obtained focus.
+Called when this page is about to exit after the user refreshes or closes the page. This API takes effect only when the page has obtained focus.
 
 **Parameters**
 
@@ -1291,7 +1291,7 @@ Triggered when this page is about to exit after the user refreshes or closes the
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
 
 **Example**
 
@@ -1338,7 +1338,7 @@ Triggered when this page is about to exit after the user refreshes or closes the
 
 onConfirm(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
 
-Triggered when **confirm()** is invoked by the web page.
+Called when **confirm()** is invoked by the web page.
 
 **Parameters**
 
@@ -1352,7 +1352,7 @@ Triggered when **confirm()** is invoked by the web page.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
 
 **Example**
 
@@ -1412,7 +1412,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
 
 **Example**
 
@@ -1460,7 +1460,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
 onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 
-Triggered to notify the host application of a JavaScript console message.
+Called to notify the host application of a JavaScript console message.
 
 **Parameters**
 
@@ -1539,7 +1539,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 
 onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResourceError }) => void)
 
-Triggered when an error occurs during web page loading. For better results, simplify the implementation logic in the callback.
+Called when an error occurs during web page loading. For better results, simplify the implementation logic in the callback.
 
 **Parameters**
 
@@ -1583,7 +1583,7 @@ Triggered when an error occurs during web page loading. For better results, simp
 
 onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: WebResourceResponse }) => void)
 
-Triggered when an HTTP error (the response code is greater than or equal to 400) occurs during web page resource loading.
+Called when an HTTP error (the response code is greater than or equal to 400) occurs during web page resource loading.
 
 **Parameters**
 
@@ -1635,7 +1635,7 @@ Triggered when an HTTP error (the response code is greater than or equal to 400)
 onPageBegin(callback: (event?: { url: string }) => void)
 
 
-Triggered when the web page starts to be loaded. This API is triggered only for the main frame content, and not for the iframe or frameset content.
+Called when the web page starts to be loaded. This API is called only for the main frame content, and not for the iframe or frameset content.
 
 **Parameters**
 
@@ -1668,7 +1668,7 @@ Triggered when the web page starts to be loaded. This API is triggered only for 
 onPageEnd(callback: (event?: { url: string }) => void)
 
 
-Triggered when the web page loading is complete. This API is triggered only for the main frame content.
+Called when the web page loading is complete. This API takes effect only for the main frame content.
 
 **Parameters**
 
@@ -1700,7 +1700,7 @@ Triggered when the web page loading is complete. This API is triggered only for 
 
 onProgressChange(callback: (event?: { newProgress: number }) => void)
 
-Triggered when the web page loading progress changes.
+Called when the web page loading progress changes.
 
 **Parameters**
 
@@ -1732,7 +1732,7 @@ Triggered when the web page loading progress changes.
 
 onTitleReceive(callback: (event?: { title: string }) => void)
 
-Triggered when the document title of the web page is changed.
+Called when the document title of the web page is changed.
 
 **Parameters**
 
@@ -1764,7 +1764,7 @@ Triggered when the document title of the web page is changed.
 
 onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean }) => void)
 
-Triggered when loading of the web page is complete. This API is used by an application to update the historical link it accessed.
+Called when loading of the web page is complete. This API is used by an application to update the historical link it accessed..
 
 **Parameters**
 
@@ -1797,7 +1797,7 @@ Triggered when loading of the web page is complete. This API is used by an appli
 
 onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => void)
 
-Triggered when the rendering process exits abnormally.
+Called when the rendering process exits abnormally.
 
 **Parameters**
 
@@ -1829,7 +1829,7 @@ Triggered when the rendering process exits abnormally.
 
 onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => boolean)
 
-Triggered to process an HTML form whose input type is **file**, in response to the tapping of the **Select File** button.
+Called to process an HTML form whose input type is **file**, in response to the tapping of the **Select File** button.
 
 **Parameters**
 
@@ -1842,7 +1842,7 @@ Triggered to process an HTML form whose input type is **file**, in response to t
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** means that the pop-up window provided by the system is displayed. The value **false** means that the default web pop-up window is displayed.|
+| boolean | The value **true** means that the pop-up window provided by the system is displayed. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
 
 **Example**
 
@@ -1885,7 +1885,7 @@ Triggered to process an HTML form whose input type is **file**, in response to t
 
 onResourceLoad(callback: (event: {url: string}) => void)
 
-Invoked to notify the **\<Web>** component of the URL of the loaded resource file.
+Called to notify the **\<Web>** component of the URL of the loaded resource file.
 
 **Parameters**
 
@@ -1917,7 +1917,7 @@ Invoked to notify the **\<Web>** component of the URL of the loaded resource fil
 
 onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
 
-Invoked when the display ratio of this page changes.
+Called when the display ratio of this page changes.
 
 **Parameters**
 
@@ -1950,7 +1950,7 @@ Invoked when the display ratio of this page changes.
 
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
-Triggered when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access.
+Called when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access.
 
 **Parameters**
 
@@ -1989,7 +1989,7 @@ Triggered when the **\<Web>** component is about to access a URL. This API is us
 
 onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebResourceResponse)
 
-Invoked when the **\<Web>** component is about to access a URL. This API is used to block the URL and return the response data.
+Called when the **\<Web>** component is about to access a URL. This API is used to block the URL and return the response data.
 
 **Parameters**
 
@@ -2054,7 +2054,7 @@ Invoked when the **\<Web>** component is about to access a URL. This API is used
 
 onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, realm: string}) => boolean)
 
-Invoked when an HTTP authentication request is received.
+Called when an HTTP authentication request is received.
 
 **Parameters**
 
@@ -2123,7 +2123,7 @@ Invoked when an HTTP authentication request is received.
 
 onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslError }) => void)
 
-Invoked when an SSL error occurs during resource loading.
+Called when an SSL error occurs during resource loading.
 
 **Parameters**
 
@@ -2176,7 +2176,7 @@ Invoked when an SSL error occurs during resource loading.
 
 onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string>, issuers : Array<string>}) => void)
 
-Invoked when an SSL client certificate request is received.
+Called when an SSL client certificate request is received.
 
 **Parameters**
 
@@ -2231,7 +2231,7 @@ Invoked when an SSL client certificate request is received.
 
 onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
 
-Invoked when a permission request is received.
+Called when a permission request is received.
 
 **Parameters**
 
@@ -2320,7 +2320,7 @@ Shows a context menu after the user clicks the right mouse button or long presse
 
 onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
-Invoked when the scrollbar of the page scrolls.
+Called when the scrollbar of the page scrolls.
 
 **Parameters**
 
@@ -2398,7 +2398,7 @@ Registers a callback for receiving a request to obtain the geolocation informati
 
 onGeolocationHide(callback: () => void)
 
-Triggered to notify the user that the request for obtaining the geolocation information received when **[onGeolocationShow](#ongeolocationshow)** is called has been canceled.
+Called to notify the user that the request for obtaining the geolocation information received when **[onGeolocationShow](#ongeolocationshow)** is called has been canceled.
 
 **Parameters**
 
@@ -2430,7 +2430,7 @@ Triggered to notify the user that the request for obtaining the geolocation info
 
 onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
 
-Registers a callback for the component's entering into full screen mode.
+Called when the component enters full screen mode.
 
 **Parameters**
 
@@ -2463,7 +2463,7 @@ Registers a callback for the component's entering into full screen mode.
 
 onFullScreenExit(callback: () => void)
 
-Registers a callback for the component's exiting full screen mode.
+Called when the component exits full screen mode.
 
 **Parameters**
 
@@ -2568,7 +2568,7 @@ Registers a callback for window closure.
 
 onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMatches: number, isDoneCounting: boolean}) => void): WebAttribute
 
-Invoked to notify the caller of the search result on the web page.
+Called to notify the caller of the search result on the web page.
 
 **Parameters**
 
@@ -2603,7 +2603,7 @@ Invoked to notify the caller of the search result on the web page.
 
 onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
 
-Invoked when the web form data is resubmitted.
+Called when the web form data is resubmitted.
 
 **Parameters**
 
@@ -2636,7 +2636,7 @@ Invoked when the web form data is resubmitted.
 
 onPageVisible(callback: (event: {url: string}) => void)
 
-Invoked when the old page is not displayed and the new page is about to be visible.
+Called when the old page is not displayed and the new page is about to be visible.
 
 **Parameters**
 
@@ -2668,7 +2668,7 @@ Invoked when the old page is not displayed and the new page is about to be visib
 
 onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
-Invoked when the key event is intercepted, before being consumed by the Webview.
+Called when the key event is intercepted, before being consumed by the Webview.
 
 **Parameters**
 
@@ -2695,7 +2695,7 @@ Invoked when the key event is intercepted, before being consumed by the Webview.
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
          .onInterceptKeyEvent((event) => {
-          	if (event.keyCode == 2017 || event.keyCode == 2018) {
+            if (event.keyCode == 2017 || event.keyCode == 2018) {
             console.info(`onInterceptKeyEvent get event.keyCode ${event.keyCode}`)
             return true;
           }
@@ -2710,7 +2710,7 @@ Invoked when the key event is intercepted, before being consumed by the Webview.
 
 onTouchIconUrlReceived(callback: (event: {url: string, precomposed: boolean}) => void)
 
-Invoked when an apple-touch-icon URL is received.
+Called when an apple-touch-icon URL is received.
 
 **Parameters**
 
@@ -2743,7 +2743,7 @@ Invoked when an apple-touch-icon URL is received.
 
 onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
 
-Invoked when this web page receives a new favicon.
+Called when this web page receives a new favicon.
 
 **Parameters**
 
@@ -3243,7 +3243,7 @@ Performs HTTP authentication with the user name and password provided by the use
 
 isHttpAuthInfoSaved(): boolean
 
-Uses the password cached on the server for authentication.
+Uses the account name and password cached on the server for authentication.
 
 **Return value**
 
@@ -4160,7 +4160,7 @@ This API is deprecated since API version 9. You are advised to use [loadUrl<sup>
 
 onActive(): void
 
-Invoked when the **\<Web>** component enters the active state.
+Called when the **\<Web>** component enters the active state.
 
 This API is deprecated since API version 9. You are advised to use [onActive<sup>9+</sup>](../apis/js-apis-webview.md#onactive).
 
@@ -4189,7 +4189,7 @@ This API is deprecated since API version 9. You are advised to use [onActive<sup
 
 onInactive(): void
 
-Invoked when the **\<Web>** component enters the inactive state.
+Called when the **\<Web>** component enters the inactive state.
 
 This API is deprecated since API version 9. You are advised to use [onInactive<sup>9+</sup>](../apis/js-apis-webview.md#oninactive).
 
@@ -4319,7 +4319,7 @@ Zooms out of this web page by 20%.
 
 refresh()
 
-Invoked when the **\<Web>** component refreshes the web page.
+Called when the **\<Web>** component refreshes the web page.
 
 This API is deprecated since API version 9. You are advised to use [refresh<sup>9+</sup>](../apis/js-apis-webview.md#refresh).
 
@@ -4973,39 +4973,6 @@ Sets the cookie. This API returns the result synchronously. Returns **true** if 
   }
   ```
 
-### saveCookieSync<sup>9+</sup>
-saveCookieSync(): boolean
-
-Saves the cookies in the memory to the drive. This API returns the result synchronously.
-
-**Return value**
-
-| Type     | Description                  |
-| ------- | -------------------- |
-| boolean | Operation result.|
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('saveCookieSync')
-          .onClick(() => {
-            let result = this.controller.getCookieManager().saveCookieSync()
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
 ### getCookie<sup>9+</sup>
 getCookie(url: string): string
 
@@ -5087,6 +5054,39 @@ Sets a cookie value for the specified URL.
   }
   ```
 
+### saveCookieSync<sup>9+</sup>
+saveCookieSync(): boolean
+
+Saves the cookies in the memory to the drive. This API returns the result synchronously.
+
+**Return value**
+
+| Type     | Description                  |
+| ------- | -------------------- |
+| boolean | Operation result.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+  
+    build() {
+      Column() {
+        Button('saveCookieSync')
+          .onClick(() => {
+            let result = web_webview.WebCookieManager.saveCookieSync()
+            console.log("result: " + result)
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
 ### saveCookieAsync<sup>9+</sup>
 saveCookieAsync(): Promise\<boolean>
 
@@ -5465,6 +5465,103 @@ Enumerates the error codes returned by **onSslErrorEventReceive** API.
 | Off     | The web dark mode is disabled.                    |
 | On      | The web dark mode is enabled.                    |
 | Auto    | The web dark mode setting follows the system settings.                |
+
+## WebAsyncController
+
+Implements a **WebAsyncController** object, which can be used to control the behavior of a **\<Web>** component with asynchronous callbacks. A **WebAsyncController **object controls one **\<Web>** component.
+
+### Creating an Object
+
+```
+webController: WebController = new WebController();
+webAsyncController: WebAsyncController = new WebAsyncController(webController);
+```
+
+### storeWebArchive<sup>9+</sup>
+
+storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<string>): void
+
+Stores this web page. This API uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name      | Type                                    | Mandatory   | Description                                  |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| baseName | string | Yes | Save path. The value cannot be null. |
+| autoName | boolean | Yes | Whether to automatically generate a file name.<br/>The value **false** means not to automatically generate a file name.<br/>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory. |
+| callback | AsyncCallback\<string> | Yes    | Callback used to return the save path if the operation is successful and null otherwise. |
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    build() {
+      Column() {
+        Button('saveWebArchive')
+          .onClick(() => {
+            let webAsyncController = new web_webview.WebAsyncController(this.controller)
+            webAsyncController.storeWebArchive("/data/storage/el2/base/", true, (filename) => {
+              if (filename != null) {
+                console.info(`save web archive success: ${filename}`)
+              }
+            })
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### storeWebArchive<sup>9+</sup>
+
+storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
+
+Stores this web page. This API uses a promise to return the result.
+
+**Parameters**
+
+| Name      | Type                                     | Mandatory   | Description                                  |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| baseName | string | Yes | Save path. The value cannot be null. |
+| autoName | boolean | Yes | Whether to automatically generate a file name.<br>The value **false** means not to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory. |
+
+**Return value**
+
+| Type              | Description                               |
+| --------------- | -------------------------------- |
+| Promise\<string> | Promise used to return the save path if the operation is successful and null otherwise. |
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Button('saveWebArchive')
+          .onClick(() => {
+            let webAsyncController = new web_webview.WebAsyncController(this.controller);
+            webAsyncController.storeWebArchive("/data/storage/el2/base/", true)
+              .then(filename => {
+                if (filename != null) {
+                  console.info(`save web archive success: ${filename}`)
+                }
+              })
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
 
 ## WebMessagePort<sup>9+</sup>
 

@@ -100,14 +100,6 @@ Unlocks the screen. This API uses an asynchronous callback to return the result.
 | -------- | --------------------- | ---- | ------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the screen is unlocked successfully, and **false** means the opposite.|
 
-**Error codes**
-
-For details about the error codes, see [Screen Lock Management Error Codes](../errorcodes/errorcode-screenlock.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
-
 **Example**
 
 ```js
@@ -134,14 +126,6 @@ Unlocks the screen. This API uses a promise to return the result.
 | ------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the screen is unlocked successfully, and **false** means the opposite.|
 
-**Error codes**
-
-For details about the error codes, see [Screen Lock Management Error Codes](../errorcodes/errorcode-screenlock.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
-
 **Example**
 
 ```js
@@ -167,14 +151,6 @@ Locks the screen. This API uses an asynchronous callback to return the result.
 | Name  | Type         | Mandatory| Description                     |
 | -------- | ---------------------- | ---- | ---------------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the screen is locked successfully, and **false** means the opposite.|
-
-**Error codes**
-
-For details about the error codes, see [Screen Lock Management Error Codes](../errorcodes/errorcode-screenlock.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
 
 **Example**
 
@@ -204,13 +180,6 @@ Locks the screen. This API uses a promise to return the result.
 | ---------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the screen is locked successfully, and **false** means the opposite.|
 
-**Error codes**
-
-For details about the error codes, see [Screen Lock Management Error Codes](../errorcodes/errorcode-screenlock.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
 
 **Example**
 
@@ -226,7 +195,7 @@ screenlock.lock().then((data) => {
 
 onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
-Registers a callback for system events related to screen locking.
+Registers a callback for system events related to screen locking. This API can be called only by system screen lock applications.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
@@ -244,13 +213,6 @@ Registers a callback for system events related to screen locking.
 | ------- | ------------------------------------------------- |
 | boolean | Returns **true** if the callback is registered successfully; returns **false** otherwise.|
 
-**Error codes**
-
-For details about the error codes, see [Screen Lock Management Error Codes](../errorcodes/errorcode-screenlock.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
 
 **Example**
 
@@ -282,13 +244,6 @@ Sends an event to the screen lock service. This API uses an asynchronous callbac
 | parameter | number                   | Yes  | Result.<br>- **0**: The operation is successful. For example, the screen is locked or unlocked successfully.<br>- **1**, the operation fails. For example, screen locking or unlocking fails.<br>- **2**: The operation is canceled. For example, screen locking or unlocking is canceled.|
 | callback  | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The **value** true means that the event is sent successfully, and **false** means the opposite.                |
 
-**Error codes**
-
-For details about the error codes, see [Screen Lock Management Error Codes](../errorcodes/errorcode-screenlock.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
 
 **Example**
 

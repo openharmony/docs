@@ -26,7 +26,7 @@ The following table lists the USB APIs currently available. For details, see the
 | releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | Releases a USB interface.                                    |
 | getFileDescriptor(pipe: USBDevicePipe): number               | Obtains the file descriptor.                                 |
 | getRawDescriptor(pipe: USBDevicePipe): Uint8Array            | Obtains the raw USB descriptor.                              |
-| controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout ?: number): Promise\<number> | Performs control transfer.                                   |
+| controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise\<number> | Performs control transfer.                                   |
 
 ## How to Develop
 
@@ -118,11 +118,11 @@ You can set a USB device as the USB host to connect to other USB devices for dat
 
 4.  Perform data transfer.
 
-    ```js
-    /*
-    Read data. Select the corresponding RX endpoint from deviceList for data transfer.
-    (endpoint.direction == 0x80); dataUint8Array indicates the data to read. The data type is Uint8Array.
-    */
+   ```js
+   /*
+   Read data. Select the corresponding RX endpoint from deviceList for data transfer.
+   (endpoint.direction == 0x80); dataUint8Array indicates the data to read. The data type is Uint8Array.
+   */
    let inEndpoint = interface1.endpoints[2];
    let outEndpoint = interface1.endpoints[1];
    let dataUint8Array = new Uint8Array(1024);
@@ -147,7 +147,7 @@ You can set a USB device as the USB host to connect to other USB devices for dat
    }).catch(error => {
      console.info("usb writeData error : " + JSON.stringify(error));
    });
-    ```
+   ```
 
 5.  Release the USB interface, and close the USB device.
 

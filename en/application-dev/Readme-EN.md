@@ -65,12 +65,13 @@
   - [Internationalization](internationalization/Readme-EN.md)
   - [Application Test](application-test/Readme-EN.md)
   - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
-  - [Using Native APIs in Application Projects](napi/Readme-EN.md)
+  - [Native APIs](napi/Readme-EN.md)
 - Tools
-    - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
+  - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
+  - [Debugging Tools](tools/Readme-EN.md)
 - Hands-On Tutorials
-    - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
-    - [Codelabs](https://gitee.com/openharmony/codelabs)
+  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
+  - [Codelabs](https://gitee.com/openharmony/codelabs)
 - API References
   - [SystemCapability](reference/syscap.md)
   - [SystemCapability List](reference/syscap-list.md)

@@ -209,3 +209,5 @@
 针对首选项开发，有以下相关实例可供参考：
 
 - [`Preferences`：首选项（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Preferences)
+
+- [首选项（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/Preferences)

@@ -187,7 +187,7 @@ currentSession.on('playNext', () => {
    });
    console.log ("Call AudioPlayer.play.");
    // Set the playback state information.
-   let time = (new Data()).getTime();
+   let time = (new Date()).getTime();
    currentSession.setAVPlaybackState({state: avSession.PlaybackState.PLAYBACK_STATE_PLAY, position: {elapsedTime: 0, updateTime: time}, bufferedTime:2000}).then(() => {
        console.info('setAVPlaybackState successfully');
    }).catch((err) => {
@@ -282,7 +282,7 @@ currentSession.off('outputDeviceChange');
 
 // Deactivate the session and destroy the object.
 currentSession.deactivate().then(() => {
-   currentSession.destory();
+   currentSession.destroy();
 });
 ```
 

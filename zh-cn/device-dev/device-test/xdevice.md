@@ -476,7 +476,7 @@ run指令基本使用方法如下。
 
    type为cmd的com口对应板子上的AT命令串口，用于对设备发送指令，示例中配置为ChA(COM20)串口号。
 
-   <img src="figures/L0-1.PNG" alt="L0-1" style="zoom:67%;" />
+   ![L0-1](figures/L0-1.PNG)
 
    ipcamera设备有两种连接方式，一种是本地串口连接，一种是通过局域网ip连接。
 
@@ -490,17 +490,17 @@ run指令基本使用方法如下。
 
    2. 配置输出->编辑输出表文件。
 
-      <img src="figures/NFS-1.PNG" style="zoom: 67%;" />
+      ![](figures/NFS-1.PNG)
 
    3. 添加路径NFS共享路径（如：D:\HS\NFS_Share_File -public –alldirs），这里要注意ftp的IP地址192.168.1.10为开发板的IP。
 
-      <img src="figures/NFS-2.PNG" style="zoom:75%;" />
+      ![](figures/NFS-2.PNG)
 
    4. 停止NFS服务器->重启运行NFS服务器使刚才添加的共享路径生效。
 
    5. 找到ipcamera设备在PC上面映射的网口：控制面板->网络和Internet->网络共享中心->以太网状态->以太网属性->手动设置IP地址为:192.168.1.11。
 
-      <img src="figures/NFS-3.PNG" style="zoom:67%;" />
+      ![](figures/NFS-3.PNG)      
 
 3. 修改根目录中的user_config.xml文件，示例如下。
 

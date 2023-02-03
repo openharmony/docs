@@ -1,6 +1,6 @@
 # ProcessInformation
 
-ProcessInformation模块提供对进程运行信息进行设置和查询的能力。
+ProcessInformation模块提供对进程运行信息进行查询的能力。
 
 > **说明：**
 > 

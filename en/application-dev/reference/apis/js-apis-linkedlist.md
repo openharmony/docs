@@ -389,7 +389,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The removeFirst method cannot be bound. |
-| 10200010 | The container is empty. |
+| 10200010 | Container is empty. |
 
 **Example**
 
@@ -424,7 +424,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The removeLast method cannot be bound. |
-| 10200010 | The container is empty. |
+| 10200010 | Container is empty. |
 
 **Example**
 
@@ -504,7 +504,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The removeFirstFound method cannot be bound. |
-| 10200010 | The container is empty. |
+| 10200010 | Container is empty. |
 
 **Example**
 
@@ -544,7 +544,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | ID| Error Message|
 | -------- | -------- |
 | 10200011 | The removeLastFound method cannot be bound. |
-| 10200010 | The container is empty. |
+| 10200010 | Container is empty. |
 
 **Example**
 
