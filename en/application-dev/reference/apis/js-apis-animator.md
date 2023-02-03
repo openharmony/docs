@@ -1,6 +1,6 @@
-# @ohos.animator
+# @ohos.animator (Animator)
 
-The **animator** module provides APIs for applying animation effects, including defining animations, starting animations, and playing animations in reverse order.
+The **Animator** module provides APIs for applying animation effects, including defining animations, starting animations, and playing animations in reverse order.
 
 > **NOTE**
 >
@@ -72,7 +72,7 @@ For details about the error codes, see [Animator Error Codes](../errorcodes/erro
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If no page is found for pageId or fail to get object property list. |
+| 100001    | if no page is found for pageId or fail to get object property list. |
 
 
 **Example**
@@ -283,7 +283,7 @@ export default {
       easing: 'friction',
       delay: 0,
       fill: 'forwards',
-      direction: 'normal',
+      direction: "normal",
       iterations: 2,
       begin: 200.0,
       end: 400.0
@@ -296,10 +296,10 @@ export default {
       easing: 'friction',
       delay: 0,
       fill: 'forwards',
-      direction: "normal",
+      direction: 'normal',
       iterations: 2,
       begin: 0,
-      end: 400.0,
+      end: 400.0
     };
     try {
       this.animator.reset(options1);
@@ -519,7 +519,7 @@ let options = {
   direction: 'normal',
   iterations: 3,
   begin: 200.0,
-  end: 400.0,
+  end: 400.0
 };
 this.animator = animator.createAnimator(options);
 ```
