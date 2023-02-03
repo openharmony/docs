@@ -17,7 +17,7 @@
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
-var context = featureAbility.getContext();
+let context = featureAbility.getContext();
 context.getProcessInfo((err, data) => {
     if (err.code != 0) {
         console.info("getProcessInfo err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));

@@ -48,7 +48,7 @@ onMemoryLevel(level: number): void;
   ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-var callbackId;
+let callbackId;
 
 export default class EntryAbility extends UIAbility {
     onCreate() {

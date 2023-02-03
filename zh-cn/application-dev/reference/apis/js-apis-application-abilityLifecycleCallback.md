@@ -158,7 +158,7 @@ onAbilityContinue(ability: Ability): void;
 ```ts
 import AbilityStage from "@ohos.app.ability.AbilityStage";
 
-var lifecycleId;
+let lifecycleId;
 
 export default class MyAbilityStage extends AbilityStage {
     onCreate() {
