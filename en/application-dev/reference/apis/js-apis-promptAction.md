@@ -1,4 +1,4 @@
-# @ohos.promptAction
+# @ohos.promptAction (Prompt)
 
 The **PromptAction** module provides APIs for creating and showing toasts, dialog boxes, and action menus.
 
@@ -32,7 +32,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
@@ -88,7 +88,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
@@ -142,7 +142,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
@@ -218,7 +218,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
@@ -276,7 +276,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
