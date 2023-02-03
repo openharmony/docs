@@ -1,7 +1,7 @@
 # OpenHarmony 3.2 Beta5
 
 
-## 版本概述
+## 版本概述https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/
 
 当前版本在OpenHarmony 3.2 Beta4的基础上，更新支持或优化增强的能力如下：
 
@@ -123,8 +123,8 @@ ArkUI适配了根据资源名称获取资源的能力。
 | 全量代码（标准、轻量和小型系统）        | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/code-v3.2-Beta5.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/code-v3.2-Beta5.tar.gz.sha256) | 21.3 GB |
 | Hi3861解决方案（二进制）        | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/hispark_pegasus.tar.gz.sha256) | 22.9 MB |
 | Hi3516解决方案-LiteOS（二进制） | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_LiteOS.tar.gz.sha256) | 293.6 MB |
-| Hi3516解决方案-Linux（二进制）  | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_Linux.tar.gz.sha256) | 174.3 MiB |
-| RK3568标准系统解决方案（二进制）        | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/dayu200_standard_arm32.tar.gz.sha256) | 3.9 GiB |
+| Hi3516解决方案-Linux（二进制）  | 3.2 Beta5    | [站点](hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_Linux.tar.gz.sha256) | 174.3 MiB |
+| RK3568标准系统解决方案（二进制）        | 3.2 Beta5    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/dayu200_standard_arm32_20230201.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/dayu200_standard_arm32_20230201.tar.gz.sha256) | 3.9 GiB |
 | 标准系统Public SDK包（Mac）             | 3.2.10.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/ohos-sdk-mac-public.tar.gz.sha256) | 674.5 MiB |
 | 标准系统Public SDK包（Mac-M1）             | 3.2.10.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 634.5 MiB |
 | 标准系统Public SDK包（Windows\Linux）   | 3.2.10.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/ohos-sdk-windows_linux-public.tar.gz.sha256) | 1.6 GiB |
