@@ -8,12 +8,6 @@
 InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extention-context.md)提供相关能力。
 
 
-本章节将从如下场景来介绍ServiceExtensionAbility的基本使用。
-
-
-- [实现一个后台服务（仅对系统应用开放）](#实现一个后台服务仅对系统应用开放)
-
-
 ## 实现一个输入法应用
 
 [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)提供了onCreate()和onDestory()生命周期回调，根据需要重写对应的回调方法。InputMethodExtensionAbility的生命周期如下：
@@ -32,7 +26,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 
 开发者在实现一个输入法应用时，需要在DevEco Studio工程中新建一个InputMethodExtensionAbility，具体步骤如下：
 
-在工程Module对应的ets目录下，右键选择“New &gt; Extention Ability > Input Method”，即可创建出InputMethodExtensionAbility的最小化模板。
+在工程Module对应的ets目录下，右键选择“New &gt; Extention Ability > InputMethod”，即可创建出InputMethodExtensionAbility的最小化模板。
 
 最小化模板为一个最基本的输入法应用，包含软键盘拉起以及输入删除功能。后续开发者可在此基础上添加功能，如隐藏键盘等，实现自己的输入法应用。
 
