@@ -16,7 +16,7 @@ The **ApplicationStateObserver** module defines an observer to listen for applic
 
 **Example**
 ```ts
-import appManager from "@ohos.application.appManager"
+import appManager from "@ohos.app.ability.appManager";
 
 let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {

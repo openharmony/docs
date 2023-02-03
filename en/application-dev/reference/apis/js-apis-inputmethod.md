@@ -1,4 +1,4 @@
-# @ohos.inputmethod (Input Method Framework)
+# @ohos.inputMethod (Input Method Framework)
 
 The **inputMethod** module provides an input method framework, which can be used to hide the keyboard, obtain the list of installed input methods, display the dialog box for input method selection, and more.
 
@@ -10,7 +10,7 @@ The **inputMethod** module provides an input method framework, which can be used
 ## Modules to Import
 
 ```js
-import inputMethod from '@ohos.inputmethod';
+import inputMethod from '@ohos.inputMethod';
 ```
 
 ## Constants<sup>8+</sup>
@@ -111,7 +111,7 @@ Switches to another input method. This API uses an asynchronous callback to retu
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | target | [InputMethodProperty](#inputmethodproperty8) | Yes| Input method to switch to.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -160,15 +160,15 @@ Switches to another input method. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-|target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  |target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
 
 **Return value**
 
-| Type                                     | Description                        |
-| ----------------------------------------- | ---------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
+  | Type                                     | Description                        |
+  | ----------------------------------------- | ---------------------------- |
+  | Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
 
 **Error codes**
 
@@ -240,7 +240,7 @@ Switches to another subtype of the current input method. This API uses an asynch
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Input method subtype to switch to.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -376,7 +376,7 @@ Switches to a specified subtype of a specified input method. This API uses an as
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
 |inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Input method subtype to switch to.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -557,7 +557,7 @@ Ends this input session. The invoking of this API takes effect only after the in
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -643,7 +643,7 @@ Shows this soft keyboard. This API must be used with the input text box and work
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -715,7 +715,7 @@ Hides this soft keyboard. This API must be used with the input text box and work
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -789,7 +789,7 @@ Ends this input session. The invoking of this API takes effect only after the in
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1157,7 +1157,7 @@ Displays a dialog box for selecting an input method. This API uses an asynchrono
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1291,7 +1291,7 @@ Displays a dialog box for selecting an input method. This API uses an asynchrono
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 

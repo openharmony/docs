@@ -30,7 +30,7 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
     
   ```ts
   appManager.isRunningInStabilityTest((err, flag) => {
-    console.log('error:' + JSON.stringfy(err));
+    console.log('error:' + JSON.stringify(err));
     console.log('The result of isRunningInStabilityTest is:' + JSON.stringify(flag));
   })  
   ```
@@ -120,7 +120,7 @@ getAppMemorySize(): Promise\<number>;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;number&gt; | 应用程序内存大小。 | 
+  | Promise&lt;number&gt; | 应用程序内存大小, 单位为M。 | 
 
 **示例：**
     
@@ -144,7 +144,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 应用程序内存大小。 | 
+  | callback | AsyncCallback&lt;number&gt; | 是 | 应用程序内存大小, 单位为M。 | 
 
 **示例：**
     
@@ -633,31 +633,3 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
         console.log('------------ clearUpApplicationData fail ------------', err);
     })
   ```
-
-## ApplicationState<sup>9+</sup>
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-| 名称                 | 值  | 说明                               |
-| -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 1   |   当应用在创建中的时候处于的状态。         |
-| STATE_FOREGROUND          | 2   |      当应用切换到前台的时候处于的状态。            |
-| STATE_ACTIVE  | 3   |         当应用在获焦的时候处于的状态。     |
-| STATE_BACKGROUND        | 4   |       当应用处于后台不可见时处于的状态。           |
-| STATE_DESTROY        | 5   |           当应用在销毁的时候处于的状态。       |
-
-## ProcessState<sup>9+</sup>
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-| 名称                 | 值  | 说明                               |
-| -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 1   |      当进程在创建中的时候处于的状态。       |
-| STATE_FOREGROUND          | 2   |            当进程切换到前台的时候处于的状态。      |
-| STATE_ACTIVE  | 3   |          当进程在获焦的时候处于的状态。   |
-| STATE_BACKGROUND        | 4   |       当进程处于后台不可见时处于的状态。           |
-| STATE_DESTROY        | 5   |         当进程在销毁的时候处于的状态。         |

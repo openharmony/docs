@@ -10,7 +10,7 @@ The **AbilityManager** module provides APIs for obtaining, adding, and modifying
 ## Modules to Import
 
 ```ts
-import abilityManager from '@ohos.application.abilityManager'
+import abilityManager from '@ohos.application.abilityManager';
 ```
 
 ## AbilityState
@@ -38,7 +38,7 @@ Updates the configuration. This API uses an asynchronous callback to return the 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
- 
+
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
@@ -176,7 +176,7 @@ abilityManager.getExtensionRunningInfos(upperLimit, (err,data) => {
 getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
 
 Obtains the extension running information. This API uses a promise to return the result.
- 
+
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -232,7 +232,7 @@ abilityManager.getTopAbility((err,data) => {
 getTopAbility(): Promise\<ElementName>;
 
 Obtains the top ability, which is the ability that has the window focus. This API uses a promise to return the result.
- 
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**

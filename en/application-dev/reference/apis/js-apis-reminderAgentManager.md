@@ -1,4 +1,4 @@
-# @ohos.reminderAgentManager (reminderAgentManager)
+# @ohos.reminderAgentManager (Reminder Agent Management)
 
 The **reminderAgentManager** module provides APIs for publishing scheduled reminders through the reminder agent.
 

@@ -8,7 +8,7 @@ The **ErrorManager** module provides APIs for registering and deregistering erro
 
 ## Modules to Import
 ```ts
-import errorManager from '@ohos.application.errorManager'
+import errorManager from '@ohos.application.errorManager';
 ```
 
 ## ErrorManager.registerErrorObserver
@@ -20,7 +20,7 @@ Registers an error observer.
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
- 
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | observer | [ErrorObserver](js-apis-inner-application-errorObserver.md) | Yes| Numeric code of the observer.|
@@ -45,7 +45,7 @@ Deregisters an error observer. This API uses an asynchronous callback to return 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
- 
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | observerId | number | Yes| Numeric code of the observer.|
@@ -74,7 +74,7 @@ Deregisters an error observer. This API uses a promise to return the result.
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
- 
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | observerId | number | Yes| Numeric code of the observer.|

@@ -577,7 +577,7 @@ Sets whether to display the horizontal scrollbar, including the system default s
 
 verticalScrollBarAccess(verticalScrollBar: boolean)
 
-Sets whether to display the vertical scrollbar, including the system default scrollbar and custom scrollbar. By default, the vertical scrollbar is displayed.
+Sets whether to display the vertical scrollbar, including the default system scrollbar and custom scrollbar. By default, the vertical scrollbar is displayed.
 
 **Parameters**
 
@@ -740,36 +740,6 @@ Sets the user agent.
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .userAgent(this.userAgent)
-      }
-    }
-  }
-  ```
-
-### webDebuggingAccess<sup>9+</sup>
-
-webDebuggingAccess(webDebuggingAccess: boolean)
-
-Sets whether to enable web debugging.
-
-**Parameters**
-
-| Name               | Type   | Mandatory  | Default Value  | Description         |
-| ------------------ | ------- | ---- | ----- | ------------- |
-| webDebuggingAccess | boolean | Yes   | false | Whether to enable web debugging.|
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    @State webDebuggingAccess: boolean = true
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .webDebuggingAccess(this.webDebuggingAccess)
       }
     }
   }
@@ -1211,6 +1181,52 @@ struct WebComponent {
 }
   ```
 
+### allowWindowOpenMethod<sup>9+</sup>
+
+allowWindowOpenMethod(flag: boolean)
+
+Sets whether to allow a new window to automatically open through JavaScript.
+
+When **flag** is set to **true**, a new window can automatically open through JavaScript. When **flag** is set to **false**, a new window can still automatically open through JavaScript for user behavior, but cannot for non-user behavior. The user behavior here refers to that a user requests to open a new window (**window.open**) within 5 seconds.
+
+This API takes effect only when [javaScriptAccess](#javascriptaccess) is enabled.
+
+This API opens a new window when [multiWindowAccess](#multiwindowaccess9) is enabled and opens a local window when [multiWindowAccess](#multiwindowaccess9) is disabled.
+
+The default value of **flag** is subject to the settings of the **persist.web.allowWindowOpenMethod.enabled** system attribute. If this attribute is not set, the default value of **flag** is **false**.
+
+To check the settings of **persist.web.allowWindowOpenMethod.enabled**, run the **hdc shell param get persist.web.allowWindowOpenMethod.enabled** command. If the attribute is set to 0 or does not exist,
+you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 1** command to enable it.
+
+**Parameters**
+
+| Name| Type| Mandatory| Default Value | Description                      |
+| ------ | ------- | ---- | ----- | ------------------ |
+| flag | boolean | Yes  | Subject to the settings of the **persist.web.allowWindowOpenMethod.enabled** system attribute. If this attribute is set, the default value of **flag** is **true**. Otherwise, the default value of **flag** is **false**. | Whether to allow a new window to automatically open through JavaScript.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State access: boolean = true
+    @State multiWindow: boolean = true
+    @State flag: boolean = true
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(this.access)
+          .multiWindowAccess(this.multiWindow)
+          .allowWindowOpenMethod(this.flag)
+      }
+    }
+  }
+  ```
+
 ## Events
 
 The universal events are not supported.
@@ -1219,7 +1235,7 @@ The universal events are not supported.
 
 onAlert(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
 
-Triggered when **alert()** is invoked to display an alert dialog box on the web page.
+Called when **alert()** is invoked to display an alert dialog box on the web page.
 
 **Parameters**
 
@@ -1233,7 +1249,7 @@ Triggered when **alert()** is invoked to display an alert dialog box on the web 
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
 
 **Example**
 
@@ -1277,7 +1293,7 @@ Triggered when **alert()** is invoked to display an alert dialog box on the web 
 
 onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
 
-Triggered when this page is about to exit after the user refreshes or closes the page. This callback is triggered only when the page has obtained focus.
+Called when this page is about to exit after the user refreshes or closes the page. This API takes effect only when the page has obtained focus.
 
 **Parameters**
 
@@ -1291,7 +1307,7 @@ Triggered when this page is about to exit after the user refreshes or closes the
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
 
 **Example**
 
@@ -1301,7 +1317,7 @@ Triggered when this page is about to exit after the user refreshes or closes the
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1338,7 +1354,7 @@ Triggered when this page is about to exit after the user refreshes or closes the
 
 onConfirm(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
 
-Triggered when **confirm()** is invoked by the web page.
+Called when **confirm()** is invoked by the web page.
 
 **Parameters**
 
@@ -1352,7 +1368,7 @@ Triggered when **confirm()** is invoked by the web page.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
 
 **Example**
 
@@ -1362,7 +1378,7 @@ Triggered when **confirm()** is invoked by the web page.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1412,7 +1428,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
 
 **Example**
 
@@ -1422,7 +1438,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1460,7 +1476,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
 onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 
-Triggered to notify the host application of a JavaScript console message.
+Called to notify the host application of a JavaScript console message.
 
 **Parameters**
 
@@ -1482,7 +1498,7 @@ Triggered to notify the host application of a JavaScript console message.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1519,7 +1535,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1539,7 +1555,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 
 onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResourceError }) => void)
 
-Triggered when an error occurs during web page loading. For better results, simplify the implementation logic in the callback.
+Called when an error occurs during web page loading. For better results, simplify the implementation logic in the callback.
 
 **Parameters**
 
@@ -1556,7 +1572,7 @@ Triggered when an error occurs during web page loading. For better results, simp
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1583,7 +1599,7 @@ Triggered when an error occurs during web page loading. For better results, simp
 
 onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: WebResourceResponse }) => void)
 
-Triggered when an HTTP error (the response code is greater than or equal to 400) occurs during web page resource loading.
+Called when an HTTP error (the response code is greater than or equal to 400) occurs during web page resource loading.
 
 **Parameters**
 
@@ -1600,7 +1616,7 @@ Triggered when an HTTP error (the response code is greater than or equal to 400)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1635,7 +1651,7 @@ Triggered when an HTTP error (the response code is greater than or equal to 400)
 onPageBegin(callback: (event?: { url: string }) => void)
 
 
-Triggered when the web page starts to be loaded. This API is triggered only for the main frame content, and not for the iframe or frameset content.
+Called when the web page starts to be loaded. This API is called only for the main frame content, and not for the iframe or frameset content.
 
 **Parameters**
 
@@ -1651,7 +1667,7 @@ Triggered when the web page starts to be loaded. This API is triggered only for 
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1668,7 +1684,7 @@ Triggered when the web page starts to be loaded. This API is triggered only for 
 onPageEnd(callback: (event?: { url: string }) => void)
 
 
-Triggered when the web page loading is complete. This API is triggered only for the main frame content.
+Called when the web page loading is complete. This API takes effect only for the main frame content.
 
 **Parameters**
 
@@ -1684,7 +1700,7 @@ Triggered when the web page loading is complete. This API is triggered only for 
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1700,7 +1716,7 @@ Triggered when the web page loading is complete. This API is triggered only for 
 
 onProgressChange(callback: (event?: { newProgress: number }) => void)
 
-Triggered when the web page loading progress changes.
+Called when the web page loading progress changes.
 
 **Parameters**
 
@@ -1716,7 +1732,7 @@ Triggered when the web page loading progress changes.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1732,7 +1748,7 @@ Triggered when the web page loading progress changes.
 
 onTitleReceive(callback: (event?: { title: string }) => void)
 
-Triggered when the document title of the web page is changed.
+Called when the document title of the web page is changed.
 
 **Parameters**
 
@@ -1748,7 +1764,7 @@ Triggered when the document title of the web page is changed.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1764,7 +1780,7 @@ Triggered when the document title of the web page is changed.
 
 onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean }) => void)
 
-Triggered when loading of the web page is complete. This API is used by an application to update the historical link it accessed.
+Called when loading of the web page is complete. This API is used by an application to update the historical link it accessed..
 
 **Parameters**
 
@@ -1781,7 +1797,7 @@ Triggered when loading of the web page is complete. This API is used by an appli
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1797,7 +1813,7 @@ Triggered when loading of the web page is complete. This API is used by an appli
 
 onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => void)
 
-Triggered when the rendering process exits abnormally.
+Called when the rendering process exits abnormally.
 
 **Parameters**
 
@@ -1813,7 +1829,7 @@ Triggered when the rendering process exits abnormally.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'chrome://crash/', controller: this.controller })
@@ -1829,7 +1845,7 @@ Triggered when the rendering process exits abnormally.
 
 onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => boolean)
 
-Triggered to process an HTML form whose input type is **file**, in response to the tapping of the **Select File** button.
+Called to process an HTML form whose input type is **file**, in response to the tapping of the **Select File** button.
 
 **Parameters**
 
@@ -1842,7 +1858,7 @@ Triggered to process an HTML form whose input type is **file**, in response to t
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** means that the pop-up window provided by the system is displayed. The value **false** means that the default web pop-up window is displayed.|
+| boolean | The value **true** means that the pop-up window provided by the system is displayed. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
 
 **Example**
 
@@ -1885,7 +1901,7 @@ Triggered to process an HTML form whose input type is **file**, in response to t
 
 onResourceLoad(callback: (event: {url: string}) => void)
 
-Invoked to notify the **\<Web>** component of the URL of the loaded resource file.
+Called to notify the **\<Web>** component of the URL of the loaded resource file.
 
 **Parameters**
 
@@ -1901,7 +1917,7 @@ Invoked to notify the **\<Web>** component of the URL of the loaded resource fil
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1917,7 +1933,7 @@ Invoked to notify the **\<Web>** component of the URL of the loaded resource fil
 
 onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
 
-Invoked when the display ratio of this page changes.
+Called when the display ratio of this page changes.
 
 **Parameters**
 
@@ -1934,7 +1950,7 @@ Invoked when the display ratio of this page changes.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1950,7 +1966,7 @@ Invoked when the display ratio of this page changes.
 
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
-Triggered when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access.
+Called when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access.
 
 **Parameters**
 
@@ -1972,7 +1988,7 @@ Triggered when the **\<Web>** component is about to access a URL. This API is us
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1989,7 +2005,7 @@ Triggered when the **\<Web>** component is about to access a URL. This API is us
 
 onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebResourceResponse)
 
-Invoked when the **\<Web>** component is about to access a URL. This API is used to block the URL and return the response data.
+Called when the **\<Web>** component is about to access a URL. This API is used to block the URL and return the response data.
 
 **Parameters**
 
@@ -2054,7 +2070,7 @@ Invoked when the **\<Web>** component is about to access a URL. This API is used
 
 onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, realm: string}) => boolean)
 
-Invoked when an HTTP authentication request is received.
+Called when an HTTP authentication request is received.
 
 **Parameters**
 
@@ -2080,7 +2096,7 @@ Invoked when an HTTP authentication request is received.
   struct WebComponent {
     controller: WebController = new WebController()
     httpAuth: boolean = false
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2123,7 +2139,7 @@ Invoked when an HTTP authentication request is received.
 
 onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslError }) => void)
 
-Invoked when an SSL error occurs during resource loading.
+Called when an SSL error occurs during resource loading.
 
 **Parameters**
 
@@ -2141,7 +2157,7 @@ Invoked when an SSL error occurs during resource loading.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2176,7 +2192,7 @@ Invoked when an SSL error occurs during resource loading.
 
 onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string>, issuers : Array<string>}) => void)
 
-Invoked when an SSL client certificate request is received.
+Called when an SSL client certificate request is received.
 
 **Parameters**
 
@@ -2231,7 +2247,7 @@ Invoked when an SSL client certificate request is received.
 
 onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
 
-Invoked when a permission request is received.
+Called when a permission request is received.
 
 **Parameters**
 
@@ -2320,7 +2336,7 @@ Shows a context menu after the user clicks the right mouse button or long presse
 
 onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
-Invoked when the scrollbar of the page scrolls.
+Called when the scrollbar of the page scrolls.
 
 **Parameters**
 
@@ -2398,7 +2414,7 @@ Registers a callback for receiving a request to obtain the geolocation informati
 
 onGeolocationHide(callback: () => void)
 
-Triggered to notify the user that the request for obtaining the geolocation information received when **[onGeolocationShow](#ongeolocationshow)** is called has been canceled.
+Called to notify the user that the request for obtaining the geolocation information received when **[onGeolocationShow](#ongeolocationshow)** is called has been canceled.
 
 **Parameters**
 
@@ -2430,7 +2446,7 @@ Triggered to notify the user that the request for obtaining the geolocation info
 
 onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
 
-Registers a callback for the component's entering into full screen mode.
+Called when the component enters full screen mode.
 
 **Parameters**
 
@@ -2463,7 +2479,7 @@ Registers a callback for the component's entering into full screen mode.
 
 onFullScreenExit(callback: () => void)
 
-Registers a callback for the component's exiting full screen mode.
+Called when the component exits full screen mode.
 
 **Parameters**
 
@@ -2568,7 +2584,7 @@ Registers a callback for window closure.
 
 onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMatches: number, isDoneCounting: boolean}) => void): WebAttribute
 
-Invoked to notify the caller of the search result on the web page.
+Called to notify the caller of the search result on the web page.
 
 **Parameters**
 
@@ -2603,7 +2619,7 @@ Invoked to notify the caller of the search result on the web page.
 
 onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
 
-Invoked when the web form data is resubmitted.
+Called when the web form data is resubmitted.
 
 **Parameters**
 
@@ -2636,7 +2652,7 @@ Invoked when the web form data is resubmitted.
 
 onPageVisible(callback: (event: {url: string}) => void)
 
-Invoked when the old page is not displayed and the new page is about to be visible.
+Called when the old page is not displayed and the new page is about to be visible.
 
 **Parameters**
 
@@ -2668,7 +2684,7 @@ Invoked when the old page is not displayed and the new page is about to be visib
 
 onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
-Invoked when the key event is intercepted, before being consumed by the Webview.
+Called when the key event is intercepted, before being consumed by the Webview.
 
 **Parameters**
 
@@ -2710,7 +2726,7 @@ Invoked when the key event is intercepted, before being consumed by the Webview.
 
 onTouchIconUrlReceived(callback: (event: {url: string, precomposed: boolean}) => void)
 
-Invoked when an apple-touch-icon URL is received.
+Called when an apple-touch-icon URL is received.
 
 **Parameters**
 
@@ -2743,7 +2759,7 @@ Invoked when an apple-touch-icon URL is received.
 
 onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
 
-Invoked when this web page receives a new favicon.
+Called when this web page receives a new favicon.
 
 **Parameters**
 
@@ -3243,7 +3259,7 @@ Performs HTTP authentication with the user name and password provided by the use
 
 isHttpAuthInfoSaved(): boolean
 
-Uses the password cached on the server for authentication.
+Uses the account name and password cached on the server for authentication.
 
 **Return value**
 
@@ -3611,7 +3627,7 @@ This API is deprecated since API version 9. You are advised to use [requestFocus
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('requestFocus')
@@ -3646,7 +3662,7 @@ This API is deprecated since API version 9. You are advised to use [accessBackwa
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('accessBackward')
@@ -3682,7 +3698,7 @@ This API is deprecated since API version 9. You are advised to use [accessForwar
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('accessForward')
@@ -3725,7 +3741,7 @@ This API is deprecated since API version 9. You are advised to use [accessStep<s
   struct WebComponent {
     controller: WebController = new WebController()
     @State steps: number = 2
-  
+
     build() {
       Column() {
         Button('accessStep')
@@ -3755,7 +3771,7 @@ This API is deprecated since API version 9. You are advised to use [backward<sup
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('backward')
@@ -3784,7 +3800,7 @@ This API is deprecated since API version 9. You are advised to use [forward<sup>
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('forward')
@@ -3818,7 +3834,7 @@ Performs a specific number of steps forward or backward on the current page base
   struct WebComponent {
     controller: WebController = new WebController()
     @State step: number = -2
-  
+
     build() {
       Column() {
         Button('backOrForward')
@@ -3854,7 +3870,7 @@ This API is deprecated since API version 9. You are advised to use [deleteJavaSc
   struct WebComponent {
     controller: WebController = new WebController()
     @State name: string = 'Object'
-  
+
     build() {
       Column() {
         Button('deleteJavaScriptRegister')
@@ -3871,7 +3887,7 @@ This API is deprecated since API version 9. You are advised to use [deleteJavaSc
 
 getHitTest(): HitTestType
 
-Obtains the element type of the area being clicked.	
+Obtains the element type of the area being clicked.
 
 This API is deprecated since API version 9. You are advised to use [getHitTest<sup>9+</sup>](../apis/js-apis-webview.md#gethittest).
 
@@ -3889,7 +3905,7 @@ This API is deprecated since API version 9. You are advised to use [getHitTest<s
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getHitTest')
@@ -3922,7 +3938,7 @@ Obtains the element information of the area being clicked.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getHitTestValue')
@@ -3956,7 +3972,7 @@ Obtains the index value of this **\<Web>** component, which can be used for **\<
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getWebId')
@@ -3989,7 +4005,7 @@ Obtains the title of the current web page.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getTitle')
@@ -4022,7 +4038,7 @@ Obtains the height of the current web page.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getPageHeight')
@@ -4055,7 +4071,7 @@ Obtains the default user agent of the current web page.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getDefaultUserAgent')
@@ -4099,7 +4115,7 @@ This API is deprecated since API version 9. You are advised to use [loadData<sup
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('loadData')
@@ -4143,7 +4159,7 @@ This API is deprecated since API version 9. You are advised to use [loadUrl<sup>
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('loadUrl')
@@ -4160,7 +4176,7 @@ This API is deprecated since API version 9. You are advised to use [loadUrl<sup>
 
 onActive(): void
 
-Invoked when the **\<Web>** component enters the active state.
+Called when the **\<Web>** component enters the active state.
 
 This API is deprecated since API version 9. You are advised to use [onActive<sup>9+</sup>](../apis/js-apis-webview.md#onactive).
 
@@ -4172,7 +4188,7 @@ This API is deprecated since API version 9. You are advised to use [onActive<sup
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('onActive')
@@ -4189,7 +4205,7 @@ This API is deprecated since API version 9. You are advised to use [onActive<sup
 
 onInactive(): void
 
-Invoked when the **\<Web>** component enters the inactive state.
+Called when the **\<Web>** component enters the inactive state.
 
 This API is deprecated since API version 9. You are advised to use [onInactive<sup>9+</sup>](../apis/js-apis-webview.md#oninactive).
 
@@ -4201,7 +4217,7 @@ This API is deprecated since API version 9. You are advised to use [onInactive<s
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('onInactive')
@@ -4236,7 +4252,7 @@ This API is deprecated since API version 9. You are advised to use [zoom<sup>9+<
   struct WebComponent {
     controller: WebController = new WebController()
     @State factor: number = 1
-  
+
     build() {
       Column() {
         Button('zoom')
@@ -4268,7 +4284,7 @@ Zooms in on this web page by 20%.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('zoomIn')
@@ -4301,7 +4317,7 @@ Zooms out of this web page by 20%.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('zoomOut')
@@ -4319,7 +4335,7 @@ Zooms out of this web page by 20%.
 
 refresh()
 
-Invoked when the **\<Web>** component refreshes the web page.
+Called when the **\<Web>** component refreshes the web page.
 
 This API is deprecated since API version 9. You are advised to use [refresh<sup>9+</sup>](../apis/js-apis-webview.md#refresh).
 
@@ -4331,7 +4347,7 @@ This API is deprecated since API version 9. You are advised to use [refresh<sup>
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('refresh')
@@ -4409,7 +4425,7 @@ This API is deprecated since API version 9. You are advised to use [registerJava
       }
   </script>
   </html>
-  
+
   ```
 
 ### runJavaScript<sup>(deprecated)</sup>
@@ -4489,7 +4505,7 @@ This API is deprecated since API version 9. You are advised to use [stop<sup>9+<
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('stop')
@@ -4518,7 +4534,7 @@ This API is deprecated since API version 9. You are advised to use [clearHistory
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('clearHistory')
@@ -4605,7 +4621,7 @@ Obtains the cookie management object of the **\<Web>** component.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getCookieManager')
@@ -4959,7 +4975,7 @@ Sets the cookie. This API returns the result synchronously. Returns **true** if 
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('setCookie')
@@ -4992,7 +5008,7 @@ Saves the cookies in the memory to the drive. This API returns the result synchr
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('saveCookieSync')
@@ -5032,7 +5048,7 @@ Obtains the cookie value corresponding to the specified URL.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getCookie')
@@ -5073,7 +5089,7 @@ Sets a cookie value for the specified URL.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('setCookie')
@@ -5107,7 +5123,7 @@ Saves the cookies in the memory to the drive. This API uses a promise to return 
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('saveCookieAsync')
@@ -5146,7 +5162,7 @@ Saves the cookies in the memory to the drive. This API uses an asynchronous call
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('saveCookieAsync')
@@ -5181,7 +5197,7 @@ Checks whether the **WebCookieManager** instance has the permission to send and 
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('isCookieAllowed')
@@ -5215,7 +5231,7 @@ Sets whether the **WebCookieManager** instance has the permission to send and re
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('putAcceptCookieEnabled')
@@ -5248,7 +5264,7 @@ Checks whether the **WebCookieManager** instance has the permission to send and 
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('isThirdPartyCookieAllowed')
@@ -5282,7 +5298,7 @@ Sets whether the **WebCookieManager** instance has the permission to send and re
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('putAcceptThirdPartyCookieEnabled')
@@ -5315,7 +5331,7 @@ Checks whether cookies exist.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('existCookie')
@@ -5343,7 +5359,7 @@ Deletes all cookies.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('deleteEntireCookie')
@@ -5370,7 +5386,7 @@ Deletes all session cookies.
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('deleteSessionCookie')
@@ -5670,7 +5686,7 @@ Sets the message port in this object. For the complete sample code, see [postMes
   struct WebComponent {
     controller: WebController = new WebController()
     ports: WebMessagePort[] = null
-  
+
     build() {
       Column() {
         Button('setPorts')

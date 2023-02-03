@@ -87,7 +87,7 @@ paramsObject.delete('fod');
 
 getAll(name: string): string[]
 
-Obtains all the key-value pairs based on the specified name.
+Obtains all the values based on the specified key.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -95,13 +95,13 @@ Obtains all the key-value pairs based on the specified name.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Key specified to obtain all key-value pairs.|
+| name | string | Yes| Target key.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| string[] | Key-value pairs obtained.|
+| string[] | All the values obtained.|
 
 **Example**
 
@@ -432,7 +432,7 @@ A no-argument constructor used to create a URL. It returns a **URL** object afte
 **System capability**: SystemCapability.Utils.Lang
 
 ### parseURL<sup>9+</sup>
-                                            
+
 static parseURL(url : string, base?: string | URL): URL
 
 Parses a URL.
@@ -514,7 +514,7 @@ A constructor used to create a **URLSearchParams** instance.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams<sup>9+</sup>](#constructor9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.constructor<sup>9+</sup>](#constructor9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -542,7 +542,7 @@ Appends a key-value pair into the query string.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams<sup>9+</sup>.append<sup>9+</sup>](#append9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.append<sup>9+</sup>](#append9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -569,7 +569,7 @@ Deletes key-value pairs of the specified key.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams<sup>9+</sup>.delete<sup>9+</sup>](#delete9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.delete<sup>9+</sup>](#delete9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -595,7 +595,7 @@ Obtains all the key-value pairs based on the specified key.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams<sup>9+</sup>.getAll<sup>9+</sup>](#getall9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.getAll<sup>9+</sup>](#getall9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -603,7 +603,7 @@ Obtains all the key-value pairs based on the specified key.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Key specified to obtain all key-value pairs.|
+| name | string | Yes| Target key.|
 
 **Return value**
 
@@ -628,7 +628,7 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams<sup>9+</sup>.entries<sup>9+</sup>](#entries9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.entries<sup>9+</sup>](#entries9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -656,7 +656,7 @@ Traverses the key-value pairs in the **URLSearchParams** instance by using a cal
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams<sup>9+</sup>.forEach<sup>9+</sup>](#foreach9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.forEach<sup>9+</sup>](#foreach9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -693,7 +693,7 @@ Obtains the value of the first key-value pair based on the specified key.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams<sup>9+</sup>.get<sup>9+</sup>](#get9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.get<sup>9+</sup>](#get9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -727,7 +727,7 @@ Checks whether a key has a value.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams<sup>9+</sup>.has<sup>9+</sup>](#has9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.has<sup>9+</sup>](#has9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -760,7 +760,7 @@ Sets the value for a key. If key-value pairs matching the specified key exist, t
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams<sup>9+</sup>.set<sup>9+</sup>](#set9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.set<sup>9+</sup>](#set9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -788,7 +788,7 @@ Sorts all key-value pairs contained in this object based on the Unicode code poi
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams<sup>9+</sup>.sort<sup>9+</sup>](#sort9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.sort<sup>9+</sup>](#sort9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -809,7 +809,7 @@ Obtains an ES6 iterator that contains the keys of all the key-value pairs.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams<sup>9+</sup>.keys<sup>9+</sup>](#keys9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.keys<sup>9+</sup>](#keys9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -837,7 +837,7 @@ Obtains an ES6 iterator that contains the values of all the key-value pairs.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams<sup>9+</sup>.values<sup>9+</sup>](#values9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.values<sup>9+</sup>](#values9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -865,7 +865,7 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [Symbol.iterator]<sup>9+</sup>](#symboliterator9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.[Symbol.iterator]<sup>9+</sup>](#symboliterator9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -892,7 +892,7 @@ Obtains search parameters that are serialized as a string and, if necessary, per
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tostring<sup>9+</sup>](#tostring9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.tostring<sup>9+</sup>](#tostring9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 

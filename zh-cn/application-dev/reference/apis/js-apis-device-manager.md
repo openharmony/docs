@@ -588,8 +588,9 @@ stopDeviceDiscovery(subscribeId: number): void
 **示例：**
 
   ```js
-  // 入参需要和startDeviceDiscovery接口传入的subscribeId配对使用
   try {
+    // stopDeviceDiscovery和startDeviceDiscovery需配对使用，入参需要和startDeviceDiscovery接口传入的subscribeId值相等
+    var subscribeId = 12345;
     dmInstance.stopDeviceDiscovery(subscribeId);
   } catch (err) {
     console.error("stopDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
@@ -630,7 +631,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
       "publishId": publishId,
       "mode": 0xAA, // 主动模式
       "freq": 2,    // 高频率
-      "ranging": 1  // 支持发现时测距
+      "ranging": true  // 支持发现时测距
   };
   try {
     dmInstance.publishDeviceDiscovery(publishInfo); // 当有发布结果时，通过回调通知给应用程序
@@ -666,8 +667,9 @@ unPublishDeviceDiscovery(publishId: number): void
 **示例：**
 
   ```js
-  // 入参需要和publishDeviceDiscovery接口传入的publishId配对使用
   try {
+    // unPublishDeviceDiscovery和publishDeviceDiscovery配对使用，入参需要和publishDeviceDiscovery接口传入的publishId值相等
+    var publishId = 12345;
     dmInstance.unPublishDeviceDiscovery(publishId);
   } catch (err) {
     console.error("unPublishDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
@@ -708,11 +710,19 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
   var deviceInfo ={
       "deviceId": "XXXXXXXX",
       "deviceName": "",
-      deviceType: 0x0E
+      "deviceType": 0x0E,
+      "networkId" : "xxxxxxx",
+      "range" : 0
   };
+  let extraInfo = {
+          'targetPkgName': 'ohos.samples.xxx',
+          'appName': 'xxx',
+          'appDescription': 'xxx',
+          'business': '0'
+  }
   let authParam = {
-      "authType": 1, // 认证类型： 1 - 无帐号PIN码认证
-      "extraInfo": {} 
+      'authType': 1,// 认证类型： 1 - 无帐号PIN码认证
+      'extraInfo': extraInfo
   }
   try {
     dmInstance.authenticateDevice(deviceInfo, authParam, (err, data) => {
@@ -756,6 +766,13 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
   ```js
   try {
+    var deviceInfo ={
+      "deviceId": "XXXXXXXX",
+      "deviceName": "",
+      "deviceType": 0x0E,
+      "networkId" : "xxxxxxx",
+      "range" : 0
+    };
     dmInstance.unAuthenticateDevice(deviceInfo);
   } catch (err) {
     console.error("unAuthenticateDevice errCode:" + err.code + ",errMessage:" + err.message);
@@ -792,7 +809,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
   ```js
   let authInfo = {
     "authType": 1,
-    "token": xxxxxx,
+    "token": 123456,
     "extraInfo": {}
   }
   try {
@@ -838,7 +855,7 @@ setUserOperation(operateAction: number, params: string): void;
       operateAction = 5 - pin码输入框确定操作
     */
     let operation = 0;
-    this.dmInstance.setUserOperation(operation, "extra")
+    dmInstance.setUserOperation(operation, "extra")
     } catch (err) {
       console.error("setUserOperation errCode:" + err.code + ",errMessage:" + err.message);
   }
@@ -868,11 +885,8 @@ ui状态变更回调。
     dmInstance.on('uiStateChange', (data) => {
     console.log("uiStateChange executed, dialog closed" + JSON.stringify(data))
     var tmpStr = JSON.parse(data.param)
-    this.isShow = tmpStr.verifyFailed
-    console.log("uiStateChange executed, dialog closed" + this.isShow)
-    if (!this.isShow) {
-        this.destruction()
-    }
+    var isShow = tmpStr.verifyFailed
+    console.log("uiStateChange executed, dialog closed" + isShow)
   });
   } catch (err) {
     console.error("uiStateChange errCode:" + err.code + ",errMessage:" + err.message);

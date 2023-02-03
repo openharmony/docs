@@ -28,7 +28,7 @@
 - 将一个指定的任务切换到前台。
 
 
-一个UIAbility实例对应一个单独的任务，因此应用调用startAbility()方法启动一个UIAbility时，就是创建了一个任务。
+一个UIAbility实例对应一个单独的任务，因此应用调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动一个UIAbility时，就是创建了一个任务。
 
 
 桌面应用调用[missionManager](../reference/apis/js-apis-application-missionManager.md)的接口管理任务，需要申请`ohos.permission.MANAGE_MISSIONS`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。

@@ -1,4 +1,4 @@
-# Application Configuration
+# @system.configuration (Application Configuration)
 
 > **NOTE**<br>
 > - The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.i18n`](js-apis-i18n.md) and [`@ohos.intl`](js-apis-intl.md) instead.

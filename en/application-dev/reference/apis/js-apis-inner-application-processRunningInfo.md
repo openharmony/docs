@@ -23,7 +23,7 @@ The process running information is obtained by using [getProcessRunningInfos](js
 
 **Example**
 ```ts
-import appManager from '@ohos.application.appManager';
+import appManager from '@ohos.app.ability.appManager';
 
 appManager.getProcessRunningInfos().then((data) => {
     console.log('success:' + JSON.stringify(data));

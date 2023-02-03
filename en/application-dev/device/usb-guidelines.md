@@ -20,13 +20,13 @@ The following table lists the USB APIs currently available. For details, see the
 | getDevices(): Array<Readonly\<USBDevice>>                    | Obtains the list of USB devices connected to the USB host. If no USB device is connected, an empty list is returned. |
 | setConfiguration(pipe: USBDevicePipe, config: USBConfig): number | Sets the USB device configuration.                           |
 | setInterface(pipe: USBDevicePipe, iface: USBInterface): number | Sets a USB interface.                                        |
-| claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number | Claims a USB interface.                                       |
-| bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise\<number> | Performs bulk transfer.                                      |
+| claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number | Claims a USB interface.                                       |
+| bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise\<number> | Performs bulk transfer.                                      |
 | closePipe(pipe: USBDevicePipe): number                       | Closes a USB device pipe.                                    |
 | releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | Releases a USB interface.                                    |
 | getFileDescriptor(pipe: USBDevicePipe): number               | Obtains the file descriptor.                                 |
 | getRawDescriptor(pipe: USBDevicePipe): Uint8Array            | Obtains the raw USB descriptor.                              |
-| controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: number): Promise\<number> | Performs control transfer.                                   |
+| controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise&lt;number&gt; | Performs control transfer.                                   |
 
 ## How to Develop
 
@@ -51,7 +51,7 @@ You can set a USB device as the USB host to connect to other USB devices for dat
         vendorId: 7531,
         productId: 2,
         clazz: 9,
-        subclass: 0,
+        subClass: 0,
         protocol: 1,
         devAddress: 1,
         busNum: 1,
@@ -68,7 +68,7 @@ You can set a USB device as the USB host to connect to other USB devices for dat
                 id: 0,
                 protocol: 0,
                 clazz: 9,
-                subclass: 0,
+                subClass: 0,
                 alternateSetting: 0,
                 name: "1-1",
                 endpoints: [
@@ -93,7 +93,7 @@ You can set a USB device as the USB host to connect to other USB devices for dat
     ```
    
 
-2.  Obtain the device operation permissions.
+2. Obtain the device operation permissions.
 
     ```js
     let deviceName = deviceList[0].name;
@@ -105,11 +105,11 @@ You can set a USB device as the USB host to connect to other USB devices for dat
     });
     ```
 
-3.  Open the device.
+3. Open the device.
 
     ```js
     // Open the device, and obtain the USB device pipe for data transfer.
-    let pipe = usb.connectDevice(deviceList[0]);
+    let interface1 = deviceList[0].configs[0].interfaces[0];
     /*
     Claim the corresponding interface from deviceList.
     interface1 must be one present in the device configuration.
@@ -117,14 +117,16 @@ You can set a USB device as the USB host to connect to other USB devices for dat
     usb.claimInterface(pipe, interface1, true);
     ```
 
-4.  Perform data transfer.
+4. Perform data transfer.
 
     ```js
     /*
     Read data. Select the corresponding RX endpoint from deviceList for data transfer.
     (endpoint.direction == 0x80); dataUint8Array indicates the data to read. The data type is Uint8Array.
     */
-    
+    let inEndpoint = interface1.endpoints[2];
+    let outEndpoint = interface1.endpoints[1];
+    let dataUint8Array = new Uint8Array(1024);
     usb.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then(dataLength => {
     if (dataLength >= 0) {
       console.info("usb readData result Length : " + dataLength);
@@ -137,7 +139,7 @@ You can set a USB device as the USB host to connect to other USB devices for dat
     console.info("usb readData error : " + JSON.stringify(error));
     });
     // Send data. Select the corresponding TX endpoint from deviceList for data transfer. (endpoint.direction == 0)
-    usb.bulkTransfer(pipe, endpoint, dataUint8Array, 15000).then(dataLength => {
+    usb.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then(dataLength => {
       if (dataLength >= 0) {
         console.info("usb writeData result write length : " + dataLength);
       } else {

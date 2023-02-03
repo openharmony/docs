@@ -40,32 +40,28 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
-| 100002    | If the uri is not exist. |
-| 100003    | If the pages are pushed too much. |
+| 100001    | if UI execution context not found. |
+| 100002    | if the uri is not exist. |
+| 100003    | if the pages are pushed too much. |
 
 **Example**
 
 ```js
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
+  }
+})
+  .then(() => {
+    // success
   })
-    .then(() => {
-      // success
-    })
-    .catch(err => {
-      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-    })
-} catch (error) {
-  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
-};
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -81,7 +77,7 @@ Navigates to a specified page in the application.
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
 | options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.   |
+| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -89,32 +85,28 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
-| 100002    | If the uri is not exist. |
-| 100003    | If the pages are pushed too much. |
+| 100001    | if UI execution context not found. |
+| 100002    | if the uri is not exist. |
+| 100003    | if the pages are pushed too much. |
 
 **Example**
 
 ```js
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, (err) => {
-    if (err) {
-      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    }
-    console.info('pushUrl success');
-  });
-} catch (error) {
-  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
-};
+  }
+})
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 ## router.pushUrl<sup>9+</sup>
 
@@ -143,32 +135,28 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
-| 100002    | If the uri is not exist. |
-| 100003    | If the pages are pushed too much. |
+| 100001    | if UI execution context not found. |
+| 100002    | if the uri is not exist. |
+| 100003    | if the pages are pushed too much. |
 
 **Example**
 
 ```js
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, router.RouterMode.Standard)
-    .then(() => {
-      // success
-    })
-    .catch(err => {
-      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-    })
-} catch (error) {
-  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
-};
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -185,7 +173,7 @@ Navigates to a specified page in the application.
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters. |
 | mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.   |
+| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -193,32 +181,28 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
-| 100002    | If the uri is not exist. |
-| 100003    | If the pages are pushed too much. |
+| 100001    | if UI execution context not found. |
+| 100002    | if the uri is not exist. |
+| 100003    | if the pages are pushed too much. |
 
 **Example**
 
 ```js
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, router.RouterMode.Standard, (err) => {
-    if (err) {
-      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    }
-    console.info('pushUrl success');
-  });
-} catch (error) {
-  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
-};
+  }
+}, router.RouterMode.Standard, (err) => {
+  if (err) {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('pushUrl success');
+})
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -247,28 +231,24 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found, only throw in standard system. |
-| 200002    | If the uri is not exist. |
+| 100001    | if UI execution context not found, only throw in standard system. |
+| 200002    | if the uri is not exist. |
 
 **Example**
 
 ```js
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+})
+  .then(() => {
+    // success
   })
-    .then(() => {
-      // success
-    })
-    .catch(err => {
-      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-    })
-} catch (error) {
-  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
-};
+  .catch(err => {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -284,7 +264,7 @@ Replaces the current page with another one in the application and destroys the c
 | Name | Type                           | Mandatory| Description              |
 | ------- | ------------------------------- | ---- | ------------------ |
 | options | [RouterOptions](#routeroptions) | Yes  | Description of the new page.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.   |
+| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -292,28 +272,24 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found, only throw in standard system. |
-| 200002    | If the uri is not exist. |
+| 100001    | if UI execution context not found, only throw in standard system. |
+| 200002    | if the uri is not exist. |
 
 **Example**
 
 ```js
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
-  }, (err) => {
-    if (err) {
-      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    }
-    console.info('replaceUrl success');
-  });
-} catch (error) {
-  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
-};
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+}, (err) => {
+  if (err) {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('replaceUrl success');
+})
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -344,28 +320,24 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found, only throw in standard system. |
-| 200002    | If the uri is not exist. |
+| 100001    | if UI execution context not found, only throw in standard system. |
+| 200002    | if the uri is not exist. |
 
 **Example**
 
 ```js
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
-  }, router.RouterMode.Standard)
-    .then(() => {
-      // success
-    })
-    .catch(err => {
-      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-    })
-} catch (error) {
-  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
-};
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -382,7 +354,7 @@ Replaces the current page with another one in the application and destroys the c
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | Yes   | Description of the new page. |
 | mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.   |
+| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -390,28 +362,25 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found, only throw in standard system. |
-| 200002    | If the uri is not exist. |
+| 100001    | if UI execution context not found, only throw in standard system. |
+| 200002    | if the uri is not exist. |
 
 **Example**
 
 ```js
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
-  }, router.RouterMode.Standard, (err) => {
-    if (err) {
-      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    }
-    console.info('replaceUrl success');
-  });
-} catch (error) {
-  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
-};
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+}, router.RouterMode.Standard, (err) => {
+  if (err) {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('replaceUrl success');
+});
+
 ```
 
 ## router.back
@@ -524,7 +493,7 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
@@ -571,9 +540,9 @@ Obtains the parameters passed from the page that initiates redirection to the cu
 
 **Return value**
 
-| Type    | Description               |
-| ------ | ----------------- |
-| Object | Parameters passed from the page that initiates redirection to the current page.|
+| Type  | Description                              |
+| ------ | ---------------------------------- |
+| object | Parameters passed from the page that initiates redirection to the current page.|
 
 **Example**
 
@@ -636,7 +605,7 @@ export default {
 ### TypeScript-based Declarative Development Paradigm
 
 ```ts
-// Navigate to the target page through router.push with the params parameter carried.
+// Navigate to the target page through router.pushUrl with the params parameter carried.
 import router from '@ohos.router'
 
 @Entry
@@ -745,37 +714,6 @@ router.push({
   }
 });
 ```
-## router.push<sup>(deprecated)</sup>
-
-push(options: RouterOptions, mode: RouterMode): void
-
-Navigates to a specified page in the application.
-
-This API is deprecated since API version 9. You are advised to use [pushUrl<sup>9+</sup>](#routerpushurl9) instead.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name    | Type                             | Mandatory  | Description        |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
-
-
-**Example**
-
-```js
-router.push({
-  url: 'pages/routerpage2/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
-    }
-  }
-},router.RouterMode.Standard);
-```
 
 ## router.replace<sup>(deprecated)</sup>
 
@@ -785,7 +723,7 @@ Replaces the current page with another one in the application and destroys the c
 
 This API is deprecated since API version 9. You are advised to use [replaceUrl<sup>9+</sup>](#routerreplaceurl9) instead.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
 **Parameters**
 
@@ -802,34 +740,6 @@ router.replace({
     data1: 'message'
   }
 });
-```
-
-## router.replace<sup>(deprecated)</sup>
-
-replace(options: RouterOptions, mode: RouterMode): void
-
-Replaces the current page with another one in the application and destroys the current page.
-
-This API is deprecated since API version 9. You are advised to use [replaceUrl<sup>9+</sup>](#routerreplaceurl9) instead.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Lite
-
-**Parameters**
-
-| Name    | Type                             | Mandatory  | Description        |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [RouterOptions](#routeroptions) | Yes   | Description of the new page. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
-
-**Example**
-
-```js
-router.replace({
-  url: 'pages/detail/detail',
-  params: {
-    data1: 'message'
-  }
-}, router.RouterMode.Standard);
 ```
 
 ## router.enableAlertBeforeBackPage<sup>(deprecated)</sup>
