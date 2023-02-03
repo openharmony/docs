@@ -1,7 +1,7 @@
 # OpenHarmony 3.2 Beta5
 
 
-## 版本概述https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/
+## 版本概述
 
 当前版本在OpenHarmony 3.2 Beta4的基础上，更新支持或优化增强的能力如下：
 
