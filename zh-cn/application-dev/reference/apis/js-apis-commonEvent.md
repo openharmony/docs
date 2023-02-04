@@ -42,7 +42,7 @@ publish(event: string, callback: AsyncCallback<void>): void
 //发布公共事件回调
 function publishCB(err) {
 	if (err.code) {
-        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`publish failed, code is ${err.code}`);
     } else {
         console.info("publish");
     }
@@ -84,7 +84,7 @@ let options = {
 //发布公共事件回调
 function publishCB(err) {
 	if (err.code) {
-        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`publish failed, code is ${err.code}`);
     } else {
         console.info("publish");
     }
@@ -117,19 +117,19 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback<void>): voi
 **示例：**
 
 ```ts
-//发布公共事件回调
+// 发布公共事件回调
 function publishCB(err) {
 	if (err.code) {
-        console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`publishAsUser failed, code is ${err.code}`);
     } else {
         console.info("publishAsUser");
     }
 }
 
-//指定发送的用户
+// 指定发送的用户
 let userId = 100;
 
-//发布公共事件
+// 发布公共事件
 CommonEvent.publishAsUser("event", userId, publishCB);
 ```
 
@@ -158,25 +158,25 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 
 
 ```ts
-//公共事件相关信息
+// 公共事件相关信息
 let options = {
-	code: 0,			 //公共事件的初始代码
-	data: "initial data",//公共事件的初始数据
+	code: 0,			 // 公共事件的初始代码
+	data: "initial data",// 公共事件的初始数据
 }
 
-//发布公共事件回调
+// 发布公共事件回调
 function publishCB(err) {
 	if (err.code) {
-        console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`publishAsUser failed, code is ${err.code}`);
     } else {
         console.info("publishAsUser");
     }
 }
 
-//指定发送的用户
+// 指定发送的用户
 let userId = 100;
 
-//发布公共事件
+// 发布公共事件
 CommonEvent.publishAsUser("event", userId, options, publishCB);
 ```
 
@@ -201,24 +201,24 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 
 
 ```ts
-let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
-//订阅者信息
+// 订阅者信息
 let subscribeInfo = {
 	events: ["event"]
 };
 
-//创建订阅者回调
+// 创建订阅者回调
 function createCB(err, commonEventSubscriber) {
     if (err.code) {
-        console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`createSubscriber failed, code is ${err.code}`);
     } else {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
     }
 }
 
-//创建订阅者
+// 创建订阅者
 CommonEvent.createSubscriber(subscribeInfo, createCB);
 ```
 
@@ -246,19 +246,19 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise<CommonEventSu
 **示例：**
 
 ```ts
-let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
-//订阅者信息
+// 订阅者信息
 let subscribeInfo = {
 	events: ["event"]
 };
 
-//创建订阅者
+// 创建订阅者
 CommonEvent.createSubscriber(subscribeInfo).then((commonEventSubscriber) => {
     console.info("createSubscriber");
     subscriber = commonEventSubscriber;
 }).catch((err) => {
-    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`createSubscriber failed, code is ${err.code}`);
 });
 ```
 
@@ -282,34 +282,34 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback<CommonEvent
 **示例：**
 
 ```ts
-let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
-//订阅者信息
+// 订阅者信息
 let subscribeInfo = {
     events: ["event"]
 };
 
-//订阅公共事件回调
+// 订阅公共事件回调
 function subscribeCB(err, data) {
     if (err.code) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`subscribe failed, code is ${err.code}`);
     } else {
         console.info("subscribe " + JSON.stringify(data));
     }
 }
 
-//创建订阅者回调
+// 创建订阅者回调
 function createCB(err, subscriber) {
     if (err.code) {
-        console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`createSubscriber failed, code is ${err.code}`);
     } else {
         console.info("createSubscriber");
-        //订阅公共事件
+        // 订阅公共事件
         CommonEvent.subscribe(subscriber, subscribeCB);
     }
 }
 
-//创建订阅者
+// 创建订阅者
 CommonEvent.createSubscriber(subscribeInfo, createCB);
 ```
 
@@ -333,47 +333,47 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback<void>): 
 **示例：**
 
 ```ts
-let subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber;	// 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
-//订阅者信息
+// 订阅者信息
 let subscribeInfo = {
 	events: ["event"]
 };
 
-//订阅公共事件回调
+// 订阅公共事件回调
 function subscribeCB(err, data) {
     if (err.code) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`subscribe failed, code is ${err.code}`);
     } else {
         console.info("subscribe " + JSON.stringify(data));
     }
 }
 
-//创建订阅者回调
+// 创建订阅者回调
 function createCB(err, commonEventSubscriber) {
     if (err.code) {
-        console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`createSubscriber failed, code is ${err.code}`);
     } else {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
-        //订阅公共事件
+        // 订阅公共事件
         CommonEvent.subscribe(subscriber, subscribeCB);
     }
 }
 
-//取消订阅公共事件回调
+// 取消订阅公共事件回调
 function unsubscribeCB(err) {
 	if (err.code) {
-        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`unsubscribe failed, code is ${err.code}`);
     } else {
         console.info("unsubscribe");
     }
 }
 
-//创建订阅者
+// 创建订阅者
 CommonEvent.createSubscriber(subscribeInfo, createCB);
 
-//取消订阅公共事件
+// 取消订阅公共事件
 CommonEvent.unsubscribe(subscriber, unsubscribeCB);
 ```
 
@@ -398,12 +398,12 @@ getCode(callback: AsyncCallback<number>): void
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
-//获取有序公共事件的结果代码回调
+// 获取有序公共事件的结果代码回调
 function getCodeCB(err, Code) {
     if (err.code) {
-        console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getCode failed, code is ${err.code}`);
     } else {
         console.info("getCode " + JSON.stringify(Code));
     }
@@ -430,12 +430,12 @@ getCode(): Promise<number>
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
 subscriber.getCode().then((code) => {
     console.info("getCode " + JSON.stringify(code));
 }).catch((err) => {
-    console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`getCode failed, code is ${err.code}`);
 });
 ```
 
@@ -459,12 +459,12 @@ setCode(code: number, callback: AsyncCallback<void>): void
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
-//设置有序公共事件的结果代码回调
+// 设置有序公共事件的结果代码回调
 function setCodeCB(err) {
     if (err.code) {
-        console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`setCode failed, code is ${err.code}`);
     } else {
         console.info("setCode");
     }
@@ -497,12 +497,12 @@ setCode(code: number): Promise<void>
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
 subscriber.setCode(1).then(() => {
     console.info("setCode");
 }).catch((err) => {
-    console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`setCode failed, code is ${err.code}`);
 });
 ```
 
@@ -525,12 +525,12 @@ getData(callback: AsyncCallback<string>): void
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
-//获取有序公共事件的结果数据回调
+// 获取有序公共事件的结果数据回调
 function getDataCB(err, data) {
     if (err.code) {
-        console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getData failed, code is ${err.code}`);
     } else {
         console.info("getData " + JSON.stringify(data));
     }
@@ -558,12 +558,12 @@ getData(): Promise<string>
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
 subscriber.getData().then((data) => {
     console.info("getData " + JSON.stringify(data));
 }).catch((err) => {
-    console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`getData failed, code is ${err.code}`);
 });
 ```
 
@@ -587,12 +587,12 @@ setData(data: string, callback: AsyncCallback<void>): void
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
-//设置有序公共事件的结果数据回调
+// 设置有序公共事件的结果数据回调
 function setDataCB(err) {
     if (err.code) {
-        console.error(`sendData failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`sendData failed, code is ${err.code}`);
     } else {
         console.info("setData");
     }
@@ -625,12 +625,12 @@ setData(data: string): Promise<void>
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
 subscriber.setData("publish_data_changed").then(() => {
     console.info("setData");
 }).catch((err) => {
-    console.error(`setData failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`setData failed, code is ${err.code}`);
 });
 ```
 
@@ -655,12 +655,12 @@ setCodeAndData(code: number, data: string, callback:AsyncCallback<void>): void
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
-//设置有序公共事件的结果代码和结果数据回调
+// 设置有序公共事件的结果代码和结果数据回调
 function setCodeDataCB(err) {
     if (err.code) {
-        console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`setCodeAndData failed, code is ${err.code}`);
     } else {
         console.info("setCodeDataCallback");
     }
@@ -695,12 +695,12 @@ setCodeAndData(code: number, data: string): Promise<void>
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
 subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
     console.info("setCodeAndData");
 }).catch((err) => {
-    console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`setCodeAndData failed, code is ${err.code}`);
 });
 ```
 
@@ -725,12 +725,12 @@ isOrderedCommonEvent(callback: AsyncCallback<boolean>): void
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
-//获取当前公共事件是否为有序事件的回调
+// 获取当前公共事件是否为有序事件的回调
 function isOrderedCB(err, isOrdered) {
     if (err.code) {
-        console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`isOrderedCommonEvent failed, code is ${err.code}`);
     } else {
         console.info("isOrdered " + JSON.stringify(isOrdered));
     }
@@ -759,12 +759,12 @@ isOrderedCommonEvent(): Promise<boolean>
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
 subscriber.isOrderedCommonEvent().then((isOrdered) => {
     console.info("isOrdered " + JSON.stringify(isOrdered));
 }).catch((err) => {
-    console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`isOrderedCommonEvent failed, code is ${err.code}`);
 });
 ```
 
@@ -789,12 +789,12 @@ isStickyCommonEvent(callback: AsyncCallback<boolean>): void
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
-//获取当前公共事件是否为粘性事件的回调
+// 获取当前公共事件是否为粘性事件的回调
 function isStickyCB(err, isSticky) {
     if (err.code) {
-        console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`isStickyCommonEvent failed, code is ${err.code}`);
     } else {
         console.info("isSticky " + JSON.stringify(isSticky));
     }
@@ -823,12 +823,12 @@ isStickyCommonEvent(): Promise<boolean>
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
 subscriber.isStickyCommonEvent().then((isSticky) => {
     console.info("isSticky " + JSON.stringify(isSticky));
 }).catch((err) => {
-    console.error(`isSticky failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`isSticky failed, code is ${err.code}`);
 });
 ```
 
@@ -851,12 +851,12 @@ abortCommonEvent(callback: AsyncCallback<void>): void
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
-//取消当前有序公共事件的回调
+// 取消当前有序公共事件的回调
 function abortCB(err) {
     if (err.code) {
-        console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`abortCommonEvent failed, code is ${err.code}`);
     } else {
         console.info("abortCommonEvent");
     }
@@ -884,12 +884,12 @@ abortCommonEvent(): Promise<void>
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
 subscriber.abortCommonEvent().then(() => {
     console.info("abortCommonEvent");
 }).catch((err) => {
-    console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`abortCommonEvent failed, code is ${err.code}`);
 });
 ```
 
@@ -912,12 +912,12 @@ clearAbortCommonEvent(callback: AsyncCallback<void>): void
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
-//清除当前公共事件取消状态的回调
+// 清除当前公共事件取消状态的回调
 function clearAbortCB(err) {
     if (err.code) {
-        console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`clearAbortCommonEvent failed, code is ${err.code}`);
     } else {
         console.info("clearAbortCommonEvent");
     }
@@ -945,12 +945,12 @@ clearAbortCommonEvent(): Promise<void>
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
 subscriber.clearAbortCommonEvent().then(() => {
     console.info("clearAbortCommonEvent");
 }).catch((err) => {
-    console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`clearAbortCommonEvent failed, code is ${err.code}`);
 });
 ```
 
@@ -973,12 +973,12 @@ getAbortCommonEvent(callback: AsyncCallback<boolean>): void
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
-//获取当前有序公共事件是否取消的回调
+// 获取当前有序公共事件是否取消的回调
 function getAbortCB(err, abortEvent) {
     if (err.code) {
-        console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getAbortCommonEvent failed, code is ${err.code}`);
     } else {
         console.info("abortEvent " + abortEvent)
     }
@@ -1006,12 +1006,12 @@ getAbortCommonEvent(): Promise<boolean>
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
 subscriber.getAbortCommonEvent().then((abortCommonEvent) => {
     console.info("abortCommonEvent " + JSON.stringify(abortCommonEvent));
 }).catch((err) => {
-    console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`getAbortCommonEvent failed, code is ${err.code}`);
 });
 ```
 
@@ -1034,12 +1034,12 @@ getSubscribeInfo(callback: AsyncCallback<CommonEventSubscribeInfo>): void
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
-//获取订阅者信息回调
+// 获取订阅者信息回调
 function getCB(err, subscribeInfo) {
     if (err.code) {
-        console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getSubscribeInfo failed, code is ${err.code}`);
     } else {
         console.info("SubscribeInfo " + JSON.stringify(subscribeInfo));
     }
@@ -1067,12 +1067,12 @@ getSubscribeInfo(): Promise<CommonEventSubscribeInfo>
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
 subscriber.getSubscribeInfo().then((subscribeInfo) => {
     console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
 }).catch((err) => {
-    console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`getSubscribeInfo failed, code is ${err.code}`);
 });
 ```
 
@@ -1095,12 +1095,12 @@ finishCommonEvent(callback: AsyncCallback<void>): void
 **示例：**
 
 ```ts
-let subscriber; //创建成功的订阅者对象
+let subscriber; // 创建成功的订阅者对象
 
-//结束当前有序公共事件的回调
+// 结束当前有序公共事件的回调
 function finishCB(err) {
     if (err.code) {
-        console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`finishCommonEvent failed, code is ${err.code}`);
     } else {
         console.info("FinishCommonEvent");
     }
@@ -1128,12 +1128,12 @@ finishCommonEvent(): Promise<void>
 **示例：**
 
 ```ts
-let subscriber;	//创建成功的订阅者对象
+let subscriber;	// 创建成功的订阅者对象
 
 subscriber.finishCommonEvent().then(() => {
     console.info("FinishCommonEvent");
 }).catch((err) => {
-    console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`finishCommonEvent failed, code is ${err.code}`);
 });
 ```
 
