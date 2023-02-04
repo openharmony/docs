@@ -5,7 +5,7 @@
 [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)可以被其他组件启动或连接，并根据调用者的请求信息在后台处理相关事务。
 
 
-InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extention-context.md)提供相关能力。
+InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extension-context.md)提供相关能力。
 
 
 ## 实现一个输入法应用
