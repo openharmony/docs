@@ -44,7 +44,7 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 //publish回调
 function publishCallback(err) {
     if (err) {
-        console.info("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish success");
     }
@@ -148,7 +148,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 // publish回调
 function publishCallback(err) {
     if (err) {
-        console.info("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish success");
     }
@@ -255,7 +255,7 @@ cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 // cancel回调
 function cancelCallback(err) {
     if (err) {
-        console.info("cancel failed " + JSON.stringify(err));
+        console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancel success");
     }
@@ -325,7 +325,7 @@ cancel(id: number, callback: AsyncCallback\<void\>): void
 // cancel回调
 function cancelCallback(err) {
     if (err) {
-        console.info("cancel failed " + JSON.stringify(err));
+        console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancel success");
     }
@@ -361,7 +361,7 @@ cancelAll(callback: AsyncCallback\<void\>): void
 // cancel回调
 function cancelAllCallback(err) {
     if (err) {
-        console.info("cancelAll failed " + JSON.stringify(err));
+        console.error(`cancelAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancelAll success");
     }
@@ -426,7 +426,7 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 // addslot回调
 function addSlotCallBack(err) {
     if (err) {
-        console.info("addSlot failed " + JSON.stringify(err));
+        console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("addSlot success");
     }
@@ -505,7 +505,7 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 // addslot回调
 function addSlotCallBack(err) {
     if (err) {
-        console.info("addSlot failed " + JSON.stringify(err));
+        console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("addSlot success");
     }
@@ -576,7 +576,7 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 // addSlots回调
 function addSlotsCallBack(err) {
     if (err) {
-        console.info("addSlots failed " + JSON.stringify(err));
+        console.error(`addSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("addSlots success");
     }
@@ -663,7 +663,7 @@ getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 // getSlot回调
 function getSlotCallback(err,data) {
     if (err) {
-        console.info("getSlot failed " + JSON.stringify(err));
+        console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSlot success");
     }
@@ -737,7 +737,7 @@ getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
 // getSlots回调
 function getSlotsCallback(err,data) {
     if (err) {
-        console.info("getSlots failed " + JSON.stringify(err));
+        console.error(`getSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSlots success");
     }
@@ -804,7 +804,7 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 // removeSlot回调
 function removeSlotCallback(err) {
     if (err) {
-        console.info("removeSlot failed " + JSON.stringify(err));
+        console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeSlot success");
     }
@@ -871,7 +871,7 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 ```ts
 function removeAllCallBack(err) {
     if (err) {
-        console.info("removeAllSlots failed " + JSON.stringify(err));
+        console.error(`removeAllSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAllSlots success");
     }
@@ -937,7 +937,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 ```ts
 function setNotificationEnablenCallback(err) {
     if (err) {
-        console.info("setNotificationEnablenCallback failed " + JSON.stringify(err));
+        console.error(`setNotificationEnablenCallback failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setNotificationEnablenCallback success");
     }
@@ -1020,7 +1020,7 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 ```ts
 function isNotificationEnabledCallback(err, data) {
     if (err) {
-        console.info("isNotificationEnabled failed " + JSON.stringify(err));
+        console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isNotificationEnabled success");
     }
@@ -1106,7 +1106,7 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 ```ts
 function isNotificationEnabledCallback(err, data) {
     if (err) {
-        console.info("isNotificationEnabled failed " + JSON.stringify(err));
+        console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isNotificationEnabled success");
     }
@@ -1190,7 +1190,7 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 ```ts
 function displayBadgeCallback(err) {
     if (err) {
-        console.info("displayBadge failed " + JSON.stringify(err));
+        console.error(`displayBadge failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("displayBadge success");
     }
@@ -1273,7 +1273,7 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 ```ts
 function isBadgeDisplayedCallback(err, data) {
     if (err) {
-        console.info("isBadgeDisplayed failed " + JSON.stringify(err));
+        console.error(`isBadgeDisplayed failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isBadgeDisplayed success");
     }
@@ -1362,7 +1362,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 ```ts
 function setSlotByBundleCallback(err) {
     if (err) {
-        console.info("setSlotByBundle failed " + JSON.stringify(err));
+        console.error(`setSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setSlotByBundle success");
     }
@@ -1451,7 +1451,7 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<Notificati
 ```ts
 function getSlotsByBundleCallback(err, data) {
     if (err) {
-        console.info("getSlotsByBundle failed " + JSON.stringify(err));
+        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSlotsByBundle success");
     }
@@ -1539,7 +1539,7 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 ```ts
 function getSlotNumByBundleCallback(err, data) {
     if (err) {
-        console.info("getSlotNumByBundle failed " + JSON.stringify(err));
+        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSlotNumByBundle success");
     }
@@ -1626,7 +1626,7 @@ getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>)
 ```ts
 function getAllActiveNotificationsCallback(err, data) {
     if (err) {
-        console.info("getAllActiveNotifications failed " + JSON.stringify(err));
+        console.error(`getAllActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getAllActiveNotifications success");
     }
@@ -1696,7 +1696,7 @@ getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 ```ts
 function getActiveNotificationCountCallback(err, data) {
     if (err) {
-        console.info("getActiveNotificationCount failed " + JSON.stringify(err));
+        console.error(`getActiveNotificationCount failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getActiveNotificationCount success");
     }
@@ -1762,7 +1762,7 @@ getActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): v
 ```ts
 function getActiveNotificationsCallback(err, data) {
     if (err) {
-        console.info("getActiveNotifications failed " + JSON.stringify(err));
+        console.error(`getActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getActiveNotifications success");
     }
@@ -1829,7 +1829,7 @@ cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 ```ts
 function cancelGroupCallback(err) {
     if (err) {
-        console.info("cancelGroup failed " + JSON.stringify(err));
+        console.error(`cancelGroup failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancelGroup success");
     }
@@ -1905,7 +1905,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 ```ts
 function removeGroupByBundleCallback(err) {
     if (err) {
-        console.info("removeGroupByBundle failed " + JSON.stringify(err));
+        console.error(`removeGroupByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeGroupByBundle success");
     }
@@ -1987,7 +1987,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 ```ts
 function setDoNotDisturbDateCallback(err) {
     if (err) {
-        console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
+        console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setDoNotDisturbDate success");
     }
@@ -2076,7 +2076,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 ```ts
 function setDoNotDisturbDateCallback(err) {
     if (err) {
-        console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
+        console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setDoNotDisturbDate success");
     }
@@ -2169,7 +2169,7 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 ```ts
 function getDoNotDisturbDateCallback(err,data) {
     if (err) {
-        console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
+        console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getDoNotDisturbDate success");
     }
@@ -2246,7 +2246,7 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 ```ts
 function getDoNotDisturbDateCallback(err,data) {
     if (err) {
-        console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
+        console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getDoNotDisturbDate success");
     }
@@ -2332,7 +2332,7 @@ supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 ```ts
 function supportDoNotDisturbModeCallback(err,data) {
     if (err) {
-        console.info("supportDoNotDisturbMode failed " + JSON.stringify(err));
+        console.error(`supportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("supportDoNotDisturbMode success");
     }
@@ -2405,7 +2405,7 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 let templateName = 'process';
 function isSupportTemplateCallback(err, data) {
     if (err) {
-        console.info("isSupportTemplate failed " + JSON.stringify(err));
+        console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isSupportTemplate success");
     }
@@ -2480,7 +2480,7 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 ```javascript
 function requestEnableNotificationCallback(err) {
     if (err) {
-        console.info("requestEnableNotification failed " + JSON.stringify(err));
+        console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("requestEnableNotification success");
     }
@@ -2548,7 +2548,7 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 ```javascript
 function setDistributedEnableCallback() {
     if (err) {
-        console.info("setDistributedEnable failed " + JSON.stringify(err));
+        console.error(`setDistributedEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setDistributedEnable success");
     }
@@ -2625,7 +2625,7 @@ isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 ```javascript
 function isDistributedEnabledCallback(err, data) {
     if (err) {
-        console.info("isDistributedEnabled failed " + JSON.stringify(err));
+        console.error(`isDistributedEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isDistributedEnabled success " + JSON.stringify(data));
     }
@@ -2704,7 +2704,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 ```javascript
 function setDistributedEnableByBundleCallback(err) {
     if (err) {
-        console.info("enableDistributedByBundle failed " + JSON.stringify(err));
+        console.error(`setDistributedEnableByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("enableDistributedByBundle success");
     }
@@ -2798,7 +2798,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 ```javascript
 function isDistributedEnabledByBundleCallback(data) {
     if (err) {
-        console.info("isDistributedEnabledByBundle failed " + JSON.stringify(err));
+        console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isDistributedEnabledByBundle success" + JSON.stringify(data));
     }
@@ -2889,7 +2889,7 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 ```javascript
 function getDeviceRemindTypeCallback(err, data) {
     if (err) {
-        console.info("getDeviceRemindType failed " + JSON.stringify(err));
+        console.error(`getDeviceRemindType failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getDeviceRemindType success");
     }
@@ -2972,7 +2972,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 //publishAsBundle回调
 function callback(err) {
     if (err) {
-        console.info("publishAsBundle failed " + JSON.stringify(err));
+        console.error(`publishAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publishAsBundle success");
     }
@@ -3094,7 +3094,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 // cancelAsBundle
 function cancelAsBundleCallback(err) {
     if (err) {
-        console.info("cancelAsBundle failed " + JSON.stringify(err));
+        console.error(`cancelAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancelAsBundle success");
     }
@@ -3188,7 +3188,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 // setNotificationEnableSlot
 function setNotificationEnableSlotCallback(err) {
     if (err) {
-        console.info("setNotificationEnableSlot failed " + JSON.stringify(err));
+        console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setNotificationEnableSlot success");
     }
@@ -3277,7 +3277,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 // isNotificationSlotEnabled
 function getEnableSlotCallback(err, data) {
     if (err) {
-        console.info("isNotificationSlotEnabled failed " + JSON.stringify(err));
+        console.error(`isNotificationSlotEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isNotificationSlotEnabled success");
     }
@@ -3371,7 +3371,7 @@ let enable = true;
 
 function callback(err) {
     if (err) {
-        console.info("setSyncNotificationEnabledWithoutApp failed " + JSON.stringify(err));
+        console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setSyncNotificationEnabledWithoutApp success");
     }
@@ -3424,7 +3424,7 @@ let enable = true;
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
 }).catch((err) => {
-    console.info('setSyncNotificationEnabledWithoutApp, err:' + JSON.stringify(err));
+    console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 

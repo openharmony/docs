@@ -112,7 +112,7 @@
    
    notificationManager.publish(notificationRequest, (err) => {
        if (err) {
-           console.error(`[ANS] failed to publish, error[${err}]`);
+           console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
            return;
        }
        console.info(`[ANS] publish success`);
