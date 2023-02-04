@@ -292,7 +292,7 @@ let subscribeInfo = {
 //订阅公共事件回调
 function subscribeCB(err, data) {
     if (err.code) {
-        console.error("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribe " + JSON.stringify(data));
     }
