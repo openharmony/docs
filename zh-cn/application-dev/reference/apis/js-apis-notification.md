@@ -35,7 +35,7 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 // publish回调
 function publishCallback(err) {
     if (err.code) {
-        console.info("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish success");
     }
@@ -118,7 +118,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 // publish回调
 function publishCallback(err) {
     if (err.code) {
-        console.info("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish success");
     }

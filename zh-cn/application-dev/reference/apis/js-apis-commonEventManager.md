@@ -45,7 +45,7 @@ publish(event: string, callback: AsyncCallback<void>): void
 //发布公共事件回调
 function publishCB(err) {
 	if (err) {
-        console.error("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish");
     }
@@ -55,7 +55,7 @@ function publishCB(err) {
 try {
     CommonEventManager.publish("event", publishCB);
 } catch(err) {
-    console.error('publish failed, catch error' + JSON.stringify(err));
+    console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -94,7 +94,7 @@ let options = {
 //发布公共事件回调
 function publishCB(err) {
 	if (err) {
-        console.error("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish");
     }
@@ -104,7 +104,7 @@ function publishCB(err) {
 try {
     CommonEventManager.publish("event", options, publishCB);
 } catch (err) {
-    console.error('publish failed, catch error' + JSON.stringify(err));
+    console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -138,7 +138,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback<void>): voi
 //发布公共事件回调
 function publishCB(err) {
 	if (err) {
-        console.error("publishAsUser failed " + JSON.stringify(err));
+        console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publishAsUser");
     }
@@ -151,7 +151,7 @@ let userId = 100;
 try {
     CommonEventManager.publishAsUser("event", userId, publishCB);
 } catch (err) {
-    console.error('publishAsUser failed, catch error' + JSON.stringify(err));
+    console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -193,7 +193,7 @@ let options = {
 //发布公共事件回调
 function publishCB(err) {
 	if (err) {
-        console.error("publishAsUser failed " + JSON.stringify(err));
+        console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publishAsUser");
     }
@@ -206,7 +206,7 @@ let userId = 100;
 try {
     CommonEventManager.publishAsUser("event", userId, options, publishCB);
 } catch (err) {
-    console.error('publishAsUser failed, catch error' + JSON.stringify(err));
+    console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -244,7 +244,7 @@ function createCB(err, commonEventSubscriber) {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
     } else {
-        console.error("createSubscriber failed " + JSON.stringify(err));
+        console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
     }
 }
 
@@ -252,7 +252,7 @@ function createCB(err, commonEventSubscriber) {
 try {
     CommonEventManager.createSubscriber(subscribeInfo, createCB);
 } catch (err) {
-    console.error('createSubscriber failed, catch error' + JSON.stringify(err));
+    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -292,7 +292,7 @@ CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber) 
     console.info("createSubscriber");
     subscriber = commonEventSubscriber;
 }).catch((err) => {
-    console.error("createSubscriber failed " + JSON.stringify(err));
+    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 });
 
 ```
@@ -328,7 +328,7 @@ let subscribeInfo = {
 //订阅公共事件回调
 function SubscribeCB(err, data) {
     if (err.code) {
-        console.error("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribe ");
     }
@@ -342,10 +342,10 @@ function createCB(err, subscriber) {
         try {
             CommonEventManager.subscribe(subscriber, SubscribeCB);
         } catch (err) {
-            console.error("createSubscriber failed " + JSON.stringify(err));
+            console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         }
     } else {
-        console.error("createSubscriber failed " + JSON.stringify(err));
+        console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
     }
 }
 
@@ -353,7 +353,7 @@ function createCB(err, subscriber) {
 try {
     CommonEventManager.createSubscriber(subscribeInfo, createCB);
 } catch (err) {
-    console.error('createSubscriber failed, catch error' + JSON.stringify(err));
+    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -385,7 +385,7 @@ let subscribeInfo = {
 //订阅公共事件回调
 function subscribeCB(err, data) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribe");
     }
@@ -393,21 +393,21 @@ function subscribeCB(err, data) {
 //创建订阅者回调
 function createCB(err, subscriber) {
     if (err) {
-        console.info("createSubscriber failed " + JSON.stringify(err));
+        console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("createSubscriber");
         //订阅公共事件
         try {
             CommonEventManager.subscribe(subscriber, subscribeCB);
         } catch(err) {
-            console.info("subscribe failed " + JSON.stringify(err));
+            console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         }
     }
 }
 //取消订阅公共事件回调
 function unsubscribeCB(err) {
     if (err) {
-        console.info("unsubscribe failed " + JSON.stringify(err));
+        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("unsubscribe");
     }
@@ -416,14 +416,14 @@ function unsubscribeCB(err) {
 try {
     CommonEventManager.createSubscriber(subscribeInfo, createCB);
 } catch (err) {
-    console.info("createSubscriber failed " + JSON.stringify(err));
+    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 
 //取消订阅公共事件
 try {
     CommonEventManager.unsubscribe(subscriber, unsubscribeCB);
 } catch (err) {
-    console.info("unsubscribe failed " + JSON.stringify(err));
+    console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -453,7 +453,7 @@ let subscriber;	//创建成功的订阅者对象
 //获取有序公共事件代码回调
 function getCodeCB(err, code) {
     if (err.code) {
-        console.error("getCode failed " + JSON.stringify(err));
+        console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getCode " + JSON.stringify(code));
     }
@@ -485,7 +485,7 @@ let subscriber;	//创建成功的订阅者对象
 subscriber.getCode().then((code) => {
     console.info("getCode " + JSON.stringify(code));
 }).catch((err) => {
-    console.error("getCode failed " + JSON.stringify(err));
+    console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -514,7 +514,7 @@ let subscriber;	//创建成功的订阅者对象
 //设置有序公共事件的代码回调
 function setCodeCB(err) {
     if (err.code) {
-        console.error("setCode failed " + JSON.stringify(err));
+        console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setCode");
     }
@@ -552,7 +552,7 @@ let subscriber;	//创建成功的订阅者对象
 subscriber.setCode(1).then(() => {
     console.info("setCode");
 }).catch((err) => {
-    console.error("setCode failed " + JSON.stringify(err));
+    console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -580,7 +580,7 @@ let subscriber;	//创建成功的订阅者对象
 //获取有序公共事件代码数据回调
 function getDataCB(err, data) {
     if (err.code) {
-        console.error("getData failed " + JSON.stringify(err));
+        console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getData " + JSON.stringify(data));
     }
@@ -612,7 +612,7 @@ let subscriber;	//创建成功的订阅者对象
 subscriber.getData().then((data) => {
     console.info("getData " + JSON.stringify(data));
 }).catch((err) => {
-    console.error("getData failed " + JSON.stringify(err));
+    console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -639,7 +639,7 @@ let subscriber;	//创建成功的订阅者对象
 //设置有序公共事件的结果数据回调
 function setDataCB(err) {
     if (err.code) {
-        console.error("setData failed " + JSON.stringify(err));
+        console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setData");
     }
@@ -677,7 +677,7 @@ let subscriber;	//创建成功的订阅者对象
 subscriber.setData("publish_data_changed").then(() => {
     console.info("setData");
 }).catch((err) => {
-    console.error("setData failed " + JSON.stringify(err));
+    console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -707,7 +707,7 @@ let subscriber;	//创建成功的订阅者对象
 //设置有序公共事件的代码和数据回调
 function setCodeDataCB(err) {
     if (err.code) {
-        console.error("setCodeAndData failed " + JSON.stringify(err));
+        console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setCodeDataCallback");
     }
@@ -746,7 +746,7 @@ let subscriber;	//创建成功的订阅者对象
 subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
     console.info("setCodeAndData");
 }).catch((err) => {
-    console.info("setCodeAndData failed " + JSON.stringify(err));
+    console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -776,7 +776,7 @@ let subscriber;	//创建成功的订阅者对象
 //获取当前公共事件是否为有序事件的回调
 function isOrderedCB(err, isOrdered) {
     if (err.code) {
-        console.error("isOrderedCommonEvent failed " + JSON.stringify(err));
+        console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isOrdered " + JSON.stringify(isOrdered));
     }
@@ -810,7 +810,7 @@ let subscriber;	//创建成功的订阅者对象
 subscriber.isOrderedCommonEvent().then((isOrdered) => {
     console.info("isOrdered " + JSON.stringify(isOrdered));
 }).catch((err) => {
-    console.error("isOrdered failed " + JSON.stringify(err));
+    console.error(`isOrdered failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -840,7 +840,7 @@ let subscriber;	//创建成功的订阅者对象
 //获取当前公共事件是否为粘性事件的回调
 function isStickyCB(err, isSticky) {
     if (err.code) {
-        console.error("isStickyCommonEvent failed " + JSON.stringify(err));
+        console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isSticky " + JSON.stringify(isSticky));
     }
@@ -874,7 +874,7 @@ let subscriber;	//创建成功的订阅者对象
 subscriber.isStickyCommonEvent().then((isSticky) => {
     console.info("isSticky " + JSON.stringify(isSticky));
 }).catch((err) => {
-    console.error("isSticky failed " + JSON.stringify(err));
+    console.error(`isSticky failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -902,7 +902,7 @@ let subscriber;	//创建成功的订阅者对象
 //取消当前有序公共事件的回调
 function abortCB(err) {
     if (err.code) {
-        console.error("abortCommonEvent failed " + JSON.stringify(err));
+		console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("abortCommonEvent");
     }
@@ -934,7 +934,7 @@ let subscriber;	//创建成功的订阅者对象
 subscriber.abortCommonEvent().then(() => {
     console.info("abortCommonEvent");
 }).catch((err) => {
-    console.error("abortCommonEvent failed " + JSON.stringify(err));
+    console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -962,7 +962,7 @@ let subscriber;	//创建成功的订阅者对象
 //清除当前公共事件取消状态的回调
 function clearAbortCB(err) {
     if (err.code) {
-        console.error("clearAbortCommonEvent failed " + JSON.stringify(err));
+        console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("clearAbortCommonEvent");
     }
@@ -994,7 +994,7 @@ let subscriber;	//创建成功的订阅者对象
 subscriber.clearAbortCommonEvent().then(() => {
     console.info("clearAbortCommonEvent");
 }).catch((err) => {
-    console.error("clearAbortCommonEvent failed " + JSON.stringify(err));
+    console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1022,7 +1022,7 @@ let subscriber;	//创建成功的订阅者对象
 //获取当前有序公共事件是否取消的回调
 function getAbortCB(err, abortEvent) {
     if (err.code) {
-        console.error("getAbortCommonEvent failed " + JSON.stringify(err));
+        console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("abortCommonEvent " + abortEvent)
     }
@@ -1054,7 +1054,7 @@ let subscriber;	//创建成功的订阅者对象
 subscriber.getAbortCommonEvent().then((abortEvent) => {
     console.info("abortCommonEvent " + JSON.stringify(abortEvent));
 }).catch((err) => {
-    console.error("getAbortCommonEvent failed " + JSON.stringify(err));
+    console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1082,7 +1082,7 @@ let subscriber;	//创建成功的订阅者对象
 //获取订阅者信息回调
 function getCB(err, subscribeInfo) {
     if (err.code) {
-        console.error("getSubscribeInfo failed " + JSON.stringify(err));
+        console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
     }
@@ -1114,7 +1114,7 @@ let subscriber;	//创建成功的订阅者对象
 subscriber.getSubscribeInfo().then((subscribeInfo) => {
     console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
 }).catch((err) => {
-    console.error("getSubscribeInfo failed " + JSON.stringify(err));
+    console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1142,11 +1142,11 @@ let subscriber; //创建成功的订阅者对象
 //结束当前有序公共事件的回调
 function finishCB(err) {
   if (err.code) {
-    console.error("finishCommonEvent failed " + JSON.stringify(err));
+    console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 } else {
     console.info("FinishCommonEvent");
 }
-}
+
 subscriber.finishCommonEvent(finishCB);
 ```
 
@@ -1174,7 +1174,7 @@ let subscriber;	//创建成功的订阅者对象
 subscriber.finishCommonEvent().then(() => {
     console.info("FinishCommonEvent");
 }).catch((err) => {
-    console.error("finishCommonEvent failed " + JSON.stringify(err));
+    console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 

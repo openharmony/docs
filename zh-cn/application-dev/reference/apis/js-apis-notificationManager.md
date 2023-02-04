@@ -44,7 +44,7 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 //publish回调
 function publishCallback(err) {
     if (err) {
-        console.info("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish success");
     }
@@ -148,7 +148,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 // publish回调
 function publishCallback(err) {
     if (err) {
-        console.info("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish success");
     }
@@ -255,7 +255,7 @@ cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 // cancel回调
 function cancelCallback(err) {
     if (err) {
-        console.info("cancel failed " + JSON.stringify(err));
+        console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancel success");
     }
@@ -325,7 +325,7 @@ cancel(id: number, callback: AsyncCallback\<void\>): void
 // cancel回调
 function cancelCallback(err) {
     if (err) {
-        console.info("cancel failed " + JSON.stringify(err));
+        console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancel success");
     }
@@ -361,7 +361,7 @@ cancelAll(callback: AsyncCallback\<void\>): void
 // cancel回调
 function cancelAllCallback(err) {
     if (err) {
-        console.info("cancelAll failed " + JSON.stringify(err));
+        console.error(`cancelAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancelAll success");
     }
@@ -426,7 +426,7 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 // addslot回调
 function addSlotCallBack(err) {
     if (err) {
-        console.info("addSlot failed " + JSON.stringify(err));
+        console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("addSlot success");
     }
@@ -505,7 +505,7 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 // addslot回调
 function addSlotCallBack(err) {
     if (err) {
-        console.info("addSlot failed " + JSON.stringify(err));
+        console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("addSlot success");
     }
@@ -663,7 +663,7 @@ getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 // getSlot回调
 function getSlotCallback(err,data) {
     if (err) {
-        console.info("getSlot failed " + JSON.stringify(err));
+        console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSlot success");
     }
@@ -804,7 +804,7 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 // removeSlot回调
 function removeSlotCallback(err) {
     if (err) {
-        console.info("removeSlot failed " + JSON.stringify(err));
+        console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeSlot success");
     }
