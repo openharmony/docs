@@ -1,10 +1,5 @@
 # File Management Error Codes
-The error codes of the file management subsystem consist of the following:
-
-- Basic file I/O error codes
-- User data management error codes
-- User file access error codes
-- Spatial statistics error codes
+The error codes of the file management subsystem consist of the following:<br>- Basic file I/O error codes<br>- User data management error codes<br>- User file access error codes<br>- Spatial statistics error codes
 
 ## Basic File I/O Error Codes
 
@@ -719,3 +714,41 @@ Fail to notify agent
 
 **Solution**
 Check whether the client is normal.
+
+## Error Code Adaptation
+The APIs provided by the file management subsystem support exception handling.
+Sample code for exception handling in a synchronous API:
+```js
+import fs from '@ohos.file.fs'
+
+try {
+    let file = fs.openSync(path, fs.OpenMode.READ_ONLY);
+} catch (err) {
+    console.error("openSync errCode:" + err.code + ", errMessage:" + err.message);
+}
+```
+Sample code for exception handling in an asynchronous API (promise):
+```js
+import fs from '@ohos.file.fs'
+
+try {
+    let file = await fs.open(path, fs.OpenMode.READ_ONLY);
+} catch (err) {
+    console.error("open promise errCode:" + err.code + ", errMessage:" + err.message);
+}
+```
+
+Sample code for exception handling in an asynchronous API (callback):
+```js
+import fs from '@ohos.file.fs'
+
+try {
+    fs.open(path, fs.OpenMode.READ_ONLY, function(e, file){ // Asynchronous thread (such as the system call) errors are obtained via a callback.
+        if (e) {
+            console.error("open in async errCode:" + e.code + ", errMessage:" + e.message);
+        }
+    });
+} catch (err) {// Main thread errors (such as invalid parameters) are obtained by try catch.
+    console.error("open callback errCode:" + err.code + ", errMessage:" + err.message);
+}
+```
