@@ -28,6 +28,19 @@ import display from '@ohos.display';
 | STATE_VR | 5 | 表示显示设备为VR模式。|
 | STATE_ON_SUSPEND | 6 | 表示显示设备为开启状态，CPU为挂起状态。 |
 
+## Orientation<sup>10+</sup>
+
+显示设备当前显示的方向。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| PORTRAIT | 0 | 表示设备当前以竖屏方式显示。|
+| LANDSCAPE | 1 | 表示设备当前以横屏方式显示。 |
+| PORTRAIT_INVERTED | 2 | 表示设备当前以反向竖屏方式显示。|
+| LANDSCAPE_INVERTED | 3 | 表示设备当前以反向横屏方式显示。|
+
 ## Rect<sup>9+</sup>
 
 矩形区域。
@@ -420,6 +433,7 @@ promise.then((data) => {
 | width | number | 是 | 否 | 显示设备的宽度，单位为像素。|
 | height | number | 是 | 否 | 显示设备的高度，单位为像素。|
 | densityDPI | number | 是 | 否 | 显示设备的屏幕密度，表示每英寸点数。一般取值160，480等。 |
+| orientation<sup>10+</sup> | [Orientation](#orientation) | 是 | 否 | 表示屏幕当前显示的方向 |
 | densityPixels | number | 是 | 否 | 显示设备的逻辑密度，是像素单位无关的缩放系数。一般取值1，3等。 |
 | scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。通常与densityPixels相同。 |
 | xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值。 |

@@ -744,6 +744,7 @@ try {
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
 | activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。 |
 | orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。             |
+| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screenSourceMode)            | 是   | 否   | 屏幕来源模式。             |
 
 ### setOrientation
 
@@ -996,6 +997,19 @@ try {
 | HORIZONTAL         | 2    | 表示指定屏幕为水平方向。         |
 | REVERSE_VERTICAL   | 3    | 表示指定屏幕为反向垂直方向。     |
 | REVERSE_HORIZONTAL | 4    | 表示指定屏幕为反向水平方向。     |
+
+## ScreenSourceMode<sup>10+</sup>
+
+屏幕来源模式枚举。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称               | 值   | 说明                             |
+| ------------------ | ---- | -------------------------------- |
+| SCREEN_MAIN         | 0    | 表示屏幕为默认主屏。 |
+| SCREEN_MIRROR       | 1    | 表示屏幕内容来自镜像。         |
+| SCREEN_EXTEND       | 2    | 表示屏幕内容来自扩展。         |
+| SCREEN_ALONE        | 3    | 表示屏幕为未指定来源。     |
 
 ## ScreenModeInfo
 
