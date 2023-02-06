@@ -249,7 +249,7 @@ function genGcmParamsSpec() {
   arr = [0, 0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0 , 0, 0, 0, 0]; // 16 bytes
   let dataTag = new Uint8Array(arr);
   let tagBlob = {data : dataTag};
-  let gcmParamsSpec = {iv : ivBlob, aad : aadBlob, authTag : tagBlob, algoName : "GcmParamsSpec"};
+  let gcmParamsSpec = {iv : ivBlob, aad : aadBlob, authTag : tagBlob, algName : "GcmParamsSpec"};
   return gcmParamsSpec;
 }
 
@@ -296,8 +296,8 @@ function testAesGcm() {
     }, 10)
   }).then(() => {
     // 生成对称密钥生成器
-    let symAlgoName = 'AES128';
-    let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+    let symAlgName = 'AES128';
+    let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
     if (symKeyGenerator == null) {
       console.error('createSymKeyGenerator failed');
       return;
@@ -309,9 +309,9 @@ function testAesGcm() {
     globalGcmParams = genGcmParamsSpec();
 
     // 生成加解密生成器
-    let cipherAlgoName = 'AES128|GCM|PKCS7';
+    let cipherAlgName = 'AES128|GCM|PKCS7';
     try {
-      globalCipher = cryptoFramework.createCipher(cipherAlgoName);
+      globalCipher = cryptoFramework.createCipher(cipherAlgName);
       console.info(`cipher algName: ${globalCipher.algName}`);
     } catch (error) {
       console.error(`createCipher failed, ${error.code}, ${error.message}`);
@@ -409,8 +409,8 @@ function genKeyMaterialBlob() {
 // 3DES ECB模式示例，采用已有数据生成密钥（callback写法）
 function test3DesEcb() {
   // 生成对称密钥生成器
-  let symAlgoName = '3DES192';
-  let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+  let symAlgName = '3DES192';
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
   if (symKeyGenerator == null) {
     console.error('createSymKeyGenerator failed');
     return;
@@ -418,9 +418,9 @@ function test3DesEcb() {
   console.info(`symKeyGenerator algName: ${symKeyGenerator.algName}`);
 
   // 生成加解密生成器
-  let cipherAlgoName = '3DES192|ECB|PKCS7';
+  let cipherAlgName = '3DES192|ECB|PKCS7';
   try {
-    globalCipher = cryptoFramework.createCipher(cipherAlgoName);
+    globalCipher = cryptoFramework.createCipher(cipherAlgName);
     console.info(`cipher algName: ${globalCipher.algName}`);
   } catch (error) {
     console.error(`createCipher failed, ${error.code}, ${error.message}`);
