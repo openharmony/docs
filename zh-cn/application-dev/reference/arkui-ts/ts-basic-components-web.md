@@ -21,6 +21,7 @@ Web(options: { src: ResourceStr, controller: WebController | WebviewController})
 > **说明：**
 >
 > 不支持转场动画。
+> 同一页面的多个web组件，必须绑定不同的WebController。
 
 **参数：**
 
@@ -1537,7 +1538,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 
 onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResourceError }) => void)
 
-网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。
+网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。
 
 **参数：**
 
@@ -1948,7 +1949,7 @@ onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
 
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
-当Web组件加载url之前触发该回调，用于是否阻止此次访问。
+当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
 
 **参数：**
 
@@ -2324,8 +2325,8 @@ onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
 | 参数名     | 参数类型   | 参数描述         |
 | ------- | ------ | ------------ |
-| xOffset | number | 水平滚动条滚动所在位置。 |
-| yOffset | number | 竖直滚动条滚动所在位置。 |
+| xOffset | number | 以网页最左端为基准，水平滚动条滚动所在位置。 |
+| yOffset | number | 以网页最上端为基准，竖直滚动条滚动所在位置。 |
 
 **示例：**
 
@@ -2666,7 +2667,7 @@ onPageVisible(callback: (event: {url: string}) => void)
 
 onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
-设置键盘事件的回调函数，该回调在被Webview消费前触发。
+设置键盘事件的回调函数，该回调在被Webview使用前触发。
 
 **参数：**
 
@@ -4250,7 +4251,7 @@ zoom(factor: number): void
 ### zoomIn<sup>9+</sup>
 zoomIn(): boolean
 
-调用此接口将当前网页进行放大，比列20%。
+调用此接口将当前网页进行放大，比例为20%。
 
 **返回值：**
 
@@ -4283,7 +4284,7 @@ zoomIn(): boolean
 ### zoomOut<sup>9+</sup>
 zoomOut(): boolean
 
-调用此接口将当前网页进行缩小，比列20%。
+调用此接口将当前网页进行缩小，比例为20%。
 
 **返回值：**
 
