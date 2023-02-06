@@ -4265,6 +4265,83 @@ try {
 }
 ```
 
+### raiseToAppTop<sup>10+</sup>
+
+raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
+
+提升应用子窗口到应用顶层。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**示例：**
+
+```js
+windowClass.raiseToAppTop((err) => {
+    if (err.code) {
+        console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in raising the window to app top.');
+});
+```
+
+### raiseToAppTop<sup>10+</sup>
+
+raiseToAppTop(): Promise&lt;void&gt;
+
+提升应用子窗口到应用顶层。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**示例：**
+
+```js
+let promise = windowClass.raiseToAppTop();
+promise.then(()=> {
+    console.info('Succeeded in raising the window to app top.');
+}).catch((err)=>{
+    console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
+});
+```
+
 ### show<sup>(deprecated)</sup>
 
 show(callback: AsyncCallback&lt;void&gt;): void
