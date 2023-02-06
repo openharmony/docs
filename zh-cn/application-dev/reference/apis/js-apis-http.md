@@ -583,6 +583,8 @@ httpResponseCache.delete().then(() => {
 | 6      | 无法解析主机，指定的远程主机无法解析。建议排查：1、url地址是否正确。2、联网是否正常，网络是否可以和外部进行通信。3、是否有网络访问权限。       |
 | 7      | 无法连接代理或主机。建议排查：1、端口号是否有问题。 2、查看本地是否开启http的代理影响的。                                    |
 
+更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)。
+
 ## HttpDataType<sup>9+</sup>
 
 http的数据类型。
