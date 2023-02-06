@@ -245,6 +245,44 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### setHttpDns
+
+static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
+
+设置Web组件是否使用HTTPDNS解析dns。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名              | 类型    | 必填   |  说明 |
+| ------------------ | ------- | ---- | ------------- |
+| secureDnsMode         |   [SecureDnsMode](#securednsmode)   | 是   | 使用HTTPDNS的模式。|
+| secureDnsConfig       | string | 是 | HTTPDNS server的配置，必须是https协议并且只允许配置一个server。 |
+
+**示例：**
+
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        console.log("EntryAbility onCreate")
+        web_webview.WebviewController.initializeWebEngine()
+        try {
+            web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.Auto, "https://example1.test")
+        } catch(error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+        }
+
+        globalThis.abilityWant = want
+        console.log("EntryAbility onCreate done")
+    }
+}
+```
+
 ### 创建对象
 
 ```ts
@@ -4832,3 +4870,15 @@ struct WebComponent {
 | schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'。        |
 | isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
 | isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
+
+## SecureDnsMode
+
+Web組件使用HTTPDNS的模式。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称          | 值 | 说明                                      |
+| ------------- | -- |----------------------------------------- |
+| Off           | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。|
+| Automatic     | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至built-in DNS及系统DNS。|
+| SecureOnly    | 2 |强制使用设定的HTTPDNS服务器进行域名解析。|
