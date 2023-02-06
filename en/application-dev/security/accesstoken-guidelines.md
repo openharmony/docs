@@ -147,7 +147,7 @@ Therefore, before allowing the application to call the API protected by the **oh
 
 If the verification result indicates that the application has the permission, the application can access the target API. Otherwise, the application needs to request user authorization and then proceeds based on the authorization result. For details, see [Access Control Overview](accesstoken-overview.md).
 
-> **CAUATION**
+> **CAUTION**
 >
 > The permission authorized by a user is not permanent, because the user may revoke the authorization at any time. Each time before the API protected by the permission is called, call **requestPermissionsFromUser()** to request the permission.
 
@@ -178,7 +178,8 @@ The procedure for requesting user authorization is as follows:
 
 ```
 > **NOTE**
-> For details about how to use the APIs for the FA model, see [AbilityContext] (../reference/apis/js-apis-ability-context.md).
+> 
+> For details about how to use the APIs for the FA model, see [AbilityContext](../reference/apis/js-apis-ability-context.md).
 
 ### Stage Model
 ```js
