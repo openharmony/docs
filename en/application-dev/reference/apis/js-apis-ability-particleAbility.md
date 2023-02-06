@@ -224,7 +224,7 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 ```ts
 import notification from '@ohos.notification';
 import particleAbility from '@ohos.ability.particleAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(err, data) {
     if (err) {
@@ -293,7 +293,7 @@ Requests a continuous task from the system. This API uses a promise to return th
 ```ts
 import notification from '@ohos.notification';
 import particleAbility from '@ohos.ability.particleAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 let wantAgentInfo = {
     wants: [
@@ -445,7 +445,6 @@ particleAbility.disconnectAbility(connId).then((data) => {
 }).catch((error) => {
     console.log('particleAbilityTest result errCode : ' + error.code)
 });
-    
 ```
 
 ## particleAbility.disconnectAbility
@@ -491,10 +490,10 @@ var connId = particleAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(" data: " + data);
-}).catch((error) => {
-    console.log('particleAbilityTest result errCode : ' + error.code)
+
+particleAbility.disconnectAbility(connId, (err) => {
+    console.log("particleAbilityTest disconnectAbility err====>"
+    + ("json err=") + JSON.stringify(err));
 });
 ```
 

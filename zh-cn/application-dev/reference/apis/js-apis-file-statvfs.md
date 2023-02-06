@@ -35,9 +35,9 @@ getFreeSize(path:string):Promise&lt;number&gt;
 
   ```js
   let path = "/dev";
-  statfs.getFreeSize(path).then(function (number) {
+  statfs.getFreeSize(path).then((number) => {
     console.info("getFreeSize promise successfully, Size: " + number);
-  }).catch(function (err) {
+  }).catch((err) => {
     console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -61,7 +61,7 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
   ```js
   let path = "/dev";
-  statfs.getFreeSize(path, function (err, number) {
+  statfs.getFreeSize(path, (err, number) => {
     if (err) {
       console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -94,9 +94,9 @@ getTotalSize(path: string): Promise&lt;number&gt;
 
   ```js
   let path = "/dev";
-  statfs.getTotalSize(path).then(function (number) {
+  statfs.getTotalSize(path).then((number) => {
     console.info("getTotalSize promise successfully, Size: " + number);
-  }).catch(function (err) {
+  }).catch((err) => {
     console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -120,7 +120,7 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
   ```js
   let path = "/dev";
-  statfs.getTotalSize(path, function(err, number) {
+  statfs.getTotalSize(path, (err, number) => {
     if (err) {
       console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
     } else {

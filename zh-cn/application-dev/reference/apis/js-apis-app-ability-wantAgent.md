@@ -92,13 +92,13 @@ function getWantAgentCallback(err, data) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.info('getWantAgent failed' + JSON.stringify(err));
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.error('getWantAgent failed, error: ' + JSON.stringify(err));
 }
 ```
 
@@ -701,7 +701,7 @@ function getWantAgentCallback(err, data) {
     } else {
         console.info('getWantAgent failed' + JSON.stringify(wantAgent));
     }
-    //getUid回调
+    //getWant回调
     function getWantCallback(err, data) {
         if(err) {
             console.info('getWant failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
@@ -710,7 +710,7 @@ function getWantAgentCallback(err, data) {
         }
     }
     try {
-        WantAgent.getWant(wantAgent, getBundleNameCallback);
+        WantAgent.getWant(wantAgent, getWantCallback);
     } catch(err) {
         console.info('getWant failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
@@ -914,7 +914,7 @@ function getWantAgentCallback(err, data) {
     } else {
         console.info('getWantAgent failed' + JSON.stringify(wantAgent));
     }
-    //getUid回调
+    //cancel回调
     function cancelCallback(err, data) {
         if(err) {
             console.info('cancel failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
@@ -923,7 +923,7 @@ function getWantAgentCallback(err, data) {
         }
     }
     try {
-        WantAgent.cancel(wantAgent, getBundleNameCallback);
+        WantAgent.cancel(wantAgent, cancelCallback);
     } catch(err) {
         console.info('cancel failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
@@ -1128,7 +1128,7 @@ function getWantAgentCallback(err, data) {
     } else {
         console.info('getWantAgent failed' + JSON.stringify(wantAgent));
     }
-    //getUid回调
+    //trigger回调
     function triggerCallback(err, data) {
         if(err) {
             console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
@@ -1236,7 +1236,7 @@ function getWantAgentCallback(err, data) {
     } else {
         console.info('getWantAgent failed' + JSON.stringify(wantAgent));
     }
-    //getUid回调
+    //equal回调
     function equalCallback(err, data) {
         if(err) {
             console.info('equal failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
@@ -1448,7 +1448,7 @@ function getWantAgentCallback(err, data) {
     } else {
         console.info('getWantAgent failed' + JSON.stringify(wantAgent));
     }
-    //getUid回调
+    //getOperationTypeCallback回调
     function getOperationTypeCallback(err, data) {
         if(err) {
             console.info('getOperationType failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
@@ -1457,7 +1457,7 @@ function getWantAgentCallback(err, data) {
         }
     }
     try {
-        WantAgent.getOperationTypeCallback(wantAgent, getBundleNameCallback);
+        WantAgent.getOperationTypeCallback(wantAgent, getOperationTypeCallback);
     } catch(err) {
         console.info('getOperationTypeCallback failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
     }
@@ -1615,6 +1615,6 @@ try {
 | info           | WantAgent                       | 是   | 触发的wantAgent。       |
 | want           | Want                            | 是   | 存在的被触发的want。     |
 | finalCode      | number                          | 是   | 触发wantAgent的请求代码。|
-| finalData      | string                          | 否   | 公共事件收集的最终数据。  |
+| finalData      | string                          | 是   | 公共事件收集的最终数据。  |
 | extraInfo      | {[key: string]: any}            | 否   | 额外数据。               |
 

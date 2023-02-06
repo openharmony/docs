@@ -1,4 +1,4 @@
-# @ohos.application.AccessibilityExtensionAbility
+# @ohos.application.AccessibilityExtensionAbility (AccessibilityExtensionAbility)
 
 The **AccessibilityExtensionAbility** module provides accessibility extension capabilities based on the ExtensionAbility framework.
 

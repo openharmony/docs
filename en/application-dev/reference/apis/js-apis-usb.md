@@ -42,7 +42,7 @@ console.log(`devicesList = ${JSON.stringify(devicesList)}`);
     vendorId: 7531,
     productId: 2,
     clazz: 9,
-    subclass: 0,
+    subClass: 0,
     protocol: 1,
     devAddress: 1,
     busNum: 1,
@@ -59,7 +59,7 @@ console.log(`devicesList = ${JSON.stringify(devicesList)}`);
             id: 0,
             protocol: 0,
             clazz: 9,
-            subclass: 0,
+            subClass: 0,
             alternateSetting: 0,
             name: "1-1",
             endpoints: [
@@ -252,7 +252,7 @@ if (usb.addRight(bundleName, devicesName) {
 
 ## usb.claimInterface
 
-claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number
+claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number
 
 Claims a USB interface.
 
@@ -429,7 +429,7 @@ let ret = usb.getFileDescriptor(devicepipe);
 
 ## usb.controlTransfer
 
-controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout?: number): Promise&lt;number&gt;
+controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise&lt;number&gt;
 
 Performs control transfer.
 
@@ -461,7 +461,7 @@ usb.controlTransfer(devicepipe, USBControlParams).then((ret) => {
 
 ## usb.bulkTransfer
 
-bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;
+bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise&lt;number&gt;
 
 Performs bulk transfer.
 

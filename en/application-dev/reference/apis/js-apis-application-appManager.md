@@ -420,7 +420,7 @@ Deregisters the application state observer. This API uses a promise to return th
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 Obtains information about the applications that are running in the foreground. This API uses an asynchronous callback to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md).
-  
+
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core

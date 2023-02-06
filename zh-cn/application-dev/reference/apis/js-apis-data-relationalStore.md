@@ -48,25 +48,20 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 FA模型示例：
 
 ```js
-// 获取context
+
 import featureAbility from '@ohos.ability.featureAbility'
+
+// 获取context
 let context = featureAbility.getContext()
 
-// 获取context后调用getRdbStore
 const STORE_CONFIG = {
     name: "RdbTest.db",
     securityLevel: data_rdb.SecurityLevel.S1
 }
+
 data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
     if (err) {
         console.info("Get RdbStore failed, err: " + err)
-        return
-    }    
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
-        console.log("RdbStore status is ON_CREATE")
-    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
-        console.log("RdbStore status is ON_OPEN")
-    } else {
         return
     }
     console.log("Get RdbStore successfully.")
@@ -76,36 +71,24 @@ data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
 Stage模型示例：
 
 ```ts
-// 获取context
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-let context;
+import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
-        context = this.context
+        const STORE_CONFIG = {
+            name: "RdbTest.db",
+            securityLevel: data_rdb.SecurityLevel.S1
+        }
+        
+        data_rdb.getRdbStore(this.context, STORE_CONFIG, function (err, rdbStore) {
+            if (err) {
+                console.info("Get RdbStore failed, err: " + err)
+                return
+            }
+            console.log("Get RdbStore successfully.")
+        })
     }
 }
-
-// 获取context后调用getRdbStore
-const STORE_CONFIG = {
-    name: "RdbTest.db",
-    securityLevel: data_rdb.SecurityLevel.S1
-}
-data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
-    if (err) {
-        console.info("Get RdbStore failed, err: " + err)
-        return
-    }
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
-        console.log("RdbStore status is ON_CREATE")
-    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
-        console.log("RdbStore status is ON_OPEN")
-    } else {
-        return
-    }
-    console.log("Get RdbStore successfully.")
-})
 ```
 
 ## data_rdb.getRdbStore
@@ -143,24 +126,18 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 FA模型示例：
 
 ```js
-// 获取context
 import featureAbility from '@ohos.ability.featureAbility'
+
+// 获取context
 let context = featureAbility.getContext()
 
-// 获取context后调用getRdbStore
 const STORE_CONFIG = {
     name: "RdbTest.db",
     securityLevel: data_rdb.SecurityLevel.S1
 }
+
 let promise = data_rdb.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
-        console.log("RdbStore status is ON_CREATE")
-    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
-        console.log("RdbStore status is ON_OPEN")
-    } else {
-        return
-    }
     console.log("Get RdbStore successfully.")
 }).catch((err) => {
     console.log("Get RdbStore failed, err: " + err)
@@ -170,35 +147,23 @@ promise.then(async (rdbStore) => {
 Stage模型示例：
 
 ```ts
-// 获取context
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-let context;
+import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
-        context = this.context
+        const STORE_CONFIG = {
+            name: "RdbTest.db",
+            securityLevel: data_rdb.SecurityLevel.S1
+        }
+        
+        let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG);
+        promise.then(async (rdbStore) => {
+            console.log("Get RdbStore successfully.")
+        }).catch((err) => {
+            console.log("Get RdbStore failed, err: " + err)
+        })
     }
 }
-
-// 获取context后调用getRdbStore
-const STORE_CONFIG = {
-    name: "RdbTest.db",
-    securityLevel: data_rdb.SecurityLevel.S1
-}
-let promise = data_rdb.getRdbStore(context, STORE_CONFIG);
-promise.then(async (rdbStore) => {
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
-        console.log("RdbStore status is ON_CREATE")
-    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
-        console.log("RdbStore status is ON_OPEN")
-    } else {
-        return
-    }
-    console.log("Get RdbStore successfully.")
-}).catch((err) => {
-    console.log("Get RdbStore failed, err: " + err)
-})
 ```
 
 ## data_rdb.deleteRdbStore
@@ -230,11 +195,11 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 FA模型示例：
 
 ```js
-// 获取context
 import featureAbility from '@ohos.ability.featureAbility'
+
+// 获取context
 let context = featureAbility.getContext()
 
-// 获取context后调用deleteRdbStore
 data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
     if (err) {
         console.info("Delete RdbStore failed, err: " + err)
@@ -247,25 +212,19 @@ data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
 Stage模型示例：
 
 ```ts
-// 获取context
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-let context;
+import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
-        context = this.context
+        data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err) {
+            if (err) {
+                console.info("Delete RdbStore failed, err: " + err)
+                return
+            }
+            console.log("Delete RdbStore successfully.")
+        })
     }
 }
-
-// 获取context后调用deleteRdbStore
-data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
-    if (err) {
-        console.info("Delete RdbStore failed, err: " + err)
-        return
-    }
-    console.log("Delete RdbStore successfully.")
-})
 ```
 
 ## data_rdb.deleteRdbStore
@@ -302,11 +261,11 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 FA模型示例：
 
 ```js
-// 获取context
 import featureAbility from '@ohos.ability.featureAbility'
+
+// 获取context
 let context = featureAbility.getContext()
 
-// 获取context后调用deleteRdbStore
 let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
 promise.then(()=>{
     console.log("Delete RdbStore successfully.")
@@ -318,24 +277,18 @@ promise.then(()=>{
 Stage模型示例：
 
 ```ts
-// 获取context
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-let context;
+import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
-        context = this.context
+        let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
+        promise.then(()=>{
+            console.log("Delete RdbStore successfully.")
+        }).catch((err) => {
+            console.info("Delete RdbStore failed, err: " + err)
+        })
     }
 }
-
-// 获取context后调用deleteRdbStore
-let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
-promise.then(()=>{
-    console.log("Delete RdbStore successfully.")
-}).catch((err) => {
-    console.info("Delete RdbStore failed, err: " + err)
-})
 ```
 
 ## StoreConfig
@@ -422,17 +375,6 @@ promise.then(()=>{
 | ON_CONFLICT_FAIL     | 3    | 表示当冲突发生时，中止当前 SQL 语句。但它不会撤销失败的 SQL 语句的先前更改，也不会结束事务。 |
 | ON_CONFLICT_IGNORE   | 4    | 表示当冲突发生时，跳过包含违反约束的行并继续处理 SQL 语句的后续行。 |
 | ON_CONFLICT_REPLACE  | 5    | 表示当冲突发生时，在插入或更新当前行之前删除导致约束违例的预先存在的行，并且命令会继续正常执行。 |
-
-## OpenStatus<sup>10+</sup>
-
-RdbStore的状态枚举。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-| 名称       | 值   | 说明                                                 |
-| --------- | ---- | --------------------------------------------------- |
-| ON_CREATE | 0    | 表示RdbStore首次创建，处于ON_CREATE状态。               |
-| ON_OPEN   | 1    | 表示RdbStore非首次创建，处于ON_OPEN状态。                |
 
 ## RdbPredicates
 
@@ -1283,7 +1225,16 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 
 | 名称         | 类型            | 必填 | 说明                             |
 | ------------ | ----------- | ---- | -------------------------------- |
-| openStatus<sup>10+</sup>  | number | 是   | RdbStore的状态。值为0时，表示RdbStore首次创建，处于ON_CREATE状态。值为1时，表示RdbStore非首次创建，处于ON_OPEN状态。       |
+| version<sup>10+</sup>  | number | 是   | 设置和获取数据库版本，值为大于0的正整数。       |
+
+**示例：**
+
+```js
+// 设置数据库版本
+rdbStore.version = 3
+// 获取数据库版本
+console.info("Get RdbStore version is " + rdbStore.version)
+```
 
 ### insert
 

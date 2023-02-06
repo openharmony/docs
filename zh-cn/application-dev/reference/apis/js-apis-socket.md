@@ -2528,4 +2528,4 @@ TLS通信的协议版本。
 
 | 类型                                                                   | 说明                   |
 | --------------------------------------------------------------------- | --------------------- |
-|[cryptoFramework.EncodingBlob](js-apis-cryptoFramework.md#EncodingBlob) | 存储证书的数据和编码格式 |
+|[cryptoFramework.EncodingBlob](js-apis-cryptoFramework.md#datablob) | 存储证书的数据和编码格式 |

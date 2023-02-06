@@ -51,7 +51,7 @@
 | Normal  | 普通按钮（默认不带圆角）。      |
 
 >  **说明：**
->  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md)设置（不支持通过border接口设置圆角）。
+>  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md)设置（不支持通过border接口设置圆角），且只支持设置一个相同的圆角。
 >  - 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角始终为高度的一半。
 >  - 当按钮类型为Circle时，borderRadius即为按钮半径，若未设置borderRadius按钮半径则为宽、高中较小值的一半。
 >  - 按钮文本通过[通用文本样式](ts-universal-attributes-text-style.md)进行设置。

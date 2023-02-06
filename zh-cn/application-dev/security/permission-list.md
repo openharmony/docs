@@ -534,7 +534,7 @@
 
 **ACL使能**：TRUE
 
-## ohos.permission.START_ABILIIES_FROM_BACKGROUND
+## ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
 允许应用在后台启动或者访问其他组件。
 
@@ -1591,6 +1591,16 @@
 **权限级别**：system_basic
 
 **授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.APP_TRACKING_CONSENT
+
+允许应用读取广告标识符。
+
+**权限级别**：normal
+
+**授权方式**：user_grant
 
 **ACL使能**：TRUE
 

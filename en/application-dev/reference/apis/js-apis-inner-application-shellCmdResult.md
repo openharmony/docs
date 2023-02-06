@@ -19,7 +19,7 @@ The result is obtained by calling [executeShellCommand](js-apis-inner-applicatio
 
 **Example**
 ```ts
-import AbilityDelegatorRegistry from "@ohos.application.abilityDelegatorRegistry";
+import AbilityDelegatorRegistry from "@ohos.app.ability.abilityDelegatorRegistry";
 let abilityDelegator;
 let cmd = "cmd";
 

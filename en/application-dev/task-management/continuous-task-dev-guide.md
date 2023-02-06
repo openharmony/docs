@@ -89,18 +89,22 @@ struct Index {
     };
 
     // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
-    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-        try {
-            backgroundTaskManager.startBackgroundRunning(this.context,
-                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-                console.info("Operation startBackgroundRunning succeeded");
-            }).catch((err) => {
-                console.error("Operation startBackgroundRunning failed Cause: " + err);
-            });
-        } catch (error) {
-            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-        }
-    });
+    try {
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            try {
+                backgroundTaskManager.startBackgroundRunning(this.context,
+                    backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+                    console.info("Operation startBackgroundRunning succeeded");
+                }).catch((err) => {
+                    console.error("Operation startBackgroundRunning failed Cause: " + err);
+                });
+            } catch (error) {
+                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            }
+        });
+    } catch (error) {
+        console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+    }
   }
 
   stopContinuousTask() {
@@ -151,7 +155,7 @@ struct Index {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import wantAgent from '@ohos.app.ability.wantAgent';
 
 const MSG_SEND_METHOD: string = 'CallSendMsg';
@@ -176,25 +180,29 @@ function startContinuousTask() {
     };
 
     // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
-    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-        try {
-            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-                console.info("Operation startBackgroundRunning succeeded");
-            }).catch((error) => {
+    try {
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            try {
+                backgroundTaskManager.startBackgroundRunning(mContext,
+                    backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+                    console.info("Operation startBackgroundRunning succeeded");
+                }).catch((error) => {
+                    console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                });
+            } catch (error) {
                 console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-            });
-        } catch (error) {
-            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-        }
-    });
+            }
+        });
+    } catch (error) {
+        console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+    }
 }
 
 function stopContinuousTask() {
     try {
-        backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
+        backgroundTaskManager.stopBackgroundRunning(mContext).then(() => {
             console.info("Operation stopBackgroundRunning succeeded");
-        }).catch((err) => {
+        }).catch((error) => {
             console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
         });
     } catch (error) {
@@ -312,7 +320,7 @@ If an application needs to interact with a continuous task in the background (fo
 2. Call the APIs for requesting and canceling a continuous task in the Service ability.
 
 ```js
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
 import wantAgent from '@ohos.app.ability.wantAgent';
 import rpc from "@ohos.rpc";
@@ -335,18 +343,22 @@ function startContinuousTask() {
     };
 
     // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
-    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-        try {
-            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-                console.info("Operation startBackgroundRunning succeeded");
-            }).catch((err) => {
-                console.error("Operation startBackgroundRunning failed Cause: " + err);
-            });
-        } catch (error) {
-            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-        }
-    });
+    try {
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            try {
+                backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+                    backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+                    console.info("Operation startBackgroundRunning succeeded");
+                }).catch((err) => {
+                    console.error("Operation startBackgroundRunning failed Cause: " + err);
+                });
+            } catch (error) {
+                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            }
+        });
+    } catch (error) {
+        console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+    }
 }
 
 function stopContinuousTask() {
@@ -396,7 +408,7 @@ class MyStub extends rpc.RemoteObject {
 }
 
 export default {
-    onStart(want) {
+    onStart() {
         console.info('ServiceAbility onStart');
         mMyStub = new MyStub("ServiceAbility-test");
         // Call the API to start the task.
@@ -416,7 +428,7 @@ export default {
     onDisconnect() {
         console.info('ServiceAbility onDisconnect');
     },
-    onCommand(want, restart, startId) {
+    onCommand(want, startId) {
         console.info('ServiceAbility onCommand');
     }
 };

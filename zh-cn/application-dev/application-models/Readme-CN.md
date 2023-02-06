@@ -19,6 +19,7 @@
       - [ServiceExtensionAbility](serviceextensionability.md)
       - [DataShareExtensionAbility（仅对系统应用开放）](datashareextensionability.md)
       - [FormExtensionAbility（服务卡片）](widget-development-stage.md)
+      - [StaticSubscriberExtensionAbility](static-subscriber-extension-ability.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
     - 信息传递载体Want

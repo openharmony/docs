@@ -50,7 +50,7 @@
 
 ### want参数的action匹配规则
 
-将调用方传入的want参数的[action](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction)与待匹配Ability的skills配置中的actions进行匹配。
+将调用方传入的want参数的[action](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantaction)与待匹配Ability的skills配置中的actions进行匹配。
 
 - 调用方传入的want参数的action不为空，待匹配Ability的skills配置中的actions为空，则action匹配失败。
 
@@ -66,7 +66,7 @@
 
 ### want参数的entities匹配规则
 
-将调用方传入的want参数的[entities](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity)与待匹配Ability的skills配置中的entities进行匹配。
+将调用方传入的want参数的[entities](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantentity)与待匹配Ability的skills配置中的entities进行匹配。
 
 - 调用方传入的want参数的entities为空，待匹配Ability的skills配置中的entities不为空，则entities匹配成功。
 

@@ -235,12 +235,12 @@ try {
 
 **表2** 加密密钥材料格式
 
-| 内容 | 业务公钥长度L<sub>pk2</sub> | 业务公钥pk2 | k2加密参数AAD2长度L<sub>AAD2</sub> | k2加密参数AAD2 |  k2加密参数Nonce2长度L<sub>Nonce2</sub> | k2加密参数Nonce2 | 
+| 内容 | 业务公钥长度L<sub>pk2</sub> | 业务公钥pk2 | k2加密参数AAD2长度L<sub>AAD2</sub> | k2加密参数AAD2 |  k2加密参数Nonce2长度L<sub>Nonce2</sub> | k2加密参数Nonce2 |
 | :--: |:----:|:----: |:----: | :----:  | :----:|:----:|
 |长度| 4字节 |L<sub>pk2</sub>字节| 4字节 | L<sub>AAD2</sub>字节 | 4字节 | L<sub>Nonce2</sub>字节 |
-| 内容 | k2加密参数AEAD2长度L<sub>AEAD2</sub> | k2加密参数AEAD2 | k3密文长度L<sub>k3_enc</sub> | k3密文k3_enc |  k3加密参数AAD3长度L<sub>AAD3</sub> | k3加密参数AAD3 | 
+| 内容 | k2加密参数AEAD2长度L<sub>AEAD2</sub> | k2加密参数AEAD2 | k3密文长度L<sub>k3_enc</sub> | k3密文k3_enc |  k3加密参数AAD3长度L<sub>AAD3</sub> | k3加密参数AAD3 |
 |长度| 4字节 |L<sub>AEAD2</sub>字节| 4字节 | L<sub>k3_enc</sub>字节 | 4字节 | L<sub>AAD3</sub>字节 |
-| 内容| k3加密参数Nonce3长度L<sub>Nonce3</sub> | k3加密参数Nonce3 | k3加密参数AEAD3长度L<sub>AEAD3</sub> | k3加密参数AEAD3 |  **密钥明文材料长度** 的长度L<sub>k1'_size</sub> | 密钥明文材料长度k1'_size | 
+| 内容| k3加密参数Nonce3长度L<sub>Nonce3</sub> | k3加密参数Nonce3 | k3加密参数AEAD3长度L<sub>AEAD3</sub> | k3加密参数AEAD3 |  **密钥明文材料长度** 的长度L<sub>k1'_size</sub> | 密钥明文材料长度k1'_size |
 |长度| 4字节 |L<sub>Nonce3</sub>字节| 4字节 | L<sub>AEAD3</sub>字节 | 4字节 | L<sub>k1'_size</sub>字节 |
 |内容|k1'密文长度L<sub>k1'_enc</sub>| k1'密文k1'_enc| | | | |
 |长度| 4字节 |L<sub>k1'_enc</sub>字节| | | | |
@@ -981,7 +981,9 @@ import huks from '@ohos.security.huks';
  */
 let generateKeyAlias = 'sm2_Key';
 let importKeyAlias = 'importKeyAlias';
-let signVerifyInData = 'signVerifyInDataForTest';
+let signVerifyInData1 = 'signVerifyInDataForTestFirstText';
+let signVerifyInData2 = 'signVerifyInDataForTestSecondText';
+let signVerifyInData = [signVerifyInData1, signVerifyInData2];
 let handle;
 let exportKey;
 let finishOutData;
@@ -1338,9 +1340,10 @@ async function testSm2SignVerify() {
     await publicInitFunc(generateKeyAlias, signOptions);
 
     signHandle = handle;
-    signOptions.inData = StringToUint8Array(signVerifyInData)
-    await publicUpdateFunc(signHandle, signOptions);
-
+    for (var index = 0; index < signVerifyInData.length; index++) {
+        signOptions.inData = StringToUint8Array(signVerifyInData[index]);
+        await publicUpdateFunc(signHandle, signOptions);
+    }
     signOptions.inData = new Uint8Array(new Array());
     await publicFinishFunc(signHandle, signOptions);
     signFinishOutData = finishOutData;
@@ -1357,10 +1360,10 @@ async function testSm2SignVerify() {
     await publicInitFunc(importKeyAlias, verifyOptions);
 
     verifyHandle = handle;
-
-    verifyOptions.inData = StringToUint8Array(signVerifyInData)
-    await publicUpdateFunc(verifyHandle, verifyOptions);
-
+    for (var index = 0; index < signVerifyInData.length; index++) {
+        verifyOptions.inData = StringToUint8Array(signVerifyInData[index]);
+        await publicUpdateFunc(verifyHandle, verifyOptions);
+    }
     verifyOptions.inData = signFinishOutData;
     await publicFinishFunc(verifyHandle, verifyOptions);
 

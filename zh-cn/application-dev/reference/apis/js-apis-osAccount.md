@@ -84,13 +84,13 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
   try {
     accountManager.activateOsAccount(localId, (err)=>{
       if (err) {
-        console.log("activateOsAccount failed, error:" + JSON.stringify(err));
+        console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
       } else {
         console.log("activateOsAccount successfully");
       }
     });
   } catch (err) {
-    console.log("activateOsAccount exception:" + JSON.stringify(err));
+    console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -170,13 +170,13 @@ checkMultiOsAccountEnabled(callback: AsyncCallback&lt;boolean&gt;): void
   try {
     accountManager.checkMultiOsAccountEnabled((err, isEnabled) => {
       if (err) {
-        console.log("checkMultiOsAccountEnabled failed, error: " + JSON.stringify(err));
+        console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
       } else {
       console.log("checkMultiOsAccountEnabled successfully, isEnabled: " + isEnabled);
       }
     });
   } catch (err) {
-    console.log("checkMultiOsAccountEnabled exception: " + JSON.stringify(err));
+    console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -208,10 +208,10 @@ checkMultiOsAccountEnabled(): Promise&lt;boolean&gt;
     accountManager.checkMultiOsAccountEnabled().then((isEnabled) => {
       console.log('checkMultiOsAccountEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err) => {
-      console.log('checkMultiOsAccountEnabled failed, error: '  + JSON.stringify(err));
+      console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.log('checkMultiOsAccountEnabled exception: ' + JSON.stringify(err));
+    console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
 
