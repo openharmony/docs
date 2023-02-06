@@ -107,7 +107,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md)  | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](js-apis-application-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **错误码：**
@@ -166,7 +166,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](js-apis-application-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
@@ -292,7 +292,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](js-apis-application-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
 
 **错误码：**
@@ -356,7 +356,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](js-apis-application-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 
 **返回值：**
@@ -488,7 +488,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| options | [StartOptions](js-apis-application-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
@@ -555,7 +555,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| options | [StartOptions](js-apis-application-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
@@ -1638,7 +1638,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。|
-| options | [StartOptions](js-apis-application-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
@@ -1704,7 +1704,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| options | [StartOptions](js-apis-application-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **错误码：**
 
