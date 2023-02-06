@@ -42,21 +42,24 @@ async function example() {
     const context = getContext(this);
     let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
-    for (let i = 0; i < fetchFileResult.getCount(); i++) {
-        fetchFileResult.getNextObject((err, fileAsset) => {
-        if (err) {
-            console.error('Failed ');
-            return;
+    fetchFileResult.getFirstObject().then((fileAsset) => {
+        console.log('getFirstObject.displayName : ' + fileAsset.displayName);
+        for (let i = 1; i < fetchFileResult.getCount(); i++) {
+            fetchFileResult.getNextObject().then((fileAsset) => {
+                console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
+            }).catch((err) => {
+                console.error('Failed to get next object: ' + err);
+            });
         }
-        console.log('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-        })
-    } 
+    }).catch((err) => {
+        console.error('Failed to get first object: ' + err);
+    });
 }
 ```
 
 ### 指定日期
 
-下面以查询指定添加日期的媒体资源为例。实际开发中可以设置添加日期、修改日期、拍摄日期。
+下面以查询指定添加日期至今的所有媒体资源为例。实际开发中可以设置添加日期、修改日期、拍摄日期。
 
 selections： FileKey.DATE_ADDED，根据文件添加日期检索。
 
@@ -66,21 +69,24 @@ selectionArgs：2022-8-5，具体添加时间的字符串。
 async function example() {
     let fileKeyObj = mediaLibrary.FileKey;
     let option = {
-        selections: fileKeyObj.DATE_ADDED + '= ?',
-        selectionArgs: ['2022-8-5'],
+    selections: fileKeyObj.DATE_ADDED + '> ?',
+    selectionArgs: ['2022-8-5'],
     };
     const context = getContext(this);
     let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
-    for (let i = 0; i < fetchFileResult.getCount(); i++) {
-        fetchFileResult.getNextObject((err, fileAsset) => {
-        if (err) {
-            console.error('Failed ');
-            return;
+    fetchFileResult.getFirstObject().then((fileAsset) => {
+        console.info('getFirstObject.displayName : ' + fileAsset.displayName);
+        for (let i = 1; i < fetchFileResult.getCount(); i++) {
+            fetchFileResult.getNextObject().then((fileAsset) => {
+                console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
+            }).catch((err) => {
+                console.error('Failed to get next object: ' + err);
+            });
         }
-        console.log('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-        })
-    } 
+    }).catch((err) => {
+        console.error('Failed to get first object: ' + err);
+    });
 }
 ```
 
@@ -102,15 +108,18 @@ async function example() {
     const context = getContext(this);
     let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
-    for (let i = 0; i < fetchFileResult.getCount(); i++) {
-        fetchFileResult.getNextObject((err, fileAsset) => {
-        if (err) {
-            console.error('Failed ');
-            return;
+    fetchFileResult.getFirstObject().then((fileAsset) => {
+        console.info('getFirstObject.displayName : ' + fileAsset.displayName);
+        for (let i = 1; i < fetchFileResult.getCount(); i++) {
+            fetchFileResult.getNextObject().then((fileAsset) => {
+                console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
+            }).catch((err) => {
+                console.error('Failed to get next object: ' + err);
+            });
         }
-        console.log('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-        })
-    } 
+    }).catch((err) => {
+        console.error('Failed to get first object: ' + err);
+    });
 }
 ```
 
@@ -133,15 +142,15 @@ async function example() {
     const context = getContext(this);
     let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
-    for (let i = 0; i < fetchFileResult.getCount(); i++) {
-        fetchFileResult.getNextObject((err, fileAsset) => {
-        if (err) {
-            console.error('Failed ');
-            return;
-        }
-        console.log('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-        })
-    } 
+    if (albumList.length > 0) {
+        fetchFileResult.getFirstObject().then((album) => {
+            console.info('getFirstObject.displayName : ' + album.albumName);
+        }).catch((err) => {
+            console.error('Failed to get first object: ' + err);
+        });
+    } else {
+        console.info('getAlbum list is: 0');
+    }
 }
 ```
 
@@ -172,10 +181,10 @@ async function example() {
 
    ```ts
    let fileKeyObj = mediaLibrary.FileKey;
-   let imageType = mediaLibrary.MediaType.VIDEO;
-   let imagesFetchOp  = {
+   let videoType = mediaLibrary.MediaType.VIDEO;
+   let videoFetchOp  = {
        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-       selectionArgs: [imageType.toString()],
+       selectionArgs: [videoType.toString()],
    }
    ```
 
@@ -188,10 +197,10 @@ async function getCameraImagePromise() {
     const context = getContext(this);
     let media = mediaLibrary.getMediaLibrary(context);
     let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let imagesFetchOp = {
+    let videoType = mediaLibrary.MediaType.VIDEO;
+    let videoFetchOp = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
+        selectionArgs: [videoType.toString()],
     }
     let AlbumNoArgsFetchOp = {
         selections: fileKeyObj.ALBUM_NAME + '= ?',
@@ -201,9 +210,9 @@ async function getCameraImagePromise() {
     let albumList = await media.getAlbums(AlbumNoArgsFetchOp);
     if (albumList.length > 0) {
         const album = albumList[0];
-        let fetchFileResult = await album.getFileAssets(imagesFetchOp);
+        let fetchFileResult = await album.getFileAssets(videoFetchOp);
         let count = fetchFileResult.getCount();
-        console.info("get mediaLibrary IMAGE number", count);
+        console.info("get mediaLibrary VIDEO number", count);
     } else {
         console.info('getAlbum list is: 0');
     }
@@ -245,19 +254,20 @@ async function getFirstThumbnailPromise() {
 
     let size = { width: 720, height: 720 };
     const fetchFileResult = await media.getFileAssets(imagesFetchOp);
-    if (fetchFileResult != undefined) {
+    if (fetchFileResult === undefined) {
+        console.error("get image failed with error");
+        return;
+    } else {
         const asset = await fetchFileResult.getFirstObject();
         asset.getThumbnail(size).then((pixelMap) => {
-          pixelMap.getImageInfo().then((info) => {
+            pixelMap.getImageInfo().then((info) => {
               console.info('get Thumbnail info: ' + "width: " + info.size.width + " height: " + info.size.height);
-          }).catch((err) => {
-              console.info("getImageInfo failed with error:" + err);
-          });
+            }).catch((err) => {
+              console.error("getImageInfo failed with error: " + err);
+            });
         }).catch((err) => {
-            console.info("getImageInfo failed with error:" + err);
+            console.error("getImageInfo failed with error: " + err);
         });
-    } else {
-        console.info("get image failed with error");
     }
 }
 ```
@@ -281,10 +291,10 @@ async function example() {
     const context = getContext(this);
     let media = mediaLibrary.getMediaLibrary(context);
     const path = await media.getPublicDirectory(DIR_DOCUMENTS);
-    media.createAsset(mediaType, "testFile.text", path).then ((asset) => {
+    media.createAsset(mediaType, "testFile.text", path).then((asset) => {
         console.info("createAsset successfully:"+ JSON.stringify(asset));
     }).catch((err) => {
-        console.info("createAsset failed with error:"+ err);
+        console.error("createAsset failed with error: " + err);
     });
 }
 ```
@@ -321,15 +331,15 @@ async function example() {
     let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     let asset = await fetchFileResult.getFirstObject();
-    if (asset == undefined) {
-      console.error('asset not exist');
-      return;
+    if (asset === undefined) {
+        console.error('asset not exist');
+        return;
     }
     //回调为空
     asset.trash(true).then(() => {
         console.info("trash successfully");
     }).catch((err) => {
-        console.info("trash failed with error: " + err);
+        console.error("trash failed with error: " + err);
     });
 }
 ```
@@ -347,7 +357,7 @@ async function example() {
 - 获取媒体库mediaLibrary实例。
 - 申请媒体库读写权限“ohos.permission.WRITE_MEDIA”。
 
-下面以将文件检索结果中第一个文件重命名为“newtitle.text”为例。
+下面以将文件检索结果中第一个文件重命名为“newImage.jpg”为例。
 
 **开发步骤**
 
@@ -360,7 +370,7 @@ async function example() {
 ```ts
 async function example() {
     let fileKeyObj = mediaLibrary.FileKey;
-    let fileType = mediaLibrary.MediaType.FILE;
+    let fileType = mediaLibrary.MediaType.IMAGE;
     let option = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
@@ -369,18 +379,18 @@ async function example() {
     let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     let asset = await fetchFileResult.getFirstObject();
-    if (asset == undefined) {
-      console.error('asset not exist');
-      return;
+    if (asset === undefined) {
+        console.error('asset not exist');
+        return;
     }
     asset.displayName = 'newImage.jpg';
     //回调为空
     asset.commitModify((err) => {
-       if (err) {
-           console.error('fileRename Failed ');
-           return;
-       }
-       console.log('fileRename successful.');
+        if (err) {
+            console.error('fileRename Failed ');
+            return;
+        }
+        console.info('fileRename successful.');
     });
 }
 ```
