@@ -30,7 +30,7 @@ import display from '@ohos.display';
 
 ## Orientation<sup>10+</sup>
 
-显示设备当前显示的方向。
+显示设备当前显示的方向枚举。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -433,7 +433,7 @@ promise.then((data) => {
 | width | number | 是 | 否 | 显示设备的宽度，单位为像素。|
 | height | number | 是 | 否 | 显示设备的高度，单位为像素。|
 | densityDPI | number | 是 | 否 | 显示设备的屏幕密度，表示每英寸点数。一般取值160，480等。 |
-| orientation<sup>10+</sup> | [Orientation](#orientation) | 是 | 否 | 表示屏幕当前显示的方向 |
+| orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。 |
 | densityPixels | number | 是 | 否 | 显示设备的逻辑密度，是像素单位无关的缩放系数。一般取值1，3等。 |
 | scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。通常与densityPixels相同。 |
 | xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值。 |

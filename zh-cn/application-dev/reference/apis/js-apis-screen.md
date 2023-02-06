@@ -735,6 +735,8 @@ try {
 
 下列API示例中都需先使用[getAllScreens()](#screengetallscreens)、[createVirtualScreen()](#screencreatevirtualscreen)中的任一方法获取到Screen实例，再通过此实例调用对应方法。
 
+### 属性
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称              | 类型                                       | 可读 | 可写 | 说明                   |
@@ -744,7 +746,7 @@ try {
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
 | activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。 |
 | orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。             |
-| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screenSourceMode)            | 是   | 否   | 屏幕来源模式。             |
+| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。             |
 
 ### setOrientation
 
@@ -1000,7 +1002,7 @@ try {
 
 ## ScreenSourceMode<sup>10+</sup>
 
-屏幕来源模式枚举。
+屏幕显示内容来源模式枚举。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
