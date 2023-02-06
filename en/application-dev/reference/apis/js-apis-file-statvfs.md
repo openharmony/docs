@@ -1,21 +1,20 @@
-# @ohos.statfs (statfs)
+# @ohos.file.statvfs (File System Space Statistics)
 
 The **statfs** module provides APIs for obtaining file system information, including the total number of bytes and the number of idle bytes of the file system.
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> - The APIs provided by this module are deprecated since API version 9. You are advised to use [@ohos.file.statvfs](js-apis-file-statvfs.md).
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 ## Modules to Import
 
 ```js
-import statfs from '@ohos.statfs';
+import statvfs from '@ohos.file.statvfs';
 ```
-## statfs.getFreeBytes
+## statvfs.getFreeSize
 
-getFreeBytes(path:string):Promise&lt;number&gt;
+getFreeSize(path:string):Promise&lt;number&gt;
 
 Obtains the number of free bytes of the specified file system in asynchronous mode. This API uses a promise to return the result.
 
@@ -37,18 +36,18 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
   ```js
   let path = "/dev";
-  statfs.getFreeBytes(path).then(function (number) {
-      console.info("getFreeBytes promise successfully:" + number);
-  }).catch(function (err) {
-      console.info("getFreeBytes failed with error:" + err);
+  statfs.getFreeSize(path).then((number) => {
+    console.info("getFreeSize promise successfully, Size: " + number);
+  }).catch((err) => {
+    console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
-## statfs.getFreeBytes
+## statfs.getFreeSize
 
-getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
+getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
-Obtains the number of free bytes of the specified file system in asynchronous mode. This API uses a callback to return the result.
+Obtains the number of free bytes of the specified file system in asynchronous mode. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -62,18 +61,19 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 **Example**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-  let context = featureAbility.getContext();
-  context.getFilesDir().then(function (path) {
-      statfs.getFreeBytes(path, function (err, number) {
-          console.info("getFreeBytes callback successfully:" + number);
-      });
+  let path = "/dev";
+  statfs.getFreeSize(path, (err, number) => {
+    if (err) {
+      console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("getFreeSize callback successfully, Size: " + number);
+    }
   });
   ```
 
-## statfs.getTotalBytes
+## statfs.getTotalSize
 
-getTotalBytes(path: string): Promise&lt;number&gt;
+getTotalSize(path: string): Promise&lt;number&gt;
 
 Obtains the total number of bytes of the specified file system in asynchronous mode. This API uses a promise to return the result.
 
@@ -95,18 +95,18 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
   ```js
   let path = "/dev";
-  statfs.getTotalBytes(path).then(function (number) {
-      console.info("getTotalBytes promise successfully:" + number);
-  }).catch(function (err) {
-      console.info("getTotalBytes failed with error:" + err);
+  statfs.getTotalSize(path).then((number) => {
+    console.info("getTotalSize promise successfully, Size: " + number);
+  }).catch((err) => {
+    console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
-## statfs.getTotalBytes
+## statfs.getTotalSize
 
-getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
+getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the total number of bytes of the specified file system in asynchronous mode. This API uses a callback to return the result.
+Obtains the total number of bytes of the specified file system in asynchronous mode. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -120,11 +120,12 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 **Example**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-  let context = featureAbility.getContext();
-  context.getFilesDir().then(function (path) {
-      statfs.getTotalBytes(path, function(err, number) {
-          console.info("getTotalBytes callback successfully:" + number);
-      });
+  let path = "/dev";
+  statfs.getTotalSize(path, (err, number) => {
+    if (err) {
+      console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("getTotalSize promise successfully, Size: " + number);
+    }
   });
   ```
