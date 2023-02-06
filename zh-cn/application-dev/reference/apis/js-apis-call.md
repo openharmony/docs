@@ -4,7 +4,7 @@
 
 如需订阅通话状态请使用[`observer.on('callStateChange')`](js-apis-observer.md#observeroncallstatechange)。
 
->**说明：** 
+>**说明：**
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -105,6 +105,133 @@ promise.then(data => {
 });
 ```
 
+
+## call.dialCall<sup>9+</sup>
+
+dialCall\(phoneNumber: string, callback: AsyncCallback<void\>\): void
+
+拨打电话。使用callback异步回调。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.PLACE\_CALL，该权限为系统权限
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      | 类型                         | 必填 | 说明                                    |
+| ----------- | ---------------------------- | ---- | --------------------------------------- |
+| phoneNumber | string                       | 是   | 电话号码。                              |
+| callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回true为成功，false为失败。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+call.dialCall("138xxxxxxxx", (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.dialCall<sup>9+</sup>
+
+dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback<void\>\): void
+
+拨打电话，可设置通话参数。使用callback异步回调。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.PLACE\_CALL，该权限为系统权限
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      |                    类型             | 必填 | 说明                                    |
+| ----------- | ----------------------------------- | ---- | --------------------------------------- |
+| phoneNumber | string                              | 是   | 电话号码。                              |
+| options     | [DialCallOptions](#dialcalloptions9)| 是   | 通话参数，携带了一些呼叫的其他配置信息。 |
+| callback    | AsyncCallback&lt;boolean&gt;        | 是   | 回调函数，返回true为成功，false为失败。  |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+call.dialCall("138xxxxxxxx", {
+    accountId: 0,
+    videoState: 0,
+    dialScene: 0,
+    dialType: 0,
+}, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.dialCall<sup>9+</sup>
+
+dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise<void\>
+
+拨打电话，可设置通话参数。使用Promise异步回调。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.PLACE\_CALL，该权限为系统权限
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      |                 类型                | 必填 |                说明                    |
+| ----------- | ----------------------------------- | ---- | -------------------------------------- |
+| phoneNumber | string                              | 是   | 电话号码。                             |
+| options     | [DialCallOptions](#dialcalloptions9)| 否   | 通话参数，选择为语音通话还是视频通话。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+try {
+    call.dialCall('138xxxxxxxx');
+    console.log(`dialCall success, promise: data->${JSON.stringify(data)}`);
+} catch (error) {
+    console.log(`dialCall fail, promise: err->${JSON.stringify(error)}`);
+}
+```
+
+
 ## call.makeCall<sup>7+</sup>
 
 makeCall(phoneNumber: string, callback: AsyncCallback\<void\>): void
@@ -120,11 +247,21 @@ makeCall(phoneNumber: string, callback: AsyncCallback\<void\>): void
 | phoneNumber | string                    | 是   | 电话号码。                                 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 以callback形式异步返回跳转拨号界面的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-call.makeCall("138xxxxxxxx", err => { 
-    console.log(`makeCall callback: err->${JSON.stringify(err)}`); 
+call.makeCall("138xxxxxxxx", err => {
+    console.log(`makeCall callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -149,14 +286,24 @@ makeCall(phoneNumber: string): Promise\<void\>
 | ------------------- | --------------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回拨号的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-let promise = call.makeCall("138xxxxxxxx"); 
-promise.then(() => { 
-    console.log(`makeCall success`); 
-}).catch(err => { 
-    console.error(`makeCall fail, promise: err->${JSON.stringify(err)}`); 
+let promise = call.makeCall("138xxxxxxxx");
+promise.then(() => {
+    console.log(`makeCall success`);
+}).catch(err => {
+    console.error(`makeCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -291,6 +438,16 @@ isEmergencyPhoneNumber\(phoneNumber: string, callback: AsyncCallback<boolean\>\)
 | phoneNumber | string                       | 是   | 电话号码。                                                   |
 | callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示是紧急电话号码，返回false表示不是紧急电话号码。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -315,6 +472,16 @@ isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, ca
 | phoneNumber | string                                             | 是   | 电话号码。                                                   |
 | options     | [EmergencyNumberOptions](#emergencynumberoptions7) | 是   | 电话号码参数。                                               |
 | callback    | AsyncCallback&lt;boolean&gt;                       | 是   | 回调函数。返回true表示是紧急电话号码，返回false表示不是紧急电话号码。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -346,6 +513,16 @@ isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\):
 | ---------------------- | --------------------------------------------------- |
 | Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否是紧急电话号码的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -374,6 +551,16 @@ formatPhoneNumber\(phoneNumber: string, callback: AsyncCallback<string\>\): void
 | phoneNumber | string                      | 是   | 电话号码。                           |
 | callback    | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回格式化电话号码的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -399,6 +586,16 @@ formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: 
 | phoneNumber | string                                       | 是   | 电话号码。                           |
 | options     | [NumberFormatOptions](#numberformatoptions7) | 是   | 格式化参数，如国家码。               |
 | callback    | AsyncCallback&lt;string&gt;                  | 是   | 回调函数，返回格式化电话号码的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -434,6 +631,16 @@ formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise
 | --------------------- | ------------------------------------------- |
 | Promise&lt;string&gt; | 以Promise形式异步返回格式化电话号码的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -464,6 +671,16 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: Asy
 | phoneNumber | string                      | 是   | 电话号码。                                            |
 | countryCode | string                      | 是   | 国家码，支持所有国家码，如：中国（CN）。              |
 | callback    | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回将电话号码格式化为E.164表示形式的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -499,6 +716,16 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise<str
 | --------------------- | ------------------------------------------------------------ |
 | Promise&lt;string&gt; | 以Promise形式异步返回将电话号码格式化为E.164表示形式的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -528,6 +755,16 @@ muteRinger\(callback: AsyncCallback<void\>\): void
 | ----------- | ------------------------- | ---- | ---------- |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -554,6 +791,17 @@ muteRinger\(\): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -585,6 +833,17 @@ answer\(callId: number, callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | callId   | number                    | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -619,6 +878,17 @@ answer(callId?: number\): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -650,6 +920,17 @@ hangup\(callId: number, callback: AsyncCallback<void\>\): void
 | callId   | number                    | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -676,6 +957,17 @@ answer\(callback: AsyncCallback<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -710,6 +1002,17 @@ hangup\(callId?: number\): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -740,6 +1043,18 @@ hangup\(callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+
 **示例：**
 
 ```js
@@ -767,6 +1082,18 @@ reject(callId: number, callback: AsyncCallback\<void>): void
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | callId   | number                    | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 
 **示例：**
 
@@ -796,6 +1123,17 @@ reject\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<v
 | callId   | number                                         | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
 | options  | [RejectMessageOptions](#rejectmessageoptions7) | 是   | 拒绝消息选项。                                  |
 | callback | AsyncCallback&lt;void&gt;                      | 是   | 回调函数。                                      |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -834,6 +1172,17 @@ reject(callId?: number, options?: RejectMessageOptions\): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -867,6 +1216,17 @@ reject\(callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -894,6 +1254,17 @@ reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 | -------- | ---------------------------------------------- | ---- | -------------- |
 | options  | [RejectMessageOptions](#rejectmessageoptions7) | 是   | 拒绝消息选项。 |
 | callback | AsyncCallback&lt;void&gt;                      | 是   | 回调函数。     |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -925,6 +1296,17 @@ holdCall\(callId: number, callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -959,6 +1341,17 @@ holdCall\(callId: number\): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -988,6 +1381,17 @@ unHoldCall\(callId: number, callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1022,6 +1426,17 @@ unHoldCall\(callId: number\): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1051,6 +1466,17 @@ switchCall\(callId: number, callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1085,6 +1511,17 @@ switchCall\(callId: number\): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1112,6 +1549,16 @@ combineConference\(callId: number, callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1144,6 +1591,16 @@ combineConference\(callId: number\): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1171,6 +1628,17 @@ getMainCallId\(callId: number, callback: AsyncCallback<number\>\): void
 | -------- | --------------------------- | ---- | ------------------------ |
 | callId   | number                      | 是   | 呼叫Id。                 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回主呼叫Id。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 
 **示例：**
 
@@ -1203,6 +1671,16 @@ getMainCallId\(callId: number\): Promise<number\>
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回主呼叫Id。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1230,6 +1708,16 @@ getSubCallIdList\(callId: number, callback: AsyncCallback<Array<string\>\>\): vo
 | -------- | ------------------------------ | ---- | ---------------------------- |
 | callId   | number                         | 是   | 呼叫Id。                     |
 | callback | AsyncCallback<Array<string\>\> | 是   | 回调函数。返回子呼叫Id列表。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1262,6 +1750,16 @@ getSubCallIdList\(callId: number\): Promise<Array<string\>\>
 | ----------------------------- | ----------------------------------- |
 | Promise&lt;Array<string\>&gt; | 以Promise形式异步返回子呼叫Id列表。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1289,6 +1787,16 @@ getCallIdListForConference\(callId: number, callback: AsyncCallback<Array<string
 | -------- | ----------------------------------- | ---- | -------------------------------- |
 | callId   | number                              | 是   | 呼叫Id。                         |
 | callback | AsyncCallback&lt;Array<string\>&gt; | 是   | 回调函数。返回会议的呼叫Id列表。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1321,6 +1829,16 @@ getCallIdListForConference\(callId: number\): Promise<Array<string\>\>
 | ----------------------------- | --------------------------------------- |
 | Promise&lt;Array<string\>&gt; | 以Promise形式异步返回会议的呼叫Id列表。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1350,6 +1868,17 @@ getCallWaitingStatus\(slotId: number, callback: AsyncCallback<CallWaitingStatus\
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
 | callback | AsyncCallback&lt;[CallWaitingStatus](#callwaitingstatus7)\> | 是   | 回调函数。<br/>返回呼叫等待状态。<br/>- 0：禁用呼叫等待 <br/>- 1：启用呼叫等待 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1384,6 +1913,17 @@ getCallWaitingStatus\(slotId: number\): Promise<CallWaitingStatus\>
 | ------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise&lt;[CallWaitingStatus](#callwaitingstatus7)&gt; | 以Promise形式异步返回呼叫等待状态。<br/>- 0：禁用呼叫等待 <br/>- 1：启用呼叫等待 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1414,6 +1954,17 @@ setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback<void\
 | slotId   | number               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
 | activate | boolean              | 是   | 呼叫等待是否处于启用状态。<br/>- false：禁用呼叫等待<br/>- true：启用呼叫等待 |
 | callback | AsyncCallback<void\> | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1449,6 +2000,17 @@ setCallWaiting\(slotId: number, activate: boolean\): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1477,6 +2039,16 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback<void\>\): 
 | callId    | number               | 是   | 呼叫Id。   |
 | character | string               | 是   | DTMF码。   |
 | callback  | AsyncCallback<void\> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1510,6 +2082,16 @@ startDTMF\(callId: number, character: string\): Promise<void\>
 | ------------------- | ----------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1537,6 +2119,16 @@ stopDTMF\(callId: number, callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1569,6 +2161,16 @@ stopDTMF\(callId: number\): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1598,6 +2200,17 @@ isInEmergencyCall\(callback: AsyncCallback<boolean\>\): void
 | -------- | ---------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1624,6 +2237,17 @@ isInEmergencyCall\(\): Promise<boolean\>
 | 类型                   | 说明                        |
 | ---------------------- | --------------------------- |
 | Promise&lt;boolean&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1655,6 +2279,17 @@ on\(type: 'callDetailsChange', callback: Callback<CallAttributeOptions\>\): void
 | type     | string                                                  | 是   | 通话时监听通话详情的变化。 |
 | callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | 是   | 回调函数。                 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1681,6 +2316,17 @@ on\(type: 'callEventChange', callback: Callback<CallEventOptions\>\): void
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | type     | string                                           | 是   | 通话时监听通话事件的变化。 |
 | callback | Callback<[CallEventOptions](#calleventoptions8)> | 是   | 回调函数。                 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1709,6 +2355,17 @@ on\(type: 'callDisconnectedCause', callback: Callback<DisconnectedDetails\>): vo
 | type     | string                                                 | 是   | 通话时监听断开连接的原因。 |
 | callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | 是   | 回调函数。                 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1735,6 +2392,17 @@ on\(type: 'mmiCodeResult', callback: Callback<MmiCodeResults\>\): void
 | -------- | -------------------------------------------- | ---- | --------------------- |
 | type     | string                                       | 是   | 通话时监听MMI码结果。 |
 | callback | Callback<[MmiCodeResults](#mmicoderesults9)> | 是   | 回调函数。            |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1763,6 +2431,17 @@ off\(type: 'callDetailsChange', callback?: Callback<CallAttributeOptions\>\): vo
 | type     | string                                                   | 是   | 通话结束时取消监听通话详情的变化。 |
 | callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | 否   | 回调函数。                         |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1789,6 +2468,17 @@ off\(type: 'callEventChange', callback?: Callback<CallEventOptions\>\): void
 | -------- | ------------------------------------------------ | ---- | ---------------------------------- |
 | type     | string                                           | 是   | 通话结束时取消监听通话事件的变化。 |
 | callback | Callback<[CallEventOptions](#calleventoptions8)> | 否   | 回调函数。                         |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1817,6 +2507,17 @@ off\(type: 'callDisconnectedCause', callback?: Callback<DisconnectedDetails\>\):
 | type     | 'callDisconnectedCause'                                    | 是   | 调用断开连接的原因。 |
 | callback | Callback**<**[DisconnectedDetails](#disconnecteddetails9)> | 否   | 回调函数。           |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1844,6 +2545,17 @@ off\(type: 'mmiCodeResult', callback?: Callback<MmiCodeResults\>\): void
 | type     | 'mmiCodeResult'                                  | 是   | MMI码结果。 |
 | callback | Callback<[MmiCodeResults](#mmicoderesults9)> | 否   | 回调函数。  |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1867,6 +2579,16 @@ isNewCallAllowed\(callback: AsyncCallback<boolean\>\): void
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1892,6 +2614,16 @@ isNewCallAllowed\(\): Promise<boolean\>
 | 类型                   | 说明                        |
 | ---------------------- | --------------------------- |
 | Promise&lt;boolean&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1920,6 +2652,16 @@ separateConference\(callId: number, callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1952,6 +2694,16 @@ separateConference\(callId: number\): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1982,6 +2734,17 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType, callback: A
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | type     | [CallRestrictionType](#callrestrictiontype8)                 | 是   | 呼叫限制类型。                        |
 | callback | AsyncCallback&lt;[RestrictionStatus](#restrictionstatus8)&gt; | 是   | 回调函数。返回限制状态。               |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2017,6 +2780,17 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise<R
 | ------------------------------------------------------- | --------------------------- |
 | Promise&lt;[RestrictionStatus](#restrictionstatus8)&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2047,6 +2821,17 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 | slotId   | number                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | info     | [CallRestrictionInfo](#callrestrictioninfo8) | 是   | 呼叫限制信息。                         |
 | callback | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2087,6 +2872,17 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2123,6 +2919,17 @@ getCallTransferInfo\(slotId: number, type: CallTransferType, callback: AsyncCall
 | type     | [CallTransferType](#calltransfertype8)                       | 是   | 呼叫转移类型。                         |
 | callback | AsyncCallback&lt;[CallTransferResult](#calltransferresult8)&gt; | 是   | 回调函数。返回呼叫转移信息。           |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2157,6 +2964,17 @@ getCallTransferInfo\(slotId: number, type: CallTransferType): Promise<CallTransf
 | --------------------------------------------------------- | --------------------------- |
 | Promise&lt;[CallTransferResult](#calltransferresult8)&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2187,6 +3005,17 @@ setCallTransfer\(slotId: number, info: CallTransferInfo, callback: AsyncCallback
 | slotId   | number                                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | info     | [CallTransferInfo](#calltransferinfo8) | 是   | 呼叫转移信息。                        |
 | callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2227,6 +3056,17 @@ setCallTransfer\(slotId: number, info: CallTransferInfo): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2261,6 +3101,17 @@ isRinging\(callback: AsyncCallback<boolean\>\): void
 | -------- | ---------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2287,6 +3138,17 @@ isRinging\(\): Promise<boolean\>
 | 类型                   | 说明                        |
 | ---------------------- | --------------------------- |
 | Promise&lt;boolean&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2315,6 +3177,16 @@ setMuted\(callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2339,6 +3211,16 @@ setMuted\(\): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2367,6 +3249,16 @@ cancelMuted(callback: AsyncCallback<void\>): void
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2391,6 +3283,16 @@ cancelMuted(): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2420,6 +3322,16 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback<void\>\): void
 | device   | [AudioDevice](#audiodevice8) | 是   | 音频设备。 |
 | callback | AsyncCallback&lt;void&gt;    | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2446,6 +3358,16 @@ setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: Asyn
 | device   | [AudioDevice](#audiodevice8)               | 是   | 音频设备。     |
 | options  | [AudioDeviceOptions](#audiodeviceoptions9) | 是   | 音频设备参数。 |
 | callback | AsyncCallback&lt;void&gt;                  | 是   | 回调函数。     |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2482,6 +3404,16 @@ setAudioDevice(device: AudioDevice, options?: AudioDeviceOptions): Promise<void\
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回设置结果。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2513,6 +3445,16 @@ joinConference(mainCallId: number, callNumberList: Array<string\>, callback: Asy
 | mainCallId     | number                    | 是   | 主通话Id。      |
 | callNumberList | Array<string\>            | 是   | 呼叫号码列表。 |
 | callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。      |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2548,6 +3490,16 @@ joinConference(mainCallId: number, callNumberList: Array<string\>): Promise<void
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2580,6 +3532,16 @@ updateImsCallMode(callId: number, mode: ImsCallMode, callback: AsyncCallback<voi
 | mode     | [ImsCallMode](#imscallmode8) | 是   | Ims呼叫模式。 |
 | callback | AsyncCallback&lt;void&gt;    | 是   | 回调函数。     |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2611,6 +3573,16 @@ updateImsCallMode(callId: number, mode: ImsCallMode): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2640,6 +3612,17 @@ enableImsSwitch(slotId: number, callback: AsyncCallback<void\>): void
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2673,6 +3656,17 @@ enableImsSwitch(slotId: number): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2702,6 +3696,17 @@ disableImsSwitch(slotId: number, callback: AsyncCallback<void\>): void
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2735,6 +3740,17 @@ disableImsSwitch(slotId: number): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2762,6 +3778,16 @@ isImsSwitchEnabled(slotId: number, callback: AsyncCallback<boolean\>): void
 | -------- | ---------------------------- | ---- | -------------------------------------- |
 | slotId   | number                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2793,6 +3819,16 @@ isImsSwitchEnabled(slotId: number): Promise<boolean\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2810,13 +3846,26 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
+|        名称              | 类型                               | 必填 | 说明                                                                                             |
+| ------------------------ | ---------------------------------- | ---- | ----------------------------------------------------------------------------------------------- |
+| extras                   | boolean                            | 否   | 根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- false：语音通话。 |
+| accountId <sup>8+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>此接口为系统接口。                                    |
+| videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。此接口为系统接口。                                                                 |
+| dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。此接口为系统接口。                                                                     |
+| dialType <sup>8+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。此接口为系统接口。                                                                     |
+
+## DialCallOptions<sup>9+</sup>
+
+拨打电话的可选参数。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+
 |        名称              | 类型                               | 必填 | 说明                                                         |
 | ------------------------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| extras                   | boolean                            | 否   | 根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- false：语音通话。 |
-| accountId <sup>8+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>此接口为系统接口。                                   |
-| videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。此接口为系统接口。                             |
-| dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。此接口为系统接口。                                 |
-| dialType <sup>8+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。此接口为系统接口。                                 |
+| accountId <sup>9+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>此接口为系统接口。|
+| videoState <sup>9+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。此接口为系统接口。                             |
+| dialScene <sup>9+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。此接口为系统接口。                                 |
+| dialType <sup>9+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。此接口为系统接口。                                 |
 
 ## CallState
 
