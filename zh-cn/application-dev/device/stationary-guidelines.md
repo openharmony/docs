@@ -7,35 +7,35 @@
 
 详细的接口介绍请参考[Stationary接口](../reference/apis/js-apis-stationary.md)。
 
-## 参数常量说明
+## 设备状态类型参数说明
 
 | 名称 | 描述 |
 | -------- | -------- |
 | still | 绝对静止。 |
 | relativeStill | 相对静止。 |
 
-## 参数枚举说明
+## 订阅设备状态事件参数说明
 
 | 变量                             | 值    | 说明                                       |
 | ------------------------------ | ---- | ---------------------------------------- |
-| ENTER         | 1    | 进入。   |
-| EXIT | 2   | 退出。 |
-| ENTER_EXIT | 3   | 进入和退出。 |
+| ENTER         | 1    | 订阅进入事件。   |
+| EXIT | 2   | 订阅退出事件。 |
+| ENTER_EXIT | 3   | 订阅进入和退出事件。 |
 
-## 返回值枚举说明
+## 返回设备状态参数说明
 
 | 变量                             | 值    | 说明                                       |
 | ------------------------------ | ---- | ---------------------------------------- |
-| ENTER         | 1    | 进入。   |
-| EXIT | 2   | 退出。 |
+| ENTER         | 1    | 返回进入状态。   |
+| EXIT | 2   | 返回退出状态。 |
 
 ## 接口说明
 
 | 模块          | 接口名                                                       | 描述                                                         |
 | ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ohos.stationary | on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callback: Callback&lt;ActivityResponse&gt;): void | 订阅绝对静止/相对静止状态的进入/退出/进入和退出事件，结果使用callback异步回调 |
-| ohos.stationary | once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void | 查询设备的绝对静止/相对静止状态，结果使用Callback异步回调。 |
-| ohos.stationary | off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;ActivityResponse&gt;): void | 取消订阅绝对静止/相对静止的进入/退出/进入和退出事件                                 |
+| ohos.stationary | on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callback: Callback&lt;ActivityResponse&gt;): void | 订阅设备状态，结果通过callback返回。 |
+| ohos.stationary | once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void | 查询设备状态，结果通过callback返回。 |
+| ohos.stationary | off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;ActivityResponse&gt;): void | 取消订阅设备状态。                                 |
 
 ## 约束与限制
 
