@@ -20,7 +20,7 @@
 
 ## Range
 
-描述选中文本的范围
+描述选中文本的范围。
 
  **系统能力:**  SystemCapability.MiscServices.InputMethodFramework
 
