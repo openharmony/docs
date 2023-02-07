@@ -62,18 +62,21 @@ ohos_shared_library("helloworld") {
 
   part_name = [string]          # 必选，所属部件名称
   output_dir
-  
+
   # Sanitizer配置，每项都是可选的，默认为false/空
   sanitize = {
     # 各个Sanitizer开关
-    cfi = [boolean]
-    integer_overflow = [boolean]
+    cfi = [boolean]               # 控制流完整性检测
+    integer_overflow = [boolean]  # 整数溢出检测
+    boundary_sanitize = [boolean] # 边界检测
+    ubsan = [boolean]             # 部分ubsan选项
+    all_ubsan = [boolean]         # 全量ubsan选项
     ...
 
     debug = [boolean]             # 调测模式
     blocklist = [string]          # 屏蔽名单路径
   }
-  
+
   testonly = [boolean]
   license_as_sources = []
   license_file = []             # 后缀名是.txt的文件
@@ -106,18 +109,21 @@ ohos_static_library("helloworld") {
 
   lib_dirs = []
   public_configs = []
-  
+
   # Sanitizer配置，每项都是可选的，默认为false/空
   sanitize = {
     # 各个Sanitizer开关
-    cfi = [boolean]
-    integer_overflow = [boolean]
+    cfi = [boolean]               # 控制流完整性检测
+    integer_overflow = [boolean]  # 整数溢出检测
+    boundary_sanitize = [boolean] # 边界检测
+    ubsan = [boolean]             # 部分ubsan选项
+    all_ubsan = [boolean]         # 全量ubsan选项
     ...
 
     debug = [boolean]             # 调测模式
     blocklist = [string]          # 屏蔽名单路径
   }
-  
+
   remove_configs = []
   no_default_deps = []
   license_file = []             # 后缀名是.txt的文件
@@ -141,18 +147,21 @@ ohos_executable("helloworld") {
   ]                                  # 这里依赖的模块必须是依赖的部件声明在inner_kits中的模块
   ohos_test = []
   test_output_dir = []
-  
+
   # Sanitizer配置，每项都是可选的，默认为false/空
   sanitize = {
     # 各个Sanitizer开关
-    cfi = [boolean]
-    integer_overflow = [boolean]
+    cfi = [boolean]               # 控制流完整性检测
+    integer_overflow = [boolean]  # 整数溢出检测
+    boundary_sanitize = [boolean] # 边界检测
+    ubsan = [boolean]             # 部分ubsan选项
+    all_ubsan = [boolean]         # 全量ubsan选项
     ...
 
     debug = [boolean]             # 调测模式
     blocklist = [string]          # 屏蔽名单路径
   }
-  
+
   testonly = [boolean]
   license_as_sources = []
   license_file = []                  # 后缀名是.txt的文件
@@ -187,18 +196,21 @@ ohos_source_set("helloworld") {
   external_deps = [               # 跨部件模块依赖定义，
   "part_name:module_name",        # 定义格式为 "部件名:模块名称"
   ]                               # 这里依赖的模块必须是依赖的部件声明在inner_kits中的模块
-  
+
   # Sanitizer配置，每项都是可选的，默认为false/空
   sanitize = {
     # 各个Sanitizer开关
-    cfi = [boolean]
-    integer_overflow = [boolean]
+    cfi = [boolean]               # 控制流完整性检测
+    integer_overflow = [boolean]  # 整数溢出检测
+    boundary_sanitize = [boolean] # 边界检测
+    ubsan = [boolean]             # 部分ubsan选项
+    all_ubsan = [boolean]         # 全量ubsan选项
     ...
 
     debug = [boolean]             # 调测模式
     blocklist = [string]          # 屏蔽名单路径
   }
-  
+
   testonly = [boolean]
   license_as_sources = []
   license_file = []
