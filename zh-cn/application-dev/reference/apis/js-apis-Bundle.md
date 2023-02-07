@@ -1603,7 +1603,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## bundle.getAbilityIcon<sup>8+</sup> <sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager.getAbilityIcon](js-apis-bundleManager.md#bundlemanagergetabilityicon)替代。
+> 从API version 9开始不再维护，建议使用[resourceManager.getMediaContent](js-apis-resource-manager.md#getmediacontent9)替代。
 
 getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>;
 
@@ -1646,7 +1646,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 ## bundle.getAbilityIcon<sup>8+</sup> <sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager.getAbilityIcon](js-apis-bundleManager.md#bundlemanagergetabilityicon)替代。
+> 从API version 9开始不再维护，建议使用[resourceManager.getMediaContent](js-apis-resource-manager.md#getmediacontent9)替代。
 
 getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void;
 
