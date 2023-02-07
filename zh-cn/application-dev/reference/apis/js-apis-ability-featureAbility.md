@@ -145,7 +145,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 ```
@@ -475,7 +475,7 @@ getContext(): Context
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 context.getBundleName((err, data) => {
     console.info("getBundleName err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
@@ -570,7 +570,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connectId = featureAbility.connectAbility(
+let connectId = featureAbility.connectAbility(
     {
         deviceId: "",
         bundleName: "com.ix.ServiceAbility",
@@ -613,7 +613,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connectId = featureAbility.connectAbility(
+let connectId = featureAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
@@ -665,7 +665,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connectId = featureAbility.connectAbility(
+let connectId = featureAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
