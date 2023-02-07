@@ -38,5 +38,23 @@ interface ParamsSpec {
  ```
 
 **适配指导**
-查看API参考中ParamsSpec对应的接口适配指南：
-[加解密算法库框架-API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md)
+对ParamsSpec以及其子类IvParamsSpec，GcmParamsSpec与CcmParamsSpec，使用这些对象作为参数或返回值时，其属性名需要从algoName更改为algName。
+ ```ts
+function genGcmParamsSpec() {
+  let arr = [0, 0, 0, 0 , 0, 0, 0, 0, 0, 0 , 0, 0]; // 12 bytes
+  let dataIv = new Uint8Array(arr);
+  let ivBlob = {data : dataIv};
+
+  arr = [0, 0, 0, 0 , 0, 0, 0, 0]; // 8 bytes
+  let dataAad = new Uint8Array(arr);
+  let aadBlob = {data : dataAad};
+
+  arr = [0, 0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0 , 0, 0, 0, 0]; // 16 bytes
+  let dataTag = new Uint8Array(arr);
+  let tagBlob = {data : dataTag};
+  let gcmParamsSpec = {iv : ivBlob, aad : aadBlob, authTag : tagBlob, algName : "GcmParamsSpec"};
+  return gcmParamsSpec;
+}
+ ```   
+详细查看API参考中ParamsSpec对应的接口适配指南：
+[加解密算法库框架-ParamsSpec-API参考](../../../application-dev/reference/apis/js-apis-cryptoFramework.md#paramsspec)
