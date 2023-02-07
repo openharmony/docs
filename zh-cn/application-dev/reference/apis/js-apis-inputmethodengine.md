@@ -1661,6 +1661,75 @@ try {
 }
 ```
 
+### getTextIndexAtCursor<sup>10+</sup>
+
+getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
+
+获取光标所在处的文本索引。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                                                         |
+| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;[number](#index)&gt; | 是   | 回调函数。当文本索引获取成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 401      | parameter error.               |
+| 12800003 | Input method client error.     |
+| 12800006 | Input method controller error. |
+
+**示例：**
+
+```js
+inputClient.getTextIndexAtCursor((err, index) => {
+    if (err !== undefined) {
+        console.error('Failed to getTextIndexAtCursor: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in getTextIndexAtCursor: ' + index);
+});
+```
+
+### getTextIndexAtCursor<sup>10+</sup>
+
+getTextIndexAtCursor(): Promise&lt;number&gt;
+
+获取光标所在处的文本索引。使用promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                            | 说明                                    |
+| ------------------------------- | --------------------------------------- |
+| Promise&lt;[number](#index)&gt; | Promise对象，返回光标所在处的文本索引。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | Input method client error.     |
+| 12800006 | Input method controller error. |
+
+**示例：**
+
+```js
+inputClient.getTextIndexAtCursor().then((index) => {
+    console.info('Succeeded in getTextIndexAtCursor: ' + index);
+}).catch((err) => {
+    console.error('Failed to getTextIndexAtCursor: ' + JSON.stringify(err));
+});
+```
+
 ## EditorAttribute
 
 编辑框属性值。
