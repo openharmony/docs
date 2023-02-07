@@ -28,7 +28,7 @@ missionManager.getMissionInfos("", 10, (error, missions) => {
   console.log("getMissionInfos is called, error.code = " + error.code);
   console.log("size = " + missions.length);
   console.log("missions = " + JSON.stringify(missions));
-  var id = missions[0].missionId;
+  let id = missions[0].missionId;
 
   missionManager.getMissionSnapShot("", id, (error, snapshot) => {
     console.log("getMissionSnapShot is called, error.code = " + error.code);

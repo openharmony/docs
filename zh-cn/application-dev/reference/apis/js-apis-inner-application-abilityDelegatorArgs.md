@@ -28,5 +28,5 @@ AbilityDelegatorArgs模块提供在应用程序启动期间，用于存储已注
 ```ts
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 
-var args = AbilityDelegatorRegistry.getArguments();
+let args = AbilityDelegatorRegistry.getArguments();
 ```

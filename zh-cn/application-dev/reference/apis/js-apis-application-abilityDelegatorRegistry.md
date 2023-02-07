@@ -43,7 +43,7 @@ getAbilityDelegator(): AbilityDelegator
 **示例：**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 ```
@@ -65,7 +65,7 @@ getArguments(): AbilityDelegatorArgs
 **示例：**
 
 ```ts
-var args = AbilityDelegatorRegistry.getArguments();
+let args = AbilityDelegatorRegistry.getArguments();
 console.info("getArguments bundleName:" + args.bundleName);
 console.info("getArguments testCaseNames:" + args.testCaseNames);
 console.info("getArguments testRunnerClassName:" + args.testRunnerClassName);
