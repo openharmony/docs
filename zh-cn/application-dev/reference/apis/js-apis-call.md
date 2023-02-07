@@ -20,7 +20,7 @@ dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
 拨打电话。使用callback异步回调。
 
-**需要权限**：ohos.permission.PLACE\_CALL，该权限为系统权限
+**需要权限**：ohos.permission.PLACE_CALL
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -46,7 +46,7 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean
 
 拨打电话，可设置通话参数。使用callback异步回调。
 
-**需要权限**：ohos.permission.PLACE\_CALL，该权限为系统权限
+**需要权限**：ohos.permission.PLACE_CALL
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -75,7 +75,7 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 
 拨打电话，可设置通话参数。使用Promise异步回调。
 
-**需要权限**：ohos.permission.PLACE\_CALL，该权限为系统权限
+**需要权限**：ohos.permission.PLACE_CALL
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -112,9 +112,9 @@ dialCall\(phoneNumber: string, callback: AsyncCallback<void\>\): void
 
 拨打电话。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限**：ohos.permission.PLACE\_CALL，该权限为系统权限
+**需要权限**：ohos.permission.PLACE_CALL
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -153,17 +153,17 @@ dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.PLACE\_CALL，该权限为系统权限
+**需要权限**：ohos.permission.PLACE_CALL
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
 **参数：**
 
-| 参数名      |                    类型             | 必填 | 说明                                    |
-| ----------- | ----------------------------------- | ---- | --------------------------------------- |
-| phoneNumber | string                              | 是   | 电话号码。                              |
-| options     | [DialCallOptions](#dialcalloptions9)| 是   | 通话参数，携带了一些呼叫的其他配置信息。 |
-| callback    | AsyncCallback&lt;boolean&gt;        | 是   | 回调函数，返回true为成功，false为失败。  |
+| 参数名      |                    类型             | 必填 | 说明                                 |
+| ----------- | ----------------------------------- | ---- | ------------------------------------ |
+| phoneNumber | string                              | 是   | 电话号码。                           |
+| options     | [DialCallOptions](#dialcalloptions9)| 是   | 通话参数，携带呼叫的其他配置信息。 |
+| callback    | AsyncCallback&lt;boolean&gt;        | 是   | 回调函数，返回true为成功，false为失败。 |
 
 **错误码：**
 
@@ -198,7 +198,7 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise<void\>
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.PLACE\_CALL，该权限为系统权限
+**需要权限**：ohos.permission.PLACE_CALL
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
