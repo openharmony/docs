@@ -38,6 +38,7 @@ RichText(content:string)
 | \<h1>--\<h6> | 被用来定义HTML，\<h1>定义重要等级最高的标题，\<h6>定义重要等级最低的标题。 | \<h1>这是一个标题\</h1>\<h2>这是h2标题\</h2> |
 | \<p>\</p> | 定义段落。 | \<p>这是一个段落\</p> |
 | \<br/> | 插入一个简单的换行符。 | \<p>这是一个段落\<br/>这是换行段落\</p> |
+| \<font/> | 规定文本的字体、字体尺寸、字体颜色。 | \<font size="3" face="arial" color="red">这是一段红色字体。\</font> |
 | \<hr/> | 定义HTML页面中的主题变化（比如话题的转移），并显示为一条水平线。 | \<p>这个一个段落\</p>\<hr/>\<p>这是一个段落\</p> |
 | \<image>\</image> | 用来定义图片。 | \<image src="file:///data/storage/el1/bundle/entry/resources/rawfile/icon.png">\</image> |
 | \<div>\</div> | 常用于组合块级元素，以便通过CSS来对这些元素进行格式化。 | \<div style='color:#0000FF'>\<h3>这是一个在div元素中的标题。\</h3>\</div> |
@@ -82,4 +83,8 @@ struct RichTextExample {
 }
 ```
 
- ![richText](figures/richText.png) 
+ ![richText](figures/richText.png)
+
+## 使用场景说明
+
+RichText组件底层复用了Web组件来提供基础能力，包括但不限于HTML页面的解析、渲染等。但由于Web组件比较消耗资源，所以在一些重复使用RichText组件的场景下，比如在List下循环重复使用RichText时，会出现卡顿、滑动响应慢等现象。
