@@ -45,7 +45,7 @@ base/telephony/
 ## Constraints<a name="section123mcpsimp"></a>
 
 1.  The open-source version currently provides the cellular call (CS call only), SMS & MMS, and cellular data services and supports the dual-SIM framework.
-2.  The Hardware Device Interface (HDI) support is subject to the chip vendors' adaptation capability. For details, see [Telephony Service Development](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-tel.md).
+2.  The Hardware Device Interface (HDI) support is subject to the chip vendors' adaptation capability. For details, see [Telephony Service Development](../device-dev/subsystems/subsys-tel-overview.md).
 
 ## Usage Guidelines<a name="section128mcpsimp"></a>
 
