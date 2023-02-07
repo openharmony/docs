@@ -8,53 +8,35 @@ The following describes how to set up the Windows environment.
 
 ## System Requirements
 
-- OS: 64-bit Windows 10
+- Windows 10 (64-bit): 8 GB or larger memory and a 100 GB or larger hard disk recommended
 
-- DevEco Device Tool: 3.1 Beta1
+- DevEco Device Tool: latest and same version installed on both Windows and Ubuntu
 
 
 ## Procedure
 
-1. Download the [DevEco Device Tool 3.1 Beta1](https://device.harmonyos.com/cn/ide#download) Windows edition.
+1. Download the latest version of [DevEco Device Tool](https://device.harmonyos.com/cn/ide#download) for Windows.
 
 2. Decompress the DevEco Device Tool package, double-click the installer, and then click **Next**.
 
-3. Set the installation path for DevEco Device Tool and click **Next**. Make sure the path does not contain Chinese characters and is in a drive other than the C drive.
+3. On the page shown, read the user agreement and privacy statement carefully and select **I accept the licenses** before proceeding to the next step.
 
-   ![en-us_image_0000001326386753](figures/en-us_image_0000001326386753.png)
+4. Set the installation path for DevEco Device Tool and click **Next**. Make sure the path does not contain Chinese characters and is **in a drive other than the C drive**.
 
-4. When prompted, select the tools to be automatically installed.
 
-   1. On the **VSCode installation confirm** page, select **Install VS Code 1.62.2 automatically** and click **Next**.
-       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-       >
-       > If Visual Studio Code 1.62 or later has been installed, this step will be skipped.
-       
+5. Install the dependent tools by following the onscreen instructions.
 
-       ![en-us_image_0000001285965546](figures/en-us_image_0000001285965546.png)
-       
-   2. Select the Visual Studio Code installation path and click Next.
+   You can select **Install** or **Custom** as needed:
 
-       ![select-vscode-path](figures/select-vscode-path.png)
+   - **Install**: Install the software based on the default path and parameters.
+   
+   - **Custom**: You can customize the installation path and other parameters before the installation.
 
-   2. On the displayed **Python select page**, select **Download from Huawei mirror** and click **Next**.
-       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-       >
-       > If Python 3.8 or 3.9 has been installed, select **Use one of compatible on your PC**.
-       
-       ![en-us_image_0000001285965778](figures/en-us_image_0000001285965778.png)
-
-5. When the page shown below is displayed, click **Next**.
-
-   ![en-us_image_0000001285806330](figures/en-us_image_0000001285806330.png)
-
-6. On the page shown below, read the user agreement and privacy statement carefully and select **I accept the licenses** before proceeding to the next step.
-
-   ![en-us_image_0000001275586896](figures/en-us_image_0000001275586896.png)
+   After the installation is complete, the status of the dependent tools should be **OK**.
+   
+6. Click **Install** to install DevEco Device Tool.
 
 7. Wait for the DevEco Device Tool setup wizard to automatically install DevEco Device Tool. After the installation is complete, click **Finish** to close the setup wizard.
-
-   ![en-us_image_0000001275267040](figures/en-us_image_0000001275267040.png)
 
 8. From Visual Studio Code, access the DevEco Device Tool page. Now you can conduct your development in DevEco Device Tool.
 
