@@ -36,7 +36,7 @@ base/telephony/
 ## Constraints
 
 1.  The open-source version currently provides the cellular call (CS call only), SMS & MMS, and cellular data services and supports the dual-SIM framework.
-2.  The Hardware Device Interface (HDI) support is subject to the chip vendors' adaptation capability. For details, see [Telephony Development](../device-dev/subsystems/subsys-tel-guide).
+2.  The Hardware Device Interface (HDI) support is subject to the chip vendors' adaptation capability. For details, see [Telephony Development](../device-dev/subsystems/subsys-tel-overview.md).
 
 ## Usage Guidelines
 
