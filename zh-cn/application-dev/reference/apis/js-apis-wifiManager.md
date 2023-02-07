@@ -35,7 +35,7 @@ enableWifi(): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 
 ## wifi.disableWifi<sup>9+</sup>
@@ -62,7 +62,7 @@ disableWifi(): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.isWifiActive<sup>9+</sup>
 
@@ -86,7 +86,7 @@ isWifiActive(): boolean
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.scan<sup>9+</sup>
 
@@ -110,7 +110,7 @@ scan(): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.getScanResults<sup>9+</sup>
 
@@ -134,7 +134,7 @@ getScanResults(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.getScanResults<sup>9+</sup>
 
@@ -158,7 +158,7 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 **示例：**
   ```js
@@ -299,7 +299,7 @@ getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.addDeviceConfig<sup>9+</sup>
 
@@ -331,7 +331,7 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## WifiDeviceConfig<sup>9+</sup>
 
@@ -481,7 +481,7 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.addCandidateConfig<sup>9+</sup>
 
@@ -511,7 +511,7 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.addCandidateConfig<sup>9+</sup>
 
@@ -536,7 +536,7 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.removeCandidateConfig<sup>9+</sup>
 
@@ -566,7 +566,7 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.removeCandidateConfig<sup>9+</sup>
 
@@ -591,7 +591,7 @@ removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): v
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.getCandidateConfigs<sup>9+</sup>
 
@@ -615,7 +615,7 @@ getCandidateConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.connectToCandidateConfig<sup>9+</sup>
 
@@ -639,8 +639,8 @@ connectToCandidateConfig(networkId: number): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
-| 2501001  | Wifi is closed。|
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.connectToNetwork<sup>9+</sup>
 
@@ -666,8 +666,8 @@ connectToNetwork(networkId: number): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
-| 2501001  | Wifi is closed。|
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.connectToDevice<sup>9+</sup>
 
@@ -694,8 +694,8 @@ connectToDevice(config: WifiDeviceConfig): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
-| 2501001  | Wifi is closed。|
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.disconnect<sup>9+</sup>
 
@@ -716,7 +716,7 @@ disconnect(): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.getSignalLevel<sup>9+</sup>
 
@@ -747,7 +747,7 @@ getSignalLevel(rssi: number, band: number): number
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.getLinkedInfo<sup>9+</sup>
 
@@ -771,8 +771,8 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
-| 2501001  | Wifi is closed。|
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.getLinkedInfo<sup>9+</sup>
 
@@ -796,8 +796,8 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
-| 2501001  | Wifi is closed。|
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 **示例：**
   ```js
@@ -909,7 +909,7 @@ isConnected(): boolean
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.getSupportedFeatures<sup>9+</sup>
 
@@ -950,7 +950,7 @@ getSupportedFeatures(): number
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2401000  | Operation failed。|
+| 2401000  | Operation failed.|
 
 ## wifi.isFeatureSupported<sup>9+</sup>
 
@@ -981,7 +981,7 @@ isFeatureSupported(featureId: number): boolean
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2401000  | Operation failed。|
+| 2401000  | Operation failed.|
 
 ## wifi.getDeviceMacAddress<sup>9+</sup>
 
@@ -1007,7 +1007,7 @@ getDeviceMacAddress(): string[]
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.getIpInfo<sup>9+</sup>
 
@@ -1031,7 +1031,7 @@ getIpInfo(): IpInfo
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## IpInfo<sup>9+</sup>
 
@@ -1072,7 +1072,7 @@ getCountryCode(): string
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2401000  | Operation failed。|
+| 2401000  | Operation failed.|
 
 ## wifi.reassociate<sup>9+</sup>
 
@@ -1092,8 +1092,8 @@ reassociate(): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
-| 2501001  | Wifi is closed。|
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.reconnect<sup>9+</sup>
 
@@ -1113,8 +1113,8 @@ reconnect(): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
-| 2501001  | Wifi is closed。|
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.getDeviceConfigs<sup>9+</sup>
 
@@ -1140,7 +1140,7 @@ getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.updateNetwork<sup>9+</sup>
 
@@ -1172,7 +1172,7 @@ updateNetwork(config: WifiDeviceConfig): number
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.disableNetwork<sup>9+</sup>
 
@@ -1198,7 +1198,7 @@ disableNetwork(netId: number): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.removeAllNetwork<sup>9+</sup>
 
@@ -1218,7 +1218,7 @@ removeAllNetwork(): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.removeDevice<sup>9+</sup>
 
@@ -1244,7 +1244,7 @@ removeDevice(id: number): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.enableHotspot<sup>9+</sup>
 
@@ -1264,7 +1264,7 @@ enableHotspot(): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2601000  | Operation failed。|
+| 2601000  | Operation failed.|
 
 ## wifi.disableHotspot<sup>9+</sup>
 
@@ -1284,7 +1284,7 @@ disableHotspot(): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2601000  | Operation failed。|
+| 2601000  | Operation failed.|
 
 ## wifi.isHotspotDualBandSupported<sup>9+</sup>
 
@@ -1302,7 +1302,7 @@ isHotspotDualBandSupported(): boolean
 
   | **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:支持，&nbsp;false:不支持。|
+  | boolean | true:支持，&nbsp;false:不支持.|
 
 **错误码：**
 
@@ -1310,7 +1310,7 @@ isHotspotDualBandSupported(): boolean
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2601000  | Operation failed。|
+| 2601000  | Operation failed.|
 
 ## wifi.isHotspotActive<sup>9+</sup>
 
@@ -1328,7 +1328,7 @@ isHotspotActive(): boolean
 
   | **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:已使能，&nbsp;false:未使能。|
+  | boolean | true:已使能，&nbsp;false:未使能.|
 
 **错误码：**
 
@@ -1336,7 +1336,7 @@ isHotspotActive(): boolean
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2601000  | Operation failed。|
+| 2601000  | Operation failed.|
 
 ## wifi.setHotspotConfig<sup>9+</sup>
 
@@ -1362,7 +1362,7 @@ setHotspotConfig(config: HotspotConfig): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2601000  | Operation failed。|
+| 2601000  | Operation failed.|
 
 ## HotspotConfig<sup>9+</sup>
 
@@ -1405,7 +1405,7 @@ getHotspotConfig(): HotspotConfig
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2601000  | Operation failed。|
+| 2601000  | Operation failed.|
 
 ## wifi.getStations<sup>9+</sup>
 
@@ -1431,7 +1431,7 @@ getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt;
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2601000  | Operation failed。|
+| 2601000  | Operation failed.|
 
 ## StationInfo<sup>9+</sup>
 
@@ -1470,7 +1470,7 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## WifiP2pLinkedInfo<sup>9+</sup>
 
@@ -1536,7 +1536,7 @@ getCurrentGroup(): Promise&lt;WifiP2pGroupInfo&gt;
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.getCurrentGroup<sup>9+</sup>
 
@@ -1560,7 +1560,7 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.getP2pPeerDevices<sup>9+</sup>
 
@@ -1584,7 +1584,7 @@ getP2pPeerDevices(): Promise&lt;WifiP2pDevice[]&gt;
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.getP2pPeerDevices<sup>9+</sup>
 
@@ -1608,7 +1608,7 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## WifiP2pDevice<sup>9+</sup>
 
@@ -1662,7 +1662,7 @@ getP2pLocalDevice(): Promise&lt;WifiP2pDevice&gt;
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.getP2pLocalDevice<sup>9+</sup>
 
@@ -1703,7 +1703,7 @@ createGroup(config: WifiP2PConfig): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## WifiP2PConfig<sup>9+</sup>
 
@@ -1749,7 +1749,7 @@ removeGroup(): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.p2pConnect<sup>9+</sup>
 
@@ -1774,7 +1774,7 @@ p2pConnect(config: WifiP2PConfig): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 **示例：**
   ```js
@@ -1859,7 +1859,7 @@ p2pCancelConnect(): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.startDiscoverDevices<sup>9+</sup>
 
@@ -1877,7 +1877,7 @@ startDiscoverDevices(): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.stopDiscoverDevices<sup>9+</sup>
 
@@ -1895,7 +1895,7 @@ stopDiscoverDevices(): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.deletePersistentGroup<sup>9+</sup>
 
@@ -1922,7 +1922,7 @@ deletePersistentGroup(netId: number): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.getP2pGroups<sup>9+</sup>
 
@@ -1948,7 +1948,7 @@ getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## WifiP2pGroupInfo<sup>9+</sup>
 
@@ -1993,7 +1993,7 @@ getP2pGroups(callback: AsyncCallback&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.setDeviceName<sup>9+</sup>
 
@@ -2019,7 +2019,7 @@ setDeviceName(devName: string): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.on('wifiStateChange')<sup>9+</sup>
 
@@ -2044,7 +2044,7 @@ on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 **状态改变事件的枚举：**
 
@@ -2079,7 +2079,7 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 **示例：**
   ```js
@@ -2127,7 +2127,7 @@ on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.off('wifiConnectionChange')<sup>9+</sup>
 
@@ -2152,7 +2152,7 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.on('wifiScanStateChange')<sup>9+</sup>
 
@@ -2184,7 +2184,7 @@ on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.off('wifiScanStateChange')<sup>9+</sup>
 
@@ -2209,7 +2209,7 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.on('wifiRssiChange')<sup>9+</sup>
 
@@ -2234,7 +2234,7 @@ on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.off('wifiRssiChange')<sup>9+</sup>
 
@@ -2259,7 +2259,7 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2501000  | Operation failed。|
+| 2501000  | Operation failed.|
 
 ## wifi.on('hotspotStateChange')<sup>9+</sup>
 
@@ -2293,7 +2293,7 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2601000  | Operation failed。|
+| 2601000  | Operation failed.|
 
 ## wifi.off('hotspotStateChange')<sup>9+</sup>
 
@@ -2318,7 +2318,7 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2601000  | Operation failed。|
+| 2601000  | Operation failed.|
 
 ## wifi.on('p2pStateChange')<sup>9+</sup>
 
@@ -2353,7 +2353,7 @@ on(type: "p2pStateChange", callback: Callback&lt;number&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pStateChange')<sup>9+</sup>
 
@@ -2378,7 +2378,7 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
   ## wifi.on('p2pConnectionChange')<sup>9+</sup>
 
@@ -2403,7 +2403,7 @@ on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): vo
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pConnectionChange')<sup>9+</sup>
 
@@ -2428,7 +2428,7 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.on('p2pDeviceChange')<sup>9+</sup>
 
@@ -2453,7 +2453,7 @@ on(type: "p2pDeviceChange", callback: Callback&lt;WifiP2pDevice&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pDeviceChange')<sup>9+</sup>
 
@@ -2478,7 +2478,7 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.on('p2pPeerDeviceChange')<sup>9+</sup>
 
@@ -2503,7 +2503,7 @@ on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pPeerDeviceChange')<sup>9+</sup>
 
@@ -2528,7 +2528,7 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.on('p2pPersistentGroupChange')<sup>9+</sup>
 
@@ -2553,7 +2553,7 @@ on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pPersistentGroupChange')<sup>9+</sup>
 
@@ -2578,7 +2578,7 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.on('p2pDiscoveryChange')<sup>9+</sup>
 
@@ -2610,7 +2610,7 @@ on(type: "p2pDiscoveryChange", callback: Callback&lt;number&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pDiscoveryChange')<sup>9+</sup>
 
@@ -2635,4 +2635,4 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 
 | **类型** | **说明** |
   | -------- | -------- |
-| 2801000  | Operation failed。|
+| 2801000  | Operation failed.|
